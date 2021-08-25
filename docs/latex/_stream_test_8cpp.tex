@@ -1,0 +1,92 @@
+\hypertarget{_stream_test_8cpp}{}\doxysection{crt/aws-\/crt-\/cpp/tests/\+Stream\+Test.cpp File Reference}
+\label{_stream_test_8cpp}\index{crt/aws-\/crt-\/cpp/tests/StreamTest.cpp@{crt/aws-\/crt-\/cpp/tests/StreamTest.cpp}}
+{\ttfamily \#include $<$aws/crt/\+Api.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Stream.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/stream.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_aedb0ff880ef88db42ad029e7b934b140}{s\+\_\+\+Stream\+Test\+Create\+Destroy\+Wrapper}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_a3252387897f3328945868098c463cf02}{s\+\_\+\+Stream\+Test\+Length}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_a9d92ff0f4abfd46b8de0295c07021602}{s\+\_\+\+Stream\+Test\+Read}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_a74d48d46153a622ac51fce86ad15bd98}{s\+\_\+\+Stream\+Test\+Read\+Empty}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_a956ae8847a03e531372ca3d2b08d54cd}{s\+\_\+\+Stream\+Test\+Seek\+Begin}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_stream_test_8cpp_afef4e6e190d02d58c5f1cf7675d3481a}{s\+\_\+\+Stream\+Test\+Seek\+End}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{_stream_test_8cpp_afdb5ecc23a79a3c1661c8a9096e3c8da}{STREAM\+\_\+\+CONTENTS}} = \char`\"{}Some\+Contents\char`\"{}
+\item 
+static const \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} \mbox{\hyperlink{_stream_test_8cpp_a89efb2b6824c91c2fe46c9f5d48486d2}{BEGIN\+\_\+\+SEEK\+\_\+\+OFFSET}} = 4
+\item 
+static const \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} \mbox{\hyperlink{_stream_test_8cpp_a545bc5a7a472099fb16a99a447621ceb}{END\+\_\+\+SEEK\+\_\+\+OFFSET}} = -\/4
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_stream_test_8cpp_aedb0ff880ef88db42ad029e7b934b140}\label{_stream_test_8cpp_aedb0ff880ef88db42ad029e7b934b140}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestCreateDestroyWrapper@{s\_StreamTestCreateDestroyWrapper}}
+\index{s\_StreamTestCreateDestroyWrapper@{s\_StreamTestCreateDestroyWrapper}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestCreateDestroyWrapper()}{s\_StreamTestCreateDestroyWrapper()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Create\+Destroy\+Wrapper (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{_stream_test_8cpp_a3252387897f3328945868098c463cf02}\label{_stream_test_8cpp_a3252387897f3328945868098c463cf02}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestLength@{s\_StreamTestLength}}
+\index{s\_StreamTestLength@{s\_StreamTestLength}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestLength()}{s\_StreamTestLength()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_a9d92ff0f4abfd46b8de0295c07021602}\label{_stream_test_8cpp_a9d92ff0f4abfd46b8de0295c07021602}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestRead@{s\_StreamTestRead}}
+\index{s\_StreamTestRead@{s\_StreamTestRead}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestRead()}{s\_StreamTestRead()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_a74d48d46153a622ac51fce86ad15bd98}\label{_stream_test_8cpp_a74d48d46153a622ac51fce86ad15bd98}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestReadEmpty@{s\_StreamTestReadEmpty}}
+\index{s\_StreamTestReadEmpty@{s\_StreamTestReadEmpty}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestReadEmpty()}{s\_StreamTestReadEmpty()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Read\+Empty (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_a956ae8847a03e531372ca3d2b08d54cd}\label{_stream_test_8cpp_a956ae8847a03e531372ca3d2b08d54cd}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestSeekBegin@{s\_StreamTestSeekBegin}}
+\index{s\_StreamTestSeekBegin@{s\_StreamTestSeekBegin}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestSeekBegin()}{s\_StreamTestSeekBegin()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Seek\+Begin (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_afef4e6e190d02d58c5f1cf7675d3481a}\label{_stream_test_8cpp_afef4e6e190d02d58c5f1cf7675d3481a}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!s\_StreamTestSeekEnd@{s\_StreamTestSeekEnd}}
+\index{s\_StreamTestSeekEnd@{s\_StreamTestSeekEnd}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_StreamTestSeekEnd()}{s\_StreamTestSeekEnd()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Stream\+Test\+Seek\+End (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_stream_test_8cpp_a89efb2b6824c91c2fe46c9f5d48486d2}\label{_stream_test_8cpp_a89efb2b6824c91c2fe46c9f5d48486d2}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!BEGIN\_SEEK\_OFFSET@{BEGIN\_SEEK\_OFFSET}}
+\index{BEGIN\_SEEK\_OFFSET@{BEGIN\_SEEK\_OFFSET}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{BEGIN\_SEEK\_OFFSET}{BEGIN\_SEEK\_OFFSET}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} BEGIN\+\_\+\+SEEK\+\_\+\+OFFSET = 4\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_a545bc5a7a472099fb16a99a447621ceb}\label{_stream_test_8cpp_a545bc5a7a472099fb16a99a447621ceb}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!END\_SEEK\_OFFSET@{END\_SEEK\_OFFSET}}
+\index{END\_SEEK\_OFFSET@{END\_SEEK\_OFFSET}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{END\_SEEK\_OFFSET}{END\_SEEK\_OFFSET}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} END\+\_\+\+SEEK\+\_\+\+OFFSET = -\/4\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_stream_test_8cpp_afdb5ecc23a79a3c1661c8a9096e3c8da}\label{_stream_test_8cpp_afdb5ecc23a79a3c1661c8a9096e3c8da}} 
+\index{StreamTest.cpp@{StreamTest.cpp}!STREAM\_CONTENTS@{STREAM\_CONTENTS}}
+\index{STREAM\_CONTENTS@{STREAM\_CONTENTS}!StreamTest.cpp@{StreamTest.cpp}}
+\doxysubsubsection{\texorpdfstring{STREAM\_CONTENTS}{STREAM\_CONTENTS}}
+{\footnotesize\ttfamily const char$\ast$ STREAM\+\_\+\+CONTENTS = \char`\"{}Some\+Contents\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+

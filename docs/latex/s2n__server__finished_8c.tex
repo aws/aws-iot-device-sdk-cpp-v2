@@ -1,0 +1,48 @@
+\hypertarget{s2n__server__finished_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+server\+\_\+finished.c File Reference}
+\label{s2n__server__finished_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_finished.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_finished.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+resume.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__finished_8c_adae4d52456ffeb3a606ed1fb545539e4}{s2n\+\_\+server\+\_\+finished\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__finished_8c_a1faebdea4c42a7b27ce347885b9bd9ee}{s2n\+\_\+server\+\_\+finished\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__finished_8c_aae0ef71221874b88d4ca45e9b98b7225}{s2n\+\_\+tls13\+\_\+server\+\_\+finished\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__finished_8c_a8bb4ffaadfb4b3ab07c07cf993c3b1a0}{s2n\+\_\+tls13\+\_\+server\+\_\+finished\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__finished_8c_adae4d52456ffeb3a606ed1fb545539e4}\label{s2n__server__finished_8c_adae4d52456ffeb3a606ed1fb545539e4}} 
+\index{s2n\_server\_finished.c@{s2n\_server\_finished.c}!s2n\_server\_finished\_recv@{s2n\_server\_finished\_recv}}
+\index{s2n\_server\_finished\_recv@{s2n\_server\_finished\_recv}!s2n\_server\_finished.c@{s2n\_server\_finished.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_finished\_recv()}{s2n\_server\_finished\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+finished\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__finished_8c_a1faebdea4c42a7b27ce347885b9bd9ee}\label{s2n__server__finished_8c_a1faebdea4c42a7b27ce347885b9bd9ee}} 
+\index{s2n\_server\_finished.c@{s2n\_server\_finished.c}!s2n\_server\_finished\_send@{s2n\_server\_finished\_send}}
+\index{s2n\_server\_finished\_send@{s2n\_server\_finished\_send}!s2n\_server\_finished.c@{s2n\_server\_finished.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_finished\_send()}{s2n\_server\_finished\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+finished\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__finished_8c_aae0ef71221874b88d4ca45e9b98b7225}\label{s2n__server__finished_8c_aae0ef71221874b88d4ca45e9b98b7225}} 
+\index{s2n\_server\_finished.c@{s2n\_server\_finished.c}!s2n\_tls13\_server\_finished\_recv@{s2n\_tls13\_server\_finished\_recv}}
+\index{s2n\_tls13\_server\_finished\_recv@{s2n\_tls13\_server\_finished\_recv}!s2n\_server\_finished.c@{s2n\_server\_finished.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_server\_finished\_recv()}{s2n\_tls13\_server\_finished\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+server\+\_\+finished\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__finished_8c_a8bb4ffaadfb4b3ab07c07cf993c3b1a0}\label{s2n__server__finished_8c_a8bb4ffaadfb4b3ab07c07cf993c3b1a0}} 
+\index{s2n\_server\_finished.c@{s2n\_server\_finished.c}!s2n\_tls13\_server\_finished\_send@{s2n\_tls13\_server\_finished\_send}}
+\index{s2n\_tls13\_server\_finished\_send@{s2n\_tls13\_server\_finished\_send}!s2n\_server\_finished.c@{s2n\_server\_finished.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_server\_finished\_send()}{s2n\_tls13\_server\_finished\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+server\+\_\+finished\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

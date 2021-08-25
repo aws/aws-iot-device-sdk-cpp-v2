@@ -1,0 +1,67 @@
+\hypertarget{process__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/process\+\_\+test.c File Reference}
+\label{process__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/process\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/process\_test.c}}
+{\ttfamily \#include $<$aws/common/process.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{process__test_8c_af2e2f84ed774751dd163762f8ab7a459}{s\+\_\+get\+\_\+pid\+\_\+sanity\+\_\+check\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{process__test_8c_a2da1f76063c3967da761cdef0e3831d6}{s\+\_\+max\+\_\+io\+\_\+handles\+\_\+sanity\+\_\+check\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{process__test_8c_a4b045d1c1669b394a245ff27b60a00bf}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+test\+\_\+command, \char`\"{}echo \textquotesingle{}\{\textbackslash{}\char`\"{}Version\textbackslash{}\char`\"{}\+: 1, \textbackslash{}\char`\"{}Access\+Key\+Id\textbackslash{}\char`\"{}\+: \textbackslash{}\char`\"{}Access\+Key123\textbackslash{}\char`\"{}\}\textquotesingle{}\char`\"{})
+\item 
+\mbox{\hyperlink{process__test_8c_a2153b94d6ff9fc82b2cddf2cdf9c31cb}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+expected\+\_\+output, \char`\"{}\{\textbackslash{}\char`\"{}Version\textbackslash{}\char`\"{}\+: 1, \textbackslash{}\char`\"{}Access\+Key\+Id\textbackslash{}\char`\"{}\+: \textbackslash{}\char`\"{}Access\+Key123\textbackslash{}\char`\"{}\}\char`\"{})
+\item 
+static int \mbox{\hyperlink{process__test_8c_ade30dcf393236150cc6d0120cb02b519}{s\+\_\+run\+\_\+command\+\_\+test\+\_\+success\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{process__test_8c_aafaa1caa3ceb32cf57976b0147d24b86}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+bad\+\_\+command, \char`\"{}/i/dont/know/what/is/this/command\char`\"{})
+\item 
+static int \mbox{\hyperlink{process__test_8c_ab4697965e5f61978de35f21abd6d4746}{s\+\_\+run\+\_\+command\+\_\+test\+\_\+bad\+\_\+command\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{process__test_8c_aafaa1caa3ceb32cf57976b0147d24b86}\label{process__test_8c_aafaa1caa3ceb32cf57976b0147d24b86}} 
+\index{process\_test.c@{process\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+bad\+\_\+command}]{,  }\item[{\char`\"{}/i/dont/know/what/is/this/command\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{process__test_8c_a2153b94d6ff9fc82b2cddf2cdf9c31cb}\label{process__test_8c_a2153b94d6ff9fc82b2cddf2cdf9c31cb}} 
+\index{process\_test.c@{process\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+expected\+\_\+output}]{,  }\item[{\char`\"{}\{\textbackslash{}\char`\"{}Version\textbackslash{}\char`\"{}\+: 1, \textbackslash{}\char`\"{}Access\+Key\+Id\textbackslash{}\char`\"{}\+: \textbackslash{}\char`\"{}Access\+Key123\textbackslash{}\char`\"{}\}\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{process__test_8c_a4b045d1c1669b394a245ff27b60a00bf}\label{process__test_8c_a4b045d1c1669b394a245ff27b60a00bf}} 
+\index{process\_test.c@{process\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+test\+\_\+command}]{,  }\item[{\char`\"{}echo \textquotesingle{}\{\textbackslash{}\char`\"{}Version\textbackslash{}\char`\"{}\+: 1, \textbackslash{}\char`\"{}Access\+Key\+Id\textbackslash{}\char`\"{}\+: \textbackslash{}\char`\"{}Access\+Key123\textbackslash{}\char`\"{}\}\textquotesingle{}\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{process__test_8c_af2e2f84ed774751dd163762f8ab7a459}\label{process__test_8c_af2e2f84ed774751dd163762f8ab7a459}} 
+\index{process\_test.c@{process\_test.c}!s\_get\_pid\_sanity\_check\_test\_fn@{s\_get\_pid\_sanity\_check\_test\_fn}}
+\index{s\_get\_pid\_sanity\_check\_test\_fn@{s\_get\_pid\_sanity\_check\_test\_fn}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_pid\_sanity\_check\_test\_fn()}{s\_get\_pid\_sanity\_check\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+get\+\_\+pid\+\_\+sanity\+\_\+check\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{process__test_8c_a2da1f76063c3967da761cdef0e3831d6}\label{process__test_8c_a2da1f76063c3967da761cdef0e3831d6}} 
+\index{process\_test.c@{process\_test.c}!s\_max\_io\_handles\_sanity\_check\_test\_fn@{s\_max\_io\_handles\_sanity\_check\_test\_fn}}
+\index{s\_max\_io\_handles\_sanity\_check\_test\_fn@{s\_max\_io\_handles\_sanity\_check\_test\_fn}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_max\_io\_handles\_sanity\_check\_test\_fn()}{s\_max\_io\_handles\_sanity\_check\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+max\+\_\+io\+\_\+handles\+\_\+sanity\+\_\+check\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{process__test_8c_ab4697965e5f61978de35f21abd6d4746}\label{process__test_8c_ab4697965e5f61978de35f21abd6d4746}} 
+\index{process\_test.c@{process\_test.c}!s\_run\_command\_test\_bad\_command\_fn@{s\_run\_command\_test\_bad\_command\_fn}}
+\index{s\_run\_command\_test\_bad\_command\_fn@{s\_run\_command\_test\_bad\_command\_fn}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_run\_command\_test\_bad\_command\_fn()}{s\_run\_command\_test\_bad\_command\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+run\+\_\+command\+\_\+test\+\_\+bad\+\_\+command\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{process__test_8c_ade30dcf393236150cc6d0120cb02b519}\label{process__test_8c_ade30dcf393236150cc6d0120cb02b519}} 
+\index{process\_test.c@{process\_test.c}!s\_run\_command\_test\_success\_fn@{s\_run\_command\_test\_success\_fn}}
+\index{s\_run\_command\_test\_success\_fn@{s\_run\_command\_test\_success\_fn}!process\_test.c@{process\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_run\_command\_test\_success\_fn()}{s\_run\_command\_test\_success\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+run\+\_\+command\+\_\+test\+\_\+success\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

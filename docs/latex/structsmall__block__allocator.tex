@@ -1,0 +1,45 @@
+\hypertarget{structsmall__block__allocator}{}\doxysection{small\+\_\+block\+\_\+allocator Struct Reference}
+\label{structsmall__block__allocator}\index{small\_block\_allocator@{small\_block\_allocator}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structsmall__block__allocator_af626036a418e5a3392070937a3ad3ba3}{allocator}}
+\item 
+struct \mbox{\hyperlink{structsba__bin}{sba\+\_\+bin}} \mbox{\hyperlink{structsmall__block__allocator_a6f71d43162ae2a2a5d36671a7c8b815b}{bins}} \mbox{[}\mbox{\hyperlink{allocator__sba_8c_af2cd190f1e9da2bdf67296469e5c0721}{AWS\+\_\+\+SBA\+\_\+\+BIN\+\_\+\+COUNT}}\mbox{]}
+\item 
+int($\ast$ \mbox{\hyperlink{structsmall__block__allocator_ad71bb78f2a8c114fa65d6635aa64d1cf}{lock}} )(struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$)
+\item 
+int($\ast$ \mbox{\hyperlink{structsmall__block__allocator_a17ea5651ddeeb0fac3eed062ee29a7ea}{unlock}} )(struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsmall__block__allocator_af626036a418e5a3392070937a3ad3ba3}\label{structsmall__block__allocator_af626036a418e5a3392070937a3ad3ba3}} 
+\index{small\_block\_allocator@{small\_block\_allocator}!allocator@{allocator}}
+\index{allocator@{allocator}!small\_block\_allocator@{small\_block\_allocator}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ small\+\_\+block\+\_\+allocator\+::allocator}
+
+\mbox{\Hypertarget{structsmall__block__allocator_a6f71d43162ae2a2a5d36671a7c8b815b}\label{structsmall__block__allocator_a6f71d43162ae2a2a5d36671a7c8b815b}} 
+\index{small\_block\_allocator@{small\_block\_allocator}!bins@{bins}}
+\index{bins@{bins}!small\_block\_allocator@{small\_block\_allocator}}
+\doxysubsubsection{\texorpdfstring{bins}{bins}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsba__bin}{sba\+\_\+bin}} small\+\_\+block\+\_\+allocator\+::bins\mbox{[}\mbox{\hyperlink{allocator__sba_8c_af2cd190f1e9da2bdf67296469e5c0721}{AWS\+\_\+\+SBA\+\_\+\+BIN\+\_\+\+COUNT}}\mbox{]}}
+
+\mbox{\Hypertarget{structsmall__block__allocator_ad71bb78f2a8c114fa65d6635aa64d1cf}\label{structsmall__block__allocator_ad71bb78f2a8c114fa65d6635aa64d1cf}} 
+\index{small\_block\_allocator@{small\_block\_allocator}!lock@{lock}}
+\index{lock@{lock}!small\_block\_allocator@{small\_block\_allocator}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily int($\ast$ small\+\_\+block\+\_\+allocator\+::lock) (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$)}
+
+\mbox{\Hypertarget{structsmall__block__allocator_a17ea5651ddeeb0fac3eed062ee29a7ea}\label{structsmall__block__allocator_a17ea5651ddeeb0fac3eed062ee29a7ea}} 
+\index{small\_block\_allocator@{small\_block\_allocator}!unlock@{unlock}}
+\index{unlock@{unlock}!small\_block\_allocator@{small\_block\_allocator}}
+\doxysubsubsection{\texorpdfstring{unlock}{unlock}}
+{\footnotesize\ttfamily int($\ast$ small\+\_\+block\+\_\+allocator\+::unlock) (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$)}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/\mbox{\hyperlink{allocator__sba_8c}{allocator\+\_\+sba.\+c}}\end{DoxyCompactItemize}

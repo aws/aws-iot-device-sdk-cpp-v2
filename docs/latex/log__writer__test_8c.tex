@@ -1,0 +1,123 @@
+\hypertarget{log__writer__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\+\_\+writer\+\_\+test.c File Reference}
+\label{log__writer__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\_writer\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\_writer\_test.c}}
+{\ttfamily \#include \char`\"{}logging\+\_\+test\+\_\+utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+writer.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/file.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log__writer__test_8c_ae56b51b27c217a3bc3783d54b977bbf9}{TEST\+\_\+\+WRITER\+\_\+\+MAX\+\_\+\+BUFFER\+\_\+\+SIZE}}~4096
+\item 
+\#define \mbox{\hyperlink{log__writer__test_8c_a2d03f27d1cbc46d70be9d65a98deca0b}{EXISTING\+\_\+\+TEXT}}~\char`\"{}Some existing text\textbackslash{}n\char`\"{}
+\item 
+\#define \mbox{\hyperlink{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}{SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT}}~\char`\"{}A few\textbackslash{}nlog lines.\textbackslash{}n\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{log__writer__test_8c_aad6c7febe79330ad9524b3c616737529}{do\+\_\+default\+\_\+log\+\_\+writer\+\_\+test}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const char $\ast$test\+\_\+file\+\_\+name, const char $\ast$expected\+\_\+file\+\_\+content, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, FILE $\ast$close\+\_\+fp)
+\item 
+\mbox{\hyperlink{log__writer__test_8c_a8d81c3c3f9f3d5c1b7f760e6e4815d82}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+simple\+\_\+file\+\_\+content, \mbox{\hyperlink{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}{SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT}})
+\item 
+static int \mbox{\hyperlink{log__writer__test_8c_a11d670d5073c01fe889683a347219400}{s\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{log__writer__test_8c_a29fbdca70eae56b25bb3941d04323199}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test, \mbox{\hyperlink{log__writer__test_8c_a11d670d5073c01fe889683a347219400}{s\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test}})
+\item 
+static int \mbox{\hyperlink{log__writer__test_8c_aa8c442a9990e6842ea2902fd29321896}{s\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{log__writer__test_8c_a58ebb1707622e87821dcd671ad972468}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test, \mbox{\hyperlink{log__writer__test_8c_aa8c442a9990e6842ea2902fd29321896}{s\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test}})
+\item 
+static int \mbox{\hyperlink{log__writer__test_8c_a115ec37161f871c8da00542b2de3ac85}{s\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{log__writer__test_8c_a01799c6f683982b84edb37b791c0fb5d}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test, \mbox{\hyperlink{log__writer__test_8c_a115ec37161f871c8da00542b2de3ac85}{s\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{log__writer__test_8c_a8fcd228d631299007c9813b3b0677c2d}{s\+\_\+combined\+\_\+text}} = \mbox{\hyperlink{log__writer__test_8c_a2d03f27d1cbc46d70be9d65a98deca0b}{EXISTING\+\_\+\+TEXT}} \mbox{\hyperlink{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}{SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{log__writer__test_8c_a2d03f27d1cbc46d70be9d65a98deca0b}\label{log__writer__test_8c_a2d03f27d1cbc46d70be9d65a98deca0b}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!EXISTING\_TEXT@{EXISTING\_TEXT}}
+\index{EXISTING\_TEXT@{EXISTING\_TEXT}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{EXISTING\_TEXT}{EXISTING\_TEXT}}
+{\footnotesize\ttfamily \#define EXISTING\+\_\+\+TEXT~\char`\"{}Some existing text\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}\label{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!SIMPLE\_FILE\_CONTENT@{SIMPLE\_FILE\_CONTENT}}
+\index{SIMPLE\_FILE\_CONTENT@{SIMPLE\_FILE\_CONTENT}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{SIMPLE\_FILE\_CONTENT}{SIMPLE\_FILE\_CONTENT}}
+{\footnotesize\ttfamily \#define SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT~\char`\"{}A few\textbackslash{}nlog lines.\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{log__writer__test_8c_ae56b51b27c217a3bc3783d54b977bbf9}\label{log__writer__test_8c_ae56b51b27c217a3bc3783d54b977bbf9}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!TEST\_WRITER\_MAX\_BUFFER\_SIZE@{TEST\_WRITER\_MAX\_BUFFER\_SIZE}}
+\index{TEST\_WRITER\_MAX\_BUFFER\_SIZE@{TEST\_WRITER\_MAX\_BUFFER\_SIZE}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_WRITER\_MAX\_BUFFER\_SIZE}{TEST\_WRITER\_MAX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+WRITER\+\_\+\+MAX\+\_\+\+BUFFER\+\_\+\+SIZE~4096}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{log__writer__test_8c_a8d81c3c3f9f3d5c1b7f760e6e4815d82}\label{log__writer__test_8c_a8d81c3c3f9f3d5c1b7f760e6e4815d82}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+simple\+\_\+file\+\_\+content}]{,  }\item[{\mbox{\hyperlink{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}{SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer__test_8c_a01799c6f683982b84edb37b791c0fb5d}\label{log__writer__test_8c_a01799c6f683982b84edb37b791c0fb5d}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test}]{,  }\item[{\mbox{\hyperlink{log__writer__test_8c_a115ec37161f871c8da00542b2de3ac85}{s\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer__test_8c_a58ebb1707622e87821dcd671ad972468}\label{log__writer__test_8c_a58ebb1707622e87821dcd671ad972468}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test}]{,  }\item[{\mbox{\hyperlink{log__writer__test_8c_aa8c442a9990e6842ea2902fd29321896}{s\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer__test_8c_a29fbdca70eae56b25bb3941d04323199}\label{log__writer__test_8c_a29fbdca70eae56b25bb3941d04323199}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test}]{,  }\item[{\mbox{\hyperlink{log__writer__test_8c_a11d670d5073c01fe889683a347219400}{s\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer__test_8c_aad6c7febe79330ad9524b3c616737529}\label{log__writer__test_8c_aad6c7febe79330ad9524b3c616737529}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!do\_default\_log\_writer\_test@{do\_default\_log\_writer\_test}}
+\index{do\_default\_log\_writer\_test@{do\_default\_log\_writer\_test}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{do\_default\_log\_writer\_test()}{do\_default\_log\_writer\_test()}}
+{\footnotesize\ttfamily int do\+\_\+default\+\_\+log\+\_\+writer\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{const char $\ast$}]{test\+\_\+file\+\_\+name,  }\item[{const char $\ast$}]{expected\+\_\+file\+\_\+content,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{output,  }\item[{FILE $\ast$}]{close\+\_\+fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer__test_8c_a115ec37161f871c8da00542b2de3ac85}\label{log__writer__test_8c_a115ec37161f871c8da00542b2de3ac85}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!s\_log\_writer\_bad\_file\_test@{s\_log\_writer\_bad\_file\_test}}
+\index{s\_log\_writer\_bad\_file\_test@{s\_log\_writer\_bad\_file\_test}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_log\_writer\_bad\_file\_test()}{s\_log\_writer\_bad\_file\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+log\+\_\+writer\+\_\+bad\+\_\+file\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__writer__test_8c_aa8c442a9990e6842ea2902fd29321896}\label{log__writer__test_8c_aa8c442a9990e6842ea2902fd29321896}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!s\_log\_writer\_existing\_file\_test@{s\_log\_writer\_existing\_file\_test}}
+\index{s\_log\_writer\_existing\_file\_test@{s\_log\_writer\_existing\_file\_test}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_log\_writer\_existing\_file\_test()}{s\_log\_writer\_existing\_file\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+log\+\_\+writer\+\_\+existing\+\_\+file\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__writer__test_8c_a11d670d5073c01fe889683a347219400}\label{log__writer__test_8c_a11d670d5073c01fe889683a347219400}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!s\_log\_writer\_simple\_file\_test@{s\_log\_writer\_simple\_file\_test}}
+\index{s\_log\_writer\_simple\_file\_test@{s\_log\_writer\_simple\_file\_test}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_log\_writer\_simple\_file\_test()}{s\_log\_writer\_simple\_file\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+log\+\_\+writer\+\_\+simple\+\_\+file\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{log__writer__test_8c_a8fcd228d631299007c9813b3b0677c2d}\label{log__writer__test_8c_a8fcd228d631299007c9813b3b0677c2d}} 
+\index{log\_writer\_test.c@{log\_writer\_test.c}!s\_combined\_text@{s\_combined\_text}}
+\index{s\_combined\_text@{s\_combined\_text}!log\_writer\_test.c@{log\_writer\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_combined\_text}{s\_combined\_text}}
+{\footnotesize\ttfamily const char$\ast$ s\+\_\+combined\+\_\+text = \mbox{\hyperlink{log__writer__test_8c_a2d03f27d1cbc46d70be9d65a98deca0b}{EXISTING\+\_\+\+TEXT}} \mbox{\hyperlink{log__writer__test_8c_ae7fb9c7a13c4438fbb6153c74d686da0}{SIMPLE\+\_\+\+FILE\+\_\+\+CONTENT}}\hspace{0.3cm}{\ttfamily [static]}}
+

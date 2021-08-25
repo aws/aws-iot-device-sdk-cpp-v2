@@ -1,0 +1,103 @@
+\hypertarget{s2n__aead__cipher__chacha20__poly1305_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+aead\+\_\+cipher\+\_\+chacha20\+\_\+poly1305.c File Reference}
+\label{s2n__aead__cipher__chacha20__poly1305_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_aead\_cipher\_chacha20\_poly1305.c@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+{\ttfamily \#include $<$openssl/evp.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+openssl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_af5a7fcb79d4089599ce973cf2c9f4078}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+available}} (void)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a692e4dffcc13aed31604a1b526433793}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+encrypt}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$aad, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_ab1b26df101800746501d243284158206}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+decrypt}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$aad, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_aa33819007bded0d653c82110213d150a}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+set\+\_\+encryption\+\_\+key}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$in)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_ad8a663ab3b60c940d195d596726b5f64}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+set\+\_\+decryption\+\_\+key}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$in)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a22757d6c8468d69e2cf0d92a92d21ac7}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+init}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key)
+\item 
+static int \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a88be98ae7abf518806d6e972668eb553}{s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+destroy\+\_\+key}} (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher}{s2n\+\_\+cipher}} \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a0137fb3f62fdc43b18057b843a9e498d}{s2n\+\_\+chacha20\+\_\+poly1305}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_af5a7fcb79d4089599ce973cf2c9f4078}\label{s2n__aead__cipher__chacha20__poly1305_8c_af5a7fcb79d4089599ce973cf2c9f4078}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_available@{s2n\_aead\_chacha20\_poly1305\_available}}
+\index{s2n\_aead\_chacha20\_poly1305\_available@{s2n\_aead\_chacha20\_poly1305\_available}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_available()}{s2n\_aead\_chacha20\_poly1305\_available()}}
+{\footnotesize\ttfamily static uint8\+\_\+t s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_ab1b26df101800746501d243284158206}\label{s2n__aead__cipher__chacha20__poly1305_8c_ab1b26df101800746501d243284158206}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_decrypt@{s2n\_aead\_chacha20\_poly1305\_decrypt}}
+\index{s2n\_aead\_chacha20\_poly1305\_decrypt@{s2n\_aead\_chacha20\_poly1305\_decrypt}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_decrypt()}{s2n\_aead\_chacha20\_poly1305\_decrypt()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+decrypt (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key,  }\item[{struct s2n\+\_\+blob $\ast$}]{iv,  }\item[{struct s2n\+\_\+blob $\ast$}]{aad,  }\item[{struct s2n\+\_\+blob $\ast$}]{in,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_a88be98ae7abf518806d6e972668eb553}\label{s2n__aead__cipher__chacha20__poly1305_8c_a88be98ae7abf518806d6e972668eb553}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_destroy\_key@{s2n\_aead\_chacha20\_poly1305\_destroy\_key}}
+\index{s2n\_aead\_chacha20\_poly1305\_destroy\_key@{s2n\_aead\_chacha20\_poly1305\_destroy\_key}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_destroy\_key()}{s2n\_aead\_chacha20\_poly1305\_destroy\_key()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+destroy\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_a692e4dffcc13aed31604a1b526433793}\label{s2n__aead__cipher__chacha20__poly1305_8c_a692e4dffcc13aed31604a1b526433793}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_encrypt@{s2n\_aead\_chacha20\_poly1305\_encrypt}}
+\index{s2n\_aead\_chacha20\_poly1305\_encrypt@{s2n\_aead\_chacha20\_poly1305\_encrypt}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_encrypt()}{s2n\_aead\_chacha20\_poly1305\_encrypt()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+encrypt (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key,  }\item[{struct s2n\+\_\+blob $\ast$}]{iv,  }\item[{struct s2n\+\_\+blob $\ast$}]{aad,  }\item[{struct s2n\+\_\+blob $\ast$}]{in,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_a22757d6c8468d69e2cf0d92a92d21ac7}\label{s2n__aead__cipher__chacha20__poly1305_8c_a22757d6c8468d69e2cf0d92a92d21ac7}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_init@{s2n\_aead\_chacha20\_poly1305\_init}}
+\index{s2n\_aead\_chacha20\_poly1305\_init@{s2n\_aead\_chacha20\_poly1305\_init}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_init()}{s2n\_aead\_chacha20\_poly1305\_init()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_ad8a663ab3b60c940d195d596726b5f64}\label{s2n__aead__cipher__chacha20__poly1305_8c_ad8a663ab3b60c940d195d596726b5f64}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key@{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key}}
+\index{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key@{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key()}{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+set\+\_\+decryption\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key,  }\item[{struct s2n\+\_\+blob $\ast$}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_aa33819007bded0d653c82110213d150a}\label{s2n__aead__cipher__chacha20__poly1305_8c_aa33819007bded0d653c82110213d150a}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key@{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key}}
+\index{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key@{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key()}{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key()}}
+{\footnotesize\ttfamily static int s2n\+\_\+aead\+\_\+chacha20\+\_\+poly1305\+\_\+set\+\_\+encryption\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{key,  }\item[{struct s2n\+\_\+blob $\ast$}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__aead__cipher__chacha20__poly1305_8c_a0137fb3f62fdc43b18057b843a9e498d}\label{s2n__aead__cipher__chacha20__poly1305_8c_a0137fb3f62fdc43b18057b843a9e498d}} 
+\index{s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}!s2n\_chacha20\_poly1305@{s2n\_chacha20\_poly1305}}
+\index{s2n\_chacha20\_poly1305@{s2n\_chacha20\_poly1305}!s2n\_aead\_cipher\_chacha20\_poly1305.c@{s2n\_aead\_cipher\_chacha20\_poly1305.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_chacha20\_poly1305}{s2n\_chacha20\_poly1305}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher}{s2n\+\_\+cipher}} s2n\+\_\+chacha20\+\_\+poly1305}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .key\_material\_size = \mbox{\hyperlink{s2n__crypto__constants_8h_aac0434fe8f67c25eac4988a41ef8a247}{S2N\_TLS\_CHACHA20\_POLY1305\_KEY\_LEN}},}
+\DoxyCodeLine{    .type = S2N\_AEAD,}
+\DoxyCodeLine{    .io.aead = \{}
+\DoxyCodeLine{                .record\_iv\_size = \mbox{\hyperlink{s2n__crypto__constants_8h_a3542bcff76daf8ac2308caab8a55b57c}{S2N\_TLS\_CHACHA20\_POLY1305\_EXPLICIT\_IV\_LEN}},}
+\DoxyCodeLine{                .fixed\_iv\_size = \mbox{\hyperlink{s2n__crypto__constants_8h_ac13db349afb4e5a5b82fb806bbf86427}{S2N\_TLS\_CHACHA20\_POLY1305\_FIXED\_IV\_LEN}},}
+\DoxyCodeLine{                .tag\_size = \mbox{\hyperlink{s2n__crypto__constants_8h_a0428592af5765fcb47dd15041be08295}{S2N\_TLS\_CHACHA20\_POLY1305\_TAG\_LEN}},}
+\DoxyCodeLine{                .decrypt = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_ab1b26df101800746501d243284158206}{s2n\_aead\_chacha20\_poly1305\_decrypt}},}
+\DoxyCodeLine{                .encrypt = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a692e4dffcc13aed31604a1b526433793}{s2n\_aead\_chacha20\_poly1305\_encrypt}}\},}
+\DoxyCodeLine{    .is\_available = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_af5a7fcb79d4089599ce973cf2c9f4078}{s2n\_aead\_chacha20\_poly1305\_available}},}
+\DoxyCodeLine{    .init = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a22757d6c8468d69e2cf0d92a92d21ac7}{s2n\_aead\_chacha20\_poly1305\_init}},}
+\DoxyCodeLine{    .set\_encryption\_key = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_aa33819007bded0d653c82110213d150a}{s2n\_aead\_chacha20\_poly1305\_set\_encryption\_key}},}
+\DoxyCodeLine{    .set\_decryption\_key = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_ad8a663ab3b60c940d195d596726b5f64}{s2n\_aead\_chacha20\_poly1305\_set\_decryption\_key}},}
+\DoxyCodeLine{    .destroy\_key = \mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a88be98ae7abf518806d6e972668eb553}{s2n\_aead\_chacha20\_poly1305\_destroy\_key}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

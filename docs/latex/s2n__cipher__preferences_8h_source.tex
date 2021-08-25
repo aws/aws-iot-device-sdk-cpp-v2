@@ -1,0 +1,110 @@
+\hypertarget{s2n__cipher__preferences_8h_source}{}\doxysection{s2n\+\_\+cipher\+\_\+preferences.\+h}
+\label{s2n__cipher__preferences_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_preferences.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_preferences.h}}
+\mbox{\hyperlink{s2n__cipher__preferences_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__cipher__suites_8h}{tls/s2n\_cipher\_suites.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__kem_8h}{tls/s2n\_kem.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__tls13_8h}{tls/s2n\_tls13.h}}"{}}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \{}
+\DoxyCodeLine{24     uint8\_t \mbox{\hyperlink{structs2n__cipher__preferences_a7b6c23e6da4f15a43d76f89dd0a52d31}{count}};}
+\DoxyCodeLine{25     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} **\mbox{\hyperlink{structs2n__cipher__preferences_a569f768509f070616c8f79651b794e46}{suites}};}
+\DoxyCodeLine{26 \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a4348e2800b5130b52ca3d21ff15f1af3}{cipher\_preferences\_20140601}};}
+\DoxyCodeLine{29 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a997044d4e9d16efca781debcbe164713}{cipher\_preferences\_20141001}};}
+\DoxyCodeLine{30 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a55fcaf2aaa87df7d4fc3cc987e1260df}{cipher\_preferences\_20150202}};}
+\DoxyCodeLine{31 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a07c1828de66096afa62dfa01f833c99f}{cipher\_preferences\_20150214}};}
+\DoxyCodeLine{32 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ad1e4562dde696c40cf6cdeb61e6c4bc6}{cipher\_preferences\_20150306}};}
+\DoxyCodeLine{33 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_aa4a1851303b3c2fc151c3b526489d468}{cipher\_preferences\_20160411}};}
+\DoxyCodeLine{34 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a7219ce5fc3170e66789d9bbc62a5e744}{cipher\_preferences\_20160804}};}
+\DoxyCodeLine{35 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ac3addda028fd5ab096cc7693369cbeaa}{cipher\_preferences\_20160824}};}
+\DoxyCodeLine{36 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a9bb6a263f40e9c8c64533f7b38b575a1}{cipher\_preferences\_20170210}};}
+\DoxyCodeLine{37 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a5466a9f68f4a624380a58f7552c9985d}{cipher\_preferences\_20170328}};}
+\DoxyCodeLine{38 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a98be1393db1530734ee4db99317b74b2}{cipher\_preferences\_20170405}};}
+\DoxyCodeLine{39 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a8f3781a9270d7780c81daa5c3d3111e8}{cipher\_preferences\_20170718}};}
+\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a643212c08ca15d9180e4bfda1974b39f}{cipher\_preferences\_20190214}};}
+\DoxyCodeLine{41 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_af605d393c6a4a164a472a205468b925d}{cipher\_preferences\_20190801}};}
+\DoxyCodeLine{42 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ad2e512b8f0f90fae4c0e824901b76023}{cipher\_preferences\_20190120}};}
+\DoxyCodeLine{43 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a25bfb3c9c0e98667499d4d0fb6dde1b2}{cipher\_preferences\_20190121}};}
+\DoxyCodeLine{44 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a6af168049895e51a1a7b1c14c244b6a4}{cipher\_preferences\_20190122}};}
+\DoxyCodeLine{45 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a2683796ac1f44de849d8f0fa9617c67d}{cipher\_preferences\_test\_all}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a59bdf36ae8fa72c21b3ee90cb085fa0e}{cipher\_preferences\_test\_all\_tls12}};}
+\DoxyCodeLine{48 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a1c9d480fae72c78a50bf799780b40f20}{cipher\_preferences\_test\_all\_fips}};}
+\DoxyCodeLine{49 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a6ccfbf81d5f04df7b8d4a5e4c07576bc}{cipher\_preferences\_test\_all\_ecdsa}};}
+\DoxyCodeLine{50 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a67653c1f3593bd7ad6ae80ed1d67ee7f}{cipher\_preferences\_test\_ecdsa\_priority}};}
+\DoxyCodeLine{51 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a61d6a953d80330348e5e3a4acd07fe32}{cipher\_preferences\_test\_all\_rsa\_kex}};}
+\DoxyCodeLine{52 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_aa04833f1f87127f8a223aa8ed9498850}{cipher\_preferences\_test\_all\_tls13}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{/* See https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-\/https-\/listener.html */}}
+\DoxyCodeLine{55 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ab87f2b6193ab142127c17031dcaafefd}{elb\_security\_policy\_2015\_04}};}
+\DoxyCodeLine{56 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a898daec069b4ee99442f7c61440b7176}{elb\_security\_policy\_2016\_08}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ac915b54b59d9f11a2881206a5768aade}{elb\_security\_policy\_tls\_1\_1\_2017\_01}};}
+\DoxyCodeLine{59 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a0b521f340dae5767893fb56a9a687042}{elb\_security\_policy\_tls\_1\_2\_2017\_01}};}
+\DoxyCodeLine{60 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_acdd83aa4fc6945803f7eebdbb2ce285f}{elb\_security\_policy\_tls\_1\_2\_ext\_2018\_06}};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a8d92923dc6064dd57208d55b71c72865}{elb\_security\_policy\_fs\_2018\_06}};}
+\DoxyCodeLine{63 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a955aa7366f9feda914df7e2310fda5b7}{elb\_security\_policy\_fs\_1\_2\_2019\_08}};}
+\DoxyCodeLine{64 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ad255cdd83a957ca319adae99b6438586}{elb\_security\_policy\_fs\_1\_1\_2019\_08}};}
+\DoxyCodeLine{65 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_aadf2e947cd786e427e06e2bda1d058a5}{elb\_security\_policy\_fs\_1\_2\_Res\_2019\_08}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{comment}{/* CloudFront upstream */}}
+\DoxyCodeLine{68 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_abec4b734f0670a5a7410d7db3bbb62ee}{cipher\_preferences\_cloudfront\_upstream}};}
+\DoxyCodeLine{69 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a8526084278c3a79b2b9e4216cd42370b}{cipher\_preferences\_cloudfront\_upstream\_tls10}};}
+\DoxyCodeLine{70 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a1dab392f8aa60217bbe378c14eeb3428}{cipher\_preferences\_cloudfront\_upstream\_tls11}};}
+\DoxyCodeLine{71 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a691da1e89656cbe62b4a43fdfedd0964}{cipher\_preferences\_cloudfront\_upstream\_tls12}};}
+\DoxyCodeLine{72 \textcolor{comment}{/* CloudFront viewer facing */}}
+\DoxyCodeLine{73 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a91875c6c14c5c23ebf93067a3918f494}{cipher\_preferences\_cloudfront\_ssl\_v\_3}};}
+\DoxyCodeLine{74 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a912e601f6c640cfd15d20249d9f36b59}{cipher\_preferences\_cloudfront\_tls\_1\_0\_2014}};}
+\DoxyCodeLine{75 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a5a0c5c99543698d297a08e28cd660e59}{cipher\_preferences\_cloudfront\_tls\_1\_0\_2016}};}
+\DoxyCodeLine{76 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a40f1e467745de51844da1bcb53b02b9c}{cipher\_preferences\_cloudfront\_tls\_1\_1\_2016}};}
+\DoxyCodeLine{77 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ae2e0080b983c49e51f6e3bad9dff67ff}{cipher\_preferences\_cloudfront\_tls\_1\_2\_2018}};}
+\DoxyCodeLine{78 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ad60510bdf81548468ee4b9795643945c}{cipher\_preferences\_cloudfront\_tls\_1\_2\_2019}};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{/* CloudFront viewer facing legacy TLS 1.2 policies */}}
+\DoxyCodeLine{81 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a90e17c0d0703cf7dcb5c6578a6708427}{cipher\_preferences\_cloudfront\_ssl\_v\_3\_legacy}};}
+\DoxyCodeLine{82 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ae6dc3b9aa0e3e6fa2de04393c132db0b}{cipher\_preferences\_cloudfront\_tls\_1\_0\_2014\_legacy}};}
+\DoxyCodeLine{83 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_aa4c6d16ec64c02291111742ea3fa0c45}{cipher\_preferences\_cloudfront\_tls\_1\_0\_2016\_legacy}};}
+\DoxyCodeLine{84 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a582accabc93e06f765115e12c16d1757}{cipher\_preferences\_cloudfront\_tls\_1\_1\_2016\_legacy}};}
+\DoxyCodeLine{85 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_af4d0fecb5412d810d335b1247800e096}{cipher\_preferences\_cloudfront\_tls\_1\_2\_2018\_legacy}};}
+\DoxyCodeLine{86 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a30dd4d0350cc2664f29ce3ecf1190cc8}{cipher\_preferences\_cloudfront\_tls\_1\_2\_2019\_legacy}};}
+\DoxyCodeLine{87 \textcolor{comment}{/* CloudFront undocumented policies for testing */}}
+\DoxyCodeLine{88 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a72e6d93600b90d8f9f7084107291d82d}{cipher\_preferences\_cloudfront\_tls\_1\_2\_2020}};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ae3690ee40057660d5c356815fb67f2dc}{cipher\_preferences\_kms\_tls\_1\_0\_2018\_10}};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#if !defined(S2N\_NO\_PQ)}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a397089d4e1f96409a9b20de0acb9897b}{cipher\_preferences\_kms\_pq\_tls\_1\_0\_2019\_06}};}
+\DoxyCodeLine{95 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_af80b9c8d720343cd557b635beef19d8a}{cipher\_preferences\_kms\_pq\_tls\_1\_0\_2020\_02}};}
+\DoxyCodeLine{96 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_af8cbc7153f43f7c2672355d4f2c79a1d}{cipher\_preferences\_kms\_pq\_tls\_1\_0\_2020\_07}};}
+\DoxyCodeLine{97 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_aff3588534e8074fde5a52b6e9f04c479}{cipher\_preferences\_pq\_sike\_test\_tls\_1\_0\_2019\_11}};}
+\DoxyCodeLine{98 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a0e41a4bb1885a22da0f18053202fc940}{cipher\_preferences\_pq\_sike\_test\_tls\_1\_0\_2020\_02}};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_a9c390353f0ce68cc67cf325159dc38e8}{cipher\_preferences\_kms\_fips\_tls\_1\_2\_2018\_10}};}
+\DoxyCodeLine{103 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}} \mbox{\hyperlink{s2n__cipher__preferences_8h_ad85ae5a5df89e5ec51ddc3e2f5214862}{cipher\_preferences\_null}};}
+\DoxyCodeLine{104 }
+
+\end{DoxyCode}

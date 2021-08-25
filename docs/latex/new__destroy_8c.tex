@@ -1,0 +1,71 @@
+\hypertarget{new__destroy_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/new\+\_\+destroy.c File Reference}
+\label{new__destroy_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/new\_destroy.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/new\_destroy.c}}
+{\ttfamily \#include \char`\"{}preamble.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{new__destroy_8c_a0909ca646cf9910930b0c9153906092e}{aws\+\_\+event\+\_\+loop\+\_\+stop}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})~    \mbox{\hyperlink{lifecycle_8c_a1d28090f2b2f555112f5059e5403c66b}{s\+\_\+stop}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost c\+\_\+event\+\_\+loop) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost c\+\_\+mutex));
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{new__destroy_8c_aa314d2b6b1deb5ebfe4c3a80c6990eea}{aws\+\_\+event\+\_\+loop\+\_\+init\+\_\+base}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$loop, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\+\_\+io\+\_\+clock\+\_\+fn\+\_\+ptr}} \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes \&loop -\/$>$ alloc) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes \&loop-\/$>$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(maintains \textbackslash{}wrapped(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ensures \textbackslash{}result==0$<$
+\item 
+void \mbox{\hyperlink{new__destroy_8c_ae27802c21c84472d4cdf807920223490}{aws\+\_\+event\+\_\+loop\+\_\+clean\+\_\+up\+\_\+base}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$loop) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes \textbackslash{}extent(loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ensures \textbackslash{}mutable(loop))
+\item 
+void \mbox{\hyperlink{new__destroy_8c_a6cc331334d030ff39790e12d10ef25c1}{close}} (int fd) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}()
+\item 
+const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$ \mbox{\hyperlink{new__destroy_8c_aebff081511a016f9fab64d7f6d95da46}{aws\+\_\+default\+\_\+thread\+\_\+options}} (void)
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{new__destroy_8c_a908b1954b302cef23680885472dae89f}{aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$options \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(out \textbackslash{}claim(c\+\_\+mutex)))
+\item 
+static void \mbox{\hyperlink{new__destroy_8c_a0cb8fbfab1912aba3585ed254b28ce34}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex)))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{new__destroy_8c_a0909ca646cf9910930b0c9153906092e}\label{new__destroy_8c_a0909ca646cf9910930b0c9153906092e}} 
+\index{new\_destroy.c@{new\_destroy.c}!aws\_event\_loop\_stop@{aws\_event\_loop\_stop}}
+\index{aws\_event\_loop\_stop@{aws\_event\_loop\_stop}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_loop\_stop}{aws\_event\_loop\_stop}}
+{\footnotesize\ttfamily \#define aws\+\_\+event\+\_\+loop\+\_\+stop(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} }\end{DoxyParamCaption})~    \mbox{\hyperlink{lifecycle_8c_a1d28090f2b2f555112f5059e5403c66b}{s\+\_\+stop}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost c\+\_\+event\+\_\+loop) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost c\+\_\+mutex));}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{new__destroy_8c_aebff081511a016f9fab64d7f6d95da46}\label{new__destroy_8c_aebff081511a016f9fab64d7f6d95da46}} 
+\index{new\_destroy.c@{new\_destroy.c}!aws\_default\_thread\_options@{aws\_default\_thread\_options}}
+\index{aws\_default\_thread\_options@{aws\_default\_thread\_options}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_default\_thread\_options()}{aws\_default\_thread\_options()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}}$\ast$ aws\+\_\+default\+\_\+thread\+\_\+options (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns an instance of system default thread options. \mbox{\Hypertarget{new__destroy_8c_ae27802c21c84472d4cdf807920223490}\label{new__destroy_8c_ae27802c21c84472d4cdf807920223490}} 
+\index{new\_destroy.c@{new\_destroy.c}!aws\_event\_loop\_clean\_up\_base@{aws\_event\_loop\_clean\_up\_base}}
+\index{aws\_event\_loop\_clean\_up\_base@{aws\_event\_loop\_clean\_up\_base}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_loop\_clean\_up\_base()}{aws\_event\_loop\_clean\_up\_base()}}
+{\footnotesize\ttfamily void aws\+\_\+event\+\_\+loop\+\_\+clean\+\_\+up\+\_\+base (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{loop }\end{DoxyParamCaption})}
+
+Common cleanup code for all implementations. This is only called from the $\ast$destroy() function of event loop implementations. \mbox{\Hypertarget{new__destroy_8c_aa314d2b6b1deb5ebfe4c3a80c6990eea}\label{new__destroy_8c_aa314d2b6b1deb5ebfe4c3a80c6990eea}} 
+\index{new\_destroy.c@{new\_destroy.c}!aws\_event\_loop\_init\_base@{aws\_event\_loop\_init\_base}}
+\index{aws\_event\_loop\_init\_base@{aws\_event\_loop\_init\_base}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_loop\_init\_base()}{aws\_event\_loop\_init\_base()}}
+{\footnotesize\ttfamily int aws\+\_\+event\+\_\+loop\+\_\+init\+\_\+base (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{loop,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\+\_\+io\+\_\+clock\+\_\+fn\+\_\+ptr}}}]{clock }\end{DoxyParamCaption}) \& -\/$>$  alloc) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes \&loop-\/$>$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(maintains \textbackslash{}wrapped(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ensures \textbackslash{}result=\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{new__destroy_8c_a908b1954b302cef23680885472dae89f}\label{new__destroy_8c_a908b1954b302cef23680885472dae89f}} 
+\index{new\_destroy.c@{new\_destroy.c}!aws\_event\_loop\_new\_default\_with\_options@{aws\_event\_loop\_new\_default\_with\_options}}
+\index{aws\_event\_loop\_new\_default\_with\_options@{aws\_event\_loop\_new\_default\_with\_options}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_loop\_new\_default\_with\_options()}{aws\_event\_loop\_new\_default\_with\_options()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$options }]{\+\_\+out \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{new__destroy_8c_a6cc331334d030ff39790e12d10ef25c1}\label{new__destroy_8c_a6cc331334d030ff39790e12d10ef25c1}} 
+\index{new\_destroy.c@{new\_destroy.c}!close@{close}}
+\index{close@{close}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void close (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{new__destroy_8c_a0cb8fbfab1912aba3585ed254b28ce34}\label{new__destroy_8c_a0cb8fbfab1912aba3585ed254b28ce34}} 
+\index{new\_destroy.c@{new\_destroy.c}!s\_destroy@{s\_destroy}}
+\index{s\_destroy@{s\_destroy}!new\_destroy.c@{new\_destroy.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy()}{s\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

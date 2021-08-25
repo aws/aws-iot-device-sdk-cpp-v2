@@ -1,0 +1,77 @@
+\hypertarget{structaws__connection__management__transaction}{}\doxysection{aws\+\_\+connection\+\_\+management\+\_\+transaction Struct Reference}
+\label{structaws__connection__management__transaction}\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{structaws__connection__management__transaction_a12e2787549ad5b208e6f1e85a19525ee}{manager}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__connection__management__transaction_ac3ffc7845e38432772663c0007399dd0}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__connection__management__transaction_a71dc204cd75b03f593ce21f061fde7e1}{completions}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__connection__management__transaction_aa0542d77a9d9d728ace2daf2a0c3c8f6}{connection\+\_\+to\+\_\+release}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__connection__management__transaction_a7e1dd06b947c2463d5c2a52d7e31fd22}{connections\+\_\+to\+\_\+release}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} \mbox{\hyperlink{structaws__connection__management__transaction_ac846f816753e9a951a1af21026aa559c}{snapshot}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__connection__management__transaction_aa36e586c4f079faecf6877a494e86d97}{new\+\_\+connections}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__connection__management__transaction_ab5e334daea2dd117cf57333d10ef13ea}{should\+\_\+destroy\+\_\+manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__connection__management__transaction_ac3ffc7845e38432772663c0007399dd0}\label{structaws__connection__management__transaction_ac3ffc7845e38432772663c0007399dd0}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+connection\+\_\+management\+\_\+transaction\+::allocator}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_a71dc204cd75b03f593ce21f061fde7e1}\label{structaws__connection__management__transaction_a71dc204cd75b03f593ce21f061fde7e1}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!completions@{completions}}
+\index{completions@{completions}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{completions}{completions}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+connection\+\_\+management\+\_\+transaction\+::completions}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_aa0542d77a9d9d728ace2daf2a0c3c8f6}\label{structaws__connection__management__transaction_aa0542d77a9d9d728ace2daf2a0c3c8f6}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!connection\_to\_release@{connection\_to\_release}}
+\index{connection\_to\_release@{connection\_to\_release}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{connection\_to\_release}{connection\_to\_release}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+connection\+\_\+management\+\_\+transaction\+::connection\+\_\+to\+\_\+release}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_a7e1dd06b947c2463d5c2a52d7e31fd22}\label{structaws__connection__management__transaction_a7e1dd06b947c2463d5c2a52d7e31fd22}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!connections\_to\_release@{connections\_to\_release}}
+\index{connections\_to\_release@{connections\_to\_release}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{connections\_to\_release}{connections\_to\_release}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+connection\+\_\+management\+\_\+transaction\+::connections\+\_\+to\+\_\+release}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_a12e2787549ad5b208e6f1e85a19525ee}\label{structaws__connection__management__transaction_a12e2787549ad5b208e6f1e85a19525ee}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!manager@{manager}}
+\index{manager@{manager}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{manager}{manager}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}}$\ast$ aws\+\_\+connection\+\_\+management\+\_\+transaction\+::manager}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_aa36e586c4f079faecf6877a494e86d97}\label{structaws__connection__management__transaction_aa36e586c4f079faecf6877a494e86d97}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!new\_connections@{new\_connections}}
+\index{new\_connections@{new\_connections}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{new\_connections}{new\_connections}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+connection\+\_\+management\+\_\+transaction\+::new\+\_\+connections}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_ab5e334daea2dd117cf57333d10ef13ea}\label{structaws__connection__management__transaction_ab5e334daea2dd117cf57333d10ef13ea}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!should\_destroy\_manager@{should\_destroy\_manager}}
+\index{should\_destroy\_manager@{should\_destroy\_manager}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{should\_destroy\_manager}{should\_destroy\_manager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+connection\+\_\+management\+\_\+transaction\+::should\+\_\+destroy\+\_\+manager}
+
+\mbox{\Hypertarget{structaws__connection__management__transaction_ac846f816753e9a951a1af21026aa559c}\label{structaws__connection__management__transaction_ac846f816753e9a951a1af21026aa559c}} 
+\index{aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}!snapshot@{snapshot}}
+\index{snapshot@{snapshot}!aws\_connection\_management\_transaction@{aws\_connection\_management\_transaction}}
+\doxysubsubsection{\texorpdfstring{snapshot}{snapshot}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} aws\+\_\+connection\+\_\+management\+\_\+transaction\+::snapshot}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{connection__manager_8c}{connection\+\_\+manager.\+c}}\end{DoxyCompactItemize}

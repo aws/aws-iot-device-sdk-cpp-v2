@@ -1,0 +1,84 @@
+\hypertarget{sidh__r1_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\+\_\+r1/sidh\+\_\+r1.c File Reference}
+\label{sidh__r1_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/sidh\_r1.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/sidh\_r1.c}}
+{\ttfamily \#include \char`\"{}sike\+\_\+r1\+\_\+namespace.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}P503\+\_\+internal\+\_\+r1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pq-\/crypto/s2n\+\_\+pq\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{sidh__r1_8c_ac2cb6bbeded64a3d9bb98c869edab0b4}{clear\+\_\+words}} (void $\ast$mem, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} nwords)
+\item 
+static void \mbox{\hyperlink{sidh__r1_8c_afdc5b678f71d3be3dd2774350a27d324}{init\+\_\+basis}} (const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$gen, \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$XP, \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$XQ, \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$XR)
+\item 
+static void \mbox{\hyperlink{sidh__r1_8c_a89073012bd7587abde78404b6066742b}{fp2\+\_\+encode}} (const \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$x, unsigned char $\ast$enc)
+\item 
+static void \mbox{\hyperlink{sidh__r1_8c_a8127eb2aa76d61a15a3b8fb2b569eec9}{fp2\+\_\+decode}} (const unsigned char $\ast$enc, \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$x)
+\item 
+int \mbox{\hyperlink{sidh__r1_8c_a6d130c218c0cc330111ad949b3710735}{random\+\_\+mod\+\_\+order\+\_\+B}} (unsigned char $\ast$random\+\_\+digits)
+\item 
+int \mbox{\hyperlink{sidh__r1_8c_a3116fc645132415cfe81c2bcd38b2022}{Ephemeral\+Key\+Generation\+\_\+A}} (const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$Private\+KeyA, unsigned char $\ast$Public\+KeyA)
+\item 
+int \mbox{\hyperlink{sidh__r1_8c_a56bfc70562751b787eee2a36fee42427}{Ephemeral\+Key\+Generation\+\_\+B}} (const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$Private\+KeyB, unsigned char $\ast$Public\+KeyB)
+\item 
+int \mbox{\hyperlink{sidh__r1_8c_a838610fc3cb816d5b3ab69b1bb39711b}{Ephemeral\+Secret\+Agreement\+\_\+A}} (const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$Private\+KeyA, const unsigned char $\ast$Public\+KeyB, unsigned char $\ast$Shared\+SecretA)
+\item 
+int \mbox{\hyperlink{sidh__r1_8c_a3ae5f211fd3ab91ac2fcef8c17cc9baa}{Ephemeral\+Secret\+Agreement\+\_\+B}} (const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$Private\+KeyB, const unsigned char $\ast$Public\+KeyA, unsigned char $\ast$Shared\+SecretB)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sidh__r1_8c_ac2cb6bbeded64a3d9bb98c869edab0b4}\label{sidh__r1_8c_ac2cb6bbeded64a3d9bb98c869edab0b4}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!clear\_words@{clear\_words}}
+\index{clear\_words@{clear\_words}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{clear\_words()}{clear\_words()}}
+{\footnotesize\ttfamily static void clear\+\_\+words (\begin{DoxyParamCaption}\item[{void $\ast$}]{mem,  }\item[{\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}}]{nwords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{sidh__r1_8c_a3116fc645132415cfe81c2bcd38b2022}\label{sidh__r1_8c_a3116fc645132415cfe81c2bcd38b2022}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!EphemeralKeyGeneration\_A@{EphemeralKeyGeneration\_A}}
+\index{EphemeralKeyGeneration\_A@{EphemeralKeyGeneration\_A}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{EphemeralKeyGeneration\_A()}{EphemeralKeyGeneration\_A()}}
+{\footnotesize\ttfamily int Ephemeral\+Key\+Generation\+\_\+A (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$}]{Private\+KeyA,  }\item[{unsigned char $\ast$}]{Public\+KeyA }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sidh__r1_8c_a56bfc70562751b787eee2a36fee42427}\label{sidh__r1_8c_a56bfc70562751b787eee2a36fee42427}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!EphemeralKeyGeneration\_B@{EphemeralKeyGeneration\_B}}
+\index{EphemeralKeyGeneration\_B@{EphemeralKeyGeneration\_B}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{EphemeralKeyGeneration\_B()}{EphemeralKeyGeneration\_B()}}
+{\footnotesize\ttfamily int Ephemeral\+Key\+Generation\+\_\+B (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$}]{Private\+KeyB,  }\item[{unsigned char $\ast$}]{Public\+KeyB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sidh__r1_8c_a838610fc3cb816d5b3ab69b1bb39711b}\label{sidh__r1_8c_a838610fc3cb816d5b3ab69b1bb39711b}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!EphemeralSecretAgreement\_A@{EphemeralSecretAgreement\_A}}
+\index{EphemeralSecretAgreement\_A@{EphemeralSecretAgreement\_A}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{EphemeralSecretAgreement\_A()}{EphemeralSecretAgreement\_A()}}
+{\footnotesize\ttfamily int Ephemeral\+Secret\+Agreement\+\_\+A (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$}]{Private\+KeyA,  }\item[{const unsigned char $\ast$}]{Public\+KeyB,  }\item[{unsigned char $\ast$}]{Shared\+SecretA }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sidh__r1_8c_a3ae5f211fd3ab91ac2fcef8c17cc9baa}\label{sidh__r1_8c_a3ae5f211fd3ab91ac2fcef8c17cc9baa}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!EphemeralSecretAgreement\_B@{EphemeralSecretAgreement\_B}}
+\index{EphemeralSecretAgreement\_B@{EphemeralSecretAgreement\_B}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{EphemeralSecretAgreement\_B()}{EphemeralSecretAgreement\_B()}}
+{\footnotesize\ttfamily int Ephemeral\+Secret\+Agreement\+\_\+B (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$}]{Private\+KeyB,  }\item[{const unsigned char $\ast$}]{Public\+KeyA,  }\item[{unsigned char $\ast$}]{Shared\+SecretB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sidh__r1_8c_a8127eb2aa76d61a15a3b8fb2b569eec9}\label{sidh__r1_8c_a8127eb2aa76d61a15a3b8fb2b569eec9}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!fp2\_decode@{fp2\_decode}}
+\index{fp2\_decode@{fp2\_decode}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{fp2\_decode()}{fp2\_decode()}}
+{\footnotesize\ttfamily static void fp2\+\_\+decode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{enc,  }\item[{\mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{sidh__r1_8c_a89073012bd7587abde78404b6066742b}\label{sidh__r1_8c_a89073012bd7587abde78404b6066742b}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!fp2\_encode@{fp2\_encode}}
+\index{fp2\_encode@{fp2\_encode}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{fp2\_encode()}{fp2\_encode()}}
+{\footnotesize\ttfamily static void fp2\+\_\+encode (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$}]{x,  }\item[{unsigned char $\ast$}]{enc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{sidh__r1_8c_afdc5b678f71d3be3dd2774350a27d324}\label{sidh__r1_8c_afdc5b678f71d3be3dd2774350a27d324}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!init\_basis@{init\_basis}}
+\index{init\_basis@{init\_basis}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{init\_basis()}{init\_basis()}}
+{\footnotesize\ttfamily static void init\+\_\+basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} $\ast$}]{gen,  }\item[{\mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$}]{XP,  }\item[{\mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$}]{XQ,  }\item[{\mbox{\hyperlink{_p503__internal__r1_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\+\_\+t}} $\ast$}]{XR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{sidh__r1_8c_a6d130c218c0cc330111ad949b3710735}\label{sidh__r1_8c_a6d130c218c0cc330111ad949b3710735}} 
+\index{sidh\_r1.c@{sidh\_r1.c}!random\_mod\_order\_B@{random\_mod\_order\_B}}
+\index{random\_mod\_order\_B@{random\_mod\_order\_B}!sidh\_r1.c@{sidh\_r1.c}}
+\doxysubsubsection{\texorpdfstring{random\_mod\_order\_B()}{random\_mod\_order\_B()}}
+{\footnotesize\ttfamily int random\+\_\+mod\+\_\+order\+\_\+B (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{random\+\_\+digits }\end{DoxyParamCaption})}
+

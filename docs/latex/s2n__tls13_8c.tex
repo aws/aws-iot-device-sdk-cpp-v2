@@ -1,0 +1,66 @@
+\hypertarget{s2n__tls13_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+tls13.c File Reference}
+\label{s2n__tls13_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls13.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls13.c}}
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa\+\_\+signing.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8c_abc1ce95d0d727580e7a1874a33bf7c26}{s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config}} ()
+\item 
+int \mbox{\hyperlink{s2n__tls13_8c_a34a7d1de7cf50bd0e53a3e8e87e7cc02}{s2n\+\_\+enable\+\_\+tls13}} ()
+\item 
+int \mbox{\hyperlink{s2n__tls13_8c_aa4a420ea3b3df9836c2c79c7a09b9f2e}{s2n\+\_\+disable\+\_\+tls13}} ()
+\item 
+int \mbox{\hyperlink{s2n__tls13_8c_aca489f3709138f6d2f7b151f0fffd7e6}{s2n\+\_\+reset\+\_\+tls13}} ()
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8c_a08ebe030106fad48c5d92182debd5ae1}{s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher}} (const uint8\+\_\+t version\mbox{[}2\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8c_a699b1841052bc1a500b2d9d4361cbdf7}{s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config\+\_\+flag}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__tls13_8c_aa4a420ea3b3df9836c2c79c7a09b9f2e}\label{s2n__tls13_8c_aa4a420ea3b3df9836c2c79c7a09b9f2e}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_disable\_tls13@{s2n\_disable\_tls13}}
+\index{s2n\_disable\_tls13@{s2n\_disable\_tls13}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_disable\_tls13()}{s2n\_disable\_tls13()}}
+{\footnotesize\ttfamily int s2n\+\_\+disable\+\_\+tls13 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13_8c_a34a7d1de7cf50bd0e53a3e8e87e7cc02}\label{s2n__tls13_8c_a34a7d1de7cf50bd0e53a3e8e87e7cc02}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_enable\_tls13@{s2n\_enable\_tls13}}
+\index{s2n\_enable\_tls13@{s2n\_enable\_tls13}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_enable\_tls13()}{s2n\_enable\_tls13()}}
+{\footnotesize\ttfamily int s2n\+\_\+enable\+\_\+tls13 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13_8c_a08ebe030106fad48c5d92182debd5ae1}\label{s2n__tls13_8c_a08ebe030106fad48c5d92182debd5ae1}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_is\_valid\_tls13\_cipher@{s2n\_is\_valid\_tls13\_cipher}}
+\index{s2n\_is\_valid\_tls13\_cipher@{s2n\_is\_valid\_tls13\_cipher}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_valid\_tls13\_cipher()}{s2n\_is\_valid\_tls13\_cipher()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{version\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13_8c_aca489f3709138f6d2f7b151f0fffd7e6}\label{s2n__tls13_8c_aca489f3709138f6d2f7b151f0fffd7e6}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_reset\_tls13@{s2n\_reset\_tls13}}
+\index{s2n\_reset\_tls13@{s2n\_reset\_tls13}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_reset\_tls13()}{s2n\_reset\_tls13()}}
+{\footnotesize\ttfamily int s2n\+\_\+reset\+\_\+tls13 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13_8c_abc1ce95d0d727580e7a1874a33bf7c26}\label{s2n__tls13_8c_abc1ce95d0d727580e7a1874a33bf7c26}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_use\_default\_tls13\_config@{s2n\_use\_default\_tls13\_config}}
+\index{s2n\_use\_default\_tls13\_config@{s2n\_use\_default\_tls13\_config}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_use\_default\_tls13\_config()}{s2n\_use\_default\_tls13\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__tls13_8c_a699b1841052bc1a500b2d9d4361cbdf7}\label{s2n__tls13_8c_a699b1841052bc1a500b2d9d4361cbdf7}} 
+\index{s2n\_tls13.c@{s2n\_tls13.c}!s2n\_use\_default\_tls13\_config\_flag@{s2n\_use\_default\_tls13\_config\_flag}}
+\index{s2n\_use\_default\_tls13\_config\_flag@{s2n\_use\_default\_tls13\_config\_flag}!s2n\_tls13.c@{s2n\_tls13.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_use\_default\_tls13\_config\_flag}{s2n\_use\_default\_tls13\_config\_flag}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config\+\_\+flag = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+

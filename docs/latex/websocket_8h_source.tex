@@ -1,0 +1,164 @@
+\hypertarget{websocket_8h_source}{}\doxysection{websocket.\+h}
+\label{websocket_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/websocket.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/websocket.h}}
+\mbox{\hyperlink{websocket_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_WEBSOCKET\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_WEBSOCKET\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{http_8h}{aws/http/http.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__header}{aws\_http\_header}};}
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{/* TODO: Document lifetime stuff */}}
+\DoxyCodeLine{14 \textcolor{comment}{/* TODO: Document CLOSE frame behavior (when auto-\/sent during close, when auto-\/closed) */}}
+\DoxyCodeLine{15 \textcolor{comment}{/* TODO: Document auto-\/pong behavior */}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26 \textcolor{keyword}{enum} \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6}{aws\_websocket\_opcode}} \{}
+\DoxyCodeLine{27     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6ab535fd7f0aced9dc7396eda64ed349d4}{AWS\_WEBSOCKET\_OPCODE\_CONTINUATION}} = 0x0,}
+\DoxyCodeLine{28     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6ac090ac4972e77bbfb9c492f49c5ad7e3}{AWS\_WEBSOCKET\_OPCODE\_TEXT}} = 0x1,}
+\DoxyCodeLine{29     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6a5778f2d91a54560f23cdcfb6ac15235f}{AWS\_WEBSOCKET\_OPCODE\_BINARY}} = 0x2,}
+\DoxyCodeLine{30     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6a94c8f1cca2801f0d5334cf30d3fb86e2}{AWS\_WEBSOCKET\_OPCODE\_CLOSE}} = 0x8,}
+\DoxyCodeLine{31     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6a0c9fb1c80cd4a6d92df84861951c9dc4}{AWS\_WEBSOCKET\_OPCODE\_PING}} = 0x9,}
+\DoxyCodeLine{32     \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6aa93b2fda9eed9f5e928364c0f6db765b}{AWS\_WEBSOCKET\_OPCODE\_PONG}} = 0xA,}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define AWS\_WEBSOCKET\_MAX\_PAYLOAD\_LENGTH 0x7FFFFFFFFFFFFFFF}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define AWS\_WEBSOCKET\_MAX\_HANDSHAKE\_KEY\_LENGTH 25}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define AWS\_WEBSOCKET\_CLOSE\_TIMEOUT 1000000000 }\textcolor{comment}{// nanos -\/> 1 sec}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{54 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{websocket_8h_a56377c96cca7b987658e24bc276cc979}{aws\_websocket\_on\_connection\_setup\_fn}})(}
+\DoxyCodeLine{55     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket,}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} handshake\_response\_status,}
+\DoxyCodeLine{58     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} *handshake\_response\_header\_array,}
+\DoxyCodeLine{59     \textcolor{keywordtype}{size\_t} num\_handshake\_response\_headers,}
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{websocket_8h_aeb60b576988620b36744b776f93552aa}{aws\_websocket\_on\_connection\_shutdown\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__incoming__frame}{aws\_websocket\_incoming\_frame}} \{}
+\DoxyCodeLine{74     uint64\_t \mbox{\hyperlink{structaws__websocket__incoming__frame_a5b6f518ac0288bfc4d030901a1a34e8c}{payload\_length}};}
+\DoxyCodeLine{75     uint8\_t \mbox{\hyperlink{structaws__websocket__incoming__frame_a96edb84be69eb181711a828acfb0847d}{opcode}};}
+\DoxyCodeLine{76     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__incoming__frame_a4eade2afe1490de5374db23774ef0984}{fin}};}
+\DoxyCodeLine{77     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__incoming__frame_a5e1d4224c0743d46dec9c86c5e4b35ca}{rsv}}[3];}
+\DoxyCodeLine{78 \};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{89 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(\mbox{\hyperlink{websocket_8h_aafe3f4e03f8e097e00ff8839135f29e3}{aws\_websocket\_on\_incoming\_frame\_begin\_fn}})(}
+\DoxyCodeLine{90     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket,}
+\DoxyCodeLine{91     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__incoming__frame}{aws\_websocket\_incoming\_frame}} *frame,}
+\DoxyCodeLine{92     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{103 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(\mbox{\hyperlink{websocket_8h_a96232fc291dd4d3715f64b1accf4be06}{aws\_websocket\_on\_incoming\_frame\_payload\_fn}})(}
+\DoxyCodeLine{104     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket,}
+\DoxyCodeLine{105     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__incoming__frame}{aws\_websocket\_incoming\_frame}} *frame,}
+\DoxyCodeLine{106     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} data,}
+\DoxyCodeLine{107     void *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{117 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(\mbox{\hyperlink{websocket_8h_ad338634b0233c81c3cdeb252471adef1}{aws\_websocket\_on\_incoming\_frame\_complete\_fn}})(}
+\DoxyCodeLine{118     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket,}
+\DoxyCodeLine{119     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__incoming__frame}{aws\_websocket\_incoming\_frame}} *frame,}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{121     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{126 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__client__connection__options}{aws\_websocket\_client\_connection\_options}} \{}
+\DoxyCodeLine{131     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a817912888212199746fc12b6521e7e46}{allocator}};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{137     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__client__bootstrap}{aws\_client\_bootstrap}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a3d2f5ee74223298ac080d556da4ee1d3}{bootstrap}};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{143     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__socket__options}{aws\_socket\_options}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a8dfed851a75725dab89ac040d4b7fc65}{socket\_options}};}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{150     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_aee3982b3367d829f9dc099dccf169234}{tls\_options}};}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{156     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_ae8f9811916b85c7a3036949b0d7550d2}{proxy\_options}};}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{162     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__websocket__client__connection__options_a3d1fd59832c0bb412ebf491b7e8ef529}{host}};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{168     uint16\_t \mbox{\hyperlink{structaws__websocket__client__connection__options_a1598467df11690b3b2c04e3ce1dfea15}{port}};}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{186     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_aa87793a6a9c02ec7edb52e7685af5a98}{handshake\_request}};}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{193     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__websocket__client__connection__options_ab4ffa5be858aad3dfed12704f15cc53a}{initial\_window\_size}};}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{199     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a78d0960af463c45ec5880706b340ccbb}{user\_data}};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{209     \mbox{\hyperlink{websocket_8h_a56377c96cca7b987658e24bc276cc979}{aws\_websocket\_on\_connection\_setup\_fn}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a0d1b21479737a41f3c7dda6344a6dea2}{on\_connection\_setup}};}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{218     \mbox{\hyperlink{websocket_8h_aeb60b576988620b36744b776f93552aa}{aws\_websocket\_on\_connection\_shutdown\_fn}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_accd443ec504bc7c2279bee35c737f940}{on\_connection\_shutdown}};}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{225     \mbox{\hyperlink{websocket_8h_aafe3f4e03f8e097e00ff8839135f29e3}{aws\_websocket\_on\_incoming\_frame\_begin\_fn}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a6b56f0ed886925fb9cd771df98ace234}{on\_incoming\_frame\_begin}};}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{232     \mbox{\hyperlink{websocket_8h_a96232fc291dd4d3715f64b1accf4be06}{aws\_websocket\_on\_incoming\_frame\_payload\_fn}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a6b8ee149c387997262b9339208690131}{on\_incoming\_frame\_payload}};}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{239     \mbox{\hyperlink{websocket_8h_ad338634b0233c81c3cdeb252471adef1}{aws\_websocket\_on\_incoming\_frame\_complete\_fn}} *\mbox{\hyperlink{structaws__websocket__client__connection__options_a35fde492f924232374a7f63517fb4605}{on\_incoming\_frame\_complete}};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{250     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__client__connection__options_a4ecdfe089d83f378c16fedbe518e725a}{manual\_window\_management}};}
+\DoxyCodeLine{251 \};}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{262 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(\mbox{\hyperlink{websocket_8h_a3662727148102bd8c7dd63ddc410b9f0}{aws\_websocket\_stream\_outgoing\_payload\_fn}})(}
+\DoxyCodeLine{263     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket,}
+\DoxyCodeLine{264     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *out\_buf,}
+\DoxyCodeLine{265     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{273 \textcolor{keyword}{typedef} void(}
+\DoxyCodeLine{274     \mbox{\hyperlink{websocket_8h_a764a3b1fc51546dda9c7e61e63209d8d}{aws\_websocket\_outgoing\_frame\_complete\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{281 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\_websocket\_send\_frame\_options}} \{}
+\DoxyCodeLine{285     uint64\_t \mbox{\hyperlink{structaws__websocket__send__frame__options_a48d192163c12bbfc8675fb0dd3bed424}{payload\_length}};}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{290     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__websocket__send__frame__options_a8336a86f32a15c3e74e3928c6c3fc508}{user\_data}};}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{297     \mbox{\hyperlink{websocket_8h_a3662727148102bd8c7dd63ddc410b9f0}{aws\_websocket\_stream\_outgoing\_payload\_fn}} *\mbox{\hyperlink{structaws__websocket__send__frame__options_a76832186330ccb2f95d9afe7f8a11c77}{stream\_outgoing\_payload}};}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{304     \mbox{\hyperlink{websocket_8h_a764a3b1fc51546dda9c7e61e63209d8d}{aws\_websocket\_outgoing\_frame\_complete\_fn}} *\mbox{\hyperlink{structaws__websocket__send__frame__options_a94e3c646e7e8770c7cd937591ff6d5e0}{on\_complete}};}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{310     uint8\_t \mbox{\hyperlink{structaws__websocket__send__frame__options_a68f7328bfb114f71ada92271e42f8449}{opcode}};}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{315     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__send__frame__options_a2c3d4d8fda6d9bde6889294718fb9ca8}{fin}};}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{322     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__send__frame__options_a5d06d668e0e40eba17ca13ce7faaf8a6}{high\_priority}};}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{327     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__websocket__send__frame__options_a69e94a6eabdbc667241df7c83a8c4772}{rsv}}[3];}
+\DoxyCodeLine{328 \};}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{335 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{336 \textcolor{keywordtype}{bool} \mbox{\hyperlink{websocket_8h_a0f39a7a8eac46cc5af177fcff332a5b4}{aws\_websocket\_is\_data\_frame}}(uint8\_t opcode);}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{342 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{343 \textcolor{keywordtype}{int} \mbox{\hyperlink{websocket_8h_ae4c8b5efa17d938517ca68330ff09bad}{aws\_websocket\_client\_connect}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__client__connection__options}{aws\_websocket\_client\_connection\_options}} *options);}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{352 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{353 \textcolor{keywordtype}{void} \mbox{\hyperlink{websocket_8h_ab0f2724e2bebd82a314e4d9c362d729a}{aws\_websocket\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket);}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{362 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{363 \textcolor{keywordtype}{void} \mbox{\hyperlink{websocket_8h_acb7c9362d4479d1c9b24e7745a6b67c9}{aws\_websocket\_close}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keywordtype}{bool} free\_scarce\_resources\_immediately);}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{371 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{372 \textcolor{keywordtype}{int} \mbox{\hyperlink{websocket_8h_a74fc5ab9d667b8be7cfacc44d79cde53}{aws\_websocket\_send\_frame}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\_websocket\_send\_frame\_options}} *options);}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{381 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{382 \textcolor{keywordtype}{void} \mbox{\hyperlink{websocket_8h_a759af6b2db82ad903f9141fa96594537}{aws\_websocket\_increment\_read\_window}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{405 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{406 \textcolor{keywordtype}{int} \mbox{\hyperlink{websocket_8h_a5b6cf008560c80fb79b8d545a6f5914f}{aws\_websocket\_convert\_to\_midchannel\_handler}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket);}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{411 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{412 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *\mbox{\hyperlink{websocket_8h_a5b18dbccc1e1c15f74007aca8a8e2d05}{aws\_websocket\_get\_channel}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket);}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{421 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{422 \textcolor{keywordtype}{int} \mbox{\hyperlink{websocket_8h_a0e8760265d76f435577c8798a9298291}{aws\_websocket\_random\_handshake\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *dst);}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{434 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{435 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{websocket_8h_a003ffc053802f506c460722330fd7380}{aws\_http\_message\_new\_websocket\_handshake\_request}}(}
+\DoxyCodeLine{436     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{437     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__http__message_a3665d235e691ab47c6e75de88bb37e7e}{path}},}
+\DoxyCodeLine{438     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} host);}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_WEBSOCKET\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

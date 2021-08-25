@@ -1,0 +1,91 @@
+\hypertarget{connection__impl_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/connection\+\_\+impl.h File Reference}
+\label{connection__impl_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/connection\_impl.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/connection\_impl.h}}
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/http\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/server.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+system\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__vtable}{aws\+\_\+http\+\_\+connection\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__client__bootstrap}{aws\+\_\+http\+\_\+client\+\_\+bootstrap}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{connection__impl_8h_a3b330fb3f3572bf83feab8bcc7475282}{aws\+\_\+client\+\_\+bootstrap\+\_\+new\+\_\+socket\+\_\+channel\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket__channel__bootstrap__options}{aws\+\_\+socket\+\_\+channel\+\_\+bootstrap\+\_\+options}} $\ast$options)
+\item 
+typedef int() \mbox{\hyperlink{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}{aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__impl_8h_a4e1d452d6083db59479214c4d0f8584d}{aws\+\_\+http\+\_\+connection\+\_\+set\+\_\+system\+\_\+vtable}} (const struct \mbox{\hyperlink{structaws__http__connection__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+system\+\_\+vtable}} $\ast$system\+\_\+vtable)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{connection__impl_8h_aa4a001b631456f0994357de5a9b9bcf8}{aws\+\_\+http\+\_\+client\+\_\+connect\+\_\+internal}} (const struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} $\ast$options, \mbox{\hyperlink{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}{aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn}} $\ast$proxy\+\_\+request\+\_\+transform)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__impl_8h_a5523e8023fb9028159e0ae6d98547394}{aws\+\_\+http\+\_\+connection\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\+\_\+crt\+\_\+statistics\+\_\+http1\+\_\+channel}} $\ast$ \mbox{\hyperlink{connection__impl_8h_abeb324848e8faae636a6228577fb5180}{aws\+\_\+h1\+\_\+connection\+\_\+get\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} uint32\+\_\+t \mbox{\hyperlink{connection__impl_8h_a1313aa6e6554d430d214cb4563c0c018}{aws\+\_\+http\+\_\+connection\+\_\+get\+\_\+next\+\_\+stream\+\_\+id}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{connection__impl_8h_a3b330fb3f3572bf83feab8bcc7475282}\label{connection__impl_8h_a3b330fb3f3572bf83feab8bcc7475282}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_client\_bootstrap\_new\_socket\_channel\_fn@{aws\_client\_bootstrap\_new\_socket\_channel\_fn}}
+\index{aws\_client\_bootstrap\_new\_socket\_channel\_fn@{aws\_client\_bootstrap\_new\_socket\_channel\_fn}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_client\_bootstrap\_new\_socket\_channel\_fn}{aws\_client\_bootstrap\_new\_socket\_channel\_fn}}
+{\footnotesize\ttfamily typedef int aws\+\_\+client\+\_\+bootstrap\+\_\+new\+\_\+socket\+\_\+channel\+\_\+fn(struct \mbox{\hyperlink{structaws__socket__channel__bootstrap__options}{aws\+\_\+socket\+\_\+channel\+\_\+bootstrap\+\_\+options}} $\ast$options)}
+
+\mbox{\Hypertarget{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}\label{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_http\_proxy\_request\_transform\_fn@{aws\_http\_proxy\_request\_transform\_fn}}
+\index{aws\_http\_proxy\_request\_transform\_fn@{aws\_http\_proxy\_request\_transform\_fn}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_proxy\_request\_transform\_fn}{aws\_http\_proxy\_request\_transform\_fn}}
+{\footnotesize\ttfamily typedef int() aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn(struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{connection__impl_8h_abeb324848e8faae636a6228577fb5180}\label{connection__impl_8h_abeb324848e8faae636a6228577fb5180}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_h1\_connection\_get\_statistics@{aws\_h1\_connection\_get\_statistics}}
+\index{aws\_h1\_connection\_get\_statistics@{aws\_h1\_connection\_get\_statistics}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_connection\_get\_statistics()}{aws\_h1\_connection\_get\_statistics()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\+\_\+crt\+\_\+statistics\+\_\+http1\+\_\+channel}}$\ast$ aws\+\_\+h1\+\_\+connection\+\_\+get\+\_\+statistics (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+Allow tests to fake stats data \mbox{\Hypertarget{connection__impl_8h_aa4a001b631456f0994357de5a9b9bcf8}\label{connection__impl_8h_aa4a001b631456f0994357de5a9b9bcf8}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_http\_client\_connect\_internal@{aws\_http\_client\_connect\_internal}}
+\index{aws\_http\_client\_connect\_internal@{aws\_http\_client\_connect\_internal}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_client\_connect\_internal()}{aws\_http\_client\_connect\_internal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+http\+\_\+client\+\_\+connect\+\_\+internal (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} $\ast$}]{options,  }\item[{\mbox{\hyperlink{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}{aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn}} $\ast$}]{proxy\+\_\+request\+\_\+transform }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__impl_8h_a5523e8023fb9028159e0ae6d98547394}\label{connection__impl_8h_a5523e8023fb9028159e0ae6d98547394}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_http\_connection\_acquire@{aws\_http\_connection\_acquire}}
+\index{aws\_http\_connection\_acquire@{aws\_http\_connection\_acquire}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_acquire()}{aws\_http\_connection\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+http\+\_\+connection\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+Internal API for adding a reference to a connection \mbox{\Hypertarget{connection__impl_8h_a1313aa6e6554d430d214cb4563c0c018}\label{connection__impl_8h_a1313aa6e6554d430d214cb4563c0c018}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_http\_connection\_get\_next\_stream\_id@{aws\_http\_connection\_get\_next\_stream\_id}}
+\index{aws\_http\_connection\_get\_next\_stream\_id@{aws\_http\_connection\_get\_next\_stream\_id}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_get\_next\_stream\_id()}{aws\_http\_connection\_get\_next\_stream\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} uint32\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+get\+\_\+next\+\_\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+Gets the next available stream id within the connection. Valid for creating both h1 and h2 streams.
+
+This function is not thread-\/safe.
+
+Returns 0 if there was an error. \mbox{\Hypertarget{connection__impl_8h_a4e1d452d6083db59479214c4d0f8584d}\label{connection__impl_8h_a4e1d452d6083db59479214c4d0f8584d}} 
+\index{connection\_impl.h@{connection\_impl.h}!aws\_http\_connection\_set\_system\_vtable@{aws\_http\_connection\_set\_system\_vtable}}
+\index{aws\_http\_connection\_set\_system\_vtable@{aws\_http\_connection\_set\_system\_vtable}!connection\_impl.h@{connection\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_set\_system\_vtable()}{aws\_http\_connection\_set\_system\_vtable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+http\+\_\+connection\+\_\+set\+\_\+system\+\_\+vtable (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+system\+\_\+vtable}} $\ast$}]{system\+\_\+vtable }\end{DoxyParamCaption})}
+

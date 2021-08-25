@@ -1,0 +1,23 @@
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md69}{}\doxysubsection{Prereqs}\label{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md69}
+
+\begin{DoxyItemize}
+\item Windows with Containers (Any Windows 10 install with the Anniversary update will do)
+\item Docker
+\item AWS CLI
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md70}{}\doxysubsection{Building the Image}\label{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md70}
+In powershell, in the directory containing a Dockerfile. \begin{DoxyVerb}docker build -t <nameOfImage>:latest -m 2GB .
+\end{DoxyVerb}
+ this will take a while, so go grab a beer or 10... you deserve it..
+
+After the build finishes, you can run and test the image by running\+: \begin{DoxyVerb}docker run -it <nameOfImage>:latest
+\end{DoxyVerb}
+ When you are satisfied the image is to your liking, simply exit the container.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md71}{}\doxysubsection{Publishing the Image}\label{md_crt_aws_crt_cpp_crt_aws_c_common_docker_images__r_e_a_d_m_e_autotoc_md71}
+First we need to tag the image. Your ecr uri can be found on the AWS Console for your ecr repostiory \begin{DoxyVerb}docker tag <nameOfImage>:latest <your aws account number>.dkr.ecr.us-east-1.amazonaws.com/<repo name>/<nameOfImage>:latest
+\end{DoxyVerb}
+ On windows, the next part is painful due to the way the credential store works. You need credentials for docker push to work. To do this you use the {\ttfamily aws ecr get-\/login} command. However, this doesn\textquotesingle{}t work so.... you\textquotesingle{}ll need to tweek it a bit. \begin{DoxyVerb}aws ecr get-login > dumb_behavior.txt
+\end{DoxyVerb}
+ Now open the {\ttfamily dumb\+\_\+behavior.\+txt} file and change the {\ttfamily https} to {\ttfamily http}. Now copy the entire contents of the file and run it as a command in powershell.
+
+Now finally, you should be able to publish the image\+: \begin{DoxyVerb}docker push <yourAccountId>.dkr.ecr.us-east-1.amazonaws.com/<repo name>:<nameOfImage>:latest
+\end{DoxyVerb}
+ Assuming all of that works, you should now be able to use the image for things like codebuild. 

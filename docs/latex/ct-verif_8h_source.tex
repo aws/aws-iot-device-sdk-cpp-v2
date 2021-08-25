@@ -1,0 +1,60 @@
+\hypertarget{ct-verif_8h_source}{}\doxysection{ct-\/verif.h}
+\label{ct-verif_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/include/ct-\/verif.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/include/ct-\/verif.h}}
+\mbox{\hyperlink{ct-verif_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CT\_VERIF\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CT\_VERIF\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#ifndef COMPILE}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <smack.h>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{comment}{/*}}
+\DoxyCodeLine{8 \textcolor{comment}{Security levels are the following.}}
+\DoxyCodeLine{9 \textcolor{comment}{}}
+\DoxyCodeLine{10 \textcolor{comment}{For inputs:}}
+\DoxyCodeLine{11 \textcolor{comment}{-\/ public -\/ function requires (assumes) these to be equal.}}
+\DoxyCodeLine{12 \textcolor{comment}{-\/ private -\/ no requirement (allowed to vary freely)}}
+\DoxyCodeLine{13 \textcolor{comment}{}}
+\DoxyCodeLine{14 \textcolor{comment}{For outputs (both by reference and return values):}}
+\DoxyCodeLine{15 \textcolor{comment}{-\/ public -\/ function ensures these are equal}}
+\DoxyCodeLine{16 \textcolor{comment}{           can be used on left-\/hand side of implications everywhere}}
+\DoxyCodeLine{17 \textcolor{comment}{-\/ private -\/ no guarantee (allowed to vary freely)}}
+\DoxyCodeLine{18 \textcolor{comment}{-\/ declassified -\/ we only analyse executions in which these}}
+\DoxyCodeLine{19 \textcolor{comment}{                 possibly private values are fixed.}}
+\DoxyCodeLine{20 \textcolor{comment}{}}
+\DoxyCodeLine{21 \textcolor{comment}{We omit annotations for private since nothing needs to be generated}}
+\DoxyCodeLine{22 \textcolor{comment}{ for them. We may need to add them back in for modular analyses.}}
+\DoxyCodeLine{23 \textcolor{comment}{*/}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{comment}{/* The abstract prototypes that form our annotation language */}}
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} \mbox{\hyperlink{ct-verif_8h_a2b4f7f2e481a510f5d0981bec8bdcf90}{public\_in}}(smack\_value\_t);}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} \mbox{\hyperlink{ct-verif_8h_a4f574f9ae8acc54c2765fe2abb3c221f}{public\_out}}(smack\_value\_t);}
+\DoxyCodeLine{28 \textcolor{keywordtype}{void} \mbox{\hyperlink{ct-verif_8h_a429bbce474b0c8cf41748f207ba68036}{declassified\_out}}(smack\_value\_t);}
+\DoxyCodeLine{29 \textcolor{keywordtype}{void} \mbox{\hyperlink{ct-verif_8h_a0421b068ce360029d8155e6e4a1f935b}{public\_invariant}}(smack\_value\_t);}
+\DoxyCodeLine{30 \textcolor{keywordtype}{void} \mbox{\hyperlink{ct-verif_8h_a121fb0762ab87f580749174241581d4b}{benign}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define \_\_disjoint\_regions(addr1,len1,addr2,len2) \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{  assume(addr1 + len1 * sizeof(*addr1) < addr2 || \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{         addr2 + len2 * sizeof(*addr2) < addr1)}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* COMPILE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#undef \_\_SMACK\_value}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define \_\_VERIFIER\_assume(\_\_a)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define \_\_SMACK\_value(\_\_a)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define \_\_SMACK\_return\_value(\_\_a)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define \_\_SMACK\_values(\_\_a,\_\_b)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define \_\_SMACK\_return\_values(\_\_a)}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define public\_in(\_\_a)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define public\_out(\_\_a)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define declassified\_out(\_\_a)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define public\_invariant(\_\_a)}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define \_\_disjoint\_regions(addr1,len1,addr2,len2)}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPILE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CT\_VERIF\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

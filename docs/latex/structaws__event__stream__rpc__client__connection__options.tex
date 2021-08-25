@@ -1,0 +1,89 @@
+\hypertarget{structaws__event__stream__rpc__client__connection__options}{}\doxysection{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options Struct Reference}
+\label{structaws__event__stream__rpc__client__connection__options}\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+
+
+{\ttfamily \#include $<$event\+\_\+stream\+\_\+rpc\+\_\+client.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_ac4a3e4e05ef42eec8e59b837dfce8e44}{host\+\_\+name}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_a9a7e8bca86da0dc11cf63db4450dd7a4}{port}}
+\item 
+const struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_a35d15e5eb409505819fb2ba40cdd506d}{socket\+\_\+options}}
+\item 
+const struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_ad7d74f4a4132adb778922fc2ced876a7}{tls\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_a1e951963fe44782cb6d18f17d3455ddc}{bootstrap}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__client_8h_a15c17d55a79cc5bd6dddc475f575b33a}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_ace5cf01796d6197071199d8c5202ef8b}{on\+\_\+connection\+\_\+setup}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__client_8h_ab83fd933d26de3690cc64d95ad6289ca}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+protocol\+\_\+message\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_aabddc7b131adc251bb346ef4699801c9}{on\+\_\+connection\+\_\+protocol\+\_\+message}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__client_8h_a9326c19cf2bf570745207b9da540f6ee}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+on\+\_\+connection\+\_\+shutdown\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_a8eba544f663f969469756f881fc02129}{on\+\_\+connection\+\_\+shutdown}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__event__stream__rpc__client__connection__options_a4c748782355a5949ade60c8f146d9b58}{user\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_a1e951963fe44782cb6d18f17d3455ddc}\label{structaws__event__stream__rpc__client__connection__options_a1e951963fe44782cb6d18f17d3455ddc}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!bootstrap@{bootstrap}}
+\index{bootstrap@{bootstrap}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{bootstrap}{bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::bootstrap}
+
+\mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_ac4a3e4e05ef42eec8e59b837dfce8e44}\label{structaws__event__stream__rpc__client__connection__options_ac4a3e4e05ef42eec8e59b837dfce8e44}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!host\_name@{host\_name}}
+\index{host\_name@{host\_name}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{host\_name}{host\_name}}
+{\footnotesize\ttfamily const char$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::host\+\_\+name}
+
+host name to use for the connection. This depends on your socket type. \mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_aabddc7b131adc251bb346ef4699801c9}\label{structaws__event__stream__rpc__client__connection__options_aabddc7b131adc251bb346ef4699801c9}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!on\_connection\_protocol\_message@{on\_connection\_protocol\_message}}
+\index{on\_connection\_protocol\_message@{on\_connection\_protocol\_message}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{on\_connection\_protocol\_message}{on\_connection\_protocol\_message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__client_8h_ab83fd933d26de3690cc64d95ad6289ca}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+protocol\+\_\+message\+\_\+fn}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::on\+\_\+connection\+\_\+protocol\+\_\+message}
+
+\mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_ace5cf01796d6197071199d8c5202ef8b}\label{structaws__event__stream__rpc__client__connection__options_ace5cf01796d6197071199d8c5202ef8b}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!on\_connection\_setup@{on\_connection\_setup}}
+\index{on\_connection\_setup@{on\_connection\_setup}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{on\_connection\_setup}{on\_connection\_setup}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__client_8h_a15c17d55a79cc5bd6dddc475f575b33a}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::on\+\_\+connection\+\_\+setup}
+
+\mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_a8eba544f663f969469756f881fc02129}\label{structaws__event__stream__rpc__client__connection__options_a8eba544f663f969469756f881fc02129}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!on\_connection\_shutdown@{on\_connection\_shutdown}}
+\index{on\_connection\_shutdown@{on\_connection\_shutdown}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{on\_connection\_shutdown}{on\_connection\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__client_8h_a9326c19cf2bf570745207b9da540f6ee}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+on\+\_\+connection\+\_\+shutdown\+\_\+fn}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::on\+\_\+connection\+\_\+shutdown}
+
+\mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_a9a7e8bca86da0dc11cf63db4450dd7a4}\label{structaws__event__stream__rpc__client__connection__options_a9a7e8bca86da0dc11cf63db4450dd7a4}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!port@{port}}
+\index{port@{port}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::port}
+
+port to use for your connection, assuming for the appropriate socket type. \mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_a35d15e5eb409505819fb2ba40cdd506d}\label{structaws__event__stream__rpc__client__connection__options_a35d15e5eb409505819fb2ba40cdd506d}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!socket\_options@{socket\_options}}
+\index{socket\_options@{socket\_options}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{socket\_options}{socket\_options}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::socket\+\_\+options}
+
+socket options for establishing the connection to the RPC server. \mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_ad7d74f4a4132adb778922fc2ced876a7}\label{structaws__event__stream__rpc__client__connection__options_ad7d74f4a4132adb778922fc2ced876a7}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!tls\_options@{tls\_options}}
+\index{tls\_options@{tls\_options}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{tls\_options}{tls\_options}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}}$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::tls\+\_\+options}
+
+optional\+: tls options for using when establishing your connection. \mbox{\Hypertarget{structaws__event__stream__rpc__client__connection__options_a4c748782355a5949ade60c8f146d9b58}\label{structaws__event__stream__rpc__client__connection__options_a4c748782355a5949ade60c8f146d9b58}} 
+\index{aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_event\_stream\_rpc\_client\_connection\_options@{aws\_event\_stream\_rpc\_client\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+client\+\_\+connection\+\_\+options\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/include/aws/event-\/stream/\mbox{\hyperlink{event__stream__rpc__client_8h}{event\+\_\+stream\+\_\+rpc\+\_\+client.\+h}}\end{DoxyCompactItemize}

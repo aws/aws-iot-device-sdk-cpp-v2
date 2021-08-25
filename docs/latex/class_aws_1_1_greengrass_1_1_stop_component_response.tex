@@ -1,0 +1,152 @@
+\hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response}{}\doxysection{Aws\+::Greengrass\+::Stop\+Component\+Response Class Reference}
+\label{class_aws_1_1_greengrass_1_1_stop_component_response}\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+
+
+{\ttfamily \#include $<$Greengrass\+Core\+Ipc\+Model.\+h$>$}
+
+Inheritance diagram for Aws\+::Greengrass\+::Stop\+Component\+Response\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_aws_1_1_greengrass_1_1_stop_component_response}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a1c071aedc148537938e339e124d0a603}{Stop\+Component\+Response}} () noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a47fdf720d3165c1bdb764d1b0b0a5e66}{Stop\+Component\+Response}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&)=default
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a10b67e5ebdc820167176805836a79927}{Set\+Stop\+Status}} (\mbox{\hyperlink{namespace_aws_1_1_greengrass_a90e8d8f6a613a53301bb4ec2bd2622db}{Request\+Status}} stop\+Status) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_greengrass_a90e8d8f6a613a53301bb4ec2bd2622db}{Request\+Status}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a211d24db99f0a3631b1301fe63951a86}{Get\+Stop\+Status}} () noexcept
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a8fd4124cd37290e3e44dee51bf4b7846}{Set\+Message}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a33af69d27bba3d6f5e496b8b2947bd68}{Get\+Message}} () noexcept
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_ace8196600420f65a829f5382bcda76ad}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a4997c4f79295949fa7dff346d45e6b94}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&) const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a583049eac98631b7bb5c0423a5c043b5}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+\item 
+static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_afdfa0d2ad6299c05090a826a70692405}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+\item 
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a81d4439d4f1aabd1eccdd316245512fa}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} $\ast$) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a84695f7d218b294f6a8b5a7c15fd77df}{MODEL\+\_\+\+NAME}} = \char`\"{}aws.\+greengrass\#\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}}\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response_a89f8688733cf8948626cd2d90786b405}{Get\+Model\+Name}} () const noexcept override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a1c071aedc148537938e339e124d0a603}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a1c071aedc148537938e339e124d0a603}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!StopComponentResponse@{StopComponentResponse}}
+\index{StopComponentResponse@{StopComponentResponse}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{StopComponentResponse()}{StopComponentResponse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Stop\+Component\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a47fdf720d3165c1bdb764d1b0b0a5e66}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a47fdf720d3165c1bdb764d1b0b0a5e66}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!StopComponentResponse@{StopComponentResponse}}
+\index{StopComponentResponse@{StopComponentResponse}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{StopComponentResponse()}{StopComponentResponse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Stop\+Component\+Response (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a33af69d27bba3d6f5e496b8b2947bd68}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a33af69d27bba3d6f5e496b8b2947bd68}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!GetMessage@{GetMessage}}
+\index{GetMessage@{GetMessage}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a89f8688733cf8948626cd2d90786b405}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a89f8688733cf8948626cd2d90786b405}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!GetModelName@{GetModelName}}
+\index{GetModelName@{GetModelName}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_ad3c43ceb1c92e03f75880aedfaca2e96}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a211d24db99f0a3631b1301fe63951a86}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a211d24db99f0a3631b1301fe63951a86}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!GetStopStatus@{GetStopStatus}}
+\index{GetStopStatus@{GetStopStatus}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{GetStopStatus()}{GetStopStatus()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_greengrass_a90e8d8f6a613a53301bb4ec2bd2622db}{Request\+Status}} $>$ Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Get\+Stop\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a4997c4f79295949fa7dff346d45e6b94}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a4997c4f79295949fa7dff346d45e6b94}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_afdfa0d2ad6299c05090a826a70692405}\label{class_aws_1_1_greengrass_1_1_stop_component_response_afdfa0d2ad6299c05090a826a70692405}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!s\_allocateFromPayload@{s\_allocateFromPayload}}
+\index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a81d4439d4f1aabd1eccdd316245512fa}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a81d4439d4f1aabd1eccdd316245512fa}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!s\_customDeleter@{s\_customDeleter}}
+\index{s\_customDeleter@{s\_customDeleter}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{s\_customDeleter()}{s\_customDeleter()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::s\+\_\+custom\+Deleter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} $\ast$}]{shape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a583049eac98631b7bb5c0423a5c043b5}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a583049eac98631b7bb5c0423a5c043b5}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!s\_loadFromJsonView@{s\_loadFromJsonView}}
+\index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}} \&}]{stop\+Component\+Response,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_ace8196600420f65a829f5382bcda76ad}\label{class_aws_1_1_greengrass_1_1_stop_component_response_ace8196600420f65a829f5382bcda76ad}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!SerializeToJsonObject@{SerializeToJsonObject}}
+\index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a8fd4124cd37290e3e44dee51bf4b7846}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a8fd4124cd37290e3e44dee51bf4b7846}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!SetMessage@{SetMessage}}
+\index{SetMessage@{SetMessage}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{SetMessage()}{SetMessage()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a10b67e5ebdc820167176805836a79927}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a10b67e5ebdc820167176805836a79927}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!SetStopStatus@{SetStopStatus}}
+\index{SetStopStatus@{SetStopStatus}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{SetStopStatus()}{SetStopStatus()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+Set\+Stop\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_greengrass_a90e8d8f6a613a53301bb4ec2bd2622db}{Request\+Status}}}]{stop\+Status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_stop_component_response_a84695f7d218b294f6a8b5a7c15fd77df}\label{class_aws_1_1_greengrass_1_1_stop_component_response_a84695f7d218b294f6a8b5a7c15fd77df}} 
+\index{Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}!MODEL\_NAME@{MODEL\_NAME}}
+\index{MODEL\_NAME@{MODEL\_NAME}!Aws::Greengrass::StopComponentResponse@{Aws::Greengrass::StopComponentResponse}}
+\doxysubsubsection{\texorpdfstring{MODEL\_NAME}{MODEL\_NAME}}
+{\footnotesize\ttfamily const char $\ast$ Aws\+::\+Greengrass\+::\+Stop\+Component\+Response\+::\+MODEL\+\_\+\+NAME = \char`\"{}aws.\+greengrass\#\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_response}{Stop\+Component\+Response}}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+greengrass\+\_\+ipc/include/aws/greengrass/\mbox{\hyperlink{_greengrass_core_ipc_model_8h}{Greengrass\+Core\+Ipc\+Model.\+h}}\item 
+greengrass\+\_\+ipc/source/\mbox{\hyperlink{_greengrass_core_ipc_model_8cpp}{Greengrass\+Core\+Ipc\+Model.\+cpp}}\end{DoxyCompactItemize}

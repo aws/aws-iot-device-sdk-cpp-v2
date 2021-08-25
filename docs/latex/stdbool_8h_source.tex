@@ -1,0 +1,31 @@
+\hypertarget{stdbool_8h_source}{}\doxysection{stdbool.\+h}
+\label{stdbool_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/stdbool.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/stdbool.h}}
+\mbox{\hyperlink{stdbool_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* clang-\/format off */}}
+\DoxyCodeLine{2 \textcolor{comment}{/* clang-\/format gets confused by the \#define bool line, and gives crazy indenting */}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_STDBOOL\_H}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define AWS\_COMMON\_STDBOOL\_H}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef NO\_STDBOOL}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#    include <\mbox{\hyperlink{stdbool_8h}{stdbool.h}}>} \textcolor{comment}{/* NOLINT(fuchsia-\/restrict-\/system-\/includes) */}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#    ifndef \_\_cplusplus}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#        define bool \_Bool}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#        define true 1}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#        define false 0}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#    elif defined(\_\_GNUC\_\_) \&\& !defined(\_\_STRICT\_ANSI\_\_)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#        define \_Bool bool}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#        if \_\_cplusplus < 201103L}}
+\DoxyCodeLine{21 \textcolor{comment}{/* For C++98, define bool, false, true as a GNU extension. */}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#            define bool bool}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#            define false false}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#            define true true}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* \_\_cplusplus < 201103L */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#    endif     }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif         }\textcolor{comment}{/* NO\_STDBOOL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_STDBOOL\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{30 \textcolor{comment}{/* clang-\/format on */}}
+
+\end{DoxyCode}

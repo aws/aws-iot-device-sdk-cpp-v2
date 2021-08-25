@@ -1,0 +1,595 @@
+\hypertarget{_event_stream_client_8h_source}{}\doxysection{Event\+Stream\+Client.\+h}
+\label{_event_stream_client_8h_source}\index{eventstream\_rpc/include/aws/eventstreamrpc/EventStreamClient.h@{eventstream\_rpc/include/aws/eventstreamrpc/EventStreamClient.h}}
+\mbox{\hyperlink{_event_stream_client_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h}{aws/eventstreamrpc/Exports.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_date_time_8h}{aws/crt/DateTime.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_u_u_i_d_8h}{aws/crt/UUID.h}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_event_loop_group_8h}{aws/crt/io/EventLoopGroup.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_socket_options_8h}{aws/crt/io/SocketOptions.h}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_tls_options_8h}{aws/crt/io/TlsOptions.h}}>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_host_resolver_8h}{aws/crt/io/HostResolver.h}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{event__stream__rpc__client_8h}{aws/event-\/stream/event\_stream\_rpc\_client.h}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{host__resolver_8h}{aws/io/host\_resolver.h}}>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <atomic>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <future>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{31     \{}
+\DoxyCodeLine{32         \textcolor{keyword}{namespace }Io}
+\DoxyCodeLine{33         \{}
+\DoxyCodeLine{34             \textcolor{keyword}{class }ClientBootstrap;}
+\DoxyCodeLine{35         \}}
+\DoxyCodeLine{36     \} \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{37     \textcolor{keyword}{namespace }Eventstreamrpc}
+\DoxyCodeLine{38     \{}
+\DoxyCodeLine{39         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}};}
+\DoxyCodeLine{40         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}};}
+\DoxyCodeLine{41         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}};}
+\DoxyCodeLine{42         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}};}
+\DoxyCodeLine{43         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         \textcolor{keyword}{using} \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{HeaderValueType}} = \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{aws\_event\_stream\_header\_value\_type}};}
+\DoxyCodeLine{46         \textcolor{keyword}{using} \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} = \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\_event\_stream\_rpc\_message\_type}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{52         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} = std::function<void(\textcolor{keywordtype}{int} errorCode)>;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab93b30af2e59415f7453527b9b8a06c4}{ConnectMessageAmender}} = std::function<\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&(void)>;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{64         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{65         \{}
+\DoxyCodeLine{66           \textcolor{keyword}{public}:}
+\DoxyCodeLine{67             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&lhs) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{68             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&\&rhs) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{69             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&lhs) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{70             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{\string~EventStreamHeader}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{71             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}(}
+\DoxyCodeLine{72                 \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\_event\_stream\_header\_value\_pair}} \&header,}
+\DoxyCodeLine{73                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}});}
+\DoxyCodeLine{74             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_abc0f2224aa7d5e2eff115cc74f272d60}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, \textcolor{keywordtype}{bool} value);}
+\DoxyCodeLine{75             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_a3fae3a3b26cbb33b6695fe6760cfe9f4}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, int8\_t value);}
+\DoxyCodeLine{76             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_abed41701045cc9a4e9490cc11d2bdaed}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, int16\_t value);}
+\DoxyCodeLine{77             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_ab227938f02e96cd781c9ba57034aef44}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, int32\_t value);}
+\DoxyCodeLine{78             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_a11d449a82070985589c93f17432b31ea}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, int64\_t value);}
+\DoxyCodeLine{79             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_afb1f4405969ed639e4ce30e469a2bf18}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Crt::DateTime}} \&value);}
+\DoxyCodeLine{80             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}(}
+\DoxyCodeLine{81                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}},}
+\DoxyCodeLine{82                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&value,}
+\DoxyCodeLine{83                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{84             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_a99b5cb81d83bcc95ba0c59bb39e398ae}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, \mbox{\hyperlink{structaws__byte__buf}{Crt::ByteBuf}} \&value);}
+\DoxyCodeLine{85             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_a7398a96b461f2acfc64f105274c2866e}{EventStreamHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{Crt::UUID}} value);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87             \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{HeaderValueType}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header_ac8235d785ed0df792528293b361774c3}{GetHeaderValueType}}();}
+\DoxyCodeLine{88             \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} GetHeaderName() const noexcept;}
+\DoxyCodeLine{89             \textcolor{keywordtype}{void} SetHeaderName(const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91             \textcolor{keywordtype}{bool} GetValueAsBoolean(\textcolor{keywordtype}{bool} \&);}
+\DoxyCodeLine{92             \textcolor{keywordtype}{bool} GetValueAsByte(int8\_t \&);}
+\DoxyCodeLine{93             \textcolor{keywordtype}{bool} GetValueAsShort(int16\_t \&);}
+\DoxyCodeLine{94             \textcolor{keywordtype}{bool} GetValueAsInt(int32\_t \&);}
+\DoxyCodeLine{95             \textcolor{keywordtype}{bool} GetValueAsLong(int64\_t \&);}
+\DoxyCodeLine{96             \textcolor{keywordtype}{bool} GetValueAsTimestamp(Crt::DateTime \&);}
+\DoxyCodeLine{97             \textcolor{keywordtype}{bool} GetValueAsString(Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&) const noexcept;}
+\DoxyCodeLine{98             \textcolor{keywordtype}{bool} GetValueAsBytes(Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}} \&);}
+\DoxyCodeLine{99             \textcolor{keywordtype}{bool} GetValueAsUUID(Crt::UUID \&);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101             const struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\_event\_stream\_header\_value\_pair}} *GetUnderlyingHandle() const;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103             \textcolor{keywordtype}{bool} operator==(const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&other) const noexcept;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105           private:}
+\DoxyCodeLine{106             Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *m\_allocator;}
+\DoxyCodeLine{107             Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}} m\_valueByteBuf;}
+\DoxyCodeLine{108             struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\_event\_stream\_header\_value\_pair}} m\_underlyingHandle;}
+\DoxyCodeLine{109         \};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{116         class \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{117         \{}
+\DoxyCodeLine{118           \textcolor{keyword}{public}:}
+\DoxyCodeLine{119             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&lhs);}
+\DoxyCodeLine{120             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&\&rhs);}
+\DoxyCodeLine{121             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&lhs);}
+\DoxyCodeLine{122             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{\string~MessageAmendment}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{123             \textcolor{keyword}{explicit} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(\mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{124             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(}
+\DoxyCodeLine{125                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{126                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{127                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{128             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(}
+\DoxyCodeLine{129                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{130                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{131             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(}
+\DoxyCodeLine{132                 \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&\&headers,}
+\DoxyCodeLine{133                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{134             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}}(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__buf}{Crt::ByteBuf}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{135             \textcolor{keywordtype}{void} AddHeader(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} \&\&header) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{136             \textcolor{keywordtype}{void} SetPayload(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{137             \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&GetHeaders() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{138             \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&GetPayload() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140           \textcolor{keyword}{private}:}
+\DoxyCodeLine{141             \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} m\_headers;}
+\DoxyCodeLine{142             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} m\_payload;}
+\DoxyCodeLine{143             \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *m\_allocator;}
+\DoxyCodeLine{144         \};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{149         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{ConnectionConfig}}}
+\DoxyCodeLine{150         \{}
+\DoxyCodeLine{151           \textcolor{keyword}{public}:}
+\DoxyCodeLine{152             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a6cfa8fed29f730ff38c2c18fe954a0d7}{ConnectionConfig}}() noexcept : m\_clientBootstrap(\textcolor{keywordtype}{nullptr}), m\_connectRequestCallback(\textcolor{keywordtype}{nullptr}) \{\}}
+\DoxyCodeLine{153             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::String>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a01ba7e812e590059587a557b672b2472}{GetHostName}}() const noexcept \{ \textcolor{keywordflow}{return} m\_hostName; \}}
+\DoxyCodeLine{154             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<uint16\_t>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a0784b16bef8adfc085e87d8fd5be3019}{GetPort}}() const noexcept \{ \textcolor{keywordflow}{return} m\_port; \}}
+\DoxyCodeLine{155             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Io::SocketOptions>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a37b1ae887a0cb38bcf62952b92b16e11}{GetSocketOptions}}() const noexcept \{ \textcolor{keywordflow}{return} m\_socketOptions; \}}
+\DoxyCodeLine{156             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<MessageAmendment>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_af09d10f3a36211435c8bd3232e23eb43}{GetConnectAmendment}}() const noexcept \{ \textcolor{keywordflow}{return} m\_connectAmendment; \}}
+\DoxyCodeLine{157             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Io::TlsConnectionOptions>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_ac2e117096511599f9f349b3e52cd9706}{GetTlsConnectionOptions}}() const noexcept}
+\DoxyCodeLine{158             \{}
+\DoxyCodeLine{159                 \textcolor{keywordflow}{return} m\_tlsConnectionOptions;}
+\DoxyCodeLine{160             \}}
+\DoxyCodeLine{161             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} *\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_aa9f290d25c0e5f0ec9c96b3c37c38b9c}{GetClientBootstrap}}() const noexcept \{ \textcolor{keywordflow}{return} m\_clientBootstrap; \}}
+\DoxyCodeLine{162             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a7c30db850f29abf0c02757974a2bd10e}{GetConnectRequestCallback}}() const noexcept \{ \textcolor{keywordflow}{return} m\_connectRequestCallback; \}}
+\DoxyCodeLine{163             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab93b30af2e59415f7453527b9b8a06c4}{ConnectMessageAmender}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_ad56579b2473a9d9e49c069930da84a9f}{GetConnectMessageAmender}}() const noexcept}
+\DoxyCodeLine{164             \{}
+\DoxyCodeLine{165                 \textcolor{keywordflow}{return} [\&](void) -\/> \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \& \{ \textcolor{keywordflow}{return} m\_connectAmendment; \};}
+\DoxyCodeLine{166             \}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_aa75119730ddc0308f12d75ffc7140d59}{SetHostName}}(\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} hostName) \textcolor{keyword}{noexcept} \{ m\_hostName = hostName; \}}
+\DoxyCodeLine{169             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a6699203dd34f458df9964928f4aacc4d}{SetPort}}(uint16\_t port) \textcolor{keyword}{noexcept} \{ m\_port = port; \}}
+\DoxyCodeLine{170             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a289c5a88e5af8b8a49d0f67d7d5db702}{SetSocketOptions}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt::Io::SocketOptions}} \&socketOptions) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{171             \{}
+\DoxyCodeLine{172                 m\_socketOptions = socketOptions;}
+\DoxyCodeLine{173             \}}
+\DoxyCodeLine{174             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a1fe37c341f3530bc1bcbdaeeadc1f55d}{SetConnectAmendment}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \&connectAmendment) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{175             \{}
+\DoxyCodeLine{176                 m\_connectAmendment = connectAmendment;}
+\DoxyCodeLine{177             \}}
+\DoxyCodeLine{178             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a1c5110ae9abb99c9db335c89b02198f1}{SetTlsConnectionOptions}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_connection_options}{Crt::Io::TlsConnectionOptions}} tlsConnectionOptions) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{179             \{}
+\DoxyCodeLine{180                 m\_tlsConnectionOptions = tlsConnectionOptions;}
+\DoxyCodeLine{181             \}}
+\DoxyCodeLine{182             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_ac18192413d2ac98673bd806c657d4ba2}{SetClientBootstrap}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} *clientBootstrap) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{183             \{}
+\DoxyCodeLine{184                 m\_clientBootstrap = clientBootstrap;}
+\DoxyCodeLine{185             \}}
+\DoxyCodeLine{186             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a5e438aa968d850cede05a7e7018b1ef9}{SetConnectRequestCallback}}(\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} connectRequestCallback) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{187             \{}
+\DoxyCodeLine{188                 m\_connectRequestCallback = connectRequestCallback;}
+\DoxyCodeLine{189             \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191           \textcolor{keyword}{protected}:}
+\DoxyCodeLine{192             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::String>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_ab08dc63446158fa3e5dc1d8e975c9af3}{m\_hostName}};}
+\DoxyCodeLine{193             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<uint16\_t>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a188207eceffcbd49b166defc31be5f69}{m\_port}};}
+\DoxyCodeLine{194             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Io::SocketOptions>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_afbda8a611271606e8d4d9d8ae04319d4}{m\_socketOptions}};}
+\DoxyCodeLine{195             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Io::TlsConnectionOptions>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a551855485b8c82d9f3f28f8c8c2b1f7c}{m\_tlsConnectionOptions}};}
+\DoxyCodeLine{196             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} *\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_a8477f7f3a1fef7ed31fb11a7c2dc79ca}{m\_clientBootstrap}};}
+\DoxyCodeLine{197             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_aa61f84a13df63e6733b5039f7e387c6e}{m\_connectAmendment}};}
+\DoxyCodeLine{198             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config_ab4f52bd638e2dff7c83492bcb5e5ae43}{m\_connectRequestCallback}};}
+\DoxyCodeLine{199         \};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201         \textcolor{keyword}{enum} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920}{EventStreamRpcStatusCode}}}
+\DoxyCodeLine{202         \{}
+\DoxyCodeLine{203             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a6481620f81b2e0c517a2e127f82f588a}{EVENT\_STREAM\_RPC\_SUCCESS}} = 0,}
+\DoxyCodeLine{204             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a503fac692a02278c734dda8a66c0d95a}{EVENT\_STREAM\_RPC\_NULL\_PARAMETER}},}
+\DoxyCodeLine{205             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a2873af77de0743b117f3089a14bc1650}{EVENT\_STREAM\_RPC\_UNINITIALIZED}},}
+\DoxyCodeLine{206             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920af639fa8bf1ff19b241f6fadf3df42ec7}{EVENT\_STREAM\_RPC\_ALLOCATION\_ERROR}},}
+\DoxyCodeLine{207             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a06bb7a191c610227d89d597621c64751}{EVENT\_STREAM\_RPC\_CONNECTION\_SETUP\_FAILED}},}
+\DoxyCodeLine{208             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920aa633bd91f7958722c4e767bb4e744780}{EVENT\_STREAM\_RPC\_CONNECTION\_ACCESS\_DENIED}},}
+\DoxyCodeLine{209             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a1f1c6586d64c70b83dab901371f2dd20}{EVENT\_STREAM\_RPC\_CONNECTION\_ALREADY\_ESTABLISHED}},}
+\DoxyCodeLine{210             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920ab3dc7b8206c2da392271045be4bb6793}{EVENT\_STREAM\_RPC\_CONNECTION\_CLOSED}},}
+\DoxyCodeLine{211             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920aaf9705628d0c9ebaa9dcef7a4bc4272d}{EVENT\_STREAM\_RPC\_CONTINUATION\_CLOSED}},}
+\DoxyCodeLine{212             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920aec57ebf604104a3adfa5253465863458}{EVENT\_STREAM\_RPC\_UNKNOWN\_PROTOCOL\_MESSAGE}},}
+\DoxyCodeLine{213             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a148c2ca925fd72b596377c5de2fd648a}{EVENT\_STREAM\_RPC\_UNMAPPED\_DATA}},}
+\DoxyCodeLine{214             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920ac428f689bbad4a867b967736c7ea31f0}{EVENT\_STREAM\_RPC\_UNSUPPORTED\_CONTENT\_TYPE}},}
+\DoxyCodeLine{215             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a5ce69d73331a6104d366937108e2c073}{EVENT\_STREAM\_RPC\_CRT\_ERROR}}}
+\DoxyCodeLine{216         \};}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218         \textcolor{keyword}{struct }\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}}
+\DoxyCodeLine{219         \{}
+\DoxyCodeLine{220             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920}{EventStreamRpcStatusCode}} \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error_adbbe6b36288b9f7c5393cd53d804084d}{baseStatus}};}
+\DoxyCodeLine{221             \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error_a1ba6ee63b8d138178e1db699b0619154}{crtError}};}
+\DoxyCodeLine{222             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} baseStatus == \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920a6481620f81b2e0c517a2e127f82f588a}{EVENT\_STREAM\_RPC\_SUCCESS}}; \}}
+\DoxyCodeLine{223             \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} StatusToString();}
+\DoxyCodeLine{224         \};}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{ConnectionLifecycleHandler}}}
+\DoxyCodeLine{227         \{}
+\DoxyCodeLine{228           \textcolor{keyword}{public}:}
+\DoxyCodeLine{234             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnConnectCallback();}
+\DoxyCodeLine{240             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnDisconnectCallback(\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} status);}
+\DoxyCodeLine{248             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} OnErrorCallback(\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} status);}
+\DoxyCodeLine{253             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnPingCallback(}
+\DoxyCodeLine{254                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{255                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}});}
+\DoxyCodeLine{256         \};}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258         \textcolor{comment}{/* User data passed to callbacks for a new stream. */}}
+\DoxyCodeLine{259         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{ContinuationCallbackData}}}
+\DoxyCodeLine{260         \{}
+\DoxyCodeLine{261           \textcolor{keyword}{public}:}
+\DoxyCodeLine{262             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a107e4f28b75a3f6485e097ffa1a13ede}{ContinuationCallbackData}}(}
+\DoxyCodeLine{263                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}} *clientContinuation,}
+\DoxyCodeLine{264                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) noexcept}
+\DoxyCodeLine{265                 : clientContinuation(clientContinuation), \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})}
+\DoxyCodeLine{266             \{}
+\DoxyCodeLine{267                 continuationDestroyed = \textcolor{keyword}{false};}
+\DoxyCodeLine{268             \}}
+\DoxyCodeLine{269             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a97b7a1ca1d15039b22cf1d972e6a2c33}{ContinuationCallbackData}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{ContinuationCallbackData}} \&lhs) \textcolor{keyword}{noexcept} = \textcolor{keyword}{delete};}
+\DoxyCodeLine{270             \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6ce24720100630be00537bd37799cac9}{continuationDestroyed}};}
+\DoxyCodeLine{271             \mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{std::mutex}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6eed5dac819914ab5cacd4678642a04d}{callbackMutex}};}
+\DoxyCodeLine{272             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}} *\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a02875b1ac18dbb7363e5c9367ca22b3b}{clientContinuation}};}
+\DoxyCodeLine{273             \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a8473ad17616873cf7751f4811a2d57a4}{allocator}};}
+\DoxyCodeLine{274         \};}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{ClientContinuationHandler}}}
+\DoxyCodeLine{277         \{}
+\DoxyCodeLine{278           \textcolor{keyword}{public}:}
+\DoxyCodeLine{282             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a46f55663912d0093218bbe72ba28ea70}{OnContinuationMessage}}(}
+\DoxyCodeLine{283                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{284                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{285                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{286                 uint32\_t messageFlags) = 0;}
+\DoxyCodeLine{294             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a718d00c81d12faac0fab623688614146}{OnContinuationClosed}}() = 0;}
+\DoxyCodeLine{295             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{\string~ClientContinuationHandler}}() noexcept;}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297           private:}
+\DoxyCodeLine{298             friend class \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}};}
+\DoxyCodeLine{299             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{ContinuationCallbackData}} *m\_callbackData;}
+\DoxyCodeLine{300         \};}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302         class \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{303         \{}
+\DoxyCodeLine{304           \textcolor{keyword}{public}:}
+\DoxyCodeLine{305             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}}(}
+\DoxyCodeLine{306                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} *connection,}
+\DoxyCodeLine{307                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{ClientContinuationHandler}} \&continuationHandler,}
+\DoxyCodeLine{308                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{309             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{\string~ClientContinuation}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{310             std::future<RpcError> Activate(}
+\DoxyCodeLine{311                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&operation,}
+\DoxyCodeLine{312                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{313                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{314                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{315                 uint32\_t messageFlags,}
+\DoxyCodeLine{316                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{317             \textcolor{keywordtype}{bool} IsClosed() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{318             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_a7b42f062680537f402a0f42118cc0705}{Release}}() noexcept;}
+\DoxyCodeLine{319             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> SendMessage(}
+\DoxyCodeLine{320                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{List}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}> \&headers,}
+\DoxyCodeLine{321                 const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{322                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{323                 uint32\_t messageFlags,}
+\DoxyCodeLine{324                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) noexcept;}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326           private:}
+\DoxyCodeLine{327             friend class \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}};}
+\DoxyCodeLine{328             Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *m\_allocator;}
+\DoxyCodeLine{329             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{ClientContinuationHandler}} \&m\_continuationHandler;}
+\DoxyCodeLine{330             struct \mbox{\hyperlink{structaws__event__stream__rpc__client__continuation__token}{aws\_event\_stream\_rpc\_client\_continuation\_token}} *m\_continuationToken;}
+\DoxyCodeLine{331             static \textcolor{keywordtype}{void} s\_onContinuationMessage(}
+\DoxyCodeLine{332                 struct \mbox{\hyperlink{structaws__event__stream__rpc__client__continuation__token}{aws\_event\_stream\_rpc\_client\_continuation\_token}} *continuationToken,}
+\DoxyCodeLine{333                 const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\_event\_stream\_rpc\_message\_args}} *messageArgs,}
+\DoxyCodeLine{334                 \textcolor{keywordtype}{void} *userData) noexcept;}
+\DoxyCodeLine{335             static \textcolor{keywordtype}{void} s\_onContinuationClosed(}
+\DoxyCodeLine{336                 struct \mbox{\hyperlink{structaws__event__stream__rpc__client__continuation__token}{aws\_event\_stream\_rpc\_client\_continuation\_token}} *continuationToken,}
+\DoxyCodeLine{337                 \textcolor{keywordtype}{void} *userData) noexcept;}
+\DoxyCodeLine{338         \};}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340         class \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
+\DoxyCodeLine{341         \{}
+\DoxyCodeLine{342           \textcolor{keyword}{public}:}
+\DoxyCodeLine{343             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{344             \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{\string~AbstractShapeBase}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{345             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_customDeleter(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}} *shape) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{346             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{347             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_ad3c43ceb1c92e03f75880aedfaca2e96}{GetModelName}}() const noexcept = 0;}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349           protected:}
+\DoxyCodeLine{350             Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *m\_allocator;}
+\DoxyCodeLine{351         \};}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353         class \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
+\DoxyCodeLine{354         \{}
+\DoxyCodeLine{355           \textcolor{keyword}{public}:}
+\DoxyCodeLine{356             \textcolor{keyword}{explicit} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{357             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_customDeleter(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *shape) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{358             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} SerializeToJsonObject(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const override};}
+\DoxyCodeLine{359             \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::String>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a213d0a0bda1842d332acdc839dd8af4c}{GetMessage}}() noexcept = 0;}
+\DoxyCodeLine{360         \};}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{367         class \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{StreamResponseHandler}}}
+\DoxyCodeLine{368         \{}
+\DoxyCodeLine{369           \textcolor{keyword}{public}:}
+\DoxyCodeLine{373             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnStreamClosed();}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375           \textcolor{keyword}{protected}:}
+\DoxyCodeLine{376             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}};}
+\DoxyCodeLine{380             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnStreamEvent(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}} response);}
+\DoxyCodeLine{386             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} OnStreamError(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<OperationError>}} operationError, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError);}
+\DoxyCodeLine{387         \};}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389         \textcolor{keyword}{enum} \mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} ResultType}
+\DoxyCodeLine{390         \{}
+\DoxyCodeLine{391             \mbox{\hyperlink{_event_stream_client_8h_a5c3776c3032fd07ededb85385ffdee99}{OPERATION\_RESPONSE}},}
+\DoxyCodeLine{392             \mbox{\hyperlink{_event_stream_client_8h_adc667bae005a42b265bc2baae449373f}{OPERATION\_ERROR}},}
+\DoxyCodeLine{393             RPC\_ERROR}
+\DoxyCodeLine{394         \};}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}}
+\DoxyCodeLine{397         \{}
+\DoxyCodeLine{398           \textcolor{keyword}{public}:}
+\DoxyCodeLine{399             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{400             \textcolor{keyword}{explicit} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}} response) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{401             \textcolor{keyword}{explicit} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<OperationError>}} \mbox{\hyperlink{structerror}{error}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{402             \textcolor{keyword}{explicit} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}(\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{403             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}} \&\&rhs) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{404             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}} \&operator=(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}} \&\&rhs) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{405             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{\string~TaggedResult}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{410             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}} *GetOperationResponse() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{413             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *GetOperationError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{414             \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} GetRpcError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{415             ResultType \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result_a247125015d30ad0076f86155edaebf3d}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_responseType; \}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417           \textcolor{keyword}{private}:}
+\DoxyCodeLine{418             \textcolor{keyword}{union }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} OperationResult \{}
+\DoxyCodeLine{419                 OperationResult(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}} \&\&response) noexcept}
+\DoxyCodeLine{420                     : m\_response(std::move(response))}
+\DoxyCodeLine{421                 \{}
+\DoxyCodeLine{422                 \}}
+\DoxyCodeLine{423                 OperationResult(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<OperationError>}} \&\&\mbox{\hyperlink{structerror}{error}}) noexcept : m\_error(std::move(\mbox{\hyperlink{structerror}{error}})) \{\}}
+\DoxyCodeLine{424                 OperationResult() noexcept : m\_response(\textcolor{keywordtype}{nullptr}) \{\}}
+\DoxyCodeLine{425                 \string~OperationResult() noexcept \{\};}
+\DoxyCodeLine{426                 Crt::ScopedResource<AbstractShapeBase> m\_response;}
+\DoxyCodeLine{427                 Crt::ScopedResource<OperationError> m\_error;}
+\DoxyCodeLine{428             \};}
+\DoxyCodeLine{429             ResultType m\_responseType;}
+\DoxyCodeLine{430             OperationResult m\_operationResult;}
+\DoxyCodeLine{431             RpcError m\_rpcError;}
+\DoxyCodeLine{432         \};}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{ExpectedResponseFactory}} = std::function<}
+\DoxyCodeLine{435             \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Crt::StringView}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})>;}
+\DoxyCodeLine{436         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{ErrorResponseFactory}} = std::function<}
+\DoxyCodeLine{437             \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<OperationError>}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Crt::StringView}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})>;}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}{LoneResponseRetriever}} = std::function<\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{ExpectedResponseFactory}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName)>;}
+\DoxyCodeLine{440         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab5cad65cb0b604e904a9a5994391edec}{StreamingResponseRetriever}} = std::function<\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{ExpectedResponseFactory}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName)>;}
+\DoxyCodeLine{441         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}{ErrorResponseRetriever}} = std::function<\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{ErrorResponseFactory}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName)>;}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{443         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_response_retriever}{ResponseRetriever}}}
+\DoxyCodeLine{444         \{}
+\DoxyCodeLine{445             \textcolor{comment}{/* An interface shared by all operations for retrieving the response object given the model name. */}}
+\DoxyCodeLine{446           \textcolor{keyword}{public}:}
+\DoxyCodeLine{447             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{ExpectedResponseFactory}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_response_retriever_af330a1165d73f546429dff99e9a886ec}{GetInitialResponseFromModelName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName) \textcolor{keyword}{const}}
+\DoxyCodeLine{448                 \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{449             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{ExpectedResponseFactory}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_response_retriever_ad4c2650f44c22e0fe667600a8c3c7ba4}{GetStreamingResponseFromModelName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName) \textcolor{keyword}{const}}
+\DoxyCodeLine{450                 \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{451             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{ErrorResponseFactory}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_response_retriever_ad7a217636d7da8fd64b90eb6beba84c6}{GetOperationErrorFromModelName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&modelName) \textcolor{keyword}{const}}
+\DoxyCodeLine{452                 \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{453         \};}
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_service_model}{ServiceModel}}}
+\DoxyCodeLine{456         \{}
+\DoxyCodeLine{457           \textcolor{keyword}{public}:}
+\DoxyCodeLine{458             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<OperationError>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_service_model_ab6d0ceab929c2eee3f1db1cbf3b7e6ed}{AllocateOperationErrorFromPayload}}(}
+\DoxyCodeLine{459                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&errorModelName,}
+\DoxyCodeLine{460                 \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Crt::StringView}} stringView,}
+\DoxyCodeLine{461                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{462         \};}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
+\DoxyCodeLine{465         \{}
+\DoxyCodeLine{466           \textcolor{keyword}{public}:}
+\DoxyCodeLine{467             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_service_model}{ServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{468             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context_a1ab3247a886a5144eb851ae1d0258459}{AllocateInitialResponseFromPayload}}(}
+\DoxyCodeLine{469                 \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Crt::StringView}} stringView,}
+\DoxyCodeLine{470                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{471             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context_a711548f226e312f400a3fb0150da13c6}{AllocateStreamingResponseFromPayload}}(}
+\DoxyCodeLine{472                 \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Crt::StringView}} stringView,}
+\DoxyCodeLine{473                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{474             \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context_ae30a20024f1b37fe4a35327078d0bb7a}{GetInitialResponseModelName}}() const noexcept = 0;}
+\DoxyCodeLine{475             virtual Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} GetRequestModelName() const noexcept = 0;}
+\DoxyCodeLine{476             virtual Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> GetStreamingResponseModelName() const noexcept = 0;}
+\DoxyCodeLine{477             virtual Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} GetOperationName() const noexcept = 0;}
+\DoxyCodeLine{478             Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{ScopedResource}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}}> AllocateOperationErrorFromPayload(}
+\DoxyCodeLine{479                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&errorModelName,}
+\DoxyCodeLine{480                 Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{StringView}} stringView,}
+\DoxyCodeLine{481                 Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) const noexcept}
+\DoxyCodeLine{482             \{}
+\DoxyCodeLine{483                 \textcolor{keywordflow}{return} m\_serviceModel.AllocateOperationErrorFromPayload(errorModelName, stringView, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{484             \}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486           \textcolor{keyword}{private}:}
+\DoxyCodeLine{487             \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_service_model}{ServiceModel}} \&m\_serviceModel;}
+\DoxyCodeLine{488         \};}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}} : \textcolor{keyword}{private} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{ClientContinuationHandler}}}
+\DoxyCodeLine{491         \{}
+\DoxyCodeLine{492           \textcolor{keyword}{public}:}
+\DoxyCodeLine{493             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}}(}
+\DoxyCodeLine{494                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
+\DoxyCodeLine{495                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{StreamResponseHandler}} *streamHandler,}
+\DoxyCodeLine{496                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}} \&operationModelContext,}
+\DoxyCodeLine{497                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{498             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{\string~ClientOperation}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{499             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6b23746460ce51ad77e656f8ea46c586}{ClientOperation}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}} \&clientOperation) \textcolor{keyword}{noexcept} = \textcolor{keyword}{delete};}
+\DoxyCodeLine{500             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}}(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{ClientOperation}} \&\&clientOperation) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{501             std::future<RpcError> Close(\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) noexcept;}
+\DoxyCodeLine{502             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{TaggedResult}}> GetOperationResult() noexcept;}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{504           protected:}
+\DoxyCodeLine{505             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> Activate(}
+\DoxyCodeLine{506                 const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}} *shape,}
+\DoxyCodeLine{507                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) noexcept;}
+\DoxyCodeLine{508             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> SendStreamEvent(}
+\DoxyCodeLine{509                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}} *shape,}
+\DoxyCodeLine{510                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) noexcept;}
+\DoxyCodeLine{511             virtual Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} GetModelName() const noexcept = 0;}
+\DoxyCodeLine{512             const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}} \&m\_operationModelContext;}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514           private:}
+\DoxyCodeLine{515             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920}{EventStreamRpcStatusCode}} HandleData(const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}});}
+\DoxyCodeLine{516             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a9e9bdfe1d204567865734a594f7b1920}{EventStreamRpcStatusCode}} HandleError(}
+\DoxyCodeLine{517                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&modelName,}
+\DoxyCodeLine{518                 const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{519                 uint32\_t messageFlags);}
+\DoxyCodeLine{523             \textcolor{keywordtype}{void} OnContinuationMessage(}
+\DoxyCodeLine{524                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{List}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}> \&headers,}
+\DoxyCodeLine{525                 const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{526                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{527                 uint32\_t messageFlags) override;}
+\DoxyCodeLine{535             \textcolor{keywordtype}{void} OnContinuationClosed() override;}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{537             const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}} *GetHeaderByName(}
+\DoxyCodeLine{538                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{List}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}> \&headers,}
+\DoxyCodeLine{539                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}) noexcept;}
+\DoxyCodeLine{540 }
+\DoxyCodeLine{541             enum CloseState}
+\DoxyCodeLine{542             \{}
+\DoxyCodeLine{543                 WONT\_CLOSE = 0,}
+\DoxyCodeLine{544                 WILL\_CLOSE,}
+\DoxyCodeLine{545                 ALREADY\_CLOSED}
+\DoxyCodeLine{546             \};}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548             uint32\_t m\_messageCount;}
+\DoxyCodeLine{549             \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *m\_allocator;}
+\DoxyCodeLine{550             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{StreamResponseHandler}} *m\_streamHandler;}
+\DoxyCodeLine{551             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}} m\_clientContinuation;}
+\DoxyCodeLine{552             \textcolor{comment}{/* This mutex protects m\_resultReceived \& m\_closeState. */}}
+\DoxyCodeLine{553             \mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{std::mutex}} m\_continuationMutex;}
+\DoxyCodeLine{554             \textcolor{keywordtype}{bool} m\_resultReceived;}
+\DoxyCodeLine{555             std::promise<TaggedResult> m\_initialResponsePromise;}
+\DoxyCodeLine{556             std::atomic\_int m\_expectedCloses;}
+\DoxyCodeLine{557             std::atomic\_bool m\_streamClosedCalled;}
+\DoxyCodeLine{558             \mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{std::condition\_variable}} m\_closeReady;}
+\DoxyCodeLine{559         \};}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561         \textcolor{keyword}{class }\mbox{\hyperlink{eventstream__rpc_2include_2aws_2eventstreamrpc_2_exports_8h_a657ba9065e32a04c9faccb7d2e8594c6}{AWS\_EVENTSTREAMRPC\_API}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{562         \{}
+\DoxyCodeLine{563           \textcolor{keyword}{public}:}
+\DoxyCodeLine{564             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}}(\mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{565             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{\string~ClientConnection}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{566             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_afc7026e9a8a5385293fa3acc86f57eb9}{ClientConnection}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&) \textcolor{keyword}{noexcept} = \textcolor{keyword}{delete};}
+\DoxyCodeLine{567             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a1959667abecda7c7f62f45237a74f353}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&) \textcolor{keyword}{noexcept} = \textcolor{keyword}{delete};}
+\DoxyCodeLine{568             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}}(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&\&) noexcept;}
+\DoxyCodeLine{569             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&operator=(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&\&) noexcept;}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> Connect(}
+\DoxyCodeLine{572                 const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{ConnectionConfig}} \&connectionOptions,}
+\DoxyCodeLine{573                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{ConnectionLifecycleHandler}} *connectionLifecycleHandler,}
+\DoxyCodeLine{574                 Crt::Io::ClientBootstrap \&clientBootstrap) noexcept;}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{576             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> SendPing(}
+\DoxyCodeLine{577                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{List}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}> \&headers,}
+\DoxyCodeLine{578                 const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{579                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) noexcept;}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581             \mbox{\hyperlink{namespacestd}{std}}::future<\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}}> SendPingResponse(}
+\DoxyCodeLine{582                 const Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{List}}<\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{EventStreamHeader}}> \&headers,}
+\DoxyCodeLine{583                 const Crt::Optional<Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}> \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{584                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) noexcept;}
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}} NewStream(\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{ClientContinuationHandler}} \&clientContinuationHandler) noexcept;}
+\DoxyCodeLine{587 }
+\DoxyCodeLine{588             \textcolor{keywordtype}{void} Close() noexcept;}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590             \textcolor{keywordtype}{bool} IsOpen() const noexcept}
+\DoxyCodeLine{591             \{}
+\DoxyCodeLine{592                 \textcolor{keywordflow}{if} (this-\/>m\_underlyingConnection == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{593                 \{}
+\DoxyCodeLine{594                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{595                 \}}
+\DoxyCodeLine{596                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{597                 \{}
+\DoxyCodeLine{598                     \textcolor{keywordflow}{return} \mbox{\hyperlink{event__stream__rpc__client_8h_ad7de16b38f24f7f02e6690215bb8af3a}{aws\_event\_stream\_rpc\_client\_connection\_is\_open}}(this-\/>m\_underlyingConnection);}
+\DoxyCodeLine{599                 \}}
+\DoxyCodeLine{600             \}}
+\DoxyCodeLine{601 }
+\DoxyCodeLine{605             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} IsOpen(); \}}
+\DoxyCodeLine{606 }
+\DoxyCodeLine{607           \textcolor{keyword}{private}:}
+\DoxyCodeLine{608             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{ClientContinuation}};}
+\DoxyCodeLine{609             \textcolor{keyword}{friend} std::future<RpcError> \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a1aa2282eb1db6e504df657c018294c60}{ClientOperation::Close}}(\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{610             \textcolor{keyword}{enum} ClientState}
+\DoxyCodeLine{611             \{}
+\DoxyCodeLine{612                 DISCONNECTED = 1,}
+\DoxyCodeLine{613                 CONNECTING\_SOCKET,}
+\DoxyCodeLine{614                 WAITING\_FOR\_CONNECT\_ACK,}
+\DoxyCodeLine{615                 CONNECTED,}
+\DoxyCodeLine{616                 DISCONNECTING,}
+\DoxyCodeLine{617             \};}
+\DoxyCodeLine{618             \mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{std::mutex}} m\_continuationVectorMutex;}
+\DoxyCodeLine{619             \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Crt::Vector<ContinuationCallbackData *>}} m\_continuationCallbackVector;}
+\DoxyCodeLine{620             \textcolor{comment}{/* This recursive mutex protects m\_clientState \& m\_connectionWillSetup */}}
+\DoxyCodeLine{621             std::recursive\_mutex m\_stateMutex;}
+\DoxyCodeLine{622             \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *m\_allocator;}
+\DoxyCodeLine{623             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__rpc__client__connection}{aws\_event\_stream\_rpc\_client\_connection}} *m\_underlyingConnection;}
+\DoxyCodeLine{624             ClientState m\_clientState;}
+\DoxyCodeLine{625             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{ConnectionLifecycleHandler}} *m\_lifecycleHandler;}
+\DoxyCodeLine{626             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab93b30af2e59415f7453527b9b8a06c4}{ConnectMessageAmender}} m\_connectMessageAmender;}
+\DoxyCodeLine{627             std::promise<void> m\_connectionSetupPromise;}
+\DoxyCodeLine{628             \textcolor{keywordtype}{bool} m\_connectionWillSetup;}
+\DoxyCodeLine{629             std::promise<RpcError> m\_connectAckedPromise;}
+\DoxyCodeLine{630             std::promise<RpcError> m\_closedPromise;}
+\DoxyCodeLine{631             \textcolor{keywordtype}{bool} m\_onConnectCalled;}
+\DoxyCodeLine{632             \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} m\_closeReason;}
+\DoxyCodeLine{633             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} m\_onConnectRequestCallback;}
+\DoxyCodeLine{634             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt::Io::SocketOptions}} m\_socketOptions;}
+\DoxyCodeLine{635             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{ConnectionConfig}} m\_connectionConfig;}
+\DoxyCodeLine{636             std::future<RpcError> SendProtocolMessage(}
+\DoxyCodeLine{637                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{638                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{639                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{640                 uint32\_t messageFlags,}
+\DoxyCodeLine{641                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{642 }
+\DoxyCodeLine{643             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onConnectionShutdown(}
+\DoxyCodeLine{644                 \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__rpc__client__connection}{aws\_event\_stream\_rpc\_client\_connection}} *connection,}
+\DoxyCodeLine{645                 \textcolor{keywordtype}{int} errorCode,}
+\DoxyCodeLine{646                 \textcolor{keywordtype}{void} *userData) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{647             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onConnectionSetup(}
+\DoxyCodeLine{648                 \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__rpc__client__connection}{aws\_event\_stream\_rpc\_client\_connection}} *connection,}
+\DoxyCodeLine{649                 \textcolor{keywordtype}{int} errorCode,}
+\DoxyCodeLine{650                 \textcolor{keywordtype}{void} *userData) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{651             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onProtocolMessage(}
+\DoxyCodeLine{652                 \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__rpc__client__connection}{aws\_event\_stream\_rpc\_client\_connection}} *connection,}
+\DoxyCodeLine{653                 \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\_event\_stream\_rpc\_message\_args}} *messageArgs,}
+\DoxyCodeLine{654                 \textcolor{keywordtype}{void} *userData) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656             \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_protocolMessageCallback(\textcolor{keywordtype}{int} errorCode, \textcolor{keywordtype}{void} *userData) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{657             \textcolor{keyword}{static} std::future<RpcError> s\_sendProtocolMessage(}
+\DoxyCodeLine{658                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} *connection,}
+\DoxyCodeLine{659                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{660                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{661                 \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{MessageType}} messageType,}
+\DoxyCodeLine{662                 uint32\_t messageFlags,}
+\DoxyCodeLine{663                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{664 }
+\DoxyCodeLine{665             \textcolor{keyword}{static} std::future<RpcError> s\_sendPing(}
+\DoxyCodeLine{666                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} *connection,}
+\DoxyCodeLine{667                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{668                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{669                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{670 }
+\DoxyCodeLine{671             \textcolor{keyword}{static} std::future<RpcError> s\_sendPingResponse(}
+\DoxyCodeLine{672                 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} *connection,}
+\DoxyCodeLine{673                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt::List<EventStreamHeader>}} \&headers,}
+\DoxyCodeLine{674                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::ByteBuf>}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{675                 \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{676         \};}
+\DoxyCodeLine{677     \} \textcolor{comment}{// namespace Eventstreamrpc}}
+\DoxyCodeLine{678 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

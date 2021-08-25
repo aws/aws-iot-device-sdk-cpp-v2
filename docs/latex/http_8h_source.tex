@@ -1,0 +1,130 @@
+\hypertarget{http_8h_source}{}\doxysection{http.\+h}
+\label{http_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/http.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/http.h}}
+\mbox{\hyperlink{http_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h}{aws/common/logging.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h}{aws/http/exports.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{io_8h}{aws/io/io.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define AWS\_C\_HTTP\_PACKAGE\_ID 2}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{enum} \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6f}{aws\_http\_errors}} \{}
+\DoxyCodeLine{16     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fad704ae013b985e6983808dc299c68df1}{AWS\_ERROR\_HTTP\_UNKNOWN}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3b06229058127882513776ee67fb9b5f}{AWS\_ERROR\_ENUM\_BEGIN\_RANGE}}(\mbox{\hyperlink{http_8h_a29eb863571342c2b44d01ef447ff3ade}{AWS\_C\_HTTP\_PACKAGE\_ID}}),}
+\DoxyCodeLine{17     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faea460cb6ba083c42255029f1fa74af06}{AWS\_ERROR\_HTTP\_HEADER\_NOT\_FOUND}},}
+\DoxyCodeLine{18     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa7baed2bf2cbe236d37d15e1b173ba433}{AWS\_ERROR\_HTTP\_INVALID\_HEADER\_FIELD}},}
+\DoxyCodeLine{19     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faf74e8300fb10db136c6cce0b0c61a998}{AWS\_ERROR\_HTTP\_INVALID\_HEADER\_NAME}},}
+\DoxyCodeLine{20     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa08b4ed460bfdc7b8eb652af580a5d497}{AWS\_ERROR\_HTTP\_INVALID\_HEADER\_VALUE}},}
+\DoxyCodeLine{21     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fab8a025ad54e1ac53b59d5ab84775f6a2}{AWS\_ERROR\_HTTP\_INVALID\_METHOD}},}
+\DoxyCodeLine{22     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa065e9a0024ad4affb7f7b56376d5096e}{AWS\_ERROR\_HTTP\_INVALID\_PATH}},}
+\DoxyCodeLine{23     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faa7596a55686a681586b996a15c31d56f}{AWS\_ERROR\_HTTP\_INVALID\_STATUS\_CODE}},}
+\DoxyCodeLine{24     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa782435a23206cb4f5c352d65c2916fcb}{AWS\_ERROR\_HTTP\_MISSING\_BODY\_STREAM}},}
+\DoxyCodeLine{25     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa04bc62196d3e01348a183aaaf0c62fbc}{AWS\_ERROR\_HTTP\_INVALID\_BODY\_STREAM}},}
+\DoxyCodeLine{26     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa806eac697c293a12a3442b3835315905}{AWS\_ERROR\_HTTP\_CONNECTION\_CLOSED}},}
+\DoxyCodeLine{27     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa10bfb588888e02f9a622db7363412b71}{AWS\_ERROR\_HTTP\_SWITCHED\_PROTOCOLS}},}
+\DoxyCodeLine{28     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faca428b783d91a64fde45e7a484269684}{AWS\_ERROR\_HTTP\_UNSUPPORTED\_PROTOCOL}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fab501468edf3615fd326fab3501de879c}{AWS\_ERROR\_HTTP\_REACTION\_REQUIRED}},}
+\DoxyCodeLine{30     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fabc55df3913bce6a44bf5dcf4ec3dfb5e}{AWS\_ERROR\_HTTP\_DATA\_NOT\_AVAILABLE}},}
+\DoxyCodeLine{31     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa753119dfcf9e9c56d6f3c1c3c8ce679d}{AWS\_ERROR\_HTTP\_OUTGOING\_STREAM\_LENGTH\_INCORRECT}},}
+\DoxyCodeLine{32     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa52da2acd84652e6b4dba2e5ea45ccceb}{AWS\_ERROR\_HTTP\_CALLBACK\_FAILURE}},}
+\DoxyCodeLine{33     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faf12aa4377109a60a6f2ecbb45a8684b0}{AWS\_ERROR\_HTTP\_WEBSOCKET\_UPGRADE\_FAILURE}},}
+\DoxyCodeLine{34     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa7abdc384a14246405b01e868f1ff41cd}{AWS\_ERROR\_HTTP\_WEBSOCKET\_CLOSE\_FRAME\_SENT}},}
+\DoxyCodeLine{35     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faee42e46cc2b52e31bb0cf6469e7cec74}{AWS\_ERROR\_HTTP\_WEBSOCKET\_IS\_MIDCHANNEL\_HANDLER}},}
+\DoxyCodeLine{36     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fad98138f82878424138168d6893441093}{AWS\_ERROR\_HTTP\_CONNECTION\_MANAGER\_INVALID\_STATE\_FOR\_ACQUIRE}},}
+\DoxyCodeLine{37     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa493a7c09494dc47547c10f6aaba6fe4b}{AWS\_ERROR\_HTTP\_CONNECTION\_MANAGER\_VENDED\_CONNECTION\_UNDERFLOW}},}
+\DoxyCodeLine{38     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa3834f4c14803b1ac35846d1a44a5d499}{AWS\_ERROR\_HTTP\_SERVER\_CLOSED}},}
+\DoxyCodeLine{39     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa71d506c7e5137b48d2918bb2b4a02f61}{AWS\_ERROR\_HTTP\_PROXY\_TLS\_CONNECT\_FAILED}},}
+\DoxyCodeLine{40     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6faede5cdad96b63fc52abe94aab72963c3}{AWS\_ERROR\_HTTP\_CONNECTION\_MANAGER\_SHUTTING\_DOWN}},}
+\DoxyCodeLine{41     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa885aa924e9ebcce21bd9c10a3806ec0e}{AWS\_ERROR\_HTTP\_CHANNEL\_THROUGHPUT\_FAILURE}},}
+\DoxyCodeLine{42     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa0405aeb1010c5bf94819954bf5e13762}{AWS\_ERROR\_HTTP\_PROTOCOL\_ERROR}},}
+\DoxyCodeLine{43     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa42a8f9484eec83f0fed2f07f69c77d95}{AWS\_ERROR\_HTTP\_STREAM\_IDS\_EXHAUSTED}},}
+\DoxyCodeLine{44     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa5ea08d4168ef1f8e491604b608dbab79}{AWS\_ERROR\_HTTP\_GOAWAY\_RECEIVED}},}
+\DoxyCodeLine{45     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa12a6acc0fc7f6b2c2d4e5798244536ba}{AWS\_ERROR\_HTTP\_RST\_STREAM\_RECEIVED}},}
+\DoxyCodeLine{46     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa247c2120e5e22792a80b6006bac51f35}{AWS\_ERROR\_HTTP\_RST\_STREAM\_SENT}},}
+\DoxyCodeLine{47     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa10ac617d414ce69e495d9a275adc9faa}{AWS\_ERROR\_HTTP\_STREAM\_NOT\_ACTIVATED}},}
+\DoxyCodeLine{48     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa1ab53e388499da3c352b20fcdedce337}{AWS\_ERROR\_HTTP\_STREAM\_HAS\_COMPLETED}},}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \mbox{\hyperlink{http_8h_a8b2492b8d5a1ad6d94477b79ae767d6fa4f4839dd9399a6885f4f5186cfb1d408}{AWS\_ERROR\_HTTP\_END\_RANGE}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a10ef8dfd68d1fb0dae54a4e5e20c3e1a}{AWS\_ERROR\_ENUM\_END\_RANGE}}(\mbox{\hyperlink{http_8h_a29eb863571342c2b44d01ef447ff3ade}{AWS\_C\_HTTP\_PACKAGE\_ID}})}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{/* Error codes that may be present in HTTP/2 RST\_STREAM and GOAWAY frames (RFC-\/7540 7). */}}
+\DoxyCodeLine{54 \textcolor{keyword}{enum} \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5}{aws\_http2\_error\_code}} \{}
+\DoxyCodeLine{55     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a9ec01d5941a0a392979f2c25a49d4ac9}{AWS\_HTTP2\_ERR\_NO\_ERROR}} = 0x00,}
+\DoxyCodeLine{56     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a0d0bef42b4c95a1e99eea09ea5ac2b28}{AWS\_HTTP2\_ERR\_PROTOCOL\_ERROR}} = 0x01,}
+\DoxyCodeLine{57     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5abf0f6a5f8783010679893044a58dcc96}{AWS\_HTTP2\_ERR\_INTERNAL\_ERROR}} = 0x02,}
+\DoxyCodeLine{58     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5aee6d76b228f7a2a214806a7bf981ecc6}{AWS\_HTTP2\_ERR\_FLOW\_CONTROL\_ERROR}} = 0x03,}
+\DoxyCodeLine{59     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5ab042ee6db34f2d8ed1f1a2234e614e16}{AWS\_HTTP2\_ERR\_SETTINGS\_TIMEOUT}} = 0x04,}
+\DoxyCodeLine{60     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a4bde78b33489732f105f110866b26cf6}{AWS\_HTTP2\_ERR\_STREAM\_CLOSED}} = 0x05,}
+\DoxyCodeLine{61     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a832c6adce016e4fc1c73d9d3952db57b}{AWS\_HTTP2\_ERR\_FRAME\_SIZE\_ERROR}} = 0x06,}
+\DoxyCodeLine{62     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a268b8a55bb795bd15984401d7cf22481}{AWS\_HTTP2\_ERR\_REFUSED\_STREAM}} = 0x07,}
+\DoxyCodeLine{63     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a3aafac7ab18f703efbbfeaaca33778e5}{AWS\_HTTP2\_ERR\_CANCEL}} = 0x08,}
+\DoxyCodeLine{64     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5acc5b65401171d2de4f64910570363c04}{AWS\_HTTP2\_ERR\_COMPRESSION\_ERROR}} = 0x09,}
+\DoxyCodeLine{65     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a8b4d63b0d0e3e9599929dd33e58644ba}{AWS\_HTTP2\_ERR\_CONNECT\_ERROR}} = 0x0A,}
+\DoxyCodeLine{66     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a61a821d4394db07e5a5c80d7711c6a05}{AWS\_HTTP2\_ERR\_ENHANCE\_YOUR\_CALM}} = 0x0B,}
+\DoxyCodeLine{67     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a776bc8d36899bdd8bde687779263c053}{AWS\_HTTP2\_ERR\_INADEQUATE\_SECURITY}} = 0x0C,}
+\DoxyCodeLine{68     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5a80e3d8e7fb8ea8bed8e82587679faf1e}{AWS\_HTTP2\_ERR\_HTTP\_1\_1\_REQUIRED}} = 0x0D,}
+\DoxyCodeLine{69     \mbox{\hyperlink{http_8h_abf71e6b24f02b434bcbce031c33ab6d5aabd7f493af567e96c7d93ccb16124dab}{AWS\_HTTP2\_ERR\_COUNT}},}
+\DoxyCodeLine{70 \};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{keyword}{enum} \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\_http\_log\_subject}} \{}
+\DoxyCodeLine{73     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a6741658b6d485057eda711b20117f6f4}{AWS\_LS\_HTTP\_GENERAL}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a55dfeb29d8d4f1f84d33fb544ba1f62f}{AWS\_LOG\_SUBJECT\_BEGIN\_RANGE}}(\mbox{\hyperlink{http_8h_a29eb863571342c2b44d01ef447ff3ade}{AWS\_C\_HTTP\_PACKAGE\_ID}}),}
+\DoxyCodeLine{74     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a68ba9d0657d3efdbca8360360f6513cb}{AWS\_LS\_HTTP\_CONNECTION}},}
+\DoxyCodeLine{75     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528aa39b33735fab04a7686520daaf7c6ab1}{AWS\_LS\_HTTP\_ENCODER}},}
+\DoxyCodeLine{76     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528abd7a3204e3c5830769e68e4e62601a7b}{AWS\_LS\_HTTP\_DECODER}},}
+\DoxyCodeLine{77     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a112b61ce2db9caf8068a9113199723d5}{AWS\_LS\_HTTP\_SERVER}},}
+\DoxyCodeLine{78     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528ae38eff89f70fa8174ab76f0ca5a4ea87}{AWS\_LS\_HTTP\_STREAM}},}
+\DoxyCodeLine{79     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a98e5be4b8562ffc5272fd5fe849b7d06}{AWS\_LS\_HTTP\_CONNECTION\_MANAGER}},}
+\DoxyCodeLine{80     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a55597f0cb0b99d71a6e2067a4391a08b}{AWS\_LS\_HTTP\_WEBSOCKET}},}
+\DoxyCodeLine{81     \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528a75786b6af3cb989eb79a8359678ff798}{AWS\_LS\_HTTP\_WEBSOCKET\_SETUP}},}
+\DoxyCodeLine{82 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{enum} \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56}{aws\_http\_version}} \{}
+\DoxyCodeLine{85     \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56a6da9e2993f0ff1d9c904f80f073b83a8}{AWS\_HTTP\_VERSION\_UNKNOWN}}, \textcolor{comment}{/* Invalid version. */}}
+\DoxyCodeLine{86     \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56a8f1be6382f962fe8f0cdd80ec5104b55}{AWS\_HTTP\_VERSION\_1\_0}},}
+\DoxyCodeLine{87     \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56a9f3de14413647a8acf50d7d59fb0b2f8}{AWS\_HTTP\_VERSION\_1\_1}},}
+\DoxyCodeLine{88     \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56a7d5350f887fcc9085f18fa8e0a60a8ee}{AWS\_HTTP\_VERSION\_2}},}
+\DoxyCodeLine{89     \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56ac806f642ec88d97b0cbd17cec7fd4e18}{AWS\_HTTP\_VERSION\_COUNT}},}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{98 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{99 \textcolor{keywordtype}{void} \mbox{\hyperlink{http_8h_a2065d9a612cad040635efb30f416ac00}{aws\_http\_library\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{105 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{106 \textcolor{keywordtype}{void} \mbox{\hyperlink{http_8h_ac73047bf702f1d9caf61083af86e14c2}{aws\_http\_library\_clean\_up}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{113 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{114 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{http_8h_a5487848dfc373dfbf9e82d80297b7255}{aws\_http\_status\_text}}(\textcolor{keywordtype}{int} status\_code);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{119 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{120 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a413073d309e0b67f6624f0493c0372ec}{aws\_http\_method\_get}};}
+\DoxyCodeLine{121 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{122 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a052053d489433a8ef0137f74cd9b254f}{aws\_http\_method\_head}};}
+\DoxyCodeLine{123 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{124 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_afeabfbd4e3c1d4d13a8b646f50208b62}{aws\_http\_method\_post}};}
+\DoxyCodeLine{125 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{126 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a78bdc0112bc3be0a1ed9be0c55d49801}{aws\_http\_method\_put}};}
+\DoxyCodeLine{127 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{128 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_ad311d46856dafe7cb6af7ee393ccc44f}{aws\_http\_method\_delete}};}
+\DoxyCodeLine{129 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{130 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a8b9a55d5717117b6b682ac90e7649fc7}{aws\_http\_method\_connect}};}
+\DoxyCodeLine{131 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{132 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a60ab8364a0cc310df2f6da59ae026b59}{aws\_http\_method\_options}};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a73f44598b272533c2a3d451c07b85332}{aws\_http\_header\_method}};}
+\DoxyCodeLine{135 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a9142d99b5463983f943ecce4228665fa}{aws\_http\_header\_scheme}};}
+\DoxyCodeLine{136 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_aa1f08152c6eeb9e3846b7c8cc9b3ae96}{aws\_http\_header\_authority}};}
+\DoxyCodeLine{137 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a21f026e15f4de06e5989a4f1db5694f2}{aws\_http\_header\_path}};}
+\DoxyCodeLine{138 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a177fa5adba5cad323198fa42a9df0f82}{aws\_http\_header\_status}};}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_afaf95e5d60f171e6428cec6891811e1e}{aws\_http\_scheme\_http}};}
+\DoxyCodeLine{141 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{http_8h_a32f89bd423f970a923a0f0906dd765f1}{aws\_http\_scheme\_https}};}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,96 @@
+\hypertarget{structaws__thread__scheduler}{}\doxysection{aws\+\_\+thread\+\_\+scheduler Struct Reference}
+\label{structaws__thread__scheduler}\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__thread__scheduler_a9f7afb562339438889dc463ac6cc554d}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} \mbox{\hyperlink{structaws__thread__scheduler_abc71b03652dd07c6d019a5f6494a732f}{ref\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} \mbox{\hyperlink{structaws__thread__scheduler_a15b333572c8e25e53e2e06fc33160728}{thread}}
+\item 
+struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} \mbox{\hyperlink{structaws__thread__scheduler_ae0ac99dbe19ba4aa01ab16f3cf0abdd4}{scheduler}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__thread__scheduler_aae3d85f59c8a036c28368ab766a5aec5}{should\+\_\+exit}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__thread__scheduler_a97f068dbb7371ea1bb0d303b90743881}{scheduling\_queue}}\\
+\>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__thread__scheduler_adeaa42295ca43b5e44348d55884b7171}{cancel\_queue}}\\
+\>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__thread__scheduler_aae64e8a87429495406847834265649fe}{mutex}}\\
+\>struct \mbox{\hyperlink{structaws__condition__variable}{aws\_condition\_variable}} \mbox{\hyperlink{structaws__thread__scheduler_a154f74693689ce38e019fe105e9fb5f6}{c\_var}}\\
+\} \mbox{\hyperlink{structaws__thread__scheduler_a0176dbd3b4438db46201690db0663a15}{thread\_data}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__thread__scheduler_a9f7afb562339438889dc463ac6cc554d}\label{structaws__thread__scheduler_a9f7afb562339438889dc463ac6cc554d}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+thread\+\_\+scheduler\+::allocator}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_a154f74693689ce38e019fe105e9fb5f6}\label{structaws__thread__scheduler_a154f74693689ce38e019fe105e9fb5f6}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!c\_var@{c\_var}}
+\index{c\_var@{c\_var}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{c\_var}{c\_var}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} aws\+\_\+thread\+\_\+scheduler\+::c\+\_\+var}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_adeaa42295ca43b5e44348d55884b7171}\label{structaws__thread__scheduler_adeaa42295ca43b5e44348d55884b7171}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!cancel\_queue@{cancel\_queue}}
+\index{cancel\_queue@{cancel\_queue}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{cancel\_queue}{cancel\_queue}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+thread\+\_\+scheduler\+::cancel\+\_\+queue}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_aae64e8a87429495406847834265649fe}\label{structaws__thread__scheduler_aae64e8a87429495406847834265649fe}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!mutex@{mutex}}
+\index{mutex@{mutex}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+thread\+\_\+scheduler\+::mutex}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_abc71b03652dd07c6d019a5f6494a732f}\label{structaws__thread__scheduler_abc71b03652dd07c6d019a5f6494a732f}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} aws\+\_\+thread\+\_\+scheduler\+::ref\+\_\+count}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_ae0ac99dbe19ba4aa01ab16f3cf0abdd4}\label{structaws__thread__scheduler_ae0ac99dbe19ba4aa01ab16f3cf0abdd4}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!scheduler@{scheduler}}
+\index{scheduler@{scheduler}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{scheduler}{scheduler}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} aws\+\_\+thread\+\_\+scheduler\+::scheduler}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_a97f068dbb7371ea1bb0d303b90743881}\label{structaws__thread__scheduler_a97f068dbb7371ea1bb0d303b90743881}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!scheduling\_queue@{scheduling\_queue}}
+\index{scheduling\_queue@{scheduling\_queue}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{scheduling\_queue}{scheduling\_queue}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+thread\+\_\+scheduler\+::scheduling\+\_\+queue}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_aae3d85f59c8a036c28368ab766a5aec5}\label{structaws__thread__scheduler_aae3d85f59c8a036c28368ab766a5aec5}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!should\_exit@{should\_exit}}
+\index{should\_exit@{should\_exit}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{should\_exit}{should\_exit}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+thread\+\_\+scheduler\+::should\+\_\+exit}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_a15b333572c8e25e53e2e06fc33160728}\label{structaws__thread__scheduler_a15b333572c8e25e53e2e06fc33160728}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!thread@{thread}}
+\index{thread@{thread}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{thread}{thread}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} aws\+\_\+thread\+\_\+scheduler\+::thread}
+
+\mbox{\Hypertarget{structaws__thread__scheduler_a0176dbd3b4438db46201690db0663a15}\label{structaws__thread__scheduler_a0176dbd3b4438db46201690db0663a15}} 
+\index{aws\_thread\_scheduler@{aws\_thread\_scheduler}!thread\_data@{thread\_data}}
+\index{thread\_data@{thread\_data}!aws\_thread\_scheduler@{aws\_thread\_scheduler}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+thread\+\_\+scheduler\+::thread\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/\mbox{\hyperlink{thread__scheduler_8c}{thread\+\_\+scheduler.\+c}}\end{DoxyCompactItemize}

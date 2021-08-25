@@ -1,0 +1,84 @@
+\hypertarget{ref__count_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ref\+\_\+count.h File Reference}
+\label{ref__count_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ref\_count.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ref\_count.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__shutdown__callback__options}{aws\+\_\+shutdown\+\_\+callback\+\_\+options}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void() \mbox{\hyperlink{ref__count_8h_a28e691b74ab643c32ef20de0645e4f10}{aws\+\_\+simple\+\_\+completion\+\_\+callback}}(void $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{ref__count_8h_a4938986d166c5720f2f846dab6fd2bed}{aws\+\_\+ref\+\_\+count\+\_\+init}} (struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$ref\+\_\+count, void $\ast$object, \mbox{\hyperlink{ref__count_8h_a28e691b74ab643c32ef20de0645e4f10}{aws\+\_\+simple\+\_\+completion\+\_\+callback}} $\ast$on\+\_\+zero\+\_\+fn)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void $\ast$ \mbox{\hyperlink{ref__count_8h_a4946a13c89dc9553398690f5e568681f}{aws\+\_\+ref\+\_\+count\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$ref\+\_\+count)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{ref__count_8h_aec39341a01bf131d15e581e1d6b93779}{aws\+\_\+ref\+\_\+count\+\_\+release}} (struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$ref\+\_\+count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ref__count_8h_a28e691b74ab643c32ef20de0645e4f10}\label{ref__count_8h_a28e691b74ab643c32ef20de0645e4f10}} 
+\index{ref\_count.h@{ref\_count.h}!aws\_simple\_completion\_callback@{aws\_simple\_completion\_callback}}
+\index{aws\_simple\_completion\_callback@{aws\_simple\_completion\_callback}!ref\_count.h@{ref\_count.h}}
+\doxysubsubsection{\texorpdfstring{aws\_simple\_completion\_callback}{aws\_simple\_completion\_callback}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+simple\+\_\+completion\+\_\+callback(void $\ast$)}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ref__count_8h_a4946a13c89dc9553398690f5e568681f}\label{ref__count_8h_a4946a13c89dc9553398690f5e568681f}} 
+\index{ref\_count.h@{ref\_count.h}!aws\_ref\_count\_acquire@{aws\_ref\_count\_acquire}}
+\index{aws\_ref\_count\_acquire@{aws\_ref\_count\_acquire}!ref\_count.h@{ref\_count.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ref\_count\_acquire()}{aws\_ref\_count\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void$\ast$ aws\+\_\+ref\+\_\+count\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$}]{ref\+\_\+count }\end{DoxyParamCaption})}
+
+Increments a ref-\/counter\textquotesingle{}s ref count
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+count} & ref-\/counter to increment the count for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the object being ref-\/counted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ref__count_8h_a4938986d166c5720f2f846dab6fd2bed}\label{ref__count_8h_a4938986d166c5720f2f846dab6fd2bed}} 
+\index{ref\_count.h@{ref\_count.h}!aws\_ref\_count\_init@{aws\_ref\_count\_init}}
+\index{aws\_ref\_count\_init@{aws\_ref\_count\_init}!ref\_count.h@{ref\_count.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ref\_count\_init()}{aws\_ref\_count\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+ref\+\_\+count\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$}]{ref\+\_\+count,  }\item[{void $\ast$}]{object,  }\item[{\mbox{\hyperlink{ref__count_8h_a28e691b74ab643c32ef20de0645e4f10}{aws\+\_\+simple\+\_\+completion\+\_\+callback}} $\ast$}]{on\+\_\+zero\+\_\+fn }\end{DoxyParamCaption})}
+
+Initializes a ref-\/counter structure. After initialization, the ref count will be 1.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+count} & ref-\/counter to initialize \\
+\hline
+{\em object} & object being ref counted \\
+\hline
+{\em on\+\_\+zero\+\_\+fn} & function to invoke when the ref count reaches zero\\
+\hline
+\end{DoxyParams}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{ref__count_8h_aec39341a01bf131d15e581e1d6b93779}\label{ref__count_8h_aec39341a01bf131d15e581e1d6b93779}} 
+\index{ref\_count.h@{ref\_count.h}!aws\_ref\_count\_release@{aws\_ref\_count\_release}}
+\index{aws\_ref\_count\_release@{aws\_ref\_count\_release}!ref\_count.h@{ref\_count.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ref\_count\_release()}{aws\_ref\_count\_release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t aws\+\_\+ref\+\_\+count\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} $\ast$}]{ref\+\_\+count }\end{DoxyParamCaption})}
+
+Decrements a ref-\/counter\textquotesingle{}s ref count. Invokes the on\+\_\+zero callback if the ref count drops to zero 
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+count} & ref-\/counter to decrement the count for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the decremented ref count 
+\end{DoxyReturn}

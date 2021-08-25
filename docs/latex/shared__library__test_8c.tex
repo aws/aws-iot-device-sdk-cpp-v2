@@ -1,0 +1,103 @@
+\hypertarget{shared__library__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/shared\+\_\+library\+\_\+test.c File Reference}
+\label{shared__library__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/shared\_library\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/shared\_library\_test.c}}
+{\ttfamily \#include $<$aws/io/shared\+\_\+library.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{shared__library__test_8c_a05af3c04ecad0a5b1bef80e295da6144}{find\+\_\+symbol\+\_\+function}}) (struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$, const char $\ast$, \mbox{\hyperlink{shared__library_8h_a14e40c31a8ba6d210431468d82bfd077}{aws\+\_\+generic\+\_\+function}} $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{shared__library__test_8c_aa1ae00495798fa7b6c6c31d454c12464}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+failure}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{shared__library__test_8c_ae8dac7726cec68e1596cf28ccff40e48}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (shared\+\_\+library\+\_\+open\+\_\+failure, \mbox{\hyperlink{shared__library__test_8c_aa1ae00495798fa7b6c6c31d454c12464}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+failure}})
+\item 
+static int \mbox{\hyperlink{shared__library__test_8c_abc33c56dfdaa31477f9f9c6d99f3a63b}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+success}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{shared__library__test_8c_a64ae582fd9d31541e4a59356a1a8ef67}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (shared\+\_\+library\+\_\+open\+\_\+success, \mbox{\hyperlink{shared__library__test_8c_abc33c56dfdaa31477f9f9c6d99f3a63b}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+success}})
+\item 
+static int \mbox{\hyperlink{shared__library__test_8c_af12e0f7709ccebfbfbddec8dd56baf24}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{shared__library__test_8c_aa74cdca89f2e80dd8433d947164d9a86}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success, \mbox{\hyperlink{shared__library__test_8c_af12e0f7709ccebfbfbddec8dd56baf24}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success}})
+\item 
+static int \mbox{\hyperlink{shared__library__test_8c_a66feba2e77fa29c0a9f1f12dc1c4f3d5}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{shared__library__test_8c_a233ac1ec7094a53bcfdee46f198dffa7}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure, \mbox{\hyperlink{shared__library__test_8c_a66feba2e77fa29c0a9f1f12dc1c4f3d5}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{shared__library__test_8c_acf3b197423d5b0dd69aab615ed366376}{s\+\_\+self\+\_\+path}} = \char`\"{}../libaws-\/c-\/io.\+so\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{shared__library__test_8c_a05af3c04ecad0a5b1bef80e295da6144}\label{shared__library__test_8c_a05af3c04ecad0a5b1bef80e295da6144}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!find\_symbol\_function@{find\_symbol\_function}}
+\index{find\_symbol\_function@{find\_symbol\_function}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{find\_symbol\_function}{find\_symbol\_function}}
+{\footnotesize\ttfamily typedef int($\ast$ find\+\_\+symbol\+\_\+function) (struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$, const char $\ast$, \mbox{\hyperlink{shared__library_8h_a14e40c31a8ba6d210431468d82bfd077}{aws\+\_\+generic\+\_\+function}} $\ast$)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{shared__library__test_8c_a233ac1ec7094a53bcfdee46f198dffa7}\label{shared__library__test_8c_a233ac1ec7094a53bcfdee46f198dffa7}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure}]{,  }\item[{\mbox{\hyperlink{shared__library__test_8c_a66feba2e77fa29c0a9f1f12dc1c4f3d5}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shared__library__test_8c_aa74cdca89f2e80dd8433d947164d9a86}\label{shared__library__test_8c_aa74cdca89f2e80dd8433d947164d9a86}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success}]{,  }\item[{\mbox{\hyperlink{shared__library__test_8c_af12e0f7709ccebfbfbddec8dd56baf24}{s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shared__library__test_8c_ae8dac7726cec68e1596cf28ccff40e48}\label{shared__library__test_8c_ae8dac7726cec68e1596cf28ccff40e48}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{shared\+\_\+library\+\_\+open\+\_\+failure}]{,  }\item[{\mbox{\hyperlink{shared__library__test_8c_aa1ae00495798fa7b6c6c31d454c12464}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+failure}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shared__library__test_8c_a64ae582fd9d31541e4a59356a1a8ef67}\label{shared__library__test_8c_a64ae582fd9d31541e4a59356a1a8ef67}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{shared\+\_\+library\+\_\+open\+\_\+success}]{,  }\item[{\mbox{\hyperlink{shared__library__test_8c_abc33c56dfdaa31477f9f9c6d99f3a63b}{s\+\_\+shared\+\_\+library\+\_\+open\+\_\+success}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shared__library__test_8c_a66feba2e77fa29c0a9f1f12dc1c4f3d5}\label{shared__library__test_8c_a66feba2e77fa29c0a9f1f12dc1c4f3d5}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!s\_shared\_library\_find\_function\_failure@{s\_shared\_library\_find\_function\_failure}}
+\index{s\_shared\_library\_find\_function\_failure@{s\_shared\_library\_find\_function\_failure}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shared\_library\_find\_function\_failure()}{s\_shared\_library\_find\_function\_failure()}}
+{\footnotesize\ttfamily static int s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+failure (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{shared__library__test_8c_af12e0f7709ccebfbfbddec8dd56baf24}\label{shared__library__test_8c_af12e0f7709ccebfbfbddec8dd56baf24}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!s\_shared\_library\_find\_function\_success@{s\_shared\_library\_find\_function\_success}}
+\index{s\_shared\_library\_find\_function\_success@{s\_shared\_library\_find\_function\_success}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shared\_library\_find\_function\_success()}{s\_shared\_library\_find\_function\_success()}}
+{\footnotesize\ttfamily static int s\+\_\+shared\+\_\+library\+\_\+find\+\_\+function\+\_\+success (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{shared__library__test_8c_aa1ae00495798fa7b6c6c31d454c12464}\label{shared__library__test_8c_aa1ae00495798fa7b6c6c31d454c12464}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!s\_shared\_library\_open\_failure@{s\_shared\_library\_open\_failure}}
+\index{s\_shared\_library\_open\_failure@{s\_shared\_library\_open\_failure}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shared\_library\_open\_failure()}{s\_shared\_library\_open\_failure()}}
+{\footnotesize\ttfamily static int s\+\_\+shared\+\_\+library\+\_\+open\+\_\+failure (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{shared__library__test_8c_abc33c56dfdaa31477f9f9c6d99f3a63b}\label{shared__library__test_8c_abc33c56dfdaa31477f9f9c6d99f3a63b}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!s\_shared\_library\_open\_success@{s\_shared\_library\_open\_success}}
+\index{s\_shared\_library\_open\_success@{s\_shared\_library\_open\_success}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shared\_library\_open\_success()}{s\_shared\_library\_open\_success()}}
+{\footnotesize\ttfamily static int s\+\_\+shared\+\_\+library\+\_\+open\+\_\+success (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{shared__library__test_8c_acf3b197423d5b0dd69aab615ed366376}\label{shared__library__test_8c_acf3b197423d5b0dd69aab615ed366376}} 
+\index{shared\_library\_test.c@{shared\_library\_test.c}!s\_self\_path@{s\_self\_path}}
+\index{s\_self\_path@{s\_self\_path}!shared\_library\_test.c@{shared\_library\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_self\_path}{s\_self\_path}}
+{\footnotesize\ttfamily const char$\ast$ s\+\_\+self\+\_\+path = \char`\"{}../libaws-\/c-\/io.\+so\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

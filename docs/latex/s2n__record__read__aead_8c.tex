@@ -1,0 +1,29 @@
+\hypertarget{s2n__record__read__aead_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+record\+\_\+read\+\_\+aead.c File Reference}
+\label{s2n__record__read__aead_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_read\_aead.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_read\_aead.c}}
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+sequence.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record\+\_\+read.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+annotations.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__record__read__aead_8c_a86cb8ebfa3a63a63cf23c01089e4459a}{s2n\+\_\+record\+\_\+parse\+\_\+aead}} (const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t content\+\_\+type, uint16\+\_\+t encrypted\+\_\+length, uint8\+\_\+t $\ast$implicit\+\_\+iv, struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$mac, uint8\+\_\+t $\ast$sequence\+\_\+number, struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$session\+\_\+key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__record__read__aead_8c_a86cb8ebfa3a63a63cf23c01089e4459a}\label{s2n__record__read__aead_8c_a86cb8ebfa3a63a63cf23c01089e4459a}} 
+\index{s2n\_record\_read\_aead.c@{s2n\_record\_read\_aead.c}!s2n\_record\_parse\_aead@{s2n\_record\_parse\_aead}}
+\index{s2n\_record\_parse\_aead@{s2n\_record\_parse\_aead}!s2n\_record\_read\_aead.c@{s2n\_record\_read\_aead.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_parse\_aead()}{s2n\_record\_parse\_aead()}}
+{\footnotesize\ttfamily int s2n\+\_\+record\+\_\+parse\+\_\+aead (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{content\+\_\+type,  }\item[{uint16\+\_\+t}]{encrypted\+\_\+length,  }\item[{uint8\+\_\+t $\ast$}]{implicit\+\_\+iv,  }\item[{struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$}]{mac,  }\item[{uint8\+\_\+t $\ast$}]{sequence\+\_\+number,  }\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{session\+\_\+key }\end{DoxyParamCaption})}
+

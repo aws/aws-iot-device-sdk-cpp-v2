@@ -1,0 +1,81 @@
+\hypertarget{cache__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/cache\+\_\+test.c File Reference}
+\label{cache__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/cache\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/cache\_test.c}}
+{\ttfamily \#include $<$aws/common/fifo\+\_\+cache.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/lifo\+\_\+cache.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/lru\+\_\+cache.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcache__test__value__element}{cache\+\_\+test\+\_\+value\+\_\+element}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a8a24294e799f26fcbc9aa69671f536b1}{s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a29468d2f65f0ecec36d7fbdf4aec0350}{s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+lru\+\_\+ness\+\_\+static\+\_\+members\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a87fa4d3f21748140e0623b249aeb9af6}{s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+element\+\_\+access\+\_\+members\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a5d56f8e169e14c42eff2da596996e829}{s\+\_\+test\+\_\+fifo\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a3c23236d285654df191090c42782f75f}{s\+\_\+test\+\_\+lifo\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{cache__test_8c_a6051c781a3d4faef5104a8553e4f5f23}{s\+\_\+cache\+\_\+element\+\_\+value\+\_\+destroy}} (void $\ast$value)
+\item 
+static int \mbox{\hyperlink{cache__test_8c_aaf95f328b05e50de0d2f5a98de35a514}{s\+\_\+test\+\_\+cache\+\_\+entries\+\_\+cleanup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{cache__test_8c_a491dc40e6f2093b7f2260b70c142b112}{s\+\_\+test\+\_\+cache\+\_\+entries\+\_\+overwrite\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cache__test_8c_a6051c781a3d4faef5104a8553e4f5f23}\label{cache__test_8c_a6051c781a3d4faef5104a8553e4f5f23}} 
+\index{cache\_test.c@{cache\_test.c}!s\_cache\_element\_value\_destroy@{s\_cache\_element\_value\_destroy}}
+\index{s\_cache\_element\_value\_destroy@{s\_cache\_element\_value\_destroy}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_cache\_element\_value\_destroy()}{s\_cache\_element\_value\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+cache\+\_\+element\+\_\+value\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_aaf95f328b05e50de0d2f5a98de35a514}\label{cache__test_8c_aaf95f328b05e50de0d2f5a98de35a514}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_cache\_entries\_cleanup\_fn@{s\_test\_cache\_entries\_cleanup\_fn}}
+\index{s\_test\_cache\_entries\_cleanup\_fn@{s\_test\_cache\_entries\_cleanup\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_cache\_entries\_cleanup\_fn()}{s\_test\_cache\_entries\_cleanup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+cache\+\_\+entries\+\_\+cleanup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a491dc40e6f2093b7f2260b70c142b112}\label{cache__test_8c_a491dc40e6f2093b7f2260b70c142b112}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_cache\_entries\_overwrite\_fn@{s\_test\_cache\_entries\_overwrite\_fn}}
+\index{s\_test\_cache\_entries\_overwrite\_fn@{s\_test\_cache\_entries\_overwrite\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_cache\_entries\_overwrite\_fn()}{s\_test\_cache\_entries\_overwrite\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+cache\+\_\+entries\+\_\+overwrite\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a5d56f8e169e14c42eff2da596996e829}\label{cache__test_8c_a5d56f8e169e14c42eff2da596996e829}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_fifo\_cache\_overflow\_static\_members\_fn@{s\_test\_fifo\_cache\_overflow\_static\_members\_fn}}
+\index{s\_test\_fifo\_cache\_overflow\_static\_members\_fn@{s\_test\_fifo\_cache\_overflow\_static\_members\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_fifo\_cache\_overflow\_static\_members\_fn()}{s\_test\_fifo\_cache\_overflow\_static\_members\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+fifo\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a3c23236d285654df191090c42782f75f}\label{cache__test_8c_a3c23236d285654df191090c42782f75f}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_lifo\_cache\_overflow\_static\_members\_fn@{s\_test\_lifo\_cache\_overflow\_static\_members\_fn}}
+\index{s\_test\_lifo\_cache\_overflow\_static\_members\_fn@{s\_test\_lifo\_cache\_overflow\_static\_members\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_lifo\_cache\_overflow\_static\_members\_fn()}{s\_test\_lifo\_cache\_overflow\_static\_members\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+lifo\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a87fa4d3f21748140e0623b249aeb9af6}\label{cache__test_8c_a87fa4d3f21748140e0623b249aeb9af6}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_lru\_cache\_element\_access\_members\_fn@{s\_test\_lru\_cache\_element\_access\_members\_fn}}
+\index{s\_test\_lru\_cache\_element\_access\_members\_fn@{s\_test\_lru\_cache\_element\_access\_members\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_lru\_cache\_element\_access\_members\_fn()}{s\_test\_lru\_cache\_element\_access\_members\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+element\+\_\+access\+\_\+members\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a29468d2f65f0ecec36d7fbdf4aec0350}\label{cache__test_8c_a29468d2f65f0ecec36d7fbdf4aec0350}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn@{s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn}}
+\index{s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn@{s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn()}{s\_test\_lru\_cache\_lru\_ness\_static\_members\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+lru\+\_\+ness\+\_\+static\+\_\+members\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cache__test_8c_a8a24294e799f26fcbc9aa69671f536b1}\label{cache__test_8c_a8a24294e799f26fcbc9aa69671f536b1}} 
+\index{cache\_test.c@{cache\_test.c}!s\_test\_lru\_cache\_overflow\_static\_members\_fn@{s\_test\_lru\_cache\_overflow\_static\_members\_fn}}
+\index{s\_test\_lru\_cache\_overflow\_static\_members\_fn@{s\_test\_lru\_cache\_overflow\_static\_members\_fn}!cache\_test.c@{cache\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_lru\_cache\_overflow\_static\_members\_fn()}{s\_test\_lru\_cache\_overflow\_static\_members\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+lru\+\_\+cache\+\_\+overflow\+\_\+static\+\_\+members\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

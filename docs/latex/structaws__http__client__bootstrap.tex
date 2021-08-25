@@ -1,0 +1,113 @@
+\hypertarget{structaws__http__client__bootstrap}{}\doxysection{aws\+\_\+http\+\_\+client\+\_\+bootstrap Struct Reference}
+\label{structaws__http__client__bootstrap}\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+
+
+{\ttfamily \#include $<$connection\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_ae77511f6f1bfa3199fdb8f2223c2b363}{alloc}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__client__bootstrap_a4b3ad59eea4797304ececacda3057179}{is\+\_\+using\+\_\+tls}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__client__bootstrap_a5877031c8f347ae764b75b96270c1a6e}{manual\+\_\+window\+\_\+management}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__client__bootstrap_a3ba2134265acb74d1d01af6463aaa339}{initial\+\_\+window\+\_\+size}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} \mbox{\hyperlink{structaws__http__client__bootstrap_aa77db7333dfcb1185d33ddff4b278995}{monitoring\+\_\+options}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_afa3ab7f003b6eb37148e58702d0804e8}{user\+\_\+data}}
+\item 
+\mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_a0024a892b7ce5300f7894f6820d5b79a}{on\+\_\+setup}}
+\item 
+\mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_a9dece59924585ee043c99791be97086d}{on\+\_\+shutdown}}
+\item 
+\mbox{\hyperlink{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}{aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_a52ad50e58440aa5e497cfe16f0ca998c}{proxy\+\_\+request\+\_\+transform}}
+\item 
+struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} \mbox{\hyperlink{structaws__http__client__bootstrap_ad5498a793ebc3a052f3c18d6398f091d}{http1\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__http2__connection__options}{aws\+\_\+http2\+\_\+connection\+\_\+options}} \mbox{\hyperlink{structaws__http__client__bootstrap_a4ec8b0aa15abb729e2550f0141c0d390}{http2\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__http__client__bootstrap_a0ae60bc3c2f0c097840ea9c7a0a9255a}{connection}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__client__bootstrap_ae77511f6f1bfa3199fdb8f2223c2b363}\label{structaws__http__client__bootstrap_ae77511f6f1bfa3199fdb8f2223c2b363}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::alloc}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a0ae60bc3c2f0c097840ea9c7a0a9255a}\label{structaws__http__client__bootstrap_a0ae60bc3c2f0c097840ea9c7a0a9255a}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!connection@{connection}}
+\index{connection@{connection}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::connection}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_ad5498a793ebc3a052f3c18d6398f091d}\label{structaws__http__client__bootstrap_ad5498a793ebc3a052f3c18d6398f091d}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!http1\_options@{http1\_options}}
+\index{http1\_options@{http1\_options}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{http1\_options}{http1\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::http1\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a4ec8b0aa15abb729e2550f0141c0d390}\label{structaws__http__client__bootstrap_a4ec8b0aa15abb729e2550f0141c0d390}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!http2\_options@{http2\_options}}
+\index{http2\_options@{http2\_options}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{http2\_options}{http2\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http2__connection__options}{aws\+\_\+http2\+\_\+connection\+\_\+options}} aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::http2\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a3ba2134265acb74d1d01af6463aaa339}\label{structaws__http__client__bootstrap_a3ba2134265acb74d1d01af6463aaa339}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!initial\_window\_size@{initial\_window\_size}}
+\index{initial\_window\_size@{initial\_window\_size}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{initial\_window\_size}{initial\_window\_size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::initial\+\_\+window\+\_\+size}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a4b3ad59eea4797304ececacda3057179}\label{structaws__http__client__bootstrap_a4b3ad59eea4797304ececacda3057179}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!is\_using\_tls@{is\_using\_tls}}
+\index{is\_using\_tls@{is\_using\_tls}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{is\_using\_tls}{is\_using\_tls}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::is\+\_\+using\+\_\+tls}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a5877031c8f347ae764b75b96270c1a6e}\label{structaws__http__client__bootstrap_a5877031c8f347ae764b75b96270c1a6e}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!manual\_window\_management@{manual\_window\_management}}
+\index{manual\_window\_management@{manual\_window\_management}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{manual\_window\_management}{manual\_window\_management}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::manual\+\_\+window\+\_\+management}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_aa77db7333dfcb1185d33ddff4b278995}\label{structaws__http__client__bootstrap_aa77db7333dfcb1185d33ddff4b278995}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!monitoring\_options@{monitoring\_options}}
+\index{monitoring\_options@{monitoring\_options}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{monitoring\_options}{monitoring\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::monitoring\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a0024a892b7ce5300f7894f6820d5b79a}\label{structaws__http__client__bootstrap_a0024a892b7ce5300f7894f6820d5b79a}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!on\_setup@{on\_setup}}
+\index{on\_setup@{on\_setup}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{on\_setup}{on\_setup}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::on\+\_\+setup}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a9dece59924585ee043c99791be97086d}\label{structaws__http__client__bootstrap_a9dece59924585ee043c99791be97086d}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!on\_shutdown@{on\_shutdown}}
+\index{on\_shutdown@{on\_shutdown}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{on\_shutdown}{on\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::on\+\_\+shutdown}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_a52ad50e58440aa5e497cfe16f0ca998c}\label{structaws__http__client__bootstrap_a52ad50e58440aa5e497cfe16f0ca998c}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!proxy\_request\_transform@{proxy\_request\_transform}}
+\index{proxy\_request\_transform@{proxy\_request\_transform}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{proxy\_request\_transform}{proxy\_request\_transform}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection__impl_8h_af997b0eec4a17be192faa7636ae3d64e}{aws\+\_\+http\+\_\+proxy\+\_\+request\+\_\+transform\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::proxy\+\_\+request\+\_\+transform}
+
+\mbox{\Hypertarget{structaws__http__client__bootstrap_afa3ab7f003b6eb37148e58702d0804e8}\label{structaws__http__client__bootstrap_afa3ab7f003b6eb37148e58702d0804e8}} 
+\index{aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_http\_client\_bootstrap@{aws\_http\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+http\+\_\+client\+\_\+bootstrap\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{connection__impl_8h}{connection\+\_\+impl.\+h}}\end{DoxyCompactItemize}

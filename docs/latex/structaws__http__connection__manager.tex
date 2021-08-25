@@ -1,0 +1,256 @@
+\hypertarget{structaws__http__connection__manager}{}\doxysection{aws\+\_\+http\+\_\+connection\+\_\+manager Struct Reference}
+\label{structaws__http__connection__manager}\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a9cd348b998cc432d07932bb565ad1cd8}{allocator}}
+\item 
+const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_ad817ac986ae51c809b5909f06d5fadce}{system\+\_\+vtable}}
+\item 
+\mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a0e7d6b7ab873964941f083574a75f2a8}{shutdown\+\_\+complete\+\_\+callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a66db7a6b75e4a283a82d4a55867a1269}{shutdown\+\_\+complete\+\_\+user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structaws__http__connection__manager_a77e4455f6f0f78b2d1f8bc36ca4f0165}{lock}}
+\item 
+enum \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+state\+\_\+type}} \mbox{\hyperlink{structaws__http__connection__manager_aa37d2eb57ebbf348e58593e2bd7b704c}{state}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a9cfd9c70481b2e8be575af767feb0c73}{idle\+\_\+connection\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__http__connection__manager_a26d199e20f1ac537a04dd7e4778a389a}{idle\+\_\+connections}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__http__connection__manager_aba7ad481f873a1b89934ebecd6533529}{pending\+\_\+acquisitions}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a5be8bf7439ded3a3ea7cab0e221854a1}{pending\+\_\+acquisition\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a73768dbfe80f0613de122e2e752aac79}{pending\+\_\+connects\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a0f0f89557a819a56da70cf4251bbe464}{vended\+\_\+connection\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a4905497a85dc012c5d5f7bd930c25db1}{open\+\_\+connection\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a32c4f24e1121beef1b386d88538a4040}{bootstrap}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a1fc38a269e066e89d6bde724df56df5f}{initial\+\_\+window\+\_\+size}}
+\item 
+struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} \mbox{\hyperlink{structaws__http__connection__manager_a84d93e754a8f24234b96b12445bedfde}{socket\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a041beee6d20276c72a0170f3b088ef68}{tls\+\_\+connection\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__http__proxy__config}{aws\+\_\+http\+\_\+proxy\+\_\+config}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_ab95bf5ede687e9a32ec2e63f2681786d}{proxy\+\_\+config}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} \mbox{\hyperlink{structaws__http__connection__manager_ad34cb72c9f27319444ef821fa460733f}{monitoring\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a3c5d691a2ef408c1ba6c84d9588a4d65}{host}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a60c19e07854c3152c7edde2b36a60dc3}{port}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_a578d8b1206df3a4957bcbe2bd819ce4c}{max\+\_\+connections}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_af4b4f3a2689152e50464c8c995aabf34}{external\+\_\+ref\+\_\+count}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__connection__manager_a8c7fad96e8833078a0ea8ee4fee08d79}{enable\+\_\+read\+\_\+back\+\_\+pressure}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__http__connection__manager_ab0671b22e0c8b3e58d59a56e8e290da7}{max\+\_\+connection\+\_\+idle\+\_\+in\+\_\+milliseconds}}
+\item 
+struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_af9ee4e09ba374d0964e9f3e4d14ae3a5}{cull\+\_\+task}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structaws__http__connection__manager_a071c93c33be7ff6553044035e401b346}{cull\+\_\+event\+\_\+loop}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vocabulary Acquisition -\/ a request by a user for a connection Pending Acquisition -\/ a request by a user for a new connection that has not been completed. It may be waiting on http, a release by another user, or the manager itself. Pending Connect -\/ a request to the http layer for a new connection that has not been resolved yet Vended Connection -\/ a successfully established connection that is currently in use by something; must be released (through the connection manager) by the user before anyone else can use it. The connection manager does not explicitly track vended connections. Task Set -\/ A set of operations that should be attempted once the lock is released. A task set includes completion callbacks (which can\textquotesingle{}t fail) and connection attempts (which can fail either immediately or asynchronously).
+
+Requirements/\+Assumptions (1) Don\textquotesingle{}t invoke user callbacks while holding the internal state lock (2) Don\textquotesingle{}t invoke downstream http calls while holding the internal state lock (3) Only log unusual or rare events while the lock is held. Common-\/path logging should be while it is not held. (4) Don\textquotesingle{}t crash or do awful things (leaking resources is ok though) if the interface contract (ref counting + balanced acquire/release of connections) is violated by the user
+
+In order to fulfill (1) and (2), all side-\/effecting operations within the connection manager follow a pattern\+:
+
+(1) Lock (2) Make state changes based on the operation (3) Build a set of work (completions, connect calls, releases, self-\/destruction) as appropriate to the operation (4) Unlock (5) Execute the task set
+
+Asynchronous work order failures are handled in the async callback, but immediate failures require us to relock and update the internal state. When there\textquotesingle{}s an immediate connect failure, we use a conservative policy to fail all excess (beyond the \# of pending connects) acquisitions; this allows us to avoid a possible recursive invocation (and potential failures) to connect again.
+
+Lifecycle Our connection manager implementation has a reasonably complex lifecycle.
+
+All state around the life cycle is protected by a lock. It seemed too risky and error-\/prone to try and mix an atomic ref count with the internal tracking counters we need.
+
+Over the course of its lifetime, a connection manager moves through two states\+:
+
+READY -\/ connections may be acquired and released. When the external ref count for the manager drops to zero, the manager moves to\+:
+
+SHUTTING\+\_\+\+DOWN -\/ connections may no longer be acquired and released (how could they if the external ref count was accurate?) but in case of user ref errors, we simply fail attempts to do so rather than crash or underflow. While in this state, we wait for a set of tracking counters to all fall to zero\+:
+
+pending\+\_\+connect\+\_\+count -\/ the \# of unresolved calls to the http layer\textquotesingle{}s connect logic open\+\_\+connection\+\_\+count -\/ the \# of connections for whom the release callback (from http) has not been invoked vended\+\_\+connection\+\_\+count -\/ the \# of connections held by external users that haven\textquotesingle{}t been released. Under correct usage this should be zero before SHUTTING\+\_\+\+DOWN is entered, but we attempt to handle incorrect usage gracefully.
+
+While shutting down, as pending connects resolve, we immediately release new incoming (from http) connections
+
+During the transition from READY to SHUTTING\+\_\+\+DOWN, we flush the pending acquisition queue (with failure callbacks) and since we disallow new acquires, pending\+\_\+acquisition\+\_\+count should always be zero after the transition. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__connection__manager_a9cd348b998cc432d07932bb565ad1cd8}\label{structaws__http__connection__manager_a9cd348b998cc432d07932bb565ad1cd8}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::allocator}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a32c4f24e1121beef1b386d88538a4040}\label{structaws__http__connection__manager_a32c4f24e1121beef1b386d88538a4040}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!bootstrap@{bootstrap}}
+\index{bootstrap@{bootstrap}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{bootstrap}{bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::bootstrap}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a071c93c33be7ff6553044035e401b346}\label{structaws__http__connection__manager_a071c93c33be7ff6553044035e401b346}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!cull\_event\_loop@{cull\_event\_loop}}
+\index{cull\_event\_loop@{cull\_event\_loop}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{cull\_event\_loop}{cull\_event\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::cull\+\_\+event\+\_\+loop}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_af9ee4e09ba374d0964e9f3e4d14ae3a5}\label{structaws__http__connection__manager_af9ee4e09ba374d0964e9f3e4d14ae3a5}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!cull\_task@{cull\_task}}
+\index{cull\_task@{cull\_task}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{cull\_task}{cull\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::cull\+\_\+task}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a8c7fad96e8833078a0ea8ee4fee08d79}\label{structaws__http__connection__manager_a8c7fad96e8833078a0ea8ee4fee08d79}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!enable\_read\_back\_pressure@{enable\_read\_back\_pressure}}
+\index{enable\_read\_back\_pressure@{enable\_read\_back\_pressure}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{enable\_read\_back\_pressure}{enable\_read\_back\_pressure}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::enable\+\_\+read\+\_\+back\+\_\+pressure}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_af4b4f3a2689152e50464c8c995aabf34}\label{structaws__http__connection__manager_af4b4f3a2689152e50464c8c995aabf34}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!external\_ref\_count@{external\_ref\_count}}
+\index{external\_ref\_count@{external\_ref\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{external\_ref\_count}{external\_ref\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::external\+\_\+ref\+\_\+count}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a3c5d691a2ef408c1ba6c84d9588a4d65}\label{structaws__http__connection__manager_a3c5d691a2ef408c1ba6c84d9588a4d65}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!host@{host}}
+\index{host@{host}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::host}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a9cfd9c70481b2e8be575af767feb0c73}\label{structaws__http__connection__manager_a9cfd9c70481b2e8be575af767feb0c73}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!idle\_connection\_count@{idle\_connection\_count}}
+\index{idle\_connection\_count@{idle\_connection\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{idle\_connection\_count}{idle\_connection\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::idle\+\_\+connection\+\_\+count}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a26d199e20f1ac537a04dd7e4778a389a}\label{structaws__http__connection__manager_a26d199e20f1ac537a04dd7e4778a389a}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!idle\_connections@{idle\_connections}}
+\index{idle\_connections@{idle\_connections}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{idle\_connections}{idle\_connections}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::idle\+\_\+connections}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a1fc38a269e066e89d6bde724df56df5f}\label{structaws__http__connection__manager_a1fc38a269e066e89d6bde724df56df5f}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!initial\_window\_size@{initial\_window\_size}}
+\index{initial\_window\_size@{initial\_window\_size}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{initial\_window\_size}{initial\_window\_size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::initial\+\_\+window\+\_\+size}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a77e4455f6f0f78b2d1f8bc36ca4f0165}\label{structaws__http__connection__manager_a77e4455f6f0f78b2d1f8bc36ca4f0165}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!lock@{lock}}
+\index{lock@{lock}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::lock}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_ab0671b22e0c8b3e58d59a56e8e290da7}\label{structaws__http__connection__manager_ab0671b22e0c8b3e58d59a56e8e290da7}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!max\_connection\_idle\_in\_milliseconds@{max\_connection\_idle\_in\_milliseconds}}
+\index{max\_connection\_idle\_in\_milliseconds@{max\_connection\_idle\_in\_milliseconds}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{max\_connection\_idle\_in\_milliseconds}{max\_connection\_idle\_in\_milliseconds}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::max\+\_\+connection\+\_\+idle\+\_\+in\+\_\+milliseconds}
+
+If set to a non-\/zero value, then connections that stay in the pool longer than the specified timeout will be closed automatically. \mbox{\Hypertarget{structaws__http__connection__manager_a578d8b1206df3a4957bcbe2bd819ce4c}\label{structaws__http__connection__manager_a578d8b1206df3a4957bcbe2bd819ce4c}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!max\_connections@{max\_connections}}
+\index{max\_connections@{max\_connections}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{max\_connections}{max\_connections}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::max\+\_\+connections}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_ad34cb72c9f27319444ef821fa460733f}\label{structaws__http__connection__manager_ad34cb72c9f27319444ef821fa460733f}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!monitoring\_options@{monitoring\_options}}
+\index{monitoring\_options@{monitoring\_options}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{monitoring\_options}{monitoring\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::monitoring\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a4905497a85dc012c5d5f7bd930c25db1}\label{structaws__http__connection__manager_a4905497a85dc012c5d5f7bd930c25db1}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!open\_connection\_count@{open\_connection\_count}}
+\index{open\_connection\_count@{open\_connection\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{open\_connection\_count}{open\_connection\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::open\+\_\+connection\+\_\+count}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a5be8bf7439ded3a3ea7cab0e221854a1}\label{structaws__http__connection__manager_a5be8bf7439ded3a3ea7cab0e221854a1}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!pending\_acquisition\_count@{pending\_acquisition\_count}}
+\index{pending\_acquisition\_count@{pending\_acquisition\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{pending\_acquisition\_count}{pending\_acquisition\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::pending\+\_\+acquisition\+\_\+count}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_aba7ad481f873a1b89934ebecd6533529}\label{structaws__http__connection__manager_aba7ad481f873a1b89934ebecd6533529}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!pending\_acquisitions@{pending\_acquisitions}}
+\index{pending\_acquisitions@{pending\_acquisitions}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{pending\_acquisitions}{pending\_acquisitions}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::pending\+\_\+acquisitions}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a73768dbfe80f0613de122e2e752aac79}\label{structaws__http__connection__manager_a73768dbfe80f0613de122e2e752aac79}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!pending\_connects\_count@{pending\_connects\_count}}
+\index{pending\_connects\_count@{pending\_connects\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{pending\_connects\_count}{pending\_connects\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::pending\+\_\+connects\+\_\+count}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a60c19e07854c3152c7edde2b36a60dc3}\label{structaws__http__connection__manager_a60c19e07854c3152c7edde2b36a60dc3}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!port@{port}}
+\index{port@{port}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::port}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_ab95bf5ede687e9a32ec2e63f2681786d}\label{structaws__http__connection__manager_ab95bf5ede687e9a32ec2e63f2681786d}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!proxy\_config@{proxy\_config}}
+\index{proxy\_config@{proxy\_config}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{proxy\_config}{proxy\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__proxy__config}{aws\+\_\+http\+\_\+proxy\+\_\+config}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::proxy\+\_\+config}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a0e7d6b7ab873964941f083574a75f2a8}\label{structaws__http__connection__manager_a0e7d6b7ab873964941f083574a75f2a8}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!shutdown\_complete\_callback@{shutdown\_complete\_callback}}
+\index{shutdown\_complete\_callback@{shutdown\_complete\_callback}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{shutdown\_complete\_callback}{shutdown\_complete\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::shutdown\+\_\+complete\+\_\+callback}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a66db7a6b75e4a283a82d4a55867a1269}\label{structaws__http__connection__manager_a66db7a6b75e4a283a82d4a55867a1269}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!shutdown\_complete\_user\_data@{shutdown\_complete\_user\_data}}
+\index{shutdown\_complete\_user\_data@{shutdown\_complete\_user\_data}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{shutdown\_complete\_user\_data}{shutdown\_complete\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::shutdown\+\_\+complete\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a84d93e754a8f24234b96b12445bedfde}\label{structaws__http__connection__manager_a84d93e754a8f24234b96b12445bedfde}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!socket\_options@{socket\_options}}
+\index{socket\_options@{socket\_options}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{socket\_options}{socket\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::socket\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_aa37d2eb57ebbf348e58593e2bd7b704c}\label{structaws__http__connection__manager_aa37d2eb57ebbf348e58593e2bd7b704c}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!state@{state}}
+\index{state@{state}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+state\+\_\+type}} aws\+\_\+http\+\_\+connection\+\_\+manager\+::state}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_ad817ac986ae51c809b5909f06d5fadce}\label{structaws__http__connection__manager_ad817ac986ae51c809b5909f06d5fadce}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!system\_vtable@{system\_vtable}}
+\index{system\_vtable@{system\_vtable}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{system\_vtable}{system\_vtable}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::system\+\_\+vtable}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a041beee6d20276c72a0170f3b088ef68}\label{structaws__http__connection__manager_a041beee6d20276c72a0170f3b088ef68}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!tls\_connection\_options@{tls\_connection\_options}}
+\index{tls\_connection\_options@{tls\_connection\_options}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{tls\_connection\_options}{tls\_connection\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+::tls\+\_\+connection\+\_\+options}
+
+\mbox{\Hypertarget{structaws__http__connection__manager_a0f0f89557a819a56da70cf4251bbe464}\label{structaws__http__connection__manager_a0f0f89557a819a56da70cf4251bbe464}} 
+\index{aws\_http\_connection\_manager@{aws\_http\_connection\_manager}!vended\_connection\_count@{vended\_connection\_count}}
+\index{vended\_connection\_count@{vended\_connection\_count}!aws\_http\_connection\_manager@{aws\_http\_connection\_manager}}
+\doxysubsubsection{\texorpdfstring{vended\_connection\_count}{vended\_connection\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+manager\+::vended\+\_\+connection\+\_\+count}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{connection__manager_8c}{connection\+\_\+manager.\+c}}\end{DoxyCompactItemize}

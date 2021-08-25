@@ -1,0 +1,21 @@
+\hypertarget{aws__array__list__swap__override_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\+\_\+array\+\_\+list\+\_\+swap\+\_\+override.c File Reference}
+\label{aws__array__list__swap__override_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_array\_list\_swap\_override.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_array\_list\_swap\_override.c}}
+{\ttfamily \#include $<$aws/common/array\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/nondet.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws__array__list__swap__override_8c_a1849876b0cb2ee44e66ef89b8d20c423}{aws\+\_\+array\+\_\+list\+\_\+swap}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} list, size\+\_\+t a, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__array__list__swap__override_8c_a1849876b0cb2ee44e66ef89b8d20c423}\label{aws__array__list__swap__override_8c_a1849876b0cb2ee44e66ef89b8d20c423}} 
+\index{aws\_array\_list\_swap\_override.c@{aws\_array\_list\_swap\_override.c}!aws\_array\_list\_swap@{aws\_array\_list\_swap}}
+\index{aws\_array\_list\_swap@{aws\_array\_list\_swap}!aws\_array\_list\_swap\_override.c@{aws\_array\_list\_swap\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_array\_list\_swap()}{aws\_array\_list\_swap()}}
+{\footnotesize\ttfamily void aws\+\_\+array\+\_\+list\+\_\+swap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{list,  }\item[{size\+\_\+t}]{a,  }\item[{size\+\_\+t}]{b }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. FUNCTION\+: aws\+\_\+array\+\_\+list\+\_\+swap
+
+We override aws\+\_\+array\+\_\+list\+\_\+swap because mem\+\_\+swap makes CBMC struggle (because of the many memcpys) and because the array\+\_\+list\+\_\+get\+\_\+at in before the mem\+\_\+swap are unneccessary if we stub out mem\+\_\+swap. Instead we add a havoc assumption on the two swapped byted to ensure that no assertion on the values of the two cells is made afterwards. 

@@ -1,0 +1,157 @@
+\hypertarget{aws__hash__table__no__slots__override_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\+\_\+hash\+\_\+table\+\_\+no\+\_\+slots\+\_\+override.c File Reference}
+\label{aws__hash__table__no__slots__override_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_hash\_table\_no\_slots\_override.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_hash\_table\_no\_slots\_override.c}}
+{\ttfamily \#include $<$aws/common/private/hash\+\_\+table\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/proof\+\_\+allocators.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aff4bf82035b05b9b8e976eb919ed6508}{aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a855920523cd1b94f984d6fee66f637cb}{aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\item 
+void \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a2596d94789467da81def64820e9b5d17}{make\+\_\+hash\+\_\+table\+\_\+with\+\_\+no\+\_\+backing\+\_\+store}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, size\+\_\+t max\+\_\+table\+\_\+entries)
+\item 
+void \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_ab6c0740854e63d3275a57552cc07bb7b}{aws\+\_\+hash\+\_\+table\+\_\+clear}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+int \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a895c52a24cef0e1413fdc7ac01e6907f}{aws\+\_\+hash\+\_\+table\+\_\+put}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, void $\ast$value, int $\ast$was\+\_\+created)
+\item 
+int \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a9637fcb9a2d525a1c492b8bdee105928}{aws\+\_\+hash\+\_\+table\+\_\+remove\+\_\+element}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+value)
+\item 
+int \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_ab95ad2e4f6f0630861b91ea08b4b2244}{aws\+\_\+hash\+\_\+table\+\_\+remove}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+value, int $\ast$was\+\_\+present)
+\item 
+int \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_abb050fbade00d5902a7f448c2fe8a53c}{aws\+\_\+hash\+\_\+table\+\_\+create}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$p\+\_\+elem, int $\ast$was\+\_\+created)
+\item 
+int \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$p\+\_\+elem)
+\item 
+struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_ab556a28dc6a88d729577c720209d3fe9}{aws\+\_\+hash\+\_\+iter\+\_\+begin}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a9fa88a2db73cd7a9fc8a4e14d1a152e2}{aws\+\_\+hash\+\_\+iter\+\_\+done}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\item 
+void \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a853111399f6f58127648575c09842982}{aws\+\_\+hash\+\_\+iter\+\_\+next}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\item 
+void \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_a15c1baf1b6e5c7e169752e555b7428c1}{aws\+\_\+hash\+\_\+iter\+\_\+delete}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} destroy\+\_\+contents)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_ab556a28dc6a88d729577c720209d3fe9}\label{aws__hash__table__no__slots__override_8c_ab556a28dc6a88d729577c720209d3fe9}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_iter\_begin@{aws\_hash\_iter\_begin}}
+\index{aws\_hash\_iter\_begin@{aws\_hash\_iter\_begin}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_begin()}{aws\_hash\_iter\_begin()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} aws\+\_\+hash\+\_\+iter\+\_\+begin (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Returns an iterator to be used for iterating through a hash table. Iterator will already point to the first element of the table it finds, which can be accessed as iter.\+element.
+
+This function cannot fail, but if there are no elements in the table, the returned iterator will return true for aws\+\_\+hash\+\_\+iter\+\_\+done(\&iter). \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a15c1baf1b6e5c7e169752e555b7428c1}\label{aws__hash__table__no__slots__override_8c_a15c1baf1b6e5c7e169752e555b7428c1}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}}
+\index{aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_delete()}{aws\_hash\_iter\_delete()}}
+{\footnotesize\ttfamily void aws\+\_\+hash\+\_\+iter\+\_\+delete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{destroy\+\_\+contents }\end{DoxyParamCaption})}
+
+Deletes the element currently pointed-\/to by the hash iterator. After calling this method, the element member of the iterator should not be accessed until the next call to aws\+\_\+hash\+\_\+iter\+\_\+next.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destroy\+\_\+contents} & If true, the destructors for the key and value will be called. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a9fa88a2db73cd7a9fc8a4e14d1a152e2}\label{aws__hash__table__no__slots__override_8c_a9fa88a2db73cd7a9fc8a4e14d1a152e2}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_iter\_done@{aws\_hash\_iter\_done}}
+\index{aws\_hash\_iter\_done@{aws\_hash\_iter\_done}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_done()}{aws\_hash\_iter\_done()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+done (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Returns true if iterator is done iterating through table, false otherwise. If this is true, the iterator will not include an element of the table. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a855920523cd1b94f984d6fee66f637cb}\label{aws__hash__table__no__slots__override_8c_a855920523cd1b94f984d6fee66f637cb}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}}
+\index{aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_is\_valid()}{aws\_hash\_iter\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Given a pointer to a hash\+\_\+iter, checks that it is well-\/formed, with all data-\/structure invariants. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a853111399f6f58127648575c09842982}\label{aws__hash__table__no__slots__override_8c_a853111399f6f58127648575c09842982}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_iter\_next@{aws\_hash\_iter\_next}}
+\index{aws\_hash\_iter\_next@{aws\_hash\_iter\_next}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_next()}{aws\_hash\_iter\_next()}}
+{\footnotesize\ttfamily void aws\+\_\+hash\+\_\+iter\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Updates iterator so that it points to next element of hash table.
+
+This and the two previous functions are designed to be used together with the following idiom\+:
+
+for (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} iter = aws\+\_\+hash\+\_\+iter\+\_\+begin(\&map); !aws\+\_\+hash\+\_\+iter\+\_\+done(\&iter); aws\+\_\+hash\+\_\+iter\+\_\+next(\&iter)) \{ const key\+\_\+type key = $\ast$(const key\+\_\+type $\ast$)iter.\+element.\+key; value\+\_\+type value = $\ast$(value\+\_\+type $\ast$)iter.\+element.\+value; // etc. \}
+
+Note that calling this on an iter which is \char`\"{}done\char`\"{} is idempotent\+: i.\+e. it will return another iter which is \char`\"{}done\char`\"{}. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_ab6c0740854e63d3275a57552cc07bb7b}\label{aws__hash__table__no__slots__override_8c_ab6c0740854e63d3275a57552cc07bb7b}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_clear@{aws\_hash\_table\_clear}}
+\index{aws\_hash\_table\_clear@{aws\_hash\_table\_clear}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_clear()}{aws\_hash\_table\_clear()}}
+{\footnotesize\ttfamily void aws\+\_\+hash\+\_\+table\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Nondet clear. Since the only externally visible property of this table is the entry\+\_\+count, just set it to 0 \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_abb050fbade00d5902a7f448c2fe8a53c}\label{aws__hash__table__no__slots__override_8c_abb050fbade00d5902a7f448c2fe8a53c}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_create@{aws\_hash\_table\_create}}
+\index{aws\_hash\_table\_create@{aws\_hash\_table\_create}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_create()}{aws\_hash\_table\_create()}}
+{\footnotesize\ttfamily int aws\+\_\+hash\+\_\+table\+\_\+create (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$}]{p\+\_\+elem,  }\item[{int $\ast$}]{was\+\_\+created }\end{DoxyParamCaption})}
+
+Not yet implemented
+
+Attempts to locate an element at key. If no such element was found, creates a new element, with value initialized to NULL. In either case, a pointer to the element is placed in $\ast$p\+\_\+elem.
+
+If was\+\_\+created is non-\/\+NULL, $\ast$was\+\_\+created is set to 0 if an existing element was found, or 1 is a new element was created.
+
+Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if an item was found or created. Raises AWS\+\_\+\+ERROR\+\_\+\+OOM if hash table expansion was required and memory allocation failed. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}\label{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_find@{aws\_hash\_table\_find}}
+\index{aws\_hash\_table\_find@{aws\_hash\_table\_find}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_find()}{aws\_hash\_table\_find()}}
+{\footnotesize\ttfamily int aws\+\_\+hash\+\_\+table\+\_\+find (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$}]{p\+\_\+elem }\end{DoxyParamCaption})}
+
+Implements a version of \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find()}} that non-\/determinstially either\+:
+\begin{DoxyEnumerate}
+\item Return NULL, indicating that the element didn\textquotesingle{}t exist
+\item Returns a newly created element. By default, just create a totally non-\/determinstic element. However, if the consumer of the stub uses the element, this may be insufficient. Use the same style of generator as the hash\+\_\+iterator stubs, except with a different signature due to the different calling context.
+\end{DoxyEnumerate}
+
+To declare a genarator\+: -\/DHASH\+\_\+\+TABLE\+\_\+\+FIND\+\_\+\+ELEMENT\+\_\+\+GENERATOR=the\+\_\+generator\+\_\+fn, where the\+\_\+generator\+\_\+fn has signature\+: the\+\_\+generator\+\_\+fnconst struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+elem).
+
+NOTE\+: If you want a version of \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find()}} that that ensures that the table actually has the found value when find returns success, that can be found in \mbox{\hyperlink{aws__hash__table__find__override_8c}{aws\+\_\+hash\+\_\+table\+\_\+find\+\_\+override.\+c}} \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_aff4bf82035b05b9b8e976eb919ed6508}\label{aws__hash__table__no__slots__override_8c_aff4bf82035b05b9b8e976eb919ed6508}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}}
+\index{aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_is\_valid()}{aws\_hash\_table\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. As noted above the only externally visible property of the hash-\/table is the \mbox{[}entry\+\_\+count\mbox{]}. And it can vary between 0-\/SIZE\+\_\+\+MAX. So there is really nothing to assert here \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a895c52a24cef0e1413fdc7ac01e6907f}\label{aws__hash__table__no__slots__override_8c_a895c52a24cef0e1413fdc7ac01e6907f}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_put@{aws\_hash\_table\_put}}
+\index{aws\_hash\_table\_put@{aws\_hash\_table\_put}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_put()}{aws\_hash\_table\_put()}}
+{\footnotesize\ttfamily int aws\+\_\+hash\+\_\+table\+\_\+put (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$}]{value,  }\item[{int $\ast$}]{was\+\_\+created }\end{DoxyParamCaption})}
+
+Nondet put. Since there is no backing store, we just non-\/determinstically either add it or don\textquotesingle{}t. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_ab95ad2e4f6f0630861b91ea08b4b2244}\label{aws__hash__table__no__slots__override_8c_ab95ad2e4f6f0630861b91ea08b4b2244}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_remove@{aws\_hash\_table\_remove}}
+\index{aws\_hash\_table\_remove@{aws\_hash\_table\_remove}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_remove()}{aws\_hash\_table\_remove()}}
+{\footnotesize\ttfamily int aws\+\_\+hash\+\_\+table\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+value,  }\item[{int $\ast$}]{was\+\_\+present }\end{DoxyParamCaption})}
+
+Not yet implemented
+
+Removes element at key. Always returns AWS\+\_\+\+OP\+\_\+\+SUCCESS.
+
+If p\+Value is non-\/\+NULL, the existing value (if any) is moved into ($\ast$value) before removing from the table, and destroy\+\_\+fn is {\itshape not} invoked. If p\+Value is NULL, then (if the element existed) destroy\+\_\+fn will be invoked on the element being removed.
+
+If was\+\_\+present is non-\/\+NULL, it is set to 0 if the element was not present, or 1 if it was present (and is now removed). \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a9637fcb9a2d525a1c492b8bdee105928}\label{aws__hash__table__no__slots__override_8c_a9637fcb9a2d525a1c492b8bdee105928}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!aws\_hash\_table\_remove\_element@{aws\_hash\_table\_remove\_element}}
+\index{aws\_hash\_table\_remove\_element@{aws\_hash\_table\_remove\_element}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_remove\_element()}{aws\_hash\_table\_remove\_element()}}
+{\footnotesize\ttfamily int aws\+\_\+hash\+\_\+table\+\_\+remove\+\_\+element (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Not yet implemented
+
+Removes element already known (typically by find()).
+
+p\+\_\+value should point to a valid element returned by create() or find().
+
+NOTE\+: DO NOT call this method from inside of a aws\+\_\+hash\+\_\+table\+\_\+foreach callback, return AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE instead. \mbox{\Hypertarget{aws__hash__table__no__slots__override_8c_a2596d94789467da81def64820e9b5d17}\label{aws__hash__table__no__slots__override_8c_a2596d94789467da81def64820e9b5d17}} 
+\index{aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}!make\_hash\_table\_with\_no\_backing\_store@{make\_hash\_table\_with\_no\_backing\_store}}
+\index{make\_hash\_table\_with\_no\_backing\_store@{make\_hash\_table\_with\_no\_backing\_store}!aws\_hash\_table\_no\_slots\_override.c@{aws\_hash\_table\_no\_slots\_override.c}}
+\doxysubsubsection{\texorpdfstring{make\_hash\_table\_with\_no\_backing\_store()}{make\_hash\_table\_with\_no\_backing\_store()}}
+{\footnotesize\ttfamily void make\+\_\+hash\+\_\+table\+\_\+with\+\_\+no\+\_\+backing\+\_\+store (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{size\+\_\+t}]{max\+\_\+table\+\_\+entries }\end{DoxyParamCaption})}
+
+Allocate a \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} with no memory for the slots. Since CBMC runs with memory safety assertions on, CBMC will detect any attempt to use the slots. This ensures that no code will ever accidentally use the values in the slots, ensuring maximal nondeterminism. 

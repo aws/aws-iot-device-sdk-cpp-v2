@@ -1,0 +1,92 @@
+\hypertarget{system__info_8h_source}{}\doxysection{system\+\_\+info.\+h}
+\label{system__info_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/system\_info.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/system\_info.h}}
+\mbox{\hyperlink{system__info_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_SYSTEM\_INFO\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_SYSTEM\_INFO\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{enum} \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadab}{aws\_platform\_os}} \{}
+\DoxyCodeLine{12     \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadaba18e47400d47be5e4270797bf380e6c11}{AWS\_PLATFORM\_OS\_WINDOWS}},}
+\DoxyCodeLine{13     \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadabae593ea14ad21b6087713cc856be5b31d}{AWS\_PLATFORM\_OS\_MAC}},}
+\DoxyCodeLine{14     \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadaba809e1ee0cbebfacffec3657cf86f404f}{AWS\_PLATFORM\_OS\_UNIX}},}
+\DoxyCodeLine{15 \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__cpu__info}{aws\_cpu\_info}} \{}
+\DoxyCodeLine{18     int32\_t \mbox{\hyperlink{structaws__cpu__info_a65abf4af436f19e05a755d265c5f1efe}{cpu\_id}};}
+\DoxyCodeLine{19     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__cpu__info_adceb85b437c57b9010f3affaf1219d9b}{suspected\_hyper\_thread}};}
+\DoxyCodeLine{20 \};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{/* Returns the OS this was built under */}}
+\DoxyCodeLine{25 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{26 \textcolor{keyword}{enum} \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadab}{aws\_platform\_os}} \mbox{\hyperlink{system__info_8h_a6244fdccd67a32f219cf79cc5ec7e73a}{aws\_get\_platform\_build\_os}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{/* Returns the number of online processors available for usage. */}}
+\DoxyCodeLine{29 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{30 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{system__info_8h_a5a777536300183ff84b73573212567de}{aws\_system\_info\_processor\_count}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{36 uint16\_t \mbox{\hyperlink{system__info_8h_a48a2f684d33743d798d4591384c815cd}{aws\_get\_cpu\_group\_count}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{42 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{system__info_8h_ae07516807d07ac073d8cd0cdc71f3792}{aws\_get\_cpu\_count\_for\_group}}(uint16\_t group\_idx);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{48 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{49 \textcolor{keywordtype}{void} \mbox{\hyperlink{system__info_8h_ac897387ab696ce4f9b1b33d80291b670}{aws\_get\_cpu\_ids\_for\_group}}(uint16\_t group\_idx, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__cpu__info}{aws\_cpu\_info}} *cpu\_ids\_array, \textcolor{keywordtype}{size\_t} cpu\_ids\_array\_length);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{comment}{/* Returns true if a debugger is currently attached to the process. */}}
+\DoxyCodeLine{52 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{53 \textcolor{keywordtype}{bool} \mbox{\hyperlink{system__info_8h_a01b982b767b1f38aea6c370f645596e0}{aws\_is\_debugger\_present}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{/* If a debugger is attached to the process, trip a breakpoint. */}}
+\DoxyCodeLine{56 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{57 \textcolor{keywordtype}{void} \mbox{\hyperlink{system__info_8h_ad28485ada12d83005831105254ff6c3a}{aws\_debug\_break}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#if defined(AWS\_HAVE\_EXECINFO) || defined(\_WIN32) || defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#    define AWS\_BACKTRACE\_STACKS\_AVAILABLE}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{/*}}
+\DoxyCodeLine{64 \textcolor{comment}{ * Records a stack trace from the call site.}}
+\DoxyCodeLine{65 \textcolor{comment}{ * Returns the number of stack entries/stack depth captured, or 0 if the operation}}
+\DoxyCodeLine{66 \textcolor{comment}{ * is not supported on this platform}}
+\DoxyCodeLine{67 \textcolor{comment}{ */}}
+\DoxyCodeLine{68 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{69 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{system__info_8h_a3db14770acf027f25bbe503a3068a4a2}{aws\_backtrace}}(\textcolor{keywordtype}{void} **stack\_frames, \textcolor{keywordtype}{size\_t} num\_frames);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/*}}
+\DoxyCodeLine{72 \textcolor{comment}{ * Converts stack frame pointers to symbols, if symbols are available}}
+\DoxyCodeLine{73 \textcolor{comment}{ * Returns an array up to stack\_depth long, that needs to be free()ed.}}
+\DoxyCodeLine{74 \textcolor{comment}{ * stack\_depth should be the length of frames.}}
+\DoxyCodeLine{75 \textcolor{comment}{ * Returns NULL if the platform does not support stack frame translation}}
+\DoxyCodeLine{76 \textcolor{comment}{ * or an error occurs}}
+\DoxyCodeLine{77 \textcolor{comment}{ */}}
+\DoxyCodeLine{78 \textcolor{keywordtype}{char} **\mbox{\hyperlink{system__info_8h_a3f87caa3865b7caac65e40084fd3f01b}{aws\_backtrace\_symbols}}(\textcolor{keywordtype}{void} *\textcolor{keyword}{const} *stack\_frames, \textcolor{keywordtype}{size\_t} stack\_depth);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{/*}}
+\DoxyCodeLine{81 \textcolor{comment}{ * Converts stack frame pointers to symbols, using all available system}}
+\DoxyCodeLine{82 \textcolor{comment}{ * tools to try to produce a human readable result. This call will not be}}
+\DoxyCodeLine{83 \textcolor{comment}{ * quick, as it shells out to addr2line or similar tools.}}
+\DoxyCodeLine{84 \textcolor{comment}{ * On Windows, this is the same as aws\_backtrace\_symbols()}}
+\DoxyCodeLine{85 \textcolor{comment}{ * Returns an array up to stack\_depth long that needs to be free()ed. Missing}}
+\DoxyCodeLine{86 \textcolor{comment}{ * frames will be NULL.}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Returns NULL if the platform does not support stack frame translation}}
+\DoxyCodeLine{88 \textcolor{comment}{ * or an error occurs}}
+\DoxyCodeLine{89 \textcolor{comment}{ */}}
+\DoxyCodeLine{90 \textcolor{keywordtype}{char} **\mbox{\hyperlink{system__info_8h_a10506b47ab5dcdcf71d35463d20bb353}{aws\_backtrace\_addr2line}}(\textcolor{keywordtype}{void} *\textcolor{keyword}{const} *stack\_frames, \textcolor{keywordtype}{size\_t} stack\_depth);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{96 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{97 \textcolor{keywordtype}{void} \mbox{\hyperlink{system__info_8h_a9a79519c66431c641bbcdeae9b6c67e2}{aws\_backtrace\_print}}(FILE *fp, \textcolor{keywordtype}{void} *call\_site\_data);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{comment}{/* Log the callstack from the current stack to the currently configured aws\_logger */}}
+\DoxyCodeLine{100 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{101 \textcolor{keywordtype}{void} \mbox{\hyperlink{system__info_8h_a792ea820644ea465c80736dd85f8444c}{aws\_backtrace\_log}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_SYSTEM\_INFO\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

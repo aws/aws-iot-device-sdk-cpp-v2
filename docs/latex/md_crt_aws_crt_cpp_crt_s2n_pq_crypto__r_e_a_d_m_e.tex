@@ -1,0 +1,120 @@
+This directory contains code for new post-\/quantum key exchange mechanisms. There are no known computationally feasible attacks (classical or quantum) against these algorithms when used with the recommended key lengths.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md471}{}\doxysection{Quantum computers}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md471}
+Quantum computers use the properties of quantum mechanics to evaluate quantum algorithms. These algorithms can solve some classically hard (exponential time) problems quickly (polynomial time). Shor\textquotesingle{}s algorithm is one such algorithm which can factor large integers, thus breaking RSA encryption and digital signature, and another quantum algorithm can solve the discrete logarithm problem over arbitrary groups thus breaking Diffie–\+Hellman and elliptic curve Diffie–\+Hellman key exchange.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md472}{}\doxysection{Post-\/quantum cryptography}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md472}
+Post-\/quantum public-\/key cryptographic algorithms run on a classical computer and are conjectured secure against both classical and quantum attacks. NIST is in the process of reviewing submissions and standardizing them, see more info on the \href{https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization}{\texttt{ NIST website}}. Until the review and standardization is complete the post-\/quantum key exchanges in s2n {\bfseries{must not}} be used for key establishment by themselves. Instead they should only be used as part of a hybrid key exchange, which combines a post-\/quantum key exchange scheme and a classical key exchange scheme.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md473}{}\doxysection{Hybrid key exchange}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md473}
+A hybrid key exchange combines both the high assurance of classical key exchange with the conjectured quantum-\/resistance of newly proposed key exchanges. For hybrid TLS 1.\+2, s2n implements the hybrid specification from \href{https://tools.ietf.org/html/draft-campagna-tls-bike-sike-hybrid-01}{\texttt{ this RFC}}. See \href{https://github.com/awslabs/s2n/issues/904}{\texttt{ this s2n issue}} for more up-\/to-\/date information. For hybrid TLS 1.\+3, s2n implements the hybrid specification from \href{https://tools.ietf.org/html/draft-stebila-tls-hybrid-design}{\texttt{ this draft RFC}}. See also \href{https://docs.google.com/spreadsheets/d/12YarzaNv3XQNLnvDsWLlRKwtZFhRrDdWf36YlzwrPeg/edit\#gid=0}{\texttt{ this doc}} that defines hybrid group values for interoperability.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md474}{}\doxysection{SIKE (\+Supersingular Isogeny Key Encapsulation)}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md474}
+The code in the pq-\/crypto/sike\+\_\+r1 directory was taken from the \href{https://csrc.nist.gov/CSRC/media/Projects/Post-Quantum-Cryptography/documents/round-1/submissions/SIKE.zip}{\texttt{ round 1 NIST submission}}. s2n uses the optimized portable implementation to ensure maximum comparability and ease of review. The known answer tests are \href{https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_sike_r1_kat_test.c}{\texttt{ here}} and use the known answer file from the SIKEp503 round 1 submission.
+
+The code in the pq-\/crypto/sike\+\_\+r2 directory was imported from \href{https://github.com/open-quantum-safe/liboqs/tree/386372ba7dbef781f0b939f1cf73d33019958d6a/src/kem/sike}{\texttt{ liboqs}}, and implements the \href{https://csrc.nist.gov/projects/post-quantum-cryptography/round-2-submissions}{\texttt{ round 2 NIST submission}}. s2n is configured to use the optimized assembly implementation on x86\+\_\+64 processors, and the optimized portable implementation elsewhere. The known answer tests are \href{https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_sike_r2_kat_test.c}{\texttt{ here}} and use the known answer file from the SIKEP434 round 2 submission.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md475}{}\doxysection{BIKE (\+Bit Flipping Key Encapsulation)}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md475}
+The code in the pq-\/crypto/bike directory was taken from the \href{https://bikesuite.org/files/round2/add-impl/Additional_Implementation.2019.03.30.zip}{\texttt{ additional implementation}}. s2n uses the \char`\"{}additional implementation\char`\"{} which ensures constant time primitives, does not use any external libraries besides libcrypto, and does not depend on any specific hardware instructions to ensure maximum comparability and ease of review. The known answer tests are \href{https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_bike1_l1_r1_kat_test.c}{\texttt{ here}} and use the BIKE1\+\_\+\+L1.\+const.\+kat from the above Additional\+\_\+\+Implementation.\+2019.\+03.\+30.\+zip. This implementation uses constant time primitives on x86 and aarch64 platforms.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md476}{}\doxysection{How to disable optimized assembly code for PQ Crypto}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md476}
+Certain post-\/quantum KEM algorithms included in s2n use optimized assembly code for efficient computation. When compiling s2n on compatible toolchains, the optimized assembly code will significantly improve performance of the post-\/quantum cryptographic operations. s2n attempts to detect whether or not the architecture is compatible with the assembly code, and falls back to the portable C implementation if it detects incompatibility. However, some users may wish to manually force s2n to use the portable C implementation. To do so, simply {\ttfamily export S2\+N\+\_\+\+NO\+\_\+\+PQ\+\_\+\+ASM=1} as an environment variable before compiling.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md477}{}\doxysection{How to disable all PQ Crypto}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md477}
+Users may have need to compile s2n without any PQ crypto support whatsoever. To so do, {\ttfamily export S2\+N\+\_\+\+NO\+\_\+\+PQ=1} as an environment variable before compiling.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md478}{}\doxysection{How to add a new PQ KEM family for use in hybrid TLS 1.\+2}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md478}
+
+\begin{DoxyEnumerate}
+\item Add the code to {\ttfamily pq-\/crypto/\+KEM\+\_\+\+NAME/}
+\begin{DoxyEnumerate}
+\item Update {\ttfamily pq-\/crypto/\+Makefile} to build that directory
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Update {\ttfamily lib/\+Makefile} to also include that directory
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Update the KEM code to include {\ttfamily \mbox{\hyperlink{s2n__pq__random_8h}{pq-\/crypto/s2n\+\_\+pq\+\_\+random.\+h}}} and use the function {\ttfamily s2n\+\_\+get\+\_\+random\+\_\+bytes} for any random data the KEM needs
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create a {\ttfamily pq-\/crypto/\+KEM\+\_\+\+NAME/\+KEM\+\_\+\+NAME.\+h} with the size of objects and method definitions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Define the new cipher suite value and KEM extension value in {\ttfamily \mbox{\hyperlink{s2n__tls__parameters_8h}{tls/s2n\+\_\+tls\+\_\+parameters.\+h}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create the {\ttfamily KEM\+\_\+\+NAME} {\ttfamily \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}}} struct in {\ttfamily \mbox{\hyperlink{s2n__kem_8c}{tls/s2n\+\_\+kem.\+c}}}
+\begin{DoxyEnumerate}
+\item Create the {\ttfamily supported\+\_\+\+KEM\+\_\+\+NAME\+\_\+params} array in {\ttfamily \mbox{\hyperlink{s2n__kem_8c}{tls/s2n\+\_\+kem.\+c}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add the new kem to the {\ttfamily kem\+\_\+mapping} with the correct cipher suite value
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add known answer tests using {\ttfamily \mbox{\hyperlink{s2n__testlib_8h_a090db03a9c5123b523542919a2a5f8cf}{s2n\+\_\+test\+\_\+kem\+\_\+with\+\_\+kat()}}} in {\ttfamily tests/unit/s2n\+\_\+\+KEM\+\_\+\+NAME\+\_\+kat\+\_\+test.\+c}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add fuzz testing in {\ttfamily tests/fuzz/s2n\+\_\+\+KEM\+\_\+\+NAME\+\_\+fuzz\+\_\+test.\+c}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add formal verification in {\ttfamily tests/saw/\+KEM\+\_\+\+NAME/verify.\+saw}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create a new {\ttfamily \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}} in {\ttfamily \mbox{\hyperlink{s2n__cipher__suites_8c}{tls/s2n\+\_\+cipher\+\_\+suites.\+c}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create a new {\ttfamily \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}}} in {\ttfamily tls/s2n\+\_\+cipher\+\_\+prefrences.\+c} that uses the new cipher suite
+\begin{DoxyEnumerate}
+\item Once this change is made, the KEM will be available for use in TLS handshakes; ensure that all testing/verification has been completed
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md479}{}\doxysection{How to add a new variant to an existing PQ KEM family for use in hybrid TLS 1.\+2}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md479}
+
+\begin{DoxyEnumerate}
+\item Add the code to {\ttfamily pq-\/crypto/\+KEM\+\_\+\+NAME/}
+\begin{DoxyEnumerate}
+\item Update {\ttfamily pq-\/crypto/\+Makefile} to build that directory
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Update {\ttfamily lib/\+Makefile} to also include that directory
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Update the KEM code to include {\ttfamily \mbox{\hyperlink{s2n__pq__random_8h}{pq-\/crypto/s2n\+\_\+pq\+\_\+random.\+h}}} and use the function {\ttfamily s2n\+\_\+get\+\_\+random\+\_\+bytes} for any random data the KEM needs
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create a {\ttfamily pq-\/crypto/\+KEM\+\_\+\+NAME/\+KEM\+\_\+\+NAME.\+h} with the size of objects and method definitions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Define the KEM extension value in {\ttfamily \mbox{\hyperlink{s2n__tls__parameters_8h}{tls/s2n\+\_\+tls\+\_\+parameters.\+h}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create the {\ttfamily KEM\+\_\+\+NAME} {\ttfamily \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}}} struct in {\ttfamily \mbox{\hyperlink{s2n__kem_8c}{tls/s2n\+\_\+kem.\+c}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add known answer tests using {\ttfamily \mbox{\hyperlink{s2n__testlib_8h_a090db03a9c5123b523542919a2a5f8cf}{s2n\+\_\+test\+\_\+kem\+\_\+with\+\_\+kat()}}} in {\ttfamily tests/unit/s2n\+\_\+\+KEM\+\_\+\+NAME\+\_\+kat\+\_\+test.\+c}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add fuzz testing in {\ttfamily tests/fuzz/s2n\+\_\+\+KEM\+\_\+\+NAME\+\_\+fuzz\+\_\+test.\+c}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add formal verification in {\ttfamily tests/saw/\+KEM\+\_\+\+NAME/verify.\+saw}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Update the appropriate {\ttfamily supported\+\_\+\+KEM\+\_\+\+NAME\+\_\+params} array in {\ttfamily \mbox{\hyperlink{s2n__kem_8c}{tls/s2n\+\_\+kem.\+c}}}
+\begin{DoxyEnumerate}
+\item Once this change is made, the KEM extension will be available for use in TLS handshakes; ensure that all testing/verification has been completed
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md480}{}\doxysection{How to use PQ cipher suites for hybrid TLS 1.\+2}\label{md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e_autotoc_md480}
+
+\begin{DoxyEnumerate}
+\item Checkout s2n {\ttfamily git clone \href{https://github.com/awslabs/s2n.git}{\texttt{ https\+://github.\+com/awslabs/s2n.\+git}}}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Following the \mbox{\hyperlink{_u_s_a_g_e-_g_u_i_d_e_8md}{docs/\+USAGE-\/\+GUIDE.\+md}} build s2n
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Use the sample server and client in the bin directory\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Terminal 1}
+\DoxyCodeLine{\# Use the s2nd CLI tool to start a TLS daemon with the KMS-\/PQ-\/TLS-\/1-\/0-\/2019-\/06 cipher preferences listening on port 8888}
+\DoxyCodeLine{export PATH\_TO\_S2N=/path/to/s2n}
+\DoxyCodeLine{export LD\_LIBRARY\_PATH=\$\{PATH\_TO\_S2N\}/test-\/deps/openssl-\/1.1.1/lib:\$\{PATH\_TO\_S2N\}/test-\/deps/openssl-\/1.1.1/lib:\$\{PATH\_TO\_S2N\}/lib:\$\{PATH\_TO\_S2N\}/bin}
+\DoxyCodeLine{export PATH=\$\{PATH\_TO\_S2N\}/bin:\$PATH}
+\DoxyCodeLine{s2nd -\/-\/cert \$\{PATH\_TO\_S2N\}/tests/pems/rsa\_2048\_sha256\_wildcard\_cert.pem -\/-\/key \$\{PATH\_TO\_S2N\}/tests/pems/rsa\_2048\_sha256\_wildcard\_key.pem -\/-\/negotiate -\/-\/ciphers KMS-\/PQ-\/TLS-\/1-\/0-\/2019-\/06 0.0.0.0 8888}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Terminal 2}
+\DoxyCodeLine{\# Use the s2nc TLS CLI client to connect to the TLS server daemon started in Terminal 1 on port 8888}
+\DoxyCodeLine{export PATH\_TO\_S2N=/path/to/s2n}
+\DoxyCodeLine{export LD\_LIBRARY\_PATH=\$\{PATH\_TO\_S2N\}/test-\/deps/openssl-\/1.1.1/lib:\$\{PATH\_TO\_S2N\}/test-\/deps/openssl-\/1.1.1/lib:\$\{PATH\_TO\_S2N\}/lib:\$\{PATH\_TO\_S2N\}/bin}
+\DoxyCodeLine{export PATH=\$\{PATH\_TO\_S2N\}/bin:\$PATH}
+\DoxyCodeLine{s2nc -\/i -\/-\/ciphers KMS-\/PQ-\/TLS-\/1-\/0-\/2019-\/06 0.0.0.0 8888}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}

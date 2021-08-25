@@ -1,0 +1,28 @@
+\hypertarget{test__case__helper_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/test\+\_\+case\+\_\+helper.h File Reference}
+\label{test__case__helper_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/test\_case\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/test\_case\_helper.h}}
+{\ttfamily \#include $<$aws/cal/cal.\+h$>$}\newline
+{\ttfamily \#include $<$aws/cal/hash.\+h$>$}\newline
+{\ttfamily \#include $<$aws/cal/hmac.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__case__helper_8h_a42e9bac93a411cc6e173eae848ae2285}{s\+\_\+verify\+\_\+hmac\+\_\+test\+\_\+case}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$secret, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$expected, \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_h_m_a_c_8h_aab6815d6797ca8ea2d161f4300cee717}{aws\+\_\+hmac\+\_\+new\+\_\+fn}} $\ast$new\+\_\+fn)
+\item 
+static int \mbox{\hyperlink{test__case__helper_8h_ad067866943ecf3f6d9b0db5cdd815ebc}{s\+\_\+verify\+\_\+hash\+\_\+test\+\_\+case}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$expected, \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\+\_\+hash\+\_\+new\+\_\+fn}} $\ast$new\+\_\+fn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__case__helper_8h_ad067866943ecf3f6d9b0db5cdd815ebc}\label{test__case__helper_8h_ad067866943ecf3f6d9b0db5cdd815ebc}} 
+\index{test\_case\_helper.h@{test\_case\_helper.h}!s\_verify\_hash\_test\_case@{s\_verify\_hash\_test\_case}}
+\index{s\_verify\_hash\_test\_case@{s\_verify\_hash\_test\_case}!test\_case\_helper.h@{test\_case\_helper.h}}
+\doxysubsubsection{\texorpdfstring{s\_verify\_hash\_test\_case()}{s\_verify\_hash\_test\_case()}}
+{\footnotesize\ttfamily static int s\+\_\+verify\+\_\+hash\+\_\+test\+\_\+case (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{expected,  }\item[{\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\+\_\+hash\+\_\+new\+\_\+fn}} $\ast$}]{new\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__case__helper_8h_a42e9bac93a411cc6e173eae848ae2285}\label{test__case__helper_8h_a42e9bac93a411cc6e173eae848ae2285}} 
+\index{test\_case\_helper.h@{test\_case\_helper.h}!s\_verify\_hmac\_test\_case@{s\_verify\_hmac\_test\_case}}
+\index{s\_verify\_hmac\_test\_case@{s\_verify\_hmac\_test\_case}!test\_case\_helper.h@{test\_case\_helper.h}}
+\doxysubsubsection{\texorpdfstring{s\_verify\_hmac\_test\_case()}{s\_verify\_hmac\_test\_case()}}
+{\footnotesize\ttfamily static int s\+\_\+verify\+\_\+hmac\+\_\+test\+\_\+case (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{secret,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{expected,  }\item[{\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_h_m_a_c_8h_aab6815d6797ca8ea2d161f4300cee717}{aws\+\_\+hmac\+\_\+new\+\_\+fn}} $\ast$}]{new\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

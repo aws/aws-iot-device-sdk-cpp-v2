@@ -1,0 +1,47 @@
+\hypertarget{posix_2process_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/process.c File Reference}
+\label{posix_2process_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/process.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/process.c}}
+{\ttfamily \#include $<$aws/common/process.\+h$>$}\newline
+{\ttfamily \#include $<$sys/resource.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{posix_2process_8c_ad1703370e6f44862523ec242985edbda}{aws\+\_\+get\+\_\+pid}} (void)
+\item 
+size\+\_\+t \mbox{\hyperlink{posix_2process_8c_ae8ecea6458aa25aee27bc925153f1bbb}{aws\+\_\+get\+\_\+soft\+\_\+limit\+\_\+io\+\_\+handles}} (void)
+\item 
+size\+\_\+t \mbox{\hyperlink{posix_2process_8c_a146c4e2493b4401602c047e9e657a6ed}{aws\+\_\+get\+\_\+hard\+\_\+limit\+\_\+io\+\_\+handles}} (void)
+\item 
+int \mbox{\hyperlink{posix_2process_8c_af2b837caac90821b4b98dfd2cc2fcff6}{aws\+\_\+set\+\_\+soft\+\_\+limit\+\_\+io\+\_\+handles}} (size\+\_\+t max\+\_\+handles)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{posix_2process_8c_a146c4e2493b4401602c047e9e657a6ed}\label{posix_2process_8c_a146c4e2493b4401602c047e9e657a6ed}} 
+\index{process.c@{process.c}!aws\_get\_hard\_limit\_io\_handles@{aws\_get\_hard\_limit\_io\_handles}}
+\index{aws\_get\_hard\_limit\_io\_handles@{aws\_get\_hard\_limit\_io\_handles}!process.c@{process.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_hard\_limit\_io\_handles()}{aws\_get\_hard\_limit\_io\_handles()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+get\+\_\+hard\+\_\+limit\+\_\+io\+\_\+handles (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns the hard limit for max io handles (max fds in unix terminology). This limit is one more than the actual limit. This limit cannot be increased without sudo permissions. \mbox{\Hypertarget{posix_2process_8c_ad1703370e6f44862523ec242985edbda}\label{posix_2process_8c_ad1703370e6f44862523ec242985edbda}} 
+\index{process.c@{process.c}!aws\_get\_pid@{aws\_get\_pid}}
+\index{aws\_get\_pid@{aws\_get\_pid}!process.c@{process.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_pid()}{aws\_get\_pid()}}
+{\footnotesize\ttfamily int aws\+\_\+get\+\_\+pid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{posix_2process_8c_ae8ecea6458aa25aee27bc925153f1bbb}\label{posix_2process_8c_ae8ecea6458aa25aee27bc925153f1bbb}} 
+\index{process.c@{process.c}!aws\_get\_soft\_limit\_io\_handles@{aws\_get\_soft\_limit\_io\_handles}}
+\index{aws\_get\_soft\_limit\_io\_handles@{aws\_get\_soft\_limit\_io\_handles}!process.c@{process.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_soft\_limit\_io\_handles()}{aws\_get\_soft\_limit\_io\_handles()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+get\+\_\+soft\+\_\+limit\+\_\+io\+\_\+handles (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns the soft limit for max io handles (max fds in unix terminology). This limit is one more than the actual limit. The soft limit can be changed up to the hard limit by any process regardless of permissions. \mbox{\Hypertarget{posix_2process_8c_af2b837caac90821b4b98dfd2cc2fcff6}\label{posix_2process_8c_af2b837caac90821b4b98dfd2cc2fcff6}} 
+\index{process.c@{process.c}!aws\_set\_soft\_limit\_io\_handles@{aws\_set\_soft\_limit\_io\_handles}}
+\index{aws\_set\_soft\_limit\_io\_handles@{aws\_set\_soft\_limit\_io\_handles}!process.c@{process.c}}
+\doxysubsubsection{\texorpdfstring{aws\_set\_soft\_limit\_io\_handles()}{aws\_set\_soft\_limit\_io\_handles()}}
+{\footnotesize\ttfamily int aws\+\_\+set\+\_\+soft\+\_\+limit\+\_\+io\+\_\+handles (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{max\+\_\+handles }\end{DoxyParamCaption})}
+
+Sets the new soft limit for io\+\_\+handles (max fds). This can be up to the hard limit but may not exceed it.
+
+This operation will always fail with AWS\+\_\+\+ERROR\+\_\+\+UNIMPLEMENTED error code on Windows. 

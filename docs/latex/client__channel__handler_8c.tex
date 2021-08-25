@@ -1,0 +1,253 @@
+\hypertarget{client__channel__handler_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client\+\_\+channel\+\_\+handler.c File Reference}
+\label{client__channel__handler_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client\_channel\_handler.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client\_channel\_handler.c}}
+{\ttfamily \#include $<$aws/mqtt/private/client\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/packets.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/topic\+\_\+tree.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/math.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmqtt__shutdown__task}{mqtt\+\_\+shutdown\+\_\+task}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{client__channel__handler_8c_afec4a425e3751daf631322394b610875}{packet\+\_\+handler\+\_\+fn}}(struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\+\_\+packet\+\_\+handler\+\_\+default}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static void \mbox{\hyperlink{client__channel__handler_8c_acb7823fcbe18765a90fb477e846d95ef}{s\+\_\+on\+\_\+time\+\_\+to\+\_\+ping}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{client__channel__handler_8c_a367395993cba042f1caf5b5ca340ed8b}{s\+\_\+schedule\+\_\+ping}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_ac39f7627ca26fca7c5fb98a0492835a2}{s\+\_\+packet\+\_\+handler\+\_\+connack}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_a4271afb7a1bd925bffc53b3d0333e2ea}{s\+\_\+packet\+\_\+handler\+\_\+publish}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}{s\+\_\+packet\+\_\+handler\+\_\+ack}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_a22ff9ab1b5d2f23941b47a8dd64ef829}{s\+\_\+packet\+\_\+handler\+\_\+suback}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_a0d258ae55aa17154af15600cc8ebecd4}{s\+\_\+packet\+\_\+handler\+\_\+pubrec}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_ad4e316e0143cf5decff8962509c5e78d}{s\+\_\+packet\+\_\+handler\+\_\+pubrel}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_aa10c5296c2da976e8379fe1e966fcc84}{s\+\_\+packet\+\_\+handler\+\_\+pingresp}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_ae2d8f037aa3f5ab4f1e19acb50e2e4f1}{s\+\_\+process\+\_\+mqtt\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, enum \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\+\_\+mqtt\+\_\+packet\+\_\+type}} packet\+\_\+type, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} packet)
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_a89b7bb76dba8ea2d0dcf6bd16120da32}{s\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+static int \mbox{\hyperlink{client__channel__handler_8c_a34bcc79668b3034d5d2a9b9c6934fda5}{s\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+\item 
+static size\+\_\+t \mbox{\hyperlink{client__channel__handler_8c_abf6b7a99d5242a62a61b200386a0fefa}{s\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static void \mbox{\hyperlink{client__channel__handler_8c_a573c6c56f4f3a65b1dbba1a5720656f9}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static size\+\_\+t \mbox{\hyperlink{client__channel__handler_8c_ae638f621d23b167cc1480365c7446da1}{s\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} $\ast$ \mbox{\hyperlink{client__channel__handler_8c_af3a3805e66828f71c56b1ead9caabea5}{aws\+\_\+mqtt\+\_\+get\+\_\+client\+\_\+channel\+\_\+vtable}} (void)
+\item 
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{client__channel__handler_8c_a5514d8457005e30f1cc289136b24b03a}{mqtt\+\_\+get\+\_\+message\+\_\+for\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$header)
+\item 
+static void \mbox{\hyperlink{client__channel__handler_8c_a2bd1e8abb019feae72e961f39376600a}{s\+\_\+request\+\_\+outgoing\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{client__channel__handler_8c_a60f70675c06991b42b163c6abf244276}{mqtt\+\_\+create\+\_\+request}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\+\_\+mqtt\+\_\+send\+\_\+request\+\_\+fn}} $\ast$send\+\_\+request, void $\ast$send\+\_\+request\+\_\+ud, \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$on\+\_\+complete\+\_\+ud, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} no\+Retry)
+\item 
+void \mbox{\hyperlink{client__channel__handler_8c_a809b03590df270449c5d2a081f73da2a}{mqtt\+\_\+request\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}})
+\item 
+static void \mbox{\hyperlink{client__channel__handler_8c_a043dd0b51fc5dd733ba9b5e435aa7942}{s\+\_\+mqtt\+\_\+disconnect\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+void \mbox{\hyperlink{client__channel__handler_8c_a537ddf5b57f4d2e84178a0b53a31a270}{mqtt\+\_\+disconnect\+\_\+impl}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{client__channel__handler_8c_afec4a425e3751daf631322394b610875}{packet\+\_\+handler\+\_\+fn}} $\ast$ \mbox{\hyperlink{client__channel__handler_8c_a3da1c0002d20b403c4fc2c42e2964033}{s\+\_\+packet\+\_\+handlers}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{client__channel__handler_8c_afec4a425e3751daf631322394b610875}\label{client__channel__handler_8c_afec4a425e3751daf631322394b610875}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!packet\_handler\_fn@{packet\_handler\_fn}}
+\index{packet\_handler\_fn@{packet\_handler\_fn}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{packet\_handler\_fn}{packet\_handler\_fn}}
+{\footnotesize\ttfamily typedef int() packet\+\_\+handler\+\_\+fn(struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} message\+\_\+cursor)}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__channel__handler_8c_af3a3805e66828f71c56b1ead9caabea5}\label{client__channel__handler_8c_af3a3805e66828f71c56b1ead9caabea5}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!aws\_mqtt\_get\_client\_channel\_vtable@{aws\_mqtt\_get\_client\_channel\_vtable}}
+\index{aws\_mqtt\_get\_client\_channel\_vtable@{aws\_mqtt\_get\_client\_channel\_vtable}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_get\_client\_channel\_vtable()}{aws\_mqtt\_get\_client\_channel\_vtable()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}}$\ast$ aws\+\_\+mqtt\+\_\+get\+\_\+client\+\_\+channel\+\_\+vtable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a60f70675c06991b42b163c6abf244276}\label{client__channel__handler_8c_a60f70675c06991b42b163c6abf244276}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!mqtt\_create\_request@{mqtt\_create\_request}}
+\index{mqtt\_create\_request@{mqtt\_create\_request}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_create\_request()}{mqtt\_create\_request()}}
+{\footnotesize\ttfamily uint16\+\_\+t mqtt\+\_\+create\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\+\_\+mqtt\+\_\+send\+\_\+request\+\_\+fn}} $\ast$}]{send\+\_\+request,  }\item[{void $\ast$}]{send\+\_\+request\+\_\+ud,  }\item[{\mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+complete,  }\item[{void $\ast$}]{on\+\_\+complete\+\_\+ud,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{no\+Retry }\end{DoxyParamCaption})}
+
+This function registers a new outstanding request and returns the message identifier to use (or 0 on error). send\+\_\+request will be called from request\+\_\+timeout\+\_\+task if everything succeed. Not called with error. on\+\_\+complete will be called once the request completed, either either in success or error. no\+Retry is true for the packets will never be retried or offline queued. QoS 0 publish and PINGREQ don\textquotesingle{}t need a packet ID, but, we may still need a ID for publish QoS 0, For user to keep all data alive, an ID will help.\mbox{\Hypertarget{client__channel__handler_8c_a537ddf5b57f4d2e84178a0b53a31a270}\label{client__channel__handler_8c_a537ddf5b57f4d2e84178a0b53a31a270}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!mqtt\_disconnect\_impl@{mqtt\_disconnect\_impl}}
+\index{mqtt\_disconnect\_impl@{mqtt\_disconnect\_impl}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_disconnect\_impl()}{mqtt\_disconnect\_impl()}}
+{\footnotesize\ttfamily void mqtt\+\_\+disconnect\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a5514d8457005e30f1cc289136b24b03a}\label{client__channel__handler_8c_a5514d8457005e30f1cc289136b24b03a}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!mqtt\_get\_message\_for\_packet@{mqtt\_get\_message\_for\_packet}}
+\index{mqtt\_get\_message\_for\_packet@{mqtt\_get\_message\_for\_packet}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_get\_message\_for\_packet()}{mqtt\_get\_message\_for\_packet()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}$\ast$ mqtt\+\_\+get\+\_\+message\+\_\+for\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a809b03590df270449c5d2a081f73da2a}\label{client__channel__handler_8c_a809b03590df270449c5d2a081f73da2a}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!mqtt\_request\_complete@{mqtt\_request\_complete}}
+\index{mqtt\_request\_complete@{mqtt\_request\_complete}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_request\_complete()}{mqtt\_request\_complete()}}
+{\footnotesize\ttfamily void mqtt\+\_\+request\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{uint16\+\_\+t}]{packet\+\_\+id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a573c6c56f4f3a65b1dbba1a5720656f9}\label{client__channel__handler_8c_a573c6c56f4f3a65b1dbba1a5720656f9}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_destroy@{s\_destroy}}
+\index{s\_destroy@{s\_destroy}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy()}{s\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_abf6b7a99d5242a62a61b200386a0fefa}\label{client__channel__handler_8c_abf6b7a99d5242a62a61b200386a0fefa}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_initial\_window\_size@{s\_initial\_window\_size}}
+\index{s\_initial\_window\_size@{s\_initial\_window\_size}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_initial\_window\_size()}{s\_initial\_window\_size()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+initial\+\_\+window\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ae638f621d23b167cc1480365c7446da1}\label{client__channel__handler_8c_ae638f621d23b167cc1480365c7446da1}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_message\_overhead@{s\_message\_overhead}}
+\index{s\_message\_overhead@{s\_message\_overhead}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_message\_overhead()}{s\_message\_overhead()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+message\+\_\+overhead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a043dd0b51fc5dd733ba9b5e435aa7942}\label{client__channel__handler_8c_a043dd0b51fc5dd733ba9b5e435aa7942}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_mqtt\_disconnect\_task@{s\_mqtt\_disconnect\_task}}
+\index{s\_mqtt\_disconnect\_task@{s\_mqtt\_disconnect\_task}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_disconnect\_task()}{s\_mqtt\_disconnect\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+disconnect\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_acb7823fcbe18765a90fb477e846d95ef}\label{client__channel__handler_8c_acb7823fcbe18765a90fb477e846d95ef}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_on\_time\_to\_ping@{s\_on\_time\_to\_ping}}
+\index{s\_on\_time\_to\_ping@{s\_on\_time\_to\_ping}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_time\_to\_ping()}{s\_on\_time\_to\_ping()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+time\+\_\+to\+\_\+ping (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}\label{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_ack@{s\_packet\_handler\_ack}}
+\index{s\_packet\_handler\_ack@{s\_packet\_handler\_ack}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_ack()}{s\_packet\_handler\_ack()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+ack (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ac39f7627ca26fca7c5fb98a0492835a2}\label{client__channel__handler_8c_ac39f7627ca26fca7c5fb98a0492835a2}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_connack@{s\_packet\_handler\_connack}}
+\index{s\_packet\_handler\_connack@{s\_packet\_handler\_connack}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_connack()}{s\_packet\_handler\_connack()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+connack (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}\label{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_default@{s\_packet\_handler\_default}}
+\index{s\_packet\_handler\_default@{s\_packet\_handler\_default}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_default()}{s\_packet\_handler\_default()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+default (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_aa10c5296c2da976e8379fe1e966fcc84}\label{client__channel__handler_8c_aa10c5296c2da976e8379fe1e966fcc84}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_pingresp@{s\_packet\_handler\_pingresp}}
+\index{s\_packet\_handler\_pingresp@{s\_packet\_handler\_pingresp}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_pingresp()}{s\_packet\_handler\_pingresp()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+pingresp (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a4271afb7a1bd925bffc53b3d0333e2ea}\label{client__channel__handler_8c_a4271afb7a1bd925bffc53b3d0333e2ea}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_publish@{s\_packet\_handler\_publish}}
+\index{s\_packet\_handler\_publish@{s\_packet\_handler\_publish}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_publish()}{s\_packet\_handler\_publish()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+publish (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a0d258ae55aa17154af15600cc8ebecd4}\label{client__channel__handler_8c_a0d258ae55aa17154af15600cc8ebecd4}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_pubrec@{s\_packet\_handler\_pubrec}}
+\index{s\_packet\_handler\_pubrec@{s\_packet\_handler\_pubrec}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_pubrec()}{s\_packet\_handler\_pubrec()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+pubrec (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ad4e316e0143cf5decff8962509c5e78d}\label{client__channel__handler_8c_ad4e316e0143cf5decff8962509c5e78d}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_pubrel@{s\_packet\_handler\_pubrel}}
+\index{s\_packet\_handler\_pubrel@{s\_packet\_handler\_pubrel}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_pubrel()}{s\_packet\_handler\_pubrel()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+pubrel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a22ff9ab1b5d2f23941b47a8dd64ef829}\label{client__channel__handler_8c_a22ff9ab1b5d2f23941b47a8dd64ef829}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handler\_suback@{s\_packet\_handler\_suback}}
+\index{s\_packet\_handler\_suback@{s\_packet\_handler\_suback}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handler\_suback()}{s\_packet\_handler\_suback()}}
+{\footnotesize\ttfamily static int s\+\_\+packet\+\_\+handler\+\_\+suback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{message\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_ae2d8f037aa3f5ab4f1e19acb50e2e4f1}\label{client__channel__handler_8c_ae2d8f037aa3f5ab4f1e19acb50e2e4f1}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_process\_mqtt\_packet@{s\_process\_mqtt\_packet}}
+\index{s\_process\_mqtt\_packet@{s\_process\_mqtt\_packet}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_process\_mqtt\_packet()}{s\_process\_mqtt\_packet()}}
+{\footnotesize\ttfamily static int s\+\_\+process\+\_\+mqtt\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{enum \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\+\_\+mqtt\+\_\+packet\+\_\+type}}}]{packet\+\_\+type,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a89b7bb76dba8ea2d0dcf6bd16120da32}\label{client__channel__handler_8c_a89b7bb76dba8ea2d0dcf6bd16120da32}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_process\_read\_message@{s\_process\_read\_message}}
+\index{s\_process\_read\_message@{s\_process\_read\_message}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_process\_read\_message()}{s\_process\_read\_message()}}
+{\footnotesize\ttfamily static int s\+\_\+process\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Handles incoming messages from the server. \mbox{\Hypertarget{client__channel__handler_8c_a2bd1e8abb019feae72e961f39376600a}\label{client__channel__handler_8c_a2bd1e8abb019feae72e961f39376600a}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_request\_outgoing\_task@{s\_request\_outgoing\_task}}
+\index{s\_request\_outgoing\_task@{s\_request\_outgoing\_task}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_request\_outgoing\_task()}{s\_request\_outgoing\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+request\+\_\+outgoing\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a367395993cba042f1caf5b5ca340ed8b}\label{client__channel__handler_8c_a367395993cba042f1caf5b5ca340ed8b}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_schedule\_ping@{s\_schedule\_ping}}
+\index{s\_schedule\_ping@{s\_schedule\_ping}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_ping()}{s\_schedule\_ping()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+ping (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{client__channel__handler_8c_a34bcc79668b3034d5d2a9b9c6934fda5}\label{client__channel__handler_8c_a34bcc79668b3034d5d2a9b9c6934fda5}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_shutdown@{s\_shutdown}}
+\index{s\_shutdown@{s\_shutdown}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_shutdown()}{s\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{client__channel__handler_8c_a3da1c0002d20b403c4fc2c42e2964033}\label{client__channel__handler_8c_a3da1c0002d20b403c4fc2c42e2964033}} 
+\index{client\_channel\_handler.c@{client\_channel\_handler.c}!s\_packet\_handlers@{s\_packet\_handlers}}
+\index{s\_packet\_handlers@{s\_packet\_handlers}!client\_channel\_handler.c@{client\_channel\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_packet\_handlers}{s\_packet\_handlers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{client__channel__handler_8c_afec4a425e3751daf631322394b610875}{packet\+\_\+handler\+\_\+fn}}$\ast$ s\+\_\+packet\+\_\+handlers\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba99734393e34e1e61b4b2e5c602f53c91}{AWS\_MQTT\_PACKET\_CONNECT}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\_packet\_handler\_default}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba2108dbd2a3f439451ee4e32d53898956}{AWS\_MQTT\_PACKET\_CONNACK}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac39f7627ca26fca7c5fb98a0492835a2}{s\_packet\_handler\_connack}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bacd45afc7af08360344a0fea3eed8ad4b}{AWS\_MQTT\_PACKET\_PUBLISH}}] = \&\mbox{\hyperlink{client__channel__handler_8c_a4271afb7a1bd925bffc53b3d0333e2ea}{s\_packet\_handler\_publish}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba060f050de2ef371f7ad98d9ee641e0dd}{AWS\_MQTT\_PACKET\_PUBACK}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}{s\_packet\_handler\_ack}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba65d573f6c1f8181a772efb4dd8a1effe}{AWS\_MQTT\_PACKET\_PUBREC}}] = \&\mbox{\hyperlink{client__channel__handler_8c_a0d258ae55aa17154af15600cc8ebecd4}{s\_packet\_handler\_pubrec}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba29a0995ce4a53f581863edfeeb9fc04b}{AWS\_MQTT\_PACKET\_PUBREL}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ad4e316e0143cf5decff8962509c5e78d}{s\_packet\_handler\_pubrel}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba6cb375c50cf561003401b7d3ba887a4c}{AWS\_MQTT\_PACKET\_PUBCOMP}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}{s\_packet\_handler\_ack}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba15a8338ec273cf47ce9095f7bc93035f}{AWS\_MQTT\_PACKET\_SUBSCRIBE}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\_packet\_handler\_default}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bacad98f3f71143c5bda6ff01aeefa5774}{AWS\_MQTT\_PACKET\_SUBACK}}] = \&\mbox{\hyperlink{client__channel__handler_8c_a22ff9ab1b5d2f23941b47a8dd64ef829}{s\_packet\_handler\_suback}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba62a145f94054b9a6c576a477ef2a4493}{AWS\_MQTT\_PACKET\_UNSUBSCRIBE}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\_packet\_handler\_default}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bac1ad94afed5ad3899297bde8d308b21f}{AWS\_MQTT\_PACKET\_UNSUBACK}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ab6c5ce0d3142e6c2873647e6daac7292}{s\_packet\_handler\_ack}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bae304d95e5c3dc7bc8c176c4ceaefcd9d}{AWS\_MQTT\_PACKET\_PINGREQ}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\_packet\_handler\_default}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba60506be43a604e73b85f946abecb8977}{AWS\_MQTT\_PACKET\_PINGRESP}}] = \&\mbox{\hyperlink{client__channel__handler_8c_aa10c5296c2da976e8379fe1e966fcc84}{s\_packet\_handler\_pingresp}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba1474d7fc80d41f6f4917ed1495815e8c}{AWS\_MQTT\_PACKET\_DISCONNECT}}] = \&\mbox{\hyperlink{client__channel__handler_8c_ac4e25fcf7d1d53485e6ff4996bb4ddee}{s\_packet\_handler\_default}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

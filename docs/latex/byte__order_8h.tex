@@ -1,0 +1,99 @@
+\hypertarget{byte__order_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/byte\+\_\+order.h File Reference}
+\label{byte__order_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/byte\_order.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/byte\_order.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+order.\+inl$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} int \mbox{\hyperlink{byte__order_8h_ae4bd7c44d20de75acbe2b0a8123f3043}{aws\+\_\+is\+\_\+big\+\_\+endian}} (void)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t \mbox{\hyperlink{byte__order_8h_ad57b6050cb1350a2e4c7ba39dd781831}{aws\+\_\+hton64}} (uint64\+\_\+t x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t \mbox{\hyperlink{byte__order_8h_aa9153cc2588a97b0048236800006a142}{aws\+\_\+ntoh64}} (uint64\+\_\+t x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t \mbox{\hyperlink{byte__order_8h_af977617730e57d3535b6418ce27b94be}{aws\+\_\+hton32}} (uint32\+\_\+t x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} float \mbox{\hyperlink{byte__order_8h_aadc76ee6a29d0c07fe834a61039a2eca}{aws\+\_\+htonf32}} (float x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} double \mbox{\hyperlink{byte__order_8h_a120b1ccb3e4970bf7a7bab6cf8cdc280}{aws\+\_\+htonf64}} (double x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t \mbox{\hyperlink{byte__order_8h_ad73ce097b81ffaa4212fb549701a53eb}{aws\+\_\+ntoh32}} (uint32\+\_\+t x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} float \mbox{\hyperlink{byte__order_8h_a76d79c03d5bd171c34b1bdad690acda7}{aws\+\_\+ntohf32}} (float x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} double \mbox{\hyperlink{byte__order_8h_a34796793d968d084effae68880b19d1c}{aws\+\_\+ntohf64}} (double x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t \mbox{\hyperlink{byte__order_8h_af5f059a3103e461f81819d50f5a9aaeb}{aws\+\_\+hton16}} (uint16\+\_\+t x)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t \mbox{\hyperlink{byte__order_8h_af3b50676eaa50665755070bb9c3cbaae}{aws\+\_\+ntoh16}} (uint16\+\_\+t x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{byte__order_8h_af5f059a3103e461f81819d50f5a9aaeb}\label{byte__order_8h_af5f059a3103e461f81819d50f5a9aaeb}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_hton16@{aws\_hton16}}
+\index{aws\_hton16@{aws\_hton16}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hton16()}{aws\_hton16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t aws\+\_\+hton16 (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 16 bit integer from host to network byte order. \mbox{\Hypertarget{byte__order_8h_af977617730e57d3535b6418ce27b94be}\label{byte__order_8h_af977617730e57d3535b6418ce27b94be}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_hton32@{aws\_hton32}}
+\index{aws\_hton32@{aws\_hton32}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hton32()}{aws\_hton32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t aws\+\_\+hton32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 32 bit integer from host to network byte order. \mbox{\Hypertarget{byte__order_8h_ad57b6050cb1350a2e4c7ba39dd781831}\label{byte__order_8h_ad57b6050cb1350a2e4c7ba39dd781831}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_hton64@{aws\_hton64}}
+\index{aws\_hton64@{aws\_hton64}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hton64()}{aws\_hton64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t aws\+\_\+hton64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 64 bit integer from host to network byte order. \mbox{\Hypertarget{byte__order_8h_aadc76ee6a29d0c07fe834a61039a2eca}\label{byte__order_8h_aadc76ee6a29d0c07fe834a61039a2eca}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_htonf32@{aws\_htonf32}}
+\index{aws\_htonf32@{aws\_htonf32}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_htonf32()}{aws\_htonf32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} float aws\+\_\+htonf32 (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})}
+
+Convert 32 bit float from host to network byte order. \mbox{\Hypertarget{byte__order_8h_a120b1ccb3e4970bf7a7bab6cf8cdc280}\label{byte__order_8h_a120b1ccb3e4970bf7a7bab6cf8cdc280}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_htonf64@{aws\_htonf64}}
+\index{aws\_htonf64@{aws\_htonf64}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_htonf64()}{aws\_htonf64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} double aws\+\_\+htonf64 (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+Convert 64 bit double from host to network byte order. \mbox{\Hypertarget{byte__order_8h_ae4bd7c44d20de75acbe2b0a8123f3043}\label{byte__order_8h_ae4bd7c44d20de75acbe2b0a8123f3043}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_is\_big\_endian@{aws\_is\_big\_endian}}
+\index{aws\_is\_big\_endian@{aws\_is\_big\_endian}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_is\_big\_endian()}{aws\_is\_big\_endian()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} int aws\+\_\+is\+\_\+big\+\_\+endian (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Returns 1 if machine is big endian, 0 if little endian. If you compile with even -\/O1 optimization, this check is completely optimized out at compile time and code which calls \char`\"{}if (aws\+\_\+is\+\_\+big\+\_\+endian())\char`\"{} will do the right thing without branching. \mbox{\Hypertarget{byte__order_8h_af3b50676eaa50665755070bb9c3cbaae}\label{byte__order_8h_af3b50676eaa50665755070bb9c3cbaae}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_ntoh16@{aws\_ntoh16}}
+\index{aws\_ntoh16@{aws\_ntoh16}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ntoh16()}{aws\_ntoh16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t aws\+\_\+ntoh16 (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 16 bit integer from network to host byte order. \mbox{\Hypertarget{byte__order_8h_ad73ce097b81ffaa4212fb549701a53eb}\label{byte__order_8h_ad73ce097b81ffaa4212fb549701a53eb}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_ntoh32@{aws\_ntoh32}}
+\index{aws\_ntoh32@{aws\_ntoh32}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ntoh32()}{aws\_ntoh32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t aws\+\_\+ntoh32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 32 bit integer from network to host byte order. \mbox{\Hypertarget{byte__order_8h_aa9153cc2588a97b0048236800006a142}\label{byte__order_8h_aa9153cc2588a97b0048236800006a142}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_ntoh64@{aws\_ntoh64}}
+\index{aws\_ntoh64@{aws\_ntoh64}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ntoh64()}{aws\_ntoh64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t aws\+\_\+ntoh64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+Convert 64 bit integer from network to host byte order. \mbox{\Hypertarget{byte__order_8h_a76d79c03d5bd171c34b1bdad690acda7}\label{byte__order_8h_a76d79c03d5bd171c34b1bdad690acda7}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_ntohf32@{aws\_ntohf32}}
+\index{aws\_ntohf32@{aws\_ntohf32}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ntohf32()}{aws\_ntohf32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} float aws\+\_\+ntohf32 (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})}
+
+Convert 32 bit float from network to host byte order. \mbox{\Hypertarget{byte__order_8h_a34796793d968d084effae68880b19d1c}\label{byte__order_8h_a34796793d968d084effae68880b19d1c}} 
+\index{byte\_order.h@{byte\_order.h}!aws\_ntohf64@{aws\_ntohf64}}
+\index{aws\_ntohf64@{aws\_ntohf64}!byte\_order.h@{byte\_order.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ntohf64()}{aws\_ntohf64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} double aws\+\_\+ntohf64 (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+Convert 32 bit float from network to host byte order. 

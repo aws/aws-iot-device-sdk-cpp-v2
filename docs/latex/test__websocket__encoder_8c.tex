@@ -1,0 +1,164 @@
+\hypertarget{test__websocket__encoder_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+websocket\+\_\+encoder.c File Reference}
+\label{test__websocket__encoder_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_encoder.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_encoder.c}}
+{\ttfamily \#include $<$aws/http/private/websocket\+\_\+encoder.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__websocket__encoder_8c_a4ea24f0c7d57147a67bcc5de9ebe890f}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}}(NAME)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__websocket__encoder_8c_ab2bc1242a1530a0b2a5ec794e01638ea}{s\+\_\+on\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__websocket__encoder_8c_a9cbd84f8ec3eb38ac875bc5e4efebe90}{s\+\_\+encoder\+\_\+tester\+\_\+reset}} (struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static int \mbox{\hyperlink{test__websocket__encoder_8c_a82b92099fda40f25f396be3a5fdbea25}{s\+\_\+encoder\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+static int \mbox{\hyperlink{test__websocket__encoder_8c_a99adfbb849f3167dd608a5d932e6d3a4}{s\+\_\+encoder\+\_\+tester\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__websocket__encoder_8c_a846903e44e166bc8fe0e55185d403a27}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+array}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const void $\ast$array, size\+\_\+t array\+\_\+len)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a4de92bfa9dac27cdab7dfc0ce02bffbc}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+sanity\+\_\+check)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a69311ccb80e814852535cd9be5fba038}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+simplest\+\_\+frame)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a4b7e58198e05290d68b84389a22ee8ad}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+rsv)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_ae64b2c82631a30814949fea5b287a427}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+data\+\_\+frame)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a87503bac226bf9724e46f1b3df171998}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+fail\+\_\+if\+\_\+payload\+\_\+exceeds\+\_\+stated\+\_\+length)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a013380b1b7f3a48a5501391057bbddcb}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+masking)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_acea22325972b25993c359ed9befa9287}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+extended\+\_\+length)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a5a24f0242c9b3c6cd663f8127812778e}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+1\+\_\+byte\+\_\+at\+\_\+a\+\_\+time)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_adc6dfee8060484b1b91b372d1dde9ea7}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+fragmented\+\_\+message)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a2a560cd92e4be5ff31f26c4d1bab038c}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+fragmentation\+\_\+failure\+\_\+checks)
+\item 
+\mbox{\hyperlink{test__websocket__encoder_8c_a8e6e82834687e099d539e5c1895214d3}{ENCODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+encoder\+\_\+payload\+\_\+callback\+\_\+can\+\_\+fail\+\_\+encoder)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__websocket__encoder_8c_a4ea24f0c7d57147a67bcc5de9ebe890f}\label{test__websocket__encoder_8c_a4ea24f0c7d57147a67bcc5de9ebe890f}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE}{ENCODER\_TEST\_CASE}}
+{\footnotesize\ttfamily \#define ENCODER\+\_\+\+TEST\+\_\+\+CASE(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{aws__test__harness_8h_a3698b6468787eb8b70903db17061da85}{AWS\_TEST\_CASE}}(NAME, s\_test\_\#\#NAME);                                                                                \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keywordtype}{int} s\_test\_\#\#NAME(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}})}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__websocket__encoder_8c_a846903e44e166bc8fe0e55185d403a27}\label{test__websocket__encoder_8c_a846903e44e166bc8fe0e55185d403a27}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!aws\_byte\_buf\_eq\_array@{aws\_byte\_buf\_eq\_array}}
+\index{aws\_byte\_buf\_eq\_array@{aws\_byte\_buf\_eq\_array}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_eq\_array()}{aws\_byte\_buf\_eq\_array()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+array (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{const void $\ast$}]{array,  }\item[{size\+\_\+t}]{array\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a5a24f0242c9b3c6cd663f8127812778e}\label{test__websocket__encoder_8c_a5a24f0242c9b3c6cd663f8127812778e}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+1\+\_\+byte\+\_\+at\+\_\+a\+\_\+time}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_ae64b2c82631a30814949fea5b287a427}\label{test__websocket__encoder_8c_ae64b2c82631a30814949fea5b287a427}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+data\+\_\+frame}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_acea22325972b25993c359ed9befa9287}\label{test__websocket__encoder_8c_acea22325972b25993c359ed9befa9287}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+extended\+\_\+length}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a87503bac226bf9724e46f1b3df171998}\label{test__websocket__encoder_8c_a87503bac226bf9724e46f1b3df171998}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+fail\+\_\+if\+\_\+payload\+\_\+exceeds\+\_\+stated\+\_\+length}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a2a560cd92e4be5ff31f26c4d1bab038c}\label{test__websocket__encoder_8c_a2a560cd92e4be5ff31f26c4d1bab038c}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+fragmentation\+\_\+failure\+\_\+checks}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_adc6dfee8060484b1b91b372d1dde9ea7}\label{test__websocket__encoder_8c_adc6dfee8060484b1b91b372d1dde9ea7}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+fragmented\+\_\+message}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a013380b1b7f3a48a5501391057bbddcb}\label{test__websocket__encoder_8c_a013380b1b7f3a48a5501391057bbddcb}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+masking}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a8e6e82834687e099d539e5c1895214d3}\label{test__websocket__encoder_8c_a8e6e82834687e099d539e5c1895214d3}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+payload\+\_\+callback\+\_\+can\+\_\+fail\+\_\+encoder}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a4b7e58198e05290d68b84389a22ee8ad}\label{test__websocket__encoder_8c_a4b7e58198e05290d68b84389a22ee8ad}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [9/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+rsv}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a4de92bfa9dac27cdab7dfc0ce02bffbc}\label{test__websocket__encoder_8c_a4de92bfa9dac27cdab7dfc0ce02bffbc}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [10/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+sanity\+\_\+check}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a69311ccb80e814852535cd9be5fba038}\label{test__websocket__encoder_8c_a69311ccb80e814852535cd9be5fba038}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}}
+\index{ENCODER\_TEST\_CASE@{ENCODER\_TEST\_CASE}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{ENCODER\_TEST\_CASE()}{ENCODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [11/11]}}
+{\footnotesize\ttfamily ENCODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+encoder\+\_\+simplest\+\_\+frame}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a99adfbb849f3167dd608a5d932e6d3a4}\label{test__websocket__encoder_8c_a99adfbb849f3167dd608a5d932e6d3a4}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!s\_encoder\_tester\_clean\_up@{s\_encoder\_tester\_clean\_up}}
+\index{s\_encoder\_tester\_clean\_up@{s\_encoder\_tester\_clean\_up}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoder\_tester\_clean\_up()}{s\_encoder\_tester\_clean\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+encoder\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$}]{tester }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a82b92099fda40f25f396be3a5fdbea25}\label{test__websocket__encoder_8c_a82b92099fda40f25f396be3a5fdbea25}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!s\_encoder\_tester\_init@{s\_encoder\_tester\_init}}
+\index{s\_encoder\_tester\_init@{s\_encoder\_tester\_init}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoder\_tester\_init()}{s\_encoder\_tester\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+encoder\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$}]{tester,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_a9cbd84f8ec3eb38ac875bc5e4efebe90}\label{test__websocket__encoder_8c_a9cbd84f8ec3eb38ac875bc5e4efebe90}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!s\_encoder\_tester\_reset@{s\_encoder\_tester\_reset}}
+\index{s\_encoder\_tester\_reset@{s\_encoder\_tester\_reset}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoder\_tester\_reset()}{s\_encoder\_tester\_reset()}}
+{\footnotesize\ttfamily static void s\+\_\+encoder\+\_\+tester\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structencoder__tester}{encoder\+\_\+tester}} $\ast$}]{tester }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__encoder_8c_ab2bc1242a1530a0b2a5ec794e01638ea}\label{test__websocket__encoder_8c_ab2bc1242a1530a0b2a5ec794e01638ea}} 
+\index{test\_websocket\_encoder.c@{test\_websocket\_encoder.c}!s\_on\_payload@{s\_on\_payload}}
+\index{s\_on\_payload@{s\_on\_payload}!test\_websocket\_encoder.c@{test\_websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_payload()}{s\_on\_payload()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

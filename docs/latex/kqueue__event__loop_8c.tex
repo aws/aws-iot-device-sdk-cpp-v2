@@ -1,0 +1,311 @@
+\hypertarget{kqueue__event__loop_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/bsd/kqueue\+\_\+event\+\_\+loop.c File Reference}
+\label{kqueue__event__loop_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/bsd/kqueue\_event\_loop.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/bsd/kqueue\_event\_loop.c}}
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$sys/event.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkqueue__loop}{kqueue\+\_\+loop}}
+\item 
+struct \mbox{\hyperlink{structhandle__data}{handle\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\+\_\+thread\+\_\+state}} \{ \newline
+\mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+READY\+\_\+\+TO\+\_\+\+RUN}}
+, \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+RUNNING}}
+, \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+STOPPING}}
+, \mbox{\hyperlink{iocp__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+READY\+\_\+\+TO\+\_\+\+RUN}}
+, \newline
+\mbox{\hyperlink{iocp__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+RUNNING}}
+, \mbox{\hyperlink{iocp__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+STOPPING}}
+ \}
+\item 
+enum \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444b}{pipe\+\_\+fd\+\_\+index}} \{ \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba5e7dda46cc78cbba8ecb8ffde82e7bc7}{READ\+\_\+\+FD}}
+, \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba68d3369d10b3e3c3214d93dea0701ba2}{WRITE\+\_\+\+FD}}
+ \}
+\item 
+enum \{ \mbox{\hyperlink{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}{DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SEC}} = 100
+, \mbox{\hyperlink{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}{MAX\+\_\+\+EVENTS}} = 100
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\+\_\+is\+\_\+event\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}{s\+\_\+event\+\_\+thread\+\_\+main}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int \mbox{\hyperlink{kqueue__event__loop_8c_a1b9e9feb4dd63eecee47ba9ac21612b2}{aws\+\_\+open\+\_\+nonblocking\+\_\+posix\+\_\+pipe}} (int pipe\+\_\+fds\mbox{[}2\mbox{]})
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{kqueue__event__loop_8c_a188bd20a712f74ebc46b8bc374b73ea2}{aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{kqueue__event__loop_8c_a5b8de5e436e144cdd9cfb0b02ed9119a}{signal\+\_\+cross\+\_\+thread\+\_\+data\+\_\+changed}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a0aff5ebcb3e78689334a545f0b9f1272}{s\+\_\+subscribe\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_aef78dd6edee8e6a2987c3f99d1973c84}{s\+\_\+clean\+\_\+up\+\_\+handle\+\_\+data\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}{s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$tasks\+\_\+to\+\_\+schedule)
+\item 
+static void \mbox{\hyperlink{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}{s\+\_\+process\+\_\+cross\+\_\+thread\+\_\+data}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a769b4482ce2afbb60983aea5393039d4}{s\+\_\+aws\+\_\+event\+\_\+flags\+\_\+from\+\_\+kevent}} (struct kevent $\ast$kevent)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop\+\_\+vtable}} \mbox{\hyperlink{kqueue__event__loop_8c_a6a84693cdb3120eb69af1bd30c7a70ed}{s\+\_\+kqueue\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}} 
+DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENTS@{MAX\_EVENTS}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!MAX\_EVENTS@{MAX\_EVENTS}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}} 
+MAX\+\_\+\+EVENTS&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!event\_thread\_state@{event\_thread\_state}}
+\index{event\_thread\_state@{event\_thread\_state}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{event\_thread\_state}{event\_thread\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\+\_\+thread\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_READY\_TO\_RUN@{EVENT\_THREAD\_STATE\_READY\_TO\_RUN}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_READY\_TO\_RUN@{EVENT\_THREAD\_STATE\_READY\_TO\_RUN}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+READY\+\_\+\+TO\+\_\+\+RUN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_RUNNING@{EVENT\_THREAD\_STATE\_RUNNING}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_RUNNING@{EVENT\_THREAD\_STATE\_RUNNING}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+RUNNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_STOPPING@{EVENT\_THREAD\_STATE\_STOPPING}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_STOPPING@{EVENT\_THREAD\_STATE\_STOPPING}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+STOPPING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_READY\_TO\_RUN@{EVENT\_THREAD\_STATE\_READY\_TO\_RUN}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_READY\_TO\_RUN@{EVENT\_THREAD\_STATE\_READY\_TO\_RUN}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fa2d3c5496e9c5d5d62e18cd4c7b92331a}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+READY\+\_\+\+TO\+\_\+\+RUN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_RUNNING@{EVENT\_THREAD\_STATE\_RUNNING}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_RUNNING@{EVENT\_THREAD\_STATE\_RUNNING}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae792dd7c45d286d66a71ead7bc62fc1c}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+RUNNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_THREAD\_STATE\_STOPPING@{EVENT\_THREAD\_STATE\_STOPPING}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!EVENT\_THREAD\_STATE\_STOPPING@{EVENT\_THREAD\_STATE\_STOPPING}}}\mbox{\Hypertarget{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}\label{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}} 
+EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+STOPPING&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444b}\label{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444b}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!pipe\_fd\_index@{pipe\_fd\_index}}
+\index{pipe\_fd\_index@{pipe\_fd\_index}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{pipe\_fd\_index}{pipe\_fd\_index}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444b}{pipe\+\_\+fd\+\_\+index}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_FD@{READ\_FD}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!READ\_FD@{READ\_FD}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba5e7dda46cc78cbba8ecb8ffde82e7bc7}\label{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba5e7dda46cc78cbba8ecb8ffde82e7bc7}} 
+READ\+\_\+\+FD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WRITE\_FD@{WRITE\_FD}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!WRITE\_FD@{WRITE\_FD}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba68d3369d10b3e3c3214d93dea0701ba2}\label{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba68d3369d10b3e3c3214d93dea0701ba2}} 
+WRITE\+\_\+\+FD&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{kqueue__event__loop_8c_a188bd20a712f74ebc46b8bc374b73ea2}\label{kqueue__event__loop_8c_a188bd20a712f74ebc46b8bc374b73ea2}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!aws\_event\_loop\_new\_default\_with\_options@{aws\_event\_loop\_new\_default\_with\_options}}
+\index{aws\_event\_loop\_new\_default\_with\_options@{aws\_event\_loop\_new\_default\_with\_options}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_loop\_new\_default\_with\_options()}{aws\_event\_loop\_new\_default\_with\_options()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Creates an instance of the default event loop implementation for the current architecture and operating system using extendable options. \mbox{\Hypertarget{kqueue__event__loop_8c_a1b9e9feb4dd63eecee47ba9ac21612b2}\label{kqueue__event__loop_8c_a1b9e9feb4dd63eecee47ba9ac21612b2}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!aws\_open\_nonblocking\_posix\_pipe@{aws\_open\_nonblocking\_posix\_pipe}}
+\index{aws\_open\_nonblocking\_posix\_pipe@{aws\_open\_nonblocking\_posix\_pipe}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{aws\_open\_nonblocking\_posix\_pipe()}{aws\_open\_nonblocking\_posix\_pipe()}}
+{\footnotesize\ttfamily int aws\+\_\+open\+\_\+nonblocking\+\_\+posix\+\_\+pipe (\begin{DoxyParamCaption}\item[{int}]{pipe\+\_\+fds\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a769b4482ce2afbb60983aea5393039d4}\label{kqueue__event__loop_8c_a769b4482ce2afbb60983aea5393039d4}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_aws\_event\_flags\_from\_kevent@{s\_aws\_event\_flags\_from\_kevent}}
+\index{s\_aws\_event\_flags\_from\_kevent@{s\_aws\_event\_flags\_from\_kevent}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_event\_flags\_from\_kevent()}{s\_aws\_event\_flags\_from\_kevent()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+event\+\_\+flags\+\_\+from\+\_\+kevent (\begin{DoxyParamCaption}\item[{struct kevent $\ast$}]{kevent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}\label{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_cancel\_task@{s\_cancel\_task}}
+\index{s\_cancel\_task@{s\_cancel\_task}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_cancel\_task()}{s\_cancel\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+cancel\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_aef78dd6edee8e6a2987c3f99d1973c84}\label{kqueue__event__loop_8c_aef78dd6edee8e6a2987c3f99d1973c84}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_clean\_up\_handle\_data\_task@{s\_clean\_up\_handle\_data\_task}}
+\index{s\_clean\_up\_handle\_data\_task@{s\_clean\_up\_handle\_data\_task}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_clean\_up\_handle\_data\_task()}{s\_clean\_up\_handle\_data\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+clean\+\_\+up\+\_\+handle\+\_\+data\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{user\+\_\+data,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}\label{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_destroy@{s\_destroy}}
+\index{s\_destroy@{s\_destroy}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy()}{s\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{kqueue__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}\label{kqueue__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_event\_thread\_main@{s\_event\_thread\_main}}
+\index{s\_event\_thread\_main@{s\_event\_thread\_main}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_event\_thread\_main()}{s\_event\_thread\_main()}}
+{\footnotesize\ttfamily static void s\+\_\+event\+\_\+thread\+\_\+main (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}\label{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_free\_io\_event\_resources@{s\_free\_io\_event\_resources}}
+\index{s\_free\_io\_event\_resources@{s\_free\_io\_event\_resources}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_free\_io\_event\_resources()}{s\_free\_io\_event\_resources()}}
+{\footnotesize\ttfamily static void s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}\label{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_is\_event\_thread@{s\_is\_event\_thread}}
+\index{s\_is\_event\_thread@{s\_is\_event\_thread}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_event\_thread()}{s\_is\_event\_thread()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+event\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}\label{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_process\_cross\_thread\_data@{s\_process\_cross\_thread\_data}}
+\index{s\_process\_cross\_thread\_data@{s\_process\_cross\_thread\_data}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_process\_cross\_thread\_data()}{s\_process\_cross\_thread\_data()}}
+{\footnotesize\ttfamily static void s\+\_\+process\+\_\+cross\+\_\+thread\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}\label{kqueue__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_process\_tasks\_to\_schedule@{s\_process\_tasks\_to\_schedule}}
+\index{s\_process\_tasks\_to\_schedule@{s\_process\_tasks\_to\_schedule}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_process\_tasks\_to\_schedule()}{s\_process\_tasks\_to\_schedule()}}
+{\footnotesize\ttfamily static void s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{tasks\+\_\+to\+\_\+schedule }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}\label{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_run@{s\_run}}
+\index{s\_run@{s\_run}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_run()}{s\_run()}}
+{\footnotesize\ttfamily static int s\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}\label{kqueue__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_schedule\_task\_common@{s\_schedule\_task\_common}}
+\index{s\_schedule\_task\_common@{s\_schedule\_task\_common}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_common()}{s\_schedule\_task\_common()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+common (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t}]{run\+\_\+at\+\_\+nanos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}\label{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_schedule\_task\_future@{s\_schedule\_task\_future}}
+\index{s\_schedule\_task\_future@{s\_schedule\_task\_future}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_future()}{s\_schedule\_task\_future()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+future (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t}]{run\+\_\+at\+\_\+nanos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}\label{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_schedule\_task\_now@{s\_schedule\_task\_now}}
+\index{s\_schedule\_task\_now@{s\_schedule\_task\_now}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_now()}{s\_schedule\_task\_now()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+now (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}\label{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_stop@{s\_stop}}
+\index{s\_stop@{s\_stop}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_stop()}{s\_stop()}}
+{\footnotesize\ttfamily static int s\+\_\+stop (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a0aff5ebcb3e78689334a545f0b9f1272}\label{kqueue__event__loop_8c_a0aff5ebcb3e78689334a545f0b9f1272}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_subscribe\_task@{s\_subscribe\_task}}
+\index{s\_subscribe\_task@{s\_subscribe\_task}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_task()}{s\_subscribe\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+subscribe\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{user\+\_\+data,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}\label{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_subscribe\_to\_io\_events@{s\_subscribe\_to\_io\_events}}
+\index{s\_subscribe\_to\_io\_events@{s\_subscribe\_to\_io\_events}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_to\_io\_events()}{s\_subscribe\_to\_io\_events()}}
+{\footnotesize\ttfamily static int s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$}]{handle,  }\item[{int}]{events,  }\item[{\mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$}]{on\+\_\+event,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}\label{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_unsubscribe\_from\_io\_events@{s\_unsubscribe\_from\_io\_events}}
+\index{s\_unsubscribe\_from\_io\_events@{s\_unsubscribe\_from\_io\_events}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_unsubscribe\_from\_io\_events()}{s\_unsubscribe\_from\_io\_events()}}
+{\footnotesize\ttfamily static int s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}\label{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_wait\_for\_stop\_completion@{s\_wait\_for\_stop\_completion}}
+\index{s\_wait\_for\_stop\_completion@{s\_wait\_for\_stop\_completion}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_wait\_for\_stop\_completion()}{s\_wait\_for\_stop\_completion()}}
+{\footnotesize\ttfamily static int s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{kqueue__event__loop_8c_a5b8de5e436e144cdd9cfb0b02ed9119a}\label{kqueue__event__loop_8c_a5b8de5e436e144cdd9cfb0b02ed9119a}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!signal\_cross\_thread\_data\_changed@{signal\_cross\_thread\_data\_changed}}
+\index{signal\_cross\_thread\_data\_changed@{signal\_cross\_thread\_data\_changed}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{signal\_cross\_thread\_data\_changed()}{signal\_cross\_thread\_data\_changed()}}
+{\footnotesize\ttfamily void signal\+\_\+cross\+\_\+thread\+\_\+data\+\_\+changed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{kqueue__event__loop_8c_a6a84693cdb3120eb69af1bd30c7a70ed}\label{kqueue__event__loop_8c_a6a84693cdb3120eb69af1bd30c7a70ed}} 
+\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_kqueue\_vtable@{s\_kqueue\_vtable}}
+\index{s\_kqueue\_vtable@{s\_kqueue\_vtable}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
+\doxysubsubsection{\texorpdfstring{s\_kqueue\_vtable}{s\_kqueue\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop\+\_\+vtable}} s\+\_\+kqueue\+\_\+vtable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\_destroy}},}
+\DoxyCodeLine{    .run = \mbox{\hyperlink{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\_run}},}
+\DoxyCodeLine{    .stop = \mbox{\hyperlink{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\_stop}},}
+\DoxyCodeLine{    .wait\_for\_stop\_completion = \mbox{\hyperlink{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\_wait\_for\_stop\_completion}},}
+\DoxyCodeLine{    .schedule\_task\_now = \mbox{\hyperlink{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\_schedule\_task\_now}},}
+\DoxyCodeLine{    .schedule\_task\_future = \mbox{\hyperlink{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\_schedule\_task\_future}},}
+\DoxyCodeLine{    .subscribe\_to\_io\_events = \mbox{\hyperlink{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\_subscribe\_to\_io\_events}},}
+\DoxyCodeLine{    .cancel\_task = \mbox{\hyperlink{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\_cancel\_task}},}
+\DoxyCodeLine{    .unsubscribe\_from\_io\_events = \mbox{\hyperlink{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\_unsubscribe\_from\_io\_events}},}
+\DoxyCodeLine{    .free\_io\_event\_resources = \mbox{\hyperlink{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\_free\_io\_event\_resources}},}
+\DoxyCodeLine{    .is\_on\_callers\_thread = \mbox{\hyperlink{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\_is\_event\_thread}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

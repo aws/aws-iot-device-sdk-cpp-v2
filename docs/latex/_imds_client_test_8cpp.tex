@@ -1,0 +1,63 @@
+\hypertarget{_imds_client_test_8cpp}{}\doxysection{crt/aws-\/crt-\/cpp/tests/\+Imds\+Client\+Test.cpp File Reference}
+\label{_imds_client_test_8cpp}\index{crt/aws-\/crt-\/cpp/tests/ImdsClientTest.cpp@{crt/aws-\/crt-\/cpp/tests/ImdsClientTest.cpp}}
+{\ttfamily \#include $<$aws/auth/aws\+\_\+imds\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Api.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Imds\+Client.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/auth/\+Credentials.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{_imds_client_test_8cpp_ae8dca7db4fe87838bf8eab2423b775e2}{s\+\_\+\+Test\+Creating\+Imds\+Client}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{_imds_client_test_8cpp_a01bfb5c5745285755b29186c1b6a7910}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (Test\+Creating\+Imds\+Client, \mbox{\hyperlink{_imds_client_test_8cpp_ae8dca7db4fe87838bf8eab2423b775e2}{s\+\_\+\+Test\+Creating\+Imds\+Client}})
+\item 
+static int \mbox{\hyperlink{_imds_client_test_8cpp_acbbd0170922954d8d6728464b8aa5c0f}{s\+\_\+\+Test\+Imds\+Client\+Get\+Instance\+Info}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{_imds_client_test_8cpp_a55f9046fc665f97d0846e7e0f693d354}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (Test\+Imds\+Client\+Get\+Instance\+Info, \mbox{\hyperlink{_imds_client_test_8cpp_acbbd0170922954d8d6728464b8aa5c0f}{s\+\_\+\+Test\+Imds\+Client\+Get\+Instance\+Info}})
+\item 
+static int \mbox{\hyperlink{_imds_client_test_8cpp_aa0e1fe6c69ace7d957866132d0178936}{s\+\_\+\+Test\+Imds\+Client\+Get\+Credentials}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{_imds_client_test_8cpp_aa6530854ec4428b83d1a4703f5e8ea2c}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (Test\+Imds\+Client\+Get\+Credentials, \mbox{\hyperlink{_imds_client_test_8cpp_aa0e1fe6c69ace7d957866132d0178936}{s\+\_\+\+Test\+Imds\+Client\+Get\+Credentials}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_imds_client_test_8cpp_a01bfb5c5745285755b29186c1b6a7910}\label{_imds_client_test_8cpp_a01bfb5c5745285755b29186c1b6a7910}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{Test\+Creating\+Imds\+Client}]{,  }\item[{\mbox{\hyperlink{_imds_client_test_8cpp_ae8dca7db4fe87838bf8eab2423b775e2}{s\+\_\+\+Test\+Creating\+Imds\+Client}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_imds_client_test_8cpp_aa6530854ec4428b83d1a4703f5e8ea2c}\label{_imds_client_test_8cpp_aa6530854ec4428b83d1a4703f5e8ea2c}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{Test\+Imds\+Client\+Get\+Credentials}]{,  }\item[{\mbox{\hyperlink{_imds_client_test_8cpp_aa0e1fe6c69ace7d957866132d0178936}{s\+\_\+\+Test\+Imds\+Client\+Get\+Credentials}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_imds_client_test_8cpp_a55f9046fc665f97d0846e7e0f693d354}\label{_imds_client_test_8cpp_a55f9046fc665f97d0846e7e0f693d354}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{Test\+Imds\+Client\+Get\+Instance\+Info}]{,  }\item[{\mbox{\hyperlink{_imds_client_test_8cpp_acbbd0170922954d8d6728464b8aa5c0f}{s\+\_\+\+Test\+Imds\+Client\+Get\+Instance\+Info}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_imds_client_test_8cpp_ae8dca7db4fe87838bf8eab2423b775e2}\label{_imds_client_test_8cpp_ae8dca7db4fe87838bf8eab2423b775e2}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!s\_TestCreatingImdsClient@{s\_TestCreatingImdsClient}}
+\index{s\_TestCreatingImdsClient@{s\_TestCreatingImdsClient}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestCreatingImdsClient()}{s\_TestCreatingImdsClient()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Creating\+Imds\+Client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_imds_client_test_8cpp_aa0e1fe6c69ace7d957866132d0178936}\label{_imds_client_test_8cpp_aa0e1fe6c69ace7d957866132d0178936}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!s\_TestImdsClientGetCredentials@{s\_TestImdsClientGetCredentials}}
+\index{s\_TestImdsClientGetCredentials@{s\_TestImdsClientGetCredentials}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestImdsClientGetCredentials()}{s\_TestImdsClientGetCredentials()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Imds\+Client\+Get\+Credentials (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_imds_client_test_8cpp_acbbd0170922954d8d6728464b8aa5c0f}\label{_imds_client_test_8cpp_acbbd0170922954d8d6728464b8aa5c0f}} 
+\index{ImdsClientTest.cpp@{ImdsClientTest.cpp}!s\_TestImdsClientGetInstanceInfo@{s\_TestImdsClientGetInstanceInfo}}
+\index{s\_TestImdsClientGetInstanceInfo@{s\_TestImdsClientGetInstanceInfo}!ImdsClientTest.cpp@{ImdsClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestImdsClientGetInstanceInfo()}{s\_TestImdsClientGetInstanceInfo()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Imds\+Client\+Get\+Instance\+Info (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

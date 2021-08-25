@@ -1,0 +1,128 @@
+\hypertarget{s2n__tls13__certificate__verify_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+tls13\+\_\+certificate\+\_\+verify.c File Reference}
+\label{s2n__tls13__certificate__verify_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls13\_certificate\_verify.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls13\_certificate\_verify.c}}
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+async\+\_\+pkey.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13\+\_\+certificate\+\_\+verify.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_ac638c7c579af51425b73df34a02ef192}{s2n\+\_\+tls13\+\_\+write\+\_\+cert\+\_\+verify\+\_\+signature}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$chosen\+\_\+sig\+\_\+scheme)
+\item 
+static int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_ae29e4fa7f0cc7f9b028aaede4ecb9030}{s2n\+\_\+tls13\+\_\+write\+\_\+signature}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$signature)
+\item 
+static int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a49b6564af7f40bf72e50ee6ff8b28a30}{s2n\+\_\+tls13\+\_\+generate\+\_\+unsigned\+\_\+cert\+\_\+verify\+\_\+content}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$unsigned\+\_\+content, \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}} mode)
+\item 
+static int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a27f0594912ddc6408e2864a746aec297}{s2n\+\_\+tls13\+\_\+cert\+\_\+read\+\_\+and\+\_\+verify\+\_\+signature}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$chosen\+\_\+sig\+\_\+scheme)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_ad8bf7f54d6997673be4ff237208768b8}{s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+header\+\_\+length}} (\mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}} mode)
+\item 
+int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a72585661a034fc4e856a904390f7ab8b}{s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a95eb786d523b0552f52cc5d3173f5cd1}{s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a528e78bd2c3e4d1c63a48cb05f0ab7f0}{S2\+N\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+PREFIX}} \mbox{[}$\,$\mbox{]}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a859afb01a744a4b727e014aefa4b30ee}{S2\+N\+\_\+\+SERVER\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+CONTEXT}} \mbox{[}$\,$\mbox{]}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__tls13__certificate__verify_8c_a9abce0a480d3d124ba37ded12e9d5a4d}{S2\+N\+\_\+\+CLIENT\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+CONTEXT}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a27f0594912ddc6408e2864a746aec297}\label{s2n__tls13__certificate__verify_8c_a27f0594912ddc6408e2864a746aec297}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_cert\_read\_and\_verify\_signature@{s2n\_tls13\_cert\_read\_and\_verify\_signature}}
+\index{s2n\_tls13\_cert\_read\_and\_verify\_signature@{s2n\_tls13\_cert\_read\_and\_verify\_signature}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_cert\_read\_and\_verify\_signature()}{s2n\_tls13\_cert\_read\_and\_verify\_signature()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+cert\+\_\+read\+\_\+and\+\_\+verify\+\_\+signature (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$}]{chosen\+\_\+sig\+\_\+scheme }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_ad8bf7f54d6997673be4ff237208768b8}\label{s2n__tls13__certificate__verify_8c_ad8bf7f54d6997673be4ff237208768b8}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_cert\_verify\_header\_length@{s2n\_tls13\_cert\_verify\_header\_length}}
+\index{s2n\_tls13\_cert\_verify\_header\_length@{s2n\_tls13\_cert\_verify\_header\_length}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_cert\_verify\_header\_length()}{s2n\_tls13\_cert\_verify\_header\_length()}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+header\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}}}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a95eb786d523b0552f52cc5d3173f5cd1}\label{s2n__tls13__certificate__verify_8c_a95eb786d523b0552f52cc5d3173f5cd1}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_cert\_verify\_recv@{s2n\_tls13\_cert\_verify\_recv}}
+\index{s2n\_tls13\_cert\_verify\_recv@{s2n\_tls13\_cert\_verify\_recv}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_cert\_verify\_recv()}{s2n\_tls13\_cert\_verify\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a72585661a034fc4e856a904390f7ab8b}\label{s2n__tls13__certificate__verify_8c_a72585661a034fc4e856a904390f7ab8b}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_cert\_verify\_send@{s2n\_tls13\_cert\_verify\_send}}
+\index{s2n\_tls13\_cert\_verify\_send@{s2n\_tls13\_cert\_verify\_send}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_cert\_verify\_send()}{s2n\_tls13\_cert\_verify\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+cert\+\_\+verify\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a49b6564af7f40bf72e50ee6ff8b28a30}\label{s2n__tls13__certificate__verify_8c_a49b6564af7f40bf72e50ee6ff8b28a30}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_generate\_unsigned\_cert\_verify\_content@{s2n\_tls13\_generate\_unsigned\_cert\_verify\_content}}
+\index{s2n\_tls13\_generate\_unsigned\_cert\_verify\_content@{s2n\_tls13\_generate\_unsigned\_cert\_verify\_content}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_generate\_unsigned\_cert\_verify\_content()}{s2n\_tls13\_generate\_unsigned\_cert\_verify\_content()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+generate\+\_\+unsigned\+\_\+cert\+\_\+verify\+\_\+content (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{unsigned\+\_\+content,  }\item[{\mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}}}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_ac638c7c579af51425b73df34a02ef192}\label{s2n__tls13__certificate__verify_8c_ac638c7c579af51425b73df34a02ef192}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_write\_cert\_verify\_signature@{s2n\_tls13\_write\_cert\_verify\_signature}}
+\index{s2n\_tls13\_write\_cert\_verify\_signature@{s2n\_tls13\_write\_cert\_verify\_signature}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_write\_cert\_verify\_signature()}{s2n\_tls13\_write\_cert\_verify\_signature()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+write\+\_\+cert\+\_\+verify\+\_\+signature (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$}]{chosen\+\_\+sig\+\_\+scheme }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_ae29e4fa7f0cc7f9b028aaede4ecb9030}\label{s2n__tls13__certificate__verify_8c_ae29e4fa7f0cc7f9b028aaede4ecb9030}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!s2n\_tls13\_write\_signature@{s2n\_tls13\_write\_signature}}
+\index{s2n\_tls13\_write\_signature@{s2n\_tls13\_write\_signature}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_write\_signature()}{s2n\_tls13\_write\_signature()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls13\+\_\+write\+\_\+signature (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{signature }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a528e78bd2c3e4d1c63a48cb05f0ab7f0}\label{s2n__tls13__certificate__verify_8c_a528e78bd2c3e4d1c63a48cb05f0ab7f0}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!S2N\_CERT\_VERIFY\_PREFIX@{S2N\_CERT\_VERIFY\_PREFIX}}
+\index{S2N\_CERT\_VERIFY\_PREFIX@{S2N\_CERT\_VERIFY\_PREFIX}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_CERT\_VERIFY\_PREFIX}{S2N\_CERT\_VERIFY\_PREFIX}}
+{\footnotesize\ttfamily const uint8\+\_\+t S2\+N\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+PREFIX\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20,}
+\DoxyCodeLine{      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20,}
+\DoxyCodeLine{      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20,}
+\DoxyCodeLine{      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20\}}
+
+\end{DoxyCode}
+Specified in \href{https://tools.ietf.org/html/rfc8446\#section-4.4.3}{\texttt{ https\+://tools.\+ietf.\+org/html/rfc8446\#section-\/4.\+4.\+3}}
+
+Servers MUST send this message when authenticating via a certificate. ~\newline
+ Clients MUST send this message whenever authenticating via a certificate. When sent, this message MUST appear immediately after the Certificate message and immediately prior to the Finished message. \mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a9abce0a480d3d124ba37ded12e9d5a4d}\label{s2n__tls13__certificate__verify_8c_a9abce0a480d3d124ba37ded12e9d5a4d}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT@{S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT}}
+\index{S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT@{S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT}{S2N\_CLIENT\_CERT\_VERIFY\_CONTEXT}}
+{\footnotesize\ttfamily const uint8\+\_\+t S2\+N\+\_\+\+CLIENT\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+CONTEXT\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0x54, 0x4c, 0x53, 0x20, 0x31, 0x2e, 0x33,}
+\DoxyCodeLine{        0x2c, 0x20, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x20, 0x43, 0x65, 0x72, 0x74, 0x69,}
+\DoxyCodeLine{        0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x56, 0x65, 0x72, 0x69, 0x66, 0x79, 0x00\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__tls13__certificate__verify_8c_a859afb01a744a4b727e014aefa4b30ee}\label{s2n__tls13__certificate__verify_8c_a859afb01a744a4b727e014aefa4b30ee}} 
+\index{s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}!S2N\_SERVER\_CERT\_VERIFY\_CONTEXT@{S2N\_SERVER\_CERT\_VERIFY\_CONTEXT}}
+\index{S2N\_SERVER\_CERT\_VERIFY\_CONTEXT@{S2N\_SERVER\_CERT\_VERIFY\_CONTEXT}!s2n\_tls13\_certificate\_verify.c@{s2n\_tls13\_certificate\_verify.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_SERVER\_CERT\_VERIFY\_CONTEXT}{S2N\_SERVER\_CERT\_VERIFY\_CONTEXT}}
+{\footnotesize\ttfamily const uint8\+\_\+t S2\+N\+\_\+\+SERVER\+\_\+\+CERT\+\_\+\+VERIFY\+\_\+\+CONTEXT\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0x54, 0x4c, 0x53, 0x20, 0x31, 0x2e, 0x33,}
+\DoxyCodeLine{        0x2c, 0x20, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x20, 0x43, 0x65, 0x72, 0x74, 0x69,}
+\DoxyCodeLine{        0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x56, 0x65, 0x72, 0x69, 0x66, 0x79, 0x00\}}
+
+\end{DoxyCode}

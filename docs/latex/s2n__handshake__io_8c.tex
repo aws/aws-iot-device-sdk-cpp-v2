@@ -1,0 +1,483 @@
+\hypertarget{s2n__handshake__io_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+handshake\+\_\+io.c File Reference}
+\label{s2n__handshake__io_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_handshake\_io.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_handshake\_io.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+async\+\_\+pkey.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+resume.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+alerts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+socket.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+str.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__handshake__action}{s2n\+\_\+handshake\+\_\+action}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\+\_\+\+NAME\+\_\+\+ENTRY}}(msg)~\mbox{[}msg\mbox{]} = \#msg
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}~512
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}{S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH}}~32
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_ade3b37a2965b02690204cc05d137f1c5}{MAX\+\_\+\+HANDSHAKE\+\_\+\+TYPE\+\_\+\+LEN}}~152
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}{IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE}}(conn)~((conn)-\/$>$actual\+\_\+protocol\+\_\+version == \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2\+N\+\_\+\+TLS13}})
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}{ACTIVE\+\_\+\+STATE\+\_\+\+MACHINE}}(conn)~(\mbox{\hyperlink{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}{IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE}}(conn) ? \mbox{\hyperlink{s2n__handshake__io_8c_a0e29f9b516be0af5e17ce579962c95e5}{tls13\+\_\+state\+\_\+machine}} \+: \mbox{\hyperlink{s2n__handshake__io_8c_aa3007da0b854c6f21cff9cc25b44ec7d}{state\+\_\+machine}})
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a25c463c3c2a4964cc3e48d1bbc559218}{ACTIVE\+\_\+\+HANDSHAKES}}(conn)~(\mbox{\hyperlink{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}{IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE}}(conn) ? \mbox{\hyperlink{s2n__handshake__io_8c_a9f5477f60d4b126af34e23bcfcb69b9b}{tls13\+\_\+handshakes}} \+: \mbox{\hyperlink{s2n__handshake__io_8c_a6fbc85d287846327726871e457fc3cdb}{handshakes}})
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a38b7ad67505bd79bb3599c3a1504c51e}{ACTIVE\+\_\+\+MESSAGE}}(conn)~\mbox{\hyperlink{s2n__handshake__io_8c_a25c463c3c2a4964cc3e48d1bbc559218}{ACTIVE\+\_\+\+HANDSHAKES}}(conn)\mbox{[} (conn)-\/$>$handshake.\+handshake\+\_\+type \mbox{]}\mbox{[} (conn)-\/$>$handshake.\+message\+\_\+number \mbox{]}
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}(conn)~\mbox{\hyperlink{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}{ACTIVE\+\_\+\+STATE\+\_\+\+MACHINE}}(conn)\mbox{[} \mbox{\hyperlink{s2n__handshake__io_8c_a38b7ad67505bd79bb3599c3a1504c51e}{ACTIVE\+\_\+\+MESSAGE}}( (conn) ) \mbox{]}
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a2c761c380f26f4cd5d3d54adc18075bb}{CCS\+\_\+\+STATE}}(conn)
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a29b23d42d72ad0a459d6e987d7426484}{EXPECTED\+\_\+\+RECORD\+\_\+\+TYPE}}(conn)~\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}( conn ).record\+\_\+type
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a95b04b69209836cd105aa39ef6d51876}{EXPECTED\+\_\+\+MESSAGE\+\_\+\+TYPE}}(conn)~\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}( conn ).\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a04fdab02a3284bd3a94c2c54bc463dcc}{CONNECTION\+\_\+\+WRITER}}(conn)~(conn-\/$>$mode == \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdbac93ba9ce574a0b5893fe2a5960e1785d}{S2\+N\+\_\+\+CLIENT}} ? \textquotesingle{}C\textquotesingle{} \+: \textquotesingle{}S\textquotesingle{})
+\item 
+\#define \mbox{\hyperlink{s2n__handshake__io_8c_a14d4d65fd3e7aa15b785210775511ea7}{CONNECTION\+\_\+\+IS\+\_\+\+WRITER}}(conn)~(\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}(conn).writer == \mbox{\hyperlink{s2n__handshake__io_8c_a04fdab02a3284bd3a94c2c54bc463dcc}{CONNECTION\+\_\+\+WRITER}}(conn))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_ac12fbc0d3245a0a89e973bf6f826dff4}{s2n\+\_\+always\+\_\+fail\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_a94fa252cc54b2b405f76585001f07247}{s2n\+\_\+always\+\_\+fail\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} \mbox{\hyperlink{s2n__handshake__io_8c_ad1a464c4f0d92cf0ac994ecd7693bd10}{s2n\+\_\+conn\+\_\+get\+\_\+current\+\_\+message\+\_\+type}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_ad711060a0be6d7d262a9160450b64a81}{s2n\+\_\+advance\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_a64943e7d880856ab2e4cdf2e4b87bde1}{s2n\+\_\+generate\+\_\+new\+\_\+client\+\_\+session\+\_\+id}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_a71bed2acda1a44486b4d4b420c37590a}{s2n\+\_\+set\+\_\+hello\+\_\+retry\+\_\+required}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__handshake__io_8c_a51365dbfc5a7da6b42476b1747bedc1b}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__handshake__io_8c_a59b87eac68ac424a9b3b023502e4d97a}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_a4406f29de6d52b587003368d656dab20}{s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+type}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_a1324e0f9143c8cb249b7e819fe81e2ef}{s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+no\+\_\+client\+\_\+cert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_aeebbea7bdc3a80f52812a7bb4b3f38c1}{s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+read\+\_\+block}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_ae096884ca55de4f4b2b3c5f44797e71d}{s2n\+\_\+conn\+\_\+clear\+\_\+handshake\+\_\+read\+\_\+block}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+const char $\ast$ \mbox{\hyperlink{s2n__handshake__io_8c_a780f7c3bad948d23135f9b83bb4870f8}{s2n\+\_\+connection\+\_\+get\+\_\+last\+\_\+message\+\_\+name}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+const char $\ast$ \mbox{\hyperlink{s2n__handshake__io_8c_aa9954730f48dd43d882e42ef2a293919}{s2n\+\_\+connection\+\_\+get\+\_\+handshake\+\_\+type\+\_\+name}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_a1cb7bd8e50fa138fb938509aa0aee17a}{s2n\+\_\+handshake\+\_\+write\+\_\+io}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_a0e57fe24917ba3399cd9ca15ed0f6242}{s2n\+\_\+read\+\_\+full\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_a2cecc3b00f43b3c71a520e5d4d39d86e}{s2n\+\_\+handshake\+\_\+conn\+\_\+update\+\_\+hashes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_ad23caea84a2e2f8c1ada4f01f5decd2f}{s2n\+\_\+handshake\+\_\+handle\+\_\+sslv2}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_a7d97865b7b60ca399a79ab28c1f266b3}{s2n\+\_\+try\+\_\+delete\+\_\+session\+\_\+cache}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_ad942280a3b338778f1fda5b68904013a}{s2n\+\_\+handshake\+\_\+read\+\_\+io}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__io_8c_aa1a818e89698bf14169d56facf5bee52}{s2n\+\_\+handle\+\_\+retry\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__io_8c_a309d98d4c1adfd10c5dd62192f4c1051}{s2n\+\_\+negotiate}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structs2n__handshake__action}{s2n\+\_\+handshake\+\_\+action}} \mbox{\hyperlink{s2n__handshake__io_8c_aa3007da0b854c6f21cff9cc25b44ec7d}{state\+\_\+machine}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structs2n__handshake__action}{s2n\+\_\+handshake\+\_\+action}} \mbox{\hyperlink{s2n__handshake__io_8c_a0e29f9b516be0af5e17ce579962c95e5}{tls13\+\_\+state\+\_\+machine}} \mbox{[}$\,$\mbox{]}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__handshake__io_8c_ae38f86eee230721a8171934662e42cc1}{message\+\_\+names}} \mbox{[}$\,$\mbox{]}
+\item 
+static \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} \mbox{\hyperlink{s2n__handshake__io_8c_a6fbc85d287846327726871e457fc3cdb}{handshakes}} \mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}{S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH}}\mbox{]}
+\item 
+static \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} \mbox{\hyperlink{s2n__handshake__io_8c_a9f5477f60d4b126af34e23bcfcb69b9b}{tls13\+\_\+handshakes}} \mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}{S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH}}\mbox{]}
+\item 
+static char \mbox{\hyperlink{s2n__handshake__io_8c_a426fa83fa06fedceec78bfe585c102a8}{handshake\+\_\+type\+\_\+str}} \mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_ade3b37a2965b02690204cc05d137f1c5}{MAX\+\_\+\+HANDSHAKE\+\_\+\+TYPE\+\_\+\+LEN}}\mbox{]} = \{0\}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__handshake__io_8c_a51b321fd82484c432a8978860e156214}{handshake\+\_\+type\+\_\+names}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__handshake__io_8c_a25c463c3c2a4964cc3e48d1bbc559218}\label{s2n__handshake__io_8c_a25c463c3c2a4964cc3e48d1bbc559218}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!ACTIVE\_HANDSHAKES@{ACTIVE\_HANDSHAKES}}
+\index{ACTIVE\_HANDSHAKES@{ACTIVE\_HANDSHAKES}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{ACTIVE\_HANDSHAKES}{ACTIVE\_HANDSHAKES}}
+{\footnotesize\ttfamily \#define ACTIVE\+\_\+\+HANDSHAKES(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~(\mbox{\hyperlink{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}{IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE}}(conn) ? \mbox{\hyperlink{s2n__handshake__io_8c_a9f5477f60d4b126af34e23bcfcb69b9b}{tls13\+\_\+handshakes}} \+: \mbox{\hyperlink{s2n__handshake__io_8c_a6fbc85d287846327726871e457fc3cdb}{handshakes}})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a38b7ad67505bd79bb3599c3a1504c51e}\label{s2n__handshake__io_8c_a38b7ad67505bd79bb3599c3a1504c51e}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!ACTIVE\_MESSAGE@{ACTIVE\_MESSAGE}}
+\index{ACTIVE\_MESSAGE@{ACTIVE\_MESSAGE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{ACTIVE\_MESSAGE}{ACTIVE\_MESSAGE}}
+{\footnotesize\ttfamily \#define ACTIVE\+\_\+\+MESSAGE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~\mbox{\hyperlink{s2n__handshake__io_8c_a25c463c3c2a4964cc3e48d1bbc559218}{ACTIVE\+\_\+\+HANDSHAKES}}(conn)\mbox{[} (conn)-\/$>$handshake.\+handshake\+\_\+type \mbox{]}\mbox{[} (conn)-\/$>$handshake.\+message\+\_\+number \mbox{]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}\label{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!ACTIVE\_STATE@{ACTIVE\_STATE}}
+\index{ACTIVE\_STATE@{ACTIVE\_STATE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{ACTIVE\_STATE}{ACTIVE\_STATE}}
+{\footnotesize\ttfamily \#define ACTIVE\+\_\+\+STATE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~\mbox{\hyperlink{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}{ACTIVE\+\_\+\+STATE\+\_\+\+MACHINE}}(conn)\mbox{[} \mbox{\hyperlink{s2n__handshake__io_8c_a38b7ad67505bd79bb3599c3a1504c51e}{ACTIVE\+\_\+\+MESSAGE}}( (conn) ) \mbox{]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}\label{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!ACTIVE\_STATE\_MACHINE@{ACTIVE\_STATE\_MACHINE}}
+\index{ACTIVE\_STATE\_MACHINE@{ACTIVE\_STATE\_MACHINE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{ACTIVE\_STATE\_MACHINE}{ACTIVE\_STATE\_MACHINE}}
+{\footnotesize\ttfamily \#define ACTIVE\+\_\+\+STATE\+\_\+\+MACHINE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~(\mbox{\hyperlink{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}{IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE}}(conn) ? \mbox{\hyperlink{s2n__handshake__io_8c_a0e29f9b516be0af5e17ce579962c95e5}{tls13\+\_\+state\+\_\+machine}} \+: \mbox{\hyperlink{s2n__handshake__io_8c_aa3007da0b854c6f21cff9cc25b44ec7d}{state\+\_\+machine}})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a2c761c380f26f4cd5d3d54adc18075bb}\label{s2n__handshake__io_8c_a2c761c380f26f4cd5d3d54adc18075bb}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!CCS\_STATE@{CCS\_STATE}}
+\index{CCS\_STATE@{CCS\_STATE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{CCS\_STATE}{CCS\_STATE}}
+{\footnotesize\ttfamily \#define CCS\+\_\+\+STATE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                                                    (((conn)-\/>mode == \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdbac93ba9ce574a0b5893fe2a5960e1785d}{S2N\_CLIENT}}) ? \mbox{\hyperlink{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}{ACTIVE\_STATE\_MACHINE}}(conn)[\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca8c4c29243512fe560bc5d219f9546ea7}{SERVER\_CHANGE\_CIPHER\_SPEC}}] \(\backslash\)}
+\DoxyCodeLine{                                                                    : \mbox{\hyperlink{s2n__handshake__io_8c_a84141c603b721f43766e0352e3579bda}{ACTIVE\_STATE\_MACHINE}}(conn)[\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca79b2332e05cbf65a699a00fc65df797a}{CLIENT\_CHANGE\_CIPHER\_SPEC}}] )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__handshake__io_8c_a14d4d65fd3e7aa15b785210775511ea7}\label{s2n__handshake__io_8c_a14d4d65fd3e7aa15b785210775511ea7}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!CONNECTION\_IS\_WRITER@{CONNECTION\_IS\_WRITER}}
+\index{CONNECTION\_IS\_WRITER@{CONNECTION\_IS\_WRITER}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{CONNECTION\_IS\_WRITER}{CONNECTION\_IS\_WRITER}}
+{\footnotesize\ttfamily \#define CONNECTION\+\_\+\+IS\+\_\+\+WRITER(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~(\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}(conn).writer == \mbox{\hyperlink{s2n__handshake__io_8c_a04fdab02a3284bd3a94c2c54bc463dcc}{CONNECTION\+\_\+\+WRITER}}(conn))}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a04fdab02a3284bd3a94c2c54bc463dcc}\label{s2n__handshake__io_8c_a04fdab02a3284bd3a94c2c54bc463dcc}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!CONNECTION\_WRITER@{CONNECTION\_WRITER}}
+\index{CONNECTION\_WRITER@{CONNECTION\_WRITER}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{CONNECTION\_WRITER}{CONNECTION\_WRITER}}
+{\footnotesize\ttfamily \#define CONNECTION\+\_\+\+WRITER(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~(conn-\/$>$mode == \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdbac93ba9ce574a0b5893fe2a5960e1785d}{S2\+N\+\_\+\+CLIENT}} ? \textquotesingle{}C\textquotesingle{} \+: \textquotesingle{}S\textquotesingle{})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a95b04b69209836cd105aa39ef6d51876}\label{s2n__handshake__io_8c_a95b04b69209836cd105aa39ef6d51876}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!EXPECTED\_MESSAGE\_TYPE@{EXPECTED\_MESSAGE\_TYPE}}
+\index{EXPECTED\_MESSAGE\_TYPE@{EXPECTED\_MESSAGE\_TYPE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{EXPECTED\_MESSAGE\_TYPE}{EXPECTED\_MESSAGE\_TYPE}}
+{\footnotesize\ttfamily \#define EXPECTED\+\_\+\+MESSAGE\+\_\+\+TYPE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}( conn ).\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a29b23d42d72ad0a459d6e987d7426484}\label{s2n__handshake__io_8c_a29b23d42d72ad0a459d6e987d7426484}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!EXPECTED\_RECORD\_TYPE@{EXPECTED\_RECORD\_TYPE}}
+\index{EXPECTED\_RECORD\_TYPE@{EXPECTED\_RECORD\_TYPE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{EXPECTED\_RECORD\_TYPE}{EXPECTED\_RECORD\_TYPE}}
+{\footnotesize\ttfamily \#define EXPECTED\+\_\+\+RECORD\+\_\+\+TYPE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~\mbox{\hyperlink{s2n__handshake__io_8c_a02a3183aedc7e1310d00255ed20aa653}{ACTIVE\+\_\+\+STATE}}( conn ).record\+\_\+type}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}\label{s2n__handshake__io_8c_a4510dd50d1fa0d8ba39fc849a5a06821}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!IS\_TLS13\_HANDSHAKE@{IS\_TLS13\_HANDSHAKE}}
+\index{IS\_TLS13\_HANDSHAKE@{IS\_TLS13\_HANDSHAKE}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{IS\_TLS13\_HANDSHAKE}{IS\_TLS13\_HANDSHAKE}}
+{\footnotesize\ttfamily \#define IS\+\_\+\+TLS13\+\_\+\+HANDSHAKE(\begin{DoxyParamCaption}\item[{}]{conn }\end{DoxyParamCaption})~((conn)-\/$>$actual\+\_\+protocol\+\_\+version == \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2\+N\+\_\+\+TLS13}})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ade3b37a2965b02690204cc05d137f1c5}\label{s2n__handshake__io_8c_ade3b37a2965b02690204cc05d137f1c5}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!MAX\_HANDSHAKE\_TYPE\_LEN@{MAX\_HANDSHAKE\_TYPE\_LEN}}
+\index{MAX\_HANDSHAKE\_TYPE\_LEN@{MAX\_HANDSHAKE\_TYPE\_LEN}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_HANDSHAKE\_TYPE\_LEN}{MAX\_HANDSHAKE\_TYPE\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+HANDSHAKE\+\_\+\+TYPE\+\_\+\+LEN~152}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}\label{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!MESSAGE\_NAME\_ENTRY@{MESSAGE\_NAME\_ENTRY}}
+\index{MESSAGE\_NAME\_ENTRY@{MESSAGE\_NAME\_ENTRY}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{MESSAGE\_NAME\_ENTRY}{MESSAGE\_NAME\_ENTRY}}
+{\footnotesize\ttfamily \#define MESSAGE\+\_\+\+NAME\+\_\+\+ENTRY(\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})~\mbox{[}msg\mbox{]} = \#msg}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}\label{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!S2N\_HANDSHAKES\_COUNT@{S2N\_HANDSHAKES\_COUNT}}
+\index{S2N\_HANDSHAKES\_COUNT@{S2N\_HANDSHAKES\_COUNT}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_HANDSHAKES\_COUNT}{S2N\_HANDSHAKES\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT~512}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}\label{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!S2N\_MAX\_HANDSHAKE\_LENGTH@{S2N\_MAX\_HANDSHAKE\_LENGTH}}
+\index{S2N\_MAX\_HANDSHAKE\_LENGTH@{S2N\_MAX\_HANDSHAKE\_LENGTH}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_HANDSHAKE\_LENGTH}{S2N\_MAX\_HANDSHAKE\_LENGTH}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH~32}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__handshake__io_8c_ad711060a0be6d7d262a9160450b64a81}\label{s2n__handshake__io_8c_ad711060a0be6d7d262a9160450b64a81}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_advance\_message@{s2n\_advance\_message}}
+\index{s2n\_advance\_message@{s2n\_advance\_message}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_advance\_message()}{s2n\_advance\_message()}}
+{\footnotesize\ttfamily static int s2n\+\_\+advance\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a94fa252cc54b2b405f76585001f07247}\label{s2n__handshake__io_8c_a94fa252cc54b2b405f76585001f07247}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_always\_fail\_recv@{s2n\_always\_fail\_recv}}
+\index{s2n\_always\_fail\_recv@{s2n\_always\_fail\_recv}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_always\_fail\_recv()}{s2n\_always\_fail\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+always\+\_\+fail\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ac12fbc0d3245a0a89e973bf6f826dff4}\label{s2n__handshake__io_8c_ac12fbc0d3245a0a89e973bf6f826dff4}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_always\_fail\_send@{s2n\_always\_fail\_send}}
+\index{s2n\_always\_fail\_send@{s2n\_always\_fail\_send}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_always\_fail\_send()}{s2n\_always\_fail\_send()}}
+{\footnotesize\ttfamily static int s2n\+\_\+always\+\_\+fail\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ae096884ca55de4f4b2b3c5f44797e71d}\label{s2n__handshake__io_8c_ae096884ca55de4f4b2b3c5f44797e71d}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_conn\_clear\_handshake\_read\_block@{s2n\_conn\_clear\_handshake\_read\_block}}
+\index{s2n\_conn\_clear\_handshake\_read\_block@{s2n\_conn\_clear\_handshake\_read\_block}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_conn\_clear\_handshake\_read\_block()}{s2n\_conn\_clear\_handshake\_read\_block()}}
+{\footnotesize\ttfamily int s2n\+\_\+conn\+\_\+clear\+\_\+handshake\+\_\+read\+\_\+block (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ad1a464c4f0d92cf0ac994ecd7693bd10}\label{s2n__handshake__io_8c_ad1a464c4f0d92cf0ac994ecd7693bd10}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_conn\_get\_current\_message\_type@{s2n\_conn\_get\_current\_message\_type}}
+\index{s2n\_conn\_get\_current\_message\_type@{s2n\_conn\_get\_current\_message\_type}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_conn\_get\_current\_message\_type()}{s2n\_conn\_get\_current\_message\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} s2n\+\_\+conn\+\_\+get\+\_\+current\+\_\+message\+\_\+type (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a1324e0f9143c8cb249b7e819fe81e2ef}\label{s2n__handshake__io_8c_a1324e0f9143c8cb249b7e819fe81e2ef}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_conn\_set\_handshake\_no\_client\_cert@{s2n\_conn\_set\_handshake\_no\_client\_cert}}
+\index{s2n\_conn\_set\_handshake\_no\_client\_cert@{s2n\_conn\_set\_handshake\_no\_client\_cert}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_conn\_set\_handshake\_no\_client\_cert()}{s2n\_conn\_set\_handshake\_no\_client\_cert()}}
+{\footnotesize\ttfamily int s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+no\+\_\+client\+\_\+cert (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_aeebbea7bdc3a80f52812a7bb4b3f38c1}\label{s2n__handshake__io_8c_aeebbea7bdc3a80f52812a7bb4b3f38c1}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_conn\_set\_handshake\_read\_block@{s2n\_conn\_set\_handshake\_read\_block}}
+\index{s2n\_conn\_set\_handshake\_read\_block@{s2n\_conn\_set\_handshake\_read\_block}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_conn\_set\_handshake\_read\_block()}{s2n\_conn\_set\_handshake\_read\_block()}}
+{\footnotesize\ttfamily int s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+read\+\_\+block (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a4406f29de6d52b587003368d656dab20}\label{s2n__handshake__io_8c_a4406f29de6d52b587003368d656dab20}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_conn\_set\_handshake\_type@{s2n\_conn\_set\_handshake\_type}}
+\index{s2n\_conn\_set\_handshake\_type@{s2n\_conn\_set\_handshake\_type}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_conn\_set\_handshake\_type()}{s2n\_conn\_set\_handshake\_type()}}
+{\footnotesize\ttfamily int s2n\+\_\+conn\+\_\+set\+\_\+handshake\+\_\+type (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_aa9954730f48dd43d882e42ef2a293919}\label{s2n__handshake__io_8c_aa9954730f48dd43d882e42ef2a293919}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_connection\_get\_handshake\_type\_name@{s2n\_connection\_get\_handshake\_type\_name}}
+\index{s2n\_connection\_get\_handshake\_type\_name@{s2n\_connection\_get\_handshake\_type\_name}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_get\_handshake\_type\_name()}{s2n\_connection\_get\_handshake\_type\_name()}}
+{\footnotesize\ttfamily const char$\ast$ s2n\+\_\+connection\+\_\+get\+\_\+handshake\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a780f7c3bad948d23135f9b83bb4870f8}\label{s2n__handshake__io_8c_a780f7c3bad948d23135f9b83bb4870f8}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_connection\_get\_last\_message\_name@{s2n\_connection\_get\_last\_message\_name}}
+\index{s2n\_connection\_get\_last\_message\_name@{s2n\_connection\_get\_last\_message\_name}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_get\_last\_message\_name()}{s2n\_connection\_get\_last\_message\_name()}}
+{\footnotesize\ttfamily const char$\ast$ s2n\+\_\+connection\+\_\+get\+\_\+last\+\_\+message\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a64943e7d880856ab2e4cdf2e4b87bde1}\label{s2n__handshake__io_8c_a64943e7d880856ab2e4cdf2e4b87bde1}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_generate\_new\_client\_session\_id@{s2n\_generate\_new\_client\_session\_id}}
+\index{s2n\_generate\_new\_client\_session\_id@{s2n\_generate\_new\_client\_session\_id}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_generate\_new\_client\_session\_id()}{s2n\_generate\_new\_client\_session\_id()}}
+{\footnotesize\ttfamily int s2n\+\_\+generate\+\_\+new\+\_\+client\+\_\+session\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_aa1a818e89698bf14169d56facf5bee52}\label{s2n__handshake__io_8c_aa1a818e89698bf14169d56facf5bee52}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_handle\_retry\_state@{s2n\_handle\_retry\_state}}
+\index{s2n\_handle\_retry\_state@{s2n\_handle\_retry\_state}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_handle\_retry\_state()}{s2n\_handle\_retry\_state()}}
+{\footnotesize\ttfamily static int s2n\+\_\+handle\+\_\+retry\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a2cecc3b00f43b3c71a520e5d4d39d86e}\label{s2n__handshake__io_8c_a2cecc3b00f43b3c71a520e5d4d39d86e}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_handshake\_conn\_update\_hashes@{s2n\_handshake\_conn\_update\_hashes}}
+\index{s2n\_handshake\_conn\_update\_hashes@{s2n\_handshake\_conn\_update\_hashes}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_handshake\_conn\_update\_hashes()}{s2n\_handshake\_conn\_update\_hashes()}}
+{\footnotesize\ttfamily static int s2n\+\_\+handshake\+\_\+conn\+\_\+update\+\_\+hashes (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ad23caea84a2e2f8c1ada4f01f5decd2f}\label{s2n__handshake__io_8c_ad23caea84a2e2f8c1ada4f01f5decd2f}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_handshake\_handle\_sslv2@{s2n\_handshake\_handle\_sslv2}}
+\index{s2n\_handshake\_handle\_sslv2@{s2n\_handshake\_handle\_sslv2}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_handshake\_handle\_sslv2()}{s2n\_handshake\_handle\_sslv2()}}
+{\footnotesize\ttfamily static int s2n\+\_\+handshake\+\_\+handle\+\_\+sslv2 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ad942280a3b338778f1fda5b68904013a}\label{s2n__handshake__io_8c_ad942280a3b338778f1fda5b68904013a}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_handshake\_read\_io@{s2n\_handshake\_read\_io}}
+\index{s2n\_handshake\_read\_io@{s2n\_handshake\_read\_io}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_handshake\_read\_io()}{s2n\_handshake\_read\_io()}}
+{\footnotesize\ttfamily static int s2n\+\_\+handshake\+\_\+read\+\_\+io (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a1cb7bd8e50fa138fb938509aa0aee17a}\label{s2n__handshake__io_8c_a1cb7bd8e50fa138fb938509aa0aee17a}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_handshake\_write\_io@{s2n\_handshake\_write\_io}}
+\index{s2n\_handshake\_write\_io@{s2n\_handshake\_write\_io}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_handshake\_write\_io()}{s2n\_handshake\_write\_io()}}
+{\footnotesize\ttfamily static int s2n\+\_\+handshake\+\_\+write\+\_\+io (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a59b87eac68ac424a9b3b023502e4d97a}\label{s2n__handshake__io_8c_a59b87eac68ac424a9b3b023502e4d97a}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_is\_hello\_retry\_handshake@{s2n\_is\_hello\_retry\_handshake}}
+\index{s2n\_is\_hello\_retry\_handshake@{s2n\_is\_hello\_retry\_handshake}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_hello\_retry\_handshake()}{s2n\_is\_hello\_retry\_handshake()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a51365dbfc5a7da6b42476b1747bedc1b}\label{s2n__handshake__io_8c_a51365dbfc5a7da6b42476b1747bedc1b}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_is\_hello\_retry\_message@{s2n\_is\_hello\_retry\_message}}
+\index{s2n\_is\_hello\_retry\_message@{s2n\_is\_hello\_retry\_message}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_hello\_retry\_message()}{s2n\_is\_hello\_retry\_message()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a309d98d4c1adfd10c5dd62192f4c1051}\label{s2n__handshake__io_8c_a309d98d4c1adfd10c5dd62192f4c1051}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_negotiate@{s2n\_negotiate}}
+\index{s2n\_negotiate@{s2n\_negotiate}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_negotiate()}{s2n\_negotiate()}}
+{\footnotesize\ttfamily int s2n\+\_\+negotiate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a0e57fe24917ba3399cd9ca15ed0f6242}\label{s2n__handshake__io_8c_a0e57fe24917ba3399cd9ca15ed0f6242}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_read\_full\_handshake\_message@{s2n\_read\_full\_handshake\_message}}
+\index{s2n\_read\_full\_handshake\_message@{s2n\_read\_full\_handshake\_message}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_read\_full\_handshake\_message()}{s2n\_read\_full\_handshake\_message()}}
+{\footnotesize\ttfamily static int s2n\+\_\+read\+\_\+full\+\_\+handshake\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{message\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a71bed2acda1a44486b4d4b420c37590a}\label{s2n__handshake__io_8c_a71bed2acda1a44486b4d4b420c37590a}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_set\_hello\_retry\_required@{s2n\_set\_hello\_retry\_required}}
+\index{s2n\_set\_hello\_retry\_required@{s2n\_set\_hello\_retry\_required}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_hello\_retry\_required()}{s2n\_set\_hello\_retry\_required()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+hello\+\_\+retry\+\_\+required (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a7d97865b7b60ca399a79ab28c1f266b3}\label{s2n__handshake__io_8c_a7d97865b7b60ca399a79ab28c1f266b3}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!s2n\_try\_delete\_session\_cache@{s2n\_try\_delete\_session\_cache}}
+\index{s2n\_try\_delete\_session\_cache@{s2n\_try\_delete\_session\_cache}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_try\_delete\_session\_cache()}{s2n\_try\_delete\_session\_cache()}}
+{\footnotesize\ttfamily static int s2n\+\_\+try\+\_\+delete\+\_\+session\+\_\+cache (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__handshake__io_8c_a51b321fd82484c432a8978860e156214}\label{s2n__handshake__io_8c_a51b321fd82484c432a8978860e156214}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!handshake\_type\_names@{handshake\_type\_names}}
+\index{handshake\_type\_names@{handshake\_type\_names}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{handshake\_type\_names}{handshake\_type\_names}}
+{\footnotesize\ttfamily const char$\ast$ handshake\+\_\+type\+\_\+names\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}NEGOTIATED|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}FULL\_HANDSHAKE|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}TLS12\_PERFECT\_FORWARD\_SECRECY|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}OCSP\_STATUS|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}CLIENT\_AUTH|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}WITH\_SESSION\_TICKET|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}NO\_CLIENT\_CERT|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}HELLO\_RETRY\_REQUEST|"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}MIDDLEBOX\_COMPAT|"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__handshake__io_8c_a426fa83fa06fedceec78bfe585c102a8}\label{s2n__handshake__io_8c_a426fa83fa06fedceec78bfe585c102a8}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!handshake\_type\_str@{handshake\_type\_str}}
+\index{handshake\_type\_str@{handshake\_type\_str}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{handshake\_type\_str}{handshake\_type\_str}}
+{\footnotesize\ttfamily char handshake\+\_\+type\+\_\+str\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_ade3b37a2965b02690204cc05d137f1c5}{MAX\+\_\+\+HANDSHAKE\+\_\+\+TYPE\+\_\+\+LEN}}\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a6fbc85d287846327726871e457fc3cdb}\label{s2n__handshake__io_8c_a6fbc85d287846327726871e457fc3cdb}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!handshakes@{handshakes}}
+\index{handshakes@{handshakes}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{handshakes}{handshakes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} handshakes\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}{S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_ae38f86eee230721a8171934662e42cc1}\label{s2n__handshake__io_8c_ae38f86eee230721a8171934662e42cc1}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!message\_names@{message\_names}}
+\index{message\_names@{message\_names}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{message\_names}{message\_names}}
+{\footnotesize\ttfamily const char$\ast$ message\+\_\+names\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca0c8da6c451065bed79ea70684e6f3fca}{CLIENT\_HELLO}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca28914d3bb26ec8c2bd2d5ad9781cbf8c}{SERVER\_HELLO}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca735cac9d38560822bfb4162a266270dc}{ENCRYPTED\_EXTENSIONS}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cae52bc4016214323914340116903aacc2}{SERVER\_NEW\_SESSION\_TICKET}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4fa0b8ef81392fad2cfb9dc57309edbd}{SERVER\_CERT}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cabcaf9c1fed1de9b455ba3b260f1891e1}{SERVER\_CERT\_STATUS}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca246b64f82d95901f4aeb1b43a4f32c0c}{SERVER\_CERT\_VERIFY}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4c8761df0519724fe202e8093278925b}{SERVER\_KEY}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4ba20e86c79041ff8bc04d57da4850a2}{SERVER\_CERT\_REQ}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca27c9351168f8b8c04e98d7bfb5f1aef9}{SERVER\_HELLO\_DONE}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf70fb6b67e18c60d70d9a7749974234b}{CLIENT\_CERT}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caad5372bce033ae01cf194fea810961ab}{CLIENT\_KEY}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf7112e32da168252c9961359a7aff33f}{CLIENT\_CERT\_VERIFY}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca79b2332e05cbf65a699a00fc65df797a}{CLIENT\_CHANGE\_CIPHER\_SPEC}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cab567f0940aaa3b7a15d127767c31fa19}{CLIENT\_FINISHED}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca8c4c29243512fe560bc5d219f9546ea7}{SERVER\_CHANGE\_CIPHER\_SPEC}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca2dd425fc48253faf37d05196d691f4fd}{SERVER\_FINISHED}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca31da41372088344ae69e4e5ffe516d87}{HELLO\_RETRY\_MSG}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__handshake__io_8c_ae57062719b2350a17567d9b30dd9f0ba}{MESSAGE\_NAME\_ENTRY}}(\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cae5600c9ebf3ad742718c2ba003539a45}{APPLICATION\_DATA}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__handshake__io_8c_aa3007da0b854c6f21cff9cc25b44ec7d}\label{s2n__handshake__io_8c_aa3007da0b854c6f21cff9cc25b44ec7d}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!state\_machine@{state\_machine}}
+\index{state\_machine@{state\_machine}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{state\_machine}{state\_machine}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__handshake__action}{s2n\+\_\+handshake\+\_\+action}} state\+\_\+machine\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca0c8da6c451065bed79ea70684e6f3fca}{CLIENT\_HELLO}}]              = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a97bbcc3a3f636384bc16b898d90879ea}{TLS\_CLIENT\_HELLO}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__establish__session_8c_af87d232c232defcfa21884a9531059eb}{s2n\_establish\_session}}, \mbox{\hyperlink{s2n__client__hello_8c_a4b86117a2a4f018991a01ff788272441}{s2n\_client\_hello\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca28914d3bb26ec8c2bd2d5ad9781cbf8c}{SERVER\_HELLO}}]              = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a048b49dbe4e0abcdaa5f50b2ecd91fc4}{TLS\_SERVER\_HELLO}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__hello_8c_a8e32b708f98ecbfa1148c5393f8b9dba}{s2n\_server\_hello\_send}}, \mbox{\hyperlink{s2n__server__hello_8c_a2139f810755eb8cf27ebea179e81ac81}{s2n\_server\_hello\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cae52bc4016214323914340116903aacc2}{SERVER\_NEW\_SESSION\_TICKET}}] = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_adbb55c474cf58dff34e07086f2ca5745}{TLS\_SERVER\_NEW\_SESSION\_TICKET}},\textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__new__session__ticket_8c_a05a2717f736a7c3bf27d6bc00b4408ce}{s2n\_server\_nst\_send}}, \mbox{\hyperlink{s2n__server__new__session__ticket_8c_a04a12ba50157f9bb3e6b3bd62b8078f8}{s2n\_server\_nst\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4fa0b8ef81392fad2cfb9dc57309edbd}{SERVER\_CERT}}]               = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_acc05553fc975a0799209b4419133b4b2}{TLS\_CERTIFICATE}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__cert_8c_ab1bb9b2e08cb682e4bb9b156b49a0afa}{s2n\_server\_cert\_send}}, \mbox{\hyperlink{s2n__server__cert_8c_aea75ffb292cac5d71183fee7c14b7496}{s2n\_server\_cert\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cabcaf9c1fed1de9b455ba3b260f1891e1}{SERVER\_CERT\_STATUS}}]        = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a68d1ea0f0de6b359d9c15d89f3095ef7}{TLS\_SERVER\_CERT\_STATUS}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__ocsp__stapling_8c_af4c440c5d4b149bdc7b42a1fdf06b334}{s2n\_server\_status\_send}}, \mbox{\hyperlink{s2n__ocsp__stapling_8c_a6688277e6e5d779a28d99ec6d023a949}{s2n\_server\_status\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4c8761df0519724fe202e8093278925b}{SERVER\_KEY}}]                = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a9d3fa686a8b630798a5b93e4267937f2}{TLS\_SERVER\_KEY}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__key__exchange_8c_a940aed548236e016710e5ef69dc98df8}{s2n\_server\_key\_send}}, \mbox{\hyperlink{s2n__server__key__exchange_8c_a933dc8cdaebb70f8a7364e390d9deeaf}{s2n\_server\_key\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4ba20e86c79041ff8bc04d57da4850a2}{SERVER\_CERT\_REQ}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a34ca2dccfd8814143137a4e406529642}{TLS\_CERT\_REQ}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__cert__request_8c_a6ccb4ecbe45ba4491a9d5aee29b3664c}{s2n\_cert\_req\_send}}, \mbox{\hyperlink{s2n__server__cert__request_8c_a980d6ea41e3eb52211658af9276d799b}{s2n\_cert\_req\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca27c9351168f8b8c04e98d7bfb5f1aef9}{SERVER\_HELLO\_DONE}}]         = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_ad4a7ea7191525f41bbdf0775c35eff6e}{TLS\_SERVER\_HELLO\_DONE}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__done_8c_a944852f699b2815f6a37b602113e26f7}{s2n\_server\_done\_send}}, \mbox{\hyperlink{s2n__server__done_8c_a55414ad2a6f07ebbae51cbd0bf6f5974}{s2n\_server\_done\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf70fb6b67e18c60d70d9a7749974234b}{CLIENT\_CERT}}]               = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_acc05553fc975a0799209b4419133b4b2}{TLS\_CERTIFICATE}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__cert_8c_a7b28360a5b67d7f32acec43dbec76637}{s2n\_client\_cert\_recv}}, \mbox{\hyperlink{s2n__client__cert_8c_aec2517429bf91b18a66bfb5abb794eef}{s2n\_client\_cert\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caad5372bce033ae01cf194fea810961ab}{CLIENT\_KEY}}]                = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a32b656089b312b746625119dce8119b3}{TLS\_CLIENT\_KEY}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__key__exchange_8c_a5d0b0b0a8964b40aff5e3562bf65a9e1}{s2n\_client\_key\_recv}}, \mbox{\hyperlink{s2n__client__key__exchange_8c_a59294a875b6596b8dd5ad02a58e77c94}{s2n\_client\_key\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf7112e32da168252c9961359a7aff33f}{CLIENT\_CERT\_VERIFY}}]        = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a0e71b4aab57ad31cb21af69f401641c2}{TLS\_CERT\_VERIFY}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__cert__verify_8c_af0bda105119260ed7ea97e2aa25605ff}{s2n\_client\_cert\_verify\_recv}}, \mbox{\hyperlink{s2n__client__cert__verify_8c_a7563becdee2bb5e2edfcf2a449964976}{s2n\_client\_cert\_verify\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca79b2332e05cbf65a699a00fc65df797a}{CLIENT\_CHANGE\_CIPHER\_SPEC}}] = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5788d973268381c45d0909ebc14a16fd}{TLS\_CHANGE\_CIPHER\_SPEC}}, 0, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__change__cipher__spec_8c_aab9d53a394720e55e7648730f94bb176}{s2n\_client\_ccs\_recv}}, \mbox{\hyperlink{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}{s2n\_ccs\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cab567f0940aaa3b7a15d127767c31fa19}{CLIENT\_FINISHED}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a74fff9adc499c68f1515b9c47aa4339f}{TLS\_FINISHED}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__finished_8c_a1e5af2e3c7ad308eb7a32333210875f5}{s2n\_client\_finished\_recv}}, \mbox{\hyperlink{s2n__client__finished_8c_ac384b39fb82314ba9d3d4aebbae8f0e3}{s2n\_client\_finished\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca8c4c29243512fe560bc5d219f9546ea7}{SERVER\_CHANGE\_CIPHER\_SPEC}}] = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5788d973268381c45d0909ebc14a16fd}{TLS\_CHANGE\_CIPHER\_SPEC}}, 0, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}{s2n\_ccs\_send}}, \mbox{\hyperlink{s2n__change__cipher__spec_8c_ae06266c2514a2576c570f3f01d9f9ecf}{s2n\_server\_ccs\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca2dd425fc48253faf37d05196d691f4fd}{SERVER\_FINISHED}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a74fff9adc499c68f1515b9c47aa4339f}{TLS\_FINISHED}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__finished_8c_a1faebdea4c42a7b27ce347885b9bd9ee}{s2n\_server\_finished\_send}}, \mbox{\hyperlink{s2n__server__finished_8c_adae4d52456ffeb3a606ed1fb545539e4}{s2n\_server\_finished\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cae5600c9ebf3ad742718c2ba003539a45}{APPLICATION\_DATA}}]          = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5104f80ba38ebfd2266b1ec313f0aeb2}{TLS\_APPLICATION\_DATA}}, 0, \textcolor{charliteral}{'B'}, \{\mbox{\hyperlink{s2n__handshake__io_8c_ac12fbc0d3245a0a89e973bf6f826dff4}{s2n\_always\_fail\_send}}, \mbox{\hyperlink{s2n__handshake__io_8c_a94fa252cc54b2b405f76585001f07247}{s2n\_always\_fail\_recv}}\}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__handshake__io_8c_a9f5477f60d4b126af34e23bcfcb69b9b}\label{s2n__handshake__io_8c_a9f5477f60d4b126af34e23bcfcb69b9b}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!tls13\_handshakes@{tls13\_handshakes}}
+\index{tls13\_handshakes@{tls13\_handshakes}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{tls13\_handshakes}{tls13\_handshakes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} tls13\+\_\+handshakes\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a7eb14d7851c7745b1ad1342256b67e01}{S2\+N\+\_\+\+HANDSHAKES\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{s2n__handshake__io_8c_a1a1fd741c6de8e83b02fe02138d9b81a}{S2\+N\+\_\+\+MAX\+\_\+\+HANDSHAKE\+\_\+\+LENGTH}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__io_8c_a0e29f9b516be0af5e17ce579962c95e5}\label{s2n__handshake__io_8c_a0e29f9b516be0af5e17ce579962c95e5}} 
+\index{s2n\_handshake\_io.c@{s2n\_handshake\_io.c}!tls13\_state\_machine@{tls13\_state\_machine}}
+\index{tls13\_state\_machine@{tls13\_state\_machine}!s2n\_handshake\_io.c@{s2n\_handshake\_io.c}}
+\doxysubsubsection{\texorpdfstring{tls13\_state\_machine}{tls13\_state\_machine}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__handshake__action}{s2n\+\_\+handshake\+\_\+action}} tls13\+\_\+state\+\_\+machine\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca0c8da6c451065bed79ea70684e6f3fca}{CLIENT\_HELLO}}]              = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a97bbcc3a3f636384bc16b898d90879ea}{TLS\_CLIENT\_HELLO}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__establish__session_8c_af87d232c232defcfa21884a9531059eb}{s2n\_establish\_session}}, \mbox{\hyperlink{s2n__client__hello_8c_a4b86117a2a4f018991a01ff788272441}{s2n\_client\_hello\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca28914d3bb26ec8c2bd2d5ad9781cbf8c}{SERVER\_HELLO}}]              = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a048b49dbe4e0abcdaa5f50b2ecd91fc4}{TLS\_SERVER\_HELLO}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__hello_8c_a8e32b708f98ecbfa1148c5393f8b9dba}{s2n\_server\_hello\_send}}, \mbox{\hyperlink{s2n__server__hello_8c_a2139f810755eb8cf27ebea179e81ac81}{s2n\_server\_hello\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca31da41372088344ae69e4e5ffe516d87}{HELLO\_RETRY\_MSG}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a048b49dbe4e0abcdaa5f50b2ecd91fc4}{TLS\_SERVER\_HELLO}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__hello__retry_8c_ad8a731d79fd9acb0f328bc6a05a984a7}{s2n\_server\_hello\_retry\_send}}, \mbox{\hyperlink{s2n__server__hello__retry_8c_ad1052a2d1cd5d45e1ef9e9b81731a252}{s2n\_server\_hello\_retry\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca735cac9d38560822bfb4162a266270dc}{ENCRYPTED\_EXTENSIONS}}]      = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_afe20d790452396b9db41a9a6eafb99df}{TLS\_ENCRYPTED\_EXTENSIONS}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__encrypted__extensions_8c_aa632e39bf08b4068fb9c5ab99b7febf3}{s2n\_encrypted\_extensions\_send}}, \mbox{\hyperlink{s2n__encrypted__extensions_8c_a609433f4aa4328435323624ec74fce5d}{s2n\_encrypted\_extensions\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4ba20e86c79041ff8bc04d57da4850a2}{SERVER\_CERT\_REQ}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a34ca2dccfd8814143137a4e406529642}{TLS\_CERT\_REQ}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__cert__request_8c_a774e5816288c3feb4a1887de5dc2ec71}{s2n\_tls13\_cert\_req\_send}}, \mbox{\hyperlink{s2n__server__cert__request_8c_a7732db473b729e28248faff8eed1193c}{s2n\_tls13\_cert\_req\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca4fa0b8ef81392fad2cfb9dc57309edbd}{SERVER\_CERT}}]               = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_acc05553fc975a0799209b4419133b4b2}{TLS\_CERTIFICATE}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__cert_8c_ab1bb9b2e08cb682e4bb9b156b49a0afa}{s2n\_server\_cert\_send}}, \mbox{\hyperlink{s2n__server__cert_8c_aea75ffb292cac5d71183fee7c14b7496}{s2n\_server\_cert\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca246b64f82d95901f4aeb1b43a4f32c0c}{SERVER\_CERT\_VERIFY}}]        = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a0e71b4aab57ad31cb21af69f401641c2}{TLS\_CERT\_VERIFY}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__tls_8h_a72585661a034fc4e856a904390f7ab8b}{s2n\_tls13\_cert\_verify\_send}}, \mbox{\hyperlink{s2n__tls_8h_a95eb786d523b0552f52cc5d3173f5cd1}{s2n\_tls13\_cert\_verify\_recv}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca2dd425fc48253faf37d05196d691f4fd}{SERVER\_FINISHED}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a74fff9adc499c68f1515b9c47aa4339f}{TLS\_FINISHED}}, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__server__finished_8c_a8bb4ffaadfb4b3ab07c07cf993c3b1a0}{s2n\_tls13\_server\_finished\_send}}, \mbox{\hyperlink{s2n__server__finished_8c_aae0ef71221874b88d4ca45e9b98b7225}{s2n\_tls13\_server\_finished\_recv}}\}\},}
+\DoxyCodeLine{}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf70fb6b67e18c60d70d9a7749974234b}{CLIENT\_CERT}}]               = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_acc05553fc975a0799209b4419133b4b2}{TLS\_CERTIFICATE}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__cert_8c_a7b28360a5b67d7f32acec43dbec76637}{s2n\_client\_cert\_recv}}, \mbox{\hyperlink{s2n__client__cert_8c_aec2517429bf91b18a66bfb5abb794eef}{s2n\_client\_cert\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557caf7112e32da168252c9961359a7aff33f}{CLIENT\_CERT\_VERIFY}}]        = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a0e71b4aab57ad31cb21af69f401641c2}{TLS\_CERT\_VERIFY}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__tls_8h_a95eb786d523b0552f52cc5d3173f5cd1}{s2n\_tls13\_cert\_verify\_recv}}, \mbox{\hyperlink{s2n__tls_8h_a72585661a034fc4e856a904390f7ab8b}{s2n\_tls13\_cert\_verify\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cab567f0940aaa3b7a15d127767c31fa19}{CLIENT\_FINISHED}}]           = \{\mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a04fd920fd9f28238887e4c6417b4d4cc}{TLS\_HANDSHAKE}}, \mbox{\hyperlink{s2n__handshake_8h_a74fff9adc499c68f1515b9c47aa4339f}{TLS\_FINISHED}}, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__client__finished_8c_af35aac89fb7f1c50e51c987696713276}{s2n\_tls13\_client\_finished\_recv}}, \mbox{\hyperlink{s2n__client__finished_8c_a4c8b25448033cad5dd9a9b8b80fe8661}{s2n\_tls13\_client\_finished\_send}}\}\},}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca79b2332e05cbf65a699a00fc65df797a}{CLIENT\_CHANGE\_CIPHER\_SPEC}}] = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5788d973268381c45d0909ebc14a16fd}{TLS\_CHANGE\_CIPHER\_SPEC}}, 0, \textcolor{charliteral}{'C'}, \{\mbox{\hyperlink{s2n__change__cipher__spec_8c_a81d4061438f3c7038212b264f73a0a8f}{s2n\_basic\_ccs\_recv}}, \mbox{\hyperlink{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}{s2n\_ccs\_send}}\}\},}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557ca8c4c29243512fe560bc5d219f9546ea7}{SERVER\_CHANGE\_CIPHER\_SPEC}}] = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5788d973268381c45d0909ebc14a16fd}{TLS\_CHANGE\_CIPHER\_SPEC}}, 0, \textcolor{charliteral}{'S'}, \{\mbox{\hyperlink{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}{s2n\_ccs\_send}}, \mbox{\hyperlink{s2n__change__cipher__spec_8c_a81d4061438f3c7038212b264f73a0a8f}{s2n\_basic\_ccs\_recv}}\}\},}
+\DoxyCodeLine{}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557cae5600c9ebf3ad742718c2ba003539a45}{APPLICATION\_DATA}}]          = \{\mbox{\hyperlink{s2n__tls__parameters_8h_a5104f80ba38ebfd2266b1ec313f0aeb2}{TLS\_APPLICATION\_DATA}}, 0, \textcolor{charliteral}{'B'}, \{\mbox{\hyperlink{s2n__handshake__io_8c_ac12fbc0d3245a0a89e973bf6f826dff4}{s2n\_always\_fail\_send}}, \mbox{\hyperlink{s2n__handshake__io_8c_a94fa252cc54b2b405f76585001f07247}{s2n\_always\_fail\_recv}}\}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

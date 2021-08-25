@@ -1,0 +1,111 @@
+\hypertarget{bike__r1_2bike__defs_8h_source}{}\doxysection{bike\+\_\+defs.\+h}
+\label{bike__r1_2bike__defs_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/bike\_defs.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/bike\_defs.h}}
+\mbox{\hyperlink{bike__r1_2bike__defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define INDCPA}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define LEVEL 1}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{17 \textcolor{comment}{//             BIKE Parameters}}
+\DoxyCodeLine{19 \textcolor{comment}{}\textcolor{preprocessor}{\#define N0 2}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef LEVEL}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#  define LEVEL 1}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#if(LEVEL == 3)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#  ifdef INDCPA}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#    define R\_BITS 19853}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#    define R\_BITS 24821}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#  define DV 103}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#  define T1 199}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#  define THRESHOLD\_COEFF0 15.932}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#  define THRESHOLD\_COEFF1 0.0052936}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// The gfm code is optimized to a block size in this case:}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#  define BLOCK\_SIZE 32768}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#elif(LEVEL == 1)}}
+\DoxyCodeLine{40 \textcolor{comment}{// 64-\/bits of post-\/quantum security parameters (BIKE paper):}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#  ifdef INDCPA}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#    define R\_BITS 10163}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#    define R\_BITS 11779}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#  define DV 71}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#  define T1 134}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#  define THRESHOLD\_COEFF0 13.530}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#  define THRESHOLD\_COEFF1 0.0069721}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{// The gfm code is optimized to a block size in this case:}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#  define BLOCK\_SIZE       (16384)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#  error "{}Bad level, choose one of 1/3"{}}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#ifdef INDCPA}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#  define NUM\_OF\_SEEDS 2}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#  define NUM\_OF\_SEEDS 3}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{// Round the size to the nearest byte.}}
+\DoxyCodeLine{65 \textcolor{comment}{// SIZE suffix, is the number of bytes (uint8\_t).}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define N\_BITS (R\_BITS * N0)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define R\_SIZE DIVIDE\_AND\_CEIL(R\_BITS, 8)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define R\_QW   DIVIDE\_AND\_CEIL(R\_BITS, 8 * QW\_SIZE)}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define R\_YMM  DIVIDE\_AND\_CEIL(R\_BITS, 8 * YMM\_SIZE)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define R\_ZMM  DIVIDE\_AND\_CEIL(R\_BITS, 8 * ZMM\_SIZE)}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define N\_SIZE DIVIDE\_AND\_CEIL(N\_BITS, 8)}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define R\_BLOCKS      DIVIDE\_AND\_CEIL(R\_BITS, BLOCK\_SIZE)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define R\_PADDED      (R\_BLOCKS * BLOCK\_SIZE)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define R\_PADDED\_SIZE (R\_PADDED / 8)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define R\_PADDED\_QW   (R\_PADDED / 64)}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define N\_BLOCKS      DIVIDE\_AND\_CEIL(N\_BITS, BLOCK\_SIZE)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define N\_PADDED      (N\_BLOCKS * BLOCK\_SIZE)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define N\_PADDED\_SIZE (N\_PADDED / 8)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define N\_PADDED\_QW   (N\_PADDED / 64)}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define R\_DDQWORDS\_BITS (DIVIDE\_AND\_CEIL(R\_BITS, ALL\_YMM\_SIZE) * ALL\_YMM\_SIZE)}}
+\DoxyCodeLine{85 \mbox{\hyperlink{bike__r1_2bike__defs_8h_a0a96dab28ff955c6b5a9c35023e69e59}{bike\_static\_assert}}((\mbox{\hyperlink{bike__r1_2bike__defs_8h_ada3b877a17bccbdb8aed3afedde97753}{R\_BITS}} \% \mbox{\hyperlink{bike__r1_2defs_8h_ae211f071d727148d0ca9b9fd5d1f6294}{ALL\_YMM\_SIZE}} != 0), rbits\_512\_err);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define N\_DDQWORDS\_BITS (R\_DDQWORDS\_BITS + R\_BITS)}}
+\DoxyCodeLine{88 \mbox{\hyperlink{bike__r1_2bike__defs_8h_a0a96dab28ff955c6b5a9c35023e69e59}{bike\_static\_assert}}((\mbox{\hyperlink{bike__r1_2bike__defs_8h_a10721343217510b1b324cde94652d8ef}{N\_BITS}} \% \mbox{\hyperlink{bike__r1_2defs_8h_ae211f071d727148d0ca9b9fd5d1f6294}{ALL\_YMM\_SIZE}} != 0), nbits\_512\_err);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define LAST\_R\_QW\_LEAD  (R\_BITS \& MASK(6))}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define LAST\_R\_QW\_TRAIL (64 -\/ LAST\_R\_QW\_LEAD)}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define LAST\_R\_QW\_MASK  MASK(LAST\_R\_QW\_LEAD)}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define LAST\_R\_BYTE\_LEAD  (R\_BITS \& MASK(3))}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define LAST\_R\_BYTE\_TRAIL (8 -\/ LAST\_R\_BYTE\_LEAD)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define LAST\_R\_BYTE\_MASK  MASK(LAST\_R\_BYTE\_LEAD)}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{comment}{// BIKE auxiliary functions parameters:}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define ELL\_K\_BITS 256}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define ELL\_K\_SIZE (ELL\_K\_BITS / 8)}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{103 \textcolor{comment}{// Parameters for the BG decoder.}}
+\DoxyCodeLine{105 \textcolor{comment}{}\textcolor{preprocessor}{\#define BGF\_DECODER}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define DELTA  3}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define SLICES (LOG2\_MSB(DV) + 1)}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define BGF\_DECODER}}
+
+\end{DoxyCode}

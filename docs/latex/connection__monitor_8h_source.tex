@@ -1,0 +1,40 @@
+\hypertarget{connection__monitor_8h_source}{}\doxysection{connection\+\_\+monitor.\+h}
+\label{connection__monitor_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/connection\_monitor.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/connection\_monitor.h}}
+\mbox{\hyperlink{connection__monitor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_HTTP\_MONITOR\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_HTTP\_MONITOR\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{connection_8h}{aws/http/connection.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{http_8h}{aws/http/http.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}};}
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{comment}{/*}}
+\DoxyCodeLine{16 \textcolor{comment}{ * Needed by tests}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl}{aws\_statistics\_handler\_http\_connection\_monitor\_impl}} \{}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\_http\_connection\_monitoring\_options}} \mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl_a7691c81d6a708f9d47e3520a51ceec01}{options}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     uint64\_t \mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl_a5c02bdb9893ef68fd6ed466086b7062b}{throughput\_failure\_time\_ms}};}
+\DoxyCodeLine{22     uint32\_t \mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl_a7ebebbb4103546be5d6e5c8f6014a793}{last\_incoming\_stream\_id}};}
+\DoxyCodeLine{23     uint32\_t \mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl_a95f1d0c4006c7b0a08633879677ac802}{last\_outgoing\_stream\_id}};}
+\DoxyCodeLine{24     uint64\_t \mbox{\hyperlink{structaws__statistics__handler__http__connection__monitor__impl_a2ae93c2d46bd3cf63e99b54e2ce5c8e1}{last\_measured\_throughput}};}
+\DoxyCodeLine{25 \};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{33 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__monitor_8h_a9c7070829d62fd386bedca3c720ec639}{aws\_crt\_statistics\_handler\_new\_http\_connection\_monitor}}(}
+\DoxyCodeLine{35     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{36     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\_http\_connection\_monitoring\_options}} *options);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{42 \textcolor{keywordtype}{bool} \mbox{\hyperlink{connection__monitor_8h_a033baf464cc3f6e39286f9790befa541}{aws\_http\_connection\_monitoring\_options\_is\_valid}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\_http\_connection\_monitoring\_options}} *options);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_HTTP\_MONITOR\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,20 @@
+\hypertarget{posix__memalign__override_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/posix\+\_\+memalign\+\_\+override.c File Reference}
+\label{posix__memalign__override_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/posix\_memalign\_override.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/posix\_memalign\_override.c}}
+{\ttfamily \#include $<$cbmc\+\_\+proof/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{posix__memalign__override_8c_a25039dc7d1ee0131ad097abd4e9ce3d9}{posix\+\_\+memalign}} (void $\ast$$\ast$ptr, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t alignment, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{posix__memalign__override_8c_a25039dc7d1ee0131ad097abd4e9ce3d9}\label{posix__memalign__override_8c_a25039dc7d1ee0131ad097abd4e9ce3d9}} 
+\index{posix\_memalign\_override.c@{posix\_memalign\_override.c}!posix\_memalign@{posix\_memalign}}
+\index{posix\_memalign@{posix\_memalign}!posix\_memalign\_override.c@{posix\_memalign\_override.c}}
+\doxysubsubsection{\texorpdfstring{posix\_memalign()}{posix\_memalign()}}
+{\footnotesize\ttfamily int posix\+\_\+memalign (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{ptr,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{alignment,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Overrides the version of posix\+\_\+memalign used by CBMC. The current CBMC model doesn\textquotesingle{}t consider malloc may fail. 

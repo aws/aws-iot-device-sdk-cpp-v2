@@ -1,0 +1,82 @@
+\hypertarget{s2n__self__talk__nonblocking__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+self\+\_\+talk\+\_\+nonblocking\+\_\+test.c File Reference}
+\label{s2n__self__talk__nonblocking__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_nonblocking\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_nonblocking\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_a8461bc4f13618593744f4bb027011744}{mock\+\_\+client}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair, uint8\+\_\+t $\ast$expected\+\_\+data, uint32\+\_\+t size)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_ae34f7e7aacd11944085a742c3b56fb36}{mock\+\_\+client\+\_\+iov}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair, struct iovec $\ast$iov, uint32\+\_\+t iov\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_a73bfd9ae6657baf2ecbfe9aae0a3e3f4}{test\+\_\+send}} (int use\+\_\+tls13, int use\+\_\+iov, int prefer\+\_\+throughput)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}{cert\+\_\+chain\+\_\+pem}}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}{private\+\_\+key\+\_\+pem}}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}{dhparams\+\_\+pem}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__self__talk__nonblocking__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!main@{main}}
+\index{main@{main}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_a8461bc4f13618593744f4bb027011744}\label{s2n__self__talk__nonblocking__test_8c_a8461bc4f13618593744f4bb027011744}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!mock\_client@{mock\_client}}
+\index{mock\_client@{mock\_client}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client()}{mock\_client()}}
+{\footnotesize\ttfamily int mock\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair,  }\item[{uint8\+\_\+t $\ast$}]{expected\+\_\+data,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_ae34f7e7aacd11944085a742c3b56fb36}\label{s2n__self__talk__nonblocking__test_8c_ae34f7e7aacd11944085a742c3b56fb36}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!mock\_client\_iov@{mock\_client\_iov}}
+\index{mock\_client\_iov@{mock\_client\_iov}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client\_iov()}{mock\_client\_iov()}}
+{\footnotesize\ttfamily int mock\+\_\+client\+\_\+iov (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair,  }\item[{struct iovec $\ast$}]{iov,  }\item[{uint32\+\_\+t}]{iov\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_a73bfd9ae6657baf2ecbfe9aae0a3e3f4}\label{s2n__self__talk__nonblocking__test_8c_a73bfd9ae6657baf2ecbfe9aae0a3e3f4}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!test\_send@{test\_send}}
+\index{test\_send@{test\_send}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_send()}{test\_send()}}
+{\footnotesize\ttfamily int test\+\_\+send (\begin{DoxyParamCaption}\item[{int}]{use\+\_\+tls13,  }\item[{int}]{use\+\_\+iov,  }\item[{int}]{prefer\+\_\+throughput }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}\label{s2n__self__talk__nonblocking__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!cert\_chain\_pem@{cert\_chain\_pem}}
+\index{cert\_chain\_pem@{cert\_chain\_pem}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{cert\_chain\_pem}{cert\_chain\_pem}}
+{\footnotesize\ttfamily char$\ast$ cert\+\_\+chain\+\_\+pem}
+
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}\label{s2n__self__talk__nonblocking__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!dhparams\_pem@{dhparams\_pem}}
+\index{dhparams\_pem@{dhparams\_pem}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{dhparams\_pem}{dhparams\_pem}}
+{\footnotesize\ttfamily char$\ast$ dhparams\+\_\+pem}
+
+\mbox{\Hypertarget{s2n__self__talk__nonblocking__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}\label{s2n__self__talk__nonblocking__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}} 
+\index{s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}!private\_key\_pem@{private\_key\_pem}}
+\index{private\_key\_pem@{private\_key\_pem}!s2n\_self\_talk\_nonblocking\_test.c@{s2n\_self\_talk\_nonblocking\_test.c}}
+\doxysubsubsection{\texorpdfstring{private\_key\_pem}{private\_key\_pem}}
+{\footnotesize\ttfamily char$\ast$ private\+\_\+key\+\_\+pem}
+

@@ -1,0 +1,35 @@
+\hypertarget{memcpy__havoc_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memcpy\+\_\+havoc.c File Reference}
+\label{memcpy__havoc_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memcpy\_havoc.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memcpy\_havoc.c}}
+{\ttfamily \#include $<$cbmc\+\_\+proof/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__havoc_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}{memcpy\+\_\+impl}} (void $\ast$dst, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__havoc_8c_a18d9a75dd16f2db6609538cb4ddedaf1}{memcpy}} (void $\ast$dst, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__havoc_8c_a5d5fe779824e5cafaefb1005bd7ed77b}{\+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memcpy\+\_\+chk}} (void $\ast$dst, const void $\ast$src, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t n, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memcpy__havoc_8c_a5d5fe779824e5cafaefb1005bd7ed77b}\label{memcpy__havoc_8c_a5d5fe779824e5cafaefb1005bd7ed77b}} 
+\index{memcpy\_havoc.c@{memcpy\_havoc.c}!\_\_builtin\_\_\_memcpy\_chk@{\_\_builtin\_\_\_memcpy\_chk}}
+\index{\_\_builtin\_\_\_memcpy\_chk@{\_\_builtin\_\_\_memcpy\_chk}!memcpy\_havoc.c@{memcpy\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{\_\_builtin\_\_\_memcpy\_chk()}{\_\_builtin\_\_\_memcpy\_chk()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memcpy\+\_\+chk (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{n,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memcpy__havoc_8c_a18d9a75dd16f2db6609538cb4ddedaf1}\label{memcpy__havoc_8c_a18d9a75dd16f2db6609538cb4ddedaf1}} 
+\index{memcpy\_havoc.c@{memcpy\_havoc.c}!memcpy@{memcpy}}
+\index{memcpy@{memcpy}!memcpy\_havoc.c@{memcpy\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{memcpy()}{memcpy()}}
+{\footnotesize\ttfamily void$\ast$ memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memcpy__havoc_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}\label{memcpy__havoc_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}} 
+\index{memcpy\_havoc.c@{memcpy\_havoc.c}!memcpy\_impl@{memcpy\_impl}}
+\index{memcpy\_impl@{memcpy\_impl}!memcpy\_havoc.c@{memcpy\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{memcpy\_impl()}{memcpy\_impl()}}
+{\footnotesize\ttfamily void$\ast$ memcpy\+\_\+impl (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Overrides the version of memcpy used by CBMC. Users may not want to pay for the cost of performing the computation of memcpy in proofs. In that case, this stub at least checks for the preconditions and assigns arbitrary values to $\ast$dst. 

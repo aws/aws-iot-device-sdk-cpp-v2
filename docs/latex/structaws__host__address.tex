@@ -1,0 +1,81 @@
+\hypertarget{structaws__host__address}{}\doxysection{aws\+\_\+host\+\_\+address Struct Reference}
+\label{structaws__host__address}\index{aws\_host\_address@{aws\_host\_address}}
+
+
+{\ttfamily \#include $<$host\+\_\+resolver.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__host__address_a9a34c1c77aa49658811434fd99aa6e97}{allocator}}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__host__address_a3ee4d9a96eab96ddff46b2f35ec45f93}{host}}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__host__address_a765d62f4a180651e590eabbec7a94191}{address}}
+\item 
+enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}} \mbox{\hyperlink{structaws__host__address_ac8fbec8508569db7d6de6482b340a14e}{record\+\_\+type}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__host__address_ad059a97b744f0a8b78a2718dfe5a8011}{expiry}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__host__address_ad2d474bfd765381c94117966b9f1dd86}{use\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__host__address_ac84f17813cd9909043c1513c1810214b}{connection\+\_\+failure\+\_\+count}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structaws__host__address_a1bfd11f8f8f12a9eacd643d9e51658e0}{weight}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__host__address_a765d62f4a180651e590eabbec7a94191}\label{structaws__host__address_a765d62f4a180651e590eabbec7a94191}} 
+\index{aws\_host\_address@{aws\_host\_address}!address@{address}}
+\index{address@{address}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+host\+\_\+address\+::address}
+
+\mbox{\Hypertarget{structaws__host__address_a9a34c1c77aa49658811434fd99aa6e97}\label{structaws__host__address_a9a34c1c77aa49658811434fd99aa6e97}} 
+\index{aws\_host\_address@{aws\_host\_address}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+host\+\_\+address\+::allocator}
+
+\mbox{\Hypertarget{structaws__host__address_ac84f17813cd9909043c1513c1810214b}\label{structaws__host__address_ac84f17813cd9909043c1513c1810214b}} 
+\index{aws\_host\_address@{aws\_host\_address}!connection\_failure\_count@{connection\_failure\_count}}
+\index{connection\_failure\_count@{connection\_failure\_count}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{connection\_failure\_count}{connection\_failure\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+host\+\_\+address\+::connection\+\_\+failure\+\_\+count}
+
+\mbox{\Hypertarget{structaws__host__address_ad059a97b744f0a8b78a2718dfe5a8011}\label{structaws__host__address_ad059a97b744f0a8b78a2718dfe5a8011}} 
+\index{aws\_host\_address@{aws\_host\_address}!expiry@{expiry}}
+\index{expiry@{expiry}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{expiry}{expiry}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+host\+\_\+address\+::expiry}
+
+\mbox{\Hypertarget{structaws__host__address_a3ee4d9a96eab96ddff46b2f35ec45f93}\label{structaws__host__address_a3ee4d9a96eab96ddff46b2f35ec45f93}} 
+\index{aws\_host\_address@{aws\_host\_address}!host@{host}}
+\index{host@{host}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+host\+\_\+address\+::host}
+
+\mbox{\Hypertarget{structaws__host__address_ac8fbec8508569db7d6de6482b340a14e}\label{structaws__host__address_ac8fbec8508569db7d6de6482b340a14e}} 
+\index{aws\_host\_address@{aws\_host\_address}!record\_type@{record\_type}}
+\index{record\_type@{record\_type}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{record\_type}{record\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}} aws\+\_\+host\+\_\+address\+::record\+\_\+type}
+
+\mbox{\Hypertarget{structaws__host__address_ad2d474bfd765381c94117966b9f1dd86}\label{structaws__host__address_ad2d474bfd765381c94117966b9f1dd86}} 
+\index{aws\_host\_address@{aws\_host\_address}!use\_count@{use\_count}}
+\index{use\_count@{use\_count}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{use\_count}{use\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+host\+\_\+address\+::use\+\_\+count}
+
+\mbox{\Hypertarget{structaws__host__address_a1bfd11f8f8f12a9eacd643d9e51658e0}\label{structaws__host__address_a1bfd11f8f8f12a9eacd643d9e51658e0}} 
+\index{aws\_host\_address@{aws\_host\_address}!weight@{weight}}
+\index{weight@{weight}!aws\_host\_address@{aws\_host\_address}}
+\doxysubsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+host\+\_\+address\+::weight}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{host__resolver_8h}{host\+\_\+resolver.\+h}}\end{DoxyCompactItemize}

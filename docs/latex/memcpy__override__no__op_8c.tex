@@ -1,0 +1,37 @@
+\hypertarget{memcpy__override__no__op_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/memcpy\+\_\+override\+\_\+no\+\_\+op.c File Reference}
+\label{memcpy__override__no__op_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/memcpy\_override\_no\_op.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/memcpy\_override\_no\_op.c}}
+{\ttfamily \#include $<$proof\+\_\+helpers/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__override__no__op_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}{memcpy\+\_\+impl}} (void $\ast$dst, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__override__no__op_8c_a18d9a75dd16f2db6609538cb4ddedaf1}{memcpy}} (void $\ast$dst, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memcpy__override__no__op_8c_a5d5fe779824e5cafaefb1005bd7ed77b}{\+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memcpy\+\_\+chk}} (void $\ast$dst, const void $\ast$src, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t n, \+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memcpy__override__no__op_8c_a5d5fe779824e5cafaefb1005bd7ed77b}\label{memcpy__override__no__op_8c_a5d5fe779824e5cafaefb1005bd7ed77b}} 
+\index{memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}!\_\_builtin\_\_\_memcpy\_chk@{\_\_builtin\_\_\_memcpy\_chk}}
+\index{\_\_builtin\_\_\_memcpy\_chk@{\_\_builtin\_\_\_memcpy\_chk}!memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}}
+\doxysubsubsection{\texorpdfstring{\_\_builtin\_\_\_memcpy\_chk()}{\_\_builtin\_\_\_memcpy\_chk()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memcpy\+\_\+chk (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{n,  }\item[{\+\_\+\+\_\+\+CPROVER\+\_\+size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memcpy__override__no__op_8c_a18d9a75dd16f2db6609538cb4ddedaf1}\label{memcpy__override__no__op_8c_a18d9a75dd16f2db6609538cb4ddedaf1}} 
+\index{memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}!memcpy@{memcpy}}
+\index{memcpy@{memcpy}!memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}}
+\doxysubsubsection{\texorpdfstring{memcpy()}{memcpy()}}
+{\footnotesize\ttfamily void$\ast$ memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memcpy__override__no__op_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}\label{memcpy__override__no__op_8c_a75a8c8c311c7e6d9e32bad0cbc145ffb}} 
+\index{memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}!memcpy\_impl@{memcpy\_impl}}
+\index{memcpy\_impl@{memcpy\_impl}!memcpy\_override\_no\_op.c@{memcpy\_override\_no\_op.c}}
+\doxysubsubsection{\texorpdfstring{memcpy\_impl()}{memcpy\_impl()}}
+{\footnotesize\ttfamily void$\ast$ memcpy\+\_\+impl (\begin{DoxyParamCaption}\item[{void $\ast$}]{dst,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. FUNCTION\+: memcpy
+
+This function overrides the original implementation of the memcpy function from \mbox{\hyperlink{string_8h}{string.\+h}}. It copies the values of n bytes from the $\ast$src to the $\ast$dst. It also checks if the size of the arrays pointed to by both the $\ast$dst and $\ast$src parameters are at least n bytes and if they overlap. Override the version of memcpy used by CBMC. 

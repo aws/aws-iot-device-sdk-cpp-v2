@@ -1,0 +1,73 @@
+\hypertarget{structs2n__handshake__parameters}{}\doxysection{s2n\+\_\+handshake\+\_\+parameters Struct Reference}
+\label{structs2n__handshake__parameters}\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+handshake.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__sig__scheme__list}{s2n\+\_\+sig\+\_\+scheme\+\_\+list}} \mbox{\hyperlink{structs2n__handshake__parameters_a2127e0decf1934573f6cff34f109cde2}{client\+\_\+sig\+\_\+hash\+\_\+algs}}
+\item 
+struct \mbox{\hyperlink{structs2n__sig__scheme__list}{s2n\+\_\+sig\+\_\+scheme\+\_\+list}} \mbox{\hyperlink{structs2n__handshake__parameters_ac0640d80a40559376fca4d833e30dcb6}{server\+\_\+sig\+\_\+hash\+\_\+algs}}
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{structs2n__handshake__parameters_adf64dd188fa720c908134458ed50c9e4}{our\+\_\+chain\+\_\+and\+\_\+key}}
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{structs2n__handshake__parameters_ab2145ad0b99ef4beb332043ea9b289d6}{exact\+\_\+sni\+\_\+matches}} \mbox{[}\mbox{\hyperlink{s2n__certificate_8h_a6268a0db3a04623da9e5767e9792c8b8}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{structs2n__handshake__parameters_a213746e3d0ea0362a851c0bc6c6766ec}{wc\+\_\+sni\+\_\+matches}} \mbox{[}\mbox{\hyperlink{s2n__certificate_8h_a6268a0db3a04623da9e5767e9792c8b8}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__handshake__parameters_adc6c65fcbe489dc405840b68bbcacc05}{exact\+\_\+sni\+\_\+match\+\_\+exists}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__handshake__parameters_a9c74ff04d9f86165a18616ac57f7e5f9}{wc\+\_\+sni\+\_\+match\+\_\+exists}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__handshake__parameters_a2127e0decf1934573f6cff34f109cde2}\label{structs2n__handshake__parameters_a2127e0decf1934573f6cff34f109cde2}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!client\_sig\_hash\_algs@{client\_sig\_hash\_algs}}
+\index{client\_sig\_hash\_algs@{client\_sig\_hash\_algs}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{client\_sig\_hash\_algs}{client\_sig\_hash\_algs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__sig__scheme__list}{s2n\+\_\+sig\+\_\+scheme\+\_\+list}} s2n\+\_\+handshake\+\_\+parameters\+::client\+\_\+sig\+\_\+hash\+\_\+algs}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_adc6c65fcbe489dc405840b68bbcacc05}\label{structs2n__handshake__parameters_adc6c65fcbe489dc405840b68bbcacc05}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!exact\_sni\_match\_exists@{exact\_sni\_match\_exists}}
+\index{exact\_sni\_match\_exists@{exact\_sni\_match\_exists}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{exact\_sni\_match\_exists}{exact\_sni\_match\_exists}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+\_\+parameters\+::exact\+\_\+sni\+\_\+match\+\_\+exists}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_ab2145ad0b99ef4beb332043ea9b289d6}\label{structs2n__handshake__parameters_ab2145ad0b99ef4beb332043ea9b289d6}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!exact\_sni\_matches@{exact\_sni\_matches}}
+\index{exact\_sni\_matches@{exact\_sni\_matches}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{exact\_sni\_matches}{exact\_sni\_matches}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ s2n\+\_\+handshake\+\_\+parameters\+::exact\+\_\+sni\+\_\+matches\mbox{[}\mbox{\hyperlink{s2n__certificate_8h_a6268a0db3a04623da9e5767e9792c8b8}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_adf64dd188fa720c908134458ed50c9e4}\label{structs2n__handshake__parameters_adf64dd188fa720c908134458ed50c9e4}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!our\_chain\_and\_key@{our\_chain\_and\_key}}
+\index{our\_chain\_and\_key@{our\_chain\_and\_key}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{our\_chain\_and\_key}{our\_chain\_and\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ s2n\+\_\+handshake\+\_\+parameters\+::our\+\_\+chain\+\_\+and\+\_\+key}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_ac0640d80a40559376fca4d833e30dcb6}\label{structs2n__handshake__parameters_ac0640d80a40559376fca4d833e30dcb6}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!server\_sig\_hash\_algs@{server\_sig\_hash\_algs}}
+\index{server\_sig\_hash\_algs@{server\_sig\_hash\_algs}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{server\_sig\_hash\_algs}{server\_sig\_hash\_algs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__sig__scheme__list}{s2n\+\_\+sig\+\_\+scheme\+\_\+list}} s2n\+\_\+handshake\+\_\+parameters\+::server\+\_\+sig\+\_\+hash\+\_\+algs}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_a9c74ff04d9f86165a18616ac57f7e5f9}\label{structs2n__handshake__parameters_a9c74ff04d9f86165a18616ac57f7e5f9}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!wc\_sni\_match\_exists@{wc\_sni\_match\_exists}}
+\index{wc\_sni\_match\_exists@{wc\_sni\_match\_exists}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{wc\_sni\_match\_exists}{wc\_sni\_match\_exists}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+\_\+parameters\+::wc\+\_\+sni\+\_\+match\+\_\+exists}
+
+\mbox{\Hypertarget{structs2n__handshake__parameters_a213746e3d0ea0362a851c0bc6c6766ec}\label{structs2n__handshake__parameters_a213746e3d0ea0362a851c0bc6c6766ec}} 
+\index{s2n\_handshake\_parameters@{s2n\_handshake\_parameters}!wc\_sni\_matches@{wc\_sni\_matches}}
+\index{wc\_sni\_matches@{wc\_sni\_matches}!s2n\_handshake\_parameters@{s2n\_handshake\_parameters}}
+\doxysubsubsection{\texorpdfstring{wc\_sni\_matches}{wc\_sni\_matches}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ s2n\+\_\+handshake\+\_\+parameters\+::wc\+\_\+sni\+\_\+matches\mbox{[}\mbox{\hyperlink{s2n__certificate_8h_a6268a0db3a04623da9e5767e9792c8b8}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/tls/\mbox{\hyperlink{s2n__handshake_8h}{s2n\+\_\+handshake.\+h}}\end{DoxyCompactItemize}

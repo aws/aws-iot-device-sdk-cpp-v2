@@ -1,0 +1,61 @@
+\hypertarget{s2n__server__fuzz__test__overrides_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/\+LD\+\_\+\+PRELOAD/s2n\+\_\+server\+\_\+fuzz\+\_\+test\+\_\+overrides.c File Reference}
+\label{s2n__server__fuzz__test__overrides_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/LD\_PRELOAD/s2n\_server\_fuzz\_test\_overrides.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/LD\_PRELOAD/s2n\_server\_fuzz\_test\_overrides.c}}
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/rsa.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+GNU\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+time\+\_\+t \mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a840ddd268669df5b1e15c04cebbd6210}{time}} (time\+\_\+t $\ast$\+\_\+\+\_\+timer)
+\item 
+int \mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a98268d307074f7fab28fbff3a4b8e796}{RSA\+\_\+verify}} (int dtype, const unsigned char $\ast$m, unsigned int m\+\_\+len, const unsigned char $\ast$sigbuf, unsigned int siglen, RSA $\ast$rsa)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a572496a8cad082ec74aa56e74c604732}{s2n\+\_\+constant\+\_\+time\+\_\+equals}} (const uint8\+\_\+t $\ast$a, const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+int \mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a3189be6ffa9dc24179dbb320db153295}{s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__server__fuzz__test__overrides_8c_a369266c24eacffb87046522897a570d5}\label{s2n__server__fuzz__test__overrides_8c_a369266c24eacffb87046522897a570d5}} 
+\index{s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+GNU\+\_\+\+SOURCE}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__fuzz__test__overrides_8c_a98268d307074f7fab28fbff3a4b8e796}\label{s2n__server__fuzz__test__overrides_8c_a98268d307074f7fab28fbff3a4b8e796}} 
+\index{s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}!RSA\_verify@{RSA\_verify}}
+\index{RSA\_verify@{RSA\_verify}!s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_verify()}{RSA\_verify()}}
+{\footnotesize\ttfamily int RSA\+\_\+verify (\begin{DoxyParamCaption}\item[{int}]{dtype,  }\item[{const unsigned char $\ast$}]{m,  }\item[{unsigned int}]{m\+\_\+len,  }\item[{const unsigned char $\ast$}]{sigbuf,  }\item[{unsigned int}]{siglen,  }\item[{RSA $\ast$}]{rsa }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__fuzz__test__overrides_8c_a572496a8cad082ec74aa56e74c604732}\label{s2n__server__fuzz__test__overrides_8c_a572496a8cad082ec74aa56e74c604732}} 
+\index{s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}!s2n\_constant\_time\_equals@{s2n\_constant\_time\_equals}}
+\index{s2n\_constant\_time\_equals@{s2n\_constant\_time\_equals}!s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_constant\_time\_equals()}{s2n\_constant\_time\_equals()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+constant\+\_\+time\+\_\+equals (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{a,  }\item[{const uint8\+\_\+t $\ast$}]{b,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__fuzz__test__overrides_8c_a3189be6ffa9dc24179dbb320db153295}\label{s2n__server__fuzz__test__overrides_8c_a3189be6ffa9dc24179dbb320db153295}} 
+\index{s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}!s2n\_rsa\_client\_key\_recv@{s2n\_rsa\_client\_key\_recv}}
+\index{s2n\_rsa\_client\_key\_recv@{s2n\_rsa\_client\_key\_recv}!s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_client\_key\_recv()}{s2n\_rsa\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__fuzz__test__overrides_8c_a840ddd268669df5b1e15c04cebbd6210}\label{s2n__server__fuzz__test__overrides_8c_a840ddd268669df5b1e15c04cebbd6210}} 
+\index{s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}!time@{time}}
+\index{time@{time}!s2n\_server\_fuzz\_test\_overrides.c@{s2n\_server\_fuzz\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{time()}{time()}}
+{\footnotesize\ttfamily time\+\_\+t time (\begin{DoxyParamCaption}\item[{time\+\_\+t $\ast$}]{\+\_\+\+\_\+timer }\end{DoxyParamCaption})}
+

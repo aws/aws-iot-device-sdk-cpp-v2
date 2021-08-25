@@ -1,0 +1,249 @@
+\hypertarget{h2__connection_8h_source}{}\doxysection{h2\+\_\+connection.\+h}
+\label{h2__connection_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h2\_connection.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h2\_connection.h}}
+\mbox{\hyperlink{h2__connection_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_H2\_CONNECTION\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_H2\_CONNECTION\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{atomics_8h}{aws/common/atomics.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{fifo__cache_8h}{aws/common/fifo\_cache.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{hash__table_8h}{aws/common/hash\_table.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{mutex_8h}{aws/common/mutex.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{connection__impl_8h}{aws/http/private/connection\_impl.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{h2__frames_8h}{aws/http/private/h2\_frames.h}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__decoder}{aws\_h2\_decoder}};}
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__stream}{aws\_h2\_stream}};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} \{}
+\DoxyCodeLine{21     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} \mbox{\hyperlink{structaws__h2__connection_aab269ec7b0aa5ca4cd4993fa3325bf56}{base}};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \mbox{\hyperlink{connection_8h_ae8a80c3d1d1077ba101bfbfa3b27730e}{aws\_http2\_on\_goaway\_received\_fn}} *\mbox{\hyperlink{structaws__h2__connection_a44c660c8317976259e6db5dace4b7c83}{on\_goaway\_received}};}
+\DoxyCodeLine{24     \mbox{\hyperlink{connection_8h_a16586f76fb0f6b7aced7c6cff88a76ea}{aws\_http2\_on\_remote\_settings\_change\_fn}} *\mbox{\hyperlink{structaws__h2__connection_a5898389eb9efbefc3ac771cdc26b6eab}{on\_remote\_settings\_change}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} \mbox{\hyperlink{structaws__h2__connection_a37a908dd0017ca539d056787dfc37195}{cross\_thread\_work\_task}};}
+\DoxyCodeLine{27     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} \mbox{\hyperlink{structaws__h2__connection_aeb6664ccf2830e91deaa3d6d2131f923}{outgoing\_frames\_task}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{comment}{/* Only the event-\/loop thread may touch this data */}}
+\DoxyCodeLine{30     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{31         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__decoder}{aws\_h2\_decoder}} *\mbox{\hyperlink{structaws__h2__connection_a4d2c7daa0338685b6207632d323e5b34}{decoder}};}
+\DoxyCodeLine{32         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} \mbox{\hyperlink{structaws__h2__connection_ac92ee78a0f7f787b83d98a93b3f06658}{encoder}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \textcolor{comment}{/* True when reading/writing has stopped, whether due to errors or normal channel shutdown. */}}
+\DoxyCodeLine{35         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a4b6300bc64ad0054b029c37991476615}{is\_reading\_stopped}};}
+\DoxyCodeLine{36         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a259835d568415a82a52f9602d8e38e73}{is\_writing\_stopped}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_ac3c8c75456cf4e46b49c1579fa8e3109}{is\_outgoing\_frames\_task\_active}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40         \textcolor{comment}{/* Settings received from peer, which restricts the message to send */}}
+\DoxyCodeLine{41         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a9bd9fbca04c75d7ade6c70c31bdbebab}{settings\_peer}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
+\DoxyCodeLine{42         \textcolor{comment}{/* Local settings to send/sent to peer, which affects the decoding */}}
+\DoxyCodeLine{43         uint32\_t \mbox{\hyperlink{structaws__h2__connection_ab8e4bcd5ae01bd1bfa61748136881316}{settings\_self}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         \textcolor{comment}{/* List using aws\_h2\_pending\_settings.node}}
+\DoxyCodeLine{46 \textcolor{comment}{         * Contains settings waiting to be ACKed by peer and applied */}}
+\DoxyCodeLine{47         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a95fdb9028a4eb9781ea1fee31f78b50b}{pending\_settings\_queue}};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49         \textcolor{comment}{/* List using aws\_h2\_pending\_ping.node}}
+\DoxyCodeLine{50 \textcolor{comment}{         * Pings waiting to be ACKed by peer */}}
+\DoxyCodeLine{51         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a59a58cd3ddfe65e25bb8e4c8485380ff}{pending\_ping\_queue}};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{comment}{/* Most recent stream-\/id that was initiated by peer */}}
+\DoxyCodeLine{54         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a220c649f1f6bdb0e2df9d3fac7d6a0ae}{latest\_peer\_initiated\_stream\_id}};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56         \textcolor{comment}{/* Maps stream-\/id to aws\_h2\_stream*.}}
+\DoxyCodeLine{57 \textcolor{comment}{         * Contains all streams in the open, reserved, and half-\/closed states (terms from RFC-\/7540 5.1).}}
+\DoxyCodeLine{58 \textcolor{comment}{         * Once a stream enters closed state, it is removed from this map. */}}
+\DoxyCodeLine{59         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__h2__connection_aef3c7c301841c1fdaefed7f403b79eae}{active\_streams\_map}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{comment}{/* List using aws\_h2\_stream.node.}}
+\DoxyCodeLine{62 \textcolor{comment}{         * Contains all streams with DATA frames to send.}}
+\DoxyCodeLine{63 \textcolor{comment}{         * Any stream in this list is also in the active\_streams\_map. */}}
+\DoxyCodeLine{64         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_ad565a3b8edbeec7db81488ee26265bda}{outgoing\_streams\_list}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66         \textcolor{comment}{/* List using aws\_h2\_stream.node.}}
+\DoxyCodeLine{67 \textcolor{comment}{         * Contains all streams with DATA frames to send, and cannot send now due to flow control.}}
+\DoxyCodeLine{68 \textcolor{comment}{         * Waiting for WINDOW\_UPDATE to set them free */}}
+\DoxyCodeLine{69         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a9530108b12643af6ab93c1915724ecd4}{stalled\_window\_streams\_list}};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \textcolor{comment}{/* List using aws\_h2\_frame.node.}}
+\DoxyCodeLine{72 \textcolor{comment}{         * Queues all frames (except DATA frames) for connection to send.}}
+\DoxyCodeLine{73 \textcolor{comment}{         * When queue is empty, then we send DATA frames from the outgoing\_streams\_list */}}
+\DoxyCodeLine{74         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a5aad44ddbea7aab719074ab03cd4fa0d}{outgoing\_frames\_queue}};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76         \textcolor{comment}{/* FIFO cache for closed stream, key: stream-\/id, value: aws\_h2\_stream\_closed\_when.}}
+\DoxyCodeLine{77 \textcolor{comment}{         * Contains data about streams that were recently closed.}}
+\DoxyCodeLine{78 \textcolor{comment}{         * The oldest entry will be removed if the cache is full */}}
+\DoxyCodeLine{79         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__cache}{aws\_cache}} *\mbox{\hyperlink{structaws__h2__connection_af2c0ae8763f807efde2f8b3aba7d36f8}{closed\_streams}};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81         \textcolor{comment}{/* Flow-\/control of connection from peer. Indicating the buffer capacity of our peer.}}
+\DoxyCodeLine{82 \textcolor{comment}{         * Reduce the space after sending a flow-\/controlled frame. Increment after receiving WINDOW\_UPDATE for}}
+\DoxyCodeLine{83 \textcolor{comment}{         * connection */}}
+\DoxyCodeLine{84         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h2__connection_ab84d8f04e209d1b484d9411f96f21a0b}{window\_size\_peer}};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86         \textcolor{comment}{/* Flow-\/control of connection for this side.}}
+\DoxyCodeLine{87 \textcolor{comment}{         * Reduce the space after receiving a flow-\/controlled frame. Increment after sending WINDOW\_UPDATE for}}
+\DoxyCodeLine{88 \textcolor{comment}{         * connection */}}
+\DoxyCodeLine{89         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h2__connection_a3a9e57ce362032da4d0fb3938ef478c0}{window\_size\_self}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91         \textcolor{comment}{/* Highest self-\/initiated stream-\/id that peer might have processed.}}
+\DoxyCodeLine{92 \textcolor{comment}{         * Defaults to max stream-\/id, may be lowered when GOAWAY frame received. */}}
+\DoxyCodeLine{93         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a3e0ac8a974cbe3d2a4a7804ff6dccbb6}{goaway\_received\_last\_stream\_id}};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95         \textcolor{comment}{/* Last-\/stream-\/id sent in most recent GOAWAY frame. Defaults to max stream-\/id. */}}
+\DoxyCodeLine{96         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a3bc90486b0945ddb5943d0db8602add7}{goaway\_sent\_last\_stream\_id}};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         \textcolor{comment}{/* Frame we are encoding now. NULL if we are not encoding anything. */}}
+\DoxyCodeLine{99         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{structaws__h2__connection_af9d3c7d7b8437c8b395345219edde76c}{current\_outgoing\_frame}};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101         \textcolor{comment}{/* Pointer to initial pending settings. If ACKed by peer, it will be NULL. */}}
+\DoxyCodeLine{102         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__pending__settings}{aws\_h2\_pending\_settings}} *\mbox{\hyperlink{structaws__h2__connection_a37b473a81f7762ff97e2a006cc4727f9}{init\_pending\_settings}};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104         \textcolor{comment}{/* Cached channel shutdown values.}}
+\DoxyCodeLine{105 \textcolor{comment}{         * If possible, we delay shutdown-\/in-\/the-\/write-\/dir until GOAWAY is written. */}}
+\DoxyCodeLine{106         \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__h2__connection_a1a41a982262875355083967725de7d2d}{channel\_shutdown\_error\_code}};}
+\DoxyCodeLine{107         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a0c07f5015a37d68b21b7ac806c866a77}{channel\_shutdown\_immediately}};}
+\DoxyCodeLine{108         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a92651c5ed7ee36e1329f8ecaf4166f85}{channel\_shutdown\_waiting\_for\_goaway\_to\_be\_written}};}
+\DoxyCodeLine{109     \} \mbox{\hyperlink{structaws__h2__connection_a56e7828d8e8305faf32dfd063c4dd47f}{thread\_data}};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     \textcolor{comment}{/* Any thread may touch this data, but the lock must be held (unless it's an atomic) */}}
+\DoxyCodeLine{112     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{113         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__h2__connection_adba4de7b79b308aa1e0a45631e0241ec}{lock}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115         \textcolor{comment}{/* New `aws\_h2\_stream *` that haven't moved to `thread\_data` yet */}}
+\DoxyCodeLine{116         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_ac165c800e777ea9a6f195e2d0f8a1d07}{pending\_stream\_list}};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118         \textcolor{comment}{/* New `aws\_h2\_frames *`, connection control frames created by user that haven't moved to `thread\_data` yet */}}
+\DoxyCodeLine{119         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a995b7093126ac3384050fb363c8fa0df}{pending\_frame\_list}};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121         \textcolor{comment}{/* New `aws\_h2\_pending\_settings *` created by user that haven't moved to `thread\_data` yet */}}
+\DoxyCodeLine{122         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a682d82dfca828e0176cd205e33edb689}{pending\_settings\_list}};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124         \textcolor{comment}{/* New `aws\_h2\_pending\_ping *` created by user that haven't moved to `thread\_data` yet */}}
+\DoxyCodeLine{125         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_a3d7603770c043c05bf777529d85cfb12}{pending\_ping\_list}};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127         \textcolor{comment}{/* New `aws\_h2\_pending\_goaway *` created by user that haven't sent yet */}}
+\DoxyCodeLine{128         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h2__connection_af199b139bd44acc82489a0c7e2a02512}{pending\_goaway\_list}};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_ab68e64006e551446a46abaeb71700bbd}{is\_cross\_thread\_work\_task\_scheduled}};}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132         \textcolor{comment}{/* The window\_update value for `thread\_data.window\_size\_self` that haven't applied yet */}}
+\DoxyCodeLine{133         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h2__connection_ae5896875b8cfb77341024f30c22d9b74}{window\_update\_size}};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135         \textcolor{comment}{/* For checking status from outside the event-\/loop thread. */}}
+\DoxyCodeLine{136         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a0ab34d35af1e01ad7347b3c6862b40ba}{is\_open}};}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138         \textcolor{comment}{/* If non-\/zero, reason to immediately reject new streams. (ex: closing) */}}
+\DoxyCodeLine{139         \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__h2__connection_a5dd792c51c48290b3054fc0c77deb848}{new\_stream\_error\_code}};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141         \textcolor{comment}{/* Last-\/stream-\/id sent in most recent GOAWAY frame. Defaults to AWS\_H2\_STREAM\_ID\_MAX + 1 indicates no GOAWAY has}}
+\DoxyCodeLine{142 \textcolor{comment}{         * been sent so far.*/}}
+\DoxyCodeLine{143         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a3bc90486b0945ddb5943d0db8602add7}{goaway\_sent\_last\_stream\_id}};}
+\DoxyCodeLine{144         \textcolor{comment}{/* aws\_http2\_error\_code sent in most recent GOAWAY frame. Defaults to 0, check goaway\_sent\_last\_stream\_id for}}
+\DoxyCodeLine{145 \textcolor{comment}{         * any GOAWAY has sent or not */}}
+\DoxyCodeLine{146         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a611805ec13b30272479f187d739a96cf}{goaway\_sent\_http2\_error\_code}};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \textcolor{comment}{/* Last-\/stream-\/id received in most recent GOAWAY frame. Defaults to AWS\_H2\_STREAM\_ID\_MAX + 1 indicates no GOAWAY}}
+\DoxyCodeLine{149 \textcolor{comment}{         * has been received so far.*/}}
+\DoxyCodeLine{150         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a3e0ac8a974cbe3d2a4a7804ff6dccbb6}{goaway\_received\_last\_stream\_id}};}
+\DoxyCodeLine{151         \textcolor{comment}{/* aws\_http2\_error\_code received in most recent GOAWAY frame. Defaults to 0, check}}
+\DoxyCodeLine{152 \textcolor{comment}{         * goaway\_received\_last\_stream\_id for any GOAWAY has received or not */}}
+\DoxyCodeLine{153         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a1a9ae051e7ed9032b9a320310275f7e6}{goaway\_received\_http2\_error\_code}};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155         \textcolor{comment}{/* For checking settings received from peer from outside the event-\/loop thread. */}}
+\DoxyCodeLine{156         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a9bd9fbca04c75d7ade6c70c31bdbebab}{settings\_peer}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
+\DoxyCodeLine{157         \textcolor{comment}{/* For checking local settings to send/sent to peer from outside the event-\/loop thread. */}}
+\DoxyCodeLine{158         uint32\_t \mbox{\hyperlink{structaws__h2__connection_ab8e4bcd5ae01bd1bfa61748136881316}{settings\_self}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
+\DoxyCodeLine{159     \} \mbox{\hyperlink{structaws__h2__connection_a9a27868640e246138d33f57825e9fb75}{synced\_data}};}
+\DoxyCodeLine{160 \};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__pending__settings}{aws\_h2\_pending\_settings}} \{}
+\DoxyCodeLine{163     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http2__setting}{aws\_http2\_setting}} *\mbox{\hyperlink{structaws__h2__pending__settings_a0b7ebc6c9cfa140a042cfa48a9f16854}{settings\_array}};}
+\DoxyCodeLine{164     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h2__pending__settings_a522b278604ac572d14dfa9bf2b12773d}{num\_settings}};}
+\DoxyCodeLine{165     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__h2__pending__settings_a0da6ad667cab0b9efcb16b4c6ade3ed9}{node}};}
+\DoxyCodeLine{166     \textcolor{comment}{/* user callback */}}
+\DoxyCodeLine{167     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__h2__pending__settings_a0c5aeffbe46a883a2e76777cfbf7be81}{user\_data}};}
+\DoxyCodeLine{168     \mbox{\hyperlink{connection_8h_a96fcc2412e49224b6c36d1356b609ee8}{aws\_http2\_on\_change\_settings\_complete\_fn}} *\mbox{\hyperlink{structaws__h2__pending__settings_a72cf76516ea7f034ef6ca446350aaaf9}{on\_completed}};}
+\DoxyCodeLine{169 \};}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__pending__ping}{aws\_h2\_pending\_ping}} \{}
+\DoxyCodeLine{172     uint8\_t \mbox{\hyperlink{structaws__h2__pending__ping_ac23859d19421bd7a4bcf7aff6544da0f}{opaque\_data}}[\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\_HTTP2\_PING\_DATA\_SIZE}}];}
+\DoxyCodeLine{173     \textcolor{comment}{/* For calculating round-\/trip time */}}
+\DoxyCodeLine{174     uint64\_t \mbox{\hyperlink{structaws__h2__pending__ping_adb2bfc5b73accf786f69d172a1e1bdda}{started\_time}};}
+\DoxyCodeLine{175     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__h2__pending__ping_a6f7600827c1133924adda544082cbc41}{node}};}
+\DoxyCodeLine{176     \textcolor{comment}{/* user callback */}}
+\DoxyCodeLine{177     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__h2__pending__ping_a60104161f40e7d59c0d849f5644c9aab}{user\_data}};}
+\DoxyCodeLine{178     \mbox{\hyperlink{connection_8h_aef09b06b4e26402e4cdd097c869dcb32}{aws\_http2\_on\_ping\_complete\_fn}} *\mbox{\hyperlink{structaws__h2__pending__ping_a20de2aa647a3c9f472b241cb315d2abc}{on\_completed}};}
+\DoxyCodeLine{179 \};}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__pending__goaway}{aws\_h2\_pending\_goaway}} \{}
+\DoxyCodeLine{182     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__pending__goaway_a62826bc8916dfab536a761899cc071d4}{allow\_more\_streams}};}
+\DoxyCodeLine{183     uint32\_t \mbox{\hyperlink{structaws__h2__pending__goaway_abd55c4eda662fd43b576a5991f6544cd}{http2\_error}};}
+\DoxyCodeLine{184     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__h2__pending__goaway_a2b4fe77cc3da661620337a4d929e39b2}{debug\_data}};}
+\DoxyCodeLine{185     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__h2__pending__goaway_a62177f4128eaa87b2e8ca5ac96687597}{node}};}
+\DoxyCodeLine{186 \};}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{191 \textcolor{keyword}{enum} \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112}{aws\_h2\_stream\_closed\_when}} \{}
+\DoxyCodeLine{192     \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112a5e8356f1c4bff0a070aab16731f80f34}{AWS\_H2\_STREAM\_CLOSED\_UNKNOWN}},}
+\DoxyCodeLine{193     \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112a000a43c0d86d63e17b069e3eee6dffb7}{AWS\_H2\_STREAM\_CLOSED\_WHEN\_BOTH\_SIDES\_END\_STREAM}},}
+\DoxyCodeLine{194     \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112a3c00a02c9b351c1dc74d724b84776034}{AWS\_H2\_STREAM\_CLOSED\_WHEN\_RST\_STREAM\_RECEIVED}},}
+\DoxyCodeLine{195     \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112a49c4e99a8eaf6270d88b30034a34e0a1}{AWS\_H2\_STREAM\_CLOSED\_WHEN\_RST\_STREAM\_SENT}},}
+\DoxyCodeLine{196 \};}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{keyword}{enum} \mbox{\hyperlink{h2__connection_8h_ac555d0770c3202aff142651a27d14637}{aws\_h2\_data\_encode\_status}} \{}
+\DoxyCodeLine{199     \mbox{\hyperlink{h2__connection_8h_ac555d0770c3202aff142651a27d14637a62a4314256318423432ef0545607292d}{AWS\_H2\_DATA\_ENCODE\_COMPLETE}},}
+\DoxyCodeLine{200     \mbox{\hyperlink{h2__connection_8h_ac555d0770c3202aff142651a27d14637a7112053093b2ad3be6d4fb3291ba37b7}{AWS\_H2\_DATA\_ENCODE\_ONGOING}},}
+\DoxyCodeLine{201     \mbox{\hyperlink{h2__connection_8h_ac555d0770c3202aff142651a27d14637a4941d45610432d1e629fd4a97c8b616f}{AWS\_H2\_DATA\_ENCODE\_ONGOING\_BODY\_STALLED}},}
+\DoxyCodeLine{202     \mbox{\hyperlink{h2__connection_8h_ac555d0770c3202aff142651a27d14637a38dfc7870c8879c54ee98e67f8ff0048}{AWS\_H2\_DATA\_ENCODE\_ONGOING\_WINDOW\_STALLED}},}
+\DoxyCodeLine{203 \};}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{/* When window size is too small to fit the possible padding into it, we stop sending data and wait for WINDOW\_UPDATE */}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define AWS\_H2\_MIN\_WINDOW\_SIZE (256)}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 \textcolor{comment}{/* Private functions called from tests... */}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{213 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h2__connection_8h_af490b0ce859722e75dd118d67adf2de3}{aws\_http\_connection\_new\_http2\_server}}(}
+\DoxyCodeLine{214     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{215     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
+\DoxyCodeLine{216     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__connection__options}{aws\_http2\_connection\_options}} *http2\_options);}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{219 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h2__connection_8h_a77c6447657a861edc65df072a472a174}{aws\_http\_connection\_new\_http2\_client}}(}
+\DoxyCodeLine{220     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{221     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
+\DoxyCodeLine{222     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__connection__options}{aws\_http2\_connection\_options}} *http2\_options);}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{comment}{/* Transform the request to h2 style headers */}}
+\DoxyCodeLine{225 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{226 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__headers}{aws\_http\_headers}} *\mbox{\hyperlink{h2__connection_8h_a7c82aa0315cb79ed0037fc9af3749d17}{aws\_h2\_create\_headers\_from\_request}}(}
+\DoxyCodeLine{227     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *request,}
+\DoxyCodeLine{228     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__http__headers_a3d0d0ae0c2cf73775b0e700f9c42117d}{alloc}});}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{comment}{/* Private functions called from multiple .c files... */}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{240 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a08df12270597dc82662f77451d6e1f4c}{aws\_h2\_connection\_enqueue\_outgoing\_frame}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *frame);}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{251 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__connection_8h_ad577feef6667681b927b5bbcb02d7c6d}{aws\_h2\_connection\_on\_stream\_closed}}(}
+\DoxyCodeLine{252     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection,}
+\DoxyCodeLine{253     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__stream}{aws\_h2\_stream}} *stream,}
+\DoxyCodeLine{254     \textcolor{keyword}{enum} \mbox{\hyperlink{h2__connection_8h_a02f8816c644828f462a6bdc3c8786112}{aws\_h2\_stream\_closed\_when}} closed\_when,}
+\DoxyCodeLine{255     \textcolor{keywordtype}{int} aws\_error\_code);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{260 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__connection_8h_aaec2474c90267a884ae30969d67525ef}{aws\_h2\_connection\_send\_rst\_and\_close\_reserved\_stream}}(}
+\DoxyCodeLine{261     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection,}
+\DoxyCodeLine{262     uint32\_t stream\_id,}
+\DoxyCodeLine{263     uint32\_t h2\_error\_code);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{268 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a3971d9ff94ec25394c52ef2a9f2dba05}{aws\_h2\_connection\_shutdown\_due\_to\_write\_err}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{273 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a5f273e3039ddd80cf9ff7b6f28bf61b6}{aws\_h2\_try\_write\_outgoing\_frames}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection);}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_H2\_CONNECTION\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

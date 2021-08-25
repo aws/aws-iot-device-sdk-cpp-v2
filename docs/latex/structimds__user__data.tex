@@ -1,0 +1,158 @@
+\hypertarget{structimds__user__data}{}\doxysection{imds\+\_\+user\+\_\+data Struct Reference}
+\label{structimds__user__data}\index{imds\_user\_data@{imds\_user\_data}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structimds__user__data_ae2e8b16a41a9c01351b65443c6675e17}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__imds__client}{aws\+\_\+imds\+\_\+client}} $\ast$ \mbox{\hyperlink{structimds__user__data_ad0a23716c071bdab9ad4d1df8805729c}{client}}
+\item 
+\mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\+\_\+imds\+\_\+client\+\_\+on\+\_\+get\+\_\+resource\+\_\+callback\+\_\+fn}} $\ast$ \mbox{\hyperlink{structimds__user__data_a42508cb9afa00dbb0b5b06f30466bcd7}{original\+\_\+callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structimds__user__data_ab0dfd1237ab14f5bd457066ee79657fa}{original\+\_\+user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structimds__user__data_afbb0a481a7339518b6b5702b4150530c}{connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{structimds__user__data_ac996fdfcd544bfc50964a21d53fc52bd}{request}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structimds__user__data_a317b492407120ff40b95b6676a473cd2}{current\+\_\+result}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structimds__user__data_abada8de01a0a721b1bb59339e4b427fb}{imds\+\_\+token}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structimds__user__data_a7220c99c7f9ac06790f640d207cb0992}{resource\+\_\+path}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$ \mbox{\hyperlink{structimds__user__data_ab31a52ded0985070aea2b2cf6ccc0ad4}{retry\+\_\+token}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structimds__user__data_a3698f0edeb39a9277eed9a7fb4737ae0}{imds\+\_\+token\+\_\+required}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structimds__user__data_ac50e7c0c6383646d6b74894b36b043cd}{is\+\_\+imds\+\_\+token\+\_\+request}}
+\item 
+int \mbox{\hyperlink{structimds__user__data_ab4555f848ff5b2df1afb96d0fe642e09}{status\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structimds__user__data_a95e633bc7b6840b8f28a7844847acfb2}{error\+\_\+code}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structimds__user__data_af532fb6fd5dcf432a2041874498d8ac1}{ref\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$ \mbox{\hyperlink{structimds__user__data_a85cc744fec2a5e32dd3d9364b9c587aa}{imds\+\_\+provider}}
+\item 
+\mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_credentials_8h_a0de102d63db792e21787cb284cbf4871}{aws\+\_\+on\+\_\+get\+\_\+credentials\+\_\+callback\+\_\+fn}} $\ast$ \mbox{\hyperlink{structimds__user__data_a9ff3d42ef375c3cb626037d4bf8fed3d}{original\+\_\+callback}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structimds__user__data_a539634ef986f3fc5c617ffb725a0546d}{role}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structimds__user__data_ae2e8b16a41a9c01351b65443c6675e17}\label{structimds__user__data_ae2e8b16a41a9c01351b65443c6675e17}} 
+\index{imds\_user\_data@{imds\_user\_data}!allocator@{allocator}}
+\index{allocator@{allocator}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ imds\+\_\+user\+\_\+data\+::allocator}
+
+\mbox{\Hypertarget{structimds__user__data_ad0a23716c071bdab9ad4d1df8805729c}\label{structimds__user__data_ad0a23716c071bdab9ad4d1df8805729c}} 
+\index{imds\_user\_data@{imds\_user\_data}!client@{client}}
+\index{client@{client}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__imds__client}{aws\+\_\+imds\+\_\+client}}$\ast$ imds\+\_\+user\+\_\+data\+::client}
+
+\mbox{\Hypertarget{structimds__user__data_afbb0a481a7339518b6b5702b4150530c}\label{structimds__user__data_afbb0a481a7339518b6b5702b4150530c}} 
+\index{imds\_user\_data@{imds\_user\_data}!connection@{connection}}
+\index{connection@{connection}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ imds\+\_\+user\+\_\+data\+::connection}
+
+\mbox{\Hypertarget{structimds__user__data_a317b492407120ff40b95b6676a473cd2}\label{structimds__user__data_a317b492407120ff40b95b6676a473cd2}} 
+\index{imds\_user\_data@{imds\_user\_data}!current\_result@{current\_result}}
+\index{current\_result@{current\_result}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{current\_result}{current\_result}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} imds\+\_\+user\+\_\+data\+::current\+\_\+result}
+
+\mbox{\Hypertarget{structimds__user__data_a95e633bc7b6840b8f28a7844847acfb2}\label{structimds__user__data_a95e633bc7b6840b8f28a7844847acfb2}} 
+\index{imds\_user\_data@{imds\_user\_data}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int imds\+\_\+user\+\_\+data\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structimds__user__data_a85cc744fec2a5e32dd3d9364b9c587aa}\label{structimds__user__data_a85cc744fec2a5e32dd3d9364b9c587aa}} 
+\index{imds\_user\_data@{imds\_user\_data}!imds\_provider@{imds\_provider}}
+\index{imds\_provider@{imds\_provider}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{imds\_provider}{imds\_provider}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}}$\ast$ imds\+\_\+user\+\_\+data\+::imds\+\_\+provider}
+
+\mbox{\Hypertarget{structimds__user__data_abada8de01a0a721b1bb59339e4b427fb}\label{structimds__user__data_abada8de01a0a721b1bb59339e4b427fb}} 
+\index{imds\_user\_data@{imds\_user\_data}!imds\_token@{imds\_token}}
+\index{imds\_token@{imds\_token}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{imds\_token}{imds\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} imds\+\_\+user\+\_\+data\+::imds\+\_\+token}
+
+\mbox{\Hypertarget{structimds__user__data_a3698f0edeb39a9277eed9a7fb4737ae0}\label{structimds__user__data_a3698f0edeb39a9277eed9a7fb4737ae0}} 
+\index{imds\_user\_data@{imds\_user\_data}!imds\_token\_required@{imds\_token\_required}}
+\index{imds\_token\_required@{imds\_token\_required}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{imds\_token\_required}{imds\_token\_required}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} imds\+\_\+user\+\_\+data\+::imds\+\_\+token\+\_\+required}
+
+\mbox{\Hypertarget{structimds__user__data_ac50e7c0c6383646d6b74894b36b043cd}\label{structimds__user__data_ac50e7c0c6383646d6b74894b36b043cd}} 
+\index{imds\_user\_data@{imds\_user\_data}!is\_imds\_token\_request@{is\_imds\_token\_request}}
+\index{is\_imds\_token\_request@{is\_imds\_token\_request}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{is\_imds\_token\_request}{is\_imds\_token\_request}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} imds\+\_\+user\+\_\+data\+::is\+\_\+imds\+\_\+token\+\_\+request}
+
+\mbox{\Hypertarget{structimds__user__data_a42508cb9afa00dbb0b5b06f30466bcd7}\label{structimds__user__data_a42508cb9afa00dbb0b5b06f30466bcd7}} 
+\index{imds\_user\_data@{imds\_user\_data}!original\_callback@{original\_callback}}
+\index{original\_callback@{original\_callback}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{original\_callback}{original\_callback}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\+\_\+imds\+\_\+client\+\_\+on\+\_\+get\+\_\+resource\+\_\+callback\+\_\+fn}}$\ast$ imds\+\_\+user\+\_\+data\+::original\+\_\+callback}
+
+\mbox{\Hypertarget{structimds__user__data_a9ff3d42ef375c3cb626037d4bf8fed3d}\label{structimds__user__data_a9ff3d42ef375c3cb626037d4bf8fed3d}} 
+\index{imds\_user\_data@{imds\_user\_data}!original\_callback@{original\_callback}}
+\index{original\_callback@{original\_callback}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{original\_callback}{original\_callback}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_credentials_8h_a0de102d63db792e21787cb284cbf4871}{aws\+\_\+on\+\_\+get\+\_\+credentials\+\_\+callback\+\_\+fn}}$\ast$ imds\+\_\+user\+\_\+data\+::original\+\_\+callback}
+
+\mbox{\Hypertarget{structimds__user__data_ab0dfd1237ab14f5bd457066ee79657fa}\label{structimds__user__data_ab0dfd1237ab14f5bd457066ee79657fa}} 
+\index{imds\_user\_data@{imds\_user\_data}!original\_user\_data@{original\_user\_data}}
+\index{original\_user\_data@{original\_user\_data}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{original\_user\_data}{original\_user\_data}}
+{\footnotesize\ttfamily void $\ast$ imds\+\_\+user\+\_\+data\+::original\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structimds__user__data_af532fb6fd5dcf432a2041874498d8ac1}\label{structimds__user__data_af532fb6fd5dcf432a2041874498d8ac1}} 
+\index{imds\_user\_data@{imds\_user\_data}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} imds\+\_\+user\+\_\+data\+::ref\+\_\+count}
+
+\mbox{\Hypertarget{structimds__user__data_ac996fdfcd544bfc50964a21d53fc52bd}\label{structimds__user__data_ac996fdfcd544bfc50964a21d53fc52bd}} 
+\index{imds\_user\_data@{imds\_user\_data}!request@{request}}
+\index{request@{request}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{request}{request}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ imds\+\_\+user\+\_\+data\+::request}
+
+\mbox{\Hypertarget{structimds__user__data_a7220c99c7f9ac06790f640d207cb0992}\label{structimds__user__data_a7220c99c7f9ac06790f640d207cb0992}} 
+\index{imds\_user\_data@{imds\_user\_data}!resource\_path@{resource\_path}}
+\index{resource\_path@{resource\_path}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{resource\_path}{resource\_path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ imds\+\_\+user\+\_\+data\+::resource\+\_\+path}
+
+\mbox{\Hypertarget{structimds__user__data_ab31a52ded0985070aea2b2cf6ccc0ad4}\label{structimds__user__data_ab31a52ded0985070aea2b2cf6ccc0ad4}} 
+\index{imds\_user\_data@{imds\_user\_data}!retry\_token@{retry\_token}}
+\index{retry\_token@{retry\_token}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{retry\_token}{retry\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}}$\ast$ imds\+\_\+user\+\_\+data\+::retry\+\_\+token}
+
+\mbox{\Hypertarget{structimds__user__data_a539634ef986f3fc5c617ffb725a0546d}\label{structimds__user__data_a539634ef986f3fc5c617ffb725a0546d}} 
+\index{imds\_user\_data@{imds\_user\_data}!role@{role}}
+\index{role@{role}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{role}{role}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} imds\+\_\+user\+\_\+data\+::role}
+
+\mbox{\Hypertarget{structimds__user__data_ab4555f848ff5b2df1afb96d0fe642e09}\label{structimds__user__data_ab4555f848ff5b2df1afb96d0fe642e09}} 
+\index{imds\_user\_data@{imds\_user\_data}!status\_code@{status\_code}}
+\index{status\_code@{status\_code}!imds\_user\_data@{imds\_user\_data}}
+\doxysubsubsection{\texorpdfstring{status\_code}{status\_code}}
+{\footnotesize\ttfamily int imds\+\_\+user\+\_\+data\+::status\+\_\+code}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/\mbox{\hyperlink{aws__imds__client_8c}{aws\+\_\+imds\+\_\+client.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/\mbox{\hyperlink{credentials__provider__imds_8c}{credentials\+\_\+provider\+\_\+imds.\+c}}\end{DoxyCompactItemize}

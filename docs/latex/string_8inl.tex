@@ -1,0 +1,65 @@
+\hypertarget{string_8inl}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/string.inl File Reference}
+\label{string_8inl}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/string.inl@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/string.inl}}
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{string_8inl_a954c180a7b74b3966c3e65b2f7ca1c7d}{AWS\+\_\+\+COMMON\+\_\+\+STRING\+\_\+\+INL}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} const uint8\+\_\+t $\ast$ \mbox{\hyperlink{string_8inl_a9ed9c2949336fbe0ba4ad035f1171687}{aws\+\_\+string\+\_\+bytes}} (const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$str)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} const char $\ast$ \mbox{\hyperlink{string_8inl_add6fe9a5b2551dc11945c5b594a38547}{aws\+\_\+string\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$str)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{string_8inl_a7bd1df90825ec0570cc88c96a928d82e}{aws\+\_\+string\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$str)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{string_8inl_a9a8a155a669c82ba378220605de50cc2}{aws\+\_\+c\+\_\+string\+\_\+is\+\_\+valid}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{string_8inl_a06ccb5f362240a59088c38a3e95725cc}{aws\+\_\+char\+\_\+is\+\_\+space}} (uint8\+\_\+t c)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{string_8inl_a954c180a7b74b3966c3e65b2f7ca1c7d}\label{string_8inl_a954c180a7b74b3966c3e65b2f7ca1c7d}} 
+\index{string.inl@{string.inl}!AWS\_COMMON\_STRING\_INL@{AWS\_COMMON\_STRING\_INL}}
+\index{AWS\_COMMON\_STRING\_INL@{AWS\_COMMON\_STRING\_INL}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{AWS\_COMMON\_STRING\_INL}{AWS\_COMMON\_STRING\_INL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+COMMON\+\_\+\+STRING\+\_\+\+INL}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{string_8inl_a9a8a155a669c82ba378220605de50cc2}\label{string_8inl_a9a8a155a669c82ba378220605de50cc2}} 
+\index{string.inl@{string.inl}!aws\_c\_string\_is\_valid@{aws\_c\_string\_is\_valid}}
+\index{aws\_c\_string\_is\_valid@{aws\_c\_string\_is\_valid}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{aws\_c\_string\_is\_valid()}{aws\_c\_string\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+c\+\_\+string\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+Best-\/effort checks \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} invariants, when the str-\/\texorpdfstring{$>$}{>}len is unknown \mbox{\Hypertarget{string_8inl_a06ccb5f362240a59088c38a3e95725cc}\label{string_8inl_a06ccb5f362240a59088c38a3e95725cc}} 
+\index{string.inl@{string.inl}!aws\_char\_is\_space@{aws\_char\_is\_space}}
+\index{aws\_char\_is\_space@{aws\_char\_is\_space}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{aws\_char\_is\_space()}{aws\_char\_is\_space()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+char\+\_\+is\+\_\+space (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+Evaluates if a char is a white character. \mbox{\Hypertarget{string_8inl_a9ed9c2949336fbe0ba4ad035f1171687}\label{string_8inl_a9ed9c2949336fbe0ba4ad035f1171687}} 
+\index{string.inl@{string.inl}!aws\_string\_bytes@{aws\_string\_bytes}}
+\index{aws\_string\_bytes@{aws\_string\_bytes}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{aws\_string\_bytes()}{aws\_string\_bytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} const uint8\+\_\+t$\ast$ aws\+\_\+string\+\_\+bytes (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{str }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Equivalent to str-\/\texorpdfstring{$>$}{>}bytes. \mbox{\Hypertarget{string_8inl_add6fe9a5b2551dc11945c5b594a38547}\label{string_8inl_add6fe9a5b2551dc11945c5b594a38547}} 
+\index{string.inl@{string.inl}!aws\_string\_c\_str@{aws\_string\_c\_str}}
+\index{aws\_string\_c\_str@{aws\_string\_c\_str}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{aws\_string\_c\_str()}{aws\_string\_c\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} const char$\ast$ aws\+\_\+string\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{str }\end{DoxyParamCaption})}
+
+Equivalent to {\ttfamily (const char $\ast$)str-\/\texorpdfstring{$>$}{>}bytes}. \mbox{\Hypertarget{string_8inl_a7bd1df90825ec0570cc88c96a928d82e}\label{string_8inl_a7bd1df90825ec0570cc88c96a928d82e}} 
+\index{string.inl@{string.inl}!aws\_string\_is\_valid@{aws\_string\_is\_valid}}
+\index{aws\_string\_is\_valid@{aws\_string\_is\_valid}!string.inl@{string.inl}}
+\doxysubsubsection{\texorpdfstring{aws\_string\_is\_valid()}{aws\_string\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+string\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{str }\end{DoxyParamCaption})}
+
+Evaluates the set of properties that define the shape of all valid \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} structures. It is also a cheap check, in the sense it run in constant time (i.\+e., no loops or recursion). 

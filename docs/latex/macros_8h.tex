@@ -1,0 +1,230 @@
+\hypertarget{macros_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/macros.h File Reference}
+\label{macros_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/macros.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/macros.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+END}}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}{AWS\+\_\+\+CONCAT}}(A,  B)~A\#\#B
+\item 
+\#define \mbox{\hyperlink{macros_8h_a50f647ee9f464c5ad0a3c4057afe5c65}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT0}}(cond,  msg)~typedef char \mbox{\hyperlink{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}{AWS\+\_\+\+CONCAT}}(static\+\_\+assertion\+\_\+, msg)\mbox{[}(!!(cond)) $\ast$ 2 -\/ 1\mbox{]}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a8a109e942afb31ab2bcadf654654bcb1}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT1}}(cond,  line)~\mbox{\hyperlink{macros_8h_a50f647ee9f464c5ad0a3c4057afe5c65}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT0}}(cond, \mbox{\hyperlink{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}{AWS\+\_\+\+CONCAT}}(at\+\_\+line\+\_\+, line))
+\item 
+\#define \mbox{\hyperlink{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}}(cond)~\mbox{\hyperlink{macros_8h_a8a109e942afb31ab2bcadf654654bcb1}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT1}}(cond, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{macros_8h_ab1561dd2afc88075c7a3b010f5f6b857}{GLUE}}(x,  y)~x y
+\item 
+\#define \mbox{\hyperlink{macros_8h_a01a90647147a7f7127b7b2627d38e74c}{RETURN\+\_\+\+ARG\+\_\+\+COUNT}}(\+\_\+1\+\_\+,  \+\_\+2\+\_\+,  \+\_\+3\+\_\+,  \+\_\+4\+\_\+,  \+\_\+5\+\_\+,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, ...)~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a7ebef3481d8ef1c43ecd71a44dd5c0cb}{EXPAND\+\_\+\+ARGS}}(args)~\mbox{\hyperlink{macros_8h_a01a90647147a7f7127b7b2627d38e74c}{RETURN\+\_\+\+ARG\+\_\+\+COUNT}} args
+\item 
+\#define \mbox{\hyperlink{macros_8h_a36ff4235ca08934c947faabe64127675}{COUNT\+\_\+\+ARGS\+\_\+\+MAX5}}(...)~\mbox{\hyperlink{macros_8h_a7ebef3481d8ef1c43ecd71a44dd5c0cb}{EXPAND\+\_\+\+ARGS}}((\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+, 5, 4, 3, 2, 1, 0))
+\item 
+\#define \mbox{\hyperlink{macros_8h_aea6524a745d3d53fc56fd8a306ee2721}{OVERLOAD\+\_\+\+MACRO2}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}\#\#\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a60d0ad1d8fb2875ec803daf7a449a363}{OVERLOAD\+\_\+\+MACRO1}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})~\mbox{\hyperlink{macros_8h_aea6524a745d3d53fc56fd8a306ee2721}{OVERLOAD\+\_\+\+MACRO2}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+\#define \mbox{\hyperlink{macros_8h_a05efee9239b4c9ed9f3a31883ed9e503}{OVERLOAD\+\_\+\+MACRO}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})~\mbox{\hyperlink{macros_8h_a60d0ad1d8fb2875ec803daf7a449a363}{OVERLOAD\+\_\+\+MACRO1}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+\#define \mbox{\hyperlink{macros_8h_a5331729b29618fea0a2c6310f8779003}{CALL\+\_\+\+OVERLOAD}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, ...)~\mbox{\hyperlink{macros_8h_ab1561dd2afc88075c7a3b010f5f6b857}{GLUE}}(\mbox{\hyperlink{macros_8h_a05efee9239b4c9ed9f3a31883ed9e503}{OVERLOAD\+\_\+\+MACRO}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{macros_8h_a36ff4235ca08934c947faabe64127675}{COUNT\+\_\+\+ARGS\+\_\+\+MAX5}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)), (\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))
+\item 
+\#define \mbox{\hyperlink{macros_8h_af190e66d669bba8b53bae5529a538a5a}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST1}}(x)~x
+\item 
+\#define \mbox{\hyperlink{macros_8h_add7e300255d9c2a0cf3a17417d538cc0}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST2}}(x,  y)~y
+\item 
+\#define \mbox{\hyperlink{macros_8h_acde0662728b1336bb9d0a4c2709751a3}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST3}}(x,  y,  z)~z
+\item 
+\#define \mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(...)~\mbox{\hyperlink{macros_8h_a5331729b29618fea0a2c6310f8779003}{CALL\+\_\+\+OVERLOAD}}(CALL\+\_\+\+OVERLOAD\+\_\+\+TEST, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{macros_8h_aa3f8a337d2ad92980bfd5efb3f2aba45}{AWS\+\_\+\+CACHE\+\_\+\+LINE}}~64
+\item 
+\#define \mbox{\hyperlink{macros_8h_a70cd4ebdc6d65b4f6df23baa99b67989}{PRIn\+STR}}~\char`\"{}\%.$\ast$s\char`\"{}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}{AWS\+\_\+\+THREAD\+\_\+\+LOCAL}}~\+\_\+\+\_\+thread
+\item 
+\#define \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\+\_\+\+ARRAY\+\_\+\+SIZE}}(array)~(sizeof(array) / sizeof((array)\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}(ptr,  type,  member)~((type $\ast$)((uint8\+\_\+t $\ast$)(ptr)-\/offsetof(type, member)))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_a04722022f6dc031f8df51d8033f36850}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}} (\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1)==1)
+\item 
+\mbox{\hyperlink{macros_8h_a966888266b8d8b4c69c49d007f5912ef}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}} (\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1, 2)==2)
+\item 
+\mbox{\hyperlink{macros_8h_a6f014ab067a53f2f696f5be82473383b}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}} (\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1, 2, 3)==3)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}\label{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}} 
+\index{macros.h@{macros.h}!AWS\_ARRAY\_SIZE@{AWS\_ARRAY\_SIZE}}
+\index{AWS\_ARRAY\_SIZE@{AWS\_ARRAY\_SIZE}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_ARRAY\_SIZE}{AWS\_ARRAY\_SIZE}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+ARRAY\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~(sizeof(array) / sizeof((array)\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{macros_8h_aa3f8a337d2ad92980bfd5efb3f2aba45}\label{macros_8h_aa3f8a337d2ad92980bfd5efb3f2aba45}} 
+\index{macros.h@{macros.h}!AWS\_CACHE\_LINE@{AWS\_CACHE\_LINE}}
+\index{AWS\_CACHE\_LINE@{AWS\_CACHE\_LINE}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_CACHE\_LINE}{AWS\_CACHE\_LINE}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+CACHE\+\_\+\+LINE~64}
+
+\mbox{\Hypertarget{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}\label{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}} 
+\index{macros.h@{macros.h}!AWS\_CONCAT@{AWS\_CONCAT}}
+\index{AWS\_CONCAT@{AWS\_CONCAT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_CONCAT}{AWS\_CONCAT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+CONCAT(\begin{DoxyParamCaption}\item[{}]{A,  }\item[{}]{B }\end{DoxyParamCaption})~A\#\#B}
+
+\mbox{\Hypertarget{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}\label{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}} 
+\index{macros.h@{macros.h}!AWS\_CONTAINER\_OF@{AWS\_CONTAINER\_OF}}
+\index{AWS\_CONTAINER\_OF@{AWS\_CONTAINER\_OF}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_CONTAINER\_OF}{AWS\_CONTAINER\_OF}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+CONTAINER\+\_\+\+OF(\begin{DoxyParamCaption}\item[{}]{ptr,  }\item[{}]{type,  }\item[{}]{member }\end{DoxyParamCaption})~((type $\ast$)((uint8\+\_\+t $\ast$)(ptr)-\/offsetof(type, member)))}
+
+from a pointer and a type of the struct containing the node this will get you back to the pointer of the object. member is the name of the instance of struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} in your struct. \mbox{\Hypertarget{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}\label{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}} 
+\index{macros.h@{macros.h}!AWS\_EXTERN\_C\_BEGIN@{AWS\_EXTERN\_C\_BEGIN}}
+\index{AWS\_EXTERN\_C\_BEGIN@{AWS\_EXTERN\_C\_BEGIN}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_EXTERN\_C\_BEGIN}{AWS\_EXTERN\_C\_BEGIN}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}\label{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}} 
+\index{macros.h@{macros.h}!AWS\_EXTERN\_C\_END@{AWS\_EXTERN\_C\_END}}
+\index{AWS\_EXTERN\_C\_END@{AWS\_EXTERN\_C\_END}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_EXTERN\_C\_END}{AWS\_EXTERN\_C\_END}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+END}
+
+\mbox{\Hypertarget{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}\label{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}} 
+\index{macros.h@{macros.h}!AWS\_RESTRICT@{AWS\_RESTRICT}}
+\index{AWS\_RESTRICT@{AWS\_RESTRICT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_RESTRICT}{AWS\_RESTRICT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+RESTRICT}
+
+\mbox{\Hypertarget{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}\label{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}}
+\index{AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT}{AWS\_STATIC\_ASSERT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+STATIC\+\_\+\+ASSERT(\begin{DoxyParamCaption}\item[{}]{cond }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a8a109e942afb31ab2bcadf654654bcb1}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT1}}(cond, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+)}
+
+\mbox{\Hypertarget{macros_8h_a50f647ee9f464c5ad0a3c4057afe5c65}\label{macros_8h_a50f647ee9f464c5ad0a3c4057afe5c65}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT0@{AWS\_STATIC\_ASSERT0}}
+\index{AWS\_STATIC\_ASSERT0@{AWS\_STATIC\_ASSERT0}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT0}{AWS\_STATIC\_ASSERT0}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+STATIC\+\_\+\+ASSERT0(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{msg }\end{DoxyParamCaption})~typedef char \mbox{\hyperlink{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}{AWS\+\_\+\+CONCAT}}(static\+\_\+assertion\+\_\+, msg)\mbox{[}(!!(cond)) $\ast$ 2 -\/ 1\mbox{]}}
+
+\mbox{\Hypertarget{macros_8h_a8a109e942afb31ab2bcadf654654bcb1}\label{macros_8h_a8a109e942afb31ab2bcadf654654bcb1}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT1@{AWS\_STATIC\_ASSERT1}}
+\index{AWS\_STATIC\_ASSERT1@{AWS\_STATIC\_ASSERT1}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT1}{AWS\_STATIC\_ASSERT1}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+STATIC\+\_\+\+ASSERT1(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{line }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a50f647ee9f464c5ad0a3c4057afe5c65}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT0}}(cond, \mbox{\hyperlink{macros_8h_a982d74ea4ebb349d1c0088f443a6e38f}{AWS\+\_\+\+CONCAT}}(at\+\_\+line\+\_\+, line))}
+
+\mbox{\Hypertarget{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}\label{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}} 
+\index{macros.h@{macros.h}!AWS\_THREAD\_LOCAL@{AWS\_THREAD\_LOCAL}}
+\index{AWS\_THREAD\_LOCAL@{AWS\_THREAD\_LOCAL}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_THREAD\_LOCAL}{AWS\_THREAD\_LOCAL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+THREAD\+\_\+\+LOCAL~\+\_\+\+\_\+thread}
+
+\mbox{\Hypertarget{macros_8h_a5331729b29618fea0a2c6310f8779003}\label{macros_8h_a5331729b29618fea0a2c6310f8779003}} 
+\index{macros.h@{macros.h}!CALL\_OVERLOAD@{CALL\_OVERLOAD}}
+\index{CALL\_OVERLOAD@{CALL\_OVERLOAD}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_OVERLOAD}{CALL\_OVERLOAD}}
+{\footnotesize\ttfamily \#define CALL\+\_\+\+OVERLOAD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_ab1561dd2afc88075c7a3b010f5f6b857}{GLUE}}(\mbox{\hyperlink{macros_8h_a05efee9239b4c9ed9f3a31883ed9e503}{OVERLOAD\+\_\+\+MACRO}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{macros_8h_a36ff4235ca08934c947faabe64127675}{COUNT\+\_\+\+ARGS\+\_\+\+MAX5}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)), (\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+))}
+
+\mbox{\Hypertarget{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}\label{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}} 
+\index{macros.h@{macros.h}!CALL\_OVERLOAD\_TEST@{CALL\_OVERLOAD\_TEST}}
+\index{CALL\_OVERLOAD\_TEST@{CALL\_OVERLOAD\_TEST}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_OVERLOAD\_TEST}{CALL\_OVERLOAD\_TEST}}
+{\footnotesize\ttfamily \#define CALL\+\_\+\+OVERLOAD\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a5331729b29618fea0a2c6310f8779003}{CALL\+\_\+\+OVERLOAD}}(CALL\+\_\+\+OVERLOAD\+\_\+\+TEST, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\mbox{\Hypertarget{macros_8h_af190e66d669bba8b53bae5529a538a5a}\label{macros_8h_af190e66d669bba8b53bae5529a538a5a}} 
+\index{macros.h@{macros.h}!CALL\_OVERLOAD\_TEST1@{CALL\_OVERLOAD\_TEST1}}
+\index{CALL\_OVERLOAD\_TEST1@{CALL\_OVERLOAD\_TEST1}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_OVERLOAD\_TEST1}{CALL\_OVERLOAD\_TEST1}}
+{\footnotesize\ttfamily \#define CALL\+\_\+\+OVERLOAD\+\_\+\+TEST1(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~x}
+
+\mbox{\Hypertarget{macros_8h_add7e300255d9c2a0cf3a17417d538cc0}\label{macros_8h_add7e300255d9c2a0cf3a17417d538cc0}} 
+\index{macros.h@{macros.h}!CALL\_OVERLOAD\_TEST2@{CALL\_OVERLOAD\_TEST2}}
+\index{CALL\_OVERLOAD\_TEST2@{CALL\_OVERLOAD\_TEST2}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_OVERLOAD\_TEST2}{CALL\_OVERLOAD\_TEST2}}
+{\footnotesize\ttfamily \#define CALL\+\_\+\+OVERLOAD\+\_\+\+TEST2(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~y}
+
+\mbox{\Hypertarget{macros_8h_acde0662728b1336bb9d0a4c2709751a3}\label{macros_8h_acde0662728b1336bb9d0a4c2709751a3}} 
+\index{macros.h@{macros.h}!CALL\_OVERLOAD\_TEST3@{CALL\_OVERLOAD\_TEST3}}
+\index{CALL\_OVERLOAD\_TEST3@{CALL\_OVERLOAD\_TEST3}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_OVERLOAD\_TEST3}{CALL\_OVERLOAD\_TEST3}}
+{\footnotesize\ttfamily \#define CALL\+\_\+\+OVERLOAD\+\_\+\+TEST3(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~z}
+
+\mbox{\Hypertarget{macros_8h_a36ff4235ca08934c947faabe64127675}\label{macros_8h_a36ff4235ca08934c947faabe64127675}} 
+\index{macros.h@{macros.h}!COUNT\_ARGS\_MAX5@{COUNT\_ARGS\_MAX5}}
+\index{COUNT\_ARGS\_MAX5@{COUNT\_ARGS\_MAX5}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{COUNT\_ARGS\_MAX5}{COUNT\_ARGS\_MAX5}}
+{\footnotesize\ttfamily \#define COUNT\+\_\+\+ARGS\+\_\+\+MAX5(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a7ebef3481d8ef1c43ecd71a44dd5c0cb}{EXPAND\+\_\+\+ARGS}}((\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+, 5, 4, 3, 2, 1, 0))}
+
+\mbox{\Hypertarget{macros_8h_a7ebef3481d8ef1c43ecd71a44dd5c0cb}\label{macros_8h_a7ebef3481d8ef1c43ecd71a44dd5c0cb}} 
+\index{macros.h@{macros.h}!EXPAND\_ARGS@{EXPAND\_ARGS}}
+\index{EXPAND\_ARGS@{EXPAND\_ARGS}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{EXPAND\_ARGS}{EXPAND\_ARGS}}
+{\footnotesize\ttfamily \#define EXPAND\+\_\+\+ARGS(\begin{DoxyParamCaption}\item[{}]{args }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a01a90647147a7f7127b7b2627d38e74c}{RETURN\+\_\+\+ARG\+\_\+\+COUNT}} args}
+
+\mbox{\Hypertarget{macros_8h_ab1561dd2afc88075c7a3b010f5f6b857}\label{macros_8h_ab1561dd2afc88075c7a3b010f5f6b857}} 
+\index{macros.h@{macros.h}!GLUE@{GLUE}}
+\index{GLUE@{GLUE}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{GLUE}{GLUE}}
+{\footnotesize\ttfamily \#define GLUE(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~x y}
+
+\mbox{\Hypertarget{macros_8h_a05efee9239b4c9ed9f3a31883ed9e503}\label{macros_8h_a05efee9239b4c9ed9f3a31883ed9e503}} 
+\index{macros.h@{macros.h}!OVERLOAD\_MACRO@{OVERLOAD\_MACRO}}
+\index{OVERLOAD\_MACRO@{OVERLOAD\_MACRO}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{OVERLOAD\_MACRO}{OVERLOAD\_MACRO}}
+{\footnotesize\ttfamily \#define OVERLOAD\+\_\+\+MACRO(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}} }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_a60d0ad1d8fb2875ec803daf7a449a363}{OVERLOAD\+\_\+\+MACRO1}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})}
+
+\mbox{\Hypertarget{macros_8h_a60d0ad1d8fb2875ec803daf7a449a363}\label{macros_8h_a60d0ad1d8fb2875ec803daf7a449a363}} 
+\index{macros.h@{macros.h}!OVERLOAD\_MACRO1@{OVERLOAD\_MACRO1}}
+\index{OVERLOAD\_MACRO1@{OVERLOAD\_MACRO1}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{OVERLOAD\_MACRO1}{OVERLOAD\_MACRO1}}
+{\footnotesize\ttfamily \#define OVERLOAD\+\_\+\+MACRO1(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}} }\end{DoxyParamCaption})~\mbox{\hyperlink{macros_8h_aea6524a745d3d53fc56fd8a306ee2721}{OVERLOAD\+\_\+\+MACRO2}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})}
+
+\mbox{\Hypertarget{macros_8h_aea6524a745d3d53fc56fd8a306ee2721}\label{macros_8h_aea6524a745d3d53fc56fd8a306ee2721}} 
+\index{macros.h@{macros.h}!OVERLOAD\_MACRO2@{OVERLOAD\_MACRO2}}
+\index{OVERLOAD\_MACRO2@{OVERLOAD\_MACRO2}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{OVERLOAD\_MACRO2}{OVERLOAD\_MACRO2}}
+{\footnotesize\ttfamily \#define OVERLOAD\+\_\+\+MACRO2(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}} }\end{DoxyParamCaption})~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}\#\#\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}}
+
+\mbox{\Hypertarget{macros_8h_a70cd4ebdc6d65b4f6df23baa99b67989}\label{macros_8h_a70cd4ebdc6d65b4f6df23baa99b67989}} 
+\index{macros.h@{macros.h}!PRInSTR@{PRInSTR}}
+\index{PRInSTR@{PRInSTR}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{PRInSTR}{PRInSTR}}
+{\footnotesize\ttfamily \#define PRIn\+STR~\char`\"{}\%.$\ast$s\char`\"{}}
+
+Format macro for strings of a specified length. Allows non null-\/terminated strings to be used with the printf family of functions. Ex\+: printf(\char`\"{}scheme is \char`\"{} PRIn\+STR, 4, \char`\"{}http\+://example.\+org\char`\"{}); // ouputs\+: \char`\"{}scheme is http\char`\"{} \mbox{\Hypertarget{macros_8h_a01a90647147a7f7127b7b2627d38e74c}\label{macros_8h_a01a90647147a7f7127b7b2627d38e74c}} 
+\index{macros.h@{macros.h}!RETURN\_ARG\_COUNT@{RETURN\_ARG\_COUNT}}
+\index{RETURN\_ARG\_COUNT@{RETURN\_ARG\_COUNT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{RETURN\_ARG\_COUNT}{RETURN\_ARG\_COUNT}}
+{\footnotesize\ttfamily \#define RETURN\+\_\+\+ARG\+\_\+\+COUNT(\begin{DoxyParamCaption}\item[{}]{\+\_\+1\+\_\+,  }\item[{}]{\+\_\+2\+\_\+,  }\item[{}]{\+\_\+3\+\_\+,  }\item[{}]{\+\_\+4\+\_\+,  }\item[{}]{\+\_\+5\+\_\+,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}},  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{macros_8h_a04722022f6dc031f8df51d8033f36850}\label{macros_8h_a04722022f6dc031f8df51d8033f36850}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}}
+\index{AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT()}{AWS\_STATIC\_ASSERT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+ASSERT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1)}]{ = {\ttfamily =1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{macros_8h_a966888266b8d8b4c69c49d007f5912ef}\label{macros_8h_a966888266b8d8b4c69c49d007f5912ef}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}}
+\index{AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT()}{AWS\_STATIC\_ASSERT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+ASSERT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1, 2)}]{ = {\ttfamily =2} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{macros_8h_a6f014ab067a53f2f696f5be82473383b}\label{macros_8h_a6f014ab067a53f2f696f5be82473383b}} 
+\index{macros.h@{macros.h}!AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}}
+\index{AWS\_STATIC\_ASSERT@{AWS\_STATIC\_ASSERT}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_ASSERT()}{AWS\_STATIC\_ASSERT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+ASSERT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\+\_\+\+OVERLOAD\+\_\+\+TEST}}(1, 2, 3)}]{ = {\ttfamily =3} }\end{DoxyParamCaption})}
+

@@ -1,0 +1,30 @@
+\hypertarget{s2n__test__certs_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\+\_\+test\+\_\+certs.c File Reference}
+\label{s2n__test__certs_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_test\_certs.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_test\_certs.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__test__certs_8c_a292cc6eb0cbca82489e0e9fb73e9a4db}{s2n\+\_\+test\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+new}} (struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$\mbox{\hyperlink{s2n__server__status__request__extension__test_8c_aac2a6f1aab996a327b37797f9c1209ae}{chain\+\_\+and\+\_\+key}}, const char $\ast$cert\+\_\+chain\+\_\+file, const char $\ast$prviate\+\_\+key\+\_\+file)
+\item 
+int \mbox{\hyperlink{s2n__test__certs_8c_a6a406c835d464be9d04b55d3af3765fd}{s2n\+\_\+read\+\_\+test\+\_\+pem}} (const char $\ast$pem\+\_\+path, char $\ast$pem\+\_\+out, long int max\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__test__certs_8c_a6a406c835d464be9d04b55d3af3765fd}\label{s2n__test__certs_8c_a6a406c835d464be9d04b55d3af3765fd}} 
+\index{s2n\_test\_certs.c@{s2n\_test\_certs.c}!s2n\_read\_test\_pem@{s2n\_read\_test\_pem}}
+\index{s2n\_read\_test\_pem@{s2n\_read\_test\_pem}!s2n\_test\_certs.c@{s2n\_test\_certs.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_read\_test\_pem()}{s2n\_read\_test\_pem()}}
+{\footnotesize\ttfamily int s2n\+\_\+read\+\_\+test\+\_\+pem (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pem\+\_\+path,  }\item[{char $\ast$}]{pem\+\_\+out,  }\item[{long int}]{max\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__test__certs_8c_a292cc6eb0cbca82489e0e9fb73e9a4db}\label{s2n__test__certs_8c_a292cc6eb0cbca82489e0e9fb73e9a4db}} 
+\index{s2n\_test\_certs.c@{s2n\_test\_certs.c}!s2n\_test\_cert\_chain\_and\_key\_new@{s2n\_test\_cert\_chain\_and\_key\_new}}
+\index{s2n\_test\_cert\_chain\_and\_key\_new@{s2n\_test\_cert\_chain\_and\_key\_new}!s2n\_test\_certs.c@{s2n\_test\_certs.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_cert\_chain\_and\_key\_new()}{s2n\_test\_cert\_chain\_and\_key\_new()}}
+{\footnotesize\ttfamily int s2n\+\_\+test\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$}]{chain\+\_\+and\+\_\+key,  }\item[{const char $\ast$}]{cert\+\_\+chain\+\_\+file,  }\item[{const char $\ast$}]{prviate\+\_\+key\+\_\+file }\end{DoxyParamCaption})}
+

@@ -1,0 +1,143 @@
+\hypertarget{fips202__r1_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\+\_\+r1/fips202\+\_\+r1.c File Reference}
+\label{fips202__r1_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/fips202\_r1.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/fips202\_r1.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fips202\+\_\+r1.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fips202__r1_8c_a92a76bc85ae6b57d8257f168e3927a29}{NROUNDS}}~24
+\item 
+\#define \mbox{\hyperlink{fips202__r1_8c_aec7a6f8049659733c0c5aac28df4abe2}{ROL}}(a,  offset)~((a $<$$<$ offset) $^\wedge$ (a $>$$>$ (64-\/offset)))
+\item 
+\#define \mbox{\hyperlink{fips202__r1_8c_a3acffbd305ee72dcd4593c0d8af64a4f}{MIN}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})~((a) $<$ (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ? (a) \+: (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{fips202__r1_8c_abc24738404c1e802eca1dcd4bf8acdb0}{load64}} (const unsigned char $\ast$x)
+\item 
+static void \mbox{\hyperlink{fips202__r1_8c_a2f91c6ac838e5fada375d2171e3e48ef}{store64}} (uint8\+\_\+t $\ast$x, uint64\+\_\+t u)
+\item 
+void \mbox{\hyperlink{fips202__r1_8c_a9384b0f51bc5e9548b61dce9a28430bf}{Keccak\+F1600\+\_\+\+State\+Permute}} (uint64\+\_\+t $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+static void \mbox{\hyperlink{fips202__r1_8c_a0633f9b4121998f15ae862b986aacac0}{keccak\+\_\+absorb}} (uint64\+\_\+t $\ast$s, unsigned int r, const unsigned char $\ast$m, unsigned long long int mlen, unsigned char p)
+\item 
+static void \mbox{\hyperlink{fips202__r1_8c_a1cd7e4a41c9fe08de87bc92ea6241869}{keccak\+\_\+squeezeblocks}} (unsigned char $\ast$h, unsigned long long int nblocks, uint64\+\_\+t $\ast$s, unsigned int r)
+\item 
+void \mbox{\hyperlink{fips202__r1_8c_a695a067cfabeb5118d8a0bb0f8c5810c}{cshake256\+\_\+simple\+\_\+absorb}} (uint64\+\_\+t s\mbox{[}25\mbox{]}, uint16\+\_\+t cstm, const unsigned char $\ast$in, unsigned long long inlen)
+\item 
+void \mbox{\hyperlink{fips202__r1_8c_a01643fbeedb7113ca273bff01acf9d97}{cshake256\+\_\+simple}} (unsigned char $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, unsigned long long outlen, uint16\+\_\+t cstm, const unsigned char $\ast$in, unsigned long long inlen)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{fips202__r1_8c_afdc666ad6018134f3302362f06f257f7}{Keccak\+F\+\_\+\+Round\+Constants}} \mbox{[}\mbox{\hyperlink{fips202_8c_a92a76bc85ae6b57d8257f168e3927a29}{NROUNDS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{fips202__r1_8c_a3acffbd305ee72dcd4593c0d8af64a4f}\label{fips202__r1_8c_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!MIN@{MIN}}
+\index{MIN@{MIN}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define MIN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})~((a) $<$ (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ? (a) \+: (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}))}
+
+\mbox{\Hypertarget{fips202__r1_8c_a92a76bc85ae6b57d8257f168e3927a29}\label{fips202__r1_8c_a92a76bc85ae6b57d8257f168e3927a29}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!NROUNDS@{NROUNDS}}
+\index{NROUNDS@{NROUNDS}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{NROUNDS}{NROUNDS}}
+{\footnotesize\ttfamily \#define NROUNDS~24}
+
+\mbox{\Hypertarget{fips202__r1_8c_aec7a6f8049659733c0c5aac28df4abe2}\label{fips202__r1_8c_aec7a6f8049659733c0c5aac28df4abe2}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!ROL@{ROL}}
+\index{ROL@{ROL}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{ROL}{ROL}}
+{\footnotesize\ttfamily \#define ROL(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{offset }\end{DoxyParamCaption})~((a $<$$<$ offset) $^\wedge$ (a $>$$>$ (64-\/offset)))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{fips202__r1_8c_a01643fbeedb7113ca273bff01acf9d97}\label{fips202__r1_8c_a01643fbeedb7113ca273bff01acf9d97}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!cshake256\_simple@{cshake256\_simple}}
+\index{cshake256\_simple@{cshake256\_simple}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{cshake256\_simple()}{cshake256\_simple()}}
+{\footnotesize\ttfamily void cshake256\+\_\+simple (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{output,  }\item[{unsigned long long}]{outlen,  }\item[{uint16\+\_\+t}]{cstm,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long long}]{inlen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fips202__r1_8c_a695a067cfabeb5118d8a0bb0f8c5810c}\label{fips202__r1_8c_a695a067cfabeb5118d8a0bb0f8c5810c}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!cshake256\_simple\_absorb@{cshake256\_simple\_absorb}}
+\index{cshake256\_simple\_absorb@{cshake256\_simple\_absorb}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{cshake256\_simple\_absorb()}{cshake256\_simple\_absorb()}}
+{\footnotesize\ttfamily void cshake256\+\_\+simple\+\_\+absorb (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{s\mbox{[}25\mbox{]},  }\item[{uint16\+\_\+t}]{cstm,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long long}]{inlen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fips202__r1_8c_a0633f9b4121998f15ae862b986aacac0}\label{fips202__r1_8c_a0633f9b4121998f15ae862b986aacac0}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!keccak\_absorb@{keccak\_absorb}}
+\index{keccak\_absorb@{keccak\_absorb}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{keccak\_absorb()}{keccak\_absorb()}}
+{\footnotesize\ttfamily static void keccak\+\_\+absorb (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{s,  }\item[{unsigned int}]{r,  }\item[{const unsigned char $\ast$}]{m,  }\item[{unsigned long long int}]{mlen,  }\item[{unsigned char}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fips202__r1_8c_a1cd7e4a41c9fe08de87bc92ea6241869}\label{fips202__r1_8c_a1cd7e4a41c9fe08de87bc92ea6241869}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!keccak\_squeezeblocks@{keccak\_squeezeblocks}}
+\index{keccak\_squeezeblocks@{keccak\_squeezeblocks}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{keccak\_squeezeblocks()}{keccak\_squeezeblocks()}}
+{\footnotesize\ttfamily static void keccak\+\_\+squeezeblocks (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{h,  }\item[{unsigned long long int}]{nblocks,  }\item[{uint64\+\_\+t $\ast$}]{s,  }\item[{unsigned int}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fips202__r1_8c_a9384b0f51bc5e9548b61dce9a28430bf}\label{fips202__r1_8c_a9384b0f51bc5e9548b61dce9a28430bf}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!KeccakF1600\_StatePermute@{KeccakF1600\_StatePermute}}
+\index{KeccakF1600\_StatePermute@{KeccakF1600\_StatePermute}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{KeccakF1600\_StatePermute()}{KeccakF1600\_StatePermute()}}
+{\footnotesize\ttfamily void Keccak\+F1600\+\_\+\+State\+Permute (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fips202__r1_8c_abc24738404c1e802eca1dcd4bf8acdb0}\label{fips202__r1_8c_abc24738404c1e802eca1dcd4bf8acdb0}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!load64@{load64}}
+\index{load64@{load64}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{load64()}{load64()}}
+{\footnotesize\ttfamily static uint64\+\_\+t load64 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fips202__r1_8c_a2f91c6ac838e5fada375d2171e3e48ef}\label{fips202__r1_8c_a2f91c6ac838e5fada375d2171e3e48ef}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!store64@{store64}}
+\index{store64@{store64}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{store64()}{store64()}}
+{\footnotesize\ttfamily static void store64 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{x,  }\item[{uint64\+\_\+t}]{u }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{fips202__r1_8c_afdc666ad6018134f3302362f06f257f7}\label{fips202__r1_8c_afdc666ad6018134f3302362f06f257f7}} 
+\index{fips202\_r1.c@{fips202\_r1.c}!KeccakF\_RoundConstants@{KeccakF\_RoundConstants}}
+\index{KeccakF\_RoundConstants@{KeccakF\_RoundConstants}!fips202\_r1.c@{fips202\_r1.c}}
+\doxysubsubsection{\texorpdfstring{KeccakF\_RoundConstants}{KeccakF\_RoundConstants}}
+{\footnotesize\ttfamily const uint64\+\_\+t Keccak\+F\+\_\+\+Round\+Constants\mbox{[}\mbox{\hyperlink{fips202_8c_a92a76bc85ae6b57d8257f168e3927a29}{NROUNDS}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    (uint64\_t)0x0000000000000001ULL,}
+\DoxyCodeLine{    (uint64\_t)0x0000000000008082ULL,}
+\DoxyCodeLine{    (uint64\_t)0x800000000000808aULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000080008000ULL,}
+\DoxyCodeLine{    (uint64\_t)0x000000000000808bULL,}
+\DoxyCodeLine{    (uint64\_t)0x0000000080000001ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000080008081ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000008009ULL,}
+\DoxyCodeLine{    (uint64\_t)0x000000000000008aULL,}
+\DoxyCodeLine{    (uint64\_t)0x0000000000000088ULL,}
+\DoxyCodeLine{    (uint64\_t)0x0000000080008009ULL,}
+\DoxyCodeLine{    (uint64\_t)0x000000008000000aULL,}
+\DoxyCodeLine{    (uint64\_t)0x000000008000808bULL,}
+\DoxyCodeLine{    (uint64\_t)0x800000000000008bULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000008089ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000008003ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000008002ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000000080ULL,}
+\DoxyCodeLine{    (uint64\_t)0x000000000000800aULL,}
+\DoxyCodeLine{    (uint64\_t)0x800000008000000aULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000080008081ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000000008080ULL,}
+\DoxyCodeLine{    (uint64\_t)0x0000000080000001ULL,}
+\DoxyCodeLine{    (uint64\_t)0x8000000080008008ULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

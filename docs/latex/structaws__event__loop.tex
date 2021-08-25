@@ -1,0 +1,89 @@
+\hypertarget{structaws__event__loop}{}\doxysection{aws\+\_\+event\+\_\+loop Struct Reference}
+\label{structaws__event__loop}\index{aws\_event\_loop@{aws\_event\_loop}}
+
+
+{\ttfamily \#include $<$event\+\_\+loop.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__event__loop_a134d1ee62edc1ffab0aa3d3d87b9929e}{vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__event__loop_af9ff9ef090931449e5b2eb4fb33efee2}{alloc}}
+\item 
+\mbox{\hyperlink{io_8h_a7a7ab49e790eaef3914aba12fdfae2c4}{aws\+\_\+io\+\_\+clock\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__event__loop_af8831d93455758e995cd5009d35630f2}{clock}}
+\item 
+struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} \mbox{\hyperlink{structaws__event__loop_af44e11871bec93b10475362e96254ff5}{local\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__event__loop_afee493b486b5649726947240854665d0}{current\+\_\+load\+\_\+factor}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__event__loop_af66b60f6532d8e8ecb5d3e94cb724452}{latest\+\_\+tick\+\_\+start}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__event__loop_abc44d6b6e2a336f072f92d4baa73ade0}{current\+\_\+tick\+\_\+latency\+\_\+sum}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__event__loop_ac450ef13ad74ec458296fc4c91e354d7}{next\+\_\+flush\+\_\+time}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__event__loop_ab9bad739aed33e1561451e6740401ebb}{impl\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__event__loop_af9ff9ef090931449e5b2eb4fb33efee2}\label{structaws__event__loop_af9ff9ef090931449e5b2eb4fb33efee2}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+event\+\_\+loop\+::alloc}
+
+\mbox{\Hypertarget{structaws__event__loop_af8831d93455758e995cd5009d35630f2}\label{structaws__event__loop_af8831d93455758e995cd5009d35630f2}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!clock@{clock}}
+\index{clock@{clock}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{clock}{clock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{io_8h_a7a7ab49e790eaef3914aba12fdfae2c4}{aws\+\_\+io\+\_\+clock\+\_\+fn}}$\ast$ aws\+\_\+event\+\_\+loop\+::clock}
+
+\mbox{\Hypertarget{structaws__event__loop_afee493b486b5649726947240854665d0}\label{structaws__event__loop_afee493b486b5649726947240854665d0}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!current\_load\_factor@{current\_load\_factor}}
+\index{current\_load\_factor@{current\_load\_factor}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{current\_load\_factor}{current\_load\_factor}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+event\+\_\+loop\+::current\+\_\+load\+\_\+factor}
+
+\mbox{\Hypertarget{structaws__event__loop_abc44d6b6e2a336f072f92d4baa73ade0}\label{structaws__event__loop_abc44d6b6e2a336f072f92d4baa73ade0}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!current\_tick\_latency\_sum@{current\_tick\_latency\_sum}}
+\index{current\_tick\_latency\_sum@{current\_tick\_latency\_sum}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{current\_tick\_latency\_sum}{current\_tick\_latency\_sum}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+event\+\_\+loop\+::current\+\_\+tick\+\_\+latency\+\_\+sum}
+
+\mbox{\Hypertarget{structaws__event__loop_ab9bad739aed33e1561451e6740401ebb}\label{structaws__event__loop_ab9bad739aed33e1561451e6740401ebb}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!impl\_data@{impl\_data}}
+\index{impl\_data@{impl\_data}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{impl\_data}{impl\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+event\+\_\+loop\+::impl\+\_\+data}
+
+\mbox{\Hypertarget{structaws__event__loop_af66b60f6532d8e8ecb5d3e94cb724452}\label{structaws__event__loop_af66b60f6532d8e8ecb5d3e94cb724452}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!latest\_tick\_start@{latest\_tick\_start}}
+\index{latest\_tick\_start@{latest\_tick\_start}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{latest\_tick\_start}{latest\_tick\_start}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+event\+\_\+loop\+::latest\+\_\+tick\+\_\+start}
+
+\mbox{\Hypertarget{structaws__event__loop_af44e11871bec93b10475362e96254ff5}\label{structaws__event__loop_af44e11871bec93b10475362e96254ff5}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!local\_data@{local\_data}}
+\index{local\_data@{local\_data}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{local\_data}{local\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} aws\+\_\+event\+\_\+loop\+::local\+\_\+data}
+
+\mbox{\Hypertarget{structaws__event__loop_ac450ef13ad74ec458296fc4c91e354d7}\label{structaws__event__loop_ac450ef13ad74ec458296fc4c91e354d7}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!next\_flush\_time@{next\_flush\_time}}
+\index{next\_flush\_time@{next\_flush\_time}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{next\_flush\_time}{next\_flush\_time}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+event\+\_\+loop\+::next\+\_\+flush\+\_\+time}
+
+\mbox{\Hypertarget{structaws__event__loop_a134d1ee62edc1ffab0aa3d3d87b9929e}\label{structaws__event__loop_a134d1ee62edc1ffab0aa3d3d87b9929e}} 
+\index{aws\_event\_loop@{aws\_event\_loop}!vtable@{vtable}}
+\index{vtable@{vtable}!aws\_event\_loop@{aws\_event\_loop}}
+\doxysubsubsection{\texorpdfstring{vtable}{vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop\+\_\+vtable}}$\ast$ aws\+\_\+event\+\_\+loop\+::vtable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{event__loop_8h}{event\+\_\+loop.\+h}}\end{DoxyCompactItemize}

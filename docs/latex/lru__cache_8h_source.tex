@@ -1,0 +1,30 @@
+\hypertarget{lru__cache_8h_source}{}\doxysection{lru\+\_\+cache.\+h}
+\label{lru__cache_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/lru\_cache.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/lru\_cache.h}}
+\mbox{\hyperlink{lru__cache_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_LRU\_CACHE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_LRU\_CACHE\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{cache_8h}{aws/common/cache.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{19 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__cache}{aws\_cache}} *\mbox{\hyperlink{lru__cache_8h_a186582aa5a1e169f39aefd65c8996a55}{aws\_cache\_new\_lru}}(}
+\DoxyCodeLine{20     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{21     \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\_hash\_fn}} *hash\_fn,}
+\DoxyCodeLine{22     \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\_hash\_callback\_eq\_fn}} *equals\_fn,}
+\DoxyCodeLine{23     \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\_hash\_callback\_destroy\_fn}} *destroy\_key\_fn,}
+\DoxyCodeLine{24     \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\_hash\_callback\_destroy\_fn}} *destroy\_value\_fn,}
+\DoxyCodeLine{25     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__cache_ae4d843280c9596045c81a73bfe9ca76a}{max\_items}});}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{31 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{32 \textcolor{keywordtype}{void} *\mbox{\hyperlink{lru__cache_8h_aa2fea78835e55e4a6b6713ab85410929}{aws\_lru\_cache\_use\_lru\_element}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__cache}{aws\_cache}} *cache);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{38 \textcolor{keywordtype}{void} *\mbox{\hyperlink{lru__cache_8h_a7774697fce6d2faf3d46e4eaed2ba70e}{aws\_lru\_cache\_get\_mru\_element}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__cache}{aws\_cache}} *cache);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_LRU\_CACHE\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

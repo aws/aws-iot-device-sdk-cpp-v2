@@ -1,0 +1,202 @@
+\href{https://github.com/awslabs/aws-c-common/blob/main/LICENSE}{\texttt{ }} \href{https://lgtm.com/projects/g/awslabs/aws-c-common/context:cpp}{\texttt{ }} \href{https://lgtm.com/projects/g/awslabs/aws-c-common/alerts/}{\texttt{ }}
+
+Core c99 package for AWS SDK for C. Includes cross-\/platform primitives, configuration, data structures, and error handling.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md75}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md75}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md76}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md76}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md77}{}\doxysubsection{Building}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md77}
+aws-\/c-\/common uses CMake for setting up build environments. This library has no non-\/kernel dependencies so the build is quite simple.
+
+For example\+: \begin{DoxyVerb}git clone git@github.com:awslabs/aws-c-common.git aws-c-common
+mkdir aws-c-common-build
+cd aws-c-common-build
+cmake ../aws-c-common
+make -j 12
+make test
+sudo make install
+\end{DoxyVerb}
+ Keep in mind that CMake supports multiple build systems, so for each platform you can pass your own build system as the {\ttfamily -\/G} option. For example\+: \begin{DoxyVerb}cmake -GNinja ../aws-c-common
+ninja build
+ninja test
+sudo ninja install
+\end{DoxyVerb}
+ Or on windows, \begin{DoxyVerb}cmake -G "Visual Studio 14 2015 Win64" ../aws-c-common
+msbuild.exe ALL_BUILD.vcproj
+\end{DoxyVerb}
+ \hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md78}{}\doxysubsection{CMake Options}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md78}
+
+\begin{DoxyItemize}
+\item -\/DCMAKE\+\_\+\+CLANG\+\_\+\+TIDY=/path/to/clang-\/tidy (or just clang-\/tidy or clang-\/tidy-\/7.\+0 if it is in your PATH) -\/ Runs clang-\/tidy as part of your build.
+\item -\/DENABLE\+\_\+\+SANITIZERS=ON -\/ Enables gcc/clang sanitizers, by default this adds -\/fsanitizer=address,undefined to the compile flags for projects that call aws\+\_\+add\+\_\+sanitizers.
+\item -\/DENABLE\+\_\+\+FUZZ\+\_\+\+TESTS=ON -\/ Includes fuzz tests in the unit test suite. Off by default, because fuzz tests can take a long time. Set -\/DFUZZ\+\_\+\+TESTS\+\_\+\+MAX\+\_\+\+TIME=N to determine how long to run each fuzz test (default 60s).
+\item -\/DCMAKE\+\_\+\+INSTALL\+\_\+\+PREFIX=/path/to/install -\/ Standard way of installing to a user defined path. If specified when configuring aws-\/c-\/common, ensure the same prefix is specified when configuring other aws-\/c-\/$\ast$ SDKs.
+\item -\/DSTATIC\+\_\+\+CRT=ON -\/ On MSVC, use /\+MT(d) to link MSVCRT
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md79}{}\doxysubsection{API style and conventions}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md79}
+Every API has a specific set of styles and conventions. We\textquotesingle{}ll outline them here. These conventions are followed in every library in the AWS C SDK ecosystem.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md80}{}\doxysubsubsection{Error handling}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md80}
+Every function that returns an {\ttfamily int} type, returns {\ttfamily AWS\+\_\+\+OP\+\_\+\+SUCCESS} ( 0 ) or {\ttfamily AWS\+\_\+\+OP\+\_\+\+ERR} (-\/1) on failure. To retrieve the error code, use the function {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}}}. Each error code also has a corresponding error string that can be accessed via the {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a7b90dbea2e61f52505231329894c3611}{aws\+\_\+error\+\_\+str()}}} function.
+
+In addition, you can install both a global and a thread local error handler by using the {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a7ae28861288a9c9c038bcfd37ac8f512}{aws\+\_\+set\+\_\+global\+\_\+error\+\_\+handler\+\_\+fn()}}} and {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a37d1743400b196971e6f57408b26e5c4}{aws\+\_\+set\+\_\+thread\+\_\+local\+\_\+error\+\_\+handler\+\_\+fn()}}} functions.
+
+All error functions are in the {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h}{include/aws/common/error.\+h}}} header file.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md81}{}\doxysubsubsection{Naming}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md81}
+Any function that allocates and initializes an object will be suffixed with {\ttfamily new} (e.\+g. {\ttfamily aws\+\_\+myobj\+\_\+new()}). Similarly, these objects will always have a corresponding function with a {\ttfamily destroy} suffix. The {\ttfamily new} functions will return the allocated object on success and {\ttfamily NULL} on failure. To respond to the error, call {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}}}. If several {\ttfamily new} or {\ttfamily destroy} functions are available, the variants should be named like {\ttfamily new\+\_\+x} or {\ttfamily destroy\+\_\+x} (e.\+g. {\ttfamily aws\+\_\+myobj\+\_\+new\+\_\+copy()} or {\ttfamily aws\+\_\+myobj\+\_\+destroy\+\_\+secure()}).
+
+Any function that initializes an existing object will be suffixed with {\ttfamily init} (e.\+g. {\ttfamily aws\+\_\+myobj\+\_\+init()}. These objects will have a corresponding {\ttfamily clean\+\_\+up} function if necessary. In these cases, you are responsible for making the decisions for how your object is allocated. The {\ttfamily init} functions return {\ttfamily AWS\+\_\+\+OP\+\_\+\+SUCCESS} ( 0 ) or {\ttfamily AWS\+\_\+\+OP\+\_\+\+ERR} (-\/1) on failure. If several {\ttfamily init} or {\ttfamily clean\+\_\+up} functions are available, they should be named like {\ttfamily init\+\_\+x} or {\ttfamily clean\+\_\+up\+\_\+x} (e.\+g. {\ttfamily aws\+\_\+myobj\+\_\+init\+\_\+static()} or {\ttfamily aws\+\_\+myobj\+\_\+clean\+\_\+up\+\_\+secure()}).\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md82}{}\doxysection{Contributing}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md82}
+If you are contributing to this code-\/base, first off, THANK YOU!. There are a few things to keep in mind to minimize the pull request turn around time.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md83}{}\doxysubsection{Coding \char`\"{}guidelines\char`\"{}}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md83}
+These \char`\"{}guidelines\char`\"{} are followed in every library in the AWS C SDK ecosystem.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md84}{}\doxysubsubsection{Memory Management}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md84}
+
+\begin{DoxyItemize}
+\item All APIs that need to be able to allocate memory, must take an instance of {\ttfamily \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}} and use that. No {\ttfamily malloc()} or {\ttfamily free()} calls should be made directly.
+\item If an API does not allocate the memory, it does not free it. All allocations and deallocations should take place at the same level. For example, if a user allocates memory, the user is responsible for freeing it. There will inevitably be a few exceptions to this rule, but they will need significant justification to make it through the code-\/review.
+\item All functions that allocate memory must raise an {\ttfamily AWS\+\_\+\+ERROR\+\_\+\+OOM} error code upon allocation failures. If it is a {\ttfamily new()} function it should return NULL. If it is an {\ttfamily init()} function, it should return {\ttfamily AWS\+\_\+\+OP\+\_\+\+ERR}.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md85}{}\doxysubsubsection{Threading}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md85}
+
+\begin{DoxyItemize}
+\item Occasionally a thread is necessary. In those cases, prefer for memory not to be shared between threads. If memory must cross a thread barrier it should be a complete ownership hand-\/off. Bias towards, \char`\"{}if I need a mutex, I\textquotesingle{}m doing it wrong\char`\"{}.
+\item Do not sleep or block .... ever .... under any circumstances, in non-\/test-\/code.
+\item Do not expose blocking APIs.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md86}{}\doxysubsection{Error Handling}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md86}
+
+\begin{DoxyItemize}
+\item For APIs returning an {\ttfamily int} error code. The only acceptable return types are {\ttfamily AWS\+\_\+\+OP\+\_\+\+SUCCESS} and {\ttfamily AWS\+\_\+\+OP\+\_\+\+ERR}. Before returning control to the caller, if you have an error to raise, use the {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3f0f1282a739f6e2d29bab8912f1eb7f}{aws\+\_\+raise\+\_\+error()}}} function.
+\item For APIs returning an allocated instance of an object, return the memory on success, and {\ttfamily NULL} on failure. Before returning control to the caller, if you have an error to raise, use the {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3f0f1282a739f6e2d29bab8912f1eb7f}{aws\+\_\+raise\+\_\+error()}}} function.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md87}{}\doxysubsubsection{Log Subjects \& Error Codes}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md87}
+The logging \& error handling infrastructure is designed to support multiple libraries. For this to work, AWS maintained libraries have pre-\/slotted log subjects \& error codes for each library. The currently allocated ranges are\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Range   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Library Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Range   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Library Name    }\\\cline{1-2}
+\endhead
+\mbox{[}0x0000, 0x0400)   &aws-\/c-\/common    \\\cline{1-2}
+\mbox{[}0x0400, 0x0800)   &aws-\/c-\/io    \\\cline{1-2}
+\mbox{[}0x0800, 0x0\+C00)   &aws-\/c-\/http    \\\cline{1-2}
+\mbox{[}0x0\+C00, 0x1000)   &aws-\/c-\/compression    \\\cline{1-2}
+\mbox{[}0x1000, 0x1400)   &aws-\/c-\/eventstream    \\\cline{1-2}
+\mbox{[}0x1400, 0x1800)   &aws-\/c-\/mqtt    \\\cline{1-2}
+\mbox{[}0x1800, 0x1\+C00)   &aws-\/c-\/auth    \\\cline{1-2}
+\mbox{[}0x1\+C00, 0x2000)   &aws-\/c-\/cal    \\\cline{1-2}
+\mbox{[}0x2000, 0x2400)   &aws-\/crt-\/cpp    \\\cline{1-2}
+\mbox{[}0x2400, 0x2800)   &aws-\/crt-\/java    \\\cline{1-2}
+\mbox{[}0x2800, 0x2\+C00)   &aws-\/crt-\/python    \\\cline{1-2}
+\mbox{[}0x2\+C00, 0x3000)   &aws-\/crt-\/nodejs    \\\cline{1-2}
+\mbox{[}0x3000, 0x3400)   &aws-\/crt-\/dotnet    \\\cline{1-2}
+\mbox{[}0x3400, 0x3800)   &aws-\/c-\/iot    \\\cline{1-2}
+\mbox{[}0x3800, 0x3\+C00)   &(reserved for future project)    \\\cline{1-2}
+\mbox{[}0x3\+C00, 0x4000)   &(reserved for future project)    \\\cline{1-2}
+\mbox{[}0x4000, 0x4400)   &(reserved for future project)    \\\cline{1-2}
+\mbox{[}0x4400, 0x4800)   &(reserved for future project)   \\\cline{1-2}
+\end{longtabu}
+
+
+Each library should begin its error and log subject values at the beginning of its range and follow in sequence (don\textquotesingle{}t skip codes). Upon adding an AWS maintained library, a new enum range must be approved and added to the above table.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md88}{}\doxysubsection{Testing}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md88}
+We have a high bar for test coverage, and PRs fixing bugs or introducing new functionality need to have tests before they will be accepted. A couple of tips\+:\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md89}{}\doxysubsubsection{Aws Test Harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md89}
+We provide a test harness for writing unit tests. This includes an allocator that will fail your test if you have any memory leaks, as well as some {\ttfamily ASSERT} macros. To write a test\+:
+
+
+\begin{DoxyItemize}
+\item Create a $\ast$.c test file in the tests directory of the project.
+\item Implement one or more tests with the signature {\ttfamily int test\+\_\+case\+\_\+name(struct aws\+\_\+allocator $\ast$, void $\ast$ctx)}
+\item Use the {\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE} macro to declare the test.
+\item Include your test in the {\ttfamily tests/main.\+c} file.
+\item Include your test in the {\ttfamily tests/\+CMake\+Lists.\+txt} file.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md90}{}\doxysubsection{Coding Style}\label{md_crt_aws_crt_cpp_crt_aws_c_common__r_e_a_d_m_e_autotoc_md90}
+
+\begin{DoxyItemize}
+\item No Tabs.
+\item Indent is 4 spaces.
+\item K \& R style for braces.
+\item Space after if, before the {\ttfamily (}.
+\item {\ttfamily else} and {\ttfamily else if} stay on the same line as the closing brace.
+\end{DoxyItemize}
+
+Example\+: \begin{DoxyVerb}if (condition) {
+    do_something();
+} else {
+    do_something_else();
+}
+\end{DoxyVerb}
+
+\begin{DoxyItemize}
+\item Avoid C99 features in header files. For some types such as bool, uint32\+\_\+t etc..., these are defined if not available for the language standard being used in {\ttfamily \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.\+h}}}, so feel free to use them.
+\item For C++ compatibility, don\textquotesingle{}t put const members in structs.
+\item Avoid C++ style comments e.\+g. {\ttfamily //}.
+\item All public API functions need C++ guards and Windows dll semantics.
+\item Use Unix line endings.
+\item Where implementation hiding is desired for either ABI or runtime polymorphism reasons, use the {\ttfamily void $\ast$impl} pattern. v-\/tables should be the last member in the struct.
+\item For \#ifdef, put a \# as the first character on the line and then indent the compilation branches.
+\end{DoxyItemize}
+
+Example\+:
+
+\begin{DoxyVerb}#ifdef FOO
+    do_something();
+
+#   ifdef BAR
+    do_something_else();
+#   endif
+#endif
+\end{DoxyVerb}
+
+
+
+\begin{DoxyItemize}
+\item For all error code names with the exception of aws-\/c-\/common, use {\ttfamily AWS\+\_\+\+ERROR\+\_\+\texorpdfstring{$<$}{<}lib name\texorpdfstring{$>$}{>}\+\_\+\texorpdfstring{$<$}{<}error name\texorpdfstring{$>$}{>}}.
+\item All error strings should be written using correct English grammar.
+\item SNAKE\+\_\+\+UPPER\+\_\+\+CASE constants, macros, and enum members.
+\item snake\+\_\+lower\+\_\+case everything else.
+\item {\ttfamily static} (local file scope) variables that are not {\ttfamily const} are prefixed by {\ttfamily s\+\_\+} and lower snake case.
+\item Global variables not prefixed as {\ttfamily const} are prefixed by {\ttfamily g\+\_\+} and lower snake case.
+\item Thread local variables are prefixed as {\ttfamily tl\+\_\+} and lower snake case.
+\item Macros and {\ttfamily const} variables are upper snake case.
+\item For constants, prefer anonymous enums.
+\item Don\textquotesingle{}t typedef structs. It breaks forward declaration ability.
+\item Don\textquotesingle{}t typedef enums. It breaks forward declaration ability.
+\item typedef function definitions for use as function pointers as values and suffixed with \+\_\+fn.
+\end{DoxyItemize}
+
+Example\+: \begin{DoxyVerb}typedef int(fn_name_fn)(void *);
+\end{DoxyVerb}
+ Not\+: \begin{DoxyVerb}typedef int(*fn_name_fn)(void *);
+\end{DoxyVerb}
+
+\begin{DoxyItemize}
+\item Every source and header file must have a copyright header (The standard AWS one for apache 2).
+\item Use standard include guards (e.\+g. \#\+IFNDEF HEADER\+\_\+\+NAME \#define HEADER\+\_\+\+NAME etc...).
+\item Include order should be\+: the header for the translation unit for the .c file newline header files in a directory in alphabetical order newline header files not in a directory (system and stdlib headers)
+\item Platform specifics should be handled in c files and partitioned by directory.
+\item Do not use {\ttfamily extern inline}. It\textquotesingle{}s too unpredictable between compiler versions and language standards.
+\item Namespace all definitions in header files with {\ttfamily aws\+\_\+\texorpdfstring{$<$}{<}libname\texorpdfstring{$>$}{>}?\+\_\+\texorpdfstring{$<$}{<}api\texorpdfstring{$>$}{>}\+\_\+\texorpdfstring{$<$}{<}what it does\texorpdfstring{$>$}{>}}. Lib name is not always required if a conflict is not likely and it provides better ergonomics.
+\item {\ttfamily init}, {\ttfamily clean\+\_\+up}, {\ttfamily new}, {\ttfamily destroy} are suffixed to the function names for their object.
+\end{DoxyItemize}
+
+Example\+: \begin{DoxyVerb}AWS_COMMON_API
+\end{DoxyVerb}
+ int aws\+\_\+module\+\_\+init(aws\+\_\+module\+\_\+t $\ast$module); AWS\+\_\+\+COMMON\+\_\+\+API void aws\+\_\+module\+\_\+clean\+\_\+up(aws\+\_\+module\+\_\+t $\ast$module); AWS\+\_\+\+COMMON\+\_\+\+API aws\+\_\+module\+\_\+t $\ast$aws\+\_\+module\+\_\+new(aws\+\_\+allocator\+\_\+t $\ast$allocator); AWS\+\_\+\+COMMON\+\_\+\+API void aws\+\_\+module\+\_\+destroy(aws\+\_\+module\+\_\+t $\ast$module);
+
+
+\begin{DoxyItemize}
+\item Avoid c-\/strings, and don\textquotesingle{}t write code that depends on {\ttfamily NULL} terminators. Expose {\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}} APIs and let the user figure it out.
+\item There is only one valid character encoding-- UTF-\/8. Try not to ever need to care about character encodings, but where you do, the working assumption should always be UTF-\/8 unless it\textquotesingle{}s something we don\textquotesingle{}t get a choice in (e.\+g. a protocol explicitly mandates a character set).
+\item If you are adding/using a compiler specific keyword, macro, or intrinsic, hide it behind a platform independent macro definition. This mainly applies to header files. Obviously, if you are writing a file that will only be built on a certain platform, you have more liberty on this.
+\item When checking more than one error condition, check and log each condition separately with a unique message.
+\end{DoxyItemize}
+
+Example\+: \begin{DoxyVerb}if (options->callback == NULL) {
+    AWS_LOGF_ERROR(AWS_LS_SOME_SUBJECT, "Invalid options - callback is null");
+    return aws_raise_error(AWS_ERROR_INVALID_ARGUMENT);
+}
+
+if (options->allocator == NULL) {
+    AWS_LOGF_ERROR(AWS_LS_SOME_SUBJECT, "Invalid options - allocator is null");
+    return aws_raise_error(AWS_ERROR_INVALID_ARGUMENT);
+}
+\end{DoxyVerb}
+ Not\+: \begin{DoxyVerb}if (options->callback == NULL || options->allocator == NULL) {
+    AWS_LOGF_ERROR(AWS_LS_SOME_SUBJECT, "Invalid options - something is null");
+    return aws_raise_error(AWS_ERROR_INVALID_ARGUMENT);
+}
+\end{DoxyVerb}
+ 

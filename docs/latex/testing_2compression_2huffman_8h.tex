@@ -1,0 +1,97 @@
+\hypertarget{testing_2compression_2huffman_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/include/aws/testing/compression/huffman.h File Reference}
+\label{testing_2compression_2huffman_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/include/aws/testing/compression/huffman.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/include/aws/testing/compression/huffman.h}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/compression/huffman.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/compression/huffman.\+inl$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhuffman__test__code__point}{huffman\+\_\+test\+\_\+code\+\_\+point}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{testing_2compression_2huffman_8h_ad33f352c33f5b3fdce87fd856455a905}{HUFFMAN\+\_\+\+CODE}}(psymbol,  pbit\+\_\+string,  pbit\+\_\+pattern,  pnum\+\_\+bits)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{testing_2compression_2huffman_8h_ad0a03d38e0cf48b802d85c0fae881f7f}{huffman\+\_\+test\+\_\+transitive}} (struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}} $\ast$coder, const char $\ast$input, size\+\_\+t size, size\+\_\+t encoded\+\_\+size, const char $\ast$$\ast$error\+\_\+string)
+\item 
+int \mbox{\hyperlink{testing_2compression_2huffman_8h_aab2bc68c2489fa7d7ed4f49323b0da8f}{huffman\+\_\+test\+\_\+transitive\+\_\+chunked}} (struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}} $\ast$coder, const char $\ast$input, size\+\_\+t size, size\+\_\+t encoded\+\_\+size, size\+\_\+t output\+\_\+chunk\+\_\+size, const char $\ast$$\ast$error\+\_\+string)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{testing_2compression_2huffman_8h_ad33f352c33f5b3fdce87fd856455a905}\label{testing_2compression_2huffman_8h_ad33f352c33f5b3fdce87fd856455a905}} 
+\index{huffman.h@{huffman.h}!HUFFMAN\_CODE@{HUFFMAN\_CODE}}
+\index{HUFFMAN\_CODE@{HUFFMAN\_CODE}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{HUFFMAN\_CODE}{HUFFMAN\_CODE}}
+{\footnotesize\ttfamily \#define HUFFMAN\+\_\+\+CODE(\begin{DoxyParamCaption}\item[{}]{psymbol,  }\item[{}]{pbit\+\_\+string,  }\item[{}]{pbit\+\_\+pattern,  }\item[{}]{pnum\+\_\+bits }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \{                                                                                                                  \(\backslash\)}
+\DoxyCodeLine{        .symbol = (psymbol),                                                                                           \(\backslash\)}
+\DoxyCodeLine{        .code =                                                                                                        \(\backslash\)}
+\DoxyCodeLine{            \{                                                                                                          \(\backslash\)}
+\DoxyCodeLine{                .pattern = (pbit\_pattern),                                                                             \(\backslash\)}
+\DoxyCodeLine{                .num\_bits = (pnum\_bits),                                                                               \(\backslash\)}
+\DoxyCodeLine{            \},                                                                                                         \(\backslash\)}
+\DoxyCodeLine{    \},}
+
+\end{DoxyCode}
+Macro to be used when including a table def file, populates an array of huffman\+\_\+test\+\_\+code\+\_\+points 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{testing_2compression_2huffman_8h_ad0a03d38e0cf48b802d85c0fae881f7f}\label{testing_2compression_2huffman_8h_ad0a03d38e0cf48b802d85c0fae881f7f}} 
+\index{huffman.h@{huffman.h}!huffman\_test\_transitive@{huffman\_test\_transitive}}
+\index{huffman\_test\_transitive@{huffman\_test\_transitive}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{huffman\_test\_transitive()}{huffman\_test\_transitive()}}
+{\footnotesize\ttfamily int huffman\+\_\+test\+\_\+transitive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}} $\ast$}]{coder,  }\item[{const char $\ast$}]{input,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{encoded\+\_\+size,  }\item[{const char $\ast$$\ast$}]{error\+\_\+string }\end{DoxyParamCaption})}
+
+Function to test a huffman coder to ensure the transitive property applies (input == \mbox{\hyperlink{bike__r2_2functions__renaming_8h_ab3b6fbae1833ae95a744df95f366bb23}{decode(incode(input))}})
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em coder} & The symbol coder to test \\
+\hline
+\mbox{\texttt{ in}}  & {\em input} & The buffer to test \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The size of input \\
+\hline
+\mbox{\texttt{ in}}  & {\em encoded\+\_\+size} & The length of the encoded buffer. Pass 0 to skip check. \\
+\hline
+\mbox{\texttt{ out}}  & {\em error\+\_\+string} & In case of failure, the error string to report\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS on success, AWS\+\_\+\+OP\+\_\+\+FAILURE on failure (error\+\_\+string will be set)
+\end{DoxyReturn}
+See \mbox{\hyperlink{testing_2compression_2huffman_8h}{aws/testing/compression/huffman.\+h}} for docs. \mbox{\Hypertarget{testing_2compression_2huffman_8h_aab2bc68c2489fa7d7ed4f49323b0da8f}\label{testing_2compression_2huffman_8h_aab2bc68c2489fa7d7ed4f49323b0da8f}} 
+\index{huffman.h@{huffman.h}!huffman\_test\_transitive\_chunked@{huffman\_test\_transitive\_chunked}}
+\index{huffman\_test\_transitive\_chunked@{huffman\_test\_transitive\_chunked}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{huffman\_test\_transitive\_chunked()}{huffman\_test\_transitive\_chunked()}}
+{\footnotesize\ttfamily int huffman\+\_\+test\+\_\+transitive\+\_\+chunked (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}} $\ast$}]{coder,  }\item[{const char $\ast$}]{input,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{encoded\+\_\+size,  }\item[{size\+\_\+t}]{output\+\_\+chunk\+\_\+size,  }\item[{const char $\ast$$\ast$}]{error\+\_\+string }\end{DoxyParamCaption})}
+
+Function to test a huffman coder to ensure the transitive property applies when doing partial encodes/decodes (input == \mbox{\hyperlink{bike__r2_2functions__renaming_8h_ab3b6fbae1833ae95a744df95f366bb23}{decode(incode(input))}})
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em coder} & The symbol coder to test \\
+\hline
+\mbox{\texttt{ in}}  & {\em input} & The buffer to test \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The size of input \\
+\hline
+\mbox{\texttt{ in}}  & {\em encoded\+\_\+size} & The length of the encoded buffer. Pass 0 to skip check. \\
+\hline
+\mbox{\texttt{ in}}  & {\em output\+\_\+chunk\+\_\+size} & The amount of output to write at once \\
+\hline
+\mbox{\texttt{ out}}  & {\em error\+\_\+string} & In case of failure, the error string to report\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS on success, AWS\+\_\+\+OP\+\_\+\+FAILURE on failure (error\+\_\+string will be set) 
+\end{DoxyReturn}

@@ -1,0 +1,117 @@
+\hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{}\doxysection{Aws\+::Iotsecuretunneling\+::Secure\+Tunnel Class Reference}
+\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+
+
+{\ttfamily \#include $<$Secure\+Tunnel.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a2e211a7d1a11f85ae4a97155e0718f45}{Secure\+Tunnel}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} $\ast$client\+Bootstrap, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Aws\+::\+Crt\+::\+Io\+::\+Socket\+Options}} \&socket\+Options, const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&access\+Token, \mbox{\hyperlink{secure__tunneling_8h_a40266602b0be790c0fcb999ee01f1f1e}{aws\+\_\+secure\+\_\+tunneling\+\_\+local\+\_\+proxy\+\_\+mode}} local\+Proxy\+Mode, const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&endpoint\+Host, const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&root\+Ca, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_aa69abe9a918e0d59e1976143ee3b3448}{On\+Connection\+Complete}} on\+Connection\+Complete, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a1d15b717dfba979b484116dac858e0b8}{On\+Connection\+Shutdown}} on\+Connection\+Shutdown, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_af98d42958061aa035d144e1919e2d7d8}{On\+Send\+Data\+Complete}} on\+Send\+Data\+Complete, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_aec68b693857dd6354693d8400bcf36ad}{On\+Data\+Receive}} on\+Data\+Receive, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a5d1f363f338c4b56322e6350c1cf2480}{On\+Stream\+Start}} on\+Stream\+Start, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_af67046344aa360558c5088f305a45cf2}{On\+Stream\+Reset}} on\+Stream\+Reset, \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a1e16327a3993362a5cd79d6fb3d7f19d}{On\+Session\+Reset}} on\+Session\+Reset)
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a38be21e70556a2e8c49c593aa7f597f6}{Secure\+Tunnel}} (const \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a90ee1bb377fa745c05f994388d30c5cb}{Secure\+Tunnel}} (\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&\&) noexcept
+\item 
+virtual \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae9fe332168d4373d0f3e03e388aac1f5}{$\sim$\+Secure\+Tunnel}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \& \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a9b19ed30b7fc5e7c955285a98f6be4b4}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \& \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a83a9141a5ffebb50f6e99ec2897071f9}{operator=}} (\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&\&) noexcept
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ac005cfa6f225c8da5af4701502296817}{Connect}} ()
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a34fb98525d1a2398708f082fb2f90517}{Close}} ()
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_abcd27d96eecd88603ca98a174e5a1d92}{Send\+Data}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a7330b50394e5cbae4b3a7a6eddb3d205}{Send\+Stream\+Start}} ()
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_aade9dc5e8c7a2990925526adeac26211}{Send\+Stream\+Reset}} ()
+\item 
+\mbox{\hyperlink{structaws__secure__tunnel}{aws\+\_\+secure\+\_\+tunnel}} $\ast$ \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae2c4becfaa3357bc6cf21cd6bd7a7dab}{Get\+Underlying\+Handle}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a2e211a7d1a11f85ae4a97155e0718f45}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a2e211a7d1a11f85ae4a97155e0718f45}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SecureTunnel@{SecureTunnel}}
+\index{SecureTunnel@{SecureTunnel}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SecureTunnel()}{SecureTunnel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Secure\+Tunnel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} $\ast$}]{client\+Bootstrap,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Aws\+::\+Crt\+::\+Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&}]{access\+Token,  }\item[{\mbox{\hyperlink{secure__tunneling_8h_a40266602b0be790c0fcb999ee01f1f1e}{aws\+\_\+secure\+\_\+tunneling\+\_\+local\+\_\+proxy\+\_\+mode}}}]{local\+Proxy\+Mode,  }\item[{const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&}]{endpoint\+Host,  }\item[{const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{std\+::string}} \&}]{root\+Ca,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_aa69abe9a918e0d59e1976143ee3b3448}{On\+Connection\+Complete}}}]{on\+Connection\+Complete,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a1d15b717dfba979b484116dac858e0b8}{On\+Connection\+Shutdown}}}]{on\+Connection\+Shutdown,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_af98d42958061aa035d144e1919e2d7d8}{On\+Send\+Data\+Complete}}}]{on\+Send\+Data\+Complete,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_aec68b693857dd6354693d8400bcf36ad}{On\+Data\+Receive}}}]{on\+Data\+Receive,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a5d1f363f338c4b56322e6350c1cf2480}{On\+Stream\+Start}}}]{on\+Stream\+Start,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_af67046344aa360558c5088f305a45cf2}{On\+Stream\+Reset}}}]{on\+Stream\+Reset,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a1e16327a3993362a5cd79d6fb3d7f19d}{On\+Session\+Reset}}}]{on\+Session\+Reset }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a38be21e70556a2e8c49c593aa7f597f6}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a38be21e70556a2e8c49c593aa7f597f6}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SecureTunnel@{SecureTunnel}}
+\index{SecureTunnel@{SecureTunnel}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SecureTunnel()}{SecureTunnel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Secure\+Tunnel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a90ee1bb377fa745c05f994388d30c5cb}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a90ee1bb377fa745c05f994388d30c5cb}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SecureTunnel@{SecureTunnel}}
+\index{SecureTunnel@{SecureTunnel}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SecureTunnel()}{SecureTunnel()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Secure\+Tunnel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae9fe332168d4373d0f3e03e388aac1f5}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae9fe332168d4373d0f3e03e388aac1f5}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!````~SecureTunnel@{$\sim$SecureTunnel}}
+\index{````~SecureTunnel@{$\sim$SecureTunnel}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{$\sim$SecureTunnel()}{~SecureTunnel()}}
+{\footnotesize\ttfamily Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::$\sim$\+Secure\+Tunnel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a34fb98525d1a2398708f082fb2f90517}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a34fb98525d1a2398708f082fb2f90517}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!Close@{Close}}
+\index{Close@{Close}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily int Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ac005cfa6f225c8da5af4701502296817}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ac005cfa6f225c8da5af4701502296817}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!Connect@{Connect}}
+\index{Connect@{Connect}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{Connect()}{Connect()}}
+{\footnotesize\ttfamily int Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae2c4becfaa3357bc6cf21cd6bd7a7dab}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_ae2c4becfaa3357bc6cf21cd6bd7a7dab}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!GetUnderlyingHandle@{GetUnderlyingHandle}}
+\index{GetUnderlyingHandle@{GetUnderlyingHandle}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{GetUnderlyingHandle()}{GetUnderlyingHandle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaws__secure__tunnel}{aws\+\_\+secure\+\_\+tunnel}} $\ast$ Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Get\+Underlying\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a9b19ed30b7fc5e7c955285a98f6be4b4}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a9b19ed30b7fc5e7c955285a98f6be4b4}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}}\& Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a83a9141a5ffebb50f6e99ec2897071f9}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a83a9141a5ffebb50f6e99ec2897071f9}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \& Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{Secure\+Tunnel}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_abcd27d96eecd88603ca98a174e5a1d92}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_abcd27d96eecd88603ca98a174e5a1d92}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SendData@{SendData}}
+\index{SendData@{SendData}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SendData()}{SendData()}}
+{\footnotesize\ttfamily int Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Send\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_aade9dc5e8c7a2990925526adeac26211}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_aade9dc5e8c7a2990925526adeac26211}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SendStreamReset@{SendStreamReset}}
+\index{SendStreamReset@{SendStreamReset}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SendStreamReset()}{SendStreamReset()}}
+{\footnotesize\ttfamily int Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Send\+Stream\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a7330b50394e5cbae4b3a7a6eddb3d205}\label{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel_a7330b50394e5cbae4b3a7a6eddb3d205}} 
+\index{Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}!SendStreamStart@{SendStreamStart}}
+\index{SendStreamStart@{SendStreamStart}!Aws::Iotsecuretunneling::SecureTunnel@{Aws::Iotsecuretunneling::SecureTunnel}}
+\doxysubsubsection{\texorpdfstring{SendStreamStart()}{SendStreamStart()}}
+{\footnotesize\ttfamily int Aws\+::\+Iotsecuretunneling\+::\+Secure\+Tunnel\+::\+Send\+Stream\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+secure\+\_\+tunneling/include/aws/iotsecuretunneling/\mbox{\hyperlink{_secure_tunnel_8h}{Secure\+Tunnel.\+h}}\item 
+secure\+\_\+tunneling/source/\mbox{\hyperlink{_secure_tunnel_8cpp}{Secure\+Tunnel.\+cpp}}\end{DoxyCompactItemize}

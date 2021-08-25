@@ -1,0 +1,55 @@
+\hypertarget{s2n__sslv2__client__hello_8h_source}{}\doxysection{s2n\+\_\+sslv2\+\_\+client\+\_\+hello.\+h}
+\label{s2n__sslv2__client__hello_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_sslv2\_client\_hello.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_sslv2\_client\_hello.h}}
+\mbox{\hyperlink{s2n__sslv2__client__hello_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{/* The following macros can be concatanated to generate a SSLv2 ClientHello}}
+\DoxyCodeLine{19 \textcolor{comment}{ * message and record }}
+\DoxyCodeLine{20 \textcolor{comment}{ */}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define SSLv2\_CLIENT\_HELLO\_HEADER 0x80, 0xb3, 0x01, 0x03, 0x03}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define SSLv2\_CLIENT\_HELLO\_PREFIX 0x00, 0x8a, 0x00, 0x00, 0x00, 0x20}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES 0x00, 0xc0, 0x24, 0x00, 0xc0, 0x28, 0x00, 0x00, \(\backslash\)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{        0x3d, 0x00, 0xc0, 0x26, 0x00, 0xc0, 0x2a, 0x00, \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{        0x00, 0x6b, 0x00, 0x00, 0x6a, 0x00, 0xc0, 0x0a, \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{        0x07, 0x00, 0xc0, 0x00, 0xc0, 0x14, 0x00, 0x00, \(\backslash\)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{        0x35, 0x00, 0xc0, 0x05, 0x00, 0xc0, 0x0f, 0x00, \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{        0x00, 0x39, 0x00, 0x00, 0x38, 0x00, 0xc0, 0x23, \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{        0x00, 0xc0, 0x27, 0x00, 0x00, 0x3c, 0x00, 0xc0, \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{        0x25, 0x00, 0xc0, 0x29, 0x00, 0x00, 0x67, 0x00, \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{        0x00, 0x40, 0x00, 0xc0, 0x09, 0x06, 0x00, 0x40, \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{        0x00, 0xc0, 0x13, 0x00, 0x00, 0x2f, 0x00, 0xc0, \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{        0x04, 0x01, 0x00, 0x80, 0x00, 0xc0, 0x0e, 0x00, \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{        0x00, 0x33, 0x00, 0x00, 0x32, 0x00, 0xc0, 0x2c, \(\backslash\)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{        0x00, 0xc0, 0x2b, 0x00, 0xc0, 0x30, 0x00, 0x00, \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{        0x9d, 0x00, 0xc0, 0x2e, 0x00, 0xc0, 0x32, 0x00, \(\backslash\)}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{        0x00, 0x9f, 0x00, 0x00, 0xa3, 0x00, 0xc0, 0x2f, \(\backslash\)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{        0x00, 0x00, 0x9c, 0x00, 0xc0, 0x2d, 0x00, 0xc0, \(\backslash\)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{        0x31, 0x00, 0x00, 0x9e, 0x00, 0x00, 0xa2, 0x00, \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{        0x00, 0xff}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define SSLv2\_CLIENT\_HELLO\_CHALLENGE 0x5b, 0xe9, 0xcc, 0xad, 0xd6, 0xa5, 0x20, 0xac, \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{        0xa3, 0xf4, 0x8e, 0x88, 0x06, 0xb5, 0x95, 0x53, \(\backslash\)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{        0x2d, 0x53, 0xfe, 0xd7, 0xa1, 0x00, 0x57, 0xc0, \(\backslash\)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{        0x53, 0x9d, 0x84, 0x71, 0x80, 0x7f, 0x30, 0x7e}}
+\DoxyCodeLine{49 }
+
+\end{DoxyCode}

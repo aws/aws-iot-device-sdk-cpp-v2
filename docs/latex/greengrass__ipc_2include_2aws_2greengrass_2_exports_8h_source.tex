@@ -1,0 +1,21 @@
+\hypertarget{greengrass__ipc_2include_2aws_2greengrass_2_exports_8h_source}{}\doxysection{Exports.\+h}
+\label{greengrass__ipc_2include_2aws_2greengrass_2_exports_8h_source}\index{greengrass\_ipc/include/aws/greengrass/Exports.h@{greengrass\_ipc/include/aws/greengrass/Exports.h}}
+\mbox{\hyperlink{greengrass__ipc_2include_2aws_2greengrass_2_exports_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#if defined(AWS\_GREENGRASSIPC\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined(WIN32)}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#    ifdef AWS\_GREENGRASSIPC\_USE\_IMPORT\_EXPORT}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#        ifdef AWS\_GREENGRASSIPC\_EXPORTS}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#            define AWS\_GREENGRASSIPC\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#            define AWS\_GREENGRASSIPC\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* AWS\_GREENGRASSIPC\_EXPORTS */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#        define AWS\_GREENGRASSIPC\_API}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{/* AWS\_GREENGRASSIPC\_USE\_IMPORT\_EXPORT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* defined (AWS\_GREENGRASSIPC\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (WIN32) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#    define AWS\_GREENGRASSIPC\_API}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined (AWS\_GREENGRASSIPC\_\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (WIN32) */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

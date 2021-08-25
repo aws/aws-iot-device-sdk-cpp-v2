@@ -1,0 +1,45 @@
+\hypertarget{hash__table__generators_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/hash\+\_\+table\+\_\+generators.c File Reference}
+\label{hash__table__generators_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/hash\_table\_generators.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/hash\_table\_generators.c}}
+{\ttfamily \#include $<$aws/common/private/hash\+\_\+table\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/make\+\_\+common\+\_\+data\+\_\+structures.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/proof\+\_\+allocators.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hash__table__generators_8c_a1bef66d5e3f2d5c9162b7d6c2ff61039}{hash\+\_\+iterator\+\_\+string\+\_\+string\+\_\+generator}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$new\+\_\+iter, const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$old\+\_\+iter)
+\item 
+void \mbox{\hyperlink{hash__table__generators_8c_accdb56f5f485122834acb0b816bb817f}{hash\+\_\+find\+\_\+string\+\_\+string\+\_\+generator}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+elem)
+\item 
+void \mbox{\hyperlink{hash__table__generators_8c_a0579865c67967800e928f9f3e863695a}{hash\+\_\+iterator\+\_\+unbacked\+\_\+string\+\_\+string\+\_\+generator}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$new\+\_\+iter, const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$old\+\_\+iter)
+\item 
+void \mbox{\hyperlink{hash__table__generators_8c_a47177eafa1f9d7889be4e04614d706cb}{hash\+\_\+find\+\_\+unbacked\+\_\+string\+\_\+string\+\_\+generator}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+elem)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hash__table__generators_8c_accdb56f5f485122834acb0b816bb817f}\label{hash__table__generators_8c_accdb56f5f485122834acb0b816bb817f}} 
+\index{hash\_table\_generators.c@{hash\_table\_generators.c}!hash\_find\_string\_string\_generator@{hash\_find\_string\_string\_generator}}
+\index{hash\_find\_string\_string\_generator@{hash\_find\_string\_string\_generator}!hash\_table\_generators.c@{hash\_table\_generators.c}}
+\doxysubsubsection{\texorpdfstring{hash\_find\_string\_string\_generator()}{hash\_find\_string\_string\_generator()}}
+{\footnotesize\ttfamily void hash\+\_\+find\+\_\+string\+\_\+string\+\_\+generator (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+elem }\end{DoxyParamCaption})}
+
+The common case for the hash-\/table is that it maps strings to strings. This generates fully non-\/deterministic strings for both key and value \mbox{\Hypertarget{hash__table__generators_8c_a47177eafa1f9d7889be4e04614d706cb}\label{hash__table__generators_8c_a47177eafa1f9d7889be4e04614d706cb}} 
+\index{hash\_table\_generators.c@{hash\_table\_generators.c}!hash\_find\_unbacked\_string\_string\_generator@{hash\_find\_unbacked\_string\_string\_generator}}
+\index{hash\_find\_unbacked\_string\_string\_generator@{hash\_find\_unbacked\_string\_string\_generator}!hash\_table\_generators.c@{hash\_table\_generators.c}}
+\doxysubsubsection{\texorpdfstring{hash\_find\_unbacked\_string\_string\_generator()}{hash\_find\_unbacked\_string\_string\_generator()}}
+{\footnotesize\ttfamily void hash\+\_\+find\+\_\+unbacked\+\_\+string\+\_\+string\+\_\+generator (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+elem }\end{DoxyParamCaption})}
+
+The common case for the hash-\/table is that it maps strings to strings. Some code (for e.\+g. the aws\+\_\+cryptosdk\+\_\+enc\+\_\+ctx\+\_\+size() function in the ESDK uses the string header but not the actual string itself. So this allocates the header, but not the string. This ensures that no successful proof CAN use the bytes of the string. \mbox{\Hypertarget{hash__table__generators_8c_a1bef66d5e3f2d5c9162b7d6c2ff61039}\label{hash__table__generators_8c_a1bef66d5e3f2d5c9162b7d6c2ff61039}} 
+\index{hash\_table\_generators.c@{hash\_table\_generators.c}!hash\_iterator\_string\_string\_generator@{hash\_iterator\_string\_string\_generator}}
+\index{hash\_iterator\_string\_string\_generator@{hash\_iterator\_string\_string\_generator}!hash\_table\_generators.c@{hash\_table\_generators.c}}
+\doxysubsubsection{\texorpdfstring{hash\_iterator\_string\_string\_generator()}{hash\_iterator\_string\_string\_generator()}}
+{\footnotesize\ttfamily void hash\+\_\+iterator\+\_\+string\+\_\+string\+\_\+generator (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{new\+\_\+iter,  }\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{old\+\_\+iter }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. The common case for the hash-\/table is that it maps strings to strings. This generates fully non-\/deterministic strings for both key and value \mbox{\Hypertarget{hash__table__generators_8c_a0579865c67967800e928f9f3e863695a}\label{hash__table__generators_8c_a0579865c67967800e928f9f3e863695a}} 
+\index{hash\_table\_generators.c@{hash\_table\_generators.c}!hash\_iterator\_unbacked\_string\_string\_generator@{hash\_iterator\_unbacked\_string\_string\_generator}}
+\index{hash\_iterator\_unbacked\_string\_string\_generator@{hash\_iterator\_unbacked\_string\_string\_generator}!hash\_table\_generators.c@{hash\_table\_generators.c}}
+\doxysubsubsection{\texorpdfstring{hash\_iterator\_unbacked\_string\_string\_generator()}{hash\_iterator\_unbacked\_string\_string\_generator()}}
+{\footnotesize\ttfamily void hash\+\_\+iterator\+\_\+unbacked\+\_\+string\+\_\+string\+\_\+generator (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{new\+\_\+iter,  }\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{old\+\_\+iter }\end{DoxyParamCaption})}
+
+The common case for the hash-\/table is that it maps strings to strings. Some code (for e.\+g. the aws\+\_\+cryptosdk\+\_\+enc\+\_\+ctx\+\_\+size() function in the ESDK uses the string header but not the actual string itself. So this allocates the header, but not the string. This ensures that no successful proof CAN use the bytes of the string. 

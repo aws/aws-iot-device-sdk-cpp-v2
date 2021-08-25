@@ -1,0 +1,37 @@
+\hypertarget{s2n__client__cert__verify__recv__test__overrides_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/\+LD\+\_\+\+PRELOAD/s2n\+\_\+client\+\_\+cert\+\_\+verify\+\_\+recv\+\_\+test\+\_\+overrides.c File Reference}
+\label{s2n__client__cert__verify__recv__test__overrides_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/LD\_PRELOAD/s2n\_client\_cert\_verify\_recv\_test\_overrides.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/LD\_PRELOAD/s2n\_client\_cert\_verify\_recv\_test\_overrides.c}}
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__client__cert__verify__recv__test__overrides_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+GNU\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__cert__verify__recv__test__overrides_8c_a025bef560502510fc20ed3213f8d7320}{s2n\+\_\+pkey\+\_\+verify}} (const struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$key, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} sig\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$digest, struct s2n\+\_\+blob $\ast$signature)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__client__cert__verify__recv__test__overrides_8c_a369266c24eacffb87046522897a570d5}\label{s2n__client__cert__verify__recv__test__overrides_8c_a369266c24eacffb87046522897a570d5}} 
+\index{s2n\_client\_cert\_verify\_recv\_test\_overrides.c@{s2n\_client\_cert\_verify\_recv\_test\_overrides.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!s2n\_client\_cert\_verify\_recv\_test\_overrides.c@{s2n\_client\_cert\_verify\_recv\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+GNU\+\_\+\+SOURCE}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__cert__verify__recv__test__overrides_8c_a025bef560502510fc20ed3213f8d7320}\label{s2n__client__cert__verify__recv__test__overrides_8c_a025bef560502510fc20ed3213f8d7320}} 
+\index{s2n\_client\_cert\_verify\_recv\_test\_overrides.c@{s2n\_client\_cert\_verify\_recv\_test\_overrides.c}!s2n\_pkey\_verify@{s2n\_pkey\_verify}}
+\index{s2n\_pkey\_verify@{s2n\_pkey\_verify}!s2n\_client\_cert\_verify\_recv\_test\_overrides.c@{s2n\_client\_cert\_verify\_recv\_test\_overrides.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_pkey\_verify()}{s2n\_pkey\_verify()}}
+{\footnotesize\ttfamily int s2n\+\_\+pkey\+\_\+verify (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}]{sig\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{digest,  }\item[{struct s2n\+\_\+blob $\ast$}]{signature }\end{DoxyParamCaption})}
+

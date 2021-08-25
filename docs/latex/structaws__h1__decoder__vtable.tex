@@ -1,0 +1,57 @@
+\hypertarget{structaws__h1__decoder__vtable}{}\doxysection{aws\+\_\+h1\+\_\+decoder\+\_\+vtable Struct Reference}
+\label{structaws__h1__decoder__vtable}\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+
+
+{\ttfamily \#include $<$h1\+\_\+decoder.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__h1__decoder__vtable_ac3fcf4f0ad7390023462bb6e8dfbc7df}{on\+\_\+header}} )(const struct \mbox{\hyperlink{structaws__h1__decoded__header}{aws\+\_\+h1\+\_\+decoded\+\_\+header}} $\ast$header, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__h1__decoder__vtable_a3ac1a5e163c46fd565943395e58b8984}{on\+\_\+body}} )(const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} finished, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__h1__decoder__vtable_a69d78797b3a03ae217b3c26ce05cfcaa}{on\+\_\+request}} )(enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} method\+\_\+enum, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$method\+\_\+str, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__h1__decoder__vtable_a38eedbd0367cd9c1e74c1b0ac3aaf180}{on\+\_\+response}} )(int status\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__h1__decoder__vtable_a7cf1a881ad7e073b9895601396ae4242}{on\+\_\+done}} )(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__h1__decoder__vtable_a3ac1a5e163c46fd565943395e58b8984}\label{structaws__h1__decoder__vtable_a3ac1a5e163c46fd565943395e58b8984}} 
+\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}!on\_body@{on\_body}}
+\index{on\_body@{on\_body}!aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_body}{on\_body}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+h1\+\_\+decoder\+\_\+vtable\+::on\+\_\+body) (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} finished, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+Called from {\ttfamily aws\+\_\+h1\+\_\+decode} when a portion of the http body has been received. {\ttfamily finished} is true if this is the last section of the http body, and false if more body data is yet to be received. All pointers are strictly {\itshape read only}; any data that needs to persist must be copied out into user-\/owned memory. \mbox{\Hypertarget{structaws__h1__decoder__vtable_a7cf1a881ad7e073b9895601396ae4242}\label{structaws__h1__decoder__vtable_a7cf1a881ad7e073b9895601396ae4242}} 
+\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}!on\_done@{on\_done}}
+\index{on\_done@{on\_done}!aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_done}{on\_done}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+h1\+\_\+decoder\+\_\+vtable\+::on\+\_\+done) (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__h1__decoder__vtable_ac3fcf4f0ad7390023462bb6e8dfbc7df}\label{structaws__h1__decoder__vtable_ac3fcf4f0ad7390023462bb6e8dfbc7df}} 
+\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}!on\_header@{on\_header}}
+\index{on\_header@{on\_header}!aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_header}{on\_header}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+h1\+\_\+decoder\+\_\+vtable\+::on\+\_\+header) (const struct \mbox{\hyperlink{structaws__h1__decoded__header}{aws\+\_\+h1\+\_\+decoded\+\_\+header}} $\ast$header, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+Called from {\ttfamily aws\+\_\+h$\ast$\+\_\+decode} when an http header has been received. All pointers are strictly {\itshape read only}; any data that needs to persist must be copied out into user-\/owned memory. \mbox{\Hypertarget{structaws__h1__decoder__vtable_a69d78797b3a03ae217b3c26ce05cfcaa}\label{structaws__h1__decoder__vtable_a69d78797b3a03ae217b3c26ce05cfcaa}} 
+\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}!on\_request@{on\_request}}
+\index{on\_request@{on\_request}!aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_request}{on\_request}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+h1\+\_\+decoder\+\_\+vtable\+::on\+\_\+request) (enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} method\+\_\+enum, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$method\+\_\+str, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__h1__decoder__vtable_a38eedbd0367cd9c1e74c1b0ac3aaf180}\label{structaws__h1__decoder__vtable_a38eedbd0367cd9c1e74c1b0ac3aaf180}} 
+\index{aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}!on\_response@{on\_response}}
+\index{on\_response@{on\_response}!aws\_h1\_decoder\_vtable@{aws\_h1\_decoder\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_response}{on\_response}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+h1\+\_\+decoder\+\_\+vtable\+::on\+\_\+response) (int status\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{h1__decoder_8h}{h1\+\_\+decoder.\+h}}\end{DoxyCompactItemize}

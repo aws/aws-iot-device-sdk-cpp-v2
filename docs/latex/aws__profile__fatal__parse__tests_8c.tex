@@ -1,0 +1,91 @@
+\hypertarget{aws__profile__fatal__parse__tests_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/aws\+\_\+profile\+\_\+fatal\+\_\+parse\+\_\+tests.c File Reference}
+\label{aws__profile__fatal__parse__tests_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/aws\_profile\_fatal\_parse\_tests.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/aws\_profile\_fatal\_parse\_tests.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/private/aws\+\_\+profile.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_a6433daae2d3ac87c997c35b0d1624597}{AWS\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+FAILURE\+\_\+\+TEST}}(test\+\_\+name,  content\+\_\+string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_ad2456d65e180abc8fc669277a8023f1a}{s\+\_\+do\+\_\+aws\+\_\+profile\+\_\+fatal\+\_\+parse\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$profile\+\_\+contents)
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_ae046d4e687f832340c92e7e4c08f1f60}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+early\+\_\+property\+\_\+profile\+\_\+file, \char`\"{}bad=value\textbackslash{}n\char`\"{} \char`\"{}\mbox{[}default\mbox{]}\textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}good=value\textbackslash{}r\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_aeb2ec0ec6d9c78f06ac467ee07b38c67}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+missing\+\_\+bracket\+\_\+profile\+\_\+file, \char`\"{}\mbox{[}default \textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}good=value\textbackslash{}r\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_aa04a48f03d79194b8644474e28fc8d70}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+missing\+\_\+assignment\+\_\+profile\+\_\+file, \char`\"{}\mbox{[}default\mbox{]}  \textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}bad\textbackslash{}r\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_aff0378c035992d54f47573542072f14c}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+missing\+\_\+property\+\_\+key\+\_\+profile\+\_\+file, \char`\"{}\mbox{[}default\mbox{]}  ; hello\textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}=bad\textbackslash{}r\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_a9755c1aef4d3dfa60ea46ef777db4767}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+early\+\_\+continuation\+\_\+profile\+\_\+file, \char`\"{}\mbox{[}default\mbox{]}\textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}  continuation\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_a6ddf0b3b92342e4d57f19990e550a182}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+illegal\+\_\+continuation1\+\_\+profile\+\_\+file, \char`\"{}\mbox{[}default\mbox{]}\textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}s3 =\textbackslash{}n\char`\"{} \char`\"{}  badcontinuation\textbackslash{}n\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_a6433daae2d3ac87c997c35b0d1624597}\label{aws__profile__fatal__parse__tests_8c_a6433daae2d3ac87c997c35b0d1624597}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_PROFILE\_PARSE\_FAILURE\_TEST@{AWS\_PROFILE\_PARSE\_FAILURE\_TEST}}
+\index{AWS\_PROFILE\_PARSE\_FAILURE\_TEST@{AWS\_PROFILE\_PARSE\_FAILURE\_TEST}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_PROFILE\_PARSE\_FAILURE\_TEST}{AWS\_PROFILE\_PARSE\_FAILURE\_TEST}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+FAILURE\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{test\+\_\+name,  }\item[{}]{content\+\_\+string }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keywordtype}{int} s\_\#\#test\_name(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}}) \{                                             \(\backslash\)}
+\DoxyCodeLine{        (void)\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}};                                                                                                     \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{aws__profile__fatal__parse__tests_8c_ad2456d65e180abc8fc669277a8023f1a}{s\_do\_aws\_profile\_fatal\_parse\_test}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, content\_string);                                           \(\backslash\)}
+\DoxyCodeLine{    \}                                                                                                                  \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE(test\_name, s\_\#\#test\_name);}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_a9755c1aef4d3dfa60ea46ef777db4767}\label{aws__profile__fatal__parse__tests_8c_a9755c1aef4d3dfa60ea46ef777db4767}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+early\+\_\+continuation\+\_\+profile\+\_\+file}]{,  }\item[{\char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{} continuation\textbackslash{}n\char`\"{}}]{\mbox{[}default\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_ae046d4e687f832340c92e7e4c08f1f60}\label{aws__profile__fatal__parse__tests_8c_ae046d4e687f832340c92e7e4c08f1f60}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+early\+\_\+property\+\_\+profile\+\_\+file}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_a6ddf0b3b92342e4d57f19990e550a182}\label{aws__profile__fatal__parse__tests_8c_a6ddf0b3b92342e4d57f19990e550a182}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+illegal\+\_\+continuation1\+\_\+profile\+\_\+file}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_aa04a48f03d79194b8644474e28fc8d70}\label{aws__profile__fatal__parse__tests_8c_aa04a48f03d79194b8644474e28fc8d70}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+missing\+\_\+assignment\+\_\+profile\+\_\+file}]{,  }\item[{\char`\"{} \textbackslash{}r\textbackslash{}n\char`\"{} \char`\"{}bad\textbackslash{}r\textbackslash{}n\char`\"{}}]{\mbox{[}default\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_aeb2ec0ec6d9c78f06ac467ee07b38c67}\label{aws__profile__fatal__parse__tests_8c_aeb2ec0ec6d9c78f06ac467ee07b38c67}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+missing\+\_\+bracket\+\_\+profile\+\_\+file}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_aff0378c035992d54f47573542072f14c}\label{aws__profile__fatal__parse__tests_8c_aff0378c035992d54f47573542072f14c}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+missing\+\_\+property\+\_\+key\+\_\+profile\+\_\+file}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile__fatal__parse__tests_8c_ad2456d65e180abc8fc669277a8023f1a}\label{aws__profile__fatal__parse__tests_8c_ad2456d65e180abc8fc669277a8023f1a}} 
+\index{aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}!s\_do\_aws\_profile\_fatal\_parse\_test@{s\_do\_aws\_profile\_fatal\_parse\_test}}
+\index{s\_do\_aws\_profile\_fatal\_parse\_test@{s\_do\_aws\_profile\_fatal\_parse\_test}!aws\_profile\_fatal\_parse\_tests.c@{aws\_profile\_fatal\_parse\_tests.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_aws\_profile\_fatal\_parse\_test()}{s\_do\_aws\_profile\_fatal\_parse\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+aws\+\_\+profile\+\_\+fatal\+\_\+parse\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{profile\+\_\+contents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

@@ -1,0 +1,38 @@
+\hypertarget{sike__r1__kem_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\+\_\+r1/sike\+\_\+r1\+\_\+kem.c File Reference}
+\label{sike__r1__kem_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/sike\_r1\_kem.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/sike\_r1\_kem.c}}
+{\ttfamily \#include \char`\"{}sike\+\_\+r1\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}P503\+\_\+internal\+\_\+r1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fips202\+\_\+r1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pq-\/crypto/s2n\+\_\+pq\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sike__r1__kem_8c_a59584b579a127354900af517e625696d}{SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+keypair}} (unsigned char $\ast$pk, unsigned char $\ast$sk)
+\item 
+int \mbox{\hyperlink{sike__r1__kem_8c_aa155d8f672d0db0f5bbbbc7b60b5d396}{SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+enc}} (unsigned char $\ast$ct, unsigned char $\ast$ss, const unsigned char $\ast$pk)
+\item 
+int \mbox{\hyperlink{sike__r1__kem_8c_af32f9c7afde7706d57967ddaa90faf7d}{SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+dec}} (unsigned char $\ast$ss, const unsigned char $\ast$ct, const unsigned char $\ast$sk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sike__r1__kem_8c_af32f9c7afde7706d57967ddaa90faf7d}\label{sike__r1__kem_8c_af32f9c7afde7706d57967ddaa90faf7d}} 
+\index{sike\_r1\_kem.c@{sike\_r1\_kem.c}!SIKE\_P503\_r1\_crypto\_kem\_dec@{SIKE\_P503\_r1\_crypto\_kem\_dec}}
+\index{SIKE\_P503\_r1\_crypto\_kem\_dec@{SIKE\_P503\_r1\_crypto\_kem\_dec}!sike\_r1\_kem.c@{sike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{SIKE\_P503\_r1\_crypto\_kem\_dec()}{SIKE\_P503\_r1\_crypto\_kem\_dec()}}
+{\footnotesize\ttfamily int SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+dec (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{ss,  }\item[{const unsigned char $\ast$}]{ct,  }\item[{const unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sike__r1__kem_8c_aa155d8f672d0db0f5bbbbc7b60b5d396}\label{sike__r1__kem_8c_aa155d8f672d0db0f5bbbbc7b60b5d396}} 
+\index{sike\_r1\_kem.c@{sike\_r1\_kem.c}!SIKE\_P503\_r1\_crypto\_kem\_enc@{SIKE\_P503\_r1\_crypto\_kem\_enc}}
+\index{SIKE\_P503\_r1\_crypto\_kem\_enc@{SIKE\_P503\_r1\_crypto\_kem\_enc}!sike\_r1\_kem.c@{sike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{SIKE\_P503\_r1\_crypto\_kem\_enc()}{SIKE\_P503\_r1\_crypto\_kem\_enc()}}
+{\footnotesize\ttfamily int SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+enc (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{ss,  }\item[{const unsigned char $\ast$}]{pk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sike__r1__kem_8c_a59584b579a127354900af517e625696d}\label{sike__r1__kem_8c_a59584b579a127354900af517e625696d}} 
+\index{sike\_r1\_kem.c@{sike\_r1\_kem.c}!SIKE\_P503\_r1\_crypto\_kem\_keypair@{SIKE\_P503\_r1\_crypto\_kem\_keypair}}
+\index{SIKE\_P503\_r1\_crypto\_kem\_keypair@{SIKE\_P503\_r1\_crypto\_kem\_keypair}!sike\_r1\_kem.c@{sike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{SIKE\_P503\_r1\_crypto\_kem\_keypair()}{SIKE\_P503\_r1\_crypto\_kem\_keypair()}}
+{\footnotesize\ttfamily int SIKE\+\_\+\+P503\+\_\+r1\+\_\+crypto\+\_\+kem\+\_\+keypair (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{pk,  }\item[{unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+

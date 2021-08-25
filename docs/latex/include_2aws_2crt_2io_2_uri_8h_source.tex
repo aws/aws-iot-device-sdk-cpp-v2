@@ -1,0 +1,55 @@
+\hypertarget{include_2aws_2crt_2io_2_uri_8h_source}{}\doxysection{Uri.\+h}
+\label{include_2aws_2crt_2io_2_uri_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/io/Uri.h@{crt/aws-\/crt-\/cpp/include/aws/crt/io/Uri.h}}
+\mbox{\hyperlink{include_2aws_2crt_2io_2_uri_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h}{aws/io/uri.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{13     \{}
+\DoxyCodeLine{14         \textcolor{keyword}{namespace }Io}
+\DoxyCodeLine{15         \{}
+\DoxyCodeLine{19             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{20             \{}
+\DoxyCodeLine{21               \textcolor{keyword}{public}:}
+\DoxyCodeLine{22                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{23                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{\string~Uri}}();}
+\DoxyCodeLine{28                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}}(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} \&cursor, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{33                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}}(\mbox{\hyperlink{structaws__uri__builder__options}{aws\_uri\_builder\_options}} \&builderOptions, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{34                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&);}
+\DoxyCodeLine{35                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&);}
+\DoxyCodeLine{36                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&\&uri) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{37                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&operator=(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&\&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{41                 \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_isInit; \}}
+\DoxyCodeLine{45                 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a44219c00cfe813b84275d27cd6ba85c5}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_lastError; \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{50                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetScheme() const noexcept;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetAuthority() const noexcept;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{61                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetPath() const noexcept;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetQueryString() const noexcept;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{71                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetHostName() const noexcept;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{78                 uint16\_t GetPort() const noexcept;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{83                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetPathAndQuery() const noexcept;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88                 \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} GetFullUri() const noexcept;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90               private:}
+\DoxyCodeLine{91                 \mbox{\hyperlink{structaws__uri}{aws\_uri}} m\_uri;}
+\DoxyCodeLine{92                 \textcolor{keywordtype}{int} m\_lastError;}
+\DoxyCodeLine{93                 \textcolor{keywordtype}{bool} m\_isInit;}
+\DoxyCodeLine{94             \};}
+\DoxyCodeLine{95         \} \textcolor{comment}{// namespace Io}}
+\DoxyCodeLine{96     \}     \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{97 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

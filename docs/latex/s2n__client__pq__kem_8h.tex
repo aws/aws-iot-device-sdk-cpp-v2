@@ -1,0 +1,41 @@
+\hypertarget{s2n__client__pq__kem_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+client\+\_\+pq\+\_\+kem.h File Reference}
+\label{s2n__client__pq__kem_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_pq\_kem.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_pq\_kem.h}}
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__pq__kem_8h_a55d50ad78d826b4be850736d29e782b5}{s2n\+\_\+extensions\+\_\+client\+\_\+pq\+\_\+kem\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, uint16\+\_\+t pq\+\_\+kem\+\_\+list\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__client__pq__kem_8h_a6acc9665b8dcb8fa05310ba7720b7ec6}{s2n\+\_\+recv\+\_\+pq\+\_\+kem\+\_\+extension}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__client__pq__kem_8h_a77f02aad0bc40ebd1a119b9324a9c510}{s2n\+\_\+client\+\_\+pq\+\_\+kem\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__pq__kem_8h_a55d50ad78d826b4be850736d29e782b5}\label{s2n__client__pq__kem_8h_a55d50ad78d826b4be850736d29e782b5}} 
+\index{s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}!s2n\_extensions\_client\_pq\_kem\_send@{s2n\_extensions\_client\_pq\_kem\_send}}
+\index{s2n\_extensions\_client\_pq\_kem\_send@{s2n\_extensions\_client\_pq\_kem\_send}!s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_pq\_kem\_send()}{s2n\_extensions\_client\_pq\_kem\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+pq\+\_\+kem\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{uint16\+\_\+t}]{pq\+\_\+kem\+\_\+list\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__pq__kem_8h_a6acc9665b8dcb8fa05310ba7720b7ec6}\label{s2n__client__pq__kem_8h_a6acc9665b8dcb8fa05310ba7720b7ec6}} 
+\index{s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}!s2n\_recv\_pq\_kem\_extension@{s2n\_recv\_pq\_kem\_extension}}
+\index{s2n\_recv\_pq\_kem\_extension@{s2n\_recv\_pq\_kem\_extension}!s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_pq\_kem\_extension()}{s2n\_recv\_pq\_kem\_extension()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+pq\+\_\+kem\+\_\+extension (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__pq__kem_8h_a77f02aad0bc40ebd1a119b9324a9c510}\label{s2n__client__pq__kem_8h_a77f02aad0bc40ebd1a119b9324a9c510}} 
+\index{s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}!s2n\_client\_pq\_kem\_extension@{s2n\_client\_pq\_kem\_extension}}
+\index{s2n\_client\_pq\_kem\_extension@{s2n\_client\_pq\_kem\_extension}!s2n\_client\_pq\_kem.h@{s2n\_client\_pq\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_pq\_kem\_extension}{s2n\_client\_pq\_kem\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+pq\+\_\+kem\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

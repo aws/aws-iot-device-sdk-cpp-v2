@@ -1,0 +1,104 @@
+\hypertarget{ring__buffer_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ring\+\_\+buffer.h File Reference}
+\label{ring__buffer_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ring\_buffer.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/ring\_buffer.h}}
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/ring\+\_\+buffer.\+inl$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{ring__buffer_8h_a06e2b4429ac1acf4dbb5b05bc1a4f1ea}{aws\+\_\+ring\+\_\+buffer\+\_\+init}} (struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{ring__buffer_8h_a3a903432023b7b3203444220e072877d}{aws\+\_\+ring\+\_\+buffer\+\_\+check\+\_\+atomic\+\_\+ptr}} (const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf, const uint8\+\_\+t $\ast$atomic\+\_\+ptr)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{ring__buffer_8h_ae1f9eb372b315c22e93befe69c077caa}{aws\+\_\+ring\+\_\+buffer\+\_\+is\+\_\+empty}} (const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{ring__buffer_8h_a83daa9d786af59435b910bcb219ebe91}{aws\+\_\+ring\+\_\+buffer\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{ring__buffer_8h_a0f37474d403a06973789fa1ede6e9f51}{aws\+\_\+ring\+\_\+buffer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{ring__buffer_8h_a9cde76b8a974d0fa2bebfdddf4f615d2}{aws\+\_\+ring\+\_\+buffer\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf, size\+\_\+t requested\+\_\+size, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{ring__buffer_8h_a6bf27d5ca3e0efd271643dbe137ae124}{aws\+\_\+ring\+\_\+buffer\+\_\+acquire\+\_\+up\+\_\+to}} (struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buf, size\+\_\+t minimum\+\_\+size, size\+\_\+t requested\+\_\+size, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{ring__buffer_8h_aeda2351291933bae6de78a8910102093}{aws\+\_\+ring\+\_\+buffer\+\_\+release}} (struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buffer, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{ring__buffer_8h_a163005d9f9dfc895a3c4535f7e24ffc7}{aws\+\_\+ring\+\_\+buffer\+\_\+buf\+\_\+belongs\+\_\+to\+\_\+pool}} (const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buffer, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{ring__buffer_8h_a62b2dac5647dd753c7e86af234bbe952}{aws\+\_\+ring\+\_\+buffer\+\_\+allocator\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$ring\+\_\+buffer)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{ring__buffer_8h_a8040dce63b56d080fe208d7bd9050e3a}{aws\+\_\+ring\+\_\+buffer\+\_\+allocator\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ring__buffer_8h_a9cde76b8a974d0fa2bebfdddf4f615d2}\label{ring__buffer_8h_a9cde76b8a974d0fa2bebfdddf4f615d2}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_acquire@{aws\_ring\_buffer\_acquire}}
+\index{aws\_ring\_buffer\_acquire@{aws\_ring\_buffer\_acquire}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_acquire()}{aws\_ring\_buffer\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+ring\+\_\+buffer\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf,  }\item[{size\+\_\+t}]{requested\+\_\+size,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+Attempts to acquire {\ttfamily requested\+\_\+size} buffer and stores the result in {\ttfamily dest} if successful. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if the requested size was available for use, AWS\+\_\+\+OP\+\_\+\+ERR otherwise. \mbox{\Hypertarget{ring__buffer_8h_a6bf27d5ca3e0efd271643dbe137ae124}\label{ring__buffer_8h_a6bf27d5ca3e0efd271643dbe137ae124}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_acquire\_up\_to@{aws\_ring\_buffer\_acquire\_up\_to}}
+\index{aws\_ring\_buffer\_acquire\_up\_to@{aws\_ring\_buffer\_acquire\_up\_to}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_acquire\_up\_to()}{aws\_ring\_buffer\_acquire\_up\_to()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+ring\+\_\+buffer\+\_\+acquire\+\_\+up\+\_\+to (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf,  }\item[{size\+\_\+t}]{minimum\+\_\+size,  }\item[{size\+\_\+t}]{requested\+\_\+size,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+Attempts to acquire {\ttfamily requested\+\_\+size} buffer and stores the result in {\ttfamily dest} if successful. If not available, it will attempt to acquire anywhere from 1 byte to {\ttfamily requested\+\_\+size}. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if some buffer space is available for use, AWS\+\_\+\+OP\+\_\+\+ERR otherwise. \mbox{\Hypertarget{ring__buffer_8h_a8040dce63b56d080fe208d7bd9050e3a}\label{ring__buffer_8h_a8040dce63b56d080fe208d7bd9050e3a}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_allocator\_clean\_up@{aws\_ring\_buffer\_allocator\_clean\_up}}
+\index{aws\_ring\_buffer\_allocator\_clean\_up@{aws\_ring\_buffer\_allocator\_clean\_up}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_allocator\_clean\_up()}{aws\_ring\_buffer\_allocator\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+ring\+\_\+buffer\+\_\+allocator\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Cleans up a ring buffer allocator instance. Does not clean up the ring buffer. \mbox{\Hypertarget{ring__buffer_8h_a62b2dac5647dd753c7e86af234bbe952}\label{ring__buffer_8h_a62b2dac5647dd753c7e86af234bbe952}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_allocator\_init@{aws\_ring\_buffer\_allocator\_init}}
+\index{aws\_ring\_buffer\_allocator\_init@{aws\_ring\_buffer\_allocator\_init}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_allocator\_init()}{aws\_ring\_buffer\_allocator\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+ring\+\_\+buffer\+\_\+allocator\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buffer }\end{DoxyParamCaption})}
+
+Initializes the supplied allocator to be based on the provided ring buffer. Allocations must be allocated and freed in the same order, or the ring buffer will assert. \mbox{\Hypertarget{ring__buffer_8h_a163005d9f9dfc895a3c4535f7e24ffc7}\label{ring__buffer_8h_a163005d9f9dfc895a3c4535f7e24ffc7}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_buf\_belongs\_to\_pool@{aws\_ring\_buffer\_buf\_belongs\_to\_pool}}
+\index{aws\_ring\_buffer\_buf\_belongs\_to\_pool@{aws\_ring\_buffer\_buf\_belongs\_to\_pool}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_buf\_belongs\_to\_pool()}{aws\_ring\_buffer\_buf\_belongs\_to\_pool()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ring\+\_\+buffer\+\_\+buf\+\_\+belongs\+\_\+to\+\_\+pool (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buffer,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf }\end{DoxyParamCaption})}
+
+Returns true if the memory in {\ttfamily buf} was vended by this ring buffer, false otherwise. Make sure {\ttfamily buf-\/\texorpdfstring{$>$}{>}buffer} and {\ttfamily ring\+\_\+buffer-\/\texorpdfstring{$>$}{>}allocation} refer to the same memory region. \mbox{\Hypertarget{ring__buffer_8h_a3a903432023b7b3203444220e072877d}\label{ring__buffer_8h_a3a903432023b7b3203444220e072877d}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_check\_atomic\_ptr@{aws\_ring\_buffer\_check\_atomic\_ptr}}
+\index{aws\_ring\_buffer\_check\_atomic\_ptr@{aws\_ring\_buffer\_check\_atomic\_ptr}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_check\_atomic\_ptr()}{aws\_ring\_buffer\_check\_atomic\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ring\+\_\+buffer\+\_\+check\+\_\+atomic\+\_\+ptr (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf,  }\item[{const uint8\+\_\+t $\ast$}]{atomic\+\_\+ptr }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{ring__buffer_8h_a0f37474d403a06973789fa1ede6e9f51}\label{ring__buffer_8h_a0f37474d403a06973789fa1ede6e9f51}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_clean\_up@{aws\_ring\_buffer\_clean\_up}}
+\index{aws\_ring\_buffer\_clean\_up@{aws\_ring\_buffer\_clean\_up}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_clean\_up()}{aws\_ring\_buffer\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+ring\+\_\+buffer\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf }\end{DoxyParamCaption})}
+
+Cleans up the ring buffer\textquotesingle{}s resources. \mbox{\Hypertarget{ring__buffer_8h_a06e2b4429ac1acf4dbb5b05bc1a4f1ea}\label{ring__buffer_8h_a06e2b4429ac1acf4dbb5b05bc1a4f1ea}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_init@{aws\_ring\_buffer\_init}}
+\index{aws\_ring\_buffer\_init@{aws\_ring\_buffer\_init}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_init()}{aws\_ring\_buffer\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+ring\+\_\+buffer\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Initializes a ring buffer with an allocation of size {\ttfamily size}. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS on a successful initialization, AWS\+\_\+\+OP\+\_\+\+ERR otherwise. \mbox{\Hypertarget{ring__buffer_8h_ae1f9eb372b315c22e93befe69c077caa}\label{ring__buffer_8h_ae1f9eb372b315c22e93befe69c077caa}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_is\_empty@{aws\_ring\_buffer\_is\_empty}}
+\index{aws\_ring\_buffer\_is\_empty@{aws\_ring\_buffer\_is\_empty}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_is\_empty()}{aws\_ring\_buffer\_is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ring\+\_\+buffer\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf }\end{DoxyParamCaption})}
+
+Checks whether the ring buffer is empty \mbox{\Hypertarget{ring__buffer_8h_a83daa9d786af59435b910bcb219ebe91}\label{ring__buffer_8h_a83daa9d786af59435b910bcb219ebe91}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_is\_valid@{aws\_ring\_buffer\_is\_valid}}
+\index{aws\_ring\_buffer\_is\_valid@{aws\_ring\_buffer\_is\_valid}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_is\_valid()}{aws\_ring\_buffer\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ring\+\_\+buffer\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buf }\end{DoxyParamCaption})}
+
+Evaluates the set of properties that define the shape of all valid \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} structures. It is also a cheap check, in the sense it run in constant time (i.\+e., no loops or recursion). \mbox{\Hypertarget{ring__buffer_8h_aeda2351291933bae6de78a8910102093}\label{ring__buffer_8h_aeda2351291933bae6de78a8910102093}} 
+\index{ring\_buffer.h@{ring\_buffer.h}!aws\_ring\_buffer\_release@{aws\_ring\_buffer\_release}}
+\index{aws\_ring\_buffer\_release@{aws\_ring\_buffer\_release}!ring\_buffer.h@{ring\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ring\_buffer\_release()}{aws\_ring\_buffer\_release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+ring\+\_\+buffer\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__ring__buffer}{aws\+\_\+ring\+\_\+buffer}} $\ast$}]{ring\+\_\+buffer,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf }\end{DoxyParamCaption})}
+
+Releases {\ttfamily buf} back to the ring buffer for further use. RELEASE MUST HAPPEN in the SAME ORDER AS ACQUIRE. If you do not, your application, and possibly computers within a thousand mile radius, may die terrible deaths, and the local drinking water will be poisoned for generations with fragments of what is left of your radioactive corrupted memory. 

@@ -1,0 +1,43 @@
+\hypertarget{mock__dns__resolver_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/mock\+\_\+dns\+\_\+resolver.c File Reference}
+\label{mock__dns__resolver_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/mock\_dns\_resolver.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/mock\_dns\_resolver.c}}
+{\ttfamily \#include \char`\"{}mock\+\_\+dns\+\_\+resolver.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/io/host\+\_\+resolver.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{mock__dns__resolver_8c_ac47af927b1c84702b2bd6dfca9df5bd4}{mock\+\_\+dns\+\_\+resolver\+\_\+init}} (struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$resolver, size\+\_\+t max\+\_\+resolves, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{mock__dns__resolver_8c_aff29b8a920e59b2674446b50c852b9b7}{mock\+\_\+dns\+\_\+resolver\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$resolver)
+\item 
+int \mbox{\hyperlink{mock__dns__resolver_8c_a867e84d62d6b8ebe35d8eeb3f7917ef9}{mock\+\_\+dns\+\_\+resolver\+\_\+append\+\_\+address\+\_\+list}} (struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$resolver, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$addresses)
+\item 
+int \mbox{\hyperlink{mock__dns__resolver_8c_a95bd7db7ddf259749e80058e5569cd39}{mock\+\_\+dns\+\_\+resolve}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$output\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mock__dns__resolver_8c_a95bd7db7ddf259749e80058e5569cd39}\label{mock__dns__resolver_8c_a95bd7db7ddf259749e80058e5569cd39}} 
+\index{mock\_dns\_resolver.c@{mock\_dns\_resolver.c}!mock\_dns\_resolve@{mock\_dns\_resolve}}
+\index{mock\_dns\_resolve@{mock\_dns\_resolve}!mock\_dns\_resolver.c@{mock\_dns\_resolver.c}}
+\doxysubsubsection{\texorpdfstring{mock\_dns\_resolve()}{mock\_dns\_resolve()}}
+{\footnotesize\ttfamily int mock\+\_\+dns\+\_\+resolve (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{output\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mock__dns__resolver_8c_a867e84d62d6b8ebe35d8eeb3f7917ef9}\label{mock__dns__resolver_8c_a867e84d62d6b8ebe35d8eeb3f7917ef9}} 
+\index{mock\_dns\_resolver.c@{mock\_dns\_resolver.c}!mock\_dns\_resolver\_append\_address\_list@{mock\_dns\_resolver\_append\_address\_list}}
+\index{mock\_dns\_resolver\_append\_address\_list@{mock\_dns\_resolver\_append\_address\_list}!mock\_dns\_resolver.c@{mock\_dns\_resolver.c}}
+\doxysubsubsection{\texorpdfstring{mock\_dns\_resolver\_append\_address\_list()}{mock\_dns\_resolver\_append\_address\_list()}}
+{\footnotesize\ttfamily int mock\+\_\+dns\+\_\+resolver\+\_\+append\+\_\+address\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$}]{resolver,  }\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{addresses }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mock__dns__resolver_8c_aff29b8a920e59b2674446b50c852b9b7}\label{mock__dns__resolver_8c_aff29b8a920e59b2674446b50c852b9b7}} 
+\index{mock\_dns\_resolver.c@{mock\_dns\_resolver.c}!mock\_dns\_resolver\_clean\_up@{mock\_dns\_resolver\_clean\_up}}
+\index{mock\_dns\_resolver\_clean\_up@{mock\_dns\_resolver\_clean\_up}!mock\_dns\_resolver.c@{mock\_dns\_resolver.c}}
+\doxysubsubsection{\texorpdfstring{mock\_dns\_resolver\_clean\_up()}{mock\_dns\_resolver\_clean\_up()}}
+{\footnotesize\ttfamily void mock\+\_\+dns\+\_\+resolver\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$}]{resolver }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mock__dns__resolver_8c_ac47af927b1c84702b2bd6dfca9df5bd4}\label{mock__dns__resolver_8c_ac47af927b1c84702b2bd6dfca9df5bd4}} 
+\index{mock\_dns\_resolver.c@{mock\_dns\_resolver.c}!mock\_dns\_resolver\_init@{mock\_dns\_resolver\_init}}
+\index{mock\_dns\_resolver\_init@{mock\_dns\_resolver\_init}!mock\_dns\_resolver.c@{mock\_dns\_resolver.c}}
+\doxysubsubsection{\texorpdfstring{mock\_dns\_resolver\_init()}{mock\_dns\_resolver\_init()}}
+{\footnotesize\ttfamily int mock\+\_\+dns\+\_\+resolver\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$}]{resolver,  }\item[{size\+\_\+t}]{max\+\_\+resolves,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

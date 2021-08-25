@@ -1,0 +1,292 @@
+\hypertarget{s2n__kem_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+kem.h File Reference}
+\label{s2n__kem_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_kem.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_kem.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto\+\_\+constants.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+ecc\+\_\+evp.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}}
+\item 
+struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}}
+\item 
+struct \mbox{\hyperlink{structs2n__iana__to__kem}{s2n\+\_\+iana\+\_\+to\+\_\+kem}}
+\item 
+struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structs2n__kem__group__params}{s2n\+\_\+kem\+\_\+group\+\_\+params}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__kem_8h_a9784e70a5eeb0bdfc6f35de3a1157acd}{S2\+N\+\_\+\+SUPPORTED\+\_\+\+KEM\+\_\+\+GROUPS\+\_\+\+COUNT}}~3
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a2f4cff2e567762d417ee023ac2f7265b}{kem\+\_\+public\+\_\+key\+\_\+size}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_acdfa2499223b129953b45867958153a4}{kem\+\_\+private\+\_\+key\+\_\+size}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a480258ebd795f3ee573af0619bae7a50}{kem\+\_\+shared\+\_\+secret\+\_\+size}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_aa4c7757e45a6ce46f31e0b44660781ac}{kem\+\_\+ciphertext\+\_\+key\+\_\+size}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_afcb5f5b581771069726c37bafa1c8178}{s2n\+\_\+kem\+\_\+generate\+\_\+keypair}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a62ac8833f481a4c76f0a45e72402feee}{s2n\+\_\+kem\+\_\+encapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}}, struct s2n\+\_\+blob $\ast$ciphertext)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a96b2f5683150670759429019144e1f14}{s2n\+\_\+kem\+\_\+decapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}}, const struct s2n\+\_\+blob $\ast$ciphertext)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_afd3bf103f84a1f42bd05343d107ec9a3}{s2n\+\_\+choose\+\_\+kem\+\_\+with\+\_\+peer\+\_\+pref\+\_\+list}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, struct s2n\+\_\+blob $\ast$client\+\_\+kem\+\_\+ids, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]}, const uint8\+\_\+t num\+\_\+server\+\_\+supported\+\_\+kems, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$chosen\+\_\+kem)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a29eb489ff98ee76f90e43121fa868bca}{s2n\+\_\+choose\+\_\+kem\+\_\+without\+\_\+peer\+\_\+pref\+\_\+list}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]}, const uint8\+\_\+t num\+\_\+server\+\_\+supported\+\_\+kems, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$chosen\+\_\+kem)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a7c4230187cab4374e551be66b1818b28}{s2n\+\_\+kem\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a3048d9e72bb9e5352176a67fd7ba6b6c}{s2n\+\_\+kem\+\_\+group\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__group__params}{s2n\+\_\+kem\+\_\+group\+\_\+params}} $\ast$kem\+\_\+group\+\_\+params)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a124d01d59ea85aae9fa36eb4027d3098}{s2n\+\_\+cipher\+\_\+suite\+\_\+to\+\_\+kem}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, const struct \mbox{\hyperlink{structs2n__iana__to__kem}{s2n\+\_\+iana\+\_\+to\+\_\+kem}} $\ast$$\ast$supported\+\_\+params)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a448b5e1964fb2f1752b59e867f4ec8a7}{s2n\+\_\+get\+\_\+kem\+\_\+from\+\_\+extension\+\_\+id}} (\mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}} kem\+\_\+id, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$kem)
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a06e9d82eaa1a51f1a8559758236df198}{s2n\+\_\+kem\+\_\+send\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a78e0ac3b18129d888473727022ce552a}{s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_a16ed00e8c5fecec7dcb83a71a10c065b}{s2n\+\_\+kem\+\_\+send\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem_8h_abf01a14da74889cb2442abc6da1e36ef}{s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_a850931461ba374761fcd59f61110089f}{s2n\+\_\+bike1\+\_\+l1\+\_\+r1}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_abbd7fd4e953be6a50b3ebb8d24fda7f7}{s2n\+\_\+bike1\+\_\+l1\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_abfcdb78d1d83a775a3715123ff7d7e92}{s2n\+\_\+sike\+\_\+p503\+\_\+r1}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_a8fbd799846cb650d4365dcbb83eb1d5c}{s2n\+\_\+sike\+\_\+p434\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_afeefc6389370dfc060366e6cb8e1a6a5}{s2n\+\_\+kyber\+\_\+512\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem_8h_aef6bd34735092f4190b5c62f13044eab}{s2n\+\_\+kyber\+\_\+512\+\_\+90s\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_aa56c812138f7e43360d929369667f0fd}{s2n\+\_\+secp256r1\+\_\+sike\+\_\+p434\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_ad5b78cea96a5aba38b46348c94ed96da}{s2n\+\_\+secp256r1\+\_\+bike1\+\_\+l1\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_a56912437193243663b1fa03da943e5c6}{s2n\+\_\+secp256r1\+\_\+kyber\+\_\+512\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_a6912756e0ba08e7724ede57106265162}{s2n\+\_\+x25519\+\_\+sike\+\_\+p434\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_a697a5b4d8f8819a8ccf1cb7b2a623689}{s2n\+\_\+x25519\+\_\+bike1\+\_\+l1\+\_\+r2}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} \mbox{\hyperlink{s2n__kem_8h_aabfaa31e595922f607b52bff6b5d6cb2}{s2n\+\_\+x25519\+\_\+kyber\+\_\+512\+\_\+r2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__kem_8h_a9784e70a5eeb0bdfc6f35de3a1157acd}\label{s2n__kem_8h_a9784e70a5eeb0bdfc6f35de3a1157acd}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT@{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}}
+\index{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT@{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SUPPORTED\+\_\+\+KEM\+\_\+\+GROUPS\+\_\+\+COUNT~3}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{s2n__kem_8h_aa4c7757e45a6ce46f31e0b44660781ac}\label{s2n__kem_8h_aa4c7757e45a6ce46f31e0b44660781ac}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!kem\_ciphertext\_key\_size@{kem\_ciphertext\_key\_size}}
+\index{kem\_ciphertext\_key\_size@{kem\_ciphertext\_key\_size}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{kem\_ciphertext\_key\_size}{kem\_ciphertext\_key\_size}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_aa4c7757e45a6ce46f31e0b44660781ac}{kem\+\_\+ciphertext\+\_\+key\+\_\+size}}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a81b345122713c5da133f22798727415d}\label{s2n__kem_8h_a81b345122713c5da133f22798727415d}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!kem\_extension\_size@{kem\_extension\_size}}
+\index{kem\_extension\_size@{kem\_extension\_size}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{kem\_extension\_size}{kem\_extension\_size}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}}}
+
+\mbox{\Hypertarget{s2n__kem_8h_acdfa2499223b129953b45867958153a4}\label{s2n__kem_8h_acdfa2499223b129953b45867958153a4}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!kem\_private\_key\_size@{kem\_private\_key\_size}}
+\index{kem\_private\_key\_size@{kem\_private\_key\_size}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{kem\_private\_key\_size}{kem\_private\_key\_size}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_acdfa2499223b129953b45867958153a4}{kem\+\_\+private\+\_\+key\+\_\+size}}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a2f4cff2e567762d417ee023ac2f7265b}\label{s2n__kem_8h_a2f4cff2e567762d417ee023ac2f7265b}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!kem\_public\_key\_size@{kem\_public\_key\_size}}
+\index{kem\_public\_key\_size@{kem\_public\_key\_size}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{kem\_public\_key\_size}{kem\_public\_key\_size}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a2f4cff2e567762d417ee023ac2f7265b}{kem\+\_\+public\+\_\+key\+\_\+size}}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a480258ebd795f3ee573af0619bae7a50}\label{s2n__kem_8h_a480258ebd795f3ee573af0619bae7a50}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!kem\_shared\_secret\_size@{kem\_shared\_secret\_size}}
+\index{kem\_shared\_secret\_size@{kem\_shared\_secret\_size}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{kem\_shared\_secret\_size}{kem\_shared\_secret\_size}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{s2n__kem_8h_a480258ebd795f3ee573af0619bae7a50}{kem\+\_\+shared\+\_\+secret\+\_\+size}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__kem_8h_afd3bf103f84a1f42bd05343d107ec9a3}\label{s2n__kem_8h_afd3bf103f84a1f42bd05343d107ec9a3}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_choose\_kem\_with\_peer\_pref\_list@{s2n\_choose\_kem\_with\_peer\_pref\_list}}
+\index{s2n\_choose\_kem\_with\_peer\_pref\_list@{s2n\_choose\_kem\_with\_peer\_pref\_list}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_choose\_kem\_with\_peer\_pref\_list()}{s2n\_choose\_kem\_with\_peer\_pref\_list()}}
+{\footnotesize\ttfamily int s2n\+\_\+choose\+\_\+kem\+\_\+with\+\_\+peer\+\_\+pref\+\_\+list (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{iana\+\_\+value\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]},  }\item[{struct s2n\+\_\+blob $\ast$}]{client\+\_\+kem\+\_\+ids,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$}]{server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]},  }\item[{const uint8\+\_\+t}]{num\+\_\+server\+\_\+supported\+\_\+kems,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$}]{chosen\+\_\+kem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a29eb489ff98ee76f90e43121fa868bca}\label{s2n__kem_8h_a29eb489ff98ee76f90e43121fa868bca}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_choose\_kem\_without\_peer\_pref\_list@{s2n\_choose\_kem\_without\_peer\_pref\_list}}
+\index{s2n\_choose\_kem\_without\_peer\_pref\_list@{s2n\_choose\_kem\_without\_peer\_pref\_list}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_choose\_kem\_without\_peer\_pref\_list()}{s2n\_choose\_kem\_without\_peer\_pref\_list()}}
+{\footnotesize\ttfamily int s2n\+\_\+choose\+\_\+kem\+\_\+without\+\_\+peer\+\_\+pref\+\_\+list (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{iana\+\_\+value\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]},  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$}]{server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]},  }\item[{const uint8\+\_\+t}]{num\+\_\+server\+\_\+supported\+\_\+kems,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$}]{chosen\+\_\+kem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a124d01d59ea85aae9fa36eb4027d3098}\label{s2n__kem_8h_a124d01d59ea85aae9fa36eb4027d3098}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_cipher\_suite\_to\_kem@{s2n\_cipher\_suite\_to\_kem}}
+\index{s2n\_cipher\_suite\_to\_kem@{s2n\_cipher\_suite\_to\_kem}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suite\_to\_kem()}{s2n\_cipher\_suite\_to\_kem()}}
+{\footnotesize\ttfamily int s2n\+\_\+cipher\+\_\+suite\+\_\+to\+\_\+kem (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{iana\+\_\+value\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]},  }\item[{const struct \mbox{\hyperlink{structs2n__iana__to__kem}{s2n\+\_\+iana\+\_\+to\+\_\+kem}} $\ast$$\ast$}]{supported\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a448b5e1964fb2f1752b59e867f4ec8a7}\label{s2n__kem_8h_a448b5e1964fb2f1752b59e867f4ec8a7}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_get\_kem\_from\_extension\_id@{s2n\_get\_kem\_from\_extension\_id}}
+\index{s2n\_get\_kem\_from\_extension\_id@{s2n\_get\_kem\_from\_extension\_id}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_get\_kem\_from\_extension\_id()}{s2n\_get\_kem\_from\_extension\_id()}}
+{\footnotesize\ttfamily int s2n\+\_\+get\+\_\+kem\+\_\+from\+\_\+extension\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}}}]{kem\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$}]{kem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a96b2f5683150670759429019144e1f14}\label{s2n__kem_8h_a96b2f5683150670759429019144e1f14}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_decapsulate@{s2n\_kem\_decapsulate}}
+\index{s2n\_kem\_decapsulate@{s2n\_kem\_decapsulate}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_decapsulate()}{s2n\_kem\_decapsulate()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+decapsulate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params,  }\item[{const struct s2n\+\_\+blob $\ast$}]{ciphertext }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a62ac8833f481a4c76f0a45e72402feee}\label{s2n__kem_8h_a62ac8833f481a4c76f0a45e72402feee}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_encapsulate@{s2n\_kem\_encapsulate}}
+\index{s2n\_kem\_encapsulate@{s2n\_kem\_encapsulate}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_encapsulate()}{s2n\_kem\_encapsulate()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+encapsulate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params,  }\item[{struct s2n\+\_\+blob $\ast$}]{ciphertext }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a7c4230187cab4374e551be66b1818b28}\label{s2n__kem_8h_a7c4230187cab4374e551be66b1818b28}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_free@{s2n\_kem\_free}}
+\index{s2n\_kem\_free@{s2n\_kem\_free}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_free()}{s2n\_kem\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_afcb5f5b581771069726c37bafa1c8178}\label{s2n__kem_8h_afcb5f5b581771069726c37bafa1c8178}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_generate\_keypair@{s2n\_kem\_generate\_keypair}}
+\index{s2n\_kem\_generate\_keypair@{s2n\_kem\_generate\_keypair}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_generate\_keypair()}{s2n\_kem\_generate\_keypair()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+generate\+\_\+keypair (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a3048d9e72bb9e5352176a67fd7ba6b6c}\label{s2n__kem_8h_a3048d9e72bb9e5352176a67fd7ba6b6c}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_group\_free@{s2n\_kem\_group\_free}}
+\index{s2n\_kem\_group\_free@{s2n\_kem\_group\_free}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_group\_free()}{s2n\_kem\_group\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+group\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__group__params}{s2n\+\_\+kem\+\_\+group\+\_\+params}} $\ast$}]{kem\+\_\+group\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_abf01a14da74889cb2442abc6da1e36ef}\label{s2n__kem_8h_abf01a14da74889cb2442abc6da1e36ef}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_recv\_ciphertext@{s2n\_kem\_recv\_ciphertext}}
+\index{s2n\_kem\_recv\_ciphertext@{s2n\_kem\_recv\_ciphertext}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_recv\_ciphertext()}{s2n\_kem\_recv\_ciphertext()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a78e0ac3b18129d888473727022ce552a}\label{s2n__kem_8h_a78e0ac3b18129d888473727022ce552a}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_recv\_public\_key@{s2n\_kem\_recv\_public\_key}}
+\index{s2n\_kem\_recv\_public\_key@{s2n\_kem\_recv\_public\_key}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_recv\_public\_key()}{s2n\_kem\_recv\_public\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a16ed00e8c5fecec7dcb83a71a10c065b}\label{s2n__kem_8h_a16ed00e8c5fecec7dcb83a71a10c065b}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_send\_ciphertext@{s2n\_kem\_send\_ciphertext}}
+\index{s2n\_kem\_send\_ciphertext@{s2n\_kem\_send\_ciphertext}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_send\_ciphertext()}{s2n\_kem\_send\_ciphertext()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+send\+\_\+ciphertext (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem_8h_a06e9d82eaa1a51f1a8559758236df198}\label{s2n__kem_8h_a06e9d82eaa1a51f1a8559758236df198}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kem\_send\_public\_key@{s2n\_kem\_send\_public\_key}}
+\index{s2n\_kem\_send\_public\_key@{s2n\_kem\_send\_public\_key}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_send\_public\_key()}{s2n\_kem\_send\_public\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+send\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__kem_8h_a850931461ba374761fcd59f61110089f}\label{s2n__kem_8h_a850931461ba374761fcd59f61110089f}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_bike1\_l1\_r1@{s2n\_bike1\_l1\_r1}}
+\index{s2n\_bike1\_l1\_r1@{s2n\_bike1\_l1\_r1}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_bike1\_l1\_r1}{s2n\_bike1\_l1\_r1}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+bike1\+\_\+l1\+\_\+r1\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_abbd7fd4e953be6a50b3ebb8d24fda7f7}\label{s2n__kem_8h_abbd7fd4e953be6a50b3ebb8d24fda7f7}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_bike1\_l1\_r2@{s2n\_bike1\_l1\_r2}}
+\index{s2n\_bike1\_l1\_r2@{s2n\_bike1\_l1\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_bike1\_l1\_r2}{s2n\_bike1\_l1\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+bike1\+\_\+l1\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_aef6bd34735092f4190b5c62f13044eab}\label{s2n__kem_8h_aef6bd34735092f4190b5c62f13044eab}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kyber\_512\_90s\_r2@{s2n\_kyber\_512\_90s\_r2}}
+\index{s2n\_kyber\_512\_90s\_r2@{s2n\_kyber\_512\_90s\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kyber\_512\_90s\_r2}{s2n\_kyber\_512\_90s\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+kyber\+\_\+512\+\_\+90s\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_afeefc6389370dfc060366e6cb8e1a6a5}\label{s2n__kem_8h_afeefc6389370dfc060366e6cb8e1a6a5}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_kyber\_512\_r2@{s2n\_kyber\_512\_r2}}
+\index{s2n\_kyber\_512\_r2@{s2n\_kyber\_512\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kyber\_512\_r2}{s2n\_kyber\_512\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+kyber\+\_\+512\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_ad5b78cea96a5aba38b46348c94ed96da}\label{s2n__kem_8h_ad5b78cea96a5aba38b46348c94ed96da}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_secp256r1\_bike1\_l1\_r2@{s2n\_secp256r1\_bike1\_l1\_r2}}
+\index{s2n\_secp256r1\_bike1\_l1\_r2@{s2n\_secp256r1\_bike1\_l1\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_secp256r1\_bike1\_l1\_r2}{s2n\_secp256r1\_bike1\_l1\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+secp256r1\+\_\+bike1\+\_\+l1\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a56912437193243663b1fa03da943e5c6}\label{s2n__kem_8h_a56912437193243663b1fa03da943e5c6}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_secp256r1\_kyber\_512\_r2@{s2n\_secp256r1\_kyber\_512\_r2}}
+\index{s2n\_secp256r1\_kyber\_512\_r2@{s2n\_secp256r1\_kyber\_512\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_secp256r1\_kyber\_512\_r2}{s2n\_secp256r1\_kyber\_512\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+secp256r1\+\_\+kyber\+\_\+512\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_aa56c812138f7e43360d929369667f0fd}\label{s2n__kem_8h_aa56c812138f7e43360d929369667f0fd}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_secp256r1\_sike\_p434\_r2@{s2n\_secp256r1\_sike\_p434\_r2}}
+\index{s2n\_secp256r1\_sike\_p434\_r2@{s2n\_secp256r1\_sike\_p434\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_secp256r1\_sike\_p434\_r2}{s2n\_secp256r1\_sike\_p434\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+secp256r1\+\_\+sike\+\_\+p434\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a8fbd799846cb650d4365dcbb83eb1d5c}\label{s2n__kem_8h_a8fbd799846cb650d4365dcbb83eb1d5c}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_sike\_p434\_r2@{s2n\_sike\_p434\_r2}}
+\index{s2n\_sike\_p434\_r2@{s2n\_sike\_p434\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_sike\_p434\_r2}{s2n\_sike\_p434\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+sike\+\_\+p434\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_abfcdb78d1d83a775a3715123ff7d7e92}\label{s2n__kem_8h_abfcdb78d1d83a775a3715123ff7d7e92}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_sike\_p503\_r1@{s2n\_sike\_p503\_r1}}
+\index{s2n\_sike\_p503\_r1@{s2n\_sike\_p503\_r1}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_sike\_p503\_r1}{s2n\_sike\_p503\_r1}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+sike\+\_\+p503\+\_\+r1\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a697a5b4d8f8819a8ccf1cb7b2a623689}\label{s2n__kem_8h_a697a5b4d8f8819a8ccf1cb7b2a623689}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_x25519\_bike1\_l1\_r2@{s2n\_x25519\_bike1\_l1\_r2}}
+\index{s2n\_x25519\_bike1\_l1\_r2@{s2n\_x25519\_bike1\_l1\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_x25519\_bike1\_l1\_r2}{s2n\_x25519\_bike1\_l1\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+x25519\+\_\+bike1\+\_\+l1\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_aabfaa31e595922f607b52bff6b5d6cb2}\label{s2n__kem_8h_aabfaa31e595922f607b52bff6b5d6cb2}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_x25519\_kyber\_512\_r2@{s2n\_x25519\_kyber\_512\_r2}}
+\index{s2n\_x25519\_kyber\_512\_r2@{s2n\_x25519\_kyber\_512\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_x25519\_kyber\_512\_r2}{s2n\_x25519\_kyber\_512\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+x25519\+\_\+kyber\+\_\+512\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__kem_8h_a6912756e0ba08e7724ede57106265162}\label{s2n__kem_8h_a6912756e0ba08e7724ede57106265162}} 
+\index{s2n\_kem.h@{s2n\_kem.h}!s2n\_x25519\_sike\_p434\_r2@{s2n\_x25519\_sike\_p434\_r2}}
+\index{s2n\_x25519\_sike\_p434\_r2@{s2n\_x25519\_sike\_p434\_r2}!s2n\_kem.h@{s2n\_kem.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_x25519\_sike\_p434\_r2}{s2n\_x25519\_sike\_p434\_r2}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem__group}{s2n\+\_\+kem\+\_\+group}} s2n\+\_\+x25519\+\_\+sike\+\_\+p434\+\_\+r2\hspace{0.3cm}{\ttfamily [extern]}}
+

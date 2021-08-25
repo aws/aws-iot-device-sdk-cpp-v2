@@ -1,0 +1,105 @@
+\hypertarget{structaws__mqtt__request}{}\doxysection{aws\+\_\+mqtt\+\_\+request Struct Reference}
+\label{structaws__mqtt__request}\index{aws\_mqtt\_request@{aws\_mqtt\_request}}
+
+
+{\ttfamily \#include $<$client\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__mqtt__request_a4b9bb20034529af5793dcea9354e5b80}{list\+\_\+node}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__mqtt__request_ae2b0b15605680752142a9f6551c54e79}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__mqtt__request_a67cd6ae76cb94fe6c5b947411bee640e}{connection}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \mbox{\hyperlink{structaws__mqtt__request_a9380c29062e8e69d2c55bbdbac11e8c1}{outgoing\+\_\+task}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structaws__mqtt__request_a4c1aa495a981115b96911138b08aabfa}{packet\+\_\+id}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mqtt__request_a18c4658a5217812eff0f33ba43f0bed8}{retryable}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mqtt__request_a11cf9e483764a09bb5fbc692f65dcc87}{initiated}}
+\item 
+\mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\+\_\+mqtt\+\_\+send\+\_\+request\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__mqtt__request_aeea4be943fe382a44bb827fbbfa6758e}{send\+\_\+request}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__mqtt__request_adcc13afe07029ae8f40db9dbfd54a9f4}{send\+\_\+request\+\_\+ud}}
+\item 
+\mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__mqtt__request_aae3c1291484e71d441d4b5926689b649}{on\+\_\+complete}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__mqtt__request_a2740562facc9e559bfecde22c8f76605}{on\+\_\+complete\+\_\+ud}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__mqtt__request_ae2b0b15605680752142a9f6551c54e79}\label{structaws__mqtt__request_ae2b0b15605680752142a9f6551c54e79}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+mqtt\+\_\+request\+::allocator}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a67cd6ae76cb94fe6c5b947411bee640e}\label{structaws__mqtt__request_a67cd6ae76cb94fe6c5b947411bee640e}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!connection@{connection}}
+\index{connection@{connection}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}}$\ast$ aws\+\_\+mqtt\+\_\+request\+::connection}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a11cf9e483764a09bb5fbc692f65dcc87}\label{structaws__mqtt__request_a11cf9e483764a09bb5fbc692f65dcc87}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!initiated@{initiated}}
+\index{initiated@{initiated}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{initiated}{initiated}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+request\+::initiated}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a4b9bb20034529af5793dcea9354e5b80}\label{structaws__mqtt__request_a4b9bb20034529af5793dcea9354e5b80}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!list\_node@{list\_node}}
+\index{list\_node@{list\_node}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{list\_node}{list\_node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+mqtt\+\_\+request\+::list\+\_\+node}
+
+\mbox{\Hypertarget{structaws__mqtt__request_aae3c1291484e71d441d4b5926689b649}\label{structaws__mqtt__request_aae3c1291484e71d441d4b5926689b649}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!on\_complete@{on\_complete}}
+\index{on\_complete@{on\_complete}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{on\_complete}{on\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+mqtt\+\_\+request\+::on\+\_\+complete}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a2740562facc9e559bfecde22c8f76605}\label{structaws__mqtt__request_a2740562facc9e559bfecde22c8f76605}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!on\_complete\_ud@{on\_complete\_ud}}
+\index{on\_complete\_ud@{on\_complete\_ud}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{on\_complete\_ud}{on\_complete\_ud}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+mqtt\+\_\+request\+::on\+\_\+complete\+\_\+ud}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a9380c29062e8e69d2c55bbdbac11e8c1}\label{structaws__mqtt__request_a9380c29062e8e69d2c55bbdbac11e8c1}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!outgoing\_task@{outgoing\_task}}
+\index{outgoing\_task@{outgoing\_task}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{outgoing\_task}{outgoing\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} aws\+\_\+mqtt\+\_\+request\+::outgoing\+\_\+task}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a4c1aa495a981115b96911138b08aabfa}\label{structaws__mqtt__request_a4c1aa495a981115b96911138b08aabfa}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!packet\_id@{packet\_id}}
+\index{packet\_id@{packet\_id}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{packet\_id}{packet\_id}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+request\+::packet\+\_\+id}
+
+\mbox{\Hypertarget{structaws__mqtt__request_a18c4658a5217812eff0f33ba43f0bed8}\label{structaws__mqtt__request_a18c4658a5217812eff0f33ba43f0bed8}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!retryable@{retryable}}
+\index{retryable@{retryable}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{retryable}{retryable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+request\+::retryable}
+
+\mbox{\Hypertarget{structaws__mqtt__request_aeea4be943fe382a44bb827fbbfa6758e}\label{structaws__mqtt__request_aeea4be943fe382a44bb827fbbfa6758e}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!send\_request@{send\_request}}
+\index{send\_request@{send\_request}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{send\_request}{send\_request}}
+{\footnotesize\ttfamily \mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\+\_\+mqtt\+\_\+send\+\_\+request\+\_\+fn}}$\ast$ aws\+\_\+mqtt\+\_\+request\+::send\+\_\+request}
+
+\mbox{\Hypertarget{structaws__mqtt__request_adcc13afe07029ae8f40db9dbfd54a9f4}\label{structaws__mqtt__request_adcc13afe07029ae8f40db9dbfd54a9f4}} 
+\index{aws\_mqtt\_request@{aws\_mqtt\_request}!send\_request\_ud@{send\_request\_ud}}
+\index{send\_request\_ud@{send\_request\_ud}!aws\_mqtt\_request@{aws\_mqtt\_request}}
+\doxysubsubsection{\texorpdfstring{send\_request\_ud}{send\_request\_ud}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+mqtt\+\_\+request\+::send\+\_\+request\+\_\+ud}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/\mbox{\hyperlink{client__impl_8h}{client\+\_\+impl.\+h}}\end{DoxyCompactItemize}

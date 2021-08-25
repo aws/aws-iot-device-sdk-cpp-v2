@@ -1,0 +1,112 @@
+\hypertarget{proxy__test__helper_8h_source}{}\doxysection{proxy\+\_\+test\+\_\+helper.\+h}
+\label{proxy__test__helper_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/proxy\_test\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/proxy\_test\_helper.h}}
+\mbox{\hyperlink{proxy__test__helper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_PROXY\_TEST\_HELPER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_PROXY\_TEST\_HELPER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{condition__variable_8h}{aws/common/condition\_variable.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{mutex_8h}{aws/common/mutex.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{channel__bootstrap_8h}{aws/io/channel\_bootstrap.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{event__loop_8h}{aws/io/event\_loop.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h}{aws/io/logging.h}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tls__channel__handler_8h}{aws/io/tls\_channel\_handler.h}}>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__client__bootstrap}{aws\_http\_client\_bootstrap}};}
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{structtesting__channel}{testing\_channel}};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{proxy__test__helper_8h_a71f0356492b1d99661f18831ca14d119}{aws\_http\_release\_connection\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\_tester\_test\_mode}} \{}
+\DoxyCodeLine{22     \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ffa114607abdd5903ffbda8f20cb4a34373}{PTTM\_HTTP}} = 0,}
+\DoxyCodeLine{23     \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ffa3e829d26fb93620acd39a508522970b4}{PTTM\_HTTPS}},}
+\DoxyCodeLine{24 \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163}{proxy\_tester\_failure\_type}} \{}
+\DoxyCodeLine{27     \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163ae870984e079a651ba94d90f1e8250b78}{PTFT\_NONE}} = 0,}
+\DoxyCodeLine{28     \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163a471b6fd50dbf16275c5df4ab9d116714}{PTFT\_CONNECT\_REQUEST}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163a9b89243b72f143547e1d5acfc1a280af}{PTFT\_TLS\_NEGOTIATION}},}
+\DoxyCodeLine{30     \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163a182f1e34bfb04603c4bb2c13a0453981}{PTFT\_CHANNEL}},}
+\DoxyCodeLine{31     \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163a947209eacadc6cb1d3f5435d14ed0526}{PTFT\_CONNECTION}},}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{structproxy__tester__options}{proxy\_tester\_options}} \{}
+\DoxyCodeLine{35     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structproxy__tester__options_af75cc24d6468208f0d98affc155ef21d}{alloc}};}
+\DoxyCodeLine{36     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *\mbox{\hyperlink{structproxy__tester__options_ae9b658410171605d93a8f046f9c7a2f6}{proxy\_options}};}
+\DoxyCodeLine{37     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structproxy__tester__options_a608f7dacdd1eafbb121ec6259c76ca71}{host}};}
+\DoxyCodeLine{38     uint16\_t \mbox{\hyperlink{structproxy__tester__options_af544d2683ae778e5bdf0aa9f8fd44bf4}{port}};}
+\DoxyCodeLine{39     \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\_tester\_test\_mode}} \mbox{\hyperlink{structproxy__tester__options_a8c74972337ad18a483afca05b6524539}{test\_mode}};}
+\DoxyCodeLine{40     \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163}{proxy\_tester\_failure\_type}} \mbox{\hyperlink{structproxy__tester__options_a5e914def8a14b2b3a7e36fb4f7560cce}{failure\_type}};}
+\DoxyCodeLine{41 \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{struct }\mbox{\hyperlink{structproxy__tester}{proxy\_tester}} \{}
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structproxy__tester_a5773375b853fde607d4a79258cb11796}{alloc}};}
+\DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__logger}{aws\_logger}} \mbox{\hyperlink{structproxy__tester_a03c28295f86cc4e37ec3ff76a15f6f6d}{logger}};}
+\DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop__group}{aws\_event\_loop\_group}} *\mbox{\hyperlink{structproxy__tester_aa91fa6326016b8b3ed5120ce1b8fb1ca}{event\_loop\_group}};}
+\DoxyCodeLine{47     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *\mbox{\hyperlink{structproxy__tester_a95487d7547c3dd837a93dfb42beb7a9e}{host\_resolver}};}
+\DoxyCodeLine{48     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__client__bootstrap}{aws\_client\_bootstrap}} *\mbox{\hyperlink{structproxy__tester_a26691ca168d7a15bf60a160c09fd3a49}{client\_bootstrap}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{structproxy__tester_a7f3a1e223f9b3dc46dc85e4ec8a0899a}{tls\_ctx}};}
+\DoxyCodeLine{51     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} \mbox{\hyperlink{structproxy__tester_a4231ac854df6940aba717e682b58c322}{tls\_ctx\_options}};}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} \mbox{\hyperlink{structproxy__tester_a17b578aa8e21106ba4b46b50709e4726}{tls\_connection\_options}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *\mbox{\hyperlink{structproxy__tester_a09c08fcd8c66212033fd3365e9dc4ef7}{proxy\_options}};}
+\DoxyCodeLine{55     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structproxy__tester_adeb3b601b9a6b23880ed3c904d10c84a}{host}};}
+\DoxyCodeLine{56     uint16\_t \mbox{\hyperlink{structproxy__tester_a3588880a84b7613e61efe57dcd66879b}{port}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\_tester\_test\_mode}} \mbox{\hyperlink{structproxy__tester_abde158fbc4dd8c1faa004e84d40863ad}{test\_mode}};}
+\DoxyCodeLine{59     \textcolor{keyword}{enum} \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163}{proxy\_tester\_failure\_type}} \mbox{\hyperlink{structproxy__tester_aef01342d37c2c890cefc0cdf8a0a9451}{failure\_type}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{structproxy__tester_ad444b19f0231ffd2684d05d1b3bcf839}{client\_connection}};}
+\DoxyCodeLine{62     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__client__bootstrap}{aws\_http\_client\_bootstrap}} *\mbox{\hyperlink{structproxy__tester_a16062604e1e339da0165efb76ea7d42d}{http\_bootstrap}};}
+\DoxyCodeLine{63     \textcolor{keyword}{struct }\mbox{\hyperlink{structtesting__channel}{testing\_channel}} *\mbox{\hyperlink{structproxy__tester_a06791bae4c46485501263de183e656c8}{testing\_channel}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structproxy__tester_ab96a77afe90e0d0089cc7d58288e7f81}{client\_connection\_is\_shutdown}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{comment}{/* If we need to wait for some async process*/}}
+\DoxyCodeLine{68     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structproxy__tester_ad24ad5dc5324701af808cb95d2fd926f}{wait\_lock}};}
+\DoxyCodeLine{69     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__condition__variable}{aws\_condition\_variable}} \mbox{\hyperlink{structproxy__tester_a8b4814eb542c9f2418d004c7413b66f6}{wait\_cvar}};}
+\DoxyCodeLine{70     \textcolor{keywordtype}{int} \mbox{\hyperlink{structproxy__tester_a06ab20d5ba2ffbef55bb4904b710f0c3}{wait\_result}};}
+\DoxyCodeLine{71     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structproxy__tester_ae29af7fd4dcf810865ba81366d1f372e}{request\_successful}};}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structproxy__tester_abc0fed116fbfd6e434dd353798797839}{request\_complete}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structproxy__tester_acd0aa4bbb1fdc5c4529fdba19afd6c52}{tls\_finished}};}
+\DoxyCodeLine{75     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structproxy__tester_a5e5fcbeaa90dd356a449ff29120c440d}{tls\_successful}};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structproxy__tester_a4e1794ea063d0f38a159b58032bf8129}{connection\_host\_name}};}
+\DoxyCodeLine{78     uint16\_t \mbox{\hyperlink{structproxy__tester_a70326f37089b92bf4bf11a9f2b94d21c}{connection\_port}};}
+\DoxyCodeLine{79 \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_ad70ff85fed8cf4ff76f635b699f57939}{proxy\_tester\_wait}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}}, \textcolor{keywordtype}{bool} (*pred)(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}}));}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{keywordtype}{bool} \mbox{\hyperlink{proxy__test__helper_8h_a1de52d3c35b769acbe10a06f93386434}{proxy\_tester\_connection\_setup\_pred}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{84 \textcolor{keywordtype}{bool} \mbox{\hyperlink{proxy__test__helper_8h_a83bf4091f2e3ad9b8bddb101bacb04f7}{proxy\_tester\_connection\_shutdown\_pred}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{85 \textcolor{keywordtype}{bool} \mbox{\hyperlink{proxy__test__helper_8h_ad7c2e8c527ed9411fbde24ca83b6da4a}{proxy\_tester\_request\_complete\_pred\_fn}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_aebe4a1a73adb4996f36aebdf3422a722}{proxy\_tester\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester__options}{proxy\_tester\_options}} *options);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_a94c989f7b22ddcb5500a80e728241c55}{proxy\_tester\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}});}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__test__helper_8h_add720c7019e7d3aaef3d6923279b6d0b}{proxy\_tester\_on\_client\_connection\_setup}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__test__helper_8h_a02fd7858207b697bd3012a88a7b7417a}{proxy\_tester\_on\_client\_connection\_shutdown}}(}
+\DoxyCodeLine{94     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
+\DoxyCodeLine{95     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{96     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__test__helper_8h_abe2e3efaf85b4e8273ede761c1e7bc9a}{proxy\_tester\_on\_client\_bootstrap\_shutdown}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_a4b1805f6f849f9be852d15bb69a2cdb5}{proxy\_tester\_create\_testing\_channel\_connection}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_ab7b32547d1825e846380a4d60a202367}{proxy\_tester\_verify\_connect\_request}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}});}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_aa9ee43a3dbd02634dce030f9aaf6dc33}{proxy\_tester\_send\_connect\_response}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}});}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__test__helper_8h_a1de35bd7e1702448f3331170510b1dff}{proxy\_tester\_verify\_connection\_attempt\_was\_to\_proxy}}(}
+\DoxyCodeLine{107     \textcolor{keyword}{struct} \mbox{\hyperlink{structproxy__tester}{proxy\_tester}} *\mbox{\hyperlink{structtester}{tester}},}
+\DoxyCodeLine{108     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} expected\_host,}
+\DoxyCodeLine{109     uint16\_t expected\_port);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_PROXY\_TEST\_HELPER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

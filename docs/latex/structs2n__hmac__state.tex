@@ -1,0 +1,105 @@
+\hypertarget{structs2n__hmac__state}{}\doxysection{s2n\+\_\+hmac\+\_\+state Struct Reference}
+\label{structs2n__hmac__state}\index{s2n\_hmac\_state@{s2n\_hmac\_state}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+hmac.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} \mbox{\hyperlink{structs2n__hmac__state_a41e406aac7711705772e73fa4fdfdb7d}{alg}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_a1207d443b8db1a199a4efb0169387b52}{hash\+\_\+block\+\_\+size}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_a83f6c60921b7f2823142fce4df225206}{currently\+\_\+in\+\_\+hash\+\_\+block}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_ac70574a8ad05d1d869225751643c3470}{xor\+\_\+pad\+\_\+size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_a94f869e892018df7af7430b009bc3d4f}{digest\+\_\+size}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__hmac__state_a17a1a38413f31f05b8d9686ecdce40b5}{inner}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__hmac__state_a11f5c7fe107b9e22d397556e9334f9e5}{inner\+\_\+just\+\_\+key}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__hmac__state_a8cbfc1059bd26a93e8e8c5c5abf4c189}{outer}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__hmac__state_aed84aa60f1096b6057c315a179f3c7ec}{outer\+\_\+just\+\_\+key}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_a1aeec7047f6d1e8ffdab75a48477c380}{xor\+\_\+pad}} \mbox{[}128\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__hmac__state_af4fb326afe82de66326965a5d2ecfe2e}{digest\+\_\+pad}} \mbox{[}\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a5a8416d0f8e1af6d7525114ef09be118}{SHA512\+\_\+\+DIGEST\+\_\+\+LENGTH}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__hmac__state_a41e406aac7711705772e73fa4fdfdb7d}\label{structs2n__hmac__state_a41e406aac7711705772e73fa4fdfdb7d}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!alg@{alg}}
+\index{alg@{alg}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{alg}{alg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} s2n\+\_\+hmac\+\_\+state\+::alg}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a83f6c60921b7f2823142fce4df225206}\label{structs2n__hmac__state_a83f6c60921b7f2823142fce4df225206}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!currently\_in\_hash\_block@{currently\_in\_hash\_block}}
+\index{currently\_in\_hash\_block@{currently\_in\_hash\_block}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{currently\_in\_hash\_block}{currently\_in\_hash\_block}}
+{\footnotesize\ttfamily uint32\+\_\+t s2n\+\_\+hmac\+\_\+state\+::currently\+\_\+in\+\_\+hash\+\_\+block}
+
+\mbox{\Hypertarget{structs2n__hmac__state_af4fb326afe82de66326965a5d2ecfe2e}\label{structs2n__hmac__state_af4fb326afe82de66326965a5d2ecfe2e}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!digest\_pad@{digest\_pad}}
+\index{digest\_pad@{digest\_pad}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{digest\_pad}{digest\_pad}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+hmac\+\_\+state\+::digest\+\_\+pad\mbox{[}\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a5a8416d0f8e1af6d7525114ef09be118}{SHA512\+\_\+\+DIGEST\+\_\+\+LENGTH}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a94f869e892018df7af7430b009bc3d4f}\label{structs2n__hmac__state_a94f869e892018df7af7430b009bc3d4f}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!digest\_size@{digest\_size}}
+\index{digest\_size@{digest\_size}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{digest\_size}{digest\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+hmac\+\_\+state\+::digest\+\_\+size}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a1207d443b8db1a199a4efb0169387b52}\label{structs2n__hmac__state_a1207d443b8db1a199a4efb0169387b52}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!hash\_block\_size@{hash\_block\_size}}
+\index{hash\_block\_size@{hash\_block\_size}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{hash\_block\_size}{hash\_block\_size}}
+{\footnotesize\ttfamily uint16\+\_\+t s2n\+\_\+hmac\+\_\+state\+::hash\+\_\+block\+\_\+size}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a17a1a38413f31f05b8d9686ecdce40b5}\label{structs2n__hmac__state_a17a1a38413f31f05b8d9686ecdce40b5}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!inner@{inner}}
+\index{inner@{inner}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{inner}{inner}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+hmac\+\_\+state\+::inner}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a11f5c7fe107b9e22d397556e9334f9e5}\label{structs2n__hmac__state_a11f5c7fe107b9e22d397556e9334f9e5}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!inner\_just\_key@{inner\_just\_key}}
+\index{inner\_just\_key@{inner\_just\_key}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{inner\_just\_key}{inner\_just\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+hmac\+\_\+state\+::inner\+\_\+just\+\_\+key}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a8cbfc1059bd26a93e8e8c5c5abf4c189}\label{structs2n__hmac__state_a8cbfc1059bd26a93e8e8c5c5abf4c189}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!outer@{outer}}
+\index{outer@{outer}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{outer}{outer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+hmac\+\_\+state\+::outer}
+
+\mbox{\Hypertarget{structs2n__hmac__state_aed84aa60f1096b6057c315a179f3c7ec}\label{structs2n__hmac__state_aed84aa60f1096b6057c315a179f3c7ec}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!outer\_just\_key@{outer\_just\_key}}
+\index{outer\_just\_key@{outer\_just\_key}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{outer\_just\_key}{outer\_just\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+hmac\+\_\+state\+::outer\+\_\+just\+\_\+key}
+
+\mbox{\Hypertarget{structs2n__hmac__state_a1aeec7047f6d1e8ffdab75a48477c380}\label{structs2n__hmac__state_a1aeec7047f6d1e8ffdab75a48477c380}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!xor\_pad@{xor\_pad}}
+\index{xor\_pad@{xor\_pad}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{xor\_pad}{xor\_pad}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+hmac\+\_\+state\+::xor\+\_\+pad\mbox{[}128\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__hmac__state_ac70574a8ad05d1d869225751643c3470}\label{structs2n__hmac__state_ac70574a8ad05d1d869225751643c3470}} 
+\index{s2n\_hmac\_state@{s2n\_hmac\_state}!xor\_pad\_size@{xor\_pad\_size}}
+\index{xor\_pad\_size@{xor\_pad\_size}!s2n\_hmac\_state@{s2n\_hmac\_state}}
+\doxysubsubsection{\texorpdfstring{xor\_pad\_size}{xor\_pad\_size}}
+{\footnotesize\ttfamily uint16\+\_\+t s2n\+\_\+hmac\+\_\+state\+::xor\+\_\+pad\+\_\+size}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{s2n__hmac_8h}{s2n\+\_\+hmac.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,56 @@
+\hypertarget{s2n__crypto__constants_8h_source}{}\doxysection{s2n\+\_\+crypto\+\_\+constants.\+h}
+\label{s2n__crypto__constants_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_crypto\_constants.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_crypto\_constants.h}}
+\mbox{\hyperlink{s2n__crypto__constants_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define S2N\_TLS\_SECRET\_LEN             48}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define S2N\_TLS\_RANDOM\_DATA\_LEN        32}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define S2N\_TLS\_SEQUENCE\_NUM\_LEN        8}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define S2N\_TLS\_CIPHER\_SUITE\_LEN        2}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define S2N\_SSLv2\_CIPHER\_SUITE\_LEN      3}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define S2N\_TLS\_FINISHED\_LEN           12}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define S2N\_SSL\_FINISHED\_LEN           36}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define S2N\_TLS\_MAX\_IV\_LEN             16}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{/* From RFC 5246 6.2.3.3 */}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define S2N\_TLS12\_AAD\_LEN              13}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define S2N\_TLS\_MAX\_AAD\_LEN            S2N\_TLS12\_AAD\_LEN}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define S2N\_TLS\_GCM\_FIXED\_IV\_LEN        4}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define S2N\_TLS\_GCM\_EXPLICIT\_IV\_LEN     8}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define S2N\_TLS\_GCM\_IV\_LEN            (S2N\_TLS\_GCM\_FIXED\_IV\_LEN + S2N\_TLS\_GCM\_EXPLICIT\_IV\_LEN)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define S2N\_TLS\_GCM\_TAG\_LEN            16}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define S2N\_TLS\_AES\_128\_GCM\_KEY\_LEN     16}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define S2N\_TLS\_AES\_256\_GCM\_KEY\_LEN     32}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{/* TLS 1.3 uses only implicit IVs -\/ RFC 8446 5.3 */}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define S2N\_TLS13\_AAD\_LEN               5}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define S2N\_TLS13\_RECORD\_IV\_LEN         0}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define S2N\_TLS13\_FIXED\_IV\_LEN         12}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{/* From RFC 7905 */}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define S2N\_TLS\_CHACHA20\_POLY1305\_FIXED\_IV\_LEN    12}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define S2N\_TLS\_CHACHA20\_POLY1305\_EXPLICIT\_IV\_LEN  0}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define S2N\_TLS\_CHACHA20\_POLY1305\_IV\_LEN          12}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define S2N\_TLS\_CHACHA20\_POLY1305\_KEY\_LEN         32}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define S2N\_TLS\_CHACHA20\_POLY1305\_TAG\_LEN         16}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{/* RFC 5246 7.4.1.2 */}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define S2N\_TLS\_SESSION\_ID\_MAX\_LEN     32}}
+
+\end{DoxyCode}

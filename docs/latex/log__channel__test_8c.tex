@@ -1,0 +1,260 @@
+\hypertarget{log__channel__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\+\_\+channel\+\_\+test.c File Reference}
+\label{log__channel__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\_channel\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/log\_channel\_test.c}}
+{\ttfamily \#include $<$aws/common/log\+\_\+channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+writer.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmock__log__writer__impl}{mock\+\_\+log\+\_\+writer\+\_\+impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log__channel__test_8c_a7aa20a39643b8358f54c2cca892c4a5f}{DEFINE\+\_\+\+FOREGROUND\+\_\+\+LOG\+\_\+\+CHANNEL\+\_\+\+TEST}}(test\+\_\+name,  string\+\_\+array\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{log__channel__test_8c_a6d4b0fe787b6083fb2bf68dc69ef63de}{DEFINE\+\_\+\+BACKGROUND\+\_\+\+LOG\+\_\+\+CHANNEL\+\_\+\+TEST}}(test\+\_\+name,  string\+\_\+array\+\_\+name,  sleep\+\_\+times)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{log__channel__test_8c_aac46572ae2fd0c2b27a43df74c674fa8}{init\+\_\+channel\+\_\+fn}}) (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{log__channel__test_8c_a1599aa4e63191bc5a032855dcc8ffdc6}{s\+\_\+mock\+\_\+log\+\_\+writer\+\_\+write}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+static void \mbox{\hyperlink{log__channel__test_8c_ade5593d9c1eb183d03f622ea196d7ac8}{s\+\_\+mock\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\item 
+static int \mbox{\hyperlink{log__channel__test_8c_a106114fc201e6068d9f29834803cdc97}{s\+\_\+aws\+\_\+mock\+\_\+log\+\_\+writer\+\_\+init}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{log__channel__test_8c_a6ff1d93142cc427934591b3811bf5d9b}{s\+\_\+verify\+\_\+mock\+\_\+equal}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$$\ast$test\+\_\+lines, size\+\_\+t array\+\_\+length)
+\item 
+static int \mbox{\hyperlink{log__channel__test_8c_a6b35c2b6b1e8a9ba5a5ea937ba2b2d51}{s\+\_\+do\+\_\+channel\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{log__channel__test_8c_aac46572ae2fd0c2b27a43df74c674fa8}{init\+\_\+channel\+\_\+fn}} init\+\_\+fn, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$$\ast$test\+\_\+lines, size\+\_\+t test\+\_\+lines\+\_\+length, int $\ast$sleep\+\_\+times)
+\item 
+\mbox{\hyperlink{log__channel__test_8c_a1843f068924c9142e775f306c0d0e376}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+1, \char`\"{}1\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_ace34214388ad1d55d9cedb4164b3108d}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+2, \char`\"{}2\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_a2740345deef0d12d75dcb311b1254d62}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+3, \char`\"{}3\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_a83fd732007963e1f0cb4b3cc1bf70163}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+4, \char`\"{}4\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_a4016045c64d4c0f3b7828a6c1cce772a}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+simple, \char`\"{}A simple line.\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_a74db2531b33ff91d7b4792e5d7d16a45}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+multiline, \char`\"{}There\textquotesingle{}s\textbackslash{}na lot\textbackslash{}n\textbackslash{}tof snow outside.\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{log__channel__test_8c_ae7079ffdf32f681c9b32bdeda2fdd4f2}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+log\+\_\+line\+\_\+fake, \char`\"{}\mbox{[}DEBUG\mbox{]} \mbox{[}??\mbox{]} \mbox{[}1234567\mbox{]} -\/ Time to crash\textbackslash{}n\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__log__writer__vtable}{aws\+\_\+log\+\_\+writer\+\_\+vtable}} \mbox{\hyperlink{log__channel__test_8c_abd94c5b0eb0d3caeaf7633aad4ec0cf3}{s\+\_\+mock\+\_\+writer\+\_\+vtable}}
+\item 
+static char \mbox{\hyperlink{log__channel__test_8c_a97ce04b72c311ee1f1615691cfc4940d}{s\+\_\+test\+\_\+error\+\_\+message}} \mbox{[}4096\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$ \mbox{\hyperlink{log__channel__test_8c_ae213373fc4b10e3344de0fe7cc870883}{s\+\_\+channel\+\_\+test\+\_\+one\+\_\+line}} \mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+1\}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$ \mbox{\hyperlink{log__channel__test_8c_a83864302499a6c005302930d3d7e0fd4}{s\+\_\+channel\+\_\+test\+\_\+numbers}} \mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+1, \&s\+\_\+log\+\_\+line\+\_\+2, \&s\+\_\+log\+\_\+line\+\_\+3, \&s\+\_\+log\+\_\+line\+\_\+4\}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$ \mbox{\hyperlink{log__channel__test_8c_aacf8aec29e6c4eb8da783e0046cdc775}{s\+\_\+channel\+\_\+test\+\_\+words}} \mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+simple, \&s\+\_\+log\+\_\+line\+\_\+multiline, \&s\+\_\+log\+\_\+line\+\_\+fake\}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$ \mbox{\hyperlink{log__channel__test_8c_aeafb87f847c8f49c947824df593695e2}{s\+\_\+channel\+\_\+test\+\_\+all}} \mbox{[}$\,$\mbox{]}
+\item 
+static int \mbox{\hyperlink{log__channel__test_8c_aa3c6a7b4e28413bbb2b391672dff1ce8}{s\+\_\+background\+\_\+sleep\+\_\+times\+\_\+ns}} \mbox{[}$\,$\mbox{]} = \{0, 100000, 0, 0, 1000000, 0, 1000000\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{log__channel__test_8c_a6d4b0fe787b6083fb2bf68dc69ef63de}\label{log__channel__test_8c_a6d4b0fe787b6083fb2bf68dc69ef63de}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST@{DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST}}
+\index{DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST@{DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST}{DEFINE\_BACKGROUND\_LOG\_CHANNEL\_TEST}}
+{\footnotesize\ttfamily \#define DEFINE\+\_\+\+BACKGROUND\+\_\+\+LOG\+\_\+\+CHANNEL\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{test\+\_\+name,  }\item[{}]{string\+\_\+array\+\_\+name,  }\item[{}]{sleep\+\_\+times }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keywordtype}{int} s\_background\_log\_channel\_\#\#test\_name(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}}) \{                      \(\backslash\)}
+\DoxyCodeLine{        (void)\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}};                                                                                                     \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{log__channel__test_8c_a6b35c2b6b1e8a9ba5a5ea937ba2b2d51}{s\_do\_channel\_test}}(                                                                                      \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},                                                                                                 \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{log__channel_8h_a6beebb7ce98cb1f59936e7d7310838f0}{aws\_log\_channel\_init\_background}},                                                                           \(\backslash\)}
+\DoxyCodeLine{            string\_array\_name,                                                                                         \(\backslash\)}
+\DoxyCodeLine{            \textcolor{keyword}{sizeof}(string\_array\_name) / \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} **),                                                  \(\backslash\)}
+\DoxyCodeLine{            sleep\_times);                                                                                              \(\backslash\)}
+\DoxyCodeLine{    \}                                                                                                                  \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE(test\_background\_log\_channel\_\#\#test\_name, s\_background\_log\_channel\_\#\#test\_name);}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{log__channel__test_8c_a7aa20a39643b8358f54c2cca892c4a5f}\label{log__channel__test_8c_a7aa20a39643b8358f54c2cca892c4a5f}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST@{DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST}}
+\index{DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST@{DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST}{DEFINE\_FOREGROUND\_LOG\_CHANNEL\_TEST}}
+{\footnotesize\ttfamily \#define DEFINE\+\_\+\+FOREGROUND\+\_\+\+LOG\+\_\+\+CHANNEL\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{test\+\_\+name,  }\item[{}]{string\+\_\+array\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keywordtype}{int} s\_foreground\_log\_channel\_\#\#test\_name(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}}) \{                      \(\backslash\)}
+\DoxyCodeLine{        (void)\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}};                                                                                                     \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{log__channel__test_8c_a6b35c2b6b1e8a9ba5a5ea937ba2b2d51}{s\_do\_channel\_test}}(                                                                                      \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},                                                                                                 \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{log__channel_8h_a8474ee6afd0943dde9d192af80371daa}{aws\_log\_channel\_init\_foreground}},                                                                           \(\backslash\)}
+\DoxyCodeLine{            string\_array\_name,                                                                                         \(\backslash\)}
+\DoxyCodeLine{            \textcolor{keyword}{sizeof}(string\_array\_name) / \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} **),                                                  \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}});                                                                                                     \(\backslash\)}
+\DoxyCodeLine{    \}                                                                                                                  \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE(test\_foreground\_log\_channel\_\#\#test\_name, s\_foreground\_log\_channel\_\#\#test\_name);}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{log__channel__test_8c_aac46572ae2fd0c2b27a43df74c674fa8}\label{log__channel__test_8c_aac46572ae2fd0c2b27a43df74c674fa8}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!init\_channel\_fn@{init\_channel\_fn}}
+\index{init\_channel\_fn@{init\_channel\_fn}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{init\_channel\_fn}{init\_channel\_fn}}
+{\footnotesize\ttfamily typedef int( $\ast$ init\+\_\+channel\+\_\+fn) (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{log__channel__test_8c_a1843f068924c9142e775f306c0d0e376}\label{log__channel__test_8c_a1843f068924c9142e775f306c0d0e376}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+1}]{,  }\item[{\char`\"{}1\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_ace34214388ad1d55d9cedb4164b3108d}\label{log__channel__test_8c_ace34214388ad1d55d9cedb4164b3108d}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+2}]{,  }\item[{\char`\"{}2\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_a2740345deef0d12d75dcb311b1254d62}\label{log__channel__test_8c_a2740345deef0d12d75dcb311b1254d62}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+3}]{,  }\item[{\char`\"{}3\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_a83fd732007963e1f0cb4b3cc1bf70163}\label{log__channel__test_8c_a83fd732007963e1f0cb4b3cc1bf70163}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+4}]{,  }\item[{\char`\"{}4\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_ae7079ffdf32f681c9b32bdeda2fdd4f2}\label{log__channel__test_8c_ae7079ffdf32f681c9b32bdeda2fdd4f2}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+fake}]{,  }\item[{\char`\"{}   -\/ Time to crash\textbackslash{}n\char`\"{}}]{\mbox{[}\+DEBUG\mbox{]}\mbox{[}??\mbox{]}\mbox{[}1234567\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_a74db2531b33ff91d7b4792e5d7d16a45}\label{log__channel__test_8c_a74db2531b33ff91d7b4792e5d7d16a45}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+multiline}]{,  }\item[{\char`\"{}There\textquotesingle{}s\textbackslash{}na lot\textbackslash{}n\textbackslash{}tof snow outside.\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_a4016045c64d4c0f3b7828a6c1cce772a}\label{log__channel__test_8c_a4016045c64d4c0f3b7828a6c1cce772a}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+log\+\_\+line\+\_\+simple}]{,  }\item[{\char`\"{}A simple line.\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel__test_8c_a106114fc201e6068d9f29834803cdc97}\label{log__channel__test_8c_a106114fc201e6068d9f29834803cdc97}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_aws\_mock\_log\_writer\_init@{s\_aws\_mock\_log\_writer\_init}}
+\index{s\_aws\_mock\_log\_writer\_init@{s\_aws\_mock\_log\_writer\_init}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_mock\_log\_writer\_init()}{s\_aws\_mock\_log\_writer\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+mock\+\_\+log\+\_\+writer\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__channel__test_8c_a6b35c2b6b1e8a9ba5a5ea937ba2b2d51}\label{log__channel__test_8c_a6b35c2b6b1e8a9ba5a5ea937ba2b2d51}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_do\_channel\_test@{s\_do\_channel\_test}}
+\index{s\_do\_channel\_test@{s\_do\_channel\_test}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_channel\_test()}{s\_do\_channel\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+channel\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{log__channel__test_8c_aac46572ae2fd0c2b27a43df74c674fa8}{init\+\_\+channel\+\_\+fn}}}]{init\+\_\+fn,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$$\ast$}]{test\+\_\+lines,  }\item[{size\+\_\+t}]{test\+\_\+lines\+\_\+length,  }\item[{int $\ast$}]{sleep\+\_\+times }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__channel__test_8c_ade5593d9c1eb183d03f622ea196d7ac8}\label{log__channel__test_8c_ade5593d9c1eb183d03f622ea196d7ac8}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_mock\_log\_writer\_clean\_up@{s\_mock\_log\_writer\_clean\_up}}
+\index{s\_mock\_log\_writer\_clean\_up@{s\_mock\_log\_writer\_clean\_up}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_log\_writer\_clean\_up()}{s\_mock\_log\_writer\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+mock\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__channel__test_8c_a1599aa4e63191bc5a032855dcc8ffdc6}\label{log__channel__test_8c_a1599aa4e63191bc5a032855dcc8ffdc6}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_mock\_log\_writer\_write@{s\_mock\_log\_writer\_write}}
+\index{s\_mock\_log\_writer\_write@{s\_mock\_log\_writer\_write}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_log\_writer\_write()}{s\_mock\_log\_writer\_write()}}
+{\footnotesize\ttfamily static int s\+\_\+mock\+\_\+log\+\_\+writer\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__channel__test_8c_a6ff1d93142cc427934591b3811bf5d9b}\label{log__channel__test_8c_a6ff1d93142cc427934591b3811bf5d9b}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_verify\_mock\_equal@{s\_verify\_mock\_equal}}
+\index{s\_verify\_mock\_equal@{s\_verify\_mock\_equal}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_verify\_mock\_equal()}{s\_verify\_mock\_equal()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+verify\+\_\+mock\+\_\+equal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$$\ast$}]{test\+\_\+lines,  }\item[{size\+\_\+t}]{array\+\_\+length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{log__channel__test_8c_aa3c6a7b4e28413bbb2b391672dff1ce8}\label{log__channel__test_8c_aa3c6a7b4e28413bbb2b391672dff1ce8}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_background\_sleep\_times\_ns@{s\_background\_sleep\_times\_ns}}
+\index{s\_background\_sleep\_times\_ns@{s\_background\_sleep\_times\_ns}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_background\_sleep\_times\_ns}{s\_background\_sleep\_times\_ns}}
+{\footnotesize\ttfamily int s\+\_\+background\+\_\+sleep\+\_\+times\+\_\+ns\mbox{[}$\,$\mbox{]} = \{0, 100000, 0, 0, 1000000, 0, 1000000\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{log__channel__test_8c_aeafb87f847c8f49c947824df593695e2}\label{log__channel__test_8c_aeafb87f847c8f49c947824df593695e2}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_channel\_test\_all@{s\_channel\_test\_all}}
+\index{s\_channel\_test\_all@{s\_channel\_test\_all}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_all}{s\_channel\_test\_all}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$$\ast$ s\+\_\+channel\+\_\+test\+\_\+all\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \&s\_log\_line\_1,}
+\DoxyCodeLine{    \&s\_log\_line\_2,}
+\DoxyCodeLine{    \&s\_log\_line\_3,}
+\DoxyCodeLine{    \&s\_log\_line\_4,}
+\DoxyCodeLine{    \&s\_log\_line\_simple,}
+\DoxyCodeLine{    \&s\_log\_line\_multiline,}
+\DoxyCodeLine{    \&s\_log\_line\_fake,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{log__channel__test_8c_a83864302499a6c005302930d3d7e0fd4}\label{log__channel__test_8c_a83864302499a6c005302930d3d7e0fd4}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_channel\_test\_numbers@{s\_channel\_test\_numbers}}
+\index{s\_channel\_test\_numbers@{s\_channel\_test\_numbers}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_numbers}{s\_channel\_test\_numbers}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$$\ast$ s\+\_\+channel\+\_\+test\+\_\+numbers\mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+1, \&s\+\_\+log\+\_\+line\+\_\+2, \&s\+\_\+log\+\_\+line\+\_\+3, \&s\+\_\+log\+\_\+line\+\_\+4\}}
+
+\mbox{\Hypertarget{log__channel__test_8c_ae213373fc4b10e3344de0fe7cc870883}\label{log__channel__test_8c_ae213373fc4b10e3344de0fe7cc870883}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_channel\_test\_one\_line@{s\_channel\_test\_one\_line}}
+\index{s\_channel\_test\_one\_line@{s\_channel\_test\_one\_line}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_one\_line}{s\_channel\_test\_one\_line}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$$\ast$ s\+\_\+channel\+\_\+test\+\_\+one\+\_\+line\mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+1\}}
+
+\mbox{\Hypertarget{log__channel__test_8c_aacf8aec29e6c4eb8da783e0046cdc775}\label{log__channel__test_8c_aacf8aec29e6c4eb8da783e0046cdc775}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_channel\_test\_words@{s\_channel\_test\_words}}
+\index{s\_channel\_test\_words@{s\_channel\_test\_words}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_words}{s\_channel\_test\_words}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$$\ast$ s\+\_\+channel\+\_\+test\+\_\+words\mbox{[}$\,$\mbox{]} = \{\&s\+\_\+log\+\_\+line\+\_\+simple, \&s\+\_\+log\+\_\+line\+\_\+multiline, \&s\+\_\+log\+\_\+line\+\_\+fake\}}
+
+\mbox{\Hypertarget{log__channel__test_8c_abd94c5b0eb0d3caeaf7633aad4ec0cf3}\label{log__channel__test_8c_abd94c5b0eb0d3caeaf7633aad4ec0cf3}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_mock\_writer\_vtable@{s\_mock\_writer\_vtable}}
+\index{s\_mock\_writer\_vtable@{s\_mock\_writer\_vtable}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_writer\_vtable}{s\_mock\_writer\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__writer__vtable}{aws\+\_\+log\+\_\+writer\+\_\+vtable}} s\+\_\+mock\+\_\+writer\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{.write = \mbox{\hyperlink{log__channel__test_8c_a1599aa4e63191bc5a032855dcc8ffdc6}{s\_mock\_log\_writer\_write}},}
+\DoxyCodeLine{                                                            .clean\_up = \mbox{\hyperlink{log__channel__test_8c_ade5593d9c1eb183d03f622ea196d7ac8}{s\_mock\_log\_writer\_clean\_up}}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{log__channel__test_8c_a97ce04b72c311ee1f1615691cfc4940d}\label{log__channel__test_8c_a97ce04b72c311ee1f1615691cfc4940d}} 
+\index{log\_channel\_test.c@{log\_channel\_test.c}!s\_test\_error\_message@{s\_test\_error\_message}}
+\index{s\_test\_error\_message@{s\_test\_error\_message}!log\_channel\_test.c@{log\_channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_error\_message}{s\_test\_error\_message}}
+{\footnotesize\ttfamily char s\+\_\+test\+\_\+error\+\_\+message\mbox{[}4096\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+

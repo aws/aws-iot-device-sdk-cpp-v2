@@ -1,0 +1,67 @@
+C99 implementation of AWS IoT cloud services integration with devices\hypertarget{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md17}{}\doxysection{License}\label{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md17}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md18}{}\doxysection{Usage}\label{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md18}
+\hypertarget{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md19}{}\doxysubsection{Building}\label{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md19}
+\hypertarget{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md20}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md20}
+If you are building on Linux, you will need to build s2n before being able to build aws-\/c-\/io, which is a dependency of aws-\/c-\/auth. For our CRT\textquotesingle{}s, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found \href{https://github.com/awslabs/aws-crt-cpp/tree/main/crt}{\texttt{ here}}. The commands below will build s2n using Open\+SSL 1.\+1.\+1. For using other versions of Open\+SSL, there is additional information in the \href{https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md}{\texttt{ s2n Usage Guide}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone git@github.com:awslabs/s2n.git}
+\DoxyCodeLine{cd s2n}
+\DoxyCodeLine{git checkout <s2n-\/commit-\/hash-\/used-\/by-\/aws-\/crt-\/cpp>}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# We keep the build artifacts in the -\/build directory}
+\DoxyCodeLine{cd libcrypto-\/build}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Download the latest version of OpenSSL}
+\DoxyCodeLine{curl -\/LO https://www.openssl.org/source/openssl-\/1.1.1-\/latest.tar.gz}
+\DoxyCodeLine{tar -\/xzvf openssl-\/1.1.1-\/latest.tar.gz}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Build openssl libcrypto.  Note that the install path specified here must be absolute.}
+\DoxyCodeLine{cd `tar ztf openssl-\/1.1.1-\/latest.tar.gz | head -\/n1 | cut -\/f1 -\/d/`}
+\DoxyCodeLine{./config -\/fPIC no-\/shared              \(\backslash\)}
+\DoxyCodeLine{         no-\/md2 no-\/rc5 no-\/rfc3779 no-\/sctp no-\/ssl-\/trace no-\/zlib     \(\backslash\)}
+\DoxyCodeLine{         no-\/hw no-\/mdc2 no-\/seed no-\/idea enable-\/ec\_nistp\_64\_gcc\_128 no-\/camellia\(\backslash\)}
+\DoxyCodeLine{         no-\/bf no-\/ripemd no-\/dsa no-\/ssl2 no-\/ssl3 no-\/capieng                  \(\backslash\)}
+\DoxyCodeLine{         -\/DSSL\_FORBID\_ENULL -\/DOPENSSL\_NO\_DTLS1 -\/DOPENSSL\_NO\_HEARTBEATS      \(\backslash\)}
+\DoxyCodeLine{         -\/-\/prefix=<absolute-\/install-\/path>}
+\DoxyCodeLine{make}
+\DoxyCodeLine{make install}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Build s2n}
+\DoxyCodeLine{cd ../../../}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S s2n -\/B s2n/build}
+\DoxyCodeLine{cmake -\/-\/build s2n/build -\/-\/target install}
+
+\end{DoxyCode}
+\hypertarget{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md21}{}\doxysubsubsection{Building aws-\/c-\/iot and Remaining Dependencies}\label{md_crt_aws_c_iot__r_e_a_d_m_e_autotoc_md21}
+Note that aws-\/c-\/iot has several dependencies that need to be built.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/common.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/common -\/B aws-\/c-\/common/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/common/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/io.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/io -\/B aws-\/c-\/io/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/io/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/compression.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/compression -\/B aws-\/c-\/compression/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/compression/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/http.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/http -\/B aws-\/c-\/http/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/http/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/mqtt.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/mqtt -\/B aws-\/c-\/mqtt/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/mqtt/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/iot.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/iot -\/B aws-\/c-\/iot/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/iot/build -\/-\/target install}
+
+\end{DoxyCode}
+ 

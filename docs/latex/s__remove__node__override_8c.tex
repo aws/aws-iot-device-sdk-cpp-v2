@@ -1,0 +1,22 @@
+\hypertarget{s__remove__node__override_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/s\+\_\+remove\+\_\+node\+\_\+override.c File Reference}
+\label{s__remove__node__override_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/s\_remove\_node\_override.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/s\_remove\_node\_override.c}}
+{\ttfamily \#include $<$aws/common/priority\+\_\+queue.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s__remove__node__override_8c_aadf635b02cc34ecd54cff1051e45f8c0}{\+\_\+\+\_\+\+CPROVER\+\_\+file\+\_\+local\+\_\+priority\+\_\+queue\+\_\+c\+\_\+s\+\_\+remove\+\_\+node}} (struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} $\ast$queue, void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}}, size\+\_\+t item\+\_\+index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s__remove__node__override_8c_aadf635b02cc34ecd54cff1051e45f8c0}\label{s__remove__node__override_8c_aadf635b02cc34ecd54cff1051e45f8c0}} 
+\index{s\_remove\_node\_override.c@{s\_remove\_node\_override.c}!\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node@{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node}}
+\index{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node@{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node}!s\_remove\_node\_override.c@{s\_remove\_node\_override.c}}
+\doxysubsubsection{\texorpdfstring{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node()}{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_remove\_node()}}
+{\footnotesize\ttfamily int \+\_\+\+\_\+\+CPROVER\+\_\+file\+\_\+local\+\_\+priority\+\_\+queue\+\_\+c\+\_\+s\+\_\+remove\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} $\ast$}]{queue,  }\item[{void $\ast$}]{item,  }\item[{size\+\_\+t}]{item\+\_\+index }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. FUNCTION\+: s\+\_\+remove\+\_\+node
+
+This function overrides the original implementation of the s\+\_\+remove\+\_\+node function from \mbox{\hyperlink{priority__queue_8h}{priority\+\_\+queue.\+h}} with a no\+\_\+op.
+
+It is safe to use as long as there are no assertions on the positions of elements in the priority queue after its invocation, as it doesn\textquotesingle{}t really remove an element and reorders the rest, but it just reduces the length of both of the array lists of the priority queue by 1. 

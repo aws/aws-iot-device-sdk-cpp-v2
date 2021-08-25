@@ -1,0 +1,66 @@
+\hypertarget{_api_8h_source}{}\doxysection{Api.\+h}
+\label{_api_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/Api.h@{crt/aws-\/crt-\/cpp/include/aws/crt/Api.h}}
+\mbox{\hyperlink{_api_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_bootstrap_8h}{aws/crt/io/Bootstrap.h}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_event_loop_group_8h}{aws/crt/io/EventLoopGroup.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_tls_options_8h}{aws/crt/io/TlsOptions.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2mqtt_2_mqtt_client_8h}{aws/crt/mqtt/MqttClient.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h}{aws/common/logging.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{17     \{}
+\DoxyCodeLine{18         \textcolor{keyword}{enum class} \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeb}{LogLevel}}}
+\DoxyCodeLine{19         \{}
+\DoxyCodeLine{20             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba6adf97f83acf6453d4a6a4b1070f3754}{None}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5af7684f8f10c9f5581d70c60beeb38b80}{AWS\_LL\_NONE}},}
+\DoxyCodeLine{21             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba882384ec38ce8d9582b57e70861730e4}{Fatal}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5a4e1968e875da609bacafca2fadfd18ca}{AWS\_LL\_FATAL}},}
+\DoxyCodeLine{22             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba902b0d55fddef6f8d651fe1035b7d4bd}{Error}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5abf692230c5411e2365dbcc1612ca8570}{AWS\_LL\_ERROR}},}
+\DoxyCodeLine{23             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba56525ae64d370c0b448ac0d60710ef17}{Warn}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5ab507bff3f7ee019a1e0077a3907d1d7c}{AWS\_LL\_WARN}},}
+\DoxyCodeLine{24             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba4059b0251f66a18cb56f544728796875}{Info}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5ae919a955297861b6b8c4c484d36e2a57}{AWS\_LL\_INFO}},}
+\DoxyCodeLine{25             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebaa603905470e2a5b8c13e96b579ef0dba}{Debug}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5a39d8eff4fe2102874e41956c1e371bdc}{AWS\_LL\_DEBUG}},}
+\DoxyCodeLine{26             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebadd4ec0ac4e58f7c32a01244ae91150b1}{Trace}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5a547326c130a4e2ad011a00aa49579356}{AWS\_LL\_TRACE}},}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28             \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebae93f994f01c537c4e2f7d8528c3eb5e9}{Count}}}
+\DoxyCodeLine{29         \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31         \textcolor{keyword}{enum class} \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442}{ApiHandleShutdownBehavior}}}
+\DoxyCodeLine{32         \{}
+\DoxyCodeLine{33             \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442abd0ca6be53b0f3d2886fd53fcb52574e}{Blocking}},}
+\DoxyCodeLine{34             \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442a20a6cf714cbf179298b4d850849847b8}{NonBlocking}}}
+\DoxyCodeLine{35         \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}}}
+\DoxyCodeLine{38         \{}
+\DoxyCodeLine{39           \textcolor{keyword}{public}:}
+\DoxyCodeLine{40             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{41             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{42             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{\string~ApiHandle}}();}
+\DoxyCodeLine{43             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle_af85eb4021d2f2515df30031540db2528}{ApiHandle}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{44             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle_a4ee6479200cb4a04aa671d9f0cc978b6}{ApiHandle}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{45             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle_a00d3337a3b92497ff15ebb15699848c8}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{46             \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle_a56a176d4ebdb85e02e0fb5519eff4b3a}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{ApiHandle}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{53             \textcolor{keywordtype}{void} InitializeLogging(\mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeb}{LogLevel}} \mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{60             \textcolor{keywordtype}{void} InitializeLogging(\mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeb}{LogLevel}} \mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}}, FILE *fp);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{66             \textcolor{keywordtype}{void} SetShutdownBehavior(\mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442}{ApiHandleShutdownBehavior}} behavior);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68           \textcolor{keyword}{private}:}
+\DoxyCodeLine{69             \textcolor{keywordtype}{void} InitializeLoggingCommon(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__logger__standard__options}{aws\_logger\_standard\_options}} \&options);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71             \mbox{\hyperlink{structaws__logger}{aws\_logger}} logger;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73             \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442}{ApiHandleShutdownBehavior}} shutdownBehavior;}
+\DoxyCodeLine{74         \};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76         \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{namespace_aws_1_1_crt_a381b8c42c48a6a9408017d273d660dda}{ErrorDebugString}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{structerror}{error}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{80         \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespace_aws_1_1_crt_aec41cfe367315d4e4e1712f19e3d3061}{LastError}}() noexcept;}
+\DoxyCodeLine{85         \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespace_aws_1_1_crt_a09743b0ee6cb7e924ce2107ec8f81de6}{LastErrorOrUnknown}}() noexcept;}
+\DoxyCodeLine{86     \} \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{87 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

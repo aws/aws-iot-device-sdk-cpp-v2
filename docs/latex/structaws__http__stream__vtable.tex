@@ -1,0 +1,76 @@
+\hypertarget{structaws__http__stream__vtable}{}\doxysection{aws\+\_\+http\+\_\+stream\+\_\+vtable Struct Reference}
+\label{structaws__http__stream__vtable}\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+
+
+{\ttfamily \#include $<$request\+\_\+response\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_ada78084c6d7e1921c7e11ab8afa962d8}{destroy}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_a025473ab5907f9e41fdb5dc6f0bfb13b}{update\+\_\+window}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, size\+\_\+t increment\+\_\+size)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_a45f2e513ed02de3c968ecc5e7e63222c}{activate}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_a172261e890a394bdbcc98749090426f6}{http1\+\_\+write\+\_\+chunk}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http1\+\_\+stream, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_a87c9a62af5430ac36ccabe41cd2150ab}{http2\+\_\+reset\+\_\+stream}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t http2\+\_\+error)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_a949bc9cf778816600996c40c2a05b9c0}{http2\+\_\+get\+\_\+received\+\_\+error\+\_\+code}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$http2\+\_\+error)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__stream__vtable_aa3c99de905e9f6162f945aebaa9ee398}{http2\+\_\+get\+\_\+sent\+\_\+error\+\_\+code}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$http2\+\_\+error)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__stream__vtable_a45f2e513ed02de3c968ecc5e7e63222c}\label{structaws__http__stream__vtable_a45f2e513ed02de3c968ecc5e7e63222c}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!activate@{activate}}
+\index{activate@{activate}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{activate}{activate}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::activate) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_ada78084c6d7e1921c7e11ab8afa962d8}\label{structaws__http__stream__vtable_ada78084c6d7e1921c7e11ab8afa962d8}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!destroy@{destroy}}
+\index{destroy@{destroy}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{destroy}{destroy}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::destroy) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_a172261e890a394bdbcc98749090426f6}\label{structaws__http__stream__vtable_a172261e890a394bdbcc98749090426f6}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!http1\_write\_chunk@{http1\_write\_chunk}}
+\index{http1\_write\_chunk@{http1\_write\_chunk}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{http1\_write\_chunk}{http1\_write\_chunk}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::http1\+\_\+write\+\_\+chunk) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http1\+\_\+stream, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_a949bc9cf778816600996c40c2a05b9c0}\label{structaws__http__stream__vtable_a949bc9cf778816600996c40c2a05b9c0}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!http2\_get\_received\_error\_code@{http2\_get\_received\_error\_code}}
+\index{http2\_get\_received\_error\_code@{http2\_get\_received\_error\_code}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{http2\_get\_received\_error\_code}{http2\_get\_received\_error\_code}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::http2\+\_\+get\+\_\+received\+\_\+error\+\_\+code) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$http2\+\_\+error)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_aa3c99de905e9f6162f945aebaa9ee398}\label{structaws__http__stream__vtable_aa3c99de905e9f6162f945aebaa9ee398}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!http2\_get\_sent\_error\_code@{http2\_get\_sent\_error\_code}}
+\index{http2\_get\_sent\_error\_code@{http2\_get\_sent\_error\_code}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{http2\_get\_sent\_error\_code}{http2\_get\_sent\_error\_code}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::http2\+\_\+get\+\_\+sent\+\_\+error\+\_\+code) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$http2\+\_\+error)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_a87c9a62af5430ac36ccabe41cd2150ab}\label{structaws__http__stream__vtable_a87c9a62af5430ac36ccabe41cd2150ab}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!http2\_reset\_stream@{http2\_reset\_stream}}
+\index{http2\_reset\_stream@{http2\_reset\_stream}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{http2\_reset\_stream}{http2\_reset\_stream}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::http2\+\_\+reset\+\_\+stream) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t http2\+\_\+error)}
+
+\mbox{\Hypertarget{structaws__http__stream__vtable_a025473ab5907f9e41fdb5dc6f0bfb13b}\label{structaws__http__stream__vtable_a025473ab5907f9e41fdb5dc6f0bfb13b}} 
+\index{aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}!update\_window@{update\_window}}
+\index{update\_window@{update\_window}!aws\_http\_stream\_vtable@{aws\_http\_stream\_vtable}}
+\doxysubsubsection{\texorpdfstring{update\_window}{update\_window}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+stream\+\_\+vtable\+::update\+\_\+window) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, size\+\_\+t increment\+\_\+size)}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{request__response__impl_8h}{request\+\_\+response\+\_\+impl.\+h}}\end{DoxyCompactItemize}

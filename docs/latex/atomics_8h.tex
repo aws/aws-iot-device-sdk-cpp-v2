@@ -1,0 +1,353 @@
+\hypertarget{atomics_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/atomics.h File Reference}
+\label{atomics_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/atomics.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/atomics.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+inl$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{atomics_8h_aa97164299a9a596db98ef8efd1044e20}{AWS\+\_\+\+ATOMIC\+\_\+\+VAR\+\_\+\+PTRVAL}}(var)~((var)-\/$>$value)
+\item 
+\#define \mbox{\hyperlink{atomics_8h_a4733c5e320d1bb1645b8cdc580e5aa0d}{AWS\+\_\+\+ATOMIC\+\_\+\+VAR\+\_\+\+INTVAL}}(var)~($\ast$(\mbox{\hyperlink{atomics__msvc_8inl_afaa05dafdbfd715ecfcf248ff57394a4}{aws\+\_\+atomic\+\_\+impl\+\_\+int\+\_\+t}} $\ast$)(var))
+\item 
+\#define \mbox{\hyperlink{atomics_8h_a907e0611a1d1a07dc415be851eb27863}{AWS\+\_\+\+ATOMIC\+\_\+\+INIT\+\_\+\+INT}}(x)~    \{ .value = (void $\ast$)(uintptr\+\_\+t)(x) \}
+\item 
+\#define \mbox{\hyperlink{atomics_8h_a100af6cdc44791777567d21414b3158c}{AWS\+\_\+\+ATOMIC\+\_\+\+INIT\+\_\+\+PTR}}(x)~    \{ .value = (void $\ast$)(x) \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} \{ \newline
+\mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11da83e26d8b8020c359b98dd3f073bcff1b}{aws\+\_\+memory\+\_\+order\+\_\+relaxed}} = 0
+, \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11da725043c22752eb18c06c8241eb3b559c}{aws\+\_\+memory\+\_\+order\+\_\+acquire}} = 2
+, \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11da7174d9c94c32c8e747d53b436d265ab1}{aws\+\_\+memory\+\_\+order\+\_\+release}}
+, \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11dae605c01bfb56edefbf56bdc9840a54ad}{aws\+\_\+memory\+\_\+order\+\_\+acq\+\_\+rel}}
+, \newline
+\mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11daf7644b32bee909ed187ad507ddc7c12c}{aws\+\_\+memory\+\_\+order\+\_\+seq\+\_\+cst}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_aac32d4adf54e1ba5ef88e4af3197e4b0}{aws\+\_\+atomic\+\_\+init\+\_\+int}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_ac128846fc6104485d00f4ee36423b4ea}{aws\+\_\+atomic\+\_\+init\+\_\+ptr}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$p)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_ad7c5a03a8007648cb04ec441502640da}{aws\+\_\+atomic\+\_\+load\+\_\+int\+\_\+explicit}} (volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_af90075e6fc69347f405ed2ef4df6b387}{aws\+\_\+atomic\+\_\+load\+\_\+int}} (volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void $\ast$ \mbox{\hyperlink{atomics_8h_a72df750237fb3374fa45343454ac7168}{aws\+\_\+atomic\+\_\+load\+\_\+ptr\+\_\+explicit}} (volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void $\ast$ \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\+\_\+atomic\+\_\+load\+\_\+ptr}} (volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_a52178213df0c28bcc0afa841ba78af61}{aws\+\_\+atomic\+\_\+store\+\_\+int\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_a688c6d5517ded32ee6e1dbc63a2e9bcf}{aws\+\_\+atomic\+\_\+store\+\_\+int}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_a4ed070ee75a7846a771bd5b233d93eb8}{aws\+\_\+atomic\+\_\+store\+\_\+ptr\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$p, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_a755db66d92e73f02f7fca254fdaf3acf}{aws\+\_\+atomic\+\_\+store\+\_\+ptr}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$p)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_aa8624f247ba75ed3e6c7b169cf702b5d}{aws\+\_\+atomic\+\_\+exchange\+\_\+int\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_abfa73e087f3b07e617409cc281586346}{aws\+\_\+atomic\+\_\+exchange\+\_\+int}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void $\ast$ \mbox{\hyperlink{atomics_8h_ae99060fba6178276163bb84d8ce8db27}{aws\+\_\+atomic\+\_\+exchange\+\_\+ptr\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$p, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} memory\+\_\+order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void $\ast$ \mbox{\hyperlink{atomics_8h_aa8f2bdb1d7c89d8c725f0b8c11c03d1d}{aws\+\_\+atomic\+\_\+exchange\+\_\+ptr}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$p)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{atomics_8h_ab4ddc8edd47d8133343fdf331da9917a}{aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+int\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t $\ast$expected, size\+\_\+t desired, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order\+\_\+success, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order\+\_\+failure)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{atomics_8h_af32b09b4f8f1501eb5f847077c263fce}{aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+int}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t $\ast$expected, size\+\_\+t desired)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{atomics_8h_a53e640b24d2470f62a225a1625150d90}{aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+ptr\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$$\ast$expected, void $\ast$desired, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order\+\_\+success, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order\+\_\+failure)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{atomics_8h_a614b7a85e36f18da84679601b4f28c39}{aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+ptr}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, void $\ast$$\ast$expected, void $\ast$desired)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_aaee8082ab1b473f75a3660c13636edd3}{aws\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_abae22c974c66e401d27d1783f3f4a63d}{aws\+\_\+atomic\+\_\+fetch\+\_\+sub\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_a1343f9b6374cb136cbf430e2ab615ca6}{aws\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_a58c1df05d535215e09cc3ae373bc7c0e}{aws\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_ad0ba700df2a2ba2bad9ddf4e73c8bbc8}{aws\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+explicit}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n, enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_aff1c49b7fb7cdb5d48ada2c47f0167b7}{aws\+\_\+atomic\+\_\+fetch\+\_\+add}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_a52e40496e48917daf61b4bd8449a8add}{aws\+\_\+atomic\+\_\+fetch\+\_\+sub}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_ac6d346f699e76f440e3ec2659bc7d54a}{aws\+\_\+atomic\+\_\+fetch\+\_\+and}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_a8eb4001c0e7b6fd052b08f9f6d36aa6c}{aws\+\_\+atomic\+\_\+fetch\+\_\+or}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t \mbox{\hyperlink{atomics_8h_a3838dc63d5299e762cacd342b03218d6}{aws\+\_\+atomic\+\_\+fetch\+\_\+xor}} (volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$var, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{atomics_8h_ab569c643991aff30bbcb1f18c5b12813}{aws\+\_\+atomic\+\_\+thread\+\_\+fence}} (enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}} order)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{atomics_8h_a907e0611a1d1a07dc415be851eb27863}\label{atomics_8h_a907e0611a1d1a07dc415be851eb27863}} 
+\index{atomics.h@{atomics.h}!AWS\_ATOMIC\_INIT\_INT@{AWS\_ATOMIC\_INIT\_INT}}
+\index{AWS\_ATOMIC\_INIT\_INT@{AWS\_ATOMIC\_INIT\_INT}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_ATOMIC\_INIT\_INT}{AWS\_ATOMIC\_INIT\_INT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+ATOMIC\+\_\+\+INIT\+\_\+\+INT(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~    \{ .value = (void $\ast$)(uintptr\+\_\+t)(x) \}}
+
+Statically initializes an \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} to a given size\+\_\+t value. \mbox{\Hypertarget{atomics_8h_a100af6cdc44791777567d21414b3158c}\label{atomics_8h_a100af6cdc44791777567d21414b3158c}} 
+\index{atomics.h@{atomics.h}!AWS\_ATOMIC\_INIT\_PTR@{AWS\_ATOMIC\_INIT\_PTR}}
+\index{AWS\_ATOMIC\_INIT\_PTR@{AWS\_ATOMIC\_INIT\_PTR}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_ATOMIC\_INIT\_PTR}{AWS\_ATOMIC\_INIT\_PTR}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+ATOMIC\+\_\+\+INIT\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~    \{ .value = (void $\ast$)(x) \}}
+
+Statically initializes an \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} to a given void $\ast$ value. \mbox{\Hypertarget{atomics_8h_a4733c5e320d1bb1645b8cdc580e5aa0d}\label{atomics_8h_a4733c5e320d1bb1645b8cdc580e5aa0d}} 
+\index{atomics.h@{atomics.h}!AWS\_ATOMIC\_VAR\_INTVAL@{AWS\_ATOMIC\_VAR\_INTVAL}}
+\index{AWS\_ATOMIC\_VAR\_INTVAL@{AWS\_ATOMIC\_VAR\_INTVAL}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_ATOMIC\_VAR\_INTVAL}{AWS\_ATOMIC\_VAR\_INTVAL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+ATOMIC\+\_\+\+VAR\+\_\+\+INTVAL(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~($\ast$(\mbox{\hyperlink{atomics__msvc_8inl_afaa05dafdbfd715ecfcf248ff57394a4}{aws\+\_\+atomic\+\_\+impl\+\_\+int\+\_\+t}} $\ast$)(var))}
+
+\mbox{\Hypertarget{atomics_8h_aa97164299a9a596db98ef8efd1044e20}\label{atomics_8h_aa97164299a9a596db98ef8efd1044e20}} 
+\index{atomics.h@{atomics.h}!AWS\_ATOMIC\_VAR\_PTRVAL@{AWS\_ATOMIC\_VAR\_PTRVAL}}
+\index{AWS\_ATOMIC\_VAR\_PTRVAL@{AWS\_ATOMIC\_VAR\_PTRVAL}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_ATOMIC\_VAR\_PTRVAL}{AWS\_ATOMIC\_VAR\_PTRVAL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+ATOMIC\+\_\+\+VAR\+\_\+\+PTRVAL(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~((var)-\/$>$value)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}} 
+\index{atomics.h@{atomics.h}!aws\_memory\_order@{aws\_memory\_order}}
+\index{aws\_memory\_order@{aws\_memory\_order}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_memory\_order}{aws\_memory\_order}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{aws\_memory\_order\_relaxed@{aws\_memory\_order\_relaxed}!atomics.h@{atomics.h}}\index{atomics.h@{atomics.h}!aws\_memory\_order\_relaxed@{aws\_memory\_order\_relaxed}}}\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11da83e26d8b8020c359b98dd3f073bcff1b}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11da83e26d8b8020c359b98dd3f073bcff1b}} 
+aws\+\_\+memory\+\_\+order\+\_\+relaxed&No particular ordering constraints are guaranteed relative to other operations at all; we merely ensure that the operation itself is atomic. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{aws\_memory\_order\_acquire@{aws\_memory\_order\_acquire}!atomics.h@{atomics.h}}\index{atomics.h@{atomics.h}!aws\_memory\_order\_acquire@{aws\_memory\_order\_acquire}}}\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11da725043c22752eb18c06c8241eb3b559c}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11da725043c22752eb18c06c8241eb3b559c}} 
+aws\+\_\+memory\+\_\+order\+\_\+acquire&Specifies acquire ordering. No reads or writes on the current thread can be reordered to happen before this operation. This is typically paired with a release ordering; any writes that happened on the releasing operation will be visible after the paired acquire operation.
+
+Acquire ordering is only meaningful on load or load-\/store operations. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{aws\_memory\_order\_release@{aws\_memory\_order\_release}!atomics.h@{atomics.h}}\index{atomics.h@{atomics.h}!aws\_memory\_order\_release@{aws\_memory\_order\_release}}}\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11da7174d9c94c32c8e747d53b436d265ab1}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11da7174d9c94c32c8e747d53b436d265ab1}} 
+aws\+\_\+memory\+\_\+order\+\_\+release&Specifies release order. No reads or writes can be reordered to come after this operation. Typically paired with an acquire operation.
+
+Release ordering is only meaningful on store or load-\/store operations. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{aws\_memory\_order\_acq\_rel@{aws\_memory\_order\_acq\_rel}!atomics.h@{atomics.h}}\index{atomics.h@{atomics.h}!aws\_memory\_order\_acq\_rel@{aws\_memory\_order\_acq\_rel}}}\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11dae605c01bfb56edefbf56bdc9840a54ad}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11dae605c01bfb56edefbf56bdc9840a54ad}} 
+aws\+\_\+memory\+\_\+order\+\_\+acq\+\_\+rel&Specifies acquire-\/release order; if this operation acts as a load, it acts as an acquire operation; if it acts as a store, it acts as a release operation; if it\textquotesingle{}s a load-\/store, it does both. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{aws\_memory\_order\_seq\_cst@{aws\_memory\_order\_seq\_cst}!atomics.h@{atomics.h}}\index{atomics.h@{atomics.h}!aws\_memory\_order\_seq\_cst@{aws\_memory\_order\_seq\_cst}}}\mbox{\Hypertarget{atomics_8h_ae6ce90130badccd782e51488c9b4f11daf7644b32bee909ed187ad507ddc7c12c}\label{atomics_8h_ae6ce90130badccd782e51488c9b4f11daf7644b32bee909ed187ad507ddc7c12c}} 
+aws\+\_\+memory\+\_\+order\+\_\+seq\+\_\+cst&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{atomics_8h_af32b09b4f8f1501eb5f847077c263fce}\label{atomics_8h_af32b09b4f8f1501eb5f847077c263fce}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_compare\_exchange\_int@{aws\_atomic\_compare\_exchange\_int}}
+\index{aws\_atomic\_compare\_exchange\_int@{aws\_atomic\_compare\_exchange\_int}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_compare\_exchange\_int()}{aws\_atomic\_compare\_exchange\_int()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+int (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t $\ast$}]{expected,  }\item[{size\+\_\+t}]{desired }\end{DoxyParamCaption})}
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. Uses sequentially consistent memory ordering, regardless of success or failure. Returns true if the compare was successful and the variable updated to desired. \mbox{\Hypertarget{atomics_8h_ab4ddc8edd47d8133343fdf331da9917a}\label{atomics_8h_ab4ddc8edd47d8133343fdf331da9917a}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_compare\_exchange\_int\_explicit@{aws\_atomic\_compare\_exchange\_int\_explicit}}
+\index{aws\_atomic\_compare\_exchange\_int\_explicit@{aws\_atomic\_compare\_exchange\_int\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_compare\_exchange\_int\_explicit()}{aws\_atomic\_compare\_exchange\_int\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+int\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t $\ast$}]{expected,  }\item[{size\+\_\+t}]{desired,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order\+\_\+success,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order\+\_\+failure }\end{DoxyParamCaption})}
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. On success, the memory ordering used was order\+\_\+success; otherwise, it was order\+\_\+failure. order\+\_\+failure must be no stronger than order\+\_\+success, and must not be release or acq\+\_\+rel. Returns true if the compare was successful and the variable updated to desired.
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. On success, the memory ordering used was order\+\_\+success; otherwise, it was order\+\_\+failure. order\+\_\+failure must be no stronger than order\+\_\+success, and must not be release or acq\+\_\+rel. \mbox{\Hypertarget{atomics_8h_a614b7a85e36f18da84679601b4f28c39}\label{atomics_8h_a614b7a85e36f18da84679601b4f28c39}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_compare\_exchange\_ptr@{aws\_atomic\_compare\_exchange\_ptr}}
+\index{aws\_atomic\_compare\_exchange\_ptr@{aws\_atomic\_compare\_exchange\_ptr}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_compare\_exchange\_ptr()}{aws\_atomic\_compare\_exchange\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+ptr (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$$\ast$}]{expected,  }\item[{void $\ast$}]{desired }\end{DoxyParamCaption})}
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. Uses sequentially consistent memory ordering, regardless of success or failure. Returns true if the compare was successful and the variable updated to desired. \mbox{\Hypertarget{atomics_8h_a53e640b24d2470f62a225a1625150d90}\label{atomics_8h_a53e640b24d2470f62a225a1625150d90}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_compare\_exchange\_ptr\_explicit@{aws\_atomic\_compare\_exchange\_ptr\_explicit}}
+\index{aws\_atomic\_compare\_exchange\_ptr\_explicit@{aws\_atomic\_compare\_exchange\_ptr\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_compare\_exchange\_ptr\_explicit()}{aws\_atomic\_compare\_exchange\_ptr\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+atomic\+\_\+compare\+\_\+exchange\+\_\+ptr\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$$\ast$}]{expected,  }\item[{void $\ast$}]{desired,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order\+\_\+success,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order\+\_\+failure }\end{DoxyParamCaption})}
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. On success, the memory ordering used was order\+\_\+success; otherwise, it was order\+\_\+failure. order\+\_\+failure must be no stronger than order\+\_\+success, and must not be release or acq\+\_\+rel. Returns true if the compare was successful and the variable updated to desired.
+
+Atomically compares $\ast$var to $\ast$expected; if they are equal, atomically sets $\ast$var = desired. Otherwise, $\ast$expected is set to the value in $\ast$var. On success, the memory ordering used was order\+\_\+success; otherwise, it was order\+\_\+failure. order\+\_\+failure must be no stronger than order\+\_\+success, and must not be release or acq\+\_\+rel. \mbox{\Hypertarget{atomics_8h_abfa73e087f3b07e617409cc281586346}\label{atomics_8h_abfa73e087f3b07e617409cc281586346}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_exchange\_int@{aws\_atomic\_exchange\_int}}
+\index{aws\_atomic\_exchange\_int@{aws\_atomic\_exchange\_int}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_exchange\_int()}{aws\_atomic\_exchange\_int()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+exchange\+\_\+int (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Exchanges an integer with the value in an atomic\+\_\+var, using sequentially consistent ordering. Returns the value that was previously in the atomic\+\_\+var. \mbox{\Hypertarget{atomics_8h_aa8624f247ba75ed3e6c7b169cf702b5d}\label{atomics_8h_aa8624f247ba75ed3e6c7b169cf702b5d}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_exchange\_int\_explicit@{aws\_atomic\_exchange\_int\_explicit}}
+\index{aws\_atomic\_exchange\_int\_explicit@{aws\_atomic\_exchange\_int\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_exchange\_int\_explicit()}{aws\_atomic\_exchange\_int\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+exchange\+\_\+int\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Exchanges an integer with the value in an atomic\+\_\+var, using the specified ordering. Returns the value that was previously in the atomic\+\_\+var. \mbox{\Hypertarget{atomics_8h_aa8f2bdb1d7c89d8c725f0b8c11c03d1d}\label{atomics_8h_aa8f2bdb1d7c89d8c725f0b8c11c03d1d}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_exchange\_ptr@{aws\_atomic\_exchange\_ptr}}
+\index{aws\_atomic\_exchange\_ptr@{aws\_atomic\_exchange\_ptr}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_exchange\_ptr()}{aws\_atomic\_exchange\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void$\ast$ aws\+\_\+atomic\+\_\+exchange\+\_\+ptr (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+
+Exchanges an integer with the value in an atomic\+\_\+var, using sequentially consistent ordering. Returns the value that was previously in the atomic\+\_\+var. \mbox{\Hypertarget{atomics_8h_ae99060fba6178276163bb84d8ce8db27}\label{atomics_8h_ae99060fba6178276163bb84d8ce8db27}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_exchange\_ptr\_explicit@{aws\_atomic\_exchange\_ptr\_explicit}}
+\index{aws\_atomic\_exchange\_ptr\_explicit@{aws\_atomic\_exchange\_ptr\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_exchange\_ptr\_explicit()}{aws\_atomic\_exchange\_ptr\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void$\ast$ aws\+\_\+atomic\+\_\+exchange\+\_\+ptr\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$}]{p,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Exchanges a pointer with the value in an atomic\+\_\+var, using the specified ordering. Returns the value that was previously in the atomic\+\_\+var. \mbox{\Hypertarget{atomics_8h_aff1c49b7fb7cdb5d48ada2c47f0167b7}\label{atomics_8h_aff1c49b7fb7cdb5d48ada2c47f0167b7}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_add@{aws\_atomic\_fetch\_add}}
+\index{aws\_atomic\_fetch\_add@{aws\_atomic\_fetch\_add}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_add()}{aws\_atomic\_fetch\_add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+add (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Atomically adds n to $\ast$var, and returns the previous value of $\ast$var. Uses sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_aaee8082ab1b473f75a3660c13636edd3}\label{atomics_8h_aaee8082ab1b473f75a3660c13636edd3}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_add\_explicit@{aws\_atomic\_fetch\_add\_explicit}}
+\index{aws\_atomic\_fetch\_add\_explicit@{aws\_atomic\_fetch\_add\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_add\_explicit()}{aws\_atomic\_fetch\_add\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Atomically adds n to $\ast$var, and returns the previous value of $\ast$var. \mbox{\Hypertarget{atomics_8h_ac6d346f699e76f440e3ec2659bc7d54a}\label{atomics_8h_ac6d346f699e76f440e3ec2659bc7d54a}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_and@{aws\_atomic\_fetch\_and}}
+\index{aws\_atomic\_fetch\_and@{aws\_atomic\_fetch\_and}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_and()}{aws\_atomic\_fetch\_and()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+and (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Atomically ands n into $\ast$var, and returns the previous value of $\ast$var. Uses sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_a58c1df05d535215e09cc3ae373bc7c0e}\label{atomics_8h_a58c1df05d535215e09cc3ae373bc7c0e}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_and\_explicit@{aws\_atomic\_fetch\_and\_explicit}}
+\index{aws\_atomic\_fetch\_and\_explicit@{aws\_atomic\_fetch\_and\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_and\_explicit()}{aws\_atomic\_fetch\_and\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Atomically ANDs n with $\ast$var, and returns the previous value of $\ast$var. \mbox{\Hypertarget{atomics_8h_a8eb4001c0e7b6fd052b08f9f6d36aa6c}\label{atomics_8h_a8eb4001c0e7b6fd052b08f9f6d36aa6c}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_or@{aws\_atomic\_fetch\_or}}
+\index{aws\_atomic\_fetch\_or@{aws\_atomic\_fetch\_or}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_or()}{aws\_atomic\_fetch\_or()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+or (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Atomically ors n into $\ast$var, and returns the previous value of $\ast$var. Uses sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_a1343f9b6374cb136cbf430e2ab615ca6}\label{atomics_8h_a1343f9b6374cb136cbf430e2ab615ca6}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_or\_explicit@{aws\_atomic\_fetch\_or\_explicit}}
+\index{aws\_atomic\_fetch\_or\_explicit@{aws\_atomic\_fetch\_or\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_or\_explicit()}{aws\_atomic\_fetch\_or\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Atomically ORs n with $\ast$var, and returns the previous value of $\ast$var. \mbox{\Hypertarget{atomics_8h_a52e40496e48917daf61b4bd8449a8add}\label{atomics_8h_a52e40496e48917daf61b4bd8449a8add}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_sub@{aws\_atomic\_fetch\_sub}}
+\index{aws\_atomic\_fetch\_sub@{aws\_atomic\_fetch\_sub}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_sub()}{aws\_atomic\_fetch\_sub()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+sub (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Atomically subtracts n from $\ast$var, and returns the previous value of $\ast$var. Uses sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_abae22c974c66e401d27d1783f3f4a63d}\label{atomics_8h_abae22c974c66e401d27d1783f3f4a63d}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_sub\_explicit@{aws\_atomic\_fetch\_sub\_explicit}}
+\index{aws\_atomic\_fetch\_sub\_explicit@{aws\_atomic\_fetch\_sub\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_sub\_explicit()}{aws\_atomic\_fetch\_sub\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+sub\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Atomically subtracts n from $\ast$var, and returns the previous value of $\ast$var. \mbox{\Hypertarget{atomics_8h_a3838dc63d5299e762cacd342b03218d6}\label{atomics_8h_a3838dc63d5299e762cacd342b03218d6}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_xor@{aws\_atomic\_fetch\_xor}}
+\index{aws\_atomic\_fetch\_xor@{aws\_atomic\_fetch\_xor}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_xor()}{aws\_atomic\_fetch\_xor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+xor (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Atomically xors n into $\ast$var, and returns the previous value of $\ast$var. Uses sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_ad0ba700df2a2ba2bad9ddf4e73c8bbc8}\label{atomics_8h_ad0ba700df2a2ba2bad9ddf4e73c8bbc8}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_fetch\_xor\_explicit@{aws\_atomic\_fetch\_xor\_explicit}}
+\index{aws\_atomic\_fetch\_xor\_explicit@{aws\_atomic\_fetch\_xor\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_fetch\_xor\_explicit()}{aws\_atomic\_fetch\_xor\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Atomically XORs n with $\ast$var, and returns the previous value of $\ast$var. \mbox{\Hypertarget{atomics_8h_aac32d4adf54e1ba5ef88e4af3197e4b0}\label{atomics_8h_aac32d4adf54e1ba5ef88e4af3197e4b0}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_init\_int@{aws\_atomic\_init\_int}}
+\index{aws\_atomic\_init\_int@{aws\_atomic\_init\_int}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_init\_int()}{aws\_atomic\_init\_int()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+init\+\_\+int (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Initializes an atomic variable with an integer value. This operation should be done before any other operations on this atomic variable, and must be done before attempting any parallel operations.
+
+This operation does not imply a barrier. Ensure that you use an acquire-\/release barrier (or stronger) when communicating the fact that initialization is complete to the other thread. Launching the thread implies a sufficiently strong barrier.
+
+Initializes an atomic variable with an integer value. This operation should be done before any other operations on this atomic variable, and must be done before attempting any parallel operations. \mbox{\Hypertarget{atomics_8h_ac128846fc6104485d00f4ee36423b4ea}\label{atomics_8h_ac128846fc6104485d00f4ee36423b4ea}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_init\_ptr@{aws\_atomic\_init\_ptr}}
+\index{aws\_atomic\_init\_ptr@{aws\_atomic\_init\_ptr}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_init\_ptr()}{aws\_atomic\_init\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+init\+\_\+ptr (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+
+Initializes an atomic variable with a pointer value. This operation should be done before any other operations on this atomic variable, and must be done before attempting any parallel operations.
+
+This operation does not imply a barrier. Ensure that you use an acquire-\/release barrier (or stronger) when communicating the fact that initialization is complete to the other thread. Launching the thread implies a sufficiently strong barrier.
+
+Initializes an atomic variable with a pointer value. This operation should be done before any other operations on this atomic variable, and must be done before attempting any parallel operations. \mbox{\Hypertarget{atomics_8h_af90075e6fc69347f405ed2ef4df6b387}\label{atomics_8h_af90075e6fc69347f405ed2ef4df6b387}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_load\_int@{aws\_atomic\_load\_int}}
+\index{aws\_atomic\_load\_int@{aws\_atomic\_load\_int}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_load\_int()}{aws\_atomic\_load\_int()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+load\+\_\+int (\begin{DoxyParamCaption}\item[{volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var }\end{DoxyParamCaption})}
+
+Reads an atomic var as an integer, using sequentially consistent ordering, and returns the result.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Reads an atomic var as an integer, using sequentially consistent ordering, and returns the result. \mbox{\Hypertarget{atomics_8h_ad7c5a03a8007648cb04ec441502640da}\label{atomics_8h_ad7c5a03a8007648cb04ec441502640da}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_load\_int\_explicit@{aws\_atomic\_load\_int\_explicit}}
+\index{aws\_atomic\_load\_int\_explicit@{aws\_atomic\_load\_int\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_load\_int\_explicit()}{aws\_atomic\_load\_int\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} size\+\_\+t aws\+\_\+atomic\+\_\+load\+\_\+int\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Reads an atomic var as an integer, using the specified ordering, and returns the result. \mbox{\Hypertarget{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}\label{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_load\_ptr@{aws\_atomic\_load\_ptr}}
+\index{aws\_atomic\_load\_ptr@{aws\_atomic\_load\_ptr}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_load\_ptr()}{aws\_atomic\_load\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void$\ast$ aws\+\_\+atomic\+\_\+load\+\_\+ptr (\begin{DoxyParamCaption}\item[{volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var }\end{DoxyParamCaption})}
+
+Reads an atomic var as a pointer, using sequentially consistent ordering, and returns the result. \mbox{\Hypertarget{atomics_8h_a72df750237fb3374fa45343454ac7168}\label{atomics_8h_a72df750237fb3374fa45343454ac7168}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_load\_ptr\_explicit@{aws\_atomic\_load\_ptr\_explicit}}
+\index{aws\_atomic\_load\_ptr\_explicit@{aws\_atomic\_load\_ptr\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_load\_ptr\_explicit()}{aws\_atomic\_load\_ptr\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void$\ast$ aws\+\_\+atomic\+\_\+load\+\_\+ptr\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile const struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Reads an atomic var as a pointer, using the specified ordering, and returns the result.
+
+Reads an atomic var as an pointer, using the specified ordering, and returns the result. \mbox{\Hypertarget{atomics_8h_a688c6d5517ded32ee6e1dbc63a2e9bcf}\label{atomics_8h_a688c6d5517ded32ee6e1dbc63a2e9bcf}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_store\_int@{aws\_atomic\_store\_int}}
+\index{aws\_atomic\_store\_int@{aws\_atomic\_store\_int}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_store\_int()}{aws\_atomic\_store\_int()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+store\+\_\+int (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Stores an integer into an atomic var, using sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_a52178213df0c28bcc0afa841ba78af61}\label{atomics_8h_a52178213df0c28bcc0afa841ba78af61}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_store\_int\_explicit@{aws\_atomic\_store\_int\_explicit}}
+\index{aws\_atomic\_store\_int\_explicit@{aws\_atomic\_store\_int\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_store\_int\_explicit()}{aws\_atomic\_store\_int\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+store\+\_\+int\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{size\+\_\+t}]{n,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Stores an integer into an atomic var, using the specified ordering. \mbox{\Hypertarget{atomics_8h_a755db66d92e73f02f7fca254fdaf3acf}\label{atomics_8h_a755db66d92e73f02f7fca254fdaf3acf}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_store\_ptr@{aws\_atomic\_store\_ptr}}
+\index{aws\_atomic\_store\_ptr@{aws\_atomic\_store\_ptr}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_store\_ptr()}{aws\_atomic\_store\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+store\+\_\+ptr (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+
+Stores a pointer into an atomic var, using sequentially consistent ordering. \mbox{\Hypertarget{atomics_8h_a4ed070ee75a7846a771bd5b233d93eb8}\label{atomics_8h_a4ed070ee75a7846a771bd5b233d93eb8}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_store\_ptr\_explicit@{aws\_atomic\_store\_ptr\_explicit}}
+\index{aws\_atomic\_store\_ptr\_explicit@{aws\_atomic\_store\_ptr\_explicit}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_store\_ptr\_explicit()}{aws\_atomic\_store\_ptr\_explicit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+store\+\_\+ptr\+\_\+explicit (\begin{DoxyParamCaption}\item[{volatile struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{var,  }\item[{void $\ast$}]{p,  }\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{memory\+\_\+order }\end{DoxyParamCaption})}
+
+Stores a pointer into an atomic var, using the specified ordering.
+
+Stores an pointer into an atomic var, using the specified ordering. \mbox{\Hypertarget{atomics_8h_ab569c643991aff30bbcb1f18c5b12813}\label{atomics_8h_ab569c643991aff30bbcb1f18c5b12813}} 
+\index{atomics.h@{atomics.h}!aws\_atomic\_thread\_fence@{aws\_atomic\_thread\_fence}}
+\index{aws\_atomic\_thread\_fence@{aws\_atomic\_thread\_fence}!atomics.h@{atomics.h}}
+\doxysubsubsection{\texorpdfstring{aws\_atomic\_thread\_fence()}{aws\_atomic\_thread\_fence()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+atomic\+\_\+thread\+\_\+fence (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{atomics_8h_ae6ce90130badccd782e51488c9b4f11d}{aws\+\_\+memory\+\_\+order}}}]{order }\end{DoxyParamCaption})}
+
+Provides the same reordering guarantees as an atomic operation with the specified memory order, without needing to actually perform an atomic operation.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

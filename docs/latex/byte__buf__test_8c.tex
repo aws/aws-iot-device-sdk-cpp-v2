@@ -1,0 +1,370 @@
+\hypertarget{byte__buf__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/byte\+\_\+buf\+\_\+test.c File Reference}
+\label{byte__buf__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/byte\_buf\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/byte\_buf\_test.c}}
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ad93a36a7d171ff7c659cbfdc7d37d390}{s\+\_\+test\+\_\+buffer\+\_\+cat\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a1b3e6fbae6edc912de40c1588fe391b0}{s\+\_\+test\+\_\+buffer\+\_\+cat\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a5ca949b092d666aa01665ac448d21968}{s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_abcbb383447e238ecaa7c5b050ab764b1}{s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+offsets\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ad5fd64fc9c2bab0b7fea0289ff22b7a0}{s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a3cb0b854609cc46c50c05901c163a227}{s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+offsets\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ab83d5d78ad9d2844cbabbe68a17db219}{s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a8f371dd433975e013928881a2b78a10a}{s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+same\+\_\+content\+\_\+different\+\_\+len\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a97d1fbf35764de8626c1949156c4968c}{s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+null\+\_\+internal\+\_\+byte\+\_\+buffer\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a8c82824cb4e45ff003f2f984432dc024}{s\+\_\+test\+\_\+buffer\+\_\+init\+\_\+copy\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a5af8741b91c765cd23207bdf5fb7623e}{s\+\_\+test\+\_\+buffer\+\_\+init\+\_\+copy\+\_\+null\+\_\+buffer\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a0c6c7f29a3eaf4a57699cafed61e4586}{s\+\_\+test\+\_\+buffer\+\_\+advance}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_aa9d386748a2b61c21a37f1d8b9b0dc8e}{s\+\_\+test\+\_\+buffer\+\_\+printf}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a8ad021830cbbd35bad55aa7c8e0ceee8}{s\+\_\+test\+\_\+array\+\_\+eq}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a785640b43f463bbf886b39b9731d0967}{s\+\_\+test\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a423a1f6e6fe5e721677fb0f4934a4458}{s\+\_\+test\+\_\+array\+\_\+eq\+\_\+c\+\_\+str}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_acb72da204c376f9e221c5bc545596cbc}{s\+\_\+test\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a828f03896aaea8af9e10b8982efa7463}{s\+\_\+test\+\_\+array\+\_\+hash\+\_\+ignore\+\_\+case}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a93722f4b1451a28457e896ff74e3cbc3}{s\+\_\+do\+\_\+append\+\_\+dynamic\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t starting\+\_\+size, size\+\_\+t append\+\_\+size, size\+\_\+t iterations, int($\ast$append\+\_\+dynamic)(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$))
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ad4bd7281c4e3b03c58f650d7d7d676a3}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{byte__buf__test_8c_a58fc5b4a3a6ce27d9cbfd4b534f28eb4}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity, \mbox{\hyperlink{byte__buf__test_8c_ad4bd7281c4e3b03c58f650d7d7d676a3}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ab89ef95e4eb5745cb49f7557d551ec8a}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a96a5659e785e1a3f810cdaf010fccc25}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{byte__buf__test_8c_aaf19f4aba0fee41bb7acd51030db979e}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+to\+\_\+lower\+\_\+test, \char`\"{}UPPer\+ANd\+Lowerc\+ASE\char`\"{})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ab6fe3967c729c2bd508f959114ce14f4}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+lookup\+\_\+success}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a1051d559f239b34a3bd12c19296935de}{s\+\_\+test\+\_\+reset\+\_\+body}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a7f8ccb7d564be5d324598e4f34cf2b57}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reset}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a9b1edcfa61b35ce7830e04a67e1ede5f}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+lookup\+\_\+failure}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{byte__buf__test_8c_a168d749afe8b9165bf919f7f59cb296b}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+reserve\+\_\+test\+\_\+suffix, \char`\"{}Reserve\+Test\char`\"{})
+\item 
+\mbox{\hyperlink{byte__buf__test_8c_ab72283a73a18d6390d8e9c3466dd28c2}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+reserve\+\_\+test\+\_\+prefix, \char`\"{}Successful\char`\"{})
+\item 
+\mbox{\hyperlink{byte__buf__test_8c_a92947b6ba3f7395084bacc36b5c956dd}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+reserve\+\_\+test\+\_\+prefix\+\_\+concatenated, \char`\"{}Successful\+Reserve\+Test\char`\"{})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_ae24a690f2380f1d3a665dbe6715f56d7}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reserve}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a3ae8e73786d5ac94c0e1d86954a51407}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reserve\+\_\+relative}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a23409ccaec49180128c789096b0f6706}{s\+\_\+test\+\_\+byte\+\_\+cursor\+\_\+compare\+\_\+lexical}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a0b7c29b6c1b2370cff2869a0fa0b47af}{s\+\_\+test\+\_\+byte\+\_\+cursor\+\_\+compare\+\_\+lookup}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a1a9dc47596675774cb1fe968a247e7f0}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+init\+\_\+cache\+\_\+and\+\_\+update\+\_\+cursors}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a260f815c43936620dac3c2391a25d38f}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+and\+\_\+update\+\_\+fail}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_aca5e7429f58e5031be05efbcd62fedea}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+and\+\_\+update\+\_\+success}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_aa8e2b8be9ecbc11cab07a250c1015fc3}{s\+\_\+test\+\_\+isalnum}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a80f406361d8ca7bf8cf2ee0505e96b1b}{s\+\_\+test\+\_\+isalpha}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a179acc1c709b385a766f88bc2ce31fbe}{s\+\_\+test\+\_\+isdigit}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a681a54ca1fd641e470a3f87ec2205d42}{s\+\_\+test\+\_\+isxdigit}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{byte__buf__test_8c_a08101ab6012d47f342a58b93d978f769}{s\+\_\+test\+\_\+isspace}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{byte__buf__test_8c_aa29a71a70312d06a4c40bfc0a3bab8ce}{s\+\_\+append\+\_\+byte\+\_\+array}} \mbox{[}$\,$\mbox{]} = \{0x\+FF, 0x\+FE, 0x\+AB, 0x00, 0x55, 0x62\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{byte__buf__test_8c_ab72283a73a18d6390d8e9c3466dd28c2}\label{byte__buf__test_8c_ab72283a73a18d6390d8e9c3466dd28c2}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+reserve\+\_\+test\+\_\+prefix}]{,  }\item[{\char`\"{}Successful\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a92947b6ba3f7395084bacc36b5c956dd}\label{byte__buf__test_8c_a92947b6ba3f7395084bacc36b5c956dd}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+reserve\+\_\+test\+\_\+prefix\+\_\+concatenated}]{,  }\item[{\char`\"{}Successful\+Reserve\+Test\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a168d749afe8b9165bf919f7f59cb296b}\label{byte__buf__test_8c_a168d749afe8b9165bf919f7f59cb296b}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+reserve\+\_\+test\+\_\+suffix}]{,  }\item[{\char`\"{}Reserve\+Test\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{byte__buf__test_8c_aaf19f4aba0fee41bb7acd51030db979e}\label{byte__buf__test_8c_aaf19f4aba0fee41bb7acd51030db979e}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+to\+\_\+lower\+\_\+test}]{,  }\item[{\char`\"{}UPPer\+ANd\+Lowerc\+ASE\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a58fc5b4a3a6ce27d9cbfd4b534f28eb4}\label{byte__buf__test_8c_a58fc5b4a3a6ce27d9cbfd4b534f28eb4}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity}]{,  }\item[{\mbox{\hyperlink{byte__buf__test_8c_ad4bd7281c4e3b03c58f650d7d7d676a3}{s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a93722f4b1451a28457e896ff74e3cbc3}\label{byte__buf__test_8c_a93722f4b1451a28457e896ff74e3cbc3}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_do\_append\_dynamic\_test@{s\_do\_append\_dynamic\_test}}
+\index{s\_do\_append\_dynamic\_test@{s\_do\_append\_dynamic\_test}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_append\_dynamic\_test()}{s\_do\_append\_dynamic\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+append\+\_\+dynamic\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{starting\+\_\+size,  }\item[{size\+\_\+t}]{append\+\_\+size,  }\item[{size\+\_\+t}]{iterations,  }\item[{int($\ast$)(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$)}]{append\+\_\+dynamic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a8ad021830cbbd35bad55aa7c8e0ceee8}\label{byte__buf__test_8c_a8ad021830cbbd35bad55aa7c8e0ceee8}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_array\_eq@{s\_test\_array\_eq}}
+\index{s\_test\_array\_eq@{s\_test\_array\_eq}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_array\_eq()}{s\_test\_array\_eq()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+array\+\_\+eq (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a423a1f6e6fe5e721677fb0f4934a4458}\label{byte__buf__test_8c_a423a1f6e6fe5e721677fb0f4934a4458}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_array\_eq\_c\_str@{s\_test\_array\_eq\_c\_str}}
+\index{s\_test\_array\_eq\_c\_str@{s\_test\_array\_eq\_c\_str}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_array\_eq\_c\_str()}{s\_test\_array\_eq\_c\_str()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+array\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_acb72da204c376f9e221c5bc545596cbc}\label{byte__buf__test_8c_acb72da204c376f9e221c5bc545596cbc}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_array\_eq\_c\_str\_ignore\_case@{s\_test\_array\_eq\_c\_str\_ignore\_case}}
+\index{s\_test\_array\_eq\_c\_str\_ignore\_case@{s\_test\_array\_eq\_c\_str\_ignore\_case}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_array\_eq\_c\_str\_ignore\_case()}{s\_test\_array\_eq\_c\_str\_ignore\_case()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a785640b43f463bbf886b39b9731d0967}\label{byte__buf__test_8c_a785640b43f463bbf886b39b9731d0967}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_array\_eq\_ignore\_case@{s\_test\_array\_eq\_ignore\_case}}
+\index{s\_test\_array\_eq\_ignore\_case@{s\_test\_array\_eq\_ignore\_case}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_array\_eq\_ignore\_case()}{s\_test\_array\_eq\_ignore\_case()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a828f03896aaea8af9e10b8982efa7463}\label{byte__buf__test_8c_a828f03896aaea8af9e10b8982efa7463}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_array\_hash\_ignore\_case@{s\_test\_array\_hash\_ignore\_case}}
+\index{s\_test\_array\_hash\_ignore\_case@{s\_test\_array\_hash\_ignore\_case}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_array\_hash\_ignore\_case()}{s\_test\_array\_hash\_ignore\_case()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+array\+\_\+hash\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a0c6c7f29a3eaf4a57699cafed61e4586}\label{byte__buf__test_8c_a0c6c7f29a3eaf4a57699cafed61e4586}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_advance@{s\_test\_buffer\_advance}}
+\index{s\_test\_buffer\_advance@{s\_test\_buffer\_advance}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_advance()}{s\_test\_buffer\_advance()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+advance (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a1b3e6fbae6edc912de40c1588fe391b0}\label{byte__buf__test_8c_a1b3e6fbae6edc912de40c1588fe391b0}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cat\_dest\_too\_small\_fn@{s\_test\_buffer\_cat\_dest\_too\_small\_fn}}
+\index{s\_test\_buffer\_cat\_dest\_too\_small\_fn@{s\_test\_buffer\_cat\_dest\_too\_small\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cat\_dest\_too\_small\_fn()}{s\_test\_buffer\_cat\_dest\_too\_small\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cat\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ad93a36a7d171ff7c659cbfdc7d37d390}\label{byte__buf__test_8c_ad93a36a7d171ff7c659cbfdc7d37d390}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cat\_fn@{s\_test\_buffer\_cat\_fn}}
+\index{s\_test\_buffer\_cat\_fn@{s\_test\_buffer\_cat\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cat\_fn()}{s\_test\_buffer\_cat\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cat\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{byte__buf__test_8c_ad5fd64fc9c2bab0b7fea0289ff22b7a0}\label{byte__buf__test_8c_ad5fd64fc9c2bab0b7fea0289ff22b7a0}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cpy\_dest\_too\_small\_fn@{s\_test\_buffer\_cpy\_dest\_too\_small\_fn}}
+\index{s\_test\_buffer\_cpy\_dest\_too\_small\_fn@{s\_test\_buffer\_cpy\_dest\_too\_small\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cpy\_dest\_too\_small\_fn()}{s\_test\_buffer\_cpy\_dest\_too\_small\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a5ca949b092d666aa01665ac448d21968}\label{byte__buf__test_8c_a5ca949b092d666aa01665ac448d21968}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cpy\_fn@{s\_test\_buffer\_cpy\_fn}}
+\index{s\_test\_buffer\_cpy\_fn@{s\_test\_buffer\_cpy\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cpy\_fn()}{s\_test\_buffer\_cpy\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a3cb0b854609cc46c50c05901c163a227}\label{byte__buf__test_8c_a3cb0b854609cc46c50c05901c163a227}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn@{s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn}}
+\index{s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn@{s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn()}{s\_test\_buffer\_cpy\_offsets\_dest\_too\_small\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+offsets\+\_\+dest\+\_\+too\+\_\+small\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_abcbb383447e238ecaa7c5b050ab764b1}\label{byte__buf__test_8c_abcbb383447e238ecaa7c5b050ab764b1}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_cpy\_offsets\_fn@{s\_test\_buffer\_cpy\_offsets\_fn}}
+\index{s\_test\_buffer\_cpy\_offsets\_fn@{s\_test\_buffer\_cpy\_offsets\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_cpy\_offsets\_fn()}{s\_test\_buffer\_cpy\_offsets\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+cpy\+\_\+offsets\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ab83d5d78ad9d2844cbabbe68a17db219}\label{byte__buf__test_8c_ab83d5d78ad9d2844cbabbe68a17db219}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_eq\_fn@{s\_test\_buffer\_eq\_fn}}
+\index{s\_test\_buffer\_eq\_fn@{s\_test\_buffer\_eq\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_eq\_fn()}{s\_test\_buffer\_eq\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a97d1fbf35764de8626c1949156c4968c}\label{byte__buf__test_8c_a97d1fbf35764de8626c1949156c4968c}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn@{s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn}}
+\index{s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn@{s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn()}{s\_test\_buffer\_eq\_null\_internal\_byte\_buffer\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+null\+\_\+internal\+\_\+byte\+\_\+buffer\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a8f371dd433975e013928881a2b78a10a}\label{byte__buf__test_8c_a8f371dd433975e013928881a2b78a10a}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_eq\_same\_content\_different\_len\_fn@{s\_test\_buffer\_eq\_same\_content\_different\_len\_fn}}
+\index{s\_test\_buffer\_eq\_same\_content\_different\_len\_fn@{s\_test\_buffer\_eq\_same\_content\_different\_len\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_eq\_same\_content\_different\_len\_fn()}{s\_test\_buffer\_eq\_same\_content\_different\_len\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+eq\+\_\+same\+\_\+content\+\_\+different\+\_\+len\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a8c82824cb4e45ff003f2f984432dc024}\label{byte__buf__test_8c_a8c82824cb4e45ff003f2f984432dc024}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_init\_copy\_fn@{s\_test\_buffer\_init\_copy\_fn}}
+\index{s\_test\_buffer\_init\_copy\_fn@{s\_test\_buffer\_init\_copy\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_init\_copy\_fn()}{s\_test\_buffer\_init\_copy\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+init\+\_\+copy\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a5af8741b91c765cd23207bdf5fb7623e}\label{byte__buf__test_8c_a5af8741b91c765cd23207bdf5fb7623e}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_init\_copy\_null\_buffer\_fn@{s\_test\_buffer\_init\_copy\_null\_buffer\_fn}}
+\index{s\_test\_buffer\_init\_copy\_null\_buffer\_fn@{s\_test\_buffer\_init\_copy\_null\_buffer\_fn}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_init\_copy\_null\_buffer\_fn()}{s\_test\_buffer\_init\_copy\_null\_buffer\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+init\+\_\+copy\+\_\+null\+\_\+buffer\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_aa9d386748a2b61c21a37f1d8b9b0dc8e}\label{byte__buf__test_8c_aa9d386748a2b61c21a37f1d8b9b0dc8e}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_buffer\_printf@{s\_test\_buffer\_printf}}
+\index{s\_test\_buffer\_printf@{s\_test\_buffer\_printf}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_buffer\_printf()}{s\_test\_buffer\_printf()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+buffer\+\_\+printf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a260f815c43936620dac3c2391a25d38f}\label{byte__buf__test_8c_a260f815c43936620dac3c2391a25d38f}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_and\_update\_fail@{s\_test\_byte\_buf\_append\_and\_update\_fail}}
+\index{s\_test\_byte\_buf\_append\_and\_update\_fail@{s\_test\_byte\_buf\_append\_and\_update\_fail}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_and\_update\_fail()}{s\_test\_byte\_buf\_append\_and\_update\_fail()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+and\+\_\+update\+\_\+fail (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_aca5e7429f58e5031be05efbcd62fedea}\label{byte__buf__test_8c_aca5e7429f58e5031be05efbcd62fedea}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_and\_update\_success@{s\_test\_byte\_buf\_append\_and\_update\_success}}
+\index{s\_test\_byte\_buf\_append\_and\_update\_success@{s\_test\_byte\_buf\_append\_and\_update\_success}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_and\_update\_success()}{s\_test\_byte\_buf\_append\_and\_update\_success()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+and\+\_\+update\+\_\+success (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a96a5659e785e1a3f810cdaf010fccc25}\label{byte__buf__test_8c_a96a5659e785e1a3f810cdaf010fccc25}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_byte@{s\_test\_byte\_buf\_append\_byte}}
+\index{s\_test\_byte\_buf\_append\_byte@{s\_test\_byte\_buf\_append\_byte}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_byte()}{s\_test\_byte\_buf\_append\_byte()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ab89ef95e4eb5745cb49f7557d551ec8a}\label{byte__buf__test_8c_ab89ef95e4eb5745cb49f7557d551ec8a}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_dynamic@{s\_test\_byte\_buf\_append\_dynamic}}
+\index{s\_test\_byte\_buf\_append\_dynamic@{s\_test\_byte\_buf\_append\_dynamic}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_dynamic()}{s\_test\_byte\_buf\_append\_dynamic()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a9b1edcfa61b35ce7830e04a67e1ede5f}\label{byte__buf__test_8c_a9b1edcfa61b35ce7830e04a67e1ede5f}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_lookup\_failure@{s\_test\_byte\_buf\_append\_lookup\_failure}}
+\index{s\_test\_byte\_buf\_append\_lookup\_failure@{s\_test\_byte\_buf\_append\_lookup\_failure}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_lookup\_failure()}{s\_test\_byte\_buf\_append\_lookup\_failure()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+lookup\+\_\+failure (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ab6fe3967c729c2bd508f959114ce14f4}\label{byte__buf__test_8c_ab6fe3967c729c2bd508f959114ce14f4}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_append\_lookup\_success@{s\_test\_byte\_buf\_append\_lookup\_success}}
+\index{s\_test\_byte\_buf\_append\_lookup\_success@{s\_test\_byte\_buf\_append\_lookup\_success}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_append\_lookup\_success()}{s\_test\_byte\_buf\_append\_lookup\_success()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+append\+\_\+lookup\+\_\+success (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a1a9dc47596675774cb1fe968a247e7f0}\label{byte__buf__test_8c_a1a9dc47596675774cb1fe968a247e7f0}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors@{s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors}}
+\index{s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors@{s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors()}{s\_test\_byte\_buf\_init\_cache\_and\_update\_cursors()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+init\+\_\+cache\+\_\+and\+\_\+update\+\_\+cursors (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ae24a690f2380f1d3a665dbe6715f56d7}\label{byte__buf__test_8c_ae24a690f2380f1d3a665dbe6715f56d7}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_reserve@{s\_test\_byte\_buf\_reserve}}
+\index{s\_test\_byte\_buf\_reserve@{s\_test\_byte\_buf\_reserve}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_reserve()}{s\_test\_byte\_buf\_reserve()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reserve (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a3ae8e73786d5ac94c0e1d86954a51407}\label{byte__buf__test_8c_a3ae8e73786d5ac94c0e1d86954a51407}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_reserve\_relative@{s\_test\_byte\_buf\_reserve\_relative}}
+\index{s\_test\_byte\_buf\_reserve\_relative@{s\_test\_byte\_buf\_reserve\_relative}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_reserve\_relative()}{s\_test\_byte\_buf\_reserve\_relative()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reserve\+\_\+relative (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a7f8ccb7d564be5d324598e4f34cf2b57}\label{byte__buf__test_8c_a7f8ccb7d564be5d324598e4f34cf2b57}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_reset@{s\_test\_byte\_buf\_reset}}
+\index{s\_test\_byte\_buf\_reset@{s\_test\_byte\_buf\_reset}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_reset()}{s\_test\_byte\_buf\_reset()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_ad4bd7281c4e3b03c58f650d7d7d676a3}\label{byte__buf__test_8c_ad4bd7281c4e3b03c58f650d7d7d676a3}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_buf\_write\_to\_capacity@{s\_test\_byte\_buf\_write\_to\_capacity}}
+\index{s\_test\_byte\_buf\_write\_to\_capacity@{s\_test\_byte\_buf\_write\_to\_capacity}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_buf\_write\_to\_capacity()}{s\_test\_byte\_buf\_write\_to\_capacity()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a23409ccaec49180128c789096b0f6706}\label{byte__buf__test_8c_a23409ccaec49180128c789096b0f6706}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_cursor\_compare\_lexical@{s\_test\_byte\_cursor\_compare\_lexical}}
+\index{s\_test\_byte\_cursor\_compare\_lexical@{s\_test\_byte\_cursor\_compare\_lexical}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_cursor\_compare\_lexical()}{s\_test\_byte\_cursor\_compare\_lexical()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+cursor\+\_\+compare\+\_\+lexical (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a0b7c29b6c1b2370cff2869a0fa0b47af}\label{byte__buf__test_8c_a0b7c29b6c1b2370cff2869a0fa0b47af}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_byte\_cursor\_compare\_lookup@{s\_test\_byte\_cursor\_compare\_lookup}}
+\index{s\_test\_byte\_cursor\_compare\_lookup@{s\_test\_byte\_cursor\_compare\_lookup}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_byte\_cursor\_compare\_lookup()}{s\_test\_byte\_cursor\_compare\_lookup()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+byte\+\_\+cursor\+\_\+compare\+\_\+lookup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_aa8e2b8be9ecbc11cab07a250c1015fc3}\label{byte__buf__test_8c_aa8e2b8be9ecbc11cab07a250c1015fc3}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_isalnum@{s\_test\_isalnum}}
+\index{s\_test\_isalnum@{s\_test\_isalnum}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_isalnum()}{s\_test\_isalnum()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+isalnum (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a80f406361d8ca7bf8cf2ee0505e96b1b}\label{byte__buf__test_8c_a80f406361d8ca7bf8cf2ee0505e96b1b}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_isalpha@{s\_test\_isalpha}}
+\index{s\_test\_isalpha@{s\_test\_isalpha}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_isalpha()}{s\_test\_isalpha()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+isalpha (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a179acc1c709b385a766f88bc2ce31fbe}\label{byte__buf__test_8c_a179acc1c709b385a766f88bc2ce31fbe}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_isdigit@{s\_test\_isdigit}}
+\index{s\_test\_isdigit@{s\_test\_isdigit}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_isdigit()}{s\_test\_isdigit()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+isdigit (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a08101ab6012d47f342a58b93d978f769}\label{byte__buf__test_8c_a08101ab6012d47f342a58b93d978f769}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_isspace@{s\_test\_isspace}}
+\index{s\_test\_isspace@{s\_test\_isspace}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_isspace()}{s\_test\_isspace()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+isspace (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a681a54ca1fd641e470a3f87ec2205d42}\label{byte__buf__test_8c_a681a54ca1fd641e470a3f87ec2205d42}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_isxdigit@{s\_test\_isxdigit}}
+\index{s\_test\_isxdigit@{s\_test\_isxdigit}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_isxdigit()}{s\_test\_isxdigit()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+isxdigit (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{byte__buf__test_8c_a1051d559f239b34a3bd12c19296935de}\label{byte__buf__test_8c_a1051d559f239b34a3bd12c19296935de}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_test\_reset\_body@{s\_test\_reset\_body}}
+\index{s\_test\_reset\_body@{s\_test\_reset\_body}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_reset\_body()}{s\_test\_reset\_body()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+reset\+\_\+body (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{byte__buf__test_8c_aa29a71a70312d06a4c40bfc0a3bab8ce}\label{byte__buf__test_8c_aa29a71a70312d06a4c40bfc0a3bab8ce}} 
+\index{byte\_buf\_test.c@{byte\_buf\_test.c}!s\_append\_byte\_array@{s\_append\_byte\_array}}
+\index{s\_append\_byte\_array@{s\_append\_byte\_array}!byte\_buf\_test.c@{byte\_buf\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_append\_byte\_array}{s\_append\_byte\_array}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+append\+\_\+byte\+\_\+array\mbox{[}$\,$\mbox{]} = \{0x\+FF, 0x\+FE, 0x\+AB, 0x00, 0x55, 0x62\}\hspace{0.3cm}{\ttfamily [static]}}
+

@@ -1,0 +1,64 @@
+\hypertarget{s2n__server__max__fragment__length_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+max\+\_\+fragment\+\_\+length.c File Reference}
+\label{s2n__server__max__fragment__length_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_max\_fragment\_length.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_max\_fragment\_length.c}}
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+server\+\_\+max\+\_\+fragment\+\_\+length.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a83ec39a23115db8e09810664d795d0ac}{s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+should\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a0eaa59a4bb65e02acd6f9e0f868fbe36}{s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a5889e5d3089f27b40735a6e46d224f1b}{s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__max__fragment__length_8c_ab300ebd580fb4ac4353551f08db8b95d}{s2n\+\_\+server\+\_\+max\+\_\+fragment\+\_\+length\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__max__fragment__length_8c_a5889e5d3089f27b40735a6e46d224f1b}\label{s2n__server__max__fragment__length_8c_a5889e5d3089f27b40735a6e46d224f1b}} 
+\index{s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}!s2n\_max\_fragment\_length\_recv@{s2n\_max\_fragment\_length\_recv}}
+\index{s2n\_max\_fragment\_length\_recv@{s2n\_max\_fragment\_length\_recv}!s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_max\_fragment\_length\_recv()}{s2n\_max\_fragment\_length\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__max__fragment__length_8c_a0eaa59a4bb65e02acd6f9e0f868fbe36}\label{s2n__server__max__fragment__length_8c_a0eaa59a4bb65e02acd6f9e0f868fbe36}} 
+\index{s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}!s2n\_max\_fragment\_length\_send@{s2n\_max\_fragment\_length\_send}}
+\index{s2n\_max\_fragment\_length\_send@{s2n\_max\_fragment\_length\_send}!s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_max\_fragment\_length\_send()}{s2n\_max\_fragment\_length\_send()}}
+{\footnotesize\ttfamily static int s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__max__fragment__length_8c_a83ec39a23115db8e09810664d795d0ac}\label{s2n__server__max__fragment__length_8c_a83ec39a23115db8e09810664d795d0ac}} 
+\index{s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}!s2n\_max\_fragment\_length\_should\_send@{s2n\_max\_fragment\_length\_should\_send}}
+\index{s2n\_max\_fragment\_length\_should\_send@{s2n\_max\_fragment\_length\_should\_send}!s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_max\_fragment\_length\_should\_send()}{s2n\_max\_fragment\_length\_should\_send()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+max\+\_\+fragment\+\_\+length\+\_\+should\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__max__fragment__length_8c_ab300ebd580fb4ac4353551f08db8b95d}\label{s2n__server__max__fragment__length_8c_ab300ebd580fb4ac4353551f08db8b95d}} 
+\index{s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}!s2n\_server\_max\_fragment\_length\_extension@{s2n\_server\_max\_fragment\_length\_extension}}
+\index{s2n\_server\_max\_fragment\_length\_extension@{s2n\_server\_max\_fragment\_length\_extension}!s2n\_server\_max\_fragment\_length.c@{s2n\_server\_max\_fragment\_length.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_max\_fragment\_length\_extension}{s2n\_server\_max\_fragment\_length\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+max\+\_\+fragment\+\_\+length\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_a5734cc9f726c14fe5f1aada2451587d9}{TLS\_EXTENSION\_MAX\_FRAG\_LEN}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{true},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a0eaa59a4bb65e02acd6f9e0f868fbe36}{s2n\_max\_fragment\_length\_send}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a5889e5d3089f27b40735a6e46d224f1b}{s2n\_max\_fragment\_length\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__server__max__fragment__length_8c_a83ec39a23115db8e09810664d795d0ac}{s2n\_max\_fragment\_length\_should\_send}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,133 @@
+\hypertarget{structsts__web__identity__user__data}{}\doxysection{sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data Struct Reference}
+\label{structsts__web__identity__user__data}\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_adcdf05f59d2ae0ea0a9406371e715431}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a45c705607c360444fef6933e7b110945}{sts\+\_\+web\+\_\+identity\+\_\+provider}}
+\item 
+\mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_credentials_8h_a0de102d63db792e21787cb284cbf4871}{aws\+\_\+on\+\_\+get\+\_\+credentials\+\_\+callback\+\_\+fn}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a5da25d3eb805819ddae2905644e29cbb}{original\+\_\+callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_ab86a0e0f8d77447da4d7bec016d7d342}{original\+\_\+user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a1a27a5a7778c873e7150d5cd1df65509}{connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a202fc63ab78b4dbaf95a19388f431c38}{request}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsts__web__identity__user__data_a78073878e4debee0d8275a0c9e9f99a6}{response}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_ae0922c0f1c5148425c35341055ffd38e}{access\+\_\+key\+\_\+id}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a0f0896982a9a94217eafc6b3f6478392}{secret\+\_\+access\+\_\+key}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structsts__web__identity__user__data_a3197fbfd850102c6f26f9cb38b1b5044}{session\+\_\+token}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structsts__web__identity__user__data_a1d3fa94765a13854bb850a337eb9394c}{expiration\+\_\+timepoint\+\_\+in\+\_\+seconds}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsts__web__identity__user__data_a0e61c4d230490224e0c3eb23267511f7}{payload\+\_\+buf}}
+\item 
+int \mbox{\hyperlink{structsts__web__identity__user__data_ae3ab10a4c412a648d39ef44ace9e1a4d}{status\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structsts__web__identity__user__data_a829d2592df8758a69dde607c25a24253}{error\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structsts__web__identity__user__data_aca421d26406e4ba40f2a9f8880035f1c}{attempt\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsts__web__identity__user__data_ae0922c0f1c5148425c35341055ffd38e}\label{structsts__web__identity__user__data_ae0922c0f1c5148425c35341055ffd38e}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!access\_key\_id@{access\_key\_id}}
+\index{access\_key\_id@{access\_key\_id}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{access\_key\_id}{access\_key\_id}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::access\+\_\+key\+\_\+id}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_adcdf05f59d2ae0ea0a9406371e715431}\label{structsts__web__identity__user__data_adcdf05f59d2ae0ea0a9406371e715431}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!allocator@{allocator}}
+\index{allocator@{allocator}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::allocator}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_aca421d26406e4ba40f2a9f8880035f1c}\label{structsts__web__identity__user__data_aca421d26406e4ba40f2a9f8880035f1c}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!attempt\_count@{attempt\_count}}
+\index{attempt\_count@{attempt\_count}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{attempt\_count}{attempt\_count}}
+{\footnotesize\ttfamily int sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::attempt\+\_\+count}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a1a27a5a7778c873e7150d5cd1df65509}\label{structsts__web__identity__user__data_a1a27a5a7778c873e7150d5cd1df65509}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!connection@{connection}}
+\index{connection@{connection}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::connection}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a829d2592df8758a69dde607c25a24253}\label{structsts__web__identity__user__data_a829d2592df8758a69dde607c25a24253}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a1d3fa94765a13854bb850a337eb9394c}\label{structsts__web__identity__user__data_a1d3fa94765a13854bb850a337eb9394c}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!expiration\_timepoint\_in\_seconds@{expiration\_timepoint\_in\_seconds}}
+\index{expiration\_timepoint\_in\_seconds@{expiration\_timepoint\_in\_seconds}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{expiration\_timepoint\_in\_seconds}{expiration\_timepoint\_in\_seconds}}
+{\footnotesize\ttfamily uint64\+\_\+t sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::expiration\+\_\+timepoint\+\_\+in\+\_\+seconds}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a5da25d3eb805819ddae2905644e29cbb}\label{structsts__web__identity__user__data_a5da25d3eb805819ddae2905644e29cbb}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!original\_callback@{original\_callback}}
+\index{original\_callback@{original\_callback}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{original\_callback}{original\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_credentials_8h_a0de102d63db792e21787cb284cbf4871}{aws\+\_\+on\+\_\+get\+\_\+credentials\+\_\+callback\+\_\+fn}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::original\+\_\+callback}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_ab86a0e0f8d77447da4d7bec016d7d342}\label{structsts__web__identity__user__data_ab86a0e0f8d77447da4d7bec016d7d342}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!original\_user\_data@{original\_user\_data}}
+\index{original\_user\_data@{original\_user\_data}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{original\_user\_data}{original\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::original\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a0e61c4d230490224e0c3eb23267511f7}\label{structsts__web__identity__user__data_a0e61c4d230490224e0c3eb23267511f7}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!payload\_buf@{payload\_buf}}
+\index{payload\_buf@{payload\_buf}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{payload\_buf}{payload\_buf}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::payload\+\_\+buf}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a202fc63ab78b4dbaf95a19388f431c38}\label{structsts__web__identity__user__data_a202fc63ab78b4dbaf95a19388f431c38}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!request@{request}}
+\index{request@{request}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{request}{request}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::request}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a78073878e4debee0d8275a0c9e9f99a6}\label{structsts__web__identity__user__data_a78073878e4debee0d8275a0c9e9f99a6}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!response@{response}}
+\index{response@{response}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{response}{response}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::response}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a0f0896982a9a94217eafc6b3f6478392}\label{structsts__web__identity__user__data_a0f0896982a9a94217eafc6b3f6478392}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!secret\_access\_key@{secret\_access\_key}}
+\index{secret\_access\_key@{secret\_access\_key}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{secret\_access\_key}{secret\_access\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::secret\+\_\+access\+\_\+key}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a3197fbfd850102c6f26f9cb38b1b5044}\label{structsts__web__identity__user__data_a3197fbfd850102c6f26f9cb38b1b5044}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!session\_token@{session\_token}}
+\index{session\_token@{session\_token}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{session\_token}{session\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::session\+\_\+token}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_ae3ab10a4c412a648d39ef44ace9e1a4d}\label{structsts__web__identity__user__data_ae3ab10a4c412a648d39ef44ace9e1a4d}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!status\_code@{status\_code}}
+\index{status\_code@{status\_code}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{status\_code}{status\_code}}
+{\footnotesize\ttfamily int sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::status\+\_\+code}
+
+\mbox{\Hypertarget{structsts__web__identity__user__data_a45c705607c360444fef6933e7b110945}\label{structsts__web__identity__user__data_a45c705607c360444fef6933e7b110945}} 
+\index{sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}!sts\_web\_identity\_provider@{sts\_web\_identity\_provider}}
+\index{sts\_web\_identity\_provider@{sts\_web\_identity\_provider}!sts\_web\_identity\_user\_data@{sts\_web\_identity\_user\_data}}
+\doxysubsubsection{\texorpdfstring{sts\_web\_identity\_provider}{sts\_web\_identity\_provider}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}}$\ast$ sts\+\_\+web\+\_\+identity\+\_\+user\+\_\+data\+::sts\+\_\+web\+\_\+identity\+\_\+provider}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/\mbox{\hyperlink{credentials__provider__sts__web__identity_8c}{credentials\+\_\+provider\+\_\+sts\+\_\+web\+\_\+identity.\+c}}\end{DoxyCompactItemize}

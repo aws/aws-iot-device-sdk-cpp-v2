@@ -1,0 +1,98 @@
+\hypertarget{make__common__datastructures_8h_source}{}\doxysection{make\+\_\+common\+\_\+datastructures.\+h}
+\label{make__common__datastructures_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/cbmc\_proof/make\_common\_datastructures.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/cbmc\_proof/make\_common\_datastructures.h}}
+\mbox{\hyperlink{make__common__datastructures_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <cbmc\_proof/cbmc\_utils.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{s2n_2tests_2cbmc_2include_2cbmc__proof_2proof__allocators_8h}{cbmc\_proof/proof\_allocators.h}}>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n_8h}{api/s2n.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__stuffer_8h}{stuffer/s2n\_stuffer.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}utils/s2n\_array.h"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}utils/s2n\_set.h"{}}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{/*}}
+\DoxyCodeLine{28 \textcolor{comment}{ * Checks whether s2n\_blob is bounded by max\_size.}}
+\DoxyCodeLine{29 \textcolor{comment}{ */}}
+\DoxyCodeLine{30 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__datastructures_8h_a48d82853a7d505ebde1072f6b87b8a45}{s2n\_blob\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} s2n\_blob *blob, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{/*}}
+\DoxyCodeLine{33 \textcolor{comment}{ * Checks whether s2n\_blob is bounded by max\_size.}}
+\DoxyCodeLine{34 \textcolor{comment}{ */}}
+\DoxyCodeLine{35 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__datastructures_8h_a61099d8425ab88b5b80290e18dc5e349}{s2n\_stuffer\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *stuffer, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{/*}}
+\DoxyCodeLine{38 \textcolor{comment}{ * Ensures s2n\_blob has a proper allocated data member.}}
+\DoxyCodeLine{39 \textcolor{comment}{ */}}
+\DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__datastructures_8h_a932cf15bbfd20f1157a97cbc4d2e86de}{ensure\_s2n\_blob\_has\_allocated\_fields}}(\textcolor{keyword}{struct} s2n\_blob *blob);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{/*}}
+\DoxyCodeLine{43 \textcolor{comment}{ * Properly allocates s2n\_blob for CBMC proofs.}}
+\DoxyCodeLine{44 \textcolor{comment}{ */}}
+\DoxyCodeLine{45 \textcolor{keyword}{struct }s2n\_blob *\mbox{\hyperlink{make__common__datastructures_8h_ac0fb1a25e7896dafe59d94c3347b667f}{cbmc\_allocate\_s2n\_blob}}();}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{/*}}
+\DoxyCodeLine{48 \textcolor{comment}{ * Ensures s2n\_stuffer has a proper allocated blob member.}}
+\DoxyCodeLine{49 \textcolor{comment}{ */}}
+\DoxyCodeLine{50 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__datastructures_8h_a047f054202b74b34388f7c0a3e988f2d}{ensure\_s2n\_stuffer\_has\_allocated\_fields}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *stuffer);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{/*}}
+\DoxyCodeLine{53 \textcolor{comment}{ * Properly allocates s2n\_stuffer for CBMC proofs.}}
+\DoxyCodeLine{54 \textcolor{comment}{ */}}
+\DoxyCodeLine{55 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *\mbox{\hyperlink{make__common__datastructures_8h_a19efce9f412a97697682efdaa5bad8cc}{cbmc\_allocate\_s2n\_stuffer}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{/*}}
+\DoxyCodeLine{58 \textcolor{comment}{ * Ensures a valid const string is allocated,}}
+\DoxyCodeLine{59 \textcolor{comment}{ * with as much nondet as possible, len < max\_size.}}
+\DoxyCodeLine{60 \textcolor{comment}{ */}}
+\DoxyCodeLine{61 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{make__common__datastructures_8h_ac5b20d4cebd443149801e170d70e0432}{ensure\_c\_str\_is\_allocated}}(\textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{/*}}
+\DoxyCodeLine{64 \textcolor{comment}{ * Nondeterministically return a valid-\/allocated const string or NULL,}}
+\DoxyCodeLine{65 \textcolor{comment}{ * with as much nondet as possible, len < max\_size.}}
+\DoxyCodeLine{66 \textcolor{comment}{ */}}
+\DoxyCodeLine{67 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{make__common__datastructures_8h_a22d73eed68298e1ab9aaa149cbfb5ffa}{nondet\_c\_str\_is\_allocated}}(\textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{/*}}
+\DoxyCodeLine{70 \textcolor{comment}{ * Properly allocates s2n\_stuffer\_reservation for CBMC proofs.}}
+\DoxyCodeLine{71 \textcolor{comment}{ */}}
+\DoxyCodeLine{72 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\_stuffer\_reservation}} *\mbox{\hyperlink{make__common__datastructures_8h_a4634ba5e24529a567974a9f187fcf8eb}{cbmc\_allocate\_s2n\_stuffer\_reservation}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{/*}}
+\DoxyCodeLine{75 \textcolor{comment}{ * Properly allocates s2n\_array for CBMC proofs.}}
+\DoxyCodeLine{76 \textcolor{comment}{ */}}
+\DoxyCodeLine{77 \textcolor{keyword}{struct }s2n\_array* \mbox{\hyperlink{make__common__datastructures_8h_a4dbc641c3956422c58efa6382fb79b40}{cbmc\_allocate\_s2n\_array}}();}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{/*}}
+\DoxyCodeLine{80 \textcolor{comment}{ * Properly allocates s2n\_set for CBMC proofs.}}
+\DoxyCodeLine{81 \textcolor{comment}{ */}}
+\DoxyCodeLine{82 \textcolor{keyword}{struct }s2n\_set* \mbox{\hyperlink{make__common__datastructures_8h_aa968eae011f7f4fa7d630761c038d7ae}{cbmc\_allocate\_s2n\_set}}();}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{comment}{/*}}
+\DoxyCodeLine{85 \textcolor{comment}{ * Checks whether s2n\_array is bounded by max\_len and max\_element\_size.}}
+\DoxyCodeLine{86 \textcolor{comment}{ */}}
+\DoxyCodeLine{87 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__datastructures_8h_a4804100071737982f990a3cbe93accc2}{s2n\_array\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} s2n\_array *array, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_len, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_element\_size);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{/*}}
+\DoxyCodeLine{90 \textcolor{comment}{ * Checks whether s2n\_set is bounded by max\_len and max\_element\_size.}}
+\DoxyCodeLine{91 \textcolor{comment}{ */}}
+\DoxyCodeLine{92 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__datastructures_8h_a86b14ac0469e84d662f4585622a40dbc}{s2n\_set\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} s2n\_set *set, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_len, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_element\_size);}
+
+\end{DoxyCode}

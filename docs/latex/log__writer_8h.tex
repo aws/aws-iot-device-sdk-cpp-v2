@@ -1,0 +1,72 @@
+\hypertarget{log__writer_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\+\_\+writer.h File Reference}
+\label{log__writer_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_writer.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_writer.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__log__writer__vtable}{aws\+\_\+log\+\_\+writer\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}}
+\item 
+struct \mbox{\hyperlink{structaws__log__writer__file__options}{aws\+\_\+log\+\_\+writer\+\_\+file\+\_\+options}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{log__writer_8h_aaa3b6bd85f57f3048cc5f403c35fbed2}{aws\+\_\+log\+\_\+writer\+\_\+write\+\_\+fn}}(struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+typedef void() \mbox{\hyperlink{log__writer_8h_a30b10023bf501776ff53d85619f36943}{aws\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up\+\_\+fn}}(struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{log__writer_8h_a3d50a32ded052e0da0545775c934723a}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stdout}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{log__writer_8h_a444f562a7929d1580485605dd556d331}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stderr}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{log__writer_8h_a880e07d4c84c244e742e9557d7ff09b2}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+file}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer__file__options}{aws\+\_\+log\+\_\+writer\+\_\+file\+\_\+options}} $\ast$options)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{log__writer_8h_a0293eb9510a81ef638b040b76964d4b8}{aws\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{log__writer_8h_a30b10023bf501776ff53d85619f36943}\label{log__writer_8h_a30b10023bf501776ff53d85619f36943}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_clean\_up\_fn@{aws\_log\_writer\_clean\_up\_fn}}
+\index{aws\_log\_writer\_clean\_up\_fn@{aws\_log\_writer\_clean\_up\_fn}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_clean\_up\_fn}{aws\_log\_writer\_clean\_up\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up\+\_\+fn(struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)}
+
+\mbox{\Hypertarget{log__writer_8h_aaa3b6bd85f57f3048cc5f403c35fbed2}\label{log__writer_8h_aaa3b6bd85f57f3048cc5f403c35fbed2}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_write\_fn@{aws\_log\_writer\_write\_fn}}
+\index{aws\_log\_writer\_write\_fn@{aws\_log\_writer\_write\_fn}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_write\_fn}{aws\_log\_writer\_write\_fn}}
+{\footnotesize\ttfamily typedef int() aws\+\_\+log\+\_\+writer\+\_\+write\+\_\+fn(struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{log__writer_8h_a0293eb9510a81ef638b040b76964d4b8}\label{log__writer_8h_a0293eb9510a81ef638b040b76964d4b8}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_clean\_up@{aws\_log\_writer\_clean\_up}}
+\index{aws\_log\_writer\_clean\_up@{aws\_log\_writer\_clean\_up}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_clean\_up()}{aws\_log\_writer\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer_8h_a880e07d4c84c244e742e9557d7ff09b2}\label{log__writer_8h_a880e07d4c84c244e742e9557d7ff09b2}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_init\_file@{aws\_log\_writer\_init\_file}}
+\index{aws\_log\_writer\_init\_file@{aws\_log\_writer\_init\_file}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_init\_file()}{aws\_log\_writer\_init\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+file (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__log__writer__file__options}{aws\+\_\+log\+\_\+writer\+\_\+file\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer_8h_a444f562a7929d1580485605dd556d331}\label{log__writer_8h_a444f562a7929d1580485605dd556d331}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_init\_stderr@{aws\_log\_writer\_init\_stderr}}
+\index{aws\_log\_writer\_init\_stderr@{aws\_log\_writer\_init\_stderr}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_init\_stderr()}{aws\_log\_writer\_init\_stderr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stderr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__writer_8h_a3d50a32ded052e0da0545775c934723a}\label{log__writer_8h_a3d50a32ded052e0da0545775c934723a}} 
+\index{log\_writer.h@{log\_writer.h}!aws\_log\_writer\_init\_stdout@{aws\_log\_writer\_init\_stdout}}
+\index{aws\_log\_writer\_init\_stdout@{aws\_log\_writer\_init\_stdout}!log\_writer.h@{log\_writer.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_writer\_init\_stdout()}{aws\_log\_writer\_init\_stdout()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stdout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+

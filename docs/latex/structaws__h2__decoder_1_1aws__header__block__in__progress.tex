@@ -1,0 +1,93 @@
+\hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress}{}\doxysection{aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress Struct Reference}
+\label{structaws__h2__decoder_1_1aws__header__block__in__progress}\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a0a97e4487da6b0fb7adae0b3a5552ee0}{stream\+\_\+id}}
+\item 
+enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_af1ce84e95e60f6e330ff6b47cbd2864b}{block\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a062a03c5a73d438b227e61d159a95df3}{pseudoheader\+\_\+values}} \mbox{[}\mbox{\hyperlink{h2__decoder_8c_a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f}{PSEUDOHEADER\+\_\+\+COUNT}}\mbox{]}
+\item 
+enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a64db6d25cf65c38ed87b42a1c589e670}{pseudoheader\+\_\+compression}} \mbox{[}\mbox{\hyperlink{h2__decoder_8c_a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f}{PSEUDOHEADER\+\_\+\+COUNT}}\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_afc9ded2d874618335b6e4799a47b1574}{pseudoheaders\+\_\+done}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a5f12db7ae5ccb14f8556da59bd53bbfd}{is\+\_\+push\+\_\+promise}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_ae3f80c18987a9315d2b1b57ed4b82e0a}{ends\+\_\+stream}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a98ccb5eceb38d80b0358728c436c508d}{malformed}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a2badfbfa83c8691f79c6808fc27d4cbe}{cookies}}
+\item 
+enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} \mbox{\hyperlink{structaws__h2__decoder_1_1aws__header__block__in__progress_a076f24c47af5dd4174d1031eaa3cf998}{cookie\+\_\+header\+\_\+compression\+\_\+type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_af1ce84e95e60f6e330ff6b47cbd2864b}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_af1ce84e95e60f6e330ff6b47cbd2864b}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!block\_type@{block\_type}}
+\index{block\_type@{block\_type}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{block\_type}{block\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::block\+\_\+type}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a076f24c47af5dd4174d1031eaa3cf998}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a076f24c47af5dd4174d1031eaa3cf998}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!cookie\_header\_compression\_type@{cookie\_header\_compression\_type}}
+\index{cookie\_header\_compression\_type@{cookie\_header\_compression\_type}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{cookie\_header\_compression\_type}{cookie\_header\_compression\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::cookie\+\_\+header\+\_\+compression\+\_\+type}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a2badfbfa83c8691f79c6808fc27d4cbe}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a2badfbfa83c8691f79c6808fc27d4cbe}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!cookies@{cookies}}
+\index{cookies@{cookies}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{cookies}{cookies}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::cookies}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_ae3f80c18987a9315d2b1b57ed4b82e0a}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_ae3f80c18987a9315d2b1b57ed4b82e0a}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!ends\_stream@{ends\_stream}}
+\index{ends\_stream@{ends\_stream}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{ends\_stream}{ends\_stream}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::ends\+\_\+stream}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a5f12db7ae5ccb14f8556da59bd53bbfd}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a5f12db7ae5ccb14f8556da59bd53bbfd}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!is\_push\_promise@{is\_push\_promise}}
+\index{is\_push\_promise@{is\_push\_promise}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{is\_push\_promise}{is\_push\_promise}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::is\+\_\+push\+\_\+promise}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a98ccb5eceb38d80b0358728c436c508d}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a98ccb5eceb38d80b0358728c436c508d}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!malformed@{malformed}}
+\index{malformed@{malformed}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{malformed}{malformed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::malformed}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a64db6d25cf65c38ed87b42a1c589e670}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a64db6d25cf65c38ed87b42a1c589e670}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!pseudoheader\_compression@{pseudoheader\_compression}}
+\index{pseudoheader\_compression@{pseudoheader\_compression}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{pseudoheader\_compression}{pseudoheader\_compression}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::pseudoheader\+\_\+compression\mbox{[}\mbox{\hyperlink{h2__decoder_8c_a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f}{PSEUDOHEADER\+\_\+\+COUNT}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a062a03c5a73d438b227e61d159a95df3}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a062a03c5a73d438b227e61d159a95df3}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!pseudoheader\_values@{pseudoheader\_values}}
+\index{pseudoheader\_values@{pseudoheader\_values}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{pseudoheader\_values}{pseudoheader\_values}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::pseudoheader\+\_\+values\mbox{[}\mbox{\hyperlink{h2__decoder_8c_a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f}{PSEUDOHEADER\+\_\+\+COUNT}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_afc9ded2d874618335b6e4799a47b1574}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_afc9ded2d874618335b6e4799a47b1574}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!pseudoheaders\_done@{pseudoheaders\_done}}
+\index{pseudoheaders\_done@{pseudoheaders\_done}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{pseudoheaders\_done}{pseudoheaders\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::pseudoheaders\+\_\+done}
+
+\mbox{\Hypertarget{structaws__h2__decoder_1_1aws__header__block__in__progress_a0a97e4487da6b0fb7adae0b3a5552ee0}\label{structaws__h2__decoder_1_1aws__header__block__in__progress_a0a97e4487da6b0fb7adae0b3a5552ee0}} 
+\index{aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}!stream\_id@{stream\_id}}
+\index{stream\_id@{stream\_id}!aws\_h2\_decoder::aws\_header\_block\_in\_progress@{aws\_h2\_decoder::aws\_header\_block\_in\_progress}}
+\doxysubsubsection{\texorpdfstring{stream\_id}{stream\_id}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+h2\+\_\+decoder\+::aws\+\_\+header\+\_\+block\+\_\+in\+\_\+progress\+::stream\+\_\+id}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{h2__decoder_8c}{h2\+\_\+decoder.\+c}}\end{DoxyCompactItemize}

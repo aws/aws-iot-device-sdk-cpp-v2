@@ -1,0 +1,45 @@
+This repository includes templates and scripts intended to make it easy to get started writing CBMC proofs for your code. The first script installs proof infrastructure in the form of a few directories containing code, templates, and Makefiles that facilitate writing CBMC proofs in general. The second script installs, for a particular proof, a directory containing skeletons of all the files needed to start writing that proof.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md114}{}\doxysection{Proof infrastructure set up}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md114}
+The script scripts/setup.\+py will set up the infrastructure for CBMC proofs.
+
+
+\begin{DoxyItemize}
+\item Choose the path to the source root (eg, /usr/project)
+\item Choose the path to a directory under the source root that should hold the infrastructure (eg, /usr/project/cbmc)
+\item Submodule the AWS-\/templates-\/for-\/\+CBMC repository into this directory (eg, /usr/project/cbmc/aws-\/templates-\/for-\/cbmc) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd /usr/project/cbmc}
+\DoxyCodeLine{git submodule add https://github.com/awslabs/aws-\/templates-\/for-\/cbmc-\/proofs.git aws-\/templates-\/for-\/cbmc-\/proofs}
+
+\end{DoxyCode}
+
+\item Use the script {\ttfamily aws-\/templates-\/for-\/cbmc-\/proofs/scripts/setup.\+py} to setup the standard directory structure for CBMC proof. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd /usr/project/cbmc}
+\DoxyCodeLine{python3 aws-\/templates-\/for-\/cbmc-\/proofs/scripts/setup.py}
+
+\end{DoxyCode}
+ The script will ask for the path to the source root {\ttfamily /usr/project}. The script will install the directories
+\begin{DoxyItemize}
+\item include\+: contains include files for the proofs
+\item sources\+: contains source code for the proofs
+\item stubs\+: contains stubs for the proofs
+\item proofs\+: contains the proofs themselves (the proof root).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md115}{}\doxysection{Proof set up}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md115}
+The script scripts/setup-\/proof.\+py will set up a directory for a CBMC proof.
+
+
+\begin{DoxyItemize}
+\item Change to a directory under the proof root (/usr/project/cbmc/proofs)
+\item Run the script {\ttfamily aws-\/templates-\/for-\/cbmc/scripts/setup-\/proof.\+py} and give
+\begin{DoxyItemize}
+\item The name of the function under test.
+\item The path to the source file defining the function under test.
+\item The path to the source root
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+The script will create a directory named for the function, and will install files needed to run the proof.
+
+You can cut and paste into the files, and type {\ttfamily make} to run and debug the proof. For more details, see the instructions in the trainingmaterials repository\char`\"{}.  @section autotoc\+\_\+md116 Security  \+See $<$a href=\char`\"{}CONTRIBUTING.\+md\+::security-\/issue-\/notifications"{} \texorpdfstring{$>$}{>}CONTRIBUTING for more information.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md117}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e_autotoc_md117}
+This project is licensed under the Apache-\/2.\+0 License. 

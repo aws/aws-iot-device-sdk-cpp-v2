@@ -1,0 +1,40 @@
+\hypertarget{s2n__client__session__ticket_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+client\+\_\+session\+\_\+ticket.h File Reference}
+\label{s2n__client__session__ticket_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_session\_ticket.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_session\_ticket.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__session__ticket_8h_a00fb0afc8e18d8c633d7aee99d3c7452}{s2n\+\_\+extensions\+\_\+client\+\_\+session\+\_\+ticket\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__client__session__ticket_8h_a04c03f553aab1f0affe07670be2fe2cd}{s2n\+\_\+recv\+\_\+client\+\_\+session\+\_\+ticket\+\_\+ext}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__client__session__ticket_8h_a59420400c01bcb951ae45f4260931a9c}{s2n\+\_\+client\+\_\+session\+\_\+ticket\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__session__ticket_8h_a00fb0afc8e18d8c633d7aee99d3c7452}\label{s2n__client__session__ticket_8h_a00fb0afc8e18d8c633d7aee99d3c7452}} 
+\index{s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}!s2n\_extensions\_client\_session\_ticket\_send@{s2n\_extensions\_client\_session\_ticket\_send}}
+\index{s2n\_extensions\_client\_session\_ticket\_send@{s2n\_extensions\_client\_session\_ticket\_send}!s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_session\_ticket\_send()}{s2n\_extensions\_client\_session\_ticket\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+session\+\_\+ticket\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__session__ticket_8h_a04c03f553aab1f0affe07670be2fe2cd}\label{s2n__client__session__ticket_8h_a04c03f553aab1f0affe07670be2fe2cd}} 
+\index{s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}!s2n\_recv\_client\_session\_ticket\_ext@{s2n\_recv\_client\_session\_ticket\_ext}}
+\index{s2n\_recv\_client\_session\_ticket\_ext@{s2n\_recv\_client\_session\_ticket\_ext}!s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_client\_session\_ticket\_ext()}{s2n\_recv\_client\_session\_ticket\_ext()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+client\+\_\+session\+\_\+ticket\+\_\+ext (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__session__ticket_8h_a59420400c01bcb951ae45f4260931a9c}\label{s2n__client__session__ticket_8h_a59420400c01bcb951ae45f4260931a9c}} 
+\index{s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}!s2n\_client\_session\_ticket\_extension@{s2n\_client\_session\_ticket\_extension}}
+\index{s2n\_client\_session\_ticket\_extension@{s2n\_client\_session\_ticket\_extension}!s2n\_client\_session\_ticket.h@{s2n\_client\_session\_ticket.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_session\_ticket\_extension}{s2n\_client\_session\_ticket\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+session\+\_\+ticket\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

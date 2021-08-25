@@ -1,0 +1,49 @@
+\hypertarget{structs2n__cbc__cipher}{}\doxysection{s2n\+\_\+cbc\+\_\+cipher Struct Reference}
+\label{structs2n__cbc__cipher}\index{s2n\_cbc\_cipher@{s2n\_cbc\_cipher}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+cipher.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__cbc__cipher_a74c35c024abf0e2c0132ec8213398857}{block\+\_\+size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__cbc__cipher_ac586a55df1760a75363dbcc21a10173b}{record\+\_\+iv\+\_\+size}}
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__cbc__cipher_acabeca34e372c35e7f34b212d1291ef5}{decrypt}} )(struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__cbc__cipher_ada2984b1644f889d281a007b88951619}{encrypt}} )(struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__cbc__cipher_a74c35c024abf0e2c0132ec8213398857}\label{structs2n__cbc__cipher_a74c35c024abf0e2c0132ec8213398857}} 
+\index{s2n\_cbc\_cipher@{s2n\_cbc\_cipher}!block\_size@{block\_size}}
+\index{block\_size@{block\_size}!s2n\_cbc\_cipher@{s2n\_cbc\_cipher}}
+\doxysubsubsection{\texorpdfstring{block\_size}{block\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+cbc\+\_\+cipher\+::block\+\_\+size}
+
+\mbox{\Hypertarget{structs2n__cbc__cipher_acabeca34e372c35e7f34b212d1291ef5}\label{structs2n__cbc__cipher_acabeca34e372c35e7f34b212d1291ef5}} 
+\index{s2n\_cbc\_cipher@{s2n\_cbc\_cipher}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!s2n\_cbc\_cipher@{s2n\_cbc\_cipher}}
+\doxysubsubsection{\texorpdfstring{decrypt}{decrypt}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+cbc\+\_\+cipher\+::decrypt) (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)}
+
+\mbox{\Hypertarget{structs2n__cbc__cipher_ada2984b1644f889d281a007b88951619}\label{structs2n__cbc__cipher_ada2984b1644f889d281a007b88951619}} 
+\index{s2n\_cbc\_cipher@{s2n\_cbc\_cipher}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!s2n\_cbc\_cipher@{s2n\_cbc\_cipher}}
+\doxysubsubsection{\texorpdfstring{encrypt}{encrypt}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+cbc\+\_\+cipher\+::encrypt) (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)}
+
+\mbox{\Hypertarget{structs2n__cbc__cipher_ac586a55df1760a75363dbcc21a10173b}\label{structs2n__cbc__cipher_ac586a55df1760a75363dbcc21a10173b}} 
+\index{s2n\_cbc\_cipher@{s2n\_cbc\_cipher}!record\_iv\_size@{record\_iv\_size}}
+\index{record\_iv\_size@{record\_iv\_size}!s2n\_cbc\_cipher@{s2n\_cbc\_cipher}}
+\doxysubsubsection{\texorpdfstring{record\_iv\_size}{record\_iv\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+cbc\+\_\+cipher\+::record\+\_\+iv\+\_\+size}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{s2n__cipher_8h}{s2n\+\_\+cipher.\+h}}\end{DoxyCompactItemize}

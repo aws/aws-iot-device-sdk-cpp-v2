@@ -1,0 +1,58 @@
+\hypertarget{s2n__connection__evp__digests_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+connection\+\_\+evp\+\_\+digests.c File Reference}
+\label{s2n__connection__evp__digests_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_connection\_evp\_digests.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_connection\_evp\_digests.c}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection\+\_\+evp\+\_\+digests.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a962cfedf9a5ffad0b2ea7348135a5c97}{s2n\+\_\+connection\+\_\+save\+\_\+prf\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection__prf__handles}{s2n\+\_\+connection\+\_\+prf\+\_\+handles}} $\ast$prf\+\_\+handles, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a430353277789f762cc3aeaf557c3ed17}{s2n\+\_\+connection\+\_\+save\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection__hash__handles}{s2n\+\_\+connection\+\_\+hash\+\_\+handles}} $\ast$hash\+\_\+handles, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a700bb6f8022aa923a7a4b716032df7cf}{s2n\+\_\+connection\+\_\+save\+\_\+hmac\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection__hmac__handles}{s2n\+\_\+connection\+\_\+hmac\+\_\+handles}} $\ast$hmac\+\_\+handles, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a2a81f93a73b6653aee74974b5891a146}{s2n\+\_\+connection\+\_\+restore\+\_\+prf\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__connection__prf__handles}{s2n\+\_\+connection\+\_\+prf\+\_\+handles}} $\ast$prf\+\_\+handles)
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a010a13ba375937a4808e98e41569edd8}{s2n\+\_\+connection\+\_\+restore\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__connection__hash__handles}{s2n\+\_\+connection\+\_\+hash\+\_\+handles}} $\ast$hash\+\_\+handles)
+\item 
+int \mbox{\hyperlink{s2n__connection__evp__digests_8c_a08df112c1bdc57311b5b5dad1d0080e1}{s2n\+\_\+connection\+\_\+restore\+\_\+hmac\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__connection__hmac__handles}{s2n\+\_\+connection\+\_\+hmac\+\_\+handles}} $\ast$hmac\+\_\+handles)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a010a13ba375937a4808e98e41569edd8}\label{s2n__connection__evp__digests_8c_a010a13ba375937a4808e98e41569edd8}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_restore\_hash\_state@{s2n\_connection\_restore\_hash\_state}}
+\index{s2n\_connection\_restore\_hash\_state@{s2n\_connection\_restore\_hash\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_restore\_hash\_state()}{s2n\_connection\_restore\_hash\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+restore\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__connection__hash__handles}{s2n\+\_\+connection\+\_\+hash\+\_\+handles}} $\ast$}]{hash\+\_\+handles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a08df112c1bdc57311b5b5dad1d0080e1}\label{s2n__connection__evp__digests_8c_a08df112c1bdc57311b5b5dad1d0080e1}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_restore\_hmac\_state@{s2n\_connection\_restore\_hmac\_state}}
+\index{s2n\_connection\_restore\_hmac\_state@{s2n\_connection\_restore\_hmac\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_restore\_hmac\_state()}{s2n\_connection\_restore\_hmac\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+restore\+\_\+hmac\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__connection__hmac__handles}{s2n\+\_\+connection\+\_\+hmac\+\_\+handles}} $\ast$}]{hmac\+\_\+handles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a2a81f93a73b6653aee74974b5891a146}\label{s2n__connection__evp__digests_8c_a2a81f93a73b6653aee74974b5891a146}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_restore\_prf\_state@{s2n\_connection\_restore\_prf\_state}}
+\index{s2n\_connection\_restore\_prf\_state@{s2n\_connection\_restore\_prf\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_restore\_prf\_state()}{s2n\_connection\_restore\_prf\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+restore\+\_\+prf\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__connection__prf__handles}{s2n\+\_\+connection\+\_\+prf\+\_\+handles}} $\ast$}]{prf\+\_\+handles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a430353277789f762cc3aeaf557c3ed17}\label{s2n__connection__evp__digests_8c_a430353277789f762cc3aeaf557c3ed17}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_save\_hash\_state@{s2n\_connection\_save\_hash\_state}}
+\index{s2n\_connection\_save\_hash\_state@{s2n\_connection\_save\_hash\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_save\_hash\_state()}{s2n\_connection\_save\_hash\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+save\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection__hash__handles}{s2n\+\_\+connection\+\_\+hash\+\_\+handles}} $\ast$}]{hash\+\_\+handles,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a700bb6f8022aa923a7a4b716032df7cf}\label{s2n__connection__evp__digests_8c_a700bb6f8022aa923a7a4b716032df7cf}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_save\_hmac\_state@{s2n\_connection\_save\_hmac\_state}}
+\index{s2n\_connection\_save\_hmac\_state@{s2n\_connection\_save\_hmac\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_save\_hmac\_state()}{s2n\_connection\_save\_hmac\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+save\+\_\+hmac\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection__hmac__handles}{s2n\+\_\+connection\+\_\+hmac\+\_\+handles}} $\ast$}]{hmac\+\_\+handles,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__evp__digests_8c_a962cfedf9a5ffad0b2ea7348135a5c97}\label{s2n__connection__evp__digests_8c_a962cfedf9a5ffad0b2ea7348135a5c97}} 
+\index{s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}!s2n\_connection\_save\_prf\_state@{s2n\_connection\_save\_prf\_state}}
+\index{s2n\_connection\_save\_prf\_state@{s2n\_connection\_save\_prf\_state}!s2n\_connection\_evp\_digests.c@{s2n\_connection\_evp\_digests.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_connection\_save\_prf\_state()}{s2n\_connection\_save\_prf\_state()}}
+{\footnotesize\ttfamily int s2n\+\_\+connection\+\_\+save\+\_\+prf\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection__prf__handles}{s2n\+\_\+connection\+\_\+prf\+\_\+handles}} $\ast$}]{prf\+\_\+handles,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

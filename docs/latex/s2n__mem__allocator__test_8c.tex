@@ -1,0 +1,125 @@
+\hypertarget{s2n__mem__allocator__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+mem\+\_\+allocator\+\_\+test.c File Reference}
+\label{s2n__mem__allocator__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_mem\_allocator\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_mem\_allocator\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__mem__allocator__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}~(2)
+\item 
+\#define \mbox{\hyperlink{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}{HISTOGRAM\+\_\+\+SIZE}}~100
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__mem__allocator__test_8c_a4ce98b91c2b1caf118396922129d615b}{custom\+\_\+mem\+\_\+init}} (void)
+\item 
+static int \mbox{\hyperlink{s2n__mem__allocator__test_8c_a4ebf12cbbf84d63cf7e5ff22629580f0}{custom\+\_\+mem\+\_\+cleanup}} (void)
+\item 
+static int \mbox{\hyperlink{s2n__mem__allocator__test_8c_a86a991461cefdcd7a48505c7eecf94f6}{custom\+\_\+mem\+\_\+malloc}} (void $\ast$$\ast$ptr, uint32\+\_\+t requested, uint32\+\_\+t $\ast$allocated)
+\item 
+static int \mbox{\hyperlink{s2n__mem__allocator__test_8c_a3dd96324dfec97140177e75f951f3e24}{custom\+\_\+mem\+\_\+free}} (void $\ast$ptr, uint32\+\_\+t size)
+\item 
+void \mbox{\hyperlink{s2n__mem__allocator__test_8c_a5a225c83201bf39da62fc38a9e011644}{mock\+\_\+client}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair)
+\item 
+int \mbox{\hyperlink{s2n__mem__allocator__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__mem__allocator__test_8c_a28773f914f41c64cd23873f9840844cf}{certificate\+\_\+paths}} \mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+CERT\+\_\+\+CHAIN}}, \mbox{\hyperlink{s2n__testlib_8h_ac5e192e299f50f6b3287a670e412ffcf}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+CERT\+\_\+\+CHAIN}} \}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__mem__allocator__test_8c_ab45c69bb64ee823d93f86bc851df5b03}{private\+\_\+key\+\_\+paths}} \mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+KEY}}, \mbox{\hyperlink{s2n__testlib_8h_ae2a3ba21a8b5a5a1f88a2910980d8317}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+KEY}} \}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{s2n__mem__allocator__test_8c_a5d27629eb6a74b508523df5cdd5a2b65}{histogram\+\_\+values}} \mbox{[}\mbox{\hyperlink{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}{HISTOGRAM\+\_\+\+SIZE}}\mbox{]} = \{ 0 \}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{s2n__mem__allocator__test_8c_af0485d15912b0171fddd039e5800d5dc}{histogram\+\_\+counts}} \mbox{[}\mbox{\hyperlink{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}{HISTOGRAM\+\_\+\+SIZE}}\mbox{]} = \{ 0 \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}\label{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!HISTOGRAM\_SIZE@{HISTOGRAM\_SIZE}}
+\index{HISTOGRAM\_SIZE@{HISTOGRAM\_SIZE}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{HISTOGRAM\_SIZE}{HISTOGRAM\_SIZE}}
+{\footnotesize\ttfamily \#define HISTOGRAM\+\_\+\+SIZE~100}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_aefc912d24efacc751dc43b39e6a199c1}\label{s2n__mem__allocator__test_8c_aefc912d24efacc751dc43b39e6a199c1}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!SUPPORTED\_CERTIFICATE\_FORMATS@{SUPPORTED\_CERTIFICATE\_FORMATS}}
+\index{SUPPORTED\_CERTIFICATE\_FORMATS@{SUPPORTED\_CERTIFICATE\_FORMATS}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{SUPPORTED\_CERTIFICATE\_FORMATS}{SUPPORTED\_CERTIFICATE\_FORMATS}}
+{\footnotesize\ttfamily \#define SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS~(2)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a4ebf12cbbf84d63cf7e5ff22629580f0}\label{s2n__mem__allocator__test_8c_a4ebf12cbbf84d63cf7e5ff22629580f0}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!custom\_mem\_cleanup@{custom\_mem\_cleanup}}
+\index{custom\_mem\_cleanup@{custom\_mem\_cleanup}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{custom\_mem\_cleanup()}{custom\_mem\_cleanup()}}
+{\footnotesize\ttfamily static int custom\+\_\+mem\+\_\+cleanup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a3dd96324dfec97140177e75f951f3e24}\label{s2n__mem__allocator__test_8c_a3dd96324dfec97140177e75f951f3e24}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!custom\_mem\_free@{custom\_mem\_free}}
+\index{custom\_mem\_free@{custom\_mem\_free}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{custom\_mem\_free()}{custom\_mem\_free()}}
+{\footnotesize\ttfamily static int custom\+\_\+mem\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a4ce98b91c2b1caf118396922129d615b}\label{s2n__mem__allocator__test_8c_a4ce98b91c2b1caf118396922129d615b}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!custom\_mem\_init@{custom\_mem\_init}}
+\index{custom\_mem\_init@{custom\_mem\_init}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{custom\_mem\_init()}{custom\_mem\_init()}}
+{\footnotesize\ttfamily static int custom\+\_\+mem\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a86a991461cefdcd7a48505c7eecf94f6}\label{s2n__mem__allocator__test_8c_a86a991461cefdcd7a48505c7eecf94f6}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!custom\_mem\_malloc@{custom\_mem\_malloc}}
+\index{custom\_mem\_malloc@{custom\_mem\_malloc}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{custom\_mem\_malloc()}{custom\_mem\_malloc()}}
+{\footnotesize\ttfamily static int custom\+\_\+mem\+\_\+malloc (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{ptr,  }\item[{uint32\+\_\+t}]{requested,  }\item[{uint32\+\_\+t $\ast$}]{allocated }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__mem__allocator__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!main@{main}}
+\index{main@{main}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a5a225c83201bf39da62fc38a9e011644}\label{s2n__mem__allocator__test_8c_a5a225c83201bf39da62fc38a9e011644}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!mock\_client@{mock\_client}}
+\index{mock\_client@{mock\_client}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client()}{mock\_client()}}
+{\footnotesize\ttfamily void mock\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a28773f914f41c64cd23873f9840844cf}\label{s2n__mem__allocator__test_8c_a28773f914f41c64cd23873f9840844cf}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!certificate\_paths@{certificate\_paths}}
+\index{certificate\_paths@{certificate\_paths}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{certificate\_paths}{certificate\_paths}}
+{\footnotesize\ttfamily const char$\ast$ certificate\+\_\+paths\mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+CERT\+\_\+\+CHAIN}}, \mbox{\hyperlink{s2n__testlib_8h_ac5e192e299f50f6b3287a670e412ffcf}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+CERT\+\_\+\+CHAIN}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_af0485d15912b0171fddd039e5800d5dc}\label{s2n__mem__allocator__test_8c_af0485d15912b0171fddd039e5800d5dc}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!histogram\_counts@{histogram\_counts}}
+\index{histogram\_counts@{histogram\_counts}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{histogram\_counts}{histogram\_counts}}
+{\footnotesize\ttfamily uint32\+\_\+t histogram\+\_\+counts\mbox{[}\mbox{\hyperlink{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}{HISTOGRAM\+\_\+\+SIZE}}\mbox{]} = \{ 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_a5d27629eb6a74b508523df5cdd5a2b65}\label{s2n__mem__allocator__test_8c_a5d27629eb6a74b508523df5cdd5a2b65}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!histogram\_values@{histogram\_values}}
+\index{histogram\_values@{histogram\_values}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{histogram\_values}{histogram\_values}}
+{\footnotesize\ttfamily uint32\+\_\+t histogram\+\_\+values\mbox{[}\mbox{\hyperlink{s2n__mem__allocator__test_8c_a67a8275ba525255e20ce3c5ef33463e8}{HISTOGRAM\+\_\+\+SIZE}}\mbox{]} = \{ 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__mem__allocator__test_8c_ab45c69bb64ee823d93f86bc851df5b03}\label{s2n__mem__allocator__test_8c_ab45c69bb64ee823d93f86bc851df5b03}} 
+\index{s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}!private\_key\_paths@{private\_key\_paths}}
+\index{private\_key\_paths@{private\_key\_paths}!s2n\_mem\_allocator\_test.c@{s2n\_mem\_allocator\_test.c}}
+\doxysubsubsection{\texorpdfstring{private\_key\_paths}{private\_key\_paths}}
+{\footnotesize\ttfamily const char$\ast$ private\+\_\+key\+\_\+paths\mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+KEY}}, \mbox{\hyperlink{s2n__testlib_8h_ae2a3ba21a8b5a5a1f88a2910980d8317}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+KEY}} \}\hspace{0.3cm}{\ttfamily [static]}}
+

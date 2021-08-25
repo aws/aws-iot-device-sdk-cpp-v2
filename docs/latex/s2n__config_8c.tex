@@ -1,0 +1,528 @@
+\hypertarget{s2n__config_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+config.c File Reference}
+\label{s2n__config_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.c}}
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+certificate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hkdf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+map.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__config_8c_ac1279791729611dde835dc46006d9c93}{S2\+N\+\_\+\+CLOCK\+\_\+\+HW}}~CLOCK\+\_\+\+MONOTONIC
+\item 
+\#define \mbox{\hyperlink{s2n__config_8c_aed7ab9992c2353988d722dbc090a3737}{S2\+N\+\_\+\+CLOCK\+\_\+\+SYS}}~CLOCK\+\_\+\+REALTIME
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a5195b3eb5755d011fb8bb73f40706ce5}{monotonic\+\_\+clock}} (void $\ast$data, uint64\+\_\+t $\ast$nanoseconds)
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a2df105071149cb9e7454b7c78ef9f1e6}{wall\+\_\+clock}} (void $\ast$data, uint64\+\_\+t $\ast$nanoseconds)
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_acb61d06f20865c2e919c790f9b3e1589}{s2n\+\_\+config\+\_\+setup\+\_\+default}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a16ba602993fddc1de9c9a06a1885e436}{s2n\+\_\+config\+\_\+setup\+\_\+tls13}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a64b3c9a9a9b9aa4a8186961e4b16cdf9}{s2n\+\_\+config\+\_\+setup\+\_\+fips}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a5b9929267d3e3469622149480cabe9d1}{s2n\+\_\+config\+\_\+init}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_aa1d4381660307275e450d6e854479207}{s2n\+\_\+config\+\_\+cleanup}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_ab365562713f04c289d1e5b8171f86ea8}{s2n\+\_\+config\+\_\+update\+\_\+domain\+\_\+name\+\_\+to\+\_\+cert\+\_\+map}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct s2n\+\_\+blob $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$cert\+\_\+key\+\_\+pair)
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a3005436a11dc2d14e29685e2d9a944d2}{s2n\+\_\+config\+\_\+build\+\_\+domain\+\_\+name\+\_\+to\+\_\+cert\+\_\+map}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$cert\+\_\+key\+\_\+pair)
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{s2n__config_8c_ad0e81c66fdf25a05874c24a6114ac9fe}{s2n\+\_\+fetch\+\_\+default\+\_\+config}} (void)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a6a88956d4b54cfe3fd4545cffa06bc4d}{s2n\+\_\+config\+\_\+set\+\_\+unsafe\+\_\+for\+\_\+testing}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a3df94c4b3869b7a2e1f8cbc20560607e}{s2n\+\_\+config\+\_\+defaults\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{s2n__config_8c_aa48513d694c45d065ace716582142fe3}{s2n\+\_\+wipe\+\_\+static\+\_\+configs}} (void)
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{s2n__config_8c_a29ce06d12862218a283abdac554c8e19}{s2n\+\_\+config\+\_\+new}} (void)
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_a1300e2ad58e7a9e1a603dc09d5968d5b}{s2n\+\_\+config\+\_\+store\+\_\+ticket\+\_\+key\+\_\+comparator}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static int \mbox{\hyperlink{s2n__config_8c_aeca2b952bf8fa6e27a3f4d3131ebf624}{s2n\+\_\+verify\+\_\+unique\+\_\+ticket\+\_\+key\+\_\+comparator}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_accfb14c501464782f9de772b47a11d34}{s2n\+\_\+config\+\_\+init\+\_\+session\+\_\+ticket\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ae9670a5dfe7e93c356ba873b1a525533}{s2n\+\_\+config\+\_\+free\+\_\+session\+\_\+ticket\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_acb820ee4c2c4978ddeb317d746ad1038}{s2n\+\_\+config\+\_\+free\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a3bf1287851eae46189744a86b883a7da}{s2n\+\_\+config\+\_\+free\+\_\+dhparams}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a25b7d82e94f572b657be3936196222c3}{s2n\+\_\+config\+\_\+free}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_adeda85c9826718378fbab3ef1b2758b9}{s2n\+\_\+config\+\_\+get\+\_\+client\+\_\+auth\+\_\+type}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}} $\ast$client\+\_\+auth\+\_\+type)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ae095e379e1085cef5786913258696781}{s2n\+\_\+config\+\_\+set\+\_\+client\+\_\+auth\+\_\+type}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}} client\+\_\+auth\+\_\+type)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ab13f3a1da4f0d2ab75166b9d5e4119dd}{s2n\+\_\+config\+\_\+set\+\_\+ct\+\_\+support\+\_\+level}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\+\_\+ct\+\_\+support\+\_\+level}} type)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a83f6debf3ecfaa42065842f9a6aad7cc}{s2n\+\_\+config\+\_\+set\+\_\+alert\+\_\+behavior}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\+\_\+alert\+\_\+behavior}} alert\+\_\+behavior)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a7469ecd42436c7efcb35fdb3183ffac1}{s2n\+\_\+config\+\_\+set\+\_\+verify\+\_\+host\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}} \mbox{\hyperlink{s2n__mutual__auth__test_8c_a69e43241f08f9f58fb26a2e8396c4feb}{verify\+\_\+host\+\_\+fn}}, void $\ast$data)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a6d76f517bfb1fd98fe06b5c90cb2278a}{s2n\+\_\+config\+\_\+set\+\_\+check\+\_\+stapled\+\_\+ocsp\+\_\+response}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\+\_\+t check\+\_\+ocsp)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_acd3cd4c390c4b094b6966ebcdc1f9d7f}{s2n\+\_\+config\+\_\+disable\+\_\+x509\+\_\+verification}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a297e81e627f4e14418ae86b87b53420c}{s2n\+\_\+config\+\_\+set\+\_\+max\+\_\+cert\+\_\+chain\+\_\+depth}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint16\+\_\+t max\+\_\+depth)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ae98f2b06b3311e7e845e938392d3505d}{s2n\+\_\+config\+\_\+set\+\_\+status\+\_\+request\+\_\+type}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\+\_\+status\+\_\+request\+\_\+type}} type)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a045ddab50b1c2a3dc093eea1482509f8}{s2n\+\_\+config\+\_\+add\+\_\+pem\+\_\+to\+\_\+trust\+\_\+store}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const char $\ast$pem)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_af70ff4651ef74bb9330408c5ed4c9392}{s2n\+\_\+config\+\_\+set\+\_\+verification\+\_\+ca\+\_\+location}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const char $\ast$ca\+\_\+pem\+\_\+filename, const char $\ast$ca\+\_\+dir)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aee7a1e886d9ddc4db8d904bcd2e1e097}{s2n\+\_\+config\+\_\+add\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const char $\ast$\mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}{cert\+\_\+chain\+\_\+pem}}, const char $\ast$\mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}{private\+\_\+key\+\_\+pem}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a007a9d38fce6ee185cd803703175ca4a}{s2n\+\_\+config\+\_\+add\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+to\+\_\+store}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$cert\+\_\+key\+\_\+pair)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aa19b6dfdb374b107a653cd167f2e3b0c}{s2n\+\_\+config\+\_\+set\+\_\+async\+\_\+pkey\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a2ecb6a187e25469c3fd108a873da1cce}{s2n\+\_\+async\+\_\+pkey\+\_\+fn}} fn)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ac3de9bd0f984474ec37b974dd5e0cc6e}{s2n\+\_\+config\+\_\+clear\+\_\+default\+\_\+certificates}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a8861e0468f87ad088cb1961e608cc50a}{s2n\+\_\+config\+\_\+set\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+defaults}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$cert\+\_\+key\+\_\+pairs, uint32\+\_\+t num\+\_\+cert\+\_\+key\+\_\+pairs)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ae8127a5c142d57d8ed1f56f640099789}{s2n\+\_\+config\+\_\+add\+\_\+dhparams}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const char $\ast$\mbox{\hyperlink{s2n__self__talk__nonblocking__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}{dhparams\+\_\+pem}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a1cbceaf0f2367562730dcb5093fc21f3}{s2n\+\_\+config\+\_\+set\+\_\+wall\+\_\+clock}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\+\_\+clock\+\_\+time\+\_\+nanoseconds}} clock\+\_\+fn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a90e6d1c67f97476ded0679dd313958cd}{s2n\+\_\+config\+\_\+set\+\_\+monotonic\+\_\+clock}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\+\_\+clock\+\_\+time\+\_\+nanoseconds}} clock\+\_\+fn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a221efe658144faf3513c329dc925d0d4}{s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ad9764b7cab647999aad58c339a42e90e}{s2n\+\_\+cache\+\_\+store\+\_\+callback}} \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\+\_\+store\+\_\+callback}}, void $\ast$data)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a43f4e76c12b1ef7ab6dc17472c029154}{s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+retrieve\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a57b0785656f577b764e1c3c3844368d4}{s2n\+\_\+cache\+\_\+retrieve\+\_\+callback}} \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a76518c3daf7521be5dd26d13df982532}{cache\+\_\+retrieve\+\_\+callback}}, void $\ast$data)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aee3c62f5f1ecd7f95f08935a64f5ddd9}{s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+delete\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_acbf7cc68d71dd8d960ff078b3a21792f}{s2n\+\_\+cache\+\_\+delete\+\_\+callback}} \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\+\_\+delete\+\_\+callback}}, void $\ast$data)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a10d73494830c26214eb143aebfcea524}{s2n\+\_\+config\+\_\+set\+\_\+extension\+\_\+data}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\+\_\+tls\+\_\+extension\+\_\+type}} type, const uint8\+\_\+t $\ast$data, uint32\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a16c6de7d23981297368f8d1c3af465cb}{s2n\+\_\+config\+\_\+set\+\_\+client\+\_\+hello\+\_\+cb}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0451dcbf88fdf09f36a82cab4d25d44e}{s2n\+\_\+client\+\_\+hello\+\_\+fn}} client\+\_\+hello\+\_\+cb, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a247d5fbf7d612d6b530971790e650851}{s2n\+\_\+config\+\_\+send\+\_\+max\+\_\+fragment\+\_\+length}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423ac}{s2n\+\_\+max\+\_\+frag\+\_\+len}} mfl\+\_\+code)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a1165423ee41f063f49a807f511f5c236}{s2n\+\_\+config\+\_\+accept\+\_\+max\+\_\+fragment\+\_\+length}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aac110b1e556cd521a2c42c818bfab24a}{s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+state\+\_\+lifetime}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\+\_\+t lifetime\+\_\+in\+\_\+secs)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a27c5d20c10b71f428c7ade5e25151b2f}{s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+tickets\+\_\+onoff}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\+\_\+t enabled)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a7cc0e592a7608ca9300a3d6ca4cf1ce8}{s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+cache\+\_\+onoff}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\+\_\+t enabled)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aa005fab8f21d82c8f706e6cd9a57e155}{s2n\+\_\+config\+\_\+set\+\_\+ticket\+\_\+encrypt\+\_\+decrypt\+\_\+key\+\_\+lifetime}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\+\_\+t lifetime\+\_\+in\+\_\+secs)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_af929b06e6c947edffb5b494a6d996b20}{s2n\+\_\+config\+\_\+set\+\_\+ticket\+\_\+decrypt\+\_\+key\+\_\+lifetime}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\+\_\+t lifetime\+\_\+in\+\_\+secs)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a42d657b56246b950125d5d903e4c3844}{s2n\+\_\+config\+\_\+add\+\_\+ticket\+\_\+crypto\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, uint32\+\_\+t name\+\_\+len, uint8\+\_\+t $\ast$key, uint32\+\_\+t key\+\_\+len, uint64\+\_\+t intro\+\_\+time\+\_\+in\+\_\+seconds\+\_\+from\+\_\+epoch)
+\item 
+int \mbox{\hyperlink{s2n__config_8c_aa8a18fb8bbc50e5391aad14f9ad59258}{s2n\+\_\+config\+\_\+set\+\_\+cert\+\_\+tiebreak\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ac613789e3ed4958426ae8fd987faae4e}{s2n\+\_\+cert\+\_\+tiebreak\+\_\+callback}} cert\+\_\+tiebreak\+\_\+cb)
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__config_8c_a433047e92c1924ae4e9ff321432d8c62}{s2n\+\_\+config\+\_\+get\+\_\+single\+\_\+default\+\_\+cert}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_a4e8d97a085be70f8288d6eb5defcc153}{s2n\+\_\+config\+\_\+get\+\_\+num\+\_\+default\+\_\+certs}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8c_ace5f519d0d686c2541cad0caff53481e}{s2n\+\_\+config\+\_\+enable\+\_\+cert\+\_\+req\+\_\+dss\+\_\+legacy\+\_\+compat}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} \mbox{\hyperlink{s2n__config_8c_a99e961e8aeb1b05a71f7b91aa70a1fbf}{s2n\+\_\+default\+\_\+config}} = \{0\}
+\item 
+static struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} \mbox{\hyperlink{s2n__config_8c_ac94e17d31ad31531ab047ce9e802a452}{s2n\+\_\+default\+\_\+fips\+\_\+config}} = \{0\}
+\item 
+static struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} \mbox{\hyperlink{s2n__config_8c_ad0673673a0dbde1d99c460d7cab9d5ca}{s2n\+\_\+default\+\_\+tls13\+\_\+config}} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__config_8c_ac1279791729611dde835dc46006d9c93}\label{s2n__config_8c_ac1279791729611dde835dc46006d9c93}} 
+\index{s2n\_config.c@{s2n\_config.c}!S2N\_CLOCK\_HW@{S2N\_CLOCK\_HW}}
+\index{S2N\_CLOCK\_HW@{S2N\_CLOCK\_HW}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_CLOCK\_HW}{S2N\_CLOCK\_HW}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+CLOCK\+\_\+\+HW~CLOCK\+\_\+\+MONOTONIC}
+
+\mbox{\Hypertarget{s2n__config_8c_aed7ab9992c2353988d722dbc090a3737}\label{s2n__config_8c_aed7ab9992c2353988d722dbc090a3737}} 
+\index{s2n\_config.c@{s2n\_config.c}!S2N\_CLOCK\_SYS@{S2N\_CLOCK\_SYS}}
+\index{S2N\_CLOCK\_SYS@{S2N\_CLOCK\_SYS}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_CLOCK\_SYS}{S2N\_CLOCK\_SYS}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+CLOCK\+\_\+\+SYS~CLOCK\+\_\+\+REALTIME}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__config_8c_a5195b3eb5755d011fb8bb73f40706ce5}\label{s2n__config_8c_a5195b3eb5755d011fb8bb73f40706ce5}} 
+\index{s2n\_config.c@{s2n\_config.c}!monotonic\_clock@{monotonic\_clock}}
+\index{monotonic\_clock@{monotonic\_clock}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{monotonic\_clock()}{monotonic\_clock()}}
+{\footnotesize\ttfamily static int monotonic\+\_\+clock (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{uint64\+\_\+t $\ast$}]{nanoseconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_a1165423ee41f063f49a807f511f5c236}\label{s2n__config_8c_a1165423ee41f063f49a807f511f5c236}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_accept\_max\_fragment\_length@{s2n\_config\_accept\_max\_fragment\_length}}
+\index{s2n\_config\_accept\_max\_fragment\_length@{s2n\_config\_accept\_max\_fragment\_length}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_accept\_max\_fragment\_length()}{s2n\_config\_accept\_max\_fragment\_length()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+accept\+\_\+max\+\_\+fragment\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aee7a1e886d9ddc4db8d904bcd2e1e097}\label{s2n__config_8c_aee7a1e886d9ddc4db8d904bcd2e1e097}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_add\_cert\_chain\_and\_key@{s2n\_config\_add\_cert\_chain\_and\_key}}
+\index{s2n\_config\_add\_cert\_chain\_and\_key@{s2n\_config\_add\_cert\_chain\_and\_key}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_add\_cert\_chain\_and\_key()}{s2n\_config\_add\_cert\_chain\_and\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+add\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{const char $\ast$}]{cert\+\_\+chain\+\_\+pem,  }\item[{const char $\ast$}]{private\+\_\+key\+\_\+pem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a007a9d38fce6ee185cd803703175ca4a}\label{s2n__config_8c_a007a9d38fce6ee185cd803703175ca4a}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_add\_cert\_chain\_and\_key\_to\_store@{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store}}
+\index{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store@{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store()}{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+add\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+to\+\_\+store (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$}]{cert\+\_\+key\+\_\+pair }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ae8127a5c142d57d8ed1f56f640099789}\label{s2n__config_8c_ae8127a5c142d57d8ed1f56f640099789}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_add\_dhparams@{s2n\_config\_add\_dhparams}}
+\index{s2n\_config\_add\_dhparams@{s2n\_config\_add\_dhparams}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_add\_dhparams()}{s2n\_config\_add\_dhparams()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+add\+\_\+dhparams (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{const char $\ast$}]{dhparams\+\_\+pem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a045ddab50b1c2a3dc093eea1482509f8}\label{s2n__config_8c_a045ddab50b1c2a3dc093eea1482509f8}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_add\_pem\_to\_trust\_store@{s2n\_config\_add\_pem\_to\_trust\_store}}
+\index{s2n\_config\_add\_pem\_to\_trust\_store@{s2n\_config\_add\_pem\_to\_trust\_store}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_add\_pem\_to\_trust\_store()}{s2n\_config\_add\_pem\_to\_trust\_store()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+add\+\_\+pem\+\_\+to\+\_\+trust\+\_\+store (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{const char $\ast$}]{pem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a42d657b56246b950125d5d903e4c3844}\label{s2n__config_8c_a42d657b56246b950125d5d903e4c3844}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_add\_ticket\_crypto\_key@{s2n\_config\_add\_ticket\_crypto\_key}}
+\index{s2n\_config\_add\_ticket\_crypto\_key@{s2n\_config\_add\_ticket\_crypto\_key}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_add\_ticket\_crypto\_key()}{s2n\_config\_add\_ticket\_crypto\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+add\+\_\+ticket\+\_\+crypto\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{const uint8\+\_\+t $\ast$}]{name,  }\item[{uint32\+\_\+t}]{name\+\_\+len,  }\item[{uint8\+\_\+t $\ast$}]{key,  }\item[{uint32\+\_\+t}]{key\+\_\+len,  }\item[{uint64\+\_\+t}]{intro\+\_\+time\+\_\+in\+\_\+seconds\+\_\+from\+\_\+epoch }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a3005436a11dc2d14e29685e2d9a944d2}\label{s2n__config_8c_a3005436a11dc2d14e29685e2d9a944d2}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_build\_domain\_name\_to\_cert\_map@{s2n\_config\_build\_domain\_name\_to\_cert\_map}}
+\index{s2n\_config\_build\_domain\_name\_to\_cert\_map@{s2n\_config\_build\_domain\_name\_to\_cert\_map}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_build\_domain\_name\_to\_cert\_map()}{s2n\_config\_build\_domain\_name\_to\_cert\_map()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+build\+\_\+domain\+\_\+name\+\_\+to\+\_\+cert\+\_\+map (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$}]{cert\+\_\+key\+\_\+pair }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_aa1d4381660307275e450d6e854479207}\label{s2n__config_8c_aa1d4381660307275e450d6e854479207}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_cleanup@{s2n\_config\_cleanup}}
+\index{s2n\_config\_cleanup@{s2n\_config\_cleanup}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_cleanup()}{s2n\_config\_cleanup()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+cleanup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_ac3de9bd0f984474ec37b974dd5e0cc6e}\label{s2n__config_8c_ac3de9bd0f984474ec37b974dd5e0cc6e}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_clear\_default\_certificates@{s2n\_config\_clear\_default\_certificates}}
+\index{s2n\_config\_clear\_default\_certificates@{s2n\_config\_clear\_default\_certificates}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_clear\_default\_certificates()}{s2n\_config\_clear\_default\_certificates()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+clear\+\_\+default\+\_\+certificates (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a3df94c4b3869b7a2e1f8cbc20560607e}\label{s2n__config_8c_a3df94c4b3869b7a2e1f8cbc20560607e}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_defaults\_init@{s2n\_config\_defaults\_init}}
+\index{s2n\_config\_defaults\_init@{s2n\_config\_defaults\_init}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_defaults\_init()}{s2n\_config\_defaults\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+defaults\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_acd3cd4c390c4b094b6966ebcdc1f9d7f}\label{s2n__config_8c_acd3cd4c390c4b094b6966ebcdc1f9d7f}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_disable\_x509\_verification@{s2n\_config\_disable\_x509\_verification}}
+\index{s2n\_config\_disable\_x509\_verification@{s2n\_config\_disable\_x509\_verification}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_disable\_x509\_verification()}{s2n\_config\_disable\_x509\_verification()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+disable\+\_\+x509\+\_\+verification (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ace5f519d0d686c2541cad0caff53481e}\label{s2n__config_8c_ace5f519d0d686c2541cad0caff53481e}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat@{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat}}
+\index{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat@{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat()}{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+enable\+\_\+cert\+\_\+req\+\_\+dss\+\_\+legacy\+\_\+compat (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a25b7d82e94f572b657be3936196222c3}\label{s2n__config_8c_a25b7d82e94f572b657be3936196222c3}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_free@{s2n\_config\_free}}
+\index{s2n\_config\_free@{s2n\_config\_free}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_free()}{s2n\_config\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_acb820ee4c2c4978ddeb317d746ad1038}\label{s2n__config_8c_acb820ee4c2c4978ddeb317d746ad1038}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_free\_cert\_chain\_and\_key@{s2n\_config\_free\_cert\_chain\_and\_key}}
+\index{s2n\_config\_free\_cert\_chain\_and\_key@{s2n\_config\_free\_cert\_chain\_and\_key}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_free\_cert\_chain\_and\_key()}{s2n\_config\_free\_cert\_chain\_and\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+free\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a3bf1287851eae46189744a86b883a7da}\label{s2n__config_8c_a3bf1287851eae46189744a86b883a7da}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_free\_dhparams@{s2n\_config\_free\_dhparams}}
+\index{s2n\_config\_free\_dhparams@{s2n\_config\_free\_dhparams}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_free\_dhparams()}{s2n\_config\_free\_dhparams()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+free\+\_\+dhparams (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ae9670a5dfe7e93c356ba873b1a525533}\label{s2n__config_8c_ae9670a5dfe7e93c356ba873b1a525533}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_free\_session\_ticket\_keys@{s2n\_config\_free\_session\_ticket\_keys}}
+\index{s2n\_config\_free\_session\_ticket\_keys@{s2n\_config\_free\_session\_ticket\_keys}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_free\_session\_ticket\_keys()}{s2n\_config\_free\_session\_ticket\_keys()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+free\+\_\+session\+\_\+ticket\+\_\+keys (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_adeda85c9826718378fbab3ef1b2758b9}\label{s2n__config_8c_adeda85c9826718378fbab3ef1b2758b9}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_get\_client\_auth\_type@{s2n\_config\_get\_client\_auth\_type}}
+\index{s2n\_config\_get\_client\_auth\_type@{s2n\_config\_get\_client\_auth\_type}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_get\_client\_auth\_type()}{s2n\_config\_get\_client\_auth\_type()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+get\+\_\+client\+\_\+auth\+\_\+type (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}} $\ast$}]{client\+\_\+auth\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a4e8d97a085be70f8288d6eb5defcc153}\label{s2n__config_8c_a4e8d97a085be70f8288d6eb5defcc153}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_get\_num\_default\_certs@{s2n\_config\_get\_num\_default\_certs}}
+\index{s2n\_config\_get\_num\_default\_certs@{s2n\_config\_get\_num\_default\_certs}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_get\_num\_default\_certs()}{s2n\_config\_get\_num\_default\_certs()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+get\+\_\+num\+\_\+default\+\_\+certs (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a433047e92c1924ae4e9ff321432d8c62}\label{s2n__config_8c_a433047e92c1924ae4e9ff321432d8c62}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_get\_single\_default\_cert@{s2n\_config\_get\_single\_default\_cert}}
+\index{s2n\_config\_get\_single\_default\_cert@{s2n\_config\_get\_single\_default\_cert}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_get\_single\_default\_cert()}{s2n\_config\_get\_single\_default\_cert()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ s2n\+\_\+config\+\_\+get\+\_\+single\+\_\+default\+\_\+cert (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a5b9929267d3e3469622149480cabe9d1}\label{s2n__config_8c_a5b9929267d3e3469622149480cabe9d1}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_init@{s2n\_config\_init}}
+\index{s2n\_config\_init@{s2n\_config\_init}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_init()}{s2n\_config\_init()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_accfb14c501464782f9de772b47a11d34}\label{s2n__config_8c_accfb14c501464782f9de772b47a11d34}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_init\_session\_ticket\_keys@{s2n\_config\_init\_session\_ticket\_keys}}
+\index{s2n\_config\_init\_session\_ticket\_keys@{s2n\_config\_init\_session\_ticket\_keys}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_init\_session\_ticket\_keys()}{s2n\_config\_init\_session\_ticket\_keys()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+init\+\_\+session\+\_\+ticket\+\_\+keys (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a29ce06d12862218a283abdac554c8e19}\label{s2n__config_8c_a29ce06d12862218a283abdac554c8e19}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_new@{s2n\_config\_new}}
+\index{s2n\_config\_new@{s2n\_config\_new}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_new()}{s2n\_config\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ s2n\+\_\+config\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a247d5fbf7d612d6b530971790e650851}\label{s2n__config_8c_a247d5fbf7d612d6b530971790e650851}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_send\_max\_fragment\_length@{s2n\_config\_send\_max\_fragment\_length}}
+\index{s2n\_config\_send\_max\_fragment\_length@{s2n\_config\_send\_max\_fragment\_length}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_send\_max\_fragment\_length()}{s2n\_config\_send\_max\_fragment\_length()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+send\+\_\+max\+\_\+fragment\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423ac}{s2n\+\_\+max\+\_\+frag\+\_\+len}}}]{mfl\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a83f6debf3ecfaa42065842f9a6aad7cc}\label{s2n__config_8c_a83f6debf3ecfaa42065842f9a6aad7cc}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_alert\_behavior@{s2n\_config\_set\_alert\_behavior}}
+\index{s2n\_config\_set\_alert\_behavior@{s2n\_config\_set\_alert\_behavior}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_alert\_behavior()}{s2n\_config\_set\_alert\_behavior()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+alert\+\_\+behavior (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\+\_\+alert\+\_\+behavior}}}]{alert\+\_\+behavior }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aa19b6dfdb374b107a653cd167f2e3b0c}\label{s2n__config_8c_aa19b6dfdb374b107a653cd167f2e3b0c}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_async\_pkey\_callback@{s2n\_config\_set\_async\_pkey\_callback}}
+\index{s2n\_config\_set\_async\_pkey\_callback@{s2n\_config\_set\_async\_pkey\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_async\_pkey\_callback()}{s2n\_config\_set\_async\_pkey\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+async\+\_\+pkey\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a2ecb6a187e25469c3fd108a873da1cce}{s2n\+\_\+async\+\_\+pkey\+\_\+fn}}}]{fn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aee3c62f5f1ecd7f95f08935a64f5ddd9}\label{s2n__config_8c_aee3c62f5f1ecd7f95f08935a64f5ddd9}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_cache\_delete\_callback@{s2n\_config\_set\_cache\_delete\_callback}}
+\index{s2n\_config\_set\_cache\_delete\_callback@{s2n\_config\_set\_cache\_delete\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_cache\_delete\_callback()}{s2n\_config\_set\_cache\_delete\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+delete\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_acbf7cc68d71dd8d960ff078b3a21792f}{s2n\+\_\+cache\+\_\+delete\+\_\+callback}}}]{cache\+\_\+delete\+\_\+callback,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a43f4e76c12b1ef7ab6dc17472c029154}\label{s2n__config_8c_a43f4e76c12b1ef7ab6dc17472c029154}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_cache\_retrieve\_callback@{s2n\_config\_set\_cache\_retrieve\_callback}}
+\index{s2n\_config\_set\_cache\_retrieve\_callback@{s2n\_config\_set\_cache\_retrieve\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_cache\_retrieve\_callback()}{s2n\_config\_set\_cache\_retrieve\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+retrieve\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a57b0785656f577b764e1c3c3844368d4}{s2n\+\_\+cache\+\_\+retrieve\+\_\+callback}}}]{cache\+\_\+retrieve\+\_\+callback,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a221efe658144faf3513c329dc925d0d4}\label{s2n__config_8c_a221efe658144faf3513c329dc925d0d4}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_cache\_store\_callback@{s2n\_config\_set\_cache\_store\_callback}}
+\index{s2n\_config\_set\_cache\_store\_callback@{s2n\_config\_set\_cache\_store\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_cache\_store\_callback()}{s2n\_config\_set\_cache\_store\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+cache\+\_\+store\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_ad9764b7cab647999aad58c339a42e90e}{s2n\+\_\+cache\+\_\+store\+\_\+callback}}}]{cache\+\_\+store\+\_\+callback,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a8861e0468f87ad088cb1961e608cc50a}\label{s2n__config_8c_a8861e0468f87ad088cb1961e608cc50a}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_cert\_chain\_and\_key\_defaults@{s2n\_config\_set\_cert\_chain\_and\_key\_defaults}}
+\index{s2n\_config\_set\_cert\_chain\_and\_key\_defaults@{s2n\_config\_set\_cert\_chain\_and\_key\_defaults}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_cert\_chain\_and\_key\_defaults()}{s2n\_config\_set\_cert\_chain\_and\_key\_defaults()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key\+\_\+defaults (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$}]{cert\+\_\+key\+\_\+pairs,  }\item[{uint32\+\_\+t}]{num\+\_\+cert\+\_\+key\+\_\+pairs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aa8a18fb8bbc50e5391aad14f9ad59258}\label{s2n__config_8c_aa8a18fb8bbc50e5391aad14f9ad59258}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_cert\_tiebreak\_callback@{s2n\_config\_set\_cert\_tiebreak\_callback}}
+\index{s2n\_config\_set\_cert\_tiebreak\_callback@{s2n\_config\_set\_cert\_tiebreak\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_cert\_tiebreak\_callback()}{s2n\_config\_set\_cert\_tiebreak\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+cert\+\_\+tiebreak\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_ac613789e3ed4958426ae8fd987faae4e}{s2n\+\_\+cert\+\_\+tiebreak\+\_\+callback}}}]{cert\+\_\+tiebreak\+\_\+cb }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a6d76f517bfb1fd98fe06b5c90cb2278a}\label{s2n__config_8c_a6d76f517bfb1fd98fe06b5c90cb2278a}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_check\_stapled\_ocsp\_response@{s2n\_config\_set\_check\_stapled\_ocsp\_response}}
+\index{s2n\_config\_set\_check\_stapled\_ocsp\_response@{s2n\_config\_set\_check\_stapled\_ocsp\_response}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_check\_stapled\_ocsp\_response()}{s2n\_config\_set\_check\_stapled\_ocsp\_response()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+check\+\_\+stapled\+\_\+ocsp\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint8\+\_\+t}]{check\+\_\+ocsp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ae095e379e1085cef5786913258696781}\label{s2n__config_8c_ae095e379e1085cef5786913258696781}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_client\_auth\_type@{s2n\_config\_set\_client\_auth\_type}}
+\index{s2n\_config\_set\_client\_auth\_type@{s2n\_config\_set\_client\_auth\_type}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_client\_auth\_type()}{s2n\_config\_set\_client\_auth\_type()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+client\+\_\+auth\+\_\+type (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}}}]{client\+\_\+auth\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a16c6de7d23981297368f8d1c3af465cb}\label{s2n__config_8c_a16c6de7d23981297368f8d1c3af465cb}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_client\_hello\_cb@{s2n\_config\_set\_client\_hello\_cb}}
+\index{s2n\_config\_set\_client\_hello\_cb@{s2n\_config\_set\_client\_hello\_cb}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_client\_hello\_cb()}{s2n\_config\_set\_client\_hello\_cb()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+client\+\_\+hello\+\_\+cb (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a0451dcbf88fdf09f36a82cab4d25d44e}{s2n\+\_\+client\+\_\+hello\+\_\+fn}}}]{client\+\_\+hello\+\_\+cb,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ab13f3a1da4f0d2ab75166b9d5e4119dd}\label{s2n__config_8c_ab13f3a1da4f0d2ab75166b9d5e4119dd}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_ct\_support\_level@{s2n\_config\_set\_ct\_support\_level}}
+\index{s2n\_config\_set\_ct\_support\_level@{s2n\_config\_set\_ct\_support\_level}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_ct\_support\_level()}{s2n\_config\_set\_ct\_support\_level()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+ct\+\_\+support\+\_\+level (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\+\_\+ct\+\_\+support\+\_\+level}}}]{type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a10d73494830c26214eb143aebfcea524}\label{s2n__config_8c_a10d73494830c26214eb143aebfcea524}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_extension\_data@{s2n\_config\_set\_extension\_data}}
+\index{s2n\_config\_set\_extension\_data@{s2n\_config\_set\_extension\_data}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_extension\_data()}{s2n\_config\_set\_extension\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+extension\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\+\_\+tls\+\_\+extension\+\_\+type}}}]{type,  }\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a297e81e627f4e14418ae86b87b53420c}\label{s2n__config_8c_a297e81e627f4e14418ae86b87b53420c}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_max\_cert\_chain\_depth@{s2n\_config\_set\_max\_cert\_chain\_depth}}
+\index{s2n\_config\_set\_max\_cert\_chain\_depth@{s2n\_config\_set\_max\_cert\_chain\_depth}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_max\_cert\_chain\_depth()}{s2n\_config\_set\_max\_cert\_chain\_depth()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+max\+\_\+cert\+\_\+chain\+\_\+depth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint16\+\_\+t}]{max\+\_\+depth }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a90e6d1c67f97476ded0679dd313958cd}\label{s2n__config_8c_a90e6d1c67f97476ded0679dd313958cd}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_monotonic\_clock@{s2n\_config\_set\_monotonic\_clock}}
+\index{s2n\_config\_set\_monotonic\_clock@{s2n\_config\_set\_monotonic\_clock}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_monotonic\_clock()}{s2n\_config\_set\_monotonic\_clock()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+monotonic\+\_\+clock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\+\_\+clock\+\_\+time\+\_\+nanoseconds}}}]{clock\+\_\+fn,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a7cc0e592a7608ca9300a3d6ca4cf1ce8}\label{s2n__config_8c_a7cc0e592a7608ca9300a3d6ca4cf1ce8}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_session\_cache\_onoff@{s2n\_config\_set\_session\_cache\_onoff}}
+\index{s2n\_config\_set\_session\_cache\_onoff@{s2n\_config\_set\_session\_cache\_onoff}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_session\_cache\_onoff()}{s2n\_config\_set\_session\_cache\_onoff()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+cache\+\_\+onoff (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint8\+\_\+t}]{enabled }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aac110b1e556cd521a2c42c818bfab24a}\label{s2n__config_8c_aac110b1e556cd521a2c42c818bfab24a}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_session\_state\_lifetime@{s2n\_config\_set\_session\_state\_lifetime}}
+\index{s2n\_config\_set\_session\_state\_lifetime@{s2n\_config\_set\_session\_state\_lifetime}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_session\_state\_lifetime()}{s2n\_config\_set\_session\_state\_lifetime()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+state\+\_\+lifetime (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint64\+\_\+t}]{lifetime\+\_\+in\+\_\+secs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a27c5d20c10b71f428c7ade5e25151b2f}\label{s2n__config_8c_a27c5d20c10b71f428c7ade5e25151b2f}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_session\_tickets\_onoff@{s2n\_config\_set\_session\_tickets\_onoff}}
+\index{s2n\_config\_set\_session\_tickets\_onoff@{s2n\_config\_set\_session\_tickets\_onoff}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_session\_tickets\_onoff()}{s2n\_config\_set\_session\_tickets\_onoff()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+session\+\_\+tickets\+\_\+onoff (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint8\+\_\+t}]{enabled }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_ae98f2b06b3311e7e845e938392d3505d}\label{s2n__config_8c_ae98f2b06b3311e7e845e938392d3505d}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_status\_request\_type@{s2n\_config\_set\_status\_request\_type}}
+\index{s2n\_config\_set\_status\_request\_type@{s2n\_config\_set\_status\_request\_type}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_status\_request\_type()}{s2n\_config\_set\_status\_request\_type()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+status\+\_\+request\+\_\+type (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\+\_\+status\+\_\+request\+\_\+type}}}]{type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_af929b06e6c947edffb5b494a6d996b20}\label{s2n__config_8c_af929b06e6c947edffb5b494a6d996b20}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_ticket\_decrypt\_key\_lifetime@{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime}}
+\index{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime@{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime()}{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+ticket\+\_\+decrypt\+\_\+key\+\_\+lifetime (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint64\+\_\+t}]{lifetime\+\_\+in\+\_\+secs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aa005fab8f21d82c8f706e6cd9a57e155}\label{s2n__config_8c_aa005fab8f21d82c8f706e6cd9a57e155}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime@{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime}}
+\index{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime@{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime()}{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+ticket\+\_\+encrypt\+\_\+decrypt\+\_\+key\+\_\+lifetime (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{uint64\+\_\+t}]{lifetime\+\_\+in\+\_\+secs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a6a88956d4b54cfe3fd4545cffa06bc4d}\label{s2n__config_8c_a6a88956d4b54cfe3fd4545cffa06bc4d}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_unsafe\_for\_testing@{s2n\_config\_set\_unsafe\_for\_testing}}
+\index{s2n\_config\_set\_unsafe\_for\_testing@{s2n\_config\_set\_unsafe\_for\_testing}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_unsafe\_for\_testing()}{s2n\_config\_set\_unsafe\_for\_testing()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+unsafe\+\_\+for\+\_\+testing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_af70ff4651ef74bb9330408c5ed4c9392}\label{s2n__config_8c_af70ff4651ef74bb9330408c5ed4c9392}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_verification\_ca\_location@{s2n\_config\_set\_verification\_ca\_location}}
+\index{s2n\_config\_set\_verification\_ca\_location@{s2n\_config\_set\_verification\_ca\_location}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_verification\_ca\_location()}{s2n\_config\_set\_verification\_ca\_location()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+verification\+\_\+ca\+\_\+location (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{const char $\ast$}]{ca\+\_\+pem\+\_\+filename,  }\item[{const char $\ast$}]{ca\+\_\+dir }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a7469ecd42436c7efcb35fdb3183ffac1}\label{s2n__config_8c_a7469ecd42436c7efcb35fdb3183ffac1}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_verify\_host\_callback@{s2n\_config\_set\_verify\_host\_callback}}
+\index{s2n\_config\_set\_verify\_host\_callback@{s2n\_config\_set\_verify\_host\_callback}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_verify\_host\_callback()}{s2n\_config\_set\_verify\_host\_callback()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+verify\+\_\+host\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}}}]{verify\+\_\+host\+\_\+fn,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a1cbceaf0f2367562730dcb5093fc21f3}\label{s2n__config_8c_a1cbceaf0f2367562730dcb5093fc21f3}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_set\_wall\_clock@{s2n\_config\_set\_wall\_clock}}
+\index{s2n\_config\_set\_wall\_clock@{s2n\_config\_set\_wall\_clock}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_wall\_clock()}{s2n\_config\_set\_wall\_clock()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+wall\+\_\+clock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\+\_\+clock\+\_\+time\+\_\+nanoseconds}}}]{clock\+\_\+fn,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_acb61d06f20865c2e919c790f9b3e1589}\label{s2n__config_8c_acb61d06f20865c2e919c790f9b3e1589}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_setup\_default@{s2n\_config\_setup\_default}}
+\index{s2n\_config\_setup\_default@{s2n\_config\_setup\_default}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_setup\_default()}{s2n\_config\_setup\_default()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+setup\+\_\+default (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_a64b3c9a9a9b9aa4a8186961e4b16cdf9}\label{s2n__config_8c_a64b3c9a9a9b9aa4a8186961e4b16cdf9}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_setup\_fips@{s2n\_config\_setup\_fips}}
+\index{s2n\_config\_setup\_fips@{s2n\_config\_setup\_fips}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_setup\_fips()}{s2n\_config\_setup\_fips()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+setup\+\_\+fips (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_a16ba602993fddc1de9c9a06a1885e436}\label{s2n__config_8c_a16ba602993fddc1de9c9a06a1885e436}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_setup\_tls13@{s2n\_config\_setup\_tls13}}
+\index{s2n\_config\_setup\_tls13@{s2n\_config\_setup\_tls13}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_setup\_tls13()}{s2n\_config\_setup\_tls13()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+setup\+\_\+tls13 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_a1300e2ad58e7a9e1a603dc09d5968d5b}\label{s2n__config_8c_a1300e2ad58e7a9e1a603dc09d5968d5b}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_store\_ticket\_key\_comparator@{s2n\_config\_store\_ticket\_key\_comparator}}
+\index{s2n\_config\_store\_ticket\_key\_comparator@{s2n\_config\_store\_ticket\_key\_comparator}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_store\_ticket\_key\_comparator()}{s2n\_config\_store\_ticket\_key\_comparator()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+store\+\_\+ticket\+\_\+key\+\_\+comparator (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_ab365562713f04c289d1e5b8171f86ea8}\label{s2n__config_8c_ab365562713f04c289d1e5b8171f86ea8}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_config\_update\_domain\_name\_to\_cert\_map@{s2n\_config\_update\_domain\_name\_to\_cert\_map}}
+\index{s2n\_config\_update\_domain\_name\_to\_cert\_map@{s2n\_config\_update\_domain\_name\_to\_cert\_map}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_update\_domain\_name\_to\_cert\_map()}{s2n\_config\_update\_domain\_name\_to\_cert\_map()}}
+{\footnotesize\ttfamily static int s2n\+\_\+config\+\_\+update\+\_\+domain\+\_\+name\+\_\+to\+\_\+cert\+\_\+map (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{struct s2n\+\_\+blob $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$}]{cert\+\_\+key\+\_\+pair }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_ad0e81c66fdf25a05874c24a6114ac9fe}\label{s2n__config_8c_ad0e81c66fdf25a05874c24a6114ac9fe}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_fetch\_default\_config@{s2n\_fetch\_default\_config}}
+\index{s2n\_fetch\_default\_config@{s2n\_fetch\_default\_config}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fetch\_default\_config()}{s2n\_fetch\_default\_config()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ s2n\+\_\+fetch\+\_\+default\+\_\+config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_aeca2b952bf8fa6e27a3f4d3131ebf624}\label{s2n__config_8c_aeca2b952bf8fa6e27a3f4d3131ebf624}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_verify\_unique\_ticket\_key\_comparator@{s2n\_verify\_unique\_ticket\_key\_comparator}}
+\index{s2n\_verify\_unique\_ticket\_key\_comparator@{s2n\_verify\_unique\_ticket\_key\_comparator}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_verify\_unique\_ticket\_key\_comparator()}{s2n\_verify\_unique\_ticket\_key\_comparator()}}
+{\footnotesize\ttfamily static int s2n\+\_\+verify\+\_\+unique\+\_\+ticket\+\_\+key\+\_\+comparator (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_aa48513d694c45d065ace716582142fe3}\label{s2n__config_8c_aa48513d694c45d065ace716582142fe3}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_wipe\_static\_configs@{s2n\_wipe\_static\_configs}}
+\index{s2n\_wipe\_static\_configs@{s2n\_wipe\_static\_configs}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_wipe\_static\_configs()}{s2n\_wipe\_static\_configs()}}
+{\footnotesize\ttfamily void s2n\+\_\+wipe\+\_\+static\+\_\+configs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8c_a2df105071149cb9e7454b7c78ef9f1e6}\label{s2n__config_8c_a2df105071149cb9e7454b7c78ef9f1e6}} 
+\index{s2n\_config.c@{s2n\_config.c}!wall\_clock@{wall\_clock}}
+\index{wall\_clock@{wall\_clock}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{wall\_clock()}{wall\_clock()}}
+{\footnotesize\ttfamily static int wall\+\_\+clock (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{uint64\+\_\+t $\ast$}]{nanoseconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__config_8c_a99e961e8aeb1b05a71f7b91aa70a1fbf}\label{s2n__config_8c_a99e961e8aeb1b05a71f7b91aa70a1fbf}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_default\_config@{s2n\_default\_config}}
+\index{s2n\_default\_config@{s2n\_default\_config}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_default\_config}{s2n\_default\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} s2n\+\_\+default\+\_\+config = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_ac94e17d31ad31531ab047ce9e802a452}\label{s2n__config_8c_ac94e17d31ad31531ab047ce9e802a452}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_default\_fips\_config@{s2n\_default\_fips\_config}}
+\index{s2n\_default\_fips\_config@{s2n\_default\_fips\_config}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_default\_fips\_config}{s2n\_default\_fips\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} s2n\+\_\+default\+\_\+fips\+\_\+config = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__config_8c_ad0673673a0dbde1d99c460d7cab9d5ca}\label{s2n__config_8c_ad0673673a0dbde1d99c460d7cab9d5ca}} 
+\index{s2n\_config.c@{s2n\_config.c}!s2n\_default\_tls13\_config@{s2n\_default\_tls13\_config}}
+\index{s2n\_default\_tls13\_config@{s2n\_default\_tls13\_config}!s2n\_config.c@{s2n\_config.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_default\_tls13\_config}{s2n\_default\_tls13\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} s2n\+\_\+default\+\_\+tls13\+\_\+config = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+

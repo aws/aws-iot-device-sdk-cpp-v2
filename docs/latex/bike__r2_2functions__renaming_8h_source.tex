@@ -1,0 +1,66 @@
+\hypertarget{bike__r2_2functions__renaming_8h_source}{}\doxysection{functions\+\_\+renaming.\+h}
+\label{bike__r2_2functions__renaming_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/functions\_renaming.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/functions\_renaming.h}}
+\mbox{\hyperlink{bike__r2_2functions__renaming_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ * http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ * The license is detailed in the file LICENSE.md, and applies to this file.}}
+\DoxyCodeLine{15 \textcolor{comment}{ *}}
+\DoxyCodeLine{16 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron}}
+\DoxyCodeLine{17 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{18 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{19 \textcolor{comment}{ */}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef \_\_FUNCTIONS\_RENAMING\_H\_INCLUDED\_\_}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define \_\_FUNCTIONS\_RENAMING\_H\_INCLUDED\_\_}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define PASTER(x, y)            x\#\#\_\#\#y}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define EVALUATOR(x, y)         PASTER(x, y)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define RENAME\_FUNC\_NAME(fname) EVALUATOR(FUNC\_PREFIX, fname)}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define keypair RENAME\_FUNC\_NAME(keypair)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define decaps  RENAME\_FUNC\_NAME(decaps)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define encaps  RENAME\_FUNC\_NAME(encaps)}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define aes\_ctr\_prf RENAME\_FUNC\_NAME(aes\_ctr\_prf)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define sample\_uniform\_r\_bits\_with\_fixed\_prf\_context \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{  RENAME\_FUNC\_NAME(sample\_uniform\_r\_bits\_with\_fixed\_prf\_context)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define init\_aes\_ctr\_prf\_state RENAME\_FUNC\_NAME(init\_aes\_ctr\_prf\_state)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define generate\_sparse\_rep    RENAME\_FUNC\_NAME(generate\_sparse\_rep)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define parallel\_hash          RENAME\_FUNC\_NAME(parallel\_hash)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define decode                 RENAME\_FUNC\_NAME(decode)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define print\_BE               RENAME\_FUNC\_NAME(print\_BE)}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define print\_LE               RENAME\_FUNC\_NAME(print\_LE)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define gf2x\_mod\_mul           RENAME\_FUNC\_NAME(gf2x\_mod\_mul)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define secure\_set\_bits        RENAME\_FUNC\_NAME(secure\_set\_bits)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define sha                    RENAME\_FUNC\_NAME(sha)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define count\_ones             RENAME\_FUNC\_NAME(count\_ones)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define sha\_mb                 RENAME\_FUNC\_NAME(sha\_mb)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define split\_e                RENAME\_FUNC\_NAME(split\_e)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define compute\_syndrome       RENAME\_FUNC\_NAME(compute\_syndrome)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define bike\_errno             RENAME\_FUNC\_NAME(bike\_errno)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define cyclic\_product         RENAME\_FUNC\_NAME(cyclic\_product)}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define ossl\_add               RENAME\_FUNC\_NAME(ossl\_add)}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define karatzuba\_add1         RENAME\_FUNC\_NAME(karatzuba\_add1)}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define karatzuba\_add2         RENAME\_FUNC\_NAME(karatzuba\_add2)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define gf2x\_add               RENAME\_FUNC\_NAME(gf2x\_add)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define gf2\_muladd\_4x4         RENAME\_FUNC\_NAME(gf2\_muladd\_4x4)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define red                    RENAME\_FUNC\_NAME(red)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define gf2x\_mul\_1x1           RENAME\_FUNC\_NAME(gf2x\_mul\_1x1)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define rotate\_right           RENAME\_FUNC\_NAME(rotate\_right)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define r\_bits\_vector\_weight   RENAME\_FUNC\_NAME(r\_bits\_vector\_weight)}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_FUNCTIONS\_RENAMING\_H\_INCLUDED\_\_}}
+
+\end{DoxyCode}

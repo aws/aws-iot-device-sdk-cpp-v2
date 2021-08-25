@@ -1,0 +1,71 @@
+\hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{}\doxysection{Aws\+::Eventstreamrpc\+::Continuation\+Callback\+Data Class Reference}
+\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+
+
+{\ttfamily \#include $<$Event\+Stream\+Client.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a107e4f28b75a3f6485e097ffa1a13ede}{Continuation\+Callback\+Data}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}} $\ast$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a02875b1ac18dbb7363e5c9367ca22b3b}{client\+Continuation}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a8473ad17616873cf7751f4811a2d57a4}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a97b7a1ca1d15039b22cf1d972e6a2c33}{Continuation\+Callback\+Data}} (const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{Continuation\+Callback\+Data}} \&lhs) noexcept=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6ce24720100630be00537bd37799cac9}{continuation\+Destroyed}}
+\item 
+\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{std\+::mutex}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6eed5dac819914ab5cacd4678642a04d}{callback\+Mutex}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}} $\ast$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a02875b1ac18dbb7363e5c9367ca22b3b}{client\+Continuation}}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a8473ad17616873cf7751f4811a2d57a4}{allocator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a107e4f28b75a3f6485e097ffa1a13ede}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a107e4f28b75a3f6485e097ffa1a13ede}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!ContinuationCallbackData@{ContinuationCallbackData}}
+\index{ContinuationCallbackData@{ContinuationCallbackData}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{ContinuationCallbackData()}{ContinuationCallbackData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::\+Continuation\+Callback\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}} $\ast$}]{client\+Continuation,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a97b7a1ca1d15039b22cf1d972e6a2c33}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a97b7a1ca1d15039b22cf1d972e6a2c33}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!ContinuationCallbackData@{ContinuationCallbackData}}
+\index{ContinuationCallbackData@{ContinuationCallbackData}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{ContinuationCallbackData()}{ContinuationCallbackData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::\+Continuation\+Callback\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data}{Continuation\+Callback\+Data}} \&}]{lhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a8473ad17616873cf7751f4811a2d57a4}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a8473ad17616873cf7751f4811a2d57a4}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!allocator@{allocator}}
+\index{allocator@{allocator}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}}$\ast$ Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::allocator}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6eed5dac819914ab5cacd4678642a04d}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6eed5dac819914ab5cacd4678642a04d}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!callbackMutex@{callbackMutex}}
+\index{callbackMutex@{callbackMutex}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{callbackMutex}{callbackMutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{std\+::mutex}} Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::callback\+Mutex}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a02875b1ac18dbb7363e5c9367ca22b3b}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a02875b1ac18dbb7363e5c9367ca22b3b}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!clientContinuation@{clientContinuation}}
+\index{clientContinuation@{clientContinuation}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{clientContinuation}{clientContinuation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}}$\ast$ Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::client\+Continuation}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6ce24720100630be00537bd37799cac9}\label{class_aws_1_1_eventstreamrpc_1_1_continuation_callback_data_a6ce24720100630be00537bd37799cac9}} 
+\index{Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}!continuationDestroyed@{continuationDestroyed}}
+\index{continuationDestroyed@{continuationDestroyed}!Aws::Eventstreamrpc::ContinuationCallbackData@{Aws::Eventstreamrpc::ContinuationCallbackData}}
+\doxysubsubsection{\texorpdfstring{continuationDestroyed}{continuationDestroyed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Eventstreamrpc\+::\+Continuation\+Callback\+Data\+::continuation\+Destroyed}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eventstream\+\_\+rpc/include/aws/eventstreamrpc/\mbox{\hyperlink{_event_stream_client_8h}{Event\+Stream\+Client.\+h}}\end{DoxyCompactItemize}

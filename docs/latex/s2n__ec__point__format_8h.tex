@@ -1,0 +1,63 @@
+\hypertarget{s2n__ec__point__format_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+ec\+\_\+point\+\_\+format.h File Reference}
+\label{s2n__ec__point__format_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_ec\_point\_format.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_ec\_point\_format.h}}
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__ec__point__format_8h_a37616b6306fedc86e314d87ea080978a}{TLS\+\_\+\+EC\+\_\+\+POINT\+\_\+\+FORMAT\+\_\+\+UNCOMPRESSED}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__ec__point__format_8h_aa1fb588c585f10f5c08c8dfb21c198cf}{s2n\+\_\+server\+\_\+ecc\+\_\+point\+\_\+format\+\_\+extension\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__ec__point__format_8h_a40846435b1e9e72c21ac9946b07b7e3e}{s2n\+\_\+recv\+\_\+client\+\_\+ec\+\_\+point\+\_\+formats}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__ec__point__format_8h_ae1245d2235d54e61e36f788e79912f96}{s2n\+\_\+client\+\_\+ec\+\_\+point\+\_\+format\+\_\+extension}}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__ec__point__format_8h_a953af428c98398e69cab0f17c60c788b}{s2n\+\_\+server\+\_\+ec\+\_\+point\+\_\+format\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__ec__point__format_8h_a37616b6306fedc86e314d87ea080978a}\label{s2n__ec__point__format_8h_a37616b6306fedc86e314d87ea080978a}} 
+\index{s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}!TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED@{TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED}}
+\index{TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED@{TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED}!s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED}{TLS\_EC\_POINT\_FORMAT\_UNCOMPRESSED}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+EC\+\_\+\+POINT\+\_\+\+FORMAT\+\_\+\+UNCOMPRESSED~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__ec__point__format_8h_a40846435b1e9e72c21ac9946b07b7e3e}\label{s2n__ec__point__format_8h_a40846435b1e9e72c21ac9946b07b7e3e}} 
+\index{s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}!s2n\_recv\_client\_ec\_point\_formats@{s2n\_recv\_client\_ec\_point\_formats}}
+\index{s2n\_recv\_client\_ec\_point\_formats@{s2n\_recv\_client\_ec\_point\_formats}!s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_client\_ec\_point\_formats()}{s2n\_recv\_client\_ec\_point\_formats()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+client\+\_\+ec\+\_\+point\+\_\+formats (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__ec__point__format_8h_aa1fb588c585f10f5c08c8dfb21c198cf}\label{s2n__ec__point__format_8h_aa1fb588c585f10f5c08c8dfb21c198cf}} 
+\index{s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}!s2n\_server\_ecc\_point\_format\_extension\_size@{s2n\_server\_ecc\_point\_format\_extension\_size}}
+\index{s2n\_server\_ecc\_point\_format\_extension\_size@{s2n\_server\_ecc\_point\_format\_extension\_size}!s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_ecc\_point\_format\_extension\_size()}{s2n\_server\_ecc\_point\_format\_extension\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+ecc\+\_\+point\+\_\+format\+\_\+extension\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__ec__point__format_8h_ae1245d2235d54e61e36f788e79912f96}\label{s2n__ec__point__format_8h_ae1245d2235d54e61e36f788e79912f96}} 
+\index{s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}!s2n\_client\_ec\_point\_format\_extension@{s2n\_client\_ec\_point\_format\_extension}}
+\index{s2n\_client\_ec\_point\_format\_extension@{s2n\_client\_ec\_point\_format\_extension}!s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_ec\_point\_format\_extension}{s2n\_client\_ec\_point\_format\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+ec\+\_\+point\+\_\+format\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__ec__point__format_8h_a953af428c98398e69cab0f17c60c788b}\label{s2n__ec__point__format_8h_a953af428c98398e69cab0f17c60c788b}} 
+\index{s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}!s2n\_server\_ec\_point\_format\_extension@{s2n\_server\_ec\_point\_format\_extension}}
+\index{s2n\_server\_ec\_point\_format\_extension@{s2n\_server\_ec\_point\_format\_extension}!s2n\_ec\_point\_format.h@{s2n\_ec\_point\_format.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_ec\_point\_format\_extension}{s2n\_server\_ec\_point\_format\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+ec\+\_\+point\+\_\+format\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

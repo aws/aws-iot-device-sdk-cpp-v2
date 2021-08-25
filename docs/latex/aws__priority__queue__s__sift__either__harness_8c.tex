@@ -1,0 +1,34 @@
+\hypertarget{aws__priority__queue__s__sift__either__harness_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\+\_\+priority\+\_\+queue\+\_\+s\+\_\+sift\+\_\+either/aws\+\_\+priority\+\_\+queue\+\_\+s\+\_\+sift\+\_\+either\+\_\+harness.c File Reference}
+\label{aws__priority__queue__s__sift__either__harness_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\_priority\_queue\_s\_sift\_either/aws\_priority\_queue\_s\_sift\_either\_harness.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\_priority\_queue\_s\_sift\_either/aws\_priority\_queue\_s\_sift\_either\_harness.c}}
+{\ttfamily \#include $<$aws/common/priority\+\_\+queue.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/make\+\_\+common\+\_\+data\+\_\+structures.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws__priority__queue__s__sift__either__harness_8c_a59a93f9659305fc6fc6baab9c86c792f}{\+\_\+\+\_\+\+CPROVER\+\_\+file\+\_\+local\+\_\+priority\+\_\+queue\+\_\+c\+\_\+s\+\_\+sift\+\_\+either}} (struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} $\ast$queue, size\+\_\+t root)
+\item 
+void \mbox{\hyperlink{aws__priority__queue__s__sift__either__harness_8c_a3d6ee6ea0368782aaa8f8ec783e073d9}{aws\+\_\+priority\+\_\+queue\+\_\+s\+\_\+sift\+\_\+either\+\_\+harness}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__priority__queue__s__sift__either__harness_8c_a59a93f9659305fc6fc6baab9c86c792f}\label{aws__priority__queue__s__sift__either__harness_8c_a59a93f9659305fc6fc6baab9c86c792f}} 
+\index{aws\_priority\_queue\_s\_sift\_either\_harness.c@{aws\_priority\_queue\_s\_sift\_either\_harness.c}!\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either@{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either}}
+\index{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either@{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either}!aws\_priority\_queue\_s\_sift\_either\_harness.c@{aws\_priority\_queue\_s\_sift\_either\_harness.c}}
+\doxysubsubsection{\texorpdfstring{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either()}{\_\_CPROVER\_file\_local\_priority\_queue\_c\_s\_sift\_either()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+\+CPROVER\+\_\+file\+\_\+local\+\_\+priority\+\_\+queue\+\_\+c\+\_\+s\+\_\+sift\+\_\+either (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} $\ast$}]{queue,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. FUNCTION\+: s\+\_\+sift\+\_\+either
+
+This function overrides the original implementation of the s\+\_\+sift\+\_\+either function from \mbox{\hyperlink{priority__queue_8h}{priority\+\_\+queue.\+h}} with a no\+\_\+op.
+
+It is necessary to stub out s\+\_\+sift\+\_\+either because in order for it to work, we have to have initialized all backpointers of the priority queue correctly (which needs a loop).
+
+It is safe to stub out s\+\_\+sift\+\_\+either as long as we don\textquotesingle{}t make any assertions on the positions of elements in the priority queue and their relative values. \mbox{\Hypertarget{aws__priority__queue__s__sift__either__harness_8c_a3d6ee6ea0368782aaa8f8ec783e073d9}\label{aws__priority__queue__s__sift__either__harness_8c_a3d6ee6ea0368782aaa8f8ec783e073d9}} 
+\index{aws\_priority\_queue\_s\_sift\_either\_harness.c@{aws\_priority\_queue\_s\_sift\_either\_harness.c}!aws\_priority\_queue\_s\_sift\_either\_harness@{aws\_priority\_queue\_s\_sift\_either\_harness}}
+\index{aws\_priority\_queue\_s\_sift\_either\_harness@{aws\_priority\_queue\_s\_sift\_either\_harness}!aws\_priority\_queue\_s\_sift\_either\_harness.c@{aws\_priority\_queue\_s\_sift\_either\_harness.c}}
+\doxysubsubsection{\texorpdfstring{aws\_priority\_queue\_s\_sift\_either\_harness()}{aws\_priority\_queue\_s\_sift\_either\_harness()}}
+{\footnotesize\ttfamily void aws\+\_\+priority\+\_\+queue\+\_\+s\+\_\+sift\+\_\+either\+\_\+harness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

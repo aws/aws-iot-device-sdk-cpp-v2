@@ -1,0 +1,41 @@
+\hypertarget{aws-c-http_2include_2aws_2http_2statistics_8h_source}{}\doxysection{statistics.\+h}
+\label{aws-c-http_2include_2aws_2http_2statistics_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/statistics.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/statistics.h}}
+\mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_STATISTICS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_STATISTICS\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{http_8h}{aws/http/http.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h}{aws/common/statistics.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{enum} \mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h_a530e27d4c92af9995898be7580e0e7c4}{aws\_crt\_http\_statistics\_category}} \{}
+\DoxyCodeLine{14     \mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h_a530e27d4c92af9995898be7580e0e7c4aceeb88a35da685e042b64d440bb7a111}{AWSCRT\_STAT\_CAT\_HTTP1\_CHANNEL}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a7fb464f9272a49da04ffc31e2c098472}{AWS\_CRT\_STATISTICS\_CATEGORY\_BEGIN\_RANGE}}(\mbox{\hyperlink{http_8h_a29eb863571342c2b44d01ef447ff3ade}{AWS\_C\_HTTP\_PACKAGE\_ID}}),}
+\DoxyCodeLine{15 \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{21 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\_crt\_statistics\_http1\_channel}} \{}
+\DoxyCodeLine{22     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_ab12c073b8615b5568d658b970f7c3815}{aws\_crt\_statistics\_category\_t}} \mbox{\hyperlink{structaws__crt__statistics__http1__channel_a8e6fa6a85c8fd3ac94c96ea6f3dcf5c5}{category}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     uint64\_t \mbox{\hyperlink{structaws__crt__statistics__http1__channel_ae6a6be48ddcab64775deb989e7da9cf1}{pending\_outgoing\_stream\_ms}};}
+\DoxyCodeLine{25     uint64\_t \mbox{\hyperlink{structaws__crt__statistics__http1__channel_a51b2fb5299be64d0f4a793fdd4df1454}{pending\_incoming\_stream\_ms}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     uint32\_t \mbox{\hyperlink{structaws__crt__statistics__http1__channel_ab1793b3bdba0f2e34ee7e9b0478af84f}{current\_outgoing\_stream\_id}};}
+\DoxyCodeLine{28     uint32\_t \mbox{\hyperlink{structaws__crt__statistics__http1__channel_ac834f58a2ad327ac73baa00e2c993392}{current\_incoming\_stream\_id}};}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{36 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{37 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h_a976d4d0ebee242026332032e3362912c}{aws\_crt\_statistics\_http1\_channel\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\_crt\_statistics\_http1\_channel}} *stats);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{43 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h_a5418f74e801f8373ade4b3769db7ce29}{aws\_crt\_statistics\_http1\_channel\_cleanup}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\_crt\_statistics\_http1\_channel}} *stats);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{49 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-http_2include_2aws_2http_2statistics_8h_a4f409924a4a6f0076a2b36036acbd8cf}{aws\_crt\_statistics\_http1\_channel\_reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\_crt\_statistics\_http1\_channel}} *stats);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_STATISTICS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

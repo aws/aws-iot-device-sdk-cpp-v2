@@ -1,0 +1,187 @@
+\hypertarget{date__time__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/date\+\_\+time\+\_\+test.c File Reference}
+\label{date__time__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/date\_time\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/date\_time\_test.c}}
+{\ttfamily \#include $<$aws/common/date\+\_\+time.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a892aa9c0ca83c647517859887667500b}{s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a8e32337e20847803cd93b694325b7d36}{s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a4e8087ba1f60818074382cb899818b50}{s\+\_\+test\+\_\+rfc822\+\_\+local\+\_\+time\+\_\+east\+\_\+of\+\_\+gmt\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a8c3b1b0e50b3eb2cefc114a753c3aa2d}{s\+\_\+test\+\_\+rfc822\+\_\+local\+\_\+time\+\_\+west\+\_\+of\+\_\+gmt\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_ad862f0056c7e73003d8414a20389e627}{s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+two\+\_\+digit\+\_\+year\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a6b6405435e8ea7d0d3c8c2f918432321}{s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+no\+\_\+dow\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_adbff4a948506d6ef9abece85eeff7d09}{s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+dos\+\_\+prevented\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_aa4d2399c051e6bfedd035f268e2b9d8b}{s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+format\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a4258eeba96237563ccba2a97f36afe0e}{s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+tz\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a6e12b817760f3504e608a5a8457a9536}{s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+auto\+\_\+format\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a5ccc30519c8b65a17fd7dada35b83d88}{s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a4d73d2516956e552b74f3a15bfd881e3}{s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+utc\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a665554830b4c8323e37bffaa7e78e8e9}{s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a6fd1f4bcfb0407cdcfb93e1cbe2bb74d}{s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a05f5864bc150ee1e8bbb1c64af2cdf6c}{s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+no\+\_\+colon\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_afbb581edb83733c84b771347c7452c19}{s\+\_\+test\+\_\+iso8601\+\_\+date\+\_\+only\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a1640562f36038e52899b2aac63fcee35}{s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+date\+\_\+only\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a2df0f38cf9bdfe72ee3d6d4b2abe141b}{s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+dos\+\_\+prevented\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_aa961c30cac8a017fc886a8b97c0926a7}{s\+\_\+test\+\_\+iso8601\+\_\+invalid\+\_\+format\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a15b33bf9125f3b6f9e0fd09ff34bebfe}{s\+\_\+test\+\_\+iso8601\+\_\+invalid\+\_\+auto\+\_\+format\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a075886098fcf67fa7e825483815b860f}{s\+\_\+test\+\_\+unix\+\_\+epoch\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{date__time__test_8c_a96207d5533cb3084830ced4982983526}{s\+\_\+test\+\_\+millis\+\_\+parsing\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{date__time__test_8c_a1640562f36038e52899b2aac63fcee35}\label{date__time__test_8c_a1640562f36038e52899b2aac63fcee35}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_basic\_date\_only\_parsing\_fn@{s\_test\_iso8601\_basic\_date\_only\_parsing\_fn}}
+\index{s\_test\_iso8601\_basic\_date\_only\_parsing\_fn@{s\_test\_iso8601\_basic\_date\_only\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_basic\_date\_only\_parsing\_fn()}{s\_test\_iso8601\_basic\_date\_only\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+date\+\_\+only\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a6fd1f4bcfb0407cdcfb93e1cbe2bb74d}\label{date__time__test_8c_a6fd1f4bcfb0407cdcfb93e1cbe2bb74d}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn@{s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn}}
+\index{s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn@{s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn()}{s\_test\_iso8601\_basic\_utc\_parsing\_auto\_detect\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a4d73d2516956e552b74f3a15bfd881e3}\label{date__time__test_8c_a4d73d2516956e552b74f3a15bfd881e3}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_basic\_utc\_parsing\_fn@{s\_test\_iso8601\_basic\_utc\_parsing\_fn}}
+\index{s\_test\_iso8601\_basic\_utc\_parsing\_fn@{s\_test\_iso8601\_basic\_utc\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_basic\_utc\_parsing\_fn()}{s\_test\_iso8601\_basic\_utc\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+basic\+\_\+utc\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_afbb581edb83733c84b771347c7452c19}\label{date__time__test_8c_afbb581edb83733c84b771347c7452c19}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_date\_only\_parsing\_fn@{s\_test\_iso8601\_date\_only\_parsing\_fn}}
+\index{s\_test\_iso8601\_date\_only\_parsing\_fn@{s\_test\_iso8601\_date\_only\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_date\_only\_parsing\_fn()}{s\_test\_iso8601\_date\_only\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+date\+\_\+only\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a15b33bf9125f3b6f9e0fd09ff34bebfe}\label{date__time__test_8c_a15b33bf9125f3b6f9e0fd09ff34bebfe}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_invalid\_auto\_format\_fn@{s\_test\_iso8601\_invalid\_auto\_format\_fn}}
+\index{s\_test\_iso8601\_invalid\_auto\_format\_fn@{s\_test\_iso8601\_invalid\_auto\_format\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_invalid\_auto\_format\_fn()}{s\_test\_iso8601\_invalid\_auto\_format\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+invalid\+\_\+auto\+\_\+format\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_aa961c30cac8a017fc886a8b97c0926a7}\label{date__time__test_8c_aa961c30cac8a017fc886a8b97c0926a7}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_invalid\_format\_fn@{s\_test\_iso8601\_invalid\_format\_fn}}
+\index{s\_test\_iso8601\_invalid\_format\_fn@{s\_test\_iso8601\_invalid\_format\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_invalid\_format\_fn()}{s\_test\_iso8601\_invalid\_format\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+invalid\+\_\+format\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a2df0f38cf9bdfe72ee3d6d4b2abe141b}\label{date__time__test_8c_a2df0f38cf9bdfe72ee3d6d4b2abe141b}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_utc\_dos\_prevented\_fn@{s\_test\_iso8601\_utc\_dos\_prevented\_fn}}
+\index{s\_test\_iso8601\_utc\_dos\_prevented\_fn@{s\_test\_iso8601\_utc\_dos\_prevented\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_utc\_dos\_prevented\_fn()}{s\_test\_iso8601\_utc\_dos\_prevented\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+dos\+\_\+prevented\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a05f5864bc150ee1e8bbb1c64af2cdf6c}\label{date__time__test_8c_a05f5864bc150ee1e8bbb1c64af2cdf6c}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn@{s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn}}
+\index{s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn@{s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn()}{s\_test\_iso8601\_utc\_no\_colon\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+no\+\_\+colon\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a665554830b4c8323e37bffaa7e78e8e9}\label{date__time__test_8c_a665554830b4c8323e37bffaa7e78e8e9}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn@{s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn}}
+\index{s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn@{s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn()}{s\_test\_iso8601\_utc\_parsing\_auto\_detect\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a5ccc30519c8b65a17fd7dada35b83d88}\label{date__time__test_8c_a5ccc30519c8b65a17fd7dada35b83d88}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_iso8601\_utc\_parsing\_fn@{s\_test\_iso8601\_utc\_parsing\_fn}}
+\index{s\_test\_iso8601\_utc\_parsing\_fn@{s\_test\_iso8601\_utc\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_iso8601\_utc\_parsing\_fn()}{s\_test\_iso8601\_utc\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+iso8601\+\_\+utc\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a96207d5533cb3084830ced4982983526}\label{date__time__test_8c_a96207d5533cb3084830ced4982983526}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_millis\_parsing\_fn@{s\_test\_millis\_parsing\_fn}}
+\index{s\_test\_millis\_parsing\_fn@{s\_test\_millis\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_millis\_parsing\_fn()}{s\_test\_millis\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+millis\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a6e12b817760f3504e608a5a8457a9536}\label{date__time__test_8c_a6e12b817760f3504e608a5a8457a9536}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_invalid\_auto\_format\_fn@{s\_test\_rfc822\_invalid\_auto\_format\_fn}}
+\index{s\_test\_rfc822\_invalid\_auto\_format\_fn@{s\_test\_rfc822\_invalid\_auto\_format\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_invalid\_auto\_format\_fn()}{s\_test\_rfc822\_invalid\_auto\_format\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+auto\+\_\+format\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_aa4d2399c051e6bfedd035f268e2b9d8b}\label{date__time__test_8c_aa4d2399c051e6bfedd035f268e2b9d8b}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_invalid\_format\_fn@{s\_test\_rfc822\_invalid\_format\_fn}}
+\index{s\_test\_rfc822\_invalid\_format\_fn@{s\_test\_rfc822\_invalid\_format\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_invalid\_format\_fn()}{s\_test\_rfc822\_invalid\_format\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+format\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a4258eeba96237563ccba2a97f36afe0e}\label{date__time__test_8c_a4258eeba96237563ccba2a97f36afe0e}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_invalid\_tz\_fn@{s\_test\_rfc822\_invalid\_tz\_fn}}
+\index{s\_test\_rfc822\_invalid\_tz\_fn@{s\_test\_rfc822\_invalid\_tz\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_invalid\_tz\_fn()}{s\_test\_rfc822\_invalid\_tz\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+invalid\+\_\+tz\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a4e8087ba1f60818074382cb899818b50}\label{date__time__test_8c_a4e8087ba1f60818074382cb899818b50}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn@{s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn}}
+\index{s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn@{s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn()}{s\_test\_rfc822\_local\_time\_east\_of\_gmt\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+local\+\_\+time\+\_\+east\+\_\+of\+\_\+gmt\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a8c3b1b0e50b3eb2cefc114a753c3aa2d}\label{date__time__test_8c_a8c3b1b0e50b3eb2cefc114a753c3aa2d}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn@{s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn}}
+\index{s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn@{s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn()}{s\_test\_rfc822\_local\_time\_west\_of\_gmt\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+local\+\_\+time\+\_\+west\+\_\+of\+\_\+gmt\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_adbff4a948506d6ef9abece85eeff7d09}\label{date__time__test_8c_adbff4a948506d6ef9abece85eeff7d09}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_utc\_dos\_prevented\_fn@{s\_test\_rfc822\_utc\_dos\_prevented\_fn}}
+\index{s\_test\_rfc822\_utc\_dos\_prevented\_fn@{s\_test\_rfc822\_utc\_dos\_prevented\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_utc\_dos\_prevented\_fn()}{s\_test\_rfc822\_utc\_dos\_prevented\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+dos\+\_\+prevented\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a6b6405435e8ea7d0d3c8c2f918432321}\label{date__time__test_8c_a6b6405435e8ea7d0d3c8c2f918432321}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn@{s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn}}
+\index{s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn@{s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn()}{s\_test\_rfc822\_utc\_no\_dow\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+no\+\_\+dow\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a8e32337e20847803cd93b694325b7d36}\label{date__time__test_8c_a8e32337e20847803cd93b694325b7d36}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn@{s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn}}
+\index{s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn@{s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn()}{s\_test\_rfc822\_utc\_parsing\_auto\_detect\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+parsing\+\_\+auto\+\_\+detect\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a892aa9c0ca83c647517859887667500b}\label{date__time__test_8c_a892aa9c0ca83c647517859887667500b}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_utc\_parsing\_fn@{s\_test\_rfc822\_utc\_parsing\_fn}}
+\index{s\_test\_rfc822\_utc\_parsing\_fn@{s\_test\_rfc822\_utc\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_utc\_parsing\_fn()}{s\_test\_rfc822\_utc\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{date__time__test_8c_ad862f0056c7e73003d8414a20389e627}\label{date__time__test_8c_ad862f0056c7e73003d8414a20389e627}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn@{s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn}}
+\index{s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn@{s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn()}{s\_test\_rfc822\_utc\_two\_digit\_year\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+rfc822\+\_\+utc\+\_\+two\+\_\+digit\+\_\+year\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{date__time__test_8c_a075886098fcf67fa7e825483815b860f}\label{date__time__test_8c_a075886098fcf67fa7e825483815b860f}} 
+\index{date\_time\_test.c@{date\_time\_test.c}!s\_test\_unix\_epoch\_parsing\_fn@{s\_test\_unix\_epoch\_parsing\_fn}}
+\index{s\_test\_unix\_epoch\_parsing\_fn@{s\_test\_unix\_epoch\_parsing\_fn}!date\_time\_test.c@{date\_time\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_unix\_epoch\_parsing\_fn()}{s\_test\_unix\_epoch\_parsing\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+unix\+\_\+epoch\+\_\+parsing\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

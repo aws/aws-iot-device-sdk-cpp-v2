@@ -1,0 +1,93 @@
+\hypertarget{s2n__x509__validator_8h_source}{}\doxysection{s2n\+\_\+x509\+\_\+validator.\+h}
+\label{s2n__x509__validator_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_x509\_validator.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_x509\_validator.h}}
+\mbox{\hyperlink{s2n__x509__validator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n_8h}{api/s2n.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <openssl/x509v3.h>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{/* one day, BoringSSL/AWS-\/LC, may add ocsp stapling support. Let's future proof this a bit by grabbing a definition}}
+\DoxyCodeLine{23 \textcolor{comment}{ * that would have to be there when they add support */}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#if (defined(OPENSSL\_IS\_BORINGSSL) || defined(OPENSSL\_IS\_AWSLC)) \&\& !defined(OCSP\_RESPONSE\_STATUS\_SUCCESSFUL)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define S2N\_OCSP\_STAPLING\_SUPPORTED 0}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define S2N\_OCSP\_STAPLING\_SUPPORTED 1}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* (defined(OPENSSL\_IS\_BORINGSSL) || defined(OPENSSL\_IS\_AWSLC)) \&\& !defined(OCSP\_RESPONSE\_STATUS\_SUCCESSFUL) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{31     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a96368d4297458ff45a814fbeedb250a9}{S2N\_CERT\_OK}} = 0,}
+\DoxyCodeLine{32     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a855bad2ae3cba2f58e8b70ef6e873ef2}{S2N\_CERT\_ERR\_UNTRUSTED}} = -\/1,}
+\DoxyCodeLine{33     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a19875caf9e0371b09cb92142af674469}{S2N\_CERT\_ERR\_REVOKED}} = -\/2,}
+\DoxyCodeLine{34     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145ac414415b4bceffa00d029438f59151f7}{S2N\_CERT\_ERR\_EXPIRED}} = -\/3,}
+\DoxyCodeLine{35     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a98a18f7128be78eacf73cbba4edd1bf9}{S2N\_CERT\_ERR\_TYPE\_UNSUPPORTED}} = -\/4,}
+\DoxyCodeLine{36     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a02b26952eb2af43ed4ce18a61da99d6b}{S2N\_CERT\_ERR\_INVALID}} = -\/5,}
+\DoxyCodeLine{37     \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145a8006f43f1bb8fa4c4b6eca68da718150}{S2N\_CERT\_ERR\_MAX\_CHAIN\_DEPTH\_EXCEEDED}} = -\/6}
+\DoxyCodeLine{38 \} \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145}{s2n\_cert\_validation\_code}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} uint8\_t (*\mbox{\hyperlink{s2n__x509__validator_8h_a4eb3b37fe7d3b4453099c6bcbe26a4f1}{verify\_host}}) (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *host\_name, \textcolor{keywordtype}{size\_t} host\_name\_len, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{42 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} \{}
+\DoxyCodeLine{49     X509\_STORE *\mbox{\hyperlink{structs2n__x509__trust__store_ab5f4601ffc83f53d235f7a8633b0f3d2}{trust\_store}};}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{55 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} \{}
+\DoxyCodeLine{56     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *\mbox{\hyperlink{structs2n__x509__validator_ab2c4dd398403d74653eef0899b7c9bb5}{trust\_store}};}
+\DoxyCodeLine{57     X509\_STORE\_CTX *\mbox{\hyperlink{structs2n__x509__validator_abdf6d11a988bf6825beae686e4ffe9b2}{store\_ctx}};}
+\DoxyCodeLine{58     uint8\_t \mbox{\hyperlink{structs2n__x509__validator_a389eaad3e2483e9e0785cf3499187828}{skip\_cert\_validation}};}
+\DoxyCodeLine{59     uint8\_t \mbox{\hyperlink{structs2n__x509__validator_ac19089811de8b96627bef42e936bcd10}{check\_stapled\_ocsp}};}
+\DoxyCodeLine{60     uint16\_t \mbox{\hyperlink{structs2n__x509__validator_a7bd84486a050da50e001433a0fbde268}{max\_chain\_depth}};}
+\DoxyCodeLine{61     \mbox{\hyperlink{structs2n__x509__validator_a9307dfe2d85e7f4ddec3c6d836e33d42}{STACK\_OF}}(X509) *cert\_chain\_from\_wire;}
+\DoxyCodeLine{62     \textcolor{keywordtype}{int} \mbox{\hyperlink{structs2n__x509__validator_a1b21ffaa83ddf99365e474fcf0f8a3e4}{state}};}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66 uint8\_t \mbox{\hyperlink{s2n__x509__validator_8h_a288e4c79746a86e09ee8a398bb14c512}{s2n\_x509\_ocsp\_stapling\_supported}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69 \textcolor{keywordtype}{void} \mbox{\hyperlink{s2n__x509__validator_8h_a9420691912d2b27885e752cf5e3a255d}{s2n\_x509\_trust\_store\_init\_empty}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{72 uint8\_t \mbox{\hyperlink{s2n__x509__validator_8h_ab79d51c6a30bb86a6ff1ac773d0e38ea}{s2n\_x509\_trust\_store\_has\_certs}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_ab1f058ecf0f93d94b6eecb634050be58}{s2n\_x509\_trust\_store\_from\_system\_defaults}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{78 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_a9d1721ad7ba85938d51914e70ab93d64}{s2n\_x509\_trust\_store\_add\_pem}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pem);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{82 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_a02f94f7855f8de1ba96cf0358ec9d69d}{s2n\_x509\_trust\_store\_from\_ca\_file}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ca\_pem\_filename, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ca\_dir);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{85 \textcolor{keywordtype}{void} \mbox{\hyperlink{s2n__x509__validator_8h_ad80262ea13eecda7dbec5812576dc732}{s2n\_x509\_trust\_store\_wipe}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *store);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{88 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_a3c01448c0eba6f3da070efca52a9beb1}{s2n\_x509\_validator\_init\_no\_x509\_validation}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{94 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_a14de21f9d6b7b411e1eee66a98d64feb}{s2n\_x509\_validator\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} *\mbox{\hyperlink{structs2n__x509__trust__store_ab5f4601ffc83f53d235f7a8633b0f3d2}{trust\_store}}, uint8\_t check\_ocsp);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{99 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__x509__validator_8h_ae4f3e82ce716b7f639c01dfa333c5b10}{s2n\_x509\_validator\_set\_max\_chain\_depth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator, uint16\_t max\_depth);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{102 \textcolor{keywordtype}{void} \mbox{\hyperlink{s2n__x509__validator_8h_a7a9cb1ed3f0786296ad988185adce278}{s2n\_x509\_validator\_wipe}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{114 \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145}{s2n\_cert\_validation\_code}} \mbox{\hyperlink{s2n__x509__validator_8h_a3f135290f89f1c43d55f9b7667543aca}{s2n\_x509\_validator\_validate\_cert\_chain}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{115                                                                 uint8\_t *cert\_chain\_in, uint32\_t cert\_chain\_len, \mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\_pkey\_type}} *pkey\_type,}
+\DoxyCodeLine{116                                                                 \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *public\_key\_out);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122 \mbox{\hyperlink{s2n__x509__validator_8h_a9a57c107b797f4467cbc9f5d359e4145}{s2n\_cert\_validation\_code}} \mbox{\hyperlink{s2n__x509__validator_8h_aac701ea2519babd138e34ee9089f8a6f}{s2n\_x509\_validator\_validate\_cert\_stapled\_ocsp\_response}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__x509__validator}{s2n\_x509\_validator}} *validator,  \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{123                                                                                 \textcolor{keyword}{const} uint8\_t *ocsp\_response, uint32\_t size);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+
+\end{DoxyCode}

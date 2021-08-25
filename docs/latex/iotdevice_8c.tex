@@ -1,0 +1,152 @@
+\hypertarget{iotdevice_8c}{}\doxysection{crt/aws-\/c-\/iot/source/iotdevice.c File Reference}
+\label{iotdevice_8c}\index{crt/aws-\/c-\/iot/source/iotdevice.c@{crt/aws-\/c-\/iot/source/iotdevice.c}}
+{\ttfamily \#include $<$aws/iotdevice/external/c\+JSON.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/iotdevice.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+IOTDEVICE}}(C,  ES)~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(C, ES, \char`\"{}libaws-\/c-\/iotdevice\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \mbox{\hyperlink{iotdevice_8c_ac5166c1f1f34e72fa1449d1a64856a10}{s\+\_\+c\+JSONAlloc}} (size\+\_\+t sz)
+\item 
+static void \mbox{\hyperlink{iotdevice_8c_a40f358ac3a044f9d32405dbb64084cba}{s\+\_\+c\+JSONFree}} (void $\ast$ptr)
+\item 
+void \mbox{\hyperlink{iotdevice_8c_abefb6dcc6a61d7daf6f34e9e56067ea7}{aws\+\_\+iotdevice\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{iotdevice_8c_a7b31d154ba6dd773e778d9ed5a87f1cb}{aws\+\_\+iotdevice\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{iotdevice_8c_a5a460a3899dc4042a3ba4f3315467d57}{s\+\_\+library\+\_\+allocator}} = NULL
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{iotdevice_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{iotdevice_8c_a259d0901f655216b70a33e9c18ac9fff}{s\+\_\+error\+\_\+list}}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} \mbox{\hyperlink{iotdevice_8c_ae3e7658479aca71bd56ce00849b45228}{s\+\_\+logging\+\_\+subjects}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{iotdevice_8c_af0093e5c0ea95cf3530a5381a8e9d309}{s\+\_\+logging\+\_\+subjects\+\_\+list}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{iotdevice_8c_aa89c11756ee23dc257d9a5c360bb67fc}{s\+\_\+iotdevice\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}\label{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}} 
+\index{iotdevice.c@{iotdevice.c}!AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE@{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}}
+\index{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE@{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+IOTDEVICE(\begin{DoxyParamCaption}\item[{}]{C,  }\item[{}]{ES }\end{DoxyParamCaption})~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(C, ES, \char`\"{}libaws-\/c-\/iotdevice\char`\"{})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{iotdevice_8c_a7b31d154ba6dd773e778d9ed5a87f1cb}\label{iotdevice_8c_a7b31d154ba6dd773e778d9ed5a87f1cb}} 
+\index{iotdevice.c@{iotdevice.c}!aws\_iotdevice\_library\_clean\_up@{aws\_iotdevice\_library\_clean\_up}}
+\index{aws\_iotdevice\_library\_clean\_up@{aws\_iotdevice\_library\_clean\_up}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_library\_clean\_up()}{aws\_iotdevice\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+iotdevice\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shuts down the internal datastructures used by aws-\/c-\/iot \mbox{\Hypertarget{iotdevice_8c_abefb6dcc6a61d7daf6f34e9e56067ea7}\label{iotdevice_8c_abefb6dcc6a61d7daf6f34e9e56067ea7}} 
+\index{iotdevice.c@{iotdevice.c}!aws\_iotdevice\_library\_init@{aws\_iotdevice\_library\_init}}
+\index{aws\_iotdevice\_library\_init@{aws\_iotdevice\_library\_init}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_library\_init()}{aws\_iotdevice\_library\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+iotdevice\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/iot. Must be called before using any functionality in aws-\/c-\/iot. \mbox{\Hypertarget{iotdevice_8c_ac5166c1f1f34e72fa1449d1a64856a10}\label{iotdevice_8c_ac5166c1f1f34e72fa1449d1a64856a10}} 
+\index{iotdevice.c@{iotdevice.c}!s\_cJSONAlloc@{s\_cJSONAlloc}}
+\index{s\_cJSONAlloc@{s\_cJSONAlloc}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_cJSONAlloc()}{s\_cJSONAlloc()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+c\+JSONAlloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{iotdevice_8c_a40f358ac3a044f9d32405dbb64084cba}\label{iotdevice_8c_a40f358ac3a044f9d32405dbb64084cba}} 
+\index{iotdevice.c@{iotdevice.c}!s\_cJSONFree@{s\_cJSONFree}}
+\index{s\_cJSONFree@{s\_cJSONFree}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_cJSONFree()}{s\_cJSONFree()}}
+{\footnotesize\ttfamily static void s\+\_\+c\+JSONFree (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{iotdevice_8c_a259d0901f655216b70a33e9c18ac9fff}\label{iotdevice_8c_a259d0901f655216b70a33e9c18ac9fff}} 
+\index{iotdevice.c@{iotdevice.c}!s\_error\_list@{s\_error\_list}}
+\index{s\_error\_list@{s\_error\_list}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_list}{s\_error\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+error\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{iotdevice_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{iotdevice_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iotdevice_8c_a255baa9b51b60f5b91a01313637fc353}\label{iotdevice_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{iotdevice.c@{iotdevice.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba6b4e59725be71fa0d37f7270462a9125}{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_INVALID\_REPORT\_INTERVAL}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Invalid defender task reporting interval. Must be greater than 5 minutes"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba2729d0517c35e829eff55f8ca8f80b2f}{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_UNSUPPORTED\_REPORT\_FORMAT}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Unknown format value selected for defender reporting task"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{iotdevice_8c_a0ff19f6f7417fa607db3997a3b549123}{AWS\_DEFINE\_ERROR\_INFO\_IOTDEVICE}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bad123e2c908bad1672b1f4588eb391c29}{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_REPORT\_SERIALIZATION\_FAILURE}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Error serializing report for publishing"{}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iotdevice_8c_aa89c11756ee23dc257d9a5c360bb67fc}\label{iotdevice_8c_aa89c11756ee23dc257d9a5c360bb67fc}} 
+\index{iotdevice.c@{iotdevice.c}!s\_iotdevice\_library\_initialized@{s\_iotdevice\_library\_initialized}}
+\index{s\_iotdevice\_library\_initialized@{s\_iotdevice\_library\_initialized}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_iotdevice\_library\_initialized}{s\_iotdevice\_library\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+iotdevice\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{iotdevice_8c_a5a460a3899dc4042a3ba4f3315467d57}\label{iotdevice_8c_a5a460a3899dc4042a3ba4f3315467d57}} 
+\index{iotdevice.c@{iotdevice.c}!s\_library\_allocator@{s\_library\_allocator}}
+\index{s\_library\_allocator@{s\_library\_allocator}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_library\_allocator}{s\_library\_allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ s\+\_\+library\+\_\+allocator = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{iotdevice_8c_ae3e7658479aca71bd56ce00849b45228}\label{iotdevice_8c_ae3e7658479aca71bd56ce00849b45228}} 
+\index{iotdevice.c@{iotdevice.c}!s\_logging\_subjects@{s\_logging\_subjects}}
+\index{s\_logging\_subjects@{s\_logging\_subjects}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_logging\_subjects}{s\_logging\_subjects}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} s\+\_\+logging\+\_\+subjects\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777aefc4f9ab88d67036f03526e57add5ed9}{AWS\_LS\_IOTDEVICE\_DEFENDER\_TASK}}, \textcolor{stringliteral}{"{}iotdevice-\/defender"{}}, \textcolor{stringliteral}{"{}IoT DeviceDefender"{}}),}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777acd409841f1c61373c2f89ff9df049451}{AWS\_LS\_IOTDEVICE\_NETWORK\_CONFIG}}, \textcolor{stringliteral}{"{}iotdevice-\/network"{}}, \textcolor{stringliteral}{"{}IoT Device Network"{}}),}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777a85b5b7c82e97c6c18e391dd31509d514}{AWS\_LS\_IOTDEVICE\_SECURE\_TUNNELING}}, \textcolor{stringliteral}{"{}iotdevice-\/st"{}}, \textcolor{stringliteral}{"{}IoT Secure Tunneling"{}}),}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iotdevice_8c_af0093e5c0ea95cf3530a5381a8e9d309}\label{iotdevice_8c_af0093e5c0ea95cf3530a5381a8e9d309}} 
+\index{iotdevice.c@{iotdevice.c}!s\_logging\_subjects\_list@{s\_logging\_subjects\_list}}
+\index{s\_logging\_subjects\_list@{s\_logging\_subjects\_list}!iotdevice.c@{iotdevice.c}}
+\doxysubsubsection{\texorpdfstring{s\_logging\_subjects\_list}{s\_logging\_subjects\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} s\+\_\+logging\+\_\+subjects\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .subject\_list = \mbox{\hyperlink{iotdevice_8c_ae3e7658479aca71bd56ce00849b45228}{s\_logging\_subjects}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{iotdevice_8c_ae3e7658479aca71bd56ce00849b45228}{s\_logging\_subjects}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

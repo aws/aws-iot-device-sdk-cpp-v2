@@ -1,0 +1,127 @@
+\hypertarget{thread__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\+\_\+test.c File Reference}
+\label{thread__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\_test.c}}
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/private/thread\+\_\+shared.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structthread__test__data}{thread\+\_\+test\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structmanaged__thread__test__data}{managed\+\_\+thread\+\_\+test\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{thread__test_8c_a60e698eb0e45237ac78d6914ed9b9106}{MAX\+\_\+\+MANAGED\+\_\+\+THREAD\+\_\+\+TEST\+\_\+\+QUANTITY}}~16
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{thread__test_8c_a3fcd339d3e01edcb47d677e21bd52aa9}{s\+\_\+thread\+\_\+fn}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{thread__test_8c_a4dbdba0b336dfceaae29dbd0b318335d}{s\+\_\+test\+\_\+thread\+\_\+creation\+\_\+join\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{thread__test_8c_acd3e845144fd3ec504cd4d0b881f8f48}{s\+\_\+thread\+\_\+atexit\+\_\+fn}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{thread__test_8c_a1e348f43a699bb28d491af0d9b3a8473}{s\+\_\+thread\+\_\+atexit\+\_\+fn2}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{thread__test_8c_a7419d0a734522dbe7ebf8556ff635ac9}{s\+\_\+thread\+\_\+worker\+\_\+with\+\_\+atexit}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{thread__test_8c_afa59f92d5f63272e7c3105b5424b6ae3}{s\+\_\+test\+\_\+thread\+\_\+atexit}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{thread__test_8c_a5c042e035a9bf9153913a2dd186d9e52}{s\+\_\+managed\+\_\+thread\+\_\+fn}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{thread__test_8c_a101e64b6615ae8caddf6feb05d0858b4}{s\+\_\+do\+\_\+managed\+\_\+thread\+\_\+join\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t thread\+\_\+count)
+\item 
+static int \mbox{\hyperlink{thread__test_8c_acb521530555f9d9b96a5353e3801ef3d}{s\+\_\+test\+\_\+managed\+\_\+thread\+\_\+join}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{thread__test_8c_a00846160a7fdeff1fcb503e49829f648}{s\+\_\+test\+\_\+managed\+\_\+thread\+\_\+join\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{thread__test_8c_af58b554b4336048d45d2379d67721a86}{s\+\_\+atexit\+\_\+call\+\_\+count}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{thread__test_8c_a60e698eb0e45237ac78d6914ed9b9106}\label{thread__test_8c_a60e698eb0e45237ac78d6914ed9b9106}} 
+\index{thread\_test.c@{thread\_test.c}!MAX\_MANAGED\_THREAD\_TEST\_QUANTITY@{MAX\_MANAGED\_THREAD\_TEST\_QUANTITY}}
+\index{MAX\_MANAGED\_THREAD\_TEST\_QUANTITY@{MAX\_MANAGED\_THREAD\_TEST\_QUANTITY}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_MANAGED\_THREAD\_TEST\_QUANTITY}{MAX\_MANAGED\_THREAD\_TEST\_QUANTITY}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+MANAGED\+\_\+\+THREAD\+\_\+\+TEST\+\_\+\+QUANTITY~16}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{thread__test_8c_a101e64b6615ae8caddf6feb05d0858b4}\label{thread__test_8c_a101e64b6615ae8caddf6feb05d0858b4}} 
+\index{thread\_test.c@{thread\_test.c}!s\_do\_managed\_thread\_join\_test@{s\_do\_managed\_thread\_join\_test}}
+\index{s\_do\_managed\_thread\_join\_test@{s\_do\_managed\_thread\_join\_test}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_managed\_thread\_join\_test()}{s\_do\_managed\_thread\_join\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+managed\+\_\+thread\+\_\+join\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{thread\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a5c042e035a9bf9153913a2dd186d9e52}\label{thread__test_8c_a5c042e035a9bf9153913a2dd186d9e52}} 
+\index{thread\_test.c@{thread\_test.c}!s\_managed\_thread\_fn@{s\_managed\_thread\_fn}}
+\index{s\_managed\_thread\_fn@{s\_managed\_thread\_fn}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_managed\_thread\_fn()}{s\_managed\_thread\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+managed\+\_\+thread\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_acb521530555f9d9b96a5353e3801ef3d}\label{thread__test_8c_acb521530555f9d9b96a5353e3801ef3d}} 
+\index{thread\_test.c@{thread\_test.c}!s\_test\_managed\_thread\_join@{s\_test\_managed\_thread\_join}}
+\index{s\_test\_managed\_thread\_join@{s\_test\_managed\_thread\_join}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_managed\_thread\_join()}{s\_test\_managed\_thread\_join()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+managed\+\_\+thread\+\_\+join (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a00846160a7fdeff1fcb503e49829f648}\label{thread__test_8c_a00846160a7fdeff1fcb503e49829f648}} 
+\index{thread\_test.c@{thread\_test.c}!s\_test\_managed\_thread\_join\_timeout@{s\_test\_managed\_thread\_join\_timeout}}
+\index{s\_test\_managed\_thread\_join\_timeout@{s\_test\_managed\_thread\_join\_timeout}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_managed\_thread\_join\_timeout()}{s\_test\_managed\_thread\_join\_timeout()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+managed\+\_\+thread\+\_\+join\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_afa59f92d5f63272e7c3105b5424b6ae3}\label{thread__test_8c_afa59f92d5f63272e7c3105b5424b6ae3}} 
+\index{thread\_test.c@{thread\_test.c}!s\_test\_thread\_atexit@{s\_test\_thread\_atexit}}
+\index{s\_test\_thread\_atexit@{s\_test\_thread\_atexit}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_thread\_atexit()}{s\_test\_thread\_atexit()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+thread\+\_\+atexit (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a4dbdba0b336dfceaae29dbd0b318335d}\label{thread__test_8c_a4dbdba0b336dfceaae29dbd0b318335d}} 
+\index{thread\_test.c@{thread\_test.c}!s\_test\_thread\_creation\_join\_fn@{s\_test\_thread\_creation\_join\_fn}}
+\index{s\_test\_thread\_creation\_join\_fn@{s\_test\_thread\_creation\_join\_fn}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_thread\_creation\_join\_fn()}{s\_test\_thread\_creation\_join\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+thread\+\_\+creation\+\_\+join\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_acd3e845144fd3ec504cd4d0b881f8f48}\label{thread__test_8c_acd3e845144fd3ec504cd4d0b881f8f48}} 
+\index{thread\_test.c@{thread\_test.c}!s\_thread\_atexit\_fn@{s\_thread\_atexit\_fn}}
+\index{s\_thread\_atexit\_fn@{s\_thread\_atexit\_fn}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_thread\_atexit\_fn()}{s\_thread\_atexit\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+thread\+\_\+atexit\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a1e348f43a699bb28d491af0d9b3a8473}\label{thread__test_8c_a1e348f43a699bb28d491af0d9b3a8473}} 
+\index{thread\_test.c@{thread\_test.c}!s\_thread\_atexit\_fn2@{s\_thread\_atexit\_fn2}}
+\index{s\_thread\_atexit\_fn2@{s\_thread\_atexit\_fn2}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_thread\_atexit\_fn2()}{s\_thread\_atexit\_fn2()}}
+{\footnotesize\ttfamily static void s\+\_\+thread\+\_\+atexit\+\_\+fn2 (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a3fcd339d3e01edcb47d677e21bd52aa9}\label{thread__test_8c_a3fcd339d3e01edcb47d677e21bd52aa9}} 
+\index{thread\_test.c@{thread\_test.c}!s\_thread\_fn@{s\_thread\_fn}}
+\index{s\_thread\_fn@{s\_thread\_fn}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_thread\_fn()}{s\_thread\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+thread\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__test_8c_a7419d0a734522dbe7ebf8556ff635ac9}\label{thread__test_8c_a7419d0a734522dbe7ebf8556ff635ac9}} 
+\index{thread\_test.c@{thread\_test.c}!s\_thread\_worker\_with\_atexit@{s\_thread\_worker\_with\_atexit}}
+\index{s\_thread\_worker\_with\_atexit@{s\_thread\_worker\_with\_atexit}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_thread\_worker\_with\_atexit()}{s\_thread\_worker\_with\_atexit()}}
+{\footnotesize\ttfamily static void s\+\_\+thread\+\_\+worker\+\_\+with\+\_\+atexit (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{thread__test_8c_af58b554b4336048d45d2379d67721a86}\label{thread__test_8c_af58b554b4336048d45d2379d67721a86}} 
+\index{thread\_test.c@{thread\_test.c}!s\_atexit\_call\_count@{s\_atexit\_call\_count}}
+\index{s\_atexit\_call\_count@{s\_atexit\_call\_count}!thread\_test.c@{thread\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_atexit\_call\_count}{s\_atexit\_call\_count}}
+{\footnotesize\ttfamily uint32\+\_\+t s\+\_\+atexit\+\_\+call\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}}
+

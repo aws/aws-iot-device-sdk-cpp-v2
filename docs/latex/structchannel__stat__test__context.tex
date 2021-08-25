@@ -1,0 +1,69 @@
+\hypertarget{structchannel__stat__test__context}{}\doxysection{channel\+\_\+stat\+\_\+test\+\_\+context Struct Reference}
+\label{structchannel__stat__test__context}\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structchannel__stat__test__context_a5075321d61b3b879a1154f8a58e3ff00}{allocator}}
+\item 
+struct \mbox{\hyperlink{structtls__opt__tester}{tls\+\_\+opt\+\_\+tester}} $\ast$ \mbox{\hyperlink{structchannel__stat__test__context_a1a76e0b50c091289e21cef5e932db09a}{tls\+\_\+tester}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structchannel__stat__test__context_a96691858bf11b58c6c0b496d19ac9a6c}{lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structchannel__stat__test__context_a3db083c2f9f806fa6e4540df90aec7a9}{signal}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structchannel__stat__test__context_a69233c1f4bcad581ed7d90b9da2101c8}{setup\+\_\+completed}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structchannel__stat__test__context_ab4017ec5492098b91b51de5ade149e29}{shutdown\+\_\+completed}}
+\item 
+int \mbox{\hyperlink{structchannel__stat__test__context_af2883ef972720da8d34e0c7c41b13726}{error\+\_\+code}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structchannel__stat__test__context_a5075321d61b3b879a1154f8a58e3ff00}\label{structchannel__stat__test__context_a5075321d61b3b879a1154f8a58e3ff00}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!allocator@{allocator}}
+\index{allocator@{allocator}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ channel\+\_\+stat\+\_\+test\+\_\+context\+::allocator}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_af2883ef972720da8d34e0c7c41b13726}\label{structchannel__stat__test__context_af2883ef972720da8d34e0c7c41b13726}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int channel\+\_\+stat\+\_\+test\+\_\+context\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_a96691858bf11b58c6c0b496d19ac9a6c}\label{structchannel__stat__test__context_a96691858bf11b58c6c0b496d19ac9a6c}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!lock@{lock}}
+\index{lock@{lock}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} channel\+\_\+stat\+\_\+test\+\_\+context\+::lock}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_a69233c1f4bcad581ed7d90b9da2101c8}\label{structchannel__stat__test__context_a69233c1f4bcad581ed7d90b9da2101c8}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!setup\_completed@{setup\_completed}}
+\index{setup\_completed@{setup\_completed}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{setup\_completed}{setup\_completed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} channel\+\_\+stat\+\_\+test\+\_\+context\+::setup\+\_\+completed}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_ab4017ec5492098b91b51de5ade149e29}\label{structchannel__stat__test__context_ab4017ec5492098b91b51de5ade149e29}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!shutdown\_completed@{shutdown\_completed}}
+\index{shutdown\_completed@{shutdown\_completed}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{shutdown\_completed}{shutdown\_completed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} channel\+\_\+stat\+\_\+test\+\_\+context\+::shutdown\+\_\+completed}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_a3db083c2f9f806fa6e4540df90aec7a9}\label{structchannel__stat__test__context_a3db083c2f9f806fa6e4540df90aec7a9}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!signal@{signal}}
+\index{signal@{signal}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{signal}{signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} channel\+\_\+stat\+\_\+test\+\_\+context\+::signal}
+
+\mbox{\Hypertarget{structchannel__stat__test__context_a1a76e0b50c091289e21cef5e932db09a}\label{structchannel__stat__test__context_a1a76e0b50c091289e21cef5e932db09a}} 
+\index{channel\_stat\_test\_context@{channel\_stat\_test\_context}!tls\_tester@{tls\_tester}}
+\index{tls\_tester@{tls\_tester}!channel\_stat\_test\_context@{channel\_stat\_test\_context}}
+\doxysubsubsection{\texorpdfstring{tls\_tester}{tls\_tester}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtls__opt__tester}{tls\+\_\+opt\+\_\+tester}}$\ast$ channel\+\_\+stat\+\_\+test\+\_\+context\+::tls\+\_\+tester}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/\mbox{\hyperlink{tls__handler__test_8c}{tls\+\_\+handler\+\_\+test.\+c}}\end{DoxyCompactItemize}

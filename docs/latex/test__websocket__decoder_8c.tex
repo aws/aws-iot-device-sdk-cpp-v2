@@ -1,0 +1,204 @@
+\hypertarget{test__websocket__decoder_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+websocket\+\_\+decoder.c File Reference}
+\label{test__websocket__decoder_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_decoder.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_decoder.c}}
+{\ttfamily \#include $<$aws/http/private/websocket\+\_\+decoder.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__websocket__decoder_8c_a5d7e0bfddc0b093df76b34e90e144459}{DECODER\+\_\+\+TEST\+\_\+\+CASE}}(NAME)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__websocket__decoder_8c_af5fd217b6feb0f395bffea4871f41e09}{s\+\_\+on\+\_\+frame}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{test__websocket__decoder_8c_a48691c2e05660736514624ed2f796897}{s\+\_\+on\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__websocket__decoder_8c_a78c505a8a6942d5c3e9b5bd1ecfd8e23}{s\+\_\+decoder\+\_\+tester\+\_\+reset}} (struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static int \mbox{\hyperlink{test__websocket__decoder_8c_a907e1e516088e0ee48ab711f3d04fc7c}{s\+\_\+decoder\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+static int \mbox{\hyperlink{test__websocket__decoder_8c_a8a0a3c9c4ab4b9c2973ea1fa1069a99a}{s\+\_\+decoder\+\_\+tester\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static int \mbox{\hyperlink{test__websocket__decoder_8c_aea8fed8055ff4371fed7dffe4d0d5c9c}{s\+\_\+compare\+\_\+frame}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$expected, const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$decoded)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_ad171ebc9c5a4b2aae80708957c8e799a}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+sanity\+\_\+check)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a2a1158eb48b097c96e64468c1dc32df5}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+simplest\+\_\+frame)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_af33afbf86b490e0d407ee05ffe48feeb}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+rsv)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a2372d4d54b5f0f2d1c3667c6f2b1a34a}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+data\+\_\+frame)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a83323fdb02fb198f0ee3364fb8f4f772}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+stops\+\_\+at\+\_\+frame\+\_\+end)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a909bce4c2d904ac93dd2e6896d7a4501}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+masking)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a4209dca892a47d5b16d3f55ef8cea29f}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+extended\+\_\+length\+\_\+2byte)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a45af9305e8bbf81a0d7da1ba195b203a}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+extended\+\_\+length\+\_\+8byte)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a302807160b66d7a1e5fb78e1d902be31}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+1byte\+\_\+at\+\_\+a\+\_\+time)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a3a50423d84ce5ee51c3934f5ed10094a}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+fail\+\_\+on\+\_\+unknown\+\_\+opcode)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_af8de868e115014651c9631ce309583a2}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+fragmented\+\_\+message)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_a6912b8e234077e878a727f967a8188a9}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+fail\+\_\+on\+\_\+bad\+\_\+fragmentation)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_ac45a6c1875ae5c74cfde148c5e2296f0}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+control\+\_\+frame\+\_\+cannot\+\_\+be\+\_\+fragmented)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_adc3719f3f96fbcc8be03bb29baef6f3c}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+on\+\_\+frame\+\_\+callback\+\_\+can\+\_\+fail\+\_\+decoder)
+\item 
+\mbox{\hyperlink{test__websocket__decoder_8c_ad8ba57f9578c1213f6422113ac81ff49}{DECODER\+\_\+\+TEST\+\_\+\+CASE}} (websocket\+\_\+decoder\+\_\+on\+\_\+payload\+\_\+callback\+\_\+can\+\_\+fail\+\_\+decoder)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__websocket__decoder_8c_a5d7e0bfddc0b093df76b34e90e144459}\label{test__websocket__decoder_8c_a5d7e0bfddc0b093df76b34e90e144459}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE}{DECODER\_TEST\_CASE}}
+{\footnotesize\ttfamily \#define DECODER\+\_\+\+TEST\+\_\+\+CASE(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{aws__test__harness_8h_a3698b6468787eb8b70903db17061da85}{AWS\_TEST\_CASE}}(NAME, s\_test\_\#\#NAME);                                                                                \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keywordtype}{int} s\_test\_\#\#NAME(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}})}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__websocket__decoder_8c_a302807160b66d7a1e5fb78e1d902be31}\label{test__websocket__decoder_8c_a302807160b66d7a1e5fb78e1d902be31}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+1byte\+\_\+at\+\_\+a\+\_\+time}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_ac45a6c1875ae5c74cfde148c5e2296f0}\label{test__websocket__decoder_8c_ac45a6c1875ae5c74cfde148c5e2296f0}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+control\+\_\+frame\+\_\+cannot\+\_\+be\+\_\+fragmented}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a2372d4d54b5f0f2d1c3667c6f2b1a34a}\label{test__websocket__decoder_8c_a2372d4d54b5f0f2d1c3667c6f2b1a34a}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+data\+\_\+frame}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a4209dca892a47d5b16d3f55ef8cea29f}\label{test__websocket__decoder_8c_a4209dca892a47d5b16d3f55ef8cea29f}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+extended\+\_\+length\+\_\+2byte}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a45af9305e8bbf81a0d7da1ba195b203a}\label{test__websocket__decoder_8c_a45af9305e8bbf81a0d7da1ba195b203a}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+extended\+\_\+length\+\_\+8byte}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a6912b8e234077e878a727f967a8188a9}\label{test__websocket__decoder_8c_a6912b8e234077e878a727f967a8188a9}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+fail\+\_\+on\+\_\+bad\+\_\+fragmentation}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a3a50423d84ce5ee51c3934f5ed10094a}\label{test__websocket__decoder_8c_a3a50423d84ce5ee51c3934f5ed10094a}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+fail\+\_\+on\+\_\+unknown\+\_\+opcode}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_af8de868e115014651c9631ce309583a2}\label{test__websocket__decoder_8c_af8de868e115014651c9631ce309583a2}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+fragmented\+\_\+message}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a909bce4c2d904ac93dd2e6896d7a4501}\label{test__websocket__decoder_8c_a909bce4c2d904ac93dd2e6896d7a4501}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [9/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+masking}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_adc3719f3f96fbcc8be03bb29baef6f3c}\label{test__websocket__decoder_8c_adc3719f3f96fbcc8be03bb29baef6f3c}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [10/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+on\+\_\+frame\+\_\+callback\+\_\+can\+\_\+fail\+\_\+decoder}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_ad8ba57f9578c1213f6422113ac81ff49}\label{test__websocket__decoder_8c_ad8ba57f9578c1213f6422113ac81ff49}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [11/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+on\+\_\+payload\+\_\+callback\+\_\+can\+\_\+fail\+\_\+decoder}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_af33afbf86b490e0d407ee05ffe48feeb}\label{test__websocket__decoder_8c_af33afbf86b490e0d407ee05ffe48feeb}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [12/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+rsv}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_ad171ebc9c5a4b2aae80708957c8e799a}\label{test__websocket__decoder_8c_ad171ebc9c5a4b2aae80708957c8e799a}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [13/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+sanity\+\_\+check}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a2a1158eb48b097c96e64468c1dc32df5}\label{test__websocket__decoder_8c_a2a1158eb48b097c96e64468c1dc32df5}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [14/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+simplest\+\_\+frame}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a83323fdb02fb198f0ee3364fb8f4f772}\label{test__websocket__decoder_8c_a83323fdb02fb198f0ee3364fb8f4f772}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}}
+\index{DECODER\_TEST\_CASE@{DECODER\_TEST\_CASE}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{DECODER\_TEST\_CASE()}{DECODER\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [15/15]}}
+{\footnotesize\ttfamily DECODER\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+decoder\+\_\+stops\+\_\+at\+\_\+frame\+\_\+end}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_aea8fed8055ff4371fed7dffe4d0d5c9c}\label{test__websocket__decoder_8c_aea8fed8055ff4371fed7dffe4d0d5c9c}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_compare\_frame@{s\_compare\_frame}}
+\index{s\_compare\_frame@{s\_compare\_frame}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_compare\_frame()}{s\_compare\_frame()}}
+{\footnotesize\ttfamily static int s\+\_\+compare\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{expected,  }\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{decoded }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a8a0a3c9c4ab4b9c2973ea1fa1069a99a}\label{test__websocket__decoder_8c_a8a0a3c9c4ab4b9c2973ea1fa1069a99a}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_decoder\_tester\_clean\_up@{s\_decoder\_tester\_clean\_up}}
+\index{s\_decoder\_tester\_clean\_up@{s\_decoder\_tester\_clean\_up}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_tester\_clean\_up()}{s\_decoder\_tester\_clean\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+decoder\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$}]{tester }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a907e1e516088e0ee48ab711f3d04fc7c}\label{test__websocket__decoder_8c_a907e1e516088e0ee48ab711f3d04fc7c}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_decoder\_tester\_init@{s\_decoder\_tester\_init}}
+\index{s\_decoder\_tester\_init@{s\_decoder\_tester\_init}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_tester\_init()}{s\_decoder\_tester\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+decoder\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$}]{tester,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a78c505a8a6942d5c3e9b5bd1ecfd8e23}\label{test__websocket__decoder_8c_a78c505a8a6942d5c3e9b5bd1ecfd8e23}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_decoder\_tester\_reset@{s\_decoder\_tester\_reset}}
+\index{s\_decoder\_tester\_reset@{s\_decoder\_tester\_reset}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_tester\_reset()}{s\_decoder\_tester\_reset()}}
+{\footnotesize\ttfamily static void s\+\_\+decoder\+\_\+tester\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdecoder__tester}{decoder\+\_\+tester}} $\ast$}]{tester }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_af5fd217b6feb0f395bffea4871f41e09}\label{test__websocket__decoder_8c_af5fd217b6feb0f395bffea4871f41e09}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_on\_frame@{s\_on\_frame}}
+\index{s\_on\_frame@{s\_on\_frame}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_frame()}{s\_on\_frame()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{frame,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__decoder_8c_a48691c2e05660736514624ed2f796897}\label{test__websocket__decoder_8c_a48691c2e05660736514624ed2f796897}} 
+\index{test\_websocket\_decoder.c@{test\_websocket\_decoder.c}!s\_on\_payload@{s\_on\_payload}}
+\index{s\_on\_payload@{s\_on\_payload}!test\_websocket\_decoder.c@{test\_websocket\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_payload()}{s\_on\_payload()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{data,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

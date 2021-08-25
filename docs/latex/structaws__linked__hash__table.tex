@@ -1,0 +1,54 @@
+\hypertarget{structaws__linked__hash__table}{}\doxysection{aws\+\_\+linked\+\_\+hash\+\_\+table Struct Reference}
+\label{structaws__linked__hash__table}\index{aws\_linked\_hash\_table@{aws\_linked\_hash\_table}}
+
+
+{\ttfamily \#include $<$linked\+\_\+hash\+\_\+table.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__linked__hash__table_a8796a2c3274f4c9edd9c4423882c301f}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__linked__hash__table_a4934eb02c4df8230b619a5d326300625}{list}}
+\item 
+struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} \mbox{\hyperlink{structaws__linked__hash__table_a97e4a441aabe080578f284d6b44d06b5}{table}}
+\item 
+\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__linked__hash__table_a0fa7b1737a88338ddf38e2b7a113fbd6}{user\+\_\+on\+\_\+value\+\_\+destroy}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Simple linked hash table. Preserves insertion order, and can be iterated in insertion order.
+
+You can also change the order safely without altering the shape of the underlying hash table. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__linked__hash__table_a8796a2c3274f4c9edd9c4423882c301f}\label{structaws__linked__hash__table_a8796a2c3274f4c9edd9c4423882c301f}} 
+\index{aws\_linked\_hash\_table@{aws\_linked\_hash\_table}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_linked\_hash\_table@{aws\_linked\_hash\_table}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+linked\+\_\+hash\+\_\+table\+::allocator}
+
+\mbox{\Hypertarget{structaws__linked__hash__table_a4934eb02c4df8230b619a5d326300625}\label{structaws__linked__hash__table_a4934eb02c4df8230b619a5d326300625}} 
+\index{aws\_linked\_hash\_table@{aws\_linked\_hash\_table}!list@{list}}
+\index{list@{list}!aws\_linked\_hash\_table@{aws\_linked\_hash\_table}}
+\doxysubsubsection{\texorpdfstring{list}{list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+linked\+\_\+hash\+\_\+table\+::list}
+
+\mbox{\Hypertarget{structaws__linked__hash__table_a97e4a441aabe080578f284d6b44d06b5}\label{structaws__linked__hash__table_a97e4a441aabe080578f284d6b44d06b5}} 
+\index{aws\_linked\_hash\_table@{aws\_linked\_hash\_table}!table@{table}}
+\index{table@{table}!aws\_linked\_hash\_table@{aws\_linked\_hash\_table}}
+\doxysubsubsection{\texorpdfstring{table}{table}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} aws\+\_\+linked\+\_\+hash\+\_\+table\+::table}
+
+\mbox{\Hypertarget{structaws__linked__hash__table_a0fa7b1737a88338ddf38e2b7a113fbd6}\label{structaws__linked__hash__table_a0fa7b1737a88338ddf38e2b7a113fbd6}} 
+\index{aws\_linked\_hash\_table@{aws\_linked\_hash\_table}!user\_on\_value\_destroy@{user\_on\_value\_destroy}}
+\index{user\_on\_value\_destroy@{user\_on\_value\_destroy}!aws\_linked\_hash\_table@{aws\_linked\_hash\_table}}
+\doxysubsubsection{\texorpdfstring{user\_on\_value\_destroy}{user\_on\_value\_destroy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}}$\ast$ aws\+\_\+linked\+\_\+hash\+\_\+table\+::user\+\_\+on\+\_\+value\+\_\+destroy}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{linked__hash__table_8h}{linked\+\_\+hash\+\_\+table.\+h}}\end{DoxyCompactItemize}

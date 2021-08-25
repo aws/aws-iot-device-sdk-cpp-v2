@@ -1,0 +1,171 @@
+\hypertarget{http__impl_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/http\+\_\+impl.h File Reference}
+\label{http__impl_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/http\_impl.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/http\_impl.h}}
+{\ttfamily \#include $<$aws/http/http.\+h$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} \{ \newline
+\mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5df97bdd66f76ed44a9435c9bf0b00a7}{AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+UNKNOWN}}
+, \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a2c0448f8c5c51c46800d24f16c124623}{AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+GET}}
+, \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5deb444109036cf5cba7ab10e7d16152}{AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+HEAD}}
+, \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a0c7614deff563b7c5e67f4028da13dce}{AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+CONNECT}}
+, \newline
+\mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a3feab35adebb7a83f20ff1e722cc4968}{AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+COUNT}}
+ \}
+\item 
+enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} \{ \newline
+\mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafabbd0bd5f17ebb78abbc3f55f0ceabc}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+UNKNOWN}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6d88a44be4a63ef889047f26f09e9184}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+METHOD}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6763d8b543a2ebeaac15c81d62792675}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+SCHEME}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa7a808b5020d11be9fd71e2852eed1e6e}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+AUTHORITY}}
+, \newline
+\mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa852cf05e8451b9ae2b44ace7fbc3d03c}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+PATH}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafa59b3c213563335cc9135a209fca6df}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+STATUS}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818faa38eb3896658e49e4dddb9c8689721ac}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+CONNECTION}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fabe41676b36b8934dda53b503a18adcd6}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+CONTENT\+\_\+\+LENGTH}}
+, \newline
+\mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa0c68261c799612b0c7695a1cacb7ff20}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+EXPECT}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5b94aadf9ad02e9205a6b5377071dabe}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+TRANSFER\+\_\+\+ENCODING}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fab3eeaa82d3396292c66d23fc5ea8031e}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+COOKIE}}
+, \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa3702f41665b9d3c26c167b4c2b912f28}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+HOST}}
+, \newline
+\mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5725ef4c402e78ffea3f505daf0932d0}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+COUNT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{http__impl_8h_a0abeda1aa6ccf5420adc2258adabdaef}{aws\+\_\+http\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized}} (void)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{http__impl_8h_a16904066da78eba8c4eb220ddcaec3d3}{aws\+\_\+http\+\_\+version\+\_\+to\+\_\+str}} (enum \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56}{aws\+\_\+http\+\_\+version}} version)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} \mbox{\hyperlink{http__impl_8h_aacfe30a3b2ee56b82888f25db84a2509}{aws\+\_\+http\+\_\+str\+\_\+to\+\_\+method}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} \mbox{\hyperlink{http__impl_8h_a2d00deda43ed71875d1776daa738c0ab}{aws\+\_\+http\+\_\+str\+\_\+to\+\_\+header\+\_\+name}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} \mbox{\hyperlink{http__impl_8h_ade2e3a28fa9de373c4885c9ab4b1dd53}{aws\+\_\+http\+\_\+lowercase\+\_\+str\+\_\+to\+\_\+header\+\_\+name}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_header\_name@{aws\_http\_header\_name}}
+\index{aws\_http\_header\_name@{aws\_http\_header\_name}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_header\_name}{aws\_http\_header\_name}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}}}
+
+Headers that affect internal processing. This is NOT a definitive list of headers. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_UNKNOWN@{AWS\_HTTP\_HEADER\_UNKNOWN}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_UNKNOWN@{AWS\_HTTP\_HEADER\_UNKNOWN}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafabbd0bd5f17ebb78abbc3f55f0ceabc}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafabbd0bd5f17ebb78abbc3f55f0ceabc}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_METHOD@{AWS\_HTTP\_HEADER\_METHOD}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_METHOD@{AWS\_HTTP\_HEADER\_METHOD}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6d88a44be4a63ef889047f26f09e9184}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6d88a44be4a63ef889047f26f09e9184}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+METHOD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_SCHEME@{AWS\_HTTP\_HEADER\_SCHEME}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_SCHEME@{AWS\_HTTP\_HEADER\_SCHEME}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6763d8b543a2ebeaac15c81d62792675}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa6763d8b543a2ebeaac15c81d62792675}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+SCHEME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_AUTHORITY@{AWS\_HTTP\_HEADER\_AUTHORITY}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_AUTHORITY@{AWS\_HTTP\_HEADER\_AUTHORITY}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa7a808b5020d11be9fd71e2852eed1e6e}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa7a808b5020d11be9fd71e2852eed1e6e}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+AUTHORITY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_PATH@{AWS\_HTTP\_HEADER\_PATH}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_PATH@{AWS\_HTTP\_HEADER\_PATH}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa852cf05e8451b9ae2b44ace7fbc3d03c}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa852cf05e8451b9ae2b44ace7fbc3d03c}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+PATH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_STATUS@{AWS\_HTTP\_HEADER\_STATUS}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_STATUS@{AWS\_HTTP\_HEADER\_STATUS}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafa59b3c213563335cc9135a209fca6df}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fafa59b3c213563335cc9135a209fca6df}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+STATUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_CONNECTION@{AWS\_HTTP\_HEADER\_CONNECTION}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_CONNECTION@{AWS\_HTTP\_HEADER\_CONNECTION}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818faa38eb3896658e49e4dddb9c8689721ac}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818faa38eb3896658e49e4dddb9c8689721ac}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+CONNECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_CONTENT\_LENGTH@{AWS\_HTTP\_HEADER\_CONTENT\_LENGTH}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_CONTENT\_LENGTH@{AWS\_HTTP\_HEADER\_CONTENT\_LENGTH}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fabe41676b36b8934dda53b503a18adcd6}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fabe41676b36b8934dda53b503a18adcd6}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+CONTENT\+\_\+\+LENGTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_EXPECT@{AWS\_HTTP\_HEADER\_EXPECT}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_EXPECT@{AWS\_HTTP\_HEADER\_EXPECT}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa0c68261c799612b0c7695a1cacb7ff20}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa0c68261c799612b0c7695a1cacb7ff20}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+EXPECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_TRANSFER\_ENCODING@{AWS\_HTTP\_HEADER\_TRANSFER\_ENCODING}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_TRANSFER\_ENCODING@{AWS\_HTTP\_HEADER\_TRANSFER\_ENCODING}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5b94aadf9ad02e9205a6b5377071dabe}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5b94aadf9ad02e9205a6b5377071dabe}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+TRANSFER\+\_\+\+ENCODING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_COOKIE@{AWS\_HTTP\_HEADER\_COOKIE}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_COOKIE@{AWS\_HTTP\_HEADER\_COOKIE}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fab3eeaa82d3396292c66d23fc5ea8031e}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fab3eeaa82d3396292c66d23fc5ea8031e}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+COOKIE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_HOST@{AWS\_HTTP\_HEADER\_HOST}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_HOST@{AWS\_HTTP\_HEADER\_HOST}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa3702f41665b9d3c26c167b4c2b912f28}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa3702f41665b9d3c26c167b4c2b912f28}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+HOST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_HEADER\_COUNT@{AWS\_HTTP\_HEADER\_COUNT}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_HEADER\_COUNT@{AWS\_HTTP\_HEADER\_COUNT}}}\mbox{\Hypertarget{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5725ef4c402e78ffea3f505daf0932d0}\label{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5725ef4c402e78ffea3f505daf0932d0}} 
+AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_method@{aws\_http\_method}}
+\index{aws\_http\_method@{aws\_http\_method}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_method}{aws\_http\_method}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Methods that affect internal processing. This is NOT a definitive list of methods. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_METHOD\_UNKNOWN@{AWS\_HTTP\_METHOD\_UNKNOWN}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_METHOD\_UNKNOWN@{AWS\_HTTP\_METHOD\_UNKNOWN}}}\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5df97bdd66f76ed44a9435c9bf0b00a7}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5df97bdd66f76ed44a9435c9bf0b00a7}} 
+AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_METHOD\_GET@{AWS\_HTTP\_METHOD\_GET}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_METHOD\_GET@{AWS\_HTTP\_METHOD\_GET}}}\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a2c0448f8c5c51c46800d24f16c124623}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a2c0448f8c5c51c46800d24f16c124623}} 
+AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+GET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_METHOD\_HEAD@{AWS\_HTTP\_METHOD\_HEAD}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_METHOD\_HEAD@{AWS\_HTTP\_METHOD\_HEAD}}}\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5deb444109036cf5cba7ab10e7d16152}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a5deb444109036cf5cba7ab10e7d16152}} 
+AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+HEAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_METHOD\_CONNECT@{AWS\_HTTP\_METHOD\_CONNECT}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_METHOD\_CONNECT@{AWS\_HTTP\_METHOD\_CONNECT}}}\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a0c7614deff563b7c5e67f4028da13dce}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a0c7614deff563b7c5e67f4028da13dce}} 
+AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+CONNECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_METHOD\_COUNT@{AWS\_HTTP\_METHOD\_COUNT}!http\_impl.h@{http\_impl.h}}\index{http\_impl.h@{http\_impl.h}!AWS\_HTTP\_METHOD\_COUNT@{AWS\_HTTP\_METHOD\_COUNT}}}\mbox{\Hypertarget{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a3feab35adebb7a83f20ff1e722cc4968}\label{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79a3feab35adebb7a83f20ff1e722cc4968}} 
+AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{http__impl_8h_a0abeda1aa6ccf5420adc2258adabdaef}\label{http__impl_8h_a0abeda1aa6ccf5420adc2258adabdaef}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_fatal\_assert\_library\_initialized@{aws\_http\_fatal\_assert\_library\_initialized}}
+\index{aws\_http\_fatal\_assert\_library\_initialized@{aws\_http\_fatal\_assert\_library\_initialized}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_fatal\_assert\_library\_initialized()}{aws\_http\_fatal\_assert\_library\_initialized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+http\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{http__impl_8h_ade2e3a28fa9de373c4885c9ab4b1dd53}\label{http__impl_8h_ade2e3a28fa9de373c4885c9ab4b1dd53}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_lowercase\_str\_to\_header\_name@{aws\_http\_lowercase\_str\_to\_header\_name}}
+\index{aws\_http\_lowercase\_str\_to\_header\_name@{aws\_http\_lowercase\_str\_to\_header\_name}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_lowercase\_str\_to\_header\_name()}{aws\_http\_lowercase\_str\_to\_header\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} aws\+\_\+http\+\_\+lowercase\+\_\+str\+\_\+to\+\_\+header\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor }\end{DoxyParamCaption})}
+
+Returns appropriate enum, or AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+UNKNOWN if no match found. Case-\/sensitive (ex\+: \char`\"{}\+Connection\char`\"{} -\/\texorpdfstring{$>$}{>} AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+UNKNOWN because we looked for \char`\"{}connection\char`\"{}). \mbox{\Hypertarget{http__impl_8h_a2d00deda43ed71875d1776daa738c0ab}\label{http__impl_8h_a2d00deda43ed71875d1776daa738c0ab}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_str\_to\_header\_name@{aws\_http\_str\_to\_header\_name}}
+\index{aws\_http\_str\_to\_header\_name@{aws\_http\_str\_to\_header\_name}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_str\_to\_header\_name()}{aws\_http\_str\_to\_header\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} aws\+\_\+http\+\_\+str\+\_\+to\+\_\+header\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor }\end{DoxyParamCaption})}
+
+Returns appropriate enum, or AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+UNKNOWN if no match found. Not case-\/sensitive \mbox{\Hypertarget{http__impl_8h_aacfe30a3b2ee56b82888f25db84a2509}\label{http__impl_8h_aacfe30a3b2ee56b82888f25db84a2509}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_str\_to\_method@{aws\_http\_str\_to\_method}}
+\index{aws\_http\_str\_to\_method@{aws\_http\_str\_to\_method}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_str\_to\_method()}{aws\_http\_str\_to\_method()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} aws\+\_\+http\+\_\+str\+\_\+to\+\_\+method (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor }\end{DoxyParamCaption})}
+
+Returns appropriate enum, or AWS\+\_\+\+HTTP\+\_\+\+METHOD\+\_\+\+UNKNOWN if no match found. Case-\/sensitive \mbox{\Hypertarget{http__impl_8h_a16904066da78eba8c4eb220ddcaec3d3}\label{http__impl_8h_a16904066da78eba8c4eb220ddcaec3d3}} 
+\index{http\_impl.h@{http\_impl.h}!aws\_http\_version\_to\_str@{aws\_http\_version\_to\_str}}
+\index{aws\_http\_version\_to\_str@{aws\_http\_version\_to\_str}!http\_impl.h@{http\_impl.h}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_version\_to\_str()}{aws\_http\_version\_to\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+http\+\_\+version\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{http_8h_af0850d3cf95d4006f48cf2c82100fe56}{aws\+\_\+http\+\_\+version}}}]{version }\end{DoxyParamCaption})}
+

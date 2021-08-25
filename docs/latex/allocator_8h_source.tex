@@ -1,0 +1,141 @@
+\hypertarget{allocator_8h_source}{}\doxysection{allocator.\+h}
+\label{allocator_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/allocator.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/allocator.h}}
+\mbox{\hyperlink{allocator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_ALLOCATOR\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_ALLOCATOR\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{aws/common/macros.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdbool_8h}{aws/common/stdbool.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{aws/common/stdint.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{comment}{/* Allocator structure. An instance of this will be passed around for anything needing memory allocation */}}
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} \{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} *(*mem\_acquire)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{17     void (*\mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *ptr);}
+\DoxyCodeLine{18     \textcolor{comment}{/* Optional method; if not supported, this pointer must be NULL */}}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} *(*mem\_realloc)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *oldptr, \textcolor{keywordtype}{size\_t} oldsize, \textcolor{keywordtype}{size\_t} newsize);}
+\DoxyCodeLine{20     \textcolor{comment}{/* Optional method; if not supported, this pointer must be NULL */}}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} *(*mem\_calloc)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} num, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{28 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{29 \textcolor{keywordtype}{bool} \mbox{\hyperlink{allocator_8h_a9824c88d16c12baeb15cd146894b9b5a}{aws\_allocator\_is\_valid}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{32 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{allocator_8h_a5036749a78d3724821ac41e4e0df9b9e}{aws\_default\_allocator}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifdef \_\_MACH\_\_}}
+\DoxyCodeLine{35 \textcolor{comment}{/* Avoid pulling in CoreFoundation headers in a header file. */}}
+\DoxyCodeLine{36 \textcolor{keyword}{struct }\_\_CFAllocator;}
+\DoxyCodeLine{37 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\_\_CFAllocator *CFAllocatorRef;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{44 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{45 CFAllocatorRef aws\_wrapped\_cf\_allocator\_new(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{50 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{51 \textcolor{keywordtype}{void} aws\_wrapped\_cf\_allocator\_destroy(CFAllocatorRef \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{57 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{58 \textcolor{keywordtype}{void} *\mbox{\hyperlink{allocator_8h_a5137d8d9aa39ddc261c3cb5e54c2c302}{aws\_mem\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{65 \textcolor{keywordtype}{void} *\mbox{\hyperlink{allocator_8h_a4bac27f64760945c639cdedfb5720f90}{aws\_mem\_calloc}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} num, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{76 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{77 \textcolor{keywordtype}{void} *\mbox{\hyperlink{allocator_8h_affdf1410ca6621ecd0653a1dfebc7ff5}{aws\_mem\_acquire\_many}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, ...);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{83 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{84 \textcolor{keywordtype}{void} \mbox{\hyperlink{allocator_8h_ac34324e684063da863a00f4fb8129906}{aws\_mem\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *ptr);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/*}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Attempts to adjust the size of the pointed-\/to memory buffer from oldsize to}}
+\DoxyCodeLine{88 \textcolor{comment}{ * newsize. The pointer (*ptr) may be changed if the memory needs to be}}
+\DoxyCodeLine{89 \textcolor{comment}{ * reallocated.}}
+\DoxyCodeLine{90 \textcolor{comment}{ *}}
+\DoxyCodeLine{91 \textcolor{comment}{ * If reallocation fails, *ptr is unchanged, and this method raises an}}
+\DoxyCodeLine{92 \textcolor{comment}{ * AWS\_ERROR\_OOM error.}}
+\DoxyCodeLine{93 \textcolor{comment}{ */}}
+\DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{95 \textcolor{keywordtype}{int} \mbox{\hyperlink{allocator_8h_a58dc357f8530be0df3643b27c6860716}{aws\_mem\_realloc}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} **ptr, \textcolor{keywordtype}{size\_t} oldsize, \textcolor{keywordtype}{size\_t} newsize);}
+\DoxyCodeLine{96 \textcolor{comment}{/*}}
+\DoxyCodeLine{97 \textcolor{comment}{ * Maintainer note: The above function doesn't return the pointer (as with}}
+\DoxyCodeLine{98 \textcolor{comment}{ * standard C realloc) as this pattern becomes error-\/prone when OOMs occur.}}
+\DoxyCodeLine{99 \textcolor{comment}{ * In particular, we want to avoid losing the old pointer when an OOM condition}}
+\DoxyCodeLine{100 \textcolor{comment}{ * occurs, so we prefer to take the old pointer as an in/out reference argument}}
+\DoxyCodeLine{101 \textcolor{comment}{ * that we can leave unchanged on failure.}}
+\DoxyCodeLine{102 \textcolor{comment}{ */}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{keyword}{enum} \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9}{aws\_mem\_trace\_level}} \{}
+\DoxyCodeLine{105     \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9a590406cfee5ec02650d194b01a8c0db8}{AWS\_MEMTRACE\_NONE}} = 0,   \textcolor{comment}{/* no tracing */}}
+\DoxyCodeLine{106     \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9a070444907bbb9e403867b5db8b01970e}{AWS\_MEMTRACE\_BYTES}} = 1,  \textcolor{comment}{/* just track allocation sizes and total allocated */}}
+\DoxyCodeLine{107     \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9a8bd3c2337d8730d7527a798f355e8a2a}{AWS\_MEMTRACE\_STACKS}} = 2, \textcolor{comment}{/* capture callstacks for each allocation */}}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{/*}}
+\DoxyCodeLine{111 \textcolor{comment}{ * Wraps an allocator and tracks all external allocations. If aws\_mem\_trace\_dump() is called}}
+\DoxyCodeLine{112 \textcolor{comment}{ * and there are still allocations active, they will be reported to the aws\_logger at TRACE level.}}
+\DoxyCodeLine{113 \textcolor{comment}{ * allocator -\/ The allocator to wrap}}
+\DoxyCodeLine{114 \textcolor{comment}{ * deprecated -\/ Deprecated arg, ignored.}}
+\DoxyCodeLine{115 \textcolor{comment}{ * level -\/ The level to track allocations at}}
+\DoxyCodeLine{116 \textcolor{comment}{ * frames\_per\_stack is how many frames to store per callstack if AWS\_MEMTRACE\_STACKS is in use,}}
+\DoxyCodeLine{117 \textcolor{comment}{ * otherwise it is ignored. 8 tends to be a pretty good number balancing storage space vs useful stacks.}}
+\DoxyCodeLine{118 \textcolor{comment}{ * Returns the tracer allocator, which should be used for all allocations that should be tracked.}}
+\DoxyCodeLine{119 \textcolor{comment}{ */}}
+\DoxyCodeLine{120 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{121 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{allocator_8h_aa7aa4b037d3ade0d2d546e3c0db23940}{aws\_mem\_tracer\_new}}(}
+\DoxyCodeLine{122     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{123     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *deprecated,}
+\DoxyCodeLine{124     \textcolor{keyword}{enum} \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9}{aws\_mem\_trace\_level}} \mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}},}
+\DoxyCodeLine{125     \textcolor{keywordtype}{size\_t} frames\_per\_stack);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{/*}}
+\DoxyCodeLine{128 \textcolor{comment}{ * Unwraps the traced allocator and cleans up the tracer.}}
+\DoxyCodeLine{129 \textcolor{comment}{ * Returns the original allocator}}
+\DoxyCodeLine{130 \textcolor{comment}{ */}}
+\DoxyCodeLine{131 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{132 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{allocator_8h_a3aa34e3d02b87498cb572d2ee161daf4}{aws\_mem\_tracer\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *trace\_allocator);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{comment}{/*}}
+\DoxyCodeLine{135 \textcolor{comment}{ * If there are outstanding allocations, dumps them to log, along with any information gathered}}
+\DoxyCodeLine{136 \textcolor{comment}{ * based on the trace level set when aws\_mem\_trace() was called.}}
+\DoxyCodeLine{137 \textcolor{comment}{ * Should be passed the tracer allocator returned from aws\_mem\_trace().}}
+\DoxyCodeLine{138 \textcolor{comment}{ */}}
+\DoxyCodeLine{139 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{140 \textcolor{keywordtype}{void} \mbox{\hyperlink{allocator_8h_a7e4dd8ce32216de0c00b6e413c9ac4ad}{aws\_mem\_tracer\_dump}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *trace\_allocator);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{comment}{/*}}
+\DoxyCodeLine{143 \textcolor{comment}{ * Returns the current number of bytes in outstanding allocations}}
+\DoxyCodeLine{144 \textcolor{comment}{ */}}
+\DoxyCodeLine{145 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{146 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{allocator_8h_ac65e8f774cfa24431049995b202edc90}{aws\_mem\_tracer\_bytes}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *trace\_allocator);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{/*}}
+\DoxyCodeLine{149 \textcolor{comment}{ * Returns the current number of outstanding allocations}}
+\DoxyCodeLine{150 \textcolor{comment}{ */}}
+\DoxyCodeLine{151 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{152 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{allocator_8h_a70bede0313f558d6f80c31082f087ed6}{aws\_mem\_tracer\_count}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *trace\_allocator);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{/*}}
+\DoxyCodeLine{155 \textcolor{comment}{ * Creates a new Small Block Allocator which fronts the supplied parent allocator. The SBA will intercept}}
+\DoxyCodeLine{156 \textcolor{comment}{ * and handle small allocs, and will forward anything larger to the parent allocator.}}
+\DoxyCodeLine{157 \textcolor{comment}{ * If multi\_threaded is true, the internal allocator will protect its internal data structures with a mutex}}
+\DoxyCodeLine{158 \textcolor{comment}{ */}}
+\DoxyCodeLine{159 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{160 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{allocator_8h_af58ea555c14915aed3da6dcd12a9a4c8}{aws\_small\_block\_allocator\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{bool} multi\_threaded);}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{comment}{/*}}
+\DoxyCodeLine{163 \textcolor{comment}{ * Destroys a Small Block Allocator instance and frees its memory to the parent allocator. The parent}}
+\DoxyCodeLine{164 \textcolor{comment}{ * allocator will otherwise be unaffected.}}
+\DoxyCodeLine{165 \textcolor{comment}{ */}}
+\DoxyCodeLine{166 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{167 \textcolor{keywordtype}{void} \mbox{\hyperlink{allocator_8h_a4db5c0f8c891bd46b0fbc567f9c2b3ca}{aws\_small\_block\_allocator\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *sba\_allocator);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_ALLOCATOR\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,41 @@
+\hypertarget{include_2aws_2crt_2_u_u_i_d_8h_source}{}\doxysection{UUID.\+h}
+\label{include_2aws_2crt_2_u_u_i_d_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/UUID.h@{crt/aws-\/crt-\/cpp/include/aws/crt/UUID.h}}
+\mbox{\hyperlink{include_2aws_2crt_2_u_u_i_d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-c-common_2include_2aws_2common_2_u_u_i_d_8h}{aws/common/uuid.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{14     \{}
+\DoxyCodeLine{15         \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{16         \{}
+\DoxyCodeLine{17           \textcolor{keyword}{public}:}
+\DoxyCodeLine{18             \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}}() \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{19             \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{namespacecreate-projects_a6690bd467c6241951130aa0bf17e373d}{str}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21             \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{namespacecreate-projects_a6690bd467c6241951130aa0bf17e373d}{str}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23             \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespace_aws_1_1_crt_af7540fb5b29c567df60a2bd7c99d4d1a}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}} \&other) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{24             \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespace_aws_1_1_crt_afff3d70dfaec9f8ef415867759dae2b8}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_u_u_i_d}{UUID}} \&other) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{25             \textcolor{keyword}{operator} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{26             \textcolor{keyword}{operator} \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{ByteBuf}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28             \textcolor{keyword}{inline} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_good; \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30             \textcolor{keywordtype}{int} GetLastError() const noexcept;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32             \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_1_1_job_status_marshaller_a624b1e2b94d1dbc824902481595ea617}{ToString}}() const;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34           private:}
+\DoxyCodeLine{35             \mbox{\hyperlink{structaws__uuid}{aws\_uuid}} m\_uuid;}
+\DoxyCodeLine{36             \textcolor{keywordtype}{bool} m\_good;}
+\DoxyCodeLine{37         \};}
+\DoxyCodeLine{38     \} \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{39 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

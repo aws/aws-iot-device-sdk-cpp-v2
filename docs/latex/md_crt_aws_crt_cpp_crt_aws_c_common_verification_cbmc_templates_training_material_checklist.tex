@@ -1,0 +1,91 @@
+This is a check list intended for
+
+
+\begin{DoxyItemize}
+\item proof writers to use before checking a proof into a repository and
+\item proof reviewers to use during the code review of a pull request containing a proof.
+\end{DoxyItemize}
+
+This check list is intended to ensure clear answers to two questions\+:
+
+
+\begin{DoxyItemize}
+\item What properties are being checked by the proof?
+\item What assumptions are being made by the proof?
+\end{DoxyItemize}
+
+and that these answers can be found in one of three places\+:
+
+
+\begin{DoxyItemize}
+\item The proof harness,
+\item The proof makefiles (and, with the starter kit, these makefiles are the proof Makefile, the project Makefile-\/project-\/defines, and the project Makefile.\+common), and perhaps
+\item The proof readme file.
+\end{DoxyItemize}
+
+The best practices for writing a proof are described in the section \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g}{How to Write a CBMC Proof}} of the \mbox{\hyperlink{index_md_README}{training material}} in this \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e}{starter kit}}. Reviewers should keep these best practices in mind when reading a proof. We recommend that any deviations from best practices be explained in the readme file.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}{}\doxysection{Properties checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}
+Check the following\+:
+
+
+\begin{DoxyItemize}
+\item All of the standard property-\/checking flags are used\+:
+\begin{DoxyItemize}
+\item --bounds-\/check
+\item --conversion-\/check
+\item --div-\/by-\/zero-\/check
+\item --float-\/overflow-\/check
+\item --malloc-\/fail-\/null
+\item --malloc-\/may-\/fail
+\item --nan-\/check
+\item --pointer-\/check
+\item --pointer-\/overflow-\/check
+\item --pointer-\/primitive-\/check
+\item --signed-\/overflow-\/check
+\item --undefined-\/shift-\/check
+\item --unsigned-\/overflow-\/check
+\end{DoxyItemize}
+
+Note that the starter kit uses these flags by default. Note, however, that a developer may disable any one of these flags by editing project Makefile.\+common or by setting a makefile variable to the empty string (as in {\ttfamily CBMC\+\_\+\+FLAG\+\_\+\+MALLOC\+\_\+\+MAY\+\_\+\+FAIL =}) in the project Makefile-\/project-\/defines or a proof Makefile. These are the places to look for deviations.
+\item All deviations from the standard property-\/checking flags are documented.
+
+There are valid reasons to omit flags either for a project or for an individual proof. But the decision and the reason for the decision must be documented either in a project readme or a proof readme file.
+\end{DoxyItemize}
+
+CBMC checks assertions in the code. This is understood and need not be documented.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}{}\doxysection{Assumptions made}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}
+Check the following\+:
+
+
+\begin{DoxyItemize}
+\item All nontrivial data structures have an \href{PROOF-WRITING.md\#the-ensure_allocated-function}{\texttt{ {\ttfamily ensure\+\_\+allocated} function}} as described in the training material.
+
+Feel free to use any naming scheme that makes sense for your project --- some projects use {\ttfamily allocate\+\_\+X} in place of {\ttfamily ensure\+\_\+allocated\+\_\+X} --- but be consistent.
+\item All nontrivial data structures have an \href{PROOF-WRITING.md\#the-is_valid-function}{\texttt{ {\ttfamily is\+\_\+valid()} predicate}} as described in the training material for every nontrivial data structure.
+\item All definitions of {\ttfamily ensure\+\_\+allocated} functions and {\ttfamily is\+\_\+valid} predicates appear in a common location.
+
+These definitions are most commonly stored in the {\ttfamily proofs/sources} subdirectory of the starter kit. Definitions are stored here and used consistently in the proofs.
+\item All pointers passed as input are allocated on the heap with {\ttfamily malloc}.
+
+One common mistake is to allocate a buffer {\ttfamily buf} on the stack and to pass {\ttfamily \&buf} to the function under test in the proof harness. This prevents the proof from considering the case of a NULL pointer.
+\item All instances of {\ttfamily \+\_\+\+\_\+\+CPROVER\+\_\+assume} appear in a proof harness.
+
+Note that some exceptions are required. For example, it may be necessary in an {\ttfamily ensure\+\_\+allocated} to assume {\ttfamily length \texorpdfstring{$<$}{<} CBMC\+\_\+\+MAX\+\_\+\+OBJECT\+\_\+\+SIZE} before invoking {\ttfamily malloc(length)} to avoid a false positive about malloc\textquotesingle{}ing a too-\/big object. But every instance of {\ttfamily \+\_\+\+\_\+\+CPROVER\+\_\+assume} in supporting code should be copied into the proof harness. The goal is for all proof assumptions to be documented in one place.
+\item All preprocessor definitions related to bounds on input size or otherwise related to proof assumptions appear in the proof Makefile.
+
+In particular, do not embed definitions in the supporting code or header files. The goal is for all proof assumptions to be documented in one place.
+\item Confirm that all stubs used in the proof are acceptable abstractions of the actual code.
+
+Acceptable could mean simply that every behavior of the original code is a behavior of the abstraction.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}{}\doxysection{Results checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}
+Look at the report in the checks attached to the pull request.
+
+
+\begin{DoxyItemize}
+\item Confirm that the coverage is acceptable and confirm that the readme file explains the reason for any lines not covered.
+\item Confirm that the list of missing functions is acceptable.
+\item Confirm that there are no errors reported.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md125}{}\doxysection{Other things to consider}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md125}
+
+\begin{DoxyItemize}
+\item Consider writing function contracts for the function under test as described in \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g}{How to Write a CBMC Proof}} of the \mbox{\hyperlink{index_md_README}{training material}}. The check list above ensures that the properties (including the assumptions about the input) that must be true before function invocation are clearly stated in the proof harness. Consider adding a statement of what properties must be true after function invocation as assertions at the end of the proof harness.
+\item Consider adding the assumptions made by the proof harness for a function under test to the source code for the function in the form of assertions in the code. This will validate that the assumptions made by the proof of a function are satisfied by each invocation of the function (at least during testing). 
+\end{DoxyItemize}

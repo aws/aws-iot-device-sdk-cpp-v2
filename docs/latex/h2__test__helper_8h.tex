@@ -1,0 +1,290 @@
+\hypertarget{h2__test__helper_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\+\_\+test\+\_\+helper.h File Reference}
+\label{h2__test__helper_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.h}}
+{\ttfamily \#include $<$aws/common/array\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+frames.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}
+\item 
+struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}}
+\item 
+struct \mbox{\hyperlink{structh2__decode__tester__options}{h2\+\_\+decode\+\_\+tester\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}}
+\item 
+struct \mbox{\hyperlink{structh2__fake__peer__options}{h2\+\_\+fake\+\_\+peer\+\_\+options}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{h2__test__helper_8h_a57038978108bf0025501e27f1f115eb9}{ASSERT\+\_\+\+H2\+ERR\+\_\+\+SUCCESS}}(condition, ...)
+\item 
+\#define \mbox{\hyperlink{h2__test__helper_8h_a9c361c6699911db7c232fc44c56fd00f}{ASSERT\+\_\+\+H2\+ERR\+\_\+\+FAILS}}(condition, ...)
+\item 
+\#define \mbox{\hyperlink{h2__test__helper_8h_a6edccfd94da3e0f78ca3dfb76ce09251}{ASSERT\+\_\+\+H2\+ERR\+\_\+\+ERROR}}(h2\+\_\+error,  condition, ...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_a61d13be47bb19d1aecdbcc7946ef3642}{h2\+\_\+decoded\+\_\+frame\+\_\+check\+\_\+finished}} (const struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$frame, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} expected\+\_\+type, uint32\+\_\+t expected\+\_\+stream\+\_\+id)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_ad887bf4a27893f764a2c7680a87b9f05}{h2\+\_\+decode\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, const struct \mbox{\hyperlink{structh2__decode__tester__options}{h2\+\_\+decode\+\_\+tester\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8h_aac51e8ae2b96a3672dd333ac5e099550}{h2\+\_\+decode\+\_\+tester\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+size\+\_\+t \mbox{\hyperlink{h2__test__helper_8h_a6e33fefbffc7259e225660310b773cf3}{h2\+\_\+decode\+\_\+tester\+\_\+frame\+\_\+count}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_ae308aa471a26280eae9ce9e8227058ae}{h2\+\_\+decode\+\_\+tester\+\_\+get\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, size\+\_\+t i)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_a844ced0f75da87b0d03a7b3e0a43238d}{h2\+\_\+decode\+\_\+tester\+\_\+latest\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_af12819b3a4259da503cba36b6be8cdb4}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_aa3560acccf30df63f7b28817926bd67d}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame\+\_\+any\+\_\+type}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_a406d10eddd5060b18a0bc516ca17c0d2}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_ab7a2db592f88bfda8caa8293f4e3294d}{h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+across\+\_\+frames}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} expected, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} expect\+\_\+end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_ae02f94772bee7ea979389e9a79e0b505}{h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+str\+\_\+across\+\_\+frames}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, const char $\ast$expected, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} expect\+\_\+end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_a6f9683be4ea03dcbb3e372b210840675}{h2\+\_\+fake\+\_\+peer\+\_\+init}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, const struct \mbox{\hyperlink{structh2__fake__peer__options}{h2\+\_\+fake\+\_\+peer\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8h_a172dcdbf4c9555d2a121f1c29f98300b}{h2\+\_\+fake\+\_\+peer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_ab10468fc7b9dde04f736f4629245dd8a}{h2\+\_\+fake\+\_\+peer\+\_\+decode\+\_\+messages\+\_\+from\+\_\+testing\+\_\+channel}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_aa529e58e14f3214ab3909ceb6666e027}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+frame}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$frame)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_a5dcf9774b4913c9006eb3dd56910d9f2}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_aafa87c468c1053ffa6d02ec36bf11626}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame\+\_\+str}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, uint32\+\_\+t stream\+\_\+id, const char $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_a394873d1d35c1eb44ad85f1be7d9cc1b}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$settings)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8h_a2ed0faf44e70ddd5b433e220efdfc805}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface\+\_\+default\+\_\+settings}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{h2__test__helper_8h_ae80e6951750c60d233bacf380f64ccb4}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+tester}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8h_a714bfa2f310a241a041208ce9f9fef14}{aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+max\+\_\+bytes\+\_\+per\+\_\+read}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$input\+\_\+stream, size\+\_\+t max\+\_\+bytes)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8h_a586d529599720546c47cf60b4ea4b041}{aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+reading\+\_\+broken}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$input\+\_\+stream, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+broken)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{h2__test__helper_8h_a6edccfd94da3e0f78ca3dfb76ce09251}\label{h2__test__helper_8h_a6edccfd94da3e0f78ca3dfb76ce09251}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!ASSERT\_H2ERR\_ERROR@{ASSERT\_H2ERR\_ERROR}}
+\index{ASSERT\_H2ERR\_ERROR@{ASSERT\_H2ERR\_ERROR}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_H2ERR\_ERROR}{ASSERT\_H2ERR\_ERROR}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+H2\+ERR\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{h2\+\_\+error,  }\item[{}]{condition,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__h2err}{aws\_h2err}} assert\_rv = (condition);                                                                      \(\backslash\)}
+\DoxyCodeLine{        if (!\mbox{\hyperlink{h2__frames_8h_a13d947312a891c5adc17fdbf23fa1e51}{aws\_h2err\_failed}}(assert\_rv)) \{                                                                            \(\backslash\)}
+\DoxyCodeLine{            if (!\mbox{\hyperlink{aws__test__harness_8h_ac190ef68830c538ff30d707df2cfcd21}{PRINT\_FAIL\_INTERNAL0}}(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}
+\DoxyCodeLine{                    \textcolor{stringliteral}{"{}Expected \%s failure at \%s; got AWS\_H2ERR\_SUCCESS\(\backslash\)n"{}},                                              \(\backslash\)}
+\DoxyCodeLine{                    \mbox{\hyperlink{h2__frames_8h_a536cb84acb8b0d9c9807e38a2bdf5e77}{aws\_http2\_error\_code\_to\_str}}(h2\_error),                                                             \(\backslash\)}
+\DoxyCodeLine{                    \#condition);                                                                                       \(\backslash\)}
+\DoxyCodeLine{            \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{            POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{        if (assert\_rv.h2\_code != h2\_error) \{                                                                           \(\backslash\)}
+\DoxyCodeLine{            PRINT\_FAIL\_INTERNAL0(                                                                                      \(\backslash\)}
+\DoxyCodeLine{                \textcolor{stringliteral}{"{}Expected \%s failure at \%s; got aws\_h2err\{\%s, \%s\}\(\backslash\)n"{}},                                                  \(\backslash\)}
+\DoxyCodeLine{                \mbox{\hyperlink{h2__frames_8h_a536cb84acb8b0d9c9807e38a2bdf5e77}{aws\_http2\_error\_code\_to\_str}}(h2\_error),                                                                 \(\backslash\)}
+\DoxyCodeLine{                \#condition,                                                                                            \(\backslash\)}
+\DoxyCodeLine{                \mbox{\hyperlink{h2__frames_8h_a536cb84acb8b0d9c9807e38a2bdf5e77}{aws\_http2\_error\_code\_to\_str}}(assert\_rv.h2\_code),                                                        \(\backslash\)}
+\DoxyCodeLine{                \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a218e5d1f0f7cad34b310d187f47b7786}{aws\_error\_name}}(assert\_rv.aws\_code));                                                                   \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{h2__test__helper_8h_a9c361c6699911db7c232fc44c56fd00f}\label{h2__test__helper_8h_a9c361c6699911db7c232fc44c56fd00f}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!ASSERT\_H2ERR\_FAILS@{ASSERT\_H2ERR\_FAILS}}
+\index{ASSERT\_H2ERR\_FAILS@{ASSERT\_H2ERR\_FAILS}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_H2ERR\_FAILS}{ASSERT\_H2ERR\_FAILS}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+H2\+ERR\+\_\+\+FAILS(\begin{DoxyParamCaption}\item[{}]{condition,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__h2err}{aws\_h2err}} assert\_rv = (condition);                                                                      \(\backslash\)}
+\DoxyCodeLine{        if (!\mbox{\hyperlink{h2__frames_8h_a13d947312a891c5adc17fdbf23fa1e51}{aws\_h2err\_failed}}(assert\_rv)) \{                                                                            \(\backslash\)}
+\DoxyCodeLine{            if (!\mbox{\hyperlink{aws__test__harness_8h_ac190ef68830c538ff30d707df2cfcd21}{PRINT\_FAIL\_INTERNAL0}}(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{                PRINT\_FAIL\_INTERNAL0(\textcolor{stringliteral}{"{}Expected failure at \%s; got AWS\_H2ERR\_SUCCESS\(\backslash\)n"{}}, \#condition);                   \(\backslash\)}
+\DoxyCodeLine{            \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{            POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{h2__test__helper_8h_a57038978108bf0025501e27f1f115eb9}\label{h2__test__helper_8h_a57038978108bf0025501e27f1f115eb9}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!ASSERT\_H2ERR\_SUCCESS@{ASSERT\_H2ERR\_SUCCESS}}
+\index{ASSERT\_H2ERR\_SUCCESS@{ASSERT\_H2ERR\_SUCCESS}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_H2ERR\_SUCCESS}{ASSERT\_H2ERR\_SUCCESS}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+H2\+ERR\+\_\+\+SUCCESS(\begin{DoxyParamCaption}\item[{}]{condition,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__h2err}{aws\_h2err}} assert\_rv = (condition);                                                                      \(\backslash\)}
+\DoxyCodeLine{        if (!\mbox{\hyperlink{h2__frames_8h_a940ab5c0049f74853f55be2c802f7787}{aws\_h2err\_success}}(assert\_rv)) \{                                                                           \(\backslash\)}
+\DoxyCodeLine{            if (!\mbox{\hyperlink{aws__test__harness_8h_ac190ef68830c538ff30d707df2cfcd21}{PRINT\_FAIL\_INTERNAL0}}(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}
+\DoxyCodeLine{                    \textcolor{stringliteral}{"{}Expected success at \%s; got aws\_h2err\{\%s, \%s\}\(\backslash\)n"{}},                                                 \(\backslash\)}
+\DoxyCodeLine{                    \#condition,                                                                                        \(\backslash\)}
+\DoxyCodeLine{                    \mbox{\hyperlink{h2__frames_8h_a536cb84acb8b0d9c9807e38a2bdf5e77}{aws\_http2\_error\_code\_to\_str}}(assert\_rv.h2\_code),                                                    \(\backslash\)}
+\DoxyCodeLine{                    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a218e5d1f0f7cad34b310d187f47b7786}{aws\_error\_name}}(assert\_rv.aws\_code));                                                               \(\backslash\)}
+\DoxyCodeLine{            \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{            POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h2__test__helper_8h_ae80e6951750c60d233bacf380f64ccb4}\label{h2__test__helper_8h_ae80e6951750c60d233bacf380f64ccb4}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!aws\_input\_stream\_new\_tester@{aws\_input\_stream\_new\_tester}}
+\index{aws\_input\_stream\_new\_tester@{aws\_input\_stream\_new\_tester}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_new\_tester()}{aws\_input\_stream\_new\_tester()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+tester (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor }\end{DoxyParamCaption})}
+
+Create input stream that can do weird stuff in tests \mbox{\Hypertarget{h2__test__helper_8h_a714bfa2f310a241a041208ce9f9fef14}\label{h2__test__helper_8h_a714bfa2f310a241a041208ce9f9fef14}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read@{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read}}
+\index{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read@{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read()}{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read()}}
+{\footnotesize\ttfamily void aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+max\+\_\+bytes\+\_\+per\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{input\+\_\+stream,  }\item[{size\+\_\+t}]{max\+\_\+bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_a586d529599720546c47cf60b4ea4b041}\label{h2__test__helper_8h_a586d529599720546c47cf60b4ea4b041}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!aws\_input\_stream\_tester\_set\_reading\_broken@{aws\_input\_stream\_tester\_set\_reading\_broken}}
+\index{aws\_input\_stream\_tester\_set\_reading\_broken@{aws\_input\_stream\_tester\_set\_reading\_broken}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_tester\_set\_reading\_broken()}{aws\_input\_stream\_tester\_set\_reading\_broken()}}
+{\footnotesize\ttfamily void aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+reading\+\_\+broken (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{input\+\_\+stream,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+broken }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_ab7a2db592f88bfda8caa8293f4e3294d}\label{h2__test__helper_8h_ab7a2db592f88bfda8caa8293f4e3294d}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_check\_data\_across\_frames@{h2\_decode\_tester\_check\_data\_across\_frames}}
+\index{h2\_decode\_tester\_check\_data\_across\_frames@{h2\_decode\_tester\_check\_data\_across\_frames}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_check\_data\_across\_frames()}{h2\_decode\_tester\_check\_data\_across\_frames()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+across\+\_\+frames (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{expected,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{expect\+\_\+end\+\_\+stream }\end{DoxyParamCaption})}
+
+Compare data (which may be split across N frames) against expected \mbox{\Hypertarget{h2__test__helper_8h_ae02f94772bee7ea979389e9a79e0b505}\label{h2__test__helper_8h_ae02f94772bee7ea979389e9a79e0b505}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_check\_data\_str\_across\_frames@{h2\_decode\_tester\_check\_data\_str\_across\_frames}}
+\index{h2\_decode\_tester\_check\_data\_str\_across\_frames@{h2\_decode\_tester\_check\_data\_str\_across\_frames}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_check\_data\_str\_across\_frames()}{h2\_decode\_tester\_check\_data\_str\_across\_frames()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+str\+\_\+across\+\_\+frames (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const char $\ast$}]{expected,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{expect\+\_\+end\+\_\+stream }\end{DoxyParamCaption})}
+
+Compare data (which may be split across N frames) against expected \mbox{\Hypertarget{h2__test__helper_8h_aac51e8ae2b96a3672dd333ac5e099550}\label{h2__test__helper_8h_aac51e8ae2b96a3672dd333ac5e099550}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_clean\_up@{h2\_decode\_tester\_clean\_up}}
+\index{h2\_decode\_tester\_clean\_up@{h2\_decode\_tester\_clean\_up}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_clean\_up()}{h2\_decode\_tester\_clean\_up()}}
+{\footnotesize\ttfamily void h2\+\_\+decode\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_af12819b3a4259da503cba36b6be8cdb4}\label{h2__test__helper_8h_af12819b3a4259da503cba36b6be8cdb4}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_find\_frame@{h2\_decode\_tester\_find\_frame}}
+\index{h2\_decode\_tester\_find\_frame@{h2\_decode\_tester\_find\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_frame()}{h2\_decode\_tester\_find\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given type, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8h_a406d10eddd5060b18a0bc516ca17c0d2}\label{h2__test__helper_8h_a406d10eddd5060b18a0bc516ca17c0d2}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_find\_stream\_frame@{h2\_decode\_tester\_find\_stream\_frame}}
+\index{h2\_decode\_tester\_find\_stream\_frame@{h2\_decode\_tester\_find\_stream\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_stream\_frame()}{h2\_decode\_tester\_find\_stream\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given type and stream-\/id, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8h_aa3560acccf30df63f7b28817926bd67d}\label{h2__test__helper_8h_aa3560acccf30df63f7b28817926bd67d}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_find\_stream\_frame\_any\_type@{h2\_decode\_tester\_find\_stream\_frame\_any\_type}}
+\index{h2\_decode\_tester\_find\_stream\_frame\_any\_type@{h2\_decode\_tester\_find\_stream\_frame\_any\_type}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_stream\_frame\_any\_type()}{h2\_decode\_tester\_find\_stream\_frame\_any\_type()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame\+\_\+any\+\_\+type (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given stream-\/id, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8h_a6e33fefbffc7259e225660310b773cf3}\label{h2__test__helper_8h_a6e33fefbffc7259e225660310b773cf3}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_frame\_count@{h2\_decode\_tester\_frame\_count}}
+\index{h2\_decode\_tester\_frame\_count@{h2\_decode\_tester\_frame\_count}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_frame\_count()}{h2\_decode\_tester\_frame\_count()}}
+{\footnotesize\ttfamily size\+\_\+t h2\+\_\+decode\+\_\+tester\+\_\+frame\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_ae308aa471a26280eae9ce9e8227058ae}\label{h2__test__helper_8h_ae308aa471a26280eae9ce9e8227058ae}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_get\_frame@{h2\_decode\_tester\_get\_frame}}
+\index{h2\_decode\_tester\_get\_frame@{h2\_decode\_tester\_get\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_get\_frame()}{h2\_decode\_tester\_get\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+get\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_ad887bf4a27893f764a2c7680a87b9f05}\label{h2__test__helper_8h_ad887bf4a27893f764a2c7680a87b9f05}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_init@{h2\_decode\_tester\_init}}
+\index{h2\_decode\_tester\_init@{h2\_decode\_tester\_init}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_init()}{h2\_decode\_tester\_init()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{const struct \mbox{\hyperlink{structh2__decode__tester__options}{h2\+\_\+decode\+\_\+tester\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_a844ced0f75da87b0d03a7b3e0a43238d}\label{h2__test__helper_8h_a844ced0f75da87b0d03a7b3e0a43238d}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decode\_tester\_latest\_frame@{h2\_decode\_tester\_latest\_frame}}
+\index{h2\_decode\_tester\_latest\_frame@{h2\_decode\_tester\_latest\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_latest\_frame()}{h2\_decode\_tester\_latest\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+latest\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_a61d13be47bb19d1aecdbcc7946ef3642}\label{h2__test__helper_8h_a61d13be47bb19d1aecdbcc7946ef3642}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_decoded\_frame\_check\_finished@{h2\_decoded\_frame\_check\_finished}}
+\index{h2\_decoded\_frame\_check\_finished@{h2\_decoded\_frame\_check\_finished}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_decoded\_frame\_check\_finished()}{h2\_decoded\_frame\_check\_finished()}}
+{\footnotesize\ttfamily int h2\+\_\+decoded\+\_\+frame\+\_\+check\+\_\+finished (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$}]{frame,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{expected\+\_\+type,  }\item[{uint32\+\_\+t}]{expected\+\_\+stream\+\_\+id }\end{DoxyParamCaption})}
+
+Check that\+:
+\begin{DoxyItemize}
+\item frame finished (ex\+: if HEADERS frame, then on\+\_\+headers\+\_\+end() fired)
+\item frame was in fact using the expected type and stream\+\_\+id. 
+\end{DoxyItemize}\mbox{\Hypertarget{h2__test__helper_8h_a172dcdbf4c9555d2a121f1c29f98300b}\label{h2__test__helper_8h_a172dcdbf4c9555d2a121f1c29f98300b}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_clean\_up@{h2\_fake\_peer\_clean\_up}}
+\index{h2\_fake\_peer\_clean\_up@{h2\_fake\_peer\_clean\_up}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_clean\_up()}{h2\_fake\_peer\_clean\_up()}}
+{\footnotesize\ttfamily void h2\+\_\+fake\+\_\+peer\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_ab10468fc7b9dde04f736f4629245dd8a}\label{h2__test__helper_8h_ab10468fc7b9dde04f736f4629245dd8a}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_decode\_messages\_from\_testing\_channel@{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel}}
+\index{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel@{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel()}{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+decode\+\_\+messages\+\_\+from\+\_\+testing\+\_\+channel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+Pop all written messages off the testing-\/channel and run them through the peer\textquotesingle{}s decode-\/tester \mbox{\Hypertarget{h2__test__helper_8h_a6f9683be4ea03dcbb3e372b210840675}\label{h2__test__helper_8h_a6f9683be4ea03dcbb3e372b210840675}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_init@{h2\_fake\_peer\_init}}
+\index{h2\_fake\_peer\_init@{h2\_fake\_peer\_init}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_init()}{h2\_fake\_peer\_init()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{const struct \mbox{\hyperlink{structh2__fake__peer__options}{h2\+\_\+fake\+\_\+peer\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8h_a394873d1d35c1eb44ad85f1be7d9cc1b}\label{h2__test__helper_8h_a394873d1d35c1eb44ad85f1be7d9cc1b}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_send\_connection\_preface@{h2\_fake\_peer\_send\_connection\_preface}}
+\index{h2\_fake\_peer\_send\_connection\_preface@{h2\_fake\_peer\_send\_connection\_preface}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_connection\_preface()}{h2\_fake\_peer\_send\_connection\_preface()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$}]{settings }\end{DoxyParamCaption})}
+
+Peer sends the connection preface with specified settings. Takes ownership of frame and destroys after sending \mbox{\Hypertarget{h2__test__helper_8h_a2ed0faf44e70ddd5b433e220efdfc805}\label{h2__test__helper_8h_a2ed0faf44e70ddd5b433e220efdfc805}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_send\_connection\_preface\_default\_settings@{h2\_fake\_peer\_send\_connection\_preface\_default\_settings}}
+\index{h2\_fake\_peer\_send\_connection\_preface\_default\_settings@{h2\_fake\_peer\_send\_connection\_preface\_default\_settings}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_connection\_preface\_default\_settings()}{h2\_fake\_peer\_send\_connection\_preface\_default\_settings()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface\+\_\+default\+\_\+settings (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+Peer sends the connection preface with default settings. \mbox{\Hypertarget{h2__test__helper_8h_a5dcf9774b4913c9006eb3dd56910d9f2}\label{h2__test__helper_8h_a5dcf9774b4913c9006eb3dd56910d9f2}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_send\_data\_frame@{h2\_fake\_peer\_send\_data\_frame}}
+\index{h2\_fake\_peer\_send\_data\_frame@{h2\_fake\_peer\_send\_data\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_data\_frame()}{h2\_fake\_peer\_send\_data\_frame()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream }\end{DoxyParamCaption})}
+
+Encode the entire byte cursor into a single DATA frame. Fails if the cursor is too large for this to work. \mbox{\Hypertarget{h2__test__helper_8h_aafa87c468c1053ffa6d02ec36bf11626}\label{h2__test__helper_8h_aafa87c468c1053ffa6d02ec36bf11626}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_send\_data\_frame\_str@{h2\_fake\_peer\_send\_data\_frame\_str}}
+\index{h2\_fake\_peer\_send\_data\_frame\_str@{h2\_fake\_peer\_send\_data\_frame\_str}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_data\_frame\_str()}{h2\_fake\_peer\_send\_data\_frame\_str()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame\+\_\+str (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const char $\ast$}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream }\end{DoxyParamCaption})}
+
+Encode the entire string into a single DATA frame. Fails if the string is too large for this to work. \mbox{\Hypertarget{h2__test__helper_8h_aa529e58e14f3214ab3909ceb6666e027}\label{h2__test__helper_8h_aa529e58e14f3214ab3909ceb6666e027}} 
+\index{h2\_test\_helper.h@{h2\_test\_helper.h}!h2\_fake\_peer\_send\_frame@{h2\_fake\_peer\_send\_frame}}
+\index{h2\_fake\_peer\_send\_frame@{h2\_fake\_peer\_send\_frame}!h2\_test\_helper.h@{h2\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_frame()}{h2\_fake\_peer\_send\_frame()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+Encode frame and push it into the testing-\/channel in the read-\/direction. Takes ownership of frame and destroys after sending. 

@@ -1,0 +1,96 @@
+\hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request}{}\doxysection{Aws\+::Crt\+::Http\+::Http\+Request Class Reference}
+\label{class_aws_1_1_crt_1_1_http_1_1_http_request}\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+
+
+{\ttfamily \#include $<$Http\+Request\+Response.\+h$>$}
+
+Inheritance diagram for Aws\+::Crt\+::Http\+::Http\+Request\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_aws_1_1_crt_1_1_http_1_1_http_request}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_a7039637f9bcff8daed59338abf26f9d2}{Http\+Request}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}})
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_a1ecbe07f54aae3f35dc9df1f998d491a}{Get\+Method}} () const noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_ad2414acfab2b22a965b4858bed447b5f}{Set\+Method}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} method) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_aa6f76984dc87a3fb1796ee2e40127b42}{Get\+Path}} () const noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_acd1efe697b21518c08b607ed248d0f9f}{Set\+Path}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} path) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_a48f1025c071bb810bd18c2ea4291e51b}{Http\+Request}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request_ac871425ecdeebb85060e16a111bbe887}{Mqtt\+::\+Mqtt\+Connection}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Class representing a mutable http request. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_a7039637f9bcff8daed59338abf26f9d2}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_a7039637f9bcff8daed59338abf26f9d2}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!HttpRequest@{HttpRequest}}
+\index{HttpRequest@{HttpRequest}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{HttpRequest()}{HttpRequest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Http\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_a48f1025c071bb810bd18c2ea4291e51b}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_a48f1025c071bb810bd18c2ea4291e51b}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!HttpRequest@{HttpRequest}}
+\index{HttpRequest@{HttpRequest}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{HttpRequest()}{HttpRequest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Http\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_a1ecbe07f54aae3f35dc9df1f998d491a}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_a1ecbe07f54aae3f35dc9df1f998d491a}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!GetMethod@{GetMethod}}
+\index{GetMethod@{GetMethod}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{GetMethod()}{GetMethod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} $>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Get\+Method (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Gets the value of the \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}{Http}} method associated with this request \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_aa6f76984dc87a3fb1796ee2e40127b42}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_aa6f76984dc87a3fb1796ee2e40127b42}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!GetPath@{GetPath}}
+\index{GetPath@{GetPath}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{GetPath()}{GetPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} $>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Get\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Gets the value of the URI-\/path associated with this request \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_ad2414acfab2b22a965b4858bed447b5f}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_ad2414acfab2b22a965b4858bed447b5f}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!SetMethod@{SetMethod}}
+\index{SetMethod@{SetMethod}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{SetMethod()}{SetMethod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Set\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}}}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the value of the \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}{Http}} method associated with this request \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_acd1efe697b21518c08b607ed248d0f9f}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_acd1efe697b21518c08b607ed248d0f9f}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!SetPath@{SetPath}}
+\index{SetPath@{SetPath}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{SetPath()}{SetPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+::\+Set\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}}}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the value of the URI-\/path associated with this request 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_request_ac871425ecdeebb85060e16a111bbe887}\label{class_aws_1_1_crt_1_1_http_1_1_http_request_ac871425ecdeebb85060e16a111bbe887}} 
+\index{Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}!Mqtt::MqttConnection@{Mqtt::MqttConnection}}
+\index{Mqtt::MqttConnection@{Mqtt::MqttConnection}!Aws::Crt::Http::HttpRequest@{Aws::Crt::Http::HttpRequest}}
+\doxysubsubsection{\texorpdfstring{Mqtt::MqttConnection}{Mqtt::MqttConnection}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+::\+Mqtt\+Connection}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/http/\mbox{\hyperlink{_http_request_response_8h}{Http\+Request\+Response.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/http/\mbox{\hyperlink{_http_request_response_8cpp}{Http\+Request\+Response.\+cpp}}\end{DoxyCompactItemize}

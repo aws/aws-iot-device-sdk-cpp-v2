@@ -1,0 +1,153 @@
+\hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\+\_\+r2/config.h File Reference}
+\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/config.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/config.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a1dfc36904b0d30482f6c7adb922cf11b}{OS\+\_\+\+WIN}}~1
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae273c7db78098028c7a6b6b230ac0503}{OS\+\_\+\+LINUX}}~2
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aed15a925c350362ee6c31f498fa6d535}{OS\+\_\+\+TARGET}}~\mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae273c7db78098028c7a6b6b230ac0503}{OS\+\_\+\+LINUX}}
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_af01d1dd8ec7d2705299a1ecc34791e0c}{COMPILER\+\_\+\+GCC}}~1
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a6b57fb2a693b8ae06b593c7614cb0c7f}{COMPILER\+\_\+\+CLANG}}~2
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2c35646925a4392c2f43372e354dafdc}{TARGET\+\_\+\+AMD64}}~1
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeaeb9b2f54935fe5ec4046c8095c98b0}{TARGET\+\_\+x86}}~2
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a8fba137e52763018c6ec43fc1a186b24}{TARGET\+\_\+\+ARM}}~3
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae9e8b0aeef4179ca50f394f59d46a9c0}{TARGET\+\_\+\+ARM64}}~4
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ab72074f026fed41f98d73257388ee125}{RADIX64}}~64
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a134b7e48147c4391ea181616a18ea2a6}{NBITS\+\_\+\+TO\+\_\+\+NBYTES}}(nbits)~(((nbits) + 7) / 8)
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a50f8426c13c6b3d23479eee5f2491167}{NBITS\+\_\+\+TO\+\_\+\+NWORDS}}(nbits)~(((nbits) + (sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) $\ast$ 8) -\/ 1) / (sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) $\ast$ 8))
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeb12ad9246073c628673089ce312fd4c}{NBYTES\+\_\+\+TO\+\_\+\+NWORDS}}(nbytes)~(((nbytes) + sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) -\/ 1) / sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}))
+\item 
+\#define \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a87c485a7e424c87d2ba78ee1ac4e1bb8}{UNREFERENCED\+\_\+\+PARAMETER}}(PAR)~((void) (PAR))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aa40806ad89e7c6a2d5fa3d98d8d68594}{is\+\_\+digit\+\_\+nonzero\+\_\+ct}} (\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} x)
+\item 
+unsigned int \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a16a2e5aa5ef84a34d79fce20c98833de}{is\+\_\+digit\+\_\+zero\+\_\+ct}} (\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} x)
+\item 
+unsigned int \mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2f7ff7e8b2dfa28dab8c4a6368ecdfdd}{is\+\_\+digit\+\_\+lessthan\+\_\+ct}} (\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} x, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}} y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a6b57fb2a693b8ae06b593c7614cb0c7f}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a6b57fb2a693b8ae06b593c7614cb0c7f}} 
+\index{config.h@{config.h}!COMPILER\_CLANG@{COMPILER\_CLANG}}
+\index{COMPILER\_CLANG@{COMPILER\_CLANG}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{COMPILER\_CLANG}{COMPILER\_CLANG}}
+{\footnotesize\ttfamily \#define COMPILER\+\_\+\+CLANG~2}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_af01d1dd8ec7d2705299a1ecc34791e0c}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_af01d1dd8ec7d2705299a1ecc34791e0c}} 
+\index{config.h@{config.h}!COMPILER\_GCC@{COMPILER\_GCC}}
+\index{COMPILER\_GCC@{COMPILER\_GCC}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{COMPILER\_GCC}{COMPILER\_GCC}}
+{\footnotesize\ttfamily \#define COMPILER\+\_\+\+GCC~1}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a134b7e48147c4391ea181616a18ea2a6}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a134b7e48147c4391ea181616a18ea2a6}} 
+\index{config.h@{config.h}!NBITS\_TO\_NBYTES@{NBITS\_TO\_NBYTES}}
+\index{NBITS\_TO\_NBYTES@{NBITS\_TO\_NBYTES}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{NBITS\_TO\_NBYTES}{NBITS\_TO\_NBYTES}}
+{\footnotesize\ttfamily \#define NBITS\+\_\+\+TO\+\_\+\+NBYTES(\begin{DoxyParamCaption}\item[{}]{nbits }\end{DoxyParamCaption})~(((nbits) + 7) / 8)}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a50f8426c13c6b3d23479eee5f2491167}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a50f8426c13c6b3d23479eee5f2491167}} 
+\index{config.h@{config.h}!NBITS\_TO\_NWORDS@{NBITS\_TO\_NWORDS}}
+\index{NBITS\_TO\_NWORDS@{NBITS\_TO\_NWORDS}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{NBITS\_TO\_NWORDS}{NBITS\_TO\_NWORDS}}
+{\footnotesize\ttfamily \#define NBITS\+\_\+\+TO\+\_\+\+NWORDS(\begin{DoxyParamCaption}\item[{}]{nbits }\end{DoxyParamCaption})~(((nbits) + (sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) $\ast$ 8) -\/ 1) / (sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) $\ast$ 8))}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeb12ad9246073c628673089ce312fd4c}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeb12ad9246073c628673089ce312fd4c}} 
+\index{config.h@{config.h}!NBYTES\_TO\_NWORDS@{NBYTES\_TO\_NWORDS}}
+\index{NBYTES\_TO\_NWORDS@{NBYTES\_TO\_NWORDS}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{NBYTES\_TO\_NWORDS}{NBYTES\_TO\_NWORDS}}
+{\footnotesize\ttfamily \#define NBYTES\+\_\+\+TO\+\_\+\+NWORDS(\begin{DoxyParamCaption}\item[{}]{nbytes }\end{DoxyParamCaption})~(((nbytes) + sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}) -\/ 1) / sizeof(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}))}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae273c7db78098028c7a6b6b230ac0503}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae273c7db78098028c7a6b6b230ac0503}} 
+\index{config.h@{config.h}!OS\_LINUX@{OS\_LINUX}}
+\index{OS\_LINUX@{OS\_LINUX}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{OS\_LINUX}{OS\_LINUX}}
+{\footnotesize\ttfamily \#define OS\+\_\+\+LINUX~2}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aed15a925c350362ee6c31f498fa6d535}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aed15a925c350362ee6c31f498fa6d535}} 
+\index{config.h@{config.h}!OS\_TARGET@{OS\_TARGET}}
+\index{OS\_TARGET@{OS\_TARGET}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{OS\_TARGET}{OS\_TARGET}}
+{\footnotesize\ttfamily \#define OS\+\_\+\+TARGET~\mbox{\hyperlink{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae273c7db78098028c7a6b6b230ac0503}{OS\+\_\+\+LINUX}}}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a1dfc36904b0d30482f6c7adb922cf11b}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a1dfc36904b0d30482f6c7adb922cf11b}} 
+\index{config.h@{config.h}!OS\_WIN@{OS\_WIN}}
+\index{OS\_WIN@{OS\_WIN}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{OS\_WIN}{OS\_WIN}}
+{\footnotesize\ttfamily \#define OS\+\_\+\+WIN~1}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ab72074f026fed41f98d73257388ee125}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ab72074f026fed41f98d73257388ee125}} 
+\index{config.h@{config.h}!RADIX64@{RADIX64}}
+\index{RADIX64@{RADIX64}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{RADIX64}{RADIX64}}
+{\footnotesize\ttfamily \#define RADIX64~64}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2c35646925a4392c2f43372e354dafdc}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2c35646925a4392c2f43372e354dafdc}} 
+\index{config.h@{config.h}!TARGET\_AMD64@{TARGET\_AMD64}}
+\index{TARGET\_AMD64@{TARGET\_AMD64}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{TARGET\_AMD64}{TARGET\_AMD64}}
+{\footnotesize\ttfamily \#define TARGET\+\_\+\+AMD64~1}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a8fba137e52763018c6ec43fc1a186b24}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a8fba137e52763018c6ec43fc1a186b24}} 
+\index{config.h@{config.h}!TARGET\_ARM@{TARGET\_ARM}}
+\index{TARGET\_ARM@{TARGET\_ARM}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{TARGET\_ARM}{TARGET\_ARM}}
+{\footnotesize\ttfamily \#define TARGET\+\_\+\+ARM~3}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae9e8b0aeef4179ca50f394f59d46a9c0}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_ae9e8b0aeef4179ca50f394f59d46a9c0}} 
+\index{config.h@{config.h}!TARGET\_ARM64@{TARGET\_ARM64}}
+\index{TARGET\_ARM64@{TARGET\_ARM64}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{TARGET\_ARM64}{TARGET\_ARM64}}
+{\footnotesize\ttfamily \#define TARGET\+\_\+\+ARM64~4}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeaeb9b2f54935fe5ec4046c8095c98b0}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aeaeb9b2f54935fe5ec4046c8095c98b0}} 
+\index{config.h@{config.h}!TARGET\_x86@{TARGET\_x86}}
+\index{TARGET\_x86@{TARGET\_x86}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{TARGET\_x86}{TARGET\_x86}}
+{\footnotesize\ttfamily \#define TARGET\+\_\+x86~2}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a87c485a7e424c87d2ba78ee1ac4e1bb8}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a87c485a7e424c87d2ba78ee1ac4e1bb8}} 
+\index{config.h@{config.h}!UNREFERENCED\_PARAMETER@{UNREFERENCED\_PARAMETER}}
+\index{UNREFERENCED\_PARAMETER@{UNREFERENCED\_PARAMETER}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{UNREFERENCED\_PARAMETER}{UNREFERENCED\_PARAMETER}}
+{\footnotesize\ttfamily \#define UNREFERENCED\+\_\+\+PARAMETER(\begin{DoxyParamCaption}\item[{}]{PAR }\end{DoxyParamCaption})~((void) (PAR))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2f7ff7e8b2dfa28dab8c4a6368ecdfdd}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a2f7ff7e8b2dfa28dab8c4a6368ecdfdd}} 
+\index{config.h@{config.h}!is\_digit\_lessthan\_ct@{is\_digit\_lessthan\_ct}}
+\index{is\_digit\_lessthan\_ct@{is\_digit\_lessthan\_ct}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{is\_digit\_lessthan\_ct()}{is\_digit\_lessthan\_ct()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+digit\+\_\+lessthan\+\_\+ct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}}]{x,  }\item[{\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}}]{y }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aa40806ad89e7c6a2d5fa3d98d8d68594}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_aa40806ad89e7c6a2d5fa3d98d8d68594}} 
+\index{config.h@{config.h}!is\_digit\_nonzero\_ct@{is\_digit\_nonzero\_ct}}
+\index{is\_digit\_nonzero\_ct@{is\_digit\_nonzero\_ct}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{is\_digit\_nonzero\_ct()}{is\_digit\_nonzero\_ct()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+digit\+\_\+nonzero\+\_\+ct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a16a2e5aa5ef84a34d79fce20c98833de}\label{crt_2s2n_2pq-crypto_2sike__r2_2_config_8h_a16a2e5aa5ef84a34d79fce20c98833de}} 
+\index{config.h@{config.h}!is\_digit\_zero\_ct@{is\_digit\_zero\_ct}}
+\index{is\_digit\_zero\_ct@{is\_digit\_zero\_ct}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{is\_digit\_zero\_ct()}{is\_digit\_zero\_ct()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+digit\+\_\+zero\+\_\+ct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\+\_\+t}}}]{x }\end{DoxyParamCaption})}
+

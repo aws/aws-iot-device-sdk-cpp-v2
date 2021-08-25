@@ -1,0 +1,181 @@
+\hypertarget{s2n__server__cert__request__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+server\+\_\+cert\+\_\+request\+\_\+test.c File Reference}
+\label{s2n__server__cert__request__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_server\_cert\_request\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_server\_cert\_request\_test.c}}
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6e}{s2n\+\_\+cert\+\_\+type}} \{ \newline
+\mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+SIGN}} = 1
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+SIGN}} = 2
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+DH}} = 3
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+FIXED\+\_\+\+DH}} = 4
+, \newline
+\mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED}} = 5
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED}} = 6
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+FORTEZZA\+\_\+\+DMS\+\_\+\+RESERVED}} = 20
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+SIGN}} = 64
+, \newline
+\mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+ECDH}} = 65
+, \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+FIXED\+\_\+\+ECDH}} = 66
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+SIGN}} = 1
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+SIGN}} = 2
+, \newline
+\mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+DH}} = 3
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+FIXED\+\_\+\+DH}} = 4
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED}} = 5
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED}} = 6
+, \newline
+\mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+FORTEZZA\+\_\+\+DMS\+\_\+\+RESERVED}} = 20
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+SIGN}} = 64
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+ECDH}} = 65
+, \mbox{\hyperlink{s2n__server__cert__request_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}{S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+FIXED\+\_\+\+ECDH}} = 66
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__cert__request__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__server__cert__request__test_8c_a5831a7f65dad580428ec81f7709ee342}{s2n\+\_\+cert\+\_\+type\+\_\+preference\+\_\+list}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__server__cert__request__test_8c_abf0106dd53705cf4df792efc9f24f4fa}{s2n\+\_\+cert\+\_\+type\+\_\+preference\+\_\+list\+\_\+legacy\+\_\+dss}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6e}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6e}} 
+\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!s2n\_cert\_type@{s2n\_cert\_type}}
+\index{s2n\_cert\_type@{s2n\_cert\_type}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cert\_type}{s2n\_cert\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6e}{s2n\+\_\+cert\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_SIGN@{S2N\_CERT\_TYPE\_RSA\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_SIGN@{S2N\_CERT\_TYPE\_RSA\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_SIGN@{S2N\_CERT\_TYPE\_DSS\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_SIGN@{S2N\_CERT\_TYPE\_DSS\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_FIXED\_DH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+DH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH@{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_FIXED\_DH@{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+FIXED\+\_\+\+DH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED@{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED@{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+FORTEZZA\+\_\+\+DMS\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_ECDSA\_SIGN@{S2N\_CERT\_TYPE\_ECDSA\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_ECDSA\_SIGN@{S2N\_CERT\_TYPE\_ECDSA\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+ECDH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+FIXED\+\_\+\+ECDH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_SIGN@{S2N\_CERT\_TYPE\_RSA\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_SIGN@{S2N\_CERT\_TYPE\_RSA\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_SIGN@{S2N\_CERT\_TYPE\_DSS\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_SIGN@{S2N\_CERT\_TYPE\_DSS\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_FIXED\_DH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_DH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea6b8e9eead401abe4b15d2236f64634da}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+DH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH@{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_FIXED\_DH@{S2N\_CERT\_TYPE\_DSS\_FIXED\_DH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5046274a01bc711288401282af914f46}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+FIXED\+\_\+\+DH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_RSA\_EPHEMERAL\_DH\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea0d30c8e9a016d750f31ef0ff77c3f310}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED@{S2N\_CERT\_TYPE\_DSS\_EPHEMERAL\_DH\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea3e8bf26bbde667d647607bb753906415}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+DSS\+\_\+\+EPHEMERAL\+\_\+\+DH\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED@{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED@{S2N\_CERT\_TYPE\_FORTEZZA\_DMS\_RESERVED}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eabf6f3c29883c07108374bd558889ebac}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+FORTEZZA\+\_\+\+DMS\+\_\+\+RESERVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_ECDSA\_SIGN@{S2N\_CERT\_TYPE\_ECDSA\_SIGN}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_ECDSA\_SIGN@{S2N\_CERT\_TYPE\_ECDSA\_SIGN}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+SIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_RSA\_FIXED\_ECDH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eafb66c6523da3fc131344849f9f5a407a}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+RSA\+\_\+\+FIXED\+\_\+\+ECDH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH@{S2N\_CERT\_TYPE\_ECDSA\_FIXED\_ECDH}}}\mbox{\Hypertarget{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}\label{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea5ea6f117dca8fe5abecb56c849371dca}} 
+S2\+N\+\_\+\+CERT\+\_\+\+TYPE\+\_\+\+ECDSA\+\_\+\+FIXED\+\_\+\+ECDH&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__cert__request__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__server__cert__request__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!main@{main}}
+\index{main@{main}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__cert__request__test_8c_a5831a7f65dad580428ec81f7709ee342}\label{s2n__server__cert__request__test_8c_a5831a7f65dad580428ec81f7709ee342}} 
+\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!s2n\_cert\_type\_preference\_list@{s2n\_cert\_type\_preference\_list}}
+\index{s2n\_cert\_type\_preference\_list@{s2n\_cert\_type\_preference\_list}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cert\_type\_preference\_list}{s2n\_cert\_type\_preference\_list}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+cert\+\_\+type\+\_\+preference\+\_\+list\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}{S2N\_CERT\_TYPE\_RSA\_SIGN}},}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}{S2N\_CERT\_TYPE\_ECDSA\_SIGN}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__server__cert__request__test_8c_abf0106dd53705cf4df792efc9f24f4fa}\label{s2n__server__cert__request__test_8c_abf0106dd53705cf4df792efc9f24f4fa}} 
+\index{s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}!s2n\_cert\_type\_preference\_list\_legacy\_dss@{s2n\_cert\_type\_preference\_list\_legacy\_dss}}
+\index{s2n\_cert\_type\_preference\_list\_legacy\_dss@{s2n\_cert\_type\_preference\_list\_legacy\_dss}!s2n\_server\_cert\_request\_test.c@{s2n\_server\_cert\_request\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cert\_type\_preference\_list\_legacy\_dss}{s2n\_cert\_type\_preference\_list\_legacy\_dss}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+cert\+\_\+type\+\_\+preference\+\_\+list\+\_\+legacy\+\_\+dss\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea12da7e9151b43b31d5880f273625e209}{S2N\_CERT\_TYPE\_RSA\_SIGN}},}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6eab48b517fdc03e52bfded2a004475c09a}{S2N\_CERT\_TYPE\_DSS\_SIGN}},}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__server__cert__request__test_8c_add582bf6f5e4b45c91d314e7555d6c6ea2541f65ec20842080d5cd8c3d9103326}{S2N\_CERT\_TYPE\_ECDSA\_SIGN}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

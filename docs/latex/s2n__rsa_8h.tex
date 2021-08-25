@@ -1,0 +1,64 @@
+\hypertarget{s2n__rsa_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+rsa.h File Reference}
+\label{s2n__rsa_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_rsa.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_rsa.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/rsa.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__rsa__key}{s2n\+\_\+rsa\+\_\+key}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structs2n__rsa__key}{s2n\+\_\+rsa\+\_\+key}} \mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}}
+\item 
+typedef struct \mbox{\hyperlink{structs2n__rsa__key}{s2n\+\_\+rsa\+\_\+key}} \mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__rsa_8h_abf12aedfa877ab5d3571dcef0761551a}{s2n\+\_\+rsa\+\_\+pkey\+\_\+init}} (struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$pkey)
+\item 
+int \mbox{\hyperlink{s2n__rsa_8h_aebc78ef72eed49d74cfdec0e6f5b5cbb}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$rsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey)
+\item 
+int \mbox{\hyperlink{s2n__rsa_8h_a50d26f3a1a854a5643d9ce0e9a03dcfe}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$rsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}\label{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}} 
+\index{s2n\_rsa.h@{s2n\_rsa.h}!s2n\_rsa\_private\_key@{s2n\_rsa\_private\_key}}
+\index{s2n\_rsa\_private\_key@{s2n\_rsa\_private\_key}!s2n\_rsa.h@{s2n\_rsa.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_private\_key}{s2n\_rsa\_private\_key}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs2n__rsa__key}{s2n\+\_\+rsa\+\_\+key}} \mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}}}
+
+\mbox{\Hypertarget{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}\label{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}} 
+\index{s2n\_rsa.h@{s2n\_rsa.h}!s2n\_rsa\_public\_key@{s2n\_rsa\_public\_key}}
+\index{s2n\_rsa\_public\_key@{s2n\_rsa\_public\_key}!s2n\_rsa.h@{s2n\_rsa.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_public\_key}{s2n\_rsa\_public\_key}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structs2n__rsa__key}{s2n\+\_\+rsa\+\_\+key}} \mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__rsa_8h_a50d26f3a1a854a5643d9ce0e9a03dcfe}\label{s2n__rsa_8h_a50d26f3a1a854a5643d9ce0e9a03dcfe}} 
+\index{s2n\_rsa.h@{s2n\_rsa.h}!s2n\_evp\_pkey\_to\_rsa\_private\_key@{s2n\_evp\_pkey\_to\_rsa\_private\_key}}
+\index{s2n\_evp\_pkey\_to\_rsa\_private\_key@{s2n\_evp\_pkey\_to\_rsa\_private\_key}!s2n\_rsa.h@{s2n\_rsa.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_rsa\_private\_key()}{s2n\_evp\_pkey\_to\_rsa\_private\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__rsa_8h_aebc78ef72eed49d74cfdec0e6f5b5cbb}\label{s2n__rsa_8h_aebc78ef72eed49d74cfdec0e6f5b5cbb}} 
+\index{s2n\_rsa.h@{s2n\_rsa.h}!s2n\_evp\_pkey\_to\_rsa\_public\_key@{s2n\_evp\_pkey\_to\_rsa\_public\_key}}
+\index{s2n\_evp\_pkey\_to\_rsa\_public\_key@{s2n\_evp\_pkey\_to\_rsa\_public\_key}!s2n\_rsa.h@{s2n\_rsa.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_rsa\_public\_key()}{s2n\_evp\_pkey\_to\_rsa\_public\_key()}}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__rsa_8h_abf12aedfa877ab5d3571dcef0761551a}\label{s2n__rsa_8h_abf12aedfa877ab5d3571dcef0761551a}} 
+\index{s2n\_rsa.h@{s2n\_rsa.h}!s2n\_rsa\_pkey\_init@{s2n\_rsa\_pkey\_init}}
+\index{s2n\_rsa\_pkey\_init@{s2n\_rsa\_pkey\_init}!s2n\_rsa.h@{s2n\_rsa.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_pkey\_init()}{s2n\_rsa\_pkey\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+rsa\+\_\+pkey\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+

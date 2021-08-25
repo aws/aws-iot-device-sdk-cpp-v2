@@ -1,0 +1,152 @@
+\hypertarget{config__r1_8h_source}{}\doxysection{config\+\_\+r1.\+h}
+\label{config__r1_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/config\_r1.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r1/config\_r1.h}}
+\mbox{\hyperlink{config__r1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/********************************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{* Supersingular Isogeny Key Encapsulation Library}}
+\DoxyCodeLine{3 \textcolor{comment}{*}}
+\DoxyCodeLine{4 \textcolor{comment}{* Abstract: configuration file and platform-\/dependent macros}}
+\DoxyCodeLine{5 \textcolor{comment}{*********************************************************************************************/}  }
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef \_\_CONFIG\_H\_\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define \_\_CONFIG\_H\_\_}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{sike__r1__namespace_8h}{sike\_r1\_namespace.h}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdbool_8h}{stdbool.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{comment}{// Definition of compiler}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define COMPILER\_GCC     1}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define COMPILER\_CLANG   2}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#if defined(\_\_GNUC\_\_)           }\textcolor{comment}{// GNU GCC compiler}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{    \#define COMPILER COMPILER\_GCC   }}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#elif defined(\_\_clang\_\_)        }\textcolor{comment}{// Clang compiler}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{    \#define COMPILER COMPILER\_CLANG}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{    \#error -\/-\/ "{}Unsupported COMPILER"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define \_AMD64\_}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// Definition of the targeted architecture and basic data types}}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define TARGET\_AMD64        1}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define TARGET\_x86          2}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define TARGET\_ARM          3}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define TARGET\_ARM64        4}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#if defined(\_AMD64\_)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{    \#define TARGET TARGET\_AMD64}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    \#define RADIX           64}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{    \#define LOG2RADIX       6  }}
+\DoxyCodeLine{41     \textcolor{keyword}{typedef} uint64\_t        \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}};        \textcolor{comment}{// Unsigned 64-\/bit digit}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#elif defined(\_X86\_)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{    \#define TARGET TARGET\_x86}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{    \#define RADIX           32}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{    \#define LOG2RADIX       5  }}
+\DoxyCodeLine{46     \textcolor{keyword}{typedef} uint32\_t        \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}};        \textcolor{comment}{// Unsigned 32-\/bit digit}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#elif defined(\_ARM\_)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{    \#define TARGET TARGET\_ARM}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{    \#define RADIX           32}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{    \#define LOG2RADIX       5  }}
+\DoxyCodeLine{51     \textcolor{keyword}{typedef} uint32\_t        \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}};        \textcolor{comment}{// Unsigned 32-\/bit digit}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#elif defined(\_ARM64\_)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{    \#define TARGET TARGET\_ARM64}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{    \#define RADIX           64}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{    \#define LOG2RADIX       6  }}
+\DoxyCodeLine{56     \textcolor{keyword}{typedef} uint64\_t        \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}};        \textcolor{comment}{// Unsigned 64-\/bit digit}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{    \#error -\/-\/ "{}Unsupported ARCHITECTURE"{}}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define RADIX64             64}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{// Selection of implementation: optimized\_generic}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#if defined(\_OPTIMIZED\_GENERIC\_)                      }}
+\DoxyCodeLine{67 \textcolor{preprocessor}{    \#define OPTIMIZED\_GENERIC\_IMPLEMENTATION}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{// Extended datatype support}}
+\DoxyCodeLine{72                      }
+\DoxyCodeLine{73 \textcolor{keyword}{typedef} uint64\_t \mbox{\hyperlink{structuint128__s}{uint128\_t}}[2];}
+\DoxyCodeLine{74     }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{comment}{// Macro definitions}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define NBITS\_TO\_NBYTES(nbits)      (((nbits)+7)/8)                                          }\textcolor{comment}{// Conversion macro from number of bits to number of bytes}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define NBITS\_TO\_NWORDS(nbits)      (((nbits)+(sizeof(digit\_t)*8)-\/1)/(sizeof(digit\_t)*8))    }\textcolor{comment}{// Conversion macro from number of bits to number of computer words}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define NBYTES\_TO\_NWORDS(nbytes)    (((nbytes)+sizeof(digit\_t)-\/1)/sizeof(digit\_t))           }\textcolor{comment}{// Conversion macro from number of bytes to number of computer words}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{// Macro to avoid compiler warnings when detecting unreferenced parameters}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define UNREFERENCED\_PARAMETER(PAR) ((void)(PAR))}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/********************** Constant-\/time unsigned comparisons ***********************/}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{comment}{// The following functions return 1 (TRUE) if condition is true, 0 (FALSE) otherwise}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{static} \_\_inline \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{config__r1_8h_afd96f7a45eb721331f4947d782cda8aa}{is\_digit\_nonzero\_ct}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} x)}
+\DoxyCodeLine{91 \{ \textcolor{comment}{// Is x != 0?}}
+\DoxyCodeLine{92     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})((x | (0-\/x)) >> (\mbox{\hyperlink{config__r1_8h_a534ad31d9e306202c071ae3c21eaf50a}{RADIX}}-\/1));}
+\DoxyCodeLine{93 \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{keyword}{static} \_\_inline \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{config__r1_8h_a3bbcf3fd5aaadb55083c7e493776eb8e}{is\_digit\_zero\_ct}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} x)}
+\DoxyCodeLine{96 \{ \textcolor{comment}{// Is x = 0?}}
+\DoxyCodeLine{97     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(1 \string^ \mbox{\hyperlink{config__r1_8h_afd96f7a45eb721331f4947d782cda8aa}{is\_digit\_nonzero\_ct}}(x));}
+\DoxyCodeLine{98 \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{keyword}{static} \_\_inline \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{config__r1_8h_a571a62c4b4c0982444a3d4a6e90266e4}{is\_digit\_lessthan\_ct}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} x, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} y)}
+\DoxyCodeLine{101 \{ \textcolor{comment}{// Is x < y?}}
+\DoxyCodeLine{102     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})((x \string^ ((x \string^ y) | ((x -\/ y) \string^ y))) >> (\mbox{\hyperlink{config__r1_8h_a534ad31d9e306202c071ae3c21eaf50a}{RADIX}}-\/1)); }
+\DoxyCodeLine{103 \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{comment}{/********************** Macros for platform-\/dependent operations **********************/}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{comment}{// Digit multiplication}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define MUL(multiplier, multiplicand, hi, lo)                                                     \(\backslash\)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{    digit\_x\_digit((multiplier), (multiplicand), \&(lo));}}
+\DoxyCodeLine{111     }
+\DoxyCodeLine{112 \textcolor{comment}{// Digit addition with carry}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define ADDC(carryIn, addend1, addend2, carryOut, sumOut)                                         \(\backslash\)}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{    \{ digit\_t tempReg = (addend1) + (digit\_t)(carryIn);                                           \(\backslash\)}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{    (sumOut) = (addend2) + tempReg;                                                               \(\backslash\)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{    (carryOut) = (is\_digit\_lessthan\_ct(tempReg, (digit\_t)(carryIn)) | is\_digit\_lessthan\_ct((sumOut), tempReg)); \}}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{// Digit subtraction with borrow}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define SUBC(borrowIn, minuend, subtrahend, borrowOut, differenceOut)                             \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{    \{ digit\_t tempReg = (minuend) -\/ (subtrahend);                                                 \(\backslash\)}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{    unsigned int borrowReg = (is\_digit\_lessthan\_ct((minuend), (subtrahend)) | ((borrowIn) \& is\_digit\_zero\_ct(tempReg)));  \(\backslash\)}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{    (differenceOut) = tempReg -\/ (digit\_t)(borrowIn);                                              \(\backslash\)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{    (borrowOut) = borrowReg; \}}}
+\DoxyCodeLine{124     }
+\DoxyCodeLine{125 \textcolor{comment}{// Shift right with flexible datatype}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define SHIFTR(highIn, lowIn, shift, shiftOut, DigitSize)                                         \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{    (shiftOut) = ((lowIn) >> (shift)) \string^ ((highIn) << (DigitSize -\/ (shift)));}}
+\DoxyCodeLine{128     }
+\DoxyCodeLine{129 \textcolor{comment}{// Shift left with flexible datatype}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define SHIFTL(highIn, lowIn, shift, shiftOut, DigitSize)                                         \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{    (shiftOut) = ((highIn) << (shift)) \string^ ((lowIn) >> (DigitSize -\/ (shift)));}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{// 64x64-\/bit multiplication}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define MUL128(multiplier, multiplicand, product)                                                 \(\backslash\)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{    mp\_mul((digit\_t*)\&(multiplier), (digit\_t*)\&(multiplicand), (digit\_t*)\&(product), NWORDS\_FIELD/2);}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{// 128-\/bit addition, inputs < 2\string^127}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define ADD128(addend1, addend2, addition)                                                        \(\backslash\)}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{    mp\_add((digit\_t*)(addend1), (digit\_t*)(addend2), (digit\_t*)(addition), NWORDS\_FIELD);}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{comment}{// 128-\/bit addition with output carry}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define ADC128(addend1, addend2, carry, addition)                                                 \(\backslash\)}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{    (carry) = mp\_add((digit\_t*)(addend1), (digit\_t*)(addend2), (digit\_t*)(addition), NWORDS\_FIELD);}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

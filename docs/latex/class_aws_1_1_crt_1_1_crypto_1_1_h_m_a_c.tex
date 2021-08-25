@@ -1,0 +1,115 @@
+\hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{}\doxysection{Aws\+::Crt\+::Crypto\+::HMAC Class Reference}
+\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+
+
+{\ttfamily \#include $<$HMAC.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_af134064d7be72d2ec089b654f86b7d72}{$\sim$\+HMAC}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a3a39f3c2e4b4c99e1db442211107695c}{HMAC}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_ac813bdf144653872c4f15316aafa9d7f}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a0a5ba60e148c376ec88898eb4182bc62}{HMAC}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&\&to\+Move)
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a112f45cd33c4368efee7643f799173f8}{operator=}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&\&to\+Move)
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9c59441ec9174627d1885b8a560e2082}{operator bool}} () const noexcept
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a170e7fc71c13e00fe5f2bfceb1b5565c}{Last\+Error}} () const noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a08824f48908333900e129b7a27f37646}{Update}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&to\+HMAC) noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9b9d7644f2e886b33fdd9be59d3bbacf}{Digest}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t truncate\+To=0) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a968abd6a5c5e0345cd4a2f443573aee3}{Create\+SHA256\+HMAC}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&secret) noexcept
+\item 
+static \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_aa5722491cdab710a7f161ffec4504c2a}{Create\+SHA256\+HMAC}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&secret) noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Streaming \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} object. The typical use case is for computing the \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} of an object that is too large to load into memory. You can call \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a08824f48908333900e129b7a27f37646}{Update()}} multiple times as you load chunks of data into memory. When you\textquotesingle{}re finished simply call \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9b9d7644f2e886b33fdd9be59d3bbacf}{Digest()}}. After \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9b9d7644f2e886b33fdd9be59d3bbacf}{Digest()}} is called, this object is no longer usable. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_af134064d7be72d2ec089b654f86b7d72}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_af134064d7be72d2ec089b654f86b7d72}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!````~HMAC@{$\sim$HMAC}}
+\index{````~HMAC@{$\sim$HMAC}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{$\sim$HMAC()}{~HMAC()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::$\sim$\+HMAC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a3a39f3c2e4b4c99e1db442211107695c}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a3a39f3c2e4b4c99e1db442211107695c}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!HMAC@{HMAC}}
+\index{HMAC@{HMAC}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{HMAC()}{HMAC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+HMAC (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a0a5ba60e148c376ec88898eb4182bc62}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a0a5ba60e148c376ec88898eb4182bc62}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!HMAC@{HMAC}}
+\index{HMAC@{HMAC}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{HMAC()}{HMAC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+HMAC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&\&}]{to\+Move }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a968abd6a5c5e0345cd4a2f443573aee3}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a968abd6a5c5e0345cd4a2f443573aee3}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!CreateSHA256HMAC@{CreateSHA256HMAC}}
+\index{CreateSHA256HMAC@{CreateSHA256HMAC}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{CreateSHA256HMAC()}{CreateSHA256HMAC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+Create\+SHA256\+HMAC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+Creates an instance of a Streaming SHA256 \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}}. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_aa5722491cdab710a7f161ffec4504c2a}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_aa5722491cdab710a7f161ffec4504c2a}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!CreateSHA256HMAC@{CreateSHA256HMAC}}
+\index{CreateSHA256HMAC@{CreateSHA256HMAC}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{CreateSHA256HMAC()}{CreateSHA256HMAC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+Create\+SHA256\+HMAC (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+Creates an instance of a Streaming SHA256 \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} using the Default Allocator. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9b9d7644f2e886b33fdd9be59d3bbacf}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9b9d7644f2e886b33fdd9be59d3bbacf}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!Digest@{Digest}}
+\index{Digest@{Digest}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{Digest()}{Digest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+Digest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&}]{output,  }\item[{size\+\_\+t}]{truncate\+To = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Finishes the running \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} operation and writes the digest into output. The available capacity of output must be large enough for the digest. See\+: SHA256\+\_\+\+DIGEST\+\_\+\+SIZE and MD5\+\_\+\+DIGEST\+\_\+\+SIZE for size hints. \textquotesingle{}truncate\+To\textquotesingle{} is for if you want truncated output (e.\+g. you only want the first 16 bytes of a SHA256 digest. Returns true on success. Call \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a170e7fc71c13e00fe5f2bfceb1b5565c}{Last\+Error()}} for the reason this call failed. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a170e7fc71c13e00fe5f2bfceb1b5565c}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a170e7fc71c13e00fe5f2bfceb1b5565c}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!LastError@{LastError}}
+\index{LastError@{LastError}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{LastError()}{LastError()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+Last\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns the value of the last aws error encountered by operations on this instance. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9c59441ec9174627d1885b8a560e2082}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a9c59441ec9174627d1885b8a560e2082}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns true if the instance is in a valid state, false otherwise. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_ac813bdf144653872c4f15316aafa9d7f}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_ac813bdf144653872c4f15316aafa9d7f}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}}\& Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a112f45cd33c4368efee7643f799173f8}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a112f45cd33c4368efee7643f799173f8}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \& Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} \&\&}]{to\+Move }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a08824f48908333900e129b7a27f37646}\label{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a08824f48908333900e129b7a27f37646}} 
+\index{Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}!Update@{Update}}
+\index{Update@{Update}!Aws::Crt::Crypto::HMAC@{Aws::Crt::Crypto::HMAC}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Crypto\+::\+HMAC\+::\+Update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{to\+HMAC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Updates the running \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c}{HMAC}} object with data in to\+HMAC. Returns true on success. Call \mbox{\hyperlink{class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c_a170e7fc71c13e00fe5f2bfceb1b5565c}{Last\+Error()}} for the reason this call failed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/crypto/\mbox{\hyperlink{include_2aws_2crt_2crypto_2_h_m_a_c_8h}{HMAC.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/crypto/\mbox{\hyperlink{_h_m_a_c_8cpp}{HMAC.\+cpp}}\end{DoxyCompactItemize}

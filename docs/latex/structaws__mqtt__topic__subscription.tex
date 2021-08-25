@@ -1,0 +1,60 @@
+\hypertarget{structaws__mqtt__topic__subscription}{}\doxysection{aws\+\_\+mqtt\+\_\+topic\+\_\+subscription Struct Reference}
+\label{structaws__mqtt__topic__subscription}\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+
+
+{\ttfamily \#include $<$client.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structaws__mqtt__topic__subscription_add4cb8bf0138ac3c7aaa28d765b5b41e}{topic}}
+\item 
+enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{structaws__mqtt__topic__subscription_ae76a47bfb7adca35843ade600be60044}{qos}}
+\item 
+\mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__mqtt__topic__subscription_af4c72602c76aa68d83d2d32a1e4828fe}{on\+\_\+publish}}
+\item 
+\mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__mqtt__topic__subscription_a73a8256ddbef92baf34871fee8458bf9}{on\+\_\+cleanup}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__mqtt__topic__subscription_ad7583a6dd1f9504235485b48dcb6277a}{on\+\_\+publish\+\_\+ud}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Passed to subscribe() and suback callbacks 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__mqtt__topic__subscription_a73a8256ddbef92baf34871fee8458bf9}\label{structaws__mqtt__topic__subscription_a73a8256ddbef92baf34871fee8458bf9}} 
+\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}!on\_cleanup@{on\_cleanup}}
+\index{on\_cleanup@{on\_cleanup}!aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+\doxysubsubsection{\texorpdfstring{on\_cleanup}{on\_cleanup}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}}$\ast$ aws\+\_\+mqtt\+\_\+topic\+\_\+subscription\+::on\+\_\+cleanup}
+
+\mbox{\Hypertarget{structaws__mqtt__topic__subscription_af4c72602c76aa68d83d2d32a1e4828fe}\label{structaws__mqtt__topic__subscription_af4c72602c76aa68d83d2d32a1e4828fe}} 
+\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}!on\_publish@{on\_publish}}
+\index{on\_publish@{on\_publish}!aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+\doxysubsubsection{\texorpdfstring{on\_publish}{on\_publish}}
+{\footnotesize\ttfamily \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}}$\ast$ aws\+\_\+mqtt\+\_\+topic\+\_\+subscription\+::on\+\_\+publish}
+
+\mbox{\Hypertarget{structaws__mqtt__topic__subscription_ad7583a6dd1f9504235485b48dcb6277a}\label{structaws__mqtt__topic__subscription_ad7583a6dd1f9504235485b48dcb6277a}} 
+\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}!on\_publish\_ud@{on\_publish\_ud}}
+\index{on\_publish\_ud@{on\_publish\_ud}!aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+\doxysubsubsection{\texorpdfstring{on\_publish\_ud}{on\_publish\_ud}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+mqtt\+\_\+topic\+\_\+subscription\+::on\+\_\+publish\+\_\+ud}
+
+\mbox{\Hypertarget{structaws__mqtt__topic__subscription_ae76a47bfb7adca35843ade600be60044}\label{structaws__mqtt__topic__subscription_ae76a47bfb7adca35843ade600be60044}} 
+\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}!qos@{qos}}
+\index{qos@{qos}!aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+\doxysubsubsection{\texorpdfstring{qos}{qos}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} aws\+\_\+mqtt\+\_\+topic\+\_\+subscription\+::qos}
+
+\mbox{\Hypertarget{structaws__mqtt__topic__subscription_add4cb8bf0138ac3c7aaa28d765b5b41e}\label{structaws__mqtt__topic__subscription_add4cb8bf0138ac3c7aaa28d765b5b41e}} 
+\index{aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}!topic@{topic}}
+\index{topic@{topic}!aws\_mqtt\_topic\_subscription@{aws\_mqtt\_topic\_subscription}}
+\doxysubsubsection{\texorpdfstring{topic}{topic}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+mqtt\+\_\+topic\+\_\+subscription\+::topic}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/\mbox{\hyperlink{client_8h}{client.\+h}}\end{DoxyCompactItemize}

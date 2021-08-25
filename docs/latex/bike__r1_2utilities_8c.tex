@@ -1,0 +1,80 @@
+\hypertarget{bike__r1_2utilities_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r1/utilities.c File Reference}
+\label{bike__r1_2utilities_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/utilities.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/utilities.c}}
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bike__r1_2utilities_8c_ada11a1370fa053d7daa6bf5db33e89b7}{BITS\+\_\+\+IN\+\_\+\+QW}}~64ULL
+\item 
+\#define \mbox{\hyperlink{bike__r1_2utilities_8c_ac54bd5b32c8baefaf13608a9296a7564}{BITS\+\_\+\+IN\+\_\+\+BYTE}}~8ULL
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2utilities_8c_a4201b52778e275bab1693dee43ba7282}{print\+\_\+newline}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t qw\+\_\+pos)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{bike__r1_2utilities_8c_aba3669456277f081514296615e36cf6c}{r\+\_\+bits\+\_\+vector\+\_\+weight}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a95dabbedd6224488e7647cde120fcdf9}{r\+\_\+t}} $\ast$in)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2utilities_8c_ae8ad7d38eb9ac228c001e37b46b6c0ce}{print\+\_\+uint64}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}})
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} uint8\+\_\+t \mbox{\hyperlink{bike__r1_2utilities_8c_ae16d777540f9a7f99993939b88f4ed3e}{print\+\_\+last\+\_\+block}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$last\+\_\+bytes, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t bits\+\_\+num, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t endien)
+\item 
+void \mbox{\hyperlink{bike__r1_2utilities_8c_ae57899739bba7ed8d23840706d2b95eb}{print\+\_\+\+LE}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$in, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t bits\+\_\+num)
+\item 
+void \mbox{\hyperlink{bike__r1_2utilities_8c_af8bf58d6eeda9c6edc4b17756017f599}{print\+\_\+\+BE}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$in, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t bits\+\_\+num)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bike__r1_2utilities_8c_ac54bd5b32c8baefaf13608a9296a7564}\label{bike__r1_2utilities_8c_ac54bd5b32c8baefaf13608a9296a7564}} 
+\index{utilities.c@{utilities.c}!BITS\_IN\_BYTE@{BITS\_IN\_BYTE}}
+\index{BITS\_IN\_BYTE@{BITS\_IN\_BYTE}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{BITS\_IN\_BYTE}{BITS\_IN\_BYTE}}
+{\footnotesize\ttfamily \#define BITS\+\_\+\+IN\+\_\+\+BYTE~8ULL}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_ada11a1370fa053d7daa6bf5db33e89b7}\label{bike__r1_2utilities_8c_ada11a1370fa053d7daa6bf5db33e89b7}} 
+\index{utilities.c@{utilities.c}!BITS\_IN\_QW@{BITS\_IN\_QW}}
+\index{BITS\_IN\_QW@{BITS\_IN\_QW}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{BITS\_IN\_QW}{BITS\_IN\_QW}}
+{\footnotesize\ttfamily \#define BITS\+\_\+\+IN\+\_\+\+QW~64ULL}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r1_2utilities_8c_af8bf58d6eeda9c6edc4b17756017f599}\label{bike__r1_2utilities_8c_af8bf58d6eeda9c6edc4b17756017f599}} 
+\index{utilities.c@{utilities.c}!print\_BE@{print\_BE}}
+\index{print\_BE@{print\_BE}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{print\_BE()}{print\_BE()}}
+{\footnotesize\ttfamily void print\+\_\+\+BE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{in,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{bits\+\_\+num }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_ae16d777540f9a7f99993939b88f4ed3e}\label{bike__r1_2utilities_8c_ae16d777540f9a7f99993939b88f4ed3e}} 
+\index{utilities.c@{utilities.c}!print\_last\_block@{print\_last\_block}}
+\index{print\_last\_block@{print\_last\_block}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{print\_last\_block()}{print\_last\_block()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} uint8\+\_\+t print\+\_\+last\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$}]{last\+\_\+bytes,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{bits\+\_\+num,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{endien }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_ae57899739bba7ed8d23840706d2b95eb}\label{bike__r1_2utilities_8c_ae57899739bba7ed8d23840706d2b95eb}} 
+\index{utilities.c@{utilities.c}!print\_LE@{print\_LE}}
+\index{print\_LE@{print\_LE}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{print\_LE()}{print\_LE()}}
+{\footnotesize\ttfamily void print\+\_\+\+LE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{in,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{bits\+\_\+num }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_a4201b52778e275bab1693dee43ba7282}\label{bike__r1_2utilities_8c_a4201b52778e275bab1693dee43ba7282}} 
+\index{utilities.c@{utilities.c}!print\_newline@{print\_newline}}
+\index{print\_newline@{print\_newline}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{print\_newline()}{print\_newline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void print\+\_\+newline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t}]{qw\+\_\+pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_ae8ad7d38eb9ac228c001e37b46b6c0ce}\label{bike__r1_2utilities_8c_ae8ad7d38eb9ac228c001e37b46b6c0ce}} 
+\index{utilities.c@{utilities.c}!print\_uint64@{print\_uint64}}
+\index{print\_uint64@{print\_uint64}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{print\_uint64()}{print\_uint64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void print\+\_\+uint64 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2utilities_8c_aba3669456277f081514296615e36cf6c}\label{bike__r1_2utilities_8c_aba3669456277f081514296615e36cf6c}} 
+\index{utilities.c@{utilities.c}!r\_bits\_vector\_weight@{r\_bits\_vector\_weight}}
+\index{r\_bits\_vector\_weight@{r\_bits\_vector\_weight}!utilities.c@{utilities.c}}
+\doxysubsubsection{\texorpdfstring{r\_bits\_vector\_weight()}{r\_bits\_vector\_weight()}}
+{\footnotesize\ttfamily uint64\+\_\+t r\+\_\+bits\+\_\+vector\+\_\+weight (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a95dabbedd6224488e7647cde120fcdf9}{r\+\_\+t}} $\ast$}]{in }\end{DoxyParamCaption})}
+

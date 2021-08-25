@@ -1,0 +1,198 @@
+\hypertarget{topic__tree__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/topic\+\_\+tree\+\_\+test.c File Reference}
+\label{topic__tree__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/topic\_tree\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/topic\_tree\_test.c}}
+{\ttfamily \#include $<$aws/mqtt/private/topic\+\_\+tree.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs__duplicate__test__ud}{s\+\_\+duplicate\+\_\+test\+\_\+ud}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{topic__tree__test_8c_a2755921d410c3f4b2f986d3f63703a0c}{ASSERT\+\_\+\+TOPIC\+\_\+\+VALIDITY}}(expected,  \mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}{on\+\_\+publish}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{topic__tree__test_8c_a281bf933451f9abc6cda6f07c47a3a1f}{s\+\_\+string\+\_\+clean\+\_\+up}} (void $\ast$userdata)
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_ad5a9f2c47cd4f084421274edbfaca3be}{s\+\_\+check\+\_\+multi\+\_\+topic\+\_\+match}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$$\ast$sub\+\_\+filters, size\+\_\+t sub\+\_\+filters\+\_\+len, const char $\ast$\mbox{\hyperlink{connection__state__test_8c_ab0fc1a5e7aa20d4e8884bd6cafaf9f82}{pub\+\_\+topic}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{topic__tree__test_8c_a4e55c0d64a8462e1c45430b95410964f}{s\+\_\+check\+\_\+topic\+\_\+match}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$sub\+\_\+filter, const char $\ast$\mbox{\hyperlink{connection__state__test_8c_ab0fc1a5e7aa20d4e8884bd6cafaf9f82}{pub\+\_\+topic}})
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_a897de6d1276624cf78fe52c74291b903}{s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+match\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_aa2f04af656e5fd39ee13f280f43ec88a}{s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+unsubscribe\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{topic__tree__test_8c_ac8b0cd18e144d9f5c59355baa12df3ef}{s\+\_\+userdata\+\_\+cleanup}} (void $\ast$userdata)
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_ac0f4e1022a7984466333200d17448341}{s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+duplicate\+\_\+transactions\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_abbdd3b959651e93c92eaed0f96489e62}{s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+transactions\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_a30c0b9939b20cb8f491aa6e3c24b518c}{s\+\_\+mqtt\+\_\+topic\+\_\+validation\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{topic__tree__test_8c_a3db3e8a10a6ecb10b0476690debe2d35}{s\+\_\+empty\+\_\+cursor}}
+\item 
+static int \mbox{\hyperlink{topic__tree__test_8c_ac11c93c7b361699db9c9a3be992bd6af}{times\+\_\+called}} = 0
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{topic__tree__test_8c_a07942c23ae7ee8b4686faf92b2b6ad70}{s\+\_\+topic\+\_\+a\+\_\+a}}
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{topic__tree__test_8c_ad5e123bb8edeefebcb504e9bd9d2d0b1}{s\+\_\+topic\+\_\+a\+\_\+a\+\_\+a}}
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{topic__tree__test_8c_afcd48eeecd9a40b38e44ccb05bd04f34}{s\+\_\+topic\+\_\+a\+\_\+a\+\_\+b}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{topic__tree__test_8c_a2755921d410c3f4b2f986d3f63703a0c}\label{topic__tree__test_8c_a2755921d410c3f4b2f986d3f63703a0c}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!ASSERT\_TOPIC\_VALIDITY@{ASSERT\_TOPIC\_VALIDITY}}
+\index{ASSERT\_TOPIC\_VALIDITY@{ASSERT\_TOPIC\_VALIDITY}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TOPIC\_VALIDITY}{ASSERT\_TOPIC\_VALIDITY}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+TOPIC\+\_\+\+VALIDITY(\begin{DoxyParamCaption}\item[{}]{expected,  }\item[{}]{\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} topic\_cursor;                                                                           \(\backslash\)}
+\DoxyCodeLine{        topic\_cursor.\mbox{\hyperlink{structaws__byte__cursor_a824ebfad81da6928a703a04fe80f7bb7}{ptr}} = (uint8\_t *)(\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}});                                                                         \(\backslash\)}
+\DoxyCodeLine{        topic\_cursor.len = strlen(\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}});                                                                              \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_\#\#expected(\mbox{\hyperlink{mqtt_8h_aea6977fb51a40d924c62450118660d40}{aws\_mqtt\_is\_valid\_topic\_filter}}(\&topic\_cursor));                                              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (\textcolor{keyword}{false})}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}\label{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!on\_publish@{on\_publish}}
+\index{on\_publish@{on\_publish}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{on\_publish()}{on\_publish()}}
+{\footnotesize\ttfamily static void on\+\_\+publish (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{dup,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_ad5a9f2c47cd4f084421274edbfaca3be}\label{topic__tree__test_8c_ad5a9f2c47cd4f084421274edbfaca3be}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_check\_multi\_topic\_match@{s\_check\_multi\_topic\_match}}
+\index{s\_check\_multi\_topic\_match@{s\_check\_multi\_topic\_match}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_check\_multi\_topic\_match()}{s\_check\_multi\_topic\_match()}}
+{\footnotesize\ttfamily static int s\+\_\+check\+\_\+multi\+\_\+topic\+\_\+match (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const char $\ast$$\ast$}]{sub\+\_\+filters,  }\item[{size\+\_\+t}]{sub\+\_\+filters\+\_\+len,  }\item[{const char $\ast$}]{pub\+\_\+topic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_a4e55c0d64a8462e1c45430b95410964f}\label{topic__tree__test_8c_a4e55c0d64a8462e1c45430b95410964f}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_check\_topic\_match@{s\_check\_topic\_match}}
+\index{s\_check\_topic\_match@{s\_check\_topic\_match}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_check\_topic\_match()}{s\_check\_topic\_match()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+check\+\_\+topic\+\_\+match (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const char $\ast$}]{sub\+\_\+filter,  }\item[{const char $\ast$}]{pub\+\_\+topic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_ac0f4e1022a7984466333200d17448341}\label{topic__tree__test_8c_ac0f4e1022a7984466333200d17448341}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn@{s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn}}
+\index{s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn@{s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn()}{s\_mqtt\_topic\_tree\_duplicate\_transactions\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+duplicate\+\_\+transactions\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_a897de6d1276624cf78fe52c74291b903}\label{topic__tree__test_8c_a897de6d1276624cf78fe52c74291b903}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_mqtt\_topic\_tree\_match\_fn@{s\_mqtt\_topic\_tree\_match\_fn}}
+\index{s\_mqtt\_topic\_tree\_match\_fn@{s\_mqtt\_topic\_tree\_match\_fn}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_topic\_tree\_match\_fn()}{s\_mqtt\_topic\_tree\_match\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+match\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_abbdd3b959651e93c92eaed0f96489e62}\label{topic__tree__test_8c_abbdd3b959651e93c92eaed0f96489e62}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_mqtt\_topic\_tree\_transactions\_fn@{s\_mqtt\_topic\_tree\_transactions\_fn}}
+\index{s\_mqtt\_topic\_tree\_transactions\_fn@{s\_mqtt\_topic\_tree\_transactions\_fn}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_topic\_tree\_transactions\_fn()}{s\_mqtt\_topic\_tree\_transactions\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+transactions\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_aa2f04af656e5fd39ee13f280f43ec88a}\label{topic__tree__test_8c_aa2f04af656e5fd39ee13f280f43ec88a}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_mqtt\_topic\_tree\_unsubscribe\_fn@{s\_mqtt\_topic\_tree\_unsubscribe\_fn}}
+\index{s\_mqtt\_topic\_tree\_unsubscribe\_fn@{s\_mqtt\_topic\_tree\_unsubscribe\_fn}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_topic\_tree\_unsubscribe\_fn()}{s\_mqtt\_topic\_tree\_unsubscribe\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+topic\+\_\+tree\+\_\+unsubscribe\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_a30c0b9939b20cb8f491aa6e3c24b518c}\label{topic__tree__test_8c_a30c0b9939b20cb8f491aa6e3c24b518c}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_mqtt\_topic\_validation\_fn@{s\_mqtt\_topic\_validation\_fn}}
+\index{s\_mqtt\_topic\_validation\_fn@{s\_mqtt\_topic\_validation\_fn}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_topic\_validation\_fn()}{s\_mqtt\_topic\_validation\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+topic\+\_\+validation\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_a281bf933451f9abc6cda6f07c47a3a1f}\label{topic__tree__test_8c_a281bf933451f9abc6cda6f07c47a3a1f}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_string\_clean\_up@{s\_string\_clean\_up}}
+\index{s\_string\_clean\_up@{s\_string\_clean\_up}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_string\_clean\_up()}{s\_string\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+string\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{topic__tree__test_8c_ac8b0cd18e144d9f5c59355baa12df3ef}\label{topic__tree__test_8c_ac8b0cd18e144d9f5c59355baa12df3ef}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_userdata\_cleanup@{s\_userdata\_cleanup}}
+\index{s\_userdata\_cleanup@{s\_userdata\_cleanup}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_userdata\_cleanup()}{s\_userdata\_cleanup()}}
+{\footnotesize\ttfamily static void s\+\_\+userdata\+\_\+cleanup (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{topic__tree__test_8c_a3db3e8a10a6ecb10b0476690debe2d35}\label{topic__tree__test_8c_a3db3e8a10a6ecb10b0476690debe2d35}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_empty\_cursor@{s\_empty\_cursor}}
+\index{s\_empty\_cursor@{s\_empty\_cursor}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_empty\_cursor}{s\_empty\_cursor}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+empty\+\_\+cursor\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .ptr = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .len = 0,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{topic__tree__test_8c_a07942c23ae7ee8b4686faf92b2b6ad70}\label{topic__tree__test_8c_a07942c23ae7ee8b4686faf92b2b6ad70}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_topic\_a\_a@{s\_topic\_a\_a}}
+\index{s\_topic\_a\_a@{s\_topic\_a\_a}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_topic\_a\_a}{s\_topic\_a\_a}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+topic\+\_\+a\+\_\+a\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .ptr = (uint8\_t *)\textcolor{stringliteral}{"{}a/a"{}},}
+\DoxyCodeLine{    .\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}} = 3,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{topic__tree__test_8c_ad5e123bb8edeefebcb504e9bd9d2d0b1}\label{topic__tree__test_8c_ad5e123bb8edeefebcb504e9bd9d2d0b1}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_topic\_a\_a\_a@{s\_topic\_a\_a\_a}}
+\index{s\_topic\_a\_a\_a@{s\_topic\_a\_a\_a}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_topic\_a\_a\_a}{s\_topic\_a\_a\_a}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+topic\+\_\+a\+\_\+a\+\_\+a\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .ptr = (uint8\_t *)\textcolor{stringliteral}{"{}a/a/a"{}},}
+\DoxyCodeLine{    .\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}} = 5,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{topic__tree__test_8c_afcd48eeecd9a40b38e44ccb05bd04f34}\label{topic__tree__test_8c_afcd48eeecd9a40b38e44ccb05bd04f34}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!s\_topic\_a\_a\_b@{s\_topic\_a\_a\_b}}
+\index{s\_topic\_a\_a\_b@{s\_topic\_a\_a\_b}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_topic\_a\_a\_b}{s\_topic\_a\_a\_b}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+topic\+\_\+a\+\_\+a\+\_\+b\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .ptr = (uint8\_t *)\textcolor{stringliteral}{"{}a/a/b"{}},}
+\DoxyCodeLine{    .\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}} = 5,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{topic__tree__test_8c_ac11c93c7b361699db9c9a3be992bd6af}\label{topic__tree__test_8c_ac11c93c7b361699db9c9a3be992bd6af}} 
+\index{topic\_tree\_test.c@{topic\_tree\_test.c}!times\_called@{times\_called}}
+\index{times\_called@{times\_called}!topic\_tree\_test.c@{topic\_tree\_test.c}}
+\doxysubsubsection{\texorpdfstring{times\_called}{times\_called}}
+{\footnotesize\ttfamily int times\+\_\+called = 0\hspace{0.3cm}{\ttfamily [static]}}
+

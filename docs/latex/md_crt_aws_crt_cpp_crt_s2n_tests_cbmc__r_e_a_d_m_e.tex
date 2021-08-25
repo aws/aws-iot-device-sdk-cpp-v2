@@ -1,0 +1,21 @@
+This directory contains automated proofs of the memory safety of various parts of the s2n codebase. A continuous integration system validates every pull request posted to the repository against these proofs, and developers can also run the proofs on their local machines.
+
+The proofs are checked using the \href{http://www.cprover.org/cbmc/}{\texttt{ C Bounded Model Checker}}, an open-\/source static analysis tool (\href{https://github.com/diffblue/cbmc}{\texttt{ Git\+Hub repository}}). This README describes how to run the proofs on your local clone of s2n.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md508}{}\doxysection{Prerequisites}\label{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md508}
+You will need Python 3. On mac\+OS and Linux, you will need Make, plus the CBMC build tools.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md509}{}\doxysection{Installing CBMC}\label{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md509}
+
+\begin{DoxyItemize}
+\item Clone the \href{https://github.com/diffblue/cbmc}{\texttt{ CBMC repository}}.
+\item The canonical compilation and installation instructions are in the \href{https://github.com/diffblue/cbmc/blob/develop/COMPILING.md}{\texttt{ COMPILING.\+md}} file in the CBMC repository
+\item Ensure that you can run the programs {\ttfamily cbmc}, {\ttfamily goto-\/cc}, and {\ttfamily goto-\/instrument} from the command line. If you build CBMC with CMake, the programs will have been installed under the {\ttfamily build/bin/\+Debug} or {\ttfamily build/bin/\+Release} directories under the top-\/level {\ttfamily cbmc} directory; you should add that directory to your {\ttfamily \$\+PATH}. If you built CBMC using Make, then those programs will have been installed in the {\ttfamily src/cbmc}, {\ttfamily src/goto-\/cc}, and {\ttfamily src/goto-\/instrument} directories respectively.
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md510}{}\doxysection{Running the proofs}\label{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md510}
+Each of the leaf directories under {\ttfamily proofs} is a proof of the memory safety of a single entry point. To run a proof, change into the directory for that proof and run {\ttfamily make} on Linux or mac\+OS. The proofs may take some time to run; they eventually write their output to {\ttfamily cbmc.\+txt}, which should have the text {\ttfamily VERIFICATION SUCCESSFUL} at the end.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md511}{}\doxysection{Proof directory structure}\label{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md511}
+This directory contains the following subdirectories\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily proofs} contains the proofs run against each pull request
+\item {\ttfamily include} contains the {\ttfamily .h} files needed by proofs
+\item {\ttfamily source} contains functions useful in multiple CBMC proofs
+\item {\ttfamily stubs} contains stubs for functions which are modelled by CBMC
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md512}{}\doxysection{Open\+SSL Stubs}\label{md_crt_aws_crt_cpp_crt_s2n_tests_cbmc__r_e_a_d_m_e_autotoc_md512}
+To reduce verification complexity, CBMC uses an abstract representation of the Open\+SSL, which covers its essential behavior with additional checks. Our stubs remove all the verification-\/irrelevant code from Open\+SSL while adding function contracts (i.\+e., pre-\/ and post-\/conditions) to all Open\+SSL function calls. The purpose of the verification is to check whether a given program uses correctly Open\+SSL without hitting a bogus state. We had to do a similar thing when verifying the \href{https://github.com/aws/aws-encryption-sdk-c/tree/master/.cbmc-batch/include/openssl}{\texttt{ AWS Encryption SDK for C}}. All Open\+SSL stubs are under {\ttfamily include\textbackslash{}openssl} and {\ttfamily source\textbackslash{}openssl}. 

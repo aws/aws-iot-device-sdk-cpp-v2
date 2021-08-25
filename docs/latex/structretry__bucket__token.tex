@@ -1,0 +1,69 @@
+\hypertarget{structretry__bucket__token}{}\doxysection{retry\+\_\+bucket\+\_\+token Struct Reference}
+\label{structretry__bucket__token}\index{retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} \mbox{\hyperlink{structretry__bucket__token_a397398cb1d781969d2a14fd04e62927c}{retry\+\_\+token}}
+\item 
+struct \mbox{\hyperlink{structretry__bucket}{retry\+\_\+bucket}} $\ast$ \mbox{\hyperlink{structretry__bucket__token_a65887bb7e5287ac628af39fb796b6bb1}{strategy\+\_\+bucket}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$ \mbox{\hyperlink{structretry__bucket__token_a32d24085f72b655d5730971b42e44f6f}{exp\+\_\+backoff\+\_\+token}}
+\item 
+\mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+token\+\_\+acquired\+\_\+fn}} $\ast$ \mbox{\hyperlink{structretry__bucket__token_aaad1514aae1f10c96abc3205714b6878}{original\+\_\+on\+\_\+acquired}}
+\item 
+\mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+ready\+\_\+fn}} $\ast$ \mbox{\hyperlink{structretry__bucket__token_a7ddc7298419c653ff0c57c6b9956eb0e}{original\+\_\+on\+\_\+ready}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structretry__bucket__token_a806550fbad45c2a1547c9222b612adf1}{last\+\_\+retry\+\_\+cost}}
+\item 
+void $\ast$ \mbox{\hyperlink{structretry__bucket__token_a99c09f6435500e736365c27de3c51fb0}{original\+\_\+user\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structretry__bucket__token_a32d24085f72b655d5730971b42e44f6f}\label{structretry__bucket__token_a32d24085f72b655d5730971b42e44f6f}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!exp\_backoff\_token@{exp\_backoff\_token}}
+\index{exp\_backoff\_token@{exp\_backoff\_token}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{exp\_backoff\_token}{exp\_backoff\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}}$\ast$ retry\+\_\+bucket\+\_\+token\+::exp\+\_\+backoff\+\_\+token}
+
+\mbox{\Hypertarget{structretry__bucket__token_a806550fbad45c2a1547c9222b612adf1}\label{structretry__bucket__token_a806550fbad45c2a1547c9222b612adf1}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!last\_retry\_cost@{last\_retry\_cost}}
+\index{last\_retry\_cost@{last\_retry\_cost}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{last\_retry\_cost}{last\_retry\_cost}}
+{\footnotesize\ttfamily size\+\_\+t retry\+\_\+bucket\+\_\+token\+::last\+\_\+retry\+\_\+cost}
+
+\mbox{\Hypertarget{structretry__bucket__token_aaad1514aae1f10c96abc3205714b6878}\label{structretry__bucket__token_aaad1514aae1f10c96abc3205714b6878}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!original\_on\_acquired@{original\_on\_acquired}}
+\index{original\_on\_acquired@{original\_on\_acquired}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{original\_on\_acquired}{original\_on\_acquired}}
+{\footnotesize\ttfamily \mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+token\+\_\+acquired\+\_\+fn}}$\ast$ retry\+\_\+bucket\+\_\+token\+::original\+\_\+on\+\_\+acquired}
+
+\mbox{\Hypertarget{structretry__bucket__token_a7ddc7298419c653ff0c57c6b9956eb0e}\label{structretry__bucket__token_a7ddc7298419c653ff0c57c6b9956eb0e}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!original\_on\_ready@{original\_on\_ready}}
+\index{original\_on\_ready@{original\_on\_ready}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{original\_on\_ready}{original\_on\_ready}}
+{\footnotesize\ttfamily \mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+ready\+\_\+fn}}$\ast$ retry\+\_\+bucket\+\_\+token\+::original\+\_\+on\+\_\+ready}
+
+\mbox{\Hypertarget{structretry__bucket__token_a99c09f6435500e736365c27de3c51fb0}\label{structretry__bucket__token_a99c09f6435500e736365c27de3c51fb0}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!original\_user\_data@{original\_user\_data}}
+\index{original\_user\_data@{original\_user\_data}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{original\_user\_data}{original\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ retry\+\_\+bucket\+\_\+token\+::original\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structretry__bucket__token_a397398cb1d781969d2a14fd04e62927c}\label{structretry__bucket__token_a397398cb1d781969d2a14fd04e62927c}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!retry\_token@{retry\_token}}
+\index{retry\_token@{retry\_token}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{retry\_token}{retry\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} retry\+\_\+bucket\+\_\+token\+::retry\+\_\+token}
+
+\mbox{\Hypertarget{structretry__bucket__token_a65887bb7e5287ac628af39fb796b6bb1}\label{structretry__bucket__token_a65887bb7e5287ac628af39fb796b6bb1}} 
+\index{retry\_bucket\_token@{retry\_bucket\_token}!strategy\_bucket@{strategy\_bucket}}
+\index{strategy\_bucket@{strategy\_bucket}!retry\_bucket\_token@{retry\_bucket\_token}}
+\doxysubsubsection{\texorpdfstring{strategy\_bucket}{strategy\_bucket}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structretry__bucket}{retry\+\_\+bucket}}$\ast$ retry\+\_\+bucket\+\_\+token\+::strategy\+\_\+bucket}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/\mbox{\hyperlink{standard__retry__strategy_8c}{standard\+\_\+retry\+\_\+strategy.\+c}}\end{DoxyCompactItemize}

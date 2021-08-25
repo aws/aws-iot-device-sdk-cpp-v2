@@ -1,0 +1,165 @@
+\hypertarget{integration__test__proxy_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/integration\+\_\+test\+\_\+proxy.c File Reference}
+\label{integration__test__proxy_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/integration\_test\_proxy.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/integration\_test\_proxy.c}}
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/server.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}proxy\+\_\+test\+\_\+helper.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a6d85c5eeb29147c9416a9e5a3d3f3684}{s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+proxy\+\_\+test}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} header\+\_\+block, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header\+\_\+array, size\+\_\+t num\+\_\+headers, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a3d232e49ae0b0b237823919e25d31d96}{s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+proxy\+\_\+test}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} header\+\_\+block, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a33ca893ec0552952655cb6460dcee5f7}{s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+proxy\+\_\+test}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{integration__test__proxy_8c_ae2ab06317a1107eefd842e326ba543a3}{s\+\_\+aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+proxy\+\_\+test}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_acc0979f308bf77feb30c8c6e7ed288b9}{s\+\_\+setup\+\_\+proxy\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} host, enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}} test\+\_\+mode)
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a6d5787551458ec7caab13d4265dfdf67}{s\+\_\+do\+\_\+proxy\+\_\+request\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} host, enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}} test\+\_\+mode, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} method, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} path)
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_ae639b759a5478bf9c0437e0adb21c8df}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{integration__test__proxy_8c_ab8840297d2cb310e1caf42fa22c47aa6}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy, \mbox{\hyperlink{integration__test__proxy_8c_ae639b759a5478bf9c0437e0adb21c8df}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a871fa020860658ebab5884b385c589b5}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{integration__test__proxy_8c_ae85119d990e8cef06a17309378a2da68}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get, \mbox{\hyperlink{integration__test__proxy_8c_a871fa020860658ebab5884b385c589b5}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a536c1d861ff121b51775a855f0073317}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{integration__test__proxy_8c_a5f52424d90c2439949821848d0feeb8f}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy, \mbox{\hyperlink{integration__test__proxy_8c_a536c1d861ff121b51775a855f0073317}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a9c85e6d28db7ee78bc126ff78846e72b}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{integration__test__proxy_8c_a9b239ae4c12e8c5e2e0e5bb89cb16281}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get, \mbox{\hyperlink{integration__test__proxy_8c_a9c85e6d28db7ee78bc126ff78846e72b}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get}})
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_a8af18e5633407d9195129004174b91a4}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{integration__test__proxy_8c_aee93ff3ac8e54912e96350f878d65192}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star, \mbox{\hyperlink{integration__test__proxy_8c_a8af18e5633407d9195129004174b91a4}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structproxy__tester}{proxy\+\_\+tester}} \mbox{\hyperlink{integration__test__proxy_8c_a3491d722a1e9ec665cacd413822d0e3f}{tester}}
+\item 
+static int \mbox{\hyperlink{integration__test__proxy_8c_ab101c57fd68efeebb0fb316d71848e6f}{s\+\_\+response\+\_\+status\+\_\+code}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{integration__test__proxy_8c_ae85119d990e8cef06a17309378a2da68}\label{integration__test__proxy_8c_ae85119d990e8cef06a17309378a2da68}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get}]{,  }\item[{\mbox{\hyperlink{integration__test__proxy_8c_a871fa020860658ebab5884b385c589b5}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_ab8840297d2cb310e1caf42fa22c47aa6}\label{integration__test__proxy_8c_ab8840297d2cb310e1caf42fa22c47aa6}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}]{,  }\item[{\mbox{\hyperlink{integration__test__proxy_8c_ae639b759a5478bf9c0437e0adb21c8df}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_aee93ff3ac8e54912e96350f878d65192}\label{integration__test__proxy_8c_aee93ff3ac8e54912e96350f878d65192}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star}]{,  }\item[{\mbox{\hyperlink{integration__test__proxy_8c_a8af18e5633407d9195129004174b91a4}{s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a9b239ae4c12e8c5e2e0e5bb89cb16281}\label{integration__test__proxy_8c_a9b239ae4c12e8c5e2e0e5bb89cb16281}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get}]{,  }\item[{\mbox{\hyperlink{integration__test__proxy_8c_a9c85e6d28db7ee78bc126ff78846e72b}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a5f52424d90c2439949821848d0feeb8f}\label{integration__test__proxy_8c_a5f52424d90c2439949821848d0feeb8f}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}]{,  }\item[{\mbox{\hyperlink{integration__test__proxy_8c_a536c1d861ff121b51775a855f0073317}{s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a33ca893ec0552952655cb6460dcee5f7}\label{integration__test__proxy_8c_a33ca893ec0552952655cb6460dcee5f7}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_aws\_http\_on\_incoming\_body\_proxy\_test@{s\_aws\_http\_on\_incoming\_body\_proxy\_test}}
+\index{s\_aws\_http\_on\_incoming\_body\_proxy\_test@{s\_aws\_http\_on\_incoming\_body\_proxy\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_on\_incoming\_body\_proxy\_test()}{s\_aws\_http\_on\_incoming\_body\_proxy\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+proxy\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a3d232e49ae0b0b237823919e25d31d96}\label{integration__test__proxy_8c_a3d232e49ae0b0b237823919e25d31d96}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test@{s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test}}
+\index{s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test@{s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test()}{s\_aws\_http\_on\_incoming\_header\_block\_done\_proxy\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+proxy\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{header\+\_\+block,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a6d85c5eeb29147c9416a9e5a3d3f3684}\label{integration__test__proxy_8c_a6d85c5eeb29147c9416a9e5a3d3f3684}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_aws\_http\_on\_incoming\_headers\_proxy\_test@{s\_aws\_http\_on\_incoming\_headers\_proxy\_test}}
+\index{s\_aws\_http\_on\_incoming\_headers\_proxy\_test@{s\_aws\_http\_on\_incoming\_headers\_proxy\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_on\_incoming\_headers\_proxy\_test()}{s\_aws\_http\_on\_incoming\_headers\_proxy\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+proxy\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{header\+\_\+block,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+headers,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_ae2ab06317a1107eefd842e326ba543a3}\label{integration__test__proxy_8c_ae2ab06317a1107eefd842e326ba543a3}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_aws\_http\_on\_stream\_complete\_proxy\_test@{s\_aws\_http\_on\_stream\_complete\_proxy\_test}}
+\index{s\_aws\_http\_on\_stream\_complete\_proxy\_test@{s\_aws\_http\_on\_stream\_complete\_proxy\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_on\_stream\_complete\_proxy\_test()}{s\_aws\_http\_on\_stream\_complete\_proxy\_test()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+proxy\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a6d5787551458ec7caab13d4265dfdf67}\label{integration__test__proxy_8c_a6d5787551458ec7caab13d4265dfdf67}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_do\_proxy\_request\_test@{s\_do\_proxy\_request\_test}}
+\index{s\_do\_proxy\_request\_test@{s\_do\_proxy\_request\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_proxy\_request\_test()}{s\_do\_proxy\_request\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+proxy\+\_\+request\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{host,  }\item[{enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}}}]{test\+\_\+mode,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{method,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_acc0979f308bf77feb30c8c6e7ed288b9}\label{integration__test__proxy_8c_acc0979f308bf77feb30c8c6e7ed288b9}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_setup\_proxy\_test@{s\_setup\_proxy\_test}}
+\index{s\_setup\_proxy\_test@{s\_setup\_proxy\_test}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_setup\_proxy\_test()}{s\_setup\_proxy\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+setup\+\_\+proxy\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{host,  }\item[{enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}}}]{test\+\_\+mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a871fa020860658ebab5884b385c589b5}\label{integration__test__proxy_8c_a871fa020860658ebab5884b385c589b5}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_test\_http\_proxy\_connection\_get@{s\_test\_http\_proxy\_connection\_get}}
+\index{s\_test\_http\_proxy\_connection\_get@{s\_test\_http\_proxy\_connection\_get}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_http\_proxy\_connection\_get()}{s\_test\_http\_proxy\_connection\_get()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+get (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_ae639b759a5478bf9c0437e0adb21c8df}\label{integration__test__proxy_8c_ae639b759a5478bf9c0437e0adb21c8df}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_test\_http\_proxy\_connection\_new\_destroy@{s\_test\_http\_proxy\_connection\_new\_destroy}}
+\index{s\_test\_http\_proxy\_connection\_new\_destroy@{s\_test\_http\_proxy\_connection\_new\_destroy}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_http\_proxy\_connection\_new\_destroy()}{s\_test\_http\_proxy\_connection\_new\_destroy()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a8af18e5633407d9195129004174b91a4}\label{integration__test__proxy_8c_a8af18e5633407d9195129004174b91a4}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_test\_http\_proxy\_connection\_options\_star@{s\_test\_http\_proxy\_connection\_options\_star}}
+\index{s\_test\_http\_proxy\_connection\_options\_star@{s\_test\_http\_proxy\_connection\_options\_star}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_http\_proxy\_connection\_options\_star()}{s\_test\_http\_proxy\_connection\_options\_star()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+http\+\_\+proxy\+\_\+connection\+\_\+options\+\_\+star (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a9c85e6d28db7ee78bc126ff78846e72b}\label{integration__test__proxy_8c_a9c85e6d28db7ee78bc126ff78846e72b}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_test\_https\_proxy\_connection\_get@{s\_test\_https\_proxy\_connection\_get}}
+\index{s\_test\_https\_proxy\_connection\_get@{s\_test\_https\_proxy\_connection\_get}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_https\_proxy\_connection\_get()}{s\_test\_https\_proxy\_connection\_get()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+get (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a536c1d861ff121b51775a855f0073317}\label{integration__test__proxy_8c_a536c1d861ff121b51775a855f0073317}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_test\_https\_proxy\_connection\_new\_destroy@{s\_test\_https\_proxy\_connection\_new\_destroy}}
+\index{s\_test\_https\_proxy\_connection\_new\_destroy@{s\_test\_https\_proxy\_connection\_new\_destroy}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_https\_proxy\_connection\_new\_destroy()}{s\_test\_https\_proxy\_connection\_new\_destroy()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+https\+\_\+proxy\+\_\+connection\+\_\+new\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{integration__test__proxy_8c_ab101c57fd68efeebb0fb316d71848e6f}\label{integration__test__proxy_8c_ab101c57fd68efeebb0fb316d71848e6f}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!s\_response\_status\_code@{s\_response\_status\_code}}
+\index{s\_response\_status\_code@{s\_response\_status\_code}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{s\_response\_status\_code}{s\_response\_status\_code}}
+{\footnotesize\ttfamily int s\+\_\+response\+\_\+status\+\_\+code = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{integration__test__proxy_8c_a3491d722a1e9ec665cacd413822d0e3f}\label{integration__test__proxy_8c_a3491d722a1e9ec665cacd413822d0e3f}} 
+\index{integration\_test\_proxy.c@{integration\_test\_proxy.c}!tester@{tester}}
+\index{tester@{tester}!integration\_test\_proxy.c@{integration\_test\_proxy.c}}
+\doxysubsubsection{\texorpdfstring{tester}{tester}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structproxy__tester}{proxy\+\_\+tester}} \mbox{\hyperlink{structtester}{tester}}\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

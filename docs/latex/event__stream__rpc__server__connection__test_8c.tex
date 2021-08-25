@@ -1,0 +1,1015 @@
+\hypertarget{event__stream__rpc__server__connection__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/tests/event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+test.c File Reference}
+\label{event__stream__rpc__server__connection__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/tests/event\_stream\_rpc\_server\_connection\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/tests/event\_stream\_rpc\_server\_connection\_test.c}}
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/device\+\_\+random.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/macros.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/event-\/stream/private/event\+\_\+stream\+\_\+rpc\+\_\+test\+\_\+helper.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/io\+\_\+testing\+\_\+channel.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtest__data}{test\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_adcb4f0b3362f35fde0112cfc7923b42d}{s\+\_\+fixture\+\_\+on\+\_\+protocol\+\_\+message}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a234f134a883e5ce6e0eebfe7fb5eadaf}{s\+\_\+on\+\_\+stream\+\_\+continuation\+\_\+shim}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ae76a81eed693dfd07798ab14156ea4bd}{s\+\_\+server\+\_\+stream\+\_\+continuation\+\_\+closed\+\_\+shim}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a94c84b63d443773d0af9b844c038ddc6}{s\+\_\+on\+\_\+server\+\_\+incoming\+\_\+stream\+\_\+shim}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a84fcf15d1f1f5692ab6453f9677a23ef}{operation\+\_\+name}}, struct \mbox{\hyperlink{structaws__event__stream__rpc__server__stream__continuation__options}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+stream\+\_\+continuation\+\_\+options}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4ca1d38564ec809e8c28dd28698f995b}{continuation\+\_\+options}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa77741d364e3b55a0ac1fee0b9c5c353}{s\+\_\+fixture\+\_\+on\+\_\+new\+\_\+server\+\_\+connection}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__event__stream__rpc__connection__options}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+connection\+\_\+options}} $\ast$\mbox{\hyperlink{connection__state__test_8c_afe7db95b0401b8dbd61145beab76a3c4}{connection\+\_\+options}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_adf605936a4b0d11bb061bcf5218eff83}{s\+\_\+fixture\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ac31b27dfc347cab20d4a211524e8b31d}{s\+\_\+on\+\_\+listener\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__listener}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+listener}} $\ast$server, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a035533603a3ea9becef281ec16855d30}{s\+\_\+event\+\_\+loop\+\_\+shutdown\+\_\+callback}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a92a88ca9a51ccf4243970b629512ae6c}{s\+\_\+shutdown\+\_\+predicate\+\_\+fn}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a33eaed084f79ee065cfd9ce9be45e450}{s\+\_\+fixture\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, int setup\+\_\+result, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6ed00cb0789d47543bbf4e06af840daf}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a49c7f7d36439f60c00e303f4c4303884}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6ed00cb0789d47543bbf4e06af840daf}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown}}, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) struct received\+\_\+protocol\+\_\+message\+\_\+data
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aaa5ad31ecd5265c7290b92e22c944094}{s\+\_\+on\+\_\+recieved\+\_\+protocol\+\_\+message}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}{s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn}} (int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a16e695712a330b6f1c3976bf1f2de2b1}{s\+\_\+do\+\_\+connect}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structtest__data}{test\+\_\+data}} $\ast$\mbox{\hyperlink{structtest__data}{test\+\_\+data}}, struct received\+\_\+protocol\+\_\+message\+\_\+data $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a102beb99d51189e65eb972c834632a53}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab4b432b8112b32b395aa36dfd6825478}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a102beb99d51189e65eb972c834632a53}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow}}, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+reject\+\_\+flow(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa418885b3e18d7f47142b15130e538a1}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_ad872fb680e742816749b26cd065df386}{aws\+\_\+event\+\_\+stream\+\_\+headers\+\_\+list\+\_\+init}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}}, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad4e15b6fd270f0e66bcd48add9c0ca31}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+len}}, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6f8c69ca5a5cc1970170f587a00fe2a0}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name.\+len}}, 0))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ae5893662bd53945ce311fdce123f0394}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+len}}, 0))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa833cc5427852edaa2606e183f77d24f}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_adfbae1515fbb7a9376c524986bd2464f}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+init}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}}, \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a09e85b90621098349fb5277d1d5790c3}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{io__testing__channel_8h_a635eafc881c581a4190860dd97f2e954}{testing\+\_\+channel\+\_\+push\+\_\+read\+\_\+data}}(\&\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$\mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a2313c6cc1a6e803e8a58c834408304a1}{send\+\_\+data}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad4115675c3e8d37ddfc0227e28c61be8}{ASSERT\+\_\+\+INT\+\_\+\+EQUALS}} (\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+data.\+message\+\_\+type}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4ec91ba5bd4737eecccaf9022bbc36bd}{ASSERT\+\_\+\+INT\+\_\+\+EQUALS}} (0, \mbox{\hyperlink{event__stream__rpc__client__connection__test_8c_ac326f3af21e805fb92c9de53524ae1fc}{message\+\_\+data.\+message\+\_\+flags}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a14a0de696e3136083cc04e4d5bb691c4}{ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS}} (payload.\+buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{payload.\+len}}, message\+\_\+data.\+payload\+\_\+cpy.\+buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{message\+\_\+data.\+payload\+\_\+cpy.\+len}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3513fc4b091bf932c91de2df4f8cfb7c}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream__rpc__server_8c_a6cbf04ff43be9879d8afce67e12b894a}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+send\+\_\+protocol\+\_\+message}}(\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab948635c98005527d840d68e5fb27447}{connect\+\_\+ack\+\_\+args}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}{s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa024026febe447c82e8af0a4661d337b}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6b28194ba2e70779289d34460903a421}{message\+\_\+data.\+message\+\_\+flushed}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a976b98462e9331c18bc92a3e3b176e7a}{ASSERT\+\_\+\+FALSE}} (\mbox{\hyperlink{event__stream__rpc__server_8c_a73a4531a4d9f79e556f8cf219bb5b252}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+is\+\_\+open}}(\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9f3aa9fd1bc13b70b3aa65141d2e1207}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+close}} (\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection, \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267}{AWS\+\_\+\+ERROR\+\_\+\+SUCCESS}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aab21fecad7eb543983cef340f77f4709}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+reject\+\_\+flow, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+reject\+\_\+flow, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+received(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a2fb5c6d046fc3677053a5999213f4bca}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+len}}, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af37729137cd5d7a493a93b74b7abce36}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+len}}, 1))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a7f5527e9fa5ecfbf36607e207f35f74b}{ASSERT\+\_\+\+UINT\+\_\+\+EQUALS}} (0, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{message\+\_\+data.\+payload\+\_\+cpy.\+len}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_acada02f6544fee5170b832c966ee9ddc}{ASSERT\+\_\+\+FALSE}} (\mbox{\hyperlink{linked__list_8inl_a76e2e2bf18c2e2048a85b08511585501}{aws\+\_\+linked\+\_\+list\+\_\+empty}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}{message\+\_\+queue}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4d514aed577af067fff3ba302d80fa55}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a4bda472cf24647fa57a9b6b92e741443}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+from\+\_\+buffer\+\_\+copy}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}{written\+\_\+message}}, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_abe9878ab5348b168fb2fffaedb438b05}{io\+\_\+message}}-\/$>$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a857eacb461e21054125853b49c37ec13}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a9692799f88038101a6d128d1f623a044}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+headers}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}{written\+\_\+message}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6ab4a2a3c3e52c83507c6e81f621f4d}{for}} (size\+\_\+t i=0;\mbox{\hyperlink{array__list_8inl_ac23f7d03ebc1074e77a1525136877742}{aws\+\_\+array\+\_\+list\+\_\+length}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}});++i)
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad12b8023add5e30af1650840ccc12b09}{ASSERT\+\_\+\+INT\+\_\+\+EQUALS}} (\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a9c3ca2f481b6f89c295c91c95b9f65da}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PROTOCOL\+\_\+\+ERROR}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ae7dcb4795eae7238380f04c4d6400383}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+received, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+received, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+ack\+\_\+sent(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aebb388182fe50bd1e0e8e29c2b4a6c0b}{AWS\+\_\+\+ZERO\+\_\+\+STRUCT}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a32c85ca3321b94f64b2550dda553f6d4}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+ack\+\_\+sent, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+ack\+\_\+sent, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+unknown\+\_\+message\+\_\+type(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4e3433b2e9ae795a9b4ae5664a8016ac}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.\+len}}, 200))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9cfb051f6cade516cf1aa1e859fd1318}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+unknown\+\_\+message\+\_\+type, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+unknown\+\_\+message\+\_\+type, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+type(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_adf4a8edafd3017c4a365605d046222e8}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+type, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+type, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+flags(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a75a446e450565138a0ceb3aad012c77a}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+flags, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+flags, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+stream\+\_\+id(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a2318a54494b47d23c58305c50833485f}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{byte__buf_8c_adf8ed14982cd1aa9e83c924ebb5856ae}{aws\+\_\+byte\+\_\+buf\+\_\+init}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5b275fb9585e4501af910a2c39e47ace}{connect\+\_\+ack\+\_\+data}}, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, 1024))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a137299d61b7ecc63d07df97cd59cd759}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a4bda472cf24647fa57a9b6b92e741443}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+from\+\_\+buffer\+\_\+copy}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5b275fb9585e4501af910a2c39e47ace}{connect\+\_\+ack\+\_\+data}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a877633e51c5665ca3c51167f39afb525}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+stream\+\_\+id, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+stream\+\_\+id, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+on\+\_\+incoming\+\_\+stream(struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$connection
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a17df79456538c6301c60e4b4eb076b21}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+acquire}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3be292d4e2c4670cfa8c8d35c2afabe4}{s\+\_\+on\+\_\+continuation\+\_\+message}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a895ed36ff88dff4bb01a55f45c966a9e}{s\+\_\+on\+\_\+continuation\+\_\+closed}} (struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6dc7f3d815761b3939bfe4ccf52bcf19}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0ae75bd7a4c9f743bef80e11b43c2319}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6dc7f3d815761b3939bfe4ccf52bcf19}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow}}, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+missing\+\_\+operation(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0daa2166d8370280861193adb8ed989f}{s\+\_\+do\+\_\+connect}} (\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{structtest__data}{test\+\_\+data}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_acdebb854d7e9ed9f46b006e266eaafb4}{ASSERT\+\_\+\+NULL}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}} (size\+\_\+t i=0;i$<$ \mbox{\hyperlink{array__list_8inl_ac23f7d03ebc1074e77a1525136877742}{aws\+\_\+array\+\_\+list\+\_\+length}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}});++i)
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a7314b5b5ef40b6ba387141c363afec0e}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aea75f522ae0b59a242255a1d4cd17da4}{message\+\_\+type\+\_\+found}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a88090d23b3e2be8b484c1b6077d216f5}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+missing\+\_\+operation, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+missing\+\_\+operation, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+stream\+\_\+id\+\_\+ahead(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ae1854dc44c1af6b284a71015029a08b7}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+len}}, 2))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af88462e7b7b44d9ebddae70a73368ac7}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a52a6da218f3958cea304d5d3f2790f2d}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+string\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name.\+len}},(const char $\ast$) operation\+\_\+name.\+ptr,(uint16\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{operation\+\_\+name.\+len}}, 0))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ae863d86c10ddda01d4fc1176c7ab8b7d}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+stream\+\_\+id\+\_\+ahead, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+stream\+\_\+id\+\_\+ahead, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+reused\+\_\+stream\+\_\+id\+\_\+fails(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a52dd35412ef11c4eb227f85d74d6b53c}{ASSERT\+\_\+\+NOT\+\_\+\+NULL}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a8b06192daa4424ef1550edb08325e00f}{ASSERT\+\_\+\+INT\+\_\+\+EQUALS}} (\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+data.\+message\+\_\+type}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab9e645398e929fa78d0f31ba0a75ec51}{ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS}} (operation\+\_\+name.\+ptr, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{operation\+\_\+name.\+len}}, message\+\_\+data.\+last\+\_\+seen\+\_\+operation\+\_\+name.\+buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{message\+\_\+data.\+last\+\_\+seen\+\_\+operation\+\_\+name.\+len}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a35841a3131a0d16f967547f7de21a26a}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream__rpc__server_8c_a6417791bf283e898e05a99b08ad63a06}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+send\+\_\+message}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}{s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4668bc1b6372c00299958857bf16ea65}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server_8c_a2e5e8f696f8e0f209a56816c0571234c}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+is\+\_\+closed}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a04ba23f6270e6eac06c55c330f42a632}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a68ea69131d438d9201298b1a38e3e3b7}{stream\+\_\+id\+\_\+found}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a547b952aef6a2e5f5f8e71627b604b18}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa4b8121fc33449fe72282cadba06ad9b}{custom\+\_\+header\+\_\+found}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_acce84b47b1b3a0718d2a5c274f482db7}{ASSERT\+\_\+\+TRUE}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a552f5482d1c8afdfa9c8223bbef78465}{message\+\_\+flags\+\_\+found}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3948f3026d51d2a57cc05700a0a21967}{ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS}} (server\+\_\+msg\+\_\+payload.\+buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{server\+\_\+msg\+\_\+payload.\+len}}, \mbox{\hyperlink{event__stream_8c_a195722fb3c16eb617928002ca2850bbb}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+payload}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}{written\+\_\+message}}), \mbox{\hyperlink{event__stream_8c_ab5192b2ca246171b7172523e53b05be0}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+payload\+\_\+len}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}{written\+\_\+message}}))
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6822477ce484612fbeff1cac15de7d54}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+release}} (\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a93af3553ddf574d59bb543ec687d946c}{AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE}} (test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+reused\+\_\+stream\+\_\+id\+\_\+fails, \mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}, s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+reused\+\_\+stream\+\_\+id\+\_\+fails, \mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}) static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+max\+\_\+stream\+\_\+id\+\_\+reached(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a077dc6d26cd42b7fb7f51c48246bcc23}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+override\+\_\+last\+\_\+stream\+\_\+id}} (\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection, INT32\+\_\+\+MAX)
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5401ff4de7ca87aaeaaae76af0e3fea0}{ASSERT\+\_\+\+SUCCESS}} (\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}},(const char $\ast$) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+ptr,(uint8\+\_\+t) \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.\+len}},(int32\+\_\+t)((uint32\+\_\+t)(INT32\+\_\+\+MAX)+1)))
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}{s\+\_\+test\+\_\+data}}
+\item 
+void $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}
+\item 
+struct received\+\_\+protocol\+\_\+message\+\_\+data \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}} = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa50c12ab770c15c09ce8210f6b0fa22b}{received\+\_\+fn}} = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aaa5ad31ecd5265c7290b92e22c944094}{s\+\_\+on\+\_\+recieved\+\_\+protocol\+\_\+message}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}} = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test connect \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}} payload\char`\"{})
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__message}{aws\+\_\+event\+\_\+stream\+\_\+message}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a2313c6cc1a6e803e8a58c834408304a1}{send\+\_\+data}}
+\item 
+\mbox{\hyperlink{io__testing__channel_8h_a75dc98700034d66712f8f113cf40523c}{testing\+\_\+channel\+\_\+drain\+\_\+queued\+\_\+tasks}} \& \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_afd0ef539b0e040ed183302f5fa67b6a5}{test\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab948635c98005527d840d68e5fb27447}{connect\+\_\+ack\+\_\+args}}
+\item 
+return \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5c0c86c38647f98229becf17743f7cb5}{AWS\+\_\+\+OP\+\_\+\+SUCCESS}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}{message\+\_\+queue}} = \mbox{\hyperlink{io__testing__channel_8h_ad0678077ea4a4ba7c958f90a15a43a3d}{testing\+\_\+channel\+\_\+get\+\_\+written\+\_\+message\+\_\+queue}}(\&\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$\mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}})
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a00528d0d8039988919d36a0ccda4c35e}{written\+\_\+message\+\_\+node}} = \mbox{\hyperlink{linked__list_8inl_ad8bcb39d8be9c812252fe316c95b453b}{aws\+\_\+linked\+\_\+list\+\_\+front}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}{message\+\_\+queue}})
+\item 
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_abe9878ab5348b168fb2fffaedb438b05}{io\+\_\+message}} = \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a00528d0d8039988919d36a0ccda4c35e}{written\+\_\+message\+\_\+node}}, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}, queueing\+\_\+handle)
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__message}{aws\+\_\+event\+\_\+stream\+\_\+message}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}{written\+\_\+message}}
+\item 
+enum \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}} = -\/1
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5b275fb9585e4501af910a2c39e47ace}{connect\+\_\+ack\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a84fcf15d1f1f5692ab6453f9677a23ef}{operation\+\_\+name}} struct \mbox{\hyperlink{structaws__event__stream__rpc__server__stream__continuation__options}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+stream\+\_\+continuation\+\_\+options}} $\ast$ \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a4ca1d38564ec809e8c28dd28698f995b}{continuation\+\_\+options}}
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{continuation\+\_\+token}} = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a594924f9acbc78e73d95d56500cef182}{continuation\+\_\+user\+\_\+data}} = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a238b8d6ff89460c1d26df643711763b2}{on\+\_\+continuation}} = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3be292d4e2c4670cfa8c8d35c2afabe4}{s\+\_\+on\+\_\+continuation\+\_\+message}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5a34145ebf2ea9abead2b0a9259203df}{on\+\_\+continuation\+\_\+closed}} = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a895ed36ff88dff4bb01a55f45c966a9e}{s\+\_\+on\+\_\+continuation\+\_\+closed}}
+\item 
+\mbox{\hyperlink{structtest__data}{test\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a8c6b6afa1d546f36e5146c7a7e3ac694}{on\+\_\+new\+\_\+stream}} = s\+\_\+on\+\_\+incoming\+\_\+stream
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aea75f522ae0b59a242255a1d4cd17da4}{message\+\_\+type\+\_\+found}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a84fcf15d1f1f5692ab6453f9677a23ef}{operation\+\_\+name}} = \mbox{\hyperlink{byte__buf_8c_a1eb17ec562f4309e8d00717c9a6b9091}{aws\+\_\+byte\+\_\+cursor\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test\+Operation\char`\"{})
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6b28194ba2e70779289d34460903a421}{message\+\_\+flushed}} = 0
+\item 
+\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a71f71f3e1f134184058e51b7f2eb2425}{message\+\_\+flush\+\_\+err\+\_\+code}} = 0
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a7b7539a7b9f10272e1e01d931ccd3a0f}{dummy\+\_\+buf}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a144a0bdaab3592ec3046c29aa9c60516}{server\+\_\+msg\+\_\+payload}} = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}message from the server on continuation\char`\"{})
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_acd7125e5deced5eb78b39f7fa75e2f85}{server\+\_\+header\+\_\+name}} = \mbox{\hyperlink{byte__buf_8c_a1eb17ec562f4309e8d00717c9a6b9091}{aws\+\_\+byte\+\_\+cursor\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test\+Header1\char`\"{})
+\item 
+int32\+\_\+t \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a8ac296b1066bad5580ae7dff18e0d83c}{server\+\_\+header\+\_\+value}} = 6
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a7c94d44cf5b9a1554fe0f79edfc4bb22}{server\+\_\+payload\+\_\+header}}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a959ed049e86f6d8629afcb9ea5ca72cf}{server\+\_\+headers}} \mbox{[}$\,$\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a00a547c17ade6e1104313c62fd37bb90}{final\+\_\+message}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a68ea69131d438d9201298b1a38e3e3b7}{stream\+\_\+id\+\_\+found}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa4b8121fc33449fe72282cadba06ad9b}{custom\+\_\+header\+\_\+found}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a552f5482d1c8afdfa9c8223bbef78465}{message\+\_\+flags\+\_\+found}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a048f17560b2ae0f31e3284cbd6dd4f97}{closing\+\_\+payload}} = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}final \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}} this stream\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ab9e645398e929fa78d0f31ba0a75ec51}\label{event__stream__rpc__server__connection__test_8c_ab9e645398e929fa78d0f31ba0a75ec51}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}}
+\index{ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_BIN\_ARRAYS\_EQUALS()}{ASSERT\_BIN\_ARRAYS\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{operation\+\_\+name.}]{ptr,  }\item[{operation\+\_\+name.}]{len,  }\item[{message\+\_\+data.\+last\+\_\+seen\+\_\+operation\+\_\+name.}]{buffer,  }\item[{message\+\_\+data.\+last\+\_\+seen\+\_\+operation\+\_\+name.}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a14a0de696e3136083cc04e4d5bb691c4}\label{event__stream__rpc__server__connection__test_8c_a14a0de696e3136083cc04e4d5bb691c4}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}}
+\index{ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_BIN\_ARRAYS\_EQUALS()}{ASSERT\_BIN\_ARRAYS\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{payload.}]{buffer,  }\item[{payload.}]{len,  }\item[{message\+\_\+data.\+payload\+\_\+cpy.}]{buffer,  }\item[{message\+\_\+data.\+payload\+\_\+cpy.}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a3948f3026d51d2a57cc05700a0a21967}\label{event__stream__rpc__server__connection__test_8c_a3948f3026d51d2a57cc05700a0a21967}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}}
+\index{ASSERT\_BIN\_ARRAYS\_EQUALS@{ASSERT\_BIN\_ARRAYS\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_BIN\_ARRAYS\_EQUALS()}{ASSERT\_BIN\_ARRAYS\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+BIN\+\_\+\+ARRAYS\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{server\+\_\+msg\+\_\+payload.}]{buffer,  }\item[{server\+\_\+msg\+\_\+payload.}]{len,  }\item[{\mbox{\hyperlink{event__stream_8c_a195722fb3c16eb617928002ca2850bbb}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+payload}} \&}]{written\+\_\+message,  }\item[{\mbox{\hyperlink{event__stream_8c_ab5192b2ca246171b7172523e53b05be0}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+payload\+\_\+len}} \&}]{written\+\_\+message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a976b98462e9331c18bc92a3e3b176e7a}\label{event__stream__rpc__server__connection__test_8c_a976b98462e9331c18bc92a3e3b176e7a}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_FALSE@{ASSERT\_FALSE}}
+\index{ASSERT\_FALSE@{ASSERT\_FALSE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_FALSE()}{ASSERT\_FALSE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+FALSE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server_8c_a73a4531a4d9f79e556f8cf219bb5b252}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+is\+\_\+open}}(\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_acada02f6544fee5170b832c966ee9ddc}\label{event__stream__rpc__server__connection__test_8c_acada02f6544fee5170b832c966ee9ddc}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_FALSE@{ASSERT\_FALSE}}
+\index{ASSERT\_FALSE@{ASSERT\_FALSE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_FALSE()}{ASSERT\_FALSE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+FALSE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{linked__list_8inl_a76e2e2bf18c2e2048a85b08511585501}{aws\+\_\+linked\+\_\+list\+\_\+empty}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}{message\+\_\+queue}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a4ec91ba5bd4737eecccaf9022bbc36bd}\label{event__stream__rpc__server__connection__test_8c_a4ec91ba5bd4737eecccaf9022bbc36bd}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}}
+\index{ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_INT\_EQUALS()}{ASSERT\_INT\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+INT\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{0}]{,  }\item[{message\+\_\+data.}]{message\+\_\+flags }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a8b06192daa4424ef1550edb08325e00f}\label{event__stream__rpc__server__connection__test_8c_a8b06192daa4424ef1550edb08325e00f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}}
+\index{ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_INT\_EQUALS()}{ASSERT\_INT\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+INT\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE}}}]{,  }\item[{message\+\_\+data.}]{message\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ad4115675c3e8d37ddfc0227e28c61be8}\label{event__stream__rpc__server__connection__test_8c_ad4115675c3e8d37ddfc0227e28c61be8}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}}
+\index{ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_INT\_EQUALS()}{ASSERT\_INT\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+INT\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT}}}]{,  }\item[{message\+\_\+data.}]{message\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ad12b8023add5e30af1650840ccc12b09}\label{event__stream__rpc__server__connection__test_8c_ad12b8023add5e30af1650840ccc12b09}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}}
+\index{ASSERT\_INT\_EQUALS@{ASSERT\_INT\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_INT\_EQUALS()}{ASSERT\_INT\_EQUALS()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+INT\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a9c3ca2f481b6f89c295c91c95b9f65da}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PROTOCOL\+\_\+\+ERROR}}}]{,  }\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a52dd35412ef11c4eb227f85d74d6b53c}\label{event__stream__rpc__server__connection__test_8c_a52dd35412ef11c4eb227f85d74d6b53c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_NOT\_NULL@{ASSERT\_NOT\_NULL}}
+\index{ASSERT\_NOT\_NULL@{ASSERT\_NOT\_NULL}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_NOT\_NULL()}{ASSERT\_NOT\_NULL()}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+NOT\+\_\+\+NULL (\begin{DoxyParamCaption}\item[{message\+\_\+data.}]{continuation\+\_\+token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_acdebb854d7e9ed9f46b006e266eaafb4}\label{event__stream__rpc__server__connection__test_8c_acdebb854d7e9ed9f46b006e266eaafb4}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_NULL@{ASSERT\_NULL}}
+\index{ASSERT\_NULL@{ASSERT\_NULL}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_NULL()}{ASSERT\_NULL()}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+NULL (\begin{DoxyParamCaption}\item[{message\+\_\+data.}]{continuation\+\_\+token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a2318a54494b47d23c58305c50833485f}\label{event__stream__rpc__server__connection__test_8c_a2318a54494b47d23c58305c50833485f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{byte__buf_8c_adf8ed14982cd1aa9e83c924ebb5856ae}{aws\+\_\+byte\+\_\+buf\+\_\+init}} \&,,}]{1024allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6f8c69ca5a5cc1970170f587a00fe2a0}\label{event__stream__rpc__server__connection__test_8c_a6f8c69ca5a5cc1970170f587a00fe2a0}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name.}]{len,  }\item[{0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a4e3433b2e9ae795a9b4ae5664a8016ac}\label{event__stream__rpc__server__connection__test_8c_a4e3433b2e9ae795a9b4ae5664a8016ac}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{len,  }\item[{200}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a2fb5c6d046fc3677053a5999213f4bca}\label{event__stream__rpc__server__connection__test_8c_a2fb5c6d046fc3677053a5999213f4bca}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{len,  }\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ad4e15b6fd270f0e66bcd48add9c0ca31}\label{event__stream__rpc__server__connection__test_8c_ad4e15b6fd270f0e66bcd48add9c0ca31}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name.}]{len,  }\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ae5893662bd53945ce311fdce123f0394}\label{event__stream__rpc__server__connection__test_8c_ae5893662bd53945ce311fdce123f0394}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{len,  }\item[{0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_af37729137cd5d7a493a93b74b7abce36}\label{event__stream__rpc__server__connection__test_8c_af37729137cd5d7a493a93b74b7abce36}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{len,  }\item[{1}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ae1854dc44c1af6b284a71015029a08b7}\label{event__stream__rpc__server__connection__test_8c_ae1854dc44c1af6b284a71015029a08b7}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{len,  }\item[{2}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a5401ff4de7ca87aaeaaae76af0e3fea0}\label{event__stream__rpc__server__connection__test_8c_a5401ff4de7ca87aaeaaae76af0e3fea0}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a0eaa94435810776cd5a16f0b8be65427}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+int32\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name.}]{len,  }\item[{(int32\+\_\+t)((uint32\+\_\+t)(INT32\+\_\+\+MAX)+1)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_af88462e7b7b44d9ebddae70a73368ac7}\label{event__stream__rpc__server__connection__test_8c_af88462e7b7b44d9ebddae70a73368ac7}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a52a6da218f3958cea304d5d3f2790f2d}{aws\+\_\+event\+\_\+stream\+\_\+add\+\_\+string\+\_\+header}}(\&, $\ast$char aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name.}]{ptr,  }\item[{(uint8\+\_\+t) aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name.}]{len,  }\item[{(const char $\ast$) operation\+\_\+name.}]{ptr,  }\item[{(uint16\+\_\+t) operation\+\_\+name.}]{len,  }\item[{0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa418885b3e18d7f47142b15130e538a1}\label{event__stream__rpc__server__connection__test_8c_aa418885b3e18d7f47142b15130e538a1}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_ad872fb680e742816749b26cd065df386}{aws\+\_\+event\+\_\+stream\+\_\+headers\+\_\+list\+\_\+init}} \&,}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a137299d61b7ecc63d07df97cd59cd759}\label{event__stream__rpc__server__connection__test_8c_a137299d61b7ecc63d07df97cd59cd759}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a4bda472cf24647fa57a9b6b92e741443}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+from\+\_\+buffer\+\_\+copy}} \&,, \&}]{connect\+\_\+ack\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a4d514aed577af067fff3ba302d80fa55}\label{event__stream__rpc__server__connection__test_8c_a4d514aed577af067fff3ba302d80fa55}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a4bda472cf24647fa57a9b6b92e741443}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+from\+\_\+buffer\+\_\+copy}} \&,, \&-\/$>$}]{message\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a857eacb461e21054125853b49c37ec13}\label{event__stream__rpc__server__connection__test_8c_a857eacb461e21054125853b49c37ec13}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_a9692799f88038101a6d128d1f623a044}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+headers}} \&, \&}]{headers\+\_\+list }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa833cc5427852edaa2606e183f77d24f}\label{event__stream__rpc__server__connection__test_8c_aa833cc5427852edaa2606e183f77d24f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream_8c_adfbae1515fbb7a9376c524986bd2464f}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+init}} \&,, \&, \&}]{payload }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a3513fc4b091bf932c91de2df4f8cfb7c}\label{event__stream__rpc__server__connection__test_8c_a3513fc4b091bf932c91de2df4f8cfb7c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server_8c_a6cbf04ff43be9879d8afce67e12b894a}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+send\+\_\+protocol\+\_\+message}}(\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$connection, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab948635c98005527d840d68e5fb27447}{connect\+\_\+ack\+\_\+args}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}{s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a35841a3131a0d16f967547f7de21a26a}\label{event__stream__rpc__server__connection__test_8c_a35841a3131a0d16f967547f7de21a26a}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server_8c_a6417791bf283e898e05a99b08ad63a06}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+send\+\_\+message}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}{message\+\_\+args}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}{s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn}}, \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a09e85b90621098349fb5277d1d5790c3}\label{event__stream__rpc__server__connection__test_8c_a09e85b90621098349fb5277d1d5790c3}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_SUCCESS@{ASSERT\_SUCCESS}}
+\index{ASSERT\_SUCCESS@{ASSERT\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_SUCCESS()}{ASSERT\_SUCCESS()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+SUCCESS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{io__testing__channel_8h_a635eafc881c581a4190860dd97f2e954}{testing\+\_\+channel\+\_\+push\+\_\+read\+\_\+data}} \&-\/$>$,}]{send\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a4668bc1b6372c00299958857bf16ea65}\label{event__stream__rpc__server__connection__test_8c_a4668bc1b6372c00299958857bf16ea65}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server_8c_a2e5e8f696f8e0f209a56816c0571234c}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+is\+\_\+closed}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}{message\+\_\+data.\+continuation\+\_\+token}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a547b952aef6a2e5f5f8e71627b604b18}\label{event__stream__rpc__server__connection__test_8c_a547b952aef6a2e5f5f8e71627b604b18}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aa4b8121fc33449fe72282cadba06ad9b}{custom\+\_\+header\+\_\+found}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa024026febe447c82e8af0a4661d337b}\label{event__stream__rpc__server__connection__test_8c_aa024026febe447c82e8af0a4661d337b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{message\+\_\+data.}]{message\+\_\+flushed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_acce84b47b1b3a0718d2a5c274f482db7}\label{event__stream__rpc__server__connection__test_8c_acce84b47b1b3a0718d2a5c274f482db7}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a552f5482d1c8afdfa9c8223bbef78465}{message\+\_\+flags\+\_\+found}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a7314b5b5ef40b6ba387141c363afec0e}\label{event__stream__rpc__server__connection__test_8c_a7314b5b5ef40b6ba387141c363afec0e}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aea75f522ae0b59a242255a1d4cd17da4}{message\+\_\+type\+\_\+found}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a04ba23f6270e6eac06c55c330f42a632}\label{event__stream__rpc__server__connection__test_8c_a04ba23f6270e6eac06c55c330f42a632}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE()}{ASSERT\_TRUE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+TRUE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a68ea69131d438d9201298b1a38e3e3b7}{stream\+\_\+id\+\_\+found}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a7f5527e9fa5ecfbf36607e207f35f74b}\label{event__stream__rpc__server__connection__test_8c_a7f5527e9fa5ecfbf36607e207f35f74b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ASSERT\_UINT\_EQUALS@{ASSERT\_UINT\_EQUALS}}
+\index{ASSERT\_UINT\_EQUALS@{ASSERT\_UINT\_EQUALS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_UINT\_EQUALS()}{ASSERT\_UINT\_EQUALS()}}
+{\footnotesize\ttfamily ASSERT\+\_\+\+UINT\+\_\+\+EQUALS (\begin{DoxyParamCaption}\item[{0}]{,  }\item[{message\+\_\+data.\+payload\+\_\+cpy.}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a9f3aa9fd1bc13b70b3aa65141d2e1207}\label{event__stream__rpc__server__connection__test_8c_a9f3aa9fd1bc13b70b3aa65141d2e1207}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!aws\_event\_stream\_rpc\_server\_connection\_close@{aws\_event\_stream\_rpc\_server\_connection\_close}}
+\index{aws\_event\_stream\_rpc\_server\_connection\_close@{aws\_event\_stream\_rpc\_server\_connection\_close}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_server\_connection\_close()}{aws\_event\_stream\_rpc\_server\_connection\_close()}}
+{\footnotesize\ttfamily aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$}]{connection,  }\item[{\mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267}{AWS\+\_\+\+ERROR\+\_\+\+SUCCESS}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a17df79456538c6301c60e4b4eb076b21}\label{event__stream__rpc__server__connection__test_8c_a17df79456538c6301c60e4b4eb076b21}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!aws\_event\_stream\_rpc\_server\_continuation\_acquire@{aws\_event\_stream\_rpc\_server\_continuation\_acquire}}
+\index{aws\_event\_stream\_rpc\_server\_continuation\_acquire@{aws\_event\_stream\_rpc\_server\_continuation\_acquire}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_server\_continuation\_acquire()}{aws\_event\_stream\_rpc\_server\_continuation\_acquire()}}
+{\footnotesize\ttfamily aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+acquire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6822477ce484612fbeff1cac15de7d54}\label{event__stream__rpc__server__connection__test_8c_a6822477ce484612fbeff1cac15de7d54}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!aws\_event\_stream\_rpc\_server\_continuation\_release@{aws\_event\_stream\_rpc\_server\_continuation\_release}}
+\index{aws\_event\_stream\_rpc\_server\_continuation\_release@{aws\_event\_stream\_rpc\_server\_continuation\_release}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_server\_continuation\_release()}{aws\_event\_stream\_rpc\_server\_continuation\_release()}}
+{\footnotesize\ttfamily aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+release (\begin{DoxyParamCaption}\item[{message\+\_\+data.}]{continuation\+\_\+token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a077dc6d26cd42b7fb7f51c48246bcc23}\label{event__stream__rpc__server__connection__test_8c_a077dc6d26cd42b7fb7f51c48246bcc23}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id@{aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id}}
+\index{aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id@{aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id()}{aws\_event\_stream\_rpc\_server\_override\_last\_stream\_id()}}
+{\footnotesize\ttfamily aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+override\+\_\+last\+\_\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$}]{connection,  }\item[{INT32\+\_\+\+MAX}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ab4b432b8112b32b395aa36dfd6825478}\label{event__stream__rpc__server__connection__test_8c_ab4b432b8112b32b395aa36dfd6825478}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a102beb99d51189e65eb972c834632a53}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow}}}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aab21fecad7eb543983cef340f77f4709}\label{event__stream__rpc__server__connection__test_8c_aab21fecad7eb543983cef340f77f4709}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+reject\+\_\+flow}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+reject\+\_\+flow}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a0ae75bd7a4c9f743bef80e11b43c2319}\label{event__stream__rpc__server__connection__test_8c_a0ae75bd7a4c9f743bef80e11b43c2319}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6dc7f3d815761b3939bfe4ccf52bcf19}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow}}}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a88090d23b3e2be8b484c1b6077d216f5}\label{event__stream__rpc__server__connection__test_8c_a88090d23b3e2be8b484c1b6077d216f5}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+missing\+\_\+operation}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+missing\+\_\+operation}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a93af3553ddf574d59bb543ec687d946c}\label{event__stream__rpc__server__connection__test_8c_a93af3553ddf574d59bb543ec687d946c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+reused\+\_\+stream\+\_\+id\+\_\+fails}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+reused\+\_\+stream\+\_\+id\+\_\+fails}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a32c85ca3321b94f64b2550dda553f6d4}\label{event__stream__rpc__server__connection__test_8c_a32c85ca3321b94f64b2550dda553f6d4}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+ack\+\_\+sent}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+ack\+\_\+sent}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ae7dcb4795eae7238380f04c4d6400383}\label{event__stream__rpc__server__connection__test_8c_ae7dcb4795eae7238380f04c4d6400383}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+received}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+messages\+\_\+before\+\_\+connect\+\_\+received}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a75a446e450565138a0ceb3aad012c77a}\label{event__stream__rpc__server__connection__test_8c_a75a446e450565138a0ceb3aad012c77a}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+flags}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+flags}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_adf4a8edafd3017c4a365605d046222e8}\label{event__stream__rpc__server__connection__test_8c_adf4a8edafd3017c4a365605d046222e8}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [9/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+type}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+message\+\_\+type}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a877633e51c5665ca3c51167f39afb525}\label{event__stream__rpc__server__connection__test_8c_a877633e51c5665ca3c51167f39afb525}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [10/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+stream\+\_\+id}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+missing\+\_\+stream\+\_\+id}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a49c7f7d36439f60c00e303f4c4303884}\label{event__stream__rpc__server__connection__test_8c_a49c7f7d36439f60c00e303f4c4303884}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [11/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6ed00cb0789d47543bbf4e06af840daf}{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown}}}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ae863d86c10ddda01d4fc1176c7ab8b7d}\label{event__stream__rpc__server__connection__test_8c_ae863d86c10ddda01d4fc1176c7ab8b7d}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [12/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+stream\+\_\+id\+\_\+ahead}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+stream\+\_\+id\+\_\+ahead}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a9cfb051f6cade516cf1aa1e859fd1318}\label{event__stream__rpc__server__connection__test_8c_a9cfb051f6cade516cf1aa1e859fd1318}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}}
+\index{AWS\_TEST\_CASE\_FIXTURE@{AWS\_TEST\_CASE\_FIXTURE}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE\_FIXTURE()}{AWS\_TEST\_CASE\_FIXTURE()}\hspace{0.1cm}{\footnotesize\ttfamily [13/13]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+FIXTURE (\begin{DoxyParamCaption}\item[{test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+unknown\+\_\+message\+\_\+type}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_aedfbfb00523e612471894286f2220930}{s\+\_\+fixture\+\_\+setup}}}]{,  }\item[{s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+unknown\+\_\+message\+\_\+type}]{,  }\item[{\mbox{\hyperlink{standard__retry__test_8c_ac8c3e2c5a22059ddee3de5bae666f086}{s\+\_\+fixture\+\_\+shutdown}}}]{,  }\item[{\&}]{s\+\_\+test\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aebb388182fe50bd1e0e8e29c2b4a6c0b}\label{event__stream__rpc__server__connection__test_8c_aebb388182fe50bd1e0e8e29c2b4a6c0b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_ZERO\_STRUCT@{AWS\_ZERO\_STRUCT}}
+\index{AWS\_ZERO\_STRUCT@{AWS\_ZERO\_STRUCT}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_ZERO\_STRUCT()}{AWS\_ZERO\_STRUCT()}}
+{\footnotesize\ttfamily AWS\+\_\+\+ZERO\+\_\+\+STRUCT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ab6ab4a2a3c3e52c83507c6e81f621f4d}\label{event__stream__rpc__server__connection__test_8c_ab6ab4a2a3c3e52c83507c6e81f621f4d}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!for@{for}}
+\index{for@{for}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{for()}{for()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily for (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i = {\ttfamily 0;~\mbox{\hyperlink{array__list_8inl_ac23f7d03ebc1074e77a1525136877742}{aws\+\_\+array\+\_\+list\+\_\+length}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}{headers\+\_\+list}});~++i} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}\label{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!for@{for}}
+\index{for@{for}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{for()}{for()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily for (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a0daa2166d8370280861193adb8ed989f}\label{event__stream__rpc__server__connection__test_8c_a0daa2166d8370280861193adb8ed989f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_do\_connect@{s\_do\_connect}}
+\index{s\_do\_connect@{s\_do\_connect}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_connect()}{s\_do\_connect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily s\+\_\+do\+\_\+connect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}}]{,  }\item[{\mbox{\hyperlink{structtest__data}{test\+\_\+data}}}]{,  }\item[{\&}]{message\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a16e695712a330b6f1c3976bf1f2de2b1}\label{event__stream__rpc__server__connection__test_8c_a16e695712a330b6f1c3976bf1f2de2b1}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_do\_connect@{s\_do\_connect}}
+\index{s\_do\_connect@{s\_do\_connect}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_do\_connect()}{s\_do\_connect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static int s\+\_\+do\+\_\+connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structtest__data}{test\+\_\+data}} $\ast$}]{test\+\_\+data,  }\item[{struct received\+\_\+protocol\+\_\+message\+\_\+data $\ast$}]{message\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a035533603a3ea9becef281ec16855d30}\label{event__stream__rpc__server__connection__test_8c_a035533603a3ea9becef281ec16855d30}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_event\_loop\_shutdown\_callback@{s\_event\_loop\_shutdown\_callback}}
+\index{s\_event\_loop\_shutdown\_callback@{s\_event\_loop\_shutdown\_callback}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_event\_loop\_shutdown\_callback()}{s\_event\_loop\_shutdown\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+event\+\_\+loop\+\_\+shutdown\+\_\+callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa77741d364e3b55a0ac1fee0b9c5c353}\label{event__stream__rpc__server__connection__test_8c_aa77741d364e3b55a0ac1fee0b9c5c353}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_fixture\_on\_new\_server\_connection@{s\_fixture\_on\_new\_server\_connection}}
+\index{s\_fixture\_on\_new\_server\_connection@{s\_fixture\_on\_new\_server\_connection}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_on\_new\_server\_connection()}{s\_fixture\_on\_new\_server\_connection()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+on\+\_\+new\+\_\+server\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__connection__options}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+connection\+\_\+options}} $\ast$}]{connection\+\_\+options,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_adcb4f0b3362f35fde0112cfc7923b42d}\label{event__stream__rpc__server__connection__test_8c_adcb4f0b3362f35fde0112cfc7923b42d}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_fixture\_on\_protocol\_message@{s\_fixture\_on\_protocol\_message}}
+\index{s\_fixture\_on\_protocol\_message@{s\_fixture\_on\_protocol\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_on\_protocol\_message()}{s\_fixture\_on\_protocol\_message()}}
+{\footnotesize\ttfamily static void s\+\_\+fixture\+\_\+on\+\_\+protocol\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$}]{message\+\_\+args,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_adf605936a4b0d11bb061bcf5218eff83}\label{event__stream__rpc__server__connection__test_8c_adf605936a4b0d11bb061bcf5218eff83}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_fixture\_on\_server\_connection\_shutdown@{s\_fixture\_on\_server\_connection\_shutdown}}
+\index{s\_fixture\_on\_server\_connection\_shutdown@{s\_fixture\_on\_server\_connection\_shutdown}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_on\_server\_connection\_shutdown()}{s\_fixture\_on\_server\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+fixture\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aedfbfb00523e612471894286f2220930}\label{event__stream__rpc__server__connection__test_8c_aedfbfb00523e612471894286f2220930}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_fixture\_setup@{s\_fixture\_setup}}
+\index{s\_fixture\_setup@{s\_fixture\_setup}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_setup()}{s\_fixture\_setup()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a33eaed084f79ee065cfd9ce9be45e450}\label{event__stream__rpc__server__connection__test_8c_a33eaed084f79ee065cfd9ce9be45e450}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_fixture\_shutdown@{s\_fixture\_shutdown}}
+\index{s\_fixture\_shutdown@{s\_fixture\_shutdown}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_shutdown()}{s\_fixture\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{int}]{setup\+\_\+result,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a895ed36ff88dff4bb01a55f45c966a9e}\label{event__stream__rpc__server__connection__test_8c_a895ed36ff88dff4bb01a55f45c966a9e}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_continuation\_closed@{s\_on\_continuation\_closed}}
+\index{s\_on\_continuation\_closed@{s\_on\_continuation\_closed}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_continuation\_closed()}{s\_on\_continuation\_closed()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+continuation\+\_\+closed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$}]{token,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a3be292d4e2c4670cfa8c8d35c2afabe4}\label{event__stream__rpc__server__connection__test_8c_a3be292d4e2c4670cfa8c8d35c2afabe4}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_continuation\_message@{s\_on\_continuation\_message}}
+\index{s\_on\_continuation\_message@{s\_on\_continuation\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_continuation\_message()}{s\_on\_continuation\_message()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+continuation\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$}]{token,  }\item[{const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$}]{message\+\_\+args,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ac31b27dfc347cab20d4a211524e8b31d}\label{event__stream__rpc__server__connection__test_8c_ac31b27dfc347cab20d4a211524e8b31d}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_listener\_destroy@{s\_on\_listener\_destroy}}
+\index{s\_on\_listener\_destroy@{s\_on\_listener\_destroy}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_listener\_destroy()}{s\_on\_listener\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+listener\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__listener}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+listener}} $\ast$}]{server,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}\label{event__stream__rpc__server__connection__test_8c_a361cefabd65f329819c224ea30f86a3c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_message\_flush\_fn@{s\_on\_message\_flush\_fn}}
+\index{s\_on\_message\_flush\_fn@{s\_on\_message\_flush\_fn}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_message\_flush\_fn()}{s\_on\_message\_flush\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+message\+\_\+flush\+\_\+fn (\begin{DoxyParamCaption}\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aaa5ad31ecd5265c7290b92e22c944094}\label{event__stream__rpc__server__connection__test_8c_aaa5ad31ecd5265c7290b92e22c944094}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_recieved\_protocol\_message@{s\_on\_recieved\_protocol\_message}}
+\index{s\_on\_recieved\_protocol\_message@{s\_on\_recieved\_protocol\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_recieved\_protocol\_message()}{s\_on\_recieved\_protocol\_message()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+recieved\+\_\+protocol\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$}]{message\+\_\+args,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a94c84b63d443773d0af9b844c038ddc6}\label{event__stream__rpc__server__connection__test_8c_a94c84b63d443773d0af9b844c038ddc6}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_server\_incoming\_stream\_shim@{s\_on\_server\_incoming\_stream\_shim}}
+\index{s\_on\_server\_incoming\_stream\_shim@{s\_on\_server\_incoming\_stream\_shim}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_server\_incoming\_stream\_shim()}{s\_on\_server\_incoming\_stream\_shim()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+server\+\_\+incoming\+\_\+stream\+\_\+shim (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__connection}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{operation\+\_\+name,  }\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__stream__continuation__options}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+stream\+\_\+continuation\+\_\+options}} $\ast$}]{continuation\+\_\+options,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a234f134a883e5ce6e0eebfe7fb5eadaf}\label{event__stream__rpc__server__connection__test_8c_a234f134a883e5ce6e0eebfe7fb5eadaf}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_on\_stream\_continuation\_shim@{s\_on\_stream\_continuation\_shim}}
+\index{s\_on\_stream\_continuation\_shim@{s\_on\_stream\_continuation\_shim}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_stream\_continuation\_shim()}{s\_on\_stream\_continuation\_shim()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+stream\+\_\+continuation\+\_\+shim (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$}]{token,  }\item[{const struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} $\ast$}]{message\+\_\+args,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ae76a81eed693dfd07798ab14156ea4bd}\label{event__stream__rpc__server__connection__test_8c_ae76a81eed693dfd07798ab14156ea4bd}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_server\_stream\_continuation\_closed\_shim@{s\_server\_stream\_continuation\_closed\_shim}}
+\index{s\_server\_stream\_continuation\_closed\_shim@{s\_server\_stream\_continuation\_closed\_shim}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_server\_stream\_continuation\_closed\_shim()}{s\_server\_stream\_continuation\_closed\_shim()}}
+{\footnotesize\ttfamily static void s\+\_\+server\+\_\+stream\+\_\+continuation\+\_\+closed\+\_\+shim (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}} $\ast$}]{token,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a92a88ca9a51ccf4243970b629512ae6c}\label{event__stream__rpc__server__connection__test_8c_a92a88ca9a51ccf4243970b629512ae6c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_shutdown\_predicate\_fn@{s\_shutdown\_predicate\_fn}}
+\index{s\_shutdown\_predicate\_fn@{s\_shutdown\_predicate\_fn}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shutdown\_predicate\_fn()}{s\_shutdown\_predicate\_fn()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+shutdown\+\_\+predicate\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a102beb99d51189e65eb972c834632a53}\label{event__stream__rpc__server__connection__test_8c_a102beb99d51189e65eb972c834632a53}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow@{s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow}}
+\index{s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow@{s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow()}{s\_test\_event\_stream\_rpc\_server\_connection\_connect\_flow()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+connect\+\_\+flow (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6dc7f3d815761b3939bfe4ccf52bcf19}\label{event__stream__rpc__server__connection__test_8c_a6dc7f3d815761b3939bfe4ccf52bcf19}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow@{s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow}}
+\index{s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow@{s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow()}{s\_test\_event\_stream\_rpc\_server\_connection\_continuation\_messages\_flow()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+continuation\+\_\+messages\+\_\+flow (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6ed00cb0789d47543bbf4e06af840daf}\label{event__stream__rpc__server__connection__test_8c_a6ed00cb0789d47543bbf4e06af840daf}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown@{s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown}}
+\index{s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown@{s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown()}{s\_test\_event\_stream\_rpc\_server\_connection\_setup\_and\_teardown()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+connection\+\_\+setup\+\_\+and\+\_\+teardown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a5c0c86c38647f98229becf17743f7cb5}\label{event__stream__rpc__server__connection__test_8c_a5c0c86c38647f98229becf17743f7cb5}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!AWS\_OP\_SUCCESS@{AWS\_OP\_SUCCESS}}
+\index{AWS\_OP\_SUCCESS@{AWS\_OP\_SUCCESS}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_OP\_SUCCESS}{AWS\_OP\_SUCCESS}}
+{\footnotesize\ttfamily return AWS\+\_\+\+OP\+\_\+\+SUCCESS}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a048f17560b2ae0f31e3284cbd6dd4f97}\label{event__stream__rpc__server__connection__test_8c_a048f17560b2ae0f31e3284cbd6dd4f97}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!closing\_payload@{closing\_payload}}
+\index{closing\_payload@{closing\_payload}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{closing\_payload}{closing\_payload}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} closing\+\_\+payload = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}final \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}} this stream\char`\"{})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ab948635c98005527d840d68e5fb27447}\label{event__stream__rpc__server__connection__test_8c_ab948635c98005527d840d68e5fb27447}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!connect\_ack\_args@{connect\_ack\_args}}
+\index{connect\_ack\_args@{connect\_ack\_args}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{connect\_ack\_args}{connect\_ack\_args}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} connect\+\_\+ack\+\_\+args}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .message\_type = \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7ab41d10ca8043d00a5b694655f8a24eea}{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT\_ACK}},}
+\DoxyCodeLine{        .payload = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a5b275fb9585e4501af910a2c39e47ace}\label{event__stream__rpc__server__connection__test_8c_a5b275fb9585e4501af910a2c39e47ace}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!connect\_ack\_data@{connect\_ack\_data}}
+\index{connect\_ack\_data@{connect\_ack\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{connect\_ack\_data}{connect\_ack\_data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{byte__buf_8c_acbddfbd5ccda972a6630cd841fec7b21}{aws\+\_\+byte\+\_\+buf\+\_\+clean\+\_\+up}} \& connect\+\_\+ack\+\_\+data}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a4ca1d38564ec809e8c28dd28698f995b}\label{event__stream__rpc__server__connection__test_8c_a4ca1d38564ec809e8c28dd28698f995b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!continuation\_options@{continuation\_options}}
+\index{continuation\_options@{continuation\_options}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{continuation\_options}{continuation\_options}}
+{\footnotesize\ttfamily void continuation\+\_\+options}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}\label{event__stream__rpc__server__connection__test_8c_ab6d960ff740514d81a1e0697720e30db}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!continuation\_token@{continuation\_token}}
+\index{continuation\_token@{continuation\_token}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{continuation\_token}{continuation\_token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} continuation\+\_\+token = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a594924f9acbc78e73d95d56500cef182}\label{event__stream__rpc__server__connection__test_8c_a594924f9acbc78e73d95d56500cef182}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!continuation\_user\_data@{continuation\_user\_data}}
+\index{continuation\_user\_data@{continuation\_user\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{continuation\_user\_data}{continuation\_user\_data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} continuation\+\_\+user\+\_\+data = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a1f6d09b30c54854dfca659b7463ac207}\label{event__stream__rpc__server__connection__test_8c_a1f6d09b30c54854dfca659b7463ac207}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!ctx@{ctx}}
+\index{ctx@{ctx}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ctx}{ctx}}
+{\footnotesize\ttfamily void$\ast$ ctx}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{struct }\mbox{\hyperlink{structtest__data}{test\_data}} *\mbox{\hyperlink{structtest__data}{test\_data}} = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa4b8121fc33449fe72282cadba06ad9b}\label{event__stream__rpc__server__connection__test_8c_aa4b8121fc33449fe72282cadba06ad9b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!custom\_header\_found@{custom\_header\_found}}
+\index{custom\_header\_found@{custom\_header\_found}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{custom\_header\_found}{custom\_header\_found}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} custom\+\_\+header\+\_\+found = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a7b7539a7b9f10272e1e01d931ccd3a0f}\label{event__stream__rpc__server__connection__test_8c_a7b7539a7b9f10272e1e01d931ccd3a0f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!dummy\_buf@{dummy\_buf}}
+\index{dummy\_buf@{dummy\_buf}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{dummy\_buf}{dummy\_buf}}
+{\footnotesize\ttfamily \mbox{\hyperlink{byte__buf_8c_acbddfbd5ccda972a6630cd841fec7b21}{aws\+\_\+byte\+\_\+buf\+\_\+clean\+\_\+up}} \& dummy\+\_\+buf}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a00a547c17ade6e1104313c62fd37bb90}\label{event__stream__rpc__server__connection__test_8c_a00a547c17ade6e1104313c62fd37bb90}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!final\_message@{final\_message}}
+\index{final\_message@{final\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{final\_message}{final\_message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{byte__buf_8c_acbddfbd5ccda972a6630cd841fec7b21}{aws\+\_\+byte\+\_\+buf\+\_\+clean\+\_\+up}} \& final\+\_\+message}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}\label{event__stream__rpc__server__connection__test_8c_a9c4935ae387f79538090fdb254a15a9f}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!headers\_list@{headers\_list}}
+\index{headers\_list@{headers\_list}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{headers\_list}{headers\_list}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream_8c_ae544eb46a56e708860a406a190a097b3}{aws\+\_\+event\+\_\+stream\+\_\+headers\+\_\+list\+\_\+cleanup}} \& headers\+\_\+list}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_abe9878ab5348b168fb2fffaedb438b05}\label{event__stream__rpc__server__connection__test_8c_abe9878ab5348b168fb2fffaedb438b05}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!io\_message@{io\_message}}
+\index{io\_message@{io\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{io\_message}{io\_message}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ io\+\_\+message = \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a00528d0d8039988919d36a0ccda4c35e}{written\+\_\+message\+\_\+node}}, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}, queueing\+\_\+handle)}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}\label{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message@{message}}
+\index{message@{message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream_8c_a26c4621829b585f7de4f475bd505a0ff}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+clean\+\_\+up}} \& message}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}\label{event__stream__rpc__server__connection__test_8c_a5cad3fba390b01ec28e349a068eb6c45}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_args@{message\_args}}
+\index{message\_args@{message\_args}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_args}{message\_args}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}} message\+\_\+args}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .payload = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a144a0bdaab3592ec3046c29aa9c60516}{server\_msg\_payload}},}
+\DoxyCodeLine{        .headers = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a959ed049e86f6d8629afcb9ea5ca72cf}{server\_headers}},}
+\DoxyCodeLine{        .headers\_count = 1,}
+\DoxyCodeLine{        .message\_type = \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_MESSAGE}},}
+\DoxyCodeLine{        .message\_flags = \mbox{\hyperlink{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a3ef6d47860f98bd01ab2780bad57cc4b}{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_TERMINATE\_STREAM}},}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}\label{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_data@{message\_data}}
+\index{message\_data@{message\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_data}{message\_data}}
+{\footnotesize\ttfamily struct received\+\_\+protocol\+\_\+message\+\_\+data message\+\_\+data}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .allocator = \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a552f5482d1c8afdfa9c8223bbef78465}\label{event__stream__rpc__server__connection__test_8c_a552f5482d1c8afdfa9c8223bbef78465}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_flags\_found@{message\_flags\_found}}
+\index{message\_flags\_found@{message\_flags\_found}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_flags\_found}{message\_flags\_found}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} message\+\_\+flags\+\_\+found = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a71f71f3e1f134184058e51b7f2eb2425}\label{event__stream__rpc__server__connection__test_8c_a71f71f3e1f134184058e51b7f2eb2425}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_flush\_err\_code@{message\_flush\_err\_code}}
+\index{message\_flush\_err\_code@{message\_flush\_err\_code}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_flush\_err\_code}{message\_flush\_err\_code}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} message\+\_\+flush\+\_\+err\+\_\+code = 0}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a6b28194ba2e70779289d34460903a421}\label{event__stream__rpc__server__connection__test_8c_a6b28194ba2e70779289d34460903a421}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_flushed@{message\_flushed}}
+\index{message\_flushed@{message\_flushed}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_flushed}{message\_flushed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}} message\+\_\+flushed = 0}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}\label{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_queue@{message\_queue}}
+\index{message\_queue@{message\_queue}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_queue}{message\_queue}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$ message\+\_\+queue = \mbox{\hyperlink{io__testing__channel_8h_ad0678077ea4a4ba7c958f90a15a43a3d}{testing\+\_\+channel\+\_\+get\+\_\+written\+\_\+message\+\_\+queue}}(\&\mbox{\hyperlink{structtest__data}{test\+\_\+data}}-\/$>$\mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}\label{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_type@{message\_type}}
+\index{message\_type@{message\_type}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_type}{message\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}} message\+\_\+type = -\/1}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aea75f522ae0b59a242255a1d4cd17da4}\label{event__stream__rpc__server__connection__test_8c_aea75f522ae0b59a242255a1d4cd17da4}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!message\_type\_found@{message\_type\_found}}
+\index{message\_type\_found@{message\_type\_found}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{message\_type\_found}{message\_type\_found}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} message\+\_\+type\+\_\+found = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a238b8d6ff89460c1d26df643711763b2}\label{event__stream__rpc__server__connection__test_8c_a238b8d6ff89460c1d26df643711763b2}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!on\_continuation@{on\_continuation}}
+\index{on\_continuation@{on\_continuation}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{on\_continuation}{on\_continuation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} on\+\_\+continuation = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3be292d4e2c4670cfa8c8d35c2afabe4}{s\+\_\+on\+\_\+continuation\+\_\+message}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a5a34145ebf2ea9abead2b0a9259203df}\label{event__stream__rpc__server__connection__test_8c_a5a34145ebf2ea9abead2b0a9259203df}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!on\_continuation\_closed@{on\_continuation\_closed}}
+\index{on\_continuation\_closed@{on\_continuation\_closed}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{on\_continuation\_closed}{on\_continuation\_closed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} on\+\_\+continuation\+\_\+closed = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a895ed36ff88dff4bb01a55f45c966a9e}{s\+\_\+on\+\_\+continuation\+\_\+closed}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a8c6b6afa1d546f36e5146c7a7e3ac694}\label{event__stream__rpc__server__connection__test_8c_a8c6b6afa1d546f36e5146c7a7e3ac694}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!on\_new\_stream@{on\_new\_stream}}
+\index{on\_new\_stream@{on\_new\_stream}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{on\_new\_stream}{on\_new\_stream}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} on\+\_\+new\+\_\+stream = s\+\_\+on\+\_\+incoming\+\_\+stream}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a84fcf15d1f1f5692ab6453f9677a23ef}\label{event__stream__rpc__server__connection__test_8c_a84fcf15d1f1f5692ab6453f9677a23ef}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!operation\_name@{operation\_name}}
+\index{operation\_name@{operation\_name}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{operation\_name}{operation\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} operation\+\_\+name = \mbox{\hyperlink{byte__buf_8c_a1eb17ec562f4309e8d00717c9a6b9091}{aws\+\_\+byte\+\_\+cursor\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test\+Operation\char`\"{})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}\label{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!payload@{payload}}
+\index{payload@{payload}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{payload}{payload}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} payload = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test connect \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}} payload\char`\"{})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_aa50c12ab770c15c09ce8210f6b0fa22b}\label{event__stream__rpc__server__connection__test_8c_aa50c12ab770c15c09ce8210f6b0fa22b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!received\_fn@{received\_fn}}
+\index{received\_fn@{received\_fn}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{received\_fn}{received\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} received\+\_\+fn = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aaa5ad31ecd5265c7290b92e22c944094}{s\+\_\+on\+\_\+recieved\+\_\+protocol\+\_\+message}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}\label{event__stream__rpc__server__connection__test_8c_a90cc90f387417fe637539fdb80802dda}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!s\_test\_data@{s\_test\_data}}
+\index{s\_test\_data@{s\_test\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_data}{s\_test\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtest__data}{test\+\_\+data}} s\+\_\+test\+\_\+data\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a2313c6cc1a6e803e8a58c834408304a1}\label{event__stream__rpc__server__connection__test_8c_a2313c6cc1a6e803e8a58c834408304a1}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!send\_data@{send\_data}}
+\index{send\_data@{send\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{send\_data}{send\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} send\+\_\+data}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \mbox{\hyperlink{byte__buf_8h_a30c845aea25a22f05ca8f48758e82f34}{aws\_byte\_cursor\_from\_array}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{event__stream_8h_a16e3b42ff578f9b984df5a8089985875}{aws\_event\_stream\_message\_buffer}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}), \mbox{\hyperlink{event__stream_8h_ab3fb65c95d0662856199d06d6822224b}{aws\_event\_stream\_message\_total\_length}}(\&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_acd7125e5deced5eb78b39f7fa75e2f85}\label{event__stream__rpc__server__connection__test_8c_acd7125e5deced5eb78b39f7fa75e2f85}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!server\_header\_name@{server\_header\_name}}
+\index{server\_header\_name@{server\_header\_name}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_header\_name}{server\_header\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} server\+\_\+header\+\_\+name = \mbox{\hyperlink{byte__buf_8c_a1eb17ec562f4309e8d00717c9a6b9091}{aws\+\_\+byte\+\_\+cursor\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}test\+Header1\char`\"{})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a8ac296b1066bad5580ae7dff18e0d83c}\label{event__stream__rpc__server__connection__test_8c_a8ac296b1066bad5580ae7dff18e0d83c}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!server\_header\_value@{server\_header\_value}}
+\index{server\_header\_value@{server\_header\_value}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_header\_value}{server\_header\_value}}
+{\footnotesize\ttfamily int32\+\_\+t server\+\_\+header\+\_\+value = 6}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a959ed049e86f6d8629afcb9ea5ca72cf}\label{event__stream__rpc__server__connection__test_8c_a959ed049e86f6d8629afcb9ea5ca72cf}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!server\_headers@{server\_headers}}
+\index{server\_headers@{server\_headers}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_headers}{server\_headers}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair}} server\+\_\+headers\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a7c94d44cf5b9a1554fe0f79edfc4bb22}{server\_payload\_header}},}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a144a0bdaab3592ec3046c29aa9c60516}\label{event__stream__rpc__server__connection__test_8c_a144a0bdaab3592ec3046c29aa9c60516}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!server\_msg\_payload@{server\_msg\_payload}}
+\index{server\_msg\_payload@{server\_msg\_payload}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_msg\_payload}{server\_msg\_payload}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} server\+\_\+msg\+\_\+payload = \mbox{\hyperlink{byte__buf_8c_a2a9635250be1b7cc705444b15a4ee959}{aws\+\_\+byte\+\_\+buf\+\_\+from\+\_\+c\+\_\+str}}(\char`\"{}message from the server on continuation\char`\"{})}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a7c94d44cf5b9a1554fe0f79edfc4bb22}\label{event__stream__rpc__server__connection__test_8c_a7c94d44cf5b9a1554fe0f79edfc4bb22}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!server\_payload\_header@{server\_payload\_header}}
+\index{server\_payload\_header@{server\_payload\_header}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_payload\_header}{server\_payload\_header}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__stream__header__value__pair}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair}} server\+\_\+payload\+\_\+header}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{        \mbox{\hyperlink{event__stream_8h_a8e2f31b8ab5134b41bcc44bfe677531c}{aws\_event\_stream\_create\_int32\_header}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_acd7125e5deced5eb78b39f7fa75e2f85}{server\_header\_name}}, \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a8ac296b1066bad5580ae7dff18e0d83c}{server\_header\_value}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a68ea69131d438d9201298b1a38e3e3b7}\label{event__stream__rpc__server__connection__test_8c_a68ea69131d438d9201298b1a38e3e3b7}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!stream\_id\_found@{stream\_id\_found}}
+\index{stream\_id\_found@{stream\_id\_found}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{stream\_id\_found}{stream\_id\_found}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} stream\+\_\+id\+\_\+found = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_afd0ef539b0e040ed183302f5fa67b6a5}\label{event__stream__rpc__server__connection__test_8c_afd0ef539b0e040ed183302f5fa67b6a5}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!test\_data@{test\_data}}
+\index{test\_data@{test\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_data}{test\_data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{io__testing__channel_8h_a1abd3392b79adddd012c0c03f49209f9}{testing\+\_\+channel\+\_\+drain\+\_\+written\+\_\+messages}}\& \mbox{\hyperlink{structtest__data}{test\+\_\+data}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}\label{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!token@{token}}
+\index{token@{token}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__stream__rpc__server__continuation__token}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+server\+\_\+continuation\+\_\+token}}$\ast$ token}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}\label{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtest__data}{test\+\_\+data}} user\+\_\+data = \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_aed5a69b2475c7ba57b415439048a3dfe}{message\+\_\+data}}}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}\label{event__stream__rpc__server__connection__test_8c_a64452a76580644a723b2313ee7d6b509}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!written\_message@{written\_message}}
+\index{written\_message@{written\_message}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{written\_message}{written\_message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream_8c_a26c4621829b585f7de4f475bd505a0ff}{aws\+\_\+event\+\_\+stream\+\_\+message\+\_\+clean\+\_\+up}} \& written\+\_\+message}
+
+\mbox{\Hypertarget{event__stream__rpc__server__connection__test_8c_a00528d0d8039988919d36a0ccda4c35e}\label{event__stream__rpc__server__connection__test_8c_a00528d0d8039988919d36a0ccda4c35e}} 
+\index{event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}!written\_message\_node@{written\_message\_node}}
+\index{written\_message\_node@{written\_message\_node}!event\_stream\_rpc\_server\_connection\_test.c@{event\_stream\_rpc\_server\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{written\_message\_node}{written\_message\_node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} $\ast$ written\+\_\+message\+\_\+node = \mbox{\hyperlink{linked__list_8inl_ad8bcb39d8be9c812252fe316c95b453b}{aws\+\_\+linked\+\_\+list\+\_\+front}}(\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a0fc0ba017ed4299cb4c6d3ea951d56ee}{message\+\_\+queue}})}
+

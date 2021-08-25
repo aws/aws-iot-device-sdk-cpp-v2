@@ -1,0 +1,115 @@
+\hypertarget{s2n__self__talk__alerts__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+self\+\_\+talk\+\_\+alerts\+\_\+test.c File Reference}
+\label{s2n__self__talk__alerts__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_alerts\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_alerts\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structalert__ctx}{alert\+\_\+ctx}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_afe02a145f0d3a71b14d61e2774987f9d}{TLS\+\_\+\+ALERT}}~21
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a3a8b1bd0091629ae849cd76f084efc70}{TLS\+\_\+\+ALERT\+\_\+\+VERSION}}~0x03, 0x03
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a487af67b89809502036afcba8fad2773}{TLS\+\_\+\+ALERT\+\_\+\+LENGTH}}~0x00, 0x02
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_af4d4d52e7f7f00793cd7eeb4cf672f53}{TLS\+\_\+\+ALERT\+\_\+\+LEVEL\+\_\+\+WARNING}}~1
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a74dab3bd3d93645c46ba24d3074babc3}{TLS\+\_\+\+ALERT\+\_\+\+LEVEL\+\_\+\+FATAL}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a8718d069fe5bd3835f915871a5f69764}{TLS\+\_\+\+ALERT\+\_\+\+CLOSE\+\_\+\+NOTIFY}}~0
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a75370b118b1cdc3096a1347447d8f609}{TLS\+\_\+\+ALERT\+\_\+\+UNRECOGNIZED\+\_\+\+NAME}}~122
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a02ad39a8fc5ef6b4fe2761a79904f119}{mock\+\_\+client}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair, \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\+\_\+alert\+\_\+behavior}} alert\+\_\+behavior, int expect\+\_\+failure)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a62bc7b79bd7a3529c7c93fb6f80e9fac}{mock\+\_\+nanoseconds\+\_\+since\+\_\+epoch}} (void $\ast$data, uint64\+\_\+t $\ast$nanoseconds)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_aafeb43fb02468598cd063978322045c6}{client\+\_\+hello\+\_\+send\+\_\+alerts}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{s2n__self__talk__alerts__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_afe02a145f0d3a71b14d61e2774987f9d}\label{s2n__self__talk__alerts__test_8c_afe02a145f0d3a71b14d61e2774987f9d}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT@{TLS\_ALERT}}
+\index{TLS\_ALERT@{TLS\_ALERT}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT}{TLS\_ALERT}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT~21}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a8718d069fe5bd3835f915871a5f69764}\label{s2n__self__talk__alerts__test_8c_a8718d069fe5bd3835f915871a5f69764}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_CLOSE\_NOTIFY@{TLS\_ALERT\_CLOSE\_NOTIFY}}
+\index{TLS\_ALERT\_CLOSE\_NOTIFY@{TLS\_ALERT\_CLOSE\_NOTIFY}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_CLOSE\_NOTIFY}{TLS\_ALERT\_CLOSE\_NOTIFY}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+CLOSE\+\_\+\+NOTIFY~0}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a487af67b89809502036afcba8fad2773}\label{s2n__self__talk__alerts__test_8c_a487af67b89809502036afcba8fad2773}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_LENGTH@{TLS\_ALERT\_LENGTH}}
+\index{TLS\_ALERT\_LENGTH@{TLS\_ALERT\_LENGTH}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_LENGTH}{TLS\_ALERT\_LENGTH}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+LENGTH~0x00, 0x02}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a74dab3bd3d93645c46ba24d3074babc3}\label{s2n__self__talk__alerts__test_8c_a74dab3bd3d93645c46ba24d3074babc3}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_LEVEL\_FATAL@{TLS\_ALERT\_LEVEL\_FATAL}}
+\index{TLS\_ALERT\_LEVEL\_FATAL@{TLS\_ALERT\_LEVEL\_FATAL}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_LEVEL\_FATAL}{TLS\_ALERT\_LEVEL\_FATAL}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+LEVEL\+\_\+\+FATAL~2}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_af4d4d52e7f7f00793cd7eeb4cf672f53}\label{s2n__self__talk__alerts__test_8c_af4d4d52e7f7f00793cd7eeb4cf672f53}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_LEVEL\_WARNING@{TLS\_ALERT\_LEVEL\_WARNING}}
+\index{TLS\_ALERT\_LEVEL\_WARNING@{TLS\_ALERT\_LEVEL\_WARNING}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_LEVEL\_WARNING}{TLS\_ALERT\_LEVEL\_WARNING}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+LEVEL\+\_\+\+WARNING~1}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a75370b118b1cdc3096a1347447d8f609}\label{s2n__self__talk__alerts__test_8c_a75370b118b1cdc3096a1347447d8f609}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_UNRECOGNIZED\_NAME@{TLS\_ALERT\_UNRECOGNIZED\_NAME}}
+\index{TLS\_ALERT\_UNRECOGNIZED\_NAME@{TLS\_ALERT\_UNRECOGNIZED\_NAME}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_UNRECOGNIZED\_NAME}{TLS\_ALERT\_UNRECOGNIZED\_NAME}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+UNRECOGNIZED\+\_\+\+NAME~122}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a3a8b1bd0091629ae849cd76f084efc70}\label{s2n__self__talk__alerts__test_8c_a3a8b1bd0091629ae849cd76f084efc70}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!TLS\_ALERT\_VERSION@{TLS\_ALERT\_VERSION}}
+\index{TLS\_ALERT\_VERSION@{TLS\_ALERT\_VERSION}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_ALERT\_VERSION}{TLS\_ALERT\_VERSION}}
+{\footnotesize\ttfamily \#define TLS\+\_\+\+ALERT\+\_\+\+VERSION~0x03, 0x03}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_aafeb43fb02468598cd063978322045c6}\label{s2n__self__talk__alerts__test_8c_aafeb43fb02468598cd063978322045c6}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!client\_hello\_send\_alerts@{client\_hello\_send\_alerts}}
+\index{client\_hello\_send\_alerts@{client\_hello\_send\_alerts}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{client\_hello\_send\_alerts()}{client\_hello\_send\_alerts()}}
+{\footnotesize\ttfamily int client\+\_\+hello\+\_\+send\+\_\+alerts (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__self__talk__alerts__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!main@{main}}
+\index{main@{main}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a02ad39a8fc5ef6b4fe2761a79904f119}\label{s2n__self__talk__alerts__test_8c_a02ad39a8fc5ef6b4fe2761a79904f119}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!mock\_client@{mock\_client}}
+\index{mock\_client@{mock\_client}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client()}{mock\_client()}}
+{\footnotesize\ttfamily int mock\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair,  }\item[{\mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\+\_\+alert\+\_\+behavior}}}]{alert\+\_\+behavior,  }\item[{int}]{expect\+\_\+failure }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__alerts__test_8c_a62bc7b79bd7a3529c7c93fb6f80e9fac}\label{s2n__self__talk__alerts__test_8c_a62bc7b79bd7a3529c7c93fb6f80e9fac}} 
+\index{s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}!mock\_nanoseconds\_since\_epoch@{mock\_nanoseconds\_since\_epoch}}
+\index{mock\_nanoseconds\_since\_epoch@{mock\_nanoseconds\_since\_epoch}!s2n\_self\_talk\_alerts\_test.c@{s2n\_self\_talk\_alerts\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_nanoseconds\_since\_epoch()}{mock\_nanoseconds\_since\_epoch()}}
+{\footnotesize\ttfamily int mock\+\_\+nanoseconds\+\_\+since\+\_\+epoch (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{uint64\+\_\+t $\ast$}]{nanoseconds }\end{DoxyParamCaption})}
+

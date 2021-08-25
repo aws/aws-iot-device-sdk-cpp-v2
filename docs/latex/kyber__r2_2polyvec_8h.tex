@@ -1,0 +1,96 @@
+\hypertarget{kyber__r2_2polyvec_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\+\_\+r2/polyvec.h File Reference}
+\label{kyber__r2_2polyvec_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/polyvec.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/polyvec.h}}
+{\ttfamily \#include \char`\"{}params.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}poly.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpolyvec}{polyvec}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_ad3d53f116f04258b3f0664f00852accf}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+compress}} (uint8\+\_\+t $\ast$r, \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$a)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a6b1b30fa97776aac5e89493965e5ec4a}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+decompress}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r, const uint8\+\_\+t $\ast$a)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a15f1c2eecfa254fe309bf1de8b15ace1}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+tobytes}} (uint8\+\_\+t $\ast$r, \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$a)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a606f670b58be0ac6375d0098d98d5d0e}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+frombytes}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r, const uint8\+\_\+t $\ast$a)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_acfaa5baecaa43d999dae9c1db14a59c2}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+ntt}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a8bbcc58a38db72a5573b5739aace41e1}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+invntt}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a1a5ae122b7b24b943ef192ccbfdf7ea3}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+pointwise\+\_\+acc}} (\mbox{\hyperlink{structpoly}{poly}} $\ast$r, const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$a, const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_abb317fd20a335045889d6d5aa5b07ecf}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+reduce}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a8d58cdbacf73877d27650733c98a03c1}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+csubq}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r)
+\item 
+void \mbox{\hyperlink{kyber__r2_2polyvec_8h_a0c13bafb5b7d2ea8a7dcc76f5a280d99}{PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+add}} (\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$r, const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$a, const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a0c13bafb5b7d2ea8a7dcc76f5a280d99}\label{kyber__r2_2polyvec_8h_a0c13bafb5b7d2ea8a7dcc76f5a280d99}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_add()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r,  }\item[{const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_ad3d53f116f04258b3f0664f00852accf}\label{kyber__r2_2polyvec_8h_ad3d53f116f04258b3f0664f00852accf}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_compress()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+compress (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{r,  }\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a8d58cdbacf73877d27650733c98a03c1}\label{kyber__r2_2polyvec_8h_a8d58cdbacf73877d27650733c98a03c1}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_csubq()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+csubq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a6b1b30fa97776aac5e89493965e5ec4a}\label{kyber__r2_2polyvec_8h_a6b1b30fa97776aac5e89493965e5ec4a}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_decompress()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+decompress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r,  }\item[{const uint8\+\_\+t $\ast$}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a606f670b58be0ac6375d0098d98d5d0e}\label{kyber__r2_2polyvec_8h_a606f670b58be0ac6375d0098d98d5d0e}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_frombytes()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+frombytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r,  }\item[{const uint8\+\_\+t $\ast$}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a8bbcc58a38db72a5573b5739aace41e1}\label{kyber__r2_2polyvec_8h_a8bbcc58a38db72a5573b5739aace41e1}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_invntt()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+invntt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_acfaa5baecaa43d999dae9c1db14a59c2}\label{kyber__r2_2polyvec_8h_acfaa5baecaa43d999dae9c1db14a59c2}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_ntt()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+ntt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a1a5ae122b7b24b943ef192ccbfdf7ea3}\label{kyber__r2_2polyvec_8h_a1a5ae122b7b24b943ef192ccbfdf7ea3}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_pointwise\_acc()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+pointwise\+\_\+acc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpoly}{poly}} $\ast$}]{r,  }\item[{const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_abb317fd20a335045889d6d5aa5b07ecf}\label{kyber__r2_2polyvec_8h_abb317fd20a335045889d6d5aa5b07ecf}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_reduce()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+reduce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__r2_2polyvec_8h_a15f1c2eecfa254fe309bf1de8b15ace1}\label{kyber__r2_2polyvec_8h_a15f1c2eecfa254fe309bf1de8b15ace1}} 
+\index{polyvec.h@{polyvec.h}!PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes}}
+\index{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes@{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes}!polyvec.h@{polyvec.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes()}{PQCLEAN\_KYBER512\_CLEAN\_polyvec\_tobytes()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER512\+\_\+\+CLEAN\+\_\+polyvec\+\_\+tobytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{r,  }\item[{\mbox{\hyperlink{structpolyvec}{polyvec}} $\ast$}]{a }\end{DoxyParamCaption})}
+

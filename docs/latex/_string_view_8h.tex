@@ -1,0 +1,87 @@
+\hypertarget{_string_view_8h}{}\doxysection{crt/aws-\/crt-\/cpp/include/aws/crt/\+String\+View.h File Reference}
+\label{_string_view_8h}\index{crt/aws-\/crt-\/cpp/include/aws/crt/StringView.h@{crt/aws-\/crt-\/cpp/include/aws/crt/StringView.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws\+::\+Crt\+::basic\+\_\+string\+\_\+view$<$ Char\+T, Traits $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1hash_3_01_aws_1_1_crt_1_1basic__string__view_3_01_char_t_00_01_traits_01_4_01_4}{std\+::hash$<$ Aws\+::\+Crt\+::basic\+\_\+string\+\_\+view$<$ Char\+T, Traits $>$ $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws}{Aws}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt}{Aws\+::\+Crt}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals}{Aws\+::\+Crt\+::literals}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals_1_1string__view__literals}{Aws\+::\+Crt\+::literals\+::string\+\_\+view\+\_\+literals}}
+\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef basic\+\_\+string\+\_\+view$<$ char $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_a13e551e2428922b0ad8c1a96d6469eb4}{Aws\+::\+Crt\+::string\+\_\+view}}
+\item 
+typedef basic\+\_\+string\+\_\+view$<$ char16\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_ab78d7e768308169a3ef93884b437de70}{Aws\+::\+Crt\+::u16string\+\_\+view}}
+\item 
+typedef basic\+\_\+string\+\_\+view$<$ char32\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_a0cc435d56547f8f103cfcc025676c753}{Aws\+::\+Crt\+::u32string\+\_\+view}}
+\item 
+typedef basic\+\_\+string\+\_\+view$<$ wchar\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_a8f4d110da005084e08ec55d8e1d1dd18}{Aws\+::\+Crt\+::wstring\+\_\+view}}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}} = string\+\_\+view
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_af7540fb5b29c567df60a2bd7c99d4d1a}{Aws\+::\+Crt\+::operator==}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a190ffdc2cf91cf042446ae2a24ce22c9}{Aws\+::\+Crt\+::operator==}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a0b29ff2a757b2dec28ae67afef89c380}{Aws\+::\+Crt\+::operator==}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_afff3d70dfaec9f8ef415867759dae2b8}{Aws\+::\+Crt\+::operator!=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a266fbc4b1030110d4c5072cbf03b4df9}{Aws\+::\+Crt\+::operator!=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_ac6a1234b3480ecb60a91a75628e61abc}{Aws\+::\+Crt\+::operator!=}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a353f1d9443bac716d9cd1258c1218026}{Aws\+::\+Crt\+::operator$<$}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_ac57cebdff5f7951ccba4e88c60814c83}{Aws\+::\+Crt\+::operator$<$}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a8df8a40e2e301d30efd78403b4f5fa01}{Aws\+::\+Crt\+::operator$<$}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a703baa2f5c1b01a28ac0868852799f18}{Aws\+::\+Crt\+::operator$>$}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a965117ee359117c1e30b6d109913576b}{Aws\+::\+Crt\+::operator$>$}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_ade38c6f9bd778cc01df2cc302084dcb5}{Aws\+::\+Crt\+::operator$>$}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a206cc05f66f90fc79e3b2096ebf9ab36}{Aws\+::\+Crt\+::operator$<$=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_ab5940934cff7bf196d009a241257e4d6}{Aws\+::\+Crt\+::operator$<$=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a197c45b8ab5c1d0820fb9960fccd6914}{Aws\+::\+Crt\+::operator$<$=}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a532f585ee1e7dbac1823943af772466a}{Aws\+::\+Crt\+::operator$>$=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_adb3e656a5260c5d9790669ab3cf31021}{Aws\+::\+Crt\+::operator$>$=}} (const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&lhs, typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&rhs) noexcept
+\item 
+{\footnotesize template$<$class CharT , class Traits $>$ }\\constexpr \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespace_aws_1_1_crt_a418efb938cb10c49ac316d38e395455b}{Aws\+::\+Crt\+::operator$>$=}} (typename std\+::common\+\_\+type$<$ basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ $>$\+::type \&lhs, const basic\+\_\+string\+\_\+view$<$ CharT, Traits $>$ \&rhs) noexcept
+\item 
+basic\+\_\+string\+\_\+view$<$ char $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals_1_1string__view__literals_a77c05082b4360f2da9c6ebc0f404e1a4}{Aws\+::\+Crt\+::literals\+::string\+\_\+view\+\_\+literals\+::operator\char`\"{}\char`\"{}\+\_\+sv}} (const char $\ast$s, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) noexcept
+\item 
+basic\+\_\+string\+\_\+view$<$ wchar\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals_1_1string__view__literals_a3735cafe131c554ed78224e8650daec8}{Aws\+::\+Crt\+::literals\+::string\+\_\+view\+\_\+literals\+::operator\char`\"{}\char`\"{}\+\_\+sv}} (const wchar\+\_\+t $\ast$s, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) noexcept
+\item 
+basic\+\_\+string\+\_\+view$<$ char16\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals_1_1string__view__literals_af6f583858793e46e109c93801ce1ec57}{Aws\+::\+Crt\+::literals\+::string\+\_\+view\+\_\+literals\+::operator\char`\"{}\char`\"{}\+\_\+sv}} (const char16\+\_\+t $\ast$s, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) noexcept
+\item 
+basic\+\_\+string\+\_\+view$<$ char32\+\_\+t $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1literals_1_1string__view__literals_a192f6016ae629df690df81c89896fc2c}{Aws\+::\+Crt\+::literals\+::string\+\_\+view\+\_\+literals\+::operator\char`\"{}\char`\"{}\+\_\+sv}} (const char32\+\_\+t $\ast$s, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) noexcept
+\end{DoxyCompactItemize}

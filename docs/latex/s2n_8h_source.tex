@@ -1,0 +1,451 @@
+\hypertarget{s2n_8h_source}{}\doxysection{s2n.\+h}
+\label{s2n_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/api/s2n.h@{crt/aws-\/crt-\/cpp/crt/s2n/api/s2n.h}}
+\mbox{\hyperlink{s2n_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#if ((\_\_GNUC\_\_ >= 4) || defined(\_\_clang\_\_)) \&\& defined(S2N\_EXPORTS)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#    define S2N\_API \_\_attribute\_\_((visibility("{}default"{}})))}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#    define S2N\_API}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_GNUC\_\_ >= 4 || defined(\_\_clang\_\_) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{25 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <sys/types.h>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdbool_8h}{stdbool.h}}>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <sys/uio.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{/* Function return code  */}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define S2N\_SUCCESS 0}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define S2N\_FAILURE -\/1}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{/* Callback return code */}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define S2N\_CALLBACK\_BLOCKED -\/2}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define S2N\_MINIMUM\_SUPPORTED\_TLS\_RECORD\_MAJOR\_VERSION 2}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define S2N\_MAXIMUM\_SUPPORTED\_TLS\_RECORD\_MAJOR\_VERSION 3}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define S2N\_SSLv2 20}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define S2N\_SSLv3 30}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define S2N\_TLS10 31}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define S2N\_TLS11 32}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define S2N\_TLS12 33}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define S2N\_TLS13 34}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define S2N\_UNKNOWN\_PROTOCOL\_VERSION 0}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{52 \textcolor{keyword}{extern} \_\_thread \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a24fa509b7e7b509825866d83a00333d1}{s2n\_errno}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{55     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a09221eeb73c34d50145b9c7c0eb21f25}{S2N\_ERR\_T\_OK}}=0,}
+\DoxyCodeLine{56     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a37308c203b80ac55ca9fe47af71a4461}{S2N\_ERR\_T\_IO}},}
+\DoxyCodeLine{57     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a0cbe0424403a2678cf7ece737b2203e1}{S2N\_ERR\_T\_CLOSED}},}
+\DoxyCodeLine{58     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a5bcbdbf63fe745654c4ae0fb8d28bbd2}{S2N\_ERR\_T\_BLOCKED}},}
+\DoxyCodeLine{59     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a12d57bda93bac5e14ae6d7c78717e122}{S2N\_ERR\_T\_ALERT}},}
+\DoxyCodeLine{60     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44af7032a0138492c552fc04b9198259cd7}{S2N\_ERR\_T\_PROTO}},}
+\DoxyCodeLine{61     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a2c6b4ff243a28b86ef701206023339ca}{S2N\_ERR\_T\_INTERNAL}},}
+\DoxyCodeLine{62     \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a0d2eba6e7ff752e54c0aa004fd53f176}{S2N\_ERR\_T\_USAGE}}}
+\DoxyCodeLine{63 \} \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44}{s2n\_error\_type}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{66 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aebff13e0704f879abbb6a3a7cbbe62c2}{s2n\_error\_get\_type}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{structerror}{error}});}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__config}{s2n\_config}};}
+\DoxyCodeLine{69 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{72 \textcolor{keyword}{extern} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{s2n_8h_af149f0a7173ca87281b568fa87e46db7}{s2n\_get\_openssl\_version}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{73 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{74 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a41b65ad20272f232f12c8ae36578d372}{s2n\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{75 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{76 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a6bec40a852f3766f4e419684036e7550}{s2n\_cleanup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{77 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{78 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n_8h_a1a630424b3a07e0a4880ff465766c996}{s2n\_config\_new}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{79 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{80 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a414a19458d8ce45e039dbd01e7dd67f4}{s2n\_config\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{81 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{82 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a5a04d9eaa39a0145f16dd819fe60fc0b}{s2n\_config\_free\_dhparams}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{83 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{84 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a867af1779dd5a21b944239eb932c0744}{s2n\_config\_free\_cert\_chain\_and\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\_clock\_time\_nanoseconds}}) (\textcolor{keywordtype}{void} *, uint64\_t *);}
+\DoxyCodeLine{87 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a57b0785656f577b764e1c3c3844368d4}{s2n\_cache\_retrieve\_callback}}) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key, uint64\_t key\_size, \textcolor{keywordtype}{void} *value, uint64\_t *value\_size);}
+\DoxyCodeLine{88 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_ad9764b7cab647999aad58c339a42e90e}{s2n\_cache\_store\_callback}}) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *, uint64\_t ttl\_in\_seconds, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key, uint64\_t key\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *value, uint64\_t value\_size);}
+\DoxyCodeLine{89 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_acbf7cc68d71dd8d960ff078b3a21792f}{s2n\_cache\_delete\_callback}}) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,  \textcolor{keywordtype}{void} *, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key, uint64\_t key\_size);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{92 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a43c8ab4e5c773d3e0464ed41cc51bd5d}{s2n\_config\_set\_wall\_clock}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\_clock\_time\_nanoseconds}} clock\_fn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{93 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{94 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a7b11c2ca37417cf74606870711a08741}{s2n\_config\_set\_monotonic\_clock}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\_clock\_time\_nanoseconds}} clock\_fn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{97 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a6df08fdb003d7c1a785bcacc3e8d2e44}{s2n\_strerror}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{structerror}{error}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *lang);}
+\DoxyCodeLine{98 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{99 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a6b4b4e92fd1af874f326445909066d69}{s2n\_strerror\_debug}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{structerror}{error}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *lang);}
+\DoxyCodeLine{100 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{101 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a138b20fa26ba783321b859add594a8d2}{s2n\_strerror\_name}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{structerror}{error}}); }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stacktrace}{s2n\_stacktrace}};}
+\DoxyCodeLine{104 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{105 \textcolor{keyword}{extern} \textcolor{keywordtype}{bool} \mbox{\hyperlink{s2n_8h_ad2220ac8657a5417ee02e8da3b7789b1}{s2n\_stack\_traces\_enabled}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{106 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{107 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a997548b3339d0ee7d154911c733f2126}{s2n\_stack\_traces\_enabled\_set}}(\textcolor{keywordtype}{bool} newval);}
+\DoxyCodeLine{108 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{109 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_adc456819a4334258c0e9076cf59f4a37}{s2n\_calculate\_stacktrace}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{110 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{111 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a3795be9933007194977318e19e7fb8ea}{s2n\_print\_stacktrace}}(FILE *fptr);}
+\DoxyCodeLine{112 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{113 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a7794e4ff39ad4a15b310136fcd4ac079}{s2n\_free\_stacktrace}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{114 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{115 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a7bb6aca0767b83c072629041a30f263b}{s2n\_get\_stacktrace}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stacktrace}{s2n\_stacktrace}} *\mbox{\hyperlink{structs2n__stacktrace_ad46f24a709fc3b4ad01be14d9fe0f16d}{trace}});}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{118 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a8c1c9c7110d9e3c18d48fbf8ee655318}{s2n\_config\_set\_cache\_store\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ad9764b7cab647999aad58c339a42e90e}{s2n\_cache\_store\_callback}} \mbox{\hyperlink{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\_store\_callback}}, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{119 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{120 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a0ab40fa6123aedb83f5fab8ef1922fa9}{s2n\_config\_set\_cache\_retrieve\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a57b0785656f577b764e1c3c3844368d4}{s2n\_cache\_retrieve\_callback}} \mbox{\hyperlink{s2nd_8c_a76518c3daf7521be5dd26d13df982532}{cache\_retrieve\_callback}}, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{121 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{122 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a83593aa49ca8a9cff7c2678acf943f4f}{s2n\_config\_set\_cache\_delete\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_acbf7cc68d71dd8d960ff078b3a21792f}{s2n\_cache\_delete\_callback}} \mbox{\hyperlink{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\_delete\_callback}}, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a71033bff0e129f910b87d5fb41798519}{s2n\_mem\_init\_callback}})(void);}
+\DoxyCodeLine{125 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_ae5f75394a380a2764b189ca6662133ba}{s2n\_mem\_cleanup\_callback}})(void);}
+\DoxyCodeLine{126 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a8ea7d341ee2969dd1d083fafe13a5d43}{s2n\_mem\_malloc\_callback}})(\textcolor{keywordtype}{void} **ptr, uint32\_t requested, uint32\_t *allocated);}
+\DoxyCodeLine{127 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a6e4014627f6981bc4e533781d29903d5}{s2n\_mem\_free\_callback}})(\textcolor{keywordtype}{void} *ptr, uint32\_t size);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{130 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a664b222a36088c06c4580653971f03a5}{s2n\_mem\_set\_callbacks}}(\mbox{\hyperlink{s2n_8h_a71033bff0e129f910b87d5fb41798519}{s2n\_mem\_init\_callback}} mem\_init\_callback, \mbox{\hyperlink{s2n_8h_ae5f75394a380a2764b189ca6662133ba}{s2n\_mem\_cleanup\_callback}} mem\_cleanup\_callback,}
+\DoxyCodeLine{131                                  \mbox{\hyperlink{s2n_8h_a8ea7d341ee2969dd1d083fafe13a5d43}{s2n\_mem\_malloc\_callback}} mem\_malloc\_callback, \mbox{\hyperlink{s2n_8h_a6e4014627f6981bc4e533781d29903d5}{s2n\_mem\_free\_callback}} mem\_free\_callback);}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_ada646d7bfa47772c96b4e4c9dca18dd1}{s2n\_rand\_init\_callback}})(void);}
+\DoxyCodeLine{134 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a700f181dd144cbb4161765333a190d01}{s2n\_rand\_cleanup\_callback}})(void);}
+\DoxyCodeLine{135 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_ae7cf68edcc9173e3ac5383d1fb879d31}{s2n\_rand\_seed\_callback}})(\textcolor{keywordtype}{void} *data, uint32\_t size);}
+\DoxyCodeLine{136 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a4b6891b58a1c9a957d299177497e7896}{s2n\_rand\_mix\_callback}})(\textcolor{keywordtype}{void} *data, uint32\_t size);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{139 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_af3f23014a1e26a8849f9b35208c7fdcc}{s2n\_rand\_set\_callbacks}}(\mbox{\hyperlink{s2n_8h_ada646d7bfa47772c96b4e4c9dca18dd1}{s2n\_rand\_init\_callback}} rand\_init\_callback, \mbox{\hyperlink{s2n_8h_a700f181dd144cbb4161765333a190d01}{s2n\_rand\_cleanup\_callback}} rand\_cleanup\_callback,}
+\DoxyCodeLine{140         \mbox{\hyperlink{s2n_8h_ae7cf68edcc9173e3ac5383d1fb879d31}{s2n\_rand\_seed\_callback}} rand\_seed\_callback, \mbox{\hyperlink{s2n_8h_a4b6891b58a1c9a957d299177497e7896}{s2n\_rand\_mix\_callback}} rand\_mix\_callback);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{143     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8ab2c711604dc18dbb29e4389f884188cc}{S2N\_EXTENSION\_SERVER\_NAME}} = 0,}
+\DoxyCodeLine{144     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8a1a6f06d62f6185f16875fca45112b050}{S2N\_EXTENSION\_MAX\_FRAG\_LEN}} = 1,}
+\DoxyCodeLine{145     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8a9fc679e7aee8c0483fccdfc644cb1a38}{S2N\_EXTENSION\_OCSP\_STAPLING}} = 5,}
+\DoxyCodeLine{146     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8af9557bb899ffb162e1cf3b193440dd0f}{S2N\_EXTENSION\_SUPPORTED\_GROUPS}} = 10,}
+\DoxyCodeLine{147     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8ae8a7f1a728a5d9edb48b52929c9b4c56}{S2N\_EXTENSION\_EC\_POINT\_FORMATS}} = 11,}
+\DoxyCodeLine{148     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8a184702a2959a5d269f85624f57a3915a}{S2N\_EXTENSION\_SIGNATURE\_ALGORITHMS}} = 13,}
+\DoxyCodeLine{149     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8a7892d1594acce60389daedaf0e71ac33}{S2N\_EXTENSION\_ALPN}} = 16,}
+\DoxyCodeLine{150     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8ab0e2a83b98d74880c6239a4c65e7c894}{S2N\_EXTENSION\_CERTIFICATE\_TRANSPARENCY}} = 18,}
+\DoxyCodeLine{151     \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8a53e14c3ec34453dbfb7837d4fe680f45}{S2N\_EXTENSION\_RENEGOTIATION\_INFO}} = 65281,}
+\DoxyCodeLine{152 \} \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\_tls\_extension\_type}};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{155     \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423acab03fef412a9aa2343e713745330e1dc8}{S2N\_TLS\_MAX\_FRAG\_LEN\_512}} = 1,}
+\DoxyCodeLine{156     \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423acafe3f8f4c74aaf53e82b93a3d29466ff2}{S2N\_TLS\_MAX\_FRAG\_LEN\_1024}} = 2,}
+\DoxyCodeLine{157     \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423aca9b279230bda80644f885a51afa786f1d}{S2N\_TLS\_MAX\_FRAG\_LEN\_2048}} = 3,}
+\DoxyCodeLine{158     \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423aca72023be3ef10667ee5172aaa0717a8a8}{S2N\_TLS\_MAX\_FRAG\_LEN\_4096}} = 4,}
+\DoxyCodeLine{159 \} \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423ac}{s2n\_max\_frag\_len}};}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}};}
+\DoxyCodeLine{162 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}};}
+\DoxyCodeLine{163 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} \mbox{\hyperlink{structs2n__pkey}{s2n\_cert\_public\_key}};}
+\DoxyCodeLine{164 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} \mbox{\hyperlink{structs2n__pkey}{s2n\_cert\_private\_key}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{167 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *\mbox{\hyperlink{s2n_8h_a7a5c422f9e1befd117001562c467f432}{s2n\_cert\_chain\_and\_key\_new}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{168 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{169 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aeeca285084f87f4c21298ea21ed057a7}{s2n\_cert\_chain\_and\_key\_load\_pem}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aac2a6f1aab996a327b37797f9c1209ae}{chain\_and\_key}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *chain\_pem, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}{private\_key\_pem}});}
+\DoxyCodeLine{170 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{171 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a7bfe337472559cc966e735604bc8090b}{s2n\_cert\_chain\_and\_key\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert\_and\_key);}
+\DoxyCodeLine{172 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{173 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a4b1ca142d9e92dca8255e4d978d33e1d}{s2n\_cert\_chain\_and\_key\_set\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert\_and\_key, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{174 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{175 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} *\mbox{\hyperlink{s2n_8h_aa26ba8736d325914f744c137cccae624}{s2n\_cert\_chain\_and\_key\_get\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert\_and\_key);}
+\DoxyCodeLine{176 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{177 \textcolor{keyword}{extern} \mbox{\hyperlink{structs2n__pkey}{s2n\_cert\_private\_key}} *\mbox{\hyperlink{s2n_8h_a5ebd0c365784d29a8c3b969f919994a1}{s2n\_cert\_chain\_and\_key\_get\_private\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert\_and\_key);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}}* (*s2n\_cert\_tiebreak\_callback) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert1, \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert2, uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, uint32\_t name\_len);}
+\DoxyCodeLine{180 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{181 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a08f2dab761bbb4b3eec095763a28f7af}{s2n\_config\_set\_cert\_tiebreak\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ac613789e3ed4958426ae8fd987faae4e}{s2n\_cert\_tiebreak\_callback}} cert\_tiebreak\_cb);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{184 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a5f2c5705a56cdb5f9ca4932a24f838e1}{s2n\_config\_add\_cert\_chain\_and\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}{cert\_chain\_pem}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}{private\_key\_pem}});}
+\DoxyCodeLine{185 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{186 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_abfb875eff7e81b22378e4ae5b313169f}{s2n\_config\_add\_cert\_chain\_and\_key\_to\_store}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *cert\_key\_pair);}
+\DoxyCodeLine{187 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{188 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a30d021a10ad7183c995d6d2a65926272}{s2n\_config\_set\_cert\_chain\_and\_key\_defaults}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
+\DoxyCodeLine{189                                                       \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} **cert\_key\_pairs,}
+\DoxyCodeLine{190                                                       uint32\_t num\_cert\_key\_pairs);}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{193 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a85545629ce095ed44de580592eecf50e}{s2n\_config\_set\_verification\_ca\_location}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ca\_pem\_filename, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ca\_dir);}
+\DoxyCodeLine{194 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{195 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a1de5c0b7a1029ee248947835d4e170bc}{s2n\_config\_add\_pem\_to\_trust\_store}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pem);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{keyword}{typedef} uint8\_t (*\mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\_verify\_host\_fn}}) (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *host\_name, \textcolor{keywordtype}{size\_t} host\_name\_len, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{198 \textcolor{comment}{/* will be inherited by s2n\_connection. If s2n\_connection specifies a callback, that callback will be used for that connection. */}}
+\DoxyCodeLine{199 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{200 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a079022d5c18f4ffd64c1c6dedb3bbc66}{s2n\_config\_set\_verify\_host\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\_verify\_host\_fn}}, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{203 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_affff244d7ed6f3b8d1f885df1b307f4e}{s2n\_config\_set\_check\_stapled\_ocsp\_response}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\_t check\_ocsp);}
+\DoxyCodeLine{204 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{205 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aa9d89fb59987254fe2546881d172be18}{s2n\_config\_disable\_x509\_verification}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{206 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{207 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_adbe1f248fa4510df373890a70f6f39b9}{s2n\_config\_set\_max\_cert\_chain\_depth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint16\_t max\_depth);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{210 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a8e9f9e33817a4984217de79b55b7c607}{s2n\_config\_add\_dhparams}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}{dhparams\_pem}});}
+\DoxyCodeLine{211 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{212 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a3afea5198d804621399d8fd9875cfdb0}{s2n\_config\_set\_cipher\_preferences}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *version);}
+\DoxyCodeLine{213 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{214 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a983bbc96f19466c51529501c63004910}{s2n\_config\_set\_protocol\_preferences}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} *protocols, \textcolor{keywordtype}{int} protocol\_count);}
+\DoxyCodeLine{215 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635aea0f05b257857adc1282f77c5414e35a}{S2N\_STATUS\_REQUEST\_NONE}} = 0, \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635a3e83f0e90eef54adc21b3d97a9a0d9b8}{S2N\_STATUS\_REQUEST\_OCSP}} = 1 \} \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\_status\_request\_type}};}
+\DoxyCodeLine{216 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{217 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a380252ebdd5077b7436a23c2cf7458c0}{s2n\_config\_set\_status\_request\_type}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\_status\_request\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}});}
+\DoxyCodeLine{218 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1aac6a6ce2117f7ee6b17853815de262103}{S2N\_CT\_SUPPORT\_NONE}} = 0, \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1aa5ae55831e35ef0a6af62f499bdea31f1}{S2N\_CT\_SUPPORT\_REQUEST}} = 1 \} \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\_ct\_support\_level}};}
+\DoxyCodeLine{219 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{220 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a604de45a27044a3eeb7c58575604bcee}{s2n\_config\_set\_ct\_support\_level}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\_ct\_support\_level}} \mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}});}
+\DoxyCodeLine{221 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abda3e3e136359daf37f0f256ee32c265813}{S2N\_ALERT\_FAIL\_ON\_WARNINGS}} = 0, \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abdac4df3697e514454af3b27bfb30ff8feb}{S2N\_ALERT\_IGNORE\_WARNINGS}} = 1 \} \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\_alert\_behavior}};}
+\DoxyCodeLine{222 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{223 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a59b3ba39cc1b929310270d4fe5ac1b02}{s2n\_config\_set\_alert\_behavior}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\_alert\_behavior}} alert\_behavior);}
+\DoxyCodeLine{224 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{225 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a2250c2b461d0814c4e5dd969d0f372f1}{s2n\_config\_set\_extension\_data}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\_tls\_extension\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \textcolor{keyword}{const} uint8\_t *data, uint32\_t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}});}
+\DoxyCodeLine{226 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{227 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a0f2ab042e1f9dea7ff02b3746dc16188}{s2n\_config\_send\_max\_fragment\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a1976b2365808c341247e03131c2423ac}{s2n\_max\_frag\_len}} mfl\_code);}
+\DoxyCodeLine{228 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{229 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a1d36a77c4bbcd04ea33b84ffd074fb8f}{s2n\_config\_accept\_max\_fragment\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{232 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a012950b0841dad53f4ce0b7bd9892757}{s2n\_config\_set\_session\_state\_lifetime}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\_t lifetime\_in\_secs);}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{235 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_afb17f02a0b6a6c74e3db143c7c3d62a6}{s2n\_config\_set\_session\_tickets\_onoff}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\_t enabled);}
+\DoxyCodeLine{236 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{237 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a746edac026a2d26f4a09ff4183beb9e9}{s2n\_config\_set\_session\_cache\_onoff}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\_t enabled);}
+\DoxyCodeLine{238 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{239 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a54ac0a3900f9784804dff154ea404f83}{s2n\_config\_set\_ticket\_encrypt\_decrypt\_key\_lifetime}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\_t lifetime\_in\_secs);}
+\DoxyCodeLine{240 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{241 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a59be9ad4336811d9910f07bb74edb364}{s2n\_config\_set\_ticket\_decrypt\_key\_lifetime}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\_t lifetime\_in\_secs);}
+\DoxyCodeLine{242 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{243 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ae6d6a59a875a39fdd9f81ae02595173d}{s2n\_config\_add\_ticket\_crypto\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
+\DoxyCodeLine{244                                             \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, uint32\_t name\_len,}
+\DoxyCodeLine{245                                             uint8\_t *key, uint32\_t key\_len,}
+\DoxyCodeLine{246                                             uint64\_t intro\_time\_in\_seconds\_from\_epoch);}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdba6d8d11a87ee62316e49b1b166c2b2c52}{S2N\_SERVER}}, \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdbac93ba9ce574a0b5893fe2a5960e1785d}{S2N\_CLIENT}} \} \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\_mode}};}
+\DoxyCodeLine{249 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{250 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *\mbox{\hyperlink{s2n_8h_ae7dc6dc60634c602b4c26ff9e7d3849a}{s2n\_connection\_new}}(\mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\_mode}} \mbox{\hyperlink{structs2n__connection_a8f9031cdae8b28b7f90d042fae0509ef}{mode}});}
+\DoxyCodeLine{251 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{252 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_abe4b60e86b018ff4b354421e526c6bd1}{s2n\_connection\_set\_config}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{255 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_abe22b04670c9345ed5c25b261ee4de72}{s2n\_connection\_set\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{256 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{257 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} *\mbox{\hyperlink{s2n_8h_ac764269ddd1cebb33e6f24efc19493a4}{s2n\_connection\_get\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a0451dcbf88fdf09f36a82cab4d25d44e}{s2n\_client\_hello\_fn}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{260 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{261 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aaae98777bf82821ce4d1989d224a50c0}{s2n\_config\_set\_client\_hello\_cb}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a0451dcbf88fdf09f36a82cab4d25d44e}{s2n\_client\_hello\_fn}} client\_hello\_callback, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}};}
+\DoxyCodeLine{264 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{265 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *\mbox{\hyperlink{s2n_8h_a341f25d511a7e9355bd2748ba9beed4c}{s2n\_connection\_get\_client\_hello}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{266 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{267 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a4c2c0de61921c9ddc8e8c4e56084cc6c}{s2n\_client\_hello\_get\_raw\_message\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch);}
+\DoxyCodeLine{268 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{269 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_ac1fc624f4ffe9378ad77eea895bb52d6}{s2n\_client\_hello\_get\_raw\_message}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch, uint8\_t *out, uint32\_t max\_length);}
+\DoxyCodeLine{270 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{271 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a836ac7d852fbb18b790c8084878e1b5d}{s2n\_client\_hello\_get\_cipher\_suites\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch);}
+\DoxyCodeLine{272 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{273 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_ab83eff4e25edddcd4688854e0c4d8e62}{s2n\_client\_hello\_get\_cipher\_suites}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch, uint8\_t *out, uint32\_t max\_length);}
+\DoxyCodeLine{274 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{275 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a9c10c0917fcda2f6a546310f7b80b8fa}{s2n\_client\_hello\_get\_extensions\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch);}
+\DoxyCodeLine{276 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{277 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_ae872d221c8d47cab5178cfd3ca00bca4}{s2n\_client\_hello\_get\_extensions}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch, uint8\_t *out, uint32\_t max\_length);}
+\DoxyCodeLine{278 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{279 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_aba6709ea1bac503daf846990821d8f36}{s2n\_client\_hello\_get\_extension\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch, \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\_tls\_extension\_type}} extension\_type);}
+\DoxyCodeLine{280 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{281 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a5ad69c8c71521b13b69bcd77fea92b74}{s2n\_client\_hello\_get\_extension\_by\_id}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__client__hello}{s2n\_client\_hello}} *ch, \mbox{\hyperlink{s2n_8h_ab2b46f61765da5529f931afb8dd8a1f8}{s2n\_tls\_extension\_type}} extension\_type, uint8\_t *out, uint32\_t max\_length);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{284 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a67962bf835ce5145d215a9ee8f4985d3}{s2n\_connection\_set\_fd}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{int} fd);}
+\DoxyCodeLine{285 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{286 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aa75014bd12d682e91ab2812c2e92c16d}{s2n\_connection\_set\_read\_fd}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{int} readfd);}
+\DoxyCodeLine{287 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{288 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a8153e24a1b79e7b68ac7a1f7f7d8d0ea}{s2n\_connection\_set\_write\_fd}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{int} writefd);}
+\DoxyCodeLine{289 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{290 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a91d835f1152a699dfd00ff781c86774e}{s2n\_connection\_use\_corked\_io}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a0b5d6b77e35bf16aee077fe1c5860cc9}{s2n\_recv\_fn}}(\textcolor{keywordtype}{void} *io\_context, uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}});}
+\DoxyCodeLine{293 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ad8ae4eeefcfc81bc4daf429512612687}{s2n\_send\_fn}}(\textcolor{keywordtype}{void} *io\_context, \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}});}
+\DoxyCodeLine{294 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{295 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a67e1ad17b8453e9ef8ca1df35b7f0ae7}{s2n\_connection\_set\_recv\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{296 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{297 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a4857138d82f79f939546693b587a61d4}{s2n\_connection\_set\_send\_ctx}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{298 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{299 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a699fd9e05a8e8163811db6cab01af973}{s2n\_connection\_set\_recv\_cb}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_a0b5d6b77e35bf16aee077fe1c5860cc9}{s2n\_recv\_fn}} recv);}
+\DoxyCodeLine{300 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{301 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a4b73b9a8fa03500d5bc609d09035cd45}{s2n\_connection\_set\_send\_cb}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_ad8ae4eeefcfc81bc4daf429512612687}{s2n\_send\_fn}} send);}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{304 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a11c72914bfc09a9174b6a7b019e5aa5c}{s2n\_connection\_prefer\_throughput}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{305 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{306 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a9b4fafb7e9b8277f408af0ad17ab6e19}{s2n\_connection\_prefer\_low\_latency}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{307 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{308 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_add5f14855b2810a9857b1a41f2cc92f9}{s2n\_connection\_set\_dynamic\_record\_threshold}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint32\_t resize\_threshold, uint16\_t timeout\_threshold);}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 \textcolor{comment}{/* If you don't want to use the configuration wide callback, you can set this per connection and it will be honored. */}}
+\DoxyCodeLine{311 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{312 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ad9ca67cd9ebca132607037162d7d86a0}{s2n\_connection\_set\_verify\_host\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\_verify\_host\_fn}} host\_fn, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62a090459f0733b199be908d881d7db871f}{S2N\_BUILT\_IN\_BLINDING}}, \mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62a1b0ee228485be6bb2d6e2129827d51d2}{S2N\_SELF\_SERVICE\_BLINDING}} \} \mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62}{s2n\_blinding}};}
+\DoxyCodeLine{315 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{316 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a684b2e5c86c85f089392bd1a49d38e17}{s2n\_connection\_set\_blinding}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62}{s2n\_blinding}} blinding);}
+\DoxyCodeLine{317 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{318 \textcolor{keyword}{extern} uint64\_t \mbox{\hyperlink{s2n_8h_ab8a2a372d2d13cef62357473b7fea568}{s2n\_connection\_get\_delay}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{321 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ab4544d664e827a426b484b3eaa62063d}{s2n\_connection\_set\_cipher\_preferences}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *version);}
+\DoxyCodeLine{322 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{323 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a1e7fc1efa730562ff9a804fe578235b4}{s2n\_connection\_set\_protocol\_preferences}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} *protocols, \textcolor{keywordtype}{int} protocol\_count);}
+\DoxyCodeLine{324 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{325 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_af5c2488271997ea0b0b21d3937e612f6}{s2n\_set\_server\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *server\_name);}
+\DoxyCodeLine{326 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{327 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a28071db5a8a2bb0505e070c731cc5fc7}{s2n\_get\_server\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{328 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{329 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a617e2f6e3b995277d63b977c3e7c640e}{s2n\_get\_application\_protocol}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{330 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{331 \textcolor{keyword}{extern} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{s2n_8h_a9060f1bf276caeb21a4e0dae55076992}{s2n\_connection\_get\_ocsp\_response}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint32\_t *\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}});}
+\DoxyCodeLine{332 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{333 \textcolor{keyword}{extern} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{s2n_8h_a33c9250d7e141e511f5ee2d5c629efe4}{s2n\_connection\_get\_sct\_list}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint32\_t *\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}});}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15da7afdc9e789b567fe89c7142f34ec3ebd}{S2N\_NOT\_BLOCKED}} = 0, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15daf76a7c83e9548139b7b8d50bdd5ff323}{S2N\_BLOCKED\_ON\_READ}}, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15daefb6db9aaec431d69fc4c1249bc432e3}{S2N\_BLOCKED\_ON\_WRITE}}, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15daf487e7ad2c428a52b94a36400e595f6d}{S2N\_BLOCKED\_ON\_APPLICATION\_INPUT}} \} \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}};}
+\DoxyCodeLine{336 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{337 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ad3222e7aacf35a56be842678171be440}{s2n\_negotiate}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{338 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{339 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a9afeb514731fa9d74edf6b9e1348c067}{s2n\_send}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} size, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{340 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{341 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a726589f5cc8871b5efe9740aca05ed97}{s2n\_sendv}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keyword}{struct} iovec *bufs, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{342 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{343 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a1b09f96a5f4fe3b78a08e76e7304853f}{s2n\_sendv\_with\_offset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keyword}{struct} iovec *bufs, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} offs, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{344 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{345 \textcolor{keyword}{extern} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{s2n_8h_a3b67ff058796d4c6c6caddfd0f10274e}{s2n\_recv}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,  \textcolor{keywordtype}{void} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} size, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{346 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{347 \textcolor{keyword}{extern} uint32\_t \mbox{\hyperlink{s2n_8h_a1b49cd285e03ba447a8250f01864cca5}{s2n\_peek}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{350 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a0dcc520aac12e66149d83859e8e62d92}{s2n\_connection\_free\_handshake}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{351 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{352 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_af86a8545d176c7097fa036649968a896}{s2n\_connection\_release\_buffers}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{353 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{354 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ae42c3c7b37df666c2b3e6a53c1ea5f76}{s2n\_connection\_wipe}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{355 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{356 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a9c7664ec2fe4c694148ad303f4229f94}{s2n\_connection\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{357 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{358 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aff6abacafd51a48a2870755d765f56e8}{s2n\_shutdown}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\_blocked\_status}} *\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}});}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{ \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8ab355d2cb81165391d33e2c1cf22f68e6}{S2N\_CERT\_AUTH\_NONE}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8a9f5e05d6ef3ccdd96c9fe38c3d793bcd}{S2N\_CERT\_AUTH\_REQUIRED}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8af01afd2ad2ca5bf78e36e030698677d8}{S2N\_CERT\_AUTH\_OPTIONAL}} \} \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}};}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{363 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a2229eaee45a85050eae6b12924e6fea3}{s2n\_config\_get\_client\_auth\_type}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}} *client\_auth\_type);}
+\DoxyCodeLine{364 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{365 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a923be772e04a448409f93d4cf234ca33}{s2n\_config\_set\_client\_auth\_type}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}} client\_auth\_type);}
+\DoxyCodeLine{366 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{367 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aa6dbfb5892b7cc52a759422ab478a77c}{s2n\_connection\_get\_client\_auth\_type}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}} *client\_auth\_type);}
+\DoxyCodeLine{368 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{369 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ad2985adfcaa565bf3cf35edb4ae4f854}{s2n\_connection\_set\_client\_auth\_type}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}} client\_auth\_type);}
+\DoxyCodeLine{370 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{371 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a5f2758d2962e1ad05b369452d5a6a674}{s2n\_connection\_get\_client\_cert\_chain}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint8\_t **der\_cert\_chain\_out, uint32\_t *cert\_chain\_len);}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{374 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aaf779e2e30ec1881f5f63bfae5dc3303}{s2n\_connection\_set\_session}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespacecreate-projects_a467e4c545519c2e948722fac14922c16}{session}}, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}});}
+\DoxyCodeLine{375 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{376 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ae1ed55a367727eea8e041630406bb144}{s2n\_connection\_get\_session}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint8\_t *\mbox{\hyperlink{namespacecreate-projects_a467e4c545519c2e948722fac14922c16}{session}}, \textcolor{keywordtype}{size\_t} max\_length);}
+\DoxyCodeLine{377 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{378 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a8a8f58e34e1fc8eb35f7ac8fe55123a5}{s2n\_connection\_get\_session\_ticket\_lifetime\_hint}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{379 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{380 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ab0b2840c308f1e6d9a5a47631e9991c2}{s2n\_connection\_get\_session\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{381 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{382 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_acc34cfe4ca708912cf9309cc98000c08}{s2n\_connection\_get\_session\_id\_length}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{383 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{384 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a242a28fb68a8903416dc0de77ff4b1bc}{s2n\_connection\_get\_session\_id}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, uint8\_t *session\_id, \textcolor{keywordtype}{size\_t} max\_length);}
+\DoxyCodeLine{385 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{386 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ae3657d081eb0957f87d93391653eb20c}{s2n\_connection\_is\_session\_resumed}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{387 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{388 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_addfbc4fdc9d191bb4d6d9040762b208b}{s2n\_connection\_is\_ocsp\_stapled}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{391 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *\mbox{\hyperlink{s2n_8h_ad060416f26be8020a5701ff3ae18dacc}{s2n\_connection\_get\_selected\_cert}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{394 \textcolor{keyword}{extern} uint64\_t \mbox{\hyperlink{s2n_8h_a3815d469b844d5eb192a04998bd12944}{s2n\_connection\_get\_wire\_bytes\_in}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{395 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{396 \textcolor{keyword}{extern} uint64\_t \mbox{\hyperlink{s2n_8h_a134ca7e01d14f709750ef420440b238b}{s2n\_connection\_get\_wire\_bytes\_out}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{397 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{398 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_aafa9d12438841f2a47907b244eccd7cc}{s2n\_connection\_get\_client\_protocol\_version}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{399 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{400 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a7db32818718bceb6f927a07cd068eb45}{s2n\_connection\_get\_server\_protocol\_version}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{401 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{402 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a67f52395125df9876ebf18964f582883}{s2n\_connection\_get\_actual\_protocol\_version}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{403 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{404 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ad2a608603c7dbe9203a7c8f8b63ee1b8}{s2n\_connection\_get\_client\_hello\_version}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{405 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{406 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a249408b5a39897276524176bb951dba5}{s2n\_connection\_client\_cert\_used}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{407 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{408 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a7d209fc431877f954b4fcd45df75d91d}{s2n\_connection\_get\_cipher}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{409 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{410 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ac396d45fe79efa2142be8cf491dfdbeb}{s2n\_connection\_is\_valid\_for\_cipher\_preferences}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *version);}
+\DoxyCodeLine{411 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{412 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a000aa5c17754997f3ba3c02a337a4e80}{s2n\_connection\_get\_curve}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{413 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{414 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_ae16ace6a609bb47f8740e5000616e78f}{s2n\_connection\_get\_kem\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{415 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{416 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a6ccdb8e7480b8f98fbfa5e8ff20802bb}{s2n\_connection\_get\_kem\_group\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{417 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{418 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a5612a3161a2dcb4dd7fcb04aaf8845a8}{s2n\_connection\_get\_alert}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{419 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{420 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_a6e32465d1aa61a38c4f663001bb822cd}{s2n\_connection\_get\_handshake\_type\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{421 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{422 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{s2n_8h_aeb3de433055ff9c395818b9e5dd7e55d}{s2n\_connection\_get\_last\_message\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__async__pkey__op}{s2n\_async\_pkey\_op}};}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{s2n_8h_a2ecb6a187e25469c3fd108a873da1cce}{s2n\_async\_pkey\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__async__pkey__op}{s2n\_async\_pkey\_op}} *\mbox{\hyperlink{structs2n__async__pkey__op_ae63bff330b37a07b1f06f9d121148392}{op}});}
+\DoxyCodeLine{427 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{428 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a28fc426b41fe7e3349f562bb7883448e}{s2n\_config\_set\_async\_pkey\_callback}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{s2n_8h_a2ecb6a187e25469c3fd108a873da1cce}{s2n\_async\_pkey\_fn}} fn);}
+\DoxyCodeLine{429 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{430 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_ae98d7c23a90e072172d2e0e5f94b5919}{s2n\_async\_pkey\_op\_perform}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\_async\_pkey\_op}} *\mbox{\hyperlink{structs2n__async__pkey__op_ae63bff330b37a07b1f06f9d121148392}{op}}, \mbox{\hyperlink{structs2n__pkey}{s2n\_cert\_private\_key}} *key);}
+\DoxyCodeLine{431 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{432 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a410b7982584c24d60d25012322e38594}{s2n\_async\_pkey\_op\_apply}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\_async\_pkey\_op}} *\mbox{\hyperlink{structs2n__async__pkey__op_ae63bff330b37a07b1f06f9d121148392}{op}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *\mbox{\hyperlink{structs2n__async__pkey__op_acd558153c69d882e9ae27cd3b19fd31a}{conn}});}
+\DoxyCodeLine{433 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{434 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a95c2b74b21a46d45baa29d74cf6db401}{s2n\_async\_pkey\_op\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\_async\_pkey\_op}} *\mbox{\hyperlink{structs2n__async__pkey__op_ae63bff330b37a07b1f06f9d121148392}{op}});}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 \textcolor{comment}{/* s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat adds a dss cert type in the server certificate request when being called.}}
+\DoxyCodeLine{437 \textcolor{comment}{ * It only sends the dss cert type in the cert request but does not succeed the handshake if a dss cert is received.}}
+\DoxyCodeLine{438 \textcolor{comment}{ * Please DO NOT call this api unless you know you actually need legacy DSS certificate type compatibility}}
+\DoxyCodeLine{439 \textcolor{comment}{ */}}
+\DoxyCodeLine{440 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2N\_API}}}
+\DoxyCodeLine{441 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n_8h_a20fa5cce10719fe7f5730c5419f63910}{s2n\_config\_enable\_cert\_req\_dss\_legacy\_compat}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{443 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{444 \}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

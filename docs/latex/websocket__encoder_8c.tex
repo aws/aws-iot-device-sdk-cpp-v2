@@ -1,0 +1,155 @@
+\hypertarget{websocket__encoder_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/websocket\+\_\+encoder.c File Reference}
+\label{websocket__encoder_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/websocket\_encoder.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/websocket\_encoder.c}}
+{\ttfamily \#include $<$aws/http/private/websocket\+\_\+encoder.\+h$>$}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{websocket__encoder_8c_ad957e1d4d41666c0754a45adb73114f6}{state\+\_\+fn}}(struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_a3c01fe8fa9fc917eb162b70a75911db1}{s\+\_\+state\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_a34574bf0854d78b7402af45573734343}{s\+\_\+state\+\_\+opcode\+\_\+byte}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_aadeb5854b3f55bcbf37d25f0c9cca291}{s\+\_\+state\+\_\+length\+\_\+byte}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_a9d0c0947d503e99543d89b60959f94ff}{s\+\_\+state\+\_\+extended\+\_\+length}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_a0942358c0b2f73f105c64dba506c289b}{s\+\_\+state\+\_\+masking\+\_\+key\+\_\+check}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_a39a9c03c326cb3167f4227b8064ddb7e}{s\+\_\+state\+\_\+masking\+\_\+key}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_abd0fa815ed25c610063d9568706f5439}{s\+\_\+state\+\_\+payload\+\_\+check}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+static int \mbox{\hyperlink{websocket__encoder_8c_abcf9e009dafe7c62f77c7bea7d10a866}{s\+\_\+state\+\_\+payload}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+int \mbox{\hyperlink{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}{aws\+\_\+websocket\+\_\+encoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+int \mbox{\hyperlink{websocket__encoder_8c_a59ee24e2a20e90b786f7511bc41afafe}{aws\+\_\+websocket\+\_\+encoder\+\_\+start\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{websocket__encoder_8c_a9694876b2a3af7e01349257778e36aa1}{aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder)
+\item 
+void \mbox{\hyperlink{websocket__encoder_8c_a5dd80d85bf518169423e1c4bd5969213}{aws\+\_\+websocket\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$stream\+\_\+outgoing\+\_\+payload, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+uint64\+\_\+t \mbox{\hyperlink{websocket__encoder_8c_a32e01b6093b3807caea01cf6fbca2f77}{aws\+\_\+websocket\+\_\+frame\+\_\+encoded\+\_\+size}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{h2__decoder_8c_a5cbd6947260ee4cfdb36c38cf180d612}{state\+\_\+fn}} $\ast$ \mbox{\hyperlink{websocket__encoder_8c_a0afdc5ea0a53fbd432f700c0b13492ee}{s\+\_\+state\+\_\+functions}} \mbox{[}\mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7f1ba33e5d39eda0e40ff2a0c304657d}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{websocket__encoder_8c_ad957e1d4d41666c0754a45adb73114f6}\label{websocket__encoder_8c_ad957e1d4d41666c0754a45adb73114f6}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!state\_fn@{state\_fn}}
+\index{state\_fn@{state\_fn}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{state\_fn}{state\_fn}}
+{\footnotesize\ttfamily typedef int() state\+\_\+fn(struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{websocket__encoder_8c_a5dd80d85bf518169423e1c4bd5969213}\label{websocket__encoder_8c_a5dd80d85bf518169423e1c4bd5969213}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_init@{aws\_websocket\_encoder\_init}}
+\index{aws\_websocket\_encoder\_init@{aws\_websocket\_encoder\_init}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_init()}{aws\_websocket\_encoder\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+websocket\+\_\+encoder\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{\mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$}]{stream\+\_\+outgoing\+\_\+payload,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a9694876b2a3af7e01349257778e36aa1}\label{websocket__encoder_8c_a9694876b2a3af7e01349257778e36aa1}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}}
+\index{aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_is\_frame\_in\_progress()}{aws\_websocket\_encoder\_is\_frame\_in\_progress()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}\label{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_process@{aws\_websocket\_encoder\_process}}
+\index{aws\_websocket\_encoder\_process@{aws\_websocket\_encoder\_process}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_process()}{aws\_websocket\_encoder\_process()}}
+{\footnotesize\ttfamily int aws\+\_\+websocket\+\_\+encoder\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a59ee24e2a20e90b786f7511bc41afafe}\label{websocket__encoder_8c_a59ee24e2a20e90b786f7511bc41afafe}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_start\_frame@{aws\_websocket\_encoder\_start\_frame}}
+\index{aws\_websocket\_encoder\_start\_frame@{aws\_websocket\_encoder\_start\_frame}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_start\_frame()}{aws\_websocket\_encoder\_start\_frame()}}
+{\footnotesize\ttfamily int aws\+\_\+websocket\+\_\+encoder\+\_\+start\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a32e01b6093b3807caea01cf6fbca2f77}\label{websocket__encoder_8c_a32e01b6093b3807caea01cf6fbca2f77}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_frame\_encoded\_size@{aws\_websocket\_frame\_encoded\_size}}
+\index{aws\_websocket\_frame\_encoded\_size@{aws\_websocket\_frame\_encoded\_size}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_frame\_encoded\_size()}{aws\_websocket\_frame\_encoded\_size()}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+websocket\+\_\+frame\+\_\+encoded\+\_\+size (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+Return total number of bytes needed to encode frame and its payload \mbox{\Hypertarget{websocket__encoder_8c_a9d0c0947d503e99543d89b60959f94ff}\label{websocket__encoder_8c_a9d0c0947d503e99543d89b60959f94ff}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_extended\_length@{s\_state\_extended\_length}}
+\index{s\_state\_extended\_length@{s\_state\_extended\_length}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_extended\_length()}{s\_state\_extended\_length()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+extended\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a3c01fe8fa9fc917eb162b70a75911db1}\label{websocket__encoder_8c_a3c01fe8fa9fc917eb162b70a75911db1}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_init@{s\_state\_init}}
+\index{s\_state\_init@{s\_state\_init}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_init()}{s\_state\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_aadeb5854b3f55bcbf37d25f0c9cca291}\label{websocket__encoder_8c_aadeb5854b3f55bcbf37d25f0c9cca291}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_length\_byte@{s\_state\_length\_byte}}
+\index{s\_state\_length\_byte@{s\_state\_length\_byte}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_length\_byte()}{s\_state\_length\_byte()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+length\+\_\+byte (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a39a9c03c326cb3167f4227b8064ddb7e}\label{websocket__encoder_8c_a39a9c03c326cb3167f4227b8064ddb7e}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_masking\_key@{s\_state\_masking\_key}}
+\index{s\_state\_masking\_key@{s\_state\_masking\_key}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_masking\_key()}{s\_state\_masking\_key()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+masking\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a0942358c0b2f73f105c64dba506c289b}\label{websocket__encoder_8c_a0942358c0b2f73f105c64dba506c289b}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_masking\_key\_check@{s\_state\_masking\_key\_check}}
+\index{s\_state\_masking\_key\_check@{s\_state\_masking\_key\_check}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_masking\_key\_check()}{s\_state\_masking\_key\_check()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+masking\+\_\+key\+\_\+check (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_a34574bf0854d78b7402af45573734343}\label{websocket__encoder_8c_a34574bf0854d78b7402af45573734343}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_opcode\_byte@{s\_state\_opcode\_byte}}
+\index{s\_state\_opcode\_byte@{s\_state\_opcode\_byte}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_opcode\_byte()}{s\_state\_opcode\_byte()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+opcode\+\_\+byte (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_abcf9e009dafe7c62f77c7bea7d10a866}\label{websocket__encoder_8c_abcf9e009dafe7c62f77c7bea7d10a866}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_payload@{s\_state\_payload}}
+\index{s\_state\_payload@{s\_state\_payload}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_payload()}{s\_state\_payload()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{websocket__encoder_8c_abd0fa815ed25c610063d9568706f5439}\label{websocket__encoder_8c_abd0fa815ed25c610063d9568706f5439}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_payload\_check@{s\_state\_payload\_check}}
+\index{s\_state\_payload\_check@{s\_state\_payload\_check}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_payload\_check()}{s\_state\_payload\_check()}}
+{\footnotesize\ttfamily static int s\+\_\+state\+\_\+payload\+\_\+check (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{websocket__encoder_8c_a0afdc5ea0a53fbd432f700c0b13492ee}\label{websocket__encoder_8c_a0afdc5ea0a53fbd432f700c0b13492ee}} 
+\index{websocket\_encoder.c@{websocket\_encoder.c}!s\_state\_functions@{s\_state\_functions}}
+\index{s\_state\_functions@{s\_state\_functions}!websocket\_encoder.c@{websocket\_encoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_state\_functions}{s\_state\_functions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{h2__decoder_8c_a5cbd6947260ee4cfdb36c38cf180d612}{state\+\_\+fn}}$\ast$ s\+\_\+state\+\_\+functions\mbox{[}\mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7f1ba33e5d39eda0e40ff2a0c304657d}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_a3c01fe8fa9fc917eb162b70a75911db1}{s\_state\_init}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_a34574bf0854d78b7402af45573734343}{s\_state\_opcode\_byte}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_aadeb5854b3f55bcbf37d25f0c9cca291}{s\_state\_length\_byte}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_a9d0c0947d503e99543d89b60959f94ff}{s\_state\_extended\_length}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_a0942358c0b2f73f105c64dba506c289b}{s\_state\_masking\_key\_check}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_a39a9c03c326cb3167f4227b8064ddb7e}{s\_state\_masking\_key}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_abd0fa815ed25c610063d9568706f5439}{s\_state\_payload\_check}},}
+\DoxyCodeLine{    \mbox{\hyperlink{websocket__encoder_8c_abcf9e009dafe7c62f77c7bea7d10a866}{s\_state\_payload}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

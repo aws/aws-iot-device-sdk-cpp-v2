@@ -1,0 +1,128 @@
+\hypertarget{aws__signing_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/private/aws\+\_\+signing.h File Reference}
+\label{aws__signing_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/private/aws\_signing.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/private/aws\_signing.h}}
+{\ttfamily \#include $<$aws/auth/auth.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/signing.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/signing\+\_\+result.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$ \mbox{\hyperlink{aws__signing_8h_afd767cf2bbce7190770162c8ccfe41d4}{aws\+\_\+signing\+\_\+state\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void \mbox{\hyperlink{aws__signing_8h_ad113ffd86046df28b3b45405f9e3178d}{aws\+\_\+signing\+\_\+state\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{aws__signing_8h_a97a563564e737f15dbc6657f0865d48c}{aws\+\_\+signing\+\_\+build\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{aws__signing_8h_af89ef81e8a4e0a4181eff15559a2b87d}{aws\+\_\+signing\+\_\+build\+\_\+string\+\_\+to\+\_\+sign}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{aws__signing_8h_a3134fe55d76a4b72b5fa0509a70f4a50}{aws\+\_\+signing\+\_\+build\+\_\+authorization\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{aws__signing_8h_a135fc667460284908df6f71ebf919f8f}{aws\+\_\+signing\+\_\+init\+\_\+signing\+\_\+tables}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void \mbox{\hyperlink{aws__signing_8h_a456c2636ddeda0bfd1c21cac2c9a2b28}{aws\+\_\+signing\+\_\+clean\+\_\+up\+\_\+signing\+\_\+tables}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_a506e689eb05dc01079fe97f9d64b1cb8}{g\+\_\+aws\+\_\+signing\+\_\+content\+\_\+header\+\_\+name}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_a5d7ed8c720d34d356ec34576ac0fc732}{g\+\_\+aws\+\_\+signing\+\_\+algorithm\+\_\+query\+\_\+param\+\_\+name}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_a2f995bba137085772553a0dd758e677a}{g\+\_\+aws\+\_\+signing\+\_\+credential\+\_\+query\+\_\+param\+\_\+name}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_a0e8010712edd46dd62ac3ec08def89fb}{g\+\_\+aws\+\_\+signing\+\_\+date\+\_\+name}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_a089a9ce7cd9de83cbe2de0472c31ab75}{g\+\_\+aws\+\_\+signing\+\_\+signed\+\_\+headers\+\_\+query\+\_\+param\+\_\+name}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__signing_8h_ae4cbad479ff8753c9a17216e67c82b55}{g\+\_\+aws\+\_\+signing\+\_\+security\+\_\+token\+\_\+name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__signing_8h_a3134fe55d76a4b72b5fa0509a70f4a50}\label{aws__signing_8h_a3134fe55d76a4b72b5fa0509a70f4a50}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_build\_authorization\_value@{aws\_signing\_build\_authorization\_value}}
+\index{aws\_signing\_build\_authorization\_value@{aws\_signing\_build\_authorization\_value}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_build\_authorization\_value()}{aws\_signing\_build\_authorization\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int aws\+\_\+signing\+\_\+build\+\_\+authorization\+\_\+value (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__signing_8h_a97a563564e737f15dbc6657f0865d48c}\label{aws__signing_8h_a97a563564e737f15dbc6657f0865d48c}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_build\_canonical\_request@{aws\_signing\_build\_canonical\_request}}
+\index{aws\_signing\_build\_canonical\_request@{aws\_signing\_build\_canonical\_request}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_build\_canonical\_request()}{aws\_signing\_build\_canonical\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int aws\+\_\+signing\+\_\+build\+\_\+canonical\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__signing_8h_af89ef81e8a4e0a4181eff15559a2b87d}\label{aws__signing_8h_af89ef81e8a4e0a4181eff15559a2b87d}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_build\_string\_to\_sign@{aws\_signing\_build\_string\_to\_sign}}
+\index{aws\_signing\_build\_string\_to\_sign@{aws\_signing\_build\_string\_to\_sign}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_build\_string\_to\_sign()}{aws\_signing\_build\_string\_to\_sign()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int aws\+\_\+signing\+\_\+build\+\_\+string\+\_\+to\+\_\+sign (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__signing_8h_a456c2636ddeda0bfd1c21cac2c9a2b28}\label{aws__signing_8h_a456c2636ddeda0bfd1c21cac2c9a2b28}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_clean\_up\_signing\_tables@{aws\_signing\_clean\_up\_signing\_tables}}
+\index{aws\_signing\_clean\_up\_signing\_tables@{aws\_signing\_clean\_up\_signing\_tables}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_clean\_up\_signing\_tables()}{aws\_signing\_clean\_up\_signing\_tables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void aws\+\_\+signing\+\_\+clean\+\_\+up\+\_\+signing\+\_\+tables (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Cleans up the internal table of headers that should not be signed \mbox{\Hypertarget{aws__signing_8h_a135fc667460284908df6f71ebf919f8f}\label{aws__signing_8h_a135fc667460284908df6f71ebf919f8f}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_init\_signing\_tables@{aws\_signing\_init\_signing\_tables}}
+\index{aws\_signing\_init\_signing\_tables@{aws\_signing\_init\_signing\_tables}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_init\_signing\_tables()}{aws\_signing\_init\_signing\_tables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int aws\+\_\+signing\+\_\+init\+\_\+signing\+\_\+tables (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes the internal table of headers that should not be signed \mbox{\Hypertarget{aws__signing_8h_ad113ffd86046df28b3b45405f9e3178d}\label{aws__signing_8h_ad113ffd86046df28b3b45405f9e3178d}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_state\_destroy@{aws\_signing\_state\_destroy}}
+\index{aws\_signing\_state\_destroy@{aws\_signing\_state\_destroy}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_state\_destroy()}{aws\_signing\_state\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void aws\+\_\+signing\+\_\+state\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__signing_8h_afd767cf2bbce7190770162c8ccfe41d4}\label{aws__signing_8h_afd767cf2bbce7190770162c8ccfe41d4}} 
+\index{aws\_signing.h@{aws\_signing.h}!aws\_signing\_state\_new@{aws\_signing\_state\_new}}
+\index{aws\_signing\_state\_new@{aws\_signing\_state\_new}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{aws\_signing\_state\_new()}{aws\_signing\_state\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}}$\ast$ aws\+\_\+signing\+\_\+state\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$}]{config,  }\item[{const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$}]{signable,  }\item[{\mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+complete,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aws__signing_8h_a5d7ed8c720d34d356ec34576ac0fc732}\label{aws__signing_8h_a5d7ed8c720d34d356ec34576ac0fc732}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_algorithm\_query\_param\_name@{g\_aws\_signing\_algorithm\_query\_param\_name}}
+\index{g\_aws\_signing\_algorithm\_query\_param\_name@{g\_aws\_signing\_algorithm\_query\_param\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_algorithm\_query\_param\_name}{g\_aws\_signing\_algorithm\_query\_param\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+algorithm\+\_\+query\+\_\+param\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{aws__signing_8h_a506e689eb05dc01079fe97f9d64b1cb8}\label{aws__signing_8h_a506e689eb05dc01079fe97f9d64b1cb8}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_content\_header\_name@{g\_aws\_signing\_content\_header\_name}}
+\index{g\_aws\_signing\_content\_header\_name@{g\_aws\_signing\_content\_header\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_content\_header\_name}{g\_aws\_signing\_content\_header\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+content\+\_\+header\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{aws__signing_8h_a2f995bba137085772553a0dd758e677a}\label{aws__signing_8h_a2f995bba137085772553a0dd758e677a}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_credential\_query\_param\_name@{g\_aws\_signing\_credential\_query\_param\_name}}
+\index{g\_aws\_signing\_credential\_query\_param\_name@{g\_aws\_signing\_credential\_query\_param\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_credential\_query\_param\_name}{g\_aws\_signing\_credential\_query\_param\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+credential\+\_\+query\+\_\+param\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{aws__signing_8h_a0e8010712edd46dd62ac3ec08def89fb}\label{aws__signing_8h_a0e8010712edd46dd62ac3ec08def89fb}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_date\_name@{g\_aws\_signing\_date\_name}}
+\index{g\_aws\_signing\_date\_name@{g\_aws\_signing\_date\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_date\_name}{g\_aws\_signing\_date\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+date\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{aws__signing_8h_ae4cbad479ff8753c9a17216e67c82b55}\label{aws__signing_8h_ae4cbad479ff8753c9a17216e67c82b55}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_security\_token\_name@{g\_aws\_signing\_security\_token\_name}}
+\index{g\_aws\_signing\_security\_token\_name@{g\_aws\_signing\_security\_token\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_security\_token\_name}{g\_aws\_signing\_security\_token\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+security\+\_\+token\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{aws__signing_8h_a089a9ce7cd9de83cbe2de0472c31ab75}\label{aws__signing_8h_a089a9ce7cd9de83cbe2de0472c31ab75}} 
+\index{aws\_signing.h@{aws\_signing.h}!g\_aws\_signing\_signed\_headers\_query\_param\_name@{g\_aws\_signing\_signed\_headers\_query\_param\_name}}
+\index{g\_aws\_signing\_signed\_headers\_query\_param\_name@{g\_aws\_signing\_signed\_headers\_query\_param\_name}!aws\_signing.h@{aws\_signing.h}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_signing\_signed\_headers\_query\_param\_name}{g\_aws\_signing\_signed\_headers\_query\_param\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ g\+\_\+aws\+\_\+signing\+\_\+signed\+\_\+headers\+\_\+query\+\_\+param\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+

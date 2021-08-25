@@ -1,0 +1,80 @@
+\hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{}\doxysection{Aws\+::Iotdevicedefenderv1\+::Report\+Task\+Builder Class Reference}
+\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+
+
+{\ttfamily \#include $<$Device\+Defender.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_ab9c09fe7e9c0277b4ca81291fcf0ea8b}{Report\+Task\+Builder}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Crt\+::\+Mqtt\+::\+Mqtt\+Connection}} $>$ mqtt\+Connection, \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{Crt\+::\+Io\+::\+Event\+Loop\+Group}} \&event\+Loop\+Group, const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&thing\+Name)
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a04350230b13e9c3299d092afe6314dd8}{With\+Report\+Format}} (\mbox{\hyperlink{device__defender_8h_adf4df3bc233ba928ffab5dafe05fb9d4}{Report\+Format}} report\+Format) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a0837f0372a951ede3fa76bd6926fb5ac}{With\+Task\+Period\+Seconds}} (uint32\+\_\+t task\+Period\+Seconds) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a296b4ab759380569571b91c88063af46}{With\+Network\+Connection\+Sample\+Period\+Seconds}} (uint32\+\_\+t network\+Connection\+Sample\+Period\+Seconds) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a19b1ebac8e3b76433b7eac0752a99a2e}{With\+Task\+Cancelled\+Handler}} (\mbox{\hyperlink{namespace_aws_1_1_iotdevicedefenderv1_a809b6645d5d82549c8a2436fc68a6925}{On\+Task\+Cancelled\+Handler}} \&\&on\+Cancelled) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a05de3bac2931d1b3790f30925435ce9a}{With\+Task\+Cancellation\+User\+Data}} (void $\ast$cancellation\+Userdata) noexcept
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task}{Report\+Task}} $>$ \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a730beaef401ea122fd2029795c9e1418}{Build}} () noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a builder for creating a \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task}{Report\+Task}} object. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_ab9c09fe7e9c0277b4ca81291fcf0ea8b}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_ab9c09fe7e9c0277b4ca81291fcf0ea8b}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!ReportTaskBuilder@{ReportTaskBuilder}}
+\index{ReportTaskBuilder@{ReportTaskBuilder}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{ReportTaskBuilder()}{ReportTaskBuilder()}}
+{\footnotesize\ttfamily Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+Report\+Task\+Builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Crt\+::\+Mqtt\+::\+Mqtt\+Connection}} $>$}]{mqtt\+Connection,  }\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{Crt\+::\+Io\+::\+Event\+Loop\+Group}} \&}]{event\+Loop\+Group,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&}]{thing\+Name }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a730beaef401ea122fd2029795c9e1418}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a730beaef401ea122fd2029795c9e1418}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!Build@{Build}}
+\index{Build@{Build}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{Build()}{Build()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task}{Report\+Task}} $>$ Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+Build (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Builds a device defender v1 task object from the set options. \mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a296b4ab759380569571b91c88063af46}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a296b4ab759380569571b91c88063af46}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!WithNetworkConnectionSamplePeriodSeconds@{WithNetworkConnectionSamplePeriodSeconds}}
+\index{WithNetworkConnectionSamplePeriodSeconds@{WithNetworkConnectionSamplePeriodSeconds}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{WithNetworkConnectionSamplePeriodSeconds()}{WithNetworkConnectionSamplePeriodSeconds()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+With\+Network\+Connection\+Sample\+Period\+Seconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{network\+Connection\+Sample\+Period\+Seconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the network connection sample period seconds. Defaults to 5 minutes. \mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a04350230b13e9c3299d092afe6314dd8}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a04350230b13e9c3299d092afe6314dd8}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!WithReportFormat@{WithReportFormat}}
+\index{WithReportFormat@{WithReportFormat}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{WithReportFormat()}{WithReportFormat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+With\+Report\+Format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{device__defender_8h_adf4df3bc233ba928ffab5dafe05fb9d4}{Report\+Format}}}]{report\+Format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the device defender report format, or defaults to AWS\+\_\+\+IDDRF\+\_\+\+JSON. \mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a05de3bac2931d1b3790f30925435ce9a}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a05de3bac2931d1b3790f30925435ce9a}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!WithTaskCancellationUserData@{WithTaskCancellationUserData}}
+\index{WithTaskCancellationUserData@{WithTaskCancellationUserData}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{WithTaskCancellationUserData()}{WithTaskCancellationUserData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+With\+Task\+Cancellation\+User\+Data (\begin{DoxyParamCaption}\item[{void $\ast$}]{cancellation\+Userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the user data for the task cancelled handler function. \mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a19b1ebac8e3b76433b7eac0752a99a2e}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a19b1ebac8e3b76433b7eac0752a99a2e}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!WithTaskCancelledHandler@{WithTaskCancelledHandler}}
+\index{WithTaskCancelledHandler@{WithTaskCancelledHandler}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{WithTaskCancelledHandler()}{WithTaskCancelledHandler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+With\+Task\+Cancelled\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_iotdevicedefenderv1_a809b6645d5d82549c8a2436fc68a6925}{On\+Task\+Cancelled\+Handler}} \&\&}]{on\+Cancelled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the task cancelled handler function. \mbox{\Hypertarget{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a0837f0372a951ede3fa76bd6926fb5ac}\label{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder_a0837f0372a951ede3fa76bd6926fb5ac}} 
+\index{Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}!WithTaskPeriodSeconds@{WithTaskPeriodSeconds}}
+\index{WithTaskPeriodSeconds@{WithTaskPeriodSeconds}!Aws::Iotdevicedefenderv1::ReportTaskBuilder@{Aws::Iotdevicedefenderv1::ReportTaskBuilder}}
+\doxysubsubsection{\texorpdfstring{WithTaskPeriodSeconds()}{WithTaskPeriodSeconds()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder}{Report\+Task\+Builder}} \& Aws\+::\+Iotdevicedefenderv1\+::\+Report\+Task\+Builder\+::\+With\+Task\+Period\+Seconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{task\+Period\+Seconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the task period seconds. Defaults to 5 minutes. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+devicedefender/include/aws/iotdevicedefender/\mbox{\hyperlink{_device_defender_8h}{Device\+Defender.\+h}}\item 
+devicedefender/source/\mbox{\hyperlink{_device_defender_8cpp}{Device\+Defender.\+cpp}}\end{DoxyCompactItemize}

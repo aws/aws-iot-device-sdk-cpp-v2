@@ -1,0 +1,40 @@
+\hypertarget{aws-c-common_2verification_2cbmc_2stubs_2error_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/error.c File Reference}
+\label{aws-c-common_2verification_2cbmc_2stubs_2error_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/error.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/error.c}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a80b082dd9e09984242d2416627312a58}{aws\+\_\+raise\+\_\+error\+\_\+private}} (int err)
+\item 
+int \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a5ce1e91974a1246991bd916ca8d078d2}{aws\+\_\+last\+\_\+error}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}{AWS\+\_\+\+THREAD\+\_\+\+LOCAL}} int \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a26f8c6fe06d4e77966a01a83de416757}{tl\+\_\+last\+\_\+error}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a5ce1e91974a1246991bd916ca8d078d2}\label{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a5ce1e91974a1246991bd916ca8d078d2}} 
+\index{error.c@{error.c}!aws\_last\_error@{aws\_last\_error}}
+\index{aws\_last\_error@{aws\_last\_error}!error.c@{error.c}}
+\doxysubsubsection{\texorpdfstring{aws\_last\_error()}{aws\_last\_error()}}
+{\footnotesize\ttfamily int aws\+\_\+last\+\_\+error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+It overrides the original aws\+\_\+last\+\_\+error implementation. \mbox{\Hypertarget{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a80b082dd9e09984242d2416627312a58}\label{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a80b082dd9e09984242d2416627312a58}} 
+\index{error.c@{error.c}!aws\_raise\_error\_private@{aws\_raise\_error\_private}}
+\index{aws\_raise\_error\_private@{aws\_raise\_error\_private}!error.c@{error.c}}
+\doxysubsubsection{\texorpdfstring{aws\_raise\_error\_private()}{aws\_raise\_error\_private()}}
+{\footnotesize\ttfamily void aws\+\_\+raise\+\_\+error\+\_\+private (\begin{DoxyParamCaption}\item[{int}]{err }\end{DoxyParamCaption})}
+
+It overrides the original aws\+\_\+raise\+\_\+error\+\_\+private implementation, to avoid error handler functions (unnecessary for the verification process). 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a26f8c6fe06d4e77966a01a83de416757}\label{aws-c-common_2verification_2cbmc_2stubs_2error_8c_a26f8c6fe06d4e77966a01a83de416757}} 
+\index{error.c@{error.c}!tl\_last\_error@{tl\_last\_error}}
+\index{tl\_last\_error@{tl\_last\_error}!error.c@{error.c}}
+\doxysubsubsection{\texorpdfstring{tl\_last\_error}{tl\_last\_error}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}{AWS\+\_\+\+THREAD\+\_\+\+LOCAL}} int tl\+\_\+last\+\_\+error = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

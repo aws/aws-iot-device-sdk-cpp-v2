@@ -1,0 +1,60 @@
+\hypertarget{dh_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/dh.h File Reference}
+\label{dh_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/dh.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/dh.h}}
+{\ttfamily \#include $<$cbmc\+\_\+proof/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/bn.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/ffc.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdh__st}{dh\+\_\+st}}
+\item 
+struct \mbox{\hyperlink{structdh__method}{dh\+\_\+method}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dh_8h_a9a12f276701528314b7dd3fe70f7b349}{HEADER\+\_\+\+DH\+\_\+H}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dh_8h_a1f15312ca21e290ee714e86578820c35}{DH\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$dh)
+\item 
+int \mbox{\hyperlink{dh_8h_a9e1fdd62e3bfe4b671dbfc363f0e6297}{DH\+\_\+size}} (const \mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$dh)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$ \mbox{\hyperlink{dh_8h_ab84a9cd3da09fbea7e869e1403fef2fd}{d2i\+\_\+\+DHparams}} (\mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$$\ast$a, unsigned char $\ast$$\ast$pp, long \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dh_8h_a9a12f276701528314b7dd3fe70f7b349}\label{dh_8h_a9a12f276701528314b7dd3fe70f7b349}} 
+\index{dh.h@{dh.h}!HEADER\_DH\_H@{HEADER\_DH\_H}}
+\index{HEADER\_DH\_H@{HEADER\_DH\_H}!dh.h@{dh.h}}
+\doxysubsubsection{\texorpdfstring{HEADER\_DH\_H}{HEADER\_DH\_H}}
+{\footnotesize\ttfamily \#define HEADER\+\_\+\+DH\+\_\+H}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dh_8h_ab84a9cd3da09fbea7e869e1403fef2fd}\label{dh_8h_ab84a9cd3da09fbea7e869e1403fef2fd}} 
+\index{dh.h@{dh.h}!d2i\_DHparams@{d2i\_DHparams}}
+\index{d2i\_DHparams@{d2i\_DHparams}!dh.h@{dh.h}}
+\doxysubsubsection{\texorpdfstring{d2i\_DHparams()}{d2i\_DHparams()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}}$\ast$ d2i\+\_\+\+DHparams (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$$\ast$}]{a,  }\item[{unsigned char $\ast$$\ast$}]{pp,  }\item[{long}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dh_8h_a1f15312ca21e290ee714e86578820c35}\label{dh_8h_a1f15312ca21e290ee714e86578820c35}} 
+\index{dh.h@{dh.h}!DH\_free@{DH\_free}}
+\index{DH\_free@{DH\_free}!dh.h@{dh.h}}
+\doxysubsubsection{\texorpdfstring{DH\_free()}{DH\_free()}}
+{\footnotesize\ttfamily void DH\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dh_8h_a9e1fdd62e3bfe4b671dbfc363f0e6297}\label{dh_8h_a9e1fdd62e3bfe4b671dbfc363f0e6297}} 
+\index{dh.h@{dh.h}!DH\_size@{DH\_size}}
+\index{DH\_size@{DH\_size}!dh.h@{dh.h}}
+\doxysubsubsection{\texorpdfstring{DH\_size()}{DH\_size()}}
+{\footnotesize\ttfamily int DH\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ossl__typ_8h_a5a5072cfe75a51d0ff201c0a8d2d68b2}{DH}} $\ast$}]{dh }\end{DoxyParamCaption})}
+

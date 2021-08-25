@@ -1,0 +1,697 @@
+\hypertarget{structs2n__connection}{}\doxysection{s2n\+\_\+connection Struct Reference}
+\label{structs2n__connection}\index{s2n\_connection@{s2n\_connection}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+connection.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{structs2n__connection_a8c37a9c10922377a93efd5b99459af1dae67d2491c0d1d9ba4428f60d0a7b4ee3}{ENCRYPTED}}
+, \mbox{\hyperlink{structs2n__connection_a8c37a9c10922377a93efd5b99459af1da9424dc655caf861e1ab8d69eb23373b9}{PLAINTEXT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{structs2n__connection_aa75e2d800e48e9ac65c964e2b5401478}{config}}
+\item 
+const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$ \mbox{\hyperlink{structs2n__connection_a8379db26924f70d15c61f174ab4a1379}{security\+\_\+policy\+\_\+override}}
+\item 
+void $\ast$ \mbox{\hyperlink{structs2n__connection_af1b21c56d51e1cabd9ee3cee64784662}{context}}
+\item 
+\mbox{\hyperlink{s2n_8h_ad8ae4eeefcfc81bc4daf429512612687}{s2n\+\_\+send\+\_\+fn}} $\ast$ \mbox{\hyperlink{structs2n__connection_ad4cff12cbb0eedb0768b794c525b2a90}{send}}
+\item 
+\mbox{\hyperlink{s2n_8h_a0b5d6b77e35bf16aee077fe1c5860cc9}{s2n\+\_\+recv\+\_\+fn}} $\ast$ \mbox{\hyperlink{structs2n__connection_ad6b754dd178b26844526d97017c25e20}{recv}}
+\item 
+void $\ast$ \mbox{\hyperlink{structs2n__connection_a1c96dea9b649e756c30a604265d07c07}{send\+\_\+io\+\_\+context}}
+\item 
+void $\ast$ \mbox{\hyperlink{structs2n__connection_a158e4133150a8bb726c30d68a8f8b942}{recv\+\_\+io\+\_\+context}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_af9562bc730cbd6754e68c07d1448b981}{managed\+\_\+io}}
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_acfefbd232fd81d7289c6dccbb9524371}{corked\+\_\+io}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_ae003072fe1fac57662cf375603b78472}{client\+\_\+session\+\_\+resumed}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_a67bd80288ffb8051296521f7f0ff9c30}{close\+\_\+notify\+\_\+queued}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_a5a13b50329bf4672774f001ba97580a5}{secure\+\_\+renegotiation}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_aeabf47cf83c86adf6861ccfae5f8c669}{ec\+\_\+point\+\_\+formats}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_a3c2c842fdaeddde4f21e16010732a221}{ipv6}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_ab2fbfe3af668865ecc6d1c1896b05c3c}{server\+\_\+name\+\_\+used}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_aef3ebdc8b2ee61f712ca50d10c518fff}{write\+\_\+fd\+\_\+broken}}\+:1
+\item 
+\mbox{\hyperlink{s2n__extension__type_8h_aab5f1a69ceb34fcf4464514cbbb0b738}{s2n\+\_\+extension\+\_\+bitfield}} \mbox{\hyperlink{structs2n__connection_adacc82057bf6b03e20fe22aef7648712}{extension\+\_\+requests\+\_\+sent}}
+\item 
+\mbox{\hyperlink{s2n__extension__type_8h_aab5f1a69ceb34fcf4464514cbbb0b738}{s2n\+\_\+extension\+\_\+bitfield}} \mbox{\hyperlink{structs2n__connection_acb5d2a07f8bb23b40d3d03d24f7ef51d}{extension\+\_\+requests\+\_\+received}}
+\item 
+\mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}} \mbox{\hyperlink{structs2n__connection_a8f9031cdae8b28b7f90d042fae0509ef}{mode}}
+\item 
+\mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62}{s2n\+\_\+blinding}} \mbox{\hyperlink{structs2n__connection_a344d0363f0196610c1c0193d8fad3c23}{blinding}}
+\item 
+struct s2n\+\_\+timer \mbox{\hyperlink{structs2n__connection_a9b049263a4492430ce83a3f0db9db26c}{write\+\_\+timer}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structs2n__connection_a54192fd915b20789ce8579ad83c3fd17}{last\+\_\+write\+\_\+elapsed}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structs2n__connection_a7c621098036f555ea535b0c6cf629a6d}{delay}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_ae9c9e192090a42f629e8f3e342af1da7}{session\+\_\+id}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a29125d7c5bb81700b27164fbc9c92746}{S2\+N\+\_\+\+TLS\+\_\+\+SESSION\+\_\+\+ID\+\_\+\+MAX\+\_\+\+LEN}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_af91d6cfc157c1644a571f3a4ef20fd93}{session\+\_\+id\+\_\+len}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a4d421c0aa83093aa95a7a6a8f954a566}{client\+\_\+hello\+\_\+version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a06049aa02fd44cb1685f2864f006797b}{client\+\_\+protocol\+\_\+version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_ab82988e331a8a2870c145021277a2e9f}{server\+\_\+protocol\+\_\+version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a95ccbc12357c12040153ca620bfbf5b2}{actual\+\_\+protocol\+\_\+version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a0e423d713ba72454ecbddac9a95fb29f}{actual\+\_\+protocol\+\_\+version\+\_\+established}}
+\item 
+struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} \mbox{\hyperlink{structs2n__connection_ad8daf04314e13b29bb3c67e7bb81bcb1}{initial}}
+\item 
+struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} \mbox{\hyperlink{structs2n__connection_aefe8341c9a107e776d18935fbae5d0d5}{secure}}
+\item 
+struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} $\ast$ \mbox{\hyperlink{structs2n__connection_a9de6986e260c8a24a1c173c862b0263c}{client}}
+\item 
+struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} $\ast$ \mbox{\hyperlink{structs2n__connection_a60c6a1e56990e684e3a6890ca676ac8a}{server}}
+\item 
+struct \mbox{\hyperlink{structs2n__handshake__parameters}{s2n\+\_\+handshake\+\_\+parameters}} \mbox{\hyperlink{structs2n__connection_ac0a1c9aaba954393d753f26179b6c6a3}{handshake\+\_\+params}}
+\item 
+struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} \mbox{\hyperlink{structs2n__connection_a3d38a03ab8bb2fbc1e12d9961e661faf}{prf\+\_\+space}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_ab9e61978b01bfa44aed21538e402b033}{client\+\_\+cert\+\_\+auth\+\_\+type\+\_\+overridden}}
+\item 
+\mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}} \mbox{\hyperlink{structs2n__connection_a2a4c78c7474f07118cae5017bd5677a4}{client\+\_\+cert\+\_\+auth\+\_\+type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a162e2918ea4493930141d3447f40e65b}{header\+\_\+in\+\_\+data}} \mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_a7cc7782f30cb9ee302929d979826c557}{S2\+N\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+HEADER\+\_\+\+LENGTH}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_aefef8fa01abd44e997542b87f663b74e}{header\+\_\+in}}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_addca8933098512273dca87e5d8b319dd}{in}}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_ab7d690d1a02fbd7f5aad682df58a1901}{out}}
+\item 
+enum s2n\+\_\+connection\+:: \{ ... \}  \mbox{\hyperlink{structs2n__connection_ae7dea73ce605db56778c9a9927bc16cd}{in\+\_\+status}}
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{structs2n__connection_a62e11f3145d58cb6c0c9da44d0fc95f2}{current\+\_\+user\+\_\+data\+\_\+consumed}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a9bbe82ce3dfe9ea619a205a4bcbd9993}{alert\+\_\+in\+\_\+data}} \mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_a21ae54796a98b4d8083f0948124dd111}{alert\+\_\+in}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a47015153fd6fa042b12642f8ac107421}{reader\+\_\+alert\+\_\+out\+\_\+data}} \mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_aaffd7599067da92896807f80ebd3a820}{writer\+\_\+alert\+\_\+out\+\_\+data}} \mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_a93b05e0bebc13959812feb04d0e938fe}{reader\+\_\+alert\+\_\+out}}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_a6dbeeb786c32111b49760bc54f05f7bd}{writer\+\_\+alert\+\_\+out}}
+\item 
+struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} \mbox{\hyperlink{structs2n__connection_a0f83cbb681c8d9c59c58b5d82f0d968e}{handshake}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structs2n__connection_a01e247ad5dc84c01f2929a1ac6df9063}{max\+\_\+outgoing\+\_\+fragment\+\_\+length}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structs2n__connection_aed8b16185503b75e09f4098bf89b0f67}{dynamic\+\_\+record\+\_\+resize\+\_\+threshold}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structs2n__connection_a2202060f3a422e7b65f7bfec897bdd62}{dynamic\+\_\+record\+\_\+timeout\+\_\+threshold}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structs2n__connection_a69b67f75f8599c41d1a6d2ecb2264a79}{active\+\_\+application\+\_\+bytes\+\_\+consumed}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a45cf8f00e8dfe76ad165a3a0f67102ff}{mfl\+\_\+code}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structs2n__connection_a358a054c2fd5548e701138c338f51deb}{wire\+\_\+bytes\+\_\+in}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structs2n__connection_a45be651acf1a1384cee942a2363724f2}{wire\+\_\+bytes\+\_\+out}}
+\item 
+sig\+\_\+atomic\+\_\+t \mbox{\hyperlink{structs2n__connection_a529fc3bb7f5bf5f4d90848b1cf6f083f}{closing}}
+\item 
+sig\+\_\+atomic\+\_\+t \mbox{\hyperlink{structs2n__connection_adbea0c1a6647e32ba469186866927d49}{closed}}
+\item 
+char \mbox{\hyperlink{structs2n__connection_a6d6fcb53603209f9c35ddb87e13573c4}{server\+\_\+name}} \mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_ac44565170294b74f687996bbc2beba63}{S2\+N\+\_\+\+MAX\+\_\+\+SERVER\+\_\+\+NAME}}+1\mbox{]}
+\item 
+char \mbox{\hyperlink{structs2n__connection_a03eaa8888b506845c4c1e82e11cf69fd}{application\+\_\+protocol}} \mbox{[}256\mbox{]}
+\item 
+\mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\+\_\+status\+\_\+request\+\_\+type}} \mbox{\hyperlink{structs2n__connection_af64a5ebdbde1fe3d3aa39bfed4585d8a}{status\+\_\+type}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_a887849141598a490ed8da83b16f96746}{status\+\_\+response}}
+\item 
+\mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\+\_\+ct\+\_\+support\+\_\+level}} \mbox{\hyperlink{structs2n__connection_a04579480fa29cb9b38736d586a555bac}{ct\+\_\+level\+\_\+requested}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_a45c12e19491a1e934a1610989d7cdb44}{ct\+\_\+response}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_ac505b3515925f07181a84960e1f5b885}{our\+\_\+quic\+\_\+transport\+\_\+parameters}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_ac9777bbdb0f14c4fe99fe2006acbaa77}{peer\+\_\+quic\+\_\+transport\+\_\+parameters}}
+\item 
+struct \mbox{\hyperlink{structs2n__client__hello}{s2n\+\_\+client\+\_\+hello}} \mbox{\hyperlink{structs2n__connection_a10c57c50fcc897eb5a9f90a9fc5f4582}{client\+\_\+hello}}
+\item 
+struct \mbox{\hyperlink{structs2n__x509__validator}{s2n\+\_\+x509\+\_\+validator}} \mbox{\hyperlink{structs2n__connection_a9144869d537c0acb3836f242835d2bc9}{x509\+\_\+validator}}
+\item 
+\mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}} \mbox{\hyperlink{structs2n__connection_abbb6b20afc660d15bb0e37e6e846ee4c}{verify\+\_\+host\+\_\+fn}}
+\item 
+void $\ast$ \mbox{\hyperlink{structs2n__connection_a5d3326b485ca89ed30b437112886518d}{data\+\_\+for\+\_\+verify\+\_\+host}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a64d9288a457ed53559b4c2fd315801b7}{verify\+\_\+host\+\_\+fn\+\_\+overridden}}
+\item 
+\mbox{\hyperlink{s2n__connection_8h_aa54bc347d58b0a9763319705d699ae02}{s2n\+\_\+session\+\_\+ticket\+\_\+status}} \mbox{\hyperlink{structs2n__connection_a335adfb7257fa32883569203660b6644}{session\+\_\+ticket\+\_\+status}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_a6f344d1dc6e94e7f82def66ec80e1e3b}{client\+\_\+ticket}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structs2n__connection_a3af0137532e8ef7e5e90abc3ec013b5e}{ticket\+\_\+lifetime\+\_\+hint}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_a9705672ead44eabfea04f6811360ab95}{ticket\+\_\+ext\+\_\+data}} \mbox{[}\mbox{\hyperlink{s2n__resume_8h_aeb793331a0819decb946d10dbecc5a0e}{S2\+N\+\_\+\+TICKET\+\_\+\+SIZE\+\_\+\+IN\+\_\+\+BYTES}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_acedf072cc45ee3b12a0b7daa9b3b9af2}{client\+\_\+ticket\+\_\+to\+\_\+decrypt}}
+\item 
+struct s2n\+\_\+blob \mbox{\hyperlink{structs2n__connection_ad758cc7d59ddf3290a825cd1d3843050}{application\+\_\+protocols\+\_\+overridden}}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__connection_a1e6a048461347c882f75e9677fe58f0c}{cookie\+\_\+stuffer}}
+\item 
+unsigned \mbox{\hyperlink{structs2n__connection_a22476df5ae33b03beafdc42a3930b100}{key\+\_\+update\+\_\+pending}}\+:1
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__connection_abb59c9f919788fa6dce918d88b5b24fb}{preferred\+\_\+key\+\_\+shares}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{structs2n__connection_a8c37a9c10922377a93efd5b99459af1d}\label{structs2n__connection_a8c37a9c10922377a93efd5b99459af1d}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENCRYPTED@{ENCRYPTED}!s2n\_connection@{s2n\_connection}}\index{s2n\_connection@{s2n\_connection}!ENCRYPTED@{ENCRYPTED}}}\mbox{\Hypertarget{structs2n__connection_a8c37a9c10922377a93efd5b99459af1dae67d2491c0d1d9ba4428f60d0a7b4ee3}\label{structs2n__connection_a8c37a9c10922377a93efd5b99459af1dae67d2491c0d1d9ba4428f60d0a7b4ee3}} 
+ENCRYPTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAINTEXT@{PLAINTEXT}!s2n\_connection@{s2n\_connection}}\index{s2n\_connection@{s2n\_connection}!PLAINTEXT@{PLAINTEXT}}}\mbox{\Hypertarget{structs2n__connection_a8c37a9c10922377a93efd5b99459af1da9424dc655caf861e1ab8d69eb23373b9}\label{structs2n__connection_a8c37a9c10922377a93efd5b99459af1da9424dc655caf861e1ab8d69eb23373b9}} 
+PLAINTEXT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__connection_a69b67f75f8599c41d1a6d2ecb2264a79}\label{structs2n__connection_a69b67f75f8599c41d1a6d2ecb2264a79}} 
+\index{s2n\_connection@{s2n\_connection}!active\_application\_bytes\_consumed@{active\_application\_bytes\_consumed}}
+\index{active\_application\_bytes\_consumed@{active\_application\_bytes\_consumed}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{active\_application\_bytes\_consumed}{active\_application\_bytes\_consumed}}
+{\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+connection\+::active\+\_\+application\+\_\+bytes\+\_\+consumed}
+
+\mbox{\Hypertarget{structs2n__connection_a95ccbc12357c12040153ca620bfbf5b2}\label{structs2n__connection_a95ccbc12357c12040153ca620bfbf5b2}} 
+\index{s2n\_connection@{s2n\_connection}!actual\_protocol\_version@{actual\_protocol\_version}}
+\index{actual\_protocol\_version@{actual\_protocol\_version}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{actual\_protocol\_version}{actual\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::actual\+\_\+protocol\+\_\+version}
+
+\mbox{\Hypertarget{structs2n__connection_a0e423d713ba72454ecbddac9a95fb29f}\label{structs2n__connection_a0e423d713ba72454ecbddac9a95fb29f}} 
+\index{s2n\_connection@{s2n\_connection}!actual\_protocol\_version\_established@{actual\_protocol\_version\_established}}
+\index{actual\_protocol\_version\_established@{actual\_protocol\_version\_established}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{actual\_protocol\_version\_established}{actual\_protocol\_version\_established}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::actual\+\_\+protocol\+\_\+version\+\_\+established}
+
+\mbox{\Hypertarget{structs2n__connection_a21ae54796a98b4d8083f0948124dd111}\label{structs2n__connection_a21ae54796a98b4d8083f0948124dd111}} 
+\index{s2n\_connection@{s2n\_connection}!alert\_in@{alert\_in}}
+\index{alert\_in@{alert\_in}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{alert\_in}{alert\_in}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::alert\+\_\+in}
+
+\mbox{\Hypertarget{structs2n__connection_a9bbe82ce3dfe9ea619a205a4bcbd9993}\label{structs2n__connection_a9bbe82ce3dfe9ea619a205a4bcbd9993}} 
+\index{s2n\_connection@{s2n\_connection}!alert\_in\_data@{alert\_in\_data}}
+\index{alert\_in\_data@{alert\_in\_data}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{alert\_in\_data}{alert\_in\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::alert\+\_\+in\+\_\+data\mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_a03eaa8888b506845c4c1e82e11cf69fd}\label{structs2n__connection_a03eaa8888b506845c4c1e82e11cf69fd}} 
+\index{s2n\_connection@{s2n\_connection}!application\_protocol@{application\_protocol}}
+\index{application\_protocol@{application\_protocol}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{application\_protocol}{application\_protocol}}
+{\footnotesize\ttfamily char s2n\+\_\+connection\+::application\+\_\+protocol\mbox{[}256\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_ad758cc7d59ddf3290a825cd1d3843050}\label{structs2n__connection_ad758cc7d59ddf3290a825cd1d3843050}} 
+\index{s2n\_connection@{s2n\_connection}!application\_protocols\_overridden@{application\_protocols\_overridden}}
+\index{application\_protocols\_overridden@{application\_protocols\_overridden}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{application\_protocols\_overridden}{application\_protocols\_overridden}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::application\+\_\+protocols\+\_\+overridden}
+
+\mbox{\Hypertarget{structs2n__connection_a344d0363f0196610c1c0193d8fad3c23}\label{structs2n__connection_a344d0363f0196610c1c0193d8fad3c23}} 
+\index{s2n\_connection@{s2n\_connection}!blinding@{blinding}}
+\index{blinding@{blinding}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{blinding}{blinding}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a364ad496c9dd42fd3117a2f9d3289e62}{s2n\+\_\+blinding}} s2n\+\_\+connection\+::blinding}
+
+\mbox{\Hypertarget{structs2n__connection_a9de6986e260c8a24a1c173c862b0263c}\label{structs2n__connection_a9de6986e260c8a24a1c173c862b0263c}} 
+\index{s2n\_connection@{s2n\_connection}!client@{client}}
+\index{client@{client}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}}$\ast$ s2n\+\_\+connection\+::client}
+
+\mbox{\Hypertarget{structs2n__connection_a2a4c78c7474f07118cae5017bd5677a4}\label{structs2n__connection_a2a4c78c7474f07118cae5017bd5677a4}} 
+\index{s2n\_connection@{s2n\_connection}!client\_cert\_auth\_type@{client\_cert\_auth\_type}}
+\index{client\_cert\_auth\_type@{client\_cert\_auth\_type}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_cert\_auth\_type}{client\_cert\_auth\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\+\_\+cert\+\_\+auth\+\_\+type}} s2n\+\_\+connection\+::client\+\_\+cert\+\_\+auth\+\_\+type}
+
+\mbox{\Hypertarget{structs2n__connection_ab9e61978b01bfa44aed21538e402b033}\label{structs2n__connection_ab9e61978b01bfa44aed21538e402b033}} 
+\index{s2n\_connection@{s2n\_connection}!client\_cert\_auth\_type\_overridden@{client\_cert\_auth\_type\_overridden}}
+\index{client\_cert\_auth\_type\_overridden@{client\_cert\_auth\_type\_overridden}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_cert\_auth\_type\_overridden}{client\_cert\_auth\_type\_overridden}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::client\+\_\+cert\+\_\+auth\+\_\+type\+\_\+overridden}
+
+\mbox{\Hypertarget{structs2n__connection_a10c57c50fcc897eb5a9f90a9fc5f4582}\label{structs2n__connection_a10c57c50fcc897eb5a9f90a9fc5f4582}} 
+\index{s2n\_connection@{s2n\_connection}!client\_hello@{client\_hello}}
+\index{client\_hello@{client\_hello}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_hello}{client\_hello}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__client__hello}{s2n\+\_\+client\+\_\+hello}} s2n\+\_\+connection\+::client\+\_\+hello}
+
+\mbox{\Hypertarget{structs2n__connection_a4d421c0aa83093aa95a7a6a8f954a566}\label{structs2n__connection_a4d421c0aa83093aa95a7a6a8f954a566}} 
+\index{s2n\_connection@{s2n\_connection}!client\_hello\_version@{client\_hello\_version}}
+\index{client\_hello\_version@{client\_hello\_version}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_hello\_version}{client\_hello\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::client\+\_\+hello\+\_\+version}
+
+\mbox{\Hypertarget{structs2n__connection_a06049aa02fd44cb1685f2864f006797b}\label{structs2n__connection_a06049aa02fd44cb1685f2864f006797b}} 
+\index{s2n\_connection@{s2n\_connection}!client\_protocol\_version@{client\_protocol\_version}}
+\index{client\_protocol\_version@{client\_protocol\_version}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_protocol\_version}{client\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::client\+\_\+protocol\+\_\+version}
+
+\mbox{\Hypertarget{structs2n__connection_ae003072fe1fac57662cf375603b78472}\label{structs2n__connection_ae003072fe1fac57662cf375603b78472}} 
+\index{s2n\_connection@{s2n\_connection}!client\_session\_resumed@{client\_session\_resumed}}
+\index{client\_session\_resumed@{client\_session\_resumed}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_session\_resumed}{client\_session\_resumed}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::client\+\_\+session\+\_\+resumed}
+
+\mbox{\Hypertarget{structs2n__connection_a6f344d1dc6e94e7f82def66ec80e1e3b}\label{structs2n__connection_a6f344d1dc6e94e7f82def66ec80e1e3b}} 
+\index{s2n\_connection@{s2n\_connection}!client\_ticket@{client\_ticket}}
+\index{client\_ticket@{client\_ticket}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_ticket}{client\_ticket}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::client\+\_\+ticket}
+
+\mbox{\Hypertarget{structs2n__connection_acedf072cc45ee3b12a0b7daa9b3b9af2}\label{structs2n__connection_acedf072cc45ee3b12a0b7daa9b3b9af2}} 
+\index{s2n\_connection@{s2n\_connection}!client\_ticket\_to\_decrypt@{client\_ticket\_to\_decrypt}}
+\index{client\_ticket\_to\_decrypt@{client\_ticket\_to\_decrypt}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{client\_ticket\_to\_decrypt}{client\_ticket\_to\_decrypt}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::client\+\_\+ticket\+\_\+to\+\_\+decrypt}
+
+\mbox{\Hypertarget{structs2n__connection_a67bd80288ffb8051296521f7f0ff9c30}\label{structs2n__connection_a67bd80288ffb8051296521f7f0ff9c30}} 
+\index{s2n\_connection@{s2n\_connection}!close\_notify\_queued@{close\_notify\_queued}}
+\index{close\_notify\_queued@{close\_notify\_queued}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{close\_notify\_queued}{close\_notify\_queued}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::close\+\_\+notify\+\_\+queued}
+
+\mbox{\Hypertarget{structs2n__connection_adbea0c1a6647e32ba469186866927d49}\label{structs2n__connection_adbea0c1a6647e32ba469186866927d49}} 
+\index{s2n\_connection@{s2n\_connection}!closed@{closed}}
+\index{closed@{closed}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{closed}{closed}}
+{\footnotesize\ttfamily sig\+\_\+atomic\+\_\+t s2n\+\_\+connection\+::closed}
+
+\mbox{\Hypertarget{structs2n__connection_a529fc3bb7f5bf5f4d90848b1cf6f083f}\label{structs2n__connection_a529fc3bb7f5bf5f4d90848b1cf6f083f}} 
+\index{s2n\_connection@{s2n\_connection}!closing@{closing}}
+\index{closing@{closing}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{closing}{closing}}
+{\footnotesize\ttfamily sig\+\_\+atomic\+\_\+t s2n\+\_\+connection\+::closing}
+
+\mbox{\Hypertarget{structs2n__connection_aa75e2d800e48e9ac65c964e2b5401478}\label{structs2n__connection_aa75e2d800e48e9ac65c964e2b5401478}} 
+\index{s2n\_connection@{s2n\_connection}!config@{config}}
+\index{config@{config}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ s2n\+\_\+connection\+::config}
+
+\mbox{\Hypertarget{structs2n__connection_af1b21c56d51e1cabd9ee3cee64784662}\label{structs2n__connection_af1b21c56d51e1cabd9ee3cee64784662}} 
+\index{s2n\_connection@{s2n\_connection}!context@{context}}
+\index{context@{context}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{context}{context}}
+{\footnotesize\ttfamily void$\ast$ s2n\+\_\+connection\+::context}
+
+\mbox{\Hypertarget{structs2n__connection_a1e6a048461347c882f75e9677fe58f0c}\label{structs2n__connection_a1e6a048461347c882f75e9677fe58f0c}} 
+\index{s2n\_connection@{s2n\_connection}!cookie\_stuffer@{cookie\_stuffer}}
+\index{cookie\_stuffer@{cookie\_stuffer}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{cookie\_stuffer}{cookie\_stuffer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::cookie\+\_\+stuffer}
+
+\mbox{\Hypertarget{structs2n__connection_acfefbd232fd81d7289c6dccbb9524371}\label{structs2n__connection_acfefbd232fd81d7289c6dccbb9524371}} 
+\index{s2n\_connection@{s2n\_connection}!corked\_io@{corked\_io}}
+\index{corked\_io@{corked\_io}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{corked\_io}{corked\_io}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::corked\+\_\+io}
+
+\mbox{\Hypertarget{structs2n__connection_a04579480fa29cb9b38736d586a555bac}\label{structs2n__connection_a04579480fa29cb9b38736d586a555bac}} 
+\index{s2n\_connection@{s2n\_connection}!ct\_level\_requested@{ct\_level\_requested}}
+\index{ct\_level\_requested@{ct\_level\_requested}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ct\_level\_requested}{ct\_level\_requested}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\+\_\+ct\+\_\+support\+\_\+level}} s2n\+\_\+connection\+::ct\+\_\+level\+\_\+requested}
+
+\mbox{\Hypertarget{structs2n__connection_a45c12e19491a1e934a1610989d7cdb44}\label{structs2n__connection_a45c12e19491a1e934a1610989d7cdb44}} 
+\index{s2n\_connection@{s2n\_connection}!ct\_response@{ct\_response}}
+\index{ct\_response@{ct\_response}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ct\_response}{ct\_response}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::ct\+\_\+response}
+
+\mbox{\Hypertarget{structs2n__connection_a62e11f3145d58cb6c0c9da44d0fc95f2}\label{structs2n__connection_a62e11f3145d58cb6c0c9da44d0fc95f2}} 
+\index{s2n\_connection@{s2n\_connection}!current\_user\_data\_consumed@{current\_user\_data\_consumed}}
+\index{current\_user\_data\_consumed@{current\_user\_data\_consumed}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{current\_user\_data\_consumed}{current\_user\_data\_consumed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} s2n\+\_\+connection\+::current\+\_\+user\+\_\+data\+\_\+consumed}
+
+\mbox{\Hypertarget{structs2n__connection_a5d3326b485ca89ed30b437112886518d}\label{structs2n__connection_a5d3326b485ca89ed30b437112886518d}} 
+\index{s2n\_connection@{s2n\_connection}!data\_for\_verify\_host@{data\_for\_verify\_host}}
+\index{data\_for\_verify\_host@{data\_for\_verify\_host}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{data\_for\_verify\_host}{data\_for\_verify\_host}}
+{\footnotesize\ttfamily void$\ast$ s2n\+\_\+connection\+::data\+\_\+for\+\_\+verify\+\_\+host}
+
+\mbox{\Hypertarget{structs2n__connection_a7c621098036f555ea535b0c6cf629a6d}\label{structs2n__connection_a7c621098036f555ea535b0c6cf629a6d}} 
+\index{s2n\_connection@{s2n\_connection}!delay@{delay}}
+\index{delay@{delay}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{delay}{delay}}
+{\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+connection\+::delay}
+
+\mbox{\Hypertarget{structs2n__connection_aed8b16185503b75e09f4098bf89b0f67}\label{structs2n__connection_aed8b16185503b75e09f4098bf89b0f67}} 
+\index{s2n\_connection@{s2n\_connection}!dynamic\_record\_resize\_threshold@{dynamic\_record\_resize\_threshold}}
+\index{dynamic\_record\_resize\_threshold@{dynamic\_record\_resize\_threshold}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{dynamic\_record\_resize\_threshold}{dynamic\_record\_resize\_threshold}}
+{\footnotesize\ttfamily uint32\+\_\+t s2n\+\_\+connection\+::dynamic\+\_\+record\+\_\+resize\+\_\+threshold}
+
+\mbox{\Hypertarget{structs2n__connection_a2202060f3a422e7b65f7bfec897bdd62}\label{structs2n__connection_a2202060f3a422e7b65f7bfec897bdd62}} 
+\index{s2n\_connection@{s2n\_connection}!dynamic\_record\_timeout\_threshold@{dynamic\_record\_timeout\_threshold}}
+\index{dynamic\_record\_timeout\_threshold@{dynamic\_record\_timeout\_threshold}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{dynamic\_record\_timeout\_threshold}{dynamic\_record\_timeout\_threshold}}
+{\footnotesize\ttfamily uint16\+\_\+t s2n\+\_\+connection\+::dynamic\+\_\+record\+\_\+timeout\+\_\+threshold}
+
+\mbox{\Hypertarget{structs2n__connection_aeabf47cf83c86adf6861ccfae5f8c669}\label{structs2n__connection_aeabf47cf83c86adf6861ccfae5f8c669}} 
+\index{s2n\_connection@{s2n\_connection}!ec\_point\_formats@{ec\_point\_formats}}
+\index{ec\_point\_formats@{ec\_point\_formats}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ec\_point\_formats}{ec\_point\_formats}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::ec\+\_\+point\+\_\+formats}
+
+\mbox{\Hypertarget{structs2n__connection_acb5d2a07f8bb23b40d3d03d24f7ef51d}\label{structs2n__connection_acb5d2a07f8bb23b40d3d03d24f7ef51d}} 
+\index{s2n\_connection@{s2n\_connection}!extension\_requests\_received@{extension\_requests\_received}}
+\index{extension\_requests\_received@{extension\_requests\_received}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{extension\_requests\_received}{extension\_requests\_received}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__extension__type_8h_aab5f1a69ceb34fcf4464514cbbb0b738}{s2n\+\_\+extension\+\_\+bitfield}} s2n\+\_\+connection\+::extension\+\_\+requests\+\_\+received}
+
+\mbox{\Hypertarget{structs2n__connection_adacc82057bf6b03e20fe22aef7648712}\label{structs2n__connection_adacc82057bf6b03e20fe22aef7648712}} 
+\index{s2n\_connection@{s2n\_connection}!extension\_requests\_sent@{extension\_requests\_sent}}
+\index{extension\_requests\_sent@{extension\_requests\_sent}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{extension\_requests\_sent}{extension\_requests\_sent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__extension__type_8h_aab5f1a69ceb34fcf4464514cbbb0b738}{s2n\+\_\+extension\+\_\+bitfield}} s2n\+\_\+connection\+::extension\+\_\+requests\+\_\+sent}
+
+\mbox{\Hypertarget{structs2n__connection_a0f83cbb681c8d9c59c58b5d82f0d968e}\label{structs2n__connection_a0f83cbb681c8d9c59c58b5d82f0d968e}} 
+\index{s2n\_connection@{s2n\_connection}!handshake@{handshake}}
+\index{handshake@{handshake}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{handshake}{handshake}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} s2n\+\_\+connection\+::handshake}
+
+\mbox{\Hypertarget{structs2n__connection_ac0a1c9aaba954393d753f26179b6c6a3}\label{structs2n__connection_ac0a1c9aaba954393d753f26179b6c6a3}} 
+\index{s2n\_connection@{s2n\_connection}!handshake\_params@{handshake\_params}}
+\index{handshake\_params@{handshake\_params}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{handshake\_params}{handshake\_params}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__handshake__parameters}{s2n\+\_\+handshake\+\_\+parameters}} s2n\+\_\+connection\+::handshake\+\_\+params}
+
+\mbox{\Hypertarget{structs2n__connection_aefef8fa01abd44e997542b87f663b74e}\label{structs2n__connection_aefef8fa01abd44e997542b87f663b74e}} 
+\index{s2n\_connection@{s2n\_connection}!header\_in@{header\_in}}
+\index{header\_in@{header\_in}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{header\_in}{header\_in}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::header\+\_\+in}
+
+\mbox{\Hypertarget{structs2n__connection_a162e2918ea4493930141d3447f40e65b}\label{structs2n__connection_a162e2918ea4493930141d3447f40e65b}} 
+\index{s2n\_connection@{s2n\_connection}!header\_in\_data@{header\_in\_data}}
+\index{header\_in\_data@{header\_in\_data}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{header\_in\_data}{header\_in\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::header\+\_\+in\+\_\+data\mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_a7cc7782f30cb9ee302929d979826c557}{S2\+N\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+HEADER\+\_\+\+LENGTH}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_addca8933098512273dca87e5d8b319dd}\label{structs2n__connection_addca8933098512273dca87e5d8b319dd}} 
+\index{s2n\_connection@{s2n\_connection}!in@{in}}
+\index{in@{in}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{in}{in}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::in}
+
+\mbox{\Hypertarget{structs2n__connection_ae7dea73ce605db56778c9a9927bc16cd}\label{structs2n__connection_ae7dea73ce605db56778c9a9927bc16cd}} 
+\index{s2n\_connection@{s2n\_connection}!in\_status@{in\_status}}
+\index{in\_status@{in\_status}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily enum  \{ ... \}  s2n\+\_\+connection\+::in\+\_\+status}
+
+\mbox{\Hypertarget{structs2n__connection_ad8daf04314e13b29bb3c67e7bb81bcb1}\label{structs2n__connection_ad8daf04314e13b29bb3c67e7bb81bcb1}} 
+\index{s2n\_connection@{s2n\_connection}!initial@{initial}}
+\index{initial@{initial}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{initial}{initial}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} s2n\+\_\+connection\+::initial}
+
+\mbox{\Hypertarget{structs2n__connection_a3c2c842fdaeddde4f21e16010732a221}\label{structs2n__connection_a3c2c842fdaeddde4f21e16010732a221}} 
+\index{s2n\_connection@{s2n\_connection}!ipv6@{ipv6}}
+\index{ipv6@{ipv6}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ipv6}{ipv6}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::ipv6}
+
+\mbox{\Hypertarget{structs2n__connection_a22476df5ae33b03beafdc42a3930b100}\label{structs2n__connection_a22476df5ae33b03beafdc42a3930b100}} 
+\index{s2n\_connection@{s2n\_connection}!key\_update\_pending@{key\_update\_pending}}
+\index{key\_update\_pending@{key\_update\_pending}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{key\_update\_pending}{key\_update\_pending}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::key\+\_\+update\+\_\+pending}
+
+\mbox{\Hypertarget{structs2n__connection_a54192fd915b20789ce8579ad83c3fd17}\label{structs2n__connection_a54192fd915b20789ce8579ad83c3fd17}} 
+\index{s2n\_connection@{s2n\_connection}!last\_write\_elapsed@{last\_write\_elapsed}}
+\index{last\_write\_elapsed@{last\_write\_elapsed}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{last\_write\_elapsed}{last\_write\_elapsed}}
+{\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+connection\+::last\+\_\+write\+\_\+elapsed}
+
+\mbox{\Hypertarget{structs2n__connection_af9562bc730cbd6754e68c07d1448b981}\label{structs2n__connection_af9562bc730cbd6754e68c07d1448b981}} 
+\index{s2n\_connection@{s2n\_connection}!managed\_io@{managed\_io}}
+\index{managed\_io@{managed\_io}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{managed\_io}{managed\_io}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::managed\+\_\+io}
+
+\mbox{\Hypertarget{structs2n__connection_a01e247ad5dc84c01f2929a1ac6df9063}\label{structs2n__connection_a01e247ad5dc84c01f2929a1ac6df9063}} 
+\index{s2n\_connection@{s2n\_connection}!max\_outgoing\_fragment\_length@{max\_outgoing\_fragment\_length}}
+\index{max\_outgoing\_fragment\_length@{max\_outgoing\_fragment\_length}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{max\_outgoing\_fragment\_length}{max\_outgoing\_fragment\_length}}
+{\footnotesize\ttfamily uint16\+\_\+t s2n\+\_\+connection\+::max\+\_\+outgoing\+\_\+fragment\+\_\+length}
+
+\mbox{\Hypertarget{structs2n__connection_a45cf8f00e8dfe76ad165a3a0f67102ff}\label{structs2n__connection_a45cf8f00e8dfe76ad165a3a0f67102ff}} 
+\index{s2n\_connection@{s2n\_connection}!mfl\_code@{mfl\_code}}
+\index{mfl\_code@{mfl\_code}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{mfl\_code}{mfl\_code}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::mfl\+\_\+code}
+
+\mbox{\Hypertarget{structs2n__connection_a8f9031cdae8b28b7f90d042fae0509ef}\label{structs2n__connection_a8f9031cdae8b28b7f90d042fae0509ef}} 
+\index{s2n\_connection@{s2n\_connection}!mode@{mode}}
+\index{mode@{mode}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a77a64e3b657f90d221c5faf99c643cdb}{s2n\+\_\+mode}} s2n\+\_\+connection\+::mode}
+
+\mbox{\Hypertarget{structs2n__connection_ac505b3515925f07181a84960e1f5b885}\label{structs2n__connection_ac505b3515925f07181a84960e1f5b885}} 
+\index{s2n\_connection@{s2n\_connection}!our\_quic\_transport\_parameters@{our\_quic\_transport\_parameters}}
+\index{our\_quic\_transport\_parameters@{our\_quic\_transport\_parameters}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{our\_quic\_transport\_parameters}{our\_quic\_transport\_parameters}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::our\+\_\+quic\+\_\+transport\+\_\+parameters}
+
+\mbox{\Hypertarget{structs2n__connection_ab7d690d1a02fbd7f5aad682df58a1901}\label{structs2n__connection_ab7d690d1a02fbd7f5aad682df58a1901}} 
+\index{s2n\_connection@{s2n\_connection}!out@{out}}
+\index{out@{out}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::out}
+
+\mbox{\Hypertarget{structs2n__connection_ac9777bbdb0f14c4fe99fe2006acbaa77}\label{structs2n__connection_ac9777bbdb0f14c4fe99fe2006acbaa77}} 
+\index{s2n\_connection@{s2n\_connection}!peer\_quic\_transport\_parameters@{peer\_quic\_transport\_parameters}}
+\index{peer\_quic\_transport\_parameters@{peer\_quic\_transport\_parameters}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{peer\_quic\_transport\_parameters}{peer\_quic\_transport\_parameters}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::peer\+\_\+quic\+\_\+transport\+\_\+parameters}
+
+\mbox{\Hypertarget{structs2n__connection_abb59c9f919788fa6dce918d88b5b24fb}\label{structs2n__connection_abb59c9f919788fa6dce918d88b5b24fb}} 
+\index{s2n\_connection@{s2n\_connection}!preferred\_key\_shares@{preferred\_key\_shares}}
+\index{preferred\_key\_shares@{preferred\_key\_shares}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{preferred\_key\_shares}{preferred\_key\_shares}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::preferred\+\_\+key\+\_\+shares}
+
+\mbox{\Hypertarget{structs2n__connection_a3d38a03ab8bb2fbc1e12d9961e661faf}\label{structs2n__connection_a3d38a03ab8bb2fbc1e12d9961e661faf}} 
+\index{s2n\_connection@{s2n\_connection}!prf\_space@{prf\_space}}
+\index{prf\_space@{prf\_space}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{prf\_space}{prf\_space}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} s2n\+\_\+connection\+::prf\+\_\+space}
+
+\mbox{\Hypertarget{structs2n__connection_a93b05e0bebc13959812feb04d0e938fe}\label{structs2n__connection_a93b05e0bebc13959812feb04d0e938fe}} 
+\index{s2n\_connection@{s2n\_connection}!reader\_alert\_out@{reader\_alert\_out}}
+\index{reader\_alert\_out@{reader\_alert\_out}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{reader\_alert\_out}{reader\_alert\_out}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::reader\+\_\+alert\+\_\+out}
+
+\mbox{\Hypertarget{structs2n__connection_a47015153fd6fa042b12642f8ac107421}\label{structs2n__connection_a47015153fd6fa042b12642f8ac107421}} 
+\index{s2n\_connection@{s2n\_connection}!reader\_alert\_out\_data@{reader\_alert\_out\_data}}
+\index{reader\_alert\_out\_data@{reader\_alert\_out\_data}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{reader\_alert\_out\_data}{reader\_alert\_out\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::reader\+\_\+alert\+\_\+out\+\_\+data\mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_ad6b754dd178b26844526d97017c25e20}\label{structs2n__connection_ad6b754dd178b26844526d97017c25e20}} 
+\index{s2n\_connection@{s2n\_connection}!recv@{recv}}
+\index{recv@{recv}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{recv}{recv}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a0b5d6b77e35bf16aee077fe1c5860cc9}{s2n\+\_\+recv\+\_\+fn}}$\ast$ s2n\+\_\+connection\+::recv}
+
+\mbox{\Hypertarget{structs2n__connection_a158e4133150a8bb726c30d68a8f8b942}\label{structs2n__connection_a158e4133150a8bb726c30d68a8f8b942}} 
+\index{s2n\_connection@{s2n\_connection}!recv\_io\_context@{recv\_io\_context}}
+\index{recv\_io\_context@{recv\_io\_context}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{recv\_io\_context}{recv\_io\_context}}
+{\footnotesize\ttfamily void$\ast$ s2n\+\_\+connection\+::recv\+\_\+io\+\_\+context}
+
+\mbox{\Hypertarget{structs2n__connection_aefe8341c9a107e776d18935fbae5d0d5}\label{structs2n__connection_aefe8341c9a107e776d18935fbae5d0d5}} 
+\index{s2n\_connection@{s2n\_connection}!secure@{secure}}
+\index{secure@{secure}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{secure}{secure}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}} s2n\+\_\+connection\+::secure}
+
+\mbox{\Hypertarget{structs2n__connection_a5a13b50329bf4672774f001ba97580a5}\label{structs2n__connection_a5a13b50329bf4672774f001ba97580a5}} 
+\index{s2n\_connection@{s2n\_connection}!secure\_renegotiation@{secure\_renegotiation}}
+\index{secure\_renegotiation@{secure\_renegotiation}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{secure\_renegotiation}{secure\_renegotiation}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::secure\+\_\+renegotiation}
+
+\mbox{\Hypertarget{structs2n__connection_a8379db26924f70d15c61f174ab4a1379}\label{structs2n__connection_a8379db26924f70d15c61f174ab4a1379}} 
+\index{s2n\_connection@{s2n\_connection}!security\_policy\_override@{security\_policy\_override}}
+\index{security\_policy\_override@{security\_policy\_override}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{security\_policy\_override}{security\_policy\_override}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}}$\ast$ s2n\+\_\+connection\+::security\+\_\+policy\+\_\+override}
+
+\mbox{\Hypertarget{structs2n__connection_ad4cff12cbb0eedb0768b794c525b2a90}\label{structs2n__connection_ad4cff12cbb0eedb0768b794c525b2a90}} 
+\index{s2n\_connection@{s2n\_connection}!send@{send}}
+\index{send@{send}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{send}{send}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_ad8ae4eeefcfc81bc4daf429512612687}{s2n\+\_\+send\+\_\+fn}}$\ast$ s2n\+\_\+connection\+::send}
+
+\mbox{\Hypertarget{structs2n__connection_a1c96dea9b649e756c30a604265d07c07}\label{structs2n__connection_a1c96dea9b649e756c30a604265d07c07}} 
+\index{s2n\_connection@{s2n\_connection}!send\_io\_context@{send\_io\_context}}
+\index{send\_io\_context@{send\_io\_context}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{send\_io\_context}{send\_io\_context}}
+{\footnotesize\ttfamily void$\ast$ s2n\+\_\+connection\+::send\+\_\+io\+\_\+context}
+
+\mbox{\Hypertarget{structs2n__connection_a60c6a1e56990e684e3a6890ca676ac8a}\label{structs2n__connection_a60c6a1e56990e684e3a6890ca676ac8a}} 
+\index{s2n\_connection@{s2n\_connection}!server@{server}}
+\index{server@{server}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{server}{server}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__crypto__parameters}{s2n\+\_\+crypto\+\_\+parameters}}$\ast$ s2n\+\_\+connection\+::server}
+
+\mbox{\Hypertarget{structs2n__connection_a6d6fcb53603209f9c35ddb87e13573c4}\label{structs2n__connection_a6d6fcb53603209f9c35ddb87e13573c4}} 
+\index{s2n\_connection@{s2n\_connection}!server\_name@{server\_name}}
+\index{server\_name@{server\_name}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{server\_name}{server\_name}}
+{\footnotesize\ttfamily char s2n\+\_\+connection\+::server\+\_\+name\mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_ac44565170294b74f687996bbc2beba63}{S2\+N\+\_\+\+MAX\+\_\+\+SERVER\+\_\+\+NAME}}+1\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_ab2fbfe3af668865ecc6d1c1896b05c3c}\label{structs2n__connection_ab2fbfe3af668865ecc6d1c1896b05c3c}} 
+\index{s2n\_connection@{s2n\_connection}!server\_name\_used@{server\_name\_used}}
+\index{server\_name\_used@{server\_name\_used}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{server\_name\_used}{server\_name\_used}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::server\+\_\+name\+\_\+used}
+
+\mbox{\Hypertarget{structs2n__connection_ab82988e331a8a2870c145021277a2e9f}\label{structs2n__connection_ab82988e331a8a2870c145021277a2e9f}} 
+\index{s2n\_connection@{s2n\_connection}!server\_protocol\_version@{server\_protocol\_version}}
+\index{server\_protocol\_version@{server\_protocol\_version}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{server\_protocol\_version}{server\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::server\+\_\+protocol\+\_\+version}
+
+\mbox{\Hypertarget{structs2n__connection_ae9c9e192090a42f629e8f3e342af1da7}\label{structs2n__connection_ae9c9e192090a42f629e8f3e342af1da7}} 
+\index{s2n\_connection@{s2n\_connection}!session\_id@{session\_id}}
+\index{session\_id@{session\_id}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{session\_id}{session\_id}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::session\+\_\+id\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a29125d7c5bb81700b27164fbc9c92746}{S2\+N\+\_\+\+TLS\+\_\+\+SESSION\+\_\+\+ID\+\_\+\+MAX\+\_\+\+LEN}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_af91d6cfc157c1644a571f3a4ef20fd93}\label{structs2n__connection_af91d6cfc157c1644a571f3a4ef20fd93}} 
+\index{s2n\_connection@{s2n\_connection}!session\_id\_len@{session\_id\_len}}
+\index{session\_id\_len@{session\_id\_len}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{session\_id\_len}{session\_id\_len}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::session\+\_\+id\+\_\+len}
+
+\mbox{\Hypertarget{structs2n__connection_a335adfb7257fa32883569203660b6644}\label{structs2n__connection_a335adfb7257fa32883569203660b6644}} 
+\index{s2n\_connection@{s2n\_connection}!session\_ticket\_status@{session\_ticket\_status}}
+\index{session\_ticket\_status@{session\_ticket\_status}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{session\_ticket\_status}{session\_ticket\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__connection_8h_aa54bc347d58b0a9763319705d699ae02}{s2n\+\_\+session\+\_\+ticket\+\_\+status}} s2n\+\_\+connection\+::session\+\_\+ticket\+\_\+status}
+
+\mbox{\Hypertarget{structs2n__connection_a887849141598a490ed8da83b16f96746}\label{structs2n__connection_a887849141598a490ed8da83b16f96746}} 
+\index{s2n\_connection@{s2n\_connection}!status\_response@{status\_response}}
+\index{status\_response@{status\_response}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{status\_response}{status\_response}}
+{\footnotesize\ttfamily struct s2n\+\_\+blob s2n\+\_\+connection\+::status\+\_\+response}
+
+\mbox{\Hypertarget{structs2n__connection_af64a5ebdbde1fe3d3aa39bfed4585d8a}\label{structs2n__connection_af64a5ebdbde1fe3d3aa39bfed4585d8a}} 
+\index{s2n\_connection@{s2n\_connection}!status\_type@{status\_type}}
+\index{status\_type@{status\_type}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{status\_type}{status\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\+\_\+status\+\_\+request\+\_\+type}} s2n\+\_\+connection\+::status\+\_\+type}
+
+\mbox{\Hypertarget{structs2n__connection_a9705672ead44eabfea04f6811360ab95}\label{structs2n__connection_a9705672ead44eabfea04f6811360ab95}} 
+\index{s2n\_connection@{s2n\_connection}!ticket\_ext\_data@{ticket\_ext\_data}}
+\index{ticket\_ext\_data@{ticket\_ext\_data}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ticket\_ext\_data}{ticket\_ext\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::ticket\+\_\+ext\+\_\+data\mbox{[}\mbox{\hyperlink{s2n__resume_8h_aeb793331a0819decb946d10dbecc5a0e}{S2\+N\+\_\+\+TICKET\+\_\+\+SIZE\+\_\+\+IN\+\_\+\+BYTES}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_a3af0137532e8ef7e5e90abc3ec013b5e}\label{structs2n__connection_a3af0137532e8ef7e5e90abc3ec013b5e}} 
+\index{s2n\_connection@{s2n\_connection}!ticket\_lifetime\_hint@{ticket\_lifetime\_hint}}
+\index{ticket\_lifetime\_hint@{ticket\_lifetime\_hint}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{ticket\_lifetime\_hint}{ticket\_lifetime\_hint}}
+{\footnotesize\ttfamily uint32\+\_\+t s2n\+\_\+connection\+::ticket\+\_\+lifetime\+\_\+hint}
+
+\mbox{\Hypertarget{structs2n__connection_abbb6b20afc660d15bb0e37e6e846ee4c}\label{structs2n__connection_abbb6b20afc660d15bb0e37e6e846ee4c}} 
+\index{s2n\_connection@{s2n\_connection}!verify\_host\_fn@{verify\_host\_fn}}
+\index{verify\_host\_fn@{verify\_host\_fn}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{verify\_host\_fn}{verify\_host\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}} s2n\+\_\+connection\+::verify\+\_\+host\+\_\+fn}
+
+\mbox{\Hypertarget{structs2n__connection_a64d9288a457ed53559b4c2fd315801b7}\label{structs2n__connection_a64d9288a457ed53559b4c2fd315801b7}} 
+\index{s2n\_connection@{s2n\_connection}!verify\_host\_fn\_overridden@{verify\_host\_fn\_overridden}}
+\index{verify\_host\_fn\_overridden@{verify\_host\_fn\_overridden}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{verify\_host\_fn\_overridden}{verify\_host\_fn\_overridden}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::verify\+\_\+host\+\_\+fn\+\_\+overridden}
+
+\mbox{\Hypertarget{structs2n__connection_a358a054c2fd5548e701138c338f51deb}\label{structs2n__connection_a358a054c2fd5548e701138c338f51deb}} 
+\index{s2n\_connection@{s2n\_connection}!wire\_bytes\_in@{wire\_bytes\_in}}
+\index{wire\_bytes\_in@{wire\_bytes\_in}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{wire\_bytes\_in}{wire\_bytes\_in}}
+{\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+connection\+::wire\+\_\+bytes\+\_\+in}
+
+\mbox{\Hypertarget{structs2n__connection_a45be651acf1a1384cee942a2363724f2}\label{structs2n__connection_a45be651acf1a1384cee942a2363724f2}} 
+\index{s2n\_connection@{s2n\_connection}!wire\_bytes\_out@{wire\_bytes\_out}}
+\index{wire\_bytes\_out@{wire\_bytes\_out}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{wire\_bytes\_out}{wire\_bytes\_out}}
+{\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+connection\+::wire\+\_\+bytes\+\_\+out}
+
+\mbox{\Hypertarget{structs2n__connection_aef3ebdc8b2ee61f712ca50d10c518fff}\label{structs2n__connection_aef3ebdc8b2ee61f712ca50d10c518fff}} 
+\index{s2n\_connection@{s2n\_connection}!write\_fd\_broken@{write\_fd\_broken}}
+\index{write\_fd\_broken@{write\_fd\_broken}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{write\_fd\_broken}{write\_fd\_broken}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+connection\+::write\+\_\+fd\+\_\+broken}
+
+\mbox{\Hypertarget{structs2n__connection_a9b049263a4492430ce83a3f0db9db26c}\label{structs2n__connection_a9b049263a4492430ce83a3f0db9db26c}} 
+\index{s2n\_connection@{s2n\_connection}!write\_timer@{write\_timer}}
+\index{write\_timer@{write\_timer}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{write\_timer}{write\_timer}}
+{\footnotesize\ttfamily struct s2n\+\_\+timer s2n\+\_\+connection\+::write\+\_\+timer}
+
+\mbox{\Hypertarget{structs2n__connection_a6dbeeb786c32111b49760bc54f05f7bd}\label{structs2n__connection_a6dbeeb786c32111b49760bc54f05f7bd}} 
+\index{s2n\_connection@{s2n\_connection}!writer\_alert\_out@{writer\_alert\_out}}
+\index{writer\_alert\_out@{writer\_alert\_out}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{writer\_alert\_out}{writer\_alert\_out}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+connection\+::writer\+\_\+alert\+\_\+out}
+
+\mbox{\Hypertarget{structs2n__connection_aaffd7599067da92896807f80ebd3a820}\label{structs2n__connection_aaffd7599067da92896807f80ebd3a820}} 
+\index{s2n\_connection@{s2n\_connection}!writer\_alert\_out\_data@{writer\_alert\_out\_data}}
+\index{writer\_alert\_out\_data@{writer\_alert\_out\_data}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{writer\_alert\_out\_data}{writer\_alert\_out\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+connection\+::writer\+\_\+alert\+\_\+out\+\_\+data\mbox{[}\mbox{\hyperlink{s2n__tls__parameters_8h_acf0815e20ae2239c2542f1a429c3dda1}{S2\+N\+\_\+\+ALERT\+\_\+\+LENGTH}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__connection_a9144869d537c0acb3836f242835d2bc9}\label{structs2n__connection_a9144869d537c0acb3836f242835d2bc9}} 
+\index{s2n\_connection@{s2n\_connection}!x509\_validator@{x509\_validator}}
+\index{x509\_validator@{x509\_validator}!s2n\_connection@{s2n\_connection}}
+\doxysubsubsection{\texorpdfstring{x509\_validator}{x509\_validator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__x509__validator}{s2n\+\_\+x509\+\_\+validator}} s2n\+\_\+connection\+::x509\+\_\+validator}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/tls/\mbox{\hyperlink{s2n__connection_8h}{s2n\+\_\+connection.\+h}}\end{DoxyCompactItemize}

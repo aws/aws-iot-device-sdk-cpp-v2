@@ -1,0 +1,115 @@
+\hypertarget{make__common__data__structures_8h_source}{}\doxysection{make\+\_\+common\+\_\+data\+\_\+structures.\+h}
+\label{make__common__data__structures_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/include/proof\_helpers/make\_common\_data\_structures.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/include/proof\_helpers/make\_common\_data\_structures.h}}
+\mbox{\hyperlink{make__common__data__structures_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{array__list_8h}{aws/common/array\_list.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{linked__list_8h}{aws/common/linked\_list.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{priority__queue_8h}{aws/common/priority\_queue.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{hash__table__impl_8h}{aws/common/private/hash\_table\_impl.h}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{ring__buffer_8h}{aws/common/ring\_buffer.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{string_8h}{aws/common/string.h}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2include_2proof__helpers_2nondet_8h}{proof\_helpers/nondet.h}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2include_2proof__helpers_2proof__allocators_8h}{proof\_helpers/proof\_allocators.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <proof\_helpers/utils.h>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{/* Assume valid memory for ptr, if count > 0 and count < MAX\_MALLOC\_SIZE. */}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define ASSUME\_VALID\_MEMORY\_COUNT(ptr, count)                                                                          \(\backslash\)}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{        ptr = bounded\_malloc(sizeof(*(ptr)) * (count));                                                                \(\backslash\)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{        \_\_CPROVER\_assume(ptr != NULL);                                                                                 \(\backslash\)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define ASSUME\_VALID\_MEMORY(ptr) ASSUME\_VALID\_MEMORY\_COUNT(ptr, sizeof(*(ptr)))}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define ASSUME\_DEFAULT\_ALLOCATOR(allocator) allocator = aws\_default\_allocator()}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define ASSUME\_CAN\_FAIL\_ALLOCATOR(allocator) allocator = can\_fail\_allocator()}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{/*}}
+\DoxyCodeLine{35 \textcolor{comment}{ * Checks whether aws\_byte\_buf is bounded by max\_size}}
+\DoxyCodeLine{36 \textcolor{comment}{ */}}
+\DoxyCodeLine{37 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a4b89854fde7cdec848b2b6396373bf22}{aws\_byte\_buf\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{/*}}
+\DoxyCodeLine{40 \textcolor{comment}{ * Checks whether aws\_byte\_buf has the correct allocator}}
+\DoxyCodeLine{41 \textcolor{comment}{ */}}
+\DoxyCodeLine{42 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a5319b592711e0375be0c6aefb95cfbb6}{aws\_byte\_buf\_has\_allocator}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{/*}}
+\DoxyCodeLine{45 \textcolor{comment}{ * Ensures aws\_byte\_buf has a proper allocated buffer member}}
+\DoxyCodeLine{46 \textcolor{comment}{ */}}
+\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a8a9cc15302ca27d9805a4baf46fa1fd9}{ensure\_byte\_buf\_has\_allocated\_buffer\_member}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}});}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{/*}}
+\DoxyCodeLine{50 \textcolor{comment}{ * Ensures aws\_ring\_buffer has proper allocated members}}
+\DoxyCodeLine{51 \textcolor{comment}{ */}}
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a7ef58ea2165419c3a9e89b2b8657ede2}{ensure\_ring\_buffer\_has\_allocated\_members}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{53 \textcolor{comment}{/*}}
+\DoxyCodeLine{54 \textcolor{comment}{ * Checks whether aws\_byte\_cursor is bounded by max\_size}}
+\DoxyCodeLine{55 \textcolor{comment}{ */}}
+\DoxyCodeLine{56 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a147b7ea914db1e5a45db4b6fe5fd805b}{aws\_byte\_cursor\_is\_bounded}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\textcolor{keyword}{const} cursor, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{/*}}
+\DoxyCodeLine{59 \textcolor{comment}{ * Ensure a byte\_buf is allocated within a ring\_buf (a relational invariant)}}
+\DoxyCodeLine{60 \textcolor{comment}{ */}}
+\DoxyCodeLine{61 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_ab63292605505602594a401cbb92f91ec}{ensure\_byte\_buf\_has\_allocated\_buffer\_member\_in\_ring\_buf}}(}
+\DoxyCodeLine{62     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}},}
+\DoxyCodeLine{63     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/*}}
+\DoxyCodeLine{66 \textcolor{comment}{ * Ensures aws\_byte\_cursor has a proper allocated buffer member}}
+\DoxyCodeLine{67 \textcolor{comment}{ */}}
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a505d14abe6c1f43f7195d1959b7c9490}{ensure\_byte\_cursor\_has\_allocated\_buffer\_member}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\textcolor{keyword}{const} cursor);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/*}}
+\DoxyCodeLine{71 \textcolor{comment}{ * Checks whether aws\_array\_list is bounded by max\_initial\_item\_allocation and max\_item\_size}}
+\DoxyCodeLine{72 \textcolor{comment}{ */}}
+\DoxyCodeLine{73 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a5c352759367445ebb54c5b6a7afee785}{aws\_array\_list\_is\_bounded}}(}
+\DoxyCodeLine{74     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *\textcolor{keyword}{const} list,}
+\DoxyCodeLine{75     \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_initial\_item\_allocation,}
+\DoxyCodeLine{76     \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_item\_size);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_acae29c2a87b2f5a2b1beffaa8a1f8b5a}{ensure\_array\_list\_has\_allocated\_data\_member}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *\textcolor{keyword}{const} list);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a9add4efccd72a6fbc11037c29a30608a}{ensure\_linked\_list\_is\_allocated}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *list, \textcolor{keywordtype}{size\_t} max\_length);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{comment}{/*}}
+\DoxyCodeLine{89 \textcolor{comment}{ * Checks whether aws\_priority\_queue is bounded by max\_initial\_item\_allocation and max\_item\_size}}
+\DoxyCodeLine{90 \textcolor{comment}{ */}}
+\DoxyCodeLine{91 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a867b4c1769aaf86d82ef2cc4500f9032}{aws\_priority\_queue\_is\_bounded}}(}
+\DoxyCodeLine{92     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__priority__queue}{aws\_priority\_queue}} *\textcolor{keyword}{const} queue,}
+\DoxyCodeLine{93     \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_initial\_item\_allocation,}
+\DoxyCodeLine{94     \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} max\_item\_size);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{100 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_adb2d5226edf3f730f50a1ecd44f446ed}{ensure\_priority\_queue\_has\_allocated\_members}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__priority__queue}{aws\_priority\_queue}} *\textcolor{keyword}{const} queue);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{/*}}
+\DoxyCodeLine{103 \textcolor{comment}{ * Ensures aws\_hash\_table has a proper allocated p\_impl member}}
+\DoxyCodeLine{104 \textcolor{comment}{ */}}
+\DoxyCodeLine{105 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_aeb873a7947374cf52fbd8a04c9e55949}{ensure\_allocated\_hash\_table}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} *map, \textcolor{keywordtype}{size\_t} max\_table\_entries);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{/*}}
+\DoxyCodeLine{108 \textcolor{comment}{ * Ensures aws\_hash\_table has destroy function pointers that are enther null or valid}}
+\DoxyCodeLine{109 \textcolor{comment}{ */}}
+\DoxyCodeLine{110 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a5cc0f9c831edae983f654ec24280cad6}{ensure\_hash\_table\_has\_valid\_destroy\_functions}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} *map);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{118 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a4bc35ef1c0aae4bc9089e03d27d9e723}{aws\_hash\_table\_has\_an\_empty\_slot}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} *\textcolor{keyword}{const} map, \textcolor{keywordtype}{size\_t} *\textcolor{keyword}{const} rval);}
+\DoxyCodeLine{119 \textcolor{keywordtype}{bool} \mbox{\hyperlink{make__common__data__structures_8h_a29cb1ff7a35c7b0b88afa529a015c889}{hash\_table\_state\_has\_an\_empty\_slot}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structhash__table__state}{hash\_table\_state}} *\textcolor{keyword}{const} \mbox{\hyperlink{structstate}{state}}, \textcolor{keywordtype}{size\_t} *\textcolor{keyword}{const} rval);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{127 \textcolor{keywordtype}{void} \mbox{\hyperlink{make__common__data__structures_8h_a3f514df69fa307959d562d94bbe8aade}{hash\_proof\_destroy\_noop}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}});}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{132 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{make__common__data__structures_8h_adabbd79fb648c8cde6254a6d26830d2b}{ensure\_string\_is\_allocated\_nondet\_length}}();}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{137 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{make__common__data__structures_8h_acc98d8d969815b87bca516047307df4e}{nondet\_allocate\_string\_bounded\_length}}(\textcolor{keywordtype}{size\_t} max\_size);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{142 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{make__common__data__structures_8h_a04e1ff119726282620464cd7f8bf7a4c}{ensure\_string\_is\_allocated}}(\textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{147 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{make__common__data__structures_8h_ac5b20d4cebd443149801e170d70e0432}{ensure\_c\_str\_is\_allocated}}(\textcolor{keywordtype}{size\_t} max\_size);}
+
+\end{DoxyCode}

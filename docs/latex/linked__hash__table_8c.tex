@@ -1,0 +1,106 @@
+\hypertarget{linked__hash__table_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/linked\+\_\+hash\+\_\+table.c File Reference}
+\label{linked__hash__table_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/linked\_hash\_table.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/linked\_hash\_table.c}}
+{\ttfamily \#include $<$aws/common/linked\+\_\+hash\+\_\+table.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{linked__hash__table_8c_ac3d77704a57346532082e99b8ee35560}{s\+\_\+element\+\_\+destroy}} (void $\ast$value)
+\item 
+int \mbox{\hyperlink{linked__hash__table_8c_a331ea898dae6b5c326b0a2b520220111}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+init}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$hash\+\_\+fn, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$equals\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+key\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+value\+\_\+fn, size\+\_\+t initial\+\_\+item\+\_\+count)
+\item 
+void \mbox{\hyperlink{linked__hash__table_8c_aeba0e2330f1831f0a4112246828b113c}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table)
+\item 
+int \mbox{\hyperlink{linked__hash__table_8c_a68bc72f02384282684b1e28e9d9e8ff5}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+find}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, const void $\ast$key, void $\ast$$\ast$p\+\_\+value)
+\item 
+int \mbox{\hyperlink{linked__hash__table_8c_a67e31b8b886cd3b60e75b2ad2bf2ba06}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+find\+\_\+and\+\_\+move\+\_\+to\+\_\+back}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, const void $\ast$key, void $\ast$$\ast$p\+\_\+value)
+\item 
+int \mbox{\hyperlink{linked__hash__table_8c_abab7470895e68d6c6e36db07021fc268}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+put}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, const void $\ast$key, void $\ast$p\+\_\+value)
+\item 
+int \mbox{\hyperlink{linked__hash__table_8c_a3f3a0575c8629d4b239b6857c4d23583}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+remove}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, const void $\ast$key)
+\item 
+void \mbox{\hyperlink{linked__hash__table_8c_a9ef08012e36c8f5aeefa549548c4df45}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+clear}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table)
+\item 
+size\+\_\+t \mbox{\hyperlink{linked__hash__table_8c_aa0f861c006370607b7cc6f119fbc1410}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+get\+\_\+element\+\_\+count}} (const struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table)
+\item 
+void \mbox{\hyperlink{linked__hash__table_8c_aad1e1d8c5e4c355c5649f30ffd93234f}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+move\+\_\+node\+\_\+to\+\_\+end\+\_\+of\+\_\+list}} (struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table, struct \mbox{\hyperlink{structaws__linked__hash__table__node}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+node}} $\ast$node)
+\item 
+const struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$ \mbox{\hyperlink{linked__hash__table_8c_a0f22997b22f7f26ee70c5bd55e6ff72f}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+get\+\_\+iteration\+\_\+list}} (const struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$table)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{linked__hash__table_8c_aeba0e2330f1831f0a4112246828b113c}\label{linked__hash__table_8c_aeba0e2330f1831f0a4112246828b113c}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_clean\_up@{aws\_linked\_hash\_table\_clean\_up}}
+\index{aws\_linked\_hash\_table\_clean\_up@{aws\_linked\_hash\_table\_clean\_up}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_clean\_up()}{aws\_linked\_hash\_table\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table }\end{DoxyParamCaption})}
+
+Cleans up the table. Elements in the table will be evicted and cleanup callbacks will be invoked. \mbox{\Hypertarget{linked__hash__table_8c_a9ef08012e36c8f5aeefa549548c4df45}\label{linked__hash__table_8c_a9ef08012e36c8f5aeefa549548c4df45}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_clear@{aws\_linked\_hash\_table\_clear}}
+\index{aws\_linked\_hash\_table\_clear@{aws\_linked\_hash\_table\_clear}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_clear()}{aws\_linked\_hash\_table\_clear()}}
+{\footnotesize\ttfamily void aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table }\end{DoxyParamCaption})}
+
+Clears all items from the table. \mbox{\Hypertarget{linked__hash__table_8c_a68bc72f02384282684b1e28e9d9e8ff5}\label{linked__hash__table_8c_a68bc72f02384282684b1e28e9d9e8ff5}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_find@{aws\_linked\_hash\_table\_find}}
+\index{aws\_linked\_hash\_table\_find@{aws\_linked\_hash\_table\_find}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_find()}{aws\_linked\_hash\_table\_find()}}
+{\footnotesize\ttfamily int aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+find (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$$\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Finds element in the table by key. If found, AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned. If not found, AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned and $\ast$p\+\_\+value will be NULL.
+
+If any errors occur AWS\+\_\+\+OP\+\_\+\+ERR will be returned. \mbox{\Hypertarget{linked__hash__table_8c_a67e31b8b886cd3b60e75b2ad2bf2ba06}\label{linked__hash__table_8c_a67e31b8b886cd3b60e75b2ad2bf2ba06}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_find\_and\_move\_to\_back@{aws\_linked\_hash\_table\_find\_and\_move\_to\_back}}
+\index{aws\_linked\_hash\_table\_find\_and\_move\_to\_back@{aws\_linked\_hash\_table\_find\_and\_move\_to\_back}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_find\_and\_move\_to\_back()}{aws\_linked\_hash\_table\_find\_and\_move\_to\_back()}}
+{\footnotesize\ttfamily int aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+find\+\_\+and\+\_\+move\+\_\+to\+\_\+back (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$$\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Finds element in the table by key. If found, AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned and the item will be moved to the back of the list. If not found, AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned and $\ast$p\+\_\+value will be NULL.
+
+Note\+: this will change the order of elements \mbox{\Hypertarget{linked__hash__table_8c_aa0f861c006370607b7cc6f119fbc1410}\label{linked__hash__table_8c_aa0f861c006370607b7cc6f119fbc1410}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_get\_element\_count@{aws\_linked\_hash\_table\_get\_element\_count}}
+\index{aws\_linked\_hash\_table\_get\_element\_count@{aws\_linked\_hash\_table\_get\_element\_count}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_get\_element\_count()}{aws\_linked\_hash\_table\_get\_element\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+get\+\_\+element\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table }\end{DoxyParamCaption})}
+
+returns number of elements in the table. \mbox{\Hypertarget{linked__hash__table_8c_a0f22997b22f7f26ee70c5bd55e6ff72f}\label{linked__hash__table_8c_a0f22997b22f7f26ee70c5bd55e6ff72f}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_get\_iteration\_list@{aws\_linked\_hash\_table\_get\_iteration\_list}}
+\index{aws\_linked\_hash\_table\_get\_iteration\_list@{aws\_linked\_hash\_table\_get\_iteration\_list}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_get\_iteration\_list()}{aws\_linked\_hash\_table\_get\_iteration\_list()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}}$\ast$ aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+get\+\_\+iteration\+\_\+list (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table }\end{DoxyParamCaption})}
+
+returns the underlying linked list for iteration.
+
+The returned list has nodes of the type\+: \mbox{\hyperlink{structaws__linked__hash__table__node}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+node}}. Use AWS\+\_\+\+CONTAINER\+\_\+\+OF for access to the element. \mbox{\Hypertarget{linked__hash__table_8c_a331ea898dae6b5c326b0a2b520220111}\label{linked__hash__table_8c_a331ea898dae6b5c326b0a2b520220111}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_init@{aws\_linked\_hash\_table\_init}}
+\index{aws\_linked\_hash\_table\_init@{aws\_linked\_hash\_table\_init}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_init()}{aws\_linked\_hash\_table\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$}]{hash\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{equals\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+key\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+value\+\_\+fn,  }\item[{size\+\_\+t}]{initial\+\_\+item\+\_\+count }\end{DoxyParamCaption})}
+
+Initializes the table. Sets up the underlying hash table and linked list. For the other parameters, see \mbox{\hyperlink{hash__table_8h}{aws/common/hash\+\_\+table.\+h}}. Hash table semantics of these arguments are preserved. \mbox{\Hypertarget{linked__hash__table_8c_aad1e1d8c5e4c355c5649f30ffd93234f}\label{linked__hash__table_8c_aad1e1d8c5e4c355c5649f30ffd93234f}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list@{aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list}}
+\index{aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list@{aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list()}{aws\_linked\_hash\_table\_move\_node\_to\_end\_of\_list()}}
+{\footnotesize\ttfamily void aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+move\+\_\+node\+\_\+to\+\_\+end\+\_\+of\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{struct \mbox{\hyperlink{structaws__linked__hash__table__node}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+Move the \mbox{\hyperlink{structaws__linked__hash__table__node}{aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+node}} to the end of the list.
+
+Note\+: this will change the order of elements \mbox{\Hypertarget{linked__hash__table_8c_abab7470895e68d6c6e36db07021fc268}\label{linked__hash__table_8c_abab7470895e68d6c6e36db07021fc268}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_put@{aws\_linked\_hash\_table\_put}}
+\index{aws\_linked\_hash\_table\_put@{aws\_linked\_hash\_table\_put}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_put()}{aws\_linked\_hash\_table\_put()}}
+{\footnotesize\ttfamily int aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+put (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Puts {\ttfamily p\+\_\+value} at {\ttfamily key}. If an element is already stored at {\ttfamily key} it will be replaced. \mbox{\Hypertarget{linked__hash__table_8c_a3f3a0575c8629d4b239b6857c4d23583}\label{linked__hash__table_8c_a3f3a0575c8629d4b239b6857c4d23583}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!aws\_linked\_hash\_table\_remove@{aws\_linked\_hash\_table\_remove}}
+\index{aws\_linked\_hash\_table\_remove@{aws\_linked\_hash\_table\_remove}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{aws\_linked\_hash\_table\_remove()}{aws\_linked\_hash\_table\_remove()}}
+{\footnotesize\ttfamily int aws\+\_\+linked\+\_\+hash\+\_\+table\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__hash__table}{aws\+\_\+linked\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{const void $\ast$}]{key }\end{DoxyParamCaption})}
+
+Removes item at {\ttfamily key} from the table. \mbox{\Hypertarget{linked__hash__table_8c_ac3d77704a57346532082e99b8ee35560}\label{linked__hash__table_8c_ac3d77704a57346532082e99b8ee35560}} 
+\index{linked\_hash\_table.c@{linked\_hash\_table.c}!s\_element\_destroy@{s\_element\_destroy}}
+\index{s\_element\_destroy@{s\_element\_destroy}!linked\_hash\_table.c@{linked\_hash\_table.c}}
+\doxysubsubsection{\texorpdfstring{s\_element\_destroy()}{s\_element\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+element\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

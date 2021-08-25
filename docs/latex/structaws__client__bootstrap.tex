@@ -1,0 +1,84 @@
+\hypertarget{structaws__client__bootstrap}{}\doxysection{aws\+\_\+client\+\_\+bootstrap Struct Reference}
+\label{structaws__client__bootstrap}\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+
+
+{\ttfamily \#include $<$channel\+\_\+bootstrap.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_ac208818f2641a7e75d0d9d6431cad57a}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_af8bda51b9179eaf8e4458cceb4f2a01f}{event\+\_\+loop\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_aff6254a6c1881ced11b2c2b7ce269ee9}{host\+\_\+resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} \mbox{\hyperlink{structaws__client__bootstrap_aaac47029974c5a2e6cbd9f952c0e140f}{host\+\_\+resolver\+\_\+config}}
+\item 
+\mbox{\hyperlink{channel__bootstrap_8h_a1dc65b7da6b1ca0ae3a6e13264cd2ca0}{aws\+\_\+channel\+\_\+on\+\_\+protocol\+\_\+negotiated\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_af2178aa8c4b12873910284aba8b91260}{on\+\_\+protocol\+\_\+negotiated}}
+\item 
+struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} \mbox{\hyperlink{structaws__client__bootstrap_a20c19575d12f068ffe11cf33baf79094}{ref\+\_\+count}}
+\item 
+\mbox{\hyperlink{channel__bootstrap_8h_ac1fb6ae6b6df4ee077af50d2d94b94b9}{aws\+\_\+client\+\_\+bootstrap\+\_\+shutdown\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_a8c25b50ae7184a8fcaf252908e849b57}{on\+\_\+shutdown\+\_\+complete}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__client__bootstrap_a5d4c02de59bbe87f4bdfefb1d68e8eed}{user\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} handles creation and setup of channels that communicate via socket with a specific endpoint. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__client__bootstrap_ac208818f2641a7e75d0d9d6431cad57a}\label{structaws__client__bootstrap_ac208818f2641a7e75d0d9d6431cad57a}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+client\+\_\+bootstrap\+::allocator}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_af8bda51b9179eaf8e4458cceb4f2a01f}\label{structaws__client__bootstrap_af8bda51b9179eaf8e4458cceb4f2a01f}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!event\_loop\_group@{event\_loop\_group}}
+\index{event\_loop\_group@{event\_loop\_group}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{event\_loop\_group}{event\_loop\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ aws\+\_\+client\+\_\+bootstrap\+::event\+\_\+loop\+\_\+group}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_aff6254a6c1881ced11b2c2b7ce269ee9}\label{structaws__client__bootstrap_aff6254a6c1881ced11b2c2b7ce269ee9}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!host\_resolver@{host\_resolver}}
+\index{host\_resolver@{host\_resolver}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{host\_resolver}{host\_resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ aws\+\_\+client\+\_\+bootstrap\+::host\+\_\+resolver}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_aaac47029974c5a2e6cbd9f952c0e140f}\label{structaws__client__bootstrap_aaac47029974c5a2e6cbd9f952c0e140f}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!host\_resolver\_config@{host\_resolver\_config}}
+\index{host\_resolver\_config@{host\_resolver\_config}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{host\_resolver\_config}{host\_resolver\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} aws\+\_\+client\+\_\+bootstrap\+::host\+\_\+resolver\+\_\+config}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_af2178aa8c4b12873910284aba8b91260}\label{structaws__client__bootstrap_af2178aa8c4b12873910284aba8b91260}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!on\_protocol\_negotiated@{on\_protocol\_negotiated}}
+\index{on\_protocol\_negotiated@{on\_protocol\_negotiated}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{on\_protocol\_negotiated}{on\_protocol\_negotiated}}
+{\footnotesize\ttfamily \mbox{\hyperlink{channel__bootstrap_8h_a1dc65b7da6b1ca0ae3a6e13264cd2ca0}{aws\+\_\+channel\+\_\+on\+\_\+protocol\+\_\+negotiated\+\_\+fn}}$\ast$ aws\+\_\+client\+\_\+bootstrap\+::on\+\_\+protocol\+\_\+negotiated}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_a8c25b50ae7184a8fcaf252908e849b57}\label{structaws__client__bootstrap_a8c25b50ae7184a8fcaf252908e849b57}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!on\_shutdown\_complete@{on\_shutdown\_complete}}
+\index{on\_shutdown\_complete@{on\_shutdown\_complete}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{on\_shutdown\_complete}{on\_shutdown\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{channel__bootstrap_8h_ac1fb6ae6b6df4ee077af50d2d94b94b9}{aws\+\_\+client\+\_\+bootstrap\+\_\+shutdown\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+client\+\_\+bootstrap\+::on\+\_\+shutdown\+\_\+complete}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_a20c19575d12f068ffe11cf33baf79094}\label{structaws__client__bootstrap_a20c19575d12f068ffe11cf33baf79094}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__ref__count}{aws\+\_\+ref\+\_\+count}} aws\+\_\+client\+\_\+bootstrap\+::ref\+\_\+count}
+
+\mbox{\Hypertarget{structaws__client__bootstrap_a5d4c02de59bbe87f4bdfefb1d68e8eed}\label{structaws__client__bootstrap_a5d4c02de59bbe87f4bdfefb1d68e8eed}} 
+\index{aws\_client\_bootstrap@{aws\_client\_bootstrap}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_client\_bootstrap@{aws\_client\_bootstrap}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+client\+\_\+bootstrap\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{channel__bootstrap_8h}{channel\+\_\+bootstrap.\+h}}\end{DoxyCompactItemize}

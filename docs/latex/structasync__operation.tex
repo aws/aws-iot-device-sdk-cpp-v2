@@ -1,0 +1,63 @@
+\hypertarget{structasync__operation}{}\doxysection{async\+\_\+operation Struct Reference}
+\label{structasync__operation}\index{async\_operation@{async\_operation}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct aws\_overlapped \mbox{\hyperlink{structasync__operation_ad8ca3e487491c24e08377733ef94c31d}{overlapped}}\\
+\>struct \mbox{\hyperlink{structaws__task}{aws\_task}} \mbox{\hyperlink{structasync__operation_a97b562632f6df6ed29e3fc83dbf6258b}{task}}\\
+\} \mbox{\hyperlink{structasync__operation_aa914576524144e24bb97c8cfd270e2ff}{op}}\\
+
+\end{tabbing}\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structasync__operation_a84d8ce247d0b4dbf1913cdac18b980fd}{alloc}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structasync__operation_ab76e6d5510d15d4587aed2b353407e82}{is\+\_\+active}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structasync__operation_a395d489eda6fb103251d571c26af875d}{is\+\_\+read\+\_\+end\+\_\+cleaned\+\_\+up}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structasync__operation_a84d8ce247d0b4dbf1913cdac18b980fd}\label{structasync__operation_a84d8ce247d0b4dbf1913cdac18b980fd}} 
+\index{async\_operation@{async\_operation}!alloc@{alloc}}
+\index{alloc@{alloc}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ async\+\_\+operation\+::alloc}
+
+\mbox{\Hypertarget{structasync__operation_ab76e6d5510d15d4587aed2b353407e82}\label{structasync__operation_ab76e6d5510d15d4587aed2b353407e82}} 
+\index{async\_operation@{async\_operation}!is\_active@{is\_active}}
+\index{is\_active@{is\_active}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{is\_active}{is\_active}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} async\+\_\+operation\+::is\+\_\+active}
+
+\mbox{\Hypertarget{structasync__operation_a395d489eda6fb103251d571c26af875d}\label{structasync__operation_a395d489eda6fb103251d571c26af875d}} 
+\index{async\_operation@{async\_operation}!is\_read\_end\_cleaned\_up@{is\_read\_end\_cleaned\_up}}
+\index{is\_read\_end\_cleaned\_up@{is\_read\_end\_cleaned\_up}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{is\_read\_end\_cleaned\_up}{is\_read\_end\_cleaned\_up}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} async\+\_\+operation\+::is\+\_\+read\+\_\+end\+\_\+cleaned\+\_\+up}
+
+\mbox{\Hypertarget{structasync__operation_aa914576524144e24bb97c8cfd270e2ff}\label{structasync__operation_aa914576524144e24bb97c8cfd270e2ff}} 
+\index{async\_operation@{async\_operation}!op@{op}}
+\index{op@{op}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  async\+\_\+operation\+::op}
+
+\mbox{\Hypertarget{structasync__operation_ad8ca3e487491c24e08377733ef94c31d}\label{structasync__operation_ad8ca3e487491c24e08377733ef94c31d}} 
+\index{async\_operation@{async\_operation}!overlapped@{overlapped}}
+\index{overlapped@{overlapped}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{overlapped}{overlapped}}
+{\footnotesize\ttfamily struct aws\+\_\+overlapped async\+\_\+operation\+::overlapped}
+
+\mbox{\Hypertarget{structasync__operation_a97b562632f6df6ed29e3fc83dbf6258b}\label{structasync__operation_a97b562632f6df6ed29e3fc83dbf6258b}} 
+\index{async\_operation@{async\_operation}!task@{task}}
+\index{task@{task}!async\_operation@{async\_operation}}
+\doxysubsubsection{\texorpdfstring{task}{task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} async\+\_\+operation\+::task}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/windows/iocp/\mbox{\hyperlink{windows_2iocp_2pipe_8c}{pipe.\+c}}\end{DoxyCompactItemize}

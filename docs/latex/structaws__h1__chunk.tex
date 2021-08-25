@@ -1,0 +1,76 @@
+\hypertarget{structaws__h1__chunk}{}\doxysection{aws\+\_\+h1\+\_\+chunk Struct Reference}
+\label{structaws__h1__chunk}\index{aws\_h1\_chunk@{aws\_h1\_chunk}}
+
+
+{\ttfamily \#include $<$h1\+\_\+encoder.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{structaws__h1__chunk_ad7a825f9bfb7d2c7fd3e377ab98a004f}{data}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__h1__chunk_a5a999c86a5a8cebc8ea03cd7b208b993}{data\+\_\+size}}
+\item 
+\mbox{\hyperlink{request__response_8h_ae09746faaa8bc42dccd8a1e7776f2dac}{aws\+\_\+http1\+\_\+stream\+\_\+write\+\_\+chunk\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__h1__chunk_ab279535828399736125e40c069817c48}{on\+\_\+complete}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__h1__chunk_a5151c704d7867ccb0cb1041adf72d05a}{user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__h1__chunk_a2642766b8255b2e33aacc6b1b0f3cabb}{node}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__h1__chunk_a69891799a06baaa1de1255572b9d2b2b}{chunk\+\_\+line}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}\label{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+h1\+\_\+chunk\+::allocator}
+
+\mbox{\Hypertarget{structaws__h1__chunk_a69891799a06baaa1de1255572b9d2b2b}\label{structaws__h1__chunk_a69891799a06baaa1de1255572b9d2b2b}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!chunk\_line@{chunk\_line}}
+\index{chunk\_line@{chunk\_line}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{chunk\_line}{chunk\_line}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+h1\+\_\+chunk\+::chunk\+\_\+line}
+
+\mbox{\Hypertarget{structaws__h1__chunk_ad7a825f9bfb7d2c7fd3e377ab98a004f}\label{structaws__h1__chunk_ad7a825f9bfb7d2c7fd3e377ab98a004f}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!data@{data}}
+\index{data@{data}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+h1\+\_\+chunk\+::data}
+
+\mbox{\Hypertarget{structaws__h1__chunk_a5a999c86a5a8cebc8ea03cd7b208b993}\label{structaws__h1__chunk_a5a999c86a5a8cebc8ea03cd7b208b993}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!data\_size@{data\_size}}
+\index{data\_size@{data\_size}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{data\_size}{data\_size}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+h1\+\_\+chunk\+::data\+\_\+size}
+
+\mbox{\Hypertarget{structaws__h1__chunk_a2642766b8255b2e33aacc6b1b0f3cabb}\label{structaws__h1__chunk_a2642766b8255b2e33aacc6b1b0f3cabb}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!node@{node}}
+\index{node@{node}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+h1\+\_\+chunk\+::node}
+
+\mbox{\Hypertarget{structaws__h1__chunk_ab279535828399736125e40c069817c48}\label{structaws__h1__chunk_ab279535828399736125e40c069817c48}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!on\_complete@{on\_complete}}
+\index{on\_complete@{on\_complete}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{on\_complete}{on\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_ae09746faaa8bc42dccd8a1e7776f2dac}{aws\+\_\+http1\+\_\+stream\+\_\+write\+\_\+chunk\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+h1\+\_\+chunk\+::on\+\_\+complete}
+
+\mbox{\Hypertarget{structaws__h1__chunk_a5151c704d7867ccb0cb1041adf72d05a}\label{structaws__h1__chunk_a5151c704d7867ccb0cb1041adf72d05a}} 
+\index{aws\_h1\_chunk@{aws\_h1\_chunk}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_h1\_chunk@{aws\_h1\_chunk}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+h1\+\_\+chunk\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{h1__encoder_8h}{h1\+\_\+encoder.\+h}}\end{DoxyCompactItemize}

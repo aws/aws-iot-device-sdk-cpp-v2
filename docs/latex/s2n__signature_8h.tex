@@ -1,0 +1,60 @@
+\hypertarget{s2n__signature_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+signature.h File Reference}
+\label{s2n__signature_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_signature.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_signature.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__signature_8h_ab970e27daf809d65df1052efc6788e14}{sig\+\_\+alg\+\_\+check}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} \{ \newline
+\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a15a16d2cf01d3a9e33ee69bbd109d238}{S2\+N\+\_\+\+SIGNATURE\+\_\+\+ANONYMOUS}} = TLS\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM\+\_\+\+ANONYMOUS
+, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a2a1be07c4736b72ef782c2ec9bbc3243}{S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA}} = TLS\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM\+\_\+\+RSA
+, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a6af9b93c9af8f03b3fdc68f2d5591bd9}{S2\+N\+\_\+\+SIGNATURE\+\_\+\+ECDSA}} = TLS\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM\+\_\+\+ECDSA
+, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a8eafb734608df3316c379baf3a3b44eb}{S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+RSAE}} = TLS\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM\+\_\+\+PRIVATE
+, \newline
+\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780aa5b3ae067873b3e4830ab32395c15b21}{S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+PSS}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__signature_8h_ab970e27daf809d65df1052efc6788e14}\label{s2n__signature_8h_ab970e27daf809d65df1052efc6788e14}} 
+\index{s2n\_signature.h@{s2n\_signature.h}!sig\_alg\_check@{sig\_alg\_check}}
+\index{sig\_alg\_check@{sig\_alg\_check}!s2n\_signature.h@{s2n\_signature.h}}
+\doxysubsubsection{\texorpdfstring{sig\_alg\_check}{sig\_alg\_check}}
+{\footnotesize\ttfamily \#define sig\+\_\+alg\+\_\+check(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}} 
+\index{s2n\_signature.h@{s2n\_signature.h}!s2n\_signature\_algorithm@{s2n\_signature\_algorithm}}
+\index{s2n\_signature\_algorithm@{s2n\_signature\_algorithm}!s2n\_signature.h@{s2n\_signature.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_signature\_algorithm}{s2n\_signature\_algorithm}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_SIGNATURE\_ANONYMOUS@{S2N\_SIGNATURE\_ANONYMOUS}!s2n\_signature.h@{s2n\_signature.h}}\index{s2n\_signature.h@{s2n\_signature.h}!S2N\_SIGNATURE\_ANONYMOUS@{S2N\_SIGNATURE\_ANONYMOUS}}}\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a15a16d2cf01d3a9e33ee69bbd109d238}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a15a16d2cf01d3a9e33ee69bbd109d238}} 
+S2\+N\+\_\+\+SIGNATURE\+\_\+\+ANONYMOUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_SIGNATURE\_RSA@{S2N\_SIGNATURE\_RSA}!s2n\_signature.h@{s2n\_signature.h}}\index{s2n\_signature.h@{s2n\_signature.h}!S2N\_SIGNATURE\_RSA@{S2N\_SIGNATURE\_RSA}}}\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a2a1be07c4736b72ef782c2ec9bbc3243}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a2a1be07c4736b72ef782c2ec9bbc3243}} 
+S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_SIGNATURE\_ECDSA@{S2N\_SIGNATURE\_ECDSA}!s2n\_signature.h@{s2n\_signature.h}}\index{s2n\_signature.h@{s2n\_signature.h}!S2N\_SIGNATURE\_ECDSA@{S2N\_SIGNATURE\_ECDSA}}}\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a6af9b93c9af8f03b3fdc68f2d5591bd9}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a6af9b93c9af8f03b3fdc68f2d5591bd9}} 
+S2\+N\+\_\+\+SIGNATURE\+\_\+\+ECDSA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_SIGNATURE\_RSA\_PSS\_RSAE@{S2N\_SIGNATURE\_RSA\_PSS\_RSAE}!s2n\_signature.h@{s2n\_signature.h}}\index{s2n\_signature.h@{s2n\_signature.h}!S2N\_SIGNATURE\_RSA\_PSS\_RSAE@{S2N\_SIGNATURE\_RSA\_PSS\_RSAE}}}\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a8eafb734608df3316c379baf3a3b44eb}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780a8eafb734608df3316c379baf3a3b44eb}} 
+S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+RSAE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_SIGNATURE\_RSA\_PSS\_PSS@{S2N\_SIGNATURE\_RSA\_PSS\_PSS}!s2n\_signature.h@{s2n\_signature.h}}\index{s2n\_signature.h@{s2n\_signature.h}!S2N\_SIGNATURE\_RSA\_PSS\_PSS@{S2N\_SIGNATURE\_RSA\_PSS\_PSS}}}\mbox{\Hypertarget{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780aa5b3ae067873b3e4830ab32395c15b21}\label{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780aa5b3ae067873b3e4830ab32395c15b21}} 
+S2\+N\+\_\+\+SIGNATURE\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+PSS&\\
+\hline
+
+\end{DoxyEnumFields}

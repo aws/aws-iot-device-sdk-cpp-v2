@@ -1,0 +1,367 @@
+\hypertarget{date__time_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/date\+\_\+time.h File Reference}
+\label{date__time_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/date\_time.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/date\_time.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{date__time_8h_a281ad6cfc1d66f990c78794e2b683d24}{AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN}}~100
+\item 
+\#define \mbox{\hyperlink{date__time_8h_a60d936a21105aa1009cbfeeb7d3756b6}{AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+BASIC\+\_\+\+LEN}}~20
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \{ \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a19d19aaad168850d1679e716a64fb2de}{AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+RFC822}}
+, \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a25e6a049ea9f278fad83425eadb35f26}{AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+ISO\+\_\+8601}}
+, \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5af73fe8ceb1f85c91e1854fbc9c555076}{AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+ISO\+\_\+8601\+\_\+\+BASIC}}
+, \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a06a7fd11b0fd7744f94acfb986b6a3db}{AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT}}
+ \}
+\item 
+enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} \{ \newline
+\mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae256e8ddeaac3619c30f04e6b7179ea0}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JANUARY}} = 0
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a18010ce4c4895e39c89a2dc16982506c}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+FEBRUARY}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90acdece4cb9eccef6553ccf643dc426a90}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+MARCH}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a30d890c4f9dc3473e26efdf108a46be2}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+APRIL}}
+, \newline
+\mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7482877d2c31e3ccb2d52d9a5eb6756b}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+MAY}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7e386ef037587099a963f140db40d99f}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JUNE}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa2e6aacca6f6560b01a9a3cc0f7cda9f}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JULY}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa84be95bb92530794649d968f2bd0dc9}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+AUGUST}}
+, \newline
+\mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae4a77d2861ed5754190014691d9dee4d}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+SEPTEMBER}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a8dc07a4c30fc4e2e9b4a0376f62ecdf2}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+OCTOBER}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aab5551a029da34ebd2b39be336ee1b44}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+NOVEMBER}}
+, \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90add1fabdb6972e44eff9a76dbbb8a9913}{AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+DECEMBER}}
+ \}
+\item 
+enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} \{ \newline
+\mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a4860ce87202b5fc06761de3c3f2720a0}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+SUNDAY}} = 0
+, \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a13d04ba8246079ed0cd7275135e329ee}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+MONDAY}}
+, \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ad4237669b05ce5a532791d4f8ba80913}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+TUESDAY}}
+, \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317aef6933e3f5a949477b86dd6f03bf3103}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+WEDNESDAY}}
+, \newline
+\mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a790010fe9799ab27d569ec027deab0ba}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+THURSDAY}}
+, \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ac0a739d833147a0d751195f74f1253a8}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+FRIDAY}}
+, \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a0c54226d1fe2009aa7f68ca93e9bf990}{AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+SATURDAY}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{date__time_8h_a9e2aca5e013b0d59e8a9aa3d622198bd}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+now}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{date__time_8h_afa7bd7a71dc6cb1cad1330541ca4f179}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+epoch\+\_\+millis}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, uint64\+\_\+t ms\+\_\+since\+\_\+epoch)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{date__time_8h_ae7f30d068fd2728240fc094b13b88eaa}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+epoch\+\_\+secs}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, double sec\+\_\+ms)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_a117ddec004755a8a62a553bf41ea22e9}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+from\+\_\+str}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$date\+\_\+str, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_a18819b62410c3dc33d2d7606ceb7c2a7}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+from\+\_\+str\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$date\+\_\+str\+\_\+cursor, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_aba1878753501bdd9f70ccdd8a0f7f893}{aws\+\_\+date\+\_\+time\+\_\+to\+\_\+local\+\_\+time\+\_\+str}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_a392be6ce680e918540a5e5876ee4fb43}{aws\+\_\+date\+\_\+time\+\_\+to\+\_\+utc\+\_\+time\+\_\+str}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_a3e28bf0976823c91fc4f283837409c69}{aws\+\_\+date\+\_\+time\+\_\+to\+\_\+local\+\_\+time\+\_\+short\+\_\+str}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{date__time_8h_aebf8999fedd7481a748ecc458af3c7e7}{aws\+\_\+date\+\_\+time\+\_\+to\+\_\+utc\+\_\+time\+\_\+short\+\_\+str}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} double \mbox{\hyperlink{date__time_8h_addccbb2bb9588b7bd62e4d63053dba9c}{aws\+\_\+date\+\_\+time\+\_\+as\+\_\+epoch\+\_\+secs}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{date__time_8h_a19e93ee2084375ae845a80c517c1ed57}{aws\+\_\+date\+\_\+time\+\_\+as\+\_\+nanos}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{date__time_8h_afee5917139d94817b882e321f67ed2f1}{aws\+\_\+date\+\_\+time\+\_\+as\+\_\+millis}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint16\+\_\+t \mbox{\hyperlink{date__time_8h_a459725efbb8fdf3770d7a1d606513ce6}{aws\+\_\+date\+\_\+time\+\_\+year}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} \mbox{\hyperlink{date__time_8h_ad030a4f5d9f808ee308bb2b277790739}{aws\+\_\+date\+\_\+time\+\_\+month}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t \mbox{\hyperlink{date__time_8h_a91c131fdae88e12a4028ff1336d1d11d}{aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} \mbox{\hyperlink{date__time_8h_a2b76d2f2520def61b31f5560a79c6f00}{aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t \mbox{\hyperlink{date__time_8h_a6ae4e26a2049f60779c8a4a9ae780d96}{aws\+\_\+date\+\_\+time\+\_\+hour}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t \mbox{\hyperlink{date__time_8h_a98a674b94ea6ecbb65e2e75ff6bfa4d2}{aws\+\_\+date\+\_\+time\+\_\+minute}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t \mbox{\hyperlink{date__time_8h_a1516cfe415812c81accc4f0bded02f3b}{aws\+\_\+date\+\_\+time\+\_\+second}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{date__time_8h_afd4b04876599f9f498e714aff2896fb4}{aws\+\_\+date\+\_\+time\+\_\+dst}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} time\+\_\+t \mbox{\hyperlink{date__time_8h_a8abaeb273de9bfc745c6e2ab29146c91}{aws\+\_\+date\+\_\+time\+\_\+diff}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$a, const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{date__time_8h_a60d936a21105aa1009cbfeeb7d3756b6}\label{date__time_8h_a60d936a21105aa1009cbfeeb7d3756b6}} 
+\index{date\_time.h@{date\_time.h}!AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN@{AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN}}
+\index{AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN@{AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN}{AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+BASIC\+\_\+\+LEN~20}
+
+\mbox{\Hypertarget{date__time_8h_a281ad6cfc1d66f990c78794e2b683d24}\label{date__time_8h_a281ad6cfc1d66f990c78794e2b683d24}} 
+\index{date\_time.h@{date\_time.h}!AWS\_DATE\_TIME\_STR\_MAX\_LEN@{AWS\_DATE\_TIME\_STR\_MAX\_LEN}}
+\index{AWS\_DATE\_TIME\_STR\_MAX\_LEN@{AWS\_DATE\_TIME\_STR\_MAX\_LEN}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_DATE\_TIME\_STR\_MAX\_LEN}{AWS\_DATE\_TIME\_STR\_MAX\_LEN}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN~100}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_day\_of\_week@{aws\_date\_day\_of\_week}}
+\index{aws\_date\_day\_of\_week@{aws\_date\_day\_of\_week}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_day\_of\_week}{aws\_date\_day\_of\_week}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_SUNDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_SUNDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_SUNDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_SUNDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a4860ce87202b5fc06761de3c3f2720a0}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a4860ce87202b5fc06761de3c3f2720a0}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+SUNDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_MONDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_MONDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_MONDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_MONDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a13d04ba8246079ed0cd7275135e329ee}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a13d04ba8246079ed0cd7275135e329ee}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+MONDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_TUESDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_TUESDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_TUESDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_TUESDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ad4237669b05ce5a532791d4f8ba80913}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ad4237669b05ce5a532791d4f8ba80913}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+TUESDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_WEDNESDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_WEDNESDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_WEDNESDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_WEDNESDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317aef6933e3f5a949477b86dd6f03bf3103}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317aef6933e3f5a949477b86dd6f03bf3103}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+WEDNESDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_THURSDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_THURSDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_THURSDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_THURSDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a790010fe9799ab27d569ec027deab0ba}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a790010fe9799ab27d569ec027deab0ba}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+THURSDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_FRIDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_FRIDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_FRIDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_FRIDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ac0a739d833147a0d751195f74f1253a8}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ac0a739d833147a0d751195f74f1253a8}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+FRIDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_DAY\_OF\_WEEK\_SATURDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_SATURDAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_DAY\_OF\_WEEK\_SATURDAY@{AWS\_DATE\_DAY\_OF\_WEEK\_SATURDAY}}}\mbox{\Hypertarget{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a0c54226d1fe2009aa7f68ca93e9bf990}\label{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a0c54226d1fe2009aa7f68ca93e9bf990}} 
+AWS\+\_\+\+DATE\+\_\+\+DAY\+\_\+\+OF\+\_\+\+WEEK\+\_\+\+SATURDAY&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}\label{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_format@{aws\_date\_format}}
+\index{aws\_date\_format@{aws\_date\_format}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_format}{aws\_date\_format}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_FORMAT\_RFC822@{AWS\_DATE\_FORMAT\_RFC822}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_FORMAT\_RFC822@{AWS\_DATE\_FORMAT\_RFC822}}}\mbox{\Hypertarget{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a19d19aaad168850d1679e716a64fb2de}\label{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a19d19aaad168850d1679e716a64fb2de}} 
+AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+RFC822&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_FORMAT\_ISO\_8601@{AWS\_DATE\_FORMAT\_ISO\_8601}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_FORMAT\_ISO\_8601@{AWS\_DATE\_FORMAT\_ISO\_8601}}}\mbox{\Hypertarget{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a25e6a049ea9f278fad83425eadb35f26}\label{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a25e6a049ea9f278fad83425eadb35f26}} 
+AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+ISO\+\_\+8601&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_FORMAT\_ISO\_8601\_BASIC@{AWS\_DATE\_FORMAT\_ISO\_8601\_BASIC}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_FORMAT\_ISO\_8601\_BASIC@{AWS\_DATE\_FORMAT\_ISO\_8601\_BASIC}}}\mbox{\Hypertarget{date__time_8h_acd2cf89789b89f9fc93cef423047ada5af73fe8ceb1f85c91e1854fbc9c555076}\label{date__time_8h_acd2cf89789b89f9fc93cef423047ada5af73fe8ceb1f85c91e1854fbc9c555076}} 
+AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+ISO\+\_\+8601\+\_\+\+BASIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_FORMAT\_AUTO\_DETECT@{AWS\_DATE\_FORMAT\_AUTO\_DETECT}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_FORMAT\_AUTO\_DETECT@{AWS\_DATE\_FORMAT\_AUTO\_DETECT}}}\mbox{\Hypertarget{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a06a7fd11b0fd7744f94acfb986b6a3db}\label{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a06a7fd11b0fd7744f94acfb986b6a3db}} 
+AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_month@{aws\_date\_month}}
+\index{aws\_date\_month@{aws\_date\_month}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_month}{aws\_date\_month}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_JANUARY@{AWS\_DATE\_MONTH\_JANUARY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_JANUARY@{AWS\_DATE\_MONTH\_JANUARY}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae256e8ddeaac3619c30f04e6b7179ea0}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae256e8ddeaac3619c30f04e6b7179ea0}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JANUARY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_FEBRUARY@{AWS\_DATE\_MONTH\_FEBRUARY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_FEBRUARY@{AWS\_DATE\_MONTH\_FEBRUARY}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a18010ce4c4895e39c89a2dc16982506c}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a18010ce4c4895e39c89a2dc16982506c}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+FEBRUARY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_MARCH@{AWS\_DATE\_MONTH\_MARCH}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_MARCH@{AWS\_DATE\_MONTH\_MARCH}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90acdece4cb9eccef6553ccf643dc426a90}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90acdece4cb9eccef6553ccf643dc426a90}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+MARCH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_APRIL@{AWS\_DATE\_MONTH\_APRIL}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_APRIL@{AWS\_DATE\_MONTH\_APRIL}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a30d890c4f9dc3473e26efdf108a46be2}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a30d890c4f9dc3473e26efdf108a46be2}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+APRIL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_MAY@{AWS\_DATE\_MONTH\_MAY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_MAY@{AWS\_DATE\_MONTH\_MAY}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7482877d2c31e3ccb2d52d9a5eb6756b}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7482877d2c31e3ccb2d52d9a5eb6756b}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+MAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_JUNE@{AWS\_DATE\_MONTH\_JUNE}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_JUNE@{AWS\_DATE\_MONTH\_JUNE}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7e386ef037587099a963f140db40d99f}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7e386ef037587099a963f140db40d99f}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JUNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_JULY@{AWS\_DATE\_MONTH\_JULY}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_JULY@{AWS\_DATE\_MONTH\_JULY}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa2e6aacca6f6560b01a9a3cc0f7cda9f}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa2e6aacca6f6560b01a9a3cc0f7cda9f}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+JULY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_AUGUST@{AWS\_DATE\_MONTH\_AUGUST}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_AUGUST@{AWS\_DATE\_MONTH\_AUGUST}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa84be95bb92530794649d968f2bd0dc9}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa84be95bb92530794649d968f2bd0dc9}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+AUGUST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_SEPTEMBER@{AWS\_DATE\_MONTH\_SEPTEMBER}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_SEPTEMBER@{AWS\_DATE\_MONTH\_SEPTEMBER}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae4a77d2861ed5754190014691d9dee4d}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae4a77d2861ed5754190014691d9dee4d}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+SEPTEMBER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_OCTOBER@{AWS\_DATE\_MONTH\_OCTOBER}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_OCTOBER@{AWS\_DATE\_MONTH\_OCTOBER}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a8dc07a4c30fc4e2e9b4a0376f62ecdf2}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a8dc07a4c30fc4e2e9b4a0376f62ecdf2}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+OCTOBER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_NOVEMBER@{AWS\_DATE\_MONTH\_NOVEMBER}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_NOVEMBER@{AWS\_DATE\_MONTH\_NOVEMBER}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aab5551a029da34ebd2b39be336ee1b44}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aab5551a029da34ebd2b39be336ee1b44}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+NOVEMBER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_DATE\_MONTH\_DECEMBER@{AWS\_DATE\_MONTH\_DECEMBER}!date\_time.h@{date\_time.h}}\index{date\_time.h@{date\_time.h}!AWS\_DATE\_MONTH\_DECEMBER@{AWS\_DATE\_MONTH\_DECEMBER}}}\mbox{\Hypertarget{date__time_8h_ab40cd55ec991f137b08db63de66ecb90add1fabdb6972e44eff9a76dbbb8a9913}\label{date__time_8h_ab40cd55ec991f137b08db63de66ecb90add1fabdb6972e44eff9a76dbbb8a9913}} 
+AWS\+\_\+\+DATE\+\_\+\+MONTH\+\_\+\+DECEMBER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{date__time_8h_addccbb2bb9588b7bd62e4d63053dba9c}\label{date__time_8h_addccbb2bb9588b7bd62e4d63053dba9c}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_as\_epoch\_secs@{aws\_date\_time\_as\_epoch\_secs}}
+\index{aws\_date\_time\_as\_epoch\_secs@{aws\_date\_time\_as\_epoch\_secs}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_as\_epoch\_secs()}{aws\_date\_time\_as\_epoch\_secs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} double aws\+\_\+date\+\_\+time\+\_\+as\+\_\+epoch\+\_\+secs (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_afee5917139d94817b882e321f67ed2f1}\label{date__time_8h_afee5917139d94817b882e321f67ed2f1}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_as\_millis@{aws\_date\_time\_as\_millis}}
+\index{aws\_date\_time\_as\_millis@{aws\_date\_time\_as\_millis}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_as\_millis()}{aws\_date\_time\_as\_millis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+date\+\_\+time\+\_\+as\+\_\+millis (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a19e93ee2084375ae845a80c517c1ed57}\label{date__time_8h_a19e93ee2084375ae845a80c517c1ed57}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_as\_nanos@{aws\_date\_time\_as\_nanos}}
+\index{aws\_date\_time\_as\_nanos@{aws\_date\_time\_as\_nanos}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_as\_nanos()}{aws\_date\_time\_as\_nanos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+date\+\_\+time\+\_\+as\+\_\+nanos (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a2b76d2f2520def61b31f5560a79c6f00}\label{date__time_8h_a2b76d2f2520def61b31f5560a79c6f00}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_day\_of\_week@{aws\_date\_time\_day\_of\_week}}
+\index{aws\_date\_time\_day\_of\_week@{aws\_date\_time\_day\_of\_week}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_day\_of\_week()}{aws\_date\_time\_day\_of\_week()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a8abaeb273de9bfc745c6e2ab29146c91}\label{date__time_8h_a8abaeb273de9bfc745c6e2ab29146c91}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_diff@{aws\_date\_time\_diff}}
+\index{aws\_date\_time\_diff@{aws\_date\_time\_diff}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_diff()}{aws\_date\_time\_diff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} time\+\_\+t aws\+\_\+date\+\_\+time\+\_\+diff (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+returns the difference of a and b (a -\/ b) in seconds. \mbox{\Hypertarget{date__time_8h_afd4b04876599f9f498e714aff2896fb4}\label{date__time_8h_afd4b04876599f9f498e714aff2896fb4}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_dst@{aws\_date\_time\_dst}}
+\index{aws\_date\_time\_dst@{aws\_date\_time\_dst}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_dst()}{aws\_date\_time\_dst()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+date\+\_\+time\+\_\+dst (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a6ae4e26a2049f60779c8a4a9ae780d96}\label{date__time_8h_a6ae4e26a2049f60779c8a4a9ae780d96}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_hour@{aws\_date\_time\_hour}}
+\index{aws\_date\_time\_hour@{aws\_date\_time\_hour}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_hour()}{aws\_date\_time\_hour()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+hour (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_afa7bd7a71dc6cb1cad1330541ca4f179}\label{date__time_8h_afa7bd7a71dc6cb1cad1330541ca4f179}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_init\_epoch\_millis@{aws\_date\_time\_init\_epoch\_millis}}
+\index{aws\_date\_time\_init\_epoch\_millis@{aws\_date\_time\_init\_epoch\_millis}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_init\_epoch\_millis()}{aws\_date\_time\_init\_epoch\_millis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+date\+\_\+time\+\_\+init\+\_\+epoch\+\_\+millis (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{uint64\+\_\+t}]{ms\+\_\+since\+\_\+epoch }\end{DoxyParamCaption})}
+
+Initializes dt to be the time represented in milliseconds since unix epoch. \mbox{\Hypertarget{date__time_8h_ae7f30d068fd2728240fc094b13b88eaa}\label{date__time_8h_ae7f30d068fd2728240fc094b13b88eaa}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_init\_epoch\_secs@{aws\_date\_time\_init\_epoch\_secs}}
+\index{aws\_date\_time\_init\_epoch\_secs@{aws\_date\_time\_init\_epoch\_secs}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_init\_epoch\_secs()}{aws\_date\_time\_init\_epoch\_secs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+date\+\_\+time\+\_\+init\+\_\+epoch\+\_\+secs (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{double}]{sec\+\_\+ms }\end{DoxyParamCaption})}
+
+Initializes dt to be the time represented in seconds.\+millis since unix epoch. \mbox{\Hypertarget{date__time_8h_a117ddec004755a8a62a553bf41ea22e9}\label{date__time_8h_a117ddec004755a8a62a553bf41ea22e9}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_init\_from\_str@{aws\_date\_time\_init\_from\_str}}
+\index{aws\_date\_time\_init\_from\_str@{aws\_date\_time\_init\_from\_str}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_init\_from\_str()}{aws\_date\_time\_init\_from\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+init\+\_\+from\+\_\+str (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{date\+\_\+str,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt }\end{DoxyParamCaption})}
+
+Initializes dt to be the time represented by date\+\_\+str in format \textquotesingle{}fmt\textquotesingle{}. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if the string was successfully parsed, returns AWS\+\_\+\+OP\+\_\+\+ERR if parsing failed.
+
+Notes for AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+RFC822\+: If no time zone information is provided, it is assumed to be local time (please don\textquotesingle{}t do this).
+
+If the time zone is something other than something indicating Universal Time (e.\+g. Z, UT, UTC, or GMT) or an offset from UTC (e.\+g. +0100, -\/0700), parsing will fail.
+
+Really, it\textquotesingle{}s just better if you always use Universal Time. \mbox{\Hypertarget{date__time_8h_a18819b62410c3dc33d2d7606ceb7c2a7}\label{date__time_8h_a18819b62410c3dc33d2d7606ceb7c2a7}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_init\_from\_str\_cursor@{aws\_date\_time\_init\_from\_str\_cursor}}
+\index{aws\_date\_time\_init\_from\_str\_cursor@{aws\_date\_time\_init\_from\_str\_cursor}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_init\_from\_str\_cursor()}{aws\_date\_time\_init\_from\_str\_cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+init\+\_\+from\+\_\+str\+\_\+cursor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{date\+\_\+str\+\_\+cursor,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt }\end{DoxyParamCaption})}
+
+aws\+\_\+date\+\_\+time\+\_\+init variant that takes a byte\+\_\+cursor rather than a byte\+\_\+buf \mbox{\Hypertarget{date__time_8h_a9e2aca5e013b0d59e8a9aa3d622198bd}\label{date__time_8h_a9e2aca5e013b0d59e8a9aa3d622198bd}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_init\_now@{aws\_date\_time\_init\_now}}
+\index{aws\_date\_time\_init\_now@{aws\_date\_time\_init\_now}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_init\_now()}{aws\_date\_time\_init\_now()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+date\+\_\+time\+\_\+init\+\_\+now (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt }\end{DoxyParamCaption})}
+
+Initializes dt to be the current system time. \mbox{\Hypertarget{date__time_8h_a98a674b94ea6ecbb65e2e75ff6bfa4d2}\label{date__time_8h_a98a674b94ea6ecbb65e2e75ff6bfa4d2}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_minute@{aws\_date\_time\_minute}}
+\index{aws\_date\_time\_minute@{aws\_date\_time\_minute}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_minute()}{aws\_date\_time\_minute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+minute (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_ad030a4f5d9f808ee308bb2b277790739}\label{date__time_8h_ad030a4f5d9f808ee308bb2b277790739}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_month@{aws\_date\_time\_month}}
+\index{aws\_date\_time\_month@{aws\_date\_time\_month}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_month()}{aws\_date\_time\_month()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} aws\+\_\+date\+\_\+time\+\_\+month (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a91c131fdae88e12a4028ff1336d1d11d}\label{date__time_8h_a91c131fdae88e12a4028ff1336d1d11d}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_month\_day@{aws\_date\_time\_month\_day}}
+\index{aws\_date\_time\_month\_day@{aws\_date\_time\_month\_day}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_month\_day()}{aws\_date\_time\_month\_day()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a1516cfe415812c81accc4f0bded02f3b}\label{date__time_8h_a1516cfe415812c81accc4f0bded02f3b}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_second@{aws\_date\_time\_second}}
+\index{aws\_date\_time\_second@{aws\_date\_time\_second}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_second()}{aws\_date\_time\_second()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+second (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{date__time_8h_a3e28bf0976823c91fc4f283837409c69}\label{date__time_8h_a3e28bf0976823c91fc4f283837409c69}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_to\_local\_time\_short\_str@{aws\_date\_time\_to\_local\_time\_short\_str}}
+\index{aws\_date\_time\_to\_local\_time\_short\_str@{aws\_date\_time\_to\_local\_time\_short\_str}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_to\_local\_time\_short\_str()}{aws\_date\_time\_to\_local\_time\_short\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+to\+\_\+local\+\_\+time\+\_\+short\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output\+\_\+buf }\end{DoxyParamCaption})}
+
+Copies the current time as a formatted short date string in local time into output\+\_\+buf. If buffer is too small, it will return AWS\+\_\+\+OP\+\_\+\+ERR. A good size suggestion is AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN bytes. AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT is not allowed. \mbox{\Hypertarget{date__time_8h_aba1878753501bdd9f70ccdd8a0f7f893}\label{date__time_8h_aba1878753501bdd9f70ccdd8a0f7f893}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_to\_local\_time\_str@{aws\_date\_time\_to\_local\_time\_str}}
+\index{aws\_date\_time\_to\_local\_time\_str@{aws\_date\_time\_to\_local\_time\_str}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_to\_local\_time\_str()}{aws\_date\_time\_to\_local\_time\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+to\+\_\+local\+\_\+time\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output\+\_\+buf }\end{DoxyParamCaption})}
+
+Copies the current time as a formatted date string in local time into output\+\_\+buf. If buffer is too small, it will return AWS\+\_\+\+OP\+\_\+\+ERR. A good size suggestion is AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN bytes. AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT is not allowed. \mbox{\Hypertarget{date__time_8h_aebf8999fedd7481a748ecc458af3c7e7}\label{date__time_8h_aebf8999fedd7481a748ecc458af3c7e7}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_to\_utc\_time\_short\_str@{aws\_date\_time\_to\_utc\_time\_short\_str}}
+\index{aws\_date\_time\_to\_utc\_time\_short\_str@{aws\_date\_time\_to\_utc\_time\_short\_str}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_to\_utc\_time\_short\_str()}{aws\_date\_time\_to\_utc\_time\_short\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+to\+\_\+utc\+\_\+time\+\_\+short\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output\+\_\+buf }\end{DoxyParamCaption})}
+
+Copies the current time as a formatted short date string in utc time into output\+\_\+buf. If buffer is too small, it will return AWS\+\_\+\+OP\+\_\+\+ERR. A good size suggestion is AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN bytes. AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT is not allowed. \mbox{\Hypertarget{date__time_8h_a392be6ce680e918540a5e5876ee4fb43}\label{date__time_8h_a392be6ce680e918540a5e5876ee4fb43}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_to\_utc\_time\_str@{aws\_date\_time\_to\_utc\_time\_str}}
+\index{aws\_date\_time\_to\_utc\_time\_str@{aws\_date\_time\_to\_utc\_time\_str}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_to\_utc\_time\_str()}{aws\_date\_time\_to\_utc\_time\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+date\+\_\+time\+\_\+to\+\_\+utc\+\_\+time\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{enum \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\+\_\+date\+\_\+format}}}]{fmt,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output\+\_\+buf }\end{DoxyParamCaption})}
+
+Copies the current time as a formatted date string in utc time into output\+\_\+buf. If buffer is too small, it will return AWS\+\_\+\+OP\+\_\+\+ERR. A good size suggestion is AWS\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+STR\+\_\+\+MAX\+\_\+\+LEN bytes. AWS\+\_\+\+DATE\+\_\+\+FORMAT\+\_\+\+AUTO\+\_\+\+DETECT is not allowed. \mbox{\Hypertarget{date__time_8h_a459725efbb8fdf3770d7a1d606513ce6}\label{date__time_8h_a459725efbb8fdf3770d7a1d606513ce6}} 
+\index{date\_time.h@{date\_time.h}!aws\_date\_time\_year@{aws\_date\_time\_year}}
+\index{aws\_date\_time\_year@{aws\_date\_time\_year}!date\_time.h@{date\_time.h}}
+\doxysubsubsection{\texorpdfstring{aws\_date\_time\_year()}{aws\_date\_time\_year()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint16\+\_\+t aws\+\_\+date\+\_\+time\+\_\+year (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+

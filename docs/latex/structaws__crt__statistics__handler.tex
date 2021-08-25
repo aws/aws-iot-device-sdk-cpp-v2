@@ -1,0 +1,48 @@
+\hypertarget{structaws__crt__statistics__handler}{}\doxysection{aws\+\_\+crt\+\_\+statistics\+\_\+handler Struct Reference}
+\label{structaws__crt__statistics__handler}\index{aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}}
+
+
+{\ttfamily \#include $<$statistics.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__crt__statistics__handler__vtable}{aws\+\_\+crt\+\_\+statistics\+\_\+handler\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__crt__statistics__handler_ae2224561c77c9929ca7cdf0549220f4a}{vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__crt__statistics__handler_a772efd220558f7c7333596422a74df68}{allocator}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__crt__statistics__handler_ae3fd81d38d96e1b9b552882cf34e3e27}{impl}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base structure for all statistics handler implementations.
+
+A statistics handler is an object that listens to a stream of polymorphic (via the category RTTI enum) statistics structures emitted from some arbitrary source. In the initial implementation, statistics handlers are primarily attached to channels, where they monitor IO throughput and state data (from channel handlers) to determine a connection\textquotesingle{}s health.
+
+Statistics handlers are a generalization of the timeout and bandwidth filters that are often associated with SDK network connections. Configurable, default implementations are defined at the protocol level (http, etc...) where they can be attached at connection (channel) creation time. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__crt__statistics__handler_a772efd220558f7c7333596422a74df68}\label{structaws__crt__statistics__handler_a772efd220558f7c7333596422a74df68}} 
+\index{aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+crt\+\_\+statistics\+\_\+handler\+::allocator}
+
+\mbox{\Hypertarget{structaws__crt__statistics__handler_ae3fd81d38d96e1b9b552882cf34e3e27}\label{structaws__crt__statistics__handler_ae3fd81d38d96e1b9b552882cf34e3e27}} 
+\index{aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}!impl@{impl}}
+\index{impl@{impl}!aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}}
+\doxysubsubsection{\texorpdfstring{impl}{impl}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+crt\+\_\+statistics\+\_\+handler\+::impl}
+
+\mbox{\Hypertarget{structaws__crt__statistics__handler_ae2224561c77c9929ca7cdf0549220f4a}\label{structaws__crt__statistics__handler_ae2224561c77c9929ca7cdf0549220f4a}} 
+\index{aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}!vtable@{vtable}}
+\index{vtable@{vtable}!aws\_crt\_statistics\_handler@{aws\_crt\_statistics\_handler}}
+\doxysubsubsection{\texorpdfstring{vtable}{vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__crt__statistics__handler__vtable}{aws\+\_\+crt\+\_\+statistics\+\_\+handler\+\_\+vtable}}$\ast$ aws\+\_\+crt\+\_\+statistics\+\_\+handler\+::vtable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h}{statistics.\+h}}\end{DoxyCompactItemize}

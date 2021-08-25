@@ -1,0 +1,89 @@
+\hypertarget{s2n__server__renegotiation__info_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+renegotiation\+\_\+info.c File Reference}
+\label{s2n__server__renegotiation__info_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_renegotiation\_info.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_renegotiation\_info.c}}
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+server\+\_\+renegotiation\+\_\+info.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__server__renegotiation__info_8c_afc2fef68f4d379b27e368c6fc5c00485}{s2n\+\_\+renegotiation\+\_\+info\+\_\+should\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__server__renegotiation__info_8c_a9f77a344b09bf83d4860ea9f9ee21dd8}{s2n\+\_\+renegotiation\+\_\+info\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__server__renegotiation__info_8c_adc44f8e9ea37724f88bcddd15386e4d9}{s2n\+\_\+renegotiation\+\_\+info\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__server__renegotiation__info_8c_a59d9ae50caec196fc8a251f1e97754d5}{s2n\+\_\+recv\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__server__renegotiation__info_8c_acb28319ba5559f8b21fa3cecd19dfee1}{s2n\+\_\+send\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__renegotiation__info_8c_a5ddb9e1fdc8a929a4f752db29f3b7c2d}{s2n\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__renegotiation__info_8c_aaab0519648c1ea03c3b708072711a4be}{s2n\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_a59d9ae50caec196fc8a251f1e97754d5}\label{s2n__server__renegotiation__info_8c_a59d9ae50caec196fc8a251f1e97754d5}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_recv\_server\_renegotiation\_info\_ext@{s2n\_recv\_server\_renegotiation\_info\_ext}}
+\index{s2n\_recv\_server\_renegotiation\_info\_ext@{s2n\_recv\_server\_renegotiation\_info\_ext}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_server\_renegotiation\_info\_ext()}{s2n\_recv\_server\_renegotiation\_info\_ext()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_adc44f8e9ea37724f88bcddd15386e4d9}\label{s2n__server__renegotiation__info_8c_adc44f8e9ea37724f88bcddd15386e4d9}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_renegotiation\_info\_recv@{s2n\_renegotiation\_info\_recv}}
+\index{s2n\_renegotiation\_info\_recv@{s2n\_renegotiation\_info\_recv}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_renegotiation\_info\_recv()}{s2n\_renegotiation\_info\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+renegotiation\+\_\+info\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_a9f77a344b09bf83d4860ea9f9ee21dd8}\label{s2n__server__renegotiation__info_8c_a9f77a344b09bf83d4860ea9f9ee21dd8}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_renegotiation\_info\_send@{s2n\_renegotiation\_info\_send}}
+\index{s2n\_renegotiation\_info\_send@{s2n\_renegotiation\_info\_send}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_renegotiation\_info\_send()}{s2n\_renegotiation\_info\_send()}}
+{\footnotesize\ttfamily static int s2n\+\_\+renegotiation\+\_\+info\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_afc2fef68f4d379b27e368c6fc5c00485}\label{s2n__server__renegotiation__info_8c_afc2fef68f4d379b27e368c6fc5c00485}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_renegotiation\_info\_should\_send@{s2n\_renegotiation\_info\_should\_send}}
+\index{s2n\_renegotiation\_info\_should\_send@{s2n\_renegotiation\_info\_should\_send}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_renegotiation\_info\_should\_send()}{s2n\_renegotiation\_info\_should\_send()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+renegotiation\+\_\+info\+\_\+should\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_acb28319ba5559f8b21fa3cecd19dfee1}\label{s2n__server__renegotiation__info_8c_acb28319ba5559f8b21fa3cecd19dfee1}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_send\_server\_renegotiation\_info\_ext@{s2n\_send\_server\_renegotiation\_info\_ext}}
+\index{s2n\_send\_server\_renegotiation\_info\_ext@{s2n\_send\_server\_renegotiation\_info\_ext}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_send\_server\_renegotiation\_info\_ext()}{s2n\_send\_server\_renegotiation\_info\_ext()}}
+{\footnotesize\ttfamily int s2n\+\_\+send\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_a5ddb9e1fdc8a929a4f752db29f3b7c2d}\label{s2n__server__renegotiation__info_8c_a5ddb9e1fdc8a929a4f752db29f3b7c2d}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_server\_renegotiation\_info\_ext\_size@{s2n\_server\_renegotiation\_info\_ext\_size}}
+\index{s2n\_server\_renegotiation\_info\_ext\_size@{s2n\_server\_renegotiation\_info\_ext\_size}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_renegotiation\_info\_ext\_size()}{s2n\_server\_renegotiation\_info\_ext\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+ext\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__renegotiation__info_8c_aaab0519648c1ea03c3b708072711a4be}\label{s2n__server__renegotiation__info_8c_aaab0519648c1ea03c3b708072711a4be}} 
+\index{s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}!s2n\_server\_renegotiation\_info\_extension@{s2n\_server\_renegotiation\_info\_extension}}
+\index{s2n\_server\_renegotiation\_info\_extension@{s2n\_server\_renegotiation\_info\_extension}!s2n\_server\_renegotiation\_info.c@{s2n\_server\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_renegotiation\_info\_extension}{s2n\_server\_renegotiation\_info\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+renegotiation\+\_\+info\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_a588964defd85ac156ea0941a1cc74279}{TLS\_EXTENSION\_RENEGOTIATION\_INFO}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{false},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__server__renegotiation__info_8c_a9f77a344b09bf83d4860ea9f9ee21dd8}{s2n\_renegotiation\_info\_send}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__server__renegotiation__info_8c_adc44f8e9ea37724f88bcddd15386e4d9}{s2n\_renegotiation\_info\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__server__renegotiation__info_8c_afc2fef68f4d379b27e368c6fc5c00485}{s2n\_renegotiation\_info\_should\_send}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

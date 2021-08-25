@@ -1,0 +1,404 @@
+\hypertarget{hash__table_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/hash\+\_\+table.h File Reference}
+\label{hash__table_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/hash\_table.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/hash\_table.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}}
+\item 
+struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}}
+\item 
+struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hash__table_8h_aeb9e35eaf0cbb71e6dc840e775813c33}{AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+CONTINUE}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{hash__table_8h_a754702bb1c1068a9fb020728a065ed0f}{AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE}}~(1 $<$$<$ 1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\+\_\+t() \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}}(const void $\ast$key)
+\item 
+typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}}(const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+typedef void() \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}}(void $\ast$key\+\_\+or\+\_\+value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{hash__table_8h_a7526193899b1bcefa768767603b2c3db}{aws\+\_\+hash\+\_\+iter\+\_\+status}} \{ \mbox{\hyperlink{hash__table_8h_a7526193899b1bcefa768767603b2c3dbab1eb2926400257e0d98020f57a3d8534}{AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+DONE}}
+, \mbox{\hyperlink{hash__table_8h_a7526193899b1bcefa768767603b2c3dba37d4a5204118bd40b266498bf4974346}{AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+DELETE\+\_\+\+CALLED}}
+, \mbox{\hyperlink{hash__table_8h_a7526193899b1bcefa768767603b2c3dba24307e3231cb12d5909f5d098bd19883}{AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+READY\+\_\+\+FOR\+\_\+\+USE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a079fd4814787253c0a8237d860676688}{aws\+\_\+hash\+\_\+table\+\_\+init}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, size\+\_\+t size, \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$hash\+\_\+fn, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$equals\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+key\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+value\+\_\+fn)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a0513e805a4e516e6a434dbf22c4d7188}{aws\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a9b429058374f6d11ef68a5493abac0d6}{aws\+\_\+hash\+\_\+table\+\_\+swap}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} a, struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a0bb8cc0eb156e5bd8becca2c80f1a7e2}{aws\+\_\+hash\+\_\+table\+\_\+move}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to, struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} from)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{hash__table_8h_a700fc077ce26e8403d93959e8c841431}{aws\+\_\+hash\+\_\+table\+\_\+get\+\_\+entry\+\_\+count}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} \mbox{\hyperlink{hash__table_8h_a8fe206a6a7394e75e7e5622820e6798b}{aws\+\_\+hash\+\_\+iter\+\_\+begin}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_ad63e4bb4f6e910a13852b787e7cbfb8a}{aws\+\_\+hash\+\_\+iter\+\_\+done}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a0cdf5633b03a89ca37b97afe05b5c23f}{aws\+\_\+hash\+\_\+iter\+\_\+next}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_af84d547045957470c5fdf0fc1914bf6f}{aws\+\_\+hash\+\_\+iter\+\_\+delete}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} destroy\+\_\+contents)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a755ddae77d97ed2fa8f4ef66002c6958}{aws\+\_\+hash\+\_\+table\+\_\+find}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$p\+\_\+elem)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a89276fac5e83194a68748b13c1b4a6ab}{aws\+\_\+hash\+\_\+table\+\_\+create}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$p\+\_\+elem, int $\ast$was\+\_\+created)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a788acdfdb835b839f5f4b2e93bf0e14c}{aws\+\_\+hash\+\_\+table\+\_\+put}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, void $\ast$value, int $\ast$was\+\_\+created)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a07ae89a906c9bc61ac24a00ec0dd43dd}{aws\+\_\+hash\+\_\+table\+\_\+remove}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+value, int $\ast$was\+\_\+present)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_ae48029f3f6228f99d2a9d200d4deffce}{aws\+\_\+hash\+\_\+table\+\_\+remove\+\_\+element}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+value)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8h_a6b07eb97de82842e068dc87b0f29d9e0}{aws\+\_\+hash\+\_\+table\+\_\+foreach}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, int($\ast$callback)(void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element), void $\ast$context)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_aaff08f080ef1729248b6de9dfebe086e}{aws\+\_\+hash\+\_\+table\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$a, const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$value\+\_\+eq)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a218e8978f03480fdf60d0a82eca829d2}{aws\+\_\+hash\+\_\+table\+\_\+clear}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{hash__table_8h_a32d3036991df1e8544f3ead0ab128c44}{aws\+\_\+hash\+\_\+c\+\_\+string}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{hash__table_8h_a6eef8a39063f0fd46bf41500ba166cdd}{aws\+\_\+hash\+\_\+string}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{hash__table_8h_a54682fd811203b400867b9cb64c42acd}{aws\+\_\+hash\+\_\+byte\+\_\+cursor\+\_\+ptr}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{hash__table_8h_a0e68cb14dcee1d7bfd2577915ab4b764}{aws\+\_\+hash\+\_\+ptr}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t \mbox{\hyperlink{hash__table_8h_ab7daa1334545abd6b3828a999e5367e2}{aws\+\_\+hash\+\_\+combine}} (uint64\+\_\+t item1, uint64\+\_\+t item2)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_a6006dac2411e525ffe2dfee4fd2df743}{aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_aeda732308f1bb929d793b34b4ab743ca}{aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{hash__table_8h_a77a675f15c466e740b7f9ceaf1211d86}{aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+destroy}} (void $\ast$a)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_a0f0aa2ac53250b983da7367cdf5f6cb0}{aws\+\_\+ptr\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_ac972dbd127cbd9be80213d66f9920c4c}{aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8h_aa064e929f1befd71d2f79d1878181c3f}{aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hash__table_8h_aeb9e35eaf0cbb71e6dc840e775813c33}\label{hash__table_8h_aeb9e35eaf0cbb71e6dc840e775813c33}} 
+\index{hash\_table.h@{hash\_table.h}!AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE@{AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE}}
+\index{AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE@{AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE}{AWS\_COMMON\_HASH\_TABLE\_ITER\_CONTINUE}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+CONTINUE~(1 $<$$<$ 0)}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{hash__table_8h_a754702bb1c1068a9fb020728a065ed0f}\label{hash__table_8h_a754702bb1c1068a9fb020728a065ed0f}} 
+\index{hash\_table.h@{hash\_table.h}!AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE@{AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE}}
+\index{AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE@{AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE}{AWS\_COMMON\_HASH\_TABLE\_ITER\_DELETE}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE~(1 $<$$<$ 1)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}\label{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_callback\_destroy\_fn@{aws\_hash\_callback\_destroy\_fn}}
+\index{aws\_hash\_callback\_destroy\_fn@{aws\_hash\_callback\_destroy\_fn}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_destroy\_fn}{aws\_hash\_callback\_destroy\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn(void $\ast$key\+\_\+or\+\_\+value)}
+
+Prototype for a hash table key or value destructor function pointer.
+
+This function is used to destroy elements in the hash table when the table is cleared or cleaned up.
+
+Note that functions which remove individual elements from the hash table provide options of whether or not to invoke the destructors on the key and value of a removed element. \mbox{\Hypertarget{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}\label{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_callback\_eq\_fn@{aws\_hash\_callback\_eq\_fn}}
+\index{aws\_hash\_callback\_eq\_fn@{aws\_hash\_callback\_eq\_fn}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_eq\_fn}{aws\_hash\_callback\_eq\_fn}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn(const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})}
+
+Prototype for a hash table equality check function pointer.
+
+This type is usually used for a function that compares two hash table keys, but note that the same type is used for a function that compares two hash table values in aws\+\_\+hash\+\_\+table\+\_\+eq.
+
+Equality functions used in a hash table must be reflexive (i.\+e., a == b if and only if b == a), and must be consistent with the hash function in use. \mbox{\Hypertarget{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}\label{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_fn@{aws\_hash\_fn}}
+\index{aws\_hash\_fn@{aws\_hash\_fn}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_fn}{aws\_hash\_fn}}
+{\footnotesize\ttfamily typedef uint64\+\_\+t() aws\+\_\+hash\+\_\+fn(const void $\ast$key)}
+
+Prototype for a key hashing function pointer. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{hash__table_8h_a7526193899b1bcefa768767603b2c3db}\label{hash__table_8h_a7526193899b1bcefa768767603b2c3db}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_status@{aws\_hash\_iter\_status}}
+\index{aws\_hash\_iter\_status@{aws\_hash\_iter\_status}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_status}{aws\_hash\_iter\_status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hash__table_8h_a7526193899b1bcefa768767603b2c3db}{aws\+\_\+hash\+\_\+iter\+\_\+status}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HASH\_ITER\_STATUS\_DONE@{AWS\_HASH\_ITER\_STATUS\_DONE}!hash\_table.h@{hash\_table.h}}\index{hash\_table.h@{hash\_table.h}!AWS\_HASH\_ITER\_STATUS\_DONE@{AWS\_HASH\_ITER\_STATUS\_DONE}}}\mbox{\Hypertarget{hash__table_8h_a7526193899b1bcefa768767603b2c3dbab1eb2926400257e0d98020f57a3d8534}\label{hash__table_8h_a7526193899b1bcefa768767603b2c3dbab1eb2926400257e0d98020f57a3d8534}} 
+AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+DONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HASH\_ITER\_STATUS\_DELETE\_CALLED@{AWS\_HASH\_ITER\_STATUS\_DELETE\_CALLED}!hash\_table.h@{hash\_table.h}}\index{hash\_table.h@{hash\_table.h}!AWS\_HASH\_ITER\_STATUS\_DELETE\_CALLED@{AWS\_HASH\_ITER\_STATUS\_DELETE\_CALLED}}}\mbox{\Hypertarget{hash__table_8h_a7526193899b1bcefa768767603b2c3dba37d4a5204118bd40b266498bf4974346}\label{hash__table_8h_a7526193899b1bcefa768767603b2c3dba37d4a5204118bd40b266498bf4974346}} 
+AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+DELETE\+\_\+\+CALLED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HASH\_ITER\_STATUS\_READY\_FOR\_USE@{AWS\_HASH\_ITER\_STATUS\_READY\_FOR\_USE}!hash\_table.h@{hash\_table.h}}\index{hash\_table.h@{hash\_table.h}!AWS\_HASH\_ITER\_STATUS\_READY\_FOR\_USE@{AWS\_HASH\_ITER\_STATUS\_READY\_FOR\_USE}}}\mbox{\Hypertarget{hash__table_8h_a7526193899b1bcefa768767603b2c3dba24307e3231cb12d5909f5d098bd19883}\label{hash__table_8h_a7526193899b1bcefa768767603b2c3dba24307e3231cb12d5909f5d098bd19883}} 
+AWS\+\_\+\+HASH\+\_\+\+ITER\+\_\+\+STATUS\+\_\+\+READY\+\_\+\+FOR\+\_\+\+USE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hash__table_8h_a54682fd811203b400867b9cb64c42acd}\label{hash__table_8h_a54682fd811203b400867b9cb64c42acd}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_byte\_cursor\_ptr@{aws\_hash\_byte\_cursor\_ptr}}
+\index{aws\_hash\_byte\_cursor\_ptr@{aws\_hash\_byte\_cursor\_ptr}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_byte\_cursor\_ptr()}{aws\_hash\_byte\_cursor\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+hash\+\_\+byte\+\_\+cursor\+\_\+ptr (\begin{DoxyParamCaption}\item[{const void $\ast$}]{item }\end{DoxyParamCaption})}
+
+Convenience hash function for struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}. Hash is same as used on the string bytes by aws\+\_\+hash\+\_\+c\+\_\+string. \mbox{\Hypertarget{hash__table_8h_a32d3036991df1e8544f3ead0ab128c44}\label{hash__table_8h_a32d3036991df1e8544f3ead0ab128c44}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_c\_string@{aws\_hash\_c\_string}}
+\index{aws\_hash\_c\_string@{aws\_hash\_c\_string}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_c\_string()}{aws\_hash\_c\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+hash\+\_\+c\+\_\+string (\begin{DoxyParamCaption}\item[{const void $\ast$}]{item }\end{DoxyParamCaption})}
+
+Convenience hash function for NULL-\/terminated C-\/strings \mbox{\Hypertarget{hash__table_8h_a6006dac2411e525ffe2dfee4fd2df743}\label{hash__table_8h_a6006dac2411e525ffe2dfee4fd2df743}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_callback\_c\_str\_eq@{aws\_hash\_callback\_c\_str\_eq}}
+\index{aws\_hash\_callback\_c\_str\_eq@{aws\_hash\_callback\_c\_str\_eq}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_c\_str\_eq()}{aws\_hash\_callback\_c\_str\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+Convenience eq callback for NULL-\/terminated C-\/strings \mbox{\Hypertarget{hash__table_8h_a77a675f15c466e740b7f9ceaf1211d86}\label{hash__table_8h_a77a675f15c466e740b7f9ceaf1211d86}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_callback\_string\_destroy@{aws\_hash\_callback\_string\_destroy}}
+\index{aws\_hash\_callback\_string\_destroy@{aws\_hash\_callback\_string\_destroy}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_string\_destroy()}{aws\_hash\_callback\_string\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})}
+
+Convenience destroy callback for AWS strings \mbox{\Hypertarget{hash__table_8h_aeda732308f1bb929d793b34b4ab743ca}\label{hash__table_8h_aeda732308f1bb929d793b34b4ab743ca}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_callback\_string\_eq@{aws\_hash\_callback\_string\_eq}}
+\index{aws\_hash\_callback\_string\_eq@{aws\_hash\_callback\_string\_eq}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_string\_eq()}{aws\_hash\_callback\_string\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+Convenience eq callback for AWS strings \mbox{\Hypertarget{hash__table_8h_ab7daa1334545abd6b3828a999e5367e2}\label{hash__table_8h_ab7daa1334545abd6b3828a999e5367e2}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_combine@{aws\_hash\_combine}}
+\index{aws\_hash\_combine@{aws\_hash\_combine}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_combine()}{aws\_hash\_combine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+hash\+\_\+combine (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{item1,  }\item[{uint64\+\_\+t}]{item2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hash__table_8h_a8fe206a6a7394e75e7e5622820e6798b}\label{hash__table_8h_a8fe206a6a7394e75e7e5622820e6798b}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_begin@{aws\_hash\_iter\_begin}}
+\index{aws\_hash\_iter\_begin@{aws\_hash\_iter\_begin}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_begin()}{aws\_hash\_iter\_begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} aws\+\_\+hash\+\_\+iter\+\_\+begin (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Returns an iterator to be used for iterating through a hash table. Iterator will already point to the first element of the table it finds, which can be accessed as iter.\+element.
+
+This function cannot fail, but if there are no elements in the table, the returned iterator will return true for aws\+\_\+hash\+\_\+iter\+\_\+done(\&iter). \mbox{\Hypertarget{hash__table_8h_af84d547045957470c5fdf0fc1914bf6f}\label{hash__table_8h_af84d547045957470c5fdf0fc1914bf6f}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}}
+\index{aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_delete()}{aws\_hash\_iter\_delete()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+iter\+\_\+delete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{destroy\+\_\+contents }\end{DoxyParamCaption})}
+
+Deletes the element currently pointed-\/to by the hash iterator. After calling this method, the element member of the iterator should not be accessed until the next call to aws\+\_\+hash\+\_\+iter\+\_\+next.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destroy\+\_\+contents} & If true, the destructors for the key and value will be called. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hash__table_8h_ad63e4bb4f6e910a13852b787e7cbfb8a}\label{hash__table_8h_ad63e4bb4f6e910a13852b787e7cbfb8a}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_done@{aws\_hash\_iter\_done}}
+\index{aws\_hash\_iter\_done@{aws\_hash\_iter\_done}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_done()}{aws\_hash\_iter\_done()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+done (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Returns true if iterator is done iterating through table, false otherwise. If this is true, the iterator will not include an element of the table. \mbox{\Hypertarget{hash__table_8h_aa064e929f1befd71d2f79d1878181c3f}\label{hash__table_8h_aa064e929f1befd71d2f79d1878181c3f}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}}
+\index{aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_is\_valid()}{aws\_hash\_iter\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Given a pointer to a hash\+\_\+iter, checks that it is well-\/formed, with all data-\/structure invariants. \mbox{\Hypertarget{hash__table_8h_a0cdf5633b03a89ca37b97afe05b5c23f}\label{hash__table_8h_a0cdf5633b03a89ca37b97afe05b5c23f}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_iter\_next@{aws\_hash\_iter\_next}}
+\index{aws\_hash\_iter\_next@{aws\_hash\_iter\_next}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_next()}{aws\_hash\_iter\_next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+iter\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+Updates iterator so that it points to next element of hash table.
+
+This and the two previous functions are designed to be used together with the following idiom\+:
+
+for (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} iter = aws\+\_\+hash\+\_\+iter\+\_\+begin(\&map); !aws\+\_\+hash\+\_\+iter\+\_\+done(\&iter); aws\+\_\+hash\+\_\+iter\+\_\+next(\&iter)) \{ const key\+\_\+type key = $\ast$(const key\+\_\+type $\ast$)iter.\+element.\+key; value\+\_\+type value = $\ast$(value\+\_\+type $\ast$)iter.\+element.\+value; // etc. \}
+
+Note that calling this on an iter which is \char`\"{}done\char`\"{} is idempotent\+: i.\+e. it will return another iter which is \char`\"{}done\char`\"{}. \mbox{\Hypertarget{hash__table_8h_a0e68cb14dcee1d7bfd2577915ab4b764}\label{hash__table_8h_a0e68cb14dcee1d7bfd2577915ab4b764}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_ptr@{aws\_hash\_ptr}}
+\index{aws\_hash\_ptr@{aws\_hash\_ptr}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_ptr()}{aws\_hash\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+hash\+\_\+ptr (\begin{DoxyParamCaption}\item[{const void $\ast$}]{item }\end{DoxyParamCaption})}
+
+Convenience hash function which hashes the pointer value directly, without dereferencing. This can be used in cases where pointer identity is desired, or where a uintptr\+\_\+t is encoded into a const void $\ast$. \mbox{\Hypertarget{hash__table_8h_a6eef8a39063f0fd46bf41500ba166cdd}\label{hash__table_8h_a6eef8a39063f0fd46bf41500ba166cdd}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_string@{aws\_hash\_string}}
+\index{aws\_hash\_string@{aws\_hash\_string}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_string()}{aws\_hash\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} uint64\+\_\+t aws\+\_\+hash\+\_\+string (\begin{DoxyParamCaption}\item[{const void $\ast$}]{item }\end{DoxyParamCaption})}
+
+Convenience hash function for struct aws\+\_\+strings. Hash is same as used on the string bytes by aws\+\_\+hash\+\_\+c\+\_\+string. \mbox{\Hypertarget{hash__table_8h_a0513e805a4e516e6a434dbf22c4d7188}\label{hash__table_8h_a0513e805a4e516e6a434dbf22c4d7188}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_clean\_up@{aws\_hash\_table\_clean\_up}}
+\index{aws\_hash\_table\_clean\_up@{aws\_hash\_table\_clean\_up}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_clean\_up()}{aws\_hash\_table\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Deletes every element from map and frees all associated memory. destroy\+\_\+fn will be called for each element. aws\+\_\+hash\+\_\+table\+\_\+init must be called before reusing the hash table.
+
+This method is idempotent. \mbox{\Hypertarget{hash__table_8h_a218e8978f03480fdf60d0a82eca829d2}\label{hash__table_8h_a218e8978f03480fdf60d0a82eca829d2}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_clear@{aws\_hash\_table\_clear}}
+\index{aws\_hash\_table\_clear@{aws\_hash\_table\_clear}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_clear()}{aws\_hash\_table\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+table\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Removes every element from the hash map. destroy\+\_\+fn will be called for each element.
+
+Nondet clear. Since the only externally visible property of this table is the entry\+\_\+count, just set it to 0 \mbox{\Hypertarget{hash__table_8h_a89276fac5e83194a68748b13c1b4a6ab}\label{hash__table_8h_a89276fac5e83194a68748b13c1b4a6ab}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_create@{aws\_hash\_table\_create}}
+\index{aws\_hash\_table\_create@{aws\_hash\_table\_create}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_create()}{aws\_hash\_table\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+create (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$}]{p\+\_\+elem,  }\item[{int $\ast$}]{was\+\_\+created }\end{DoxyParamCaption})}
+
+Attempts to locate an element at key. If no such element was found, creates a new element, with value initialized to NULL. In either case, a pointer to the element is placed in $\ast$p\+\_\+elem.
+
+If was\+\_\+created is non-\/\+NULL, $\ast$was\+\_\+created is set to 0 if an existing element was found, or 1 is a new element was created.
+
+Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if an item was found or created. Raises AWS\+\_\+\+ERROR\+\_\+\+OOM if hash table expansion was required and memory allocation failed. \mbox{\Hypertarget{hash__table_8h_aaff08f080ef1729248b6de9dfebe086e}\label{hash__table_8h_aaff08f080ef1729248b6de9dfebe086e}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_eq@{aws\_hash\_table\_eq}}
+\index{aws\_hash\_table\_eq@{aws\_hash\_table\_eq}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_eq()}{aws\_hash\_table\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+table\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{value\+\_\+eq }\end{DoxyParamCaption})}
+
+Compares two hash tables for equality. Both hash tables must have equivalent key comparators; values will be compared using the comparator passed into this function. The key hash function does not need to be equivalent between the two hash tables. \mbox{\Hypertarget{hash__table_8h_a755ddae77d97ed2fa8f4ef66002c6958}\label{hash__table_8h_a755ddae77d97ed2fa8f4ef66002c6958}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_find@{aws\_hash\_table\_find}}
+\index{aws\_hash\_table\_find@{aws\_hash\_table\_find}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_find()}{aws\_hash\_table\_find()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+find (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$}]{p\+\_\+elem }\end{DoxyParamCaption})}
+
+Attempts to locate an element at key. If the element is found, a pointer to the value is placed in $\ast$p\+\_\+elem; if it is not found, $\ast$p\+Elem is set to NULL. Either way, AWS\+\_\+\+OP\+\_\+\+SUCCESS is returned.
+
+This method does not change the state of the hash table. Therefore, it is safe to call \+\_\+find from multiple threads on the same hash table, provided no mutating operations happen in parallel.
+
+Calling code may update the value in the hash table by modifying $\ast$$\ast$p\+Elem after a successful find. However, this pointer is not guaranteed to remain usable after a subsequent call to \+\_\+put, \+\_\+delete, \+\_\+clear, or \+\_\+clean\+\_\+up.
+
+Implements a version of \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find()}} that non-\/determinstially either\+:
+\begin{DoxyEnumerate}
+\item Return NULL, indicating that the element didn\textquotesingle{}t exist
+\item Returns a newly created element. By default, just create a totally non-\/determinstic element. However, if the consumer of the stub uses the element, this may be insufficient. Use the same style of generator as the hash\+\_\+iterator stubs, except with a different signature due to the different calling context.
+\end{DoxyEnumerate}
+
+To declare a genarator\+: -\/DHASH\+\_\+\+TABLE\+\_\+\+FIND\+\_\+\+ELEMENT\+\_\+\+GENERATOR=the\+\_\+generator\+\_\+fn, where the\+\_\+generator\+\_\+fn has signature\+: the\+\_\+generator\+\_\+fnconst struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+elem).
+
+NOTE\+: If you want a version of \mbox{\hyperlink{aws__hash__table__no__slots__override_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find()}} that that ensures that the table actually has the found value when find returns success, that can be found in \mbox{\hyperlink{aws__hash__table__find__override_8c}{aws\+\_\+hash\+\_\+table\+\_\+find\+\_\+override.\+c}} \mbox{\Hypertarget{hash__table_8h_a6b07eb97de82842e068dc87b0f29d9e0}\label{hash__table_8h_a6b07eb97de82842e068dc87b0f29d9e0}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_foreach@{aws\_hash\_table\_foreach}}
+\index{aws\_hash\_table\_foreach@{aws\_hash\_table\_foreach}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_foreach()}{aws\_hash\_table\_foreach()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+foreach (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{int($\ast$)(void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element)}]{callback,  }\item[{void $\ast$}]{context }\end{DoxyParamCaption})}
+
+Iterates through every element in the map and invokes the callback on that item. Iteration is performed in an arbitrary, implementation-\/defined order, and is not guaranteed to be consistent across invocations.
+
+The callback may change the value associated with the key by overwriting the value pointed-\/to by value. In this case, the on\+\_\+element\+\_\+removed callback will not be invoked, unless the callback invokes AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE (in which case the on\+\_\+element\+\_\+removed is given the updated value).
+
+The callback must return a bitmask of zero or more of the following values ORed together\+:\hypertarget{hash__table_8h_autotoc_md72}{}\doxysubsection{AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+CONTINUE -\/ Continues iteration to the next}\label{hash__table_8h_autotoc_md72}
+element (if not set, iteration stops) \hypertarget{hash__table_8h_autotoc_md73}{}\doxysubsection{AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE   -\/ Deletes the current value and}\label{hash__table_8h_autotoc_md73}
+continues iteration. destroy\+\_\+fn will NOT be invoked.
+
+Invoking any method which may change the contents of the hashtable during iteration results in undefined behavior. However, you may safely invoke non-\/mutating operations during an iteration.
+
+This operation is mutating only if AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE is returned at some point during iteration. Otherwise, it is non-\/mutating and is safe to invoke in parallel with other non-\/mutating operations. \mbox{\Hypertarget{hash__table_8h_a700fc077ce26e8403d93959e8c841431}\label{hash__table_8h_a700fc077ce26e8403d93959e8c841431}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_get\_entry\_count@{aws\_hash\_table\_get\_entry\_count}}
+\index{aws\_hash\_table\_get\_entry\_count@{aws\_hash\_table\_get\_entry\_count}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_get\_entry\_count()}{aws\_hash\_table\_get\_entry\_count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t aws\+\_\+hash\+\_\+table\+\_\+get\+\_\+entry\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Returns the current number of entries in the table. \mbox{\Hypertarget{hash__table_8h_a079fd4814787253c0a8237d860676688}\label{hash__table_8h_a079fd4814787253c0a8237d860676688}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_init@{aws\_hash\_table\_init}}
+\index{aws\_hash\_table\_init@{aws\_hash\_table\_init}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_init()}{aws\_hash\_table\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{size\+\_\+t}]{size,  }\item[{\mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$}]{hash\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{equals\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+key\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+value\+\_\+fn }\end{DoxyParamCaption})}
+
+Initializes a hash map with initial capacity for \textquotesingle{}size\textquotesingle{} elements without resizing. Uses hash\+\_\+fn to compute the hash of each element. equals\+\_\+fn to compute equality of two keys. Whenever an element is removed without being returned, destroy\+\_\+key\+\_\+fn is run on the pointer to the key and destroy\+\_\+value\+\_\+fn is run on the pointer to the value. Either or both may be NULL if a callback is not desired in this case. \mbox{\Hypertarget{hash__table_8h_ac972dbd127cbd9be80213d66f9920c4c}\label{hash__table_8h_ac972dbd127cbd9be80213d66f9920c4c}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}}
+\index{aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_is\_valid()}{aws\_hash\_table\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Best-\/effort check of \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} data-\/structure invariants
+
+Best-\/effort check of \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} data-\/structure invariants Some invariants, such as that the number of entries is actually the same as the entry\+\_\+count field, would require a loop to check
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. As noted above the only externally visible property of the hash-\/table is the \mbox{[}entry\+\_\+count\mbox{]}. And it can vary between 0-\/SIZE\+\_\+\+MAX. So there is really nothing to assert here \mbox{\Hypertarget{hash__table_8h_a0bb8cc0eb156e5bd8becca2c80f1a7e2}\label{hash__table_8h_a0bb8cc0eb156e5bd8becca2c80f1a7e2}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_move@{aws\_hash\_table\_move}}
+\index{aws\_hash\_table\_move@{aws\_hash\_table\_move}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_move()}{aws\_hash\_table\_move()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+table\+\_\+move (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to,  }\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{from }\end{DoxyParamCaption})}
+
+Moves the hash table in \textquotesingle{}from\textquotesingle{} to \textquotesingle{}to\textquotesingle{}. After this move, \textquotesingle{}from\textquotesingle{} will be identical to the state of the original \textquotesingle{}to\textquotesingle{} hash table, and \textquotesingle{}to\textquotesingle{} will be in the same state as if it had been passed to aws\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up (that is, it will have no memory allocated, and it will be safe to either discard it or call aws\+\_\+hash\+\_\+table\+\_\+clean\+\_\+up again).
+
+Note that \textquotesingle{}to\textquotesingle{} will not be cleaned up. You should make sure that \textquotesingle{}to\textquotesingle{} is either uninitialized or cleaned up before moving a hashtable into it. \mbox{\Hypertarget{hash__table_8h_a788acdfdb835b839f5f4b2e93bf0e14c}\label{hash__table_8h_a788acdfdb835b839f5f4b2e93bf0e14c}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_put@{aws\_hash\_table\_put}}
+\index{aws\_hash\_table\_put@{aws\_hash\_table\_put}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_put()}{aws\_hash\_table\_put()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+put (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$}]{value,  }\item[{int $\ast$}]{was\+\_\+created }\end{DoxyParamCaption})}
+
+Inserts a new element at key, with the given value. If another element exists at that key, the old element will be overwritten; both old key and value objects will be destroyed.
+
+If was\+\_\+created is non-\/\+NULL, $\ast$was\+\_\+created is set to 0 if an existing element was found, or 1 is a new element was created.
+
+Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if an item was found or created. Raises AWS\+\_\+\+ERROR\+\_\+\+OOM if hash table expansion was required and memory
+
+Nondet put. Since there is no backing store, we just non-\/determinstically either add it or don\textquotesingle{}t. \mbox{\Hypertarget{hash__table_8h_a07ae89a906c9bc61ac24a00ec0dd43dd}\label{hash__table_8h_a07ae89a906c9bc61ac24a00ec0dd43dd}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_remove@{aws\_hash\_table\_remove}}
+\index{aws\_hash\_table\_remove@{aws\_hash\_table\_remove}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_remove()}{aws\_hash\_table\_remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+value,  }\item[{int $\ast$}]{was\+\_\+present }\end{DoxyParamCaption})}
+
+Removes element at key. Always returns AWS\+\_\+\+OP\+\_\+\+SUCCESS.
+
+If p\+Value is non-\/\+NULL, the existing value (if any) is moved into ($\ast$value) before removing from the table, and destroy\+\_\+fn is {\itshape not} invoked. If p\+Value is NULL, then (if the element existed) destroy\+\_\+fn will be invoked on the element being removed.
+
+If was\+\_\+present is non-\/\+NULL, it is set to 0 if the element was not present, or 1 if it was present (and is now removed). \mbox{\Hypertarget{hash__table_8h_ae48029f3f6228f99d2a9d200d4deffce}\label{hash__table_8h_ae48029f3f6228f99d2a9d200d4deffce}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_remove\_element@{aws\_hash\_table\_remove\_element}}
+\index{aws\_hash\_table\_remove\_element@{aws\_hash\_table\_remove\_element}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_remove\_element()}{aws\_hash\_table\_remove\_element()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hash\+\_\+table\+\_\+remove\+\_\+element (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Removes element already known (typically by find()).
+
+p\+\_\+value should point to a valid element returned by create() or find().
+
+NOTE\+: DO NOT call this method from inside of a aws\+\_\+hash\+\_\+table\+\_\+foreach callback, return AWS\+\_\+\+COMMON\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ITER\+\_\+\+DELETE instead. \mbox{\Hypertarget{hash__table_8h_a9b429058374f6d11ef68a5493abac0d6}\label{hash__table_8h_a9b429058374f6d11ef68a5493abac0d6}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_hash\_table\_swap@{aws\_hash\_table\_swap}}
+\index{aws\_hash\_table\_swap@{aws\_hash\_table\_swap}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hash\_table\_swap()}{aws\_hash\_table\_swap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+hash\+\_\+table\+\_\+swap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{a,  }\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{b }\end{DoxyParamCaption})}
+
+Safely swaps two hash tables. Note that we swap the entirety of the hash table, including which allocator is associated.
+
+Neither hash table is required to be initialized; if one or both is uninitialized, then the uninitialized state is also swapped. \mbox{\Hypertarget{hash__table_8h_a0f0aa2ac53250b983da7367cdf5f6cb0}\label{hash__table_8h_a0f0aa2ac53250b983da7367cdf5f6cb0}} 
+\index{hash\_table.h@{hash\_table.h}!aws\_ptr\_eq@{aws\_ptr\_eq}}
+\index{aws\_ptr\_eq@{aws\_ptr\_eq}!hash\_table.h@{hash\_table.h}}
+\doxysubsubsection{\texorpdfstring{aws\_ptr\_eq()}{aws\_ptr\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ptr\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+Equality function which compares pointer equality. 

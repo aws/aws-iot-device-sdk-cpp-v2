@@ -1,0 +1,299 @@
+\hypertarget{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_source}{}\doxysection{c\+JSON.\+h}
+\label{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_source}\index{crt/aws-\/c-\/iot/include/aws/iotdevice/external/cJSON.h@{crt/aws-\/c-\/iot/include/aws/iotdevice/external/cJSON.h}}
+\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{  Copyright (c) 2009-\/2017 Dave Gamble and cJSON contributors}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{  Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{5 \textcolor{comment}{  of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{6 \textcolor{comment}{  in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{7 \textcolor{comment}{  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{8 \textcolor{comment}{  copies of the Software, and to permit persons to whom the Software is}}
+\DoxyCodeLine{9 \textcolor{comment}{  furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{10 \textcolor{comment}{}}
+\DoxyCodeLine{11 \textcolor{comment}{  The above copyright notice and this permission notice shall be included in}}
+\DoxyCodeLine{12 \textcolor{comment}{  all copies or substantial portions of the Software.}}
+\DoxyCodeLine{13 \textcolor{comment}{}}
+\DoxyCodeLine{14 \textcolor{comment}{  THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR}}
+\DoxyCodeLine{15 \textcolor{comment}{  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,}}
+\DoxyCodeLine{16 \textcolor{comment}{  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE}}
+\DoxyCodeLine{17 \textcolor{comment}{  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER}}
+\DoxyCodeLine{18 \textcolor{comment}{  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,}}
+\DoxyCodeLine{19 \textcolor{comment}{  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN}}
+\DoxyCodeLine{20 \textcolor{comment}{  THE SOFTWARE.}}
+\DoxyCodeLine{21 \textcolor{comment}{*/}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{/*}}
+\DoxyCodeLine{24 \textcolor{comment}{ * This file has been modified from its original version by Amazon:}}
+\DoxyCodeLine{25 \textcolor{comment}{ *   (1) Address clang-\/tidy errors by renaming function parameters in a number of places}}
+\DoxyCodeLine{26 \textcolor{comment}{ *   to match their .c counterparts.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{/* clang-\/format off */}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifndef cJSON\_\_h}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define cJSON\_\_h}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{35 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}}}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#if !defined(\_\_WINDOWS\_\_) \&\& (defined(WIN32) || defined(WIN64) || defined(\_MSC\_VER) || defined(\_WIN32))}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define \_\_WINDOWS\_\_}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifdef \_\_WINDOWS\_\_}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/* When compiling for windows, we specify a specific calling convention to avoid issues where we are being called from a project with a different default calling convention.  For windows you have 3 define options:}}
+\DoxyCodeLine{46 \textcolor{comment}{}}
+\DoxyCodeLine{47 \textcolor{comment}{CJSON\_HIDE\_SYMBOLS -\/ Define this in the case where you don't want to ever dllexport symbols}}
+\DoxyCodeLine{48 \textcolor{comment}{CJSON\_EXPORT\_SYMBOLS -\/ Define this on library build when you want to dllexport symbols (default)}}
+\DoxyCodeLine{49 \textcolor{comment}{CJSON\_IMPORT\_SYMBOLS -\/ Define this if you want to dllimport symbol}}
+\DoxyCodeLine{50 \textcolor{comment}{}}
+\DoxyCodeLine{51 \textcolor{comment}{For *nix builds that support visibility attribute, you can define similar behavior by}}
+\DoxyCodeLine{52 \textcolor{comment}{}}
+\DoxyCodeLine{53 \textcolor{comment}{setting default visibility to hidden by adding}}
+\DoxyCodeLine{54 \textcolor{comment}{-\/fvisibility=hidden (for gcc)}}
+\DoxyCodeLine{55 \textcolor{comment}{or}}
+\DoxyCodeLine{56 \textcolor{comment}{-\/xldscope=hidden (for sun cc)}}
+\DoxyCodeLine{57 \textcolor{comment}{to CFLAGS}}
+\DoxyCodeLine{58 \textcolor{comment}{}}
+\DoxyCodeLine{59 \textcolor{comment}{then using the CJSON\_API\_VISIBILITY flag to "{}export"{} the same symbols the way CJSON\_EXPORT\_SYMBOLS does}}
+\DoxyCodeLine{60 \textcolor{comment}{}}
+\DoxyCodeLine{61 \textcolor{comment}{*/}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define CJSON\_CDECL \_\_cdecl}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define CJSON\_STDCALL \_\_stdcall}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{comment}{/* export symbols by default, this is necessary for copy pasting the C and header file */}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#if !defined(CJSON\_HIDE\_SYMBOLS) \&\& !defined(CJSON\_IMPORT\_SYMBOLS) \&\& !defined(CJSON\_EXPORT\_SYMBOLS)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define CJSON\_EXPORT\_SYMBOLS}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#if defined(CJSON\_HIDE\_SYMBOLS)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define CJSON\_PUBLIC(type)   type CJSON\_STDCALL}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#elif defined(CJSON\_EXPORT\_SYMBOLS)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define CJSON\_PUBLIC(type)   \_\_declspec(dllexport) type CJSON\_STDCALL}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#elif defined(CJSON\_IMPORT\_SYMBOLS)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define CJSON\_PUBLIC(type)   \_\_declspec(dllimport) type CJSON\_STDCALL}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !\_\_WINDOWS\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define CJSON\_CDECL}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define CJSON\_STDCALL}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#if (defined(\_\_GNUC\_\_) || defined(\_\_SUNPRO\_CC) || defined (\_\_SUNPRO\_C)) \&\& defined(CJSON\_API\_VISIBILITY)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define CJSON\_PUBLIC(type)   \_\_attribute\_\_((visibility("{}default"{}}))) type}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define CJSON\_PUBLIC(type) type}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{/* project version */}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define CJSON\_VERSION\_MAJOR 1}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define CJSON\_VERSION\_MINOR 7}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define CJSON\_VERSION\_PATCH 12}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{/* cJSON Types: */}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define cJSON\_Invalid (0)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define cJSON\_False  (1 << 0)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define cJSON\_True   (1 << 1)}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define cJSON\_NULL   (1 << 2)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define cJSON\_Number (1 << 3)}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define cJSON\_String (1 << 4)}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define cJSON\_Array  (1 << 5)}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define cJSON\_Object (1 << 6)}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define cJSON\_Raw    (1 << 7) }\textcolor{comment}{/* raw json */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define cJSON\_IsReference 256}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define cJSON\_StringIsConst 512}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{/* The cJSON structure: */}}
+\DoxyCodeLine{111 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113     \textcolor{comment}{/* next/prev allow you to walk array/object chains. Alternatively, use GetArraySize/GetArrayItem/GetObjectItem */}}
+\DoxyCodeLine{114     \textcolor{keyword}{struct }\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{structc_j_s_o_n_abe7e1034d4588c0e7b59dba779702b08}{next}};}
+\DoxyCodeLine{115     \textcolor{keyword}{struct }\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{structc_j_s_o_n_ad521633b2c32126f59d962c5673de362}{prev}};}
+\DoxyCodeLine{116     \textcolor{comment}{/* An array or object item will have a child pointer pointing to a chain of the items in the array/object. */}}
+\DoxyCodeLine{117     \textcolor{keyword}{struct }\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{structc_j_s_o_n_a8c008ccb91a052e42db67cd48fcbc09a}{child}};}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{comment}{/* The type of the item, as above. */}}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} \mbox{\hyperlink{structc_j_s_o_n_ab13084c574681593b12f6e0a3db0dcfc}{type}};}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{comment}{/* The item's string, if type==cJSON\_String  and type == cJSON\_Raw */}}
+\DoxyCodeLine{123     \textcolor{keywordtype}{char} *\mbox{\hyperlink{structc_j_s_o_n_aa90a45b5d0df9dbba1429de7de3d5212}{valuestring}};}
+\DoxyCodeLine{124     \textcolor{comment}{/* writing to valueint is DEPRECATED, use cJSON\_SetNumberValue instead */}}
+\DoxyCodeLine{125     \textcolor{keywordtype}{int} \mbox{\hyperlink{structc_j_s_o_n_a369cea49494eb5d4409d532a731a0fbf}{valueint}};}
+\DoxyCodeLine{126     \textcolor{comment}{/* The item's number, if type==cJSON\_Number */}}
+\DoxyCodeLine{127     \textcolor{keywordtype}{double} \mbox{\hyperlink{structc_j_s_o_n_a4b21817d0fd2919901abadac73214e7f}{valuedouble}};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{comment}{/* The item's name string, if this item is the child of, or is in the list of subitems of an object. */}}
+\DoxyCodeLine{130     \textcolor{keywordtype}{char} *\mbox{\hyperlink{structc_j_s_o_n_a5afc974e8070ca6678c7552f4125f71b}{string}};}
+\DoxyCodeLine{131 \} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a4c146234dfd7b6adbf13b49505e995bc}{cJSON}};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structc_j_s_o_n___hooks}{cJSON\_Hooks}}}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135       \textcolor{comment}{/* malloc/free are CDECL on Windows regardless of the default calling convention of the compiler, so ensure the hooks allow passing those functions directly. */}}
+\DoxyCodeLine{136       \textcolor{keywordtype}{void} *(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a79203c3ba406ffd5736627cc1e082e38}{CJSON\_CDECL}} *\mbox{\hyperlink{structc_j_s_o_n___hooks_a71693d8b277a80a1faf8758b9589d670}{malloc\_fn}})(\textcolor{keywordtype}{size\_t} sz);}
+\DoxyCodeLine{137       \mbox{\hyperlink{structc_j_s_o_n___hooks_a42c96b388103ffb466e7335b9fc710c3}{void}} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a79203c3ba406ffd5736627cc1e082e38}{CJSON\_CDECL}} *free\_fn)(\textcolor{keywordtype}{void} *ptr);}
+\DoxyCodeLine{138 \} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ab67bc592e52110fee68ab8ab4140530d}{cJSON\_Hooks}};}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}};}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{comment}{/* Limits how deeply nested arrays/objects can be before cJSON rejects to parse them.}}
+\DoxyCodeLine{143 \textcolor{comment}{ * This is to prevent stack overflows. */}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#ifndef CJSON\_NESTING\_LIMIT}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define CJSON\_NESTING\_LIMIT 1000}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{/* returns the version of cJSON as a string */}}
+\DoxyCodeLine{149 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}*) cJSON\_Version(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{comment}{/* Supply malloc, realloc and free functions to cJSON */}}
+\DoxyCodeLine{152 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_InitHooks(\mbox{\hyperlink{structc_j_s_o_n___hooks}{cJSON\_Hooks}}* \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}});}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{/* Memory Management: the caller is always responsible to free the results from all variants of cJSON\_Parse (with cJSON\_Delete) and cJSON\_Print (with stdlib free, cJSON\_Hooks.free\_fn, or cJSON\_free as appropriate). The exception is cJSON\_PrintPreallocated, where the caller has full responsibility of the buffer. */}}
+\DoxyCodeLine{155 \textcolor{comment}{/* Supply a block of JSON, and this returns a cJSON object you can interrogate. */}}
+\DoxyCodeLine{156 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_Parse(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *value);}
+\DoxyCodeLine{157 \textcolor{comment}{/* ParseWithOpts allows you to require (and check) that the JSON is null terminated, and to retrieve the pointer to the final byte parsed. */}}
+\DoxyCodeLine{158 \textcolor{comment}{/* If you supply a ptr in return\_parse\_end and parsing fails, then return\_parse\_end will contain a pointer to the error so will match cJSON\_GetErrorPtr(). */}}
+\DoxyCodeLine{159 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_ParseWithOpts(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *value, \textcolor{keyword}{const} \textcolor{keywordtype}{char} **\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a3393bb8fdfb601b078bd0c44d8e34348}{return\_parse\_end}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a3e9f50821aac02e0611c5e5a808776b9}{require\_null\_terminated}});}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{comment}{/* Render a cJSON entity to text for transfer/storage. */}}
+\DoxyCodeLine{162 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{char} *) cJSON\_Print(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{163 \textcolor{comment}{/* Render a cJSON entity to text for transfer/storage without any formatting. */}}
+\DoxyCodeLine{164 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{char} *) cJSON\_PrintUnformatted(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{165 \textcolor{comment}{/* Render a cJSON entity to text using a buffered strategy. prebuffer is a guess at the final size. guessing well reduces reallocation. fmt=0 gives unformatted, =1 gives formatted */}}
+\DoxyCodeLine{166 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{char} *) cJSON\_PrintBuffered(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a039dc262c2ae63f95cfe193245f8ee7e}{prebuffer}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}});}
+\DoxyCodeLine{167 \textcolor{comment}{/* Render a cJSON entity to text using a buffer already allocated in memory with given length. Returns 1 on success and 0 on failure. */}}
+\DoxyCodeLine{168 \textcolor{comment}{/* NOTE: cJSON is not always 100\% accurate in estimating how much memory it will use, so to be safe allocate 5 bytes more than you actually need */}}
+\DoxyCodeLine{169 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) \mbox{\hyperlink{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}{cJSON\_PrintPreallocated}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}, \textcolor{keywordtype}{char} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}}, \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}});}
+\DoxyCodeLine{170 \textcolor{comment}{/* Delete a cJSON entity and all subentities. */}}
+\DoxyCodeLine{171 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) \mbox{\hyperlink{namespace_aws_acbbc253873ffe75541192ab169dee5f6}{cJSON\_Delete}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{comment}{/* Returns the number of items in an array (or object). */}}
+\DoxyCodeLine{174 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{int}) cJSON\_GetArraySize(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array);}
+\DoxyCodeLine{175 \textcolor{comment}{/* Retrieve item number "{}index"{} from array "{}array"{}. Returns NULL if unsuccessful. */}}
+\DoxyCodeLine{176 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_GetArrayItem(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}});}
+\DoxyCodeLine{177 \textcolor{comment}{/* Get item "{}string"{} from object. Case insensitive. */}}
+\DoxyCodeLine{178 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_GetObjectItem(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \textcolor{keywordtype}{string});}
+\DoxyCodeLine{179 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_GetObjectItemCaseSensitive(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \textcolor{keywordtype}{string});}
+\DoxyCodeLine{180 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_HasObjectItem(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{181 \textcolor{comment}{/* For analysing failed parses. This returns a pointer to the parse error. You'll probably need to look a few chars back to make sense of it. Defined when cJSON\_Parse() returns 0. 0 when cJSON\_Parse() succeeds. */}}
+\DoxyCodeLine{182 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *) cJSON\_GetErrorPtr(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/* Check if the item is a string and return its valuestring */}}
+\DoxyCodeLine{185 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{char} *) cJSON\_GetStringValue(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{comment}{/* These functions check the type of an item */}}
+\DoxyCodeLine{188 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsInvalid(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{189 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsFalse(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{190 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsTrue(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{191 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsBool(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{192 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsNull(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{193 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsNumber(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{194 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsString(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{195 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsArray(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{196 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsObject(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{197 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_IsRaw(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \textcolor{comment}{/* These calls create a cJSON item of the appropriate type. */}}
+\DoxyCodeLine{200 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateNull(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{201 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateTrue(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{202 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateFalse(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{203 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateBool(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{204 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateNumber(\textcolor{keywordtype}{double} num);}
+\DoxyCodeLine{205 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateString(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{206 \textcolor{comment}{/* raw json */}}
+\DoxyCodeLine{207 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateRaw(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a788db922597cf2fb6389e278f822e59f}{raw}});}
+\DoxyCodeLine{208 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateArray(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{209 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateObject(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{comment}{/* Create a string where valuestring references a string so}}
+\DoxyCodeLine{212 \textcolor{comment}{ * it will not be freed by cJSON\_Delete */}}
+\DoxyCodeLine{213 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateStringReference(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{214 \textcolor{comment}{/* Create an object/arrray that only references it's elements so}}
+\DoxyCodeLine{215 \textcolor{comment}{ * they will not be freed by cJSON\_Delete */}}
+\DoxyCodeLine{216 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateObjectReference(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}});}
+\DoxyCodeLine{217 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateArrayReference(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}});}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{comment}{/* These utilities create an Array of count items. */}}
+\DoxyCodeLine{220 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateIntArray(\textcolor{keyword}{const} \textcolor{keywordtype}{int} *numbers, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}});}
+\DoxyCodeLine{221 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateFloatArray(\textcolor{keyword}{const} \textcolor{keywordtype}{float} *numbers, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}});}
+\DoxyCodeLine{222 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateDoubleArray(\textcolor{keyword}{const} \textcolor{keywordtype}{double} *numbers, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}});}
+\DoxyCodeLine{223 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_CreateStringArray(\textcolor{keyword}{const} \textcolor{keywordtype}{char} **strings, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}});}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{comment}{/* Append item to the specified array/object. */}}
+\DoxyCodeLine{226 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_AddItemToArray(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{227 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_AddItemToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{228 \textcolor{comment}{/* Use this when string is definitely const (i.e. a literal, or as good as), and will definitely survive the cJSON object.}}
+\DoxyCodeLine{229 \textcolor{comment}{ * WARNING: When this function was used, make sure to always check that (item-\/>type \& cJSON\_StringIsConst) is zero before}}
+\DoxyCodeLine{230 \textcolor{comment}{ * writing to `item-\/>string` */}}
+\DoxyCodeLine{231 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_AddItemToObjectCS(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{232 \textcolor{comment}{/* Append reference to item to the specified array/object. Use this when you want to add an existing cJSON to a new cJSON, but don't want to corrupt your existing cJSON. */}}
+\DoxyCodeLine{233 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_AddItemReferenceToArray(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{234 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_AddItemReferenceToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{comment}{/* Remove/Detatch items from Arrays/Objects. */}}
+\DoxyCodeLine{237 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) \mbox{\hyperlink{namespace_aws_a35e623f42b0cd6bf7d8c50f78d41eca9}{cJSON\_DetachItemViaPointer}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *parent, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}});}
+\DoxyCodeLine{238 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_DetachItemFromArray(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}});}
+\DoxyCodeLine{239 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_DeleteItemFromArray(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}});}
+\DoxyCodeLine{240 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_DetachItemFromObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{241 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_DetachItemFromObjectCaseSensitive(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{242 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_DeleteItemFromObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{243 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_DeleteItemFromObjectCaseSensitive(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 \textcolor{comment}{/* Update array items. */}}
+\DoxyCodeLine{246 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) \mbox{\hyperlink{namespace_aws_a86bb02b8df190871673c21a223f451a5}{cJSON\_InsertItemInArray}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}}); \textcolor{comment}{/* Shifts pre-\/existing items to the right. */}}
+\DoxyCodeLine{247 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) cJSON\_ReplaceItemViaPointer(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} parent, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a10573fccca598ec39809e8beb3f7f791}{replacement}});}
+\DoxyCodeLine{248 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_ReplaceItemInArray(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}}, \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}});}
+\DoxyCodeLine{249 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_ReplaceItemInObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object},\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string},\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}});}
+\DoxyCodeLine{250 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_ReplaceItemInObjectCaseSensitive(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object},\textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string},\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}});}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \textcolor{comment}{/* Duplicate a cJSON item */}}
+\DoxyCodeLine{253 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *) cJSON\_Duplicate(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_afc8d1c385c6dc37e1c5b640869ce4ab6}{recurse}});}
+\DoxyCodeLine{254 \textcolor{comment}{/* Duplicate will create a new, identical cJSON item to the one you pass, in new memory that will}}
+\DoxyCodeLine{255 \textcolor{comment}{need to be released. With recurse!=0, it will duplicate any children connected to the item.}}
+\DoxyCodeLine{256 \textcolor{comment}{The item-\/>next and -\/>prev pointers are always zero on return from Duplicate. */}}
+\DoxyCodeLine{257 \textcolor{comment}{/* Recursively compare two cJSON items for equality. If either a or b is NULL or invalid, they will be considered unequal.}}
+\DoxyCodeLine{258 \textcolor{comment}{ * case\_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0) */}}
+\DoxyCodeLine{259 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}}) \mbox{\hyperlink{namespace_aws_ad3f4c18dbf4996b79d37b5881548d397}{cJSON\_Compare}}(\textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a05334336676ca1cd88db19ede4a065de}{case\_sensitive}});}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_Minify(\textcolor{keywordtype}{char} *\mbox{\hyperlink{namespace_aws_a3076bc67e26c850c1674abaecce578f4}{json}});}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{comment}{/* Helper functions for creating and adding items to an object at the same time.}}
+\DoxyCodeLine{265 \textcolor{comment}{ * They return the added item or NULL on failure. */}}
+\DoxyCodeLine{266 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddNullToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{267 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddTrueToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{268 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddFalseToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{269 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddBoolToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{cJSON\_bool}} \textcolor{keywordtype}{boolean});}
+\DoxyCodeLine{270 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddNumberToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}});}
+\DoxyCodeLine{271 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddStringToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \textcolor{keywordtype}{string});}
+\DoxyCodeLine{272 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddRawToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a788db922597cf2fb6389e278f822e59f}{raw}});}
+\DoxyCodeLine{273 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddObjectToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{274 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}}*) cJSON\_AddArrayToObject(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} * \textcolor{keyword}{const} \textcolor{keywordtype}{object}, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \textcolor{keyword}{const} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{comment}{/* When assigning an integer value, it needs to be propagated to valuedouble too. */}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#define cJSON\_SetIntValue(object, number) ((object) ? (object)-\/>valueint = (object)-\/>valuedouble = (number) : (number))}}
+\DoxyCodeLine{278 \textcolor{comment}{/* helper for the cJSON\_SetNumberValue macro */}}
+\DoxyCodeLine{279 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{double}) cJSON\_SetNumberHelper(\mbox{\hyperlink{structc_j_s_o_n}{cJSON}} *\textcolor{keywordtype}{object}, \textcolor{keywordtype}{double} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}});}
+\DoxyCodeLine{280 \textcolor{preprocessor}{\#define cJSON\_SetNumberValue(object, number) ((object != NULL) ? cJSON\_SetNumberHelper(object, (double)number) : (number))}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{comment}{/* Macro for iterating over an array or object */}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{\#define cJSON\_ArrayForEach(element, array) for(element = (array != NULL) ? (array)-\/>child : NULL; element != NULL; element = element-\/>next)}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \textcolor{comment}{/* malloc/free objects using the malloc/free functions that have been set with cJSON\_InitHooks */}}
+\DoxyCodeLine{286 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void} *) cJSON\_malloc(\textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{287 \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a70709a6f2a7e45debe4f5abe345fcb86}{CJSON\_PUBLIC}}(\textcolor{keywordtype}{void}) cJSON\_free(\textcolor{keywordtype}{void} *\textcolor{keywordtype}{object});}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{290 \}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

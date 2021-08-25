@@ -1,0 +1,41 @@
+\hypertarget{s2n__server__certificate__status_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+certificate\+\_\+status.h File Reference}
+\label{s2n__server__certificate__status_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_certificate\_status.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_certificate\_status.h}}
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__certificate__status_8h_a2830833dab8aa5c09e943672293889a7}{s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__certificate__status_8h_a1ccc64b38c7e23d469ca8d001a31e3b2}{s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__certificate__status_8h_a842502f75804c09867109549c3ae7216}{s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__certificate__status_8h_a1ccc64b38c7e23d469ca8d001a31e3b2}\label{s2n__server__certificate__status_8h_a1ccc64b38c7e23d469ca8d001a31e3b2}} 
+\index{s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}!s2n\_server\_certificate\_status\_recv@{s2n\_server\_certificate\_status\_recv}}
+\index{s2n\_server\_certificate\_status\_recv@{s2n\_server\_certificate\_status\_recv}!s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_certificate\_status\_recv()}{s2n\_server\_certificate\_status\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__certificate__status_8h_a2830833dab8aa5c09e943672293889a7}\label{s2n__server__certificate__status_8h_a2830833dab8aa5c09e943672293889a7}} 
+\index{s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}!s2n\_server\_certificate\_status\_send@{s2n\_server\_certificate\_status\_send}}
+\index{s2n\_server\_certificate\_status\_send@{s2n\_server\_certificate\_status\_send}!s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_certificate\_status\_send()}{s2n\_server\_certificate\_status\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__certificate__status_8h_a842502f75804c09867109549c3ae7216}\label{s2n__server__certificate__status_8h_a842502f75804c09867109549c3ae7216}} 
+\index{s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}!s2n\_tls13\_server\_status\_request\_extension@{s2n\_tls13\_server\_status\_request\_extension}}
+\index{s2n\_tls13\_server\_status\_request\_extension@{s2n\_tls13\_server\_status\_request\_extension}!s2n\_server\_certificate\_status.h@{s2n\_server\_certificate\_status.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_server\_status\_request\_extension}{s2n\_tls13\_server\_status\_request\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

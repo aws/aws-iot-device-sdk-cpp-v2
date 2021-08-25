@@ -1,0 +1,58 @@
+\hypertarget{_http_client_test_8cpp}{}\doxysection{crt/aws-\/crt-\/cpp/tests/\+Http\+Client\+Test.cpp File Reference}
+\label{_http_client_test_8cpp}\index{crt/aws-\/crt-\/cpp/tests/HttpClientTest.cpp@{crt/aws-\/crt-\/cpp/tests/HttpClientTest.cpp}}
+{\ttfamily \#include $<$aws/crt/\+Api.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/crypto/\+Hash.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/http/\+Http\+Connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/http/\+Http\+Request\+Response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Uri.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{_http_client_test_8cpp_ad74042837d501786d15db8f3f73d32c6}{s\+\_\+\+Verify\+Files\+Are\+The\+Same}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$file\+Name1, const char $\ast$file\+Name2)
+\item 
+static int \mbox{\hyperlink{_http_client_test_8cpp_a95f188a0924f6c9b0e560720c1a89a26}{s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} url\+Cursor, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} h2\+Required)
+\item 
+static int \mbox{\hyperlink{_http_client_test_8cpp_ac71c6be4d3ead6d91bdb7d30378dae83}{s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure\+HTTP1\+\_\+1}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_http_client_test_8cpp_a4949c486549548f482c18dee84a4d656}{s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure\+HTTP2}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_http_client_test_8cpp_a0c5abd3ddea1857052d1be78868429e4}{s\+\_\+\+Test\+Http\+Stream\+Un\+Activated}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_http_client_test_8cpp_a95f188a0924f6c9b0e560720c1a89a26}\label{_http_client_test_8cpp_a95f188a0924f6c9b0e560720c1a89a26}} 
+\index{HttpClientTest.cpp@{HttpClientTest.cpp}!s\_TestHttpDownloadNoBackPressure@{s\_TestHttpDownloadNoBackPressure}}
+\index{s\_TestHttpDownloadNoBackPressure@{s\_TestHttpDownloadNoBackPressure}!HttpClientTest.cpp@{HttpClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpDownloadNoBackPressure()}{s\_TestHttpDownloadNoBackPressure()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}}}]{url\+Cursor,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{h2\+Required }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_test_8cpp_ac71c6be4d3ead6d91bdb7d30378dae83}\label{_http_client_test_8cpp_ac71c6be4d3ead6d91bdb7d30378dae83}} 
+\index{HttpClientTest.cpp@{HttpClientTest.cpp}!s\_TestHttpDownloadNoBackPressureHTTP1\_1@{s\_TestHttpDownloadNoBackPressureHTTP1\_1}}
+\index{s\_TestHttpDownloadNoBackPressureHTTP1\_1@{s\_TestHttpDownloadNoBackPressureHTTP1\_1}!HttpClientTest.cpp@{HttpClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpDownloadNoBackPressureHTTP1\_1()}{s\_TestHttpDownloadNoBackPressureHTTP1\_1()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure\+HTTP1\+\_\+1 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_test_8cpp_a4949c486549548f482c18dee84a4d656}\label{_http_client_test_8cpp_a4949c486549548f482c18dee84a4d656}} 
+\index{HttpClientTest.cpp@{HttpClientTest.cpp}!s\_TestHttpDownloadNoBackPressureHTTP2@{s\_TestHttpDownloadNoBackPressureHTTP2}}
+\index{s\_TestHttpDownloadNoBackPressureHTTP2@{s\_TestHttpDownloadNoBackPressureHTTP2}!HttpClientTest.cpp@{HttpClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpDownloadNoBackPressureHTTP2()}{s\_TestHttpDownloadNoBackPressureHTTP2()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Download\+No\+Back\+Pressure\+HTTP2 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_test_8cpp_a0c5abd3ddea1857052d1be78868429e4}\label{_http_client_test_8cpp_a0c5abd3ddea1857052d1be78868429e4}} 
+\index{HttpClientTest.cpp@{HttpClientTest.cpp}!s\_TestHttpStreamUnActivated@{s\_TestHttpStreamUnActivated}}
+\index{s\_TestHttpStreamUnActivated@{s\_TestHttpStreamUnActivated}!HttpClientTest.cpp@{HttpClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpStreamUnActivated()}{s\_TestHttpStreamUnActivated()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Stream\+Un\+Activated (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_test_8cpp_ad74042837d501786d15db8f3f73d32c6}\label{_http_client_test_8cpp_ad74042837d501786d15db8f3f73d32c6}} 
+\index{HttpClientTest.cpp@{HttpClientTest.cpp}!s\_VerifyFilesAreTheSame@{s\_VerifyFilesAreTheSame}}
+\index{s\_VerifyFilesAreTheSame@{s\_VerifyFilesAreTheSame}!HttpClientTest.cpp@{HttpClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_VerifyFilesAreTheSame()}{s\_VerifyFilesAreTheSame()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Verify\+Files\+Are\+The\+Same (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator,  }\item[{const char $\ast$}]{file\+Name1,  }\item[{const char $\ast$}]{file\+Name2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

@@ -1,0 +1,48 @@
+\hypertarget{_api_8h}{}\doxysection{crt/aws-\/crt-\/cpp/include/aws/crt/\+Api.h File Reference}
+\label{_api_8h}\index{crt/aws-\/crt-\/cpp/include/aws/crt/Api.h@{crt/aws-\/crt-\/cpp/include/aws/crt/Api.h}}
+{\ttfamily \#include $<$aws/crt/\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Event\+Loop\+Group.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Tls\+Options.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/mqtt/\+Mqtt\+Client.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_api_handle}{Aws\+::\+Crt\+::\+Api\+Handle}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws}{Aws}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt}{Aws\+::\+Crt}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeb}{Aws\+::\+Crt\+::\+Log\+Level}} \{ \newline
+\mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba6adf97f83acf6453d4a6a4b1070f3754}{Aws\+::\+Crt\+::\+None}} = AWS\+\_\+\+LL\+\_\+\+NONE
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba882384ec38ce8d9582b57e70861730e4}{Aws\+::\+Crt\+::\+Fatal}} = AWS\+\_\+\+LL\+\_\+\+FATAL
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba902b0d55fddef6f8d651fe1035b7d4bd}{Aws\+::\+Crt\+::\+Error}} = AWS\+\_\+\+LL\+\_\+\+ERROR
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba56525ae64d370c0b448ac0d60710ef17}{Aws\+::\+Crt\+::\+Warn}} = AWS\+\_\+\+LL\+\_\+\+WARN
+, \newline
+\mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffeba4059b0251f66a18cb56f544728796875}{Aws\+::\+Crt\+::\+Info}} = AWS\+\_\+\+LL\+\_\+\+INFO
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebaa603905470e2a5b8c13e96b579ef0dba}{Aws\+::\+Crt\+::\+Debug}} = AWS\+\_\+\+LL\+\_\+\+DEBUG
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebadd4ec0ac4e58f7c32a01244ae91150b1}{Aws\+::\+Crt\+::\+Trace}} = AWS\+\_\+\+LL\+\_\+\+TRACE
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a38935c4922a7101640006354d741ffebae93f994f01c537c4e2f7d8528c3eb5e9}{Aws\+::\+Crt\+::\+Count}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442}{Aws\+::\+Crt\+::\+Api\+Handle\+Shutdown\+Behavior}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442abd0ca6be53b0f3d2886fd53fcb52574e}{Aws\+::\+Crt\+::\+Blocking}}
+, \mbox{\hyperlink{namespace_aws_1_1_crt_a0cecd61d589e187a29d31942db459442a20a6cf714cbf179298b4d850849847b8}{Aws\+::\+Crt\+::\+Non\+Blocking}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\+\_\+\+CRT\+\_\+\+CPP\+\_\+\+API}} const char $\ast$ \mbox{\hyperlink{namespace_aws_1_1_crt_a381b8c42c48a6a9408017d273d660dda}{Aws\+::\+Crt\+::\+Error\+Debug\+String}} (int \mbox{\hyperlink{structerror}{error}}) noexcept
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\+\_\+\+CRT\+\_\+\+CPP\+\_\+\+API}} int \mbox{\hyperlink{namespace_aws_1_1_crt_aec41cfe367315d4e4e1712f19e3d3061}{Aws\+::\+Crt\+::\+Last\+Error}} () noexcept
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\+\_\+\+CRT\+\_\+\+CPP\+\_\+\+API}} int \mbox{\hyperlink{namespace_aws_1_1_crt_a09743b0ee6cb7e924ce2107ec8f81de6}{Aws\+::\+Crt\+::\+Last\+Error\+Or\+Unknown}} () noexcept
+\end{DoxyCompactItemize}

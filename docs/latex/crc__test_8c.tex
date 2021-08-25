@@ -1,0 +1,171 @@
+\hypertarget{crc__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/tests/crc\+\_\+test.c File Reference}
+\label{crc__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/tests/crc\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/tests/crc\_test.c}}
+{\ttfamily \#include $<$aws/checksums/crc.\+h$>$}\newline
+{\ttfamily \#include $<$aws/checksums/private/crc\+\_\+priv.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crc__test_8c_a447af629b8b279e5edaeac811241cb24}{CRC\+\_\+\+FUNC\+\_\+\+NAME}}(crc\+\_\+func)~\#crc\+\_\+func, crc\+\_\+func
+\item 
+\#define \mbox{\hyperlink{crc__test_8c_a73dc6acd4ff6103c88224fa7b09925c7}{DATA\+\_\+\+NAME}}(dataset)~\#dataset, dataset, sizeof(dataset)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t() \mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}}(const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{crc__test_8c_a65e0598ffe53e76139d0b25c420dece7}{s\+\_\+test\+\_\+known\+\_\+crc}} (const char $\ast$func\+\_\+name, \mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$func, const char $\ast$data\+\_\+name, const uint8\+\_\+t $\ast$input, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t expected)
+\item 
+static int \mbox{\hyperlink{crc__test_8c_a08595897b7ee0dc69cb7c9a975ed0272}{s\+\_\+test\+\_\+known\+\_\+crc32}} (const char $\ast$func\+\_\+name, \mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$func)
+\item 
+static int \mbox{\hyperlink{crc__test_8c_abbf7fc85a019b09bd84e8d58a58f54b5}{s\+\_\+test\+\_\+known\+\_\+crc32c}} (const char $\ast$func\+\_\+name, \mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$func)
+\item 
+static int \mbox{\hyperlink{crc__test_8c_ac8505aa3f5220905aa04de22da83b1d5}{s\+\_\+test\+\_\+crc32c}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{crc__test_8c_a843df47b4e689200c4e792123c89f346}{s\+\_\+test\+\_\+crc32}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{crc__test_8c_a3f704d76ded44eb0586e779f19016c9a}{DATA\+\_\+32\+\_\+\+ZEROS}} \mbox{[}32\mbox{]} = \{0\}
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{crc__test_8c_a50bbec98f7e540b8323bd369422d75bf}{KNOWN\+\_\+\+CRC32\+\_\+32\+\_\+\+ZEROES}} = 0x190\+A55\+AD
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{crc__test_8c_a0a78f2dd8625c62b62581d3946e7d0d2}{KNOWN\+\_\+\+CRC32\+C\+\_\+32\+\_\+\+ZEROES}} = 0x8\+A9136\+AA
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{crc__test_8c_a3a524a31d87d01cfaa61f7338fea5cda}{DATA\+\_\+32\+\_\+\+VALUES}} \mbox{[}32\mbox{]}
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{crc__test_8c_a5310eb9c363aebc090754dc59ccb9753}{KNOWN\+\_\+\+CRC32\+C\+\_\+32\+\_\+\+VALUES}} = 0x46\+DD794E
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{crc__test_8c_a58008ad3ca9bcc13b73ea399c487390e}{TEST\+\_\+\+VECTOR}} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}1\textquotesingle{}, \textquotesingle{}2\textquotesingle{}, \textquotesingle{}3\textquotesingle{}, \textquotesingle{}4\textquotesingle{}, \textquotesingle{}5\textquotesingle{}, \textquotesingle{}6\textquotesingle{}, \textquotesingle{}7\textquotesingle{}, \textquotesingle{}8\textquotesingle{}, \textquotesingle{}9\textquotesingle{}\}
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{crc__test_8c_a0449e0461999ad36e7a31e80d016df84}{KNOWN\+\_\+\+CRC32\+\_\+\+TEST\+\_\+\+VECTOR}} = 0x\+CBF43926
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{crc__test_8c_a312ae0f04f7a0349c4829dac97399e37}{KNOWN\+\_\+\+CRC32\+C\+\_\+\+TEST\+\_\+\+VECTOR}} = 0x\+E3069283
+\item 
+static uint8\+\_\+t $\ast$ \mbox{\hyperlink{crc__test_8c_a7e233b95f525fde75c0abef0372866c6}{s\+\_\+non\+\_\+mem\+\_\+aligned\+\_\+vector}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crc__test_8c_a447af629b8b279e5edaeac811241cb24}\label{crc__test_8c_a447af629b8b279e5edaeac811241cb24}} 
+\index{crc\_test.c@{crc\_test.c}!CRC\_FUNC\_NAME@{CRC\_FUNC\_NAME}}
+\index{CRC\_FUNC\_NAME@{CRC\_FUNC\_NAME}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{CRC\_FUNC\_NAME}{CRC\_FUNC\_NAME}}
+{\footnotesize\ttfamily \#define CRC\+\_\+\+FUNC\+\_\+\+NAME(\begin{DoxyParamCaption}\item[{}]{crc\+\_\+func }\end{DoxyParamCaption})~\#crc\+\_\+func, crc\+\_\+func}
+
+\mbox{\Hypertarget{crc__test_8c_a73dc6acd4ff6103c88224fa7b09925c7}\label{crc__test_8c_a73dc6acd4ff6103c88224fa7b09925c7}} 
+\index{crc\_test.c@{crc\_test.c}!DATA\_NAME@{DATA\_NAME}}
+\index{DATA\_NAME@{DATA\_NAME}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{DATA\_NAME}{DATA\_NAME}}
+{\footnotesize\ttfamily \#define DATA\+\_\+\+NAME(\begin{DoxyParamCaption}\item[{}]{dataset }\end{DoxyParamCaption})~\#dataset, dataset, sizeof(dataset)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}\label{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}} 
+\index{crc\_test.c@{crc\_test.c}!crc\_fn@{crc\_fn}}
+\index{crc\_fn@{crc\_fn}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{crc\_fn}{crc\_fn}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t() crc\+\_\+fn(const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crc__test_8c_a843df47b4e689200c4e792123c89f346}\label{crc__test_8c_a843df47b4e689200c4e792123c89f346}} 
+\index{crc\_test.c@{crc\_test.c}!s\_test\_crc32@{s\_test\_crc32}}
+\index{s\_test\_crc32@{s\_test\_crc32}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_crc32()}{s\_test\_crc32()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+crc32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_ac8505aa3f5220905aa04de22da83b1d5}\label{crc__test_8c_ac8505aa3f5220905aa04de22da83b1d5}} 
+\index{crc\_test.c@{crc\_test.c}!s\_test\_crc32c@{s\_test\_crc32c}}
+\index{s\_test\_crc32c@{s\_test\_crc32c}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_crc32c()}{s\_test\_crc32c()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+crc32c (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Quick sanity check of some known CRC values for known input. The reference functions are included in these tests to verify that they aren\textquotesingle{}t obviously broken. \mbox{\Hypertarget{crc__test_8c_a65e0598ffe53e76139d0b25c420dece7}\label{crc__test_8c_a65e0598ffe53e76139d0b25c420dece7}} 
+\index{crc\_test.c@{crc\_test.c}!s\_test\_known\_crc@{s\_test\_known\_crc}}
+\index{s\_test\_known\_crc@{s\_test\_known\_crc}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_known\_crc()}{s\_test\_known\_crc()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+known\+\_\+crc (\begin{DoxyParamCaption}\item[{const char $\ast$}]{func\+\_\+name,  }\item[{\mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$}]{func,  }\item[{const char $\ast$}]{data\+\_\+name,  }\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t}]{expected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a08595897b7ee0dc69cb7c9a975ed0272}\label{crc__test_8c_a08595897b7ee0dc69cb7c9a975ed0272}} 
+\index{crc\_test.c@{crc\_test.c}!s\_test\_known\_crc32@{s\_test\_known\_crc32}}
+\index{s\_test\_known\_crc32@{s\_test\_known\_crc32}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_known\_crc32()}{s\_test\_known\_crc32()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+known\+\_\+crc32 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{func\+\_\+name,  }\item[{\mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_abbf7fc85a019b09bd84e8d58a58f54b5}\label{crc__test_8c_abbf7fc85a019b09bd84e8d58a58f54b5}} 
+\index{crc\_test.c@{crc\_test.c}!s\_test\_known\_crc32c@{s\_test\_known\_crc32c}}
+\index{s\_test\_known\_crc32c@{s\_test\_known\_crc32c}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_known\_crc32c()}{s\_test\_known\_crc32c()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+known\+\_\+crc32c (\begin{DoxyParamCaption}\item[{const char $\ast$}]{func\+\_\+name,  }\item[{\mbox{\hyperlink{crc__test_8c_a9b49ed6a03ebc5cb2400666402561b47}{crc\+\_\+fn}} $\ast$}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{crc__test_8c_a3a524a31d87d01cfaa61f7338fea5cda}\label{crc__test_8c_a3a524a31d87d01cfaa61f7338fea5cda}} 
+\index{crc\_test.c@{crc\_test.c}!DATA\_32\_VALUES@{DATA\_32\_VALUES}}
+\index{DATA\_32\_VALUES@{DATA\_32\_VALUES}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{DATA\_32\_VALUES}{DATA\_32\_VALUES}}
+{\footnotesize\ttfamily const uint8\+\_\+t DATA\+\_\+32\+\_\+\+VALUES\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15,}
+\DoxyCodeLine{                                           16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{crc__test_8c_a3f704d76ded44eb0586e779f19016c9a}\label{crc__test_8c_a3f704d76ded44eb0586e779f19016c9a}} 
+\index{crc\_test.c@{crc\_test.c}!DATA\_32\_ZEROS@{DATA\_32\_ZEROS}}
+\index{DATA\_32\_ZEROS@{DATA\_32\_ZEROS}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{DATA\_32\_ZEROS}{DATA\_32\_ZEROS}}
+{\footnotesize\ttfamily const uint8\+\_\+t DATA\+\_\+32\+\_\+\+ZEROS\mbox{[}32\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{crc__test_8c_a50bbec98f7e540b8323bd369422d75bf}\label{crc__test_8c_a50bbec98f7e540b8323bd369422d75bf}} 
+\index{crc\_test.c@{crc\_test.c}!KNOWN\_CRC32\_32\_ZEROES@{KNOWN\_CRC32\_32\_ZEROES}}
+\index{KNOWN\_CRC32\_32\_ZEROES@{KNOWN\_CRC32\_32\_ZEROES}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{KNOWN\_CRC32\_32\_ZEROES}{KNOWN\_CRC32\_32\_ZEROES}}
+{\footnotesize\ttfamily const uint32\+\_\+t KNOWN\+\_\+\+CRC32\+\_\+32\+\_\+\+ZEROES = 0x190\+A55\+AD\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a0449e0461999ad36e7a31e80d016df84}\label{crc__test_8c_a0449e0461999ad36e7a31e80d016df84}} 
+\index{crc\_test.c@{crc\_test.c}!KNOWN\_CRC32\_TEST\_VECTOR@{KNOWN\_CRC32\_TEST\_VECTOR}}
+\index{KNOWN\_CRC32\_TEST\_VECTOR@{KNOWN\_CRC32\_TEST\_VECTOR}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{KNOWN\_CRC32\_TEST\_VECTOR}{KNOWN\_CRC32\_TEST\_VECTOR}}
+{\footnotesize\ttfamily const uint32\+\_\+t KNOWN\+\_\+\+CRC32\+\_\+\+TEST\+\_\+\+VECTOR = 0x\+CBF43926\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a5310eb9c363aebc090754dc59ccb9753}\label{crc__test_8c_a5310eb9c363aebc090754dc59ccb9753}} 
+\index{crc\_test.c@{crc\_test.c}!KNOWN\_CRC32C\_32\_VALUES@{KNOWN\_CRC32C\_32\_VALUES}}
+\index{KNOWN\_CRC32C\_32\_VALUES@{KNOWN\_CRC32C\_32\_VALUES}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{KNOWN\_CRC32C\_32\_VALUES}{KNOWN\_CRC32C\_32\_VALUES}}
+{\footnotesize\ttfamily const uint32\+\_\+t KNOWN\+\_\+\+CRC32\+C\+\_\+32\+\_\+\+VALUES = 0x46\+DD794E\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a0a78f2dd8625c62b62581d3946e7d0d2}\label{crc__test_8c_a0a78f2dd8625c62b62581d3946e7d0d2}} 
+\index{crc\_test.c@{crc\_test.c}!KNOWN\_CRC32C\_32\_ZEROES@{KNOWN\_CRC32C\_32\_ZEROES}}
+\index{KNOWN\_CRC32C\_32\_ZEROES@{KNOWN\_CRC32C\_32\_ZEROES}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{KNOWN\_CRC32C\_32\_ZEROES}{KNOWN\_CRC32C\_32\_ZEROES}}
+{\footnotesize\ttfamily const uint32\+\_\+t KNOWN\+\_\+\+CRC32\+C\+\_\+32\+\_\+\+ZEROES = 0x8\+A9136\+AA\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a312ae0f04f7a0349c4829dac97399e37}\label{crc__test_8c_a312ae0f04f7a0349c4829dac97399e37}} 
+\index{crc\_test.c@{crc\_test.c}!KNOWN\_CRC32C\_TEST\_VECTOR@{KNOWN\_CRC32C\_TEST\_VECTOR}}
+\index{KNOWN\_CRC32C\_TEST\_VECTOR@{KNOWN\_CRC32C\_TEST\_VECTOR}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{KNOWN\_CRC32C\_TEST\_VECTOR}{KNOWN\_CRC32C\_TEST\_VECTOR}}
+{\footnotesize\ttfamily const uint32\+\_\+t KNOWN\+\_\+\+CRC32\+C\+\_\+\+TEST\+\_\+\+VECTOR = 0x\+E3069283\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a7e233b95f525fde75c0abef0372866c6}\label{crc__test_8c_a7e233b95f525fde75c0abef0372866c6}} 
+\index{crc\_test.c@{crc\_test.c}!s\_non\_mem\_aligned\_vector@{s\_non\_mem\_aligned\_vector}}
+\index{s\_non\_mem\_aligned\_vector@{s\_non\_mem\_aligned\_vector}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_non\_mem\_aligned\_vector}{s\_non\_mem\_aligned\_vector}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ s\+\_\+non\+\_\+mem\+\_\+aligned\+\_\+vector\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__test_8c_a58008ad3ca9bcc13b73ea399c487390e}\label{crc__test_8c_a58008ad3ca9bcc13b73ea399c487390e}} 
+\index{crc\_test.c@{crc\_test.c}!TEST\_VECTOR@{TEST\_VECTOR}}
+\index{TEST\_VECTOR@{TEST\_VECTOR}!crc\_test.c@{crc\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_VECTOR}{TEST\_VECTOR}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+VECTOR\mbox{[}$\,$\mbox{]} = \{\textquotesingle{}1\textquotesingle{}, \textquotesingle{}2\textquotesingle{}, \textquotesingle{}3\textquotesingle{}, \textquotesingle{}4\textquotesingle{}, \textquotesingle{}5\textquotesingle{}, \textquotesingle{}6\textquotesingle{}, \textquotesingle{}7\textquotesingle{}, \textquotesingle{}8\textquotesingle{}, \textquotesingle{}9\textquotesingle{}\}\hspace{0.3cm}{\ttfamily [static]}}
+

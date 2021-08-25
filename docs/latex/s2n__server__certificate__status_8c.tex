@@ -1,0 +1,78 @@
+\hypertarget{s2n__server__certificate__status_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+certificate\+\_\+status.c File Reference}
+\label{s2n__server__certificate__status_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_certificate\_status.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_certificate\_status.c}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+x509\+\_\+validator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+server\+\_\+certificate\+\_\+status.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__server__certificate__status_8c_a009b2543c1256edfbcbe4e1fff84ef17}{U24\+\_\+\+SIZE}}~3
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__server__certificate__status_8c_abe87bfb3310b3f165111caa0e4928454}{s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+should\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__certificate__status_8c_a2830833dab8aa5c09e943672293889a7}{s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__certificate__status_8c_a1ccc64b38c7e23d469ca8d001a31e3b2}{s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__certificate__status_8c_a842502f75804c09867109549c3ae7216}{s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__server__certificate__status_8c_a009b2543c1256edfbcbe4e1fff84ef17}\label{s2n__server__certificate__status_8c_a009b2543c1256edfbcbe4e1fff84ef17}} 
+\index{s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}!U24\_SIZE@{U24\_SIZE}}
+\index{U24\_SIZE@{U24\_SIZE}!s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}}
+\doxysubsubsection{\texorpdfstring{U24\_SIZE}{U24\_SIZE}}
+{\footnotesize\ttfamily \#define U24\+\_\+\+SIZE~3}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__certificate__status_8c_a1ccc64b38c7e23d469ca8d001a31e3b2}\label{s2n__server__certificate__status_8c_a1ccc64b38c7e23d469ca8d001a31e3b2}} 
+\index{s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}!s2n\_server\_certificate\_status\_recv@{s2n\_server\_certificate\_status\_recv}}
+\index{s2n\_server\_certificate\_status\_recv@{s2n\_server\_certificate\_status\_recv}!s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_certificate\_status\_recv()}{s2n\_server\_certificate\_status\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__certificate__status_8c_a2830833dab8aa5c09e943672293889a7}\label{s2n__server__certificate__status_8c_a2830833dab8aa5c09e943672293889a7}} 
+\index{s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}!s2n\_server\_certificate\_status\_send@{s2n\_server\_certificate\_status\_send}}
+\index{s2n\_server\_certificate\_status\_send@{s2n\_server\_certificate\_status\_send}!s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_certificate\_status\_send()}{s2n\_server\_certificate\_status\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+certificate\+\_\+status\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__certificate__status_8c_abe87bfb3310b3f165111caa0e4928454}\label{s2n__server__certificate__status_8c_abe87bfb3310b3f165111caa0e4928454}} 
+\index{s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}!s2n\_tls13\_server\_status\_request\_should\_send@{s2n\_tls13\_server\_status\_request\_should\_send}}
+\index{s2n\_tls13\_server\_status\_request\_should\_send@{s2n\_tls13\_server\_status\_request\_should\_send}!s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_server\_status\_request\_should\_send()}{s2n\_tls13\_server\_status\_request\_should\_send()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+should\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__certificate__status_8c_a842502f75804c09867109549c3ae7216}\label{s2n__server__certificate__status_8c_a842502f75804c09867109549c3ae7216}} 
+\index{s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}!s2n\_tls13\_server\_status\_request\_extension@{s2n\_tls13\_server\_status\_request\_extension}}
+\index{s2n\_tls13\_server\_status\_request\_extension@{s2n\_tls13\_server\_status\_request\_extension}!s2n\_server\_certificate\_status.c@{s2n\_server\_certificate\_status.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_server\_status\_request\_extension}{s2n\_tls13\_server\_status\_request\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+tls13\+\_\+server\+\_\+status\+\_\+request\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_acf3d575671ffd01a1400417f16520421}{TLS\_EXTENSION\_STATUS\_REQUEST}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{true},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__server__certificate__status_8c_a2830833dab8aa5c09e943672293889a7}{s2n\_server\_certificate\_status\_send}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__server__certificate__status_8c_a1ccc64b38c7e23d469ca8d001a31e3b2}{s2n\_server\_certificate\_status\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__server__certificate__status_8c_abe87bfb3310b3f165111caa0e4928454}{s2n\_tls13\_server\_status\_request\_should\_send}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

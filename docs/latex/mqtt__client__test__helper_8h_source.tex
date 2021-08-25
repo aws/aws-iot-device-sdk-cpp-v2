@@ -1,0 +1,34 @@
+\hypertarget{mqtt__client__test__helper_8h_source}{}\doxysection{mqtt\+\_\+client\+\_\+test\+\_\+helper.\+h}
+\label{mqtt__client__test__helper_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/mqtt\_client\_test\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/mqtt\_client\_test\_helper.h}}
+\mbox{\hyperlink{mqtt__client__test__helper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_MQTT\_CLIENT\_TEST\_HELPER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_MQTT\_CLIENT\_TEST\_HELPER\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{aws/common/stdint.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h}{aws/mqtt/exports.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}};}
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}};}
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}};}
+\DoxyCodeLine{14 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
+\DoxyCodeLine{20 \textcolor{keywordtype}{void} \mbox{\hyperlink{mqtt__client__test__helper_8h_ad32ea16546f99f31864b820ca2d08d3f}{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet}}(}
+\DoxyCodeLine{21     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{22     uint16\_t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\_id}},}
+\DoxyCodeLine{23     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *result);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} \mbox{\hyperlink{mqtt__client__test__helper_8h_a6eb75eacc9adbf9d9e84bb439455f5a3}{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet}}(}
+\DoxyCodeLine{27     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{28     uint16\_t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\_id}},}
+\DoxyCodeLine{29     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{30     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} **result);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// AWS\_C\_IOT\_MQTT\_CLIENT\_TEST\_HELPER\_H}}
+
+\end{DoxyCode}

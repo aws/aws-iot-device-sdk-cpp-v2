@@ -1,0 +1,83 @@
+\hypertarget{string__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/string\+\_\+test.c File Reference}
+\label{string__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/string\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/string\_test.c}}
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{string__test_8c_a86b08f7fc63bd557b209584198abcf96}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (string\+\_\+tests, \mbox{\hyperlink{string__test_8c_a9b2949c95d367b987eb6e8c3f29d5b4c}{s\+\_\+string\+\_\+tests\+\_\+fn}})
+\item 
+static int \mbox{\hyperlink{string__test_8c_a9b2949c95d367b987eb6e8c3f29d5b4c}{s\+\_\+string\+\_\+tests\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{string__test_8c_ab7992c1ebe4fb52bfdccf4a52f79a188}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (binary\+\_\+string\+\_\+test, \mbox{\hyperlink{string__test_8c_a84b036bd8327b9c4f2ed87411309d56d}{s\+\_\+binary\+\_\+string\+\_\+test\+\_\+fn}})
+\item 
+static int \mbox{\hyperlink{string__test_8c_a84b036bd8327b9c4f2ed87411309d56d}{s\+\_\+binary\+\_\+string\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{string__test_8c_a0cd7c309252a09165bcbea01bf324e76}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (string\+\_\+compare\+\_\+test, \mbox{\hyperlink{string__test_8c_a09afc0925263cddb4f53b0d35140e178}{s\+\_\+string\+\_\+compare\+\_\+test\+\_\+fn}})
+\item 
+static int \mbox{\hyperlink{string__test_8c_a09afc0925263cddb4f53b0d35140e178}{s\+\_\+string\+\_\+compare\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{string__test_8c_a4188bca2f913868d02fbba4d28c5f7e8}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (string\+\_\+destroy\+\_\+secure\+\_\+test, \mbox{\hyperlink{string__test_8c_abc7cf84da6c868c911689e3a648ad19f}{string\+\_\+destroy\+\_\+secure\+\_\+test\+\_\+fn}})
+\item 
+static int \mbox{\hyperlink{string__test_8c_abc7cf84da6c868c911689e3a648ad19f}{string\+\_\+destroy\+\_\+secure\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{string__test_8c_a22d99f9811276297c4c4400e34a96fc8}{secure\+\_\+strlen\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{string__test_8c_ab7992c1ebe4fb52bfdccf4a52f79a188}\label{string__test_8c_ab7992c1ebe4fb52bfdccf4a52f79a188}} 
+\index{string\_test.c@{string\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{binary\+\_\+string\+\_\+test}]{,  }\item[{\mbox{\hyperlink{string__test_8c_a84b036bd8327b9c4f2ed87411309d56d}{s\+\_\+binary\+\_\+string\+\_\+test\+\_\+fn}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{string__test_8c_a0cd7c309252a09165bcbea01bf324e76}\label{string__test_8c_a0cd7c309252a09165bcbea01bf324e76}} 
+\index{string\_test.c@{string\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{string\+\_\+compare\+\_\+test}]{,  }\item[{\mbox{\hyperlink{string__test_8c_a09afc0925263cddb4f53b0d35140e178}{s\+\_\+string\+\_\+compare\+\_\+test\+\_\+fn}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{string__test_8c_a4188bca2f913868d02fbba4d28c5f7e8}\label{string__test_8c_a4188bca2f913868d02fbba4d28c5f7e8}} 
+\index{string\_test.c@{string\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{string\+\_\+destroy\+\_\+secure\+\_\+test}]{,  }\item[{\mbox{\hyperlink{string__test_8c_abc7cf84da6c868c911689e3a648ad19f}{string\+\_\+destroy\+\_\+secure\+\_\+test\+\_\+fn}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{string__test_8c_a86b08f7fc63bd557b209584198abcf96}\label{string__test_8c_a86b08f7fc63bd557b209584198abcf96}} 
+\index{string\_test.c@{string\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{string\+\_\+tests}]{,  }\item[{\mbox{\hyperlink{string__test_8c_a9b2949c95d367b987eb6e8c3f29d5b4c}{s\+\_\+string\+\_\+tests\+\_\+fn}}}]{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{string__test_8c_a84b036bd8327b9c4f2ed87411309d56d}\label{string__test_8c_a84b036bd8327b9c4f2ed87411309d56d}} 
+\index{string\_test.c@{string\_test.c}!s\_binary\_string\_test\_fn@{s\_binary\_string\_test\_fn}}
+\index{s\_binary\_string\_test\_fn@{s\_binary\_string\_test\_fn}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_binary\_string\_test\_fn()}{s\_binary\_string\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+binary\+\_\+string\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{string__test_8c_a09afc0925263cddb4f53b0d35140e178}\label{string__test_8c_a09afc0925263cddb4f53b0d35140e178}} 
+\index{string\_test.c@{string\_test.c}!s\_string\_compare\_test\_fn@{s\_string\_compare\_test\_fn}}
+\index{s\_string\_compare\_test\_fn@{s\_string\_compare\_test\_fn}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_string\_compare\_test\_fn()}{s\_string\_compare\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+string\+\_\+compare\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{string__test_8c_a9b2949c95d367b987eb6e8c3f29d5b4c}\label{string__test_8c_a9b2949c95d367b987eb6e8c3f29d5b4c}} 
+\index{string\_test.c@{string\_test.c}!s\_string\_tests\_fn@{s\_string\_tests\_fn}}
+\index{s\_string\_tests\_fn@{s\_string\_tests\_fn}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_string\_tests\_fn()}{s\_string\_tests\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+string\+\_\+tests\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{string__test_8c_a22d99f9811276297c4c4400e34a96fc8}\label{string__test_8c_a22d99f9811276297c4c4400e34a96fc8}} 
+\index{string\_test.c@{string\_test.c}!secure\_strlen\_test\_fn@{secure\_strlen\_test\_fn}}
+\index{secure\_strlen\_test\_fn@{secure\_strlen\_test\_fn}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{secure\_strlen\_test\_fn()}{secure\_strlen\_test\_fn()}}
+{\footnotesize\ttfamily static int secure\+\_\+strlen\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{string__test_8c_abc7cf84da6c868c911689e3a648ad19f}\label{string__test_8c_abc7cf84da6c868c911689e3a648ad19f}} 
+\index{string\_test.c@{string\_test.c}!string\_destroy\_secure\_test\_fn@{string\_destroy\_secure\_test\_fn}}
+\index{string\_destroy\_secure\_test\_fn@{string\_destroy\_secure\_test\_fn}!string\_test.c@{string\_test.c}}
+\doxysubsubsection{\texorpdfstring{string\_destroy\_secure\_test\_fn()}{string\_destroy\_secure\_test\_fn()}}
+{\footnotesize\ttfamily static int string\+\_\+destroy\+\_\+secure\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

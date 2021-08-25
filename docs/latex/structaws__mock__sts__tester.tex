@@ -1,0 +1,176 @@
+\hypertarget{structaws__mock__sts__tester}{}\doxysection{aws\+\_\+mock\+\_\+sts\+\_\+tester Struct Reference}
+\label{structaws__mock__sts__tester}\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__mock__sts__tester_af689bb63c00f43d7ef19d24c6f20cfb4}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__sts__tester_af644dbd21e373c23474a0fc7512f871e}{request\+\_\+path}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__sts__tester_a2bf8d00ed46a472fec2e86fb251d621b}{method}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__sts__tester_a01c4b071081f9ada7c3be5731051236f}{host\+\_\+header}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__sts__tester_a35fe796ee917d098d79bda9d0b9f0d50}{request\+\_\+body}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__sts__tester_ad1d1166f2ae6c267d36c56696452789e}{had\+\_\+auth\+\_\+header}}
+\item 
+int \mbox{\hyperlink{structaws__mock__sts__tester_a3cfeef8d2a199559c2b63ed73b975777}{mock\+\_\+response\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structaws__mock__sts__tester_afda4624ababe9d98260400fd286981bb}{mock\+\_\+failure\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structaws__mock__sts__tester_a29c1a0c6fb3597136ad467071ed80545}{return\+\_\+response\+\_\+code}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__mock__sts__tester_ae2d07a49f498eee2494cb97c8db82e3a}{fail\+\_\+operations}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__sts__tester_a2a373d02fca747c14d63255dbe4eb002}{mock\+\_\+body}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structaws__mock__sts__tester_a528cc63fb1467fcb0278ea2418213b8e}{lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structaws__mock__sts__tester_aa6f4f1785bfa744343a1e9c63cb25b15}{signal}}
+\item 
+struct \mbox{\hyperlink{structaws__credentials}{aws\+\_\+credentials}} $\ast$ \mbox{\hyperlink{structaws__mock__sts__tester_ac9136f332f19bb8584423791ca381643}{credentials}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__sts__tester_a4b43235118a3c069df554b9a8eca06cf}{has\+\_\+received\+\_\+credentials\+\_\+callback}}
+\item 
+int \mbox{\hyperlink{structaws__mock__sts__tester_a45448b0aba350a26da9cd82ff8884b1d}{error\+\_\+code}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__sts__tester_a26a07b2310b0ac5082f3821c43c3a0d4}{fail\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structaws__mock__sts__tester_a57c7002c5bb6000ce2aefb568aa04474}{el\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structaws__mock__sts__tester_ae7767f43d585253eccc7e55079686d31}{resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structaws__mock__sts__tester_a92bd4d9be5f7f4f6f67e7feeb1c62f17}{bootstrap}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__mock__sts__tester_af689bb63c00f43d7ef19d24c6f20cfb4}\label{structaws__mock__sts__tester_af689bb63c00f43d7ef19d24c6f20cfb4}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+mock\+\_\+sts\+\_\+tester\+::allocator}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a92bd4d9be5f7f4f6f67e7feeb1c62f17}\label{structaws__mock__sts__tester_a92bd4d9be5f7f4f6f67e7feeb1c62f17}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!bootstrap@{bootstrap}}
+\index{bootstrap@{bootstrap}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{bootstrap}{bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ aws\+\_\+mock\+\_\+sts\+\_\+tester\+::bootstrap}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_ac9136f332f19bb8584423791ca381643}\label{structaws__mock__sts__tester_ac9136f332f19bb8584423791ca381643}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!credentials@{credentials}}
+\index{credentials@{credentials}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{credentials}{credentials}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__credentials}{aws\+\_\+credentials}}$\ast$ aws\+\_\+mock\+\_\+sts\+\_\+tester\+::credentials}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a57c7002c5bb6000ce2aefb568aa04474}\label{structaws__mock__sts__tester_a57c7002c5bb6000ce2aefb568aa04474}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!el\_group@{el\_group}}
+\index{el\_group@{el\_group}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{el\_group}{el\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ aws\+\_\+mock\+\_\+sts\+\_\+tester\+::el\+\_\+group}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a45448b0aba350a26da9cd82ff8884b1d}\label{structaws__mock__sts__tester_a45448b0aba350a26da9cd82ff8884b1d}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+sts\+\_\+tester\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a26a07b2310b0ac5082f3821c43c3a0d4}\label{structaws__mock__sts__tester_a26a07b2310b0ac5082f3821c43c3a0d4}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!fail\_connection@{fail\_connection}}
+\index{fail\_connection@{fail\_connection}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{fail\_connection}{fail\_connection}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::fail\+\_\+connection}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_ae2d07a49f498eee2494cb97c8db82e3a}\label{structaws__mock__sts__tester_ae2d07a49f498eee2494cb97c8db82e3a}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!fail\_operations@{fail\_operations}}
+\index{fail\_operations@{fail\_operations}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{fail\_operations}{fail\_operations}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+mock\+\_\+sts\+\_\+tester\+::fail\+\_\+operations}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_ad1d1166f2ae6c267d36c56696452789e}\label{structaws__mock__sts__tester_ad1d1166f2ae6c267d36c56696452789e}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!had\_auth\_header@{had\_auth\_header}}
+\index{had\_auth\_header@{had\_auth\_header}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{had\_auth\_header}{had\_auth\_header}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::had\+\_\+auth\+\_\+header}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a4b43235118a3c069df554b9a8eca06cf}\label{structaws__mock__sts__tester_a4b43235118a3c069df554b9a8eca06cf}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!has\_received\_credentials\_callback@{has\_received\_credentials\_callback}}
+\index{has\_received\_credentials\_callback@{has\_received\_credentials\_callback}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{has\_received\_credentials\_callback}{has\_received\_credentials\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::has\+\_\+received\+\_\+credentials\+\_\+callback}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a01c4b071081f9ada7c3be5731051236f}\label{structaws__mock__sts__tester_a01c4b071081f9ada7c3be5731051236f}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!host\_header@{host\_header}}
+\index{host\_header@{host\_header}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{host\_header}{host\_header}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::host\+\_\+header}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a528cc63fb1467fcb0278ea2418213b8e}\label{structaws__mock__sts__tester_a528cc63fb1467fcb0278ea2418213b8e}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!lock@{lock}}
+\index{lock@{lock}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::lock}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a2bf8d00ed46a472fec2e86fb251d621b}\label{structaws__mock__sts__tester_a2bf8d00ed46a472fec2e86fb251d621b}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!method@{method}}
+\index{method@{method}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{method}{method}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::method}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a2a373d02fca747c14d63255dbe4eb002}\label{structaws__mock__sts__tester_a2a373d02fca747c14d63255dbe4eb002}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!mock\_body@{mock\_body}}
+\index{mock\_body@{mock\_body}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{mock\_body}{mock\_body}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::mock\+\_\+body}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_afda4624ababe9d98260400fd286981bb}\label{structaws__mock__sts__tester_afda4624ababe9d98260400fd286981bb}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!mock\_failure\_code@{mock\_failure\_code}}
+\index{mock\_failure\_code@{mock\_failure\_code}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{mock\_failure\_code}{mock\_failure\_code}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+sts\+\_\+tester\+::mock\+\_\+failure\+\_\+code}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a3cfeef8d2a199559c2b63ed73b975777}\label{structaws__mock__sts__tester_a3cfeef8d2a199559c2b63ed73b975777}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!mock\_response\_code@{mock\_response\_code}}
+\index{mock\_response\_code@{mock\_response\_code}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{mock\_response\_code}{mock\_response\_code}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+sts\+\_\+tester\+::mock\+\_\+response\+\_\+code}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a35fe796ee917d098d79bda9d0b9f0d50}\label{structaws__mock__sts__tester_a35fe796ee917d098d79bda9d0b9f0d50}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!request\_body@{request\_body}}
+\index{request\_body@{request\_body}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{request\_body}{request\_body}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::request\+\_\+body}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_af644dbd21e373c23474a0fc7512f871e}\label{structaws__mock__sts__tester_af644dbd21e373c23474a0fc7512f871e}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!request\_path@{request\_path}}
+\index{request\_path@{request\_path}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{request\_path}{request\_path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::request\+\_\+path}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_ae7767f43d585253eccc7e55079686d31}\label{structaws__mock__sts__tester_ae7767f43d585253eccc7e55079686d31}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!resolver@{resolver}}
+\index{resolver@{resolver}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{resolver}{resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ aws\+\_\+mock\+\_\+sts\+\_\+tester\+::resolver}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_a29c1a0c6fb3597136ad467071ed80545}\label{structaws__mock__sts__tester_a29c1a0c6fb3597136ad467071ed80545}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!return\_response\_code@{return\_response\_code}}
+\index{return\_response\_code@{return\_response\_code}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{return\_response\_code}{return\_response\_code}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+sts\+\_\+tester\+::return\+\_\+response\+\_\+code}
+
+\mbox{\Hypertarget{structaws__mock__sts__tester_aa6f4f1785bfa744343a1e9c63cb25b15}\label{structaws__mock__sts__tester_aa6f4f1785bfa744343a1e9c63cb25b15}} 
+\index{aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}!signal@{signal}}
+\index{signal@{signal}!aws\_mock\_sts\_tester@{aws\_mock\_sts\_tester}}
+\doxysubsubsection{\texorpdfstring{signal}{signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} aws\+\_\+mock\+\_\+sts\+\_\+tester\+::signal}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/\mbox{\hyperlink{credentials__provider__sts__tests_8c}{credentials\+\_\+provider\+\_\+sts\+\_\+tests.\+c}}\end{DoxyCompactItemize}

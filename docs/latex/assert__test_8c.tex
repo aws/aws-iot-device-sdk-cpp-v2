@@ -1,0 +1,189 @@
+\hypertarget{assert__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/assert\+\_\+test.c File Reference}
+\label{assert__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/assert\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/assert\_test.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{assert__test_8c_add87ebf8d6474b534bcc38386e56a082}{AWS\+\_\+\+TESTING\+\_\+\+REPORT\+\_\+\+FD}}~\mbox{\hyperlink{assert__test_8c_a9d2a48e97f8cc967e2f5268a832cda8e}{g\+\_\+test\+\_\+filedes}}
+\item 
+\#define \mbox{\hyperlink{assert__test_8c_a5b5ae8e09adfae14a0c367570b6c4770}{NO\+\_\+\+MORE\+\_\+\+TESTS}}~12345
+\item 
+\#define \mbox{\hyperlink{assert__test_8c_a5d3d79f951c86ea4d2db328bb024413a}{BAILED\+\_\+\+OUT}}~98765
+\item 
+\#define \mbox{\hyperlink{assert__test_8c_a494f463e26144b6166bfd4d67459e71a}{TEST\+\_\+\+SUCCESS}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+\item 
+\#define \mbox{\hyperlink{assert__test_8c_a212c5854823cd405e1b2f59852afbdc9}{TEST\+\_\+\+FAILURE}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{assert__test_8c_a62c07c4961e38c49c4bd6eabe0d3e1e2}{begin\+\_\+test}} (int $\ast$\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}}, const char $\ast$testname, const char $\ast$file, int line, int expected)
+\item 
+int \mbox{\hyperlink{assert__test_8c_a5129ded8591eedfc16d87f5ce02c9302}{side\+\_\+effect}} (void)
+\item 
+int \mbox{\hyperlink{assert__test_8c_aa048b25f0dcd401c51c3b1ba60601da0}{test\+\_\+asserts}} (int $\ast$\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+void \mbox{\hyperlink{assert__test_8c_a3aea9deb2a0bfea9ff05a898f4822e31}{reset}} (void)
+\item 
+int \mbox{\hyperlink{assert__test_8c_a77d2858f7c7e88cccff1e9fc40ceb6ce}{check\+\_\+failure\+\_\+output}} (const char $\ast$expected)
+\item 
+int \mbox{\hyperlink{assert__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FILE $\ast$ \mbox{\hyperlink{assert__test_8c_a9d2a48e97f8cc967e2f5268a832cda8e}{g\+\_\+test\+\_\+filedes}}
+\item 
+const char $\ast$ \mbox{\hyperlink{assert__test_8c_aae2b2459a9d3908e4da42a465e4fada6}{g\+\_\+test\+\_\+filename}}
+\item 
+int \mbox{\hyperlink{assert__test_8c_a99baca33b6f7aeb5a2d9a23bacf21406}{g\+\_\+cur\+\_\+line}}
+\item 
+int \mbox{\hyperlink{assert__test_8c_a6e5c308cb0a17db489b8324d16a6649e}{g\+\_\+expected\+\_\+return}}
+\item 
+int \mbox{\hyperlink{assert__test_8c_a5863a0dcbe0acc5797d5987d4691f752}{g\+\_\+bail\+\_\+out}}
+\item 
+const char $\ast$ \mbox{\hyperlink{assert__test_8c_a7a998a1d1b79c2604e45fedfb75e5698}{g\+\_\+cur\+\_\+testname}}
+\item 
+const char $\ast$ \mbox{\hyperlink{assert__test_8c_aa954ac225bee8ed4041da2a0c3e52ec6}{g\+\_\+cur\+\_\+file}}
+\item 
+static int \mbox{\hyperlink{assert__test_8c_a0a12c2d678a0e02fc2ad0d50d8893a74}{side\+\_\+effect\+\_\+ctr}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{assert__test_8c_add87ebf8d6474b534bcc38386e56a082}\label{assert__test_8c_add87ebf8d6474b534bcc38386e56a082}} 
+\index{assert\_test.c@{assert\_test.c}!AWS\_TESTING\_REPORT\_FD@{AWS\_TESTING\_REPORT\_FD}}
+\index{AWS\_TESTING\_REPORT\_FD@{AWS\_TESTING\_REPORT\_FD}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TESTING\_REPORT\_FD}{AWS\_TESTING\_REPORT\_FD}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+TESTING\+\_\+\+REPORT\+\_\+\+FD~\mbox{\hyperlink{assert__test_8c_a9d2a48e97f8cc967e2f5268a832cda8e}{g\+\_\+test\+\_\+filedes}}}
+
+This standalone test harness tests that the asserts themselves function properly \mbox{\Hypertarget{assert__test_8c_a5d3d79f951c86ea4d2db328bb024413a}\label{assert__test_8c_a5d3d79f951c86ea4d2db328bb024413a}} 
+\index{assert\_test.c@{assert\_test.c}!BAILED\_OUT@{BAILED\_OUT}}
+\index{BAILED\_OUT@{BAILED\_OUT}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{BAILED\_OUT}{BAILED\_OUT}}
+{\footnotesize\ttfamily \#define BAILED\+\_\+\+OUT~98765}
+
+\mbox{\Hypertarget{assert__test_8c_a5b5ae8e09adfae14a0c367570b6c4770}\label{assert__test_8c_a5b5ae8e09adfae14a0c367570b6c4770}} 
+\index{assert\_test.c@{assert\_test.c}!NO\_MORE\_TESTS@{NO\_MORE\_TESTS}}
+\index{NO\_MORE\_TESTS@{NO\_MORE\_TESTS}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{NO\_MORE\_TESTS}{NO\_MORE\_TESTS}}
+{\footnotesize\ttfamily \#define NO\+\_\+\+MORE\+\_\+\+TESTS~12345}
+
+\mbox{\Hypertarget{assert__test_8c_a212c5854823cd405e1b2f59852afbdc9}\label{assert__test_8c_a212c5854823cd405e1b2f59852afbdc9}} 
+\index{assert\_test.c@{assert\_test.c}!TEST\_FAILURE@{TEST\_FAILURE}}
+\index{TEST\_FAILURE@{TEST\_FAILURE}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FAILURE}{TEST\_FAILURE}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+FAILURE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{assert__test_8c_a5863a0dcbe0acc5797d5987d4691f752}{g\_bail\_out}})                                                                                                    \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{assert__test_8c_a5d3d79f951c86ea4d2db328bb024413a}{BAILED\_OUT}};                                                                                             \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{assert__test_8c_a62c07c4961e38c49c4bd6eabe0d3e1e2}{begin\_test}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}, \#\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \_\_FILE\_\_, \_\_LINE\_\_, -\/1))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{assert__test_8c_a494f463e26144b6166bfd4d67459e71a}\label{assert__test_8c_a494f463e26144b6166bfd4d67459e71a}} 
+\index{assert\_test.c@{assert\_test.c}!TEST\_SUCCESS@{TEST\_SUCCESS}}
+\index{TEST\_SUCCESS@{TEST\_SUCCESS}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_SUCCESS}{TEST\_SUCCESS}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+SUCCESS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{assert__test_8c_a5863a0dcbe0acc5797d5987d4691f752}{g\_bail\_out}})                                                                                                    \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{assert__test_8c_a5d3d79f951c86ea4d2db328bb024413a}{BAILED\_OUT}};                                                                                             \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{assert__test_8c_a62c07c4961e38c49c4bd6eabe0d3e1e2}{begin\_test}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}, \#\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \_\_FILE\_\_, \_\_LINE\_\_, 0))}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{assert__test_8c_a62c07c4961e38c49c4bd6eabe0d3e1e2}\label{assert__test_8c_a62c07c4961e38c49c4bd6eabe0d3e1e2}} 
+\index{assert\_test.c@{assert\_test.c}!begin\_test@{begin\_test}}
+\index{begin\_test@{begin\_test}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{begin\_test()}{begin\_test()}}
+{\footnotesize\ttfamily int begin\+\_\+test (\begin{DoxyParamCaption}\item[{int $\ast$}]{index,  }\item[{const char $\ast$}]{testname,  }\item[{const char $\ast$}]{file,  }\item[{int}]{line,  }\item[{int}]{expected }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{assert__test_8c_a77d2858f7c7e88cccff1e9fc40ceb6ce}\label{assert__test_8c_a77d2858f7c7e88cccff1e9fc40ceb6ce}} 
+\index{assert\_test.c@{assert\_test.c}!check\_failure\_output@{check\_failure\_output}}
+\index{check\_failure\_output@{check\_failure\_output}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{check\_failure\_output()}{check\_failure\_output()}}
+{\footnotesize\ttfamily int check\+\_\+failure\+\_\+output (\begin{DoxyParamCaption}\item[{const char $\ast$}]{expected }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{assert__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{assert__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{assert\_test.c@{assert\_test.c}!main@{main}}
+\index{main@{main}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{assert__test_8c_a3aea9deb2a0bfea9ff05a898f4822e31}\label{assert__test_8c_a3aea9deb2a0bfea9ff05a898f4822e31}} 
+\index{assert\_test.c@{assert\_test.c}!reset@{reset}}
+\index{reset@{reset}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{assert__test_8c_a5129ded8591eedfc16d87f5ce02c9302}\label{assert__test_8c_a5129ded8591eedfc16d87f5ce02c9302}} 
+\index{assert\_test.c@{assert\_test.c}!side\_effect@{side\_effect}}
+\index{side\_effect@{side\_effect}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{side\_effect()}{side\_effect()}}
+{\footnotesize\ttfamily int side\+\_\+effect (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{assert__test_8c_aa048b25f0dcd401c51c3b1ba60601da0}\label{assert__test_8c_aa048b25f0dcd401c51c3b1ba60601da0}} 
+\index{assert\_test.c@{assert\_test.c}!test\_asserts@{test\_asserts}}
+\index{test\_asserts@{test\_asserts}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_asserts()}{test\_asserts()}}
+{\footnotesize\ttfamily int test\+\_\+asserts (\begin{DoxyParamCaption}\item[{int $\ast$}]{index }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{assert__test_8c_a5863a0dcbe0acc5797d5987d4691f752}\label{assert__test_8c_a5863a0dcbe0acc5797d5987d4691f752}} 
+\index{assert\_test.c@{assert\_test.c}!g\_bail\_out@{g\_bail\_out}}
+\index{g\_bail\_out@{g\_bail\_out}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_bail\_out}{g\_bail\_out}}
+{\footnotesize\ttfamily int g\+\_\+bail\+\_\+out}
+
+\mbox{\Hypertarget{assert__test_8c_aa954ac225bee8ed4041da2a0c3e52ec6}\label{assert__test_8c_aa954ac225bee8ed4041da2a0c3e52ec6}} 
+\index{assert\_test.c@{assert\_test.c}!g\_cur\_file@{g\_cur\_file}}
+\index{g\_cur\_file@{g\_cur\_file}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_cur\_file}{g\_cur\_file}}
+{\footnotesize\ttfamily const char $\ast$ g\+\_\+cur\+\_\+file}
+
+\mbox{\Hypertarget{assert__test_8c_a99baca33b6f7aeb5a2d9a23bacf21406}\label{assert__test_8c_a99baca33b6f7aeb5a2d9a23bacf21406}} 
+\index{assert\_test.c@{assert\_test.c}!g\_cur\_line@{g\_cur\_line}}
+\index{g\_cur\_line@{g\_cur\_line}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_cur\_line}{g\_cur\_line}}
+{\footnotesize\ttfamily int g\+\_\+cur\+\_\+line}
+
+\mbox{\Hypertarget{assert__test_8c_a7a998a1d1b79c2604e45fedfb75e5698}\label{assert__test_8c_a7a998a1d1b79c2604e45fedfb75e5698}} 
+\index{assert\_test.c@{assert\_test.c}!g\_cur\_testname@{g\_cur\_testname}}
+\index{g\_cur\_testname@{g\_cur\_testname}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_cur\_testname}{g\_cur\_testname}}
+{\footnotesize\ttfamily const char$\ast$ g\+\_\+cur\+\_\+testname}
+
+\mbox{\Hypertarget{assert__test_8c_a6e5c308cb0a17db489b8324d16a6649e}\label{assert__test_8c_a6e5c308cb0a17db489b8324d16a6649e}} 
+\index{assert\_test.c@{assert\_test.c}!g\_expected\_return@{g\_expected\_return}}
+\index{g\_expected\_return@{g\_expected\_return}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_expected\_return}{g\_expected\_return}}
+{\footnotesize\ttfamily int g\+\_\+expected\+\_\+return}
+
+\mbox{\Hypertarget{assert__test_8c_a9d2a48e97f8cc967e2f5268a832cda8e}\label{assert__test_8c_a9d2a48e97f8cc967e2f5268a832cda8e}} 
+\index{assert\_test.c@{assert\_test.c}!g\_test\_filedes@{g\_test\_filedes}}
+\index{g\_test\_filedes@{g\_test\_filedes}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_test\_filedes}{g\_test\_filedes}}
+{\footnotesize\ttfamily FILE$\ast$ g\+\_\+test\+\_\+filedes}
+
+\mbox{\Hypertarget{assert__test_8c_aae2b2459a9d3908e4da42a465e4fada6}\label{assert__test_8c_aae2b2459a9d3908e4da42a465e4fada6}} 
+\index{assert\_test.c@{assert\_test.c}!g\_test\_filename@{g\_test\_filename}}
+\index{g\_test\_filename@{g\_test\_filename}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{g\_test\_filename}{g\_test\_filename}}
+{\footnotesize\ttfamily const char$\ast$ g\+\_\+test\+\_\+filename}
+
+\mbox{\Hypertarget{assert__test_8c_a0a12c2d678a0e02fc2ad0d50d8893a74}\label{assert__test_8c_a0a12c2d678a0e02fc2ad0d50d8893a74}} 
+\index{assert\_test.c@{assert\_test.c}!side\_effect\_ctr@{side\_effect\_ctr}}
+\index{side\_effect\_ctr@{side\_effect\_ctr}!assert\_test.c@{assert\_test.c}}
+\doxysubsubsection{\texorpdfstring{side\_effect\_ctr}{side\_effect\_ctr}}
+{\footnotesize\ttfamily int side\+\_\+effect\+\_\+ctr = 0\hspace{0.3cm}{\ttfamily [static]}}
+

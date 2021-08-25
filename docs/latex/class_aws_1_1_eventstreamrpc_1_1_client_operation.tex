@@ -1,0 +1,120 @@
+\hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation}{}\doxysection{Aws\+::Eventstreamrpc\+::Client\+Operation Class Reference}
+\label{class_aws_1_1_eventstreamrpc_1_1_client_operation}\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+
+
+{\ttfamily \#include $<$Event\+Stream\+Client.\+h$>$}
+
+Inheritance diagram for Aws\+::Eventstreamrpc\+::Client\+Operation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{class_aws_1_1_eventstreamrpc_1_1_client_operation}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_af1682939fc2558a0cc840b154fc51521}{Client\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$stream\+Handler, const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&operation\+Model\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}{$\sim$\+Client\+Operation}} () noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6b23746460ce51ad77e656f8ea46c586}{Client\+Operation}} (const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{Client\+Operation}} \&client\+Operation) noexcept=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a5391d0ca9725da52c636843249007344}{Client\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{Client\+Operation}} \&\&client\+Operation) noexcept
+\item 
+std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a1aa2282eb1db6e504df657c018294c60}{Close}} (\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback=nullptr) noexcept
+\item 
+std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{Tagged\+Result}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a775e0ab94a3203eb2c6af9317878affb}{Get\+Operation\+Result}} () noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6e0d47214a411bfd49d8071a091187cb}{Activate}} (const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $\ast$shape, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
+\item 
+std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_add0e852785c87f4cfcf8c475c5d5fd49}{Send\+Stream\+Event}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $\ast$shape, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
+\item 
+virtual \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a00bdab8695bd71490f5e346d82bac8ae}{Get\+Model\+Name}} () const noexcept=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \& \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_aea9c699ebdcaa5e744417d5b967d9e63}{m\+\_\+operation\+Model\+Context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_af1682939fc2558a0cc840b154fc51521}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_af1682939fc2558a0cc840b154fc51521}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!ClientOperation@{ClientOperation}}
+\index{ClientOperation@{ClientOperation}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{ClientOperation()}{ClientOperation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Client\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$}]{stream\+Handler,  }\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&}]{operation\+Model\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!````~ClientOperation@{$\sim$ClientOperation}}
+\index{````~ClientOperation@{$\sim$ClientOperation}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{$\sim$ClientOperation()}{~ClientOperation()}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::$\sim$\+Client\+Operation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6b23746460ce51ad77e656f8ea46c586}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6b23746460ce51ad77e656f8ea46c586}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!ClientOperation@{ClientOperation}}
+\index{ClientOperation@{ClientOperation}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{ClientOperation()}{ClientOperation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Client\+Operation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{Client\+Operation}} \&}]{client\+Operation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a5391d0ca9725da52c636843249007344}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a5391d0ca9725da52c636843249007344}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!ClientOperation@{ClientOperation}}
+\index{ClientOperation@{ClientOperation}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{ClientOperation()}{ClientOperation()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Client\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation}{Client\+Operation}} \&\&}]{client\+Operation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6e0d47214a411bfd49d8071a091187cb}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a6e0d47214a411bfd49d8071a091187cb}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!Activate@{Activate}}
+\index{Activate@{Activate}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{Activate()}{Activate()}}
+{\footnotesize\ttfamily std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Activate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $\ast$}]{shape,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}}}]{on\+Message\+Flush\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a1aa2282eb1db6e504df657c018294c60}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a1aa2282eb1db6e504df657c018294c60}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!Close@{Close}}
+\index{Close@{Close}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}}}]{on\+Message\+Flush\+Callback = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a00bdab8695bd71490f5e346d82bac8ae}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a00bdab8695bd71490f5e346d82bac8ae}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!GetModelName@{GetModelName}}
+\index{GetModelName@{GetModelName}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_operation_ab19aa8442d477a270a2549500962dce5}{Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resume_component_operation_a931013b14ababb02f78cd0906a64a975}{Aws\+::\+Greengrass\+::\+Resume\+Component\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_io_t_core_operation_a25bee8f9fc6adea0ce4b1e8c54334e27}{Aws\+::\+Greengrass\+::\+Publish\+To\+Io\+TCore\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_configuration_update_operation_a9c91a971dd128bb36077cf07e90d3981}{Aws\+::\+Greengrass\+::\+Subscribe\+To\+Configuration\+Update\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_delete_thing_shadow_operation_abe5d7f9908ff9cc84cdd0e1c6d459d65}{Aws\+::\+Greengrass\+::\+Delete\+Thing\+Shadow\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_defer_component_update_operation_a4ac8d4a8e5074c40ed2f2ca4f56422c1}{Aws\+::\+Greengrass\+::\+Defer\+Component\+Update\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_validate_configuration_updates_operation_afc0339e82a6b7f3a150694cbbfbfd49d}{Aws\+::\+Greengrass\+::\+Subscribe\+To\+Validate\+Configuration\+Updates\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_get_configuration_operation_a9f1bd69007bfe887ace7f81cd95da638}{Aws\+::\+Greengrass\+::\+Get\+Configuration\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_topic_operation_ab08d186e9953493108a39a2233dd14e7}{Aws\+::\+Greengrass\+::\+Subscribe\+To\+Topic\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_get_component_details_operation_ae80986de486c29750b39e0bf4e0c2166}{Aws\+::\+Greengrass\+::\+Get\+Component\+Details\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_a27041b4b5de778a8b9780b113ff8b3fe}{Aws\+::\+Greengrass\+::\+Publish\+To\+Topic\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_list_components_operation_adb9cc21874a36fef28562bd0ecd36639}{Aws\+::\+Greengrass\+::\+List\+Components\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_create_debug_password_operation_a776424687cd6ca530f993bbb4062bf97}{Aws\+::\+Greengrass\+::\+Create\+Debug\+Password\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_get_thing_shadow_operation_a745d4d27bc031ddda4eda99df1d94679}{Aws\+::\+Greengrass\+::\+Get\+Thing\+Shadow\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_send_configuration_validity_report_operation_a0c9b6dddbabf90be467c9dbb31f0fcd5}{Aws\+::\+Greengrass\+::\+Send\+Configuration\+Validity\+Report\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_update_thing_shadow_operation_a30dcfb812ed2a92059afa60803a42b7c}{Aws\+::\+Greengrass\+::\+Update\+Thing\+Shadow\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_update_configuration_operation_a39f224af1a7fb1d230bc0d6b09ed6d39}{Aws\+::\+Greengrass\+::\+Update\+Configuration\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_validate_authorization_token_operation_ae95cd6d8ec60083b296d3b80205a29c4}{Aws\+::\+Greengrass\+::\+Validate\+Authorization\+Token\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_restart_component_operation_a4fa643523f699b596c2962859fb9ab20}{Aws\+::\+Greengrass\+::\+Restart\+Component\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_get_local_deployment_status_operation_a827b92a95a0956ce542593c21a308d10}{Aws\+::\+Greengrass\+::\+Get\+Local\+Deployment\+Status\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_get_secret_value_operation_a0bc78314efe4001ea6d124aec3d199a9}{Aws\+::\+Greengrass\+::\+Get\+Secret\+Value\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_update_state_operation_ae7d282516170e88912b6abdfec61f942}{Aws\+::\+Greengrass\+::\+Update\+State\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_list_named_shadows_for_thing_operation_a5d1200b31ca001f59df9167a1d40a3ce}{Aws\+::\+Greengrass\+::\+List\+Named\+Shadows\+For\+Thing\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_operation_a8293d2461fad8272c357110d0559487f}{Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_list_local_deployments_operation_ac85e9d8d1db666729b1960fec48819e8}{Aws\+::\+Greengrass\+::\+List\+Local\+Deployments\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_stop_component_operation_adde668ff3d201dcf3d737717d3994b32}{Aws\+::\+Greengrass\+::\+Stop\+Component\+Operation}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_a0f92ef651040a244314acb2c5b530fc2}{Aws\+::\+Greengrass\+::\+Pause\+Component\+Operation}}, and \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_create_local_deployment_operation_a0d5c1f2c635ac21878fc4ad1d7d20123}{Aws\+::\+Greengrass\+::\+Create\+Local\+Deployment\+Operation}}.
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a775e0ab94a3203eb2c6af9317878affb}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a775e0ab94a3203eb2c6af9317878affb}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!GetOperationResult@{GetOperationResult}}
+\index{GetOperationResult@{GetOperationResult}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{GetOperationResult()}{GetOperationResult()}}
+{\footnotesize\ttfamily std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{Tagged\+Result}} $>$ Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Get\+Operation\+Result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_add0e852785c87f4cfcf8c475c5d5fd49}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_add0e852785c87f4cfcf8c475c5d5fd49}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!SendStreamEvent@{SendStreamEvent}}
+\index{SendStreamEvent@{SendStreamEvent}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{SendStreamEvent()}{SendStreamEvent()}}
+{\footnotesize\ttfamily std\+::future$<$\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}$>$ Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Send\+Stream\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $\ast$}]{shape,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}}}]{on\+Message\+Flush\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_aea9c699ebdcaa5e744417d5b967d9e63}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_aea9c699ebdcaa5e744417d5b967d9e63}} 
+\index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!m\_operationModelContext@{m\_operationModelContext}}
+\index{m\_operationModelContext@{m\_operationModelContext}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
+\doxysubsubsection{\texorpdfstring{m\_operationModelContext}{m\_operationModelContext}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}}\& Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::m\+\_\+operation\+Model\+Context\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eventstream\+\_\+rpc/include/aws/eventstreamrpc/\mbox{\hyperlink{_event_stream_client_8h}{Event\+Stream\+Client.\+h}}\item 
+eventstream\+\_\+rpc/source/\mbox{\hyperlink{_event_stream_client_8cpp}{Event\+Stream\+Client.\+cpp}}\end{DoxyCompactItemize}

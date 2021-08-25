@@ -1,0 +1,175 @@
+\hypertarget{realloc__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/realloc\+\_\+test.c File Reference}
+\label{realloc__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/realloc\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/realloc\_test.c}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \mbox{\hyperlink{realloc__test_8c_a893ddde39fe20fa58c9f78150495b23e}{s\+\_\+test\+\_\+alloc\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+static void \mbox{\hyperlink{realloc__test_8c_ab50a2468fef579117084d57159c974ba}{s\+\_\+test\+\_\+alloc\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+\item 
+static void $\ast$ \mbox{\hyperlink{realloc__test_8c_a3dfd47273ecaad7b2a6783a956543d82}{s\+\_\+test\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
+\item 
+static void $\ast$ \mbox{\hyperlink{realloc__test_8c_ac2b6700ef1097a2c1257b5d24cd7582b}{s\+\_\+test\+\_\+malloc\+\_\+failing}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+static void $\ast$ \mbox{\hyperlink{realloc__test_8c_ad98b5ff1f7cb6885faf4a86c6f273a94}{s\+\_\+test\+\_\+realloc\+\_\+failing}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_aef8f1e376c5afadc21870c1128b778ca}{s\+\_\+test\+\_\+realloc\+\_\+fallback\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_aac51b4353e1e75f1ade92296e9b5e828}{s\+\_\+test\+\_\+realloc\+\_\+fallback\+\_\+oom\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_a536e79c9ea69cde8e9b99bd81986b81e}{s\+\_\+test\+\_\+realloc\+\_\+passthrough\+\_\+oom\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_a66c125507e7fb7bf825a68e16c87832b}{s\+\_\+test\+\_\+realloc\+\_\+passthrough\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_aac12fa23f422da6d7fea5b29e0ea25dd}{s\+\_\+test\+\_\+cf\+\_\+allocator\+\_\+wrapper\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{realloc__test_8c_a4df77eeca940230894f53c76c5054994}{s\+\_\+test\+\_\+acquire\+\_\+many\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_a794376bd3a52cd92ec852d1c5504e8a8}{s\+\_\+alloc\+\_\+counter}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_a33e99c021e51f80cbab04cbfe2eed70f}{s\+\_\+alloc\+\_\+total\+\_\+size}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_a915eba1e58d83485110d85fbb41b5c11}{s\+\_\+call\+\_\+ct\+\_\+malloc}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_ad838e353cc35795af736449927a82b45}{s\+\_\+call\+\_\+ct\+\_\+free}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_abb8b9b7c0d2cdfa9925fd4406863d25d}{s\+\_\+call\+\_\+ct\+\_\+realloc}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_afef729574c1b5b8d819f1ead7d2b8525}{s\+\_\+original\+\_\+size}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{realloc__test_8c_a3dfdfebd8b18839d89d2558e7d5ab22b}{s\+\_\+reported\+\_\+oldsize}}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{realloc__test_8c_ad370ffaf25a2b43359839a046de159a4}{TEST\+\_\+\+PATTERN}} \mbox{[}32\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{realloc__test_8c_a4df77eeca940230894f53c76c5054994}\label{realloc__test_8c_a4df77eeca940230894f53c76c5054994}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_acquire\_many\_fn@{s\_test\_acquire\_many\_fn}}
+\index{s\_test\_acquire\_many\_fn@{s\_test\_acquire\_many\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_acquire\_many\_fn()}{s\_test\_acquire\_many\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+acquire\+\_\+many\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a893ddde39fe20fa58c9f78150495b23e}\label{realloc__test_8c_a893ddde39fe20fa58c9f78150495b23e}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_alloc\_acquire@{s\_test\_alloc\_acquire}}
+\index{s\_test\_alloc\_acquire@{s\_test\_alloc\_acquire}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_alloc\_acquire()}{s\_test\_alloc\_acquire()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+test\+\_\+alloc\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_ab50a2468fef579117084d57159c974ba}\label{realloc__test_8c_ab50a2468fef579117084d57159c974ba}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_alloc\_release@{s\_test\_alloc\_release}}
+\index{s\_test\_alloc\_release@{s\_test\_alloc\_release}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_alloc\_release()}{s\_test\_alloc\_release()}}
+{\footnotesize\ttfamily static void s\+\_\+test\+\_\+alloc\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_aac12fa23f422da6d7fea5b29e0ea25dd}\label{realloc__test_8c_aac12fa23f422da6d7fea5b29e0ea25dd}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_cf\_allocator\_wrapper\_fn@{s\_test\_cf\_allocator\_wrapper\_fn}}
+\index{s\_test\_cf\_allocator\_wrapper\_fn@{s\_test\_cf\_allocator\_wrapper\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_cf\_allocator\_wrapper\_fn()}{s\_test\_cf\_allocator\_wrapper\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+cf\+\_\+allocator\+\_\+wrapper\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_ac2b6700ef1097a2c1257b5d24cd7582b}\label{realloc__test_8c_ac2b6700ef1097a2c1257b5d24cd7582b}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_malloc\_failing@{s\_test\_malloc\_failing}}
+\index{s\_test\_malloc\_failing@{s\_test\_malloc\_failing}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_malloc\_failing()}{s\_test\_malloc\_failing()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+test\+\_\+malloc\+\_\+failing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a3dfd47273ecaad7b2a6783a956543d82}\label{realloc__test_8c_a3dfd47273ecaad7b2a6783a956543d82}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc@{s\_test\_realloc}}
+\index{s\_test\_realloc@{s\_test\_realloc}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc()}{s\_test\_realloc()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+test\+\_\+realloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ptr,  }\item[{size\+\_\+t}]{oldsize,  }\item[{size\+\_\+t}]{newsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_ad98b5ff1f7cb6885faf4a86c6f273a94}\label{realloc__test_8c_ad98b5ff1f7cb6885faf4a86c6f273a94}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc\_failing@{s\_test\_realloc\_failing}}
+\index{s\_test\_realloc\_failing@{s\_test\_realloc\_failing}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc\_failing()}{s\_test\_realloc\_failing()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+test\+\_\+realloc\+\_\+failing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ptr,  }\item[{size\+\_\+t}]{oldsize,  }\item[{size\+\_\+t}]{newsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_aef8f1e376c5afadc21870c1128b778ca}\label{realloc__test_8c_aef8f1e376c5afadc21870c1128b778ca}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc\_fallback\_fn@{s\_test\_realloc\_fallback\_fn}}
+\index{s\_test\_realloc\_fallback\_fn@{s\_test\_realloc\_fallback\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc\_fallback\_fn()}{s\_test\_realloc\_fallback\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+realloc\+\_\+fallback\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_aac51b4353e1e75f1ade92296e9b5e828}\label{realloc__test_8c_aac51b4353e1e75f1ade92296e9b5e828}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc\_fallback\_oom\_fn@{s\_test\_realloc\_fallback\_oom\_fn}}
+\index{s\_test\_realloc\_fallback\_oom\_fn@{s\_test\_realloc\_fallback\_oom\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc\_fallback\_oom\_fn()}{s\_test\_realloc\_fallback\_oom\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+realloc\+\_\+fallback\+\_\+oom\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a66c125507e7fb7bf825a68e16c87832b}\label{realloc__test_8c_a66c125507e7fb7bf825a68e16c87832b}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc\_passthrough\_fn@{s\_test\_realloc\_passthrough\_fn}}
+\index{s\_test\_realloc\_passthrough\_fn@{s\_test\_realloc\_passthrough\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc\_passthrough\_fn()}{s\_test\_realloc\_passthrough\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+realloc\+\_\+passthrough\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a536e79c9ea69cde8e9b99bd81986b81e}\label{realloc__test_8c_a536e79c9ea69cde8e9b99bd81986b81e}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_test\_realloc\_passthrough\_oom\_fn@{s\_test\_realloc\_passthrough\_oom\_fn}}
+\index{s\_test\_realloc\_passthrough\_oom\_fn@{s\_test\_realloc\_passthrough\_oom\_fn}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_realloc\_passthrough\_oom\_fn()}{s\_test\_realloc\_passthrough\_oom\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+realloc\+\_\+passthrough\+\_\+oom\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{realloc__test_8c_a794376bd3a52cd92ec852d1c5504e8a8}\label{realloc__test_8c_a794376bd3a52cd92ec852d1c5504e8a8}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_alloc\_counter@{s\_alloc\_counter}}
+\index{s\_alloc\_counter@{s\_alloc\_counter}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_counter}{s\_alloc\_counter}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+alloc\+\_\+counter\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{realloc__test_8c_a33e99c021e51f80cbab04cbfe2eed70f}\label{realloc__test_8c_a33e99c021e51f80cbab04cbfe2eed70f}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_alloc\_total\_size@{s\_alloc\_total\_size}}
+\index{s\_alloc\_total\_size@{s\_alloc\_total\_size}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_total\_size}{s\_alloc\_total\_size}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+alloc\+\_\+total\+\_\+size\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_ad838e353cc35795af736449927a82b45}\label{realloc__test_8c_ad838e353cc35795af736449927a82b45}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_call\_ct\_free@{s\_call\_ct\_free}}
+\index{s\_call\_ct\_free@{s\_call\_ct\_free}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_call\_ct\_free}{s\_call\_ct\_free}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+call\+\_\+ct\+\_\+free\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a915eba1e58d83485110d85fbb41b5c11}\label{realloc__test_8c_a915eba1e58d83485110d85fbb41b5c11}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_call\_ct\_malloc@{s\_call\_ct\_malloc}}
+\index{s\_call\_ct\_malloc@{s\_call\_ct\_malloc}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_call\_ct\_malloc}{s\_call\_ct\_malloc}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+call\+\_\+ct\+\_\+malloc\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_abb8b9b7c0d2cdfa9925fd4406863d25d}\label{realloc__test_8c_abb8b9b7c0d2cdfa9925fd4406863d25d}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_call\_ct\_realloc@{s\_call\_ct\_realloc}}
+\index{s\_call\_ct\_realloc@{s\_call\_ct\_realloc}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_call\_ct\_realloc}{s\_call\_ct\_realloc}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+call\+\_\+ct\+\_\+realloc\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_afef729574c1b5b8d819f1ead7d2b8525}\label{realloc__test_8c_afef729574c1b5b8d819f1ead7d2b8525}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_original\_size@{s\_original\_size}}
+\index{s\_original\_size@{s\_original\_size}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_original\_size}{s\_original\_size}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+original\+\_\+size\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_a3dfdfebd8b18839d89d2558e7d5ab22b}\label{realloc__test_8c_a3dfdfebd8b18839d89d2558e7d5ab22b}} 
+\index{realloc\_test.c@{realloc\_test.c}!s\_reported\_oldsize@{s\_reported\_oldsize}}
+\index{s\_reported\_oldsize@{s\_reported\_oldsize}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_reported\_oldsize}{s\_reported\_oldsize}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+reported\+\_\+oldsize\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{realloc__test_8c_ad370ffaf25a2b43359839a046de159a4}\label{realloc__test_8c_ad370ffaf25a2b43359839a046de159a4}} 
+\index{realloc\_test.c@{realloc\_test.c}!TEST\_PATTERN@{TEST\_PATTERN}}
+\index{TEST\_PATTERN@{TEST\_PATTERN}!realloc\_test.c@{realloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_PATTERN}{TEST\_PATTERN}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+PATTERN\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0xa5, 0x41, 0xcb, 0xe7, 0x00, 0x19, 0xd9, 0xf3, 0x60, 0x4a, 0x2b,}
+\DoxyCodeLine{                                         0x68, 0x55, 0x46, 0xb7, 0xe0, 0x74, 0x91, 0x2a, 0xbe, 0x5e, 0x41,}
+\DoxyCodeLine{                                         0x06, 0x39, 0x02, 0x02, 0xf6, 0x79, 0x1c, 0x4a, 0x08, 0xa9\}}
+
+\end{DoxyCode}

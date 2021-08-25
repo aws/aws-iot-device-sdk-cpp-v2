@@ -1,0 +1,31 @@
+\hypertarget{s2n__alerts_8h_source}{}\doxysection{s2n\+\_\+alerts.\+h}
+\label{s2n__alerts_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_alerts.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_alerts.h}}
+\mbox{\hyperlink{s2n__alerts_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__connection_8h}{tls/s2n\_connection.h}}"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__alerts_8h_a45bdea2fd7faa208c0272f56bfb8c656}{s2n\_process\_alert\_fragment}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{23 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__alerts_8h_aa64cc9d8af1c1afc16c6720c02fef789}{s2n\_queue\_writer\_close\_alert\_warning}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{24 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__alerts_8h_aaab45cd713be8d161a114cf078b52635}{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{25 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__alerts_8h_a85c39069581e54153f38ee260878714d}{s2n\_queue\_reader\_handshake\_failure\_alert}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+
+\end{DoxyCode}

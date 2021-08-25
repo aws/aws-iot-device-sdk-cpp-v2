@@ -1,0 +1,49 @@
+\hypertarget{schedule_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/schedule.c File Reference}
+\label{schedule_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/schedule.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/schedule.c}}
+{\ttfamily \#include \char`\"{}preamble.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{schedule_8c_a335d604526cc357e0f5c3ea78acd6266}{write}} (int fd, void $\ast$bytes, size\+\_\+t nbytes) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}() \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(nbytes
+\item 
+static void \mbox{\hyperlink{schedule_8c_acd0858843f92fc9703091f5cf8b059a6}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex))) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(always c\+\_\+event\+\_\+loop
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} closed \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}} (requires \textbackslash{}wrapped(c\+\_\+mutex) \&\&\textbackslash{}claims\+\_\+object(c\+\_\+mutex, \&(\mbox{\hyperlink{preamble_8h_a1f85751391371e21d97a990fd2e12c7f}{epoll\+\_\+loop\+\_\+of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}) -\/$>$task\+\_\+pre\+\_\+queue\+\_\+mutex))) \+\_\+(\textbackslash{}thread\+\_\+local(task)) \+\_\+(\textbackslash{}wrapped(task)) \+\_\+(-\/$>$ fn-\/$>$\textbackslash{}valid) \+\_\+(writes task) \+\_\+(updates \&\mbox{\hyperlink{preamble_8h_a1f85751391371e21d97a990fd2e12c7f}{epoll\+\_\+loop\+\_\+of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}) -\/$>$scheduler)
+\item 
+static void \mbox{\hyperlink{schedule_8c_a59586c4d7657a0646237a796e78bdf55}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex)))
+\item 
+static void \mbox{\hyperlink{schedule_8c_a136f5c5fcf12b03dd9a6758e471ab1c2}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex)))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}\label{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}} 
+\index{schedule.c@{schedule.c}!\_@{\_}}
+\index{\_@{\_}!schedule.c@{schedule.c}}
+\doxysubsubsection{\texorpdfstring{\_()}{\_()}}
+{\footnotesize\ttfamily static void \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} closed \+\_\+ (\begin{DoxyParamCaption}\item[{requires \textbackslash{}}]{wrappedc\+\_\+mutex) \&\&\textbackslash{}claims\+\_\+object(c\+\_\+mutex, \&(epoll\+\_\+loop\+\_\+of(event\+\_\+loop) -\/$>$task\+\_\+pre\+\_\+queue\+\_\+mutex) }\end{DoxyParamCaption}) -\/$>$ fn-\/$>$\textbackslash{}valid)     \+\_\+(writes task)     \+\_\+(updates \&\mbox{\hyperlink{preamble_8h_a1f85751391371e21d97a990fd2e12c7f}{epoll\+\_\+loop\+\_\+of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})-\/$>$scheduler) }
+
+\mbox{\Hypertarget{schedule_8c_acd0858843f92fc9703091f5cf8b059a6}\label{schedule_8c_acd0858843f92fc9703091f5cf8b059a6}} 
+\index{schedule.c@{schedule.c}!s\_schedule\_task\_common@{s\_schedule\_task\_common}}
+\index{s\_schedule\_task\_common@{s\_schedule\_task\_common}!schedule.c@{schedule.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_common()}{s\_schedule\_task\_common()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+common (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t run\+\_\+at\+\_\+nanos }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{schedule_8c_a136f5c5fcf12b03dd9a6758e471ab1c2}\label{schedule_8c_a136f5c5fcf12b03dd9a6758e471ab1c2}} 
+\index{schedule.c@{schedule.c}!s\_schedule\_task\_future@{s\_schedule\_task\_future}}
+\index{s\_schedule\_task\_future@{s\_schedule\_task\_future}!schedule.c@{schedule.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_future()}{s\_schedule\_task\_future()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+future (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t run\+\_\+at\+\_\+nanos }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{schedule_8c_a59586c4d7657a0646237a796e78bdf55}\label{schedule_8c_a59586c4d7657a0646237a796e78bdf55}} 
+\index{schedule.c@{schedule.c}!s\_schedule\_task\_now@{s\_schedule\_task\_now}}
+\index{s\_schedule\_task\_now@{s\_schedule\_task\_now}!schedule.c@{schedule.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_task\_now()}{s\_schedule\_task\_now()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+task\+\_\+now (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{schedule_8c_a335d604526cc357e0f5c3ea78acd6266}\label{schedule_8c_a335d604526cc357e0f5c3ea78acd6266}} 
+\index{schedule.c@{schedule.c}!write@{write}}
+\index{write@{write}!schedule.c@{schedule.c}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} write (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{void $\ast$}]{bytes,  }\item[{size\+\_\+t}]{nbytes }\end{DoxyParamCaption})}
+

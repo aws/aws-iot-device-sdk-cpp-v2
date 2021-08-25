@@ -1,0 +1,5 @@
+This directory contains negative checks to ensure that CBMC CI jobs are run with the complete set of property-\/checking flags (see {\ttfamily CHECKFLAGS} in \href{../proofs/Makefile.common}{\texttt{ Makefile.\+common}}) which we consider to be part of the best practice.
+
+To enable these tests in CI jobs, copy this ({\ttfamily negative\+\_\+tests}) directory into {\ttfamily ../proofs}.
+
+If a property-\/checking flag is not used used by your project, you might want to disable the corresponding negative test. To do so, simply delete the particular test directory from {\ttfamily ../proofs/negative\+\_\+tests}. 

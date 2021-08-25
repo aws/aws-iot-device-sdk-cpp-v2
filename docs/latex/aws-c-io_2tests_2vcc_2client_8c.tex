@@ -1,0 +1,81 @@
+\hypertarget{aws-c-io_2tests_2vcc_2client_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/client.c File Reference}
+\label{aws-c-io_2tests_2vcc_2client_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/client.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/client.c}}
+{\ttfamily \#include \char`\"{}preamble.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_ac2697969073b0d983a0b08964741bdda}{aws\+\_\+default\+\_\+allocator}} () \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ensures \textbackslash{}wrapped(\textbackslash{}result))
+\item 
+uint64\+\_\+t \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_ab5b2ac5f35cf77dcaf8b1e3b994f9b26}{next\+\_\+timestamp}} ()
+\item 
+int \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}} (uint64\+\_\+t $\ast$timestamp) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes timestamp)
+\item 
+void \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a34db8e5a17bc54f05791fe08059dc23b}{test\+\_\+new\+\_\+destroy}} ()
+\item 
+void \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c)))
+\item 
+void \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aea75ff6445386155aa62af5d15b7cd44}{test\+\_\+subscribe\+\_\+unsubscribe}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex))) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(always c\+\_\+event\+\_\+loop
+\item 
+void \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} closed \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1f43a14d7b9aa600890a040971b365ba}{\+\_\+}} (requires \textbackslash{}wrapped(c\+\_\+mutex) \&\&\textbackslash{}claims\+\_\+object(c\+\_\+mutex, \&(\mbox{\hyperlink{preamble_8h_a1f85751391371e21d97a990fd2e12c7f}{epoll\+\_\+loop\+\_\+of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}) -\/$>$task\+\_\+pre\+\_\+queue\+\_\+mutex))) \+\_\+(writes \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}) \+\_\+(updates \&\mbox{\hyperlink{preamble_8h_a1f85751391371e21d97a990fd2e12c7f}{epoll\+\_\+loop\+\_\+of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}) -\/$>$ scheduler)
+\item 
+void \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}{task\+\_\+fn}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}})
+\item 
+void \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_ad5a9b1fb8a5b872e847b140c02a5ffda}{test\+\_\+schedule\+\_\+cancel}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex))) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(\textbackslash{}wrapped(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(always c\+\_\+event\+\_\+loop
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_a1f43a14d7b9aa600890a040971b365ba}\label{aws-c-io_2tests_2vcc_2client_8c_a1f43a14d7b9aa600890a040971b365ba}} 
+\index{client.c@{client.c}!\_@{\_}}
+\index{\_@{\_}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{\_()}{\_()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} closed \+\_\+ (\begin{DoxyParamCaption}\item[{requires \textbackslash{}}]{wrappedc\+\_\+mutex) \&\&\textbackslash{}claims\+\_\+object(c\+\_\+mutex, \&(epoll\+\_\+loop\+\_\+of(event\+\_\+loop) -\/$>$task\+\_\+pre\+\_\+queue\+\_\+mutex) }\end{DoxyParamCaption}) \& -\/$>$ scheduler) }
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_ac2697969073b0d983a0b08964741bdda}\label{aws-c-io_2tests_2vcc_2client_8c_ac2697969073b0d983a0b08964741bdda}} 
+\index{client.c@{client.c}!aws\_default\_allocator@{aws\_default\_allocator}}
+\index{aws\_default\_allocator@{aws\_default\_allocator}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_default\_allocator()}{aws\_default\_allocator()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+default\+\_\+allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}\label{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}} 
+\index{client.c@{client.c}!clock@{clock}}
+\index{clock@{clock}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{clock()}{clock()}}
+{\footnotesize\ttfamily int clock (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{timestamp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_ab5b2ac5f35cf77dcaf8b1e3b994f9b26}\label{aws-c-io_2tests_2vcc_2client_8c_ab5b2ac5f35cf77dcaf8b1e3b994f9b26}} 
+\index{client.c@{client.c}!next\_timestamp@{next\_timestamp}}
+\index{next\_timestamp@{next\_timestamp}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{next\_timestamp()}{next\_timestamp()}}
+{\footnotesize\ttfamily uint64\+\_\+t next\+\_\+timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}\label{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}} 
+\index{client.c@{client.c}!on\_event@{on\_event}}
+\index{on\_event@{on\_event}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{on\_event()}{on\_event()}}
+{\footnotesize\ttfamily void on\+\_\+event (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$}]{handle,  }\item[{int}]{events,  }\item[{void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}} }]{\+\_\+ghost \textbackslash{}claim(c) }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}\label{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}} 
+\index{client.c@{client.c}!task\_fn@{task\_fn}}
+\index{task\_fn@{task\_fn}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{task\_fn()}{task\_fn()}}
+{\footnotesize\ttfamily void task\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum}]{aws\+\_\+task\+\_\+status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_a34db8e5a17bc54f05791fe08059dc23b}\label{aws-c-io_2tests_2vcc_2client_8c_a34db8e5a17bc54f05791fe08059dc23b}} 
+\index{client.c@{client.c}!test\_new\_destroy@{test\_new\_destroy}}
+\index{test\_new\_destroy@{test\_new\_destroy}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{test\_new\_destroy()}{test\_new\_destroy()}}
+{\footnotesize\ttfamily void test\+\_\+new\+\_\+destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_ad5a9b1fb8a5b872e847b140c02a5ffda}\label{aws-c-io_2tests_2vcc_2client_8c_ad5a9b1fb8a5b872e847b140c02a5ffda}} 
+\index{client.c@{client.c}!test\_schedule\_cancel@{test\_schedule\_cancel}}
+\index{test\_schedule\_cancel@{test\_schedule\_cancel}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{test\_schedule\_cancel()}{test\_schedule\_cancel()}}
+{\footnotesize\ttfamily void test\+\_\+schedule\+\_\+cancel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-io_2tests_2vcc_2client_8c_aea75ff6445386155aa62af5d15b7cd44}\label{aws-c-io_2tests_2vcc_2client_8c_aea75ff6445386155aa62af5d15b7cd44}} 
+\index{client.c@{client.c}!test\_subscribe\_unsubscribe@{test\_subscribe\_unsubscribe}}
+\index{test\_subscribe\_unsubscribe@{test\_subscribe\_unsubscribe}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{test\_subscribe\_unsubscribe()}{test\_subscribe\_unsubscribe()}}
+{\footnotesize\ttfamily void test\+\_\+subscribe\+\_\+unsubscribe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}} }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})}
+

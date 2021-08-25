@@ -1,0 +1,29 @@
+\hypertarget{aws__mul__size__checked__harness_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\+\_\+mul\+\_\+size\+\_\+checked/aws\+\_\+mul\+\_\+size\+\_\+checked\+\_\+harness.c File Reference}
+\label{aws__mul__size__checked__harness_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\_mul\_size\_checked/aws\_mul\_size\_checked\_harness.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/aws\_mul\_size\_checked/aws\_mul\_size\_checked\_harness.c}}
+{\ttfamily \#include $<$aws/common/math.\+h$>$}\newline
+{\ttfamily \#include $<$proof\+\_\+helpers/make\+\_\+common\+\_\+data\+\_\+structures.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws__mul__size__checked__harness_8c_a2e423d85ec65e133c4f921b1bae424d4}{aws\+\_\+mul\+\_\+size\+\_\+checked\+\_\+harness}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__mul__size__checked__harness_8c_a2e423d85ec65e133c4f921b1bae424d4}\label{aws__mul__size__checked__harness_8c_a2e423d85ec65e133c4f921b1bae424d4}} 
+\index{aws\_mul\_size\_checked\_harness.c@{aws\_mul\_size\_checked\_harness.c}!aws\_mul\_size\_checked\_harness@{aws\_mul\_size\_checked\_harness}}
+\index{aws\_mul\_size\_checked\_harness@{aws\_mul\_size\_checked\_harness}!aws\_mul\_size\_checked\_harness.c@{aws\_mul\_size\_checked\_harness.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mul\_size\_checked\_harness()}{aws\_mul\_size\_checked\_harness()}}
+{\footnotesize\ttfamily void aws\+\_\+mul\+\_\+size\+\_\+checked\+\_\+harness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Coverage\+: 1.\+00 (31 lines out of 31 statically-\/reachable lines in 5 functions reached) Runtime\+: 0m3.\+302s
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item given 2 non-\/deterministics unsigned integers
+\end{DoxyItemize}
+
+Assertions\+:
+\begin{DoxyItemize}
+\item r does not overflow, if aws\+\_\+mul\+\_\+u32\+\_\+checked or aws\+\_\+mul\+\_\+u64\+\_\+checked functions return AWS\+\_\+\+OP\+\_\+\+SUCCESS 
+\end{DoxyItemize}

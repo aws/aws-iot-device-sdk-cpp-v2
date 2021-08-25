@@ -1,0 +1,143 @@
+\hypertarget{mqtt_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/mqtt.c File Reference}
+\label{mqtt_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/mqtt.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/mqtt.c}}
+{\ttfamily \#include $<$aws/mqtt/mqtt.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mqtt_8c_a87cf0dd3adf1c920f854c5e9a4b33854}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+MQTT}}(C,  ES)~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(C, ES, \char`\"{}libaws-\/c-\/mqtt\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_ad5fcc400df7aa9cbbf50fa45ceead6fc}{s\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+filter)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_a9f3a72d758d7d60ae9f5a6e41b256576}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter)
+\item 
+void \mbox{\hyperlink{mqtt_8c_a271c65375deec96e20d1c6553e1e74c1}{aws\+\_\+mqtt\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}{aws\+\_\+mqtt\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\item 
+void \mbox{\hyperlink{mqtt_8c_ad1e3504bdc5f13a7e69d3e76b4282e10}{aws\+\_\+mqtt\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{mqtt_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{mqtt_8c_a259d0901f655216b70a33e9c18ac9fff}{s\+\_\+error\+\_\+list}}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} \mbox{\hyperlink{mqtt_8c_ae3e7658479aca71bd56ce00849b45228}{s\+\_\+logging\+\_\+subjects}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{mqtt_8c_af0093e5c0ea95cf3530a5381a8e9d309}{s\+\_\+logging\+\_\+subjects\+\_\+list}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_ad2211c2e911eac77a9e040c8ceea3977}{s\+\_\+mqtt\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mqtt_8c_a87cf0dd3adf1c920f854c5e9a4b33854}\label{mqtt_8c_a87cf0dd3adf1c920f854c5e9a4b33854}} 
+\index{mqtt.c@{mqtt.c}!AWS\_DEFINE\_ERROR\_INFO\_MQTT@{AWS\_DEFINE\_ERROR\_INFO\_MQTT}}
+\index{AWS\_DEFINE\_ERROR\_INFO\_MQTT@{AWS\_DEFINE\_ERROR\_INFO\_MQTT}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_DEFINE\_ERROR\_INFO\_MQTT}{AWS\_DEFINE\_ERROR\_INFO\_MQTT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+MQTT(\begin{DoxyParamCaption}\item[{}]{C,  }\item[{}]{ES }\end{DoxyParamCaption})~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(C, ES, \char`\"{}libaws-\/c-\/mqtt\char`\"{})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mqtt_8c_ad1e3504bdc5f13a7e69d3e76b4282e10}\label{mqtt_8c_ad1e3504bdc5f13a7e69d3e76b4282e10}} 
+\index{mqtt.c@{mqtt.c}!aws\_mqtt\_fatal\_assert\_library\_initialized@{aws\_mqtt\_fatal\_assert\_library\_initialized}}
+\index{aws\_mqtt\_fatal\_assert\_library\_initialized@{aws\_mqtt\_fatal\_assert\_library\_initialized}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_fatal\_assert\_library\_initialized()}{aws\_mqtt\_fatal\_assert\_library\_initialized()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mqtt_8c_a9f3a72d758d7d60ae9f5a6e41b256576}\label{mqtt_8c_a9f3a72d758d7d60ae9f5a6e41b256576}} 
+\index{mqtt.c@{mqtt.c}!aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}}
+\index{aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic()}{aws\_mqtt\_is\_valid\_topic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}\label{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}} 
+\index{mqtt.c@{mqtt.c}!aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}}
+\index{aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic\_filter()}{aws\_mqtt\_is\_valid\_topic\_filter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}\label{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}} 
+\index{mqtt.c@{mqtt.c}!aws\_mqtt\_library\_clean\_up@{aws\_mqtt\_library\_clean\_up}}
+\index{aws\_mqtt\_library\_clean\_up@{aws\_mqtt\_library\_clean\_up}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_library\_clean\_up()}{aws\_mqtt\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shuts down the internal datastructures used by aws-\/c-\/mqtt. \mbox{\Hypertarget{mqtt_8c_a271c65375deec96e20d1c6553e1e74c1}\label{mqtt_8c_a271c65375deec96e20d1c6553e1e74c1}} 
+\index{mqtt.c@{mqtt.c}!aws\_mqtt\_library\_init@{aws\_mqtt\_library\_init}}
+\index{aws\_mqtt\_library\_init@{aws\_mqtt\_library\_init}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_library\_init()}{aws\_mqtt\_library\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/mqtt. Must be called before using any functionality in aws-\/c-\/mqtt. \mbox{\Hypertarget{mqtt_8c_ad5fcc400df7aa9cbbf50fa45ceead6fc}\label{mqtt_8c_ad5fcc400df7aa9cbbf50fa45ceead6fc}} 
+\index{mqtt.c@{mqtt.c}!s\_is\_valid\_topic@{s\_is\_valid\_topic}}
+\index{s\_is\_valid\_topic@{s\_is\_valid\_topic}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_valid\_topic()}{s\_is\_valid\_topic()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{mqtt_8c_a259d0901f655216b70a33e9c18ac9fff}\label{mqtt_8c_a259d0901f655216b70a33e9c18ac9fff}} 
+\index{mqtt.c@{mqtt.c}!s\_error\_list@{s\_error\_list}}
+\index{s\_error\_list@{s\_error\_list}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_list}{s\_error\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+error\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{mqtt_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{mqtt_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mqtt_8c_a255baa9b51b60f5b91a01313637fc353}\label{mqtt_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{mqtt.c@{mqtt.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{mqtt_8c_ae3e7658479aca71bd56ce00849b45228}\label{mqtt_8c_ae3e7658479aca71bd56ce00849b45228}} 
+\index{mqtt.c@{mqtt.c}!s\_logging\_subjects@{s\_logging\_subjects}}
+\index{s\_logging\_subjects@{s\_logging\_subjects}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_logging\_subjects}{s\_logging\_subjects}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} s\+\_\+logging\+\_\+subjects\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{mqtt_8h_abe43752a6500fbfe684a21a78b825c4ca29cd688e54fdb211cb2427c5ef2f803b}{AWS\_LS\_MQTT\_GENERAL}}, \textcolor{stringliteral}{"{}mqtt"{}}, \textcolor{stringliteral}{"{}Misc MQTT logging"{}}),}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{mqtt_8h_abe43752a6500fbfe684a21a78b825c4caaedbca7632bd333cc81f0276d633b6a1}{AWS\_LS\_MQTT\_CLIENT}}, \textcolor{stringliteral}{"{}mqtt-\/client"{}}, \textcolor{stringliteral}{"{}MQTT client and connections"{}}),}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{mqtt_8h_abe43752a6500fbfe684a21a78b825c4ca714b923e12baf2ea5a91b172f593d72e}{AWS\_LS\_MQTT\_TOPIC\_TREE}}, \textcolor{stringliteral}{"{}mqtt-\/topic-\/tree"{}}, \textcolor{stringliteral}{"{}MQTT subscription tree"{}}),}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mqtt_8c_af0093e5c0ea95cf3530a5381a8e9d309}\label{mqtt_8c_af0093e5c0ea95cf3530a5381a8e9d309}} 
+\index{mqtt.c@{mqtt.c}!s\_logging\_subjects\_list@{s\_logging\_subjects\_list}}
+\index{s\_logging\_subjects\_list@{s\_logging\_subjects\_list}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_logging\_subjects\_list}{s\_logging\_subjects\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} s\+\_\+logging\+\_\+subjects\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .subject\_list = \mbox{\hyperlink{mqtt_8c_ae3e7658479aca71bd56ce00849b45228}{s\_logging\_subjects}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{mqtt_8c_ae3e7658479aca71bd56ce00849b45228}{s\_logging\_subjects}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mqtt_8c_ad2211c2e911eac77a9e040c8ceea3977}\label{mqtt_8c_ad2211c2e911eac77a9e040c8ceea3977}} 
+\index{mqtt.c@{mqtt.c}!s\_mqtt\_library\_initialized@{s\_mqtt\_library\_initialized}}
+\index{s\_mqtt\_library\_initialized@{s\_mqtt\_library\_initialized}!mqtt.c@{mqtt.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_library\_initialized}{s\_mqtt\_library\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+mqtt\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+

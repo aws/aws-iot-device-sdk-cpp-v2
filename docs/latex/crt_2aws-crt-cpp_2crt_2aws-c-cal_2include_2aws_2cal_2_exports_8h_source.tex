@@ -1,0 +1,30 @@
+\hypertarget{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_source}{}\doxysection{exports.\+h}
+\label{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/exports.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/exports.h}}
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_CAL\_EXPORTS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_CAL\_EXPORTS\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#if defined(AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined(WIN32)}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#    ifdef AWS\_CAL\_USE\_IMPORT\_EXPORT}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#        ifdef AWS\_CAL\_EXPORTS}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#            define AWS\_CAL\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#            define AWS\_CAL\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* AWS\_CAL\_EXPORTS */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#        define AWS\_CAL\_API}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{/* AWS\_CAL\_USE\_IMPORT\_EXPORT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* defined (AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (WIN32) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#    if ((\_\_GNUC\_\_ >= 4) || defined(\_\_clang\_\_)) \&\& defined(AWS\_CAL\_USE\_IMPORT\_EXPORT) \&\& defined(AWS\_CAL\_EXPORTS)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#        define AWS\_CAL\_API \_\_attribute\_\_((visibility("{}default"{}})))}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#        define AWS\_CAL\_API}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{/* \_\_GNUC\_\_ >= 4 || defined(\_\_clang\_\_) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined (AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (WIN32) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_CAL\_EXPORTS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

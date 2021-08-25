@@ -1,0 +1,58 @@
+\hypertarget{windows_2shared__library_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/windows/shared\+\_\+library.c File Reference}
+\label{windows_2shared__library_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/windows/shared\_library.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/windows/shared\_library.c}}
+{\ttfamily \#include $<$Windows.\+h$>$}\newline
+{\ttfamily \#include $<$libloaderapi.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/shared\+\_\+library.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{windows_2shared__library_8c_ae9fa0dc982148d6e58c910cea844855c}{aws\+\_\+shared\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$library, const char $\ast$library\+\_\+path)
+\item 
+void \mbox{\hyperlink{windows_2shared__library_8c_a3087f1d2ebfcb047c0cc99f991cdfe7a}{aws\+\_\+shared\+\_\+library\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$library)
+\item 
+int \mbox{\hyperlink{windows_2shared__library_8c_a60ed09a92d70119fdd648312c49a5bb7}{aws\+\_\+shared\+\_\+library\+\_\+find\+\_\+function}} (struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$library, const char $\ast$symbol\+\_\+name, \mbox{\hyperlink{shared__library_8h_a14e40c31a8ba6d210431468d82bfd077}{aws\+\_\+generic\+\_\+function}} $\ast$function\+\_\+address)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{windows_2shared__library_8c_a113dc3be8e70be00620f36adaf7c7d56}{s\+\_\+null}} = \char`\"{}$<$NULL$>$\char`\"{}
+\item 
+static const char $\ast$ \mbox{\hyperlink{windows_2shared__library_8c_a60f2c5bb99957e2531e025a87066ce8a}{s\+\_\+unknown\+\_\+error}} = \char`\"{}$<$Unknown$>$\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{windows_2shared__library_8c_a3087f1d2ebfcb047c0cc99f991cdfe7a}\label{windows_2shared__library_8c_a3087f1d2ebfcb047c0cc99f991cdfe7a}} 
+\index{shared\_library.c@{shared\_library.c}!aws\_shared\_library\_clean\_up@{aws\_shared\_library\_clean\_up}}
+\index{aws\_shared\_library\_clean\_up@{aws\_shared\_library\_clean\_up}!shared\_library.c@{shared\_library.c}}
+\doxysubsubsection{\texorpdfstring{aws\_shared\_library\_clean\_up()}{aws\_shared\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+shared\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$}]{library }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2shared__library_8c_a60ed09a92d70119fdd648312c49a5bb7}\label{windows_2shared__library_8c_a60ed09a92d70119fdd648312c49a5bb7}} 
+\index{shared\_library.c@{shared\_library.c}!aws\_shared\_library\_find\_function@{aws\_shared\_library\_find\_function}}
+\index{aws\_shared\_library\_find\_function@{aws\_shared\_library\_find\_function}!shared\_library.c@{shared\_library.c}}
+\doxysubsubsection{\texorpdfstring{aws\_shared\_library\_find\_function()}{aws\_shared\_library\_find\_function()}}
+{\footnotesize\ttfamily int aws\+\_\+shared\+\_\+library\+\_\+find\+\_\+function (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$}]{library,  }\item[{const char $\ast$}]{symbol\+\_\+name,  }\item[{\mbox{\hyperlink{shared__library_8h_a14e40c31a8ba6d210431468d82bfd077}{aws\+\_\+generic\+\_\+function}} $\ast$}]{function\+\_\+address }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2shared__library_8c_ae9fa0dc982148d6e58c910cea844855c}\label{windows_2shared__library_8c_ae9fa0dc982148d6e58c910cea844855c}} 
+\index{shared\_library.c@{shared\_library.c}!aws\_shared\_library\_init@{aws\_shared\_library\_init}}
+\index{aws\_shared\_library\_init@{aws\_shared\_library\_init}!shared\_library.c@{shared\_library.c}}
+\doxysubsubsection{\texorpdfstring{aws\_shared\_library\_init()}{aws\_shared\_library\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+shared\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__shared__library}{aws\+\_\+shared\+\_\+library}} $\ast$}]{library,  }\item[{const char $\ast$}]{library\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{windows_2shared__library_8c_a113dc3be8e70be00620f36adaf7c7d56}\label{windows_2shared__library_8c_a113dc3be8e70be00620f36adaf7c7d56}} 
+\index{shared\_library.c@{shared\_library.c}!s\_null@{s\_null}}
+\index{s\_null@{s\_null}!shared\_library.c@{shared\_library.c}}
+\doxysubsubsection{\texorpdfstring{s\_null}{s\_null}}
+{\footnotesize\ttfamily const char$\ast$ s\+\_\+null = \char`\"{}$<$NULL$>$\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{windows_2shared__library_8c_a60f2c5bb99957e2531e025a87066ce8a}\label{windows_2shared__library_8c_a60f2c5bb99957e2531e025a87066ce8a}} 
+\index{shared\_library.c@{shared\_library.c}!s\_unknown\_error@{s\_unknown\_error}}
+\index{s\_unknown\_error@{s\_unknown\_error}!shared\_library.c@{shared\_library.c}}
+\doxysubsubsection{\texorpdfstring{s\_unknown\_error}{s\_unknown\_error}}
+{\footnotesize\ttfamily const char$\ast$ s\+\_\+unknown\+\_\+error = \char`\"{}$<$Unknown$>$\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+

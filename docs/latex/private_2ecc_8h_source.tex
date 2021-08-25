@@ -1,0 +1,26 @@
+\hypertarget{private_2ecc_8h_source}{}\doxysection{ecc.\+h}
+\label{private_2ecc_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/private/ecc.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/private/ecc.h}}
+\mbox{\hyperlink{private_2ecc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_C\_CAL\_PRIVATE\_ECC\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_C\_CAL\_PRIVATE\_ECC\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{ecc_8h}{aws/cal/ecc.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__der__decoder}{aws\_der\_decoder}};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{private_2ecc_8h_ae3dab08eb53e3b7f1334d7e9909b5b85}{aws\_der\_decoder\_load\_ecc\_key\_pair}}(}
+\DoxyCodeLine{17     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__der__decoder}{aws\_der\_decoder}} *decoder,}
+\DoxyCodeLine{18     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *out\_public\_x\_coor,}
+\DoxyCodeLine{19     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *out\_public\_y\_coor,}
+\DoxyCodeLine{20     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *out\_private\_d,}
+\DoxyCodeLine{21     \textcolor{keyword}{enum} \mbox{\hyperlink{ecc_8h_a27a5bd6641fe1af09fdf80c122dc3119}{aws\_ecc\_curve\_name}} *out\_curve\_name);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_C\_CAL\_PRIVATE\_ECC\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

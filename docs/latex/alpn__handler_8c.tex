@@ -1,0 +1,90 @@
+\hypertarget{alpn__handler_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/alpn\+\_\+handler.c File Reference}
+\label{alpn__handler_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/alpn\_handler.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/alpn\_handler.c}}
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structalpn__handler}{alpn\+\_\+handler}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{alpn__handler_8c_a66484cfd00e33f8801aa6b20a3ef1649}{s\+\_\+alpn\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+static int \mbox{\hyperlink{alpn__handler_8c_a4b58a279ca74380875b8d005c7575269}{s\+\_\+alpn\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} abort\+\_\+immediately)
+\item 
+static size\+\_\+t \mbox{\hyperlink{alpn__handler_8c_ad616a3eaf7dbbc574c1387da48d54986}{s\+\_\+alpn\+\_\+get\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static void \mbox{\hyperlink{alpn__handler_8c_ac20224df546cc21605a82019aa3e2fa2}{s\+\_\+alpn\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static size\+\_\+t \mbox{\hyperlink{alpn__handler_8c_afbf65b917854e8a27803af2003d62532}{s\+\_\+alpn\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{alpn__handler_8c_a76d89841e11ac1f40e2a9b34ba9c681b}{aws\+\_\+tls\+\_\+alpn\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{tls__channel__handler_8h_aeb78e4bb9cb5ee52495822f010e094a9}{aws\+\_\+tls\+\_\+on\+\_\+protocol\+\_\+negotiated}} on\+\_\+protocol\+\_\+negotiated, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} \mbox{\hyperlink{alpn__handler_8c_aa2a3c92bbe1e1ce216f6bbf8c7ae47ce}{s\+\_\+alpn\+\_\+handler\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{alpn__handler_8c_a76d89841e11ac1f40e2a9b34ba9c681b}\label{alpn__handler_8c_a76d89841e11ac1f40e2a9b34ba9c681b}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!aws\_tls\_alpn\_handler\_new@{aws\_tls\_alpn\_handler\_new}}
+\index{aws\_tls\_alpn\_handler\_new@{aws\_tls\_alpn\_handler\_new}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{aws\_tls\_alpn\_handler\_new()}{aws\_tls\_alpn\_handler\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ aws\+\_\+tls\+\_\+alpn\+\_\+handler\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{tls__channel__handler_8h_aeb78e4bb9cb5ee52495822f010e094a9}{aws\+\_\+tls\+\_\+on\+\_\+protocol\+\_\+negotiated}}}]{on\+\_\+protocol\+\_\+negotiated,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+Creates a channel handler, for client or server mode, that handles alpn. This isn\textquotesingle{}t necessarily required since you can always call aws\+\_\+tls\+\_\+handler\+\_\+protocol in the aws\+\_\+tls\+\_\+on\+\_\+negotiation\+\_\+result\+\_\+fn callback, but this makes channel bootstrap easier to handle. \mbox{\Hypertarget{alpn__handler_8c_ac20224df546cc21605a82019aa3e2fa2}\label{alpn__handler_8c_ac20224df546cc21605a82019aa3e2fa2}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_destroy@{s\_alpn\_destroy}}
+\index{s\_alpn\_destroy@{s\_alpn\_destroy}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_destroy()}{s\_alpn\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+alpn\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler_8c_ad616a3eaf7dbbc574c1387da48d54986}\label{alpn__handler_8c_ad616a3eaf7dbbc574c1387da48d54986}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_get\_initial\_window\_size@{s\_alpn\_get\_initial\_window\_size}}
+\index{s\_alpn\_get\_initial\_window\_size@{s\_alpn\_get\_initial\_window\_size}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_get\_initial\_window\_size()}{s\_alpn\_get\_initial\_window\_size()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+alpn\+\_\+get\+\_\+initial\+\_\+window\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler_8c_afbf65b917854e8a27803af2003d62532}\label{alpn__handler_8c_afbf65b917854e8a27803af2003d62532}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_message\_overhead@{s\_alpn\_message\_overhead}}
+\index{s\_alpn\_message\_overhead@{s\_alpn\_message\_overhead}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_message\_overhead()}{s\_alpn\_message\_overhead()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+alpn\+\_\+message\+\_\+overhead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler_8c_a66484cfd00e33f8801aa6b20a3ef1649}\label{alpn__handler_8c_a66484cfd00e33f8801aa6b20a3ef1649}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_process\_read\_message@{s\_alpn\_process\_read\_message}}
+\index{s\_alpn\_process\_read\_message@{s\_alpn\_process\_read\_message}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_process\_read\_message()}{s\_alpn\_process\_read\_message()}}
+{\footnotesize\ttfamily static int s\+\_\+alpn\+\_\+process\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler_8c_a4b58a279ca74380875b8d005c7575269}\label{alpn__handler_8c_a4b58a279ca74380875b8d005c7575269}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_shutdown@{s\_alpn\_shutdown}}
+\index{s\_alpn\_shutdown@{s\_alpn\_shutdown}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_shutdown()}{s\_alpn\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+alpn\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{abort\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{alpn__handler_8c_aa2a3c92bbe1e1ce216f6bbf8c7ae47ce}\label{alpn__handler_8c_aa2a3c92bbe1e1ce216f6bbf8c7ae47ce}} 
+\index{alpn\_handler.c@{alpn\_handler.c}!s\_alpn\_handler\_vtable@{s\_alpn\_handler\_vtable}}
+\index{s\_alpn\_handler\_vtable@{s\_alpn\_handler\_vtable}!alpn\_handler.c@{alpn\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_handler\_vtable}{s\_alpn\_handler\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} s\+\_\+alpn\+\_\+handler\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .initial\_window\_size = \mbox{\hyperlink{alpn__handler_8c_ad616a3eaf7dbbc574c1387da48d54986}{s\_alpn\_get\_initial\_window\_size}},}
+\DoxyCodeLine{    .increment\_read\_window = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .shutdown = \mbox{\hyperlink{alpn__handler_8c_a4b58a279ca74380875b8d005c7575269}{s\_alpn\_shutdown}},}
+\DoxyCodeLine{    .process\_write\_message = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .process\_read\_message = \mbox{\hyperlink{alpn__handler_8c_a66484cfd00e33f8801aa6b20a3ef1649}{s\_alpn\_process\_read\_message}},}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{alpn__handler_8c_ac20224df546cc21605a82019aa3e2fa2}{s\_alpn\_destroy}},}
+\DoxyCodeLine{    .message\_overhead = \mbox{\hyperlink{alpn__handler_8c_afbf65b917854e8a27803af2003d62532}{s\_alpn\_message\_overhead}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

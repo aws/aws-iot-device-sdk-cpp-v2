@@ -1,0 +1,225 @@
+\hypertarget{structproxy__tester}{}\doxysection{proxy\+\_\+tester Struct Reference}
+\label{structproxy__tester}\index{proxy\_tester@{proxy\_tester}}
+
+
+{\ttfamily \#include $<$proxy\+\_\+test\+\_\+helper.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structproxy__tester_a5773375b853fde607d4a79258cb11796}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{structproxy__tester_a03c28295f86cc4e37ec3ff76a15f6f6d}{logger}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structproxy__tester_aa91fa6326016b8b3ed5120ce1b8fb1ca}{event\+\_\+loop\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structproxy__tester_a95487d7547c3dd837a93dfb42beb7a9e}{host\+\_\+resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structproxy__tester_a26691ca168d7a15bf60a160c09fd3a49}{client\+\_\+bootstrap}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ \mbox{\hyperlink{structproxy__tester_a7f3a1e223f9b3dc46dc85e4ec8a0899a}{tls\+\_\+ctx}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__ctx__options}{aws\+\_\+tls\+\_\+ctx\+\_\+options}} \mbox{\hyperlink{structproxy__tester_a4231ac854df6940aba717e682b58c322}{tls\+\_\+ctx\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} \mbox{\hyperlink{structproxy__tester_a17b578aa8e21106ba4b46b50709e4726}{tls\+\_\+connection\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__http__proxy__options}{aws\+\_\+http\+\_\+proxy\+\_\+options}} $\ast$ \mbox{\hyperlink{structproxy__tester_a09c08fcd8c66212033fd3365e9dc4ef7}{proxy\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structproxy__tester_adeb3b601b9a6b23880ed3c904d10c84a}{host}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structproxy__tester_a3588880a84b7613e61efe57dcd66879b}{port}}
+\item 
+enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}} \mbox{\hyperlink{structproxy__tester_abde158fbc4dd8c1faa004e84d40863ad}{test\+\_\+mode}}
+\item 
+enum \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163}{proxy\+\_\+tester\+\_\+failure\+\_\+type}} \mbox{\hyperlink{structproxy__tester_aef01342d37c2c890cefc0cdf8a0a9451}{failure\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structproxy__tester_ad444b19f0231ffd2684d05d1b3bcf839}{client\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__client__bootstrap}{aws\+\_\+http\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structproxy__tester_a16062604e1e339da0165efb76ea7d42d}{http\+\_\+bootstrap}}
+\item 
+struct \mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}} $\ast$ \mbox{\hyperlink{structproxy__tester_a06791bae4c46485501263de183e656c8}{testing\+\_\+channel}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structproxy__tester_ab96a77afe90e0d0089cc7d58288e7f81}{client\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structproxy__tester_ad24ad5dc5324701af808cb95d2fd926f}{wait\+\_\+lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structproxy__tester_a8b4814eb542c9f2418d004c7413b66f6}{wait\+\_\+cvar}}
+\item 
+int \mbox{\hyperlink{structproxy__tester_a06ab20d5ba2ffbef55bb4904b710f0c3}{wait\+\_\+result}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structproxy__tester_ae29af7fd4dcf810865ba81366d1f372e}{request\+\_\+successful}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structproxy__tester_abc0fed116fbfd6e434dd353798797839}{request\+\_\+complete}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structproxy__tester_acd0aa4bbb1fdc5c4529fdba19afd6c52}{tls\+\_\+finished}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structproxy__tester_a5e5fcbeaa90dd356a449ff29120c440d}{tls\+\_\+successful}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structproxy__tester_a4e1794ea063d0f38a159b58032bf8129}{connection\+\_\+host\+\_\+name}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structproxy__tester_a70326f37089b92bf4bf11a9f2b94d21c}{connection\+\_\+port}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structproxy__tester_a5773375b853fde607d4a79258cb11796}\label{structproxy__tester_a5773375b853fde607d4a79258cb11796}} 
+\index{proxy\_tester@{proxy\_tester}!alloc@{alloc}}
+\index{alloc@{alloc}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ proxy\+\_\+tester\+::alloc}
+
+\mbox{\Hypertarget{structproxy__tester_a26691ca168d7a15bf60a160c09fd3a49}\label{structproxy__tester_a26691ca168d7a15bf60a160c09fd3a49}} 
+\index{proxy\_tester@{proxy\_tester}!client\_bootstrap@{client\_bootstrap}}
+\index{client\_bootstrap@{client\_bootstrap}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{client\_bootstrap}{client\_bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ proxy\+\_\+tester\+::client\+\_\+bootstrap}
+
+\mbox{\Hypertarget{structproxy__tester_ad444b19f0231ffd2684d05d1b3bcf839}\label{structproxy__tester_ad444b19f0231ffd2684d05d1b3bcf839}} 
+\index{proxy\_tester@{proxy\_tester}!client\_connection@{client\_connection}}
+\index{client\_connection@{client\_connection}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{client\_connection}{client\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ proxy\+\_\+tester\+::client\+\_\+connection}
+
+\mbox{\Hypertarget{structproxy__tester_ab96a77afe90e0d0089cc7d58288e7f81}\label{structproxy__tester_ab96a77afe90e0d0089cc7d58288e7f81}} 
+\index{proxy\_tester@{proxy\_tester}!client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}}
+\index{client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{client\_connection\_is\_shutdown}{client\_connection\_is\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} proxy\+\_\+tester\+::client\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structproxy__tester_a4e1794ea063d0f38a159b58032bf8129}\label{structproxy__tester_a4e1794ea063d0f38a159b58032bf8129}} 
+\index{proxy\_tester@{proxy\_tester}!connection\_host\_name@{connection\_host\_name}}
+\index{connection\_host\_name@{connection\_host\_name}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{connection\_host\_name}{connection\_host\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} proxy\+\_\+tester\+::connection\+\_\+host\+\_\+name}
+
+\mbox{\Hypertarget{structproxy__tester_a70326f37089b92bf4bf11a9f2b94d21c}\label{structproxy__tester_a70326f37089b92bf4bf11a9f2b94d21c}} 
+\index{proxy\_tester@{proxy\_tester}!connection\_port@{connection\_port}}
+\index{connection\_port@{connection\_port}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{connection\_port}{connection\_port}}
+{\footnotesize\ttfamily uint16\+\_\+t proxy\+\_\+tester\+::connection\+\_\+port}
+
+\mbox{\Hypertarget{structproxy__tester_aa91fa6326016b8b3ed5120ce1b8fb1ca}\label{structproxy__tester_aa91fa6326016b8b3ed5120ce1b8fb1ca}} 
+\index{proxy\_tester@{proxy\_tester}!event\_loop\_group@{event\_loop\_group}}
+\index{event\_loop\_group@{event\_loop\_group}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{event\_loop\_group}{event\_loop\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ proxy\+\_\+tester\+::event\+\_\+loop\+\_\+group}
+
+\mbox{\Hypertarget{structproxy__tester_aef01342d37c2c890cefc0cdf8a0a9451}\label{structproxy__tester_aef01342d37c2c890cefc0cdf8a0a9451}} 
+\index{proxy\_tester@{proxy\_tester}!failure\_type@{failure\_type}}
+\index{failure\_type@{failure\_type}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{failure\_type}{failure\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{proxy__test__helper_8h_a0fc07b47aad804aabfa64fc02cf77163}{proxy\+\_\+tester\+\_\+failure\+\_\+type}} proxy\+\_\+tester\+::failure\+\_\+type}
+
+\mbox{\Hypertarget{structproxy__tester_adeb3b601b9a6b23880ed3c904d10c84a}\label{structproxy__tester_adeb3b601b9a6b23880ed3c904d10c84a}} 
+\index{proxy\_tester@{proxy\_tester}!host@{host}}
+\index{host@{host}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} proxy\+\_\+tester\+::host}
+
+\mbox{\Hypertarget{structproxy__tester_a95487d7547c3dd837a93dfb42beb7a9e}\label{structproxy__tester_a95487d7547c3dd837a93dfb42beb7a9e}} 
+\index{proxy\_tester@{proxy\_tester}!host\_resolver@{host\_resolver}}
+\index{host\_resolver@{host\_resolver}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{host\_resolver}{host\_resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ proxy\+\_\+tester\+::host\+\_\+resolver}
+
+\mbox{\Hypertarget{structproxy__tester_a16062604e1e339da0165efb76ea7d42d}\label{structproxy__tester_a16062604e1e339da0165efb76ea7d42d}} 
+\index{proxy\_tester@{proxy\_tester}!http\_bootstrap@{http\_bootstrap}}
+\index{http\_bootstrap@{http\_bootstrap}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{http\_bootstrap}{http\_bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__client__bootstrap}{aws\+\_\+http\+\_\+client\+\_\+bootstrap}}$\ast$ proxy\+\_\+tester\+::http\+\_\+bootstrap}
+
+\mbox{\Hypertarget{structproxy__tester_a03c28295f86cc4e37ec3ff76a15f6f6d}\label{structproxy__tester_a03c28295f86cc4e37ec3ff76a15f6f6d}} 
+\index{proxy\_tester@{proxy\_tester}!logger@{logger}}
+\index{logger@{logger}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} proxy\+\_\+tester\+::logger}
+
+\mbox{\Hypertarget{structproxy__tester_a3588880a84b7613e61efe57dcd66879b}\label{structproxy__tester_a3588880a84b7613e61efe57dcd66879b}} 
+\index{proxy\_tester@{proxy\_tester}!port@{port}}
+\index{port@{port}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily uint16\+\_\+t proxy\+\_\+tester\+::port}
+
+\mbox{\Hypertarget{structproxy__tester_a09c08fcd8c66212033fd3365e9dc4ef7}\label{structproxy__tester_a09c08fcd8c66212033fd3365e9dc4ef7}} 
+\index{proxy\_tester@{proxy\_tester}!proxy\_options@{proxy\_options}}
+\index{proxy\_options@{proxy\_options}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{proxy\_options}{proxy\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__proxy__options}{aws\+\_\+http\+\_\+proxy\+\_\+options}}$\ast$ proxy\+\_\+tester\+::proxy\+\_\+options}
+
+\mbox{\Hypertarget{structproxy__tester_abc0fed116fbfd6e434dd353798797839}\label{structproxy__tester_abc0fed116fbfd6e434dd353798797839}} 
+\index{proxy\_tester@{proxy\_tester}!request\_complete@{request\_complete}}
+\index{request\_complete@{request\_complete}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{request\_complete}{request\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} proxy\+\_\+tester\+::request\+\_\+complete}
+
+\mbox{\Hypertarget{structproxy__tester_ae29af7fd4dcf810865ba81366d1f372e}\label{structproxy__tester_ae29af7fd4dcf810865ba81366d1f372e}} 
+\index{proxy\_tester@{proxy\_tester}!request\_successful@{request\_successful}}
+\index{request\_successful@{request\_successful}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{request\_successful}{request\_successful}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} proxy\+\_\+tester\+::request\+\_\+successful}
+
+\mbox{\Hypertarget{structproxy__tester_abde158fbc4dd8c1faa004e84d40863ad}\label{structproxy__tester_abde158fbc4dd8c1faa004e84d40863ad}} 
+\index{proxy\_tester@{proxy\_tester}!test\_mode@{test\_mode}}
+\index{test\_mode@{test\_mode}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{test\_mode}{test\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{proxy__test__helper_8h_a40283b8805a1bdb0c881dfdb0cfe64ff}{proxy\+\_\+tester\+\_\+test\+\_\+mode}} proxy\+\_\+tester\+::test\+\_\+mode}
+
+\mbox{\Hypertarget{structproxy__tester_a06791bae4c46485501263de183e656c8}\label{structproxy__tester_a06791bae4c46485501263de183e656c8}} 
+\index{proxy\_tester@{proxy\_tester}!testing\_channel@{testing\_channel}}
+\index{testing\_channel@{testing\_channel}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{testing\_channel}{testing\_channel}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}}$\ast$ proxy\+\_\+tester\+::testing\+\_\+channel}
+
+\mbox{\Hypertarget{structproxy__tester_a17b578aa8e21106ba4b46b50709e4726}\label{structproxy__tester_a17b578aa8e21106ba4b46b50709e4726}} 
+\index{proxy\_tester@{proxy\_tester}!tls\_connection\_options@{tls\_connection\_options}}
+\index{tls\_connection\_options@{tls\_connection\_options}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{tls\_connection\_options}{tls\_connection\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} proxy\+\_\+tester\+::tls\+\_\+connection\+\_\+options}
+
+\mbox{\Hypertarget{structproxy__tester_a7f3a1e223f9b3dc46dc85e4ec8a0899a}\label{structproxy__tester_a7f3a1e223f9b3dc46dc85e4ec8a0899a}} 
+\index{proxy\_tester@{proxy\_tester}!tls\_ctx@{tls\_ctx}}
+\index{tls\_ctx@{tls\_ctx}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{tls\_ctx}{tls\_ctx}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}}$\ast$ proxy\+\_\+tester\+::tls\+\_\+ctx}
+
+\mbox{\Hypertarget{structproxy__tester_a4231ac854df6940aba717e682b58c322}\label{structproxy__tester_a4231ac854df6940aba717e682b58c322}} 
+\index{proxy\_tester@{proxy\_tester}!tls\_ctx\_options@{tls\_ctx\_options}}
+\index{tls\_ctx\_options@{tls\_ctx\_options}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{tls\_ctx\_options}{tls\_ctx\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__ctx__options}{aws\+\_\+tls\+\_\+ctx\+\_\+options}} proxy\+\_\+tester\+::tls\+\_\+ctx\+\_\+options}
+
+\mbox{\Hypertarget{structproxy__tester_acd0aa4bbb1fdc5c4529fdba19afd6c52}\label{structproxy__tester_acd0aa4bbb1fdc5c4529fdba19afd6c52}} 
+\index{proxy\_tester@{proxy\_tester}!tls\_finished@{tls\_finished}}
+\index{tls\_finished@{tls\_finished}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{tls\_finished}{tls\_finished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} proxy\+\_\+tester\+::tls\+\_\+finished}
+
+\mbox{\Hypertarget{structproxy__tester_a5e5fcbeaa90dd356a449ff29120c440d}\label{structproxy__tester_a5e5fcbeaa90dd356a449ff29120c440d}} 
+\index{proxy\_tester@{proxy\_tester}!tls\_successful@{tls\_successful}}
+\index{tls\_successful@{tls\_successful}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{tls\_successful}{tls\_successful}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} proxy\+\_\+tester\+::tls\+\_\+successful}
+
+\mbox{\Hypertarget{structproxy__tester_a8b4814eb542c9f2418d004c7413b66f6}\label{structproxy__tester_a8b4814eb542c9f2418d004c7413b66f6}} 
+\index{proxy\_tester@{proxy\_tester}!wait\_cvar@{wait\_cvar}}
+\index{wait\_cvar@{wait\_cvar}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{wait\_cvar}{wait\_cvar}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} proxy\+\_\+tester\+::wait\+\_\+cvar}
+
+\mbox{\Hypertarget{structproxy__tester_ad24ad5dc5324701af808cb95d2fd926f}\label{structproxy__tester_ad24ad5dc5324701af808cb95d2fd926f}} 
+\index{proxy\_tester@{proxy\_tester}!wait\_lock@{wait\_lock}}
+\index{wait\_lock@{wait\_lock}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{wait\_lock}{wait\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} proxy\+\_\+tester\+::wait\+\_\+lock}
+
+\mbox{\Hypertarget{structproxy__tester_a06ab20d5ba2ffbef55bb4904b710f0c3}\label{structproxy__tester_a06ab20d5ba2ffbef55bb4904b710f0c3}} 
+\index{proxy\_tester@{proxy\_tester}!wait\_result@{wait\_result}}
+\index{wait\_result@{wait\_result}!proxy\_tester@{proxy\_tester}}
+\doxysubsubsection{\texorpdfstring{wait\_result}{wait\_result}}
+{\footnotesize\ttfamily int proxy\+\_\+tester\+::wait\+\_\+result}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{proxy__test__helper_8h}{proxy\+\_\+test\+\_\+helper.\+h}}\end{DoxyCompactItemize}

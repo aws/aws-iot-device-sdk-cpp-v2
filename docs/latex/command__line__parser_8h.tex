@@ -1,0 +1,84 @@
+\hypertarget{command__line__parser_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/command\+\_\+line\+\_\+parser.h File Reference}
+\label{command__line__parser_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/command\_line\_parser.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/command\_line\_parser.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745}{aws\+\_\+cli\+\_\+options\+\_\+has\+\_\+arg}} \{ \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+NO\+\_\+\+ARGUMENT}} = 0
+, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+REQUIRED\+\_\+\+ARGUMENT}} = 1
+, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745aeaa98585ff78df81ac2710542e991aad}{AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+OPTIONAL\+\_\+\+ARGUMENT}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{command__line__parser_8h_a51a24940cf6464facef8dadecbe7e485}{aws\+\_\+cli\+\_\+getopt\+\_\+long}} (int argc, char $\ast$const argv\mbox{[}$\,$\mbox{]}, const char $\ast$optstring, const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$longopts, int $\ast$longindex)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{command__line__parser_8h_a6bfa91350bee5ca4ac864f632c87aafb}{aws\+\_\+cli\+\_\+optind}}
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} const char $\ast$ \mbox{\hyperlink{command__line__parser_8h_a83bb490625795260e57a1807abeacfd7}{aws\+\_\+cli\+\_\+optarg}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745}\label{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745}} 
+\index{command\_line\_parser.h@{command\_line\_parser.h}!aws\_cli\_options\_has\_arg@{aws\_cli\_options\_has\_arg}}
+\index{aws\_cli\_options\_has\_arg@{aws\_cli\_options\_has\_arg}!command\_line\_parser.h@{command\_line\_parser.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_options\_has\_arg}{aws\_cli\_options\_has\_arg}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745}{aws\+\_\+cli\+\_\+options\+\_\+has\+\_\+arg}}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT@{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}!command\_line\_parser.h@{command\_line\_parser.h}}\index{command\_line\_parser.h@{command\_line\_parser.h}!AWS\_CLI\_OPTIONS\_NO\_ARGUMENT@{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}}\mbox{\Hypertarget{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}\label{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}} 
+AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+NO\+\_\+\+ARGUMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT@{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}!command\_line\_parser.h@{command\_line\_parser.h}}\index{command\_line\_parser.h@{command\_line\_parser.h}!AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT@{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}}\mbox{\Hypertarget{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}\label{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}} 
+AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+REQUIRED\+\_\+\+ARGUMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CLI\_OPTIONS\_OPTIONAL\_ARGUMENT@{AWS\_CLI\_OPTIONS\_OPTIONAL\_ARGUMENT}!command\_line\_parser.h@{command\_line\_parser.h}}\index{command\_line\_parser.h@{command\_line\_parser.h}!AWS\_CLI\_OPTIONS\_OPTIONAL\_ARGUMENT@{AWS\_CLI\_OPTIONS\_OPTIONAL\_ARGUMENT}}}\mbox{\Hypertarget{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745aeaa98585ff78df81ac2710542e991aad}\label{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745aeaa98585ff78df81ac2710542e991aad}} 
+AWS\+\_\+\+CLI\+\_\+\+OPTIONS\+\_\+\+OPTIONAL\+\_\+\+ARGUMENT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{command__line__parser_8h_a51a24940cf6464facef8dadecbe7e485}\label{command__line__parser_8h_a51a24940cf6464facef8dadecbe7e485}} 
+\index{command\_line\_parser.h@{command\_line\_parser.h}!aws\_cli\_getopt\_long@{aws\_cli\_getopt\_long}}
+\index{aws\_cli\_getopt\_long@{aws\_cli\_getopt\_long}!command\_line\_parser.h@{command\_line\_parser.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_getopt\_long()}{aws\_cli\_getopt\_long()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+cli\+\_\+getopt\+\_\+long (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$const}]{argv\mbox{[}$\,$\mbox{]},  }\item[{const char $\ast$}]{optstring,  }\item[{const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$}]{longopts,  }\item[{int $\ast$}]{longindex }\end{DoxyParamCaption})}
+
+A mostly compliant implementation of posix getopt\+\_\+long(). Parses command-\/line arguments. argc is the number of command line arguments passed in argv. optstring contains the legitimate option characters. The option characters coorespond to \mbox{\hyperlink{structaws__cli__option_a1580617637a8ab9499f714841f29ffff}{aws\+\_\+cli\+\_\+option\+::val}}. If the character is followed by a \+:, the option requires an argument. If it is followed by \textquotesingle{}\+::\textquotesingle{}, the argument is optional (not implemented yet).
+
+longopts, is an array of struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}}. These are the allowed options for the program. The last member of the array must be zero initialized.
+
+If longindex is non-\/null, it will be set to the index in longopts, for the found option.
+
+Returns option val if it was found, \textquotesingle{}?\textquotesingle{} if an option was encountered that was not specified in the option string, returns -\/1 when all arguments that can be parsed have been parsed. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{command__line__parser_8h_a83bb490625795260e57a1807abeacfd7}\label{command__line__parser_8h_a83bb490625795260e57a1807abeacfd7}} 
+\index{command\_line\_parser.h@{command\_line\_parser.h}!aws\_cli\_optarg@{aws\_cli\_optarg}}
+\index{aws\_cli\_optarg@{aws\_cli\_optarg}!command\_line\_parser.h@{command\_line\_parser.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_optarg}{aws\_cli\_optarg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} const char$\ast$ aws\+\_\+cli\+\_\+optarg\hspace{0.3cm}{\ttfamily [extern]}}
+
+If an option has an argument, when the option is encountered, this will be set to the argument portion. \mbox{\Hypertarget{command__line__parser_8h_a6bfa91350bee5ca4ac864f632c87aafb}\label{command__line__parser_8h_a6bfa91350bee5ca4ac864f632c87aafb}} 
+\index{command\_line\_parser.h@{command\_line\_parser.h}!aws\_cli\_optind@{aws\_cli\_optind}}
+\index{aws\_cli\_optind@{aws\_cli\_optind}!command\_line\_parser.h@{command\_line\_parser.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_optind}{aws\_cli\_optind}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+cli\+\_\+optind\hspace{0.3cm}{\ttfamily [extern]}}
+
+Initialized to 1 (for where the first argument would be). As arguments are parsed, this number is the index of the next argument to parse. Reset this to 1 to parse another set of arguments, or to rerun the parser.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

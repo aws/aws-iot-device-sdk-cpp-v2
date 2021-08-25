@@ -1,0 +1,80 @@
+\hypertarget{h1__stream_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\+\_\+stream.h File Reference}
+\label{h1__stream_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\_stream.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\_stream.h}}
+{\ttfamily \#include $<$aws/http/private/h1\+\_\+encoder.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/http\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/request\+\_\+response\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12}{aws\+\_\+h1\+\_\+stream\+\_\+api\+\_\+state}} \{ \mbox{\hyperlink{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12acd3af6e7c8ca97f7fa5387d2b0a4a949}{AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+INIT}}
+, \mbox{\hyperlink{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12aea5e4960d09c58e086afd15d060b48b7}{AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+ACTIVE}}
+, \mbox{\hyperlink{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12a0446143c7a267949b8d850450791a31c}{AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+COMPLETE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$ \mbox{\hyperlink{h1__stream_8h_ab43a30cfb7de2c793f229a203ba79039}{aws\+\_\+h1\+\_\+stream\+\_\+new\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
+\item 
+struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$ \mbox{\hyperlink{h1__stream_8h_a599462d82f601644f7fe929ec5cce257}{aws\+\_\+h1\+\_\+stream\+\_\+new\+\_\+request\+\_\+handler}} (const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$options)
+\item 
+int \mbox{\hyperlink{h1__stream_8h_a49374a365ecc247718b30a3b171fac22}{aws\+\_\+h1\+\_\+stream\+\_\+activate}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+int \mbox{\hyperlink{h1__stream_8h_a1775a72eedb6b9dc182eafee64a14fe9}{aws\+\_\+h1\+\_\+stream\+\_\+send\+\_\+response}} (struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12}\label{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12}} 
+\index{h1\_stream.h@{h1\_stream.h}!aws\_h1\_stream\_api\_state@{aws\_h1\_stream\_api\_state}}
+\index{aws\_h1\_stream\_api\_state@{aws\_h1\_stream\_api\_state}!h1\_stream.h@{h1\_stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_stream\_api\_state}{aws\_h1\_stream\_api\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12}{aws\+\_\+h1\+\_\+stream\+\_\+api\+\_\+state}}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_STREAM\_API\_STATE\_INIT@{AWS\_H1\_STREAM\_API\_STATE\_INIT}!h1\_stream.h@{h1\_stream.h}}\index{h1\_stream.h@{h1\_stream.h}!AWS\_H1\_STREAM\_API\_STATE\_INIT@{AWS\_H1\_STREAM\_API\_STATE\_INIT}}}\mbox{\Hypertarget{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12acd3af6e7c8ca97f7fa5387d2b0a4a949}\label{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12acd3af6e7c8ca97f7fa5387d2b0a4a949}} 
+AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_STREAM\_API\_STATE\_ACTIVE@{AWS\_H1\_STREAM\_API\_STATE\_ACTIVE}!h1\_stream.h@{h1\_stream.h}}\index{h1\_stream.h@{h1\_stream.h}!AWS\_H1\_STREAM\_API\_STATE\_ACTIVE@{AWS\_H1\_STREAM\_API\_STATE\_ACTIVE}}}\mbox{\Hypertarget{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12aea5e4960d09c58e086afd15d060b48b7}\label{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12aea5e4960d09c58e086afd15d060b48b7}} 
+AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+ACTIVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_STREAM\_API\_STATE\_COMPLETE@{AWS\_H1\_STREAM\_API\_STATE\_COMPLETE}!h1\_stream.h@{h1\_stream.h}}\index{h1\_stream.h@{h1\_stream.h}!AWS\_H1\_STREAM\_API\_STATE\_COMPLETE@{AWS\_H1\_STREAM\_API\_STATE\_COMPLETE}}}\mbox{\Hypertarget{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12a0446143c7a267949b8d850450791a31c}\label{h1__stream_8h_afe0b873cbe48bd8eeea5381d7c3c6b12a0446143c7a267949b8d850450791a31c}} 
+AWS\+\_\+\+H1\+\_\+\+STREAM\+\_\+\+API\+\_\+\+STATE\+\_\+\+COMPLETE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h1__stream_8h_a49374a365ecc247718b30a3b171fac22}\label{h1__stream_8h_a49374a365ecc247718b30a3b171fac22}} 
+\index{h1\_stream.h@{h1\_stream.h}!aws\_h1\_stream\_activate@{aws\_h1\_stream\_activate}}
+\index{aws\_h1\_stream\_activate@{aws\_h1\_stream\_activate}!h1\_stream.h@{h1\_stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_stream\_activate()}{aws\_h1\_stream\_activate()}}
+{\footnotesize\ttfamily int aws\+\_\+h1\+\_\+stream\+\_\+activate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__stream_8h_ab43a30cfb7de2c793f229a203ba79039}\label{h1__stream_8h_ab43a30cfb7de2c793f229a203ba79039}} 
+\index{h1\_stream.h@{h1\_stream.h}!aws\_h1\_stream\_new\_request@{aws\_h1\_stream\_new\_request}}
+\index{aws\_h1\_stream\_new\_request@{aws\_h1\_stream\_new\_request}!h1\_stream.h@{h1\_stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_stream\_new\_request()}{aws\_h1\_stream\_new\_request()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}}$\ast$ aws\+\_\+h1\+\_\+stream\+\_\+new\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{client\+\_\+connection,  }\item[{const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__stream_8h_a599462d82f601644f7fe929ec5cce257}\label{h1__stream_8h_a599462d82f601644f7fe929ec5cce257}} 
+\index{h1\_stream.h@{h1\_stream.h}!aws\_h1\_stream\_new\_request\_handler@{aws\_h1\_stream\_new\_request\_handler}}
+\index{aws\_h1\_stream\_new\_request\_handler@{aws\_h1\_stream\_new\_request\_handler}!h1\_stream.h@{h1\_stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_stream\_new\_request\_handler()}{aws\_h1\_stream\_new\_request\_handler()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}}$\ast$ aws\+\_\+h1\+\_\+stream\+\_\+new\+\_\+request\+\_\+handler (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__stream_8h_a1775a72eedb6b9dc182eafee64a14fe9}\label{h1__stream_8h_a1775a72eedb6b9dc182eafee64a14fe9}} 
+\index{h1\_stream.h@{h1\_stream.h}!aws\_h1\_stream\_send\_response@{aws\_h1\_stream\_send\_response}}
+\index{aws\_h1\_stream\_send\_response@{aws\_h1\_stream\_send\_response}!h1\_stream.h@{h1\_stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_stream\_send\_response()}{aws\_h1\_stream\_send\_response()}}
+{\footnotesize\ttfamily int aws\+\_\+h1\+\_\+stream\+\_\+send\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response }\end{DoxyParamCaption})}
+

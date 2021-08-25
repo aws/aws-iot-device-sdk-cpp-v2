@@ -1,0 +1,851 @@
+\hypertarget{preamble_8h_source}{}\doxysection{preamble.\+h}
+\label{preamble_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/preamble.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/preamble.h}}
+\mbox{\hyperlink{preamble_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PREAMBLE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PREAMBLE\_H}}
+\DoxyCodeLine{3 \textcolor{comment}{/*}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{7 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{8 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{13 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{14 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{15 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{16 \textcolor{comment}{ */}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{/* clang-\/format off */}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <vcc.h>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{/* Fake-\/up sys/types.h */}}
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{/* Fake-\/up stdbool.h */}}
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}};}
+\DoxyCodeLine{29 \textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keyword}{true} = 1;}
+\DoxyCodeLine{30 \textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keyword}{false} = 0;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{/* Definitions from epoll.h */}}
+\DoxyCodeLine{33 \textcolor{keyword}{typedef} \textcolor{keyword}{union }\mbox{\hyperlink{unionepoll__data}{epoll\_data}}}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35   \mbox{\hyperlink{unionepoll__data_a4d5738b039d053cfa59c8210c9b701bf}{\_}}(backing\_member) \textcolor{keywordtype}{void} *ptr;}
+\DoxyCodeLine{36   \textcolor{keywordtype}{int} \mbox{\hyperlink{unionepoll__data_ad7a60a999a7b99a566a34db348beec5f}{fd}}; }
+\DoxyCodeLine{37   uint32\_t \mbox{\hyperlink{unionepoll__data_a7511dd40b5e0bb321c447e53c53158d9}{u32}};}
+\DoxyCodeLine{38   uint64\_t \mbox{\hyperlink{unionepoll__data_a3f16ce318934a69c3e74a5a1cd25d88d}{u64}};}
+\DoxyCodeLine{39 \} \mbox{\hyperlink{preamble_8h_ae448b6f1679acd3309458397357ffa2d}{epoll\_data\_t}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{struct }\mbox{\hyperlink{structepoll__event}{epoll\_event}}}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43   uint32\_t \mbox{\hyperlink{structepoll__event_a4eb5ccec6b1c1e58d8ccd9aaa3aed6ed}{events}};        \textcolor{comment}{/* Epoll events */}}
+\DoxyCodeLine{44   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{inline}) \mbox{\hyperlink{unionepoll__data}{epoll\_data\_t}} data;        \textcolor{comment}{/* User data variable */}}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 enum \mbox{\hyperlink{preamble_8h_ab97a65b5c201255d4fba9ca80a43361d}{EPOLL\_EVENTS}}}
+\DoxyCodeLine{48   \{}
+\DoxyCodeLine{49     \mbox{\hyperlink{preamble_8h_a9473bb25876648bb51926e6723802982}{EPOLLIN}} = 0x001,}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define EPOLLIN EPOLLIN}}
+\DoxyCodeLine{51     \mbox{\hyperlink{preamble_8h_af76a4ccb6d42cfdf3ff7d5ac5a971834}{EPOLLPRI}} = 0x002,}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define EPOLLPRI EPOLLPRI}}
+\DoxyCodeLine{53     \mbox{\hyperlink{preamble_8h_a737460cee0c76ac8d04e9726ec200d6f}{EPOLLOUT}} = 0x004,}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define EPOLLOUT EPOLLOUT}}
+\DoxyCodeLine{55     \mbox{\hyperlink{preamble_8h_ace47c8a3d068e427a825773a3043bf16}{EPOLLRDNORM}} = 0x040,}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define EPOLLRDNORM EPOLLRDNORM}}
+\DoxyCodeLine{57     \mbox{\hyperlink{preamble_8h_af3ca771c01458a76902b34f98fa4ea78}{EPOLLRDBAND}} = 0x080,}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define EPOLLRDBAND EPOLLRDBAND}}
+\DoxyCodeLine{59     \mbox{\hyperlink{preamble_8h_ae7b18b9b50e9130909fde80c6c832ff9}{EPOLLWRNORM}} = 0x100,}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define EPOLLWRNORM EPOLLWRNORM}}
+\DoxyCodeLine{61     \mbox{\hyperlink{preamble_8h_a2d145da45c73675533044344a42a93e8}{EPOLLWRBAND}} = 0x200,}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define EPOLLWRBAND EPOLLWRBAND}}
+\DoxyCodeLine{63     \mbox{\hyperlink{preamble_8h_abd58cfbc4c4aeff6dff5c8a096afd287}{EPOLLMSG}} = 0x400,}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define EPOLLMSG EPOLLMSG}}
+\DoxyCodeLine{65     \mbox{\hyperlink{preamble_8h_a2b69cc87f3556dc5d41b9b1122a4413e}{EPOLLERR}} = 0x008,}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define EPOLLERR EPOLLERR}}
+\DoxyCodeLine{67     \mbox{\hyperlink{preamble_8h_ae6832a9da6c1bc16f40c4a5b15dde53a}{EPOLLHUP}} = 0x010,}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define EPOLLHUP EPOLLHUP}}
+\DoxyCodeLine{69     \mbox{\hyperlink{preamble_8h_afb6a93d0058c1e2bef8cff5ba1c28560}{EPOLLRDHUP}} = 0x2000,}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define EPOLLRDHUP EPOLLRDHUP}}
+\DoxyCodeLine{71     \mbox{\hyperlink{preamble_8h_a12f33e7f9d329aeaf78678b56fa38d1c}{EPOLLONESHOT}} = (1 << 30),}
+\DoxyCodeLine{72 \#define \mbox{\hyperlink{preamble_8h_a12f33e7f9d329aeaf78678b56fa38d1c}{EPOLLONESHOT}} \mbox{\hyperlink{preamble_8h_a12f33e7f9d329aeaf78678b56fa38d1c}{EPOLLONESHOT}}}
+\DoxyCodeLine{73     \mbox{\hyperlink{preamble_8h_ada664c5f9d581e10b4f72d1bb444dbb4}{EPOLLET}} = (1 << 31)}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define EPOLLET EPOLLET}}
+\DoxyCodeLine{75   \};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define EPOLL\_CTL\_ADD 1        }\textcolor{comment}{/* Add a file decriptor to the interface.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define EPOLL\_CTL\_DEL 2        }\textcolor{comment}{/* Remove a file decriptor from the interface.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define EPOLL\_CTL\_MOD 3        }\textcolor{comment}{/* Change file decriptor epoll\_event structure.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{struct }\mbox{\hyperlink{structabstract__os__t}{abstract\_os\_t}} \{}
+\DoxyCodeLine{82   \textcolor{keywordtype}{int} \mbox{\hyperlink{structabstract__os__t_a641de1bfd85b0a898e7d6b1cbff8a583}{unused}};}
+\DoxyCodeLine{83   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)\textcolor{keywordtype}{bool} watched[\textcolor{keywordtype}{int}])}
+\DoxyCodeLine{84 \} \mbox{\hyperlink{preamble_8h_ae697cde4142d227f10fb50ab2522f04d}{abstract\_os\_data}};}
+\DoxyCodeLine{85 \textcolor{keyword}{struct }\mbox{\hyperlink{structabstract__os__t}{abstract\_os\_t}} *\mbox{\hyperlink{preamble_8h_acf192de6ba39417f293b96525e0fe47c}{abstract\_os}} = \&\mbox{\hyperlink{preamble_8h_ae697cde4142d227f10fb50ab2522f04d}{abstract\_os\_data}};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a3388e834abc37fb4a64305628e7eb742}{epoll\_ctl}} (\textcolor{keywordtype}{int} \_\_epfd, \textcolor{keywordtype}{int} \_\_op, \textcolor{keywordtype}{int} \_\_fd, \textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event}{epoll\_event}} *\_\_event)}
+\DoxyCodeLine{88   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == 0 \&\& \_\_op == \mbox{\hyperlink{preamble_8h_a2d36c1c8457d15bf764d4a94b4077b38}{EPOLL\_CTL\_ADD}} ==>  \mbox{\hyperlink{preamble_8h_acf192de6ba39417f293b96525e0fe47c}{abstract\_os}}-\/>watched[\_\_fd])}
+\DoxyCodeLine{89   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == 0 \&\& \_\_op == \mbox{\hyperlink{preamble_8h_af8de2279a945391e86525bcb904bc092}{EPOLL\_CTL\_DEL}} ==> !\mbox{\hyperlink{preamble_8h_acf192de6ba39417f293b96525e0fe47c}{abstract\_os}}-\/>watched[\_\_fd])}
+\DoxyCodeLine{90 ;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{keyword}{struct }\mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}};}
+\DoxyCodeLine{93 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a1127317bcb4bbf3b06505fa4e4591e8b}{epoll\_wait}}(\textcolor{keywordtype}{int} \_\_epfd, \textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event}{epoll\_event}} *\_\_events, \textcolor{keywordtype}{int} maxevents, \textcolor{keywordtype}{int} timeout)}
+\DoxyCodeLine{94   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result <= maxevents)}
+\DoxyCodeLine{95   \textcolor{comment}{/*TODO: use explicit triggers for quantifier instantiation*/}}
+\DoxyCodeLine{96   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)forall \textcolor{keywordtype}{int} i; \{:\mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}} 2\} 0 <= i \&\& i < \(\backslash\)result ==> \(\backslash\)wrapped((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\_\_events[i].data.ptr))}
+\DoxyCodeLine{97   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)extent((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event}{epoll\_event}}[(\textcolor{keywordtype}{unsigned})maxevents]) \_\_events))}
+\DoxyCodeLine{98   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event}{epoll\_event}}[(\textcolor{keywordtype}{unsigned})maxevents]) \_\_events))}
+\DoxyCodeLine{99 ;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_ac7acb5bce882e2f6b07d4e084facdd7d}{epoll\_create}}(\textcolor{keywordtype}{int} size)}
+\DoxyCodeLine{102   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} 0 < size)}
+\DoxyCodeLine{103 ;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{comment}{/* Definitions from aws/common/macros.h */}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define AWS\_CONTAINER\_OF(ptr, type, member) ((type *)((uint8\_t *)(ptr)-\/offsetof(type, member)))}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define AWS\_UNLIKELY(x) x}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{comment}{/* Definitions from aws/common/assert.h */}}
+\DoxyCodeLine{110 \textcolor{comment}{/* Convert into VCC assertions */}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define AWS\_ASSERT(x) \_(assert x)}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define AWS\_PRECONDITION(x) \_(assert x)}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{/* Definitions from aws/common/logging.h (no-\/ops for proof) */}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define AWS\_LOGF\_INFO(...)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define AWS\_LOGF\_TRACE(...)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define AWS\_LOGF\_DEBUG(...)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define AWS\_LOGF\_ERROR(...)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define AWS\_LOGF\_FATAL(...)}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{comment}{/* Definitions from aws/common/clock.h */}}
+\DoxyCodeLine{122 \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} \{}
+\DoxyCodeLine{123     \mbox{\hyperlink{preamble_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a2e67976771a263976be889f3275460de}{AWS\_TIMESTAMP\_SECS}} = 1,}
+\DoxyCodeLine{124     \mbox{\hyperlink{preamble_8h_a1c88a4b2ee9a32347fd7901c0fe948d9abc97ce7906ffc6a6278bf8afbb68f087}{AWS\_TIMESTAMP\_MILLIS}} = 1000,}
+\DoxyCodeLine{125     \mbox{\hyperlink{preamble_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a7d662d9a9b736259c494494041314d17}{AWS\_TIMESTAMP\_MICROS}} = 1000000,}
+\DoxyCodeLine{126     \mbox{\hyperlink{preamble_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a3d2ba5a6117da33117de22279b7973f2}{AWS\_TIMESTAMP\_NANOS}} = 1000000000,}
+\DoxyCodeLine{127 \};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 uint64\_t \mbox{\hyperlink{preamble_8h_a7061bdc4fabe177e5709929b232414b1}{aws\_timestamp\_convert}}(}
+\DoxyCodeLine{130     uint64\_t timestamp,}
+\DoxyCodeLine{131     \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} convert\_from,}
+\DoxyCodeLine{132     \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} convert\_to,}
+\DoxyCodeLine{133     uint64\_t *remainder);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{comment}{/* Definitions from aws/common/error.h */}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define AWS\_OP\_SUCCESS (0)}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define AWS\_OP\_ERR (-\/1)}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{keyword}{enum} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a45579ecff1cc2e5b25e04302d4032c86}{aws\_common\_error}} \{}
+\DoxyCodeLine{140     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267}{AWS\_ERROR\_SUCCESS}} = 0,}
+\DoxyCodeLine{141     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86afc1e1a5c86509e16a8d6af94cbdb6edb}{AWS\_ERROR\_OOM}},}
+\DoxyCodeLine{142     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ae178ce3419ba0af13fc60d796d81d70a}{AWS\_ERROR\_UNKNOWN}},}
+\DoxyCodeLine{143     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50}{AWS\_ERROR\_SHORT\_BUFFER}},}
+\DoxyCodeLine{144     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a20686840ef986e1f00e25e5ba2e8c70c}{AWS\_ERROR\_OVERFLOW\_DETECTED}},}
+\DoxyCodeLine{145     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ac9e8c3244b7723a0a75487e3534f5ec0}{AWS\_ERROR\_UNSUPPORTED\_OPERATION}},}
+\DoxyCodeLine{146     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a6bb5d26f748fac071dcaa7524b3dc93c}{AWS\_ERROR\_INVALID\_BUFFER\_SIZE}},}
+\DoxyCodeLine{147     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86af0f0dafeac4f50863f90da3b6440b373}{AWS\_ERROR\_INVALID\_HEX\_STR}},}
+\DoxyCodeLine{148     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86af9e53f019480625ab2db4c0c6a0da8db}{AWS\_ERROR\_INVALID\_BASE64\_STR}},}
+\DoxyCodeLine{149     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86af69025f1ee0ec28fcbdecfc9bcb5b5ff}{AWS\_ERROR\_INVALID\_INDEX}},}
+\DoxyCodeLine{150     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a5f29b5dc6e09efd4487211f6774adb08}{AWS\_ERROR\_THREAD\_INVALID\_SETTINGS}},}
+\DoxyCodeLine{151     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86adf09df001b2ac1f45e20b9a324e1dde6}{AWS\_ERROR\_THREAD\_INSUFFICIENT\_RESOURCE}},}
+\DoxyCodeLine{152     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a639a8b324f65aa8489ec8db0c0705750}{AWS\_ERROR\_THREAD\_NO\_PERMISSIONS}},}
+\DoxyCodeLine{153     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ae34391db10a4108cef9a65a7bcb47a4e}{AWS\_ERROR\_THREAD\_NOT\_JOINABLE}},}
+\DoxyCodeLine{154     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ade339d9923f47304a2b252702bd715a7}{AWS\_ERROR\_THREAD\_NO\_SUCH\_THREAD\_ID}},}
+\DoxyCodeLine{155     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a3ff6836b3e5673860158b9e7b832d6c3}{AWS\_ERROR\_THREAD\_DEADLOCK\_DETECTED}},}
+\DoxyCodeLine{156     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a3a5a5a612fb927a344cdc29187f94459}{AWS\_ERROR\_MUTEX\_NOT\_INIT}},}
+\DoxyCodeLine{157     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a56b11402045b262200e6c66de6f5bf58}{AWS\_ERROR\_MUTEX\_TIMEOUT}},}
+\DoxyCodeLine{158     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a9c99e46a76eda1dcba7e303c5d4c7936}{AWS\_ERROR\_MUTEX\_CALLER\_NOT\_OWNER}},}
+\DoxyCodeLine{159     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86aa15486e97497165fc3b07b1b54a01d23}{AWS\_ERROR\_MUTEX\_FAILED}},}
+\DoxyCodeLine{160     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a79ffc27a6d6d488bf938daaa6d9e41b9}{AWS\_ERROR\_COND\_VARIABLE\_INIT\_FAILED}},}
+\DoxyCodeLine{161     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a25a27cbbc2ded26f5dd2639238eb507a}{AWS\_ERROR\_COND\_VARIABLE\_TIMED\_OUT}},}
+\DoxyCodeLine{162     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86adebe56dd0fb578ac69bbde67b9d970fd}{AWS\_ERROR\_COND\_VARIABLE\_ERROR\_UNKNOWN}},}
+\DoxyCodeLine{163     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a35d705617d196b6fbb138fa48a6ed686}{AWS\_ERROR\_CLOCK\_FAILURE}},}
+\DoxyCodeLine{164     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ae6fa89d508959fd195e8a139ca89b788}{AWS\_ERROR\_LIST\_EMPTY}},}
+\DoxyCodeLine{165     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a7491467b7dccbd6a299991bd2582f2f3}{AWS\_ERROR\_DEST\_COPY\_TOO\_SMALL}},}
+\DoxyCodeLine{166     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a268ad62457fbe28e256ac8eb1e925ee2}{AWS\_ERROR\_LIST\_EXCEEDS\_MAX\_SIZE}},}
+\DoxyCodeLine{167     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86abb4d5f0aff7f31dd7f7a5ae9e9eb14e3}{AWS\_ERROR\_LIST\_STATIC\_MODE\_CANT\_SHRINK}},}
+\DoxyCodeLine{168     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a15f4e90d13d9daad372019c39c92370e}{AWS\_ERROR\_PRIORITY\_QUEUE\_FULL}},}
+\DoxyCodeLine{169     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86aff84bc08e67a25d16fad59fdde85a9d7}{AWS\_ERROR\_PRIORITY\_QUEUE\_EMPTY}},}
+\DoxyCodeLine{170     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86aaf4171da12cf147411f8b844bbaba5bc}{AWS\_ERROR\_PRIORITY\_QUEUE\_BAD\_NODE}},}
+\DoxyCodeLine{171     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a40ab46474f00acfe71387c373422747a}{AWS\_ERROR\_HASHTBL\_ITEM\_NOT\_FOUND}},}
+\DoxyCodeLine{172     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a5f6a9bc1d04ace0374f87cc9270b71ef}{AWS\_ERROR\_INVALID\_DATE\_STR}},}
+\DoxyCodeLine{173     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a797735538721067acc7b5c1951f6213e}{AWS\_ERROR\_INVALID\_ARGUMENT}},}
+\DoxyCodeLine{174     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ad4a39a229cff24a1aa88aa144630b5f4}{AWS\_ERROR\_RANDOM\_GEN\_FAILED}},}
+\DoxyCodeLine{175     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86ae5ce494c63551cc910fe641d77132db3}{AWS\_ERROR\_MALFORMED\_INPUT\_STRING}},}
+\DoxyCodeLine{176     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a925c59474fc12f64e73786fcb06ec473}{AWS\_ERROR\_UNIMPLEMENTED}},}
+\DoxyCodeLine{177     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a25c51c91670f69eeb3b9ffb7080b561b}{AWS\_ERROR\_INVALID\_STATE}},}
+\DoxyCodeLine{178     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a55e18c48f6cfad5b548c3032920738cd}{AWS\_ERROR\_ENVIRONMENT\_GET}},}
+\DoxyCodeLine{179     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86aabb19e12efbd75a134b1eb8a8827263d}{AWS\_ERROR\_ENVIRONMENT\_SET}},}
+\DoxyCodeLine{180     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a916dc7ffbeb774f6761549c390020dff}{AWS\_ERROR\_ENVIRONMENT\_UNSET}},}
+\DoxyCodeLine{181     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a71dd77c9689fe6c5bd489e42fe1fb54d}{AWS\_ERROR\_STREAM\_UNSEEKABLE}},}
+\DoxyCodeLine{182     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a242e8491a4410bb13267b8367b2c41ed}{AWS\_ERROR\_NO\_PERMISSION}},}
+\DoxyCodeLine{183     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a8700a6b45b1ee769354086589261c03e}{AWS\_ERROR\_FILE\_INVALID\_PATH}},}
+\DoxyCodeLine{184     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a98c7373f1633d8f49ed77dd6b933b13d}{AWS\_ERROR\_MAX\_FDS\_EXCEEDED}},}
+\DoxyCodeLine{185     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a8f459ae50a5c2b3941baa25eb815d943}{AWS\_ERROR\_SYS\_CALL\_FAILURE}},}
+\DoxyCodeLine{186     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76}{AWS\_ERROR\_C\_STRING\_BUFFER\_NOT\_NULL\_TERMINATED}},}
+\DoxyCodeLine{187     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e}{AWS\_ERROR\_STRING\_MATCH\_NOT\_FOUND}},}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \mbox{\hyperlink{preamble_8h_a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f}{AWS\_ERROR\_END\_COMMON\_RANGE}} = 0x03FF}
+\DoxyCodeLine{190 \};}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_ab672053b01f344fb03310d1441194c49}{aws\_raise\_error}}(\textcolor{keywordtype}{int} err)}
+\DoxyCodeLine{193     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{preamble_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}})}
+\DoxyCodeLine{194 ;}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{comment}{/* Forward declarations */}}
+\DoxyCodeLine{197 \textcolor{keyword}{struct }\mbox{\hyperlink{structepoll__loop}{epoll\_loop}};}
+\DoxyCodeLine{198 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}};}
+\DoxyCodeLine{199 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}};}
+\DoxyCodeLine{200 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}};}
+\DoxyCodeLine{201 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{comment}{/* Definitions from aws/common/allocator.h */}}
+\DoxyCodeLine{204 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} \{}
+\DoxyCodeLine{205     \textcolor{keywordtype}{void} *(*mem\_acquire)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{206     void (*\mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *ptr);}
+\DoxyCodeLine{207     \textcolor{comment}{/* Optional method; if not supported, this pointer must be NULL */}}
+\DoxyCodeLine{208     \textcolor{keywordtype}{void} *(*mem\_realloc)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *oldptr, \textcolor{keywordtype}{size\_t} oldsize, \textcolor{keywordtype}{size\_t} newsize);}
+\DoxyCodeLine{209     \textcolor{comment}{/* Optional method; if not supported, this pointer must be NULL */}}
+\DoxyCodeLine{210     \textcolor{keywordtype}{void} *(*mem\_calloc)(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{size\_t} num, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{211     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{212     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}{mem\_acquire}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{213     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{214     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{structaws__allocator_a7a0d52fe7d6404bd17cd27ea2f59bbf2}{mem\_realloc}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}} || \mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{215     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{structaws__allocator_a8936ae6bfbe2babcd3fd5f81a9329734}{mem\_calloc}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}} || \mbox{\hyperlink{structaws__allocator_a8936ae6bfbe2babcd3fd5f81a9329734}{mem\_calloc}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{216 \};}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define aws\_mem\_calloc(a,n,s) malloc(n*s)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define aws\_mem\_release(a,o) free(o)}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{comment}{/* Definitions from aws/common/array\_list.h */}}
+\DoxyCodeLine{222 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \{}
+\DoxyCodeLine{223     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc;}
+\DoxyCodeLine{224     \textcolor{keywordtype}{size\_t} current\_size;}
+\DoxyCodeLine{225     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}};}
+\DoxyCodeLine{226     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{aws__array__list__sort__harness_8c_ad07048e124383cb338823197712ce135}{item\_size}};}
+\DoxyCodeLine{227     \textcolor{keywordtype}{void} *data;}
+\DoxyCodeLine{228 \};}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{/* Definitions from aws/common/priority\_queue.h */}}
+\DoxyCodeLine{231 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue__node}{aws\_priority\_queue\_node}} \{}
+\DoxyCodeLine{232     \textcolor{keywordtype}{size\_t} current\_index;}
+\DoxyCodeLine{233 \};}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{comment}{/* VCC change: fnptr declaration}}
+\DoxyCodeLine{236 \textcolor{comment}{cio function pointer declaration can't be parsed}}
+\DoxyCodeLine{237 \textcolor{comment}{typedef int(aws\_priority\_queue\_compare\_fn)(const void *a, const void *b);}}
+\DoxyCodeLine{238 \textcolor{comment}{replaced with */}}
+\DoxyCodeLine{239 \textcolor{keyword}{typedef} int(* \mbox{\hyperlink{preamble_8h_a346c1334391a6b5ada054427c1b91098}{aws\_priority\_queue\_compare\_fn\_ptr}})(\textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue}{aws\_priority\_queue}} \{}
+\DoxyCodeLine{242     \mbox{\hyperlink{preamble_8h_a346c1334391a6b5ada054427c1b91098}{aws\_priority\_queue\_compare\_fn\_ptr}} \mbox{\hyperlink{structaws__priority__queue_a5f0f0e09e3fb1811d6f2c3df43efb2d4}{pred}}; \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{243     \mbox{\hyperlink{structaws__priority__queue_a9e5ae7d09e025d5f9135649fa7559cc4}{\_}}(\textcolor{keyword}{inline}) struct \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} container;}
+\DoxyCodeLine{244     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(inline) struct \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} backpointers;}
+\DoxyCodeLine{245     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant pred-\/>\(\backslash\)valid)}
+\DoxyCodeLine{246 \};}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{comment}{/* Definitions from aws/common/task\_scheduler.h */}}
+\DoxyCodeLine{249 struct \mbox{\hyperlink{structaws__task}{aws\_task}};}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 typedef enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}} \{}
+\DoxyCodeLine{252     \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}{AWS\_TASK\_STATUS\_RUN\_READY}},}
+\DoxyCodeLine{253     \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}{AWS\_TASK\_STATUS\_CANCELED}},}
+\DoxyCodeLine{254 \} \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}};}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 \textcolor{comment}{/* VCC change: fnptr declaration */}}
+\DoxyCodeLine{257 \textcolor{keyword}{typedef} void(* \mbox{\hyperlink{preamble_8h_a9ab08dfffe1eac0c510f4b3b15e7bf57}{aws\_task\_fn\_ptr}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} *task, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}, \textcolor{keyword}{enum} \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}})}
+\DoxyCodeLine{258 \#ifdef \mbox{\hyperlink{unsubscribe_8c_a6e9a57fb75c52e7a6a8fc35888819883}{UNSUB\_TASK\_FN\_PTR}}}
+\DoxyCodeLine{259   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)malloc\_root((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}))}
+\DoxyCodeLine{260   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)extent((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}))}
+\DoxyCodeLine{261 \#elif defined(\mbox{\hyperlink{lifecycle_8c_a817e4226687d2296f4e8aeeb17821bc3}{STOP\_TASK\_FN\_PTR}})}
+\DoxyCodeLine{262   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}))::status)}
+\DoxyCodeLine{263   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}))-\/>stop\_task\_ptr)}
+\DoxyCodeLine{264   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)\textcolor{keyword}{thread\_local}(event\_loop\_of(\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}})))}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{266 ;}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} \{}
+\DoxyCodeLine{269     \mbox{\hyperlink{preamble_8h_a9ab08dfffe1eac0c510f4b3b15e7bf57}{aws\_task\_fn\_ptr}} \mbox{\hyperlink{structaws__task_ac3797fc1e55289dd94cc506b7c265357}{fn}}; \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{270     \textcolor{keywordtype}{void} *arg;}
+\DoxyCodeLine{271     uint64\_t timestamp;}
+\DoxyCodeLine{272     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} node;}
+\DoxyCodeLine{273     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue__node}{aws\_priority\_queue\_node}} priority\_queue\_node;}
+\DoxyCodeLine{274     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *type\_tag;}
+\DoxyCodeLine{275     \textcolor{keywordtype}{size\_t} reserved;}
+\DoxyCodeLine{276     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&node))}
+\DoxyCodeLine{277     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&priority\_queue\_node))}
+\DoxyCodeLine{278 \};}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a2478a32939922532fdb1ad344cbcca6c}{aws\_task\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__task}{aws\_task}} *task, \mbox{\hyperlink{preamble_8h_a9ab08dfffe1eac0c510f4b3b15e7bf57}{aws\_task\_fn\_ptr}} \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\_task\_fn}}, \textcolor{keywordtype}{void} *arg, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *type\_tag)}
+\DoxyCodeLine{281   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)\textcolor{keyword}{thread\_local}(task))}
+\DoxyCodeLine{282   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes task)}
+\DoxyCodeLine{283   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)wrapped(task))}
+\DoxyCodeLine{284   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures task-\/>\mbox{\hyperlink{structaws__task_abfc64c6ba2daa37981662fb7ebcd616d}{fn}} == \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\_task\_fn}})}
+\DoxyCodeLine{285   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures task-\/>\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}} == arg)}
+\DoxyCodeLine{286   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures task-\/>\mbox{\hyperlink{structaws__task_a98d174d61670d1bb89ebac74229c5916}{type\_tag}} == type\_tag)}
+\DoxyCodeLine{287 ;}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} \{}
+\DoxyCodeLine{290     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc;}
+\DoxyCodeLine{291     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue}{aws\_priority\_queue}} timed\_queue; \textcolor{comment}{/* Tasks scheduled to run at specific times */}}
+\DoxyCodeLine{292     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} timed\_list;     \textcolor{comment}{/* If timed\_queue runs out of memory, further timed tests are stored here */}}
+\DoxyCodeLine{293     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} asap\_list;      \textcolor{comment}{/* Tasks scheduled to run as soon as possible */}}
+\DoxyCodeLine{294     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&timed\_queue))}
+\DoxyCodeLine{295     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&timed\_list))}
+\DoxyCodeLine{296     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&asap\_list))}
+\DoxyCodeLine{297 \};}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a1e1905e4adc41d3c690f42a27a194902}{aws\_task\_scheduler\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})}
+\DoxyCodeLine{300     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)extent(\&scheduler-\/>timed\_list))}
+\DoxyCodeLine{301     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)extent(\&scheduler-\/>asap\_list))}
+\DoxyCodeLine{302     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable(\&scheduler-\/>timed\_list))}
+\DoxyCodeLine{303     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable(\&scheduler-\/>asap\_list))}
+\DoxyCodeLine{304     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{preamble_8h_aa614dfea2e3cf41c68a4f2405f9d0e0f}{AWS\_OP\_SUCCESS}} <==>}
+\DoxyCodeLine{305         scheduler-\/>timed\_queue.pred.\(\backslash\)valid \&\&}
+\DoxyCodeLine{306         (scheduler-\/>timed\_list.\mbox{\hyperlink{structaws__linked__list_a8e21af762b0c79d3d2defe5e6ed0368f}{head}}.\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} == \&scheduler-\/>timed\_list.\mbox{\hyperlink{structaws__linked__list_a5b70260e57834285e7b6849b84341fa8}{tail}} \&\& scheduler-\/>timed\_list.\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} == 0) \&\&}
+\DoxyCodeLine{307         (scheduler-\/>asap\_list.\mbox{\hyperlink{structaws__linked__list_a8e21af762b0c79d3d2defe5e6ed0368f}{head}}.\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} == \&scheduler-\/>asap\_list.\mbox{\hyperlink{structaws__linked__list_a5b70260e57834285e7b6849b84341fa8}{tail}} \&\& scheduler-\/>asap\_list.\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} == 0)}
+\DoxyCodeLine{308      )}
+\DoxyCodeLine{309 ;}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a881dde7dfa3fe4deec142c2af4a3d311}{aws\_task\_scheduler\_schedule\_now}}(struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task)}
+\DoxyCodeLine{312     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates scheduler)}
+\DoxyCodeLine{313 ;}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a27cb9c5de1fa36b02c0ae169e9e259fa}{aws\_task\_scheduler\_schedule\_future}}(struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task, uint64\_t time\_to\_run)}
+\DoxyCodeLine{316     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates scheduler)}
+\DoxyCodeLine{317 ;}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_aaf3ac2ef37a3a58f0dc8c426d7d79d37}{aws\_task\_scheduler\_run\_all}}(struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, uint64\_t current\_time)}
+\DoxyCodeLine{320     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates scheduler)}
+\DoxyCodeLine{321 ;}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_ade79449953e32555c5f31684a8b8725c}{aws\_task\_scheduler\_clean\_up}}(struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler)}
+\DoxyCodeLine{324     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates scheduler)}
+\DoxyCodeLine{325 ;}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a6caa916ed2fcf05ee11ea7eaab00ac98}{aws\_task\_scheduler\_cancel\_task}}(struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task)}
+\DoxyCodeLine{328     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates scheduler)}
+\DoxyCodeLine{329 ;}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 \textcolor{keywordtype}{bool} \mbox{\hyperlink{preamble_8h_a090286acb2bf733f8c7db92fd5031ee9}{aws\_task\_scheduler\_has\_tasks}}(const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} *scheduler, uint64\_t *next\_task\_time);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{comment}{/* Definitions from aws/common/atomics.h */}}
+\DoxyCodeLine{334 struct \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} \{}
+\DoxyCodeLine{335   \textcolor{keywordtype}{void} *value;}
+\DoxyCodeLine{336 \};}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 \textcolor{comment}{/* VCC change: remove volatile annotation */}}
+\DoxyCodeLine{339 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_ae9a155c92a109b686616f2b3e6e35dfb}{aws\_atomic\_init\_int}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}})}
+\DoxyCodeLine{340   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&(var-\/>value))}
+\DoxyCodeLine{341 ;}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a6a80c8257a6242c0003a0f4dcbed63ef}{aws\_atomic\_init\_ptr}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var, \textcolor{keywordtype}{void} *\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}})}
+\DoxyCodeLine{344   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&(var-\/>value))}
+\DoxyCodeLine{345 ;}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 \textcolor{keywordtype}{void} *\mbox{\hyperlink{preamble_8h_a1ed5058813f5e1ce68ebf45cd74e8f60}{aws\_atomic\_load\_ptr}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var)}
+\DoxyCodeLine{348 ;}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 uint64\_t \mbox{\hyperlink{preamble_8h_a089b146e6cd6ad5943bf75d6566e1628}{aws\_atomic\_load\_int}}(\textcolor{comment}{/*volatile const*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var)}
+\DoxyCodeLine{351 ;}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a566e40de2d5621431b5a75617f6a7a9a}{aws\_atomic\_store\_int}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}})}
+\DoxyCodeLine{354   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&(var-\/>value))}
+\DoxyCodeLine{355 ;}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{keywordtype}{bool} \mbox{\hyperlink{preamble_8h_a073b61d1250c0850168cee2d3b83108c}{aws\_atomic\_compare\_exchange\_ptr}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var, \textcolor{keywordtype}{void} **expected, \textcolor{keywordtype}{void} *desired)}
+\DoxyCodeLine{358   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&(var-\/>value))}
+\DoxyCodeLine{359 ;}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a49101ec7f6b383b4d9fe43398d0659e2}{aws\_atomic\_store\_ptr}}(\textcolor{comment}{/*volatile*/} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} *var, \textcolor{keywordtype}{void} *\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}})}
+\DoxyCodeLine{362   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&(var-\/>value))}
+\DoxyCodeLine{363 ;}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 \textcolor{comment}{/* Fake-\/up pthread.h */}}
+\DoxyCodeLine{366 \textcolor{keyword}{typedef} uint64\_t \mbox{\hyperlink{preamble_8h_a37c756f466ee6aa44725fa95b55047cc}{pthread\_t}};}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368 \textcolor{comment}{/* Definitions from aws/common/thread.h */}}
+\DoxyCodeLine{369 \textcolor{keyword}{enum} \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\_thread\_detach\_state}} \{}
+\DoxyCodeLine{370     \mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}{AWS\_THREAD\_NOT\_CREATED}} = 1,}
+\DoxyCodeLine{371     \mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8}{AWS\_THREAD\_JOINABLE}},}
+\DoxyCodeLine{372     \mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511}{AWS\_THREAD\_JOIN\_COMPLETED}},}
+\DoxyCodeLine{373 \};}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a37c756f466ee6aa44725fa95b55047cc}{pthread\_t}} \mbox{\hyperlink{preamble_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}};}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread}{aws\_thread}} \{}
+\DoxyCodeLine{378     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}};}
+\DoxyCodeLine{379     \textcolor{keyword}{enum} \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\_thread\_detach\_state}} detach\_state;}
+\DoxyCodeLine{380     \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}} thread\_id;}
+\DoxyCodeLine{381 \};}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread__options}{aws\_thread\_options}} \{}
+\DoxyCodeLine{384     \textcolor{keywordtype}{size\_t} stack\_size;}
+\DoxyCodeLine{385     int32\_t cpu\_id;}
+\DoxyCodeLine{386 \};}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(pure) \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}} \mbox{\hyperlink{thread_8h_a11295acc8823b9a3c5e6db63916527b6}{aws\_thread\_current\_thread\_id}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{389     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \(\backslash\)addr(\(\backslash\)me))}
+\DoxyCodeLine{390 ;}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a8c4e4b803b8795e0cb20666bef09cf29}{aws\_thread\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__thread}{aws\_thread}} *thread, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})}
+\DoxyCodeLine{393   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{394   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)span(thread))}
+\DoxyCodeLine{395   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable(thread))}
+\DoxyCodeLine{396 ;}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a0029e6e82ade9ba9c37322c3346cd005}{aws\_thread\_clean\_up}}(struct \mbox{\hyperlink{structaws__thread}{aws\_thread}} *thread)}
+\DoxyCodeLine{399   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)span(thread))}
+\DoxyCodeLine{400   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable(thread))}
+\DoxyCodeLine{401 ;}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(pure) \textcolor{keywordtype}{bool} \mbox{\hyperlink{thread_8h_abf2ecf236471c78abe87f73484ff8e8b}{aws\_thread\_thread\_id\_equal}}(\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}} t2)}
+\DoxyCodeLine{404   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == (t1 == t2))}
+\DoxyCodeLine{405 ;}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 \textcolor{comment}{/* Definitions from aws/io/io.h */}}
+\DoxyCodeLine{408 enum \mbox{\hyperlink{event__loop_8h_a11a96bcf7126a70e595868479d447758}{aws\_io\_event\_type}} \{}
+\DoxyCodeLine{409     \mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758ac3a718f46f3d7bbab3ce993a611b6cf6}{AWS\_IO\_EVENT\_TYPE\_READABLE}} = 1,}
+\DoxyCodeLine{410     \mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a49902aadfc2ffcdadcea889212e54e61}{AWS\_IO\_EVENT\_TYPE\_WRITABLE}} = 2,}
+\DoxyCodeLine{411     \mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a3c3de7f6a5477513073567abc1a63f03}{AWS\_IO\_EVENT\_TYPE\_REMOTE\_HANG\_UP}} = 4,}
+\DoxyCodeLine{412     \mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758af59e26b15c950749e358cf878297dd20}{AWS\_IO\_EVENT\_TYPE\_CLOSED}} = 8,}
+\DoxyCodeLine{413     \mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a65ff1919d17af1e4d731f6370ccd6906}{AWS\_IO\_EVENT\_TYPE\_ERROR}} = 16,}
+\DoxyCodeLine{414 \};}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} \{}
+\DoxyCodeLine{417     \mbox{\hyperlink{structaws__io__handle_ac8a33cf6e0a600aa585e4f3a64e4ab3f}{\_}}(\textcolor{keyword}{inline}) struct \{}
+\DoxyCodeLine{418         \textcolor{keywordtype}{int} fd;}
+\DoxyCodeLine{419         \textcolor{keywordtype}{void} *handle;}
+\DoxyCodeLine{420     \} data;}
+\DoxyCodeLine{421     \textcolor{keywordtype}{void} *additional\_data;}
+\DoxyCodeLine{422     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant valid\_fd(data.\mbox{\hyperlink{unionepoll__data_ad7a60a999a7b99a566a34db348beec5f}{fd}}))}
+\DoxyCodeLine{423 \};}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425 \textcolor{comment}{/* VCC change: fnptr declaration */}}
+\DoxyCodeLine{426 \textcolor{keyword}{typedef} int(* \mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\_io\_clock\_fn\_ptr}})(uint64\_t *timestamp)}
+\DoxyCodeLine{427   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes timestamp)}
+\DoxyCodeLine{428 ;}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430 \textcolor{comment}{/* Definitions from aws/io/event\_loop.h */}}
+\DoxyCodeLine{431 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop__vtable}{aws\_event\_loop\_vtable}};}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop__options}{aws\_event\_loop\_options}} \{}
+\DoxyCodeLine{434     \mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\_io\_clock\_fn\_ptr}} \mbox{\hyperlink{structaws__event__loop__options_aa848c7d02fb56638b143675dc74e6d60}{clock}}; \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{435     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread__options}{aws\_thread\_options}} *thread\_options;}
+\DoxyCodeLine{436     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{437     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant thread\_options != NULL <==> \(\backslash\)mine(thread\_options))}
+\DoxyCodeLine{438 \};}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(claimable) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} \{}
+\DoxyCodeLine{441     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop__vtable}{aws\_event\_loop\_vtable}} *\mbox{\hyperlink{opensslcrypto__ecc_8c_ae7fa5a3a68eec45ba0d07dc2bd471a7f}{vtable}};}
+\DoxyCodeLine{442     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc;}
+\DoxyCodeLine{443     \mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\_io\_clock\_fn\_ptr}} \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}};           \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{444 \textcolor{comment}{/*  struct aws\_hash\_table local\_data; */} \textcolor{comment}{/*< VCC change: not modeled */}}
+\DoxyCodeLine{445     \textcolor{keywordtype}{void} *impl\_data;}
+\DoxyCodeLine{446     \textcolor{comment}{/*TODO: allocator is shared and closed*/}}
+\DoxyCodeLine{447     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{448     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__loop}{epoll\_loop}} *)impl\_data))}
+\DoxyCodeLine{449 \};}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 \textcolor{comment}{/* VCC change: fnptr declaration */}}
+\DoxyCodeLine{452 \textcolor{keyword}{typedef} void(* \mbox{\hyperlink{preamble_8h_a5f54d633bc82cf2fe5634f0c135537bc}{aws\_event\_loop\_on\_event\_fn\_ptr}})(}
+\DoxyCodeLine{453     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}},}
+\DoxyCodeLine{454     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *\mbox{\hyperlink{structaws__io__handle_ad171e2a8986000bcb713c9ccc4701eaa}{handle}},}
+\DoxyCodeLine{455     \textcolor{keywordtype}{int} \mbox{\hyperlink{structepoll__event_a4eb5ccec6b1c1e58d8ccd9aaa3aed6ed}{events}},}
+\DoxyCodeLine{456     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}} \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c)))}
+\DoxyCodeLine{457     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)wrapped(c) \&\& \(\backslash\)claims(c, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed))}
+\DoxyCodeLine{458     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)nested(\mbox{\hyperlink{structaws__io__handle_ad171e2a8986000bcb713c9ccc4701eaa}{handle}}))}
+\DoxyCodeLine{459     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>should\_process\_task\_pre\_queue)}
+\DoxyCodeLine{460 ;}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{462 \textcolor{comment}{/* Definitions from aws/common/linked\_list.h */}}
+\DoxyCodeLine{463 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \{}
+\DoxyCodeLine{464     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} *\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}};}
+\DoxyCodeLine{465     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} *\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}};}
+\DoxyCodeLine{466 \};}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \{}
+\DoxyCodeLine{469     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} head;}
+\DoxyCodeLine{470     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} tail;}
+\DoxyCodeLine{471     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)natural \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})}
+\DoxyCodeLine{472     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&head))}
+\DoxyCodeLine{473     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&tail))}
+\DoxyCodeLine{474     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant (0 == \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) <==> (head.next == \&tail))}
+\DoxyCodeLine{475 \};}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a6ef4a08fe13ab977e35b8d875d0c60ba}{aws\_linked\_list\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *list)}
+\DoxyCodeLine{478   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} \(\backslash\)\textcolor{keyword}{thread\_local}(list))}
+\DoxyCodeLine{479   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \(\backslash\)extent(list))}
+\DoxyCodeLine{480   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)extent\_mutable(list))}
+\DoxyCodeLine{481   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures list-\/>head.next == \&list-\/>tail)}
+\DoxyCodeLine{482   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures list-\/>tail.\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}
+\DoxyCodeLine{483   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures list-\/>tail.\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}} == \&list-\/>head)}
+\DoxyCodeLine{484   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures list-\/>head.\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}
+\DoxyCodeLine{485   \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures list-\/>\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} == 0)}
+\DoxyCodeLine{486 ;}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(pure) \textcolor{keywordtype}{bool} \mbox{\hyperlink{linked__list_8h_a76e2e2bf18c2e2048a85b08511585501}{aws\_linked\_list\_empty}}(const struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *list)}
+\DoxyCodeLine{489     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(list))}
+\DoxyCodeLine{490     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(reads \&list-\/>\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})}
+\DoxyCodeLine{491     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == (list-\/>\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} == 0))}
+\DoxyCodeLine{492     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(decreases 0)}
+\DoxyCodeLine{493 \{}
+\DoxyCodeLine{494     \textcolor{keywordflow}{return} list-\/>head.next == \&list-\/>tail;}
+\DoxyCodeLine{495 \}}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 \textcolor{comment}{/* Specialized for linked lists containing tasks */}}
+\DoxyCodeLine{498 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} *\mbox{\hyperlink{preamble_8h_aa0699b7c0461e17bc97e7d9d0c8cb051}{aws\_linked\_list\_pop\_front}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *list \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(out \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__task}{aws\_task}} * task))}
+\DoxyCodeLine{499     \textcolor{comment}{/* general: */}}
+\DoxyCodeLine{500     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped(list))}
+\DoxyCodeLine{501     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(\textcolor{keyword}{requires} 0 < list-\/>length)}
+\DoxyCodeLine{502     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures (\(\backslash\)old(list-\/>\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) -\/ 1) == list-\/>\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})}
+\DoxyCodeLine{503     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes list)}
+\DoxyCodeLine{504     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(decreases 0)}
+\DoxyCodeLine{505     \textcolor{comment}{/* specialized: */}}
+\DoxyCodeLine{506     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures task == \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\_CONTAINER\_OF}}(\(\backslash\)result, struct \mbox{\hyperlink{structaws__task}{aws\_task}}, node))}
+\DoxyCodeLine{507     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)thread\_local(task))}
+\DoxyCodeLine{508     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures task-\/>fn-\/>\(\backslash\)valid)}
+\DoxyCodeLine{509 ;}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511 \textcolor{comment}{/* We omit `task == AWS\_CONTAINER\_OF(node, struct aws\_task, node)`}}
+\DoxyCodeLine{512 \textcolor{comment}{because VCC's memory model can't prove this when this occurs in}}
+\DoxyCodeLine{513 \textcolor{comment}{`s\_schedule\_task\_common` */}}
+\DoxyCodeLine{514 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_afc2461464a2c9ecc3204e7dd2a6afa5f}{aws\_linked\_list\_push\_back}}(struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *list, struct \mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} *node \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task))}
+\DoxyCodeLine{515     \textcolor{comment}{/* general: */}}
+\DoxyCodeLine{516     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates list)}
+\DoxyCodeLine{517     \textcolor{comment}{/* specialized: */}}
+\DoxyCodeLine{518     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires task-\/>fn-\/>\(\backslash\)valid)}
+\DoxyCodeLine{519 ;}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a9805e9ade58531900988aa037a1df589}{aws\_linked\_list\_swap\_contents}}(struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})}
+\DoxyCodeLine{522     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}})}
+\DoxyCodeLine{523     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})}
+\DoxyCodeLine{524 ;}
+\DoxyCodeLine{525 }
+\DoxyCodeLine{526 \textcolor{comment}{/* Definitions from source/linux/epoll\_event\_loop.c */}}
+\DoxyCodeLine{527 struct \mbox{\hyperlink{structepoll__loop}{epoll\_loop}} \{}
+\DoxyCodeLine{528     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(group scheduler)}
+\DoxyCodeLine{529     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(:scheduler) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} scheduler;}
+\DoxyCodeLine{530     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread}{aws\_thread}} thread\_created\_on;}
+\DoxyCodeLine{531     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread__options}{aws\_thread\_options}} thread\_options;}
+\DoxyCodeLine{532     \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}} thread\_joined\_to;}
+\DoxyCodeLine{533     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} running\_thread\_id;}
+\DoxyCodeLine{534     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(group read\_handle)}
+\DoxyCodeLine{535     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(:read\_handle) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} read\_task\_handle;}
+\DoxyCodeLine{536     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} write\_task\_handle;}
+\DoxyCodeLine{537     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} task\_pre\_queue\_mutex;}
+\DoxyCodeLine{538     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(group queue)}
+\DoxyCodeLine{539     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(:queue) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} task\_pre\_queue;}
+\DoxyCodeLine{540     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(group stop\_task)}
+\DoxyCodeLine{541     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(:stop\_task) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} stop\_task;}
+\DoxyCodeLine{542     \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\_}}(:stop\_task) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} stop\_task\_ptr;}
+\DoxyCodeLine{543     \textcolor{keywordtype}{int} epoll\_fd;}
+\DoxyCodeLine{544     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(group status)}
+\DoxyCodeLine{545     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(:status) \textcolor{keywordtype}{bool} should\_process\_task\_pre\_queue;}
+\DoxyCodeLine{546     \mbox{\hyperlink{structepoll__loop_a7979b6c036f2398f71f835525d876aac}{\_}}(:status) \textcolor{keywordtype}{bool} should\_continue;}
+\DoxyCodeLine{547     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant valid\_fd(epoll\_fd))}
+\DoxyCodeLine{548     \textcolor{comment}{/* scheduler */}}
+\DoxyCodeLine{549     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&thread\_created\_on))}
+\DoxyCodeLine{550     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&running\_thread\_id))}
+\DoxyCodeLine{551     \textcolor{comment}{/* read\_handle */}}
+\DoxyCodeLine{552     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&write\_task\_handle))}
+\DoxyCodeLine{553     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&task\_pre\_queue\_mutex))}
+\DoxyCodeLine{554     \textcolor{comment}{/* task\_pre\_queue */}}
+\DoxyCodeLine{555     \textcolor{comment}{/* stop\_task */}}
+\DoxyCodeLine{556     \textcolor{comment}{/* stop\_task\_ptr */}}
+\DoxyCodeLine{557     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant task\_pre\_queue\_mutex.protected\_obj == \&task\_pre\_queue)}
+\DoxyCodeLine{558     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant task\_pre\_queue\_mutex.\(\backslash\)claim\_count == 1)}
+\DoxyCodeLine{559 \};}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561 \textcolor{keyword}{struct }\mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} \{}
+\DoxyCodeLine{562     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc;}
+\DoxyCodeLine{563     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *\mbox{\hyperlink{structaws__io__handle_ad171e2a8986000bcb713c9ccc4701eaa}{handle}};}
+\DoxyCodeLine{564     \mbox{\hyperlink{preamble_8h_a5f54d633bc82cf2fe5634f0c135537bc}{aws\_event\_loop\_on\_event\_fn\_ptr}} \mbox{\hyperlink{structepoll__event__data_a0f2b440072e4c4f234fa602b72044927}{on\_event}}; \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{565     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}};}
+\DoxyCodeLine{566     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} cleanup\_task;}
+\DoxyCodeLine{567     \textcolor{keywordtype}{bool} is\_subscribed; \textcolor{comment}{/* false when handle is unsubscribed, but this struct hasn't beeen cleaned up yet */}}
+\DoxyCodeLine{568     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(handle))}
+\DoxyCodeLine{569     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant ((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)handle-\/>\mbox{\hyperlink{structaws__io__handle_adbc2235f4e7e0564bba639960bada767}{additional\_data}}) == \(\backslash\)\textcolor{keyword}{this})}
+\DoxyCodeLine{570     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\_event}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{571     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant \(\backslash\)mine(\&cleanup\_task))}
+\DoxyCodeLine{572 \};}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574 \textcolor{comment}{/* VCC mutex contract */}}
+\DoxyCodeLine{575 \textcolor{comment}{/* VCC change: replace mutex implementation with VCC contract */}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define AWS\_MUTEX\_INIT \{ .locked = 0 \}}}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(claimable) \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(volatile\_owns) \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \{}
+\DoxyCodeLine{579     \textcolor{keyword}{volatile} \textcolor{keywordtype}{int} locked; \textcolor{comment}{/* 0=>unlocked / 1=>locked */}}
+\DoxyCodeLine{580     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)\textcolor{keywordtype}{object} protected\_obj)}
+\DoxyCodeLine{581     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(invariant locked == 0 ==> \(\backslash\)mine(protected\_obj))}
+\DoxyCodeLine{582 \};}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a8a318e4463fca52d6f3623c3c1a11177}{aws\_mutex\_lock}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} *l \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim c))}
+\DoxyCodeLine{585     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c, l-\/>\(\backslash\)closed)}
+\DoxyCodeLine{586     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)wrapped(l-\/>protected\_obj) \&\& \(\backslash\)fresh(l-\/>protected\_obj))}
+\DoxyCodeLine{587     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures l-\/>locked == 1)}
+\DoxyCodeLine{588 ;}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590 \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_accefaa6a6b6b6089fee6d12335d7631e}{aws\_mutex\_unlock}}(struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} *l \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim c))}
+\DoxyCodeLine{591     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c, l-\/>\(\backslash\)closed)}
+\DoxyCodeLine{592     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires l-\/>protected\_obj != c)}
+\DoxyCodeLine{593     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes l-\/>protected\_obj)}
+\DoxyCodeLine{594     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(l-\/>protected\_obj))}
+\DoxyCodeLine{595     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures l-\/>locked == 0)}
+\DoxyCodeLine{596 ;}
+\DoxyCodeLine{597 }
+\DoxyCodeLine{598 \textcolor{comment}{/* Useful definitions */}}
+\DoxyCodeLine{599 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(def \textcolor{keywordtype}{bool} valid\_fd(\textcolor{keywordtype}{int} fd) \{}
+\DoxyCodeLine{600   \textcolor{keywordflow}{return} 0 <= fd;}
+\DoxyCodeLine{601 \})}
+\DoxyCodeLine{602 }
+\DoxyCodeLine{603 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(def \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *event\_loop\_of(\textcolor{keywordtype}{void} *arg) \{}
+\DoxyCodeLine{604   \textcolor{keywordflow}{return} (\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *)arg;}
+\DoxyCodeLine{605 \})}
+\DoxyCodeLine{606 }
+\DoxyCodeLine{607 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(def \textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__loop}{epoll\_loop}} *\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}) \{}
+\DoxyCodeLine{608   \textcolor{keywordflow}{return} (\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__loop}{epoll\_loop}} *)\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\mbox{\hyperlink{structaws__event__loop_ab9bad739aed33e1561451e6740401ebb}{impl\_data}};}
+\DoxyCodeLine{609 \})}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{611 \textcolor{comment}{/*}}
+\DoxyCodeLine{612 \textcolor{comment}{ * This predicate (which implies the object invariant properties of}}
+\DoxyCodeLine{613 \textcolor{comment}{ * epoll\_event\_data) means the heap looks like this:}}
+\DoxyCodeLine{614 \textcolor{comment}{ *}}
+\DoxyCodeLine{615 \textcolor{comment}{ * handle -\/-\/.additional\_data-\/-\/> epoll\_event\_data -\/-\/.on\_event-\/-\/> valid fn}}
+\DoxyCodeLine{616 \textcolor{comment}{ *     \string^                         /            \(\backslash\)}}
+\DoxyCodeLine{617 \textcolor{comment}{ *      `-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.handle-\/-\/'              '-\/-\/.user\_data-\/-\/> (can be NULL)}}
+\DoxyCodeLine{618 \textcolor{comment}{ */}}
+\DoxyCodeLine{619 \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(def \(\backslash\)\textcolor{keywordtype}{bool} wf\_cio\_handle(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *handle) \{}
+\DoxyCodeLine{620   return \(\backslash\)nested(handle) \&\& handle-\/>\(\backslash\)closed \&\&}
+\DoxyCodeLine{621          \(\backslash\)malloc\_root((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)handle-\/>\mbox{\hyperlink{structaws__io__handle_adbc2235f4e7e0564bba639960bada767}{additional\_data}}) \&\&}
+\DoxyCodeLine{622          \(\backslash\)wrapped((\textcolor{keyword}{struct} \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)handle-\/>\mbox{\hyperlink{structaws__io__handle_adbc2235f4e7e0564bba639960bada767}{additional\_data}}) \&\&}
+\DoxyCodeLine{623          (handle-\/>\(\backslash\)owner == (\textcolor{keyword}{struct }\mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}-\/>\mbox{\hyperlink{structaws__io__handle_adbc2235f4e7e0564bba639960bada767}{additional\_data}});}
+\DoxyCodeLine{624 \})}
+\DoxyCodeLine{625 }
+\DoxyCodeLine{626 \#define \mbox{\hyperlink{preamble_8h_a011051cc61e2e3769546016974a1fd53}{current\_thread\_owns\_event\_loop}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}) \(\backslash\)}
+\DoxyCodeLine{627   \(\backslash\)addr(\(\backslash\)me) == \(\backslash\)addr(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)owner)}
+\DoxyCodeLine{628 }
+\DoxyCodeLine{629 \textcolor{preprocessor}{\#define ownership\_of\_epoll\_loop\_objects(loop) \(\backslash\)}}
+\DoxyCodeLine{630 \textcolor{preprocessor}{    (\(\backslash\)wrapped(loop::scheduler)                       \(\backslash\)}}
+\DoxyCodeLine{631 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(\&loop-\/>scheduler)                \(\backslash\)}}
+\DoxyCodeLine{632 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(loop::read\_handle)               \(\backslash\)}}
+\DoxyCodeLine{633 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(\&loop-\/>read\_task\_handle)         \(\backslash\)}}
+\DoxyCodeLine{634 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(loop::stop\_task)                 \(\backslash\)}}
+\DoxyCodeLine{635 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(\&loop-\/>stop\_task)                \(\backslash\)}}
+\DoxyCodeLine{636 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(\&loop-\/>stop\_task\_ptr)            \(\backslash\)}}
+\DoxyCodeLine{637 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(loop::queue)                     \(\backslash\)}}
+\DoxyCodeLine{638 \textcolor{preprocessor}{        \&\& \(\backslash\)wrapped(loop::status)                    \(\backslash\)}}
+\DoxyCodeLine{639 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(loop::scheduler)                   \(\backslash\)}}
+\DoxyCodeLine{640 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(\&loop-\/>scheduler)                  \(\backslash\)}}
+\DoxyCodeLine{641 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(loop::read\_handle)                 \(\backslash\)}}
+\DoxyCodeLine{642 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(\&loop-\/>read\_task\_handle)           \(\backslash\)}}
+\DoxyCodeLine{643 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(loop::stop\_task)                   \(\backslash\)}}
+\DoxyCodeLine{644 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(\&loop-\/>stop\_task)                  \(\backslash\)}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(\&loop-\/>stop\_task\_ptr)              \(\backslash\)}}
+\DoxyCodeLine{646 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(loop::queue)                       \(\backslash\)}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(\&loop-\/>task\_pre\_queue)             \(\backslash\)}}
+\DoxyCodeLine{648 \textcolor{preprocessor}{        \&\& \(\backslash\)fresh(loop::status))}}
+\DoxyCodeLine{649 }
+\DoxyCodeLine{650 \textcolor{comment}{/* Specifications for epoll\_loop functions */}}
+\DoxyCodeLine{651 \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a336af08cbd6ffe6a181a1407e0e29a0b}{s\_subscribe\_to\_io\_events}}(}
+\DoxyCodeLine{652     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}},}
+\DoxyCodeLine{653     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}},}
+\DoxyCodeLine{654     \textcolor{keywordtype}{int} \mbox{\hyperlink{structepoll__event_a4eb5ccec6b1c1e58d8ccd9aaa3aed6ed}{events}},}
+\DoxyCodeLine{655     \mbox{\hyperlink{preamble_8h_a5f54d633bc82cf2fe5634f0c135537bc}{aws\_event\_loop\_on\_event\_fn\_ptr}} \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\_event}}, \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{656     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}}}
+\DoxyCodeLine{657     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{658 )}
+\DoxyCodeLine{659     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed) \textcolor{comment}{/*< the event\_loop won't be changed or destroyed underneath us */}}
+\DoxyCodeLine{660     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))                \textcolor{comment}{/*< wrapped means closed (the handle is valid) and owned by the current thread */}}
+\DoxyCodeLine{661     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\_event}}-\/>\(\backslash\)valid)                \textcolor{comment}{/*< valid function pointer */}}
+\DoxyCodeLine{662     \textcolor{comment}{/* user\_data may be NULL */}}
+\DoxyCodeLine{663     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{preamble_8h_aa614dfea2e3cf41c68a4f2405f9d0e0f}{AWS\_OP\_SUCCESS}} <==> wf\_cio\_handle(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))}
+\DoxyCodeLine{664     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{preamble_8h_aa614dfea2e3cf41c68a4f2405f9d0e0f}{AWS\_OP\_SUCCESS}}  ==> \(\backslash\)fresh((struct \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}-\/>additional\_data))}
+\DoxyCodeLine{665     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}})}
+\DoxyCodeLine{666 ;}
+\DoxyCodeLine{667 }
+\DoxyCodeLine{668 static \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a7ee4f4ffbc1094e6cf9bda1d125dc9f4}{s\_unsubscribe\_from\_io\_events}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}}
+\DoxyCodeLine{669     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{670     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{671 )}
+\DoxyCodeLine{672     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))           \textcolor{comment}{/*< current thread owns event loop (i.e., current thread is the event loop thread) */}}
+\DoxyCodeLine{673     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed) \textcolor{comment}{/*< required for schedule call */}}
+\DoxyCodeLine{674     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{675     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires wf\_cio\_handle(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))}
+\DoxyCodeLine{676     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{preamble_8h_aa614dfea2e3cf41c68a4f2405f9d0e0f}{AWS\_OP\_SUCCESS}} <==> !\(\backslash\)nested(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))}
+\DoxyCodeLine{677     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result != \mbox{\hyperlink{preamble_8h_aa614dfea2e3cf41c68a4f2405f9d0e0f}{AWS\_OP\_SUCCESS}} <==> wf\_cio\_handle(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))}
+\DoxyCodeLine{678     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes ((struct \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}-\/>additional\_data))}
+\DoxyCodeLine{679     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{680 ;}
+\DoxyCodeLine{681 }
+\DoxyCodeLine{682 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a3c935e168c3cf1bfad6ed8906d6db33f}{s\_schedule\_task\_now}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task}
+\DoxyCodeLine{683     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{684     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{685 )}
+\DoxyCodeLine{686     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed)}
+\DoxyCodeLine{687     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{688     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)thread\_local(task))}
+\DoxyCodeLine{689     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(task))}
+\DoxyCodeLine{690     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires task-\/>fn-\/>\(\backslash\)valid)}
+\DoxyCodeLine{691     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes task)}
+\DoxyCodeLine{692     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{693 ;}
+\DoxyCodeLine{694 }
+\DoxyCodeLine{695 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_aec4f13a3a7cb7557fc805ddf4f49e1b0}{s\_schedule\_task\_future}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task, uint64\_t run\_at\_nanos}
+\DoxyCodeLine{696     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{697     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{698 )}
+\DoxyCodeLine{699     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed)}
+\DoxyCodeLine{700     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{701     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)thread\_local(task))}
+\DoxyCodeLine{702     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(task))}
+\DoxyCodeLine{703     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires task-\/>fn-\/>\(\backslash\)valid)}
+\DoxyCodeLine{704     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes task)}
+\DoxyCodeLine{705     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{706 ;}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708 static \textcolor{keywordtype}{bool} \mbox{\hyperlink{preamble_8h_a4c10e1bf248b15f55819365bec0ce717}{s\_is\_on\_callers\_thread}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}}
+\DoxyCodeLine{709     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{710 )}
+\DoxyCodeLine{711     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed)}
+\DoxyCodeLine{712     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result ==> \mbox{\hyperlink{preamble_8h_a011051cc61e2e3769546016974a1fd53}{current\_thread\_owns\_event\_loop}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))}
+\DoxyCodeLine{713 ;}
+\DoxyCodeLine{714 }
+\DoxyCodeLine{715 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a80891bbda2616f3078f7a0a7362fbf27}{s\_cancel\_task}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}, struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task)}
+\DoxyCodeLine{716     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))}
+\DoxyCodeLine{717     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{718 ;}
+\DoxyCodeLine{719 }
+\DoxyCodeLine{720 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a4a219a7df2afa439727553770dcfbaaa}{s\_process\_task\_pre\_queue}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}} \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop)) \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex)))}
+\DoxyCodeLine{721     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed)}
+\DoxyCodeLine{722     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{723     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)thread\_local(\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>read\_task\_handle))}
+\DoxyCodeLine{724     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires (\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>read\_task\_handle)-\/>\(\backslash\)closed)}
+\DoxyCodeLine{725     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>should\_process\_task\_pre\_queue)}
+\DoxyCodeLine{726     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{727 ;}
+\DoxyCodeLine{728 }
+\DoxyCodeLine{729 static \textcolor{keywordtype}{void} \mbox{\hyperlink{epoll__event__loop_8c_ad54a0e8fcb26baf1980c55c7205f880f}{s\_stop\_task}}(struct \mbox{\hyperlink{structaws__task}{aws\_task}} *task, \textcolor{keywordtype}{void} *\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}} status)}
+\DoxyCodeLine{730     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)thread\_local(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})))}
+\DoxyCodeLine{731     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))::status)}
+\DoxyCodeLine{732     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>stop\_task\_ptr)}
+\DoxyCodeLine{733 ;}
+\DoxyCodeLine{734 }
+\DoxyCodeLine{735 static \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_ab2f3d52084ca9d98b8ef34b0c2c2966b}{s\_stop}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}}
+\DoxyCodeLine{736     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{737     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{738 )}
+\DoxyCodeLine{739     \textcolor{comment}{/* wrapped0 means the claim\_count of c\_event\_loop is 0 (i.e., notionally,}}
+\DoxyCodeLine{740 \textcolor{comment}{    all of the claims handed to client threads have been destroyed), so}}
+\DoxyCodeLine{741 \textcolor{comment}{    client threads may no longer call any further event loop API calls. */}}
+\DoxyCodeLine{742     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped0(c\_event\_loop) \&\& \(\backslash\)claims(c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed))}
+\DoxyCodeLine{743     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped0(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{744     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task))}
+\DoxyCodeLine{745     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes (\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task))}
+\DoxyCodeLine{746     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})::status)}
+\DoxyCodeLine{747     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{748     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task\_ptr)}
+\DoxyCodeLine{749 ;}
+\DoxyCodeLine{750 }
+\DoxyCodeLine{751 static \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_a37d7ea18966c873252f9f90e55abc526}{s\_wait\_for\_stop\_completion}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}}
+\DoxyCodeLine{752     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop)) \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{753 )}
+\DoxyCodeLine{754     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires c\_event\_loop != c\_mutex)}
+\DoxyCodeLine{755     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped0(c\_event\_loop) \&\& \(\backslash\)claims(c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed) \&\& \(\backslash\)claims\_object(c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))}
+\DoxyCodeLine{756     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})}
+\DoxyCodeLine{757     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures !c\_event\_loop-\/>\(\backslash\)closed)}
+\DoxyCodeLine{758     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)wrapped0(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}) \&\& \(\backslash\)nested(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})))}
+\DoxyCodeLine{759     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \mbox{\hyperlink{preamble_8h_ad7d0eac5a2fba9887d543030debe938f}{ownership\_of\_epoll\_loop\_objects}}(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})))}
+\DoxyCodeLine{760     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex.locked == 0)}
+\DoxyCodeLine{761     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)malloc\_root(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})))}
+\DoxyCodeLine{762     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped0(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex))}
+\DoxyCodeLine{763 ;}
+\DoxyCodeLine{764 }
+\DoxyCodeLine{765 static \textcolor{keywordtype}{int} \mbox{\hyperlink{preamble_8h_aa6397649d4a4b01d05c1d65d735af840}{s\_run}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}} \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex)))}
+\DoxyCodeLine{766     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires}
+\DoxyCodeLine{767         \(\backslash\)wrapped0(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}) \&\&}
+\DoxyCodeLine{768         \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{769     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>should\_continue)}
+\DoxyCodeLine{770 ;}
+\DoxyCodeLine{771 }
+\DoxyCodeLine{772 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_af538c631045bf343224d67bd9b8fe0cd}{s\_on\_tasks\_to\_schedule}}(}
+\DoxyCodeLine{773     struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}},}
+\DoxyCodeLine{774     struct \mbox{\hyperlink{structaws__io__handle}{aws\_io\_handle}} *\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}},}
+\DoxyCodeLine{775     \textcolor{keywordtype}{int} \mbox{\hyperlink{structepoll__event_a4eb5ccec6b1c1e58d8ccd9aaa3aed6ed}{events}},}
+\DoxyCodeLine{776     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}} \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop))}
+\DoxyCodeLine{777 )}
+\DoxyCodeLine{778     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(always c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}-\/>\(\backslash\)closed)}
+\DoxyCodeLine{779     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)nested(\mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}))}
+\DoxyCodeLine{780     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>should\_process\_task\_pre\_queue)}
+\DoxyCodeLine{781 ;}
+\DoxyCodeLine{782 }
+\DoxyCodeLine{783 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_ad7b069d19240382c5d69ceada9a6c233}{s\_main\_loop}}(\textcolor{keywordtype}{void} *\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}} \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex)))}
+\DoxyCodeLine{784     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})))}
+\DoxyCodeLine{785     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)not\_shared(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})))}
+\DoxyCodeLine{786     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>task\_pre\_queue\_mutex)))}
+\DoxyCodeLine{787     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>read\_task\_handle))}
+\DoxyCodeLine{788     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>scheduler)}
+\DoxyCodeLine{789     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>running\_thread\_id)}
+\DoxyCodeLine{790     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))}
+\DoxyCodeLine{791     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>read\_task\_handle)}
+\DoxyCodeLine{792     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes (struct \mbox{\hyperlink{structepoll__event__data}{epoll\_event\_data}} *)(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>read\_task\_handle.additional\_data))}
+\DoxyCodeLine{793     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(event\_loop\_of(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}}))-\/>should\_process\_task\_pre\_queue)}
+\DoxyCodeLine{794 ;}
+\DoxyCodeLine{795 }
+\DoxyCodeLine{796 struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{preamble_8h_a02850f7b2b0593acb9167a24ffc44c3b}{aws\_event\_loop\_new\_default}}(}
+\DoxyCodeLine{797     struct \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}{alloc}},}
+\DoxyCodeLine{798     \mbox{\hyperlink{preamble_8h_acaf61a73ae6fbad506aaefdf288b57a1}{aws\_io\_clock\_fn\_ptr}} \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}} \textcolor{comment}{/*< VCC change: fnptr */}}
+\DoxyCodeLine{799     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(out \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{800 )}
+\DoxyCodeLine{801     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\mbox{\hyperlink{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}{alloc}}))}
+\DoxyCodeLine{802     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_a1bf5f85044c845b2a8bc9384ae596741}{clock}}-\/>\(\backslash\)valid)}
+\DoxyCodeLine{803     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}} ||}
+\DoxyCodeLine{804        (\(\backslash\)wrapped0(\(\backslash\)result) \&\&}
+\DoxyCodeLine{805         \(\backslash\)fresh(\(\backslash\)result) \&\& \(\backslash\)malloc\_root(\(\backslash\)result) \&\&}
+\DoxyCodeLine{806         \(\backslash\)fresh(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\& \(\backslash\)malloc\_root(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\&}
+\DoxyCodeLine{807         \mbox{\hyperlink{preamble_8h_ad7d0eac5a2fba9887d543030debe938f}{ownership\_of\_epoll\_loop\_objects}}(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\&}
+\DoxyCodeLine{808         \(\backslash\)fresh(c\_mutex) \&\& \(\backslash\)wrapped0(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)-\/>task\_pre\_queue\_mutex))))}
+\DoxyCodeLine{809 ;}
+\DoxyCodeLine{810 }
+\DoxyCodeLine{811 struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{preamble_8h_a0bc14c39125cea45bbe6cc9923bdfb30}{aws\_event\_loop\_new\_default\_with\_options}}(}
+\DoxyCodeLine{812     struct \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}{alloc}},}
+\DoxyCodeLine{813     const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\_event\_loop\_options}} *options}
+\DoxyCodeLine{814     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(out \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{815 )}
+\DoxyCodeLine{816     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\mbox{\hyperlink{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}{alloc}}))}
+\DoxyCodeLine{817     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(maintains \(\backslash\)wrapped(options))}
+\DoxyCodeLine{818     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ensures \(\backslash\)result == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}} ||}
+\DoxyCodeLine{819        (\(\backslash\)wrapped0(\(\backslash\)result) \&\&}
+\DoxyCodeLine{820         \(\backslash\)fresh(\(\backslash\)result) \&\& \(\backslash\)malloc\_root(\(\backslash\)result) \&\&}
+\DoxyCodeLine{821         \(\backslash\)fresh(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\& \(\backslash\)malloc\_root(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\&}
+\DoxyCodeLine{822         \mbox{\hyperlink{preamble_8h_ad7d0eac5a2fba9887d543030debe938f}{ownership\_of\_epoll\_loop\_objects}}(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)) \&\&}
+\DoxyCodeLine{823         \(\backslash\)fresh(c\_mutex) \&\& \(\backslash\)wrapped0(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\(\backslash\)result)-\/>task\_pre\_queue\_mutex))))}
+\DoxyCodeLine{824 ;}
+\DoxyCodeLine{825 }
+\DoxyCodeLine{826 static \textcolor{keywordtype}{void} \mbox{\hyperlink{preamble_8h_a96458f883fe2a6589be56ac6c63f8d3c}{s\_destroy}}(struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}}
+\DoxyCodeLine{827     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_event\_loop)) \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(ghost \(\backslash\)claim(c\_mutex))}
+\DoxyCodeLine{828 )}
+\DoxyCodeLine{829     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)malloc\_root(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))}
+\DoxyCodeLine{830     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)malloc\_root(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})))}
+\DoxyCodeLine{831     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires c\_event\_loop != c\_mutex)}
+\DoxyCodeLine{832     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped0(c\_event\_loop) \&\& \(\backslash\)claims\_object(c\_event\_loop, \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}))}
+\DoxyCodeLine{833     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped0(c\_mutex) \&\& \(\backslash\)claims\_object(c\_mutex, \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>task\_pre\_queue\_mutex))}
+\DoxyCodeLine{834     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler))}
+\DoxyCodeLine{835     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})::status))}
+\DoxyCodeLine{836     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(requires \(\backslash\)wrapped(\&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task))}
+\DoxyCodeLine{837     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>scheduler)}
+\DoxyCodeLine{838     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})::status)}
+\DoxyCodeLine{839     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task)}
+\DoxyCodeLine{840     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(writes \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}, c\_event\_loop, c\_mutex)}
+\DoxyCodeLine{841     \mbox{\hyperlink{structepoll__event_ae5cd83267c1d8afdcfc9ec044fb85a4e}{\_}}(updates \&\mbox{\hyperlink{preamble_8h_aa59c72007ca186b153b0553291756e71}{epoll\_loop\_of}}(\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}})-\/>stop\_task\_ptr)}
+\DoxyCodeLine{842 ;}
+\DoxyCodeLine{843 }
+\DoxyCodeLine{844 \textcolor{comment}{/* clang-\/format on */}}
+\DoxyCodeLine{845 \textcolor{preprocessor}{\#endif PREAMBLE\_H}}
+
+\end{DoxyCode}

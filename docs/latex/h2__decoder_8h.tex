@@ -1,0 +1,65 @@
+\hypertarget{h2__decoder_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h2\+\_\+decoder.h File Reference}
+\label{h2__decoder_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h2\_decoder.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h2\_decoder.h}}
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+frames.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/http\+\_\+impl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__h2__decoder__vtable}{aws\+\_\+h2\+\_\+decoder\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__h2__decoder__params}{aws\+\_\+h2\+\_\+decoder\+\_\+params}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$ \mbox{\hyperlink{h2__decoder_8h_a243c9789125646881231b166502a2d74}{aws\+\_\+h2\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__h2__decoder__params}{aws\+\_\+h2\+\_\+decoder\+\_\+params}} $\ast$params)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h2__decoder_8h_a3558619f92913a4ea9537a7d31e94ca6}{aws\+\_\+h2\+\_\+decoder\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$decoder)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__decoder_8h_a8a0e702399dc227e62cb2bd8febf195b}{aws\+\_\+h2\+\_\+decode}} (struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h2__decoder_8h_a0fa2e18b36fece55a12642f5fd3d0c26}{aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+header\+\_\+table\+\_\+size}} (struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$decoder, uint32\+\_\+t data)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h2__decoder_8h_a3c1d6d30284e3e711d84ce201ecbf2bf}{aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+enable\+\_\+push}} (struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$decoder, uint32\+\_\+t data)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h2__decoder_8h_a62db19a539dc928ece9fafcc9e7f6f33}{aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+max\+\_\+frame\+\_\+size}} (struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$decoder, uint32\+\_\+t data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h2__decoder_8h_a8a0e702399dc227e62cb2bd8febf195b}\label{h2__decoder_8h_a8a0e702399dc227e62cb2bd8febf195b}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decode@{aws\_h2\_decode}}
+\index{aws\_h2\_decode@{aws\_h2\_decode}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decode()}{aws\_h2\_decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+decode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$}]{decoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__decoder_8h_a3558619f92913a4ea9537a7d31e94ca6}\label{h2__decoder_8h_a3558619f92913a4ea9537a7d31e94ca6}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decoder\_destroy@{aws\_h2\_decoder\_destroy}}
+\index{aws\_h2\_decoder\_destroy@{aws\_h2\_decoder\_destroy}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decoder\_destroy()}{aws\_h2\_decoder\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h2\+\_\+decoder\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__decoder_8h_a243c9789125646881231b166502a2d74}\label{h2__decoder_8h_a243c9789125646881231b166502a2d74}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decoder\_new@{aws\_h2\_decoder\_new}}
+\index{aws\_h2\_decoder\_new@{aws\_h2\_decoder\_new}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decoder\_new()}{aws\_h2\_decoder\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}}$\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder__params}{aws\+\_\+h2\+\_\+decoder\+\_\+params}} $\ast$}]{params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__decoder_8h_a3c1d6d30284e3e711d84ce201ecbf2bf}\label{h2__decoder_8h_a3c1d6d30284e3e711d84ce201ecbf2bf}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decoder\_set\_setting\_enable\_push@{aws\_h2\_decoder\_set\_setting\_enable\_push}}
+\index{aws\_h2\_decoder\_set\_setting\_enable\_push@{aws\_h2\_decoder\_set\_setting\_enable\_push}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decoder\_set\_setting\_enable\_push()}{aws\_h2\_decoder\_set\_setting\_enable\_push()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+enable\+\_\+push (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$}]{decoder,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__decoder_8h_a0fa2e18b36fece55a12642f5fd3d0c26}\label{h2__decoder_8h_a0fa2e18b36fece55a12642f5fd3d0c26}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decoder\_set\_setting\_header\_table\_size@{aws\_h2\_decoder\_set\_setting\_header\_table\_size}}
+\index{aws\_h2\_decoder\_set\_setting\_header\_table\_size@{aws\_h2\_decoder\_set\_setting\_header\_table\_size}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decoder\_set\_setting\_header\_table\_size()}{aws\_h2\_decoder\_set\_setting\_header\_table\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+header\+\_\+table\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$}]{decoder,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__decoder_8h_a62db19a539dc928ece9fafcc9e7f6f33}\label{h2__decoder_8h_a62db19a539dc928ece9fafcc9e7f6f33}} 
+\index{h2\_decoder.h@{h2\_decoder.h}!aws\_h2\_decoder\_set\_setting\_max\_frame\_size@{aws\_h2\_decoder\_set\_setting\_max\_frame\_size}}
+\index{aws\_h2\_decoder\_set\_setting\_max\_frame\_size@{aws\_h2\_decoder\_set\_setting\_max\_frame\_size}!h2\_decoder.h@{h2\_decoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_decoder\_set\_setting\_max\_frame\_size()}{aws\_h2\_decoder\_set\_setting\_max\_frame\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h2\+\_\+decoder\+\_\+set\+\_\+setting\+\_\+max\+\_\+frame\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__decoder}{aws\+\_\+h2\+\_\+decoder}} $\ast$}]{decoder,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+

@@ -1,0 +1,110 @@
+\hypertarget{structaws__http__message}{}\doxysection{aws\+\_\+http\+\_\+message Struct Reference}
+\label{structaws__http__message}\index{aws\_http\_message@{aws\_http\_message}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__message_aea01100006cf6e0012bcf3268ec97a0a}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$ \mbox{\hyperlink{structaws__http__message_a76b1f8acae9648f0fe04c1edff404c8d}{headers}}
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{structaws__http__message_a3feb247fd675d7d5265f4c7e4291577f}{body\+\_\+stream}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__http__message_ab4624e495ec748e1c0d1c26f72aff3d5}{refcount}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct {\bfseries aws\_http\_message\_request\_data} \{\\
+\>\>struct \mbox{\hyperlink{structaws__string}{aws\_string}} $\ast$ \mbox{\hyperlink{structaws__http__message_a77e76ef3945792765c9796f8a417d7f4}{method}}\\
+\>\>struct \mbox{\hyperlink{structaws__string}{aws\_string}} $\ast$ \mbox{\hyperlink{structaws__http__message_a3665d235e691ab47c6e75de88bb37e7e}{path}}\\
+\>\} \mbox{\hyperlink{structaws__http__message_add2c673ee96658dbbaa1fcfc56ee1feb}{request}}\\
+\>struct {\bfseries aws\_http\_message\_response\_data} \{\\
+\>\>int \mbox{\hyperlink{structaws__http__message_aad30903cd265789b56fd4652dad04a85}{status}}\\
+\>\} \mbox{\hyperlink{structaws__http__message_a8f8bf7f78885240959d2493cadceb9b5}{response}}\\
+\} \mbox{\hyperlink{structaws__http__message_ad1b4fb81ab251e3f2ef687c83f90e7a1}{subclass\_data}}\\
+
+\end{tabbing}\item 
+struct aws\+\_\+http\+\_\+message\+\_\+request\+\_\+data $\ast$ \mbox{\hyperlink{structaws__http__message_ac9ad68fb01928e8e4a27aa5b55abdabd}{request\+\_\+data}}
+\item 
+struct aws\+\_\+http\+\_\+message\+\_\+response\+\_\+data $\ast$ \mbox{\hyperlink{structaws__http__message_ad29afb8038df59a50b75fa38b815f6a5}{response\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__message_aea01100006cf6e0012bcf3268ec97a0a}\label{structaws__http__message_aea01100006cf6e0012bcf3268ec97a0a}} 
+\index{aws\_http\_message@{aws\_http\_message}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+message\+::allocator}
+
+\mbox{\Hypertarget{structaws__http__message_a3feb247fd675d7d5265f4c7e4291577f}\label{structaws__http__message_a3feb247fd675d7d5265f4c7e4291577f}} 
+\index{aws\_http\_message@{aws\_http\_message}!body\_stream@{body\_stream}}
+\index{body\_stream@{body\_stream}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{body\_stream}{body\_stream}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+http\+\_\+message\+::body\+\_\+stream}
+
+\mbox{\Hypertarget{structaws__http__message_a76b1f8acae9648f0fe04c1edff404c8d}\label{structaws__http__message_a76b1f8acae9648f0fe04c1edff404c8d}} 
+\index{aws\_http\_message@{aws\_http\_message}!headers@{headers}}
+\index{headers@{headers}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{headers}{headers}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}$\ast$ aws\+\_\+http\+\_\+message\+::headers}
+
+\mbox{\Hypertarget{structaws__http__message_a77e76ef3945792765c9796f8a417d7f4}\label{structaws__http__message_a77e76ef3945792765c9796f8a417d7f4}} 
+\index{aws\_http\_message@{aws\_http\_message}!method@{method}}
+\index{method@{method}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{method}{method}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+http\+\_\+message\+::method}
+
+\mbox{\Hypertarget{structaws__http__message_a3665d235e691ab47c6e75de88bb37e7e}\label{structaws__http__message_a3665d235e691ab47c6e75de88bb37e7e}} 
+\index{aws\_http\_message@{aws\_http\_message}!path@{path}}
+\index{path@{path}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+http\+\_\+message\+::path}
+
+\mbox{\Hypertarget{structaws__http__message_ab4624e495ec748e1c0d1c26f72aff3d5}\label{structaws__http__message_ab4624e495ec748e1c0d1c26f72aff3d5}} 
+\index{aws\_http\_message@{aws\_http\_message}!refcount@{refcount}}
+\index{refcount@{refcount}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{refcount}{refcount}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+http\+\_\+message\+::refcount}
+
+\mbox{\Hypertarget{structaws__http__message_add2c673ee96658dbbaa1fcfc56ee1feb}\label{structaws__http__message_add2c673ee96658dbbaa1fcfc56ee1feb}} 
+\index{aws\_http\_message@{aws\_http\_message}!request@{request}}
+\index{request@{request}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \} \+::aws\+\_\+http\+\_\+message\+\_\+request\+\_\+data aws\+\_\+http\+\_\+message\+::request}
+
+\mbox{\Hypertarget{structaws__http__message_ac9ad68fb01928e8e4a27aa5b55abdabd}\label{structaws__http__message_ac9ad68fb01928e8e4a27aa5b55abdabd}} 
+\index{aws\_http\_message@{aws\_http\_message}!request\_data@{request\_data}}
+\index{request\_data@{request\_data}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{request\_data}{request\_data}}
+{\footnotesize\ttfamily struct aws\+\_\+http\+\_\+message\+\_\+request\+\_\+data$\ast$ aws\+\_\+http\+\_\+message\+::request\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__message_a8f8bf7f78885240959d2493cadceb9b5}\label{structaws__http__message_a8f8bf7f78885240959d2493cadceb9b5}} 
+\index{aws\_http\_message@{aws\_http\_message}!response@{response}}
+\index{response@{response}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \} \+::aws\+\_\+http\+\_\+message\+\_\+response\+\_\+data aws\+\_\+http\+\_\+message\+::response}
+
+\mbox{\Hypertarget{structaws__http__message_ad29afb8038df59a50b75fa38b815f6a5}\label{structaws__http__message_ad29afb8038df59a50b75fa38b815f6a5}} 
+\index{aws\_http\_message@{aws\_http\_message}!response\_data@{response\_data}}
+\index{response\_data@{response\_data}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{response\_data}{response\_data}}
+{\footnotesize\ttfamily struct aws\+\_\+http\+\_\+message\+\_\+response\+\_\+data$\ast$ aws\+\_\+http\+\_\+message\+::response\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__message_aad30903cd265789b56fd4652dad04a85}\label{structaws__http__message_aad30903cd265789b56fd4652dad04a85}} 
+\index{aws\_http\_message@{aws\_http\_message}!status@{status}}
+\index{status@{status}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+::status}
+
+\mbox{\Hypertarget{structaws__http__message_ad1b4fb81ab251e3f2ef687c83f90e7a1}\label{structaws__http__message_ad1b4fb81ab251e3f2ef687c83f90e7a1}} 
+\index{aws\_http\_message@{aws\_http\_message}!subclass\_data@{subclass\_data}}
+\index{subclass\_data@{subclass\_data}!aws\_http\_message@{aws\_http\_message}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  aws\+\_\+http\+\_\+message\+::subclass\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{request__response_8c}{request\+\_\+response.\+c}}\end{DoxyCompactItemize}

@@ -1,0 +1,158 @@
+\hypertarget{encoding_8h_source}{}\doxysection{encoding.\+h}
+\label{encoding_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/encoding.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/encoding.h}}
+\mbox{\hyperlink{encoding_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_ENCODING\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_ENCODING\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__order_8h}{aws/common/byte\_order.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <memory.h>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{ * computes the length necessary to store the result of aws\_hex\_encode().}}
+\DoxyCodeLine{19 \textcolor{comment}{ * returns -\/1 on failure, and 0 on success. encoded\_length will be set on}}
+\DoxyCodeLine{20 \textcolor{comment}{ * success.}}
+\DoxyCodeLine{21 \textcolor{comment}{ */}}
+\DoxyCodeLine{22 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{23 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a1eec49fd11d4d133d7eff9d68bd13b4a}{aws\_hex\_compute\_encoded\_len}}(\textcolor{keywordtype}{size\_t} to\_encode\_len, \textcolor{keywordtype}{size\_t} *encoded\_length);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{comment}{/*}}
+\DoxyCodeLine{26 \textcolor{comment}{ * Base 16 (hex) encodes the contents of to\_encode and stores the result in}}
+\DoxyCodeLine{27 \textcolor{comment}{ * output.  0 terminates the result.  Assumes the buffer is empty and does not resize on}}
+\DoxyCodeLine{28 \textcolor{comment}{ * insufficient capacity.}}
+\DoxyCodeLine{29 \textcolor{comment}{ */}}
+\DoxyCodeLine{30 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{31 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}{aws\_hex\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{/*}}
+\DoxyCodeLine{34 \textcolor{comment}{ * Base 16 (hex) encodes the contents of to\_encode and appends the result in}}
+\DoxyCodeLine{35 \textcolor{comment}{ * output.  Does not 0-\/terminate.  Grows the destination buffer dynamically if necessary.}}
+\DoxyCodeLine{36 \textcolor{comment}{ */}}
+\DoxyCodeLine{37 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{38 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a150572cc72ce32650f92893b4815bfb9}{aws\_hex\_encode\_append\_dynamic}}(}
+\DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode,}
+\DoxyCodeLine{40     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{/*}}
+\DoxyCodeLine{43 \textcolor{comment}{ * computes the length necessary to store the result of aws\_hex\_decode().}}
+\DoxyCodeLine{44 \textcolor{comment}{ * returns -\/1 on failure, and 0 on success. decoded\_len will be set on success.}}
+\DoxyCodeLine{45 \textcolor{comment}{ */}}
+\DoxyCodeLine{46 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{47 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_aee6616a6dd311bc57c160562da683deb}{aws\_hex\_compute\_decoded\_len}}(\textcolor{keywordtype}{size\_t} to\_decode\_len, \textcolor{keywordtype}{size\_t} *decoded\_len);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{/*}}
+\DoxyCodeLine{50 \textcolor{comment}{ * Base 16 (hex) decodes the contents of to\_decode and stores the result in}}
+\DoxyCodeLine{51 \textcolor{comment}{ * output. If output is NULL, output\_size will be set to what the output\_size}}
+\DoxyCodeLine{52 \textcolor{comment}{ * should be.}}
+\DoxyCodeLine{53 \textcolor{comment}{ */}}
+\DoxyCodeLine{54 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}{aws\_hex\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{/*}}
+\DoxyCodeLine{58 \textcolor{comment}{ * Computes the length necessary to store the output of aws\_base64\_encode call.}}
+\DoxyCodeLine{59 \textcolor{comment}{ * returns -\/1 on failure, and 0 on success. encoded\_length will be set on}}
+\DoxyCodeLine{60 \textcolor{comment}{ * success.}}
+\DoxyCodeLine{61 \textcolor{comment}{ */}}
+\DoxyCodeLine{62 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{63 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ad1df0efcc4989e10cdc89c3df3548846}{aws\_base64\_compute\_encoded\_len}}(\textcolor{keywordtype}{size\_t} to\_encode\_len, \textcolor{keywordtype}{size\_t} *encoded\_len);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/*}}
+\DoxyCodeLine{66 \textcolor{comment}{ * Base 64 encodes the contents of to\_encode and stores the result in output.}}
+\DoxyCodeLine{67 \textcolor{comment}{ */}}
+\DoxyCodeLine{68 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{69 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}{aws\_base64\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/*}}
+\DoxyCodeLine{72 \textcolor{comment}{ * Computes the length necessary to store the output of aws\_base64\_decode call.}}
+\DoxyCodeLine{73 \textcolor{comment}{ * returns -\/1 on failure, and 0 on success. decoded\_len will be set on success.}}
+\DoxyCodeLine{74 \textcolor{comment}{ */}}
+\DoxyCodeLine{75 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{76 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a813b05c6ed7798011a9d5a513212b3ba}{aws\_base64\_compute\_decoded\_len}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keywordtype}{size\_t} *decoded\_len);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{/*}}
+\DoxyCodeLine{79 \textcolor{comment}{ * Base 64 decodes the contents of to\_decode and stores the result in output.}}
+\DoxyCodeLine{80 \textcolor{comment}{ */}}
+\DoxyCodeLine{81 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{82 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}{aws\_base64\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{comment}{/* Add a 64 bit unsigned integer to the buffer, ensuring network -\/ byte order}}
+\DoxyCodeLine{85 \textcolor{comment}{ * Assumes the buffer size is at least 8 bytes.}}
+\DoxyCodeLine{86 \textcolor{comment}{ */}}
+\DoxyCodeLine{87 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{encoding_8h_a2bc7cb7f27ec06f7a97f5feb2864ccf3}{aws\_write\_u64}}(uint64\_t value, uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{/*}}
+\DoxyCodeLine{90 \textcolor{comment}{ * Extracts a 64 bit unsigned integer from buffer. Ensures conversion from}}
+\DoxyCodeLine{91 \textcolor{comment}{ * network byte order to host byte order. Assumes buffer size is at least 8}}
+\DoxyCodeLine{92 \textcolor{comment}{ * bytes.}}
+\DoxyCodeLine{93 \textcolor{comment}{ */}}
+\DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint64\_t \mbox{\hyperlink{encoding_8h_a1692b26f084453fc016abba521bd9967}{aws\_read\_u64}}(\textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{/* Add a 32 bit unsigned integer to the buffer, ensuring network -\/ byte order}}
+\DoxyCodeLine{97 \textcolor{comment}{ * Assumes the buffer size is at least 4 bytes.}}
+\DoxyCodeLine{98 \textcolor{comment}{ */}}
+\DoxyCodeLine{99 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{encoding_8h_a975e09cb9bcd8418311aa336c4dba83c}{aws\_write\_u32}}(uint32\_t value, uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{comment}{/*}}
+\DoxyCodeLine{102 \textcolor{comment}{ * Extracts a 32 bit unsigned integer from buffer. Ensures conversion from}}
+\DoxyCodeLine{103 \textcolor{comment}{ * network byte order to host byte order. Assumes the buffer size is at least 4}}
+\DoxyCodeLine{104 \textcolor{comment}{ * bytes.}}
+\DoxyCodeLine{105 \textcolor{comment}{ */}}
+\DoxyCodeLine{106 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint32\_t \mbox{\hyperlink{encoding_8h_a0531407bc82e668d5193d4a3c46c8e4b}{aws\_read\_u32}}(\textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{comment}{/* Add a 24 bit unsigned integer to the buffer, ensuring network -\/ byte order}}
+\DoxyCodeLine{109 \textcolor{comment}{ * return the new position in the buffer for the next operation.}}
+\DoxyCodeLine{110 \textcolor{comment}{ * Note, since this uses uint32\_t for storage, the 3 least significant bytes}}
+\DoxyCodeLine{111 \textcolor{comment}{ * will be used. Assumes buffer is at least 3 bytes long.}}
+\DoxyCodeLine{112 \textcolor{comment}{ */}}
+\DoxyCodeLine{113 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{encoding_8h_a7894950f7a065b713026f40efa856c3a}{aws\_write\_u24}}(uint32\_t value, uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{114 \textcolor{comment}{/*}}
+\DoxyCodeLine{115 \textcolor{comment}{ * Extracts a 24 bit unsigned integer from buffer. Ensures conversion from}}
+\DoxyCodeLine{116 \textcolor{comment}{ * network byte order to host byte order. Assumes buffer is at least 3 bytes}}
+\DoxyCodeLine{117 \textcolor{comment}{ * long.}}
+\DoxyCodeLine{118 \textcolor{comment}{ */}}
+\DoxyCodeLine{119 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint32\_t \mbox{\hyperlink{encoding_8h_a372b0cf13f259632c03089b726243d35}{aws\_read\_u24}}(\textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{comment}{/* Add a 16 bit unsigned integer to the buffer, ensuring network-\/byte order}}
+\DoxyCodeLine{122 \textcolor{comment}{ * return the new position in the buffer for the next operation.}}
+\DoxyCodeLine{123 \textcolor{comment}{ * Assumes buffer is at least 2 bytes long.}}
+\DoxyCodeLine{124 \textcolor{comment}{ */}}
+\DoxyCodeLine{125 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{encoding_8h_af93c4dd01f9022eae452c46a97054cf3}{aws\_write\_u16}}(uint16\_t value, uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{126 \textcolor{comment}{/*}}
+\DoxyCodeLine{127 \textcolor{comment}{ * Extracts a 16 bit unsigned integer from buffer. Ensures conversion from}}
+\DoxyCodeLine{128 \textcolor{comment}{ * network byte order to host byte order. Assumes buffer is at least 2 bytes}}
+\DoxyCodeLine{129 \textcolor{comment}{ * long.}}
+\DoxyCodeLine{130 \textcolor{comment}{ */}}
+\DoxyCodeLine{131 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint16\_t \mbox{\hyperlink{encoding_8h_aadfc580fb531ca45be162f2919b797e0}{aws\_read\_u16}}(\textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{keyword}{enum} \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\_text\_encoding}} \{}
+\DoxyCodeLine{134     \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a6ab20cee02723a042e2b4dd994c8f346}{AWS\_TEXT\_UNKNOWN}},}
+\DoxyCodeLine{135     \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a7a17956c8fdaf6d2e86a4f8733b7c9ff}{AWS\_TEXT\_UTF8}},}
+\DoxyCodeLine{136     \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471ab2918f95a8742b5b60901ccca0577ab1}{AWS\_TEXT\_UTF16}},}
+\DoxyCodeLine{137     \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a002b7e014db9c01c2e99f0da77fc33df}{AWS\_TEXT\_UTF32}},}
+\DoxyCodeLine{138     \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a93035afbeb2e1a971b58a793bf7e4608}{AWS\_TEXT\_ASCII}},}
+\DoxyCodeLine{139 \};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{comment}{/* Checks the BOM in the buffer to see if encoding can be determined. If there is no BOM or}}
+\DoxyCodeLine{142 \textcolor{comment}{ * it is unrecognizable, then AWS\_TEXT\_UNKNOWN will be returned.}}
+\DoxyCodeLine{143 \textcolor{comment}{ */}}
+\DoxyCodeLine{144 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keyword}{enum} \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\_text\_encoding}} \mbox{\hyperlink{encoding_8h_ad35814fcac8f78d24dbee6ac2b7df000}{aws\_text\_detect\_encoding}}(\textcolor{keyword}{const} uint8\_t *bytes, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{comment}{/*}}
+\DoxyCodeLine{147 \textcolor{comment}{ * Returns true if the supplied bytes are encoded as UTF8 or ASCII.}}
+\DoxyCodeLine{148 \textcolor{comment}{ */}}
+\DoxyCodeLine{149 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{encoding_8h_ab504f0d753da804552870fa32549a007}{aws\_text\_is\_utf8}}(\textcolor{keyword}{const} uint8\_t *bytes, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#ifndef AWS\_NO\_STATIC\_IMPL}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#    include <\mbox{\hyperlink{encoding_8inl}{aws/common/encoding.inl}}>}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_NO\_STATIC\_IMPL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_ENCODING\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

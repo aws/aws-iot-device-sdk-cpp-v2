@@ -1,0 +1,175 @@
+\hypertarget{crc__sw_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc\+\_\+sw.c File Reference}
+\label{crc__sw_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc\_sw.c@{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc\_sw.c}}
+{\ttfamily \#include $<$aws/checksums/private/crc\+\_\+priv.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crc__sw_8c_a32104fd66e8bf60867719c6b6c877b4b}{CRC32\+\_\+\+POLYNOMIAL}}~0x\+EDB88320
+\item 
+\#define \mbox{\hyperlink{crc__sw_8c_ac97b1a11c7440cbc95e4611272723879}{CRC32\+C\+\_\+\+POLYNOMIAL}}~0x82\+F63\+B78
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a34474c1b20b4a24da8cfed76f6f98939}{s\+\_\+crc\+\_\+generic\+\_\+sb1}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t crc, const uint32\+\_\+t $\ast$table\+\_\+ptr)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a41f3146c0c24b144f909a30abd1f9429}{s\+\_\+crc\+\_\+generic\+\_\+align}} (const uint8\+\_\+t $\ast$$\ast$input, int $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t crc, const uint32\+\_\+t $\ast$table\+\_\+ptr)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a518d962bfc36071b05f260725200cd62}{s\+\_\+crc\+\_\+generic\+\_\+sb4}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t crc, const uint32\+\_\+t $\ast$table\+\_\+ptr)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a054291e8b68b7866c2539cc64ad69434}{s\+\_\+crc\+\_\+generic\+\_\+sb8}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t crc, const uint32\+\_\+t $\ast$table\+\_\+ptr)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_ae92142ad91fa89aae1e257576095a2f4}{s\+\_\+crc\+\_\+generic\+\_\+sb16}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t crc, const uint32\+\_\+t $\ast$table\+\_\+ptr)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a30d8e49673a1e69688f83e014844ce95}{s\+\_\+crc32\+\_\+no\+\_\+slice}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_af7a67d1c8b6307196b0835cecc258e98}{s\+\_\+crc32\+\_\+sb4}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a279253272b36cb13f916f1371659b262}{s\+\_\+crc32\+\_\+sb8}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_abc1071a6349ce1ba25261ee30863c3ac}{s\+\_\+crc32\+\_\+sb16}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_abe01719feca70f023c66571b52766e02}{s\+\_\+crc32c\+\_\+no\+\_\+slice}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32c)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_ac54c9926a7f0931e429808701deebffc}{s\+\_\+crc32c\+\_\+sb4}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a9cf2a0dc4b9a3d45e6e9abb903ad629c}{s\+\_\+crc32c\+\_\+sb8}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a09b150790ba0b8efb4313cbd4d2dff41}{s\+\_\+crc32c\+\_\+sb16}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_afcd23c5f813ccb2f0a762d36ff4f0014}{aws\+\_\+checksums\+\_\+crc32\+\_\+sw}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_a429aaf11375b71838cbad97c6690e246}{aws\+\_\+checksums\+\_\+crc32c\+\_\+sw}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32c)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_afafeb898d55d5a1841353deb0f842ce5}{CRC32\+\_\+\+TABLE}} \mbox{[}16\mbox{]}\mbox{[}256\mbox{]}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{crc__sw_8c_ab1d4e1c45e3f2ff00ca7cf6673e345b0}{CRC32\+C\+\_\+\+TABLE}} \mbox{[}16\mbox{]}\mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crc__sw_8c_a32104fd66e8bf60867719c6b6c877b4b}\label{crc__sw_8c_a32104fd66e8bf60867719c6b6c877b4b}} 
+\index{crc\_sw.c@{crc\_sw.c}!CRC32\_POLYNOMIAL@{CRC32\_POLYNOMIAL}}
+\index{CRC32\_POLYNOMIAL@{CRC32\_POLYNOMIAL}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{CRC32\_POLYNOMIAL}{CRC32\_POLYNOMIAL}}
+{\footnotesize\ttfamily \#define CRC32\+\_\+\+POLYNOMIAL~0x\+EDB88320}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{crc__sw_8c_ac97b1a11c7440cbc95e4611272723879}\label{crc__sw_8c_ac97b1a11c7440cbc95e4611272723879}} 
+\index{crc\_sw.c@{crc\_sw.c}!CRC32C\_POLYNOMIAL@{CRC32C\_POLYNOMIAL}}
+\index{CRC32C\_POLYNOMIAL@{CRC32C\_POLYNOMIAL}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{CRC32C\_POLYNOMIAL}{CRC32C\_POLYNOMIAL}}
+{\footnotesize\ttfamily \#define CRC32\+C\+\_\+\+POLYNOMIAL~0x82\+F63\+B78}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crc__sw_8c_afcd23c5f813ccb2f0a762d36ff4f0014}\label{crc__sw_8c_afcd23c5f813ccb2f0a762d36ff4f0014}} 
+\index{crc\_sw.c@{crc\_sw.c}!aws\_checksums\_crc32\_sw@{aws\_checksums\_crc32\_sw}}
+\index{aws\_checksums\_crc32\_sw@{aws\_checksums\_crc32\_sw}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{aws\_checksums\_crc32\_sw()}{aws\_checksums\_crc32\_sw()}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+checksums\+\_\+crc32\+\_\+sw (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})}
+
+Computes the Ethernet, gzip CRC32 of the specified data buffer. Pass 0 in the previous\+Crc32 parameter as an initial value unless continuing to update a running crc in a subsequent call \mbox{\Hypertarget{crc__sw_8c_a429aaf11375b71838cbad97c6690e246}\label{crc__sw_8c_a429aaf11375b71838cbad97c6690e246}} 
+\index{crc\_sw.c@{crc\_sw.c}!aws\_checksums\_crc32c\_sw@{aws\_checksums\_crc32c\_sw}}
+\index{aws\_checksums\_crc32c\_sw@{aws\_checksums\_crc32c\_sw}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{aws\_checksums\_crc32c\_sw()}{aws\_checksums\_crc32c\_sw()}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+checksums\+\_\+crc32c\+\_\+sw (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32c }\end{DoxyParamCaption})}
+
+Computes the Castagnoli i\+SCSI CRC32c of the specified data buffer. Pass 0 in the previous\+Crc32c parameter as an initial value unless continuing to update a running crc in a subsequent call \mbox{\Hypertarget{crc__sw_8c_a30d8e49673a1e69688f83e014844ce95}\label{crc__sw_8c_a30d8e49673a1e69688f83e014844ce95}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32\_no\_slice@{s\_crc32\_no\_slice}}
+\index{s\_crc32\_no\_slice@{s\_crc32\_no\_slice}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32\_no\_slice()}{s\_crc32\_no\_slice()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32\+\_\+no\+\_\+slice (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_abc1071a6349ce1ba25261ee30863c3ac}\label{crc__sw_8c_abc1071a6349ce1ba25261ee30863c3ac}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32\_sb16@{s\_crc32\_sb16}}
+\index{s\_crc32\_sb16@{s\_crc32\_sb16}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32\_sb16()}{s\_crc32\_sb16()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32\+\_\+sb16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_af7a67d1c8b6307196b0835cecc258e98}\label{crc__sw_8c_af7a67d1c8b6307196b0835cecc258e98}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32\_sb4@{s\_crc32\_sb4}}
+\index{s\_crc32\_sb4@{s\_crc32\_sb4}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32\_sb4()}{s\_crc32\_sb4()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32\+\_\+sb4 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a279253272b36cb13f916f1371659b262}\label{crc__sw_8c_a279253272b36cb13f916f1371659b262}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32\_sb8@{s\_crc32\_sb8}}
+\index{s\_crc32\_sb8@{s\_crc32\_sb8}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32\_sb8()}{s\_crc32\_sb8()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32\+\_\+sb8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_abe01719feca70f023c66571b52766e02}\label{crc__sw_8c_abe01719feca70f023c66571b52766e02}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32c\_no\_slice@{s\_crc32c\_no\_slice}}
+\index{s\_crc32c\_no\_slice@{s\_crc32c\_no\_slice}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32c\_no\_slice()}{s\_crc32c\_no\_slice()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32c\+\_\+no\+\_\+slice (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a09b150790ba0b8efb4313cbd4d2dff41}\label{crc__sw_8c_a09b150790ba0b8efb4313cbd4d2dff41}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32c\_sb16@{s\_crc32c\_sb16}}
+\index{s\_crc32c\_sb16@{s\_crc32c\_sb16}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32c\_sb16()}{s\_crc32c\_sb16()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32c\+\_\+sb16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_ac54c9926a7f0931e429808701deebffc}\label{crc__sw_8c_ac54c9926a7f0931e429808701deebffc}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32c\_sb4@{s\_crc32c\_sb4}}
+\index{s\_crc32c\_sb4@{s\_crc32c\_sb4}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32c\_sb4()}{s\_crc32c\_sb4()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32c\+\_\+sb4 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a9cf2a0dc4b9a3d45e6e9abb903ad629c}\label{crc__sw_8c_a9cf2a0dc4b9a3d45e6e9abb903ad629c}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc32c\_sb8@{s\_crc32c\_sb8}}
+\index{s\_crc32c\_sb8@{s\_crc32c\_sb8}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32c\_sb8()}{s\_crc32c\_sb8()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc32c\+\_\+sb8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a41f3146c0c24b144f909a30abd1f9429}\label{crc__sw_8c_a41f3146c0c24b144f909a30abd1f9429}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc\_generic\_align@{s\_crc\_generic\_align}}
+\index{s\_crc\_generic\_align@{s\_crc\_generic\_align}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc\_generic\_align()}{s\_crc\_generic\_align()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc\+\_\+generic\+\_\+align (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$$\ast$}]{input,  }\item[{int $\ast$}]{length,  }\item[{uint32\+\_\+t}]{crc,  }\item[{const uint32\+\_\+t $\ast$}]{table\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a34474c1b20b4a24da8cfed76f6f98939}\label{crc__sw_8c_a34474c1b20b4a24da8cfed76f6f98939}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc\_generic\_sb1@{s\_crc\_generic\_sb1}}
+\index{s\_crc\_generic\_sb1@{s\_crc\_generic\_sb1}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc\_generic\_sb1()}{s\_crc\_generic\_sb1()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc\+\_\+generic\+\_\+sb1 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{crc,  }\item[{const uint32\+\_\+t $\ast$}]{table\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_ae92142ad91fa89aae1e257576095a2f4}\label{crc__sw_8c_ae92142ad91fa89aae1e257576095a2f4}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc\_generic\_sb16@{s\_crc\_generic\_sb16}}
+\index{s\_crc\_generic\_sb16@{s\_crc\_generic\_sb16}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc\_generic\_sb16()}{s\_crc\_generic\_sb16()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc\+\_\+generic\+\_\+sb16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{crc,  }\item[{const uint32\+\_\+t $\ast$}]{table\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a518d962bfc36071b05f260725200cd62}\label{crc__sw_8c_a518d962bfc36071b05f260725200cd62}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc\_generic\_sb4@{s\_crc\_generic\_sb4}}
+\index{s\_crc\_generic\_sb4@{s\_crc\_generic\_sb4}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc\_generic\_sb4()}{s\_crc\_generic\_sb4()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc\+\_\+generic\+\_\+sb4 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{crc,  }\item[{const uint32\+\_\+t $\ast$}]{table\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc__sw_8c_a054291e8b68b7866c2539cc64ad69434}\label{crc__sw_8c_a054291e8b68b7866c2539cc64ad69434}} 
+\index{crc\_sw.c@{crc\_sw.c}!s\_crc\_generic\_sb8@{s\_crc\_generic\_sb8}}
+\index{s\_crc\_generic\_sb8@{s\_crc\_generic\_sb8}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc\_generic\_sb8()}{s\_crc\_generic\_sb8()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+crc\+\_\+generic\+\_\+sb8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{crc,  }\item[{const uint32\+\_\+t $\ast$}]{table\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{crc__sw_8c_afafeb898d55d5a1841353deb0f842ce5}\label{crc__sw_8c_afafeb898d55d5a1841353deb0f842ce5}} 
+\index{crc\_sw.c@{crc\_sw.c}!CRC32\_TABLE@{CRC32\_TABLE}}
+\index{CRC32\_TABLE@{CRC32\_TABLE}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{CRC32\_TABLE}{CRC32\_TABLE}}
+{\footnotesize\ttfamily const uint32\+\_\+t CRC32\+\_\+\+TABLE\mbox{[}16\mbox{]}\mbox{[}256\mbox{]}}
+
+CRC32 (Ethernet, gzip) lookup table for slice-\/by-\/4/8/16 \mbox{\Hypertarget{crc__sw_8c_ab1d4e1c45e3f2ff00ca7cf6673e345b0}\label{crc__sw_8c_ab1d4e1c45e3f2ff00ca7cf6673e345b0}} 
+\index{crc\_sw.c@{crc\_sw.c}!CRC32C\_TABLE@{CRC32C\_TABLE}}
+\index{CRC32C\_TABLE@{CRC32C\_TABLE}!crc\_sw.c@{crc\_sw.c}}
+\doxysubsubsection{\texorpdfstring{CRC32C\_TABLE}{CRC32C\_TABLE}}
+{\footnotesize\ttfamily const uint32\+\_\+t CRC32\+C\+\_\+\+TABLE\mbox{[}16\mbox{]}\mbox{[}256\mbox{]}}
+
+Castagnoli CRC32c (i\+SCSI) lookup table for slice-\/by-\/4/8/16 

@@ -1,0 +1,70 @@
+\hypertarget{s2n__sslv2__client__hello_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\+\_\+sslv2\+\_\+client\+\_\+hello.h File Reference}
+\label{s2n__sslv2__client__hello_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_sslv2\_client\_hello.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_sslv2\_client\_hello.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__sslv2__client__hello_8h_abfec60d0a4bd155d325ff2dec1e6d66e}{SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+HEADER}}~0x80, 0xb3, 0x01, 0x03, 0x03
+\item 
+\#define \mbox{\hyperlink{s2n__sslv2__client__hello_8h_a6c861ba0999eb1a299a8d2715247b2ac}{SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+PREFIX}}~0x00, 0x8a, 0x00, 0x00, 0x00, 0x20
+\item 
+\#define \mbox{\hyperlink{s2n__sslv2__client__hello_8h_a7f4dd6bf79252e4a3a8270ba2f43d7fb}{SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+CIPHER\+\_\+\+SUITES}}
+\item 
+\#define \mbox{\hyperlink{s2n__sslv2__client__hello_8h_a514d4f2d987b9d91aef2971d13eb5648}{SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+CHALLENGE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__sslv2__client__hello_8h_a514d4f2d987b9d91aef2971d13eb5648}\label{s2n__sslv2__client__hello_8h_a514d4f2d987b9d91aef2971d13eb5648}} 
+\index{s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}!SSLv2\_CLIENT\_HELLO\_CHALLENGE@{SSLv2\_CLIENT\_HELLO\_CHALLENGE}}
+\index{SSLv2\_CLIENT\_HELLO\_CHALLENGE@{SSLv2\_CLIENT\_HELLO\_CHALLENGE}!s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}}
+\doxysubsubsection{\texorpdfstring{SSLv2\_CLIENT\_HELLO\_CHALLENGE}{SSLv2\_CLIENT\_HELLO\_CHALLENGE}}
+{\footnotesize\ttfamily \#define SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+CHALLENGE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{        0x5b, 0xe9, 0xcc, 0xad, 0xd6, 0xa5, 0x20, 0xac, \(\backslash\)}
+\DoxyCodeLine{        0xa3, 0xf4, 0x8e, 0x88, 0x06, 0xb5, 0x95, 0x53, \(\backslash\)}
+\DoxyCodeLine{        0x2d, 0x53, 0xfe, 0xd7, 0xa1, 0x00, 0x57, 0xc0, \(\backslash\)}
+\DoxyCodeLine{        0x53, 0x9d, 0x84, 0x71, 0x80, 0x7f, 0x30, 0x7e}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__sslv2__client__hello_8h_a7f4dd6bf79252e4a3a8270ba2f43d7fb}\label{s2n__sslv2__client__hello_8h_a7f4dd6bf79252e4a3a8270ba2f43d7fb}} 
+\index{s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}!SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES@{SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES}}
+\index{SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES@{SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES}!s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}}
+\doxysubsubsection{\texorpdfstring{SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES}{SSLv2\_CLIENT\_HELLO\_CIPHER\_SUITES}}
+{\footnotesize\ttfamily \#define SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+CIPHER\+\_\+\+SUITES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{        0x00, 0xc0, 0x24, 0x00, 0xc0, 0x28, 0x00, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x3d, 0x00, 0xc0, 0x26, 0x00, 0xc0, 0x2a, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x6b, 0x00, 0x00, 0x6a, 0x00, 0xc0, 0x0a, \(\backslash\)}
+\DoxyCodeLine{        0x07, 0x00, 0xc0, 0x00, 0xc0, 0x14, 0x00, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x35, 0x00, 0xc0, 0x05, 0x00, 0xc0, 0x0f, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x39, 0x00, 0x00, 0x38, 0x00, 0xc0, 0x23, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0xc0, 0x27, 0x00, 0x00, 0x3c, 0x00, 0xc0, \(\backslash\)}
+\DoxyCodeLine{        0x25, 0x00, 0xc0, 0x29, 0x00, 0x00, 0x67, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x40, 0x00, 0xc0, 0x09, 0x06, 0x00, 0x40, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0xc0, 0x13, 0x00, 0x00, 0x2f, 0x00, 0xc0, \(\backslash\)}
+\DoxyCodeLine{        0x04, 0x01, 0x00, 0x80, 0x00, 0xc0, 0x0e, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x33, 0x00, 0x00, 0x32, 0x00, 0xc0, 0x2c, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0xc0, 0x2b, 0x00, 0xc0, 0x30, 0x00, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x9d, 0x00, 0xc0, 0x2e, 0x00, 0xc0, 0x32, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x9f, 0x00, 0x00, 0xa3, 0x00, 0xc0, 0x2f, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0x00, 0x9c, 0x00, 0xc0, 0x2d, 0x00, 0xc0, \(\backslash\)}
+\DoxyCodeLine{        0x31, 0x00, 0x00, 0x9e, 0x00, 0x00, 0xa2, 0x00, \(\backslash\)}
+\DoxyCodeLine{        0x00, 0xff}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__sslv2__client__hello_8h_abfec60d0a4bd155d325ff2dec1e6d66e}\label{s2n__sslv2__client__hello_8h_abfec60d0a4bd155d325ff2dec1e6d66e}} 
+\index{s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}!SSLv2\_CLIENT\_HELLO\_HEADER@{SSLv2\_CLIENT\_HELLO\_HEADER}}
+\index{SSLv2\_CLIENT\_HELLO\_HEADER@{SSLv2\_CLIENT\_HELLO\_HEADER}!s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}}
+\doxysubsubsection{\texorpdfstring{SSLv2\_CLIENT\_HELLO\_HEADER}{SSLv2\_CLIENT\_HELLO\_HEADER}}
+{\footnotesize\ttfamily \#define SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+HEADER~0x80, 0xb3, 0x01, 0x03, 0x03}
+
+\mbox{\Hypertarget{s2n__sslv2__client__hello_8h_a6c861ba0999eb1a299a8d2715247b2ac}\label{s2n__sslv2__client__hello_8h_a6c861ba0999eb1a299a8d2715247b2ac}} 
+\index{s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}!SSLv2\_CLIENT\_HELLO\_PREFIX@{SSLv2\_CLIENT\_HELLO\_PREFIX}}
+\index{SSLv2\_CLIENT\_HELLO\_PREFIX@{SSLv2\_CLIENT\_HELLO\_PREFIX}!s2n\_sslv2\_client\_hello.h@{s2n\_sslv2\_client\_hello.h}}
+\doxysubsubsection{\texorpdfstring{SSLv2\_CLIENT\_HELLO\_PREFIX}{SSLv2\_CLIENT\_HELLO\_PREFIX}}
+{\footnotesize\ttfamily \#define SSLv2\+\_\+\+CLIENT\+\_\+\+HELLO\+\_\+\+PREFIX~0x00, 0x8a, 0x00, 0x00, 0x00, 0x20}
+

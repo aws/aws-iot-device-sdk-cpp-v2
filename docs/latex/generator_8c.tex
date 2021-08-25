@@ -1,0 +1,136 @@
+\hypertarget{generator_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/source/huffman\+\_\+generator/generator.c File Reference}
+\label{generator_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/source/huffman\_generator/generator.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/source/huffman\_generator/generator.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhuffman__code}{huffman\+\_\+code}}
+\item 
+struct \mbox{\hyperlink{structhuffman__code__point}{huffman\+\_\+code\+\_\+point}}
+\item 
+struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{generator_8c_adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e}{num\+\_\+code\+\_\+points}} = 256
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{generator_8c_abbdde12e4ed22011ef035e879d994dfc}{skip\+\_\+whitespace}} (const char $\ast$str)
+\item 
+static size\+\_\+t \mbox{\hyperlink{generator_8c_ae3b0d9d3179daeb2a87f0e5d908b4206}{read\+\_\+past\+\_\+comma}} (const char $\ast$str)
+\item 
+int \mbox{\hyperlink{generator_8c_a85c5e33e1992650b9490f6c70d693b35}{read\+\_\+code\+\_\+points}} (const char $\ast$input\+\_\+path)
+\item 
+void \mbox{\hyperlink{generator_8c_a5385a8b29c61e3bf6f57781ecd876b2f}{code\+\_\+write}} (struct \mbox{\hyperlink{structhuffman__code}{huffman\+\_\+code}} $\ast$code, FILE $\ast$file)
+\item 
+struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$ \mbox{\hyperlink{generator_8c_aa82589ad1389c81a726a8a58ff22c815}{huffman\+\_\+node\+\_\+new}} (struct \mbox{\hyperlink{structhuffman__code}{huffman\+\_\+code}} code)
+\item 
+struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$ \mbox{\hyperlink{generator_8c_a77c997f919a1622ef4e4ac985e636368}{huffman\+\_\+node\+\_\+new\+\_\+value}} (struct \mbox{\hyperlink{structhuffman__code__point}{huffman\+\_\+code\+\_\+point}} $\ast$value)
+\item 
+void \mbox{\hyperlink{generator_8c_a67e0c5012bbe3edbe1be2f29a88b018e}{huffman\+\_\+node\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$node)
+\item 
+void \mbox{\hyperlink{generator_8c_a0a3efdbf73e8e0e98edf95d4c2ac3430}{huffman\+\_\+node\+\_\+write\+\_\+decode\+\_\+handle\+\_\+value}} (struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$node, FILE $\ast$file)
+\item 
+void \mbox{\hyperlink{generator_8c_a04c6eba196e1849b8128750717d2fd4f}{huffman\+\_\+node\+\_\+write\+\_\+decode}} (struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$node, FILE $\ast$file, uint8\+\_\+t current\+\_\+bit)
+\item 
+int \mbox{\hyperlink{generator_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structhuffman__code__point}{huffman\+\_\+code\+\_\+point}} \mbox{\hyperlink{generator_8c_abed2c35818733bc0405f93692efa135a}{code\+\_\+points}} \mbox{[}\mbox{\hyperlink{generator_8c_adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e}{num\+\_\+code\+\_\+points}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{generator_8c_adc29c2ff13d900c2f185ee95427fb06c}\label{generator_8c_adc29c2ff13d900c2f185ee95427fb06c}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{num\_code\_points@{num\_code\_points}!generator.c@{generator.c}}\index{generator.c@{generator.c}!num\_code\_points@{num\_code\_points}}}\mbox{\Hypertarget{generator_8c_adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e}\label{generator_8c_adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e}} 
+num\+\_\+code\+\_\+points&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{generator_8c_a5385a8b29c61e3bf6f57781ecd876b2f}\label{generator_8c_a5385a8b29c61e3bf6f57781ecd876b2f}} 
+\index{generator.c@{generator.c}!code\_write@{code\_write}}
+\index{code\_write@{code\_write}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{code\_write()}{code\_write()}}
+{\footnotesize\ttfamily void code\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__code}{huffman\+\_\+code}} $\ast$}]{code,  }\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a67e0c5012bbe3edbe1be2f29a88b018e}\label{generator_8c_a67e0c5012bbe3edbe1be2f29a88b018e}} 
+\index{generator.c@{generator.c}!huffman\_node\_clean\_up@{huffman\_node\_clean\_up}}
+\index{huffman\_node\_clean\_up@{huffman\_node\_clean\_up}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{huffman\_node\_clean\_up()}{huffman\_node\_clean\_up()}}
+{\footnotesize\ttfamily void huffman\+\_\+node\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_aa82589ad1389c81a726a8a58ff22c815}\label{generator_8c_aa82589ad1389c81a726a8a58ff22c815}} 
+\index{generator.c@{generator.c}!huffman\_node\_new@{huffman\_node\_new}}
+\index{huffman\_node\_new@{huffman\_node\_new}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{huffman\_node\_new()}{huffman\_node\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}}$\ast$ huffman\+\_\+node\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__code}{huffman\+\_\+code}}}]{code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a77c997f919a1622ef4e4ac985e636368}\label{generator_8c_a77c997f919a1622ef4e4ac985e636368}} 
+\index{generator.c@{generator.c}!huffman\_node\_new\_value@{huffman\_node\_new\_value}}
+\index{huffman\_node\_new\_value@{huffman\_node\_new\_value}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{huffman\_node\_new\_value()}{huffman\_node\_new\_value()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}}$\ast$ huffman\+\_\+node\+\_\+new\+\_\+value (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__code__point}{huffman\+\_\+code\+\_\+point}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a04c6eba196e1849b8128750717d2fd4f}\label{generator_8c_a04c6eba196e1849b8128750717d2fd4f}} 
+\index{generator.c@{generator.c}!huffman\_node\_write\_decode@{huffman\_node\_write\_decode}}
+\index{huffman\_node\_write\_decode@{huffman\_node\_write\_decode}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{huffman\_node\_write\_decode()}{huffman\_node\_write\_decode()}}
+{\footnotesize\ttfamily void huffman\+\_\+node\+\_\+write\+\_\+decode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$}]{node,  }\item[{FILE $\ast$}]{file,  }\item[{uint8\+\_\+t}]{current\+\_\+bit }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a0a3efdbf73e8e0e98edf95d4c2ac3430}\label{generator_8c_a0a3efdbf73e8e0e98edf95d4c2ac3430}} 
+\index{generator.c@{generator.c}!huffman\_node\_write\_decode\_handle\_value@{huffman\_node\_write\_decode\_handle\_value}}
+\index{huffman\_node\_write\_decode\_handle\_value@{huffman\_node\_write\_decode\_handle\_value}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{huffman\_node\_write\_decode\_handle\_value()}{huffman\_node\_write\_decode\_handle\_value()}}
+{\footnotesize\ttfamily void huffman\+\_\+node\+\_\+write\+\_\+decode\+\_\+handle\+\_\+value (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhuffman__node}{huffman\+\_\+node}} $\ast$}]{node,  }\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{generator_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{generator.c@{generator.c}!main@{main}}
+\index{main@{main}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a85c5e33e1992650b9490f6c70d693b35}\label{generator_8c_a85c5e33e1992650b9490f6c70d693b35}} 
+\index{generator.c@{generator.c}!read\_code\_points@{read\_code\_points}}
+\index{read\_code\_points@{read\_code\_points}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{read\_code\_points()}{read\_code\_points()}}
+{\footnotesize\ttfamily int read\+\_\+code\+\_\+points (\begin{DoxyParamCaption}\item[{const char $\ast$}]{input\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_ae3b0d9d3179daeb2a87f0e5d908b4206}\label{generator_8c_ae3b0d9d3179daeb2a87f0e5d908b4206}} 
+\index{generator.c@{generator.c}!read\_past\_comma@{read\_past\_comma}}
+\index{read\_past\_comma@{read\_past\_comma}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{read\_past\_comma()}{read\_past\_comma()}}
+{\footnotesize\ttfamily static size\+\_\+t read\+\_\+past\+\_\+comma (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{generator_8c_abbdde12e4ed22011ef035e879d994dfc}\label{generator_8c_abbdde12e4ed22011ef035e879d994dfc}} 
+\index{generator.c@{generator.c}!skip\_whitespace@{skip\_whitespace}}
+\index{skip\_whitespace@{skip\_whitespace}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{skip\_whitespace()}{skip\_whitespace()}}
+{\footnotesize\ttfamily static size\+\_\+t skip\+\_\+whitespace (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{generator_8c_abed2c35818733bc0405f93692efa135a}\label{generator_8c_abed2c35818733bc0405f93692efa135a}} 
+\index{generator.c@{generator.c}!code\_points@{code\_points}}
+\index{code\_points@{code\_points}!generator.c@{generator.c}}
+\doxysubsubsection{\texorpdfstring{code\_points}{code\_points}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhuffman__code__point}{huffman\+\_\+code\+\_\+point}} code\+\_\+points\mbox{[}\mbox{\hyperlink{generator_8c_adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e}{num\+\_\+code\+\_\+points}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+

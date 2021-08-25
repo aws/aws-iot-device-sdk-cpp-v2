@@ -1,0 +1,59 @@
+\hypertarget{s2n__random__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+random\+\_\+test.c File Reference}
+\label{s2n__random__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_random\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_random\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__random__test_8c_ae8a219505b64c16dce9c14aba9e3d450}{s2n\+\_\+cpu\+\_\+supports\+\_\+rdrand}} ()
+\item 
+void $\ast$ \mbox{\hyperlink{s2n__random__test_8c_a7eb50df7530d7148fc0545de3c404fd1}{thread\+\_\+safety\+\_\+tester}} (void $\ast$slot)
+\item 
+void \mbox{\hyperlink{s2n__random__test_8c_a0a0bb254c244a22ef260308af94339db}{process\+\_\+safety\+\_\+tester}} (int write\+\_\+fd)
+\item 
+int \mbox{\hyperlink{s2n__random__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__random__test_8c_a0f610f2d18fccb16004d87d303601865}{thread\+\_\+data}} \mbox{[}2\mbox{]}\mbox{[}100\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__random__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__random__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_random\_test.c@{s2n\_random\_test.c}!main@{main}}
+\index{main@{main}!s2n\_random\_test.c@{s2n\_random\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__random__test_8c_a0a0bb254c244a22ef260308af94339db}\label{s2n__random__test_8c_a0a0bb254c244a22ef260308af94339db}} 
+\index{s2n\_random\_test.c@{s2n\_random\_test.c}!process\_safety\_tester@{process\_safety\_tester}}
+\index{process\_safety\_tester@{process\_safety\_tester}!s2n\_random\_test.c@{s2n\_random\_test.c}}
+\doxysubsubsection{\texorpdfstring{process\_safety\_tester()}{process\_safety\_tester()}}
+{\footnotesize\ttfamily void process\+\_\+safety\+\_\+tester (\begin{DoxyParamCaption}\item[{int}]{write\+\_\+fd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__random__test_8c_ae8a219505b64c16dce9c14aba9e3d450}\label{s2n__random__test_8c_ae8a219505b64c16dce9c14aba9e3d450}} 
+\index{s2n\_random\_test.c@{s2n\_random\_test.c}!s2n\_cpu\_supports\_rdrand@{s2n\_cpu\_supports\_rdrand}}
+\index{s2n\_cpu\_supports\_rdrand@{s2n\_cpu\_supports\_rdrand}!s2n\_random\_test.c@{s2n\_random\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cpu\_supports\_rdrand()}{s2n\_cpu\_supports\_rdrand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+cpu\+\_\+supports\+\_\+rdrand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__random__test_8c_a7eb50df7530d7148fc0545de3c404fd1}\label{s2n__random__test_8c_a7eb50df7530d7148fc0545de3c404fd1}} 
+\index{s2n\_random\_test.c@{s2n\_random\_test.c}!thread\_safety\_tester@{thread\_safety\_tester}}
+\index{thread\_safety\_tester@{thread\_safety\_tester}!s2n\_random\_test.c@{s2n\_random\_test.c}}
+\doxysubsubsection{\texorpdfstring{thread\_safety\_tester()}{thread\_safety\_tester()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+safety\+\_\+tester (\begin{DoxyParamCaption}\item[{void $\ast$}]{slot }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__random__test_8c_a0f610f2d18fccb16004d87d303601865}\label{s2n__random__test_8c_a0f610f2d18fccb16004d87d303601865}} 
+\index{s2n\_random\_test.c@{s2n\_random\_test.c}!thread\_data@{thread\_data}}
+\index{thread\_data@{thread\_data}!s2n\_random\_test.c@{s2n\_random\_test.c}}
+\doxysubsubsection{\texorpdfstring{thread\_data}{thread\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t thread\+\_\+data\mbox{[}2\mbox{]}\mbox{[}100\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+

@@ -1,0 +1,55 @@
+\hypertarget{s2n__client__renegotiation__info_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+client\+\_\+renegotiation\+\_\+info.c File Reference}
+\label{s2n__client__renegotiation__info_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_renegotiation\_info.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_renegotiation\_info.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+client\+\_\+renegotiation\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__client__renegotiation__info_8c_ad3ebde8049d9e5a5017b39b105576d3b}{s2n\+\_\+client\+\_\+renegotiation\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__client__renegotiation__info_8c_a96f9e5137636e915ee8053524c3d0976}{s2n\+\_\+recv\+\_\+client\+\_\+renegotiation\+\_\+info}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__client__renegotiation__info_8c_a51877b87b1563d97116da4ee860c6cde}{s2n\+\_\+client\+\_\+renegotiation\+\_\+info\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__renegotiation__info_8c_ad3ebde8049d9e5a5017b39b105576d3b}\label{s2n__client__renegotiation__info_8c_ad3ebde8049d9e5a5017b39b105576d3b}} 
+\index{s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}!s2n\_client\_renegotiation\_recv@{s2n\_client\_renegotiation\_recv}}
+\index{s2n\_client\_renegotiation\_recv@{s2n\_client\_renegotiation\_recv}!s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_renegotiation\_recv()}{s2n\_client\_renegotiation\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+renegotiation\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__renegotiation__info_8c_a96f9e5137636e915ee8053524c3d0976}\label{s2n__client__renegotiation__info_8c_a96f9e5137636e915ee8053524c3d0976}} 
+\index{s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}!s2n\_recv\_client\_renegotiation\_info@{s2n\_recv\_client\_renegotiation\_info}}
+\index{s2n\_recv\_client\_renegotiation\_info@{s2n\_recv\_client\_renegotiation\_info}!s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_client\_renegotiation\_info()}{s2n\_recv\_client\_renegotiation\_info()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+client\+\_\+renegotiation\+\_\+info (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__renegotiation__info_8c_a51877b87b1563d97116da4ee860c6cde}\label{s2n__client__renegotiation__info_8c_a51877b87b1563d97116da4ee860c6cde}} 
+\index{s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}!s2n\_client\_renegotiation\_info\_extension@{s2n\_client\_renegotiation\_info\_extension}}
+\index{s2n\_client\_renegotiation\_info\_extension@{s2n\_client\_renegotiation\_info\_extension}!s2n\_client\_renegotiation\_info.c@{s2n\_client\_renegotiation\_info.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_renegotiation\_info\_extension}{s2n\_client\_renegotiation\_info\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+renegotiation\+\_\+info\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_a588964defd85ac156ea0941a1cc74279}{TLS\_EXTENSION\_RENEGOTIATION\_INFO}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{false},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__extension__type_8c_af93a5c22f4a78048950121cc53bbb3f3}{s2n\_extension\_send\_unimplemented}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__client__renegotiation__info_8c_ad3ebde8049d9e5a5017b39b105576d3b}{s2n\_client\_renegotiation\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__extension__type_8c_a98514bf5f94e97ef5393778af4bdd9fe}{s2n\_extension\_never\_send}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

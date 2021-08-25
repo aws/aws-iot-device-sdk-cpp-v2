@@ -1,0 +1,1223 @@
+\hypertarget{namespace_aws}{}\doxysection{Aws Namespace Reference}
+\label{namespace_aws}\index{Aws@{Aws}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt}{Crt}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_discovery}{Discovery}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc}{Eventstreamrpc}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_greengrass}{Greengrass}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iot}{Iot}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotdevicecommon}{Iotdevicecommon}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotdevicedefenderv1}{Iotdevicedefenderv1}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotidentity}{Iotidentity}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotjobs}{Iotjobs}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling}{Iotsecuretunneling}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotshadow}{Iotshadow}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n___hooks}{c\+JSON\+\_\+\+Hooks}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{Aws\+::c\+JSON}} \mbox{\hyperlink{namespace_aws_abe25c440448d4d9d5667369353012a2f}{c\+JSON}}
+\item 
+typedef struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n___hooks}{Aws\+::c\+JSON\+\_\+\+Hooks}} \mbox{\hyperlink{namespace_aws_ab262be12efeb871483adaeb4557c07f1}{c\+JSON\+\_\+\+Hooks}}
+\item 
+typedef int \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}
+\item 
+typedef struct \mbox{\hyperlink{struct_aws_1_1internal__hooks}{Aws\+::internal\+\_\+hooks}} \mbox{\hyperlink{namespace_aws_a9c1a23b59bdfc4278a3a82e70471083a}{internal\+\_\+hooks}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_a93f7115ea681591a5ff4e16967115ea0}{CJSON\+\_\+\+PUBLIC}} (const char $\ast$) c\+JSON\+\_\+\+Version(void)
+\item 
+\mbox{\hyperlink{namespace_aws_ab1d687877314e31d5943675e06ee24cc}{CJSON\+\_\+\+PUBLIC}} (void) c\+JSON\+\_\+\+Init\+Hooks(\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n___hooks}{c\+JSON\+\_\+\+Hooks}} $\ast$\mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}})
+\item 
+\mbox{\hyperlink{namespace_aws_ad2eb4e3a6ec670cc7b3912f683972792}{CJSON\+\_\+\+PUBLIC}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$) c\+JSON\+\_\+\+Parse(const char $\ast$value
+\item 
+\mbox{\hyperlink{namespace_aws_a3c5185b6eaacaa320bd6461e6b1f9300}{CJSON\+\_\+\+PUBLIC}} (char $\ast$) c\+JSON\+\_\+\+Print(const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+\mbox{\hyperlink{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}{c\+JSON\+\_\+\+Print\+Preallocated}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, char $\ast$\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}, const int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}})
+\item 
+\mbox{\hyperlink{namespace_aws_a4fb370a4e9fce06d7d1495696261babf}{CJSON\+\_\+\+PUBLIC}} (int) c\+JSON\+\_\+\+Get\+Array\+Size(const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$array)
+\item 
+\mbox{\hyperlink{namespace_aws_a86bb02b8df190871673c21a223f451a5}{c\+JSON\+\_\+\+Insert\+Item\+In\+Array}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$array, int \mbox{\hyperlink{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}{which}}, \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}})
+\item 
+\mbox{\hyperlink{namespace_aws_aa3853510b4f5047339d3320d807177c7}{CJSON\+\_\+\+PUBLIC}} (double) c\+JSON\+\_\+\+Set\+Number\+Helper(\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$object
+\item 
+\mbox{\hyperlink{namespace_aws_ae9be5f3f0cc1e974b9af623207320ab6}{CJSON\+\_\+\+PUBLIC}} (void $\ast$) c\+JSON\+\_\+malloc(size\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{namespace_aws_a8d27829e6bffef900563abbaf47e7412}{case\+\_\+insensitive\+\_\+strcmp}} (const unsigned char $\ast$string1, const unsigned char $\ast$string2)
+\item 
+static unsigned char $\ast$ \mbox{\hyperlink{namespace_aws_ac289cada60525380f5f867bbaa5656c6}{c\+JSON\+\_\+strdup}} (const unsigned char $\ast$\mbox{\hyperlink{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}{string}}, const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}})
+\item 
+static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a3a77fb1e957b91ae41c8cfded00b4b72}{c\+JSON\+\_\+\+New\+\_\+\+Item}} (const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}})
+\item 
+static unsigned char \mbox{\hyperlink{namespace_aws_a35dd644ce1290d067ad4e4712e2cf2cb}{get\+\_\+decimal\+\_\+point}} (void)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a34d49beabe3d6e4cda3bb1d7824618de}{parse\+\_\+number}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const input\+\_\+buffer)
+\item 
+static unsigned char $\ast$ \mbox{\hyperlink{namespace_aws_ad420539516feeaaa8fd6b4bb93667fc4}{ensure}} (\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}}, size\+\_\+t needed)
+\item 
+static void \mbox{\hyperlink{namespace_aws_af09062d081e3ebada78fb80a9fd0b17d}{update\+\_\+offset}} (\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}})
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a46aaea55283aae98df231e5cac7a2501}{print\+\_\+number}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const output\+\_\+buffer)
+\item 
+static unsigned \mbox{\hyperlink{namespace_aws_ac8a99da6e2e41cffce7bd106fd9c3d4f}{parse\+\_\+hex4}} (const unsigned char $\ast$const input)
+\item 
+static unsigned char \mbox{\hyperlink{namespace_aws_a1ed81e199cb5cb3b7fa6efe7c3c435c8}{utf16\+\_\+literal\+\_\+to\+\_\+utf8}} (const unsigned char $\ast$const input\+\_\+pointer, const unsigned char $\ast$const input\+\_\+end, unsigned char $\ast$$\ast$output\+\_\+pointer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a07f3405e6726c3c0aa4a35bee82a6a21}{parse\+\_\+string}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const input\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a941accd5431eceaa2291ec1d42b18b4a}{print\+\_\+string\+\_\+ptr}} (const unsigned char $\ast$const input, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const output\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a0e16fac4ca4b9eb5885b68d71d0348f1}{print\+\_\+string}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}})
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_aaf55bc1ecc79436377dc4e0b886f7c1b}{parse\+\_\+value}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const input\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a423495e0400d5578e829f0e45a90ef5b}{print\+\_\+value}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const output\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_ac85a1d18291f9d021aab5193add63e4e}{parse\+\_\+array}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const input\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_afcd58f2c9458215468db6f47c686d877}{print\+\_\+array}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const output\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_ae67c6d428bdee66d2a383f1ef87627d0}{parse\+\_\+object}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const input\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a196fca4ad89d0a1a1e3173ee08c5d953}{print\+\_\+object}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const output\+\_\+buffer)
+\item 
+static \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$ \mbox{\hyperlink{namespace_aws_ad473fdd3e62ef766447378b87f833910}{buffer\+\_\+skip\+\_\+whitespace}} (\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}})
+\item 
+static \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$ \mbox{\hyperlink{namespace_aws_a680ab89b3c56c154fc9dd3e0e7c03959}{skip\+\_\+utf8\+\_\+bom}} (\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}})
+\item 
+\mbox{\hyperlink{namespace_aws_a03d23319778be069cbcbb2f4785e3da3}{if}} (value==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_ae00c4d8e4969bf477a0445a829d49107}{if}} (\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_ac1b17dfde3f134b806ae9ebf014eca5c}{if}} (!\mbox{\hyperlink{namespace_aws_aaf55bc1ecc79436377dc4e0b886f7c1b}{parse\+\_\+value}}(\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{namespace_aws_ad473fdd3e62ef766447378b87f833910}{buffer\+\_\+skip\+\_\+whitespace}}(\mbox{\hyperlink{namespace_aws_a680ab89b3c56c154fc9dd3e0e7c03959}{skip\+\_\+utf8\+\_\+bom}}(\&\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}))))
+\item 
+\mbox{\hyperlink{namespace_aws_aa6ace3dd422875ed330ac6aea1ce08f3}{if}} (\mbox{\hyperlink{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}{return\+\_\+parse\+\_\+end}})
+\item 
+\mbox{\hyperlink{namespace_aws_af3d92d9ef2e6b2355825eb9e2aeffa7d}{if}} (value !=\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+static unsigned char $\ast$ \mbox{\hyperlink{namespace_aws_a411ae7b7f7803fcc0f8ca7fb917f203e}{print}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}}, const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}})
+\item 
+\mbox{\hyperlink{namespace_aws_af4827035f31788bf25c9fad589a814cf}{if}} (\mbox{\hyperlink{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}{prebuffer}}$<$ 0)
+\item 
+\mbox{\hyperlink{namespace_aws_a521aa7806a87be77fbcf0eead11e3b2d}{if}} (!p.\+buffer)
+\item 
+\mbox{\hyperlink{namespace_aws_ad0331d39975a4ee1af2eabab147e5722}{if}} (!\mbox{\hyperlink{namespace_aws_a423495e0400d5578e829f0e45a90ef5b}{print\+\_\+value}}(\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \&\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}}))
+\item 
+\mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} (char $\ast$) p.\+buffer
+\item 
+\mbox{\hyperlink{namespace_aws_a84ff086ac58a8bad6d530206a3e14c41}{if}} ((\mbox{\hyperlink{namespace_aws_aa8275fb544361b33cba071af3a547329}{len}}$<$ 0)$\vert$$\vert$(\mbox{\hyperlink{namespace_aws_a14f90ca6f5e95d30c79d04efce16a2ab}{buf}}==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}))
+\item 
+\mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} \mbox{\hyperlink{namespace_aws_a3779cfcea23823f873837663e1c615ba}{print\+\_\+value}} (\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, \&\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}})
+\item 
+static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a6b861c779f9ce34c0c3ddf073cd08bd7}{get\+\_\+array\+\_\+item}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$array, size\+\_\+t \mbox{\hyperlink{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}{index}})
+\item 
+static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a7a970757a16082121050ae7901c1ac23}{get\+\_\+object\+\_\+item}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const object, const char $\ast$const \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}{case\+\_\+sensitive}})
+\item 
+static void \mbox{\hyperlink{namespace_aws_af1eb0f3960a4e8b6ad6f625efb12af5b}{suffix\+\_\+object}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}}, \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a25522ae2791cfc70adb3f11cb5fc4e9f}{create\+\_\+reference}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}})
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_aff17478656edabc516fdf41d64f9ec9d}{add\+\_\+item\+\_\+to\+\_\+array}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$array, \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+static void $\ast$ \mbox{\hyperlink{namespace_aws_ad85ff1e946111ca4075297e862ca225a}{cast\+\_\+away\+\_\+const}} (const void $\ast$\mbox{\hyperlink{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}{string}})
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const object, const char $\ast$const \mbox{\hyperlink{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}{string}}, \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}, const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}}, const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} constant\+\_\+key)
+\item 
+\mbox{\hyperlink{namespace_aws_ac57f3ab724d0e13e095967c0b726c6dd}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, null, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_acbbc253873ffe75541192ab169dee5f6}{c\+JSON\+\_\+\+Delete}} (null)
+\item 
+\mbox{\hyperlink{namespace_aws_a91de6258f03fb3c1c3f6d612efe9dfaf}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, true\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_ac4c78f359c9a0e623fe1f0124239489e}{c\+JSON\+\_\+\+Delete}} (true\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_afeca77db2f06d41acea215de8618b26c}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, false\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_a1baa50db6803fb644ef0fb754ee9f778}{c\+JSON\+\_\+\+Delete}} (false\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_ade5cdaee25ed82d144bb06e11fb105bc}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, bool\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_aea805eecae5103c69f7cd95bb7368e2a}{c\+JSON\+\_\+\+Delete}} (bool\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_a41203e599794422fe552a1e91d5c4fa9}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, number\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_aafa7196f1353c33c8f873322b09b78ed}{c\+JSON\+\_\+\+Delete}} (number\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_add3e65569aed7bbd3f6abdf2b4082ed1}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, string\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_a80e05468bc5c659b409538bac8e3e4a4}{c\+JSON\+\_\+\+Delete}} (string\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_a55ded840e09916ff4ae39d0ffc9f7164}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, raw\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_a0efd4be790a4ca9db2ebf7debf6e47e5}{c\+JSON\+\_\+\+Delete}} (raw\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_a13ef8447cfc6385b6052ba40199438e7}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, object\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_aa77308c9bceb41142b86bf53d11a6c35}{c\+JSON\+\_\+\+Delete}} (object\+\_\+item)
+\item 
+\mbox{\hyperlink{namespace_aws_afd2a05e61119dc6488768543558925d3}{if}} (\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, array, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}))
+\item 
+\mbox{\hyperlink{namespace_aws_ad5dd423de84335e59a51038213c48fe9}{c\+JSON\+\_\+\+Delete}} (array)
+\item 
+\mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} \mbox{\hyperlink{namespace_aws_a35e623f42b0cd6bf7d8c50f78d41eca9}{c\+JSON\+\_\+\+Detach\+Item\+Via\+Pointer}} (object, to\+\_\+detach)
+\item 
+\mbox{\hyperlink{namespace_aws_ab931e1e9f562921dd6dab34cbae3bad5}{if}} (\mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\+\_\+inserted}}==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_a0848b0484eae2889aa586c1f92a00bce}{if}} (\mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}-\/$>$\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} !=\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_a9158daf4bb22f43049c40bec0532fd6d}{if}} (\mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}-\/$>$\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}} !=\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_a73113435c094be1be7cb4249392fe7de}{if}} (parent-\/$>$\mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}}==\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+\mbox{\hyperlink{namespace_aws_a2708a08db57e08e3a433dd0804245a9d}{c\+JSON\+\_\+\+Delete}} (\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a46097cd699c7d4cef4274d98b22ed458}{replace\+\_\+item\+\_\+in\+\_\+object}} (\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$object, const char $\ast$\mbox{\hyperlink{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}{string}}, \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}, \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}{case\+\_\+sensitive}})
+\item 
+\mbox{\hyperlink{namespace_aws_a18edc756840afdbf509f2e20014aafdf}{if}} ((\mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}}$<$ 0)$\vert$$\vert$(numbers==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}))
+\item 
+\mbox{\hyperlink{namespace_aws_afbde3f3f4b83087cfc4d66def58d50c9}{for}} (i=0;\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} \&\&(i$<$(size\+\_\+t) \mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}});i++)
+\item 
+\mbox{\hyperlink{namespace_aws_a47d69d123d8fddf470dd760b110eb32b}{if}} ((\mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}}$<$ 0)$\vert$$\vert$(strings==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}))
+\item 
+\mbox{\hyperlink{namespace_aws_a5abc0cfc938d31f87aee3f706a189a49}{if}} (!\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}})
+\item 
+\mbox{\hyperlink{namespace_aws_a471978b013d4fcfd3e016b9836da3622}{if}} (\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$valuestring)
+\item 
+\mbox{\hyperlink{namespace_aws_a7dd9a063af930c5ff745333835d6ea39}{while}} (\mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}} !=\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})
+\item 
+\mbox{\hyperlink{namespace_aws_ad3f4c18dbf4996b79d37b5881548d397}{c\+JSON\+\_\+\+Compare}} (const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a44ae718c88e98e8b8f5e0f5f9c7d74c2}{b}}, const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}{case\+\_\+sensitive}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespace_aws_a52c438299b08516e5d87b48ded603a6e}{length}} = \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}
+\item 
+size\+\_\+t const char $\ast$$\ast$ \mbox{\hyperlink{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}{return\+\_\+parse\+\_\+end}}
+\item 
+int \mbox{\hyperlink{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}{prebuffer}}
+\item 
+int \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a584c037a1897b77d9876151955335159}{fmt}}
+\item 
+int \mbox{\hyperlink{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}{index}}
+\item 
+const char $\ast$const \mbox{\hyperlink{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}{string}}
+\item 
+int \mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+int \mbox{\hyperlink{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}{which}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}
+\item 
+int \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}}
+\item 
+\mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a936be87f05f76d9b95713b650c72c46c}{recurse}}
+\item 
+const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{namespace_aws_a44ae718c88e98e8b8f5e0f5f9c7d74c2}{b}}
+\item 
+const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}{case\+\_\+sensitive}}
+\item 
+const char $\ast$const \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}
+\item 
+const char $\ast$const const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{namespace_aws_af77f96eee7b6b3fad06e6d29898914b5}{boolean}}
+\item 
+const char $\ast$const const double \mbox{\hyperlink{namespace_aws_ad776c308b32b45d621462ea18bf9beff}{number}}
+\item 
+const char $\ast$const const char $\ast$const \mbox{\hyperlink{namespace_aws_ac0a622163df04341adbb9f93830970b3}{raw}}
+\item 
+static \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} \mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}} = \{\mbox{\hyperlink{c_j_s_o_n_8cpp_a7fd7640617f7ffead7a9b1408c9d0ae8}{internal\+\_\+malloc}}, \mbox{\hyperlink{c_j_s_o_n_8cpp_a940bb34b2c297c3d8297d506a3955839}{internal\+\_\+free}}, \mbox{\hyperlink{c_j_s_o_n_8cpp_a91654176e81c707d28b99dd0bf783ed5}{internal\+\_\+realloc}}\}
+\item 
+\mbox{\hyperlink{c_j_s_o_n_8cpp_a6ff6e9678e47cf5347872008661d5846}{global\+\_\+error}} \mbox{\hyperlink{namespace_aws_a3076bc67e26c850c1674abaecce578f4}{json}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{c_j_s_o_n_8cpp_a6ff6e9678e47cf5347872008661d5846}{global\+\_\+error}} \mbox{\hyperlink{namespace_aws_ad293c8b15694382c698b662f7acd9f8e}{position}} = 0
+\item 
+\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} \mbox{\hyperlink{namespace_aws_a059551721f47fdeb9bf9e1816b78b25d}{content}} = (const unsigned char $\ast$) value
+\item 
+\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} \mbox{\hyperlink{namespace_aws_a4b36e73e20878ce98336cfdea0494281}{offset}} = 0
+\item 
+\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} \mbox{\hyperlink{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}{hooks}} = \mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}
+\item 
+fail \mbox{\hyperlink{namespace_aws_a30f044884a662cd71fea7edc7aaf26e6}{\+\_\+\+\_\+pad0\+\_\+\+\_\+}}
+\item 
+\mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} = (unsigned char $\ast$) global\+\_\+hooks.\+allocate((size\+\_\+t) \mbox{\hyperlink{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}{prebuffer}})
+\item 
+\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} \mbox{\hyperlink{namespace_aws_a48fa524edb7fea76dcdea3f7675dcdff}{noalloc}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} \mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}} = \mbox{\hyperlink{namespace_aws_a584c037a1897b77d9876151955335159}{fmt}}
+\item 
+char $\ast$ \mbox{\hyperlink{namespace_aws_a14f90ca6f5e95d30c79d04efce16a2ab}{buf}}
+\item 
+char const int \mbox{\hyperlink{namespace_aws_aa8275fb544361b33cba071af3a547329}{len}}
+\item 
+\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}} \mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\+\_\+inserted}} = \mbox{\hyperlink{namespace_aws_a6b861c779f9ce34c0c3ddf073cd08bd7}{get\+\_\+array\+\_\+item}}(array, (size\+\_\+t) \mbox{\hyperlink{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}{which}})
+\item 
+\mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} \mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}} = \mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\+\_\+inserted}}-\/$>$prev
+\item 
+\mbox{\hyperlink{namespace_aws_a1945814c8f094d36232f6e51c560a4dc}{else}}
+\item 
+\mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} \mbox{\hyperlink{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}{true}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{namespace_aws_aadc48c85f2653b5085f8f314e8589383}{newchild}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}
+\item 
+\mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} \mbox{\hyperlink{namespace_aws_a5256b1ff01fae77769fee34ff8ef45a7}{type}} = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$type \& ($\sim$\mbox{\hyperlink{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_ad3d18116aae3bfa46f13bcfd7fd6d4e7}{c\+JSON\+\_\+\+Is\+Reference}})
+\item 
+\mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} \mbox{\hyperlink{namespace_aws_aae0ad88af2a400f80b728d90e4948413}{valueint}} = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$valueint
+\item 
+\mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} \mbox{\hyperlink{namespace_aws_adc152044ce8201ed485089de1847e6aa}{valuedouble}} = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$valuedouble
+\item 
+fail \mbox{\hyperlink{namespace_aws_a8ab63ecf5882656ec150ad6dda779008}{\+\_\+\+\_\+pad1\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0.
+
+MODIFICATIONS\+: parse doesn\textquotesingle{}t rely on null terminated strings. (Who thought that was a good idea.... ever?). value\+Int was moved up to improve alignment. Wrap all symbols in the \mbox{\hyperlink{namespace_aws}{Aws}} namespace as a short-\/term collision resolution
+
+Modifications licensed under\+:
+
+Copyright 2010-\/2018 Amazon.\+com, Inc. or its affiliates. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.\+0 (the \char`\"{}\+License\char`\"{}). You may not use this file except in compliance with the License. A copy of the License is located at
+
+\href{http://aws.amazon.com/apache2.0}{\texttt{ http\+://aws.\+amazon.\+com/apache2.\+0}}
+
+or in the \char`\"{}license\char`\"{} file accompanying this file. This file is distributed on an \char`\"{}\+AS IS\char`\"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. To keep ABI compatability, we use CRT\textquotesingle{}s own string view implementation even for C++ 17. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespace_aws_abe25c440448d4d9d5667369353012a2f}\label{namespace_aws_abe25c440448d4d9d5667369353012a2f}} 
+\index{Aws@{Aws}!cJSON@{cJSON}}
+\index{cJSON@{cJSON}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON}{cJSON}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{Aws\+::c\+JSON}} \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{Aws\+::c\+JSON}}}
+
+\mbox{\Hypertarget{namespace_aws_ae25be287ff4c494546ce21e78d16a660}\label{namespace_aws_ae25be287ff4c494546ce21e78d16a660}} 
+\index{Aws@{Aws}!cJSON\_bool@{cJSON\_bool}}
+\index{cJSON\_bool@{cJSON\_bool}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_bool}{cJSON\_bool}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{Aws\+::c\+JSON\+\_\+bool}}}
+
+\mbox{\Hypertarget{namespace_aws_ab262be12efeb871483adaeb4557c07f1}\label{namespace_aws_ab262be12efeb871483adaeb4557c07f1}} 
+\index{Aws@{Aws}!cJSON\_Hooks@{cJSON\_Hooks}}
+\index{cJSON\_Hooks@{cJSON\_Hooks}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Hooks}{cJSON\_Hooks}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n___hooks}{Aws\+::c\+JSON\+\_\+\+Hooks}} \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n___hooks}{Aws\+::c\+JSON\+\_\+\+Hooks}}}
+
+\mbox{\Hypertarget{namespace_aws_a9c1a23b59bdfc4278a3a82e70471083a}\label{namespace_aws_a9c1a23b59bdfc4278a3a82e70471083a}} 
+\index{Aws@{Aws}!internal\_hooks@{internal\_hooks}}
+\index{internal\_hooks@{internal\_hooks}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{internal\_hooks}{internal\_hooks}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_aws_1_1internal__hooks}{Aws\+::internal\+\_\+hooks}} \mbox{\hyperlink{struct_aws_1_1internal__hooks}{Aws\+::internal\+\_\+hooks}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_aws_aff17478656edabc516fdf41d64f9ec9d}\label{namespace_aws_aff17478656edabc516fdf41d64f9ec9d}} 
+\index{Aws@{Aws}!add\_item\_to\_array@{add\_item\_to\_array}}
+\index{add\_item\_to\_array@{add\_item\_to\_array}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{add\_item\_to\_array()}{add\_item\_to\_array()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::add\+\_\+item\+\_\+to\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}\label{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}} 
+\index{Aws@{Aws}!add\_item\_to\_object@{add\_item\_to\_object}}
+\index{add\_item\_to\_object@{add\_item\_to\_object}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{add\_item\_to\_object()}{add\_item\_to\_object()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::add\+\_\+item\+\_\+to\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{object,  }\item[{const char $\ast$const}]{string,  }\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const}]{hooks,  }\item[{const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{constant\+\_\+key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ad473fdd3e62ef766447378b87f833910}\label{namespace_aws_ad473fdd3e62ef766447378b87f833910}} 
+\index{Aws@{Aws}!buffer\_skip\_whitespace@{buffer\_skip\_whitespace}}
+\index{buffer\_skip\_whitespace@{buffer\_skip\_whitespace}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{buffer\_skip\_whitespace()}{buffer\_skip\_whitespace()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}}$\ast$ Aws\+::buffer\+\_\+skip\+\_\+whitespace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a8d27829e6bffef900563abbaf47e7412}\label{namespace_aws_a8d27829e6bffef900563abbaf47e7412}} 
+\index{Aws@{Aws}!case\_insensitive\_strcmp@{case\_insensitive\_strcmp}}
+\index{case\_insensitive\_strcmp@{case\_insensitive\_strcmp}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{case\_insensitive\_strcmp()}{case\_insensitive\_strcmp()}}
+{\footnotesize\ttfamily static int Aws\+::case\+\_\+insensitive\+\_\+strcmp (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{string1,  }\item[{const unsigned char $\ast$}]{string2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ad85ff1e946111ca4075297e862ca225a}\label{namespace_aws_ad85ff1e946111ca4075297e862ca225a}} 
+\index{Aws@{Aws}!cast\_away\_const@{cast\_away\_const}}
+\index{cast\_away\_const@{cast\_away\_const}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cast\_away\_const()}{cast\_away\_const()}}
+{\footnotesize\ttfamily static void$\ast$ Aws\+::cast\+\_\+away\+\_\+const (\begin{DoxyParamCaption}\item[{const void $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ad3f4c18dbf4996b79d37b5881548d397}\label{namespace_aws_ad3f4c18dbf4996b79d37b5881548d397}} 
+\index{Aws@{Aws}!cJSON\_Compare@{cJSON\_Compare}}
+\index{cJSON\_Compare@{cJSON\_Compare}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Compare()}{cJSON\_Compare()}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Compare (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{a,  }\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{b,  }\item[{const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{case\+\_\+sensitive }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ad5dd423de84335e59a51038213c48fe9}\label{namespace_aws_ad5dd423de84335e59a51038213c48fe9}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{array}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_aea805eecae5103c69f7cd95bb7368e2a}\label{namespace_aws_aea805eecae5103c69f7cd95bb7368e2a}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{bool\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a1baa50db6803fb644ef0fb754ee9f778}\label{namespace_aws_a1baa50db6803fb644ef0fb754ee9f778}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{false\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a2708a08db57e08e3a433dd0804245a9d}\label{namespace_aws_a2708a08db57e08e3a433dd0804245a9d}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_acbbc253873ffe75541192ab169dee5f6}\label{namespace_aws_acbbc253873ffe75541192ab169dee5f6}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{null}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_aafa7196f1353c33c8f873322b09b78ed}\label{namespace_aws_aafa7196f1353c33c8f873322b09b78ed}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{number\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_aa77308c9bceb41142b86bf53d11a6c35}\label{namespace_aws_aa77308c9bceb41142b86bf53d11a6c35}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{object\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a0efd4be790a4ca9db2ebf7debf6e47e5}\label{namespace_aws_a0efd4be790a4ca9db2ebf7debf6e47e5}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{raw\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a80e05468bc5c659b409538bac8e3e4a4}\label{namespace_aws_a80e05468bc5c659b409538bac8e3e4a4}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{string\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ac4c78f359c9a0e623fe1f0124239489e}\label{namespace_aws_ac4c78f359c9a0e623fe1f0124239489e}} 
+\index{Aws@{Aws}!cJSON\_Delete@{cJSON\_Delete}}
+\index{cJSON\_Delete@{cJSON\_Delete}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_Delete()}{cJSON\_Delete()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{true\+\_\+item}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a35e623f42b0cd6bf7d8c50f78d41eca9}\label{namespace_aws_a35e623f42b0cd6bf7d8c50f78d41eca9}} 
+\index{Aws@{Aws}!cJSON\_DetachItemViaPointer@{cJSON\_DetachItemViaPointer}}
+\index{cJSON\_DetachItemViaPointer@{cJSON\_DetachItemViaPointer}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_DetachItemViaPointer()}{cJSON\_DetachItemViaPointer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::c\+JSON\+\_\+\+Detach\+Item\+Via\+Pointer (\begin{DoxyParamCaption}\item[{object}]{,  }\item[{to\+\_\+detach}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a86bb02b8df190871673c21a223f451a5}\label{namespace_aws_a86bb02b8df190871673c21a223f451a5}} 
+\index{Aws@{Aws}!cJSON\_InsertItemInArray@{cJSON\_InsertItemInArray}}
+\index{cJSON\_InsertItemInArray@{cJSON\_InsertItemInArray}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_InsertItemInArray()}{cJSON\_InsertItemInArray()}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Insert\+Item\+In\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{array,  }\item[{int}]{which,  }\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{newitem }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a3a77fb1e957b91ae41c8cfded00b4b72}\label{namespace_aws_a3a77fb1e957b91ae41c8cfded00b4b72}} 
+\index{Aws@{Aws}!cJSON\_New\_Item@{cJSON\_New\_Item}}
+\index{cJSON\_New\_Item@{cJSON\_New\_Item}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_New\_Item()}{cJSON\_New\_Item()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ Aws\+::c\+JSON\+\_\+\+New\+\_\+\+Item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const}]{hooks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}\label{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}} 
+\index{Aws@{Aws}!cJSON\_PrintPreallocated@{cJSON\_PrintPreallocated}}
+\index{cJSON\_PrintPreallocated@{cJSON\_PrintPreallocated}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_PrintPreallocated()}{cJSON\_PrintPreallocated()}}
+{\footnotesize\ttfamily Aws\+::c\+JSON\+\_\+\+Print\+Preallocated (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{item,  }\item[{char $\ast$}]{buffer,  }\item[{const int}]{length,  }\item[{const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{format }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a3c5185b6eaacaa320bd6461e6b1f9300}\label{namespace_aws_a3c5185b6eaacaa320bd6461e6b1f9300}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{namespace_aws_ad2eb4e3a6ec670cc7b3912f683972792}\label{namespace_aws_ad2eb4e3a6ec670cc7b3912f683972792}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{namespace_aws_a93f7115ea681591a5ff4e16967115ea0}\label{namespace_aws_a93f7115ea681591a5ff4e16967115ea0}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_aa3853510b4f5047339d3320d807177c7}\label{namespace_aws_aa3853510b4f5047339d3320d807177c7}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{double}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a4fb370a4e9fce06d7d1495696261babf}\label{namespace_aws_a4fb370a4e9fce06d7d1495696261babf}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{namespace_aws_ae9be5f3f0cc1e974b9af623207320ab6}\label{namespace_aws_ae9be5f3f0cc1e974b9af623207320ab6}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{void $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ab1d687877314e31d5943675e06ee24cc}\label{namespace_aws_ab1d687877314e31d5943675e06ee24cc}} 
+\index{Aws@{Aws}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily Aws\+::\+CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ac289cada60525380f5f867bbaa5656c6}\label{namespace_aws_ac289cada60525380f5f867bbaa5656c6}} 
+\index{Aws@{Aws}!cJSON\_strdup@{cJSON\_strdup}}
+\index{cJSON\_strdup@{cJSON\_strdup}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{cJSON\_strdup()}{cJSON\_strdup()}}
+{\footnotesize\ttfamily static unsigned char$\ast$ Aws\+::c\+JSON\+\_\+strdup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{string,  }\item[{const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const}]{hooks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a25522ae2791cfc70adb3f11cb5fc4e9f}\label{namespace_aws_a25522ae2791cfc70adb3f11cb5fc4e9f}} 
+\index{Aws@{Aws}!create\_reference@{create\_reference}}
+\index{create\_reference@{create\_reference}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{create\_reference()}{create\_reference()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ Aws\+::create\+\_\+reference (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{item,  }\item[{const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const}]{hooks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ad420539516feeaaa8fd6b4bb93667fc4}\label{namespace_aws_ad420539516feeaaa8fd6b4bb93667fc4}} 
+\index{Aws@{Aws}!ensure@{ensure}}
+\index{ensure@{ensure}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{ensure()}{ensure()}}
+{\footnotesize\ttfamily static unsigned char$\ast$ Aws\+::ensure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{p,  }\item[{size\+\_\+t}]{needed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_afbde3f3f4b83087cfc4d66def58d50c9}\label{namespace_aws_afbde3f3f4b83087cfc4d66def58d50c9}} 
+\index{Aws@{Aws}!for@{for}}
+\index{for@{for}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{for()}{for()}}
+{\footnotesize\ttfamily Aws\+::for (\begin{DoxyParamCaption}\item[{i}]{ = {\ttfamily 0;~\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}~\&\&~(i~$<$~(size\+\_\+t)~\mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}});~i++} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a6b861c779f9ce34c0c3ddf073cd08bd7}\label{namespace_aws_a6b861c779f9ce34c0c3ddf073cd08bd7}} 
+\index{Aws@{Aws}!get\_array\_item@{get\_array\_item}}
+\index{get\_array\_item@{get\_array\_item}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{get\_array\_item()}{get\_array\_item()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ Aws\+::get\+\_\+array\+\_\+item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{array,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a35dd644ce1290d067ad4e4712e2cf2cb}\label{namespace_aws_a35dd644ce1290d067ad4e4712e2cf2cb}} 
+\index{Aws@{Aws}!get\_decimal\_point@{get\_decimal\_point}}
+\index{get\_decimal\_point@{get\_decimal\_point}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{get\_decimal\_point()}{get\_decimal\_point()}}
+{\footnotesize\ttfamily static unsigned char Aws\+::get\+\_\+decimal\+\_\+point (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a7a970757a16082121050ae7901c1ac23}\label{namespace_aws_a7a970757a16082121050ae7901c1ac23}} 
+\index{Aws@{Aws}!get\_object\_item@{get\_object\_item}}
+\index{get\_object\_item@{get\_object\_item}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{get\_object\_item()}{get\_object\_item()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ Aws\+::get\+\_\+object\+\_\+item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{object,  }\item[{const char $\ast$const}]{name,  }\item[{const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{case\+\_\+sensitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a5abc0cfc938d31f87aee3f706a189a49}\label{namespace_aws_a5abc0cfc938d31f87aee3f706a189a49}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{!}]{item }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a521aa7806a87be77fbcf0eead11e3b2d}\label{namespace_aws_a521aa7806a87be77fbcf0eead11e3b2d}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{!p.}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ac1b17dfde3f134b806ae9ebf014eca5c}\label{namespace_aws_ac1b17dfde3f134b806ae9ebf014eca5c}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [3/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{!}]{parse\+\_\+valueitem, buffer\+\_\+skip\+\_\+whitespace(skip\+\_\+utf8\+\_\+bom(\&buffer)) }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ad0331d39975a4ee1af2eabab147e5722}\label{namespace_aws_ad0331d39975a4ee1af2eabab147e5722}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [4/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{!}]{print\+\_\+valueitem, \&p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a18edc756840afdbf509f2e20014aafdf}\label{namespace_aws_a18edc756840afdbf509f2e20014aafdf}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [5/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}}$<$ 0)$\vert$$\vert$(numbers==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a47d69d123d8fddf470dd760b110eb32b}\label{namespace_aws_a47d69d123d8fddf470dd760b110eb32b}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [6/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}{count}}$<$ 0)$\vert$$\vert$(strings==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a84ff086ac58a8bad6d530206a3e14c41}\label{namespace_aws_a84ff086ac58a8bad6d530206a3e14c41}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [7/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{namespace_aws_aa8275fb544361b33cba071af3a547329}{len}}$<$ 0)$\vert$$\vert$(\mbox{\hyperlink{namespace_aws_a14f90ca6f5e95d30c79d04efce16a2ab}{buf}}==\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_afd2a05e61119dc6488768543558925d3}\label{namespace_aws_afd2a05e61119dc6488768543558925d3}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [8/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, array, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ade5cdaee25ed82d144bb06e11fb105bc}\label{namespace_aws_ade5cdaee25ed82d144bb06e11fb105bc}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [9/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, bool\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_afeca77db2f06d41acea215de8618b26c}\label{namespace_aws_afeca77db2f06d41acea215de8618b26c}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [10/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, false\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ac57f3ab724d0e13e095967c0b726c6dd}\label{namespace_aws_ac57f3ab724d0e13e095967c0b726c6dd}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [11/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, null, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a41203e599794422fe552a1e91d5c4fa9}\label{namespace_aws_a41203e599794422fe552a1e91d5c4fa9}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [12/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, number\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a13ef8447cfc6385b6052ba40199438e7}\label{namespace_aws_a13ef8447cfc6385b6052ba40199438e7}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [13/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, object\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a55ded840e09916ff4ae39d0ffc9f7164}\label{namespace_aws_a55ded840e09916ff4ae39d0ffc9f7164}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [14/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, raw\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_add3e65569aed7bbd3f6abdf2b4082ed1}\label{namespace_aws_add3e65569aed7bbd3f6abdf2b4082ed1}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [15/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, string\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a91de6258f03fb3c1c3f6d612efe9dfaf}\label{namespace_aws_a91de6258f03fb3c1c3f6d612efe9dfaf}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [16/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5f405df9a3fc956b534bd11ef798157b}{add\+\_\+item\+\_\+to\+\_\+object}}(object, \mbox{\hyperlink{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}{name}}, true\+\_\+item, \&\mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ab931e1e9f562921dd6dab34cbae3bad5}\label{namespace_aws_ab931e1e9f562921dd6dab34cbae3bad5}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [17/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\+\_\+inserted}}}]{ = {\ttfamily =~\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a471978b013d4fcfd3e016b9836da3622}\label{namespace_aws_a471978b013d4fcfd3e016b9836da3622}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [18/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$}]{valuestring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ae00c4d8e4969bf477a0445a829d49107}\label{namespace_aws_ae00c4d8e4969bf477a0445a829d49107}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [19/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}}]{ = {\ttfamily =~\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a73113435c094be1be7cb4249392fe7de}\label{namespace_aws_a73113435c094be1be7cb4249392fe7de}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [20/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{parent-\/$>$}]{child = {\ttfamily =~\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_af4827035f31788bf25c9fad589a814cf}\label{namespace_aws_af4827035f31788bf25c9fad589a814cf}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [21/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a0848b0484eae2889aa586c1f92a00bce}\label{namespace_aws_a0848b0484eae2889aa586c1f92a00bce}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [22/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}-\/$>$\mbox{\hyperlink{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}{next}} !}]{ = {\ttfamily \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a9158daf4bb22f43049c40bec0532fd6d}\label{namespace_aws_a9158daf4bb22f43049c40bec0532fd6d}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [23/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}{replacement}}-\/$>$\mbox{\hyperlink{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}{prev}} !}]{ = {\ttfamily \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_aa6ace3dd422875ed330ac6aea1ce08f3}\label{namespace_aws_aa6ace3dd422875ed330ac6aea1ce08f3}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [24/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}{return\+\_\+parse\+\_\+end}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_af3d92d9ef2e6b2355825eb9e2aeffa7d}\label{namespace_aws_af3d92d9ef2e6b2355825eb9e2aeffa7d}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [25/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{value !}]{ = {\ttfamily \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a03d23319778be069cbcbb2f4785e3da3}\label{namespace_aws_a03d23319778be069cbcbb2f4785e3da3}} 
+\index{Aws@{Aws}!if@{if}}
+\index{if@{if}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [26/26]}}
+{\footnotesize\ttfamily Aws\+::if (\begin{DoxyParamCaption}\item[{value}]{ = {\ttfamily =~\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_ac85a1d18291f9d021aab5193add63e4e}\label{namespace_aws_ac85a1d18291f9d021aab5193add63e4e}} 
+\index{Aws@{Aws}!parse\_array@{parse\_array}}
+\index{parse\_array@{parse\_array}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_array()}{parse\_array()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::parse\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{input\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ac8a99da6e2e41cffce7bd106fd9c3d4f}\label{namespace_aws_ac8a99da6e2e41cffce7bd106fd9c3d4f}} 
+\index{Aws@{Aws}!parse\_hex4@{parse\_hex4}}
+\index{parse\_hex4@{parse\_hex4}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_hex4()}{parse\_hex4()}}
+{\footnotesize\ttfamily static unsigned Aws\+::parse\+\_\+hex4 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$const}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a34d49beabe3d6e4cda3bb1d7824618de}\label{namespace_aws_a34d49beabe3d6e4cda3bb1d7824618de}} 
+\index{Aws@{Aws}!parse\_number@{parse\_number}}
+\index{parse\_number@{parse\_number}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_number()}{parse\_number()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::parse\+\_\+number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{input\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_ae67c6d428bdee66d2a383f1ef87627d0}\label{namespace_aws_ae67c6d428bdee66d2a383f1ef87627d0}} 
+\index{Aws@{Aws}!parse\_object@{parse\_object}}
+\index{parse\_object@{parse\_object}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_object()}{parse\_object()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::parse\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{input\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a07f3405e6726c3c0aa4a35bee82a6a21}\label{namespace_aws_a07f3405e6726c3c0aa4a35bee82a6a21}} 
+\index{Aws@{Aws}!parse\_string@{parse\_string}}
+\index{parse\_string@{parse\_string}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_string()}{parse\_string()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::parse\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{input\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_aaf55bc1ecc79436377dc4e0b886f7c1b}\label{namespace_aws_aaf55bc1ecc79436377dc4e0b886f7c1b}} 
+\index{Aws@{Aws}!parse\_value@{parse\_value}}
+\index{parse\_value@{parse\_value}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{parse\_value()}{parse\_value()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::parse\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{input\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a411ae7b7f7803fcc0f8ca7fb917f203e}\label{namespace_aws_a411ae7b7f7803fcc0f8ca7fb917f203e}} 
+\index{Aws@{Aws}!print@{print}}
+\index{print@{print}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily static unsigned char$\ast$ Aws\+::print (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{format,  }\item[{const \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} $\ast$const}]{hooks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_afcd58f2c9458215468db6f47c686d877}\label{namespace_aws_afcd58f2c9458215468db6f47c686d877}} 
+\index{Aws@{Aws}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a46aaea55283aae98df231e5cac7a2501}\label{namespace_aws_a46aaea55283aae98df231e5cac7a2501}} 
+\index{Aws@{Aws}!print\_number@{print\_number}}
+\index{print\_number@{print\_number}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_number()}{print\_number()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+number (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a196fca4ad89d0a1a1e3173ee08c5d953}\label{namespace_aws_a196fca4ad89d0a1a1e3173ee08c5d953}} 
+\index{Aws@{Aws}!print\_object@{print\_object}}
+\index{print\_object@{print\_object}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_object()}{print\_object()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a0e16fac4ca4b9eb5885b68d71d0348f1}\label{namespace_aws_a0e16fac4ca4b9eb5885b68d71d0348f1}} 
+\index{Aws@{Aws}!print\_string@{print\_string}}
+\index{print\_string@{print\_string}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_string()}{print\_string()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a941accd5431eceaa2291ec1d42b18b4a}\label{namespace_aws_a941accd5431eceaa2291ec1d42b18b4a}} 
+\index{Aws@{Aws}!print\_string\_ptr@{print\_string\_ptr}}
+\index{print\_string\_ptr@{print\_string\_ptr}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_string\_ptr()}{print\_string\_ptr()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+string\+\_\+ptr (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$const}]{input,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a423495e0400d5578e829f0e45a90ef5b}\label{namespace_aws_a423495e0400d5578e829f0e45a90ef5b}} 
+\index{Aws@{Aws}!print\_value@{print\_value}}
+\index{print\_value@{print\_value}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_value()}{print\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::print\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const}]{item,  }\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a3779cfcea23823f873837663e1c615ba}\label{namespace_aws_a3779cfcea23823f873837663e1c615ba}} 
+\index{Aws@{Aws}!print\_value@{print\_value}}
+\index{print\_value@{print\_value}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{print\_value()}{print\_value()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::print\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}}]{,  }\item[{\&}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a46097cd699c7d4cef4274d98b22ed458}\label{namespace_aws_a46097cd699c7d4cef4274d98b22ed458}} 
+\index{Aws@{Aws}!replace\_item\_in\_object@{replace\_item\_in\_object}}
+\index{replace\_item\_in\_object@{replace\_item\_in\_object}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{replace\_item\_in\_object()}{replace\_item\_in\_object()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::replace\+\_\+item\+\_\+in\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{object,  }\item[{const char $\ast$}]{string,  }\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{replacement,  }\item[{\mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}}}]{case\+\_\+sensitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}\label{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}} 
+\index{Aws@{Aws}!return@{return}}
+\index{return@{return}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{return()}{return()}}
+{\footnotesize\ttfamily Aws\+::return (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_aws_a680ab89b3c56c154fc9dd3e0e7c03959}\label{namespace_aws_a680ab89b3c56c154fc9dd3e0e7c03959}} 
+\index{Aws@{Aws}!skip\_utf8\_bom@{skip\_utf8\_bom}}
+\index{skip\_utf8\_bom@{skip\_utf8\_bom}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{skip\_utf8\_bom()}{skip\_utf8\_bom()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}}$\ast$ Aws\+::skip\+\_\+utf8\+\_\+bom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\+\_\+buffer}} $\ast$const}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_af1eb0f3960a4e8b6ad6f625efb12af5b}\label{namespace_aws_af1eb0f3960a4e8b6ad6f625efb12af5b}} 
+\index{Aws@{Aws}!suffix\_object@{suffix\_object}}
+\index{suffix\_object@{suffix\_object}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{suffix\_object()}{suffix\_object()}}
+{\footnotesize\ttfamily static void Aws\+::suffix\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{prev,  }\item[{\mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_af09062d081e3ebada78fb80a9fd0b17d}\label{namespace_aws_af09062d081e3ebada78fb80a9fd0b17d}} 
+\index{Aws@{Aws}!update\_offset@{update\_offset}}
+\index{update\_offset@{update\_offset}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{update\_offset()}{update\_offset()}}
+{\footnotesize\ttfamily static void Aws\+::update\+\_\+offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} $\ast$const}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a1ed81e199cb5cb3b7fa6efe7c3c435c8}\label{namespace_aws_a1ed81e199cb5cb3b7fa6efe7c3c435c8}} 
+\index{Aws@{Aws}!utf16\_literal\_to\_utf8@{utf16\_literal\_to\_utf8}}
+\index{utf16\_literal\_to\_utf8@{utf16\_literal\_to\_utf8}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{utf16\_literal\_to\_utf8()}{utf16\_literal\_to\_utf8()}}
+{\footnotesize\ttfamily static unsigned char Aws\+::utf16\+\_\+literal\+\_\+to\+\_\+utf8 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$const}]{input\+\_\+pointer,  }\item[{const unsigned char $\ast$const}]{input\+\_\+end,  }\item[{unsigned char $\ast$$\ast$}]{output\+\_\+pointer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a7dd9a063af930c5ff745333835d6ea39}\label{namespace_aws_a7dd9a063af930c5ff745333835d6ea39}} 
+\index{Aws@{Aws}!while@{while}}
+\index{while@{while}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{while()}{while()}}
+{\footnotesize\ttfamily Aws\+::while (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}{child}} !}]{ = {\ttfamily \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_aws_a30f044884a662cd71fea7edc7aaf26e6}\label{namespace_aws_a30f044884a662cd71fea7edc7aaf26e6}} 
+\index{Aws@{Aws}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily fail Aws\+::\+\_\+\+\_\+pad0\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespace_aws_a8ab63ecf5882656ec150ad6dda779008}\label{namespace_aws_a8ab63ecf5882656ec150ad6dda779008}} 
+\index{Aws@{Aws}!\_\_pad1\_\_@{\_\_pad1\_\_}}
+\index{\_\_pad1\_\_@{\_\_pad1\_\_}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{\_\_pad1\_\_}{\_\_pad1\_\_}}
+{\footnotesize\ttfamily fail Aws\+::\+\_\+\+\_\+pad1\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}\label{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}} 
+\index{Aws@{Aws}!a@{a}}
+\index{a@{a}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::a = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_ac13279619958273b34f851f8036d53c0}\label{namespace_aws_ac13279619958273b34f851f8036d53c0}} 
+\index{Aws@{Aws}!after\_inserted@{after\_inserted}}
+\index{after\_inserted@{after\_inserted}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{after\_inserted}{after\_inserted}}
+{\footnotesize\ttfamily Aws\+::after\+\_\+inserted = \mbox{\hyperlink{namespace_aws_a6b861c779f9ce34c0c3ddf073cd08bd7}{get\+\_\+array\+\_\+item}}(array, (size\+\_\+t) \mbox{\hyperlink{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}{which}})}
+
+\mbox{\Hypertarget{namespace_aws_a44ae718c88e98e8b8f5e0f5f9c7d74c2}\label{namespace_aws_a44ae718c88e98e8b8f5e0f5f9c7d74c2}} 
+\index{Aws@{Aws}!b@{b}}
+\index{b@{b}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ const Aws\+::b}
+
+\mbox{\Hypertarget{namespace_aws_af77f96eee7b6b3fad06e6d29898914b5}\label{namespace_aws_af77f96eee7b6b3fad06e6d29898914b5}} 
+\index{Aws@{Aws}!boolean@{boolean}}
+\index{boolean@{boolean}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{boolean}{boolean}}
+{\footnotesize\ttfamily const char $\ast$const const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::boolean}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{cJSON}} *bool\_item = cJSON\_CreateBool(\textcolor{keywordtype}{boolean})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a14f90ca6f5e95d30c79d04efce16a2ab}\label{namespace_aws_a14f90ca6f5e95d30c79d04efce16a2ab}} 
+\index{Aws@{Aws}!buf@{buf}}
+\index{buf@{buf}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily char$\ast$ Aws\+::buf}
+
+\mbox{\Hypertarget{namespace_aws_ab680d00d3625d576b9160710e643da63}\label{namespace_aws_ab680d00d3625d576b9160710e643da63}} 
+\index{Aws@{Aws}!buffer@{buffer}}
+\index{buffer@{buffer}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::buffer = (unsigned char $\ast$) global\+\_\+hooks.\+allocate((size\+\_\+t) \mbox{\hyperlink{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}{prebuffer}})}
+
+\mbox{\Hypertarget{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}\label{namespace_aws_a0f7c77e8516309d57648237de18f5bc9}} 
+\index{Aws@{Aws}!case\_sensitive@{case\_sensitive}}
+\index{case\_sensitive@{case\_sensitive}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{case\_sensitive}{case\_sensitive}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ const const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::case\+\_\+sensitive}
+
+\mbox{\Hypertarget{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}\label{namespace_aws_a75e78b6c6a14c9cb782d5e53a1487879}} 
+\index{Aws@{Aws}!child@{child}}
+\index{child@{child}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{child}{child}}
+{\footnotesize\ttfamily Aws\+::child = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_a059551721f47fdeb9bf9e1816b78b25d}\label{namespace_aws_a059551721f47fdeb9bf9e1816b78b25d}} 
+\index{Aws@{Aws}!content@{content}}
+\index{content@{content}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{content}{content}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} Aws\+::content = (const unsigned char $\ast$) value}
+
+\mbox{\Hypertarget{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}\label{namespace_aws_a900adc5403a6cc755153d6bc8aa71220}} 
+\index{Aws@{Aws}!count@{count}}
+\index{count@{count}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily int Aws\+::count}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} i = 0}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a1945814c8f094d36232f6e51c560a4dc}\label{namespace_aws_a1945814c8f094d36232f6e51c560a4dc}} 
+\index{Aws@{Aws}!else@{else}}
+\index{else@{else}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily Aws\+::else}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{            \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}}-\/>\mbox{\hyperlink{structc_j_s_o_n_ad521633b2c32126f59d962c5673de362}{prev}}-\/>\mbox{\hyperlink{structc_j_s_o_n_abe7e1034d4588c0e7b59dba779702b08}{next}} = \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a584c037a1897b77d9876151955335159}\label{namespace_aws_a584c037a1897b77d9876151955335159}} 
+\index{Aws@{Aws}!fmt@{fmt}}
+\index{fmt@{fmt}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{fmt}{fmt}}
+{\footnotesize\ttfamily char const int const \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::fmt}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1printbuffer}{printbuffer}} \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} = \{0, 0, 0, 0, 0, 0, \{0, 0, 0\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}\label{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}} 
+\index{Aws@{Aws}!format@{format}}
+\index{format@{format}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{format}{format}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::format = \mbox{\hyperlink{namespace_aws_a584c037a1897b77d9876151955335159}{fmt}}}
+
+\mbox{\Hypertarget{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}\label{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}} 
+\index{Aws@{Aws}!global\_hooks@{global\_hooks}}
+\index{global\_hooks@{global\_hooks}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{global\_hooks}{global\_hooks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1internal__hooks}{internal\+\_\+hooks}} Aws\+::global\+\_\+hooks = \{\mbox{\hyperlink{c_j_s_o_n_8cpp_a7fd7640617f7ffead7a9b1408c9d0ae8}{internal\+\_\+malloc}}, \mbox{\hyperlink{c_j_s_o_n_8cpp_a940bb34b2c297c3d8297d506a3955839}{internal\+\_\+free}}, \mbox{\hyperlink{c_j_s_o_n_8cpp_a91654176e81c707d28b99dd0bf783ed5}{internal\+\_\+realloc}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}\label{namespace_aws_a57ce4f2b5c9bd06f9c6e1f6c00e31315}} 
+\index{Aws@{Aws}!hooks@{hooks}}
+\index{hooks@{hooks}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{hooks}{hooks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::hooks = \mbox{\hyperlink{namespace_aws_a2c4336c07c59645b4c0203929ef353e1}{global\+\_\+hooks}}}
+
+\mbox{\Hypertarget{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}\label{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}} 
+\index{Aws@{Aws}!index@{index}}
+\index{index@{index}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily int Aws\+::index}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}} < 0) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a82f460889bcb63ee840fc821feef5aa5}{get\_array\_item}}(array, (\textcolor{keywordtype}{size\_t}) \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}\label{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}} 
+\index{Aws@{Aws}!item@{item}}
+\index{item@{item}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{item}{item}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const Aws\+::item = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_a3076bc67e26c850c1674abaecce578f4}\label{namespace_aws_a3076bc67e26c850c1674abaecce578f4}} 
+\index{Aws@{Aws}!json@{json}}
+\index{json@{json}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{json}{json}}
+{\footnotesize\ttfamily \mbox{\hyperlink{c_j_s_o_n_8cpp_a6ff6e9678e47cf5347872008661d5846}{global\+\_\+error}} Aws\+::json = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_aa8275fb544361b33cba071af3a547329}\label{namespace_aws_aa8275fb544361b33cba071af3a547329}} 
+\index{Aws@{Aws}!len@{len}}
+\index{len@{len}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily char const int Aws\+::len}
+
+\mbox{\Hypertarget{namespace_aws_a52c438299b08516e5d87b48ded603a6e}\label{namespace_aws_a52c438299b08516e5d87b48ded603a6e}} 
+\index{Aws@{Aws}!length@{length}}
+\index{length@{length}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::length = \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}}
+
+\mbox{\Hypertarget{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}\label{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}} 
+\index{Aws@{Aws}!n@{n}}
+\index{n@{n}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ Aws\+::n = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}\label{namespace_aws_a1b58e72d45c3d99eed5764f31b6e4141}} 
+\index{Aws@{Aws}!name@{name}}
+\index{name@{name}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char $\ast$const Aws\+::name}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{cJSON}} *\textcolor{keyword}{null} = cJSON\_CreateNull()}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_aadc48c85f2653b5085f8f314e8589383}\label{namespace_aws_aadc48c85f2653b5085f8f314e8589383}} 
+\index{Aws@{Aws}!newchild@{newchild}}
+\index{newchild@{newchild}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{newchild}{newchild}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}}$\ast$ Aws\+::newchild = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}\label{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}} 
+\index{Aws@{Aws}!newitem@{newitem}}
+\index{newitem@{newitem}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{newitem}{newitem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::newitem}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{cJSON}} *\mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\_inserted}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}\label{namespace_aws_ae0af31e16c5e60e82beaa1de641126e7}} 
+\index{Aws@{Aws}!next@{next}}
+\index{next@{next}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ Aws\+::next = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_a48fa524edb7fea76dcdea3f7675dcdff}\label{namespace_aws_a48fa524edb7fea76dcdea3f7675dcdff}} 
+\index{Aws@{Aws}!noalloc@{noalloc}}
+\index{noalloc@{noalloc}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{noalloc}{noalloc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::noalloc = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{namespace_aws_a41b67e809416e9bd96026fa1f414925d}\label{namespace_aws_a41b67e809416e9bd96026fa1f414925d}} 
+\index{Aws@{Aws}!NULL@{NULL}}
+\index{NULL@{NULL}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{NULL}{NULL}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::\+NULL}
+
+\mbox{\Hypertarget{namespace_aws_ad776c308b32b45d621462ea18bf9beff}\label{namespace_aws_ad776c308b32b45d621462ea18bf9beff}} 
+\index{Aws@{Aws}!number@{number}}
+\index{number@{number}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{number}{number}}
+{\footnotesize\ttfamily const char $\ast$const const double Aws\+::number}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}} >= INT\_MAX) \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{object}-\/>valueint = INT\_MAX;}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}} <= INT\_MIN) \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{object}-\/>valueint = INT\_MIN;}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{object}-\/>valueint = (int) \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keywordtype}{object}-\/>valuedouble = \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a4b36e73e20878ce98336cfdea0494281}\label{namespace_aws_a4b36e73e20878ce98336cfdea0494281}} 
+\index{Aws@{Aws}!offset@{offset}}
+\index{offset@{offset}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}} Aws\+::offset = 0}
+
+\mbox{\Hypertarget{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}\label{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}} 
+\index{Aws@{Aws}!p@{p}}
+\index{p@{p}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ Aws\+::p = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\mbox{\Hypertarget{namespace_aws_ad293c8b15694382c698b662f7acd9f8e}\label{namespace_aws_ad293c8b15694382c698b662f7acd9f8e}} 
+\index{Aws@{Aws}!position@{position}}
+\index{position@{position}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{c_j_s_o_n_8cpp_a6ff6e9678e47cf5347872008661d5846}{global\+\_\+error}} Aws\+::position = 0}
+
+\mbox{\Hypertarget{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}\label{namespace_aws_aee7bc1146e5a66fe1fa538dc65c793e0}} 
+\index{Aws@{Aws}!prebuffer@{prebuffer}}
+\index{prebuffer@{prebuffer}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{prebuffer}{prebuffer}}
+{\footnotesize\ttfamily int Aws\+::prebuffer}
+
+\mbox{\Hypertarget{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}\label{namespace_aws_af8fa14f58f07b6cb259c64bbe7658ed0}} 
+\index{Aws@{Aws}!prev@{prev}}
+\index{prev@{prev}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{prev}{prev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}} Aws\+::prev = \mbox{\hyperlink{namespace_aws_ac13279619958273b34f851f8036d53c0}{after\+\_\+inserted}}-\/$>$prev}
+
+\mbox{\Hypertarget{namespace_aws_ac0a622163df04341adbb9f93830970b3}\label{namespace_aws_ac0a622163df04341adbb9f93830970b3}} 
+\index{Aws@{Aws}!raw@{raw}}
+\index{raw@{raw}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{raw}{raw}}
+{\footnotesize\ttfamily const char $\ast$const const char $\ast$const Aws\+::raw}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{cJSON}} *raw\_item = cJSON\_CreateRaw(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a788db922597cf2fb6389e278f822e59f}{raw}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a936be87f05f76d9b95713b650c72c46c}\label{namespace_aws_a936be87f05f76d9b95713b650c72c46c}} 
+\index{Aws@{Aws}!recurse@{recurse}}
+\index{recurse@{recurse}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{recurse}{recurse}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{c\+JSON\+\_\+bool}} Aws\+::recurse}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{cJSON}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_abd13e53985a93dee588f840f06aac973}{newitem}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}\label{namespace_aws_aba484a7c9042d40bf7fafb0aeb660c8f}} 
+\index{Aws@{Aws}!replacement@{replacement}}
+\index{replacement@{replacement}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{replacement}{replacement}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$const \mbox{\hyperlink{struct_aws_1_1c_j_s_o_n}{c\+JSON}} $\ast$ Aws\+::replacement}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} ((parent == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}) || (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a10573fccca598ec39809e8beb3f7f791}{replacement}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}) || (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}} == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a10573fccca598ec39809e8beb3f7f791}{replacement}} == \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a10573fccca598ec39809e8beb3f7f791}{replacement}}-\/>\mbox{\hyperlink{structc_j_s_o_n_abe7e1034d4588c0e7b59dba779702b08}{next}} = \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac76cea59d438ba893d2f82aabb367d14}{item}}-\/>\mbox{\hyperlink{structc_j_s_o_n_abe7e1034d4588c0e7b59dba779702b08}{next}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}\label{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}} 
+\index{Aws@{Aws}!return\_parse\_end@{return\_parse\_end}}
+\index{return\_parse\_end@{return\_parse\_end}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{return\_parse\_end}{return\_parse\_end}}
+{\footnotesize\ttfamily size\+\_\+t const char $\ast$$\ast$ Aws\+::return\+\_\+parse\+\_\+end}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \mbox{\hyperlink{struct_aws_1_1parse__buffer}{parse\_buffer}} \mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}} = \{0, 0, 0, 0, \{0, 0, 0\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}\label{namespace_aws_a46c66599c92a951c37cd08e1171e7fc7}} 
+\index{Aws@{Aws}!string@{string}}
+\index{string@{string}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{string}{string}}
+{\footnotesize\ttfamily const char $\ast$ Aws\+::string}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a768303890e9be802d51b0e0a110302f4}{get\_object\_item}}(\textcolor{keywordtype}{object}, \textcolor{keywordtype}{string}, \textcolor{keyword}{false})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}\label{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}} 
+\index{Aws@{Aws}!true@{true}}
+\index{true@{true}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_af5ef41a8eeca88b69e2eadd83ada05cd}{return}} Aws\+::true}
+
+\mbox{\Hypertarget{namespace_aws_a5256b1ff01fae77769fee34ff8ef45a7}\label{namespace_aws_a5256b1ff01fae77769fee34ff8ef45a7}} 
+\index{Aws@{Aws}!type@{type}}
+\index{type@{type}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} Aws\+::type = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$type \& ($\sim$\mbox{\hyperlink{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_ad3d18116aae3bfa46f13bcfd7fd6d4e7}{c\+JSON\+\_\+\+Is\+Reference}})}
+
+\mbox{\Hypertarget{namespace_aws_adc152044ce8201ed485089de1847e6aa}\label{namespace_aws_adc152044ce8201ed485089de1847e6aa}} 
+\index{Aws@{Aws}!valuedouble@{valuedouble}}
+\index{valuedouble@{valuedouble}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{valuedouble}{valuedouble}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} Aws\+::valuedouble = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$valuedouble}
+
+\mbox{\Hypertarget{namespace_aws_aae0ad88af2a400f80b728d90e4948413}\label{namespace_aws_aae0ad88af2a400f80b728d90e4948413}} 
+\index{Aws@{Aws}!valueint@{valueint}}
+\index{valueint@{valueint}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{valueint}{valueint}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_aba4985a42b3b659ae878b3badd2f9ea9}{newitem}} Aws\+::valueint = \mbox{\hyperlink{namespace_aws_a5770241d8828b8149af630ea3a1b3e94}{item}}-\/$>$valueint}
+
+\mbox{\Hypertarget{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}\label{namespace_aws_a8114587345e82b4c7c6243e945bb93bb}} 
+\index{Aws@{Aws}!which@{which}}
+\index{which@{which}!Aws@{Aws}}
+\doxysubsubsection{\texorpdfstring{which}{which}}
+{\footnotesize\ttfamily int Aws\+::which}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}} < 0) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_aws_a35e623f42b0cd6bf7d8c50f78d41eca9}{cJSON\_DetachItemViaPointer}}(array, \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a82f460889bcb63ee840fc821feef5aa5}{get\_array\_item}}(array, (\textcolor{keywordtype}{size\_t}) \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aa2a4dae2a14de4093826005f9bdfd3bb}{which}}))}
+
+\end{DoxyCode}

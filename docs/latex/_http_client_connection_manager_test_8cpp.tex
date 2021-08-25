@@ -1,0 +1,40 @@
+\hypertarget{_http_client_connection_manager_test_8cpp}{}\doxysection{crt/aws-\/crt-\/cpp/tests/\+Http\+Client\+Connection\+Manager\+Test.cpp File Reference}
+\label{_http_client_connection_manager_test_8cpp}\index{crt/aws-\/crt-\/cpp/tests/HttpClientConnectionManagerTest.cpp@{crt/aws-\/crt-\/cpp/tests/HttpClientConnectionManagerTest.cpp}}
+{\ttfamily \#include $<$aws/crt/\+Api.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/crypto/\+Hash.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/http/\+Http\+Connection\+Manager.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Uri.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{_http_client_connection_manager_test_8cpp_a17cfc9c8585e4cc04fabee2d1133fe62}{s\+\_\+\+Test\+Http\+Client\+Connection\+Manager\+Resource\+Safety}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_http_client_connection_manager_test_8cpp_a5829975b4d56d6f21bd6a95e5ac8e2c4}{s\+\_\+\+Test\+Http\+Client\+Connection\+With\+Pending\+Acquisitions}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_http_client_connection_manager_test_8cpp_ad3483c1a0f6df0bc6a1e2d42391a9c31}{s\+\_\+\+Test\+Http\+Client\+Connection\+With\+Pending\+Acquisitions\+And\+Closed\+Connections}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_http_client_connection_manager_test_8cpp_a17cfc9c8585e4cc04fabee2d1133fe62}\label{_http_client_connection_manager_test_8cpp_a17cfc9c8585e4cc04fabee2d1133fe62}} 
+\index{HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}!s\_TestHttpClientConnectionManagerResourceSafety@{s\_TestHttpClientConnectionManagerResourceSafety}}
+\index{s\_TestHttpClientConnectionManagerResourceSafety@{s\_TestHttpClientConnectionManagerResourceSafety}!HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpClientConnectionManagerResourceSafety()}{s\_TestHttpClientConnectionManagerResourceSafety()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Client\+Connection\+Manager\+Resource\+Safety (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_connection_manager_test_8cpp_a5829975b4d56d6f21bd6a95e5ac8e2c4}\label{_http_client_connection_manager_test_8cpp_a5829975b4d56d6f21bd6a95e5ac8e2c4}} 
+\index{HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}!s\_TestHttpClientConnectionWithPendingAcquisitions@{s\_TestHttpClientConnectionWithPendingAcquisitions}}
+\index{s\_TestHttpClientConnectionWithPendingAcquisitions@{s\_TestHttpClientConnectionWithPendingAcquisitions}!HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpClientConnectionWithPendingAcquisitions()}{s\_TestHttpClientConnectionWithPendingAcquisitions()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Client\+Connection\+With\+Pending\+Acquisitions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_http_client_connection_manager_test_8cpp_ad3483c1a0f6df0bc6a1e2d42391a9c31}\label{_http_client_connection_manager_test_8cpp_ad3483c1a0f6df0bc6a1e2d42391a9c31}} 
+\index{HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}!s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections@{s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections}}
+\index{s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections@{s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections}!HttpClientConnectionManagerTest.cpp@{HttpClientConnectionManagerTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections()}{s\_TestHttpClientConnectionWithPendingAcquisitionsAndClosedConnections()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Test\+Http\+Client\+Connection\+With\+Pending\+Acquisitions\+And\+Closed\+Connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

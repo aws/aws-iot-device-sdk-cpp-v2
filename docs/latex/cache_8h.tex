@@ -1,0 +1,109 @@
+\hypertarget{cache_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/cache.h File Reference}
+\label{cache_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/cache.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/cache.h}}
+{\ttfamily \#include $<$aws/common/linked\+\_\+hash\+\_\+table.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__cache__vtable}{aws\+\_\+cache\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cache_8h_a097a04af2ec25eeb69bec3a290aeadff}{aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+int \mbox{\hyperlink{cache_8h_af3b14ca1b9ffe68f7efe38fed82a2433}{aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+find}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache, const void $\ast$key, void $\ast$$\ast$p\+\_\+value)
+\item 
+int \mbox{\hyperlink{cache_8h_a87052ec521cca5ecde3ecb729b14a360}{aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+remove}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache, const void $\ast$key)
+\item 
+void \mbox{\hyperlink{cache_8h_aafcba3458bc77c0c1612a8614af2f5f8}{aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+clear}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+size\+\_\+t \mbox{\hyperlink{cache_8h_a2b17e649c01fbe8ae360a97f4ebdb45f}{aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+get\+\_\+element\+\_\+count}} (const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{cache_8h_a9b2d833d0cdc4be00ec27b50177f0495}{aws\+\_\+cache\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{cache_8h_ad390a04eb7628b8d17a7802ad60881fb}{aws\+\_\+cache\+\_\+find}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache, const void $\ast$key, void $\ast$$\ast$p\+\_\+value)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{cache_8h_aaf79ba98ec5b75347fa039308a12052f}{aws\+\_\+cache\+\_\+put}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache, const void $\ast$key, void $\ast$p\+\_\+value)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{cache_8h_a0d89947bafaea2a7dcce58589f9d52e5}{aws\+\_\+cache\+\_\+remove}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache, const void $\ast$key)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{cache_8h_a4521b99d5975af6f143555f7a0f8414d}{aws\+\_\+cache\+\_\+clear}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{cache_8h_a0f5ffba44ea5140c41abce938e7def01}{aws\+\_\+cache\+\_\+get\+\_\+element\+\_\+count}} (const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cache_8h_aafcba3458bc77c0c1612a8614af2f5f8}\label{cache_8h_aafcba3458bc77c0c1612a8614af2f5f8}} 
+\index{cache.h@{cache.h}!aws\_cache\_base\_default\_clear@{aws\_cache\_base\_default\_clear}}
+\index{aws\_cache\_base\_default\_clear@{aws\_cache\_base\_default\_clear}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_base\_default\_clear()}{aws\_cache\_base\_default\_clear()}}
+{\footnotesize\ttfamily void aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cache_8h_a097a04af2ec25eeb69bec3a290aeadff}\label{cache_8h_a097a04af2ec25eeb69bec3a290aeadff}} 
+\index{cache.h@{cache.h}!aws\_cache\_base\_default\_destroy@{aws\_cache\_base\_default\_destroy}}
+\index{aws\_cache\_base\_default\_destroy@{aws\_cache\_base\_default\_destroy}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_base\_default\_destroy()}{aws\_cache\_base\_default\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cache_8h_af3b14ca1b9ffe68f7efe38fed82a2433}\label{cache_8h_af3b14ca1b9ffe68f7efe38fed82a2433}} 
+\index{cache.h@{cache.h}!aws\_cache\_base\_default\_find@{aws\_cache\_base\_default\_find}}
+\index{aws\_cache\_base\_default\_find@{aws\_cache\_base\_default\_find}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_base\_default\_find()}{aws\_cache\_base\_default\_find()}}
+{\footnotesize\ttfamily int aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+find (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$$\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cache_8h_a2b17e649c01fbe8ae360a97f4ebdb45f}\label{cache_8h_a2b17e649c01fbe8ae360a97f4ebdb45f}} 
+\index{cache.h@{cache.h}!aws\_cache\_base\_default\_get\_element\_count@{aws\_cache\_base\_default\_get\_element\_count}}
+\index{aws\_cache\_base\_default\_get\_element\_count@{aws\_cache\_base\_default\_get\_element\_count}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_base\_default\_get\_element\_count()}{aws\_cache\_base\_default\_get\_element\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+get\+\_\+element\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cache_8h_a87052ec521cca5ecde3ecb729b14a360}\label{cache_8h_a87052ec521cca5ecde3ecb729b14a360}} 
+\index{cache.h@{cache.h}!aws\_cache\_base\_default\_remove@{aws\_cache\_base\_default\_remove}}
+\index{aws\_cache\_base\_default\_remove@{aws\_cache\_base\_default\_remove}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_base\_default\_remove()}{aws\_cache\_base\_default\_remove()}}
+{\footnotesize\ttfamily int aws\+\_\+cache\+\_\+base\+\_\+default\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache,  }\item[{const void $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cache_8h_a4521b99d5975af6f143555f7a0f8414d}\label{cache_8h_a4521b99d5975af6f143555f7a0f8414d}} 
+\index{cache.h@{cache.h}!aws\_cache\_clear@{aws\_cache\_clear}}
+\index{aws\_cache\_clear@{aws\_cache\_clear}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_clear()}{aws\_cache\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+cache\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Clears all items from the cache. \mbox{\Hypertarget{cache_8h_a9b2d833d0cdc4be00ec27b50177f0495}\label{cache_8h_a9b2d833d0cdc4be00ec27b50177f0495}} 
+\index{cache.h@{cache.h}!aws\_cache\_destroy@{aws\_cache\_destroy}}
+\index{aws\_cache\_destroy@{aws\_cache\_destroy}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_destroy()}{aws\_cache\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+cache\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Cleans up the cache. Elements in the cache will be evicted and cleanup callbacks will be invoked.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{cache_8h_ad390a04eb7628b8d17a7802ad60881fb}\label{cache_8h_ad390a04eb7628b8d17a7802ad60881fb}} 
+\index{cache.h@{cache.h}!aws\_cache\_find@{aws\_cache\_find}}
+\index{aws\_cache\_find@{aws\_cache\_find}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_find()}{aws\_cache\_find()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+cache\+\_\+find (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$$\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Finds element in the cache by key. If found, $\ast$p\+\_\+value will hold the stored value, and AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned. If not found, AWS\+\_\+\+OP\+\_\+\+SUCCESS will be returned and $\ast$p\+\_\+value will be NULL.
+
+If any errors occur AWS\+\_\+\+OP\+\_\+\+ERR will be returned. \mbox{\Hypertarget{cache_8h_a0f5ffba44ea5140c41abce938e7def01}\label{cache_8h_a0f5ffba44ea5140c41abce938e7def01}} 
+\index{cache.h@{cache.h}!aws\_cache\_get\_element\_count@{aws\_cache\_get\_element\_count}}
+\index{aws\_cache\_get\_element\_count@{aws\_cache\_get\_element\_count}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_get\_element\_count()}{aws\_cache\_get\_element\_count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} size\+\_\+t aws\+\_\+cache\+\_\+get\+\_\+element\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Returns the number of elements in the cache. \mbox{\Hypertarget{cache_8h_aaf79ba98ec5b75347fa039308a12052f}\label{cache_8h_aaf79ba98ec5b75347fa039308a12052f}} 
+\index{cache.h@{cache.h}!aws\_cache\_put@{aws\_cache\_put}}
+\index{aws\_cache\_put@{aws\_cache\_put}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_put()}{aws\_cache\_put()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+cache\+\_\+put (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache,  }\item[{const void $\ast$}]{key,  }\item[{void $\ast$}]{p\+\_\+value }\end{DoxyParamCaption})}
+
+Puts {\ttfamily p\+\_\+value} at {\ttfamily key}. If an element is already stored at {\ttfamily key} it will be replaced. If the cache is already full, an item will be removed based on the cache policy. \mbox{\Hypertarget{cache_8h_a0d89947bafaea2a7dcce58589f9d52e5}\label{cache_8h_a0d89947bafaea2a7dcce58589f9d52e5}} 
+\index{cache.h@{cache.h}!aws\_cache\_remove@{aws\_cache\_remove}}
+\index{aws\_cache\_remove@{aws\_cache\_remove}!cache.h@{cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_remove()}{aws\_cache\_remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+cache\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache,  }\item[{const void $\ast$}]{key }\end{DoxyParamCaption})}
+
+Removes item at {\ttfamily key} from the cache. 

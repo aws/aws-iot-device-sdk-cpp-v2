@@ -1,0 +1,102 @@
+\hypertarget{s2n__client__server__name_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+client\+\_\+server\+\_\+name.c File Reference}
+\label{s2n__client__server__name_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_server\_name.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_server\_name.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+client\+\_\+server\+\_\+name.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__client__server__name_8c_ab14e1ba67a4e227d2c724ac3e5a15056}{S2\+N\+\_\+\+NAME\+\_\+\+TYPE\+\_\+\+HOST\+\_\+\+NAME}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__client__server__name_8c_afed7f1ad7e12e1cea5a5b572041b65db}{s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+should\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__client__server__name_8c_aec06d5ff87fd5632b30da78c77831e38}{s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__client__server__name_8c_a01442c4e9a939e0f536a094ae44cc390}{s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+static int \mbox{\hyperlink{s2n__client__server__name_8c_a52da8d90cdb0810beea7c3a34a6bfbf8}{s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+check}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension, uint16\+\_\+t $\ast$server\+\_\+name\+\_\+len)
+\item 
+int \mbox{\hyperlink{s2n__client__server__name_8c_a09490816c8a80163dd755e4cdf89400b}{s2n\+\_\+extensions\+\_\+client\+\_\+server\+\_\+name\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__client__server__name_8c_a33ed7b22b4d74b02f106ed7efe6a35aa}{s2n\+\_\+parse\+\_\+client\+\_\+hello\+\_\+server\+\_\+name}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__client__server__name_8c_a212a4b7eb819b3ecdbb7e177ef8c0390}{s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__client__server__name_8c_ab14e1ba67a4e227d2c724ac3e5a15056}\label{s2n__client__server__name_8c_ab14e1ba67a4e227d2c724ac3e5a15056}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!S2N\_NAME\_TYPE\_HOST\_NAME@{S2N\_NAME\_TYPE\_HOST\_NAME}}
+\index{S2N\_NAME\_TYPE\_HOST\_NAME@{S2N\_NAME\_TYPE\_HOST\_NAME}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_NAME\_TYPE\_HOST\_NAME}{S2N\_NAME\_TYPE\_HOST\_NAME}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+NAME\+\_\+\+TYPE\+\_\+\+HOST\+\_\+\+NAME~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__server__name_8c_a52da8d90cdb0810beea7c3a34a6bfbf8}\label{s2n__client__server__name_8c_a52da8d90cdb0810beea7c3a34a6bfbf8}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_client\_server\_name\_check@{s2n\_client\_server\_name\_check}}
+\index{s2n\_client\_server\_name\_check@{s2n\_client\_server\_name\_check}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_server\_name\_check()}{s2n\_client\_server\_name\_check()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+check (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension,  }\item[{uint16\+\_\+t $\ast$}]{server\+\_\+name\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__server__name_8c_a01442c4e9a939e0f536a094ae44cc390}\label{s2n__client__server__name_8c_a01442c4e9a939e0f536a094ae44cc390}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_client\_server\_name\_recv@{s2n\_client\_server\_name\_recv}}
+\index{s2n\_client\_server\_name\_recv@{s2n\_client\_server\_name\_recv}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_server\_name\_recv()}{s2n\_client\_server\_name\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__server__name_8c_aec06d5ff87fd5632b30da78c77831e38}\label{s2n__client__server__name_8c_aec06d5ff87fd5632b30da78c77831e38}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_client\_server\_name\_send@{s2n\_client\_server\_name\_send}}
+\index{s2n\_client\_server\_name\_send@{s2n\_client\_server\_name\_send}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_server\_name\_send()}{s2n\_client\_server\_name\_send()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__server__name_8c_afed7f1ad7e12e1cea5a5b572041b65db}\label{s2n__client__server__name_8c_afed7f1ad7e12e1cea5a5b572041b65db}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_client\_server\_name\_should\_send@{s2n\_client\_server\_name\_should\_send}}
+\index{s2n\_client\_server\_name\_should\_send@{s2n\_client\_server\_name\_should\_send}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_server\_name\_should\_send()}{s2n\_client\_server\_name\_should\_send()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+should\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__server__name_8c_a09490816c8a80163dd755e4cdf89400b}\label{s2n__client__server__name_8c_a09490816c8a80163dd755e4cdf89400b}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_extensions\_client\_server\_name\_send@{s2n\_extensions\_client\_server\_name\_send}}
+\index{s2n\_extensions\_client\_server\_name\_send@{s2n\_extensions\_client\_server\_name\_send}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_server\_name\_send()}{s2n\_extensions\_client\_server\_name\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+server\+\_\+name\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__server__name_8c_a33ed7b22b4d74b02f106ed7efe6a35aa}\label{s2n__client__server__name_8c_a33ed7b22b4d74b02f106ed7efe6a35aa}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_parse\_client\_hello\_server\_name@{s2n\_parse\_client\_hello\_server\_name}}
+\index{s2n\_parse\_client\_hello\_server\_name@{s2n\_parse\_client\_hello\_server\_name}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_parse\_client\_hello\_server\_name()}{s2n\_parse\_client\_hello\_server\_name()}}
+{\footnotesize\ttfamily int s2n\+\_\+parse\+\_\+client\+\_\+hello\+\_\+server\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__server__name_8c_a212a4b7eb819b3ecdbb7e177ef8c0390}\label{s2n__client__server__name_8c_a212a4b7eb819b3ecdbb7e177ef8c0390}} 
+\index{s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}!s2n\_client\_server\_name\_extension@{s2n\_client\_server\_name\_extension}}
+\index{s2n\_client\_server\_name\_extension@{s2n\_client\_server\_name\_extension}!s2n\_client\_server\_name.c@{s2n\_client\_server\_name.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_server\_name\_extension}{s2n\_client\_server\_name\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+server\+\_\+name\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_ac5af336fe762b24789dde11d13a74035}{TLS\_EXTENSION\_SERVER\_NAME}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{false},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__client__server__name_8c_aec06d5ff87fd5632b30da78c77831e38}{s2n\_client\_server\_name\_send}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__client__server__name_8c_a01442c4e9a939e0f536a094ae44cc390}{s2n\_client\_server\_name\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__client__server__name_8c_afed7f1ad7e12e1cea5a5b572041b65db}{s2n\_client\_server\_name\_should\_send}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

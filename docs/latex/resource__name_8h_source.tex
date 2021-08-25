@@ -1,0 +1,36 @@
+\hypertarget{resource__name_8h_source}{}\doxysection{resource\+\_\+name.\+h}
+\label{resource__name_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/resource\_name.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/resource\_name.h}}
+\mbox{\hyperlink{resource__name_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_RESOURCE\_NAME\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AWS\_COMMON\_RESOURCE\_NAME\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__resource__name}{aws\_resource\_name}} \{}
+\DoxyCodeLine{13     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__resource__name_a664c6100768be60c2aafd1bdb9a8efdb}{partition}};}
+\DoxyCodeLine{14     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__resource__name_ace885850c851b1e3feb6801cc2c09934}{service}};}
+\DoxyCodeLine{15     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__resource__name_a312e14c040e5af9fe07bb3709fb42836}{region}};}
+\DoxyCodeLine{16     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__resource__name_a1d1d576b58d485453f628012262da9fc}{account\_id}};}
+\DoxyCodeLine{17     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__resource__name_a27fd804ba1d07615d541fb3f801f9bfd}{resource\_id}};}
+\DoxyCodeLine{18 \};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{27 \textcolor{keywordtype}{int} \mbox{\hyperlink{resource__name_8h_a5332ed575b0dacb889c775c08e1e1dd1}{aws\_resource\_name\_init\_from\_cur}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__resource__name}{aws\_resource\_name}} *arn, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *input);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{33 \textcolor{keywordtype}{int} \mbox{\hyperlink{resource__name_8h_a3ad487e954febe372ce49511c73abe37}{aws\_resource\_name\_length}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__resource__name}{aws\_resource\_name}} *arn, \textcolor{keywordtype}{size\_t} *size);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{39 \textcolor{keywordtype}{int} \mbox{\hyperlink{resource__name_8h_a863538938af54f2ab8ed979280eca65f}{aws\_byte\_buf\_append\_resource\_name}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__resource__name}{aws\_resource\_name}} *arn);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_RESOURCE\_NAME\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

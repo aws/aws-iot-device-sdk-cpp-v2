@@ -1,0 +1,79 @@
+\hypertarget{tls_2s2n__crypto_8h_source}{}\doxysection{s2n\+\_\+crypto.\+h}
+\label{tls_2s2n__crypto_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_crypto.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_crypto.h}}
+\mbox{\hyperlink{tls_2s2n__crypto_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__config_8h}{tls/s2n\_config.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__signature__scheme_8h}{tls/s2n\_signature\_scheme.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__crypto__constants_8h}{tls/s2n\_crypto\_constants.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__kem_8h}{tls/s2n\_kem.h}}"{}}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__certificate_8h}{crypto/s2n\_certificate.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__cipher_8h}{crypto/s2n\_cipher.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__hmac_8h}{crypto/s2n\_hmac.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{crypto_2s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__pkey_8h}{crypto/s2n\_pkey.h}}"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__signature_8h}{crypto/s2n\_signature.h}}"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__tls13__keys_8h}{crypto/s2n\_tls13\_keys.h}}"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__dhe_8h}{crypto/s2n\_dhe.h}}"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__ecc__evp_8h}{crypto/s2n\_ecc\_evp.h}}"{}}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__crypto__parameters}{s2n\_crypto\_parameters}} \{}
+\DoxyCodeLine{34     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} \mbox{\hyperlink{structs2n__crypto__parameters_a30ef8c5e50823c821148e31a87e0f02b}{server\_public\_key}};}
+\DoxyCodeLine{35     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} \mbox{\hyperlink{structs2n__crypto__parameters_a3a108ee88c3c4a0459ee50369e8549f9}{client\_public\_key}};}
+\DoxyCodeLine{36     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_ae8dfb593d519f606f9c361b375665ba9}{server\_dh\_params}};}
+\DoxyCodeLine{37     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_a82a2cdc4ecba1c4f86e878fcd85558bd}{server\_ecc\_evp\_params}};}
+\DoxyCodeLine{38     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} *\mbox{\hyperlink{structs2n__crypto__parameters_ab3c11440b8a441b87866a6a810734980}{mutually\_supported\_curves}}[\mbox{\hyperlink{s2n__ecc__evp_8h_ae3543231af9063c24d8fde795eb6f83c}{S2N\_ECC\_EVP\_SUPPORTED\_CURVES\_COUNT}}];}
+\DoxyCodeLine{39     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_a1ed9456252e84e85912e98aed1eb1f68}{client\_ecc\_evp\_params}}[\mbox{\hyperlink{s2n__ecc__evp_8h_ae3543231af9063c24d8fde795eb6f83c}{S2N\_ECC\_EVP\_SUPPORTED\_CURVES\_COUNT}}];}
+\DoxyCodeLine{40     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__group__params}{s2n\_kem\_group\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_ab5f9b2bac5dec4212e9a1819878fe165}{server\_kem\_group\_params}};}
+\DoxyCodeLine{41     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__group__params}{s2n\_kem\_group\_params}} *\mbox{\hyperlink{structs2n__crypto__parameters_a01350e962a4b26eb7567865b3d8a6de6}{chosen\_client\_kem\_group\_params}};}
+\DoxyCodeLine{42     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__group__params}{s2n\_kem\_group\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_a1b056f3674788d72deb88ee10501c34d}{client\_kem\_group\_params}}[\mbox{\hyperlink{s2n__kem_8h_a9784e70a5eeb0bdfc6f35de3a1157acd}{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}}];}
+\DoxyCodeLine{43     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__group}{s2n\_kem\_group}} *\mbox{\hyperlink{structs2n__crypto__parameters_a861a2e67f93c8a74b158bc6d1546c81d}{mutually\_supported\_kem\_groups}}[\mbox{\hyperlink{s2n__kem_8h_a9784e70a5eeb0bdfc6f35de3a1157acd}{S2N\_SUPPORTED\_KEM\_GROUPS\_COUNT}}];}
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__params}{s2n\_kem\_params}} \mbox{\hyperlink{structs2n__crypto__parameters_af14003694ac5069bfa0ebe536eb93cee}{kem\_params}};}
+\DoxyCodeLine{45     \textcolor{keyword}{struct }s2n\_blob \mbox{\hyperlink{structs2n__crypto__parameters_aa850699f0e944481ca94825167c52b9d}{client\_key\_exchange\_message}};}
+\DoxyCodeLine{46     \textcolor{keyword}{struct }s2n\_blob \mbox{\hyperlink{structs2n__crypto__parameters_a3a4ed89b739045cef5627643cad6ec24}{client\_pq\_kem\_extension}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__signature__scheme}{s2n\_signature\_scheme}} \mbox{\hyperlink{structs2n__crypto__parameters_abaeb3ddc374603df325bdfb96bed280a}{conn\_sig\_scheme}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keyword}{struct }s2n\_blob \mbox{\hyperlink{structs2n__crypto__parameters_a1964e9a19b1301407bceede36f256520}{client\_cert\_chain}};}
+\DoxyCodeLine{51     \mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\_pkey\_type}} \mbox{\hyperlink{structs2n__crypto__parameters_a3a474801a77e15e1e1a2a1c5f7d4fb55}{client\_cert\_pkey\_type}};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__signature__scheme}{s2n\_signature\_scheme}} \mbox{\hyperlink{structs2n__crypto__parameters_ad592738fd573d51842e399641b333cc9}{client\_cert\_sig\_scheme}};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *\mbox{\hyperlink{structs2n__crypto__parameters_a0079a3e4d893add147da61395b1b1c3e}{cipher\_suite}};}
+\DoxyCodeLine{56     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} \mbox{\hyperlink{structs2n__crypto__parameters_ab9a12cbd260384e553b6751482eda8cd}{client\_key}};}
+\DoxyCodeLine{57     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} \mbox{\hyperlink{structs2n__crypto__parameters_a7bc15601ab8e9469078ae42dbc3aa172}{server\_key}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a27556a43cb92a77d009de5117992e7ce}{rsa\_premaster\_secret}}[\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2N\_TLS\_SECRET\_LEN}}];}
+\DoxyCodeLine{60     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a2ea15178b7731852a9178d29384b5231}{master\_secret}}[\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2N\_TLS\_SECRET\_LEN}}];}
+\DoxyCodeLine{61     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a582231291a4b13c2b73dfaa9afca5175}{client\_random}}[\mbox{\hyperlink{s2n__crypto__constants_8h_ae4f42b5fd74ab885893a960b81dbd57f}{S2N\_TLS\_RANDOM\_DATA\_LEN}}];}
+\DoxyCodeLine{62     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_aafaffe7a7df63c070f5dcfdcc04b75c9}{server\_random}}[\mbox{\hyperlink{s2n__crypto__constants_8h_ae4f42b5fd74ab885893a960b81dbd57f}{S2N\_TLS\_RANDOM\_DATA\_LEN}}];}
+\DoxyCodeLine{63     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a9a86cd128686a0b6b2fd6d373a9b1129}{client\_implicit\_iv}}[\mbox{\hyperlink{s2n__crypto__constants_8h_a10384078d09bffcc7c0570926203dbfd}{S2N\_TLS\_MAX\_IV\_LEN}}];}
+\DoxyCodeLine{64     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_af6daad4fe549a8f4838866c3a45343c4}{server\_implicit\_iv}}[\mbox{\hyperlink{s2n__crypto__constants_8h_a10384078d09bffcc7c0570926203dbfd}{S2N\_TLS\_MAX\_IV\_LEN}}];}
+\DoxyCodeLine{65     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a472ae628a9a4e0222a4b64a8d1b6ccfc}{client\_app\_secret}}[\mbox{\hyperlink{s2n__tls13__keys_8h_af55ac96ffd1b79ee96166d0a4adc5fd3}{S2N\_TLS13\_SECRET\_MAX\_LEN}}];}
+\DoxyCodeLine{66     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a2d9e917fa3ae17e6fbec4509190abcb2}{server\_app\_secret}}[\mbox{\hyperlink{s2n__tls13__keys_8h_af55ac96ffd1b79ee96166d0a4adc5fd3}{S2N\_TLS13\_SECRET\_MAX\_LEN}}];}
+\DoxyCodeLine{67     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} \mbox{\hyperlink{structs2n__crypto__parameters_ac7e9a4f9362e485aa31a58c4920b61b9}{signature\_hash}};}
+\DoxyCodeLine{68     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} \mbox{\hyperlink{structs2n__crypto__parameters_a778fbd1b0318128e67273acb5804964f}{client\_record\_mac}};}
+\DoxyCodeLine{69     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} \mbox{\hyperlink{structs2n__crypto__parameters_a4a3ecd929678467d882860ca5bc0e792}{server\_record\_mac}};}
+\DoxyCodeLine{70     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} \mbox{\hyperlink{structs2n__crypto__parameters_a31999795af7c0d4cf0109be7ab1d677b}{record\_mac\_copy\_workspace}};}
+\DoxyCodeLine{71     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_abf9f007cb94658061cb9ffde15411a75}{client\_sequence\_number}}[\mbox{\hyperlink{s2n__crypto__constants_8h_ab6af529d3a237c0d8d2f67edcf831c25}{S2N\_TLS\_SEQUENCE\_NUM\_LEN}}];}
+\DoxyCodeLine{72     uint8\_t \mbox{\hyperlink{structs2n__crypto__parameters_a3aed6b356ada86966de19c5e411b8e4d}{server\_sequence\_number}}[\mbox{\hyperlink{s2n__crypto__constants_8h_ab6af529d3a237c0d8d2f67edcf831c25}{S2N\_TLS\_SEQUENCE\_NUM\_LEN}}];}
+\DoxyCodeLine{73 \};}
+
+\end{DoxyCode}

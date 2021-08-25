@@ -1,0 +1,85 @@
+\hypertarget{aws__test__allocators_8h_source}{}\doxysection{aws\+\_\+test\+\_\+allocators.\+h}
+\label{aws__test__allocators_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/testing/aws\_test\_allocators.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/testing/aws\_test\_allocators.h}}
+\mbox{\hyperlink{aws__test__allocators_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_TESTING\_AWS\_TEST\_ALLOCATORS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_TESTING\_AWS\_TEST\_ALLOCATORS\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws__test__harness_8h}{aws/testing/aws\_test\_harness.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{19 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__timebomb__impl_a7303f73c2250e4cd6f33c5febeb9cda7}{allocation\_tally}};}
+\DoxyCodeLine{22     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}};}
+\DoxyCodeLine{23     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}};}
+\DoxyCodeLine{24 \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{static} \textcolor{keywordtype}{void} *\mbox{\hyperlink{aws__test__allocators_8h_ae8b3851f6fbd4b003059659f46731a84}{s\_timebomb\_mem\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *timebomb\_alloc, \textcolor{keywordtype}{size\_t} size) \{}
+\DoxyCodeLine{27     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *timebomb\_impl = (\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *)timebomb\_alloc-\/>\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} *ptr = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \mbox{\hyperlink{mutex_8h_ab2d8dd42befd8adb75fabe36a3a242ba}{aws\_mutex\_lock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordflow}{if} (timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a7303f73c2250e4cd6f33c5febeb9cda7}{allocation\_tally}} < timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}}) \{}
+\DoxyCodeLine{33         timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a7303f73c2250e4cd6f33c5febeb9cda7}{allocation\_tally}}++;}
+\DoxyCodeLine{34         ptr = timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}-\/>\mbox{\hyperlink{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}{mem\_acquire}}(timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}, size);}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{mutex_8h_ab693e09b144c4d086630a99d7cb76448}{aws\_mutex\_unlock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordflow}{return} ptr;}
+\DoxyCodeLine{40 \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__test__allocators_8h_a9e05194ac1a876c52fe5fb1724c31749}{s\_timebomb\_mem\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *timebomb\_alloc, \textcolor{keywordtype}{void} *ptr) \{}
+\DoxyCodeLine{43     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *timebomb\_impl = (\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *)timebomb\_alloc-\/>\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \mbox{\hyperlink{mutex_8h_ab2d8dd42befd8adb75fabe36a3a242ba}{aws\_mutex\_lock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{46     timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}-\/>\mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}}(timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}, ptr);}
+\DoxyCodeLine{47     \mbox{\hyperlink{mutex_8h_ab693e09b144c4d086630a99d7cb76448}{aws\_mutex\_unlock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__allocators_8h_a5cee4e2c758dbee66795d9e84f8f064b}{aws\_timebomb\_allocator\_init}}(}
+\DoxyCodeLine{51     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *timebomb\_allocator,}
+\DoxyCodeLine{52     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}},}
+\DoxyCodeLine{53     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}}) \{}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \mbox{\hyperlink{zero_8h_a82e2dd41dbdf67adbce583f2585d503b}{AWS\_ZERO\_STRUCT}}(*timebomb\_allocator);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *timebomb\_impl =}
+\DoxyCodeLine{58         (\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *)\mbox{\hyperlink{preamble_8h_a63f96115d51c55845a703d8e26f5d27f}{aws\_mem\_calloc}}(\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}, 1, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}}));}
+\DoxyCodeLine{59     \mbox{\hyperlink{aws__test__harness_8h_a6f5622ca356e1dea11a8b84dd39505ba}{ASSERT\_NOT\_NULL}}(timebomb\_impl);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     timebomb\_allocator-\/>\mbox{\hyperlink{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}{mem\_acquire}} = \mbox{\hyperlink{aws__test__allocators_8h_ae8b3851f6fbd4b003059659f46731a84}{s\_timebomb\_mem\_acquire}};}
+\DoxyCodeLine{62     timebomb\_allocator-\/>\mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\_release}} = \mbox{\hyperlink{aws__test__allocators_8h_a9e05194ac1a876c52fe5fb1724c31749}{s\_timebomb\_mem\_release}};}
+\DoxyCodeLine{63     \textcolor{comment}{/* Not defining calloc/realloc, all allocation will be piped through the one mem\_acquire fn */}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     timebomb\_allocator-\/>\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}} = timebomb\_impl;}
+\DoxyCodeLine{66     timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}} = \mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}};}
+\DoxyCodeLine{67     timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}} = \mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}};}
+\DoxyCodeLine{68     \mbox{\hyperlink{aws__test__harness_8h_add6cf4f1306c74a90c1449043e26ac07}{ASSERT\_SUCCESS}}(\mbox{\hyperlink{mutex_8h_ac691d38987a047fce23b8bc51aece7fe}{aws\_mutex\_init}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}}));}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a5c0c86c38647f98229becf17743f7cb5}{AWS\_OP\_SUCCESS}};}
+\DoxyCodeLine{71 \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__test__allocators_8h_abaf3abbc3a41e7bef5b0b07e2f39ea40}{aws\_timebomb\_allocator\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *timebomb\_alloc) \{}
+\DoxyCodeLine{74     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *timebomb\_impl = (\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *)timebomb\_alloc-\/>\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{75     \mbox{\hyperlink{channel__handler__test_8c_a45a333599770c49d3d7f238f33f53f89}{if}} (timebomb\_impl) \{}
+\DoxyCodeLine{76         \mbox{\hyperlink{mutex_8h_acb25a4409c058d0c1d26656cb53349fe}{aws\_mutex\_clean\_up}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{77         \mbox{\hyperlink{preamble_8h_a7f273578823e2deda95364138491f729}{aws\_mem\_release}}(timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a064c2c9c1d176fd99efd56ca5deccfc5}{wrapped\_allocator}}, timebomb\_impl);}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79     \mbox{\hyperlink{zero_8h_a82e2dd41dbdf67adbce583f2585d503b}{AWS\_ZERO\_STRUCT}}(*timebomb\_alloc);}
+\DoxyCodeLine{80 \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__test__allocators_8h_afe7aec229e416b21830a87c7d30aaf6c}{aws\_timebomb\_allocator\_reset\_countdown}}(}
+\DoxyCodeLine{83     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *timebomb\_alloc,}
+\DoxyCodeLine{84     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}}) \{}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *timebomb\_impl = (\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__timebomb__impl}{aws\_timebomb\_impl}} *)timebomb\_alloc-\/>\mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}};}
+\DoxyCodeLine{87     \mbox{\hyperlink{mutex_8h_ab2d8dd42befd8adb75fabe36a3a242ba}{aws\_mutex\_lock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{88     timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a7303f73c2250e4cd6f33c5febeb9cda7}{allocation\_tally}} = 0;}
+\DoxyCodeLine{89     timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}} = \mbox{\hyperlink{structaws__timebomb__impl_a29e65a0a0676898d6daa4954ca3b9ba6}{fail\_after\_n\_allocations}};}
+\DoxyCodeLine{90     \mbox{\hyperlink{mutex_8h_ab693e09b144c4d086630a99d7cb76448}{aws\_mutex\_unlock}}(\&timebomb\_impl-\/>\mbox{\hyperlink{structaws__timebomb__impl_ab76a9532ac9fba58076ef480c48e8349}{mutex}});}
+\DoxyCodeLine{91 \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_TESTING\_AWS\_TEST\_ALLOCATORS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

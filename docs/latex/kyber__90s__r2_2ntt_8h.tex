@@ -1,0 +1,55 @@
+\hypertarget{kyber__90s__r2_2ntt_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\+\_\+90s\+\_\+r2/ntt.h File Reference}
+\label{kyber__90s__r2_2ntt_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_90s\_r2/ntt.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_90s\_r2/ntt.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{kyber__90s__r2_2ntt_8h_aaa3a9f01588f3a517aa2aa333be43c6c}{PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+ntt}} (int16\+\_\+t $\ast$\mbox{\hyperlink{structpoly}{poly}})
+\item 
+void \mbox{\hyperlink{kyber__90s__r2_2ntt_8h_ac973b46a443ff751d7525498acaf8be3}{PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+invntt}} (int16\+\_\+t $\ast$\mbox{\hyperlink{structpoly}{poly}})
+\item 
+void \mbox{\hyperlink{kyber__90s__r2_2ntt_8h_ac2d96b8a0483c39941a1f533817e0086}{PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+basemul}} (int16\+\_\+t r\mbox{[}2\mbox{]}, const int16\+\_\+t a\mbox{[}2\mbox{]}, const int16\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}\mbox{[}2\mbox{]}, int16\+\_\+t zeta)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int16\+\_\+t \mbox{\hyperlink{kyber__90s__r2_2ntt_8h_a57def35cfc338166c102f44e214e078a}{PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+zetas}} \mbox{[}128\mbox{]}
+\item 
+const int16\+\_\+t \mbox{\hyperlink{kyber__90s__r2_2ntt_8h_a0fc0253072d80f62ac094ff2d7464fc6}{PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+zetasinv}} \mbox{[}128\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{kyber__90s__r2_2ntt_8h_ac2d96b8a0483c39941a1f533817e0086}\label{kyber__90s__r2_2ntt_8h_ac2d96b8a0483c39941a1f533817e0086}} 
+\index{ntt.h@{ntt.h}!PQCLEAN\_KYBER51290S\_CLEAN\_basemul@{PQCLEAN\_KYBER51290S\_CLEAN\_basemul}}
+\index{PQCLEAN\_KYBER51290S\_CLEAN\_basemul@{PQCLEAN\_KYBER51290S\_CLEAN\_basemul}!ntt.h@{ntt.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER51290S\_CLEAN\_basemul()}{PQCLEAN\_KYBER51290S\_CLEAN\_basemul()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+basemul (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{r\mbox{[}2\mbox{]},  }\item[{const int16\+\_\+t}]{a\mbox{[}2\mbox{]},  }\item[{const int16\+\_\+t}]{b\mbox{[}2\mbox{]},  }\item[{int16\+\_\+t}]{zeta }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__90s__r2_2ntt_8h_ac973b46a443ff751d7525498acaf8be3}\label{kyber__90s__r2_2ntt_8h_ac973b46a443ff751d7525498acaf8be3}} 
+\index{ntt.h@{ntt.h}!PQCLEAN\_KYBER51290S\_CLEAN\_invntt@{PQCLEAN\_KYBER51290S\_CLEAN\_invntt}}
+\index{PQCLEAN\_KYBER51290S\_CLEAN\_invntt@{PQCLEAN\_KYBER51290S\_CLEAN\_invntt}!ntt.h@{ntt.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER51290S\_CLEAN\_invntt()}{PQCLEAN\_KYBER51290S\_CLEAN\_invntt()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+invntt (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{poly }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{kyber__90s__r2_2ntt_8h_aaa3a9f01588f3a517aa2aa333be43c6c}\label{kyber__90s__r2_2ntt_8h_aaa3a9f01588f3a517aa2aa333be43c6c}} 
+\index{ntt.h@{ntt.h}!PQCLEAN\_KYBER51290S\_CLEAN\_ntt@{PQCLEAN\_KYBER51290S\_CLEAN\_ntt}}
+\index{PQCLEAN\_KYBER51290S\_CLEAN\_ntt@{PQCLEAN\_KYBER51290S\_CLEAN\_ntt}!ntt.h@{ntt.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER51290S\_CLEAN\_ntt()}{PQCLEAN\_KYBER51290S\_CLEAN\_ntt()}}
+{\footnotesize\ttfamily void PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+ntt (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{poly }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{kyber__90s__r2_2ntt_8h_a57def35cfc338166c102f44e214e078a}\label{kyber__90s__r2_2ntt_8h_a57def35cfc338166c102f44e214e078a}} 
+\index{ntt.h@{ntt.h}!PQCLEAN\_KYBER51290S\_CLEAN\_zetas@{PQCLEAN\_KYBER51290S\_CLEAN\_zetas}}
+\index{PQCLEAN\_KYBER51290S\_CLEAN\_zetas@{PQCLEAN\_KYBER51290S\_CLEAN\_zetas}!ntt.h@{ntt.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER51290S\_CLEAN\_zetas}{PQCLEAN\_KYBER51290S\_CLEAN\_zetas}}
+{\footnotesize\ttfamily const int16\+\_\+t PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+zetas\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{kyber__90s__r2_2ntt_8h_a0fc0253072d80f62ac094ff2d7464fc6}\label{kyber__90s__r2_2ntt_8h_a0fc0253072d80f62ac094ff2d7464fc6}} 
+\index{ntt.h@{ntt.h}!PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv@{PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv}}
+\index{PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv@{PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv}!ntt.h@{ntt.h}}
+\doxysubsubsection{\texorpdfstring{PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv}{PQCLEAN\_KYBER51290S\_CLEAN\_zetasinv}}
+{\footnotesize\ttfamily const int16\+\_\+t PQCLEAN\+\_\+\+KYBER51290\+S\+\_\+\+CLEAN\+\_\+zetasinv\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

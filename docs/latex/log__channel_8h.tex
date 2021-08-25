@@ -1,0 +1,63 @@
+\hypertarget{log__channel_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\+\_\+channel.h File Reference}
+\label{log__channel_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_channel.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_channel.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__log__channel__vtable}{aws\+\_\+log\+\_\+channel\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{log__channel_8h_ae100e2b25366adccaa157a6a8e587f28}{aws\+\_\+log\+\_\+channel\+\_\+send\+\_\+fn}}(struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+typedef void() \mbox{\hyperlink{log__channel_8h_a1e9a089590a13353849a3398f5edd5d2}{aws\+\_\+log\+\_\+channel\+\_\+clean\+\_\+up\+\_\+fn}}(struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{log__channel_8h_a8474ee6afd0943dde9d192af80371daa}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+foreground}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{log__channel_8h_a6beebb7ce98cb1f59936e7d7310838f0}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+background}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{log__channel_8h_a3a05590b3335f7e9a52ea7b2c240ca59}{aws\+\_\+log\+\_\+channel\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{log__channel_8h_a1e9a089590a13353849a3398f5edd5d2}\label{log__channel_8h_a1e9a089590a13353849a3398f5edd5d2}} 
+\index{log\_channel.h@{log\_channel.h}!aws\_log\_channel\_clean\_up\_fn@{aws\_log\_channel\_clean\_up\_fn}}
+\index{aws\_log\_channel\_clean\_up\_fn@{aws\_log\_channel\_clean\_up\_fn}!log\_channel.h@{log\_channel.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_channel\_clean\_up\_fn}{aws\_log\_channel\_clean\_up\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+log\+\_\+channel\+\_\+clean\+\_\+up\+\_\+fn(struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)}
+
+\mbox{\Hypertarget{log__channel_8h_ae100e2b25366adccaa157a6a8e587f28}\label{log__channel_8h_ae100e2b25366adccaa157a6a8e587f28}} 
+\index{log\_channel.h@{log\_channel.h}!aws\_log\_channel\_send\_fn@{aws\_log\_channel\_send\_fn}}
+\index{aws\_log\_channel\_send\_fn@{aws\_log\_channel\_send\_fn}!log\_channel.h@{log\_channel.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_channel\_send\_fn}{aws\_log\_channel\_send\_fn}}
+{\footnotesize\ttfamily typedef int() aws\+\_\+log\+\_\+channel\+\_\+send\+\_\+fn(struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{log__channel_8h_a3a05590b3335f7e9a52ea7b2c240ca59}\label{log__channel_8h_a3a05590b3335f7e9a52ea7b2c240ca59}} 
+\index{log\_channel.h@{log\_channel.h}!aws\_log\_channel\_clean\_up@{aws\_log\_channel\_clean\_up}}
+\index{aws\_log\_channel\_clean\_up@{aws\_log\_channel\_clean\_up}!log\_channel.h@{log\_channel.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_channel\_clean\_up()}{aws\_log\_channel\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+log\+\_\+channel\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel_8h_a6beebb7ce98cb1f59936e7d7310838f0}\label{log__channel_8h_a6beebb7ce98cb1f59936e7d7310838f0}} 
+\index{log\_channel.h@{log\_channel.h}!aws\_log\_channel\_init\_background@{aws\_log\_channel\_init\_background}}
+\index{aws\_log\_channel\_init\_background@{aws\_log\_channel\_init\_background}!log\_channel.h@{log\_channel.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_channel\_init\_background()}{aws\_log\_channel\_init\_background()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+background (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log__channel_8h_a8474ee6afd0943dde9d192af80371daa}\label{log__channel_8h_a8474ee6afd0943dde9d192af80371daa}} 
+\index{log\_channel.h@{log\_channel.h}!aws\_log\_channel\_init\_foreground@{aws\_log\_channel\_init\_foreground}}
+\index{aws\_log\_channel\_init\_foreground@{aws\_log\_channel\_init\_foreground}!log\_channel.h@{log\_channel.h}}
+\doxysubsubsection{\texorpdfstring{aws\_log\_channel\_init\_foreground()}{aws\_log\_channel\_init\_foreground()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+foreground (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$}]{writer }\end{DoxyParamCaption})}
+

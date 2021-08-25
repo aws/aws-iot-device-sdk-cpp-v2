@@ -1,0 +1,51 @@
+\hypertarget{windows_2device__random_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/device\+\_\+random.c File Reference}
+\label{windows_2device__random_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/device\_random.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/device\_random.c}}
+{\ttfamily \#include $<$aws/common/device\+\_\+random.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$Windows.\+h$>$}\newline
+{\ttfamily \#include $<$bcrypt.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{windows_2device__random_8c_a63f0e8f65be7d4977a5796399ff4e87c}{s\+\_\+init\+\_\+rand}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int \mbox{\hyperlink{windows_2device__random_8c_a317701598a41088fc2b6e11e684c129e}{aws\+\_\+device\+\_\+random\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE \mbox{\hyperlink{windows_2device__random_8c_a57409580a1f1fb0ccd9cec6d0b525983}{s\+\_\+alg\+\_\+handle}} = NULL
+\item 
+static \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} \mbox{\hyperlink{windows_2device__random_8c_ac850703550fc9f487d4401081c7cba37}{s\+\_\+rand\+\_\+init}} = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{windows_2device__random_8c_a317701598a41088fc2b6e11e684c129e}\label{windows_2device__random_8c_a317701598a41088fc2b6e11e684c129e}} 
+\index{device\_random.c@{device\_random.c}!aws\_device\_random\_buffer@{aws\_device\_random\_buffer}}
+\index{aws\_device\_random\_buffer@{aws\_device\_random\_buffer}!device\_random.c@{device\_random.c}}
+\doxysubsubsection{\texorpdfstring{aws\_device\_random\_buffer()}{aws\_device\_random\_buffer()}}
+{\footnotesize\ttfamily int aws\+\_\+device\+\_\+random\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})}
+
+Fill a buffer with unpredictably random bytes, suitable for cryptographic use. \mbox{\Hypertarget{windows_2device__random_8c_a63f0e8f65be7d4977a5796399ff4e87c}\label{windows_2device__random_8c_a63f0e8f65be7d4977a5796399ff4e87c}} 
+\index{device\_random.c@{device\_random.c}!s\_init\_rand@{s\_init\_rand}}
+\index{s\_init\_rand@{s\_init\_rand}!device\_random.c@{device\_random.c}}
+\doxysubsubsection{\texorpdfstring{s\_init\_rand()}{s\_init\_rand()}}
+{\footnotesize\ttfamily static void s\+\_\+init\+\_\+rand (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{windows_2device__random_8c_a57409580a1f1fb0ccd9cec6d0b525983}\label{windows_2device__random_8c_a57409580a1f1fb0ccd9cec6d0b525983}} 
+\index{device\_random.c@{device\_random.c}!s\_alg\_handle@{s\_alg\_handle}}
+\index{s\_alg\_handle@{s\_alg\_handle}!device\_random.c@{device\_random.c}}
+\doxysubsubsection{\texorpdfstring{s\_alg\_handle}{s\_alg\_handle}}
+{\footnotesize\ttfamily BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE s\+\_\+alg\+\_\+handle = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{windows_2device__random_8c_ac850703550fc9f487d4401081c7cba37}\label{windows_2device__random_8c_ac850703550fc9f487d4401081c7cba37}} 
+\index{device\_random.c@{device\_random.c}!s\_rand\_init@{s\_rand\_init}}
+\index{s\_rand\_init@{s\_rand\_init}!device\_random.c@{device\_random.c}}
+\doxysubsubsection{\texorpdfstring{s\_rand\_init}{s\_rand\_init}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} s\+\_\+rand\+\_\+init = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+

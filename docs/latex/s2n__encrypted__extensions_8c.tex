@@ -1,0 +1,35 @@
+\hypertarget{s2n__encrypted__extensions_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+encrypted\+\_\+extensions.c File Reference}
+\label{s2n__encrypted__extensions_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_encrypted\_extensions.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_encrypted\_extensions.c}}
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+list.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__encrypted__extensions_8c_aa632e39bf08b4068fb9c5ab99b7febf3}{s2n\+\_\+encrypted\+\_\+extensions\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__encrypted__extensions_8c_a609433f4aa4328435323624ec74fce5d}{s2n\+\_\+encrypted\+\_\+extensions\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__encrypted__extensions_8c_a609433f4aa4328435323624ec74fce5d}\label{s2n__encrypted__extensions_8c_a609433f4aa4328435323624ec74fce5d}} 
+\index{s2n\_encrypted\_extensions.c@{s2n\_encrypted\_extensions.c}!s2n\_encrypted\_extensions\_recv@{s2n\_encrypted\_extensions\_recv}}
+\index{s2n\_encrypted\_extensions\_recv@{s2n\_encrypted\_extensions\_recv}!s2n\_encrypted\_extensions.c@{s2n\_encrypted\_extensions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_encrypted\_extensions\_recv()}{s2n\_encrypted\_extensions\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+encrypted\+\_\+extensions\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__encrypted__extensions_8c_aa632e39bf08b4068fb9c5ab99b7febf3}\label{s2n__encrypted__extensions_8c_aa632e39bf08b4068fb9c5ab99b7febf3}} 
+\index{s2n\_encrypted\_extensions.c@{s2n\_encrypted\_extensions.c}!s2n\_encrypted\_extensions\_send@{s2n\_encrypted\_extensions\_send}}
+\index{s2n\_encrypted\_extensions\_send@{s2n\_encrypted\_extensions\_send}!s2n\_encrypted\_extensions.c@{s2n\_encrypted\_extensions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_encrypted\_extensions\_send()}{s2n\_encrypted\_extensions\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+encrypted\+\_\+extensions\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+Specified in \href{https://tools.ietf.org/html/rfc8446\#section-4.3.1}{\texttt{ https\+://tools.\+ietf.\+org/html/rfc8446\#section-\/4.\+3.\+1}}
+
+In all handshakes, the server MUST send the Encrypted\+Extensions message immediately after the Server\+Hello message.
+
+The Encrypted\+Extensions message contains extensions that can be protected, i.\+e., any which are not needed to establish the cryptographic context but which are not associated with individual certificates. 

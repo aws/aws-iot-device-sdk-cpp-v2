@@ -1,0 +1,156 @@
+\hypertarget{s2n__rsa__pss__rsae__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+rsa\+\_\+pss\+\_\+rsae\+\_\+test.c File Reference}
+\label{s2n__rsa__pss__rsae__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_rsa\_pss\_rsae\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_rsa\_pss\_rsae\_test.c}}
+{\ttfamily \#include $<$openssl/evp.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/rsa.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa\+\_\+pss.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtest__case}{test\+\_\+case}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_ad15b7a69816c93708ca6f3a862e17eec}{HASH\+\_\+\+ALG}}~\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2\+N\+\_\+\+HASH\+\_\+\+SHA256}}
+\item 
+\#define \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a42eb19b10bf0faee9c8decb218bdeae9}{HASH\+\_\+\+LENGTH}}~256
+\item 
+\#define \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_af3ac692acba3728bfd3a4989fa45c7d6}{RANDOM\+\_\+\+BLOB\+\_\+\+SIZE}}~\mbox{\hyperlink{s2n__rsa__pss_8h_a08f721bb3dcb6ca0a197b775acbee98f}{RSA\+\_\+\+PSS\+\_\+\+SIGN\+\_\+\+VERIFY\+\_\+\+RANDOM\+\_\+\+BLOB\+\_\+\+SIZE}}
+\item 
+\#define \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a619dcd0f33674f0e854fdd6b8d462b89}{hash\+\_\+state\+\_\+new}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  input)
+\item 
+\#define \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_ad8b1ea0169b0a2dcb18f3806d624f2e2}{hash\+\_\+state\+\_\+for\+\_\+alg\+\_\+new}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  hash\+\_\+alg,  input)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structtest__case}{test\+\_\+case}} \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a0e88ea9d992e327a56fffbf909e15438}{test\+\_\+cases}} \mbox{[}$\,$\mbox{]}
+\item 
+const char $\ast$ \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a9c970f3cb2fa0fc564630968ad4d1e5b}{kye\+\_\+param\+\_\+n}}
+\item 
+const char $\ast$ \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a991797ac18e8c960fa9be5caf4da305f}{key\+\_\+param\+\_\+e}}
+\item 
+const char $\ast$ \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_a1efab00919bc1bb4ef777e4bdf7b175d}{key\+\_\+param\+\_\+d}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_ad15b7a69816c93708ca6f3a862e17eec}\label{s2n__rsa__pss__rsae__test_8c_ad15b7a69816c93708ca6f3a862e17eec}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!HASH\_ALG@{HASH\_ALG}}
+\index{HASH\_ALG@{HASH\_ALG}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{HASH\_ALG}{HASH\_ALG}}
+{\footnotesize\ttfamily \#define HASH\+\_\+\+ALG~\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2\+N\+\_\+\+HASH\+\_\+\+SHA256}}}
+
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a42eb19b10bf0faee9c8decb218bdeae9}\label{s2n__rsa__pss__rsae__test_8c_a42eb19b10bf0faee9c8decb218bdeae9}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!HASH\_LENGTH@{HASH\_LENGTH}}
+\index{HASH\_LENGTH@{HASH\_LENGTH}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{HASH\_LENGTH}{HASH\_LENGTH}}
+{\footnotesize\ttfamily \#define HASH\+\_\+\+LENGTH~256}
+
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_ad8b1ea0169b0a2dcb18f3806d624f2e2}\label{s2n__rsa__pss__rsae__test_8c_ad8b1ea0169b0a2dcb18f3806d624f2e2}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!hash\_state\_for\_alg\_new@{hash\_state\_for\_alg\_new}}
+\index{hash\_state\_for\_alg\_new@{hash\_state\_for\_alg\_new}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{hash\_state\_for\_alg\_new}{hash\_state\_for\_alg\_new}}
+{\footnotesize\ttfamily \#define hash\+\_\+state\+\_\+for\+\_\+alg\+\_\+new(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{hash\+\_\+alg,  }\item[{}]{input }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    DEFER\_CLEANUP(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}} = \{0\}, \mbox{\hyperlink{crypto_2s2n__hash_8c_a9d55a86256e1fd602ab3d00d5d7d506b}{s2n\_hash\_free}}); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a6e1456ecefa61835c01b7180134e04b8}{s2n\_hash\_new}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}})); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a684a3779eebad8329d41443454dd6fa2}{s2n\_hash\_init}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, hash\_alg)); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a0f3c4efbf552f607071e552dc0548ee6}{s2n\_hash\_update}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, (input).data, (input).size)); \(\backslash\)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a619dcd0f33674f0e854fdd6b8d462b89}\label{s2n__rsa__pss__rsae__test_8c_a619dcd0f33674f0e854fdd6b8d462b89}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!hash\_state\_new@{hash\_state\_new}}
+\index{hash\_state\_new@{hash\_state\_new}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{hash\_state\_new}{hash\_state\_new}}
+{\footnotesize\ttfamily \#define hash\+\_\+state\+\_\+new(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}},  }\item[{}]{input }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    DEFER\_CLEANUP(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}} = \{0\}, \mbox{\hyperlink{crypto_2s2n__hash_8c_a9d55a86256e1fd602ab3d00d5d7d506b}{s2n\_hash\_free}}); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a6e1456ecefa61835c01b7180134e04b8}{s2n\_hash\_new}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}})); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a684a3779eebad8329d41443454dd6fa2}{s2n\_hash\_init}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, \mbox{\hyperlink{s2n__rsa__pss__rsae__test_8c_ad15b7a69816c93708ca6f3a862e17eec}{HASH\_ALG}})); \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{crypto_2s2n__hash_8c_a0f3c4efbf552f607071e552dc0548ee6}{s2n\_hash\_update}}(\&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}, (input).data, (input).size)); \(\backslash\)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_af3ac692acba3728bfd3a4989fa45c7d6}\label{s2n__rsa__pss__rsae__test_8c_af3ac692acba3728bfd3a4989fa45c7d6}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!RANDOM\_BLOB\_SIZE@{RANDOM\_BLOB\_SIZE}}
+\index{RANDOM\_BLOB\_SIZE@{RANDOM\_BLOB\_SIZE}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{RANDOM\_BLOB\_SIZE}{RANDOM\_BLOB\_SIZE}}
+{\footnotesize\ttfamily \#define RANDOM\+\_\+\+BLOB\+\_\+\+SIZE~\mbox{\hyperlink{s2n__rsa__pss_8h_a08f721bb3dcb6ca0a197b775acbee98f}{RSA\+\_\+\+PSS\+\_\+\+SIGN\+\_\+\+VERIFY\+\_\+\+RANDOM\+\_\+\+BLOB\+\_\+\+SIZE}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__rsa__pss__rsae__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!main@{main}}
+\index{main@{main}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a1efab00919bc1bb4ef777e4bdf7b175d}\label{s2n__rsa__pss__rsae__test_8c_a1efab00919bc1bb4ef777e4bdf7b175d}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!key\_param\_d@{key\_param\_d}}
+\index{key\_param\_d@{key\_param\_d}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{key\_param\_d}{key\_param\_d}}
+{\footnotesize\ttfamily const char$\ast$ key\+\_\+param\+\_\+d}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}383a6f19e1ea27fd08c7fbc3bfa684bd6329888c0bbe4c98625e"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}7181f411cfd0853144a3039404dda41bce2e31d588ec57c0e148146f0fa65b39008ba5"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}835f829ba35ae2f155d61b8a12581b99c927fd2f22252c5e73cba4a610db3973e019ee"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}0f95130d4319ed413432f2e5e20d5215cdd27c2164206b3f80edee51938a25c1"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a991797ac18e8c960fa9be5caf4da305f}\label{s2n__rsa__pss__rsae__test_8c_a991797ac18e8c960fa9be5caf4da305f}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!key\_param\_e@{key\_param\_e}}
+\index{key\_param\_e@{key\_param\_e}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{key\_param\_e}{key\_param\_e}}
+{\footnotesize\ttfamily const char$\ast$ key\+\_\+param\+\_\+e}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}0000000000000000000000000000000000000000000000000000"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}0000000000000000000000000000000000000000000000000000000000000000000000"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}0000000000000000000000000000000000000000000000000000000000000000000000"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}0000000000000000000000000000000000000000000000000000000000010001"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a9c970f3cb2fa0fc564630968ad4d1e5b}\label{s2n__rsa__pss__rsae__test_8c_a9c970f3cb2fa0fc564630968ad4d1e5b}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!kye\_param\_n@{kye\_param\_n}}
+\index{kye\_param\_n@{kye\_param\_n}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{kye\_param\_n}{kye\_param\_n}}
+{\footnotesize\ttfamily const char$\ast$ kye\+\_\+param\+\_\+n}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}bcb47b2e0dafcba81ff2a2b5cb115ca7e757184c9d72bcdc"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}da707a146b3b4e29989ddc660bd694865b932b71ca24a335cf4d339c719183e6222e4c"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}9ea6875acd528a49ba21863fe08147c3a47e41990b51a03f77d22137f8d74c43a5a45f"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}4e9e18a2d15db051dc89385db9cf8374b63a8cc88113710e6d8179075b7dc79ee76b"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__rsa__pss__rsae__test_8c_a0e88ea9d992e327a56fffbf909e15438}\label{s2n__rsa__pss__rsae__test_8c_a0e88ea9d992e327a56fffbf909e15438}} 
+\index{s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}!test\_cases@{test\_cases}}
+\index{test\_cases@{test\_cases}!s2n\_rsa\_pss\_rsae\_test.c@{s2n\_rsa\_pss\_rsae\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_cases}{test\_cases}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structtest__case}{test\+\_\+case}} test\+\_\+cases\mbox{[}$\,$\mbox{]}}
+

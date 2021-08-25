@@ -1,0 +1,63 @@
+\hypertarget{structstandard__strategy}{}\doxysection{standard\+\_\+strategy Struct Reference}
+\label{structstandard__strategy}\index{standard\_strategy@{standard\_strategy}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} \mbox{\hyperlink{structstandard__strategy_a7581b8cbf20b71393597400c6d16ce6a}{base}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$ \mbox{\hyperlink{structstandard__strategy_a400318b1dc60e1098c9cc0f0a89b363c}{exponential\+\_\+backoff\+\_\+retry\+\_\+strategy}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structstandard__strategy_a0b9dd85481a38c5acf5a9350471e33db}{max\+\_\+capacity}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structstandard__strategy_a6ca62f7583a58b988d15f713374dab58}{token\_buckets}}\\
+\>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structstandard__strategy_aa10de7242478511432961664b7f02498}{lock}}\\
+\} \mbox{\hyperlink{structstandard__strategy_a4fea0f08e6607576e7a3a900d9f8e8dd}{synced\_data}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structstandard__strategy_a7581b8cbf20b71393597400c6d16ce6a}\label{structstandard__strategy_a7581b8cbf20b71393597400c6d16ce6a}} 
+\index{standard\_strategy@{standard\_strategy}!base@{base}}
+\index{base@{base}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} standard\+\_\+strategy\+::base}
+
+\mbox{\Hypertarget{structstandard__strategy_a400318b1dc60e1098c9cc0f0a89b363c}\label{structstandard__strategy_a400318b1dc60e1098c9cc0f0a89b363c}} 
+\index{standard\_strategy@{standard\_strategy}!exponential\_backoff\_retry\_strategy@{exponential\_backoff\_retry\_strategy}}
+\index{exponential\_backoff\_retry\_strategy@{exponential\_backoff\_retry\_strategy}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{exponential\_backoff\_retry\_strategy}{exponential\_backoff\_retry\_strategy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}}$\ast$ standard\+\_\+strategy\+::exponential\+\_\+backoff\+\_\+retry\+\_\+strategy}
+
+\mbox{\Hypertarget{structstandard__strategy_aa10de7242478511432961664b7f02498}\label{structstandard__strategy_aa10de7242478511432961664b7f02498}} 
+\index{standard\_strategy@{standard\_strategy}!lock@{lock}}
+\index{lock@{lock}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} standard\+\_\+strategy\+::lock}
+
+\mbox{\Hypertarget{structstandard__strategy_a0b9dd85481a38c5acf5a9350471e33db}\label{structstandard__strategy_a0b9dd85481a38c5acf5a9350471e33db}} 
+\index{standard\_strategy@{standard\_strategy}!max\_capacity@{max\_capacity}}
+\index{max\_capacity@{max\_capacity}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{max\_capacity}{max\_capacity}}
+{\footnotesize\ttfamily size\+\_\+t standard\+\_\+strategy\+::max\+\_\+capacity}
+
+\mbox{\Hypertarget{structstandard__strategy_a4fea0f08e6607576e7a3a900d9f8e8dd}\label{structstandard__strategy_a4fea0f08e6607576e7a3a900d9f8e8dd}} 
+\index{standard\_strategy@{standard\_strategy}!synced\_data@{synced\_data}}
+\index{synced\_data@{synced\_data}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  standard\+\_\+strategy\+::synced\+\_\+data}
+
+\mbox{\Hypertarget{structstandard__strategy_a6ca62f7583a58b988d15f713374dab58}\label{structstandard__strategy_a6ca62f7583a58b988d15f713374dab58}} 
+\index{standard\_strategy@{standard\_strategy}!token\_buckets@{token\_buckets}}
+\index{token\_buckets@{token\_buckets}!standard\_strategy@{standard\_strategy}}
+\doxysubsubsection{\texorpdfstring{token\_buckets}{token\_buckets}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} standard\+\_\+strategy\+::token\+\_\+buckets}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/\mbox{\hyperlink{standard__retry__strategy_8c}{standard\+\_\+retry\+\_\+strategy.\+c}}\end{DoxyCompactItemize}

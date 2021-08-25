@@ -1,0 +1,90 @@
+\hypertarget{s2n_2bin_2common_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/bin/common.h File Reference}
+\label{s2n_2bin_2common_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/bin/common.h@{crt/aws-\/crt-\/cpp/crt/s2n/bin/common.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n_2bin_2common_8h_a211dc4944cdb22ac8d3a0491c9b90b91}{GUARD\+\_\+\+EXIT}}(x,  msg)
+\item 
+\#define \mbox{\hyperlink{s2n_2bin_2common_8h_a6ed89eb3935fbb99ce2f86b1f6ac44ea}{GUARD\+\_\+\+RETURN}}(x,  msg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{s2n_2bin_2common_8h_ac84a28b38226f2a7876a9373c8063faa}{print\+\_\+s2n\+\_\+error}} (const char $\ast$app\+\_\+error)
+\item 
+int \mbox{\hyperlink{s2n_2bin_2common_8h_adc37832656c6aa5548ab17e981176dab}{echo}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int sockfd)
+\item 
+int \mbox{\hyperlink{s2n_2bin_2common_8h_a705a2196905bb9bfb13356c7a6a0b8b3}{negotiate}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int sockfd)
+\item 
+int \mbox{\hyperlink{s2n_2bin_2common_8h_a30cc28e36c5df8858ac165b1df9031e0}{https}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t bench)
+\item 
+char $\ast$ \mbox{\hyperlink{s2n_2bin_2common_8h_ab386e34da22178906adb6beba19a90f2}{load\+\_\+file\+\_\+to\+\_\+cstring}} (const char $\ast$path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n_2bin_2common_8h_a211dc4944cdb22ac8d3a0491c9b90b91}\label{s2n_2bin_2common_8h_a211dc4944cdb22ac8d3a0491c9b90b91}} 
+\index{common.h@{common.h}!GUARD\_EXIT@{GUARD\_EXIT}}
+\index{GUARD\_EXIT@{GUARD\_EXIT}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{GUARD\_EXIT}{GUARD\_EXIT}}
+{\footnotesize\ttfamily \#define GUARD\+\_\+\+EXIT(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{msg }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                      \(\backslash\)}
+\DoxyCodeLine{    if ((x) < 0) \{          \(\backslash\)}
+\DoxyCodeLine{      print\_s2n\_error(msg); \(\backslash\)}
+\DoxyCodeLine{      exit(1);              \(\backslash\)}
+\DoxyCodeLine{    \}                       \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n_2bin_2common_8h_a6ed89eb3935fbb99ce2f86b1f6ac44ea}\label{s2n_2bin_2common_8h_a6ed89eb3935fbb99ce2f86b1f6ac44ea}} 
+\index{common.h@{common.h}!GUARD\_RETURN@{GUARD\_RETURN}}
+\index{GUARD\_RETURN@{GUARD\_RETURN}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{GUARD\_RETURN}{GUARD\_RETURN}}
+{\footnotesize\ttfamily \#define GUARD\+\_\+\+RETURN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{msg }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                       \(\backslash\)}
+\DoxyCodeLine{    if ((x) < 0) \{           \(\backslash\)}
+\DoxyCodeLine{      print\_s2n\_error(msg);  \(\backslash\)}
+\DoxyCodeLine{      return -\/1;             \(\backslash\)}
+\DoxyCodeLine{    \}                        \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n_2bin_2common_8h_adc37832656c6aa5548ab17e981176dab}\label{s2n_2bin_2common_8h_adc37832656c6aa5548ab17e981176dab}} 
+\index{common.h@{common.h}!echo@{echo}}
+\index{echo@{echo}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{echo()}{echo()}}
+{\footnotesize\ttfamily int echo (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n_2bin_2common_8h_a30cc28e36c5df8858ac165b1df9031e0}\label{s2n_2bin_2common_8h_a30cc28e36c5df8858ac165b1df9031e0}} 
+\index{common.h@{common.h}!https@{https}}
+\index{https@{https}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{https()}{https()}}
+{\footnotesize\ttfamily int https (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint32\+\_\+t}]{bench }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n_2bin_2common_8h_ab386e34da22178906adb6beba19a90f2}\label{s2n_2bin_2common_8h_ab386e34da22178906adb6beba19a90f2}} 
+\index{common.h@{common.h}!load\_file\_to\_cstring@{load\_file\_to\_cstring}}
+\index{load\_file\_to\_cstring@{load\_file\_to\_cstring}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{load\_file\_to\_cstring()}{load\_file\_to\_cstring()}}
+{\footnotesize\ttfamily char$\ast$ load\+\_\+file\+\_\+to\+\_\+cstring (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n_2bin_2common_8h_a705a2196905bb9bfb13356c7a6a0b8b3}\label{s2n_2bin_2common_8h_a705a2196905bb9bfb13356c7a6a0b8b3}} 
+\index{common.h@{common.h}!negotiate@{negotiate}}
+\index{negotiate@{negotiate}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{negotiate()}{negotiate()}}
+{\footnotesize\ttfamily int negotiate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n_2bin_2common_8h_ac84a28b38226f2a7876a9373c8063faa}\label{s2n_2bin_2common_8h_ac84a28b38226f2a7876a9373c8063faa}} 
+\index{common.h@{common.h}!print\_s2n\_error@{print\_s2n\_error}}
+\index{print\_s2n\_error@{print\_s2n\_error}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{print\_s2n\_error()}{print\_s2n\_error()}}
+{\footnotesize\ttfamily void print\+\_\+s2n\+\_\+error (\begin{DoxyParamCaption}\item[{const char $\ast$}]{app\+\_\+error }\end{DoxyParamCaption})}
+

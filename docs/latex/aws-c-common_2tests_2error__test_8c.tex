@@ -1,0 +1,176 @@
+\hypertarget{aws-c-common_2tests_2error__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/error\+\_\+test.c File Reference}
+\label{aws-c-common_2tests_2error__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/error\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/error\_test.c}}
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structerror__test__cb__data}{error\+\_\+test\+\_\+cb\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structerror__thread__test__data}{error\+\_\+thread\+\_\+test\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a1301be7f6835a14189efd78825e41cbb}{s\+\_\+setup\+\_\+errors\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_aebdda9cf1f5897485d9d411c0802a068}{s\+\_\+teardown\+\_\+errors\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, int setup\+\_\+res, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a602a0a6ccc088841628483b085b9d5d2}{s\+\_\+raise\+\_\+errors\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_add2bcc03737f84d45143c926517b972b}{s\+\_\+reset\+\_\+errors\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_ab40fb7effaf25591f631974cbe77537f}{s\+\_\+error\+\_\+test\+\_\+global\+\_\+cb}} (int err, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_ac30ca3e94cd77fcafc224c8e24d7d68e}{s\+\_\+error\+\_\+test\+\_\+thread\+\_\+local\+\_\+cb}} (int err, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a14789d424dabcaf50021bf5aff4dc50b}{s\+\_\+error\+\_\+callback\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a86b8859bd1a9b953df52fcfc88e0f60e}{s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+in\+\_\+slot\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a6f6c420727598ad6cdc0443673bdef20}{s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+no\+\_\+slot\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_ac0659a5a52527e090e0d9aacd40fb43b}{s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+range\+\_\+too\+\_\+large\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a85e80a73677809c85cb290ad48248fcc}{s\+\_\+error\+\_\+thread\+\_\+test\+\_\+thread\+\_\+local\+\_\+cb}} (int err, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a741b41767e871cc6a7b449de81d4ad13}{s\+\_\+error\+\_\+thread\+\_\+fn}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a5afa2f109fd6b2c9c81ba1d299bb37dd}{s\+\_\+error\+\_\+code\+\_\+cross\+\_\+thread\+\_\+test\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a7aabcd3144ceee33e381aabf9de822bc}{s\+\_\+aws\+\_\+load\+\_\+error\+\_\+strings\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a3f2c6ad4494a5e63781d2ac2241436c5}{s\+\_\+aws\+\_\+assume\+\_\+compiles\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a913f783fe4ee9ffd4dfeed2ea645829e}{s\+\_\+errors\+\_\+list}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a3f2c6ad4494a5e63781d2ac2241436c5}\label{aws-c-common_2tests_2error__test_8c_a3f2c6ad4494a5e63781d2ac2241436c5}} 
+\index{error\_test.c@{error\_test.c}!s\_aws\_assume\_compiles\_test@{s\_aws\_assume\_compiles\_test}}
+\index{s\_aws\_assume\_compiles\_test@{s\_aws\_assume\_compiles\_test}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_assume\_compiles\_test()}{s\_aws\_assume\_compiles\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+assume\+\_\+compiles\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a7aabcd3144ceee33e381aabf9de822bc}\label{aws-c-common_2tests_2error__test_8c_a7aabcd3144ceee33e381aabf9de822bc}} 
+\index{error\_test.c@{error\_test.c}!s\_aws\_load\_error\_strings\_test@{s\_aws\_load\_error\_strings\_test}}
+\index{s\_aws\_load\_error\_strings\_test@{s\_aws\_load\_error\_strings\_test}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_load\_error\_strings\_test()}{s\_aws\_load\_error\_strings\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+load\+\_\+error\+\_\+strings\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a14789d424dabcaf50021bf5aff4dc50b}\label{aws-c-common_2tests_2error__test_8c_a14789d424dabcaf50021bf5aff4dc50b}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_callback\_test\_fn@{s\_error\_callback\_test\_fn}}
+\index{s\_error\_callback\_test\_fn@{s\_error\_callback\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_callback\_test\_fn()}{s\_error\_callback\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+error\+\_\+callback\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a5afa2f109fd6b2c9c81ba1d299bb37dd}\label{aws-c-common_2tests_2error__test_8c_a5afa2f109fd6b2c9c81ba1d299bb37dd}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_code\_cross\_thread\_test\_fn@{s\_error\_code\_cross\_thread\_test\_fn}}
+\index{s\_error\_code\_cross\_thread\_test\_fn@{s\_error\_code\_cross\_thread\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_code\_cross\_thread\_test\_fn()}{s\_error\_code\_cross\_thread\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+error\+\_\+code\+\_\+cross\+\_\+thread\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_ab40fb7effaf25591f631974cbe77537f}\label{aws-c-common_2tests_2error__test_8c_ab40fb7effaf25591f631974cbe77537f}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_test\_global\_cb@{s\_error\_test\_global\_cb}}
+\index{s\_error\_test\_global\_cb@{s\_error\_test\_global\_cb}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_test\_global\_cb()}{s\_error\_test\_global\_cb()}}
+{\footnotesize\ttfamily static void s\+\_\+error\+\_\+test\+\_\+global\+\_\+cb (\begin{DoxyParamCaption}\item[{int}]{err,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_ac30ca3e94cd77fcafc224c8e24d7d68e}\label{aws-c-common_2tests_2error__test_8c_ac30ca3e94cd77fcafc224c8e24d7d68e}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_test\_thread\_local\_cb@{s\_error\_test\_thread\_local\_cb}}
+\index{s\_error\_test\_thread\_local\_cb@{s\_error\_test\_thread\_local\_cb}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_test\_thread\_local\_cb()}{s\_error\_test\_thread\_local\_cb()}}
+{\footnotesize\ttfamily static void s\+\_\+error\+\_\+test\+\_\+thread\+\_\+local\+\_\+cb (\begin{DoxyParamCaption}\item[{int}]{err,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a741b41767e871cc6a7b449de81d4ad13}\label{aws-c-common_2tests_2error__test_8c_a741b41767e871cc6a7b449de81d4ad13}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_thread\_fn@{s\_error\_thread\_fn}}
+\index{s\_error\_thread\_fn@{s\_error\_thread\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_thread\_fn()}{s\_error\_thread\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+error\+\_\+thread\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a85e80a73677809c85cb290ad48248fcc}\label{aws-c-common_2tests_2error__test_8c_a85e80a73677809c85cb290ad48248fcc}} 
+\index{error\_test.c@{error\_test.c}!s\_error\_thread\_test\_thread\_local\_cb@{s\_error\_thread\_test\_thread\_local\_cb}}
+\index{s\_error\_thread\_test\_thread\_local\_cb@{s\_error\_thread\_test\_thread\_local\_cb}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_thread\_test\_thread\_local\_cb()}{s\_error\_thread\_test\_thread\_local\_cb()}}
+{\footnotesize\ttfamily static void s\+\_\+error\+\_\+thread\+\_\+test\+\_\+thread\+\_\+local\+\_\+cb (\begin{DoxyParamCaption}\item[{int}]{err,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a602a0a6ccc088841628483b085b9d5d2}\label{aws-c-common_2tests_2error__test_8c_a602a0a6ccc088841628483b085b9d5d2}} 
+\index{error\_test.c@{error\_test.c}!s\_raise\_errors\_test\_fn@{s\_raise\_errors\_test\_fn}}
+\index{s\_raise\_errors\_test\_fn@{s\_raise\_errors\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_raise\_errors\_test\_fn()}{s\_raise\_errors\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+raise\+\_\+errors\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_add2bcc03737f84d45143c926517b972b}\label{aws-c-common_2tests_2error__test_8c_add2bcc03737f84d45143c926517b972b}} 
+\index{error\_test.c@{error\_test.c}!s\_reset\_errors\_test\_fn@{s\_reset\_errors\_test\_fn}}
+\index{s\_reset\_errors\_test\_fn@{s\_reset\_errors\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_reset\_errors\_test\_fn()}{s\_reset\_errors\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+reset\+\_\+errors\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a1301be7f6835a14189efd78825e41cbb}\label{aws-c-common_2tests_2error__test_8c_a1301be7f6835a14189efd78825e41cbb}} 
+\index{error\_test.c@{error\_test.c}!s\_setup\_errors\_test\_fn@{s\_setup\_errors\_test\_fn}}
+\index{s\_setup\_errors\_test\_fn@{s\_setup\_errors\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_setup\_errors\_test\_fn()}{s\_setup\_errors\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+setup\+\_\+errors\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_aebdda9cf1f5897485d9d411c0802a068}\label{aws-c-common_2tests_2error__test_8c_aebdda9cf1f5897485d9d411c0802a068}} 
+\index{error\_test.c@{error\_test.c}!s\_teardown\_errors\_test\_fn@{s\_teardown\_errors\_test\_fn}}
+\index{s\_teardown\_errors\_test\_fn@{s\_teardown\_errors\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_teardown\_errors\_test\_fn()}{s\_teardown\_errors\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+teardown\+\_\+errors\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{int}]{setup\+\_\+res,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a86b8859bd1a9b953df52fcfc88e0f60e}\label{aws-c-common_2tests_2error__test_8c_a86b8859bd1a9b953df52fcfc88e0f60e}} 
+\index{error\_test.c@{error\_test.c}!s\_unknown\_error\_code\_in\_slot\_test\_fn@{s\_unknown\_error\_code\_in\_slot\_test\_fn}}
+\index{s\_unknown\_error\_code\_in\_slot\_test\_fn@{s\_unknown\_error\_code\_in\_slot\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_unknown\_error\_code\_in\_slot\_test\_fn()}{s\_unknown\_error\_code\_in\_slot\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+in\+\_\+slot\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a6f6c420727598ad6cdc0443673bdef20}\label{aws-c-common_2tests_2error__test_8c_a6f6c420727598ad6cdc0443673bdef20}} 
+\index{error\_test.c@{error\_test.c}!s\_unknown\_error\_code\_no\_slot\_test\_fn@{s\_unknown\_error\_code\_no\_slot\_test\_fn}}
+\index{s\_unknown\_error\_code\_no\_slot\_test\_fn@{s\_unknown\_error\_code\_no\_slot\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_unknown\_error\_code\_no\_slot\_test\_fn()}{s\_unknown\_error\_code\_no\_slot\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+no\+\_\+slot\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_ac0659a5a52527e090e0d9aacd40fb43b}\label{aws-c-common_2tests_2error__test_8c_ac0659a5a52527e090e0d9aacd40fb43b}} 
+\index{error\_test.c@{error\_test.c}!s\_unknown\_error\_code\_range\_too\_large\_test\_fn@{s\_unknown\_error\_code\_range\_too\_large\_test\_fn}}
+\index{s\_unknown\_error\_code\_range\_too\_large\_test\_fn@{s\_unknown\_error\_code\_range\_too\_large\_test\_fn}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_unknown\_error\_code\_range\_too\_large\_test\_fn()}{s\_unknown\_error\_code\_range\_too\_large\_test\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+unknown\+\_\+error\+\_\+code\+\_\+range\+\_\+too\+\_\+large\+\_\+test\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a255baa9b51b60f5b91a01313637fc353}\label{aws-c-common_2tests_2error__test_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{error\_test.c@{error\_test.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\_DEFINE\_ERROR\_INFO}}(1024, \textcolor{stringliteral}{"{}test error 1"{}}, \textcolor{stringliteral}{"{}test lib"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\_DEFINE\_ERROR\_INFO}}(1025, \textcolor{stringliteral}{"{}test error 2"{}}, \textcolor{stringliteral}{"{}test lib"{}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{aws-c-common_2tests_2error__test_8c_a913f783fe4ee9ffd4dfeed2ea645829e}\label{aws-c-common_2tests_2error__test_8c_a913f783fe4ee9ffd4dfeed2ea645829e}} 
+\index{error\_test.c@{error\_test.c}!s\_errors\_list@{s\_errors\_list}}
+\index{s\_errors\_list@{s\_errors\_list}!error\_test.c@{error\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors\_list}{s\_errors\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+errors\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{aws-c-common_2tests_2error__test_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

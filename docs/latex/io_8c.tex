@@ -1,0 +1,159 @@
+\hypertarget{io_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/io.c File Reference}
+\label{io_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/io.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/io.c}}
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/cal/cal.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{io_8c_a3a3620d7580f9a27c5573bbce67b524f}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+IO}}(CODE,  STR)~\mbox{[}(CODE)-\/0x0400\mbox{]} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/io\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{io_8c_afab811e5c6f4d0858a73f55e7b2d5ff1}{aws\+\_\+tls\+\_\+init\+\_\+static\+\_\+state}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+void \mbox{\hyperlink{io_8c_aea1cb55465720941c9ae163ae6b1b228}{aws\+\_\+tls\+\_\+clean\+\_\+up\+\_\+static\+\_\+state}} (void)
+\item 
+void \mbox{\hyperlink{io_8c_aaa4d8b13e11600cc12d221bf4a60e434}{aws\+\_\+io\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{io_8c_a137f7fded52a428b8ed343e2909ce66f}{aws\+\_\+io\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\item 
+void \mbox{\hyperlink{io_8c_aaf23224d19fcf5a3c50659220e0d98ca}{aws\+\_\+io\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{io_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{io_8c_a5ea700514e70a0da767872486e1c257a}{s\+\_\+list}}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} \mbox{\hyperlink{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}{s\+\_\+io\+\_\+log\+\_\+subject\+\_\+infos}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{io_8c_a23e0f062493de270348c489b84eb360c}{s\+\_\+io\+\_\+log\+\_\+subject\+\_\+list}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{io_8c_a54e69ff2b787a2bc69deb17b7eadbecf}{s\+\_\+io\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{io_8c_a3a3620d7580f9a27c5573bbce67b524f}\label{io_8c_a3a3620d7580f9a27c5573bbce67b524f}} 
+\index{io.c@{io.c}!AWS\_DEFINE\_ERROR\_INFO\_IO@{AWS\_DEFINE\_ERROR\_INFO\_IO}}
+\index{AWS\_DEFINE\_ERROR\_INFO\_IO@{AWS\_DEFINE\_ERROR\_INFO\_IO}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_DEFINE\_ERROR\_INFO\_IO}{AWS\_DEFINE\_ERROR\_INFO\_IO}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+IO(\begin{DoxyParamCaption}\item[{}]{CODE,  }\item[{}]{STR }\end{DoxyParamCaption})~\mbox{[}(CODE)-\/0x0400\mbox{]} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/io\char`\"{})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{io_8c_aaf23224d19fcf5a3c50659220e0d98ca}\label{io_8c_aaf23224d19fcf5a3c50659220e0d98ca}} 
+\index{io.c@{io.c}!aws\_io\_fatal\_assert\_library\_initialized@{aws\_io\_fatal\_assert\_library\_initialized}}
+\index{aws\_io\_fatal\_assert\_library\_initialized@{aws\_io\_fatal\_assert\_library\_initialized}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{aws\_io\_fatal\_assert\_library\_initialized()}{aws\_io\_fatal\_assert\_library\_initialized()}}
+{\footnotesize\ttfamily void aws\+\_\+io\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8c_a137f7fded52a428b8ed343e2909ce66f}\label{io_8c_a137f7fded52a428b8ed343e2909ce66f}} 
+\index{io.c@{io.c}!aws\_io\_library\_clean\_up@{aws\_io\_library\_clean\_up}}
+\index{aws\_io\_library\_clean\_up@{aws\_io\_library\_clean\_up}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{aws\_io\_library\_clean\_up()}{aws\_io\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+io\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shuts down the internal datastructures used by aws-\/c-\/io. \mbox{\Hypertarget{io_8c_aaa4d8b13e11600cc12d221bf4a60e434}\label{io_8c_aaa4d8b13e11600cc12d221bf4a60e434}} 
+\index{io.c@{io.c}!aws\_io\_library\_init@{aws\_io\_library\_init}}
+\index{aws\_io\_library\_init@{aws\_io\_library\_init}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{aws\_io\_library\_init()}{aws\_io\_library\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+io\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/io. Must be called before using any functionality in aws-\/c-\/io. \mbox{\Hypertarget{io_8c_aea1cb55465720941c9ae163ae6b1b228}\label{io_8c_aea1cb55465720941c9ae163ae6b1b228}} 
+\index{io.c@{io.c}!aws\_tls\_clean\_up\_static\_state@{aws\_tls\_clean\_up\_static\_state}}
+\index{aws\_tls\_clean\_up\_static\_state@{aws\_tls\_clean\_up\_static\_state}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{aws\_tls\_clean\_up\_static\_state()}{aws\_tls\_clean\_up\_static\_state()}}
+{\footnotesize\ttfamily void aws\+\_\+tls\+\_\+clean\+\_\+up\+\_\+static\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8c_afab811e5c6f4d0858a73f55e7b2d5ff1}\label{io_8c_afab811e5c6f4d0858a73f55e7b2d5ff1}} 
+\index{io.c@{io.c}!aws\_tls\_init\_static\_state@{aws\_tls\_init\_static\_state}}
+\index{aws\_tls\_init\_static\_state@{aws\_tls\_init\_static\_state}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{aws\_tls\_init\_static\_state()}{aws\_tls\_init\_static\_state()}}
+{\footnotesize\ttfamily void aws\+\_\+tls\+\_\+init\+\_\+static\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{io_8c_a255baa9b51b60f5b91a01313637fc353}\label{io_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{io.c@{io.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{io_8c_a54e69ff2b787a2bc69deb17b7eadbecf}\label{io_8c_a54e69ff2b787a2bc69deb17b7eadbecf}} 
+\index{io.c@{io.c}!s\_io\_library\_initialized@{s\_io\_library\_initialized}}
+\index{s\_io\_library\_initialized@{s\_io\_library\_initialized}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{s\_io\_library\_initialized}{s\_io\_library\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+io\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}\label{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}} 
+\index{io.c@{io.c}!s\_io\_log\_subject\_infos@{s\_io\_log\_subject\_infos}}
+\index{s\_io\_log\_subject\_infos@{s\_io\_log\_subject\_infos}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{s\_io\_log\_subject\_infos}{s\_io\_log\_subject\_infos}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} s\+\_\+io\+\_\+log\+\_\+subject\+\_\+infos\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa614d4daa3faf640adc430bdcd7bb2439}{AWS\_LS\_IO\_GENERAL}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}aws-\/c-\/io"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for IO logging that doesn't belong to any particular category"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaaf3f0ee157d89ee975eabd8a1e90c2f9a}{AWS\_LS\_IO\_EVENT\_LOOP}}, \textcolor{stringliteral}{"{}event-\/loop"{}}, \textcolor{stringliteral}{"{}Subject for Event-\/loop specific logging."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa937862610c57f0d0800c9e34aa406360}{AWS\_LS\_IO\_SOCKET}}, \textcolor{stringliteral}{"{}socket"{}}, \textcolor{stringliteral}{"{}Subject for Socket specific logging."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa4d255ab046230fae9a1bdbc844b87548}{AWS\_LS\_IO\_SOCKET\_HANDLER}}, \textcolor{stringliteral}{"{}socket-\/handler"{}}, \textcolor{stringliteral}{"{}Subject for a socket channel handler."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaaef14f98b3446e32d4264a67958a6caa9}{AWS\_LS\_IO\_TLS}}, \textcolor{stringliteral}{"{}tls-\/handler"{}}, \textcolor{stringliteral}{"{}Subject for TLS-\/related logging"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaaa936ab0023ee9c475770c8af201eb335}{AWS\_LS\_IO\_ALPN}}, \textcolor{stringliteral}{"{}alpn"{}}, \textcolor{stringliteral}{"{}Subject for ALPN-\/related logging"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa103583828b23766368dccf68f99ef021}{AWS\_LS\_IO\_DNS}}, \textcolor{stringliteral}{"{}dns"{}}, \textcolor{stringliteral}{"{}Subject for DNS-\/related logging"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaaf7b8d5ca5845115b7e9fe65a2b074681}{AWS\_LS\_IO\_PKI}}, \textcolor{stringliteral}{"{}pki-\/utils"{}}, \textcolor{stringliteral}{"{}Subject for Pki utilities."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa3e7a46800de4e07725629ad7b3eca958}{AWS\_LS\_IO\_CHANNEL}}, \textcolor{stringliteral}{"{}channel"{}}, \textcolor{stringliteral}{"{}Subject for Channels"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa3f7f92c0df697a43ec6859977f7e60bc}{AWS\_LS\_IO\_CHANNEL\_BOOTSTRAP}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}channel-\/bootstrap"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for channel bootstrap (client and server modes)"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa28fe810d0d9f979c8a11a5494db9c567}{AWS\_LS\_IO\_FILE\_UTILS}}, \textcolor{stringliteral}{"{}file-\/utils"{}}, \textcolor{stringliteral}{"{}Subject for file operations"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa016b146f391c472640a39217a1341f20}{AWS\_LS\_IO\_SHARED\_LIBRARY}}, \textcolor{stringliteral}{"{}shared-\/library"{}}, \textcolor{stringliteral}{"{}Subject for shared library operations"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa439023b9f38673866fd1f70e5ee1cc0e}{AWS\_LS\_IO\_EXPONENTIAL\_BACKOFF\_RETRY\_STRATEGY}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}exp-\/backoff-\/strategy"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for exponential backoff retry strategy"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{aws-c-io_2include_2aws_2io_2logging_8h_a9d63de933138e42aea4f3aab958b7fdaa9ece394b844248d6e96fbdaf7c7030f2}{AWS\_LS\_IO\_STANDARD\_RETRY\_STRATEGY}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}standard-\/retry-\/strategy"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for standard retry strategy"{}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{io_8c_a23e0f062493de270348c489b84eb360c}\label{io_8c_a23e0f062493de270348c489b84eb360c}} 
+\index{io.c@{io.c}!s\_io\_log\_subject\_list@{s\_io\_log\_subject\_list}}
+\index{s\_io\_log\_subject\_list@{s\_io\_log\_subject\_list}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{s\_io\_log\_subject\_list}{s\_io\_log\_subject\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} s\+\_\+io\+\_\+log\+\_\+subject\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .subject\_list = \mbox{\hyperlink{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}{s\_io\_log\_subject\_infos}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}{s\_io\_log\_subject\_infos}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{io_8c_a5ea700514e70a0da767872486e1c257a}\label{io_8c_a5ea700514e70a0da767872486e1c257a}} 
+\index{io.c@{io.c}!s\_list@{s\_list}}
+\index{s\_list@{s\_list}!io.c@{io.c}}
+\doxysubsubsection{\texorpdfstring{s\_list}{s\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{io_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{io_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}) / \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__error__info}{aws\_error\_info}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

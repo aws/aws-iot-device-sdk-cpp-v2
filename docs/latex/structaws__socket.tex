@@ -1,0 +1,129 @@
+\hypertarget{structaws__socket}{}\doxysection{aws\+\_\+socket Struct Reference}
+\label{structaws__socket}\index{aws\_socket@{aws\_socket}}
+
+
+{\ttfamily \#include $<$socket.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__socket_a00ac8b483b9edc43bc55741900981246}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} \mbox{\hyperlink{structaws__socket_a1880a1c6be20e36a9578ee65390c072a}{local\+\_\+endpoint}}
+\item 
+struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} \mbox{\hyperlink{structaws__socket_a3330e95ffcd05ff64a8199e450a6c4e3}{remote\+\_\+endpoint}}
+\item 
+struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} \mbox{\hyperlink{structaws__socket_a58ff60f53b5be802af06be3b2830c40f}{options}}
+\item 
+struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} \mbox{\hyperlink{structaws__socket_a75c683e74928a75af713af68cbef8d77}{io\+\_\+handle}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structaws__socket_a712d7f944ca53db2aa6cf305234441ea}{event\+\_\+loop}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{structaws__socket_afbe549470d77885a62b6a0e34e3c5ca5}{handler}}
+\item 
+int \mbox{\hyperlink{structaws__socket_a171069ff8c3e3e1e86e30a87a6364568}{state}}
+\item 
+\mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__socket_a1d2b91fd04b51f4ac20c7a6a8cc44773}{readable\+\_\+fn}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__socket_a5ebab0b8c677d114bc6b5dc58455f79d}{readable\+\_\+user\+\_\+data}}
+\item 
+\mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__socket_a10e52825c659dacdc4ecb6d706eceb5e}{connection\+\_\+result\+\_\+fn}}
+\item 
+\mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__socket_ada0f5afccad1e11d90e3800bdedad911}{accept\+\_\+result\+\_\+fn}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__socket_a287e576b9f4a8ead5101fc0408d9e5d4}{connect\+\_\+accept\+\_\+user\+\_\+data}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__socket_a1cf0fdef768954221f8a9b9a5681db7f}{impl}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__socket_ada0f5afccad1e11d90e3800bdedad911}\label{structaws__socket_ada0f5afccad1e11d90e3800bdedad911}} 
+\index{aws\_socket@{aws\_socket}!accept\_result\_fn@{accept\_result\_fn}}
+\index{accept\_result\_fn@{accept\_result\_fn}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{accept\_result\_fn}{accept\_result\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}}$\ast$ aws\+\_\+socket\+::accept\+\_\+result\+\_\+fn}
+
+\mbox{\Hypertarget{structaws__socket_a00ac8b483b9edc43bc55741900981246}\label{structaws__socket_a00ac8b483b9edc43bc55741900981246}} 
+\index{aws\_socket@{aws\_socket}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+socket\+::allocator}
+
+\mbox{\Hypertarget{structaws__socket_a287e576b9f4a8ead5101fc0408d9e5d4}\label{structaws__socket_a287e576b9f4a8ead5101fc0408d9e5d4}} 
+\index{aws\_socket@{aws\_socket}!connect\_accept\_user\_data@{connect\_accept\_user\_data}}
+\index{connect\_accept\_user\_data@{connect\_accept\_user\_data}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{connect\_accept\_user\_data}{connect\_accept\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+socket\+::connect\+\_\+accept\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structaws__socket_a10e52825c659dacdc4ecb6d706eceb5e}\label{structaws__socket_a10e52825c659dacdc4ecb6d706eceb5e}} 
+\index{aws\_socket@{aws\_socket}!connection\_result\_fn@{connection\_result\_fn}}
+\index{connection\_result\_fn@{connection\_result\_fn}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{connection\_result\_fn}{connection\_result\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}}$\ast$ aws\+\_\+socket\+::connection\+\_\+result\+\_\+fn}
+
+\mbox{\Hypertarget{structaws__socket_a712d7f944ca53db2aa6cf305234441ea}\label{structaws__socket_a712d7f944ca53db2aa6cf305234441ea}} 
+\index{aws\_socket@{aws\_socket}!event\_loop@{event\_loop}}
+\index{event\_loop@{event\_loop}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{event\_loop}{event\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ aws\+\_\+socket\+::event\+\_\+loop}
+
+\mbox{\Hypertarget{structaws__socket_afbe549470d77885a62b6a0e34e3c5ca5}\label{structaws__socket_afbe549470d77885a62b6a0e34e3c5ca5}} 
+\index{aws\_socket@{aws\_socket}!handler@{handler}}
+\index{handler@{handler}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ aws\+\_\+socket\+::handler}
+
+\mbox{\Hypertarget{structaws__socket_a1cf0fdef768954221f8a9b9a5681db7f}\label{structaws__socket_a1cf0fdef768954221f8a9b9a5681db7f}} 
+\index{aws\_socket@{aws\_socket}!impl@{impl}}
+\index{impl@{impl}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{impl}{impl}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+socket\+::impl}
+
+\mbox{\Hypertarget{structaws__socket_a75c683e74928a75af713af68cbef8d77}\label{structaws__socket_a75c683e74928a75af713af68cbef8d77}} 
+\index{aws\_socket@{aws\_socket}!io\_handle@{io\_handle}}
+\index{io\_handle@{io\_handle}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{io\_handle}{io\_handle}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} aws\+\_\+socket\+::io\+\_\+handle}
+
+\mbox{\Hypertarget{structaws__socket_a1880a1c6be20e36a9578ee65390c072a}\label{structaws__socket_a1880a1c6be20e36a9578ee65390c072a}} 
+\index{aws\_socket@{aws\_socket}!local\_endpoint@{local\_endpoint}}
+\index{local\_endpoint@{local\_endpoint}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{local\_endpoint}{local\_endpoint}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} aws\+\_\+socket\+::local\+\_\+endpoint}
+
+\mbox{\Hypertarget{structaws__socket_a58ff60f53b5be802af06be3b2830c40f}\label{structaws__socket_a58ff60f53b5be802af06be3b2830c40f}} 
+\index{aws\_socket@{aws\_socket}!options@{options}}
+\index{options@{options}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} aws\+\_\+socket\+::options}
+
+\mbox{\Hypertarget{structaws__socket_a1d2b91fd04b51f4ac20c7a6a8cc44773}\label{structaws__socket_a1d2b91fd04b51f4ac20c7a6a8cc44773}} 
+\index{aws\_socket@{aws\_socket}!readable\_fn@{readable\_fn}}
+\index{readable\_fn@{readable\_fn}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{readable\_fn}{readable\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}}$\ast$ aws\+\_\+socket\+::readable\+\_\+fn}
+
+\mbox{\Hypertarget{structaws__socket_a5ebab0b8c677d114bc6b5dc58455f79d}\label{structaws__socket_a5ebab0b8c677d114bc6b5dc58455f79d}} 
+\index{aws\_socket@{aws\_socket}!readable\_user\_data@{readable\_user\_data}}
+\index{readable\_user\_data@{readable\_user\_data}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{readable\_user\_data}{readable\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+socket\+::readable\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structaws__socket_a3330e95ffcd05ff64a8199e450a6c4e3}\label{structaws__socket_a3330e95ffcd05ff64a8199e450a6c4e3}} 
+\index{aws\_socket@{aws\_socket}!remote\_endpoint@{remote\_endpoint}}
+\index{remote\_endpoint@{remote\_endpoint}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{remote\_endpoint}{remote\_endpoint}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} aws\+\_\+socket\+::remote\+\_\+endpoint}
+
+\mbox{\Hypertarget{structaws__socket_a171069ff8c3e3e1e86e30a87a6364568}\label{structaws__socket_a171069ff8c3e3e1e86e30a87a6364568}} 
+\index{aws\_socket@{aws\_socket}!state@{state}}
+\index{state@{state}!aws\_socket@{aws\_socket}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily int aws\+\_\+socket\+::state}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{socket_8h}{socket.\+h}}\end{DoxyCompactItemize}

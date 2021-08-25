@@ -1,0 +1,498 @@
+{\bfseries{Table of Contents}}
+
+
+\begin{DoxyItemize}
+\item \href{\#the-components-of-a-cbmc-proof}{\texttt{ The components of a CBMC proof}}
+\item \href{\#running-example}{\texttt{ Running example.}}
+\item \href{\#the-proof-harness}{\texttt{ The Proof harness}}
+\begin{DoxyItemize}
+\item \href{\#what-does-a-good-proof-harness-look-like}{\texttt{ What does a good proof harness look like?}}
+\item \href{\#how-to-write-a-good-proof-harness}{\texttt{ How to write a good proof harness}}
+\end{DoxyItemize}
+\item \href{\#the-proof-makefile}{\texttt{ The Proof Makefile}}
+\item \href{\#the-is_valid-function}{\texttt{ The {\ttfamily is\+\_\+valid()} function}}
+\begin{DoxyItemize}
+\item \href{\#example-of-an-is_valid-function}{\texttt{ Example of an {\ttfamily is\+\_\+valid()} function}}
+\end{DoxyItemize}
+\item \href{\#the-ensure_allocated-function}{\texttt{ The {\ttfamily ensure\+\_\+allocated} function}}
+\item \href{\#stubs-and-abstractions}{\texttt{ Stubs and abstractions}}
+\item \href{\#how-do-i-add-the-function-contract-to-the-function-being-verified}{\texttt{ How do I add the function contract to the function being verified?}}
+\begin{DoxyItemize}
+\item \href{\#example-using-function-contracts}{\texttt{ Example using function contracts}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}{}\doxysection{The components of a CBMC proof}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}
+A CBMC proof normally consists of several components\+:
+
+
+\begin{DoxyEnumerate}
+\item A {\bfseries{proof harness}} which\+:
+\begin{DoxyEnumerate}
+\item Sets up required data-\/structures
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Calls the function being verified
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Checks any function post-\/conditions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A {\bfseries{proof makefile}} which\+:
+\begin{DoxyEnumerate}
+\item Defines any necessary preprocessor defines e.\+g. {\ttfamily -\/DMAX\+\_\+\+BUFFER\+\_\+\+SIZE=10}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Specifies the dependencies of the code under test
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Specifies any abstractions or models used by proof
+\end{DoxyEnumerate}
+
+Much of the work done by these Makefiles is common among proofs. We provide a {\ttfamily Makefile.\+common}, which provides useful makefile rules shared by all proofs.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A set of $\ast$$\ast${\ttfamily \+\_\+is\+\_\+valid()} functions$\ast$$\ast$, one for each {\bfseries{datatype}} used in the proof
+\begin{DoxyEnumerate}
+\item Typically go in the code-\/base itself
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Can be used in the codebase as assertions to improve runtime checking.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Can be reused by multiple proofs
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A set of $\ast$$\ast${\ttfamily \+\_\+allocate()} and {\ttfamily \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a3faa1600bc8001eaed05f16060668ce6}{ensure()}}} functions$\ast$$\ast$, one for each {\bfseries{datatype}} used in the proof
+\begin{DoxyEnumerate}
+\item Due to limitations of the CBMC tools, not all properties about a datatype can be declared declaratively. In particular, allocation of memory must be done impartively. These functions handle allocation of the data-\/structure, and any recursive substructures.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Can be put in a library and reused by multiple proofs. ~\newline
+
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A {\bfseries{library of helper functions}} which\+:
+\begin{DoxyEnumerate}
+\item Models any external libraries (e.\+g. lib\+Crypto)
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Provides implementations for abstracted functions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+
+The remainder of this document describes how build each one of these components.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}{}\doxysection{Running example.}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}
+We will use the {\ttfamily \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}}} module from \href{https://github.com/awslabs/aws-c-common}{\texttt{ AWS C Common}} open-\/source project as our running example. This module provides a polymorphic array defined as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{struct aws\_array\_list \{}
+\DoxyCodeLine{    struct aws\_allocator *alloc;}
+\DoxyCodeLine{    size\_t current\_size;}
+\DoxyCodeLine{    size\_t length;}
+\DoxyCodeLine{    size\_t item\_size;}
+\DoxyCodeLine{    void *data;}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily alloc} represents the allocator used by the list (to allow consumers of the list to override {\ttfamily malloc} if desired)
+\item {\ttfamily current\+\_\+size} represents the bytes of memory that the array has allocated
+\item {\ttfamily length} is the number of items that it contains
+\item {\ttfamily data\+\_\+size} represents the size of the objects stored in the list (in bytes)
+\item {\ttfamily data} points to a byte array in memory that contains the data of the array list.
+\end{DoxyItemize}
+
+Users of this data structure are expected to access its fields using getter and setter methods, although C does not offer language support to ensure that they do so. Similarly, since the C type system does not have support for polymorphism, authors of the getters and setters are responsible for ensuring that the list is accessed safely. The getter itself is defined as\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int aws\_array\_list\_get\_at\_ptr(const struct aws\_array\_list *AWS\_RESTRICT list, void **val, size\_t index) \{}
+\DoxyCodeLine{    if (aws\_array\_list\_length(list) > index) \{}
+\DoxyCodeLine{        *val = (void *)((uint8\_t *)list-\/>data + (list-\/>item\_size * index));}
+\DoxyCodeLine{        return AWS\_OP\_SUCCESS;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    return aws\_raise\_error(AWS\_ERROR\_INVALID\_INDEX);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}{}\doxysection{The Proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}{}\doxysubsection{What does a good proof harness look like?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}
+Syntactically, a proof harness looks quite similar to a unit test. The main difference is that a proof harness calls the target function with a partially-\/constrained input rather than a concrete value; when symbolically executed by CBMC, this has the effect of exploring the function under {\itshape all} possible inputs that satisfy the constraints.
+
+We have developed a style of writing proofs that we believe is readable, maintainable, and modular. This style was driven by feedback from developers, and addresses the need to communicate {\itshape exactly what we are proving} to developers and users.
+
+Our proofs have the following features\+:
+
+
+\begin{DoxyEnumerate}
+\item They are structured as {\itshape harnesses} that call into the function being verified, similar to unit tests. This makes them easier to write, because they follow a pattern most developers are familiar with. This style also yields more useful error traces. Most importantly, it makes proofs easier to understand and maintain, since a developer reviewing a proof has an \char`\"{}executable\char`\"{} which they can understand using their existing knowledge and intuition about C code.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item They state their assumptions declaratively. Rather than creating a fully-\/initialized data structure in imperative style, we create unconstrained data structures and then constrain them just enough to prove the property of interest. This means the only assumptions on the data structure\textquotesingle{}s values are the ones we state in the harness.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item They follow a predictable pattern\+: setting up data structures, assuming preconditions on them, calling into the code being verified, and asserting postconditions.
+\end{DoxyEnumerate}
+
+The following code is an example of a proof harness\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{void aws\_array\_list\_get\_at\_ptr\_harness() \{}
+\DoxyCodeLine{    /* initialization */}
+\DoxyCodeLine{    struct aws\_array\_list* list = can\_fail\_malloc(sizeof(*list));}
+\DoxyCodeLine{    \_\_CPROVER\_assume(list != NULL));}
+\DoxyCodeLine{    \_\_CPROVER\_assume(aws\_array\_list\_is\_bounded(list));}
+\DoxyCodeLine{    ensure\_array\_list\_has\_allocated\_data\_member(list);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* generate unconstrained inputs */}
+\DoxyCodeLine{    void **val = can\_fail\_malloc(sizeof(void *));}
+\DoxyCodeLine{    size\_t index;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* preconditions */}
+\DoxyCodeLine{    \_\_CPROVER\_assume(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{    \_\_CPROVER\_assume(val != NULL);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* call function under verification */}
+\DoxyCodeLine{    if(!aws\_array\_list\_get\_at\_ptr(list, val, index)) \{}
+\DoxyCodeLine{      /* If aws\_array\_list\_get\_at\_ptr is successful,}
+\DoxyCodeLine{       * i.e. ret==0, we ensure the list isn't}
+\DoxyCodeLine{       * empty and index is within bounds */}
+\DoxyCodeLine{        assert(list-\/>data != NULL);}
+\DoxyCodeLine{        assert(list-\/>length > index);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* postconditions */}
+\DoxyCodeLine{    assert(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{    assert(val != NULL);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The harness shown above consists of five parts\+:
+
+
+\begin{DoxyEnumerate}
+\item Initialize the data structure to unconstrained values. We recommend initializers for all verified data structures use a consistent naming scheme\+: {\ttfamily ensure\+\_\+\{data\+\_\+structure\}\+\_\+has\+\_\+allocated\+\_\+data\+\_\+member()}.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Generate unconstrained inputs to the function.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Constrain all inputs to meet the function specification and assume all preconditions using {\ttfamily assume} statements. If necessary, bound the data structures so that the proof terminates.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Call the function under verification with these inputs.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Check any function postconditions using {\ttfamily assert} statements.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}{}\doxysubsection{How to write a good proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}
+We recommend approaching writing a proof-\/harness as an iterative process\+:
+
+
+\begin{DoxyEnumerate}
+\item Write a minimally constrained harness, which simply
+\begin{DoxyEnumerate}
+\item declares the necessary variables
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item and then calls the function under test using them.
+\end{DoxyEnumerate}
+
+For example, for the harness given above, an initial harness might look like\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{void aws\_array\_list\_get\_at\_ptr\_harness() \{}
+\DoxyCodeLine{    /* initialization */}
+\DoxyCodeLine{    struct aws\_array\_list* list;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* generate unconstrained inputs */}
+\DoxyCodeLine{    void **val;}
+\DoxyCodeLine{    size\_t index;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    /* call function under verification */}
+\DoxyCodeLine{     aws\_array\_list\_get\_at\_ptr(list, val, index);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Note that we are leaving the inputs to the function completely unconstrained\+: we are simply declaring them on the stack, and then using them without assigning any values to them. In a normal C compiler, this would be undefined behaviour. In CBMC, this is legal, but represents an {\bfseries{unconstrained value}} (you may also hear this called a {\bfseries{non-\/determinstic}} value). The CBMC tool will use a mathematical solver which considers every possible value of an unconstrained variable. If there exists a value which can cause an assertion failure, the solver will find it. Conversely, if solver says the assertion cannot be violated, this forms mathematical {\itshape proof} that no such value exists.
+
+Leaving these values unconstrained will almost certainly lead to CBMC detecting violations, because real functions have implicit (or, if you\textquotesingle{}re lucky, explicit) constraints on their inputs. For example, it is typically a precondition of a function that pointers must either reference valid memory, or be {\ttfamily null}. However, sometimes you may be surprised\+: if a function doesn\textquotesingle{}t use a given input, or uses it in a defensive way, it may accept totally unconstrained values. What we are attempting to do is find the minimum constraint that will allow the function to succeed with no assertion violations. So we start with unconstrained values, and slowly constrain them just enough to get the function to verify.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Run CBMC and observe the output. In the case of our running example, you will see errors that look like this
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Errors}
+\DoxyCodeLine{  * In include/aws/common/array\_list.inl}
+\DoxyCodeLine{    * In aws\_array\_list\_get\_at\_ptr}
+\DoxyCodeLine{      * Line 347:}
+\DoxyCodeLine{        * [trace] val != ((void*)0) check failed}
+
+\end{DoxyCode}
+ Consult our \mbox{\hyperlink{_d_e_b_u_g_g_i_n_g_8md}{guide to debugging CBMC output}} for suggestions about how to understand this output.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Constrain each input in turn until all warnings are resolved. See the sections on writing {\ttfamily \+\_\+is\+\_\+valid()} and {\ttfamily \+\_\+ensure\+\_\+is\+\_\+allocated()} functions for details on how to do this
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Fix any loop-\/unwinding errors. To fix these errors, you will need update the Makefile with the correct loop bounds. This may cause CBMC to get quite slow. In this case, we recommend {\bfseries{bounding}} the size of data-\/structures to allow CBMC to finish quickly. In the harness above, this is accomplished by the line 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_CPROVER\_assume(aws\_array\_list\_is\_bounded(list))}
+
+\end{DoxyCode}
+ We recommend starting with very small bounds to ensure a quick REPL cycle. Once the proof is finished, you can increase the bounds to increase assurance.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Check the coverage report. Ideally, you will have 100\% coverage. In practice, coverage will be less than 100\%, for e.\+g. in defensive code that redundantly checks for errors. In this case, inspect the uncovered code, and ensure that it matches your expectations.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Increase assurance by adding assertions to the harness. There are typically three types of such assertions\+:
+\begin{DoxyEnumerate}
+\item Data structures should remain valid, whether or not the function under test succeeded.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item If the function failed, data-\/structures should remain unchanged.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item If the function succeeded, data-\/structures should be updated according to the function semantics.
+\end{DoxyEnumerate}
+
+In our example harness, this is handled by the lines 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/* call function under verification */}
+\DoxyCodeLine{if(!aws\_array\_list\_get\_at\_ptr(list, val, index)) \{}
+\DoxyCodeLine{  /* If aws\_array\_list\_get\_at\_ptr is successful,}
+\DoxyCodeLine{   * i.e. ret==0, we ensure the list isn't}
+\DoxyCodeLine{   * empty and index is within bounds */}
+\DoxyCodeLine{    assert(list-\/>data != NULL);}
+\DoxyCodeLine{    assert(list-\/>length > index);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{/* postconditions */}
+\DoxyCodeLine{assert(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{assert(val != NULL);}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}{}\doxysection{The Proof Makefile}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}
+The Makefile for our running example looks like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Sufficently long to get full coverage on the aws\_array\_list APIs}
+\DoxyCodeLine{\# short enough that all proofs complete quickly}
+\DoxyCodeLine{MAX\_ITEM\_SIZE ?= 2}
+\DoxyCodeLine{DEFINES += -\/DMAX\_ITEM\_SIZE=\$(MAX\_ITEM\_SIZE)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Necessary to get full coverage when using functions from math.h}
+\DoxyCodeLine{MAX\_INITIAL\_ITEM\_ALLOCATION ?= 9223372036854775808ULL}
+\DoxyCodeLine{DEFINES += -\/DMAX\_INITIAL\_ITEM\_ALLOCATION=\$(MAX\_INITIAL\_ITEM\_ALLOCATION)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# This bound allows us to reach 100\% coverage rate}
+\DoxyCodeLine{UNWINDSET += memcpy\_impl.0:\$(shell echo \$\$((\$(MAX\_ITEM\_SIZE) + 1)))}
+\DoxyCodeLine{}
+\DoxyCodeLine{CBMCFLAGS +=}
+\DoxyCodeLine{}
+\DoxyCodeLine{DEPENDENCIES += \$(HELPERDIR)/source/proof\_allocators.c}
+\DoxyCodeLine{DEPENDENCIES += \$(HELPERDIR)/source/make\_common\_data\_structures.c}
+\DoxyCodeLine{DEPENDENCIES += \$(HELPERDIR)/source/utils.c}
+\DoxyCodeLine{DEPENDENCIES += \$(HELPERDIR)/stubs/error.c}
+\DoxyCodeLine{DEPENDENCIES += \$(HELPERDIR)/stubs/memcpy\_override.c}
+\DoxyCodeLine{DEPENDENCIES += \$(SRCDIR)/source/array\_list.c}
+\DoxyCodeLine{DEPENDENCIES += \$(SRCDIR)/source/common.c}
+\DoxyCodeLine{}
+\DoxyCodeLine{ENTRY = aws\_array\_list\_get\_at\_ptr\_harness}
+\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{}
+\DoxyCodeLine{include ../Makefile.common}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item It defines a set of variables that can be used as bounds in the proof. As discussed above, we recommend starting with small bounds to enable quick iteration on the proof and increasing them once the proof is complete. These variables are created both as Makefile variables, which can be used later (e.\+g. in the {\ttfamily UNWINDSET}, and also passed as {\ttfamily -\/D} defines, which allow
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item It creates an {\ttfamily UNWINDSET} which tells CBMC how many times to unroll loops in the program. As shown here, loop bounds typically depend on variables within the makefile. Its a good idea to make this explicit, as we do here, to avoid the need to change magic constants as you experiment with the proof.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A list of {\ttfamily CBMCFLAGS} if any are needed. Typically, all the required flags are set in the {\ttfamily Makefile.\+common}, and this can be left empty
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item A list of {\ttfamily DEPENDENCIES}, which are the
+\begin{DoxyEnumerate}
+\item Project source files
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Proof stubs/models \mbox{[}TODO, this really belongs in ABSTRACTIONS\mbox{]}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The {\ttfamily ENTRY}, which is the name of the function being verified
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\ttfamily include ../\+Makefile.common} to take advantage of the standard templates declared in that file.
+\end{DoxyEnumerate}
+
+Most makefiles should like exactly like this. \mbox{[}TODO discuss wellspring, litani\mbox{]}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}{}\doxysection{The $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}
+The {\ttfamily \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\+\_\+valid()}}} functions used in preconditions are developed using an iterative process. For each {\bfseries{data-\/structure}} module, start by specifying the simplest predicates that you can think of for the data structure --- usually, that the data of the data structure is correctly allocated. Then, gradually refine these predicates, until you have a set of reasonable invariants for the data structure.
+
+You can verify that invariants are reasonable by\+:
+
+
+\begin{DoxyEnumerate}
+\item Having an explicit code-\/review in which subject matter experts on the development team confirm that the invariants represent the design intent of the code
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Adding these invariants are pre/post-\/conditions to the code being verified, and ensuring that all unit and regression tests pass. Note that unit-\/test failures do not necessarily reflect problems with your invariants. They may also reflect either
+\begin{DoxyEnumerate}
+\item Bugs in the code itself
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Bugs in the unit-\/tests
+\end{DoxyEnumerate}
+
+In both these cases, fix the bug in the code, then make sure the invariant now succeeds during the tests.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}{}\doxysubsection{Example of an $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}
+For instance, in the case of the {\ttfamily array\+\_\+list}, we started with the invariant that {\ttfamily data} points to {\ttfamily current\+\_\+size} allocated bytes. After several iterations, the validity invariant for {\ttfamily array\+\_\+list} ended up looking like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bool aws\_array\_list\_is\_valid(const struct aws\_array\_list *list) \{}
+\DoxyCodeLine{  if (!list) return false;}
+\DoxyCodeLine{  size\_t required\_size = 0;}
+\DoxyCodeLine{  bool required\_size\_is\_valid = (aws\_mul\_size\_checked(list-\/>length, list-\/>item\_size, \&required\_size) == AWS\_OP\_SUCCESS);}
+\DoxyCodeLine{  bool current\_size\_is\_valid = (list-\/>current\_size >= required\_size);}
+\DoxyCodeLine{  bool data\_is\_valid = ((list-\/>current\_size == 0 \&\& list-\/>data == NULL) || AWS\_MEM\_IS\_WRITABLE(list-\/>data, list-\/>current\_size));}
+\DoxyCodeLine{  bool item\_size\_is\_valid = (list-\/>item\_size != 0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  return required\_size\_is\_valid \&\& current\_size\_is\_valid \&\& data\_is\_valid \&\& item\_size\_is\_valid;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The invariant above describes four conditions satisfied by a valid {\ttfamily array\+\_\+list}\+:
+
+
+\begin{DoxyEnumerate}
+\item the sum of the sizes of the items of the list must fit in an unsigned integer of type {\ttfamily size\+\_\+t}, which is checked using the function {\ttfamily aws\+\_\+mul\+\_\+size\+\_\+checked}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item the size of the {\ttfamily array\+\_\+list} in bytes ({\ttfamily current\+\_\+size}) has to be larger than or equal to the sum of the sizes of its items;
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item the {\ttfamily data} pointer must point to a valid memory location; otherwise it must be {\ttfamily NULL} if the size of the {\ttfamily array\+\_\+list} is zero; This point is actually somewhat subtle\+: there was debate among the team about whether the pointer must be {\ttfamily NULL}, or whether any value was legal if the length was zero. Writing an explicit {\ttfamily \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\+\_\+valid()}}} function forced the team to come to a precise decision.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item the {\ttfamily item\+\_\+size} must be positive.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}{}\doxysection{The $<$tt$>$ensure\+\_\+allocated$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}
+Ideally, all properties in a proof harness would be written in a declarative style. Unfortunately, CBMC currently does offer support that allows code to {\ttfamily \+\_\+\+\_\+\+CPROVER\+\_\+assume()} that memory is correctly allocated. Instead, it must be allocated using imperative calls to {\ttfamily malloc()}. By default, CBMC {\ttfamily malloc()} never returns {\ttfamily null}. So its important that you explicitly handle the case where the pointer might be {\ttfamily null}.
+
+Its important to separate the work done in this function from the work done in an {\ttfamily is\+\_\+valid} function. This function should only worry about allocating the memory needed by the data-\/structure. Any other validity constraints should be handled by the {\ttfamily \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\+\_\+valid()}}} check.
+
+The {\ttfamily ensure} function for the running example is\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{void ensure\_array\_list\_has\_allocated\_data\_member(struct aws\_array\_list *const list) \{}
+\DoxyCodeLine{    if (list-\/>current\_size == 0 \&\& list-\/>length == 0) \{}
+\DoxyCodeLine{        \_\_CPROVER\_assume(list-\/>data == NULL);}
+\DoxyCodeLine{        list-\/>alloc = can\_fail\_allocator();}
+\DoxyCodeLine{    \} else \{}
+\DoxyCodeLine{        list-\/>data = bounded\_malloc(list-\/>current\_size);}
+\DoxyCodeLine{        list-\/>alloc = nondet\_bool() ? NULL : can\_fail\_allocator();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}{}\doxysection{Stubs and abstractions}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}
+
+\begin{DoxyItemize}
+\item TODO
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}{}\doxysection{How do I add the function contract to the function being verified?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}
+We strongly recommend adding all checks and assumptions from the proof harness to the function being verified as runtime assertions. This provides value in several ways.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{It connects the code and the proof.}} Proofs for all but the most simple functions require environment assumptions. One of the most common ways proof can go wrong is when these assumptions the real-\/world context in which the function is used. Adding the assumptions as runtime assertions in the code allows such mismatches to be detected as the code runs. Some teams choose to enable these assertions only in debug mode; this allows mismatches to be detected during the standard unit and integration testing processes with any performance penalty on production code. Other teams enable these assertions for all builds, providing increased assurance at a small runtime cost.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\bfseries{It helps detect bugs in the broader codebase.}} On a number of occasions, adding function contracts to correct code detected function contracts in other parts of the code base. In several cases, we discovered errors in other projects, which were calling verified APIs with invalid parameters. Even though those projects had never been formally verified, they still benefited from the function contracts developed during the formal verification work.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\bfseries{It helps focus the mind.}} It is easy to let standards slip during code-\/reviews for test and verification code. \char`\"{}\+Even if its not perfect, its better than nothing, so might as well just click approve.\char`\"{} Adding the proof assumptions and checks to the codebase itself as runtime assertions causes reviewers to take them much more seriously, which leads to both increased proof quality, and improved code quality.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md173}{}\doxysubsection{Example using function contracts}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md173}
+In the running example, our verification harness assumed the following preconditions
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_CPROVER\_assume(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{\_\_CPROVER\_assume(val != NULL);}
+
+\end{DoxyCode}
+
+
+These directly translate into preconditions in the function under test\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{AWS\_PRECONDITION(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{AWS\_PRECONDITION(val != NULL);}
+
+\end{DoxyCode}
+
+
+Similarly, the key postcondition checked in the verification harness is
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{assert(aws\_array\_list\_is\_valid(list))}
+
+\end{DoxyCode}
+
+
+This also directly translates into a postcondition in the function under test\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{AWS\_POSTCONDITION(aws\_array\_list\_is\_valid(list));}
+
+\end{DoxyCode}
+
+
+Putting it all together\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int aws\_array\_list\_get\_at\_ptr(}
+\DoxyCodeLine{        const struct aws\_array\_list* list,}
+\DoxyCodeLine{        void **val,}
+\DoxyCodeLine{        size\_t index)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    AWS\_PRECONDITION(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{    AWS\_PRECONDITION(val != NULL);}
+\DoxyCodeLine{    if (aws\_array\_list\_length(list) > index) \{}
+\DoxyCodeLine{        *val = (void *)((uint8\_t *)list-\/>data +}
+\DoxyCodeLine{                        (list-\/>item\_size * index));}
+\DoxyCodeLine{        AWS\_POSTCONDITION(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{        return AWS\_OP\_SUCCESS;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    AWS\_POSTCONDITION(aws\_array\_list\_is\_valid(list));}
+\DoxyCodeLine{    return aws\_raise\_error(AWS\_ERROR\_INVALID\_INDEX);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

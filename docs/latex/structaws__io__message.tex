@@ -1,0 +1,89 @@
+\hypertarget{structaws__io__message}{}\doxysection{aws\+\_\+io\+\_\+message Struct Reference}
+\label{structaws__io__message}\index{aws\_io\_message@{aws\_io\_message}}
+
+
+{\ttfamily \#include $<$io.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__io__message_af0fff9bb94840c14ee5f15ca624e3b72}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__io__message_a76ddd2d523fc06d66a8af0627f480630}{message\+\_\+data}}
+\item 
+enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} \mbox{\hyperlink{structaws__io__message_a2d7432469f0cf9ff4e9821797f5d72fc}{message\+\_\+type}}
+\item 
+int \mbox{\hyperlink{structaws__io__message_af89d0fd2cff2cba51a57b21c736fe9b9}{message\+\_\+tag}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__io__message_a46ae86c705a38aada14da1e988afa849}{copy\+\_\+mark}}
+\item 
+struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ \mbox{\hyperlink{structaws__io__message_ae7c18404b01dc6fbcc0ce35fe049b199}{owning\+\_\+channel}}
+\item 
+\mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__io__message_a7ae588c94b8093c386be705d38d865ab}{on\+\_\+completion}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__io__message_a04e70fba928af409328ef14fbee01852}{user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__io__message_a7bfe42341a7aabb3f01a79ad85e701a7}{queueing\+\_\+handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__io__message_af0fff9bb94840c14ee5f15ca624e3b72}\label{structaws__io__message_af0fff9bb94840c14ee5f15ca624e3b72}} 
+\index{aws\_io\_message@{aws\_io\_message}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+io\+\_\+message\+::allocator}
+
+Allocator used for the message and message data. If this is null, the message belongs to a pool or some other message manager. \mbox{\Hypertarget{structaws__io__message_a46ae86c705a38aada14da1e988afa849}\label{structaws__io__message_a46ae86c705a38aada14da1e988afa849}} 
+\index{aws\_io\_message@{aws\_io\_message}!copy\_mark@{copy\_mark}}
+\index{copy\_mark@{copy\_mark}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{copy\_mark}{copy\_mark}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+io\+\_\+message\+::copy\+\_\+mark}
+
+In order to avoid excess allocations/copies, on a partial read or write, the copy mark is set to indicate how much of this message has already been processed or copied. \mbox{\Hypertarget{structaws__io__message_a76ddd2d523fc06d66a8af0627f480630}\label{structaws__io__message_a76ddd2d523fc06d66a8af0627f480630}} 
+\index{aws\_io\_message@{aws\_io\_message}!message\_data@{message\_data}}
+\index{message\_data@{message\_data}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{message\_data}{message\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+io\+\_\+message\+::message\+\_\+data}
+
+Buffer containing the data for message \mbox{\Hypertarget{structaws__io__message_af89d0fd2cff2cba51a57b21c736fe9b9}\label{structaws__io__message_af89d0fd2cff2cba51a57b21c736fe9b9}} 
+\index{aws\_io\_message@{aws\_io\_message}!message\_tag@{message\_tag}}
+\index{message\_tag@{message\_tag}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{message\_tag}{message\_tag}}
+{\footnotesize\ttfamily int aws\+\_\+io\+\_\+message\+::message\+\_\+tag}
+
+Conveys information about the contents of message\+\_\+data (e.\+g. cast the ptr to some type). If 0, it\textquotesingle{}s just opaque data. \mbox{\Hypertarget{structaws__io__message_a2d7432469f0cf9ff4e9821797f5d72fc}\label{structaws__io__message_a2d7432469f0cf9ff4e9821797f5d72fc}} 
+\index{aws\_io\_message@{aws\_io\_message}!message\_type@{message\_type}}
+\index{message\_type@{message\_type}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{message\_type}{message\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} aws\+\_\+io\+\_\+message\+::message\+\_\+type}
+
+type of the message. This is used for framework control messages. Currently the only type is AWS\+\_\+\+IO\+\_\+\+MESSAGE\+\_\+\+APPLICATION\+\_\+\+DATA \mbox{\Hypertarget{structaws__io__message_a7ae588c94b8093c386be705d38d865ab}\label{structaws__io__message_a7ae588c94b8093c386be705d38d865ab}} 
+\index{aws\_io\_message@{aws\_io\_message}!on\_completion@{on\_completion}}
+\index{on\_completion@{on\_completion}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{on\_completion}{on\_completion}}
+{\footnotesize\ttfamily \mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn}}$\ast$ aws\+\_\+io\+\_\+message\+::on\+\_\+completion}
+
+Invoked by the channel once the entire message has been written to the data sink. \mbox{\Hypertarget{structaws__io__message_ae7c18404b01dc6fbcc0ce35fe049b199}\label{structaws__io__message_ae7c18404b01dc6fbcc0ce35fe049b199}} 
+\index{aws\_io\_message@{aws\_io\_message}!owning\_channel@{owning\_channel}}
+\index{owning\_channel@{owning\_channel}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{owning\_channel}{owning\_channel}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}}$\ast$ aws\+\_\+io\+\_\+message\+::owning\+\_\+channel}
+
+The channel that the message is bound to. \mbox{\Hypertarget{structaws__io__message_a7bfe42341a7aabb3f01a79ad85e701a7}\label{structaws__io__message_a7bfe42341a7aabb3f01a79ad85e701a7}} 
+\index{aws\_io\_message@{aws\_io\_message}!queueing\_handle@{queueing\_handle}}
+\index{queueing\_handle@{queueing\_handle}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{queueing\_handle}{queueing\_handle}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+io\+\_\+message\+::queueing\+\_\+handle}
+
+it\textquotesingle{}s incredibly likely something is going to need to queue this, go ahead and make sure the list info is part of the original allocation. \mbox{\Hypertarget{structaws__io__message_a04e70fba928af409328ef14fbee01852}\label{structaws__io__message_a04e70fba928af409328ef14fbee01852}} 
+\index{aws\_io\_message@{aws\_io\_message}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_io\_message@{aws\_io\_message}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+io\+\_\+message\+::user\+\_\+data}
+
+arbitrary user data for the on\+\_\+completion callback 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{io_8h}{io.\+h}}\end{DoxyCompactItemize}

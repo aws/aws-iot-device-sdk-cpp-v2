@@ -1,0 +1,65 @@
+\hypertarget{s2n__key__share_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+key\+\_\+share.h File Reference}
+\label{s2n__key__share_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_key\_share.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_key\_share.h}}
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+ecc\+\_\+evp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__key__share_8h_acd8d0e01a33db5acd3e6ff6e7c5058c7}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+EXTENSION\+\_\+\+TYPE}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__key__share_8h_af4c65d35482aef3f3fe9d4012b79dd7d}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+EXTENSION\+\_\+\+DATA\+\_\+\+SIZE}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__key__share_8h_af291be3b9b942e78dfea003da9ca8d02}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARES\+\_\+\+SIZE}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__key__share_8h_ab262525f5adc0f44232fe7cfba03a1b0}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+NAMED\+\_\+\+GROUP}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__key__share_8h_ad2f41fc2885b9587a5a5218b5dc09705}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+KEY\+\_\+\+SHARE\+\_\+\+SIZE}}~2
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__key__share_8h_a9e21fc575d2626e5ceca24e1e656ab8a}{s2n\+\_\+ecdhe\+\_\+parameters\+\_\+send}} (struct \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\+\_\+ecc\+\_\+evp\+\_\+params}} $\ast$ecc\+\_\+evp\+\_\+params, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__key__share_8h_af291be3b9b942e78dfea003da9ca8d02}\label{s2n__key__share_8h_af291be3b9b942e78dfea003da9ca8d02}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE@{S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE}}
+\index{S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE@{S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE}{S2N\_SIZE\_OF\_CLIENT\_SHARES\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARES\+\_\+\+SIZE~2}
+
+\mbox{\Hypertarget{s2n__key__share_8h_af4c65d35482aef3f3fe9d4012b79dd7d}\label{s2n__key__share_8h_af4c65d35482aef3f3fe9d4012b79dd7d}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE@{S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE}}
+\index{S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE@{S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE}{S2N\_SIZE\_OF\_EXTENSION\_DATA\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+EXTENSION\+\_\+\+DATA\+\_\+\+SIZE~2}
+
+\mbox{\Hypertarget{s2n__key__share_8h_acd8d0e01a33db5acd3e6ff6e7c5058c7}\label{s2n__key__share_8h_acd8d0e01a33db5acd3e6ff6e7c5058c7}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!S2N\_SIZE\_OF\_EXTENSION\_TYPE@{S2N\_SIZE\_OF\_EXTENSION\_TYPE}}
+\index{S2N\_SIZE\_OF\_EXTENSION\_TYPE@{S2N\_SIZE\_OF\_EXTENSION\_TYPE}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_EXTENSION\_TYPE}{S2N\_SIZE\_OF\_EXTENSION\_TYPE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+EXTENSION\+\_\+\+TYPE~2}
+
+\mbox{\Hypertarget{s2n__key__share_8h_ad2f41fc2885b9587a5a5218b5dc09705}\label{s2n__key__share_8h_ad2f41fc2885b9587a5a5218b5dc09705}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE@{S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE}}
+\index{S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE@{S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE}{S2N\_SIZE\_OF\_KEY\_SHARE\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+KEY\+\_\+\+SHARE\+\_\+\+SIZE~2}
+
+\mbox{\Hypertarget{s2n__key__share_8h_ab262525f5adc0f44232fe7cfba03a1b0}\label{s2n__key__share_8h_ab262525f5adc0f44232fe7cfba03a1b0}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!S2N\_SIZE\_OF\_NAMED\_GROUP@{S2N\_SIZE\_OF\_NAMED\_GROUP}}
+\index{S2N\_SIZE\_OF\_NAMED\_GROUP@{S2N\_SIZE\_OF\_NAMED\_GROUP}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_NAMED\_GROUP}{S2N\_SIZE\_OF\_NAMED\_GROUP}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+NAMED\+\_\+\+GROUP~2}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__key__share_8h_a9e21fc575d2626e5ceca24e1e656ab8a}\label{s2n__key__share_8h_a9e21fc575d2626e5ceca24e1e656ab8a}} 
+\index{s2n\_key\_share.h@{s2n\_key\_share.h}!s2n\_ecdhe\_parameters\_send@{s2n\_ecdhe\_parameters\_send}}
+\index{s2n\_ecdhe\_parameters\_send@{s2n\_ecdhe\_parameters\_send}!s2n\_key\_share.h@{s2n\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_parameters\_send()}{s2n\_ecdhe\_parameters\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+parameters\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\+\_\+ecc\+\_\+evp\+\_\+params}} $\ast$}]{ecc\+\_\+evp\+\_\+params,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+

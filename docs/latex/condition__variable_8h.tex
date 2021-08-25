@@ -1,0 +1,112 @@
+\hypertarget{condition__variable_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/condition\+\_\+variable.h File Reference}
+\label{condition__variable_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/condition\_variable.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/condition\_variable.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}{AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT}}~        \{ .condition\+\_\+handle = PTHREAD\+\_\+\+COND\+\_\+\+INITIALIZER, .initialized = \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \mbox{\hyperlink{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}{aws\+\_\+condition\+\_\+predicate\+\_\+fn}}(void $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_add5a9e25b6d7bef31f0177cef093999e}{aws\+\_\+condition\+\_\+variable\+\_\+init}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{condition__variable_8h_a663a73dea9f68fe15c34c152ab35f29a}{aws\+\_\+condition\+\_\+variable\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a95a999e4afdd08427df4c72a28846e4c}{aws\+\_\+condition\+\_\+variable\+\_\+notify\+\_\+one}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a5225026f76e5d3740e8ee388d21663d7}{aws\+\_\+condition\+\_\+variable\+\_\+notify\+\_\+all}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a370bc340823727f86f6301da05fdf0ba}{aws\+\_\+condition\+\_\+variable\+\_\+wait}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}}, struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a15409a9d40159b229f7755025e4ffdfa}{aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+pred}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}}, struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}}, \mbox{\hyperlink{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}{aws\+\_\+condition\+\_\+predicate\+\_\+fn}} $\ast$pred, void $\ast$pred\+\_\+ctx)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a83fe2a82aac9a07a32227c7ac1b80e2d}{aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+for}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}}, struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}}, int64\+\_\+t time\+\_\+to\+\_\+wait)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{condition__variable_8h_a422aab6fbee374d9bebe59204835734a}{aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+for\+\_\+pred}} (struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}}, struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}}, int64\+\_\+t time\+\_\+to\+\_\+wait, \mbox{\hyperlink{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}{aws\+\_\+condition\+\_\+predicate\+\_\+fn}} $\ast$pred, void $\ast$pred\+\_\+ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}\label{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}} 
+\index{condition\_variable.h@{condition\_variable.h}!AWS\_CONDITION\_VARIABLE\_INIT@{AWS\_CONDITION\_VARIABLE\_INIT}}
+\index{AWS\_CONDITION\_VARIABLE\_INIT@{AWS\_CONDITION\_VARIABLE\_INIT}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_CONDITION\_VARIABLE\_INIT}{AWS\_CONDITION\_VARIABLE\_INIT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT~        \{ .condition\+\_\+handle = PTHREAD\+\_\+\+COND\+\_\+\+INITIALIZER, .initialized = \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} \}}
+
+Static initializer for condition variable. You can do something like struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} var = AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT;
+
+If on Windows and you get an error about AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT being undefined, please include Windows.\+h to get CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}\label{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_predicate\_fn@{aws\_condition\_predicate\_fn}}
+\index{aws\_condition\_predicate\_fn@{aws\_condition\_predicate\_fn}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_predicate\_fn}{aws\_condition\_predicate\_fn}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() aws\+\_\+condition\+\_\+predicate\+\_\+fn(void $\ast$)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{condition__variable_8h_a663a73dea9f68fe15c34c152ab35f29a}\label{condition__variable_8h_a663a73dea9f68fe15c34c152ab35f29a}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_clean\_up@{aws\_condition\_variable\_clean\_up}}
+\index{aws\_condition\_variable\_clean\_up@{aws\_condition\_variable\_clean\_up}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_clean\_up()}{aws\_condition\_variable\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+condition\+\_\+variable\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable }\end{DoxyParamCaption})}
+
+Cleans up a condition variable. \mbox{\Hypertarget{condition__variable_8h_add5a9e25b6d7bef31f0177cef093999e}\label{condition__variable_8h_add5a9e25b6d7bef31f0177cef093999e}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_init@{aws\_condition\_variable\_init}}
+\index{aws\_condition\_variable\_init@{aws\_condition\_variable\_init}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_init()}{aws\_condition\_variable\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable }\end{DoxyParamCaption})}
+
+Initializes a condition variable. \mbox{\Hypertarget{condition__variable_8h_a5225026f76e5d3740e8ee388d21663d7}\label{condition__variable_8h_a5225026f76e5d3740e8ee388d21663d7}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_notify\_all@{aws\_condition\_variable\_notify\_all}}
+\index{aws\_condition\_variable\_notify\_all@{aws\_condition\_variable\_notify\_all}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_notify\_all()}{aws\_condition\_variable\_notify\_all()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+notify\+\_\+all (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable }\end{DoxyParamCaption})}
+
+Notifies/\+Wakes all waiting threads. \mbox{\Hypertarget{condition__variable_8h_a95a999e4afdd08427df4c72a28846e4c}\label{condition__variable_8h_a95a999e4afdd08427df4c72a28846e4c}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_notify\_one@{aws\_condition\_variable\_notify\_one}}
+\index{aws\_condition\_variable\_notify\_one@{aws\_condition\_variable\_notify\_one}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_notify\_one()}{aws\_condition\_variable\_notify\_one()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+notify\+\_\+one (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable }\end{DoxyParamCaption})}
+
+Notifies/\+Wakes one waiting thread \mbox{\Hypertarget{condition__variable_8h_a370bc340823727f86f6301da05fdf0ba}\label{condition__variable_8h_a370bc340823727f86f6301da05fdf0ba}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_wait@{aws\_condition\_variable\_wait}}
+\index{aws\_condition\_variable\_wait@{aws\_condition\_variable\_wait}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_wait()}{aws\_condition\_variable\_wait()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+wait (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable,  }\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Waits the calling thread on a notification from another thread. \mbox{\Hypertarget{condition__variable_8h_a83fe2a82aac9a07a32227c7ac1b80e2d}\label{condition__variable_8h_a83fe2a82aac9a07a32227c7ac1b80e2d}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_wait\_for@{aws\_condition\_variable\_wait\_for}}
+\index{aws\_condition\_variable\_wait\_for@{aws\_condition\_variable\_wait\_for}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_wait\_for()}{aws\_condition\_variable\_wait\_for()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+for (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable,  }\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex,  }\item[{int64\+\_\+t}]{time\+\_\+to\+\_\+wait }\end{DoxyParamCaption})}
+
+Waits the calling thread on a notification from another thread. Times out after time\+\_\+to\+\_\+wait. time\+\_\+to\+\_\+wait is in nanoseconds. \mbox{\Hypertarget{condition__variable_8h_a422aab6fbee374d9bebe59204835734a}\label{condition__variable_8h_a422aab6fbee374d9bebe59204835734a}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_wait\_for\_pred@{aws\_condition\_variable\_wait\_for\_pred}}
+\index{aws\_condition\_variable\_wait\_for\_pred@{aws\_condition\_variable\_wait\_for\_pred}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_wait\_for\_pred()}{aws\_condition\_variable\_wait\_for\_pred()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+for\+\_\+pred (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable,  }\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex,  }\item[{int64\+\_\+t}]{time\+\_\+to\+\_\+wait,  }\item[{\mbox{\hyperlink{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}{aws\+\_\+condition\+\_\+predicate\+\_\+fn}} $\ast$}]{pred,  }\item[{void $\ast$}]{pred\+\_\+ctx }\end{DoxyParamCaption})}
+
+Waits the calling thread on a notification from another thread. Times out after time\+\_\+to\+\_\+wait. time\+\_\+to\+\_\+wait is in nanoseconds. If predicate returns false, the wait is reentered, otherwise control returns to the caller. \mbox{\Hypertarget{condition__variable_8h_a15409a9d40159b229f7755025e4ffdfa}\label{condition__variable_8h_a15409a9d40159b229f7755025e4ffdfa}} 
+\index{condition\_variable.h@{condition\_variable.h}!aws\_condition\_variable\_wait\_pred@{aws\_condition\_variable\_wait\_pred}}
+\index{aws\_condition\_variable\_wait\_pred@{aws\_condition\_variable\_wait\_pred}!condition\_variable.h@{condition\_variable.h}}
+\doxysubsubsection{\texorpdfstring{aws\_condition\_variable\_wait\_pred()}{aws\_condition\_variable\_wait\_pred()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+condition\+\_\+variable\+\_\+wait\+\_\+pred (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable,  }\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex,  }\item[{\mbox{\hyperlink{condition__variable_8h_ae36b79b5d5766c7ec8259ac53cb8560d}{aws\+\_\+condition\+\_\+predicate\+\_\+fn}} $\ast$}]{pred,  }\item[{void $\ast$}]{pred\+\_\+ctx }\end{DoxyParamCaption})}
+
+Waits the calling thread on a notification from another thread. If predicate returns false, the wait is reentered, otherwise control returns to the caller.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

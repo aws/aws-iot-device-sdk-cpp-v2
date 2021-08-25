@@ -1,0 +1,19 @@
+These are files detailing the verification of HMAC with respect to the HMAC specification provided by Andrew Appel\textquotesingle{}s HMAC verification effort.
+
+The files in this repository constitue a proof of equivalence between the \href{../../HMAC.cry}{\texttt{ Cryptol specification of HMAC}} and the \href{HMAC_spec.v}{\texttt{ HMAC specification}} used for the FCF proof of HMAC.
+
+This proof of equivalence is done through a \href{https://github.com/GaloisInc/cryptol-semantics}{\texttt{ mechanized semantics of Cryptol}}.
+
+You can read more about the FCF proof of correctness for HMAC in \href{https://www.cs.princeton.edu/~appel/papers/verified-hmac.pdf}{\texttt{ this paper}}
+
+These files don\textquotesingle{}t build by themselves, but rather require the \href{https://github.com/GaloisInc/cryptol-semantics}{\texttt{ cryptol-\/semantics repository}} checked out and built in the same directory as s2n.
+
+These is verification effort used Coq 8.\+6, if you use a different version YMMV.
+
+Build instructions\+:
+\begin{DoxyEnumerate}
+\item Build the cryptol-\/semantics repository
+\item make (in this directory)
+\end{DoxyEnumerate}
+
+NOTE\+: When you make you may see some warnings about ambiguous paths, as the cryptol-\/semantics repository contains all of these files as well. 

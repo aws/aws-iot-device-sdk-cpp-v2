@@ -1,0 +1,302 @@
+\hypertarget{huffman__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/tests/huffman\+\_\+test.c File Reference}
+\label{huffman__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/tests/huffman\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/compression/tests/huffman\_test.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/compression/huffman.\+h$>$}\newline
+{\ttfamily \#include $<$aws/compression/huffman.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}test\+\_\+huffman\+\_\+static\+\_\+table.\+def\char`\"{}}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_a61dadd085c1777f559549e05962b2c9eaadd601c07709007ef11482a78091e4da}{NUM\+\_\+\+CODE\+\_\+\+POINTS}} = sizeof(s\+\_\+code\+\_\+points) / sizeof(s\+\_\+code\+\_\+points\mbox{[}0\mbox{]})
+ \}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_a726ca809ffd3d67ab4b8476646f26635a8a4fcf39a6368e9acc7911c1124ab0b3}{URL\+\_\+\+STRING\+\_\+\+LEN}} = sizeof(s\+\_\+url\+\_\+string) -\/ 1
+ \}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_a0411cd49bb5b71852cecd93bcbf0ca2da56284ed682184c7d2023517801d3e983}{ENCODED\+\_\+\+URL\+\_\+\+LEN}} = sizeof(s\+\_\+encoded\+\_\+url)
+ \}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_abed82baf7f470b522273a3e37c24c600a04f517d644097958b0b1df7b62035476}{ALL\+\_\+\+CODES\+\_\+\+LEN}} = sizeof(s\+\_\+all\+\_\+codes) -\/ 1
+ \}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_ab04a0655cd1e3bcac5e8f48c18df1a57a6dd495869207be95c47fc77a8e5ec961}{ENCODED\+\_\+\+CODES\+\_\+\+LEN}} = sizeof(s\+\_\+encoded\+\_\+codes)
+ \}
+\item 
+enum \{ \mbox{\hyperlink{huffman__test_8c_a385c44f6fb256e5716a2302a5b940388af2df394051357e0183efed6e1a8560b3}{NUM\+\_\+\+STEP\+\_\+\+SIZES}} = sizeof(s\+\_\+step\+\_\+sizes) / sizeof(s\+\_\+step\+\_\+sizes\mbox{[}0\mbox{]})
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}} $\ast$ \mbox{\hyperlink{huffman__test_8c_a3957b86d1659e5be005eacf978648560}{test\+\_\+get\+\_\+coder}} (void)
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a82694ee5f04d805f5df8cacc5adcc5f7}{test\+\_\+huffman\+\_\+symbol\+\_\+encoder}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a7e5b447e753ba4ed3c5e6114b68bc35f}{test\+\_\+huffman\+\_\+encoder}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_aed45ea477d1e5c306bb0633a486f77a6}{test\+\_\+huffman\+\_\+encoder\+\_\+all\+\_\+code\+\_\+points}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a9cb00ca25f4a15c1c9f0a540cc646cff}{test\+\_\+huffman\+\_\+encoder\+\_\+partial\+\_\+output}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a69b33928781fe3b4ddaa0ba5e4028306}{test\+\_\+huffman\+\_\+encoder\+\_\+exact\+\_\+output}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_aa71e85eb16edfab891cc8564c71cb571}{test\+\_\+huffman\+\_\+symbol\+\_\+decoder}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_abdd995028c0f2beafca993b74b772dc6}{test\+\_\+huffman\+\_\+decoder}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a9aa0596d79dc2c3ac34797629334e263}{test\+\_\+huffman\+\_\+decoder\+\_\+all\+\_\+code\+\_\+points}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_ac665cc2fdb399e3f11daf63b2954099e}{test\+\_\+huffman\+\_\+decoder\+\_\+partial\+\_\+input}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a814a0402103eecfdc70fd419d880ffb9}{test\+\_\+huffman\+\_\+decoder\+\_\+partial\+\_\+output}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a0dbbdc8501d54780ad24c9a1a02454d5}{test\+\_\+huffman\+\_\+decoder\+\_\+allow\+\_\+growth}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_adca772fd4757db5291cc850d1ee5524b}{test\+\_\+huffman\+\_\+transitive}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a8faea8b85e5e81b567a3ac4feae1c67f}{test\+\_\+huffman\+\_\+transitive\+\_\+even\+\_\+bytes}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_ac5217613cb3f79fab09b2b38db71539a}{test\+\_\+huffman\+\_\+transitive\+\_\+all\+\_\+code\+\_\+points}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{huffman__test_8c_a4c91cd2d33ef81482039413fd6e5bcc3}{test\+\_\+huffman\+\_\+transitive\+\_\+chunked}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structhuffman__test__code__point}{huffman\+\_\+test\+\_\+code\+\_\+point}} \mbox{\hyperlink{huffman__test_8c_af1ae2d68bf56e68a91cea803d3217447}{s\+\_\+code\+\_\+points}} \mbox{[}$\,$\mbox{]}
+\item 
+static const char \mbox{\hyperlink{huffman__test_8c_a20d08e320d1ad396afb2e82a3e778804}{s\+\_\+url\+\_\+string}} \mbox{[}$\,$\mbox{]} = \char`\"{}www.\+example.\+com\char`\"{}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{huffman__test_8c_aa5783a448e3e3a7ef6fd61f02a5c92ef}{s\+\_\+encoded\+\_\+url}} \mbox{[}$\,$\mbox{]} = \{0x9e, 0x79, 0xeb, 0x9b, 0x04, 0xb3, 0x5a, 0x94, 0xd5, 0xe0, 0x4c, 0xdf\}
+\item 
+static const char \mbox{\hyperlink{huffman__test_8c_a357f5e9f28b201ad09a4972ca2bf90ed}{s\+\_\+all\+\_\+codes}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{huffman__test_8c_abf8088ab80f137900dc9aca3f5247e2d}{s\+\_\+encoded\+\_\+codes}} \mbox{[}$\,$\mbox{]}
+\item 
+static const size\+\_\+t \mbox{\hyperlink{huffman__test_8c_a979328e2ae75a7921ca258cc3b4a7e35}{s\+\_\+step\+\_\+sizes}} \mbox{[}$\,$\mbox{]} = \{1, 2, 4, 8, 16, 32, 64, 128\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{huffman__test_8c_a385c44f6fb256e5716a2302a5b940388}\label{huffman__test_8c_a385c44f6fb256e5716a2302a5b940388}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NUM\_STEP\_SIZES@{NUM\_STEP\_SIZES}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!NUM\_STEP\_SIZES@{NUM\_STEP\_SIZES}}}\mbox{\Hypertarget{huffman__test_8c_a385c44f6fb256e5716a2302a5b940388af2df394051357e0183efed6e1a8560b3}\label{huffman__test_8c_a385c44f6fb256e5716a2302a5b940388af2df394051357e0183efed6e1a8560b3}} 
+NUM\+\_\+\+STEP\+\_\+\+SIZES&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{huffman__test_8c_a61dadd085c1777f559549e05962b2c9e}\label{huffman__test_8c_a61dadd085c1777f559549e05962b2c9e}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NUM\_CODE\_POINTS@{NUM\_CODE\_POINTS}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!NUM\_CODE\_POINTS@{NUM\_CODE\_POINTS}}}\mbox{\Hypertarget{huffman__test_8c_a61dadd085c1777f559549e05962b2c9eaadd601c07709007ef11482a78091e4da}\label{huffman__test_8c_a61dadd085c1777f559549e05962b2c9eaadd601c07709007ef11482a78091e4da}} 
+NUM\+\_\+\+CODE\+\_\+\+POINTS&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{huffman__test_8c_a726ca809ffd3d67ab4b8476646f26635}\label{huffman__test_8c_a726ca809ffd3d67ab4b8476646f26635}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{URL\_STRING\_LEN@{URL\_STRING\_LEN}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!URL\_STRING\_LEN@{URL\_STRING\_LEN}}}\mbox{\Hypertarget{huffman__test_8c_a726ca809ffd3d67ab4b8476646f26635a8a4fcf39a6368e9acc7911c1124ab0b3}\label{huffman__test_8c_a726ca809ffd3d67ab4b8476646f26635a8a4fcf39a6368e9acc7911c1124ab0b3}} 
+URL\+\_\+\+STRING\+\_\+\+LEN&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{huffman__test_8c_a0411cd49bb5b71852cecd93bcbf0ca2d}\label{huffman__test_8c_a0411cd49bb5b71852cecd93bcbf0ca2d}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENCODED\_URL\_LEN@{ENCODED\_URL\_LEN}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!ENCODED\_URL\_LEN@{ENCODED\_URL\_LEN}}}\mbox{\Hypertarget{huffman__test_8c_a0411cd49bb5b71852cecd93bcbf0ca2da56284ed682184c7d2023517801d3e983}\label{huffman__test_8c_a0411cd49bb5b71852cecd93bcbf0ca2da56284ed682184c7d2023517801d3e983}} 
+ENCODED\+\_\+\+URL\+\_\+\+LEN&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{huffman__test_8c_abed82baf7f470b522273a3e37c24c600}\label{huffman__test_8c_abed82baf7f470b522273a3e37c24c600}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALL\_CODES\_LEN@{ALL\_CODES\_LEN}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!ALL\_CODES\_LEN@{ALL\_CODES\_LEN}}}\mbox{\Hypertarget{huffman__test_8c_abed82baf7f470b522273a3e37c24c600a04f517d644097958b0b1df7b62035476}\label{huffman__test_8c_abed82baf7f470b522273a3e37c24c600a04f517d644097958b0b1df7b62035476}} 
+ALL\+\_\+\+CODES\+\_\+\+LEN&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{huffman__test_8c_ab04a0655cd1e3bcac5e8f48c18df1a57}\label{huffman__test_8c_ab04a0655cd1e3bcac5e8f48c18df1a57}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENCODED\_CODES\_LEN@{ENCODED\_CODES\_LEN}!huffman\_test.c@{huffman\_test.c}}\index{huffman\_test.c@{huffman\_test.c}!ENCODED\_CODES\_LEN@{ENCODED\_CODES\_LEN}}}\mbox{\Hypertarget{huffman__test_8c_ab04a0655cd1e3bcac5e8f48c18df1a57a6dd495869207be95c47fc77a8e5ec961}\label{huffman__test_8c_ab04a0655cd1e3bcac5e8f48c18df1a57a6dd495869207be95c47fc77a8e5ec961}} 
+ENCODED\+\_\+\+CODES\+\_\+\+LEN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{huffman__test_8c_a3957b86d1659e5be005eacf978648560}\label{huffman__test_8c_a3957b86d1659e5be005eacf978648560}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_get\_coder@{test\_get\_coder}}
+\index{test\_get\_coder@{test\_get\_coder}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_get\_coder()}{test\_get\_coder()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\+symbol\+\_\+coder}}$\ast$ test\+\_\+get\+\_\+coder (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{huffman__test_8c_abdd995028c0f2beafca993b74b772dc6}\label{huffman__test_8c_abdd995028c0f2beafca993b74b772dc6}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_decoder@{test\_huffman\_decoder}}
+\index{test\_huffman\_decoder@{test\_huffman\_decoder}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_decoder()}{test\_huffman\_decoder()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+decoder (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a9aa0596d79dc2c3ac34797629334e263}\label{huffman__test_8c_a9aa0596d79dc2c3ac34797629334e263}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_decoder\_all\_code\_points@{test\_huffman\_decoder\_all\_code\_points}}
+\index{test\_huffman\_decoder\_all\_code\_points@{test\_huffman\_decoder\_all\_code\_points}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_decoder\_all\_code\_points()}{test\_huffman\_decoder\_all\_code\_points()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+decoder\+\_\+all\+\_\+code\+\_\+points (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a0dbbdc8501d54780ad24c9a1a02454d5}\label{huffman__test_8c_a0dbbdc8501d54780ad24c9a1a02454d5}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_decoder\_allow\_growth@{test\_huffman\_decoder\_allow\_growth}}
+\index{test\_huffman\_decoder\_allow\_growth@{test\_huffman\_decoder\_allow\_growth}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_decoder\_allow\_growth()}{test\_huffman\_decoder\_allow\_growth()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+decoder\+\_\+allow\+\_\+growth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_ac665cc2fdb399e3f11daf63b2954099e}\label{huffman__test_8c_ac665cc2fdb399e3f11daf63b2954099e}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_decoder\_partial\_input@{test\_huffman\_decoder\_partial\_input}}
+\index{test\_huffman\_decoder\_partial\_input@{test\_huffman\_decoder\_partial\_input}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_decoder\_partial\_input()}{test\_huffman\_decoder\_partial\_input()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+decoder\+\_\+partial\+\_\+input (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a814a0402103eecfdc70fd419d880ffb9}\label{huffman__test_8c_a814a0402103eecfdc70fd419d880ffb9}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_decoder\_partial\_output@{test\_huffman\_decoder\_partial\_output}}
+\index{test\_huffman\_decoder\_partial\_output@{test\_huffman\_decoder\_partial\_output}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_decoder\_partial\_output()}{test\_huffman\_decoder\_partial\_output()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+decoder\+\_\+partial\+\_\+output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a7e5b447e753ba4ed3c5e6114b68bc35f}\label{huffman__test_8c_a7e5b447e753ba4ed3c5e6114b68bc35f}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_encoder@{test\_huffman\_encoder}}
+\index{test\_huffman\_encoder@{test\_huffman\_encoder}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_encoder()}{test\_huffman\_encoder()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+encoder (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_aed45ea477d1e5c306bb0633a486f77a6}\label{huffman__test_8c_aed45ea477d1e5c306bb0633a486f77a6}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_encoder\_all\_code\_points@{test\_huffman\_encoder\_all\_code\_points}}
+\index{test\_huffman\_encoder\_all\_code\_points@{test\_huffman\_encoder\_all\_code\_points}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_encoder\_all\_code\_points()}{test\_huffman\_encoder\_all\_code\_points()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+encoder\+\_\+all\+\_\+code\+\_\+points (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a69b33928781fe3b4ddaa0ba5e4028306}\label{huffman__test_8c_a69b33928781fe3b4ddaa0ba5e4028306}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_encoder\_exact\_output@{test\_huffman\_encoder\_exact\_output}}
+\index{test\_huffman\_encoder\_exact\_output@{test\_huffman\_encoder\_exact\_output}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_encoder\_exact\_output()}{test\_huffman\_encoder\_exact\_output()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+encoder\+\_\+exact\+\_\+output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a9cb00ca25f4a15c1c9f0a540cc646cff}\label{huffman__test_8c_a9cb00ca25f4a15c1c9f0a540cc646cff}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_encoder\_partial\_output@{test\_huffman\_encoder\_partial\_output}}
+\index{test\_huffman\_encoder\_partial\_output@{test\_huffman\_encoder\_partial\_output}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_encoder\_partial\_output()}{test\_huffman\_encoder\_partial\_output()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+encoder\+\_\+partial\+\_\+output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_aa71e85eb16edfab891cc8564c71cb571}\label{huffman__test_8c_aa71e85eb16edfab891cc8564c71cb571}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_symbol\_decoder@{test\_huffman\_symbol\_decoder}}
+\index{test\_huffman\_symbol\_decoder@{test\_huffman\_symbol\_decoder}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_symbol\_decoder()}{test\_huffman\_symbol\_decoder()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+symbol\+\_\+decoder (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a82694ee5f04d805f5df8cacc5adcc5f7}\label{huffman__test_8c_a82694ee5f04d805f5df8cacc5adcc5f7}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_symbol\_encoder@{test\_huffman\_symbol\_encoder}}
+\index{test\_huffman\_symbol\_encoder@{test\_huffman\_symbol\_encoder}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_symbol\_encoder()}{test\_huffman\_symbol\_encoder()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+symbol\+\_\+encoder (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_adca772fd4757db5291cc850d1ee5524b}\label{huffman__test_8c_adca772fd4757db5291cc850d1ee5524b}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_transitive@{test\_huffman\_transitive}}
+\index{test\_huffman\_transitive@{test\_huffman\_transitive}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_transitive()}{test\_huffman\_transitive()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+transitive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_ac5217613cb3f79fab09b2b38db71539a}\label{huffman__test_8c_ac5217613cb3f79fab09b2b38db71539a}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_transitive\_all\_code\_points@{test\_huffman\_transitive\_all\_code\_points}}
+\index{test\_huffman\_transitive\_all\_code\_points@{test\_huffman\_transitive\_all\_code\_points}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_transitive\_all\_code\_points()}{test\_huffman\_transitive\_all\_code\_points()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+transitive\+\_\+all\+\_\+code\+\_\+points (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a4c91cd2d33ef81482039413fd6e5bcc3}\label{huffman__test_8c_a4c91cd2d33ef81482039413fd6e5bcc3}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_transitive\_chunked@{test\_huffman\_transitive\_chunked}}
+\index{test\_huffman\_transitive\_chunked@{test\_huffman\_transitive\_chunked}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_transitive\_chunked()}{test\_huffman\_transitive\_chunked()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+transitive\+\_\+chunked (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a8faea8b85e5e81b567a3ac4feae1c67f}\label{huffman__test_8c_a8faea8b85e5e81b567a3ac4feae1c67f}} 
+\index{huffman\_test.c@{huffman\_test.c}!test\_huffman\_transitive\_even\_bytes@{test\_huffman\_transitive\_even\_bytes}}
+\index{test\_huffman\_transitive\_even\_bytes@{test\_huffman\_transitive\_even\_bytes}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_huffman\_transitive\_even\_bytes()}{test\_huffman\_transitive\_even\_bytes()}}
+{\footnotesize\ttfamily static int test\+\_\+huffman\+\_\+transitive\+\_\+even\+\_\+bytes (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{huffman__test_8c_a357f5e9f28b201ad09a4972ca2bf90ed}\label{huffman__test_8c_a357f5e9f28b201ad09a4972ca2bf90ed}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_all\_codes@{s\_all\_codes}}
+\index{s\_all\_codes@{s\_all\_codes}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_all\_codes}{s\_all\_codes}}
+{\footnotesize\ttfamily const char s\+\_\+all\+\_\+codes\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{} !\(\backslash\)"{}\#\$\%\&'()*+,-\/./"{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ["{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)]\string^\_`abcdefghijklmnopqrstuvwxyz\{|\}\string~"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{huffman__test_8c_af1ae2d68bf56e68a91cea803d3217447}\label{huffman__test_8c_af1ae2d68bf56e68a91cea803d3217447}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_code\_points@{s\_code\_points}}
+\index{s\_code\_points@{s\_code\_points}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_code\_points}{s\_code\_points}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhuffman__test__code__point}{huffman\+\_\+test\+\_\+code\+\_\+point}} s\+\_\+code\+\_\+points\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{huffman__test_8c_abf8088ab80f137900dc9aca3f5247e2d}\label{huffman__test_8c_abf8088ab80f137900dc9aca3f5247e2d}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_encoded\_codes@{s\_encoded\_codes}}
+\index{s\_encoded\_codes@{s\_encoded\_codes}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_codes}{s\_encoded\_codes}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+codes\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0x26, 0x9b, 0xa7, 0x69, 0xfa, 0x86, 0xa3, 0xa9, 0x56, 0xd4, 0xf5, 0x4d, 0x57, 0x56, 0xb9, 0xc4, 0x57, 0xd5,}
+\DoxyCodeLine{    0xf5, 0x8d, 0x67, 0x5a, 0xd6, 0xf5, 0xcd, 0x77, 0x5e, 0xd7, 0xf6, 0x0d, 0x87, 0x62, 0xd8, 0xf6, 0x4d, 0x97,}
+\DoxyCodeLine{    0x66, 0xba, 0xd9, 0xf6, 0x8b, 0xbc, 0x4e, 0x2b, 0x17, 0x8c, 0xc6, 0xe3, 0xaf, 0x36, 0x9d, 0xab, 0x1f, 0x90,}
+\DoxyCodeLine{    0xda, 0xf6, 0xcc, 0x8e, 0xdb, 0xb7, 0x6d, 0xf7, 0xbb, 0x86, 0x4a, 0xfb, 0x71, 0xc9, 0xee, 0x5b, 0x9e, 0xe9,}
+\DoxyCodeLine{    0xba, 0xee, 0xdb, 0xbe, 0xf0, 0x5b, 0x10, 0x42, 0x68, 0xac, 0xc6, 0x7b, 0xf9, 0x25, 0x99, 0x09, 0xb5, 0x94,}
+\DoxyCodeLine{    0x52, 0xd8, 0xdc, 0x09, 0xf0, 0x68, 0xde, 0x77, 0xad, 0xef, 0x7c, 0xdf, 0x7f\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{huffman__test_8c_aa5783a448e3e3a7ef6fd61f02a5c92ef}\label{huffman__test_8c_aa5783a448e3e3a7ef6fd61f02a5c92ef}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_encoded\_url@{s\_encoded\_url}}
+\index{s\_encoded\_url@{s\_encoded\_url}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_url}{s\_encoded\_url}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+url\mbox{[}$\,$\mbox{]} = \{0x9e, 0x79, 0xeb, 0x9b, 0x04, 0xb3, 0x5a, 0x94, 0xd5, 0xe0, 0x4c, 0xdf\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a979328e2ae75a7921ca258cc3b4a7e35}\label{huffman__test_8c_a979328e2ae75a7921ca258cc3b4a7e35}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_step\_sizes@{s\_step\_sizes}}
+\index{s\_step\_sizes@{s\_step\_sizes}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_step\_sizes}{s\_step\_sizes}}
+{\footnotesize\ttfamily const size\+\_\+t s\+\_\+step\+\_\+sizes\mbox{[}$\,$\mbox{]} = \{1, 2, 4, 8, 16, 32, 64, 128\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{huffman__test_8c_a20d08e320d1ad396afb2e82a3e778804}\label{huffman__test_8c_a20d08e320d1ad396afb2e82a3e778804}} 
+\index{huffman\_test.c@{huffman\_test.c}!s\_url\_string@{s\_url\_string}}
+\index{s\_url\_string@{s\_url\_string}!huffman\_test.c@{huffman\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_url\_string}{s\_url\_string}}
+{\footnotesize\ttfamily const char s\+\_\+url\+\_\+string\mbox{[}$\,$\mbox{]} = \char`\"{}www.\+example.\+com\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+

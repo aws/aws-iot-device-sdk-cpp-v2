@@ -1,0 +1,105 @@
+\hypertarget{structhash__table__state}{}\doxysection{hash\+\_\+table\+\_\+state Struct Reference}
+\label{structhash__table__state}\index{hash\_table\_state@{hash\_table\_state}}
+
+
+{\ttfamily \#include $<$hash\+\_\+table\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$ \mbox{\hyperlink{structhash__table__state_a33bbedb6ae21f09c27cd2ae41016e395}{hash\+\_\+fn}}
+\item 
+\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$ \mbox{\hyperlink{structhash__table__state_aa18638e492dc27f564b8c35149477026}{equals\+\_\+fn}}
+\item 
+\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$ \mbox{\hyperlink{structhash__table__state_ac87ba799b76c7f43404a560718447c89}{destroy\+\_\+key\+\_\+fn}}
+\item 
+\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$ \mbox{\hyperlink{structhash__table__state_abd61f169eec2278015550b86e37f2995}{destroy\+\_\+value\+\_\+fn}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structhash__table__state_a2603ff0ef02ba9550e907ce3f435766c}{alloc}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structhash__table__state_a13e615d4849f9f77864797c194e413ed}{size}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structhash__table__state_a37e91a53cbaf6b1155391fc687ec2f30}{entry\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structhash__table__state_a88f32d1042cb82f2164558941d25c2ca}{max\+\_\+load}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structhash__table__state_ae7fea715e68fd1e9ba1be4c5296a78c5}{mask}}
+\item 
+double \mbox{\hyperlink{structhash__table__state_a00fd4bfba45d50cce425de2661c1554b}{max\+\_\+load\+\_\+factor}}
+\item 
+struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} \mbox{\hyperlink{structhash__table__state_a5ecd5634171e7cd6b612f4b9963cf3ce}{slots}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structhash__table__state_a2603ff0ef02ba9550e907ce3f435766c}\label{structhash__table__state_a2603ff0ef02ba9550e907ce3f435766c}} 
+\index{hash\_table\_state@{hash\_table\_state}!alloc@{alloc}}
+\index{alloc@{alloc}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ hash\+\_\+table\+\_\+state\+::alloc}
+
+\mbox{\Hypertarget{structhash__table__state_ac87ba799b76c7f43404a560718447c89}\label{structhash__table__state_ac87ba799b76c7f43404a560718447c89}} 
+\index{hash\_table\_state@{hash\_table\_state}!destroy\_key\_fn@{destroy\_key\_fn}}
+\index{destroy\_key\_fn@{destroy\_key\_fn}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{destroy\_key\_fn}{destroy\_key\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}}$\ast$ hash\+\_\+table\+\_\+state\+::destroy\+\_\+key\+\_\+fn}
+
+\mbox{\Hypertarget{structhash__table__state_abd61f169eec2278015550b86e37f2995}\label{structhash__table__state_abd61f169eec2278015550b86e37f2995}} 
+\index{hash\_table\_state@{hash\_table\_state}!destroy\_value\_fn@{destroy\_value\_fn}}
+\index{destroy\_value\_fn@{destroy\_value\_fn}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{destroy\_value\_fn}{destroy\_value\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}}$\ast$ hash\+\_\+table\+\_\+state\+::destroy\+\_\+value\+\_\+fn}
+
+\mbox{\Hypertarget{structhash__table__state_a37e91a53cbaf6b1155391fc687ec2f30}\label{structhash__table__state_a37e91a53cbaf6b1155391fc687ec2f30}} 
+\index{hash\_table\_state@{hash\_table\_state}!entry\_count@{entry\_count}}
+\index{entry\_count@{entry\_count}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{entry\_count}{entry\_count}}
+{\footnotesize\ttfamily size\+\_\+t hash\+\_\+table\+\_\+state\+::entry\+\_\+count}
+
+\mbox{\Hypertarget{structhash__table__state_aa18638e492dc27f564b8c35149477026}\label{structhash__table__state_aa18638e492dc27f564b8c35149477026}} 
+\index{hash\_table\_state@{hash\_table\_state}!equals\_fn@{equals\_fn}}
+\index{equals\_fn@{equals\_fn}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{equals\_fn}{equals\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}}$\ast$ hash\+\_\+table\+\_\+state\+::equals\+\_\+fn}
+
+\mbox{\Hypertarget{structhash__table__state_a33bbedb6ae21f09c27cd2ae41016e395}\label{structhash__table__state_a33bbedb6ae21f09c27cd2ae41016e395}} 
+\index{hash\_table\_state@{hash\_table\_state}!hash\_fn@{hash\_fn}}
+\index{hash\_fn@{hash\_fn}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{hash\_fn}{hash\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}}$\ast$ hash\+\_\+table\+\_\+state\+::hash\+\_\+fn}
+
+\mbox{\Hypertarget{structhash__table__state_ae7fea715e68fd1e9ba1be4c5296a78c5}\label{structhash__table__state_ae7fea715e68fd1e9ba1be4c5296a78c5}} 
+\index{hash\_table\_state@{hash\_table\_state}!mask@{mask}}
+\index{mask@{mask}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily size\+\_\+t hash\+\_\+table\+\_\+state\+::mask}
+
+\mbox{\Hypertarget{structhash__table__state_a88f32d1042cb82f2164558941d25c2ca}\label{structhash__table__state_a88f32d1042cb82f2164558941d25c2ca}} 
+\index{hash\_table\_state@{hash\_table\_state}!max\_load@{max\_load}}
+\index{max\_load@{max\_load}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{max\_load}{max\_load}}
+{\footnotesize\ttfamily size\+\_\+t hash\+\_\+table\+\_\+state\+::max\+\_\+load}
+
+\mbox{\Hypertarget{structhash__table__state_a00fd4bfba45d50cce425de2661c1554b}\label{structhash__table__state_a00fd4bfba45d50cce425de2661c1554b}} 
+\index{hash\_table\_state@{hash\_table\_state}!max\_load\_factor@{max\_load\_factor}}
+\index{max\_load\_factor@{max\_load\_factor}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{max\_load\_factor}{max\_load\_factor}}
+{\footnotesize\ttfamily double hash\+\_\+table\+\_\+state\+::max\+\_\+load\+\_\+factor}
+
+\mbox{\Hypertarget{structhash__table__state_a13e615d4849f9f77864797c194e413ed}\label{structhash__table__state_a13e615d4849f9f77864797c194e413ed}} 
+\index{hash\_table\_state@{hash\_table\_state}!size@{size}}
+\index{size@{size}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily size\+\_\+t hash\+\_\+table\+\_\+state\+::size}
+
+\mbox{\Hypertarget{structhash__table__state_a5ecd5634171e7cd6b612f4b9963cf3ce}\label{structhash__table__state_a5ecd5634171e7cd6b612f4b9963cf3ce}} 
+\index{hash\_table\_state@{hash\_table\_state}!slots@{slots}}
+\index{slots@{slots}!hash\_table\_state@{hash\_table\_state}}
+\doxysubsubsection{\texorpdfstring{slots}{slots}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} hash\+\_\+table\+\_\+state\+::slots\mbox{[}$\,$\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/\mbox{\hyperlink{hash__table__impl_8h}{hash\+\_\+table\+\_\+impl.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,35 @@
+\hypertarget{hash__table__impl_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/hash\+\_\+table\+\_\+impl.h File Reference}
+\label{hash__table__impl_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/hash\_table\_impl.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/hash\_table\_impl.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/math.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table__impl_8h_aeb6b02b5404af6dc40439723eb0aed96}{hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$map)
+\item 
+int \mbox{\hyperlink{hash__table__impl_8h_a25f43ce27f9e6fe672a4ba05390a2de8}{hash\+\_\+table\+\_\+state\+\_\+required\+\_\+bytes}} (size\+\_\+t size, size\+\_\+t $\ast$required\+\_\+bytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hash__table__impl_8h_aeb6b02b5404af6dc40439723eb0aed96}\label{hash__table__impl_8h_aeb6b02b5404af6dc40439723eb0aed96}} 
+\index{hash\_table\_impl.h@{hash\_table\_impl.h}!hash\_table\_state\_is\_valid@{hash\_table\_state\_is\_valid}}
+\index{hash\_table\_state\_is\_valid@{hash\_table\_state\_is\_valid}!hash\_table\_impl.h@{hash\_table\_impl.h}}
+\doxysubsubsection{\texorpdfstring{hash\_table\_state\_is\_valid()}{hash\_table\_state\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Best-\/effort check of \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} data-\/structure invariants Some invariants, such as that the number of entries is actually the same as the entry\+\_\+count field, would require a loop to check \mbox{\Hypertarget{hash__table__impl_8h_a25f43ce27f9e6fe672a4ba05390a2de8}\label{hash__table__impl_8h_a25f43ce27f9e6fe672a4ba05390a2de8}} 
+\index{hash\_table\_impl.h@{hash\_table\_impl.h}!hash\_table\_state\_required\_bytes@{hash\_table\_state\_required\_bytes}}
+\index{hash\_table\_state\_required\_bytes@{hash\_table\_state\_required\_bytes}!hash\_table\_impl.h@{hash\_table\_impl.h}}
+\doxysubsubsection{\texorpdfstring{hash\_table\_state\_required\_bytes()}{hash\_table\_state\_required\_bytes()}}
+{\footnotesize\ttfamily int hash\+\_\+table\+\_\+state\+\_\+required\+\_\+bytes (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t $\ast$}]{required\+\_\+bytes }\end{DoxyParamCaption})}
+
+Determine the total number of bytes needed for a hash-\/table with \char`\"{}size\char`\"{} slots. If the result would overflow a size\+\_\+t, return AWS\+\_\+\+OP\+\_\+\+ERR; otherwise, return AWS\+\_\+\+OP\+\_\+\+SUCCESS with the result in \char`\"{}required\+\_\+bytes\char`\"{}. 

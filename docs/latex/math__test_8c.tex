@@ -1,0 +1,402 @@
+\hypertarget{math__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/math\+\_\+test.c File Reference}
+\label{math__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/math\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/math\_test.c}}
+{\ttfamily \#include $<$aws/common/math.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a27182125e54d8fec2d4c3791ebdec21f}{CHECK\+\_\+\+SAT}}(fn,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  result)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a5d039c52e26ca64dd82bea6f10b8b89c}{CHECK\+\_\+\+ROUND\+\_\+\+OVERFLOWS}}(a)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a15c1f06c7990c2d62869f315abb00c00}{CHECK\+\_\+\+ROUND\+\_\+\+SUCCEEDS}}(a,  r)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}{CHECK\+\_\+\+OVF\+\_\+0}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}{CHECK\+\_\+\+OVF}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\#define \mbox{\hyperlink{math__test_8c_aab0eddfb1e0eee026a753225633c8980}{CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+0}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  r)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}{CHECK\+\_\+\+NO\+\_\+\+OVF}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  r)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_ae94b97ae573125ea0655d04adecdcf60}{CHECK\+\_\+\+OVF\+\_\+\+VARARGS}}(fn,  type,  num, ...)
+\item 
+\#define \mbox{\hyperlink{math__test_8c_a95409d5b530304f540e1da879a3d2645}{CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+\+VARARGS}}(fn,  type,  num,  r, ...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{math__test_8c_a644a11922077975b9b9d506e7fe32e9c}{s\+\_\+test\+\_\+is\+\_\+power\+\_\+of\+\_\+two\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a655e0cc158e5cccb0b2a983eb8516560}{s\+\_\+test\+\_\+round\+\_\+up\+\_\+to\+\_\+power\+\_\+of\+\_\+two\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_ae54643e1880a477d8b7a0583fd0ef7e9}{s\+\_\+test\+\_\+mul\+\_\+u64\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a05693cbdef5140b4ac4301ea7d7b0d7b}{s\+\_\+test\+\_\+mul\+\_\+u32\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a9cc45a739dfe68b73f65599e6a06d147}{s\+\_\+test\+\_\+mul\+\_\+size\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a3c9d118dce4eb1f2274de14ac4c20f32}{s\+\_\+test\+\_\+mul\+\_\+u64\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_aaa35804709c55efb0cf0418106a97bf6}{s\+\_\+test\+\_\+mul\+\_\+u32\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_af37cc1b333e8702902839b30d24da16e}{s\+\_\+test\+\_\+mul\+\_\+size\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a9ce598531afb029e3105197bcda2d8b9}{s\+\_\+test\+\_\+add\+\_\+size\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a8c70f4aa9219aa3f6d375c55268690d2}{s\+\_\+test\+\_\+sub\+\_\+size\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+void \mbox{\hyperlink{math__test_8c_a0625f66e77682074af4f2985c3902aa9}{print\+\_\+array}} (size\+\_\+t $\ast$a, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a64bc6ab80b97e74dea4f1dd30ca94169}{check\+\_\+add\+\_\+varargs\+\_\+no\+\_\+overflow}} (size\+\_\+t a, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, size\+\_\+t r)
+\item 
+static int \mbox{\hyperlink{math__test_8c_abf4820d76f5f3353337bea6b9740853d}{check\+\_\+add\+\_\+varargs\+\_\+overflow}} (size\+\_\+t a, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a2315e2b4eab7ab516813ffa5ebe14cd4}{s\+\_\+test\+\_\+add\+\_\+size\+\_\+checked\+\_\+varargs\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a22d9ddbeac5b3f1de93f6fa075d5e66e}{s\+\_\+test\+\_\+add\+\_\+size\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a540c88cc5fb6a9561299dc151533fb47}{s\+\_\+test\+\_\+sub\+\_\+size\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a268c29be83a1b599494631b0eb651923}{s\+\_\+test\+\_\+add\+\_\+u32\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a498be3d79236fcbe3f5b252f7426a8a8}{s\+\_\+test\+\_\+add\+\_\+u32\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a1be192ace54938cdef4826bb2ff8606f}{s\+\_\+test\+\_\+sub\+\_\+u32\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_ac14dba27ff9df83d8ac6f2beed3f574e}{s\+\_\+test\+\_\+sub\+\_\+u32\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_ae1b81361bd7e24d32a152d5016b06ec9}{s\+\_\+test\+\_\+add\+\_\+u64\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a590c8fca57e68ffff698d4ba4061b5ad}{s\+\_\+test\+\_\+add\+\_\+u64\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a1bb390eec79d82df0c6b2cf242cf0e2d}{s\+\_\+test\+\_\+sub\+\_\+u64\+\_\+checked\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_aa78201b01ec86b45117e1fe88bb26f97}{s\+\_\+test\+\_\+sub\+\_\+u64\+\_\+saturating\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{math__test_8c_a3c982fd89155c7697b6754989c5f9389}{s\+\_\+test\+\_\+min\+\_\+max}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{math__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}\label{math__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_NO\_OVF@{CHECK\_NO\_OVF}}
+\index{CHECK\_NO\_OVF@{CHECK\_NO\_OVF}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_NO\_OVF}{CHECK\_NO\_OVF}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+NO\+\_\+\+OVF(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        CHECK\_NO\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, r);                                                                             \(\backslash\)}
+\DoxyCodeLine{        CHECK\_NO\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, r);                                                                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_aab0eddfb1e0eee026a753225633c8980}\label{math__test_8c_aab0eddfb1e0eee026a753225633c8980}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_NO\_OVF\_0@{CHECK\_NO\_OVF\_0}}
+\index{CHECK\_NO\_OVF\_0@{CHECK\_NO\_OVF\_0}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_NO\_OVF\_0}{CHECK\_NO\_OVF\_0}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+0(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        type result\_val;                                                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_FALSE(fn((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}), \&result\_val));                                                                       \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_INT\_EQUALS(                                                                                             \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)result\_val,                                                                                      \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)(r),                                                                                             \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}Expected \%s(\%016llx, \%016llx) = \%016llx; got \%016llx"{}},                                                    \(\backslash\)}
+\DoxyCodeLine{            \#fn,                                                                                                       \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(r),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(result\_val));                                                                         \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a95409d5b530304f540e1da879a3d2645}\label{math__test_8c_a95409d5b530304f540e1da879a3d2645}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_NO\_OVF\_VARARGS@{CHECK\_NO\_OVF\_VARARGS}}
+\index{CHECK\_NO\_OVF\_VARARGS@{CHECK\_NO\_OVF\_VARARGS}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_NO\_OVF\_VARARGS}{CHECK\_NO\_OVF\_VARARGS}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+\+VARARGS(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{num,  }\item[{}]{r,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        type result\_val;                                                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_FALSE(fn(num, \&result\_val, \_\_VA\_ARGS\_\_));                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_INT\_EQUALS(                                                                                             \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)result\_val,                                                                                      \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)(r),                                                                                             \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}From fn \%s num \%016llx: Expected \%016llx; got \%016llx"{}},                                                   \(\backslash\)}
+\DoxyCodeLine{            \#fn,                                                                                                       \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(num),                                                                                 \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(r),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(result\_val));                                                                         \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}\label{math__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_OVF@{CHECK\_OVF}}
+\index{CHECK\_OVF@{CHECK\_OVF}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_OVF}{CHECK\_OVF}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+OVF(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        CHECK\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});                                                                                   \(\backslash\)}
+\DoxyCodeLine{        CHECK\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});                                                                                   \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}\label{math__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_OVF\_0@{CHECK\_OVF\_0}}
+\index{CHECK\_OVF\_0@{CHECK\_OVF\_0}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_OVF\_0}{CHECK\_OVF\_0}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+OVF\+\_\+0(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        type result\_val;                                                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_TRUE(fn((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}), \&result\_val));                                                                        \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_ae94b97ae573125ea0655d04adecdcf60}\label{math__test_8c_ae94b97ae573125ea0655d04adecdcf60}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_OVF\_VARARGS@{CHECK\_OVF\_VARARGS}}
+\index{CHECK\_OVF\_VARARGS@{CHECK\_OVF\_VARARGS}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_OVF\_VARARGS}{CHECK\_OVF\_VARARGS}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+OVF\+\_\+\+VARARGS(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{num,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        type result\_val;                                                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_TRUE(fn(num, \&result\_val, \_\_VA\_ARGS\_\_));                                                                \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a5d039c52e26ca64dd82bea6f10b8b89c}\label{math__test_8c_a5d039c52e26ca64dd82bea6f10b8b89c}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_ROUND\_OVERFLOWS@{CHECK\_ROUND\_OVERFLOWS}}
+\index{CHECK\_ROUND\_OVERFLOWS@{CHECK\_ROUND\_OVERFLOWS}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_ROUND\_OVERFLOWS}{CHECK\_ROUND\_OVERFLOWS}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+ROUND\+\_\+\+OVERFLOWS(\begin{DoxyParamCaption}\item[{}]{a }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        size\_t result\_val;                                                                                             \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_TRUE(\mbox{\hyperlink{math_8h_a33bcdaf1f17edc5bbff7766827c2686f}{aws\_round\_up\_to\_power\_of\_two}}((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), \&result\_val));                                                   \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a15c1f06c7990c2d62869f315abb00c00}\label{math__test_8c_a15c1f06c7990c2d62869f315abb00c00}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_ROUND\_SUCCEEDS@{CHECK\_ROUND\_SUCCEEDS}}
+\index{CHECK\_ROUND\_SUCCEEDS@{CHECK\_ROUND\_SUCCEEDS}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_ROUND\_SUCCEEDS}{CHECK\_ROUND\_SUCCEEDS}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+ROUND\+\_\+\+SUCCEEDS(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        size\_t result\_val;                                                                                             \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_FALSE(\mbox{\hyperlink{math_8h_a33bcdaf1f17edc5bbff7766827c2686f}{aws\_round\_up\_to\_power\_of\_two}}((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), \&result\_val));                                                  \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_TRUE(\mbox{\hyperlink{math_8h_ab5b51366350e96ed4f25935d11c8c2d0}{aws\_is\_power\_of\_two}}(result\_val));                                                                  \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_INT\_EQUALS(                                                                                             \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)result\_val,                                                                                      \(\backslash\)}
+\DoxyCodeLine{            (uint64\_t)(r),                                                                                             \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}Expected \%s(\%016llx) = \%016llx; got \%016llx"{}},                                                             \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}aws\_round\_up\_to\_power\_of\_two"{}},                                                                            \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(r),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(result\_val));                                                                         \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{math__test_8c_a27182125e54d8fec2d4c3791ebdec21f}\label{math__test_8c_a27182125e54d8fec2d4c3791ebdec21f}} 
+\index{math\_test.c@{math\_test.c}!CHECK\_SAT@{CHECK\_SAT}}
+\index{CHECK\_SAT@{CHECK\_SAT}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SAT}{CHECK\_SAT}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+SAT(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{result }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_UINT\_EQUALS(                                                                                            \(\backslash\)}
+\DoxyCodeLine{            (result),                                                                                                  \(\backslash\)}
+\DoxyCodeLine{            fn((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})),                                                                                              \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}\%s(0x\%016llx, 0x\%016llx) = 0x\%016llx"{}},                                                                    \(\backslash\)}
+\DoxyCodeLine{            \#fn,                                                                                                       \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(result));                                                                             \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_UINT\_EQUALS(                                                                                            \(\backslash\)}
+\DoxyCodeLine{            (result),                                                                                                  \(\backslash\)}
+\DoxyCodeLine{            fn((\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}), (\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}})),                                                                                              \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}\%s(0x\%016llx, 0x\%016llx) = 0x\%016llx"{}},                                                                    \(\backslash\)}
+\DoxyCodeLine{            \#fn,                                                                                                       \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}),                                                                                   \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long})(result));                                                                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{math__test_8c_a64bc6ab80b97e74dea4f1dd30ca94169}\label{math__test_8c_a64bc6ab80b97e74dea4f1dd30ca94169}} 
+\index{math\_test.c@{math\_test.c}!check\_add\_varargs\_no\_overflow@{check\_add\_varargs\_no\_overflow}}
+\index{check\_add\_varargs\_no\_overflow@{check\_add\_varargs\_no\_overflow}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{check\_add\_varargs\_no\_overflow()}{check\_add\_varargs\_no\_overflow()}}
+{\footnotesize\ttfamily static int check\+\_\+add\+\_\+varargs\+\_\+no\+\_\+overflow (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{a,  }\item[{size\+\_\+t}]{b,  }\item[{size\+\_\+t}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_abf4820d76f5f3353337bea6b9740853d}\label{math__test_8c_abf4820d76f5f3353337bea6b9740853d}} 
+\index{math\_test.c@{math\_test.c}!check\_add\_varargs\_overflow@{check\_add\_varargs\_overflow}}
+\index{check\_add\_varargs\_overflow@{check\_add\_varargs\_overflow}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{check\_add\_varargs\_overflow()}{check\_add\_varargs\_overflow()}}
+{\footnotesize\ttfamily static int check\+\_\+add\+\_\+varargs\+\_\+overflow (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{a,  }\item[{size\+\_\+t}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a0625f66e77682074af4f2985c3902aa9}\label{math__test_8c_a0625f66e77682074af4f2985c3902aa9}} 
+\index{math\_test.c@{math\_test.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily void print\+\_\+array (\begin{DoxyParamCaption}\item[{size\+\_\+t $\ast$}]{a,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{math__test_8c_a9ce598531afb029e3105197bcda2d8b9}\label{math__test_8c_a9ce598531afb029e3105197bcda2d8b9}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_size\_checked\_fn@{s\_test\_add\_size\_checked\_fn}}
+\index{s\_test\_add\_size\_checked\_fn@{s\_test\_add\_size\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_size\_checked\_fn()}{s\_test\_add\_size\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+size\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a2315e2b4eab7ab516813ffa5ebe14cd4}\label{math__test_8c_a2315e2b4eab7ab516813ffa5ebe14cd4}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_size\_checked\_varargs\_fn@{s\_test\_add\_size\_checked\_varargs\_fn}}
+\index{s\_test\_add\_size\_checked\_varargs\_fn@{s\_test\_add\_size\_checked\_varargs\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_size\_checked\_varargs\_fn()}{s\_test\_add\_size\_checked\_varargs\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+size\+\_\+checked\+\_\+varargs\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a22d9ddbeac5b3f1de93f6fa075d5e66e}\label{math__test_8c_a22d9ddbeac5b3f1de93f6fa075d5e66e}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_size\_saturating\_fn@{s\_test\_add\_size\_saturating\_fn}}
+\index{s\_test\_add\_size\_saturating\_fn@{s\_test\_add\_size\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_size\_saturating\_fn()}{s\_test\_add\_size\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+size\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a268c29be83a1b599494631b0eb651923}\label{math__test_8c_a268c29be83a1b599494631b0eb651923}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_u32\_checked\_fn@{s\_test\_add\_u32\_checked\_fn}}
+\index{s\_test\_add\_u32\_checked\_fn@{s\_test\_add\_u32\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_u32\_checked\_fn()}{s\_test\_add\_u32\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+u32\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a498be3d79236fcbe3f5b252f7426a8a8}\label{math__test_8c_a498be3d79236fcbe3f5b252f7426a8a8}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_u32\_saturating\_fn@{s\_test\_add\_u32\_saturating\_fn}}
+\index{s\_test\_add\_u32\_saturating\_fn@{s\_test\_add\_u32\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_u32\_saturating\_fn()}{s\_test\_add\_u32\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+u32\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_ae1b81361bd7e24d32a152d5016b06ec9}\label{math__test_8c_ae1b81361bd7e24d32a152d5016b06ec9}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_u64\_checked\_fn@{s\_test\_add\_u64\_checked\_fn}}
+\index{s\_test\_add\_u64\_checked\_fn@{s\_test\_add\_u64\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_u64\_checked\_fn()}{s\_test\_add\_u64\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+u64\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a590c8fca57e68ffff698d4ba4061b5ad}\label{math__test_8c_a590c8fca57e68ffff698d4ba4061b5ad}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_add\_u64\_saturating\_fn@{s\_test\_add\_u64\_saturating\_fn}}
+\index{s\_test\_add\_u64\_saturating\_fn@{s\_test\_add\_u64\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_add\_u64\_saturating\_fn()}{s\_test\_add\_u64\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+add\+\_\+u64\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a644a11922077975b9b9d506e7fe32e9c}\label{math__test_8c_a644a11922077975b9b9d506e7fe32e9c}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_is\_power\_of\_two\_fn@{s\_test\_is\_power\_of\_two\_fn}}
+\index{s\_test\_is\_power\_of\_two\_fn@{s\_test\_is\_power\_of\_two\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_is\_power\_of\_two\_fn()}{s\_test\_is\_power\_of\_two\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+is\+\_\+power\+\_\+of\+\_\+two\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a3c982fd89155c7697b6754989c5f9389}\label{math__test_8c_a3c982fd89155c7697b6754989c5f9389}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_min\_max@{s\_test\_min\_max}}
+\index{s\_test\_min\_max@{s\_test\_min\_max}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_min\_max()}{s\_test\_min\_max()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+min\+\_\+max (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_af37cc1b333e8702902839b30d24da16e}\label{math__test_8c_af37cc1b333e8702902839b30d24da16e}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_size\_checked\_fn@{s\_test\_mul\_size\_checked\_fn}}
+\index{s\_test\_mul\_size\_checked\_fn@{s\_test\_mul\_size\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_size\_checked\_fn()}{s\_test\_mul\_size\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+size\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a9cc45a739dfe68b73f65599e6a06d147}\label{math__test_8c_a9cc45a739dfe68b73f65599e6a06d147}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_size\_saturating\_fn@{s\_test\_mul\_size\_saturating\_fn}}
+\index{s\_test\_mul\_size\_saturating\_fn@{s\_test\_mul\_size\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_size\_saturating\_fn()}{s\_test\_mul\_size\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+size\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_aaa35804709c55efb0cf0418106a97bf6}\label{math__test_8c_aaa35804709c55efb0cf0418106a97bf6}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_u32\_checked\_fn@{s\_test\_mul\_u32\_checked\_fn}}
+\index{s\_test\_mul\_u32\_checked\_fn@{s\_test\_mul\_u32\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_u32\_checked\_fn()}{s\_test\_mul\_u32\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+u32\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a05693cbdef5140b4ac4301ea7d7b0d7b}\label{math__test_8c_a05693cbdef5140b4ac4301ea7d7b0d7b}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_u32\_saturating\_fn@{s\_test\_mul\_u32\_saturating\_fn}}
+\index{s\_test\_mul\_u32\_saturating\_fn@{s\_test\_mul\_u32\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_u32\_saturating\_fn()}{s\_test\_mul\_u32\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+u32\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a3c9d118dce4eb1f2274de14ac4c20f32}\label{math__test_8c_a3c9d118dce4eb1f2274de14ac4c20f32}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_u64\_checked\_fn@{s\_test\_mul\_u64\_checked\_fn}}
+\index{s\_test\_mul\_u64\_checked\_fn@{s\_test\_mul\_u64\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_u64\_checked\_fn()}{s\_test\_mul\_u64\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+u64\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_ae54643e1880a477d8b7a0583fd0ef7e9}\label{math__test_8c_ae54643e1880a477d8b7a0583fd0ef7e9}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_mul\_u64\_saturating\_fn@{s\_test\_mul\_u64\_saturating\_fn}}
+\index{s\_test\_mul\_u64\_saturating\_fn@{s\_test\_mul\_u64\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mul\_u64\_saturating\_fn()}{s\_test\_mul\_u64\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+mul\+\_\+u64\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a655e0cc158e5cccb0b2a983eb8516560}\label{math__test_8c_a655e0cc158e5cccb0b2a983eb8516560}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_round\_up\_to\_power\_of\_two\_fn@{s\_test\_round\_up\_to\_power\_of\_two\_fn}}
+\index{s\_test\_round\_up\_to\_power\_of\_two\_fn@{s\_test\_round\_up\_to\_power\_of\_two\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_round\_up\_to\_power\_of\_two\_fn()}{s\_test\_round\_up\_to\_power\_of\_two\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+round\+\_\+up\+\_\+to\+\_\+power\+\_\+of\+\_\+two\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a8c70f4aa9219aa3f6d375c55268690d2}\label{math__test_8c_a8c70f4aa9219aa3f6d375c55268690d2}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_size\_checked\_fn@{s\_test\_sub\_size\_checked\_fn}}
+\index{s\_test\_sub\_size\_checked\_fn@{s\_test\_sub\_size\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_size\_checked\_fn()}{s\_test\_sub\_size\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+size\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a540c88cc5fb6a9561299dc151533fb47}\label{math__test_8c_a540c88cc5fb6a9561299dc151533fb47}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_size\_saturating\_fn@{s\_test\_sub\_size\_saturating\_fn}}
+\index{s\_test\_sub\_size\_saturating\_fn@{s\_test\_sub\_size\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_size\_saturating\_fn()}{s\_test\_sub\_size\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+size\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a1be192ace54938cdef4826bb2ff8606f}\label{math__test_8c_a1be192ace54938cdef4826bb2ff8606f}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_u32\_checked\_fn@{s\_test\_sub\_u32\_checked\_fn}}
+\index{s\_test\_sub\_u32\_checked\_fn@{s\_test\_sub\_u32\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_u32\_checked\_fn()}{s\_test\_sub\_u32\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+u32\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_ac14dba27ff9df83d8ac6f2beed3f574e}\label{math__test_8c_ac14dba27ff9df83d8ac6f2beed3f574e}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_u32\_saturating\_fn@{s\_test\_sub\_u32\_saturating\_fn}}
+\index{s\_test\_sub\_u32\_saturating\_fn@{s\_test\_sub\_u32\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_u32\_saturating\_fn()}{s\_test\_sub\_u32\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+u32\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_a1bb390eec79d82df0c6b2cf242cf0e2d}\label{math__test_8c_a1bb390eec79d82df0c6b2cf242cf0e2d}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_u64\_checked\_fn@{s\_test\_sub\_u64\_checked\_fn}}
+\index{s\_test\_sub\_u64\_checked\_fn@{s\_test\_sub\_u64\_checked\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_u64\_checked\_fn()}{s\_test\_sub\_u64\_checked\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+u64\+\_\+checked\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{math__test_8c_aa78201b01ec86b45117e1fe88bb26f97}\label{math__test_8c_aa78201b01ec86b45117e1fe88bb26f97}} 
+\index{math\_test.c@{math\_test.c}!s\_test\_sub\_u64\_saturating\_fn@{s\_test\_sub\_u64\_saturating\_fn}}
+\index{s\_test\_sub\_u64\_saturating\_fn@{s\_test\_sub\_u64\_saturating\_fn}!math\_test.c@{math\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_sub\_u64\_saturating\_fn()}{s\_test\_sub\_u64\_saturating\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+sub\+\_\+u64\+\_\+saturating\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

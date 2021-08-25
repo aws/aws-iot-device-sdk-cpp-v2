@@ -1,0 +1,166 @@
+\hypertarget{bcrypt__hash_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\+\_\+hash.c File Reference}
+\label{bcrypt__hash_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\_hash.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\_hash.c}}
+{\ttfamily \#include $<$aws/cal/hash.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$bcrypt.\+h$>$}\newline
+{\ttfamily \#include $<$winerror.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbcrypt__hash__handle}{bcrypt\+\_\+hash\+\_\+handle}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{bcrypt__hash_8c_a91b82180a992b7c28c3359c8c27b4ca0}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash)
+\item 
+static int \mbox{\hyperlink{bcrypt__hash_8c_a526efe5a6450e006bd99d1b65753eed2}{s\+\_\+update}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+hash)
+\item 
+static int \mbox{\hyperlink{bcrypt__hash_8c_ac9ae58473da633d143da2a72d59c2743}{s\+\_\+finalize}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+static void \mbox{\hyperlink{bcrypt__hash_8c_ab036d4d8d8610658e703886011ad7f24}{s\+\_\+load\+\_\+sha256\+\_\+alg\+\_\+handle}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{bcrypt__hash_8c_a802724e5d7b697bee6129e08c981a657}{s\+\_\+load\+\_\+md5\+\_\+alg\+\_\+handle}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{bcrypt__hash_8c_ada95b9da50e03731fd4ea6920c6ddc51}{aws\+\_\+sha256\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{bcrypt__hash_8c_a09ff2c5413718badc2c1251292c1a9b8}{aws\+\_\+md5\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE \mbox{\hyperlink{bcrypt__hash_8c_a00703e2de2e4b564eb8bfba03e5f73c9}{s\+\_\+sha256\+\_\+alg}} = NULL
+\item 
+static size\+\_\+t \mbox{\hyperlink{bcrypt__hash_8c_ad3e0918b74c3da8d3e9514b092607515}{s\+\_\+sha256\+\_\+obj\+\_\+len}} = 0
+\item 
+static \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} \mbox{\hyperlink{bcrypt__hash_8c_a37a019302a74ac371886279a4d2e7c7a}{s\+\_\+sha256\+\_\+once}} = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}
+\item 
+static BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE \mbox{\hyperlink{bcrypt__hash_8c_a26701b63a037e146544815df077b7422}{s\+\_\+md5\+\_\+alg}} = NULL
+\item 
+static size\+\_\+t \mbox{\hyperlink{bcrypt__hash_8c_a1468c75f9272d561e3f5ed6579e9b538}{s\+\_\+md5\+\_\+obj\+\_\+len}} = 0
+\item 
+static \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} \mbox{\hyperlink{bcrypt__hash_8c_a5947efd98dd6ed63d53b51a70f2c9807}{s\+\_\+md5\+\_\+once}} = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}
+\item 
+static struct \mbox{\hyperlink{structaws__hash__vtable}{aws\+\_\+hash\+\_\+vtable}} \mbox{\hyperlink{bcrypt__hash_8c_aa2662859f949bbe0371f4de65068e8ca}{s\+\_\+sha256\+\_\+vtable}}
+\item 
+static struct \mbox{\hyperlink{structaws__hash__vtable}{aws\+\_\+hash\+\_\+vtable}} \mbox{\hyperlink{bcrypt__hash_8c_a58a91b4ab7fc7f7226e6c20f5855dc20}{s\+\_\+md5\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bcrypt__hash_8c_a09ff2c5413718badc2c1251292c1a9b8}\label{bcrypt__hash_8c_a09ff2c5413718badc2c1251292c1a9b8}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!aws\_md5\_default\_new@{aws\_md5\_default\_new}}
+\index{aws\_md5\_default\_new@{aws\_md5\_default\_new}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{aws\_md5\_default\_new()}{aws\_md5\_default\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}}$\ast$ aws\+\_\+md5\+\_\+default\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_ada95b9da50e03731fd4ea6920c6ddc51}\label{bcrypt__hash_8c_ada95b9da50e03731fd4ea6920c6ddc51}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!aws\_sha256\_default\_new@{aws\_sha256\_default\_new}}
+\index{aws\_sha256\_default\_new@{aws\_sha256\_default\_new}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{aws\_sha256\_default\_new()}{aws\_sha256\_default\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}}$\ast$ aws\+\_\+sha256\+\_\+default\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{bcrypt__hash_8c_a91b82180a992b7c28c3359c8c27b4ca0}\label{bcrypt__hash_8c_a91b82180a992b7c28c3359c8c27b4ca0}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_destroy@{s\_destroy}}
+\index{s\_destroy@{s\_destroy}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy()}{s\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$}]{hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_ac9ae58473da633d143da2a72d59c2743}\label{bcrypt__hash_8c_ac9ae58473da633d143da2a72d59c2743}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_finalize@{s\_finalize}}
+\index{s\_finalize@{s\_finalize}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_finalize()}{s\_finalize()}}
+{\footnotesize\ttfamily static int s\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$}]{hash,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a802724e5d7b697bee6129e08c981a657}\label{bcrypt__hash_8c_a802724e5d7b697bee6129e08c981a657}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_load\_md5\_alg\_handle@{s\_load\_md5\_alg\_handle}}
+\index{s\_load\_md5\_alg\_handle@{s\_load\_md5\_alg\_handle}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_load\_md5\_alg\_handle()}{s\_load\_md5\_alg\_handle()}}
+{\footnotesize\ttfamily static void s\+\_\+load\+\_\+md5\+\_\+alg\+\_\+handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_ab036d4d8d8610658e703886011ad7f24}\label{bcrypt__hash_8c_ab036d4d8d8610658e703886011ad7f24}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_load\_sha256\_alg\_handle@{s\_load\_sha256\_alg\_handle}}
+\index{s\_load\_sha256\_alg\_handle@{s\_load\_sha256\_alg\_handle}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_load\_sha256\_alg\_handle()}{s\_load\_sha256\_alg\_handle()}}
+{\footnotesize\ttfamily static void s\+\_\+load\+\_\+sha256\+\_\+alg\+\_\+handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a526efe5a6450e006bd99d1b65753eed2}\label{bcrypt__hash_8c_a526efe5a6450e006bd99d1b65753eed2}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_update@{s\_update}}
+\index{s\_update@{s\_update}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_update()}{s\_update()}}
+{\footnotesize\ttfamily static int s\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$}]{hash,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{bcrypt__hash_8c_a26701b63a037e146544815df077b7422}\label{bcrypt__hash_8c_a26701b63a037e146544815df077b7422}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_md5\_alg@{s\_md5\_alg}}
+\index{s\_md5\_alg@{s\_md5\_alg}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_md5\_alg}{s\_md5\_alg}}
+{\footnotesize\ttfamily BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE s\+\_\+md5\+\_\+alg = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a1468c75f9272d561e3f5ed6579e9b538}\label{bcrypt__hash_8c_a1468c75f9272d561e3f5ed6579e9b538}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_md5\_obj\_len@{s\_md5\_obj\_len}}
+\index{s\_md5\_obj\_len@{s\_md5\_obj\_len}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_md5\_obj\_len}{s\_md5\_obj\_len}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+md5\+\_\+obj\+\_\+len = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a5947efd98dd6ed63d53b51a70f2c9807}\label{bcrypt__hash_8c_a5947efd98dd6ed63d53b51a70f2c9807}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_md5\_once@{s\_md5\_once}}
+\index{s\_md5\_once@{s\_md5\_once}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_md5\_once}{s\_md5\_once}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} s\+\_\+md5\+\_\+once = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a58a91b4ab7fc7f7226e6c20f5855dc20}\label{bcrypt__hash_8c_a58a91b4ab7fc7f7226e6c20f5855dc20}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_md5\_vtable@{s\_md5\_vtable}}
+\index{s\_md5\_vtable@{s\_md5\_vtable}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_md5\_vtable}{s\_md5\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__vtable}{aws\+\_\+hash\+\_\+vtable}} s\+\_\+md5\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{bcrypt__hash_8c_a91b82180a992b7c28c3359c8c27b4ca0}{s\_destroy}},}
+\DoxyCodeLine{    .update = \mbox{\hyperlink{bcrypt__hash_8c_a526efe5a6450e006bd99d1b65753eed2}{s\_update}},}
+\DoxyCodeLine{    .finalize = \mbox{\hyperlink{bcrypt__hash_8c_ac9ae58473da633d143da2a72d59c2743}{s\_finalize}},}
+\DoxyCodeLine{    .alg\_name = \textcolor{stringliteral}{"{}MD5"{}},}
+\DoxyCodeLine{    .provider = \textcolor{stringliteral}{"{}Windows CNG"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{bcrypt__hash_8c_a00703e2de2e4b564eb8bfba03e5f73c9}\label{bcrypt__hash_8c_a00703e2de2e4b564eb8bfba03e5f73c9}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_sha256\_alg@{s\_sha256\_alg}}
+\index{s\_sha256\_alg@{s\_sha256\_alg}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_alg}{s\_sha256\_alg}}
+{\footnotesize\ttfamily BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE s\+\_\+sha256\+\_\+alg = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{bcrypt__hash_8c_ad3e0918b74c3da8d3e9514b092607515}\label{bcrypt__hash_8c_ad3e0918b74c3da8d3e9514b092607515}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_sha256\_obj\_len@{s\_sha256\_obj\_len}}
+\index{s\_sha256\_obj\_len@{s\_sha256\_obj\_len}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_obj\_len}{s\_sha256\_obj\_len}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+sha256\+\_\+obj\+\_\+len = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_a37a019302a74ac371886279a4d2e7c7a}\label{bcrypt__hash_8c_a37a019302a74ac371886279a4d2e7c7a}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_sha256\_once@{s\_sha256\_once}}
+\index{s\_sha256\_once@{s\_sha256\_once}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_once}{s\_sha256\_once}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} s\+\_\+sha256\+\_\+once = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hash_8c_aa2662859f949bbe0371f4de65068e8ca}\label{bcrypt__hash_8c_aa2662859f949bbe0371f4de65068e8ca}} 
+\index{bcrypt\_hash.c@{bcrypt\_hash.c}!s\_sha256\_vtable@{s\_sha256\_vtable}}
+\index{s\_sha256\_vtable@{s\_sha256\_vtable}!bcrypt\_hash.c@{bcrypt\_hash.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_vtable}{s\_sha256\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__vtable}{aws\+\_\+hash\+\_\+vtable}} s\+\_\+sha256\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{bcrypt__hash_8c_a91b82180a992b7c28c3359c8c27b4ca0}{s\_destroy}},}
+\DoxyCodeLine{    .update = \mbox{\hyperlink{bcrypt__hash_8c_a526efe5a6450e006bd99d1b65753eed2}{s\_update}},}
+\DoxyCodeLine{    .finalize = \mbox{\hyperlink{bcrypt__hash_8c_ac9ae58473da633d143da2a72d59c2743}{s\_finalize}},}
+\DoxyCodeLine{    .alg\_name = \textcolor{stringliteral}{"{}SHA256"{}},}
+\DoxyCodeLine{    .provider = \textcolor{stringliteral}{"{}Windows CNG"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

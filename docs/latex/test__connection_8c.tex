@@ -1,0 +1,294 @@
+\hypertarget{test__connection_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+connection.c File Reference}
+\label{test__connection_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_connection.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_connection.c}}
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/connection\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/server.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+writer.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/uuid.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtester__options}{tester\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structtester}{tester}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__connection_8c_a5e363bb0268b217bae2ddc2829a79aab}{LOCAL\+\_\+\+SOCK\+\_\+\+TEST\+\_\+\+FORMAT}}~\char`\"{}testsock-\/\%s.\+sock\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{test__connection_8c_ac205be2172292384dd687b5471a87edda9e98b22516a21a092b124a4c7a5b7059}{TESTER\+\_\+\+TIMEOUT\+\_\+\+SEC}} = 60
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{test__connection_8c_a3114575d1e55ea1afa33792413dd9adf}{s\+\_\+tester\+\_\+on\+\_\+incoming\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_af0794856d53225fffdf71fa3fcaf065c}{s\+\_\+tester\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_a1923c428d2d75e71d7b4d881bfba3e2d}{s\+\_\+tester\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_ab377d5e8f88c8cfd22dc04f2323888e5}{s\+\_\+tester\+\_\+on\+\_\+server\+\_\+connection\+\_\+setup}} (struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$server, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_a0eaabe5cec1e69eabe9bd1cb7cace800}{s\+\_\+tester\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_aadf2523860b3140d9447162e93b65d6c}{s\+\_\+tester\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_ab7cc2451147498745ab3d6345b4b618b}{s\+\_\+tester\+\_\+wait}} (struct \mbox{\hyperlink{structtester}{tester}} $\ast$\mbox{\hyperlink{structtester}{tester}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$pred)(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}))
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__connection_8c_aca2d53197a03f541521886473ac267b5}{s\+\_\+tester\+\_\+connection\+\_\+setup\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__connection_8c_aded52bc6d01a8d534d7793a7be044d74}{s\+\_\+tester\+\_\+connection\+\_\+shutdown\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__connection_8c_a174e999a0ae7430ac4e6c939ebf5512d}{s\+\_\+tester\+\_\+server\+\_\+shutdown\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_a7b8ad4a4b30f9370edc94e26635c9750}{s\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structtester}{tester}} $\ast$\mbox{\hyperlink{structtester}{tester}}, const struct \mbox{\hyperlink{structtester__options}{tester\+\_\+options}} $\ast$options)
+\item 
+static int \mbox{\hyperlink{test__connection_8c_a7e6d7f153a09f7654eccdcca2260023b}{s\+\_\+tester\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structtester}{tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_aa5904dea53e4bd573f48b2d083d12155}{s\+\_\+test\+\_\+server\+\_\+new\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__connection_8c_af527148343755947af0bb4bde6b1e1f6}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (server\+\_\+new\+\_\+destroy, \mbox{\hyperlink{test__connection_8c_aa5904dea53e4bd573f48b2d083d12155}{s\+\_\+test\+\_\+server\+\_\+new\+\_\+destroy}})
+\item 
+void \mbox{\hyperlink{test__connection_8c_a9c2114b826dfca64f5b25912740f7dea}{release\+\_\+all\+\_\+client\+\_\+connections}} (struct \mbox{\hyperlink{structtester}{tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+void \mbox{\hyperlink{test__connection_8c_aaeec14ef8365a62aba3b893450fb2fe5}{release\+\_\+all\+\_\+server\+\_\+connections}} (struct \mbox{\hyperlink{structtester}{tester}} $\ast$\mbox{\hyperlink{structtester}{tester}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_ae8d82fc282cde80919feb5475ec83251}{s\+\_\+test\+\_\+connection\+\_\+setup\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__connection_8c_ade56ac12f6eaaf6745a3985c04acc5a7}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (connection\+\_\+setup\+\_\+shutdown, \mbox{\hyperlink{test__connection_8c_ae8d82fc282cde80919feb5475ec83251}{s\+\_\+test\+\_\+connection\+\_\+setup\+\_\+shutdown}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_a59e736ef1cca5474a44b7c38b498301f}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__connection_8c_a866f454ae76caa87ca3cee5e9a3f8a17}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing, \mbox{\hyperlink{test__connection_8c_a59e736ef1cca5474a44b7c38b498301f}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_a0e718cc0b8ce37af1c9504f4f4348c7e}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__connection_8c_a073ceb1a0ae1cdd8c19b585645e8c52d}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing, \mbox{\hyperlink{test__connection_8c_a0e718cc0b8ce37af1c9504f4f4348c7e}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_a9c52acc257fc1e77b87e1779e4463d23}{s\+\_\+block\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{test__connection_8c_a68b20b8652e40b52408587197ac2d16c}{s\+\_\+tester\+\_\+on\+\_\+new\+\_\+client\+\_\+connection\+\_\+setup}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__connection_8c_ae08728721b37e592f9e21ef95b29700e}{s\+\_\+tester\+\_\+on\+\_\+new\+\_\+client\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__connection_8c_a78f9361a4b4665ad138d6f43e3e2048a}{s\+\_\+tester\+\_\+new\+\_\+client\+\_\+setup\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__connection_8c_aa8a11bc3bff2bdbc303193c9e12e762d}{s\+\_\+tester\+\_\+new\+\_\+client\+\_\+shutdown\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{test__connection_8c_abce0cd01090fed9dcb508df9fec79f2a}{s\+\_\+test\+\_\+connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__connection_8c_a1e743ab7b90767294da9b0de360d89ca}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail, \mbox{\hyperlink{test__connection_8c_abce0cd01090fed9dcb508df9fec79f2a}{s\+\_\+test\+\_\+connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__connection_8c_a5e363bb0268b217bae2ddc2829a79aab}\label{test__connection_8c_a5e363bb0268b217bae2ddc2829a79aab}} 
+\index{test\_connection.c@{test\_connection.c}!LOCAL\_SOCK\_TEST\_FORMAT@{LOCAL\_SOCK\_TEST\_FORMAT}}
+\index{LOCAL\_SOCK\_TEST\_FORMAT@{LOCAL\_SOCK\_TEST\_FORMAT}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{LOCAL\_SOCK\_TEST\_FORMAT}{LOCAL\_SOCK\_TEST\_FORMAT}}
+{\footnotesize\ttfamily \#define LOCAL\+\_\+\+SOCK\+\_\+\+TEST\+\_\+\+FORMAT~\char`\"{}testsock-\/\%s.\+sock\char`\"{}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{test__connection_8c_ac205be2172292384dd687b5471a87edd}\label{test__connection_8c_ac205be2172292384dd687b5471a87edd}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TESTER\_TIMEOUT\_SEC@{TESTER\_TIMEOUT\_SEC}!test\_connection.c@{test\_connection.c}}\index{test\_connection.c@{test\_connection.c}!TESTER\_TIMEOUT\_SEC@{TESTER\_TIMEOUT\_SEC}}}\mbox{\Hypertarget{test__connection_8c_ac205be2172292384dd687b5471a87edda9e98b22516a21a092b124a4c7a5b7059}\label{test__connection_8c_ac205be2172292384dd687b5471a87edda9e98b22516a21a092b124a4c7a5b7059}} 
+TESTER\+\_\+\+TIMEOUT\+\_\+\+SEC&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__connection_8c_a866f454ae76caa87ca3cee5e9a3f8a17}\label{test__connection_8c_a866f454ae76caa87ca3cee5e9a3f8a17}} 
+\index{test\_connection.c@{test\_connection.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing}]{,  }\item[{\mbox{\hyperlink{test__connection_8c_a59e736ef1cca5474a44b7c38b498301f}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_a073ceb1a0ae1cdd8c19b585645e8c52d}\label{test__connection_8c_a073ceb1a0ae1cdd8c19b585645e8c52d}} 
+\index{test\_connection.c@{test\_connection.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing}]{,  }\item[{\mbox{\hyperlink{test__connection_8c_a0e718cc0b8ce37af1c9504f4f4348c7e}{s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_a1e743ab7b90767294da9b0de360d89ca}\label{test__connection_8c_a1e743ab7b90767294da9b0de360d89ca}} 
+\index{test\_connection.c@{test\_connection.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail}]{,  }\item[{\mbox{\hyperlink{test__connection_8c_abce0cd01090fed9dcb508df9fec79f2a}{s\+\_\+test\+\_\+connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_ade56ac12f6eaaf6745a3985c04acc5a7}\label{test__connection_8c_ade56ac12f6eaaf6745a3985c04acc5a7}} 
+\index{test\_connection.c@{test\_connection.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{connection\+\_\+setup\+\_\+shutdown}]{,  }\item[{\mbox{\hyperlink{test__connection_8c_ae8d82fc282cde80919feb5475ec83251}{s\+\_\+test\+\_\+connection\+\_\+setup\+\_\+shutdown}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_af527148343755947af0bb4bde6b1e1f6}\label{test__connection_8c_af527148343755947af0bb4bde6b1e1f6}} 
+\index{test\_connection.c@{test\_connection.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{server\+\_\+new\+\_\+destroy}]{,  }\item[{\mbox{\hyperlink{test__connection_8c_aa5904dea53e4bd573f48b2d083d12155}{s\+\_\+test\+\_\+server\+\_\+new\+\_\+destroy}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_a9c2114b826dfca64f5b25912740f7dea}\label{test__connection_8c_a9c2114b826dfca64f5b25912740f7dea}} 
+\index{test\_connection.c@{test\_connection.c}!release\_all\_client\_connections@{release\_all\_client\_connections}}
+\index{release\_all\_client\_connections@{release\_all\_client\_connections}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{release\_all\_client\_connections()}{release\_all\_client\_connections()}}
+{\footnotesize\ttfamily void release\+\_\+all\+\_\+client\+\_\+connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtester}{tester}} $\ast$}]{tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_aaeec14ef8365a62aba3b893450fb2fe5}\label{test__connection_8c_aaeec14ef8365a62aba3b893450fb2fe5}} 
+\index{test\_connection.c@{test\_connection.c}!release\_all\_server\_connections@{release\_all\_server\_connections}}
+\index{release\_all\_server\_connections@{release\_all\_server\_connections}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{release\_all\_server\_connections()}{release\_all\_server\_connections()}}
+{\footnotesize\ttfamily void release\+\_\+all\+\_\+server\+\_\+connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtester}{tester}} $\ast$}]{tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__connection_8c_a9c52acc257fc1e77b87e1779e4463d23}\label{test__connection_8c_a9c52acc257fc1e77b87e1779e4463d23}} 
+\index{test\_connection.c@{test\_connection.c}!s\_block\_task@{s\_block\_task}}
+\index{s\_block\_task@{s\_block\_task}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_block\_task()}{s\_block\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+block\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a59e736ef1cca5474a44b7c38b498301f}\label{test__connection_8c_a59e736ef1cca5474a44b7c38b498301f}} 
+\index{test\_connection.c@{test\_connection.c}!s\_test\_connection\_destroy\_server\_with\_connection\_existing@{s\_test\_connection\_destroy\_server\_with\_connection\_existing}}
+\index{s\_test\_connection\_destroy\_server\_with\_connection\_existing@{s\_test\_connection\_destroy\_server\_with\_connection\_existing}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connection\_destroy\_server\_with\_connection\_existing()}{s\_test\_connection\_destroy\_server\_with\_connection\_existing()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+connection\+\_\+existing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a0e718cc0b8ce37af1c9504f4f4348c7e}\label{test__connection_8c_a0e718cc0b8ce37af1c9504f4f4348c7e}} 
+\index{test\_connection.c@{test\_connection.c}!s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing@{s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing}}
+\index{s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing@{s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing()}{s\_test\_connection\_destroy\_server\_with\_multiple\_connections\_existing()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connection\+\_\+destroy\+\_\+server\+\_\+with\+\_\+multiple\+\_\+connections\+\_\+existing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_abce0cd01090fed9dcb508df9fec79f2a}\label{test__connection_8c_abce0cd01090fed9dcb508df9fec79f2a}} 
+\index{test\_connection.c@{test\_connection.c}!s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail@{s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail}}
+\index{s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail@{s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail()}{s\_test\_connection\_server\_shutting\_down\_new\_connection\_setup\_fail()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connection\+\_\+server\+\_\+shutting\+\_\+down\+\_\+new\+\_\+connection\+\_\+setup\+\_\+fail (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_ae8d82fc282cde80919feb5475ec83251}\label{test__connection_8c_ae8d82fc282cde80919feb5475ec83251}} 
+\index{test\_connection.c@{test\_connection.c}!s\_test\_connection\_setup\_shutdown@{s\_test\_connection\_setup\_shutdown}}
+\index{s\_test\_connection\_setup\_shutdown@{s\_test\_connection\_setup\_shutdown}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connection\_setup\_shutdown()}{s\_test\_connection\_setup\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connection\+\_\+setup\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_aa5904dea53e4bd573f48b2d083d12155}\label{test__connection_8c_aa5904dea53e4bd573f48b2d083d12155}} 
+\index{test\_connection.c@{test\_connection.c}!s\_test\_server\_new\_destroy@{s\_test\_server\_new\_destroy}}
+\index{s\_test\_server\_new\_destroy@{s\_test\_server\_new\_destroy}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_server\_new\_destroy()}{s\_test\_server\_new\_destroy()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+server\+\_\+new\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a7e6d7f153a09f7654eccdcca2260023b}\label{test__connection_8c_a7e6d7f153a09f7654eccdcca2260023b}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_clean\_up@{s\_tester\_clean\_up}}
+\index{s\_tester\_clean\_up@{s\_tester\_clean\_up}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_clean\_up()}{s\_tester\_clean\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtester}{tester}} $\ast$}]{tester }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_aca2d53197a03f541521886473ac267b5}\label{test__connection_8c_aca2d53197a03f541521886473ac267b5}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_connection\_setup\_pred@{s\_tester\_connection\_setup\_pred}}
+\index{s\_tester\_connection\_setup\_pred@{s\_tester\_connection\_setup\_pred}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_connection\_setup\_pred()}{s\_tester\_connection\_setup\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tester\+\_\+connection\+\_\+setup\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_aded52bc6d01a8d534d7793a7be044d74}\label{test__connection_8c_aded52bc6d01a8d534d7793a7be044d74}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_connection\_shutdown\_pred@{s\_tester\_connection\_shutdown\_pred}}
+\index{s\_tester\_connection\_shutdown\_pred@{s\_tester\_connection\_shutdown\_pred}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_connection\_shutdown\_pred()}{s\_tester\_connection\_shutdown\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tester\+\_\+connection\+\_\+shutdown\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_af0794856d53225fffdf71fa3fcaf065c}\label{test__connection_8c_af0794856d53225fffdf71fa3fcaf065c}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_http\_server\_on\_destroy@{s\_tester\_http\_server\_on\_destroy}}
+\index{s\_tester\_http\_server\_on\_destroy@{s\_tester\_http\_server\_on\_destroy}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_http\_server\_on\_destroy()}{s\_tester\_http\_server\_on\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a7b8ad4a4b30f9370edc94e26635c9750}\label{test__connection_8c_a7b8ad4a4b30f9370edc94e26635c9750}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_init@{s\_tester\_init}}
+\index{s\_tester\_init@{s\_tester\_init}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_init()}{s\_tester\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtester}{tester}} $\ast$}]{tester,  }\item[{const struct \mbox{\hyperlink{structtester__options}{tester\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a78f9361a4b4665ad138d6f43e3e2048a}\label{test__connection_8c_a78f9361a4b4665ad138d6f43e3e2048a}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_new\_client\_setup\_pred@{s\_tester\_new\_client\_setup\_pred}}
+\index{s\_tester\_new\_client\_setup\_pred@{s\_tester\_new\_client\_setup\_pred}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_new\_client\_setup\_pred()}{s\_tester\_new\_client\_setup\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tester\+\_\+new\+\_\+client\+\_\+setup\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_aa8a11bc3bff2bdbc303193c9e12e762d}\label{test__connection_8c_aa8a11bc3bff2bdbc303193c9e12e762d}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_new\_client\_shutdown\_pred@{s\_tester\_new\_client\_shutdown\_pred}}
+\index{s\_tester\_new\_client\_shutdown\_pred@{s\_tester\_new\_client\_shutdown\_pred}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_new\_client\_shutdown\_pred()}{s\_tester\_new\_client\_shutdown\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tester\+\_\+new\+\_\+client\+\_\+shutdown\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a0eaabe5cec1e69eabe9bd1cb7cace800}\label{test__connection_8c_a0eaabe5cec1e69eabe9bd1cb7cace800}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_client\_connection\_setup@{s\_tester\_on\_client\_connection\_setup}}
+\index{s\_tester\_on\_client\_connection\_setup@{s\_tester\_on\_client\_connection\_setup}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_client\_connection\_setup()}{s\_tester\_on\_client\_connection\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_aadf2523860b3140d9447162e93b65d6c}\label{test__connection_8c_aadf2523860b3140d9447162e93b65d6c}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_client\_connection\_shutdown@{s\_tester\_on\_client\_connection\_shutdown}}
+\index{s\_tester\_on\_client\_connection\_shutdown@{s\_tester\_on\_client\_connection\_shutdown}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_client\_connection\_shutdown()}{s\_tester\_on\_client\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a3114575d1e55ea1afa33792413dd9adf}\label{test__connection_8c_a3114575d1e55ea1afa33792413dd9adf}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_incoming\_request@{s\_tester\_on\_incoming\_request}}
+\index{s\_tester\_on\_incoming\_request@{s\_tester\_on\_incoming\_request}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_incoming\_request()}{s\_tester\_on\_incoming\_request()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ s\+\_\+tester\+\_\+on\+\_\+incoming\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a68b20b8652e40b52408587197ac2d16c}\label{test__connection_8c_a68b20b8652e40b52408587197ac2d16c}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_new\_client\_connection\_setup@{s\_tester\_on\_new\_client\_connection\_setup}}
+\index{s\_tester\_on\_new\_client\_connection\_setup@{s\_tester\_on\_new\_client\_connection\_setup}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_new\_client\_connection\_setup()}{s\_tester\_on\_new\_client\_connection\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+new\+\_\+client\+\_\+connection\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_ae08728721b37e592f9e21ef95b29700e}\label{test__connection_8c_ae08728721b37e592f9e21ef95b29700e}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_new\_client\_connection\_shutdown@{s\_tester\_on\_new\_client\_connection\_shutdown}}
+\index{s\_tester\_on\_new\_client\_connection\_shutdown@{s\_tester\_on\_new\_client\_connection\_shutdown}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_new\_client\_connection\_shutdown()}{s\_tester\_on\_new\_client\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+new\+\_\+client\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_ab377d5e8f88c8cfd22dc04f2323888e5}\label{test__connection_8c_ab377d5e8f88c8cfd22dc04f2323888e5}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_server\_connection\_setup@{s\_tester\_on\_server\_connection\_setup}}
+\index{s\_tester\_on\_server\_connection\_setup@{s\_tester\_on\_server\_connection\_setup}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_server\_connection\_setup()}{s\_tester\_on\_server\_connection\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+server\+\_\+connection\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$}]{server,  }\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a1923c428d2d75e71d7b4d881bfba3e2d}\label{test__connection_8c_a1923c428d2d75e71d7b4d881bfba3e2d}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_on\_server\_connection\_shutdown@{s\_tester\_on\_server\_connection\_shutdown}}
+\index{s\_tester\_on\_server\_connection\_shutdown@{s\_tester\_on\_server\_connection\_shutdown}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_on\_server\_connection\_shutdown()}{s\_tester\_on\_server\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+tester\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_a174e999a0ae7430ac4e6c939ebf5512d}\label{test__connection_8c_a174e999a0ae7430ac4e6c939ebf5512d}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_server\_shutdown\_pred@{s\_tester\_server\_shutdown\_pred}}
+\index{s\_tester\_server\_shutdown\_pred@{s\_tester\_server\_shutdown\_pred}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_server\_shutdown\_pred()}{s\_tester\_server\_shutdown\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tester\+\_\+server\+\_\+shutdown\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__connection_8c_ab7cc2451147498745ab3d6345b4b618b}\label{test__connection_8c_ab7cc2451147498745ab3d6345b4b618b}} 
+\index{test\_connection.c@{test\_connection.c}!s\_tester\_wait@{s\_tester\_wait}}
+\index{s\_tester\_wait@{s\_tester\_wait}!test\_connection.c@{test\_connection.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_wait()}{s\_tester\_wait()}}
+{\footnotesize\ttfamily static int s\+\_\+tester\+\_\+wait (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtester}{tester}} $\ast$}]{tester,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$)(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}]{pred }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

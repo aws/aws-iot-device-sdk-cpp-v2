@@ -1,0 +1,551 @@
+\hypertarget{channel_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/channel.c File Reference}
+\label{channel_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/channel.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/channel.c}}
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/message\+\_\+pool.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/statistics.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__shutdown__notification__task}{aws\+\_\+shutdown\+\_\+notification\+\_\+task}}
+\item 
+struct \mbox{\hyperlink{structshutdown__task}{shutdown\+\_\+task}}
+\item 
+struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}}
+\item 
+struct \mbox{\hyperlink{structchannel__setup__args}{channel\+\_\+setup\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structchannel__shutdown__task__args}{channel\+\_\+shutdown\+\_\+task\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{channel_8c_a02fd3f957d0b57a72d033dfb6ed87846}{INITIAL\+\_\+\+STATISTIC\+\_\+\+LIST\+\_\+\+SIZE}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}} = 16 $\ast$ 1024
+ \}
+\item 
+enum \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}{aws\+\_\+channel\+\_\+state}} \{ \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca4c83f2ba135bfdb374ff7dbaea11f7fb}{AWS\+\_\+\+CHANNEL\+\_\+\+SETTING\+\_\+\+UP}}
+, \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca68ce32c76dccbf3eab8851f3425da950}{AWS\+\_\+\+CHANNEL\+\_\+\+ACTIVE}}
+, \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200cae6a3752eafe574bd80f8c94a23ca42a3}{AWS\+\_\+\+CHANNEL\+\_\+\+SHUTTING\+\_\+\+DOWN}}
+, \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca984d0ada5658c103cef680799f9de37c}{AWS\+\_\+\+CHANNEL\+\_\+\+SHUT\+\_\+\+DOWN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{channel_8c_a21630d7d3ca9551efd2a9d4175301a39}{s\+\_\+on\+\_\+msg\+\_\+pool\+\_\+removed}} (struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$object)
+\item 
+static void \mbox{\hyperlink{channel_8c_ad94dd608f92be2a964bb296c5723ad2d}{s\+\_\+on\+\_\+channel\+\_\+setup\+\_\+complete}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} task\+\_\+status)
+\item 
+static void \mbox{\hyperlink{channel_8c_a9ad00fb9da7ccaddd76a1b54285e87b8}{s\+\_\+schedule\+\_\+cross\+\_\+thread\+\_\+tasks}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{channel_8c_a3941c77abfbf8902b4bc735100b30bb3}{s\+\_\+destroy\+\_\+partially\+\_\+constructed\+\_\+channel}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ \mbox{\hyperlink{channel_8c_a04fbab8955bde89dab96485442344698}{aws\+\_\+channel\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__channel__options}{aws\+\_\+channel\+\_\+options}} $\ast$creation\+\_\+args)
+\item 
+static void \mbox{\hyperlink{channel_8c_a61dfcd471a51c519b089216428f9d92e}{s\+\_\+cleanup\+\_\+slot}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+void \mbox{\hyperlink{channel_8c_a5f47528b6c3cdcde21aea084d253241b}{aws\+\_\+channel\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+static void \mbox{\hyperlink{channel_8c_ae670b4c08f4ca2ed2b5673318b53a448}{s\+\_\+final\+\_\+channel\+\_\+deletion\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+void \mbox{\hyperlink{channel_8c_a997fd75a24929fa75dec1e4346635078}{aws\+\_\+channel\+\_\+acquire\+\_\+hold}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+void \mbox{\hyperlink{channel_8c_af538b24333d3a5a7a434f8214c00d5a9}{aws\+\_\+channel\+\_\+release\+\_\+hold}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+static int \mbox{\hyperlink{channel_8c_a7ff5c6573e9ee75999de512eb9ae675c}{s\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} shutdown\+\_\+immediately)
+\item 
+static void \mbox{\hyperlink{channel_8c_a2363d5e271fd83587c1e8128f2be0827}{s\+\_\+on\+\_\+shutdown\+\_\+completion\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{channel_8c_a16e4c1a549b3c160c7df1410cb78863f}{s\+\_\+shutdown\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+int \mbox{\hyperlink{channel_8c_a136dec28372bafca15c52abc876c84c6}{aws\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+\item 
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{channel_8c_a6c9b7905706d982c37f9e5c125aa8512}{aws\+\_\+channel\+\_\+acquire\+\_\+message\+\_\+from\+\_\+pool}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}, size\+\_\+t size\+\_\+hint)
+\item 
+struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{channel_8c_a4846decb3214f553cf8246e44785c431}{aws\+\_\+channel\+\_\+slot\+\_\+new}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+int \mbox{\hyperlink{channel_8c_a8c83205cabd6d0518e095c7ff47acffe}{aws\+\_\+channel\+\_\+current\+\_\+clock\+\_\+time}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, uint64\+\_\+t $\ast$time\+\_\+nanos)
+\item 
+int \mbox{\hyperlink{channel_8c_a965cd24d68288e4670b4ac6ca44ae937}{aws\+\_\+channel\+\_\+fetch\+\_\+local\+\_\+object}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, const void $\ast$key, struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$obj)
+\item 
+int \mbox{\hyperlink{channel_8c_a793d035f8b362f4ab4e2e1e9901ecb72}{aws\+\_\+channel\+\_\+put\+\_\+local\+\_\+object}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, const void $\ast$key, const struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$obj)
+\item 
+int \mbox{\hyperlink{channel_8c_aae23519d2041e97c043fb9ebd206ba17}{aws\+\_\+channel\+\_\+remove\+\_\+local\+\_\+object}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, const void $\ast$key, struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$removed\+\_\+obj)
+\item 
+static void \mbox{\hyperlink{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}{s\+\_\+channel\+\_\+task\+\_\+run}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+void \mbox{\hyperlink{channel_8c_a2c46f872a25bd2541b213c532813d3b5}{aws\+\_\+channel\+\_\+task\+\_\+init}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, \mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\+\_\+channel\+\_\+task\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}{task\+\_\+fn}}, void $\ast$arg, const char $\ast$type\+\_\+tag)
+\item 
+static void \mbox{\hyperlink{channel_8c_a24ffa215b6a69ffe59becb46aff75759}{s\+\_\+register\+\_\+pending\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+\item 
+void \mbox{\hyperlink{channel_8c_a9642128221f90fc7fdaa69e957c22c7e}{aws\+\_\+channel\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task)
+\item 
+void \mbox{\hyperlink{channel_8c_a014e9d885eb34c2750ca7b22932d07f7}{aws\+\_\+channel\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}{aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+static void \mbox{\hyperlink{channel_8c_a69ea92a4c3ee7eb41054644e229ff9db}{s\+\_\+update\+\_\+channel\+\_\+slot\+\_\+message\+\_\+overheads}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+int \mbox{\hyperlink{channel_8c_a46595b50216279630f6c357a6cfd81b3}{aws\+\_\+channel\+\_\+slot\+\_\+set\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+int \mbox{\hyperlink{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}{aws\+\_\+channel\+\_\+slot\+\_\+remove}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+int \mbox{\hyperlink{channel_8c_ad7a519929381179d21d358df45436205}{aws\+\_\+channel\+\_\+slot\+\_\+replace}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$remove, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$new\+\_\+slot)
+\item 
+int \mbox{\hyperlink{channel_8c_aff644456ccd053737b7749eb46e0ca26}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+right}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$to\+\_\+add)
+\item 
+int \mbox{\hyperlink{channel_8c_a89622dad2d95250793140d0577d69e52}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+end}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$to\+\_\+add)
+\item 
+int \mbox{\hyperlink{channel_8c_a5afdc9fe4448a163c8b1adb75d120a19}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+left}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$to\+\_\+add)
+\item 
+int \mbox{\hyperlink{channel_8c_a62e2e08ead1c914209fbf17587a527fa}{aws\+\_\+channel\+\_\+slot\+\_\+send\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir)
+\item 
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{channel_8c_acaa6777d47c8591cacaacad26a123de3}{aws\+\_\+channel\+\_\+slot\+\_\+acquire\+\_\+max\+\_\+message\+\_\+for\+\_\+write}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+static void \mbox{\hyperlink{channel_8c_ac8a1e797fb030e8d27944ea2bedce853}{s\+\_\+window\+\_\+update\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+int \mbox{\hyperlink{channel_8c_ace28e826f0cda574669c64bc25d73aa7}{aws\+\_\+channel\+\_\+slot\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t window)
+\item 
+int \mbox{\hyperlink{channel_8c_a7e0aeec89ec6a0356bd5bedb2cbdf4d6}{aws\+\_\+channel\+\_\+slot\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+\item 
+static void \mbox{\hyperlink{channel_8c_a017a204cd4a9f6af20e21866d892f512}{s\+\_\+run\+\_\+shutdown\+\_\+write\+\_\+direction}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+int \mbox{\hyperlink{channel_8c_ac02bdc09609e77ed5d606d75dab8665a}{aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+\item 
+size\+\_\+t \mbox{\hyperlink{channel_8c_ac2703e4910b55901604efb6b1437169e}{aws\+\_\+channel\+\_\+slot\+\_\+downstream\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+size\+\_\+t \mbox{\hyperlink{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}{aws\+\_\+channel\+\_\+slot\+\_\+upstream\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+void \mbox{\hyperlink{channel_8c_a5c4291e035ed0bce84847d62c3530ae7}{aws\+\_\+channel\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+int \mbox{\hyperlink{channel_8c_a593c06122e2de124ff5eb9466d7ebc1f}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+int \mbox{\hyperlink{channel_8c_a6a6a79555c173c477a87468171e5d116}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+int \mbox{\hyperlink{channel_8c_aad29b3effeca8c0f96a98f3bdd3721d0}{aws\+\_\+channel\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
+\item 
+int \mbox{\hyperlink{channel_8c_aef86fb523e1c2cfbff4236eba9dea108}{aws\+\_\+channel\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+\item 
+size\+\_\+t \mbox{\hyperlink{channel_8c_ad1bf994287f08ecfcbd954165fe9dd38}{aws\+\_\+channel\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{channel_8c_ae57618bf0dc50fd6bcdf9abe104d7a1a}{aws\+\_\+channel\+\_\+get\+\_\+first\+\_\+slot}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+static void \mbox{\hyperlink{channel_8c_ab03cd7122686a085dccd396e31ed820a}{s\+\_\+reset\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\item 
+static void \mbox{\hyperlink{channel_8c_a3966ebac4f40510a4992240cc202765c}{s\+\_\+channel\+\_\+gather\+\_\+statistics\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+int \mbox{\hyperlink{channel_8c_a8d68e394434da99942eacdd668fa91f8}{aws\+\_\+channel\+\_\+set\+\_\+statistics\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{channel_8c_acef9224f64bad376195da55ca1b80a8b}{aws\+\_\+channel\+\_\+get\+\_\+event\+\_\+loop}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}{s\+\_\+message\+\_\+pool\+\_\+key}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}{g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size}} = \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{channel_8c_a02fd3f957d0b57a72d033dfb6ed87846}\label{channel_8c_a02fd3f957d0b57a72d033dfb6ed87846}} 
+\index{channel.c@{channel.c}!INITIAL\_STATISTIC\_LIST\_SIZE@{INITIAL\_STATISTIC\_LIST\_SIZE}}
+\index{INITIAL\_STATISTIC\_LIST\_SIZE@{INITIAL\_STATISTIC\_LIST\_SIZE}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_STATISTIC\_LIST\_SIZE}{INITIAL\_STATISTIC\_LIST\_SIZE}}
+{\footnotesize\ttfamily \#define INITIAL\+\_\+\+STATISTIC\+\_\+\+LIST\+\_\+\+SIZE~5}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{channel_8c_afb730582952b7ceec73d7dc9bf7bef39}\label{channel_8c_afb730582952b7ceec73d7dc9bf7bef39}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KB\_16@{KB\_16}!channel.c@{channel.c}}\index{channel.c@{channel.c}!KB\_16@{KB\_16}}}\mbox{\Hypertarget{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}\label{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}} 
+KB\+\_\+16&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}\label{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}} 
+\index{channel.c@{channel.c}!aws\_channel\_state@{aws\_channel\_state}}
+\index{aws\_channel\_state@{aws\_channel\_state}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_state}{aws\_channel\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}{aws\+\_\+channel\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CHANNEL\_SETTING\_UP@{AWS\_CHANNEL\_SETTING\_UP}!channel.c@{channel.c}}\index{channel.c@{channel.c}!AWS\_CHANNEL\_SETTING\_UP@{AWS\_CHANNEL\_SETTING\_UP}}}\mbox{\Hypertarget{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca4c83f2ba135bfdb374ff7dbaea11f7fb}\label{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca4c83f2ba135bfdb374ff7dbaea11f7fb}} 
+AWS\+\_\+\+CHANNEL\+\_\+\+SETTING\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CHANNEL\_ACTIVE@{AWS\_CHANNEL\_ACTIVE}!channel.c@{channel.c}}\index{channel.c@{channel.c}!AWS\_CHANNEL\_ACTIVE@{AWS\_CHANNEL\_ACTIVE}}}\mbox{\Hypertarget{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca68ce32c76dccbf3eab8851f3425da950}\label{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca68ce32c76dccbf3eab8851f3425da950}} 
+AWS\+\_\+\+CHANNEL\+\_\+\+ACTIVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CHANNEL\_SHUTTING\_DOWN@{AWS\_CHANNEL\_SHUTTING\_DOWN}!channel.c@{channel.c}}\index{channel.c@{channel.c}!AWS\_CHANNEL\_SHUTTING\_DOWN@{AWS\_CHANNEL\_SHUTTING\_DOWN}}}\mbox{\Hypertarget{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200cae6a3752eafe574bd80f8c94a23ca42a3}\label{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200cae6a3752eafe574bd80f8c94a23ca42a3}} 
+AWS\+\_\+\+CHANNEL\+\_\+\+SHUTTING\+\_\+\+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_CHANNEL\_SHUT\_DOWN@{AWS\_CHANNEL\_SHUT\_DOWN}!channel.c@{channel.c}}\index{channel.c@{channel.c}!AWS\_CHANNEL\_SHUT\_DOWN@{AWS\_CHANNEL\_SHUT\_DOWN}}}\mbox{\Hypertarget{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca984d0ada5658c103cef680799f9de37c}\label{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca984d0ada5658c103cef680799f9de37c}} 
+AWS\+\_\+\+CHANNEL\+\_\+\+SHUT\+\_\+\+DOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{channel_8c_a997fd75a24929fa75dec1e4346635078}\label{channel_8c_a997fd75a24929fa75dec1e4346635078}} 
+\index{channel.c@{channel.c}!aws\_channel\_acquire\_hold@{aws\_channel\_acquire\_hold}}
+\index{aws\_channel\_acquire\_hold@{aws\_channel\_acquire\_hold}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_acquire\_hold()}{aws\_channel\_acquire\_hold()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+acquire\+\_\+hold (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Prevent a channel\textquotesingle{}s memory from being freed. Any number of users may acquire a hold to prevent a channel and its handlers from being unexpectedly freed. Any user which acquires a hold must release it via \mbox{\hyperlink{channel_8h_ad007559c3290b51ee22c0ce071f8a8d7}{aws\+\_\+channel\+\_\+release\+\_\+hold()}}. Memory will be freed once all holds are released and \mbox{\hyperlink{channel_8h_a775ccd151af122ab38243fa91c5c93a1}{aws\+\_\+channel\+\_\+destroy()}} has been called. \mbox{\Hypertarget{channel_8c_a6c9b7905706d982c37f9e5c125aa8512}\label{channel_8c_a6c9b7905706d982c37f9e5c125aa8512}} 
+\index{channel.c@{channel.c}!aws\_channel\_acquire\_message\_from\_pool@{aws\_channel\_acquire\_message\_from\_pool}}
+\index{aws\_channel\_acquire\_message\_from\_pool@{aws\_channel\_acquire\_message\_from\_pool}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_acquire\_message\_from\_pool()}{aws\_channel\_acquire\_message\_from\_pool()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}$\ast$ aws\+\_\+channel\+\_\+acquire\+\_\+message\+\_\+from\+\_\+pool (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}}}]{message\+\_\+type,  }\item[{size\+\_\+t}]{size\+\_\+hint }\end{DoxyParamCaption})}
+
+Acquires a message from the event loop\textquotesingle{}s message pool. size\+\_\+hint is merely a hint, it may be smaller than you requested and you are responsible for checking the bounds of it. If the returned message is not large enough, you must send multiple messages. \mbox{\Hypertarget{channel_8c_a8c83205cabd6d0518e095c7ff47acffe}\label{channel_8c_a8c83205cabd6d0518e095c7ff47acffe}} 
+\index{channel.c@{channel.c}!aws\_channel\_current\_clock\_time@{aws\_channel\_current\_clock\_time}}
+\index{aws\_channel\_current\_clock\_time@{aws\_channel\_current\_clock\_time}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_current\_clock\_time()}{aws\_channel\_current\_clock\_time()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+current\+\_\+clock\+\_\+time (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{uint64\+\_\+t $\ast$}]{time\+\_\+nanos }\end{DoxyParamCaption})}
+
+Fetches the current timestamp from the event-\/loop\textquotesingle{}s clock, in nanoseconds. \mbox{\Hypertarget{channel_8c_a5f47528b6c3cdcde21aea084d253241b}\label{channel_8c_a5f47528b6c3cdcde21aea084d253241b}} 
+\index{channel.c@{channel.c}!aws\_channel\_destroy@{aws\_channel\_destroy}}
+\index{aws\_channel\_destroy@{aws\_channel\_destroy}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_destroy()}{aws\_channel\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Mark the channel, along with all slots and handlers, for destruction. Must be called after shutdown has completed. Can be called from any thread assuming \textquotesingle{}\mbox{\hyperlink{channel_8h_abff5ab83fc216f5dc84a3cc3576de872}{aws\+\_\+channel\+\_\+shutdown()}}\textquotesingle{} has completed. Note that memory will not be freed until all users which acquired holds on the channel via \mbox{\hyperlink{channel_8h_ae552264682f9ec8786d246fbb7eaa967}{aws\+\_\+channel\+\_\+acquire\+\_\+hold()}}, release them via \mbox{\hyperlink{channel_8h_ad007559c3290b51ee22c0ce071f8a8d7}{aws\+\_\+channel\+\_\+release\+\_\+hold()}}. \mbox{\Hypertarget{channel_8c_a965cd24d68288e4670b4ac6ca44ae937}\label{channel_8c_a965cd24d68288e4670b4ac6ca44ae937}} 
+\index{channel.c@{channel.c}!aws\_channel\_fetch\_local\_object@{aws\_channel\_fetch\_local\_object}}
+\index{aws\_channel\_fetch\_local\_object@{aws\_channel\_fetch\_local\_object}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_fetch\_local\_object()}{aws\_channel\_fetch\_local\_object()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+fetch\+\_\+local\+\_\+object (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Retrieves an object by key from the event loop\textquotesingle{}s local storage. \mbox{\Hypertarget{channel_8c_acef9224f64bad376195da55ca1b80a8b}\label{channel_8c_acef9224f64bad376195da55ca1b80a8b}} 
+\index{channel.c@{channel.c}!aws\_channel\_get\_event\_loop@{aws\_channel\_get\_event\_loop}}
+\index{aws\_channel\_get\_event\_loop@{aws\_channel\_get\_event\_loop}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_get\_event\_loop()}{aws\_channel\_get\_event\_loop()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ aws\+\_\+channel\+\_\+get\+\_\+event\+\_\+loop (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Fetches the event loop the channel is a part of. \mbox{\Hypertarget{channel_8c_ae57618bf0dc50fd6bcdf9abe104d7a1a}\label{channel_8c_ae57618bf0dc50fd6bcdf9abe104d7a1a}} 
+\index{channel.c@{channel.c}!aws\_channel\_get\_first\_slot@{aws\_channel\_get\_first\_slot}}
+\index{aws\_channel\_get\_first\_slot@{aws\_channel\_get\_first\_slot}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_get\_first\_slot()}{aws\_channel\_get\_first\_slot()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}}$\ast$ aws\+\_\+channel\+\_\+get\+\_\+first\+\_\+slot (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{channel_8c_a5c4291e035ed0bce84847d62c3530ae7}\label{channel_8c_a5c4291e035ed0bce84847d62c3530ae7}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_destroy@{aws\_channel\_handler\_destroy}}
+\index{aws\_channel\_handler\_destroy@{aws\_channel\_handler\_destroy}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_destroy()}{aws\_channel\_handler\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+handler\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+Calls destroy on handler\textquotesingle{}s vtable \mbox{\Hypertarget{channel_8c_aad29b3effeca8c0f96a98f3bdd3721d0}\label{channel_8c_aad29b3effeca8c0f96a98f3bdd3721d0}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_increment\_read\_window@{aws\_channel\_handler\_increment\_read\_window}}
+\index{aws\_channel\_handler\_increment\_read\_window@{aws\_channel\_handler\_increment\_read\_window}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_increment\_read\_window()}{aws\_channel\_handler\_increment\_read\_window()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Calls on\+\_\+window\+\_\+update on handler\textquotesingle{}s vtable. \mbox{\Hypertarget{channel_8c_ad1bf994287f08ecfcbd954165fe9dd38}\label{channel_8c_ad1bf994287f08ecfcbd954165fe9dd38}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_initial\_window\_size@{aws\_channel\_handler\_initial\_window\_size}}
+\index{aws\_channel\_handler\_initial\_window\_size@{aws\_channel\_handler\_initial\_window\_size}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_initial\_window\_size()}{aws\_channel\_handler\_initial\_window\_size()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+channel\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+Calls initial\+\_\+window\+\_\+size on handler\textquotesingle{}s vtable. \mbox{\Hypertarget{channel_8c_a593c06122e2de124ff5eb9466d7ebc1f}\label{channel_8c_a593c06122e2de124ff5eb9466d7ebc1f}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_process\_read\_message@{aws\_channel\_handler\_process\_read\_message}}
+\index{aws\_channel\_handler\_process\_read\_message@{aws\_channel\_handler\_process\_read\_message}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_process\_read\_message()}{aws\_channel\_handler\_process\_read\_message()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Calls process\+\_\+read\+\_\+message on handler\textquotesingle{}s vtable \mbox{\Hypertarget{channel_8c_a6a6a79555c173c477a87468171e5d116}\label{channel_8c_a6a6a79555c173c477a87468171e5d116}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_process\_write\_message@{aws\_channel\_handler\_process\_write\_message}}
+\index{aws\_channel\_handler\_process\_write\_message@{aws\_channel\_handler\_process\_write\_message}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_process\_write\_message()}{aws\_channel\_handler\_process\_write\_message()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+write\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Calls process\+\_\+write\+\_\+message on handler\textquotesingle{}s vtable. \mbox{\Hypertarget{channel_8c_aef86fb523e1c2cfbff4236eba9dea108}\label{channel_8c_aef86fb523e1c2cfbff4236eba9dea108}} 
+\index{channel.c@{channel.c}!aws\_channel\_handler\_shutdown@{aws\_channel\_handler\_shutdown}}
+\index{aws\_channel\_handler\_shutdown@{aws\_channel\_handler\_shutdown}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_shutdown()}{aws\_channel\_handler\_shutdown()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+
+calls shutdown\+\_\+direction on handler\textquotesingle{}s vtable. \mbox{\Hypertarget{channel_8c_a04fbab8955bde89dab96485442344698}\label{channel_8c_a04fbab8955bde89dab96485442344698}} 
+\index{channel.c@{channel.c}!aws\_channel\_new@{aws\_channel\_new}}
+\index{aws\_channel\_new@{aws\_channel\_new}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_new()}{aws\_channel\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}}$\ast$ aws\+\_\+channel\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__channel__options}{aws\+\_\+channel\+\_\+options}} $\ast$}]{creation\+\_\+args }\end{DoxyParamCaption})}
+
+Allocates new channel, Unless otherwise specified all functions for channels and channel slots must be executed within that channel\textquotesingle{}s event-\/loop\textquotesingle{}s thread. channel\+\_\+options are copied. \mbox{\Hypertarget{channel_8c_a793d035f8b362f4ab4e2e1e9901ecb72}\label{channel_8c_a793d035f8b362f4ab4e2e1e9901ecb72}} 
+\index{channel.c@{channel.c}!aws\_channel\_put\_local\_object@{aws\_channel\_put\_local\_object}}
+\index{aws\_channel\_put\_local\_object@{aws\_channel\_put\_local\_object}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_put\_local\_object()}{aws\_channel\_put\_local\_object()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+put\+\_\+local\+\_\+object (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{const void $\ast$}]{key,  }\item[{const struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Stores an object by key in the event loop\textquotesingle{}s local storage. \mbox{\Hypertarget{channel_8c_af538b24333d3a5a7a434f8214c00d5a9}\label{channel_8c_af538b24333d3a5a7a434f8214c00d5a9}} 
+\index{channel.c@{channel.c}!aws\_channel\_release\_hold@{aws\_channel\_release\_hold}}
+\index{aws\_channel\_release\_hold@{aws\_channel\_release\_hold}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_release\_hold()}{aws\_channel\_release\_hold()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+release\+\_\+hold (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Release a hold on the channel\textquotesingle{}s memory, allowing it to be freed. This may be called before or after \mbox{\hyperlink{channel_8h_a775ccd151af122ab38243fa91c5c93a1}{aws\+\_\+channel\+\_\+destroy()}}. \mbox{\Hypertarget{channel_8c_aae23519d2041e97c043fb9ebd206ba17}\label{channel_8c_aae23519d2041e97c043fb9ebd206ba17}} 
+\index{channel.c@{channel.c}!aws\_channel\_remove\_local\_object@{aws\_channel\_remove\_local\_object}}
+\index{aws\_channel\_remove\_local\_object@{aws\_channel\_remove\_local\_object}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_remove\_local\_object()}{aws\_channel\_remove\_local\_object()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+remove\+\_\+local\+\_\+object (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{const void $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$}]{removed\+\_\+obj }\end{DoxyParamCaption})}
+
+Removes an object by key from the event loop\textquotesingle{}s local storage. \mbox{\Hypertarget{channel_8c_a014e9d885eb34c2750ca7b22932d07f7}\label{channel_8c_a014e9d885eb34c2750ca7b22932d07f7}} 
+\index{channel.c@{channel.c}!aws\_channel\_schedule\_task\_future@{aws\_channel\_schedule\_task\_future}}
+\index{aws\_channel\_schedule\_task\_future@{aws\_channel\_schedule\_task\_future}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_schedule\_task\_future()}{aws\_channel\_schedule\_task\_future()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+schedule\+\_\+task\+\_\+future (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t}]{run\+\_\+at\+\_\+nanos }\end{DoxyParamCaption})}
+
+Schedules a task to run on the event loop at the specified time. This is the ideal way to move a task into the correct thread. It\textquotesingle{}s also handy for context switches. Use \mbox{\hyperlink{channel_8h_a404ded5f7fd625d7bc18f0a4c59ffcf7}{aws\+\_\+channel\+\_\+current\+\_\+clock\+\_\+time()}} to get the current time in nanoseconds. This function is safe to call from any thread.
+
+The task should not be cleaned up or modified until its function is executed. \mbox{\Hypertarget{channel_8c_a9642128221f90fc7fdaa69e957c22c7e}\label{channel_8c_a9642128221f90fc7fdaa69e957c22c7e}} 
+\index{channel.c@{channel.c}!aws\_channel\_schedule\_task\_now@{aws\_channel\_schedule\_task\_now}}
+\index{aws\_channel\_schedule\_task\_now@{aws\_channel\_schedule\_task\_now}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_schedule\_task\_now()}{aws\_channel\_schedule\_task\_now()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+schedule\+\_\+task\+\_\+now (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task }\end{DoxyParamCaption})}
+
+Schedules a task to run on the event loop as soon as possible. This is the ideal way to move a task into the correct thread. It\textquotesingle{}s also handy for context switches. This function is safe to call from any thread.
+
+The task should not be cleaned up or modified until its function is executed. \mbox{\Hypertarget{channel_8c_a8d68e394434da99942eacdd668fa91f8}\label{channel_8c_a8d68e394434da99942eacdd668fa91f8}} 
+\index{channel.c@{channel.c}!aws\_channel\_set\_statistics\_handler@{aws\_channel\_set\_statistics\_handler}}
+\index{aws\_channel\_set\_statistics\_handler@{aws\_channel\_set\_statistics\_handler}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_set\_statistics\_handler()}{aws\_channel\_set\_statistics\_handler()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+set\+\_\+statistics\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+Instrument a channel with a statistics handler. While instrumented with a statistics handler, the channel will periodically report per-\/channel-\/handler-\/specific statistics about handler performance and state.
+
+Assigning a statistics handler to a channel is a transfer of ownership -- the channel will clean up the handler appropriately. Statistics handlers may be changed dynamically (for example, the upgrade from a vanilla http channel to a websocket channel), but this function may only be called from the event loop thread that the channel is a part of.
+
+The first possible hook to set a statistics handler is the channel\textquotesingle{}s creation callback. \mbox{\Hypertarget{channel_8c_a136dec28372bafca15c52abc876c84c6}\label{channel_8c_a136dec28372bafca15c52abc876c84c6}} 
+\index{channel.c@{channel.c}!aws\_channel\_shutdown@{aws\_channel\_shutdown}}
+\index{aws\_channel\_shutdown@{aws\_channel\_shutdown}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_shutdown()}{aws\_channel\_shutdown()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})}
+
+Initiates shutdown of the channel. Shutdown will begin with the left-\/most slot. Each handler will invoke \textquotesingle{}aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete\textquotesingle{} once they\textquotesingle{}ve finished their shutdown process for the read direction. Once the right-\/most slot has shutdown in the read direction, the process will start shutting down starting on the right-\/most slot. Once the left-\/most slot has shutdown in the write direction, \textquotesingle{}callbacks-\/\texorpdfstring{$>$}{>}shutdown\+\_\+completed\textquotesingle{} will be invoked in the event loop\textquotesingle{}s thread.
+
+This function can be called from any thread. \mbox{\Hypertarget{channel_8c_acaa6777d47c8591cacaacad26a123de3}\label{channel_8c_acaa6777d47c8591cacaacad26a123de3}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_acquire\_max\_message\_for\_write@{aws\_channel\_slot\_acquire\_max\_message\_for\_write}}
+\index{aws\_channel\_slot\_acquire\_max\_message\_for\_write@{aws\_channel\_slot\_acquire\_max\_message\_for\_write}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_acquire\_max\_message\_for\_write()}{aws\_channel\_slot\_acquire\_max\_message\_for\_write()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}$\ast$ aws\+\_\+channel\+\_\+slot\+\_\+acquire\+\_\+max\+\_\+message\+\_\+for\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})}
+
+Convenience function that invokes \mbox{\hyperlink{channel_8h_ac496d05db725dd4678a25ddbc471b011}{aws\+\_\+channel\+\_\+acquire\+\_\+message\+\_\+from\+\_\+pool()}}, asking for the largest reasonable DATA message that can be sent in the write direction, with upstream overhead accounted for. \mbox{\Hypertarget{channel_8c_ac2703e4910b55901604efb6b1437169e}\label{channel_8c_ac2703e4910b55901604efb6b1437169e}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_downstream\_read\_window@{aws\_channel\_slot\_downstream\_read\_window}}
+\index{aws\_channel\_slot\_downstream\_read\_window@{aws\_channel\_slot\_downstream\_read\_window}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_downstream\_read\_window()}{aws\_channel\_slot\_downstream\_read\_window()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+channel\+\_\+slot\+\_\+downstream\+\_\+read\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})}
+
+Fetches the downstream read window. This gives you the information necessary to honor the read window. If you call send\+\_\+message() and it exceeds this window, the message will be rejected. \mbox{\Hypertarget{channel_8c_ace28e826f0cda574669c64bc25d73aa7}\label{channel_8c_ace28e826f0cda574669c64bc25d73aa7}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_increment\_read\_window@{aws\_channel\_slot\_increment\_read\_window}}
+\index{aws\_channel\_slot\_increment\_read\_window@{aws\_channel\_slot\_increment\_read\_window}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_increment\_read\_window()}{aws\_channel\_slot\_increment\_read\_window()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+increment\+\_\+read\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{size\+\_\+t}]{window }\end{DoxyParamCaption})}
+
+Issues a window update notification upstream (to the left.) \mbox{\Hypertarget{channel_8c_a89622dad2d95250793140d0577d69e52}\label{channel_8c_a89622dad2d95250793140d0577d69e52}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_insert\_end@{aws\_channel\_slot\_insert\_end}}
+\index{aws\_channel\_slot\_insert\_end@{aws\_channel\_slot\_insert\_end}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_insert\_end()}{aws\_channel\_slot\_insert\_end()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+end (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{to\+\_\+add }\end{DoxyParamCaption})}
+
+Inserts to \textquotesingle{}to\+\_\+add\textquotesingle{} the end of the channel. Note that the first call to \mbox{\hyperlink{channel_8h_a604bcb192d4aef1e4809db8c78533a8b}{aws\+\_\+channel\+\_\+slot\+\_\+new()}} adds it to the channel implicitly. \mbox{\Hypertarget{channel_8c_a5afdc9fe4448a163c8b1adb75d120a19}\label{channel_8c_a5afdc9fe4448a163c8b1adb75d120a19}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_insert\_left@{aws\_channel\_slot\_insert\_left}}
+\index{aws\_channel\_slot\_insert\_left@{aws\_channel\_slot\_insert\_left}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_insert\_left()}{aws\_channel\_slot\_insert\_left()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+left (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{to\+\_\+add }\end{DoxyParamCaption})}
+
+inserts \textquotesingle{}to\+\_\+add\textquotesingle{} to the position immediately to the left of slot. Note that the first call to \mbox{\hyperlink{channel_8h_a604bcb192d4aef1e4809db8c78533a8b}{aws\+\_\+channel\+\_\+slot\+\_\+new()}} adds it to the channel implicitly. \mbox{\Hypertarget{channel_8c_aff644456ccd053737b7749eb46e0ca26}\label{channel_8c_aff644456ccd053737b7749eb46e0ca26}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_insert\_right@{aws\_channel\_slot\_insert\_right}}
+\index{aws\_channel\_slot\_insert\_right@{aws\_channel\_slot\_insert\_right}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_insert\_right()}{aws\_channel\_slot\_insert\_right()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+right (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{to\+\_\+add }\end{DoxyParamCaption})}
+
+inserts \textquotesingle{}to\+\_\+add\textquotesingle{} to the position immediately to the right of slot. Note that the first call to \mbox{\hyperlink{channel_8h_a604bcb192d4aef1e4809db8c78533a8b}{aws\+\_\+channel\+\_\+slot\+\_\+new()}} adds it to the channel implicitly. \mbox{\Hypertarget{channel_8c_a4846decb3214f553cf8246e44785c431}\label{channel_8c_a4846decb3214f553cf8246e44785c431}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_new@{aws\_channel\_slot\_new}}
+\index{aws\_channel\_slot\_new@{aws\_channel\_slot\_new}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_new()}{aws\_channel\_slot\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}}$\ast$ aws\+\_\+channel\+\_\+slot\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Allocates and initializes a new slot for use with the channel. If this is the first slot in the channel, it will automatically be added to the channel as the first slot. For all subsequent calls on a given channel, the slot will need to be added to the channel via. the \mbox{\hyperlink{channel_8h_a941a727ccb6e9150a1940a7c56d96294}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+right()}}, \mbox{\hyperlink{channel_8h_a13d4654db8dc96af9518ad4867d33a76}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+end()}}, and \mbox{\hyperlink{channel_8h_ad940cb961369ae438817dc43e0611d47}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+left()}} APIs. \mbox{\Hypertarget{channel_8c_ac02bdc09609e77ed5d606d75dab8665a}\label{channel_8c_ac02bdc09609e77ed5d606d75dab8665a}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_on\_handler\_shutdown\_complete@{aws\_channel\_slot\_on\_handler\_shutdown\_complete}}
+\index{aws\_channel\_slot\_on\_handler\_shutdown\_complete@{aws\_channel\_slot\_on\_handler\_shutdown\_complete}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_on\_handler\_shutdown\_complete()}{aws\_channel\_slot\_on\_handler\_shutdown\_complete()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+
+Called by handlers once they have finished their shutdown in the \textquotesingle{}dir\textquotesingle{} direction. Propagates the shutdown process to the next handler in the channel. \mbox{\Hypertarget{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}\label{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_remove@{aws\_channel\_slot\_remove}}
+\index{aws\_channel\_slot\_remove@{aws\_channel\_slot\_remove}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_remove()}{aws\_channel\_slot\_remove()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+remove (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})}
+
+Removes slot from the channel and deallocates the slot and its handler. \mbox{\Hypertarget{channel_8c_ad7a519929381179d21d358df45436205}\label{channel_8c_ad7a519929381179d21d358df45436205}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_replace@{aws\_channel\_slot\_replace}}
+\index{aws\_channel\_slot\_replace@{aws\_channel\_slot\_replace}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_replace()}{aws\_channel\_slot\_replace()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+replace (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{remove,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{new\+\_\+slot }\end{DoxyParamCaption})}
+
+Replaces remove with new\+\_\+slot. Deallocates remove and its handler. \mbox{\Hypertarget{channel_8c_a62e2e08ead1c914209fbf17587a527fa}\label{channel_8c_a62e2e08ead1c914209fbf17587a527fa}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_send\_message@{aws\_channel\_slot\_send\_message}}
+\index{aws\_channel\_slot\_send\_message@{aws\_channel\_slot\_send\_message}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_send\_message()}{aws\_channel\_slot\_send\_message()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+send\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$}]{message,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir }\end{DoxyParamCaption})}
+
+Sends a message to the adjacent slot in the channel based on dir. Also does window size checking.
+
+NOTE\+: if this function returns an error code, it is the caller\textquotesingle{}s responsibility to release message back to the pool. If this function returns AWS\+\_\+\+OP\+\_\+\+SUCCESS, the recipient of the message has taken ownership of the message. So, for example, don\textquotesingle{}t release a message to the pool and then return an error. If you encounter an error condition in this case, shutdown the channel with the appropriate error code. \mbox{\Hypertarget{channel_8c_a46595b50216279630f6c357a6cfd81b3}\label{channel_8c_a46595b50216279630f6c357a6cfd81b3}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_set\_handler@{aws\_channel\_slot\_set\_handler}}
+\index{aws\_channel\_slot\_set\_handler@{aws\_channel\_slot\_set\_handler}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_set\_handler()}{aws\_channel\_slot\_set\_handler()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+set\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+Sets the handler for a slot, the slot will also call get\+\_\+current\+\_\+window\+\_\+size() and propagate a window update upstream. \mbox{\Hypertarget{channel_8c_a7e0aeec89ec6a0356bd5bedb2cbdf4d6}\label{channel_8c_a7e0aeec89ec6a0356bd5bedb2cbdf4d6}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_shutdown@{aws\_channel\_slot\_shutdown}}
+\index{aws\_channel\_slot\_shutdown@{aws\_channel\_slot\_shutdown}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_shutdown()}{aws\_channel\_slot\_shutdown()}}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+
+Initiates shutdown on slot. callbacks-\/\texorpdfstring{$>$}{>}on\+\_\+shutdown\+\_\+completed will be called once the shutdown process is completed. \mbox{\Hypertarget{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}\label{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}} 
+\index{channel.c@{channel.c}!aws\_channel\_slot\_upstream\_message\_overhead@{aws\_channel\_slot\_upstream\_message\_overhead}}
+\index{aws\_channel\_slot\_upstream\_message\_overhead@{aws\_channel\_slot\_upstream\_message\_overhead}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_upstream\_message\_overhead()}{aws\_channel\_slot\_upstream\_message\_overhead()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+channel\+\_\+slot\+\_\+upstream\+\_\+message\+\_\+overhead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})}
+
+Fetches the current overhead of upstream handlers. This provides a hint to avoid fragmentation if you care. \mbox{\Hypertarget{channel_8c_a2c46f872a25bd2541b213c532813d3b5}\label{channel_8c_a2c46f872a25bd2541b213c532813d3b5}} 
+\index{channel.c@{channel.c}!aws\_channel\_task\_init@{aws\_channel\_task\_init}}
+\index{aws\_channel\_task\_init@{aws\_channel\_task\_init}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_task\_init()}{aws\_channel\_task\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+channel\+\_\+task\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{\mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\+\_\+channel\+\_\+task\+\_\+fn}} $\ast$}]{task\+\_\+fn,  }\item[{void $\ast$}]{arg,  }\item[{const char $\ast$}]{type\+\_\+tag }\end{DoxyParamCaption})}
+
+Initializes channel\+\_\+task for use. \mbox{\Hypertarget{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}\label{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}} 
+\index{channel.c@{channel.c}!aws\_channel\_thread\_is\_callers\_thread@{aws\_channel\_thread\_is\_callers\_thread}}
+\index{aws\_channel\_thread\_is\_callers\_thread@{aws\_channel\_thread\_is\_callers\_thread}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{aws\_channel\_thread\_is\_callers\_thread()}{aws\_channel\_thread\_is\_callers\_thread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+
+Returns true if the caller is on the event loop\textquotesingle{}s thread. If false, you likely need to use aws\+\_\+channel\+\_\+schedule\+\_\+task(). This function is safe to call from any thread. \mbox{\Hypertarget{channel_8c_a3966ebac4f40510a4992240cc202765c}\label{channel_8c_a3966ebac4f40510a4992240cc202765c}} 
+\index{channel.c@{channel.c}!s\_channel\_gather\_statistics\_task@{s\_channel\_gather\_statistics\_task}}
+\index{s\_channel\_gather\_statistics\_task@{s\_channel\_gather\_statistics\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_gather\_statistics\_task()}{s\_channel\_gather\_statistics\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+channel\+\_\+gather\+\_\+statistics\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a7ff5c6573e9ee75999de512eb9ae675c}\label{channel_8c_a7ff5c6573e9ee75999de512eb9ae675c}} 
+\index{channel.c@{channel.c}!s\_channel\_shutdown@{s\_channel\_shutdown}}
+\index{s\_channel\_shutdown@{s\_channel\_shutdown}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_shutdown()}{s\_channel\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+channel\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{shutdown\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}\label{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}} 
+\index{channel.c@{channel.c}!s\_channel\_task\_run@{s\_channel\_task\_run}}
+\index{s\_channel\_task\_run@{s\_channel\_task\_run}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_task\_run()}{s\_channel\_task\_run()}}
+{\footnotesize\ttfamily static void s\+\_\+channel\+\_\+task\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a61dfcd471a51c519b089216428f9d92e}\label{channel_8c_a61dfcd471a51c519b089216428f9d92e}} 
+\index{channel.c@{channel.c}!s\_cleanup\_slot@{s\_cleanup\_slot}}
+\index{s\_cleanup\_slot@{s\_cleanup\_slot}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_cleanup\_slot()}{s\_cleanup\_slot()}}
+{\footnotesize\ttfamily static void s\+\_\+cleanup\+\_\+slot (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a3941c77abfbf8902b4bc735100b30bb3}\label{channel_8c_a3941c77abfbf8902b4bc735100b30bb3}} 
+\index{channel.c@{channel.c}!s\_destroy\_partially\_constructed\_channel@{s\_destroy\_partially\_constructed\_channel}}
+\index{s\_destroy\_partially\_constructed\_channel@{s\_destroy\_partially\_constructed\_channel}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy\_partially\_constructed\_channel()}{s\_destroy\_partially\_constructed\_channel()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy\+\_\+partially\+\_\+constructed\+\_\+channel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_ae670b4c08f4ca2ed2b5673318b53a448}\label{channel_8c_ae670b4c08f4ca2ed2b5673318b53a448}} 
+\index{channel.c@{channel.c}!s\_final\_channel\_deletion\_task@{s\_final\_channel\_deletion\_task}}
+\index{s\_final\_channel\_deletion\_task@{s\_final\_channel\_deletion\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_final\_channel\_deletion\_task()}{s\_final\_channel\_deletion\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+final\+\_\+channel\+\_\+deletion\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_ad94dd608f92be2a964bb296c5723ad2d}\label{channel_8c_ad94dd608f92be2a964bb296c5723ad2d}} 
+\index{channel.c@{channel.c}!s\_on\_channel\_setup\_complete@{s\_on\_channel\_setup\_complete}}
+\index{s\_on\_channel\_setup\_complete@{s\_on\_channel\_setup\_complete}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_channel\_setup\_complete()}{s\_on\_channel\_setup\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+channel\+\_\+setup\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{task\+\_\+status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a21630d7d3ca9551efd2a9d4175301a39}\label{channel_8c_a21630d7d3ca9551efd2a9d4175301a39}} 
+\index{channel.c@{channel.c}!s\_on\_msg\_pool\_removed@{s\_on\_msg\_pool\_removed}}
+\index{s\_on\_msg\_pool\_removed@{s\_on\_msg\_pool\_removed}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_msg\_pool\_removed()}{s\_on\_msg\_pool\_removed()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+msg\+\_\+pool\+\_\+removed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop__local__object}{aws\+\_\+event\+\_\+loop\+\_\+local\+\_\+object}} $\ast$}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a2363d5e271fd83587c1e8128f2be0827}\label{channel_8c_a2363d5e271fd83587c1e8128f2be0827}} 
+\index{channel.c@{channel.c}!s\_on\_shutdown\_completion\_task@{s\_on\_shutdown\_completion\_task}}
+\index{s\_on\_shutdown\_completion\_task@{s\_on\_shutdown\_completion\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_shutdown\_completion\_task()}{s\_on\_shutdown\_completion\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+shutdown\+\_\+completion\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a24ffa215b6a69ffe59becb46aff75759}\label{channel_8c_a24ffa215b6a69ffe59becb46aff75759}} 
+\index{channel.c@{channel.c}!s\_register\_pending\_task@{s\_register\_pending\_task}}
+\index{s\_register\_pending\_task@{s\_register\_pending\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_register\_pending\_task()}{s\_register\_pending\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+register\+\_\+pending\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{uint64\+\_\+t}]{run\+\_\+at\+\_\+nanos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_ab03cd7122686a085dccd396e31ed820a}\label{channel_8c_ab03cd7122686a085dccd396e31ed820a}} 
+\index{channel.c@{channel.c}!s\_reset\_statistics@{s\_reset\_statistics}}
+\index{s\_reset\_statistics@{s\_reset\_statistics}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_reset\_statistics()}{s\_reset\_statistics()}}
+{\footnotesize\ttfamily static void s\+\_\+reset\+\_\+statistics (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a017a204cd4a9f6af20e21866d892f512}\label{channel_8c_a017a204cd4a9f6af20e21866d892f512}} 
+\index{channel.c@{channel.c}!s\_run\_shutdown\_write\_direction@{s\_run\_shutdown\_write\_direction}}
+\index{s\_run\_shutdown\_write\_direction@{s\_run\_shutdown\_write\_direction}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_run\_shutdown\_write\_direction()}{s\_run\_shutdown\_write\_direction()}}
+{\footnotesize\ttfamily static void s\+\_\+run\+\_\+shutdown\+\_\+write\+\_\+direction (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a9ad00fb9da7ccaddd76a1b54285e87b8}\label{channel_8c_a9ad00fb9da7ccaddd76a1b54285e87b8}} 
+\index{channel.c@{channel.c}!s\_schedule\_cross\_thread\_tasks@{s\_schedule\_cross\_thread\_tasks}}
+\index{s\_schedule\_cross\_thread\_tasks@{s\_schedule\_cross\_thread\_tasks}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_cross\_thread\_tasks()}{s\_schedule\_cross\_thread\_tasks()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+cross\+\_\+thread\+\_\+tasks (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a16e4c1a549b3c160c7df1410cb78863f}\label{channel_8c_a16e4c1a549b3c160c7df1410cb78863f}} 
+\index{channel.c@{channel.c}!s\_shutdown\_task@{s\_shutdown\_task}}
+\index{s\_shutdown\_task@{s\_shutdown\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_shutdown\_task()}{s\_shutdown\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+shutdown\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_a69ea92a4c3ee7eb41054644e229ff9db}\label{channel_8c_a69ea92a4c3ee7eb41054644e229ff9db}} 
+\index{channel.c@{channel.c}!s\_update\_channel\_slot\_message\_overheads@{s\_update\_channel\_slot\_message\_overheads}}
+\index{s\_update\_channel\_slot\_message\_overheads@{s\_update\_channel\_slot\_message\_overheads}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_update\_channel\_slot\_message\_overheads()}{s\_update\_channel\_slot\_message\_overheads()}}
+{\footnotesize\ttfamily static void s\+\_\+update\+\_\+channel\+\_\+slot\+\_\+message\+\_\+overheads (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel_8c_ac8a1e797fb030e8d27944ea2bedce853}\label{channel_8c_ac8a1e797fb030e8d27944ea2bedce853}} 
+\index{channel.c@{channel.c}!s\_window\_update\_task@{s\_window\_update\_task}}
+\index{s\_window\_update\_task@{s\_window\_update\_task}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_window\_update\_task()}{s\_window\_update\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+window\+\_\+update\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}\label{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}} 
+\index{channel.c@{channel.c}!g\_aws\_channel\_max\_fragment\_size@{g\_aws\_channel\_max\_fragment\_size}}
+\index{g\_aws\_channel\_max\_fragment\_size@{g\_aws\_channel\_max\_fragment\_size}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_channel\_max\_fragment\_size}{g\_aws\_channel\_max\_fragment\_size}}
+{\footnotesize\ttfamily size\+\_\+t g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size = \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}}
+
+\mbox{\Hypertarget{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}\label{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}} 
+\index{channel.c@{channel.c}!s\_message\_pool\_key@{s\_message\_pool\_key}}
+\index{s\_message\_pool\_key@{s\_message\_pool\_key}!channel.c@{channel.c}}
+\doxysubsubsection{\texorpdfstring{s\_message\_pool\_key}{s\_message\_pool\_key}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+message\+\_\+pool\+\_\+key = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

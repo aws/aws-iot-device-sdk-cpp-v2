@@ -1,0 +1,61 @@
+\hypertarget{s2n__change__cipher__spec_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+change\+\_\+cipher\+\_\+spec.c File Reference}
+\label{s2n__change__cipher__spec_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_change\_cipher\_spec.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_change\_cipher\_spec.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__change__cipher__spec_8c_ae679d5e1291a1f62c6e66ae2f2404703}{CHANGE\+\_\+\+CIPHER\+\_\+\+SPEC\+\_\+\+TYPE}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__change__cipher__spec_8c_a81d4061438f3c7038212b264f73a0a8f}{s2n\+\_\+basic\+\_\+ccs\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__change__cipher__spec_8c_aab9d53a394720e55e7648730f94bb176}{s2n\+\_\+client\+\_\+ccs\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__change__cipher__spec_8c_ae06266c2514a2576c570f3f01d9f9ecf}{s2n\+\_\+server\+\_\+ccs\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}{s2n\+\_\+ccs\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__change__cipher__spec_8c_ae679d5e1291a1f62c6e66ae2f2404703}\label{s2n__change__cipher__spec_8c_ae679d5e1291a1f62c6e66ae2f2404703}} 
+\index{s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}!CHANGE\_CIPHER\_SPEC\_TYPE@{CHANGE\_CIPHER\_SPEC\_TYPE}}
+\index{CHANGE\_CIPHER\_SPEC\_TYPE@{CHANGE\_CIPHER\_SPEC\_TYPE}!s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}}
+\doxysubsubsection{\texorpdfstring{CHANGE\_CIPHER\_SPEC\_TYPE}{CHANGE\_CIPHER\_SPEC\_TYPE}}
+{\footnotesize\ttfamily \#define CHANGE\+\_\+\+CIPHER\+\_\+\+SPEC\+\_\+\+TYPE~1}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__change__cipher__spec_8c_a81d4061438f3c7038212b264f73a0a8f}\label{s2n__change__cipher__spec_8c_a81d4061438f3c7038212b264f73a0a8f}} 
+\index{s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}!s2n\_basic\_ccs\_recv@{s2n\_basic\_ccs\_recv}}
+\index{s2n\_basic\_ccs\_recv@{s2n\_basic\_ccs\_recv}!s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_basic\_ccs\_recv()}{s2n\_basic\_ccs\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+basic\+\_\+ccs\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}\label{s2n__change__cipher__spec_8c_a205e0ad0690fe090b2fd8d676488f87b}} 
+\index{s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}!s2n\_ccs\_send@{s2n\_ccs\_send}}
+\index{s2n\_ccs\_send@{s2n\_ccs\_send}!s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ccs\_send()}{s2n\_ccs\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+ccs\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__change__cipher__spec_8c_aab9d53a394720e55e7648730f94bb176}\label{s2n__change__cipher__spec_8c_aab9d53a394720e55e7648730f94bb176}} 
+\index{s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}!s2n\_client\_ccs\_recv@{s2n\_client\_ccs\_recv}}
+\index{s2n\_client\_ccs\_recv@{s2n\_client\_ccs\_recv}!s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_ccs\_recv()}{s2n\_client\_ccs\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+client\+\_\+ccs\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__change__cipher__spec_8c_ae06266c2514a2576c570f3f01d9f9ecf}\label{s2n__change__cipher__spec_8c_ae06266c2514a2576c570f3f01d9f9ecf}} 
+\index{s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}!s2n\_server\_ccs\_recv@{s2n\_server\_ccs\_recv}}
+\index{s2n\_server\_ccs\_recv@{s2n\_server\_ccs\_recv}!s2n\_change\_cipher\_spec.c@{s2n\_change\_cipher\_spec.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_ccs\_recv()}{s2n\_server\_ccs\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+ccs\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

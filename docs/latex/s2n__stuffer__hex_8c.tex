@@ -1,0 +1,138 @@
+\hypertarget{s2n__stuffer__hex_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\+\_\+stuffer\+\_\+hex.c File Reference}
+\label{s2n__stuffer__hex_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_stuffer\_hex.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_stuffer\_hex.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__hex_8c_a9be86f2f4bdaf57017f7be4f3cc3393f}{s2n\+\_\+stuffer\+\_\+read\+\_\+n\+\_\+bits\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint8\+\_\+t n, uint64\+\_\+t $\ast$u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a118ca423ee9bf8370cb1992b09db99a9}{s2n\+\_\+stuffer\+\_\+read\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, uint32\+\_\+t n)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_ab61e2b928f2722daff666b6da94f3f13}{s2n\+\_\+stuffer\+\_\+write\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, uint32\+\_\+t n)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a9bd6a743e1bc57c276e2af9300a81933}{s2n\+\_\+stuffer\+\_\+read\+\_\+uint64\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint64\+\_\+t $\ast$u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a8b0792099ca5ef6812afc44337ee8af0}{s2n\+\_\+stuffer\+\_\+read\+\_\+uint32\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint32\+\_\+t $\ast$u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a517d2c591ca95c161a672561e12c89b8}{s2n\+\_\+stuffer\+\_\+read\+\_\+uint16\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint16\+\_\+t $\ast$u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a98bbca4d5251f6db21061e6feb95da1b}{s2n\+\_\+stuffer\+\_\+read\+\_\+uint8\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint8\+\_\+t $\ast$u)
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__hex_8c_a6cee527ab748ba0fe95b57b34842263b}{s2n\+\_\+stuffer\+\_\+write\+\_\+n\+\_\+bits\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint8\+\_\+t n, uint64\+\_\+t u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a03dd5e430cd385de83b204fba40c2d1f}{s2n\+\_\+stuffer\+\_\+write\+\_\+uint64\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint64\+\_\+t u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a1ee9f3813116985bd87e1fcf747f2187}{s2n\+\_\+stuffer\+\_\+write\+\_\+uint32\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint32\+\_\+t u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_aed0ab9f1bb48ba81d2f43422b5c543e5}{s2n\+\_\+stuffer\+\_\+write\+\_\+uint16\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint16\+\_\+t u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_afa09f772b334ba411a27ba2d52747b7d}{s2n\+\_\+stuffer\+\_\+write\+\_\+uint8\+\_\+hex}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, uint8\+\_\+t u)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__hex_8c_a1c990dcff5ccd1778a80bdcdd0034719}{s2n\+\_\+stuffer\+\_\+alloc\+\_\+ro\+\_\+from\+\_\+hex\+\_\+string}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, const char $\ast$str)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2n__stuffer__hex_8c_af15124985cf4a89dee5f6aa84d2390a4}{hex}} \mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a1c990dcff5ccd1778a80bdcdd0034719}\label{s2n__stuffer__hex_8c_a1c990dcff5ccd1778a80bdcdd0034719}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_alloc\_ro\_from\_hex\_string@{s2n\_stuffer\_alloc\_ro\_from\_hex\_string}}
+\index{s2n\_stuffer\_alloc\_ro\_from\_hex\_string@{s2n\_stuffer\_alloc\_ro\_from\_hex\_string}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_alloc\_ro\_from\_hex\_string()}{s2n\_stuffer\_alloc\_ro\_from\_hex\_string()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+alloc\+\_\+ro\+\_\+from\+\_\+hex\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a118ca423ee9bf8370cb1992b09db99a9}\label{s2n__stuffer__hex_8c_a118ca423ee9bf8370cb1992b09db99a9}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_hex@{s2n\_stuffer\_read\_hex}}
+\index{s2n\_stuffer\_read\_hex@{s2n\_stuffer\_read\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_hex()}{s2n\_stuffer\_read\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+read\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{uint32\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a9be86f2f4bdaf57017f7be4f3cc3393f}\label{s2n__stuffer__hex_8c_a9be86f2f4bdaf57017f7be4f3cc3393f}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_n\_bits\_hex@{s2n\_stuffer\_read\_n\_bits\_hex}}
+\index{s2n\_stuffer\_read\_n\_bits\_hex@{s2n\_stuffer\_read\_n\_bits\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_n\_bits\_hex()}{s2n\_stuffer\_read\_n\_bits\_hex()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+read\+\_\+n\+\_\+bits\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint8\+\_\+t}]{n,  }\item[{uint64\+\_\+t $\ast$}]{u }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Helper function\+: read n bits of hex data. \mbox{\Hypertarget{s2n__stuffer__hex_8c_a517d2c591ca95c161a672561e12c89b8}\label{s2n__stuffer__hex_8c_a517d2c591ca95c161a672561e12c89b8}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_uint16\_hex@{s2n\_stuffer\_read\_uint16\_hex}}
+\index{s2n\_stuffer\_read\_uint16\_hex@{s2n\_stuffer\_read\_uint16\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_uint16\_hex()}{s2n\_stuffer\_read\_uint16\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+read\+\_\+uint16\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint16\+\_\+t $\ast$}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a8b0792099ca5ef6812afc44337ee8af0}\label{s2n__stuffer__hex_8c_a8b0792099ca5ef6812afc44337ee8af0}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_uint32\_hex@{s2n\_stuffer\_read\_uint32\_hex}}
+\index{s2n\_stuffer\_read\_uint32\_hex@{s2n\_stuffer\_read\_uint32\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_uint32\_hex()}{s2n\_stuffer\_read\_uint32\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+read\+\_\+uint32\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint32\+\_\+t $\ast$}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a9bd6a743e1bc57c276e2af9300a81933}\label{s2n__stuffer__hex_8c_a9bd6a743e1bc57c276e2af9300a81933}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_uint64\_hex@{s2n\_stuffer\_read\_uint64\_hex}}
+\index{s2n\_stuffer\_read\_uint64\_hex@{s2n\_stuffer\_read\_uint64\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_uint64\_hex()}{s2n\_stuffer\_read\_uint64\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+read\+\_\+uint64\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint64\+\_\+t $\ast$}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a98bbca4d5251f6db21061e6feb95da1b}\label{s2n__stuffer__hex_8c_a98bbca4d5251f6db21061e6feb95da1b}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_read\_uint8\_hex@{s2n\_stuffer\_read\_uint8\_hex}}
+\index{s2n\_stuffer\_read\_uint8\_hex@{s2n\_stuffer\_read\_uint8\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_read\_uint8\_hex()}{s2n\_stuffer\_read\_uint8\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+read\+\_\+uint8\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint8\+\_\+t $\ast$}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_ab61e2b928f2722daff666b6da94f3f13}\label{s2n__stuffer__hex_8c_ab61e2b928f2722daff666b6da94f3f13}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_hex@{s2n\_stuffer\_write\_hex}}
+\index{s2n\_stuffer\_write\_hex@{s2n\_stuffer\_write\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_hex()}{s2n\_stuffer\_write\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+write\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in,  }\item[{uint32\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a6cee527ab748ba0fe95b57b34842263b}\label{s2n__stuffer__hex_8c_a6cee527ab748ba0fe95b57b34842263b}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_n\_bits\_hex@{s2n\_stuffer\_write\_n\_bits\_hex}}
+\index{s2n\_stuffer\_write\_n\_bits\_hex@{s2n\_stuffer\_write\_n\_bits\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_n\_bits\_hex()}{s2n\_stuffer\_write\_n\_bits\_hex()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+write\+\_\+n\+\_\+bits\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint8\+\_\+t}]{n,  }\item[{uint64\+\_\+t}]{u }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Private helper\+: write n (up to 64) bits of hex data \mbox{\Hypertarget{s2n__stuffer__hex_8c_aed0ab9f1bb48ba81d2f43422b5c543e5}\label{s2n__stuffer__hex_8c_aed0ab9f1bb48ba81d2f43422b5c543e5}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_uint16\_hex@{s2n\_stuffer\_write\_uint16\_hex}}
+\index{s2n\_stuffer\_write\_uint16\_hex@{s2n\_stuffer\_write\_uint16\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_uint16\_hex()}{s2n\_stuffer\_write\_uint16\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+write\+\_\+uint16\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint16\+\_\+t}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a1ee9f3813116985bd87e1fcf747f2187}\label{s2n__stuffer__hex_8c_a1ee9f3813116985bd87e1fcf747f2187}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_uint32\_hex@{s2n\_stuffer\_write\_uint32\_hex}}
+\index{s2n\_stuffer\_write\_uint32\_hex@{s2n\_stuffer\_write\_uint32\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_uint32\_hex()}{s2n\_stuffer\_write\_uint32\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+write\+\_\+uint32\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint32\+\_\+t}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_a03dd5e430cd385de83b204fba40c2d1f}\label{s2n__stuffer__hex_8c_a03dd5e430cd385de83b204fba40c2d1f}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_uint64\_hex@{s2n\_stuffer\_write\_uint64\_hex}}
+\index{s2n\_stuffer\_write\_uint64\_hex@{s2n\_stuffer\_write\_uint64\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_uint64\_hex()}{s2n\_stuffer\_write\_uint64\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+write\+\_\+uint64\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint64\+\_\+t}]{u }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_afa09f772b334ba411a27ba2d52747b7d}\label{s2n__stuffer__hex_8c_afa09f772b334ba411a27ba2d52747b7d}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!s2n\_stuffer\_write\_uint8\_hex@{s2n\_stuffer\_write\_uint8\_hex}}
+\index{s2n\_stuffer\_write\_uint8\_hex@{s2n\_stuffer\_write\_uint8\_hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_write\_uint8\_hex()}{s2n\_stuffer\_write\_uint8\_hex()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+write\+\_\+uint8\+\_\+hex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer,  }\item[{uint8\+\_\+t}]{u }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__stuffer__hex_8c_af15124985cf4a89dee5f6aa84d2390a4}\label{s2n__stuffer__hex_8c_af15124985cf4a89dee5f6aa84d2390a4}} 
+\index{s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}!hex@{hex}}
+\index{hex@{hex}!s2n\_stuffer\_hex.c@{s2n\_stuffer\_hex.c}}
+\doxysubsubsection{\texorpdfstring{hex}{hex}}
+{\footnotesize\ttfamily uint8\+\_\+t hex\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{charliteral}{'0'}, \textcolor{charliteral}{'1'}, \textcolor{charliteral}{'2'}, \textcolor{charliteral}{'3'}, \textcolor{charliteral}{'4'}, \textcolor{charliteral}{'5'}, \textcolor{charliteral}{'6'}, \textcolor{charliteral}{'7'}, \textcolor{charliteral}{'8'}, \textcolor{charliteral}{'9'}, \textcolor{charliteral}{'a'}, \textcolor{charliteral}{'b'}, \textcolor{charliteral}{'c'}, \textcolor{charliteral}{'d'}, \textcolor{charliteral}{'e'}, \textcolor{charliteral}{'f'}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

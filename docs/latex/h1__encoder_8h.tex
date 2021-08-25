@@ -1,0 +1,189 @@
+\hypertarget{h1__encoder_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\+\_\+encoder.h File Reference}
+\label{h1__encoder_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\_encoder.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/h1\_encoder.h}}
+{\ttfamily \#include $<$aws/http/private/http\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/request\+\_\+response\+\_\+impl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}}
+\item 
+struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}}
+\item 
+struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}} \{ \newline
+\mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a45629448cd344bc292bc1a652f217dc5}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+INIT}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a6f1ddf2ed1c19e065fcee1ca5b513676}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+HEAD}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a3022d1d6ffa23eac311e0a98442d49d6}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+UNCHUNKED\+\_\+\+BODY}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a330a8f67895294f36ed02d8d1a882568}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+NEXT}}
+, \newline
+\mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a14ec6b24cb4c4892b91bf4722d940659}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+LINE}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512abd5c320420336a75958a9aced5e54680}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+BODY}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1e0d51409b336bf5d9c0cf55bddcc4a0}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+END}}
+, \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dd8284ffaddef44f2b03cfb7c898dc7}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+TRAILER}}
+, \newline
+\mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dedd727f88d20fbcd5d5636c9ccf4b8}{AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$ \mbox{\hyperlink{h1__encoder_8h_ad1e59cada806788c3f67ce390a116096}{aws\+\_\+h1\+\_\+chunk\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{h1__encoder_8h_a7bb1a0c4b42a5af0a440eddc752b8186}{aws\+\_\+h1\+\_\+chunk\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$chunk)
+\item 
+void \mbox{\hyperlink{h1__encoder_8h_ab386f903228f42dff507cef1b5c9799a}{aws\+\_\+h1\+\_\+chunk\+\_\+complete\+\_\+and\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$chunk, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http\+\_\+stream, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+\item 
+int \mbox{\hyperlink{h1__encoder_8h_a65fb7cd04a8ab01b0e7ff81198fc8481}{aws\+\_\+chunk\+\_\+line\+\_\+from\+\_\+options}} (struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$chunk\+\_\+line)
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{h1__encoder_8h_a48876c64d7705aad9290637bc1fe8361}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+request}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
+\item 
+int \mbox{\hyperlink{h1__encoder_8h_aade6ff5aceeb5b196aa771ba22be0937}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} body\+\_\+headers\+\_\+ignored, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h1__encoder_8h_a94ed57f2f176c8023dc4b4a325b6f14d}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h1__encoder_8h_a3849fd276aaecc9f8b703228a006c214}{aws\+\_\+h1\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{h1__encoder_8h_acf3da07dc3c9be84328a177c24c28ace}{aws\+\_\+h1\+\_\+encoder\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{h1__encoder_8h_a14fbc70de474bcc20b544b514c522ce3}{aws\+\_\+h1\+\_\+encoder\+\_\+start\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{h1__encoder_8h_a8043a17850ee94b199b0578a5428b899}{aws\+\_\+h1\+\_\+encoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8h_acac462a616e2fadc085881b0854c3c2c}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8h_a6f83bdb4831bb456ad370f9fced670d4}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_state@{aws\_h1\_encoder\_state}}
+\index{aws\_h1\_encoder\_state@{aws\_h1\_encoder\_state}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_state}{aws\_h1\_encoder\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_INIT@{AWS\_H1\_ENCODER\_STATE\_INIT}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_INIT@{AWS\_H1\_ENCODER\_STATE\_INIT}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a45629448cd344bc292bc1a652f217dc5}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a45629448cd344bc292bc1a652f217dc5}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_HEAD@{AWS\_H1\_ENCODER\_STATE\_HEAD}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_HEAD@{AWS\_H1\_ENCODER\_STATE\_HEAD}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a6f1ddf2ed1c19e065fcee1ca5b513676}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a6f1ddf2ed1c19e065fcee1ca5b513676}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+HEAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_UNCHUNKED\_BODY@{AWS\_H1\_ENCODER\_STATE\_UNCHUNKED\_BODY}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_UNCHUNKED\_BODY@{AWS\_H1\_ENCODER\_STATE\_UNCHUNKED\_BODY}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a3022d1d6ffa23eac311e0a98442d49d6}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a3022d1d6ffa23eac311e0a98442d49d6}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+UNCHUNKED\+\_\+\+BODY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_CHUNK\_NEXT@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_NEXT}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_CHUNK\_NEXT@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_NEXT}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a330a8f67895294f36ed02d8d1a882568}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a330a8f67895294f36ed02d8d1a882568}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+NEXT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_CHUNK\_LINE@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_LINE}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_CHUNK\_LINE@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_LINE}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a14ec6b24cb4c4892b91bf4722d940659}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a14ec6b24cb4c4892b91bf4722d940659}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+LINE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_CHUNK\_BODY@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_BODY}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_CHUNK\_BODY@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_BODY}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512abd5c320420336a75958a9aced5e54680}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512abd5c320420336a75958a9aced5e54680}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+BODY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_CHUNK\_END@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_END}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_CHUNK\_END@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_END}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1e0d51409b336bf5d9c0cf55bddcc4a0}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1e0d51409b336bf5d9c0cf55bddcc4a0}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+END&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_CHUNK\_TRAILER@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_TRAILER}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_CHUNK\_TRAILER@{AWS\_H1\_ENCODER\_STATE\_CHUNK\_TRAILER}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dd8284ffaddef44f2b03cfb7c898dc7}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dd8284ffaddef44f2b03cfb7c898dc7}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+CHUNK\+\_\+\+TRAILER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_H1\_ENCODER\_STATE\_DONE@{AWS\_H1\_ENCODER\_STATE\_DONE}!h1\_encoder.h@{h1\_encoder.h}}\index{h1\_encoder.h@{h1\_encoder.h}!AWS\_H1\_ENCODER\_STATE\_DONE@{AWS\_H1\_ENCODER\_STATE\_DONE}}}\mbox{\Hypertarget{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dedd727f88d20fbcd5d5636c9ccf4b8}\label{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512a1dedd727f88d20fbcd5d5636c9ccf4b8}} 
+AWS\+\_\+\+H1\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h1__encoder_8h_a65fb7cd04a8ab01b0e7ff81198fc8481}\label{h1__encoder_8h_a65fb7cd04a8ab01b0e7ff81198fc8481}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_chunk\_line\_from\_options@{aws\_chunk\_line\_from\_options}}
+\index{aws\_chunk\_line\_from\_options@{aws\_chunk\_line\_from\_options}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_chunk\_line\_from\_options()}{aws\_chunk\_line\_from\_options()}}
+{\footnotesize\ttfamily int aws\+\_\+chunk\+\_\+line\+\_\+from\+\_\+options (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$}]{options,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{chunk\+\_\+line }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_ab386f903228f42dff507cef1b5c9799a}\label{h1__encoder_8h_ab386f903228f42dff507cef1b5c9799a}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_chunk\_complete\_and\_destroy@{aws\_h1\_chunk\_complete\_and\_destroy}}
+\index{aws\_h1\_chunk\_complete\_and\_destroy@{aws\_h1\_chunk\_complete\_and\_destroy}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_chunk\_complete\_and\_destroy()}{aws\_h1\_chunk\_complete\_and\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+h1\+\_\+chunk\+\_\+complete\+\_\+and\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$}]{chunk,  }\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{http\+\_\+stream,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a7bb1a0c4b42a5af0a440eddc752b8186}\label{h1__encoder_8h_a7bb1a0c4b42a5af0a440eddc752b8186}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_chunk\_destroy@{aws\_h1\_chunk\_destroy}}
+\index{aws\_h1\_chunk\_destroy@{aws\_h1\_chunk\_destroy}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_chunk\_destroy()}{aws\_h1\_chunk\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+h1\+\_\+chunk\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$}]{chunk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_ad1e59cada806788c3f67ce390a116096}\label{h1__encoder_8h_ad1e59cada806788c3f67ce390a116096}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_chunk\_new@{aws\_h1\_chunk\_new}}
+\index{aws\_h1\_chunk\_new@{aws\_h1\_chunk\_new}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_chunk\_new()}{aws\_h1\_chunk\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}}$\ast$ aws\+\_\+h1\+\_\+chunk\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_acf3da07dc3c9be84328a177c24c28ace}\label{h1__encoder_8h_acf3da07dc3c9be84328a177c24c28ace}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_clean\_up@{aws\_h1\_encoder\_clean\_up}}
+\index{aws\_h1\_encoder\_clean\_up@{aws\_h1\_encoder\_clean\_up}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_clean\_up()}{aws\_h1\_encoder\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h1\+\_\+encoder\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a3849fd276aaecc9f8b703228a006c214}\label{h1__encoder_8h_a3849fd276aaecc9f8b703228a006c214}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_init@{aws\_h1\_encoder\_init}}
+\index{aws\_h1\_encoder\_init@{aws\_h1\_encoder\_init}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_init()}{aws\_h1\_encoder\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h1\+\_\+encoder\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_acac462a616e2fadc085881b0854c3c2c}\label{h1__encoder_8h_acac462a616e2fadc085881b0854c3c2c}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_is\_message\_in\_progress@{aws\_h1\_encoder\_is\_message\_in\_progress}}
+\index{aws\_h1\_encoder\_is\_message\_in\_progress@{aws\_h1\_encoder\_is\_message\_in\_progress}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_is\_message\_in\_progress()}{aws\_h1\_encoder\_is\_message\_in\_progress()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a6f83bdb4831bb456ad370f9fced670d4}\label{h1__encoder_8h_a6f83bdb4831bb456ad370f9fced670d4}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_is\_waiting\_for\_chunks@{aws\_h1\_encoder\_is\_waiting\_for\_chunks}}
+\index{aws\_h1\_encoder\_is\_waiting\_for\_chunks@{aws\_h1\_encoder\_is\_waiting\_for\_chunks}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_is\_waiting\_for\_chunks()}{aws\_h1\_encoder\_is\_waiting\_for\_chunks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a94ed57f2f176c8023dc4b4a325b6f14d}\label{h1__encoder_8h_a94ed57f2f176c8023dc4b4a325b6f14d}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_message\_clean\_up@{aws\_h1\_encoder\_message\_clean\_up}}
+\index{aws\_h1\_encoder\_message\_clean\_up@{aws\_h1\_encoder\_message\_clean\_up}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_message\_clean\_up()}{aws\_h1\_encoder\_message\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a48876c64d7705aad9290637bc1fe8361}\label{h1__encoder_8h_a48876c64d7705aad9290637bc1fe8361}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_message\_init\_from\_request@{aws\_h1\_encoder\_message\_init\_from\_request}}
+\index{aws\_h1\_encoder\_message\_init\_from\_request@{aws\_h1\_encoder\_message\_init\_from\_request}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_message\_init\_from\_request()}{aws\_h1\_encoder\_message\_init\_from\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{pending\+\_\+chunk\+\_\+list }\end{DoxyParamCaption})}
+
+Calculate total size needed for outgoing\+\_\+head\+\_\+buffer, then write to buffer.\mbox{\Hypertarget{h1__encoder_8h_aade6ff5aceeb5b196aa771ba22be0937}\label{h1__encoder_8h_aade6ff5aceeb5b196aa771ba22be0937}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_message\_init\_from\_response@{aws\_h1\_encoder\_message\_init\_from\_response}}
+\index{aws\_h1\_encoder\_message\_init\_from\_response@{aws\_h1\_encoder\_message\_init\_from\_response}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_message\_init\_from\_response()}{aws\_h1\_encoder\_message\_init\_from\_response()}}
+{\footnotesize\ttfamily int aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{body\+\_\+headers\+\_\+ignored,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{pending\+\_\+chunk\+\_\+list }\end{DoxyParamCaption})}
+
+Calculate total size needed for outgoing\+\_\+head\+\_\+buffer, then write to buffer.
+
+no body needed in the response RFC-\/7230 section 3.\+3 Message Body\mbox{\Hypertarget{h1__encoder_8h_a8043a17850ee94b199b0578a5428b899}\label{h1__encoder_8h_a8043a17850ee94b199b0578a5428b899}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_process@{aws\_h1\_encoder\_process}}
+\index{aws\_h1\_encoder\_process@{aws\_h1\_encoder\_process}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_process()}{aws\_h1\_encoder\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+h1\+\_\+encoder\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h1__encoder_8h_a14fbc70de474bcc20b544b514c522ce3}\label{h1__encoder_8h_a14fbc70de474bcc20b544b514c522ce3}} 
+\index{h1\_encoder.h@{h1\_encoder.h}!aws\_h1\_encoder\_start\_message@{aws\_h1\_encoder\_start\_message}}
+\index{aws\_h1\_encoder\_start\_message@{aws\_h1\_encoder\_start\_message}!h1\_encoder.h@{h1\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_start\_message()}{aws\_h1\_encoder\_start\_message()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+h1\+\_\+encoder\+\_\+start\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+

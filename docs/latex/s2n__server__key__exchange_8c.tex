@@ -1,0 +1,143 @@
+\hypertarget{s2n__server__key__exchange_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+server\+\_\+key\+\_\+exchange.c File Reference}
+\label{s2n__server__key__exchange_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_key\_exchange.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_key\_exchange.c}}
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+async\+\_\+pkey.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+digest\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+signature\+\_\+algorithms.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+dhe.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__server__key__exchange_8c_aaccf28cda4056ceaa6edd1777ac3eec5}{s2n\+\_\+server\+\_\+key\+\_\+send\+\_\+write\+\_\+signature}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$signature)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a933dc8cdaebb70f8a7364e390d9deeaf}{s2n\+\_\+server\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a62f2cfd26313198107e16d8d58d620d2}{s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a2775b5d8f9ce0304371fcbfcd82c653b}{s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a8f30bb9823fe03f5cb3e338ce2fd4f2d}{s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a4f7c4716d4211dd399f73ddba1127e3f}{s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a2fea935db6f44263fdce1b4a3259401d}{s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a2f339229e9a92a74cdc86a151a312ef1}{s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_aa0b553d1eab5e0d02e583cd4002d8cc2}{s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$total\+\_\+data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_afb529fa2ed3448e669b95114560f764f}{s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$raw\+\_\+server\+\_\+data)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a940aed548236e016710e5ef69dc98df8}{s2n\+\_\+server\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a4d336fbe0ddbadeafb07c27aa0479048}{s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+sign)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a72019f0e0c8defe2ea14bf50daeded9b}{s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+sign)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_afb5dde9f0ca3eb98fdcdacfed5106d07}{s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+sign)
+\item 
+int \mbox{\hyperlink{s2n__server__key__exchange_8c_a661325b52cad35342f968ab9a44a2fd2}{s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$total\+\_\+data\+\_\+to\+\_\+sign)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a4f7c4716d4211dd399f73ddba1127e3f}\label{s2n__server__key__exchange_8c_a4f7c4716d4211dd399f73ddba1127e3f}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_dhe\_server\_key\_recv\_parse\_data@{s2n\_dhe\_server\_key\_recv\_parse\_data}}
+\index{s2n\_dhe\_server\_key\_recv\_parse\_data@{s2n\_dhe\_server\_key\_recv\_parse\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_server\_key\_recv\_parse\_data()}{s2n\_dhe\_server\_key\_recv\_parse\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a8f30bb9823fe03f5cb3e338ce2fd4f2d}\label{s2n__server__key__exchange_8c_a8f30bb9823fe03f5cb3e338ce2fd4f2d}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_dhe\_server\_key\_recv\_read\_data@{s2n\_dhe\_server\_key\_recv\_read\_data}}
+\index{s2n\_dhe\_server\_key\_recv\_read\_data@{s2n\_dhe\_server\_key\_recv\_read\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_server\_key\_recv\_read\_data()}{s2n\_dhe\_server\_key\_recv\_read\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+verify,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a72019f0e0c8defe2ea14bf50daeded9b}\label{s2n__server__key__exchange_8c_a72019f0e0c8defe2ea14bf50daeded9b}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_dhe\_server\_key\_send@{s2n\_dhe\_server\_key\_send}}
+\index{s2n\_dhe\_server\_key\_send@{s2n\_dhe\_server\_key\_send}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_server\_key\_send()}{s2n\_dhe\_server\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+server\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+sign }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a2775b5d8f9ce0304371fcbfcd82c653b}\label{s2n__server__key__exchange_8c_a2775b5d8f9ce0304371fcbfcd82c653b}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_ecdhe\_server\_key\_recv\_parse\_data@{s2n\_ecdhe\_server\_key\_recv\_parse\_data}}
+\index{s2n\_ecdhe\_server\_key\_recv\_parse\_data@{s2n\_ecdhe\_server\_key\_recv\_parse\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_server\_key\_recv\_parse\_data()}{s2n\_ecdhe\_server\_key\_recv\_parse\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a62f2cfd26313198107e16d8d58d620d2}\label{s2n__server__key__exchange_8c_a62f2cfd26313198107e16d8d58d620d2}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_ecdhe\_server\_key\_recv\_read\_data@{s2n\_ecdhe\_server\_key\_recv\_read\_data}}
+\index{s2n\_ecdhe\_server\_key\_recv\_read\_data@{s2n\_ecdhe\_server\_key\_recv\_read\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_server\_key\_recv\_read\_data()}{s2n\_ecdhe\_server\_key\_recv\_read\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+verify,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a4d336fbe0ddbadeafb07c27aa0479048}\label{s2n__server__key__exchange_8c_a4d336fbe0ddbadeafb07c27aa0479048}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_ecdhe\_server\_key\_send@{s2n\_ecdhe\_server\_key\_send}}
+\index{s2n\_ecdhe\_server\_key\_send@{s2n\_ecdhe\_server\_key\_send}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_server\_key\_send()}{s2n\_ecdhe\_server\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+server\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+sign }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_afb529fa2ed3448e669b95114560f764f}\label{s2n__server__key__exchange_8c_afb529fa2ed3448e669b95114560f764f}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_hybrid\_server\_key\_recv\_parse\_data@{s2n\_hybrid\_server\_key\_recv\_parse\_data}}
+\index{s2n\_hybrid\_server\_key\_recv\_parse\_data@{s2n\_hybrid\_server\_key\_recv\_parse\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_server\_key\_recv\_parse\_data()}{s2n\_hybrid\_server\_key\_recv\_parse\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_aa0b553d1eab5e0d02e583cd4002d8cc2}\label{s2n__server__key__exchange_8c_aa0b553d1eab5e0d02e583cd4002d8cc2}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_hybrid\_server\_key\_recv\_read\_data@{s2n\_hybrid\_server\_key\_recv\_read\_data}}
+\index{s2n\_hybrid\_server\_key\_recv\_read\_data@{s2n\_hybrid\_server\_key\_recv\_read\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_server\_key\_recv\_read\_data()}{s2n\_hybrid\_server\_key\_recv\_read\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{total\+\_\+data\+\_\+to\+\_\+verify,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a661325b52cad35342f968ab9a44a2fd2}\label{s2n__server__key__exchange_8c_a661325b52cad35342f968ab9a44a2fd2}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_hybrid\_server\_key\_send@{s2n\_hybrid\_server\_key\_send}}
+\index{s2n\_hybrid\_server\_key\_send@{s2n\_hybrid\_server\_key\_send}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_server\_key\_send()}{s2n\_hybrid\_server\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+server\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{total\+\_\+data\+\_\+to\+\_\+sign }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a2f339229e9a92a74cdc86a151a312ef1}\label{s2n__server__key__exchange_8c_a2f339229e9a92a74cdc86a151a312ef1}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_kem\_server\_key\_recv\_parse\_data@{s2n\_kem\_server\_key\_recv\_parse\_data}}
+\index{s2n\_kem\_server\_key\_recv\_parse\_data@{s2n\_kem\_server\_key\_recv\_parse\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_server\_key\_recv\_parse\_data()}{s2n\_kem\_server\_key\_recv\_parse\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a2fea935db6f44263fdce1b4a3259401d}\label{s2n__server__key__exchange_8c_a2fea935db6f44263fdce1b4a3259401d}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_kem\_server\_key\_recv\_read\_data@{s2n\_kem\_server\_key\_recv\_read\_data}}
+\index{s2n\_kem\_server\_key\_recv\_read\_data@{s2n\_kem\_server\_key\_recv\_read\_data}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_server\_key\_recv\_read\_data()}{s2n\_kem\_server\_key\_recv\_read\_data()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+verify,  }\item[{struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$}]{raw\+\_\+server\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_afb5dde9f0ca3eb98fdcdacfed5106d07}\label{s2n__server__key__exchange_8c_afb5dde9f0ca3eb98fdcdacfed5106d07}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_kem\_server\_key\_send@{s2n\_kem\_server\_key\_send}}
+\index{s2n\_kem\_server\_key\_send@{s2n\_kem\_server\_key\_send}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_server\_key\_send()}{s2n\_kem\_server\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+server\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{data\+\_\+to\+\_\+sign }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a933dc8cdaebb70f8a7364e390d9deeaf}\label{s2n__server__key__exchange_8c_a933dc8cdaebb70f8a7364e390d9deeaf}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_server\_key\_recv@{s2n\_server\_key\_recv}}
+\index{s2n\_server\_key\_recv@{s2n\_server\_key\_recv}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_key\_recv()}{s2n\_server\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_a940aed548236e016710e5ef69dc98df8}\label{s2n__server__key__exchange_8c_a940aed548236e016710e5ef69dc98df8}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_server\_key\_send@{s2n\_server\_key\_send}}
+\index{s2n\_server\_key\_send@{s2n\_server\_key\_send}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_key\_send()}{s2n\_server\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__exchange_8c_aaccf28cda4056ceaa6edd1777ac3eec5}\label{s2n__server__key__exchange_8c_aaccf28cda4056ceaa6edd1777ac3eec5}} 
+\index{s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}!s2n\_server\_key\_send\_write\_signature@{s2n\_server\_key\_send\_write\_signature}}
+\index{s2n\_server\_key\_send\_write\_signature@{s2n\_server\_key\_send\_write\_signature}!s2n\_server\_key\_exchange.c@{s2n\_server\_key\_exchange.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_key\_send\_write\_signature()}{s2n\_server\_key\_send\_write\_signature()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+key\+\_\+send\+\_\+write\+\_\+signature (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{signature }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

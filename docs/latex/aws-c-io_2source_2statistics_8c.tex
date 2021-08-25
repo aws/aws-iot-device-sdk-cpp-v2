@@ -1,0 +1,60 @@
+\hypertarget{aws-c-io_2source_2statistics_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/statistics.c File Reference}
+\label{aws-c-io_2source_2statistics_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/statistics.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/statistics.c}}
+{\ttfamily \#include $<$aws/io/statistics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_acb51f6eebfeea76ab109ff5c5ab37834}{aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+init}} (struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$stats)
+\item 
+void \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_a9ec3c75511c0a96b01c990ef7c23b583}{aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+cleanup}} (struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$stats)
+\item 
+void \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_aa918ab09cf6bbd00e1fe1493445acf07}{aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+reset}} (struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$stats)
+\item 
+int \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_a3cefeabb7839311e6d2c6354799a0524}{aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+init}} (struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$stats)
+\item 
+void \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_a7ca4b35ecad62b393ecc7b5e90fa2130}{aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+cleanup}} (struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$stats)
+\item 
+void \mbox{\hyperlink{aws-c-io_2source_2statistics_8c_ac18f547f5fa00f109ffc42de634fca42}{aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+reset}} (struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$stats)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_a9ec3c75511c0a96b01c990ef7c23b583}\label{aws-c-io_2source_2statistics_8c_a9ec3c75511c0a96b01c990ef7c23b583}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_socket\_cleanup@{aws\_crt\_statistics\_socket\_cleanup}}
+\index{aws\_crt\_statistics\_socket\_cleanup@{aws\_crt\_statistics\_socket\_cleanup}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_socket\_cleanup()}{aws\_crt\_statistics\_socket\_cleanup()}}
+{\footnotesize\ttfamily void aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+cleanup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Cleans up socket channel handler statistics \mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_acb51f6eebfeea76ab109ff5c5ab37834}\label{aws-c-io_2source_2statistics_8c_acb51f6eebfeea76ab109ff5c5ab37834}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_socket\_init@{aws\_crt\_statistics\_socket\_init}}
+\index{aws\_crt\_statistics\_socket\_init@{aws\_crt\_statistics\_socket\_init}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_socket\_init()}{aws\_crt\_statistics\_socket\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_aa918ab09cf6bbd00e1fe1493445acf07}\label{aws-c-io_2source_2statistics_8c_aa918ab09cf6bbd00e1fe1493445acf07}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_socket\_reset@{aws\_crt\_statistics\_socket\_reset}}
+\index{aws\_crt\_statistics\_socket\_reset@{aws\_crt\_statistics\_socket\_reset}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_socket\_reset()}{aws\_crt\_statistics\_socket\_reset()}}
+{\footnotesize\ttfamily void aws\+\_\+crt\+\_\+statistics\+\_\+socket\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__socket}{aws\+\_\+crt\+\_\+statistics\+\_\+socket}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Resets socket channel handler statistics for the next gather interval. Calculate-\/once results are left alone. \mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_a7ca4b35ecad62b393ecc7b5e90fa2130}\label{aws-c-io_2source_2statistics_8c_a7ca4b35ecad62b393ecc7b5e90fa2130}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_tls\_cleanup@{aws\_crt\_statistics\_tls\_cleanup}}
+\index{aws\_crt\_statistics\_tls\_cleanup@{aws\_crt\_statistics\_tls\_cleanup}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_tls\_cleanup()}{aws\_crt\_statistics\_tls\_cleanup()}}
+{\footnotesize\ttfamily void aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+cleanup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Cleans up tls channel handler statistics \mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_a3cefeabb7839311e6d2c6354799a0524}\label{aws-c-io_2source_2statistics_8c_a3cefeabb7839311e6d2c6354799a0524}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_tls\_init@{aws\_crt\_statistics\_tls\_init}}
+\index{aws\_crt\_statistics\_tls\_init@{aws\_crt\_statistics\_tls\_init}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_tls\_init()}{aws\_crt\_statistics\_tls\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Initializes tls channel handler statistics \mbox{\Hypertarget{aws-c-io_2source_2statistics_8c_ac18f547f5fa00f109ffc42de634fca42}\label{aws-c-io_2source_2statistics_8c_ac18f547f5fa00f109ffc42de634fca42}} 
+\index{statistics.c@{statistics.c}!aws\_crt\_statistics\_tls\_reset@{aws\_crt\_statistics\_tls\_reset}}
+\index{aws\_crt\_statistics\_tls\_reset@{aws\_crt\_statistics\_tls\_reset}!statistics.c@{statistics.c}}
+\doxysubsubsection{\texorpdfstring{aws\_crt\_statistics\_tls\_reset()}{aws\_crt\_statistics\_tls\_reset()}}
+{\footnotesize\ttfamily void aws\+\_\+crt\+\_\+statistics\+\_\+tls\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__crt__statistics__tls}{aws\+\_\+crt\+\_\+statistics\+\_\+tls}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+Resets tls channel handler statistics for the next gather interval. Calculate-\/once results are left alone. 

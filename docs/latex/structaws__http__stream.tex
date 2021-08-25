@@ -1,0 +1,180 @@
+\hypertarget{structaws__http__stream}{}\doxysection{aws\+\_\+http\+\_\+stream Struct Reference}
+\label{structaws__http__stream}\index{aws\_http\_stream@{aws\_http\_stream}}
+
+
+{\ttfamily \#include $<$request\+\_\+response\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structaws__http__stream__vtable}{aws\+\_\+http\+\_\+stream\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__http__stream_a70582a545ed718c627ebb11b68a7c66e}{vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__stream_a1b82def4f0f95553d7565b02118f682d}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__http__stream_aeebc1f722553eea334bbafb52d31bc2e}{owning\+\_\+connection}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structaws__http__stream_a87fea8fddd0b12d28a2c2eb0a0e3e18b}{id}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__http__stream_a94168a6efd286b11659dffc2a28650e9}{user\+\_\+data}}
+\item 
+\mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__stream_a380afd28edc6c106864b2e596b821463}{on\+\_\+incoming\+\_\+headers}}
+\item 
+\mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__stream_adba91168563792227048a470f9b47415}{on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done}}
+\item 
+\mbox{\hyperlink{request__response_8h_a0d81447ae81759e6da37ac6fbb83e16d}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__stream_afc47ad732128f049f22ce1ce33dd818a}{on\+\_\+incoming\+\_\+body}}
+\item 
+\mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__stream_a514fefb9cece554356bdad21d916a3c7}{on\+\_\+complete}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__http__stream_a277215982f613e933cd1da83f4163191}{refcount}}
+\item 
+enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} \mbox{\hyperlink{structaws__http__stream_acace4d6801e7ae022d6ab0d11d71eb28}{request\+\_\+method}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct {\bfseries aws\_http\_stream\_client\_data} \{\\
+\>\>int \mbox{\hyperlink{structaws__http__stream_a07a7ec5ebd8d0a6609eca1accd3520ce}{response\_status}}\\
+\>\} \mbox{\hyperlink{structaws__http__stream_a7de6675f0dfa05ba428397703628d152}{client}}\\
+\>struct {\bfseries aws\_http\_stream\_server\_data} \{\\
+\>\>struct \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__http__stream_a78779f5707dd1c0f0d41df17384b38c8}{request\_method\_str}}\\
+\>\>struct \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__http__stream_af339b825743a8ad8e5b086dc6f86c8ac}{request\_path}}\\
+\>\>\mbox{\hyperlink{request__response_8h_afcc0da887f34a70585ba517c2981fc07}{aws\_http\_on\_incoming\_request\_done\_fn}} $\ast$ \mbox{\hyperlink{structaws__http__stream_a893fe4202fef97d5154b1bd9c885c2bd}{on\_request\_done}}\\
+\>\} \mbox{\hyperlink{structaws__http__stream_ad627e54d67a1cb6ff4db68059587ca1e}{server}}\\
+\} \mbox{\hyperlink{structaws__http__stream_a3f0aba23a18383880f862490d5d886c1}{client\_or\_server\_data}}\\
+
+\end{tabbing}\item 
+struct aws\+\_\+http\+\_\+stream\+\_\+client\+\_\+data $\ast$ \mbox{\hyperlink{structaws__http__stream_a0e57129ba6f8fd4ab180249565ac9aed}{client\+\_\+data}}
+\item 
+struct aws\+\_\+http\+\_\+stream\+\_\+server\+\_\+data $\ast$ \mbox{\hyperlink{structaws__http__stream_a8dc487fbb4e6403fba8369907180d91e}{server\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for streams. There are specific implementations for each HTTP version. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__stream_a1b82def4f0f95553d7565b02118f682d}\label{structaws__http__stream_a1b82def4f0f95553d7565b02118f682d}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+stream\+::alloc}
+
+\mbox{\Hypertarget{structaws__http__stream_a7de6675f0dfa05ba428397703628d152}\label{structaws__http__stream_a7de6675f0dfa05ba428397703628d152}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!client@{client}}
+\index{client@{client}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \} \+::aws\+\_\+http\+\_\+stream\+\_\+client\+\_\+data aws\+\_\+http\+\_\+stream\+::client}
+
+\mbox{\Hypertarget{structaws__http__stream_a0e57129ba6f8fd4ab180249565ac9aed}\label{structaws__http__stream_a0e57129ba6f8fd4ab180249565ac9aed}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!client\_data@{client\_data}}
+\index{client\_data@{client\_data}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{client\_data}{client\_data}}
+{\footnotesize\ttfamily struct aws\+\_\+http\+\_\+stream\+\_\+client\+\_\+data$\ast$ aws\+\_\+http\+\_\+stream\+::client\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__stream_a3f0aba23a18383880f862490d5d886c1}\label{structaws__http__stream_a3f0aba23a18383880f862490d5d886c1}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!client\_or\_server\_data@{client\_or\_server\_data}}
+\index{client\_or\_server\_data@{client\_or\_server\_data}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  aws\+\_\+http\+\_\+stream\+::client\+\_\+or\+\_\+server\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__stream_a87fea8fddd0b12d28a2c2eb0a0e3e18b}\label{structaws__http__stream_a87fea8fddd0b12d28a2c2eb0a0e3e18b}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!id@{id}}
+\index{id@{id}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+http\+\_\+stream\+::id}
+
+\mbox{\Hypertarget{structaws__http__stream_a514fefb9cece554356bdad21d916a3c7}\label{structaws__http__stream_a514fefb9cece554356bdad21d916a3c7}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!on\_complete@{on\_complete}}
+\index{on\_complete@{on\_complete}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{on\_complete}{on\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+stream\+::on\+\_\+complete}
+
+\mbox{\Hypertarget{structaws__http__stream_afc47ad732128f049f22ce1ce33dd818a}\label{structaws__http__stream_afc47ad732128f049f22ce1ce33dd818a}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!on\_incoming\_body@{on\_incoming\_body}}
+\index{on\_incoming\_body@{on\_incoming\_body}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{on\_incoming\_body}{on\_incoming\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a0d81447ae81759e6da37ac6fbb83e16d}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+stream\+::on\+\_\+incoming\+\_\+body}
+
+\mbox{\Hypertarget{structaws__http__stream_adba91168563792227048a470f9b47415}\label{structaws__http__stream_adba91168563792227048a470f9b47415}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!on\_incoming\_header\_block\_done@{on\_incoming\_header\_block\_done}}
+\index{on\_incoming\_header\_block\_done@{on\_incoming\_header\_block\_done}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{on\_incoming\_header\_block\_done}{on\_incoming\_header\_block\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+stream\+::on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done}
+
+\mbox{\Hypertarget{structaws__http__stream_a380afd28edc6c106864b2e596b821463}\label{structaws__http__stream_a380afd28edc6c106864b2e596b821463}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!on\_incoming\_headers@{on\_incoming\_headers}}
+\index{on\_incoming\_headers@{on\_incoming\_headers}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{on\_incoming\_headers}{on\_incoming\_headers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+stream\+::on\+\_\+incoming\+\_\+headers}
+
+\mbox{\Hypertarget{structaws__http__stream_a893fe4202fef97d5154b1bd9c885c2bd}\label{structaws__http__stream_a893fe4202fef97d5154b1bd9c885c2bd}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!on\_request\_done@{on\_request\_done}}
+\index{on\_request\_done@{on\_request\_done}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{on\_request\_done}{on\_request\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_afcc0da887f34a70585ba517c2981fc07}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+done\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+stream\+::on\+\_\+request\+\_\+done}
+
+\mbox{\Hypertarget{structaws__http__stream_aeebc1f722553eea334bbafb52d31bc2e}\label{structaws__http__stream_aeebc1f722553eea334bbafb52d31bc2e}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!owning\_connection@{owning\_connection}}
+\index{owning\_connection@{owning\_connection}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{owning\_connection}{owning\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+stream\+::owning\+\_\+connection}
+
+\mbox{\Hypertarget{structaws__http__stream_a277215982f613e933cd1da83f4163191}\label{structaws__http__stream_a277215982f613e933cd1da83f4163191}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!refcount@{refcount}}
+\index{refcount@{refcount}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{refcount}{refcount}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+http\+\_\+stream\+::refcount}
+
+\mbox{\Hypertarget{structaws__http__stream_acace4d6801e7ae022d6ab0d11d71eb28}\label{structaws__http__stream_acace4d6801e7ae022d6ab0d11d71eb28}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!request\_method@{request\_method}}
+\index{request\_method@{request\_method}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{request\_method}{request\_method}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} aws\+\_\+http\+\_\+stream\+::request\+\_\+method}
+
+\mbox{\Hypertarget{structaws__http__stream_a78779f5707dd1c0f0d41df17384b38c8}\label{structaws__http__stream_a78779f5707dd1c0f0d41df17384b38c8}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!request\_method\_str@{request\_method\_str}}
+\index{request\_method\_str@{request\_method\_str}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{request\_method\_str}{request\_method\_str}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+http\+\_\+stream\+::request\+\_\+method\+\_\+str}
+
+\mbox{\Hypertarget{structaws__http__stream_af339b825743a8ad8e5b086dc6f86c8ac}\label{structaws__http__stream_af339b825743a8ad8e5b086dc6f86c8ac}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!request\_path@{request\_path}}
+\index{request\_path@{request\_path}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{request\_path}{request\_path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+http\+\_\+stream\+::request\+\_\+path}
+
+\mbox{\Hypertarget{structaws__http__stream_a07a7ec5ebd8d0a6609eca1accd3520ce}\label{structaws__http__stream_a07a7ec5ebd8d0a6609eca1accd3520ce}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!response\_status@{response\_status}}
+\index{response\_status@{response\_status}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{response\_status}{response\_status}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+::response\+\_\+status}
+
+\mbox{\Hypertarget{structaws__http__stream_ad627e54d67a1cb6ff4db68059587ca1e}\label{structaws__http__stream_ad627e54d67a1cb6ff4db68059587ca1e}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!server@{server}}
+\index{server@{server}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \} \+::aws\+\_\+http\+\_\+stream\+\_\+server\+\_\+data aws\+\_\+http\+\_\+stream\+::server}
+
+\mbox{\Hypertarget{structaws__http__stream_a8dc487fbb4e6403fba8369907180d91e}\label{structaws__http__stream_a8dc487fbb4e6403fba8369907180d91e}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!server\_data@{server\_data}}
+\index{server\_data@{server\_data}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{server\_data}{server\_data}}
+{\footnotesize\ttfamily struct aws\+\_\+http\+\_\+stream\+\_\+server\+\_\+data$\ast$ aws\+\_\+http\+\_\+stream\+::server\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__stream_a94168a6efd286b11659dffc2a28650e9}\label{structaws__http__stream_a94168a6efd286b11659dffc2a28650e9}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+http\+\_\+stream\+::user\+\_\+data}
+
+\mbox{\Hypertarget{structaws__http__stream_a70582a545ed718c627ebb11b68a7c66e}\label{structaws__http__stream_a70582a545ed718c627ebb11b68a7c66e}} 
+\index{aws\_http\_stream@{aws\_http\_stream}!vtable@{vtable}}
+\index{vtable@{vtable}!aws\_http\_stream@{aws\_http\_stream}}
+\doxysubsubsection{\texorpdfstring{vtable}{vtable}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__stream__vtable}{aws\+\_\+http\+\_\+stream\+\_\+vtable}}$\ast$ aws\+\_\+http\+\_\+stream\+::vtable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{request__response__impl_8h}{request\+\_\+response\+\_\+impl.\+h}}\end{DoxyCompactItemize}

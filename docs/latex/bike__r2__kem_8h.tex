@@ -1,0 +1,86 @@
+\hypertarget{bike__r2__kem_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r2/bike\+\_\+r2\+\_\+kem.h File Reference}
+\label{bike__r2__kem_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/bike\_r2\_kem.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/bike\_r2\_kem.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}}
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_a28d89b22fff5d2f5ae114b6af1596c3f}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+SECRET\+\_\+\+KEY\+\_\+\+BYTES}}~6460
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_a74335da40ade187019f247457a10c71a}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+BYTES}}~2946
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_a08b77108b78e32fc7a0c956f9a234ea4}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+CIPHERTEXT\+\_\+\+BYTES}}~2946
+\item 
+\#define \mbox{\hyperlink{bike__r2__kem_8h_abd460c577477fc7813056a5752df85d1}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+SHARED\+\_\+\+SECRET\+\_\+\+BYTES}}~32
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{bike__r2__kem_8h_ab79390ec1f988b04de709f0921f1a465}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+keypair}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$pk, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$sk)
+\item 
+int \mbox{\hyperlink{bike__r2__kem_8h_a61af5295db2887abbf9afeb1e41c4fc6}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+enc}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ss, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$pk)
+\item 
+int \mbox{\hyperlink{bike__r2__kem_8h_a4998251a9cce602f442341232d0d32b7}{BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+dec}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ss, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$sk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bike__r2__kem_8h_a08b77108b78e32fc7a0c956f9a234ea4}\label{bike__r2__kem_8h_a08b77108b78e32fc7a0c956f9a234ea4}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES@{BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES}}
+\index{BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES@{BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES}{BIKE1\_L1\_R2\_CIPHERTEXT\_BYTES}}
+{\footnotesize\ttfamily \#define BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+CIPHERTEXT\+\_\+\+BYTES~2946}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_a74335da40ade187019f247457a10c71a}\label{bike__r2__kem_8h_a74335da40ade187019f247457a10c71a}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES@{BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES}}
+\index{BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES@{BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES}{BIKE1\_L1\_R2\_PUBLIC\_KEY\_BYTES}}
+{\footnotesize\ttfamily \#define BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+BYTES~2946}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_a28d89b22fff5d2f5ae114b6af1596c3f}\label{bike__r2__kem_8h_a28d89b22fff5d2f5ae114b6af1596c3f}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES@{BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES}}
+\index{BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES@{BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES}{BIKE1\_L1\_R2\_SECRET\_KEY\_BYTES}}
+{\footnotesize\ttfamily \#define BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+SECRET\+\_\+\+KEY\+\_\+\+BYTES~6460}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_abd460c577477fc7813056a5752df85d1}\label{bike__r2__kem_8h_abd460c577477fc7813056a5752df85d1}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES@{BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES}}
+\index{BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES@{BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES}{BIKE1\_L1\_R2\_SHARED\_SECRET\_BYTES}}
+{\footnotesize\ttfamily \#define BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+\+SHARED\+\_\+\+SECRET\+\_\+\+BYTES~32}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}\label{bike__r2__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!IN@{IN}}
+\index{IN@{IN}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{IN}{IN}}
+{\footnotesize\ttfamily \#define IN}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}\label{bike__r2__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!OUT@{OUT}}
+\index{OUT@{OUT}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{OUT}{OUT}}
+{\footnotesize\ttfamily \#define OUT}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r2__kem_8h_a4998251a9cce602f442341232d0d32b7}\label{bike__r2__kem_8h_a4998251a9cce602f442341232d0d32b7}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_crypto\_kem\_dec@{BIKE1\_L1\_R2\_crypto\_kem\_dec}}
+\index{BIKE1\_L1\_R2\_crypto\_kem\_dec@{BIKE1\_L1\_R2\_crypto\_kem\_dec}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_crypto\_kem\_dec()}{BIKE1\_L1\_R2\_crypto\_kem\_dec()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+dec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ss,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_a61af5295db2887abbf9afeb1e41c4fc6}\label{bike__r2__kem_8h_a61af5295db2887abbf9afeb1e41c4fc6}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_crypto\_kem\_enc@{BIKE1\_L1\_R2\_crypto\_kem\_enc}}
+\index{BIKE1\_L1\_R2\_crypto\_kem\_enc@{BIKE1\_L1\_R2\_crypto\_kem\_enc}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_crypto\_kem\_enc()}{BIKE1\_L1\_R2\_crypto\_kem\_enc()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+enc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ss,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{pk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r2__kem_8h_ab79390ec1f988b04de709f0921f1a465}\label{bike__r2__kem_8h_ab79390ec1f988b04de709f0921f1a465}} 
+\index{bike\_r2\_kem.h@{bike\_r2\_kem.h}!BIKE1\_L1\_R2\_crypto\_kem\_keypair@{BIKE1\_L1\_R2\_crypto\_kem\_keypair}}
+\index{BIKE1\_L1\_R2\_crypto\_kem\_keypair@{BIKE1\_L1\_R2\_crypto\_kem\_keypair}!bike\_r2\_kem.h@{bike\_r2\_kem.h}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R2\_crypto\_kem\_keypair()}{BIKE1\_L1\_R2\_crypto\_kem\_keypair()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R2\+\_\+crypto\+\_\+kem\+\_\+keypair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{pk,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+

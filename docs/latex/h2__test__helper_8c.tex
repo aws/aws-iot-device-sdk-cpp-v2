@@ -1,0 +1,495 @@
+\hypertarget{h2__test__helper_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\+\_\+test\+\_\+helper.c File Reference}
+\label{h2__test__helper_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.c}}
+{\ttfamily \#include \char`\"{}h2\+\_\+test\+\_\+helper.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+decoder.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/stream.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/io\+\_\+testing\+\_\+channel.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__input__stream__tester}{aws\+\_\+input\+\_\+stream\+\_\+tester}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{h2__test__helper_8c_a3c718f0285d9f0791018c80ff6dba6ff}{s\+\_\+frame\+\_\+init}} (struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$frame, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id)
+\item 
+static void \mbox{\hyperlink{h2__test__helper_8c_af44a6e51fa340835a195a0d6d37d1647}{s\+\_\+frame\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$frame)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_a61d13be47bb19d1aecdbcc7946ef3642}{h2\+\_\+decoded\+\_\+frame\+\_\+check\+\_\+finished}} (const struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$frame, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} expected\+\_\+type, uint32\+\_\+t expected\+\_\+stream\+\_\+id)
+\item 
+size\+\_\+t \mbox{\hyperlink{h2__test__helper_8c_a6e33fefbffc7259e225660310b773cf3}{h2\+\_\+decode\+\_\+tester\+\_\+frame\+\_\+count}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_ae308aa471a26280eae9ce9e8227058ae}{h2\+\_\+decode\+\_\+tester\+\_\+get\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, size\+\_\+t i)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_a844ced0f75da87b0d03a7b3e0a43238d}{h2\+\_\+decode\+\_\+tester\+\_\+latest\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_af12819b3a4259da503cba36b6be8cdb4}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_aa3560acccf30df63f7b28817926bd67d}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame\+\_\+any\+\_\+type}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_a406d10eddd5060b18a0bc516ca17c0d2}{h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\+\_\+start\+\_\+idx}}, size\+\_\+t $\ast$out\+\_\+idx)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_ab7a2db592f88bfda8caa8293f4e3294d}{h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+across\+\_\+frames}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} expected, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} expect\+\_\+end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_ae02f94772bee7ea979389e9a79e0b505}{h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+str\+\_\+across\+\_\+frames}} (const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, uint32\+\_\+t stream\+\_\+id, const char $\ast$expected, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} expect\+\_\+end\+\_\+stream)
+\item 
+static void \mbox{\hyperlink{h2__test__helper_8c_a8e1853c12756a777788d4a6fd397ad6d}{s\+\_\+begin\+\_\+new\+\_\+frame}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$$\ast$out\+\_\+frame)
+\item 
+static void \mbox{\hyperlink{h2__test__helper_8c_af94c4914df314ebe04f2b172ebdb5f7e}{s\+\_\+end\+\_\+current\+\_\+frame}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a4ab61b9600592e1fb3b00e756987cb13}{s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+begin}} (uint32\+\_\+t stream\+\_\+id, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a480108d8159ccdfe7ad14406ae44c967}{s\+\_\+on\+\_\+header}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+push\+\_\+promise, uint32\+\_\+t stream\+\_\+id, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_aba833d071debfa545a35869af2a51559}{s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+i}} (uint32\+\_\+t stream\+\_\+id, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a83ae6d2cb69b4043974a24d1c3a829a2}{s\+\_\+on\+\_\+headers\+\_\+end}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+push\+\_\+promise, uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a3293d772aeb5f70e93068e57d44aa076}{s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+end}} (uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_af7b54194552975999c701143bb77d2a6}{s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+begin}} (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t promised\+\_\+stream\+\_\+id, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a740efbb3a618c462862265d58cef9e2e}{s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+i}} (uint32\+\_\+t stream\+\_\+id, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a8b7a685cab1ea78be7f6d9092f21d031}{s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+end}} (uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a855b3e68f1c56708bd9b263190783a93}{s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+begin}} (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t payload\+\_\+len, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a71b5a920e512c1cfe1995665731adb1d}{s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+i}} (uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a8827a2d96293b0206b37e9c04d6ab211}{s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+end}} (uint32\+\_\+t stream\+\_\+id, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_ad6216fea383891c588d0061f02dfcbf0}{s\+\_\+decoder\+\_\+on\+\_\+end\+\_\+stream}} (uint32\+\_\+t stream\+\_\+id, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a0448d7bb7cf667765122207d20b5d120}{s\+\_\+decoder\+\_\+on\+\_\+rst\+\_\+stream}} (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a33733ce40ec57d0b5f1589d6f6df9095}{s\+\_\+decoder\+\_\+on\+\_\+settings}} (const struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} $\ast$settings\+\_\+array, size\+\_\+t num\+\_\+settings, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a1a876b52bc3ce46751c0b919ebcdd125}{s\+\_\+decoder\+\_\+on\+\_\+settings\+\_\+ack}} (void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_afa62004c879487517a27a9c2f476f633}{s\+\_\+decoder\+\_\+on\+\_\+ping}} (uint8\+\_\+t opaque\+\_\+data\mbox{[}\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\+\_\+\+HTTP2\+\_\+\+PING\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]}, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a11ee241eadcde769d73ae56219b20a98}{s\+\_\+decoder\+\_\+on\+\_\+ping\+\_\+ack}} (uint8\+\_\+t opaque\+\_\+data\mbox{[}\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\+\_\+\+HTTP2\+\_\+\+PING\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]}, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a31453c05ccac4461802b8ce377b205f1}{s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+begin}} (uint32\+\_\+t last\+\_\+stream, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, uint32\+\_\+t debug\+\_\+data\+\_\+length, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_a151af861e570ce81ebf27b4e3cd5c38c}{s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+i}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} debug\+\_\+data, void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_af829dcfcac06b6c27cbdbda01371fc61}{s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+end}} (void $\ast$userdata)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__test__helper_8c_af762f16602c8e0f74a551ac8dc6c8568}{s\+\_\+decoder\+\_\+on\+\_\+window\+\_\+update}} (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t window\+\_\+size\+\_\+increment, void $\ast$userdata)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_ad887bf4a27893f764a2c7680a87b9f05}{h2\+\_\+decode\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester, const struct \mbox{\hyperlink{structh2__decode__tester__options}{h2\+\_\+decode\+\_\+tester\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8c_aac51e8ae2b96a3672dd333ac5e099550}{h2\+\_\+decode\+\_\+tester\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$decode\+\_\+tester)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_a6f9683be4ea03dcbb3e372b210840675}{h2\+\_\+fake\+\_\+peer\+\_\+init}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, const struct \mbox{\hyperlink{structh2__fake__peer__options}{h2\+\_\+fake\+\_\+peer\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8c_a172dcdbf4c9555d2a121f1c29f98300b}{h2\+\_\+fake\+\_\+peer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_ab10468fc7b9dde04f736f4629245dd8a}{h2\+\_\+fake\+\_\+peer\+\_\+decode\+\_\+messages\+\_\+from\+\_\+testing\+\_\+channel}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_aa529e58e14f3214ab3909ceb6666e027}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+frame}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$frame)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_a5dcf9774b4913c9006eb3dd56910d9f2}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_aafa87c468c1053ffa6d02ec36bf11626}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame\+\_\+str}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, uint32\+\_\+t stream\+\_\+id, const char $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_a394873d1d35c1eb44ad85f1be7d9cc1b}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer, struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$settings)
+\item 
+int \mbox{\hyperlink{h2__test__helper_8c_a2ed0faf44e70ddd5b433e220efdfc805}{h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface\+\_\+default\+\_\+settings}} (struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$peer)
+\item 
+static int \mbox{\hyperlink{h2__test__helper_8c_aebe3d1ee25464b7b117925f10e6995f1}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+seek}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} offset, enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}} basis)
+\item 
+static int \mbox{\hyperlink{h2__test__helper_8c_a0e2e1156c7d35ba30fc9a93a896a6dfe}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+read}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+\item 
+static int \mbox{\hyperlink{h2__test__helper_8c_a016580682237d80022c982305ceda613}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+get\+\_\+status}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}} $\ast$status)
+\item 
+static int \mbox{\hyperlink{h2__test__helper_8c_a62ae7e94e6b2e04237d43ec55b75f408}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+get\+\_\+length}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, int64\+\_\+t $\ast$out\+\_\+length)
+\item 
+static void \mbox{\hyperlink{h2__test__helper_8c_ae7df86e00307a70bdbaa97e4a5f634d2}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{h2__test__helper_8c_ae80e6951750c60d233bacf380f64ccb4}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+tester}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8c_a714bfa2f310a241a041208ce9f9fef14}{aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+max\+\_\+bytes\+\_\+per\+\_\+read}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$input\+\_\+stream, size\+\_\+t max\+\_\+bytes)
+\item 
+void \mbox{\hyperlink{h2__test__helper_8c_a586d529599720546c47cf60b4ea4b041}{aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+reading\+\_\+broken}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$input\+\_\+stream, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+broken)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__h2__decoder__vtable}{aws\+\_\+h2\+\_\+decoder\+\_\+vtable}} \mbox{\hyperlink{h2__test__helper_8c_abc5ec7f819a9339b2efb46a4fdf79906}{s\+\_\+decoder\+\_\+vtable}}
+\item 
+static struct \mbox{\hyperlink{structaws__input__stream__vtable}{aws\+\_\+input\+\_\+stream\+\_\+vtable}} \mbox{\hyperlink{h2__test__helper_8c_a761666da1498c6dae01a1cc9ebbedf0c}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h2__test__helper_8c_ae80e6951750c60d233bacf380f64ccb4}\label{h2__test__helper_8c_ae80e6951750c60d233bacf380f64ccb4}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!aws\_input\_stream\_new\_tester@{aws\_input\_stream\_new\_tester}}
+\index{aws\_input\_stream\_new\_tester@{aws\_input\_stream\_new\_tester}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_new\_tester()}{aws\_input\_stream\_new\_tester()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+tester (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor }\end{DoxyParamCaption})}
+
+Create input stream that can do weird stuff in tests \mbox{\Hypertarget{h2__test__helper_8c_a714bfa2f310a241a041208ce9f9fef14}\label{h2__test__helper_8c_a714bfa2f310a241a041208ce9f9fef14}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read@{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read}}
+\index{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read@{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read()}{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read()}}
+{\footnotesize\ttfamily void aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+max\+\_\+bytes\+\_\+per\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{input\+\_\+stream,  }\item[{size\+\_\+t}]{max\+\_\+bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a586d529599720546c47cf60b4ea4b041}\label{h2__test__helper_8c_a586d529599720546c47cf60b4ea4b041}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!aws\_input\_stream\_tester\_set\_reading\_broken@{aws\_input\_stream\_tester\_set\_reading\_broken}}
+\index{aws\_input\_stream\_tester\_set\_reading\_broken@{aws\_input\_stream\_tester\_set\_reading\_broken}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_tester\_set\_reading\_broken()}{aws\_input\_stream\_tester\_set\_reading\_broken()}}
+{\footnotesize\ttfamily void aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+set\+\_\+reading\+\_\+broken (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{input\+\_\+stream,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+broken }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_ab7a2db592f88bfda8caa8293f4e3294d}\label{h2__test__helper_8c_ab7a2db592f88bfda8caa8293f4e3294d}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_check\_data\_across\_frames@{h2\_decode\_tester\_check\_data\_across\_frames}}
+\index{h2\_decode\_tester\_check\_data\_across\_frames@{h2\_decode\_tester\_check\_data\_across\_frames}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_check\_data\_across\_frames()}{h2\_decode\_tester\_check\_data\_across\_frames()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+across\+\_\+frames (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{expected,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{expect\+\_\+end\+\_\+stream }\end{DoxyParamCaption})}
+
+Compare data (which may be split across N frames) against expected \mbox{\Hypertarget{h2__test__helper_8c_ae02f94772bee7ea979389e9a79e0b505}\label{h2__test__helper_8c_ae02f94772bee7ea979389e9a79e0b505}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_check\_data\_str\_across\_frames@{h2\_decode\_tester\_check\_data\_str\_across\_frames}}
+\index{h2\_decode\_tester\_check\_data\_str\_across\_frames@{h2\_decode\_tester\_check\_data\_str\_across\_frames}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_check\_data\_str\_across\_frames()}{h2\_decode\_tester\_check\_data\_str\_across\_frames()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+check\+\_\+data\+\_\+str\+\_\+across\+\_\+frames (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const char $\ast$}]{expected,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{expect\+\_\+end\+\_\+stream }\end{DoxyParamCaption})}
+
+Compare data (which may be split across N frames) against expected \mbox{\Hypertarget{h2__test__helper_8c_aac51e8ae2b96a3672dd333ac5e099550}\label{h2__test__helper_8c_aac51e8ae2b96a3672dd333ac5e099550}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_clean\_up@{h2\_decode\_tester\_clean\_up}}
+\index{h2\_decode\_tester\_clean\_up@{h2\_decode\_tester\_clean\_up}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_clean\_up()}{h2\_decode\_tester\_clean\_up()}}
+{\footnotesize\ttfamily void h2\+\_\+decode\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af12819b3a4259da503cba36b6be8cdb4}\label{h2__test__helper_8c_af12819b3a4259da503cba36b6be8cdb4}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_find\_frame@{h2\_decode\_tester\_find\_frame}}
+\index{h2\_decode\_tester\_find\_frame@{h2\_decode\_tester\_find\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_frame()}{h2\_decode\_tester\_find\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given type, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8c_a406d10eddd5060b18a0bc516ca17c0d2}\label{h2__test__helper_8c_a406d10eddd5060b18a0bc516ca17c0d2}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_find\_stream\_frame@{h2\_decode\_tester\_find\_stream\_frame}}
+\index{h2\_decode\_tester\_find\_stream\_frame@{h2\_decode\_tester\_find\_stream\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_stream\_frame()}{h2\_decode\_tester\_find\_stream\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given type and stream-\/id, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8c_aa3560acccf30df63f7b28817926bd67d}\label{h2__test__helper_8c_aa3560acccf30df63f7b28817926bd67d}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_find\_stream\_frame\_any\_type@{h2\_decode\_tester\_find\_stream\_frame\_any\_type}}
+\index{h2\_decode\_tester\_find\_stream\_frame\_any\_type@{h2\_decode\_tester\_find\_stream\_frame\_any\_type}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_find\_stream\_frame\_any\_type()}{h2\_decode\_tester\_find\_stream\_frame\_any\_type()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+find\+\_\+stream\+\_\+frame\+\_\+any\+\_\+type (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{size\+\_\+t}]{search\+\_\+start\+\_\+idx,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+idx }\end{DoxyParamCaption})}
+
+Search for frame of a given stream-\/id, starting at specified index. To search for the next frame, pass search\+\_\+start\+\_\+idx = prev\+\_\+idx + 1 \mbox{\Hypertarget{h2__test__helper_8c_a6e33fefbffc7259e225660310b773cf3}\label{h2__test__helper_8c_a6e33fefbffc7259e225660310b773cf3}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_frame\_count@{h2\_decode\_tester\_frame\_count}}
+\index{h2\_decode\_tester\_frame\_count@{h2\_decode\_tester\_frame\_count}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_frame\_count()}{h2\_decode\_tester\_frame\_count()}}
+{\footnotesize\ttfamily size\+\_\+t h2\+\_\+decode\+\_\+tester\+\_\+frame\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_ae308aa471a26280eae9ce9e8227058ae}\label{h2__test__helper_8c_ae308aa471a26280eae9ce9e8227058ae}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_get\_frame@{h2\_decode\_tester\_get\_frame}}
+\index{h2\_decode\_tester\_get\_frame@{h2\_decode\_tester\_get\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_get\_frame()}{h2\_decode\_tester\_get\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+get\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_ad887bf4a27893f764a2c7680a87b9f05}\label{h2__test__helper_8c_ad887bf4a27893f764a2c7680a87b9f05}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_init@{h2\_decode\_tester\_init}}
+\index{h2\_decode\_tester\_init@{h2\_decode\_tester\_init}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_init()}{h2\_decode\_tester\_init()}}
+{\footnotesize\ttfamily int h2\+\_\+decode\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{const struct \mbox{\hyperlink{structh2__decode__tester__options}{h2\+\_\+decode\+\_\+tester\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a844ced0f75da87b0d03a7b3e0a43238d}\label{h2__test__helper_8c_a844ced0f75da87b0d03a7b3e0a43238d}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decode\_tester\_latest\_frame@{h2\_decode\_tester\_latest\_frame}}
+\index{h2\_decode\_tester\_latest\_frame@{h2\_decode\_tester\_latest\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decode\_tester\_latest\_frame()}{h2\_decode\_tester\_latest\_frame()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}}$\ast$ h2\+\_\+decode\+\_\+tester\+\_\+latest\+\_\+frame (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a61d13be47bb19d1aecdbcc7946ef3642}\label{h2__test__helper_8c_a61d13be47bb19d1aecdbcc7946ef3642}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_decoded\_frame\_check\_finished@{h2\_decoded\_frame\_check\_finished}}
+\index{h2\_decoded\_frame\_check\_finished@{h2\_decoded\_frame\_check\_finished}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_decoded\_frame\_check\_finished()}{h2\_decoded\_frame\_check\_finished()}}
+{\footnotesize\ttfamily int h2\+\_\+decoded\+\_\+frame\+\_\+check\+\_\+finished (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$}]{frame,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{expected\+\_\+type,  }\item[{uint32\+\_\+t}]{expected\+\_\+stream\+\_\+id }\end{DoxyParamCaption})}
+
+Check that\+:
+\begin{DoxyItemize}
+\item frame finished (ex\+: if HEADERS frame, then on\+\_\+headers\+\_\+end() fired)
+\item frame was in fact using the expected type and stream\+\_\+id. 
+\end{DoxyItemize}\mbox{\Hypertarget{h2__test__helper_8c_a172dcdbf4c9555d2a121f1c29f98300b}\label{h2__test__helper_8c_a172dcdbf4c9555d2a121f1c29f98300b}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_clean\_up@{h2\_fake\_peer\_clean\_up}}
+\index{h2\_fake\_peer\_clean\_up@{h2\_fake\_peer\_clean\_up}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_clean\_up()}{h2\_fake\_peer\_clean\_up()}}
+{\footnotesize\ttfamily void h2\+\_\+fake\+\_\+peer\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_ab10468fc7b9dde04f736f4629245dd8a}\label{h2__test__helper_8c_ab10468fc7b9dde04f736f4629245dd8a}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_decode\_messages\_from\_testing\_channel@{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel}}
+\index{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel@{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel()}{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+decode\+\_\+messages\+\_\+from\+\_\+testing\+\_\+channel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+Pop all written messages off the testing-\/channel and run them through the peer\textquotesingle{}s decode-\/tester \mbox{\Hypertarget{h2__test__helper_8c_a6f9683be4ea03dcbb3e372b210840675}\label{h2__test__helper_8c_a6f9683be4ea03dcbb3e372b210840675}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_init@{h2\_fake\_peer\_init}}
+\index{h2\_fake\_peer\_init@{h2\_fake\_peer\_init}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_init()}{h2\_fake\_peer\_init()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{const struct \mbox{\hyperlink{structh2__fake__peer__options}{h2\+\_\+fake\+\_\+peer\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a394873d1d35c1eb44ad85f1be7d9cc1b}\label{h2__test__helper_8c_a394873d1d35c1eb44ad85f1be7d9cc1b}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_send\_connection\_preface@{h2\_fake\_peer\_send\_connection\_preface}}
+\index{h2\_fake\_peer\_send\_connection\_preface@{h2\_fake\_peer\_send\_connection\_preface}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_connection\_preface()}{h2\_fake\_peer\_send\_connection\_preface()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$}]{settings }\end{DoxyParamCaption})}
+
+Peer sends the connection preface with specified settings. Takes ownership of frame and destroys after sending \mbox{\Hypertarget{h2__test__helper_8c_a2ed0faf44e70ddd5b433e220efdfc805}\label{h2__test__helper_8c_a2ed0faf44e70ddd5b433e220efdfc805}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_send\_connection\_preface\_default\_settings@{h2\_fake\_peer\_send\_connection\_preface\_default\_settings}}
+\index{h2\_fake\_peer\_send\_connection\_preface\_default\_settings@{h2\_fake\_peer\_send\_connection\_preface\_default\_settings}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_connection\_preface\_default\_settings()}{h2\_fake\_peer\_send\_connection\_preface\_default\_settings()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+connection\+\_\+preface\+\_\+default\+\_\+settings (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer }\end{DoxyParamCaption})}
+
+Peer sends the connection preface with default settings. \mbox{\Hypertarget{h2__test__helper_8c_a5dcf9774b4913c9006eb3dd56910d9f2}\label{h2__test__helper_8c_a5dcf9774b4913c9006eb3dd56910d9f2}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_send\_data\_frame@{h2\_fake\_peer\_send\_data\_frame}}
+\index{h2\_fake\_peer\_send\_data\_frame@{h2\_fake\_peer\_send\_data\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_data\_frame()}{h2\_fake\_peer\_send\_data\_frame()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream }\end{DoxyParamCaption})}
+
+Encode the entire byte cursor into a single DATA frame. Fails if the cursor is too large for this to work. \mbox{\Hypertarget{h2__test__helper_8c_aafa87c468c1053ffa6d02ec36bf11626}\label{h2__test__helper_8c_aafa87c468c1053ffa6d02ec36bf11626}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_send\_data\_frame\_str@{h2\_fake\_peer\_send\_data\_frame\_str}}
+\index{h2\_fake\_peer\_send\_data\_frame\_str@{h2\_fake\_peer\_send\_data\_frame\_str}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_data\_frame\_str()}{h2\_fake\_peer\_send\_data\_frame\_str()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+data\+\_\+frame\+\_\+str (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const char $\ast$}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream }\end{DoxyParamCaption})}
+
+Encode the entire string into a single DATA frame. Fails if the string is too large for this to work. \mbox{\Hypertarget{h2__test__helper_8c_aa529e58e14f3214ab3909ceb6666e027}\label{h2__test__helper_8c_aa529e58e14f3214ab3909ceb6666e027}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!h2\_fake\_peer\_send\_frame@{h2\_fake\_peer\_send\_frame}}
+\index{h2\_fake\_peer\_send\_frame@{h2\_fake\_peer\_send\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{h2\_fake\_peer\_send\_frame()}{h2\_fake\_peer\_send\_frame()}}
+{\footnotesize\ttfamily int h2\+\_\+fake\+\_\+peer\+\_\+send\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} $\ast$}]{peer,  }\item[{struct \mbox{\hyperlink{structaws__h2__frame}{aws\+\_\+h2\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+Encode frame and push it into the testing-\/channel in the read-\/direction. Takes ownership of frame and destroys after sending. \mbox{\Hypertarget{h2__test__helper_8c_ae7df86e00307a70bdbaa97e4a5f634d2}\label{h2__test__helper_8c_ae7df86e00307a70bdbaa97e4a5f634d2}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_destroy@{s\_aws\_input\_stream\_tester\_destroy}}
+\index{s\_aws\_input\_stream\_tester\_destroy@{s\_aws\_input\_stream\_tester\_destroy}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_destroy()}{s\_aws\_input\_stream\_tester\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a62ae7e94e6b2e04237d43ec55b75f408}\label{h2__test__helper_8c_a62ae7e94e6b2e04237d43ec55b75f408}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_get\_length@{s\_aws\_input\_stream\_tester\_get\_length}}
+\index{s\_aws\_input\_stream\_tester\_get\_length@{s\_aws\_input\_stream\_tester\_get\_length}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_get\_length()}{s\_aws\_input\_stream\_tester\_get\_length()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+get\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{int64\+\_\+t $\ast$}]{out\+\_\+length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a016580682237d80022c982305ceda613}\label{h2__test__helper_8c_a016580682237d80022c982305ceda613}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_get\_status@{s\_aws\_input\_stream\_tester\_get\_status}}
+\index{s\_aws\_input\_stream\_tester\_get\_status@{s\_aws\_input\_stream\_tester\_get\_status}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_get\_status()}{s\_aws\_input\_stream\_tester\_get\_status()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+get\+\_\+status (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}} $\ast$}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a0e2e1156c7d35ba30fc9a93a896a6dfe}\label{h2__test__helper_8c_a0e2e1156c7d35ba30fc9a93a896a6dfe}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_read@{s\_aws\_input\_stream\_tester\_read}}
+\index{s\_aws\_input\_stream\_tester\_read@{s\_aws\_input\_stream\_tester\_read}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_read()}{s\_aws\_input\_stream\_tester\_read()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_aebe3d1ee25464b7b117925f10e6995f1}\label{h2__test__helper_8c_aebe3d1ee25464b7b117925f10e6995f1}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_seek@{s\_aws\_input\_stream\_tester\_seek}}
+\index{s\_aws\_input\_stream\_tester\_seek@{s\_aws\_input\_stream\_tester\_seek}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_seek()}{s\_aws\_input\_stream\_tester\_seek()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+seek (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{\mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}}}]{offset,  }\item[{enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}}}]{basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a8e1853c12756a777788d4a6fd397ad6d}\label{h2__test__helper_8c_a8e1853c12756a777788d4a6fd397ad6d}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_begin\_new\_frame@{s\_begin\_new\_frame}}
+\index{s\_begin\_new\_frame@{s\_begin\_new\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_begin\_new\_frame()}{s\_begin\_new\_frame()}}
+{\footnotesize\ttfamily static void s\+\_\+begin\+\_\+new\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$$\ast$}]{out\+\_\+frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a855b3e68f1c56708bd9b263190783a93}\label{h2__test__helper_8c_a855b3e68f1c56708bd9b263190783a93}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_data\_begin@{s\_decoder\_on\_data\_begin}}
+\index{s\_decoder\_on\_data\_begin@{s\_decoder\_on\_data\_begin}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_data\_begin()}{s\_decoder\_on\_data\_begin()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+begin (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{uint32\+\_\+t}]{payload\+\_\+len,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a8827a2d96293b0206b37e9c04d6ab211}\label{h2__test__helper_8c_a8827a2d96293b0206b37e9c04d6ab211}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_data\_end@{s\_decoder\_on\_data\_end}}
+\index{s\_decoder\_on\_data\_end@{s\_decoder\_on\_data\_end}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_data\_end()}{s\_decoder\_on\_data\_end()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+end (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a71b5a920e512c1cfe1995665731adb1d}\label{h2__test__helper_8c_a71b5a920e512c1cfe1995665731adb1d}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_data\_i@{s\_decoder\_on\_data\_i}}
+\index{s\_decoder\_on\_data\_i@{s\_decoder\_on\_data\_i}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_data\_i()}{s\_decoder\_on\_data\_i()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+data\+\_\+i (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{data,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_ad6216fea383891c588d0061f02dfcbf0}\label{h2__test__helper_8c_ad6216fea383891c588d0061f02dfcbf0}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_end\_stream@{s\_decoder\_on\_end\_stream}}
+\index{s\_decoder\_on\_end\_stream@{s\_decoder\_on\_end\_stream}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_end\_stream()}{s\_decoder\_on\_end\_stream()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+end\+\_\+stream (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a31453c05ccac4461802b8ce377b205f1}\label{h2__test__helper_8c_a31453c05ccac4461802b8ce377b205f1}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_goaway\_begin@{s\_decoder\_on\_goaway\_begin}}
+\index{s\_decoder\_on\_goaway\_begin@{s\_decoder\_on\_goaway\_begin}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_goaway\_begin()}{s\_decoder\_on\_goaway\_begin()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+begin (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{last\+\_\+stream,  }\item[{uint32\+\_\+t}]{error\+\_\+code,  }\item[{uint32\+\_\+t}]{debug\+\_\+data\+\_\+length,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af829dcfcac06b6c27cbdbda01371fc61}\label{h2__test__helper_8c_af829dcfcac06b6c27cbdbda01371fc61}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_goaway\_end@{s\_decoder\_on\_goaway\_end}}
+\index{s\_decoder\_on\_goaway\_end@{s\_decoder\_on\_goaway\_end}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_goaway\_end()}{s\_decoder\_on\_goaway\_end()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+end (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a151af861e570ce81ebf27b4e3cd5c38c}\label{h2__test__helper_8c_a151af861e570ce81ebf27b4e3cd5c38c}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_goaway\_i@{s\_decoder\_on\_goaway\_i}}
+\index{s\_decoder\_on\_goaway\_i@{s\_decoder\_on\_goaway\_i}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_goaway\_i()}{s\_decoder\_on\_goaway\_i()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+goaway\+\_\+i (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{debug\+\_\+data,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a4ab61b9600592e1fb3b00e756987cb13}\label{h2__test__helper_8c_a4ab61b9600592e1fb3b00e756987cb13}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_headers\_begin@{s\_decoder\_on\_headers\_begin}}
+\index{s\_decoder\_on\_headers\_begin@{s\_decoder\_on\_headers\_begin}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_headers\_begin()}{s\_decoder\_on\_headers\_begin()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+begin (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a3293d772aeb5f70e93068e57d44aa076}\label{h2__test__helper_8c_a3293d772aeb5f70e93068e57d44aa076}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_headers\_end@{s\_decoder\_on\_headers\_end}}
+\index{s\_decoder\_on\_headers\_end@{s\_decoder\_on\_headers\_end}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_headers\_end()}{s\_decoder\_on\_headers\_end()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+end (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{malformed,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_aba833d071debfa545a35869af2a51559}\label{h2__test__helper_8c_aba833d071debfa545a35869af2a51559}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_headers\_i@{s\_decoder\_on\_headers\_i}}
+\index{s\_decoder\_on\_headers\_i@{s\_decoder\_on\_headers\_i}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_headers\_i()}{s\_decoder\_on\_headers\_i()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+headers\+\_\+i (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}}}]{name\+\_\+enum,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_afa62004c879487517a27a9c2f476f633}\label{h2__test__helper_8c_afa62004c879487517a27a9c2f476f633}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_ping@{s\_decoder\_on\_ping}}
+\index{s\_decoder\_on\_ping@{s\_decoder\_on\_ping}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_ping()}{s\_decoder\_on\_ping()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+ping (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{opaque\+\_\+data\mbox{[}\+AWS\+\_\+\+HTTP2\+\_\+\+PING\+\_\+\+DATA\+\_\+\+SIZE\mbox{]},  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a11ee241eadcde769d73ae56219b20a98}\label{h2__test__helper_8c_a11ee241eadcde769d73ae56219b20a98}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_ping\_ack@{s\_decoder\_on\_ping\_ack}}
+\index{s\_decoder\_on\_ping\_ack@{s\_decoder\_on\_ping\_ack}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_ping\_ack()}{s\_decoder\_on\_ping\_ack()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+ping\+\_\+ack (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{opaque\+\_\+data\mbox{[}\+AWS\+\_\+\+HTTP2\+\_\+\+PING\+\_\+\+DATA\+\_\+\+SIZE\mbox{]},  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af7b54194552975999c701143bb77d2a6}\label{h2__test__helper_8c_af7b54194552975999c701143bb77d2a6}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_push\_promise\_begin@{s\_decoder\_on\_push\_promise\_begin}}
+\index{s\_decoder\_on\_push\_promise\_begin@{s\_decoder\_on\_push\_promise\_begin}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_push\_promise\_begin()}{s\_decoder\_on\_push\_promise\_begin()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+begin (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{uint32\+\_\+t}]{promised\+\_\+stream\+\_\+id,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a8b7a685cab1ea78be7f6d9092f21d031}\label{h2__test__helper_8c_a8b7a685cab1ea78be7f6d9092f21d031}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_push\_promise\_end@{s\_decoder\_on\_push\_promise\_end}}
+\index{s\_decoder\_on\_push\_promise\_end@{s\_decoder\_on\_push\_promise\_end}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_push\_promise\_end()}{s\_decoder\_on\_push\_promise\_end()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+end (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{malformed,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a740efbb3a618c462862265d58cef9e2e}\label{h2__test__helper_8c_a740efbb3a618c462862265d58cef9e2e}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_push\_promise\_i@{s\_decoder\_on\_push\_promise\_i}}
+\index{s\_decoder\_on\_push\_promise\_i@{s\_decoder\_on\_push\_promise\_i}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_push\_promise\_i()}{s\_decoder\_on\_push\_promise\_i()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+push\+\_\+promise\+\_\+i (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}}}]{name\+\_\+enum,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a0448d7bb7cf667765122207d20b5d120}\label{h2__test__helper_8c_a0448d7bb7cf667765122207d20b5d120}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_rst\_stream@{s\_decoder\_on\_rst\_stream}}
+\index{s\_decoder\_on\_rst\_stream@{s\_decoder\_on\_rst\_stream}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_rst\_stream()}{s\_decoder\_on\_rst\_stream()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+rst\+\_\+stream (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{uint32\+\_\+t}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a33733ce40ec57d0b5f1589d6f6df9095}\label{h2__test__helper_8c_a33733ce40ec57d0b5f1589d6f6df9095}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_settings@{s\_decoder\_on\_settings}}
+\index{s\_decoder\_on\_settings@{s\_decoder\_on\_settings}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_settings()}{s\_decoder\_on\_settings()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+settings (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} $\ast$}]{settings\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+settings,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a1a876b52bc3ce46751c0b919ebcdd125}\label{h2__test__helper_8c_a1a876b52bc3ce46751c0b919ebcdd125}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_settings\_ack@{s\_decoder\_on\_settings\_ack}}
+\index{s\_decoder\_on\_settings\_ack@{s\_decoder\_on\_settings\_ack}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_settings\_ack()}{s\_decoder\_on\_settings\_ack()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+settings\+\_\+ack (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af762f16602c8e0f74a551ac8dc6c8568}\label{h2__test__helper_8c_af762f16602c8e0f74a551ac8dc6c8568}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_on\_window\_update@{s\_decoder\_on\_window\_update}}
+\index{s\_decoder\_on\_window\_update@{s\_decoder\_on\_window\_update}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_on\_window\_update()}{s\_decoder\_on\_window\_update()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decoder\+\_\+on\+\_\+window\+\_\+update (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{uint32\+\_\+t}]{window\+\_\+size\+\_\+increment,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af94c4914df314ebe04f2b172ebdb5f7e}\label{h2__test__helper_8c_af94c4914df314ebe04f2b172ebdb5f7e}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_end\_current\_frame@{s\_end\_current\_frame}}
+\index{s\_end\_current\_frame@{s\_end\_current\_frame}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_end\_current\_frame()}{s\_end\_current\_frame()}}
+{\footnotesize\ttfamily static void s\+\_\+end\+\_\+current\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decode__tester}{h2\+\_\+decode\+\_\+tester}} $\ast$}]{decode\+\_\+tester,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_af44a6e51fa340835a195a0d6d37d1647}\label{h2__test__helper_8c_af44a6e51fa340835a195a0d6d37d1647}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_frame\_clean\_up@{s\_frame\_clean\_up}}
+\index{s\_frame\_clean\_up@{s\_frame\_clean\_up}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_frame\_clean\_up()}{s\_frame\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+frame\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a3c718f0285d9f0791018c80ff6dba6ff}\label{h2__test__helper_8c_a3c718f0285d9f0791018c80ff6dba6ff}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_frame\_init@{s\_frame\_init}}
+\index{s\_frame\_init@{s\_frame\_init}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_frame\_init()}{s\_frame\_init()}}
+{\footnotesize\ttfamily static void s\+\_\+frame\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$}]{frame,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{h2__test__helper_8c_a480108d8159ccdfe7ad14406ae44c967}\label{h2__test__helper_8c_a480108d8159ccdfe7ad14406ae44c967}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_on\_header@{s\_on\_header}}
+\index{s\_on\_header@{s\_on\_header}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_header()}{s\_on\_header()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+on\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+push\+\_\+promise,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}}}]{name\+\_\+enum,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__test__helper_8c_a83ae6d2cb69b4043974a24d1c3a829a2}\label{h2__test__helper_8c_a83ae6d2cb69b4043974a24d1c3a829a2}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_on\_headers\_end@{s\_on\_headers\_end}}
+\index{s\_on\_headers\_end@{s\_on\_headers\_end}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_headers\_end()}{s\_on\_headers\_end()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+on\+\_\+headers\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+push\+\_\+promise,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{malformed,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{h2__test__helper_8c_a761666da1498c6dae01a1cc9ebbedf0c}\label{h2__test__helper_8c_a761666da1498c6dae01a1cc9ebbedf0c}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_aws\_input\_stream\_tester\_vtable@{s\_aws\_input\_stream\_tester\_vtable}}
+\index{s\_aws\_input\_stream\_tester\_vtable@{s\_aws\_input\_stream\_tester\_vtable}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_input\_stream\_tester\_vtable}{s\_aws\_input\_stream\_tester\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream__vtable}{aws\+\_\+input\+\_\+stream\+\_\+vtable}} s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+tester\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .seek = \mbox{\hyperlink{h2__test__helper_8c_aebe3d1ee25464b7b117925f10e6995f1}{s\_aws\_input\_stream\_tester\_seek}},}
+\DoxyCodeLine{    .read = \mbox{\hyperlink{h2__test__helper_8c_a0e2e1156c7d35ba30fc9a93a896a6dfe}{s\_aws\_input\_stream\_tester\_read}},}
+\DoxyCodeLine{    .get\_status = \mbox{\hyperlink{h2__test__helper_8c_a016580682237d80022c982305ceda613}{s\_aws\_input\_stream\_tester\_get\_status}},}
+\DoxyCodeLine{    .get\_length = \mbox{\hyperlink{h2__test__helper_8c_a62ae7e94e6b2e04237d43ec55b75f408}{s\_aws\_input\_stream\_tester\_get\_length}},}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{h2__test__helper_8c_ae7df86e00307a70bdbaa97e4a5f634d2}{s\_aws\_input\_stream\_tester\_destroy}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{h2__test__helper_8c_abc5ec7f819a9339b2efb46a4fdf79906}\label{h2__test__helper_8c_abc5ec7f819a9339b2efb46a4fdf79906}} 
+\index{h2\_test\_helper.c@{h2\_test\_helper.c}!s\_decoder\_vtable@{s\_decoder\_vtable}}
+\index{s\_decoder\_vtable@{s\_decoder\_vtable}!h2\_test\_helper.c@{h2\_test\_helper.c}}
+\doxysubsubsection{\texorpdfstring{s\_decoder\_vtable}{s\_decoder\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2__decoder__vtable}{aws\+\_\+h2\+\_\+decoder\+\_\+vtable}} s\+\_\+decoder\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .on\_headers\_begin = \mbox{\hyperlink{h2__test__helper_8c_a4ab61b9600592e1fb3b00e756987cb13}{s\_decoder\_on\_headers\_begin}},}
+\DoxyCodeLine{    .on\_headers\_i = \mbox{\hyperlink{h2__test__helper_8c_aba833d071debfa545a35869af2a51559}{s\_decoder\_on\_headers\_i}},}
+\DoxyCodeLine{    .on\_headers\_end = \mbox{\hyperlink{h2__test__helper_8c_a3293d772aeb5f70e93068e57d44aa076}{s\_decoder\_on\_headers\_end}},}
+\DoxyCodeLine{    .on\_push\_promise\_begin = \mbox{\hyperlink{h2__test__helper_8c_af7b54194552975999c701143bb77d2a6}{s\_decoder\_on\_push\_promise\_begin}},}
+\DoxyCodeLine{    .on\_push\_promise\_i = \mbox{\hyperlink{h2__test__helper_8c_a740efbb3a618c462862265d58cef9e2e}{s\_decoder\_on\_push\_promise\_i}},}
+\DoxyCodeLine{    .on\_push\_promise\_end = \mbox{\hyperlink{h2__test__helper_8c_a8b7a685cab1ea78be7f6d9092f21d031}{s\_decoder\_on\_push\_promise\_end}},}
+\DoxyCodeLine{    .on\_data\_begin = \mbox{\hyperlink{h2__test__helper_8c_a855b3e68f1c56708bd9b263190783a93}{s\_decoder\_on\_data\_begin}},}
+\DoxyCodeLine{    .on\_data\_i = \mbox{\hyperlink{h2__test__helper_8c_a71b5a920e512c1cfe1995665731adb1d}{s\_decoder\_on\_data\_i}},}
+\DoxyCodeLine{    .on\_data\_end = \mbox{\hyperlink{h2__test__helper_8c_a8827a2d96293b0206b37e9c04d6ab211}{s\_decoder\_on\_data\_end}},}
+\DoxyCodeLine{    .on\_end\_stream = \mbox{\hyperlink{h2__test__helper_8c_ad6216fea383891c588d0061f02dfcbf0}{s\_decoder\_on\_end\_stream}},}
+\DoxyCodeLine{    .on\_rst\_stream = \mbox{\hyperlink{h2__test__helper_8c_a0448d7bb7cf667765122207d20b5d120}{s\_decoder\_on\_rst\_stream}},}
+\DoxyCodeLine{    .on\_settings = \mbox{\hyperlink{h2__test__helper_8c_a33733ce40ec57d0b5f1589d6f6df9095}{s\_decoder\_on\_settings}},}
+\DoxyCodeLine{    .on\_settings\_ack = \mbox{\hyperlink{h2__test__helper_8c_a1a876b52bc3ce46751c0b919ebcdd125}{s\_decoder\_on\_settings\_ack}},}
+\DoxyCodeLine{    .on\_ping = \mbox{\hyperlink{h2__test__helper_8c_afa62004c879487517a27a9c2f476f633}{s\_decoder\_on\_ping}},}
+\DoxyCodeLine{    .on\_ping\_ack = \mbox{\hyperlink{h2__test__helper_8c_a11ee241eadcde769d73ae56219b20a98}{s\_decoder\_on\_ping\_ack}},}
+\DoxyCodeLine{    .on\_goaway\_begin = \mbox{\hyperlink{h2__test__helper_8c_a31453c05ccac4461802b8ce377b205f1}{s\_decoder\_on\_goaway\_begin}},}
+\DoxyCodeLine{    .on\_goaway\_i = \mbox{\hyperlink{h2__test__helper_8c_a151af861e570ce81ebf27b4e3cd5c38c}{s\_decoder\_on\_goaway\_i}},}
+\DoxyCodeLine{    .on\_goaway\_end = \mbox{\hyperlink{h2__test__helper_8c_af829dcfcac06b6c27cbdbda01371fc61}{s\_decoder\_on\_goaway\_end}},}
+\DoxyCodeLine{    .on\_window\_update = \mbox{\hyperlink{h2__test__helper_8c_af762f16602c8e0f74a551ac8dc6c8568}{s\_decoder\_on\_window\_update}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

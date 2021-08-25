@@ -1,0 +1,167 @@
+\hypertarget{task__scheduler_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/task\+\_\+scheduler.h File Reference}
+\label{task__scheduler_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/task\_scheduler.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/task\_scheduler.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/linked\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/priority\+\_\+queue.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}}
+\item 
+struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} \mbox{\hyperlink{task__scheduler_8h_a18488735a0904538594576ead2a58d11}{aws\+\_\+task\+\_\+status}}
+\item 
+typedef void() \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\+\_\+task\+\_\+fn}}(struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} \{ \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}{AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+RUN\+\_\+\+READY}}
+, \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}{AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED}}
+, \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}{AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+RUN\+\_\+\+READY}}
+, \mbox{\hyperlink{preamble_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}{AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_a938427b199b697e4f4ee0e553653613d}{aws\+\_\+task\+\_\+init}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\+\_\+task\+\_\+fn}} $\ast$fn, void $\ast$arg, const char $\ast$type\+\_\+tag)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_acf57fa2a75c5baa2fc56861c69cfd9b9}{aws\+\_\+task\+\_\+run}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{task__scheduler_8h_adef550c7335e57f3f57a3fdd49a2e10d}{aws\+\_\+task\+\_\+scheduler\+\_\+init}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_abd9af506a5bbb7d75e3007b71dcbb5b4}{aws\+\_\+task\+\_\+scheduler\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{task__scheduler_8h_ad4e1c6ad3fb041d7bada5de799fc6d01}{aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{task__scheduler_8h_a4f977fc176cb0812de49d182404370e7}{aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, uint64\+\_\+t $\ast$next\+\_\+task\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_af829b95fb361631a8ff1b1e3a663a81f}{aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+now}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_a78aa62792f380e32dc717649ee698d24}{aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+future}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t time\+\_\+to\+\_\+run)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_afafcb055f79f1ae8f78a39b98f3fd809}{aws\+\_\+task\+\_\+scheduler\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{task__scheduler_8h_a0feba5b9b530f3fe689ec9771b61598d}{aws\+\_\+task\+\_\+scheduler\+\_\+run\+\_\+all}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, uint64\+\_\+t current\+\_\+time)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} const char $\ast$ \mbox{\hyperlink{task__scheduler_8h_a0d522273b47afbc25226ffe589909bea}{aws\+\_\+task\+\_\+status\+\_\+to\+\_\+c\+\_\+str}} (enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}\label{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_fn@{aws\_task\_fn}}
+\index{aws\_task\_fn@{aws\_task\_fn}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_fn}{aws\_task\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+task\+\_\+fn(struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}})}
+
+A scheduled function. \mbox{\Hypertarget{task__scheduler_8h_a18488735a0904538594576ead2a58d11}\label{task__scheduler_8h_a18488735a0904538594576ead2a58d11}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_status@{aws\_task\_status}}
+\index{aws\_task\_status@{aws\_task\_status}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_status}{aws\_task\_status}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}\label{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_status@{aws\_task\_status}}
+\index{aws\_task\_status@{aws\_task\_status}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_status}{aws\_task\_status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TASK\_STATUS\_RUN\_READY@{AWS\_TASK\_STATUS\_RUN\_READY}!task\_scheduler.h@{task\_scheduler.h}}\index{task\_scheduler.h@{task\_scheduler.h}!AWS\_TASK\_STATUS\_RUN\_READY@{AWS\_TASK\_STATUS\_RUN\_READY}}}\mbox{\Hypertarget{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}\label{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}} 
+AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+RUN\+\_\+\+READY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TASK\_STATUS\_CANCELED@{AWS\_TASK\_STATUS\_CANCELED}!task\_scheduler.h@{task\_scheduler.h}}\index{task\_scheduler.h@{task\_scheduler.h}!AWS\_TASK\_STATUS\_CANCELED@{AWS\_TASK\_STATUS\_CANCELED}}}\mbox{\Hypertarget{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}\label{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}} 
+AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TASK\_STATUS\_RUN\_READY@{AWS\_TASK\_STATUS\_RUN\_READY}!task\_scheduler.h@{task\_scheduler.h}}\index{task\_scheduler.h@{task\_scheduler.h}!AWS\_TASK\_STATUS\_RUN\_READY@{AWS\_TASK\_STATUS\_RUN\_READY}}}\mbox{\Hypertarget{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}\label{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea990d7cf24f10f1e4bcf17a5afe0135f3}} 
+AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+RUN\+\_\+\+READY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TASK\_STATUS\_CANCELED@{AWS\_TASK\_STATUS\_CANCELED}!task\_scheduler.h@{task\_scheduler.h}}\index{task\_scheduler.h@{task\_scheduler.h}!AWS\_TASK\_STATUS\_CANCELED@{AWS\_TASK\_STATUS\_CANCELED}}}\mbox{\Hypertarget{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}\label{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}} 
+AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{task__scheduler_8h_a938427b199b697e4f4ee0e553653613d}\label{task__scheduler_8h_a938427b199b697e4f4ee0e553653613d}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_init@{aws\_task\_init}}
+\index{aws\_task\_init@{aws\_task\_init}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_init()}{aws\_task\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{\mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\+\_\+task\+\_\+fn}} $\ast$}]{fn,  }\item[{void $\ast$}]{arg,  }\item[{const char $\ast$}]{type\+\_\+tag }\end{DoxyParamCaption})}
+
+Init an \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} \mbox{\Hypertarget{task__scheduler_8h_acf57fa2a75c5baa2fc56861c69cfd9b9}\label{task__scheduler_8h_acf57fa2a75c5baa2fc56861c69cfd9b9}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_run@{aws\_task\_run}}
+\index{aws\_task\_run@{aws\_task\_run}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_run()}{aws\_task\_run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{task__scheduler_8h_afafcb055f79f1ae8f78a39b98f3fd809}\label{task__scheduler_8h_afafcb055f79f1ae8f78a39b98f3fd809}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_cancel\_task@{aws\_task\_scheduler\_cancel\_task}}
+\index{aws\_task\_scheduler\_cancel\_task@{aws\_task\_scheduler\_cancel\_task}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_cancel\_task()}{aws\_task\_scheduler\_cancel\_task()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+scheduler\+\_\+cancel\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task }\end{DoxyParamCaption})}
+
+Removes task from the scheduler and invokes the task with the AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED status. \mbox{\Hypertarget{task__scheduler_8h_abd9af506a5bbb7d75e3007b71dcbb5b4}\label{task__scheduler_8h_abd9af506a5bbb7d75e3007b71dcbb5b4}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_clean\_up@{aws\_task\_scheduler\_clean\_up}}
+\index{aws\_task\_scheduler\_clean\_up@{aws\_task\_scheduler\_clean\_up}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_clean\_up()}{aws\_task\_scheduler\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+scheduler\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+Empties and executes all queued tasks, passing the AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+CANCELED status to the task function. Cleans up any memory allocated, and prepares the instance for reuse or deletion. \mbox{\Hypertarget{task__scheduler_8h_a4f977fc176cb0812de49d182404370e7}\label{task__scheduler_8h_a4f977fc176cb0812de49d182404370e7}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_has\_tasks@{aws\_task\_scheduler\_has\_tasks}}
+\index{aws\_task\_scheduler\_has\_tasks@{aws\_task\_scheduler\_has\_tasks}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_has\_tasks()}{aws\_task\_scheduler\_has\_tasks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{uint64\+\_\+t $\ast$}]{next\+\_\+task\+\_\+time }\end{DoxyParamCaption})}
+
+Returns whether the scheduler has any scheduled tasks. next\+\_\+task\+\_\+time (optional) will be set to time of the next task, note that 0 will be set if tasks were added via \mbox{\hyperlink{task__scheduler_8h_af829b95fb361631a8ff1b1e3a663a81f}{aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+now()}} and UINT64\+\_\+\+MAX will be set if no tasks are scheduled at all. \mbox{\Hypertarget{task__scheduler_8h_adef550c7335e57f3f57a3fdd49a2e10d}\label{task__scheduler_8h_adef550c7335e57f3f57a3fdd49a2e10d}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_init@{aws\_task\_scheduler\_init}}
+\index{aws\_task\_scheduler\_init@{aws\_task\_scheduler\_init}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_init()}{aws\_task\_scheduler\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+task\+\_\+scheduler\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})}
+
+Initializes a task scheduler instance. \mbox{\Hypertarget{task__scheduler_8h_ad4e1c6ad3fb041d7bada5de799fc6d01}\label{task__scheduler_8h_ad4e1c6ad3fb041d7bada5de799fc6d01}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_is\_valid@{aws\_task\_scheduler\_is\_valid}}
+\index{aws\_task\_scheduler\_is\_valid@{aws\_task\_scheduler\_is\_valid}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_is\_valid()}{aws\_task\_scheduler\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{task__scheduler_8h_a0feba5b9b530f3fe689ec9771b61598d}\label{task__scheduler_8h_a0feba5b9b530f3fe689ec9771b61598d}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_run\_all@{aws\_task\_scheduler\_run\_all}}
+\index{aws\_task\_scheduler\_run\_all@{aws\_task\_scheduler\_run\_all}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_run\_all()}{aws\_task\_scheduler\_run\_all()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+scheduler\+\_\+run\+\_\+all (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{uint64\+\_\+t}]{current\+\_\+time }\end{DoxyParamCaption})}
+
+Sequentially execute all tasks scheduled to run at, or before current\+\_\+time. AWS\+\_\+\+TASK\+\_\+\+STATUS\+\_\+\+RUN\+\_\+\+READY will be passed to the task function as the task status.
+
+If a task schedules another task, the new task will not be executed until the next call to this function. \mbox{\Hypertarget{task__scheduler_8h_a78aa62792f380e32dc717649ee698d24}\label{task__scheduler_8h_a78aa62792f380e32dc717649ee698d24}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_schedule\_future@{aws\_task\_scheduler\_schedule\_future}}
+\index{aws\_task\_scheduler\_schedule\_future@{aws\_task\_scheduler\_schedule\_future}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_schedule\_future()}{aws\_task\_scheduler\_schedule\_future()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+future (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t}]{time\+\_\+to\+\_\+run }\end{DoxyParamCaption})}
+
+Schedules a task to run at time\+\_\+to\+\_\+run. The task should not be cleaned up or modified until its function is executed. \mbox{\Hypertarget{task__scheduler_8h_af829b95fb361631a8ff1b1e3a663a81f}\label{task__scheduler_8h_af829b95fb361631a8ff1b1e3a663a81f}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_scheduler\_schedule\_now@{aws\_task\_scheduler\_schedule\_now}}
+\index{aws\_task\_scheduler\_schedule\_now@{aws\_task\_scheduler\_schedule\_now}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_schedule\_now()}{aws\_task\_scheduler\_schedule\_now()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+now (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task }\end{DoxyParamCaption})}
+
+Schedules a task to run immediately. The task should not be cleaned up or modified until its function is executed. \mbox{\Hypertarget{task__scheduler_8h_a0d522273b47afbc25226ffe589909bea}\label{task__scheduler_8h_a0d522273b47afbc25226ffe589909bea}} 
+\index{task\_scheduler.h@{task\_scheduler.h}!aws\_task\_status\_to\_c\_str@{aws\_task\_status\_to\_c\_str}}
+\index{aws\_task\_status\_to\_c\_str@{aws\_task\_status\_to\_c\_str}!task\_scheduler.h@{task\_scheduler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_task\_status\_to\_c\_str()}{aws\_task\_status\_to\_c\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} const char$\ast$ aws\+\_\+task\+\_\+status\+\_\+to\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})}
+
+Convert a status value to a c-\/string suitable for logging 

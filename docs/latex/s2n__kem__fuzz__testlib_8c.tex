@@ -1,0 +1,36 @@
+\hypertarget{s2n__kem__fuzz__testlib_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\+\_\+kem\+\_\+fuzz\+\_\+testlib.c File Reference}
+\label{s2n__kem__fuzz__testlib_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_kem\_fuzz\_testlib.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/testlib/s2n\_kem\_fuzz\_testlib.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tests/testlib/s2n\+\_\+nist\+\_\+kats.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__kem__fuzz__testlib_8c_a0a5aa23739c4441a5bee5bb9d6f4ca28}{s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext\+\_\+fuzz\+\_\+test\+\_\+init}} (const char $\ast$kat\+\_\+file\+\_\+path, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem__fuzz__testlib_8c_a572809525c8d6ede7b2677a020a24b02}{s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext\+\_\+fuzz\+\_\+test}} (const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}}, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem__fuzz__testlib_8c_a595c8a7f7d8b7fae0a6282c265542c5e}{s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key\+\_\+fuzz\+\_\+test}} (const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}}, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__kem__fuzz__testlib_8c_a572809525c8d6ede7b2677a020a24b02}\label{s2n__kem__fuzz__testlib_8c_a572809525c8d6ede7b2677a020a24b02}} 
+\index{s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}!s2n\_kem\_recv\_ciphertext\_fuzz\_test@{s2n\_kem\_recv\_ciphertext\_fuzz\_test}}
+\index{s2n\_kem\_recv\_ciphertext\_fuzz\_test@{s2n\_kem\_recv\_ciphertext\_fuzz\_test}!s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_recv\_ciphertext\_fuzz\_test()}{s2n\_kem\_recv\_ciphertext\_fuzz\_test()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext\+\_\+fuzz\+\_\+test (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__fuzz__testlib_8c_a0a5aa23739c4441a5bee5bb9d6f4ca28}\label{s2n__kem__fuzz__testlib_8c_a0a5aa23739c4441a5bee5bb9d6f4ca28}} 
+\index{s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}!s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init@{s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init}}
+\index{s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init@{s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init}!s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init()}{s2n\_kem\_recv\_ciphertext\_fuzz\_test\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext\+\_\+fuzz\+\_\+test\+\_\+init (\begin{DoxyParamCaption}\item[{const char $\ast$}]{kat\+\_\+file\+\_\+path,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__fuzz__testlib_8c_a595c8a7f7d8b7fae0a6282c265542c5e}\label{s2n__kem__fuzz__testlib_8c_a595c8a7f7d8b7fae0a6282c265542c5e}} 
+\index{s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}!s2n\_kem\_recv\_public\_key\_fuzz\_test@{s2n\_kem\_recv\_public\_key\_fuzz\_test}}
+\index{s2n\_kem\_recv\_public\_key\_fuzz\_test@{s2n\_kem\_recv\_public\_key\_fuzz\_test}!s2n\_kem\_fuzz\_testlib.c@{s2n\_kem\_fuzz\_testlib.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_recv\_public\_key\_fuzz\_test()}{s2n\_kem\_recv\_public\_key\_fuzz\_test()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key\+\_\+fuzz\+\_\+test (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+

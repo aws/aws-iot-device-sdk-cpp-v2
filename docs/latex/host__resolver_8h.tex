@@ -1,0 +1,246 @@
+\hypertarget{host__resolver_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/host\+\_\+resolver.h File Reference}
+\label{host__resolver_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/host\_resolver.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/host\_resolver.h}}
+{\ttfamily \#include $<$aws/common/ref\+\_\+count.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver__vtable}{aws\+\_\+host\+\_\+resolver\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\+\_\+host\+\_\+resolver\+\_\+default\+\_\+options}}
+\item 
+struct \mbox{\hyperlink{structaws__host__listener__options}{aws\+\_\+host\+\_\+listener\+\_\+options}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void() \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}}(struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+typedef int() \mbox{\hyperlink{host__resolver_8h_a185a9321bc3fa33f4334fbbca2016bfb}{aws\+\_\+resolve\+\_\+host\+\_\+implementation\+\_\+fn}}(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$output\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+typedef void() \mbox{\hyperlink{host__resolver_8h_a8f14a0963d0a5b8216c00de6a7ba0468}{aws\+\_\+host\+\_\+listener\+\_\+resolved\+\_\+address\+\_\+fn}}(struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$new\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+typedef void() \mbox{\hyperlink{host__resolver_8h_ae9cad7cebe59c969645752991568d3d8}{aws\+\_\+host\+\_\+listener\+\_\+expired\+\_\+address\+\_\+fn}}(struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$expired\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+typedef void() \mbox{\hyperlink{host__resolver_8h_a3d9d75231229cf40451d67427e2eb3d8}{aws\+\_\+host\+\_\+listener\+\_\+shutdown\+\_\+fn}}(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}} \{ \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a28d39064f0232c4985d923727d8d9c84}{AWS\+\_\+\+ADDRESS\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+A}}
+, \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a7e7c5017a40ad23d4ee408cd5b0ac160}{AWS\+\_\+\+ADDRESS\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+\+AAAA}}
+ \}
+\item 
+enum \mbox{\hyperlink{host__resolver_8h_a993607e363b389f74d43054010ce5ab0}{aws\+\_\+get\+\_\+host\+\_\+address\+\_\+flags}} \{ \mbox{\hyperlink{host__resolver_8h_a993607e363b389f74d43054010ce5ab0afd88a10e9ade3fd85327e9837071a99e}{AWS\+\_\+\+GET\+\_\+\+HOST\+\_\+\+ADDRESS\+\_\+\+COUNT\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+A}} = 0x00000001
+, \mbox{\hyperlink{host__resolver_8h_a993607e363b389f74d43054010ce5ab0acf01cd2e99744b3cda71b18dabfd0c85}{AWS\+\_\+\+GET\+\_\+\+HOST\+\_\+\+ADDRESS\+\_\+\+COUNT\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+\+AAAA}} = 0x00000002
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_a82b5d592aa41f22419d7e4f1b91d3260}{aws\+\_\+host\+\_\+address\+\_\+copy}} (const struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$from, struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$to)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{host__resolver_8h_aa3cf1ad894f2f4d7756ce97883903c37}{aws\+\_\+host\+\_\+address\+\_\+move}} (struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$from, struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$to)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{host__resolver_8h_a58b427c37bc775ebae5322b9bf1e0b3d}{aws\+\_\+host\+\_\+address\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$address)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_ab36ae8540e8e3d2655be0cee0a92521e}{aws\+\_\+default\+\_\+dns\+\_\+resolve}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$output\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{host__resolver_8h_a9405ac7cdf6e7020ce853ea0ce000cbf}{aws\+\_\+host\+\_\+resolver\+\_\+new\+\_\+default}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\+\_\+host\+\_\+resolver\+\_\+default\+\_\+options}} $\ast$options)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{host__resolver_8h_ab65ffc8f94135a6f99806e05c18e2892}{aws\+\_\+host\+\_\+resolver\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{host__resolver_8h_a230a320b00320975ca8d01b1e51f5d07}{aws\+\_\+host\+\_\+resolver\+\_\+release}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_a85019ad28e1f414b624d167664c2ef21}{aws\+\_\+host\+\_\+resolver\+\_\+resolve\+\_\+host}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_ad8a9f19466f76d2af80d1dce076f9b03}{aws\+\_\+host\+\_\+resolver\+\_\+record\+\_\+connection\+\_\+failure}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$address)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_a657bc2cbe187e3ada0c15e95430b5628}{aws\+\_\+host\+\_\+resolver\+\_\+purge\+\_\+cache}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{host__resolver_8h_a2fdc360ba268b5a2ace7f3a1a54aa3af}{aws\+\_\+host\+\_\+resolver\+\_\+get\+\_\+host\+\_\+address\+\_\+count}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, uint32\+\_\+t flags)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct aws\+\_\+host\+\_\+listener $\ast$ \mbox{\hyperlink{host__resolver_8h_a5e76ffed78b14458a78a06dc83c9e766}{aws\+\_\+host\+\_\+resolver\+\_\+add\+\_\+host\+\_\+listener}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__host__listener__options}{aws\+\_\+host\+\_\+listener\+\_\+options}} $\ast$options)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{host__resolver_8h_a6c1b75426207158767a8af1d909f6e5a}{aws\+\_\+host\+\_\+resolver\+\_\+remove\+\_\+host\+\_\+listener}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, struct aws\+\_\+host\+\_\+listener $\ast$listener)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{host__resolver_8h_ae9cad7cebe59c969645752991568d3d8}\label{host__resolver_8h_ae9cad7cebe59c969645752991568d3d8}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_listener\_expired\_address\_fn@{aws\_host\_listener\_expired\_address\_fn}}
+\index{aws\_host\_listener\_expired\_address\_fn@{aws\_host\_listener\_expired\_address\_fn}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_listener\_expired\_address\_fn}{aws\_host\_listener\_expired\_address\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+host\+\_\+listener\+\_\+expired\+\_\+address\+\_\+fn( struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$expired\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{host__resolver_8h_a8f14a0963d0a5b8216c00de6a7ba0468}\label{host__resolver_8h_a8f14a0963d0a5b8216c00de6a7ba0468}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_listener\_resolved\_address\_fn@{aws\_host\_listener\_resolved\_address\_fn}}
+\index{aws\_host\_listener\_resolved\_address\_fn@{aws\_host\_listener\_resolved\_address\_fn}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_listener\_resolved\_address\_fn}{aws\_host\_listener\_resolved\_address\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+host\+\_\+listener\+\_\+resolved\+\_\+address\+\_\+fn( struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$new\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{host__resolver_8h_a3d9d75231229cf40451d67427e2eb3d8}\label{host__resolver_8h_a3d9d75231229cf40451d67427e2eb3d8}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_listener\_shutdown\_fn@{aws\_host\_listener\_shutdown\_fn}}
+\index{aws\_host\_listener\_shutdown\_fn@{aws\_host\_listener\_shutdown\_fn}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_listener\_shutdown\_fn}{aws\_host\_listener\_shutdown\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+host\+\_\+listener\+\_\+shutdown\+\_\+fn(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}\label{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_on\_host\_resolved\_result\_fn@{aws\_on\_host\_resolved\_result\_fn}}
+\index{aws\_on\_host\_resolved\_result\_fn@{aws\_on\_host\_resolved\_result\_fn}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_on\_host\_resolved\_result\_fn}{aws\_on\_host\_resolved\_result\_fn}}
+{\footnotesize\ttfamily typedef void() aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn(struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+Invoked once an address has been resolved for host. The type in host\+\_\+addresses is struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} (by-\/value). The caller does not own this memory and you must copy the host address before returning from this function if you plan to use it later. For convenience, we\textquotesingle{}ve provided the \mbox{\hyperlink{host__resolver_8h_a82b5d592aa41f22419d7e4f1b91d3260}{aws\+\_\+host\+\_\+address\+\_\+copy()}} and \mbox{\hyperlink{host__resolver_8h_a58b427c37bc775ebae5322b9bf1e0b3d}{aws\+\_\+host\+\_\+address\+\_\+clean\+\_\+up()}} functions. \mbox{\Hypertarget{host__resolver_8h_a185a9321bc3fa33f4334fbbca2016bfb}\label{host__resolver_8h_a185a9321bc3fa33f4334fbbca2016bfb}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_resolve\_host\_implementation\_fn@{aws\_resolve\_host\_implementation\_fn}}
+\index{aws\_resolve\_host\_implementation\_fn@{aws\_resolve\_host\_implementation\_fn}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_resolve\_host\_implementation\_fn}{aws\_resolve\_host\_implementation\_fn}}
+{\footnotesize\ttfamily typedef int() aws\+\_\+resolve\+\_\+host\+\_\+implementation\+\_\+fn(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$output\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+Function signature for configuring your own resolver (the default just uses getaddrinfo()). The type in output\+\_\+addresses is struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} (by-\/value). We assume this function blocks, hence this absurdly complicated design. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}\label{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_address\_record\_type@{aws\_address\_record\_type}}
+\index{aws\_address\_record\_type@{aws\_address\_record\_type}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_address\_record\_type}{aws\_address\_record\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ADDRESS\_RECORD\_TYPE\_A@{AWS\_ADDRESS\_RECORD\_TYPE\_A}!host\_resolver.h@{host\_resolver.h}}\index{host\_resolver.h@{host\_resolver.h}!AWS\_ADDRESS\_RECORD\_TYPE\_A@{AWS\_ADDRESS\_RECORD\_TYPE\_A}}}\mbox{\Hypertarget{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a28d39064f0232c4985d923727d8d9c84}\label{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a28d39064f0232c4985d923727d8d9c84}} 
+AWS\+\_\+\+ADDRESS\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ADDRESS\_RECORD\_TYPE\_AAAA@{AWS\_ADDRESS\_RECORD\_TYPE\_AAAA}!host\_resolver.h@{host\_resolver.h}}\index{host\_resolver.h@{host\_resolver.h}!AWS\_ADDRESS\_RECORD\_TYPE\_AAAA@{AWS\_ADDRESS\_RECORD\_TYPE\_AAAA}}}\mbox{\Hypertarget{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a7e7c5017a40ad23d4ee408cd5b0ac160}\label{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8a7e7c5017a40ad23d4ee408cd5b0ac160}} 
+AWS\+\_\+\+ADDRESS\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+\+AAAA&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{host__resolver_8h_a993607e363b389f74d43054010ce5ab0}\label{host__resolver_8h_a993607e363b389f74d43054010ce5ab0}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_get\_host\_address\_flags@{aws\_get\_host\_address\_flags}}
+\index{aws\_get\_host\_address\_flags@{aws\_get\_host\_address\_flags}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_host\_address\_flags}{aws\_get\_host\_address\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{host__resolver_8h_a993607e363b389f74d43054010ce5ab0}{aws\+\_\+get\+\_\+host\+\_\+address\+\_\+flags}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_A@{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_A}!host\_resolver.h@{host\_resolver.h}}\index{host\_resolver.h@{host\_resolver.h}!AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_A@{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_A}}}\mbox{\Hypertarget{host__resolver_8h_a993607e363b389f74d43054010ce5ab0afd88a10e9ade3fd85327e9837071a99e}\label{host__resolver_8h_a993607e363b389f74d43054010ce5ab0afd88a10e9ade3fd85327e9837071a99e}} 
+AWS\+\_\+\+GET\+\_\+\+HOST\+\_\+\+ADDRESS\+\_\+\+COUNT\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_AAAA@{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_AAAA}!host\_resolver.h@{host\_resolver.h}}\index{host\_resolver.h@{host\_resolver.h}!AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_AAAA@{AWS\_GET\_HOST\_ADDRESS\_COUNT\_RECORD\_TYPE\_AAAA}}}\mbox{\Hypertarget{host__resolver_8h_a993607e363b389f74d43054010ce5ab0acf01cd2e99744b3cda71b18dabfd0c85}\label{host__resolver_8h_a993607e363b389f74d43054010ce5ab0acf01cd2e99744b3cda71b18dabfd0c85}} 
+AWS\+\_\+\+GET\+\_\+\+HOST\+\_\+\+ADDRESS\+\_\+\+COUNT\+\_\+\+RECORD\+\_\+\+TYPE\+\_\+\+AAAA&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{host__resolver_8h_ab36ae8540e8e3d2655be0cee0a92521e}\label{host__resolver_8h_ab36ae8540e8e3d2655be0cee0a92521e}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_default\_dns\_resolve@{aws\_default\_dns\_resolve}}
+\index{aws\_default\_dns\_resolve@{aws\_default\_dns\_resolve}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_default\_dns\_resolve()}{aws\_default\_dns\_resolve()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+default\+\_\+dns\+\_\+resolve (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{output\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+WARNING! do not call this function directly (getaddrinfo())\+: it blocks. Provide a pointer to this function for other resolution functions.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{host__resolver_8h_a58b427c37bc775ebae5322b9bf1e0b3d}\label{host__resolver_8h_a58b427c37bc775ebae5322b9bf1e0b3d}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_address\_clean\_up@{aws\_host\_address\_clean\_up}}
+\index{aws\_host\_address\_clean\_up@{aws\_host\_address\_clean\_up}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_address\_clean\_up()}{aws\_host\_address\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+host\+\_\+address\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{address }\end{DoxyParamCaption})}
+
+Cleans up the memory for {\ttfamily address} \mbox{\Hypertarget{host__resolver_8h_a82b5d592aa41f22419d7e4f1b91d3260}\label{host__resolver_8h_a82b5d592aa41f22419d7e4f1b91d3260}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_address\_copy@{aws\_host\_address\_copy}}
+\index{aws\_host\_address\_copy@{aws\_host\_address\_copy}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_address\_copy()}{aws\_host\_address\_copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+host\+\_\+address\+\_\+copy (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{from,  }\item[{struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{to }\end{DoxyParamCaption})}
+
+Copies {\ttfamily from} to {\ttfamily to}. \mbox{\Hypertarget{host__resolver_8h_aa3cf1ad894f2f4d7756ce97883903c37}\label{host__resolver_8h_aa3cf1ad894f2f4d7756ce97883903c37}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_address\_move@{aws\_host\_address\_move}}
+\index{aws\_host\_address\_move@{aws\_host\_address\_move}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_address\_move()}{aws\_host\_address\_move()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+host\+\_\+address\+\_\+move (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{from,  }\item[{struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{to }\end{DoxyParamCaption})}
+
+Moves {\ttfamily from} to {\ttfamily to}. After this call, from is no longer usable. Though, it could be resused for another move or copy operation. \mbox{\Hypertarget{host__resolver_8h_ab65ffc8f94135a6f99806e05c18e2892}\label{host__resolver_8h_ab65ffc8f94135a6f99806e05c18e2892}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_acquire@{aws\_host\_resolver\_acquire}}
+\index{aws\_host\_resolver\_acquire@{aws\_host\_resolver\_acquire}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_acquire()}{aws\_host\_resolver\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ aws\+\_\+host\+\_\+resolver\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver }\end{DoxyParamCaption})}
+
+Increments the reference count on the host resolver, allowing the caller to take a reference to it.
+
+Returns the same host resolver passed in. \mbox{\Hypertarget{host__resolver_8h_a5e76ffed78b14458a78a06dc83c9e766}\label{host__resolver_8h_a5e76ffed78b14458a78a06dc83c9e766}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_add\_host\_listener@{aws\_host\_resolver\_add\_host\_listener}}
+\index{aws\_host\_resolver\_add\_host\_listener@{aws\_host\_resolver\_add\_host\_listener}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_add\_host\_listener()}{aws\_host\_resolver\_add\_host\_listener()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct aws\+\_\+host\+\_\+listener$\ast$ aws\+\_\+host\+\_\+resolver\+\_\+add\+\_\+host\+\_\+listener (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__host__listener__options}{aws\+\_\+host\+\_\+listener\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{host__resolver_8h_a2fdc360ba268b5a2ace7f3a1a54aa3af}\label{host__resolver_8h_a2fdc360ba268b5a2ace7f3a1a54aa3af}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_get\_host\_address\_count@{aws\_host\_resolver\_get\_host\_address\_count}}
+\index{aws\_host\_resolver\_get\_host\_address\_count@{aws\_host\_resolver\_get\_host\_address\_count}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_get\_host\_address\_count()}{aws\_host\_resolver\_get\_host\_address\_count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} size\+\_\+t aws\+\_\+host\+\_\+resolver\+\_\+get\+\_\+host\+\_\+address\+\_\+count (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{uint32\+\_\+t}]{flags }\end{DoxyParamCaption})}
+
+get number of addresses for a given host. \mbox{\Hypertarget{host__resolver_8h_a9405ac7cdf6e7020ce853ea0ce000cbf}\label{host__resolver_8h_a9405ac7cdf6e7020ce853ea0ce000cbf}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_new\_default@{aws\_host\_resolver\_new\_default}}
+\index{aws\_host\_resolver\_new\_default@{aws\_host\_resolver\_new\_default}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_new\_default()}{aws\_host\_resolver\_new\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ aws\+\_\+host\+\_\+resolver\+\_\+new\+\_\+default (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\+\_\+host\+\_\+resolver\+\_\+default\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Creates a host resolver with the default behavior. Here\textquotesingle{}s the behavior\+:
+
+Since there\textquotesingle{}s not a reliable way to do non-\/blocking DNS without a ton of risky work that would need years of testing on every Unix system in existence, we work around it by doing a threaded implementation.
+
+When you request an address, it checks the cache. If the entry isn\textquotesingle{}t in the cache it creates a new one. Each entry has a potentially short lived back-\/ground thread based on ttl for the records. Once we\textquotesingle{}ve populated the cache and you keep the resolver active, the resolution callback will be invoked immediately. When it\textquotesingle{}s idle, it will take a little while in the background thread to fetch more, evaluate TTLs etc... In that case your callback will be invoked from the background thread.
+
+\DoxyHorRuler{0}
+
+
+A few things to note about TTLs and connection failures.
+
+We attempt to honor your max ttl but will not honor it if dns queries are failing or all of your connections are marked as failed. Once we are able to query dns again, we will re-\/evaluate the TTLs.
+
+Upon notification connection failures, we move them to a separate list. Eventually we retry them when it\textquotesingle{}s likely that the endpoint is healthy again or we don\textquotesingle{}t really have another choice, but we try to keep them out of your hot path.
+
+\DoxyHorRuler{0}
+
+
+Finally, this entire design attempts to prevent problems where developers have to choose between large TTLs and thus sticky hosts or short TTLs and good fleet utilization but now higher latencies. In this design, we resolve every second in the background (only while you\textquotesingle{}re actually using the record), but we do not expire the earlier resolved addresses until max ttl has passed.
+
+This for example, should enable you to hit thousands of hosts in the Amazon S3 fleet instead of just one or two. \mbox{\Hypertarget{host__resolver_8h_a657bc2cbe187e3ada0c15e95430b5628}\label{host__resolver_8h_a657bc2cbe187e3ada0c15e95430b5628}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_purge\_cache@{aws\_host\_resolver\_purge\_cache}}
+\index{aws\_host\_resolver\_purge\_cache@{aws\_host\_resolver\_purge\_cache}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_purge\_cache()}{aws\_host\_resolver\_purge\_cache()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+host\+\_\+resolver\+\_\+purge\+\_\+cache (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver }\end{DoxyParamCaption})}
+
+calls purge\+\_\+cache on the vtable. \mbox{\Hypertarget{host__resolver_8h_ad8a9f19466f76d2af80d1dce076f9b03}\label{host__resolver_8h_ad8a9f19466f76d2af80d1dce076f9b03}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_record\_connection\_failure@{aws\_host\_resolver\_record\_connection\_failure}}
+\index{aws\_host\_resolver\_record\_connection\_failure@{aws\_host\_resolver\_record\_connection\_failure}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_record\_connection\_failure()}{aws\_host\_resolver\_record\_connection\_failure()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+host\+\_\+resolver\+\_\+record\+\_\+connection\+\_\+failure (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$}]{address }\end{DoxyParamCaption})}
+
+calls record\+\_\+connection\+\_\+failure on the vtable. \mbox{\Hypertarget{host__resolver_8h_a230a320b00320975ca8d01b1e51f5d07}\label{host__resolver_8h_a230a320b00320975ca8d01b1e51f5d07}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_release@{aws\_host\_resolver\_release}}
+\index{aws\_host\_resolver\_release@{aws\_host\_resolver\_release}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_release()}{aws\_host\_resolver\_release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+host\+\_\+resolver\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver }\end{DoxyParamCaption})}
+
+Decrements a host resolver\textquotesingle{}s ref count. When the ref count drops to zero, the resolver will be destroyed. \mbox{\Hypertarget{host__resolver_8h_a6c1b75426207158767a8af1d909f6e5a}\label{host__resolver_8h_a6c1b75426207158767a8af1d909f6e5a}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_remove\_host\_listener@{aws\_host\_resolver\_remove\_host\_listener}}
+\index{aws\_host\_resolver\_remove\_host\_listener@{aws\_host\_resolver\_remove\_host\_listener}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_remove\_host\_listener()}{aws\_host\_resolver\_remove\_host\_listener()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+host\+\_\+resolver\+\_\+remove\+\_\+host\+\_\+listener (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{struct aws\+\_\+host\+\_\+listener $\ast$}]{listener }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{host__resolver_8h_a85019ad28e1f414b624d167664c2ef21}\label{host__resolver_8h_a85019ad28e1f414b624d167664c2ef21}} 
+\index{host\_resolver.h@{host\_resolver.h}!aws\_host\_resolver\_resolve\_host@{aws\_host\_resolver\_resolve\_host}}
+\index{aws\_host\_resolver\_resolve\_host@{aws\_host\_resolver\_resolve\_host}!host\_resolver.h@{host\_resolver.h}}
+\doxysubsubsection{\texorpdfstring{aws\_host\_resolver\_resolve\_host()}{aws\_host\_resolver\_resolve\_host()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+host\+\_\+resolver\+\_\+resolve\+\_\+host (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{\mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$}]{res,  }\item[{struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$}]{config,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+calls resolve\+\_\+host on the vtable. config will be copied. 

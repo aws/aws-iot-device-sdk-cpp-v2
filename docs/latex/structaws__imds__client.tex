@@ -1,0 +1,109 @@
+\hypertarget{structaws__imds__client}{}\doxysection{aws\+\_\+imds\+\_\+client Struct Reference}
+\label{structaws__imds__client}\index{aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__imds__client_ac79853e13ae0f9d50791ffe94ae93522}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{structaws__imds__client_a1a9d53093d56cfbda0dbebe0a3f04779}{connection\+\_\+manager}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$ \mbox{\hyperlink{structaws__imds__client_ad43db9a076e41940c2fed9534266c4a3}{retry\+\_\+strategy}}
+\item 
+struct aws\+\_\+auth\+\_\+http\+\_\+system\+\_\+vtable $\ast$ \mbox{\hyperlink{structaws__imds__client_a7055f0780febeb5fcaaded87c7eeba52}{function\+\_\+table}}
+\item 
+struct \mbox{\hyperlink{structaws__imds__client__shutdown__options}{aws\+\_\+imds\+\_\+client\+\_\+shutdown\+\_\+options}} \mbox{\hyperlink{structaws__imds__client_af6ebffefcb308656b2a0919546ee9bcf}{shutdown\+\_\+options}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__imds__client_aacbca4536d7bd5ee47468ef83cef9de3}{token\+\_\+required}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__imds__client_ac1a3e40993929954f88351215586ad17}{cached\+\_\+token}}
+\item 
+enum \mbox{\hyperlink{aws__imds__client_8c_ab1de8ff5c148a4156bcaf664cfebbb64}{imds\+\_\+token\+\_\+state}} \mbox{\hyperlink{structaws__imds__client_a898a85bef23bbd2edabf2570d733cee2}{token\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__imds__client_a4a44d04eae6b03e13e42120fbe816944}{pending\+\_\+queries}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structaws__imds__client_a9932127d6ca906a7b31f9257ef1713d3}{token\+\_\+lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structaws__imds__client_afb7f4ababf570456ad1368da6bb53a3d}{token\+\_\+signal}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__imds__client_a8384444f8a5be532270104480689ffe6}{ref\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__imds__client_ac79853e13ae0f9d50791ffe94ae93522}\label{structaws__imds__client_ac79853e13ae0f9d50791ffe94ae93522}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+imds\+\_\+client\+::allocator}
+
+\mbox{\Hypertarget{structaws__imds__client_ac1a3e40993929954f88351215586ad17}\label{structaws__imds__client_ac1a3e40993929954f88351215586ad17}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!cached\_token@{cached\_token}}
+\index{cached\_token@{cached\_token}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{cached\_token}{cached\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+imds\+\_\+client\+::cached\+\_\+token}
+
+\mbox{\Hypertarget{structaws__imds__client_a1a9d53093d56cfbda0dbebe0a3f04779}\label{structaws__imds__client_a1a9d53093d56cfbda0dbebe0a3f04779}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!connection\_manager@{connection\_manager}}
+\index{connection\_manager@{connection\_manager}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{connection\_manager}{connection\_manager}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}}$\ast$ aws\+\_\+imds\+\_\+client\+::connection\+\_\+manager}
+
+\mbox{\Hypertarget{structaws__imds__client_a7055f0780febeb5fcaaded87c7eeba52}\label{structaws__imds__client_a7055f0780febeb5fcaaded87c7eeba52}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!function\_table@{function\_table}}
+\index{function\_table@{function\_table}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{function\_table}{function\_table}}
+{\footnotesize\ttfamily struct aws\+\_\+auth\+\_\+http\+\_\+system\+\_\+vtable$\ast$ aws\+\_\+imds\+\_\+client\+::function\+\_\+table}
+
+\mbox{\Hypertarget{structaws__imds__client_a4a44d04eae6b03e13e42120fbe816944}\label{structaws__imds__client_a4a44d04eae6b03e13e42120fbe816944}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!pending\_queries@{pending\_queries}}
+\index{pending\_queries@{pending\_queries}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{pending\_queries}{pending\_queries}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+imds\+\_\+client\+::pending\+\_\+queries}
+
+\mbox{\Hypertarget{structaws__imds__client_a8384444f8a5be532270104480689ffe6}\label{structaws__imds__client_a8384444f8a5be532270104480689ffe6}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+imds\+\_\+client\+::ref\+\_\+count}
+
+\mbox{\Hypertarget{structaws__imds__client_ad43db9a076e41940c2fed9534266c4a3}\label{structaws__imds__client_ad43db9a076e41940c2fed9534266c4a3}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!retry\_strategy@{retry\_strategy}}
+\index{retry\_strategy@{retry\_strategy}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{retry\_strategy}{retry\_strategy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}}$\ast$ aws\+\_\+imds\+\_\+client\+::retry\+\_\+strategy}
+
+\mbox{\Hypertarget{structaws__imds__client_af6ebffefcb308656b2a0919546ee9bcf}\label{structaws__imds__client_af6ebffefcb308656b2a0919546ee9bcf}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!shutdown\_options@{shutdown\_options}}
+\index{shutdown\_options@{shutdown\_options}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{shutdown\_options}{shutdown\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__imds__client__shutdown__options}{aws\+\_\+imds\+\_\+client\+\_\+shutdown\+\_\+options}} aws\+\_\+imds\+\_\+client\+::shutdown\+\_\+options}
+
+\mbox{\Hypertarget{structaws__imds__client_a9932127d6ca906a7b31f9257ef1713d3}\label{structaws__imds__client_a9932127d6ca906a7b31f9257ef1713d3}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!token\_lock@{token\_lock}}
+\index{token\_lock@{token\_lock}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{token\_lock}{token\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+imds\+\_\+client\+::token\+\_\+lock}
+
+\mbox{\Hypertarget{structaws__imds__client_aacbca4536d7bd5ee47468ef83cef9de3}\label{structaws__imds__client_aacbca4536d7bd5ee47468ef83cef9de3}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!token\_required@{token\_required}}
+\index{token\_required@{token\_required}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{token\_required}{token\_required}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+imds\+\_\+client\+::token\+\_\+required}
+
+\mbox{\Hypertarget{structaws__imds__client_afb7f4ababf570456ad1368da6bb53a3d}\label{structaws__imds__client_afb7f4ababf570456ad1368da6bb53a3d}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!token\_signal@{token\_signal}}
+\index{token\_signal@{token\_signal}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{token\_signal}{token\_signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} aws\+\_\+imds\+\_\+client\+::token\+\_\+signal}
+
+\mbox{\Hypertarget{structaws__imds__client_a898a85bef23bbd2edabf2570d733cee2}\label{structaws__imds__client_a898a85bef23bbd2edabf2570d733cee2}} 
+\index{aws\_imds\_client@{aws\_imds\_client}!token\_state@{token\_state}}
+\index{token\_state@{token\_state}!aws\_imds\_client@{aws\_imds\_client}}
+\doxysubsubsection{\texorpdfstring{token\_state}{token\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{aws__imds__client_8c_ab1de8ff5c148a4156bcaf664cfebbb64}{imds\+\_\+token\+\_\+state}} aws\+\_\+imds\+\_\+client\+::token\+\_\+state}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/\mbox{\hyperlink{aws__imds__client_8c}{aws\+\_\+imds\+\_\+client.\+c}}\end{DoxyCompactItemize}

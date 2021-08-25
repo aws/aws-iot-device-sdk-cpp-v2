@@ -1,0 +1,92 @@
+\hypertarget{s2n__ecc__evp_8h_source}{}\doxysection{s2n\+\_\+ecc\+\_\+evp.\+h}
+\label{s2n__ecc__evp_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_ecc\_evp.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_ecc\_evp.h}}
+\mbox{\hyperlink{s2n__ecc__evp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{evp_8h}{openssl/evp.h}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{crypto_2s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__kex__data_8h}{tls/s2n\_kex\_data.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__stuffer_8h}{stuffer/s2n\_stuffer.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__tls__parameters_8h}{tls/s2n\_tls\_parameters.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}utils/s2n\_safety.h"{}}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/* Share sizes are described here: https://tools.ietf.org/html/rfc8446\#section-\/4.2.8.2}}
+\DoxyCodeLine{27 \textcolor{comment}{ * and include the extra "{}legacy\_form"{} byte */}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define SECP256R1\_SHARE\_SIZE ((32 * 2 ) + 1)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define SECP384R1\_SHARE\_SIZE ((48 * 2 ) + 1)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define X25519\_SHARE\_SIZE (32)}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} \{}
+\DoxyCodeLine{33     \textcolor{comment}{/* See https://www.iana.org/assignments/tls-\/parameters/tls-\/parameters.xhtml\#tls-\/parameters-\/8 */}}
+\DoxyCodeLine{34     uint16\_t \mbox{\hyperlink{structs2n__ecc__named__curve_aaf305a80afda7f282a481ecb1de4b4da}{iana\_id}};}
+\DoxyCodeLine{35     \textcolor{comment}{/* See nid\_list in openssl/ssl/t1\_lib.c */}}
+\DoxyCodeLine{36     \textcolor{keywordtype}{int} \mbox{\hyperlink{structs2n__ecc__named__curve_ab89758a0891ae03367aeea8d4599a180}{libcrypto\_nid}};}
+\DoxyCodeLine{37     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structs2n__ecc__named__curve_a69ae3b95512d48bba01d515246f9339a}{name}};}
+\DoxyCodeLine{38     \textcolor{keyword}{const} uint8\_t \mbox{\hyperlink{structs2n__ecc__named__curve_a0dd629dff1dc7894b928a11dc0434956}{share\_size}};}
+\DoxyCodeLine{39 \};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} \mbox{\hyperlink{s2n__ecc__evp_8h_ad6e69e1fb86cdf5fb7019742fd964c7d}{s2n\_ecc\_curve\_secp256r1}};}
+\DoxyCodeLine{42 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} \mbox{\hyperlink{s2n__ecc__evp_8h_ab9082ff7afece5f44d1f2fade1eb9558}{s2n\_ecc\_curve\_secp384r1}};}
+\DoxyCodeLine{43 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} \mbox{\hyperlink{s2n__ecc__evp_8h_a1ec6ef037e397f29a45b5e52dfde6440}{s2n\_ecc\_curve\_x25519}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/* BoringSSL only supports using EVP\_PKEY\_X25519 with "{}modern"{} EC EVP APIs. BoringSSL has a note to possibly add this in}}
+\DoxyCodeLine{46 \textcolor{comment}{ * the future. See https://github.com/google/boringssl/blob/master/crypto/evp/p\_x25519\_asn1.c\#L233}}
+\DoxyCodeLine{47 \textcolor{comment}{ */}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#if S2N\_OPENSSL\_VERSION\_AT\_LEAST(1, 1, 0) \&\& !defined(LIBRESSL\_VERSION\_NUMBER) \&\& !defined(OPENSSL\_IS\_BORINGSSL)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{    \#define EVP\_APIS\_SUPPORTED 1}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{    \#define S2N\_ECC\_EVP\_SUPPORTED\_CURVES\_COUNT 3}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{    \#define EVP\_APIS\_SUPPORTED 0}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{    \#define S2N\_ECC\_EVP\_SUPPORTED\_CURVES\_COUNT 2}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} *\textcolor{keyword}{const} \mbox{\hyperlink{s2n__ecc__evp_8h_a9b191cf309eafc3ae2c52655b4f75c45}{s2n\_all\_supported\_curves\_list}}[];}
+\DoxyCodeLine{57 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{s2n__ecc__evp_8h_aee1f66cebdcaad96b8189621319662d5}{s2n\_all\_supported\_curves\_list\_len}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} \{}
+\DoxyCodeLine{60     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} *\mbox{\hyperlink{structs2n__ecc__evp__params_a49dfe1a2c44bc694bf8948b2741298d0}{negotiated\_curve}};}
+\DoxyCodeLine{61     \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\_PKEY}} *\mbox{\hyperlink{structs2n__ecc__evp__params_af39decacffee517d4e1e161cc5c14097}{evp\_pkey}};}
+\DoxyCodeLine{62 \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_ae42a9376615e668d0850625aa905eae7}{s2n\_ecc\_evp\_generate\_ephemeral\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params);}
+\DoxyCodeLine{65 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a2a81f525d947d44415741bcd54e5db04}{s2n\_ecc\_evp\_compute\_shared\_secret\_from\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *private\_ecc\_evp\_params,}
+\DoxyCodeLine{66                                                   \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *public\_ecc\_evp\_params,}
+\DoxyCodeLine{67                                                   \textcolor{keyword}{struct} s2n\_blob *shared\_key);}
+\DoxyCodeLine{68 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a25ba911fb1342ff73561f42e2eba1f27}{s2n\_ecc\_evp\_write\_params\_point}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *out);}
+\DoxyCodeLine{69 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a48330668433cd122b67a8fe1668a7162}{s2n\_ecc\_evp\_read\_params\_point}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *in, \textcolor{keywordtype}{int} point\_size, \textcolor{keyword}{struct} s2n\_blob *point\_blob);}
+\DoxyCodeLine{70 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a2a81f525d947d44415741bcd54e5db04}{s2n\_ecc\_evp\_compute\_shared\_secret\_from\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *private\_ecc\_evp\_params,}
+\DoxyCodeLine{71                                                   \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *public\_ecc\_evp\_params,}
+\DoxyCodeLine{72                                                   \textcolor{keyword}{struct} s2n\_blob *shared\_key);}
+\DoxyCodeLine{73 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a499e62436e8926491061b375223348c8}{s2n\_ecc\_evp\_compute\_shared\_secret\_as\_server}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *server\_ecc\_evp\_params, }
+\DoxyCodeLine{74                                             \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *Yc\_in, \textcolor{keyword}{struct} s2n\_blob *shared\_key);}
+\DoxyCodeLine{75 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_aa555d7924bc7b8ea1de2ac5682c67de9}{s2n\_ecc\_evp\_compute\_shared\_secret\_as\_client}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *server\_ecc\_evp\_params, }
+\DoxyCodeLine{76                                             \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *Yc\_out, \textcolor{keyword}{struct} s2n\_blob *shared\_key); }
+\DoxyCodeLine{77 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a37e7af9d418f4e5d66d81fc38e92a463}{s2n\_ecc\_evp\_parse\_params\_point}}(\textcolor{keyword}{struct} s2n\_blob *point\_blob, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params);}
+\DoxyCodeLine{78 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_ac7403a0bc09dc8e021b19719716f7c89}{s2n\_ecc\_evp\_write\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *out,}
+\DoxyCodeLine{79                              \textcolor{keyword}{struct} s2n\_blob *written);}
+\DoxyCodeLine{80 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_af2611c7c05824cdb5167e1976080fd3f}{s2n\_ecc\_evp\_read\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *in, \textcolor{keyword}{struct} s2n\_blob *data\_to\_verify,}
+\DoxyCodeLine{81                             \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecdhe__raw__server__params}{s2n\_ecdhe\_raw\_server\_params}} *raw\_server\_ecc\_params);}
+\DoxyCodeLine{82 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_aa0405f5c42e1cce13b37329ce2e8ac67}{s2n\_ecc\_evp\_parse\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecdhe__raw__server__params}{s2n\_ecdhe\_raw\_server\_params}} *raw\_server\_ecc\_params,}
+\DoxyCodeLine{83                              \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params);}
+\DoxyCodeLine{84 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a5375f6fd92360a9806916e422c38cdc5}{s2n\_ecc\_evp\_find\_supported\_curve}}(\textcolor{keyword}{struct} s2n\_blob *iana\_ids, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\_ecc\_named\_curve}} **found);}
+\DoxyCodeLine{85 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_a1886a16385de7053ad886b7adee3ea68}{s2n\_ecc\_evp\_params\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\_ecc\_evp\_params}} *ecc\_evp\_params);}
+\DoxyCodeLine{86 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__ecc__evp_8h_abce45989e8b921f36e6b4c7ee98fe2b5}{s2n\_is\_evp\_apis\_supported}}();}
+
+\end{DoxyCode}

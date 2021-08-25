@@ -1,0 +1,46 @@
+This directory gives the specification and annotated source-\/code implementation of the Linux epoll event loop implementation of C-\/\+IO. See {\ttfamily \mbox{\hyperlink{epoll__event__loop__proof_8md}{docs/epoll\+\_\+event\+\_\+loop\+\_\+proof.\+md}}} for an overview of the properties proven, assumptions and simplifications.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md293}{}\doxysection{Reading the proofs}\label{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md293}
+The majority of the specification is given in the header file {\ttfamily \mbox{\hyperlink{preamble_8h}{preamble.\+h}}}, which specifies a contract (preconditions and postconditions) for each implementation function.
+
+The proofs themselves are the source code of the Linux epoll event loop implementation with VCC annotations embedded alongside to guide VCC. We split the event loop functions over the following files\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{cancel__task_8c}{cancel\+\_\+task.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{is__on__callers__thread_8c}{is\+\_\+on\+\_\+callers\+\_\+thread.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{lifecycle_8c}{lifecycle.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{main__loop_8c}{main\+\_\+loop.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{new__destroy_8c}{new\+\_\+destroy.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{process__task__pre__queue_8c}{process\+\_\+task\+\_\+pre\+\_\+queue.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{schedule_8c}{schedule.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{subscribe_8c}{subscribe.\+c}}}
+\item {\ttfamily \mbox{\hyperlink{unsubscribe_8c}{unsubscribe.\+c}}}
+\end{DoxyItemize}
+
+Additionally, the file {\ttfamily client.\+c} shows some simple uses of the event loop API, demonstrating that the specifications can be used together in a meaningful way.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md294}{}\doxysection{Running proof regression}\label{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md294}
+The following will check all proofs assuming VCC and make are on your path. For obtaining VCC, see the next section on building VCC in a Windows docker container. \begin{DoxyVerb}    $ make
+\end{DoxyVerb}
+ \hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md295}{}\doxysection{VCC docker container}\label{md_crt_aws_crt_cpp_crt_aws_c_io_tests_vcc__r_e_a_d_m_e_autotoc_md295}
+I\textquotesingle{}ve tested the following on Windows 10 1809 with Docker Desktop 2.\+2.\+03.
+
+
+\begin{DoxyEnumerate}
+\item Make sure that docker is running with Windows containers. Another good sanity check is to ensure {\ttfamily docker run hello-\/world} works as expected.
+\item Build the image (this takes about 30 minutes) \begin{DoxyVerb} docker build -t vcc docker-images/win10-vs2012/
+\end{DoxyVerb}
+
+\item Run an interactive powershell in a container \begin{DoxyVerb} docker run -it vcc powershell
+\end{DoxyVerb}
+
+\item Inside the container check VCC works \begin{DoxyVerb} vcc "C:\vcc\vcc\Test\testsuite\examples3\ArrayList.c"
+ Verification of ArrayList#adm succeeded.[1.36]
+ Verification of Length succeeded. [0.01]
+ Verification of CreateArrayList succeeded. [0.05]
+ Verification of MakeEmpty succeeded. [0.03]
+ Verification of Select succeeded. [0.02]
+ Verification of Update succeeded. [0.05]
+ Verification of DisposeArrayList succeeded. [0.03]
+ Verification of Add succeeded. [0.44]
+ Verification of main_test succeeded. [0.67]
+\end{DoxyVerb}
+ 
+\end{DoxyEnumerate}

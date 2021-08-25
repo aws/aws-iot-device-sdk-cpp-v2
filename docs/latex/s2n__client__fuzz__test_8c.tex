@@ -1,0 +1,156 @@
+\hypertarget{s2n__client__fuzz__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\+\_\+client\+\_\+fuzz\+\_\+test.c File Reference}
+\label{s2n__client__fuzz__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\_client\_fuzz\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\_client\_fuzz\_test.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__fuzz__test_8c_accb88f183a7d3e4b7781c273b5eee097}{buffer\+\_\+read}} (void $\ast$io\+\_\+context, uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+int \mbox{\hyperlink{s2n__client__fuzz__test_8c_ae76fa6e64498e532a5340b3e67233934}{buffer\+\_\+write}} (void $\ast$io\+\_\+context, const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+int \mbox{\hyperlink{s2n__client__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}{s2n\+\_\+fuzz\+\_\+init}} (int $\ast$argc, char $\ast$$\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{s2n__client__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}{s2n\+\_\+fuzz\+\_\+test}} (const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+static void \mbox{\hyperlink{s2n__client__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}{s2n\+\_\+fuzz\+\_\+cleanup}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static char \mbox{\hyperlink{s2n__client__fuzz__test_8c_ad816b1027ddc2ebd6f169eeb734deaec}{certificate\+\_\+chain}} \mbox{[}$\,$\mbox{]}
+\item 
+static char \mbox{\hyperlink{s2n__client__fuzz__test_8c_a9f8a5254b62696cb3b4662ff8c92a8d1}{private\+\_\+key}} \mbox{[}$\,$\mbox{]}
+\item 
+static char \mbox{\hyperlink{s2n__client__fuzz__test_8c_accb41a3863c3d85c64e674552edb3474}{dhparams}} \mbox{[}$\,$\mbox{]}
+\item 
+static int \mbox{\hyperlink{s2n__client__fuzz__test_8c_ad77cb8241f4e710d4d676d37638df3b2}{MAX\+\_\+\+NEGOTIATION\+\_\+\+ATTEMPTS}} = 10
+\item 
+static struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{s2n__client__fuzz__test_8c_a763ec976ec61fcf34516dddc6001bad3}{client\+\_\+config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_accb88f183a7d3e4b7781c273b5eee097}\label{s2n__client__fuzz__test_8c_accb88f183a7d3e4b7781c273b5eee097}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!buffer\_read@{buffer\_read}}
+\index{buffer\_read@{buffer\_read}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_read()}{buffer\_read()}}
+{\footnotesize\ttfamily int buffer\+\_\+read (\begin{DoxyParamCaption}\item[{void $\ast$}]{io\+\_\+context,  }\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_ae76fa6e64498e532a5340b3e67233934}\label{s2n__client__fuzz__test_8c_ae76fa6e64498e532a5340b3e67233934}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!buffer\_write@{buffer\_write}}
+\index{buffer\_write@{buffer\_write}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{buffer\_write()}{buffer\_write()}}
+{\footnotesize\ttfamily int buffer\+\_\+write (\begin{DoxyParamCaption}\item[{void $\ast$}]{io\+\_\+context,  }\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}\label{s2n__client__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!s2n\_fuzz\_cleanup@{s2n\_fuzz\_cleanup}}
+\index{s2n\_fuzz\_cleanup@{s2n\_fuzz\_cleanup}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_cleanup()}{s2n\_fuzz\_cleanup()}}
+{\footnotesize\ttfamily static void s2n\+\_\+fuzz\+\_\+cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}\label{s2n__client__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!s2n\_fuzz\_init@{s2n\_fuzz\_init}}
+\index{s2n\_fuzz\_init@{s2n\_fuzz\_init}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_init()}{s2n\_fuzz\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+fuzz\+\_\+init (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}\label{s2n__client__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!s2n\_fuzz\_test@{s2n\_fuzz\_test}}
+\index{s2n\_fuzz\_test@{s2n\_fuzz\_test}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_test()}{s2n\_fuzz\_test()}}
+{\footnotesize\ttfamily int s2n\+\_\+fuzz\+\_\+test (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_ad816b1027ddc2ebd6f169eeb734deaec}\label{s2n__client__fuzz__test_8c_ad816b1027ddc2ebd6f169eeb734deaec}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!certificate\_chain@{certificate\_chain}}
+\index{certificate\_chain@{certificate\_chain}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{certificate\_chain}{certificate\_chain}}
+{\footnotesize\ttfamily char certificate\+\_\+chain\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_a763ec976ec61fcf34516dddc6001bad3}\label{s2n__client__fuzz__test_8c_a763ec976ec61fcf34516dddc6001bad3}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!client\_config@{client\_config}}
+\index{client\_config@{client\_config}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{client\_config}{client\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ client\+\_\+config\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_accb41a3863c3d85c64e674552edb3474}\label{s2n__client__fuzz__test_8c_accb41a3863c3d85c64e674552edb3474}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!dhparams@{dhparams}}
+\index{dhparams@{dhparams}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{dhparams}{dhparams}}
+{\footnotesize\ttfamily char dhparams\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/BEGIN DH PARAMETERS-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}MIIBCAKCAQEAy1+hVWCfNQoPB+NA733IVOONl8fCumiz9zdRRu1hzVa2yvGseUSq\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Bbn6k0FQ7yMED6w5XWQKDC0z2m0FI/BPE3AjUfuPzEYGqTDf9zQZ2Lz4oAN90Sud\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}luOoEhYR99cEbCn0T4eBvEf9IUtczXUZ/wj7gzGbGG07dLfT+CmCRJxCjhrosenJ\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}gzucyS7jt1bobgU66JKkgMNm7hJY4/nhR5LWTCzZyzYQh2HM2Vk4K5ZqILpj/n0S\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}5JYTQ2PVhxP+Uu8+hICs/8VvM72DznjPZzufADipjC7CsQ4S6x/ecZluFtbb+ZTv\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}HI5CnYmkAwJ6+FSWGaZQDi8bgerFk9RWwwIBAg==\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/END DH PARAMETERS-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_ad77cb8241f4e710d4d676d37638df3b2}\label{s2n__client__fuzz__test_8c_ad77cb8241f4e710d4d676d37638df3b2}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!MAX\_NEGOTIATION\_ATTEMPTS@{MAX\_NEGOTIATION\_ATTEMPTS}}
+\index{MAX\_NEGOTIATION\_ATTEMPTS@{MAX\_NEGOTIATION\_ATTEMPTS}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEGOTIATION\_ATTEMPTS}{MAX\_NEGOTIATION\_ATTEMPTS}}
+{\footnotesize\ttfamily int MAX\+\_\+\+NEGOTIATION\+\_\+\+ATTEMPTS = 10\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__fuzz__test_8c_a9f8a5254b62696cb3b4662ff8c92a8d1}\label{s2n__client__fuzz__test_8c_a9f8a5254b62696cb3b4662ff8c92a8d1}} 
+\index{s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}!private\_key@{private\_key}}
+\index{private\_key@{private\_key}!s2n\_client\_fuzz\_test.c@{s2n\_client\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{private\_key}{private\_key}}
+{\footnotesize\ttfamily char private\+\_\+key\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/BEGIN RSA PRIVATE KEY-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}MIIEpAIBAAKCAQEA0cOgLmFwHkU9GLqbQnyY0QfxAycshl57/vE1dh9ViVoTC5PK\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}jQ9u6+/QOhI21ZiWjlfaq6JFaqQ5l0u9dmdwQ6ayftSxTMpptwPgBbiv7JHhstLJ\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}IpPk4DJhU+VwVb5rMOLgdUvblKpLR2rl4I4RTz7H75OHsC+C7pVRDdkxHiNTnY+A\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}mjMQDiLqMJvMCNjh1c0R5a0ZsifYWBrhx0Nk2kxiI691qQBbl4vaRxhjGGtLlwFT\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}5oI3RF2fLeOrv2SkPVtbiZGRFSoXIo0+xtlQa7AVKtAg4i/kw2hn7YZwc1HPc7eH\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}8f0v96rpQtlmyiN8a2rEMo67B0wCe+THd6ytPQIDAQABAoIBAF3evYAD+riRI5Y9\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}a92FBJ4Gf8R5c2NuRO8B4nrJ6u1ccclsieg2T90lpHlYTVGoxzdL+X91Trs6Ysti\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}CZdDEuozXw2DARTsQAK2qTnmPFQRtH7h9UCUDoiGAygYNP0qCa4G2YukNs+Apc9/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}9v9WlEhyP+bmjoI5wM4j4/HekCx7syHuiqJ74//oTzNamT0aWHwgXAUmEYZ/1+nT\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}0KInmtmIOFgsWHcojwQ6sZJ3eVvy66EqHLZKQYZa2tx0YjrEJMQi1drg6VV+lLCR\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}rEtsoltgdN2G9v3P6KrHXsrCYaaZKhog9B1OSI2Amv3YWZHXppK12+aSy774lUUz\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}qVur5cECgYEA7oCOQoRZo76wztS+yDeq173B2gPHKSIrWvaLDkCAPOQPVzJZ4Qc+\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}8OEDU6HB9P0MYDsKBxZY85uzWP+dAlsmcL0C86WibOuYERPKQIcAn3KSzFiIxH3R\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}OAbaLtSLN3lDAH50PhP9BguiSfBjI6w4Qsr7jlQgdpzG4h4LjvotbWMCgYEA4SdT\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}QQJhHiLtBFo91ItRUzhePvUDfV8XvNfAwZj8cY2+oenkK2+bp35xteBV6Gu1cYnd\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}V2yFgzMZ/jDvqfUn/8EVAGvEFrLtsUpXeyHhgmVT490RsPxC9xU9jf5LsvZ4zjsj\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}CsFZW0JnhKkF6M5wztWtO3yKCilmXSOIFvorTN8CgYEAoK2LKdTwbxhxFWbOgSS/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}vEji6HXTHysd+lJOrHNX8a3Th/MsCiZPiQiOrTE08k/onown3U547uXelf7fUE8I\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}PruX2X2lR6wQ7rBeecp56PHPZEvhGD+LTCuRoise/2h6c0K+HXRp6kC8PQPuRoIo\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}BRerEeArXr2QX5XOQ6zYHfECgYEAp0L9mDfaSfcMOMWJVVJCEh639PEzrHluOv3U\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}1n1+XCU+zy3gMVxyN9W5R7HmYAlT+4q9geq+rJ7T2oAkKxBSrK6VmYB1ZZ968NAX\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}eQPMcYAw+AAM2nwsiz2eQtP9DHAJgrtv5teIOEF2gZjHKRHjv+QBE0YLjkz/HIX+\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}3YLvk+UCgYAgpAWk4YW4dAcZ8Y04Ke2pjMvEu44hHphOmk6AZl0Xl9tJwxlV8GVx\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}o3L4hbjHqyJo3+DZZYM7udMx9axbX9JHYRaLNJpc8UxQZj7d3TehC9Dw9/DzhIy/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}6sml30j/GHvnW5DOlpsdNKDlxoFX+hncXYIjyVTGRNdsSwa4VVm+Xw==\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/END RSA PRIVATE KEY-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+
+\end{DoxyCode}

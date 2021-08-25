@@ -1,0 +1,73 @@
+\hypertarget{structaws__h1__encoder}{}\doxysection{aws\+\_\+h1\+\_\+encoder Struct Reference}
+\label{structaws__h1__encoder}\index{aws\_h1\_encoder@{aws\_h1\_encoder}}
+
+
+{\ttfamily \#include $<$h1\+\_\+encoder.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__h1__encoder_af75e3d0721da5fbadb19b6fd0504c0a3}{allocator}}
+\item 
+enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}} \mbox{\hyperlink{structaws__h1__encoder_afd85815a64f6135bce61aabdb27b74fc}{state}}
+\item 
+struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$ \mbox{\hyperlink{structaws__h1__encoder_a94ed76f900ac99d30a4b9121289efef8}{message}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__h1__encoder_af3292793f5a1a757253c1125f7450ed0}{progress\+\_\+bytes}}
+\item 
+struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$ \mbox{\hyperlink{structaws__h1__encoder_ac44ddec13d8165e6f52515e4f5201718}{current\+\_\+chunk}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__h1__encoder_a53475b634a5e7af41468199ecc430e88}{chunk\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{structaws__h1__encoder_ae95d7056e0b07c24b321c4f846ef8653}{current\+\_\+stream}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__h1__encoder_af75e3d0721da5fbadb19b6fd0504c0a3}\label{structaws__h1__encoder_af75e3d0721da5fbadb19b6fd0504c0a3}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+h1\+\_\+encoder\+::allocator}
+
+\mbox{\Hypertarget{structaws__h1__encoder_a53475b634a5e7af41468199ecc430e88}\label{structaws__h1__encoder_a53475b634a5e7af41468199ecc430e88}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!chunk\_count@{chunk\_count}}
+\index{chunk\_count@{chunk\_count}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{chunk\_count}{chunk\_count}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+h1\+\_\+encoder\+::chunk\+\_\+count}
+
+\mbox{\Hypertarget{structaws__h1__encoder_ac44ddec13d8165e6f52515e4f5201718}\label{structaws__h1__encoder_ac44ddec13d8165e6f52515e4f5201718}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!current\_chunk@{current\_chunk}}
+\index{current\_chunk@{current\_chunk}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{current\_chunk}{current\_chunk}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}}$\ast$ aws\+\_\+h1\+\_\+encoder\+::current\+\_\+chunk}
+
+\mbox{\Hypertarget{structaws__h1__encoder_ae95d7056e0b07c24b321c4f846ef8653}\label{structaws__h1__encoder_ae95d7056e0b07c24b321c4f846ef8653}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!current\_stream@{current\_stream}}
+\index{current\_stream@{current\_stream}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{current\_stream}{current\_stream}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ aws\+\_\+h1\+\_\+encoder\+::current\+\_\+stream}
+
+\mbox{\Hypertarget{structaws__h1__encoder_a94ed76f900ac99d30a4b9121289efef8}\label{structaws__h1__encoder_a94ed76f900ac99d30a4b9121289efef8}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!message@{message}}
+\index{message@{message}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}}$\ast$ aws\+\_\+h1\+\_\+encoder\+::message}
+
+\mbox{\Hypertarget{structaws__h1__encoder_af3292793f5a1a757253c1125f7450ed0}\label{structaws__h1__encoder_af3292793f5a1a757253c1125f7450ed0}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!progress\_bytes@{progress\_bytes}}
+\index{progress\_bytes@{progress\_bytes}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{progress\_bytes}{progress\_bytes}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+h1\+\_\+encoder\+::progress\+\_\+bytes}
+
+\mbox{\Hypertarget{structaws__h1__encoder_afd85815a64f6135bce61aabdb27b74fc}\label{structaws__h1__encoder_afd85815a64f6135bce61aabdb27b74fc}} 
+\index{aws\_h1\_encoder@{aws\_h1\_encoder}!state@{state}}
+\index{state@{state}!aws\_h1\_encoder@{aws\_h1\_encoder}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}} aws\+\_\+h1\+\_\+encoder\+::state}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{h1__encoder_8h}{h1\+\_\+encoder.\+h}}\end{DoxyCompactItemize}

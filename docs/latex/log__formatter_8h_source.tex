@@ -1,0 +1,96 @@
+\hypertarget{log__formatter_8h_source}{}\doxysection{log\+\_\+formatter.\+h}
+\label{log__formatter_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_formatter.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/log\_formatter.h}}
+\mbox{\hyperlink{log__formatter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_LOG\_FORMATTER\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define AWS\_COMMON\_LOG\_FORMATTER\_H}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{date__time_8h}{aws/common/date\_time.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h}{aws/common/logging.h}}>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <stdarg.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}};}
+\DoxyCodeLine{19 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/*}}
+\DoxyCodeLine{22 \textcolor{comment}{ * Log formatter interface and default implementation}}
+\DoxyCodeLine{23 \textcolor{comment}{ *}}
+\DoxyCodeLine{24 \textcolor{comment}{ * Log formatters are invoked by the LOGF\_* macros to transform a set of arguments into}}
+\DoxyCodeLine{25 \textcolor{comment}{ * one or more lines of text to be output to a logging sink (writer).}}
+\DoxyCodeLine{26 \textcolor{comment}{ */}}
+\DoxyCodeLine{27 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{log__formatter_8h_a17eee08e364e680e4f499fdfb9b9a8e9}{aws\_log\_formatter\_format\_fn}})(}
+\DoxyCodeLine{30     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}} *formatter,}
+\DoxyCodeLine{31     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} **formatted\_output,}
+\DoxyCodeLine{32     \textcolor{keyword}{enum} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\_log\_level}} \mbox{\hyperlink{namespacecreate__project_aa6c0bcd2446fba642808820ebf43f4c3}{level}},}
+\DoxyCodeLine{33     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\_log\_subject\_t}} subject,}
+\DoxyCodeLine{34     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}},}
+\DoxyCodeLine{35     va\_list \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}});}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{log__formatter_8h_a033fbde02c9290a29fcd280c64373423}{aws\_log\_formatter\_clean\_up\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}} *logger);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter__vtable}{aws\_log\_formatter\_vtable}} \{}
+\DoxyCodeLine{40     \mbox{\hyperlink{log__formatter_8h_a17eee08e364e680e4f499fdfb9b9a8e9}{aws\_log\_formatter\_format\_fn}} *\mbox{\hyperlink{structaws__log__formatter__vtable_a7f668b536e00e2a2ce369fccbaa9f40d}{format}};}
+\DoxyCodeLine{41     \mbox{\hyperlink{log__formatter_8h_a033fbde02c9290a29fcd280c64373423}{aws\_log\_formatter\_clean\_up\_fn}} *\mbox{\hyperlink{structaws__log__formatter__vtable_ab471b27e766bae9325ae937f49f9ce9b}{clean\_up}};}
+\DoxyCodeLine{42 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}} \{}
+\DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter__vtable}{aws\_log\_formatter\_vtable}} *\mbox{\hyperlink{structaws__log__formatter_af5a334f2285b170f0e447416689fd655}{vtable}};}
+\DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__log__formatter_aeb5d4120ab86ecff8ec373bcaa2323e2}{allocator}};}
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__log__formatter_a98dc9e7f719a3cfda4ed97aa438f4c4d}{impl}};}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__formatter__standard__options}{aws\_log\_formatter\_standard\_options}} \{}
+\DoxyCodeLine{51     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{structaws__log__formatter__standard__options_a70d603cee81ef04bd8f2e5847a9214e6}{date\_format}};}
+\DoxyCodeLine{52 \};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__logging__standard__formatting__data}{aws\_logging\_standard\_formatting\_data}} \{}
+\DoxyCodeLine{55     \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__logging__standard__formatting__data_a332f5df33bbf3fd88f32680be9bbce37}{log\_line\_buffer}};}
+\DoxyCodeLine{56     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__logging__standard__formatting__data_aeabfcdf11ecfa6f024afb8120711521d}{total\_length}};}
+\DoxyCodeLine{57     \textcolor{keyword}{enum} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\_log\_level}} \mbox{\hyperlink{structaws__logging__standard__formatting__data_a58f4f3c987bfc9b634dca9718caf7d66}{level}};}
+\DoxyCodeLine{58     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__logging__standard__formatting__data_a3724c9bd5133bcbc40d894e703b2e304}{subject\_name}};}
+\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__logging__standard__formatting__data_a1e81eb5992213cafbf090c69ea86e98f}{format}};}
+\DoxyCodeLine{60     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{structaws__logging__standard__formatting__data_a8ab4fca90053bb1b481fb7d74bff898a}{date\_format}};}
+\DoxyCodeLine{61     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__logging__standard__formatting__data_a54c3586919a816bd964091332eea5ef3}{allocator}}; \textcolor{comment}{/* not used, just there to make byte\_bufs valid */}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__logging__standard__formatting__data_ae14010cfb0501f558e0498885a9d31aa}{amount\_written}};}
+\DoxyCodeLine{64 \};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{/*}}
+\DoxyCodeLine{69 \textcolor{comment}{ * Initializes the default log formatter which outputs lines in the format:}}
+\DoxyCodeLine{70 \textcolor{comment}{ *}}
+\DoxyCodeLine{71 \textcolor{comment}{ *   [<LogLevel>] [<Timestamp>] [<ThreadId>] -\/ <User content>\(\backslash\)n}}
+\DoxyCodeLine{72 \textcolor{comment}{ */}}
+\DoxyCodeLine{73 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{74 \textcolor{keywordtype}{int} \mbox{\hyperlink{log__formatter_8h_a9bc3af65fad2a6810f2d0e126f138f00}{aws\_log\_formatter\_init\_default}}(}
+\DoxyCodeLine{75     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}} *formatter,}
+\DoxyCodeLine{76     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{77     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__formatter__standard__options}{aws\_log\_formatter\_standard\_options}} *options);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{/*}}
+\DoxyCodeLine{80 \textcolor{comment}{ * Cleans up a log formatter (minus the base structure memory) by calling the formatter's clean\_up function}}
+\DoxyCodeLine{81 \textcolor{comment}{ * via the vtable.}}
+\DoxyCodeLine{82 \textcolor{comment}{ */}}
+\DoxyCodeLine{83 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{84 \textcolor{keywordtype}{void} \mbox{\hyperlink{log__formatter_8h_aa6a460c828d6a47d0a9274ad952ff03c}{aws\_log\_formatter\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__formatter}{aws\_log\_formatter}} *formatter);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/*}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Formats a single log line based on the input + the var args list.  Output is written to a fixed-\/size}}
+\DoxyCodeLine{88 \textcolor{comment}{ * buffer supplied in the data struct.}}
+\DoxyCodeLine{89 \textcolor{comment}{ */}}
+\DoxyCodeLine{90 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{91 \textcolor{keywordtype}{int} \mbox{\hyperlink{log__formatter_8h_abdef2d815c41016d56d1ef1f55940aa6}{aws\_format\_standard\_log\_line}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__logging__standard__formatting__data}{aws\_logging\_standard\_formatting\_data}} *formatting\_data, va\_list \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}});}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_LOG\_FORMATTER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

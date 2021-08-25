@@ -1,0 +1,97 @@
+\hypertarget{structs2n__kex}{}\doxysection{s2n\+\_\+kex Struct Reference}
+\label{structs2n__kex}\index{s2n\_kex@{s2n\_kex}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+kex.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__kex_a00ac54cb55ea6bea796f686ac2bcb8bd}{is\+\_\+ephemeral}}
+\item 
+const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$ \mbox{\hyperlink{structs2n__kex_a88e6e908472b6bbe925e07d06edd294a}{hybrid}} \mbox{[}2\mbox{]}
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_ad8d0aede9492b699837428c533eb66f2}{connection\+\_\+supported}} )(const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_a70ccab4b96314b67b62c9f4212ccae36}{configure\+\_\+connection}} )(const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_ac2024ca6aaa5be41e438ce079483be36}{server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$kex\+\_\+data)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_a8f7d14a21b09fcc9c4f434bc7027a36b}{server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$kex\+\_\+data)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_af3977217cad0066bff4d7abefc0bc9e1}{server\+\_\+key\+\_\+send}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+sign)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_a9d0bad6138a816049c39af8b32fcbf93}{client\+\_\+key\+\_\+recv}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_aa68a36c995d0de8064d6f3562be08894}{client\+\_\+key\+\_\+send}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__kex_a78e4781ec4e8177a4ed716105db0bbcc}{prf}} )(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__kex_a9d0bad6138a816049c39af8b32fcbf93}\label{structs2n__kex_a9d0bad6138a816049c39af8b32fcbf93}} 
+\index{s2n\_kex@{s2n\_kex}!client\_key\_recv@{client\_key\_recv}}
+\index{client\_key\_recv@{client\_key\_recv}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{client\_key\_recv}{client\_key\_recv}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::client\+\_\+key\+\_\+recv) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)}
+
+\mbox{\Hypertarget{structs2n__kex_aa68a36c995d0de8064d6f3562be08894}\label{structs2n__kex_aa68a36c995d0de8064d6f3562be08894}} 
+\index{s2n\_kex@{s2n\_kex}!client\_key\_send@{client\_key\_send}}
+\index{client\_key\_send@{client\_key\_send}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{client\_key\_send}{client\_key\_send}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::client\+\_\+key\+\_\+send) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)}
+
+\mbox{\Hypertarget{structs2n__kex_a70ccab4b96314b67b62c9f4212ccae36}\label{structs2n__kex_a70ccab4b96314b67b62c9f4212ccae36}} 
+\index{s2n\_kex@{s2n\_kex}!configure\_connection@{configure\_connection}}
+\index{configure\_connection@{configure\_connection}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{configure\_connection}{configure\_connection}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::configure\+\_\+connection) (const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)}
+
+\mbox{\Hypertarget{structs2n__kex_ad8d0aede9492b699837428c533eb66f2}\label{structs2n__kex_ad8d0aede9492b699837428c533eb66f2}} 
+\index{s2n\_kex@{s2n\_kex}!connection\_supported@{connection\_supported}}
+\index{connection\_supported@{connection\_supported}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{connection\_supported}{connection\_supported}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::connection\+\_\+supported) (const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)}
+
+\mbox{\Hypertarget{structs2n__kex_a88e6e908472b6bbe925e07d06edd294a}\label{structs2n__kex_a88e6e908472b6bbe925e07d06edd294a}} 
+\index{s2n\_kex@{s2n\_kex}!hybrid@{hybrid}}
+\index{hybrid@{hybrid}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{hybrid}{hybrid}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}}$\ast$ s2n\+\_\+kex\+::hybrid\mbox{[}2\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__kex_a00ac54cb55ea6bea796f686ac2bcb8bd}\label{structs2n__kex_a00ac54cb55ea6bea796f686ac2bcb8bd}} 
+\index{s2n\_kex@{s2n\_kex}!is\_ephemeral@{is\_ephemeral}}
+\index{is\_ephemeral@{is\_ephemeral}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{is\_ephemeral}{is\_ephemeral}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+kex\+::is\+\_\+ephemeral}
+
+\mbox{\Hypertarget{structs2n__kex_a78e4781ec4e8177a4ed716105db0bbcc}\label{structs2n__kex_a78e4781ec4e8177a4ed716105db0bbcc}} 
+\index{s2n\_kex@{s2n\_kex}!prf@{prf}}
+\index{prf@{prf}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{prf}{prf}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::prf) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)}
+
+\mbox{\Hypertarget{structs2n__kex_a8f7d14a21b09fcc9c4f434bc7027a36b}\label{structs2n__kex_a8f7d14a21b09fcc9c4f434bc7027a36b}} 
+\index{s2n\_kex@{s2n\_kex}!server\_key\_recv\_parse\_data@{server\_key\_recv\_parse\_data}}
+\index{server\_key\_recv\_parse\_data@{server\_key\_recv\_parse\_data}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{server\_key\_recv\_parse\_data}{server\_key\_recv\_parse\_data}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::server\+\_\+key\+\_\+recv\+\_\+parse\+\_\+data) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$kex\+\_\+data)}
+
+\mbox{\Hypertarget{structs2n__kex_ac2024ca6aaa5be41e438ce079483be36}\label{structs2n__kex_ac2024ca6aaa5be41e438ce079483be36}} 
+\index{s2n\_kex@{s2n\_kex}!server\_key\_recv\_read\_data@{server\_key\_recv\_read\_data}}
+\index{server\_key\_recv\_read\_data@{server\_key\_recv\_read\_data}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{server\_key\_recv\_read\_data}{server\_key\_recv\_read\_data}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::server\+\_\+key\+\_\+recv\+\_\+read\+\_\+data) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+verify, struct \mbox{\hyperlink{structs2n__kex__raw__server__data}{s2n\+\_\+kex\+\_\+raw\+\_\+server\+\_\+data}} $\ast$kex\+\_\+data)}
+
+\mbox{\Hypertarget{structs2n__kex_af3977217cad0066bff4d7abefc0bc9e1}\label{structs2n__kex_af3977217cad0066bff4d7abefc0bc9e1}} 
+\index{s2n\_kex@{s2n\_kex}!server\_key\_send@{server\_key\_send}}
+\index{server\_key\_send@{server\_key\_send}!s2n\_kex@{s2n\_kex}}
+\doxysubsubsection{\texorpdfstring{server\_key\_send}{server\_key\_send}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+kex\+::server\+\_\+key\+\_\+send) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data\+\_\+to\+\_\+sign)}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/tls/\mbox{\hyperlink{s2n__kex_8h}{s2n\+\_\+kex.\+h}}\end{DoxyCompactItemize}

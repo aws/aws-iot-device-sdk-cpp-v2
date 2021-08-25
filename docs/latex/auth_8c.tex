@@ -1,0 +1,153 @@
+\hypertarget{auth_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/auth.c File Reference}
+\label{auth_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/auth.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/auth.c}}
+{\ttfamily \#include $<$aws/auth/auth.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/external/c\+JSON.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/private/aws\+\_\+signing.\+h$>$}\newline
+{\ttfamily \#include $<$aws/cal/cal.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/http.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{auth_8c_a00354b297ee62fb3741e277176f07ec2}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+AUTH}}(CODE,  STR)~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/auth\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \mbox{\hyperlink{auth_8c_ac5166c1f1f34e72fa1449d1a64856a10}{s\+\_\+c\+JSONAlloc}} (size\+\_\+t sz)
+\item 
+static void \mbox{\hyperlink{auth_8c_a40f358ac3a044f9d32405dbb64084cba}{s\+\_\+c\+JSONFree}} (void $\ast$ptr)
+\item 
+void \mbox{\hyperlink{auth_8c_ab826534eef36119eab4f7fd77c67a4cc}{aws\+\_\+auth\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{auth_8c_ae6cdddedcccc7de62cdf35cf640aaf24}{aws\+\_\+auth\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{auth_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{auth_8c_a259d0901f655216b70a33e9c18ac9fff}{s\+\_\+error\+\_\+list}}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} \mbox{\hyperlink{auth_8c_a835d0adc3b67170039479bdacbd4a9c8}{s\+\_\+auth\+\_\+log\+\_\+subject\+\_\+infos}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{auth_8c_ae663dc311824962cd48cc256ed99198f}{s\+\_\+auth\+\_\+log\+\_\+subject\+\_\+list}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{auth_8c_a3e0a762a360f8f4078afaba44e688669}{s\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+static struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{auth_8c_a5a460a3899dc4042a3ba4f3315467d57}{s\+\_\+library\+\_\+allocator}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{auth_8c_a00354b297ee62fb3741e277176f07ec2}\label{auth_8c_a00354b297ee62fb3741e277176f07ec2}} 
+\index{auth.c@{auth.c}!AWS\_DEFINE\_ERROR\_INFO\_AUTH@{AWS\_DEFINE\_ERROR\_INFO\_AUTH}}
+\index{AWS\_DEFINE\_ERROR\_INFO\_AUTH@{AWS\_DEFINE\_ERROR\_INFO\_AUTH}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_DEFINE\_ERROR\_INFO\_AUTH}{AWS\_DEFINE\_ERROR\_INFO\_AUTH}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+AUTH(\begin{DoxyParamCaption}\item[{}]{CODE,  }\item[{}]{STR }\end{DoxyParamCaption})~\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/auth\char`\"{})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{auth_8c_ae6cdddedcccc7de62cdf35cf640aaf24}\label{auth_8c_ae6cdddedcccc7de62cdf35cf640aaf24}} 
+\index{auth.c@{auth.c}!aws\_auth\_library\_clean\_up@{aws\_auth\_library\_clean\_up}}
+\index{aws\_auth\_library\_clean\_up@{aws\_auth\_library\_clean\_up}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_library\_clean\_up()}{aws\_auth\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+auth\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Clean up internal datastructures used by aws-\/c-\/auth. Must not be called until application is done using functionality in aws-\/c-\/auth. \mbox{\Hypertarget{auth_8c_ab826534eef36119eab4f7fd77c67a4cc}\label{auth_8c_ab826534eef36119eab4f7fd77c67a4cc}} 
+\index{auth.c@{auth.c}!aws\_auth\_library\_init@{aws\_auth\_library\_init}}
+\index{aws\_auth\_library\_init@{aws\_auth\_library\_init}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_library\_init()}{aws\_auth\_library\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+auth\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/auth. Must be called before using any functionality in aws-\/c-\/auth.
+
+
+\begin{DoxyParams}{Parameters}
+{\em allocator} & memory allocator to use for any module-\/level memory allocation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{auth_8c_ac5166c1f1f34e72fa1449d1a64856a10}\label{auth_8c_ac5166c1f1f34e72fa1449d1a64856a10}} 
+\index{auth.c@{auth.c}!s\_cJSONAlloc@{s\_cJSONAlloc}}
+\index{s\_cJSONAlloc@{s\_cJSONAlloc}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_cJSONAlloc()}{s\_cJSONAlloc()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+c\+JSONAlloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{auth_8c_a40f358ac3a044f9d32405dbb64084cba}\label{auth_8c_a40f358ac3a044f9d32405dbb64084cba}} 
+\index{auth.c@{auth.c}!s\_cJSONFree@{s\_cJSONFree}}
+\index{s\_cJSONFree@{s\_cJSONFree}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_cJSONFree()}{s\_cJSONFree()}}
+{\footnotesize\ttfamily static void s\+\_\+c\+JSONFree (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{auth_8c_a835d0adc3b67170039479bdacbd4a9c8}\label{auth_8c_a835d0adc3b67170039479bdacbd4a9c8}} 
+\index{auth.c@{auth.c}!s\_auth\_log\_subject\_infos@{s\_auth\_log\_subject\_infos}}
+\index{s\_auth\_log\_subject\_infos@{s\_auth\_log\_subject\_infos}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_auth\_log\_subject\_infos}{s\_auth\_log\_subject\_infos}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+subject\+\_\+info}} s\+\_\+auth\+\_\+log\+\_\+subject\+\_\+infos\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7}{AWS\_LS\_AUTH\_GENERAL}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}AuthGeneral"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for aws-\/c-\/auth logging that defies categorization."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126}{AWS\_LS\_AUTH\_PROFILE}}, \textcolor{stringliteral}{"{}AuthProfile"{}}, \textcolor{stringliteral}{"{}Subject for config profile related logging."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457}{AWS\_LS\_AUTH\_CREDENTIALS\_PROVIDER}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}AuthCredentialsProvider"{}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Subject for credentials provider related logging."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a650e3e4d7a6d77813204fb98048a1271}{DEFINE\_LOG\_SUBJECT\_INFO}}(\mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3}{AWS\_LS\_AUTH\_SIGNING}}, \textcolor{stringliteral}{"{}AuthSigning"{}}, \textcolor{stringliteral}{"{}Subject for AWS request signing logging."{}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{auth_8c_ae663dc311824962cd48cc256ed99198f}\label{auth_8c_ae663dc311824962cd48cc256ed99198f}} 
+\index{auth.c@{auth.c}!s\_auth\_log\_subject\_list@{s\_auth\_log\_subject\_list}}
+\index{s\_auth\_log\_subject\_list@{s\_auth\_log\_subject\_list}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_auth\_log\_subject\_list}{s\_auth\_log\_subject\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} s\+\_\+auth\+\_\+log\+\_\+subject\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .subject\_list = \mbox{\hyperlink{auth_8c_a835d0adc3b67170039479bdacbd4a9c8}{s\_auth\_log\_subject\_infos}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{auth_8c_a835d0adc3b67170039479bdacbd4a9c8}{s\_auth\_log\_subject\_infos}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{auth_8c_a259d0901f655216b70a33e9c18ac9fff}\label{auth_8c_a259d0901f655216b70a33e9c18ac9fff}} 
+\index{auth.c@{auth.c}!s\_error\_list@{s\_error\_list}}
+\index{s\_error\_list@{s\_error\_list}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_error\_list}{s\_error\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+error\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{auth_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{auth_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}) / \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__error__info}{aws\_error\_info}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{auth_8c_a255baa9b51b60f5b91a01313637fc353}\label{auth_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{auth.c@{auth.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{auth_8c_a5a460a3899dc4042a3ba4f3315467d57}\label{auth_8c_a5a460a3899dc4042a3ba4f3315467d57}} 
+\index{auth.c@{auth.c}!s\_library\_allocator@{s\_library\_allocator}}
+\index{s\_library\_allocator@{s\_library\_allocator}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_library\_allocator}{s\_library\_allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ s\+\_\+library\+\_\+allocator = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{auth_8c_a3e0a762a360f8f4078afaba44e688669}\label{auth_8c_a3e0a762a360f8f4078afaba44e688669}} 
+\index{auth.c@{auth.c}!s\_library\_initialized@{s\_library\_initialized}}
+\index{s\_library\_initialized@{s\_library\_initialized}!auth.c@{auth.c}}
+\doxysubsubsection{\texorpdfstring{s\_library\_initialized}{s\_library\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+

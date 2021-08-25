@@ -1,0 +1,34 @@
+\hypertarget{sike__r2__kem_8h_source}{}\doxysection{sike\+\_\+r2\+\_\+kem.\+h}
+\label{sike__r2__kem_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/sike\_r2\_kem.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/sike\_r2\_kem.h}}
+\mbox{\hyperlink{sike__r2__kem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef SIKE\_R2\_KEM\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define SIKE\_R2\_KEM\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}../s2n\_pq\_utils.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define SIKE\_P434\_R2\_PUBLIC\_KEY\_BYTES 330}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define SIKE\_P434\_R2\_SECRET\_KEY\_BYTES 374}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define SIKE\_P434\_R2\_CIPHERTEXT\_BYTES 346}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define SIKE\_P434\_R2\_SHARED\_SECRET\_BYTES 16}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{// Keygenerate -\/ pk is the public key}}
+\DoxyCodeLine{12 \textcolor{comment}{//               sk is the private key}}
+\DoxyCodeLine{13 \textcolor{comment}{// Return 0 for success and !0 for failures. See types.h for failure codes}}
+\DoxyCodeLine{14 \textcolor{keywordtype}{int} \mbox{\hyperlink{sike__r2__kem_8h_a0139ba188e7d860e2477ea52210bf0f8}{SIKE\_P434\_r2\_crypto\_kem\_keypair}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pk, \mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *sk);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{comment}{//Encapsulate -\/ pk is the public key,}}
+\DoxyCodeLine{17 \textcolor{comment}{//              ct is a key encapsulation message (ciphertext),}}
+\DoxyCodeLine{18 \textcolor{comment}{//              ss is the shared secret.}}
+\DoxyCodeLine{19 \textcolor{comment}{// Return 0 for success and !0 for failures.}}
+\DoxyCodeLine{20 \textcolor{keywordtype}{int} \mbox{\hyperlink{sike__r2__kem_8h_a44383e5e0a4e32918aef9c19317bc07c}{SIKE\_P434\_r2\_crypto\_kem\_enc}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ct, \mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ss, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pk);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{//Decapsulate -\/ ct is a key encapsulation message (ciphertext),}}
+\DoxyCodeLine{23 \textcolor{comment}{//              sk is the private key,}}
+\DoxyCodeLine{24 \textcolor{comment}{//              ss is the shared secret}}
+\DoxyCodeLine{25 \textcolor{comment}{// Return 0 for success and !0 for failures.}}
+\DoxyCodeLine{26 \textcolor{keywordtype}{int} \mbox{\hyperlink{sike__r2__kem_8h_af57a10868cf16056da328a7dbc0f783f}{SIKE\_P434\_r2\_crypto\_kem\_dec}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ss, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ct, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *sk);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SIKE\_R2\_KEM\_H}}
+
+\end{DoxyCode}

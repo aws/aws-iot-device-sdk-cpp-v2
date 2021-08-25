@@ -1,0 +1,49 @@
+\hypertarget{s2n__openssl_8h_source}{}\doxysection{s2n\+\_\+openssl.\+h}
+\label{s2n__openssl_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_openssl.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_openssl.h}}
+\mbox{\hyperlink{s2n__openssl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#if defined(LIBRESSL\_VERSION\_NUMBER) \&\& (OPENSSL\_VERSION\_NUMBER == 0x20000000L)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#undef OPENSSL\_VERSION\_NUMBER}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define OPENSSL\_VERSION\_NUMBER 0x1000107fL}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{/* Per https://wiki.openssl.org/index.php/Manual:OPENSSL\_VERSION\_NUMBER(3)}}
+\DoxyCodeLine{30 \textcolor{comment}{ * OPENSSL\_VERSION\_NUMBER in hex is: MNNFFRBB major minor fix final beta/patch.}}
+\DoxyCodeLine{31 \textcolor{comment}{ * bitwise: MMMMNNNNNNNNFFFFFFFFRRRRBBBBBBBB}}
+\DoxyCodeLine{32 \textcolor{comment}{ * For our purposes we're only concerned about major/minor/fix. Patch versions don't usually introduce}}
+\DoxyCodeLine{33 \textcolor{comment}{ * features.}}
+\DoxyCodeLine{34 \textcolor{comment}{ */}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define S2N\_OPENSSL\_VERSION\_AT\_LEAST(major, minor, fix) \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{    (OPENSSL\_VERSION\_NUMBER >= ((major << 28) + (minor << 20) + (fix << 12)))}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#if (S2N\_OPENSSL\_VERSION\_AT\_LEAST(1, 1, 0)) \&\& (!defined(OPENSSL\_IS\_BORINGSSL)) \&\& (!defined(OPENSSL\_IS\_AWSLC))}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define s2n\_evp\_ctx\_init(ctx) GUARD\_OSSL(EVP\_CIPHER\_CTX\_init(ctx), S2N\_ERR\_DRBG)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define s2n\_evp\_ctx\_init(ctx) EVP\_CIPHER\_CTX\_init(ctx)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#if !defined(OPENSSL\_IS\_BORINGSSL) \&\& !defined(OPENSSL\_FIPS) \&\& !defined(LIBRESSL\_VERSION\_NUMBER) \&\& !defined(OPENSSL\_IS\_AWSLC)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define S2N\_LIBCRYPTO\_SUPPORTS\_CUSTOM\_RAND 1}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define S2N\_LIBCRYPTO\_SUPPORTS\_CUSTOM\_RAND 0}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
