@@ -18,7 +18,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 __Jump To:__
 
 * [Installation](#Installation)
-* [Samples](./samples)
+* [Samples](./samples/README.md)
 * [Getting Help](#Getting-Help)
 * [FAQ](FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
@@ -67,7 +67,7 @@ Due to maximum path length limitations in the Windows API, we recommend cloning 
 
 ## Samples
 
-[Samples README](./samples)
+[Samples README](./samples/README.md)
 
 ## Getting Help
 
