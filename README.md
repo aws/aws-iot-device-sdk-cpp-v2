@@ -17,7 +17,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 __Jump To:__
 
-* [Installation](@ref #Installation)
+* [Installation](#Installation)
 * [Samples](./samples)
 * [Getting Help](#Getting-Help)
 * [FAQ](FAQ.md)
