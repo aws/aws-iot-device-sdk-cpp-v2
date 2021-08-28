@@ -487,8 +487,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Deallocate string.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. Allocation/Deallocation using the standard aws-c-common allocators requires calls through function pointers. Until we get better function pointer support in CBMC, this is expensive. Instead, since we know we're using "malloc" to do allocation in CBMC proofs, we can just directly use "free" here, saving the function pointer derefences. Otherwise the same as the real function. </p>
+<p >Deallocate string. </p>
 
 </div>
 </div>
@@ -792,8 +791,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Allocate a new string with the same contents as array.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. Override the aws_string_new_from_array to just give non-det bytes, rather than doing the memcpy. Since we already check <a class="el" href="assert_8h.html#a3440ddda4219e3f0e908828e2a28cfd9">AWS_MEM_IS_READABLE(bytes, len)</a> in the precondition, this is sound - it overapproximates the behaviour of the real function, and has all the same memory safety checks. </p>
+<p >Allocate a new string with the same contents as array. </p>
 
 </div>
 </div>

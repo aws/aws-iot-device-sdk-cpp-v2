@@ -1341,8 +1341,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p >Write specified number of bytes from array to byte buffer.</p>
-<p >On success, returns true and updates the buffer length accordingly. If there is insufficient space in the buffer, returns false, leaving the buffer unchanged.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. Stub for aws_byte_buf_write. Has the same behaviour as the actual function except it doesn't actually write the bytes. In order to use this function safely, the user must check that the byte_buf bytes are not actually used by the function under test. TODO: Once CBMC supports proper havocing, should havoc the bytes to get full soundness.</p>
 <p >On success, returns true and updates the buffer length accordingly. If there is insufficient space in the buffer, returns false, leaving the buffer unchanged. </p>
 
 </div>
@@ -2258,7 +2256,7 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_byte_cursor_read_be16 </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
-          <td class="paramname"><em>cursor</em>, </td>
+          <td class="paramname"><em>cur</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2274,8 +2272,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p >Reads a 16-bit value in network byte order from cur, and places it in host byte order into var.</p>
-<p >On success, returns true and updates the cursor pointer/length accordingly. If there is insufficient space in the cursor, returns false, leaving the cursor unchanged.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. The signature for the value generator, if it is used. This function is used in deserializing values from a byte cursor. Sometimes, for CBMC proof, it is expected that certain values in byte stream are constrained. For example, in the aws_cryptosdk_enc_ctx_deserilize() proof, the first value we read is the number of elements, which we need to be constrained in order to ensure that CBMC can fully unwind all loops. All other values can be left nondet. In this case, define -DAWS_BYTE_CURSOR_READ_BE16_GENERATOR=generator_name, and the correct generator will be called. If there is no structure that must be followed, AWS_BYTE_CURSOR_READ_BE16_GENERATOR can be left undefined, and the var will be set to a nondet value. </p>
+<p >On success, returns true and updates the cursor pointer/length accordingly. If there is insufficient space in the cursor, returns false, leaving the cursor unchanged. </p>
 
 </div>
 </div>

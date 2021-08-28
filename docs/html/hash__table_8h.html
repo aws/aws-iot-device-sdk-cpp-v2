@@ -605,8 +605,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Removes every element from the hash map. destroy_fn will be called for each element.</p>
-<p >Nondet clear. Since the only externally visible property of this table is the entry_count, just set it to 0 </p>
+<p >Removes every element from the hash map. destroy_fn will be called for each element. </p>
 
 </div>
 </div>
@@ -721,13 +720,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p >Attempts to locate an element at key. If the element is found, a pointer to the value is placed in *p_elem; if it is not found, *pElem is set to NULL. Either way, AWS_OP_SUCCESS is returned.</p>
 <p >This method does not change the state of the hash table. Therefore, it is safe to call _find from multiple threads on the same hash table, provided no mutating operations happen in parallel.</p>
-<p >Calling code may update the value in the hash table by modifying **pElem after a successful find. However, this pointer is not guaranteed to remain usable after a subsequent call to _put, _delete, _clear, or _clean_up.</p>
-<p >Implements a version of <a class="el" href="aws__hash__table__no__slots__override_8c.html#aa64beafd8485902db81ce78d6d3e4524">aws_hash_table_find()</a> that non-determinstially either:</p><ol type="1">
-<li>Return NULL, indicating that the element didn't exist</li>
-<li>Returns a newly created element. By default, just create a totally non-determinstic element. However, if the consumer of the stub uses the element, this may be insufficient. Use the same style of generator as the hash_iterator stubs, except with a different signature due to the different calling context.</li>
-</ol>
-<p >To declare a genarator: -DHASH_TABLE_FIND_ELEMENT_GENERATOR=the_generator_fn, where the_generator_fn has signature: the_generator_fnconst struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map, const void *key, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *p_elem).</p>
-<p >NOTE: If you want a version of <a class="el" href="aws__hash__table__no__slots__override_8c.html#aa64beafd8485902db81ce78d6d3e4524">aws_hash_table_find()</a> that that ensures that the table actually has the found value when find returns success, that can be found in <a class="el" href="aws__hash__table__find__override_8c.html">aws_hash_table_find_override.c</a> </p>
+<p >Calling code may update the value in the hash table by modifying **pElem after a successful find. However, this pointer is not guaranteed to remain usable after a subsequent call to _put, _delete, _clear, or _clean_up. </p>
 
 </div>
 </div>
@@ -870,8 +863,7 @@ AWS_COMMON_HASH_TABLE_ITER_DELETE   - Deletes the current value and</h1>
       </table>
 </div><div class="memdoc">
 <p >Best-effort check of <a class="el" href="structhash__table__state.html">hash_table_state</a> data-structure invariants</p>
-<p >Best-effort check of <a class="el" href="structhash__table__state.html">hash_table_state</a> data-structure invariants Some invariants, such as that the number of entries is actually the same as the entry_count field, would require a loop to check</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. As noted above the only externally visible property of the hash-table is the [entry_count]. And it can vary between 0-SIZE_MAX. So there is really nothing to assert here </p>
+<p >Best-effort check of <a class="el" href="structhash__table__state.html">hash_table_state</a> data-structure invariants Some invariants, such as that the number of entries is actually the same as the entry_count field, would require a loop to check </p>
 
 </div>
 </div>
@@ -944,8 +936,7 @@ AWS_COMMON_HASH_TABLE_ITER_DELETE   - Deletes the current value and</h1>
 </div><div class="memdoc">
 <p >Inserts a new element at key, with the given value. If another element exists at that key, the old element will be overwritten; both old key and value objects will be destroyed.</p>
 <p >If was_created is non-NULL, *was_created is set to 0 if an existing element was found, or 1 is a new element was created.</p>
-<p >Returns AWS_OP_SUCCESS if an item was found or created. Raises AWS_ERROR_OOM if hash table expansion was required and memory</p>
-<p >Nondet put. Since there is no backing store, we just non-determinstically either add it or don't. </p>
+<p >Returns AWS_OP_SUCCESS if an item was found or created. Raises AWS_ERROR_OOM if hash table expansion was required and memory </p>
 
 </div>
 </div>

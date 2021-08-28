@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['x_0',['x',['../structyx__s.html#a41398c033fd514868e1bec3d6371f115',1,'yx_s']]],
-  ['x_1',['X',['../structpoint__proj.html#aa86b0425fac42d908f34f2bc6c4ec277',1,'point_proj']]],
+  ['x_0',['X',['../structpoint__proj.html#aa86b0425fac42d908f34f2bc6c4ec277',1,'point_proj']]],
+  ['x_1',['x',['../structyx__s.html#a41398c033fd514868e1bec3d6371f115',1,'yx_s']]],
   ['x25519_5fshare_5fsize_2',['X25519_SHARE_SIZE',['../s2n__ecc__evp_8h.html#a8fa62f02c4da5eeabdb42f763ea22c89',1,'s2n_ecc_evp.h']]],
   ['x509_5fconnect_5ftimeout_5fdefault_5fin_5fseconds_3',['X509_CONNECT_TIMEOUT_DEFAULT_IN_SECONDS',['../credentials__provider__x509_8c.html#a8c5fc0688568d8d0d17622d438abaa8a',1,'credentials_provider_x509.c']]],
   ['x509_5fprovider_4',['x509_provider',['../structaws__credentials__provider__x509__user__data.html#a13162094552a2a50d83b9d55c6e6a137',1,'aws_credentials_provider_x509_user_data']]],

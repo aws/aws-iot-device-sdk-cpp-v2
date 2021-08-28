@@ -99,9 +99,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad12c3eb7e3eaf1f54a4926f646d29327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__list_8h.html#ad12c3eb7e3eaf1f54a4926f646d29327">aws_array_list_init_dynamic</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *<a class="el" href="macros_8h.html#a9bb2dfa7c751efe1673e3f9c89eff17c">AWS_RESTRICT</a> list, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, size_t initial_item_allocation, size_t <a class="el" href="aws__array__list__sort__harness_8c.html#ad07048e124383cb338823197712ce135">item_size</a>)</td></tr>
+<tr class="memitem:ad12c3eb7e3eaf1f54a4926f646d29327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__list_8h.html#ad12c3eb7e3eaf1f54a4926f646d29327">aws_array_list_init_dynamic</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *<a class="el" href="macros_8h.html#a9bb2dfa7c751efe1673e3f9c89eff17c">AWS_RESTRICT</a> list, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, size_t initial_item_allocation, size_t item_size)</td></tr>
 <tr class="separator:ad12c3eb7e3eaf1f54a4926f646d29327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8ba76ad0271784f91e10725a1e7e83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__list_8h.html#a0b8ba76ad0271784f91e10725a1e7e83">aws_array_list_init_static</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *<a class="el" href="macros_8h.html#a9bb2dfa7c751efe1673e3f9c89eff17c">AWS_RESTRICT</a> list, void *raw_array, size_t item_count, size_t <a class="el" href="aws__array__list__sort__harness_8c.html#ad07048e124383cb338823197712ce135">item_size</a>)</td></tr>
+<tr class="memitem:a0b8ba76ad0271784f91e10725a1e7e83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__list_8h.html#a0b8ba76ad0271784f91e10725a1e7e83">aws_array_list_init_static</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *<a class="el" href="macros_8h.html#a9bb2dfa7c751efe1673e3f9c89eff17c">AWS_RESTRICT</a> list, void *raw_array, size_t item_count, size_t item_size)</td></tr>
 <tr class="separator:a0b8ba76ad0271784f91e10725a1e7e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae46dd1a0cacc8db65b30776726169be4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__list_8h.html#ae46dd1a0cacc8db65b30776726169be4">aws_array_list_is_valid</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *<a class="el" href="macros_8h.html#a9bb2dfa7c751efe1673e3f9c89eff17c">AWS_RESTRICT</a> list)</td></tr>
 <tr class="separator:ae46dd1a0cacc8db65b30776726169be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -469,8 +469,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Copies the memory address of the element at index to *val. If element does not exist, AWS_ERROR_INVALID_INDEX will be raised.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. The array list implementation has a void* data field. This causes problems for CBMC, because it ends up needing to byte-extract everything from the data array, even if the array is only ever used for a single type. This dramatically slows down proofs (in one case, timing out after 90 minutes). If we know what the correct type is, we can do type-safe operations, and things are dramatically faster (2 minutes instead of timeout, on the proof mentioned above). </p>
+<p >Copies the memory address of the element at index to *val. If element does not exist, AWS_ERROR_INVALID_INDEX will be raised. </p>
 
 </div>
 </div>
@@ -805,9 +804,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Swap elements at the specified indices, which must be within the bounds of the array.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. FUNCTION: aws_array_list_swap</p>
-<p >We override aws_array_list_swap because mem_swap makes CBMC struggle (because of the many memcpys) and because the array_list_get_at in before the mem_swap are unneccessary if we stub out mem_swap. Instead we add a havoc assumption on the two swapped byted to ensure that no assertion on the values of the two cells is made afterwards. </p>
+<p >Swap elements at the specified indices, which must be within the bounds of the array. </p>
 
 </div>
 </div>

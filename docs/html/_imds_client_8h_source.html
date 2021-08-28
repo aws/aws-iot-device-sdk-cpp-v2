@@ -77,9 +77,9 @@ $(function() {
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__credentials.html">aws_credentials</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__imds__client.html">aws_imds_client</a>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__imds__instance__info.html">aws_imds_instance_info</a>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__imds__iam__profile.html">aws_imds_iam_profile</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">struct </span>aws_imds_client;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">struct </span>aws_imds_instance_info;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">struct </span>aws_imds_iam_profile;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_aws.html">Aws</a></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
@@ -195,7 +195,7 @@ $(function() {
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#a9b32b159213780b2e4e3d63f5e950550">  146</a></span>                <a class="code hl_class" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html">ImdsClient</a> &amp;<a class="code hl_function" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#a9b32b159213780b2e4e3d63f5e950550">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html">ImdsClient</a> &amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#a8520b878c9268b29456dcebde4ffa110">  147</a></span>                <a class="code hl_class" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html">ImdsClient</a> &amp;<a class="code hl_function" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#a8520b878c9268b29456dcebde4ffa110">operator=</a>(<a class="code hl_class" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html">ImdsClient</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#af5f55a24e03738fe41784ce36136c6c5">  149</a></span>                <a class="code hl_struct" href="structaws__imds__client.html">aws_imds_client</a> *<a class="code hl_function" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#af5f55a24e03738fe41784ce36136c6c5">GetUnderlyingHandle</a>() { <span class="keywordflow">return</span> m_client; }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#af5f55a24e03738fe41784ce36136c6c5">  149</a></span>                aws_imds_client *<a class="code hl_function" href="class_aws_1_1_crt_1_1_imds_1_1_imds_client.html#af5f55a24e03738fe41784ce36136c6c5">GetUnderlyingHandle</a>() { <span class="keywordflow">return</span> m_client; }</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                <span class="keywordtype">int</span> GetResource(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1basic__string__view.html">StringView</a> &amp;resourcePath, <a class="code hl_typedef" href="namespace_aws_1_1_crt_1_1_imds.html#a23cb692edf9ebc52b70e7ba33f93bae7">OnResourceAcquired</a> callback, <span class="keywordtype">void</span> *userData);</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
@@ -251,16 +251,16 @@ $(function() {
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                <span class="keyword">static</span> <span class="keywordtype">void</span> s_onCredentialsAcquired(<span class="keyword">const</span> <a class="code hl_struct" href="structaws__credentials.html">aws_credentials</a> *credentials, <span class="keywordtype">int</span> errorCode, <span class="keywordtype">void</span> *userData);</div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>                <span class="keyword">static</span> <span class="keywordtype">void</span> s_onIamProfileAcquired(</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structaws__imds__iam__profile.html">aws_imds_iam_profile</a> *iamProfileInfo,</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>                    <span class="keyword">const</span> aws_imds_iam_profile *iamProfileInfo,</div>
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                    <span class="keywordtype">int</span> errorCode,</div>
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                    <span class="keywordtype">void</span> *userData);</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>                <span class="keyword">static</span> <span class="keywordtype">void</span> s_onInstanceInfoAcquired(</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structaws__imds__instance__info.html">aws_imds_instance_info</a> *instanceInfo,</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>                    <span class="keyword">const</span> aws_imds_instance_info *instanceInfo,</div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>                    <span class="keywordtype">int</span> error_code,</div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                    <span class="keywordtype">void</span> *userData);</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                <a class="code hl_struct" href="structaws__imds__client.html">aws_imds_client</a> *m_client;</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                aws_imds_client *m_client;</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                <a class="code hl_struct" href="structaws__allocator.html">Allocator</a> *m_allocator;</div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>            };</div>
 <div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span> </div>
@@ -338,9 +338,6 @@ $(function() {
 <div class="ttc" id="astructaws__array__list_html"><div class="ttname"><a href="structaws__array__list.html">aws_array_list</a></div><div class="ttdef"><b>Definition:</b> array_list.h:15</div></div>
 <div class="ttc" id="astructaws__byte__buf_html"><div class="ttname"><a href="structaws__byte__buf.html">aws_byte_buf</a></div><div class="ttdef"><b>Definition:</b> byte_buf.h:25</div></div>
 <div class="ttc" id="astructaws__credentials_html"><div class="ttname"><a href="structaws__credentials.html">aws_credentials</a></div><div class="ttdef"><b>Definition:</b> credentials.c:14</div></div>
-<div class="ttc" id="astructaws__imds__client_html"><div class="ttname"><a href="structaws__imds__client.html">aws_imds_client</a></div><div class="ttdef"><b>Definition:</b> aws_imds_client.c:51</div></div>
-<div class="ttc" id="astructaws__imds__iam__profile_html"><div class="ttname"><a href="structaws__imds__iam__profile.html">aws_imds_iam_profile</a></div><div class="ttdef"><b>Definition:</b> aws_imds_client.h:68</div></div>
-<div class="ttc" id="astructaws__imds__instance__info_html"><div class="ttname"><a href="structaws__imds__instance__info.html">aws_imds_instance_info</a></div><div class="ttdef"><b>Definition:</b> aws_imds_client.h:79</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
