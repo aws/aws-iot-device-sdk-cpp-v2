@@ -112,15 +112,15 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a06495cd28f64029ef3dbd3b831d7b932"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> = <a class="el" href="structaws__http__header.html">aws_http_header</a></td></tr>
+<tr class="memitem:a06495cd28f64029ef3dbd3b831d7b932"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> = aws_http_header</td></tr>
 <tr class="separator:a06495cd28f64029ef3dbd3b831d7b932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf7cbfe9deb17e6abd259b1db3850c6d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf7cbfe9deb17e6abd259b1db3850c6d">OnConnectionSetup</a> = std::function&lt; void(const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection.html">HttpClientConnection</a> &gt; &amp;connection, int errorCode)&gt;</td></tr>
 <tr class="separator:abf7cbfe9deb17e6abd259b1db3850c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38b7bf171ad1910c2d8d95eef6f8ee13"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a38b7bf171ad1910c2d8d95eef6f8ee13">OnConnectionShutdown</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection.html">HttpClientConnection</a> &amp;connection, int errorCode)&gt;</td></tr>
 <tr class="separator:a38b7bf171ad1910c2d8d95eef6f8ee13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2a1bca19494ff57966accc70a833834"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ab2a1bca19494ff57966accc70a833834">OnIncomingHeaders</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> headerBlock, const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> *headersArray, std::size_t headersCount)&gt;</td></tr>
+<tr class="memitem:ab2a1bca19494ff57966accc70a833834"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ab2a1bca19494ff57966accc70a833834">OnIncomingHeaders</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum aws_http_header_block headerBlock, const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> *headersArray, std::size_t headersCount)&gt;</td></tr>
 <tr class="separator:ab2a1bca19494ff57966accc70a833834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d646e4c6ffcdfa23c42e95403ac388d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a8d646e4c6ffcdfa23c42e95403ac388d">OnIncomingHeadersBlockDone</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block)&gt;</td></tr>
+<tr class="memitem:a8d646e4c6ffcdfa23c42e95403ac388d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a8d646e4c6ffcdfa23c42e95403ac388d">OnIncomingHeadersBlockDone</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum aws_http_header_block block)&gt;</td></tr>
 <tr class="separator:a8d646e4c6ffcdfa23c42e95403ac388d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc77003769a91c513b54ce1fa42d1231"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abc77003769a91c513b54ce1fa42d1231">OnIncomingBody</a> = std::function&lt; void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;data)&gt;</td></tr>
 <tr class="separator:abc77003769a91c513b54ce1fa42d1231"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,7 +150,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="structaws__http__header.html">aws_http_header</a> <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">Aws::Crt::Http::HttpHeader</a></td>
+          <td class="memname">typedef aws_http_header <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">Aws::Crt::Http::HttpHeader</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -225,7 +225,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ab2a1bca19494ff57966accc70a833834">Aws::Crt::Http::OnIncomingHeaders</a> = typedef std::function&lt;void( <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> headerBlock, const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> *headersArray, std::size_t headersCount)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ab2a1bca19494ff57966accc70a833834">Aws::Crt::Http::OnIncomingHeaders</a> = typedef std::function&lt;void( <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum aws_http_header_block headerBlock, const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">HttpHeader</a> *headersArray, std::size_t headersCount)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -242,7 +242,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a8d646e4c6ffcdfa23c42e95403ac388d">Aws::Crt::Http::OnIncomingHeadersBlockDone</a> = typedef std::function&lt;void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a8d646e4c6ffcdfa23c42e95403ac388d">Aws::Crt::Http::OnIncomingHeadersBlockDone</a> = typedef std::function&lt;void(<a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_stream.html">HttpStream</a> &amp;stream, enum aws_http_header_block block)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

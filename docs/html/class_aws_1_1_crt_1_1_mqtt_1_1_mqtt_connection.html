@@ -94,7 +94,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8c11cdf0f9c9c08593f47fb7ef0717f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee6b34441363899bf7cf2b1ef237646"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#abee6b34441363899bf7cf2b1ef237646">LastError</a> () const noexcept</td></tr>
 <tr class="separator:abee6b34441363899bf7cf2b1ef237646"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a56eed8e9b70656d19ea8ec5d76029e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a2a56eed8e9b70656d19ea8ec5d76029e">SetWill</a> (const char *topic, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, bool retain, const <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">ByteBuf</a> &amp;payload) noexcept</td></tr>
+<tr class="memitem:a2a56eed8e9b70656d19ea8ec5d76029e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a2a56eed8e9b70656d19ea8ec5d76029e">SetWill</a> (const char *topic, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, bool retain, const <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">ByteBuf</a> &amp;payload) noexcept</td></tr>
 <tr class="separator:a2a56eed8e9b70656d19ea8ec5d76029e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f990f492495c36b403cb697b00fb7be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a2f990f492495c36b403cb697b00fb7be">SetLogin</a> (const char *userName, const char *password) noexcept</td></tr>
 <tr class="separator:a2f990f492495c36b403cb697b00fb7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,15 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8f58b4a3e905c6d81aae4e77cfb9b6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e8905315e67c0acaef07ef67915857a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a4e8905315e67c0acaef07ef67915857a">Disconnect</a> () noexcept</td></tr>
 <tr class="separator:a4e8905315e67c0acaef07ef67915857a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0ef948152e00bfda23c0ed186189277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#ae0ef948152e00bfda23c0ed186189277">GetUnderlyingConnection</a> () noexcept</td></tr>
+<tr class="memitem:ae0ef948152e00bfda23c0ed186189277"><td class="memItemLeft" align="right" valign="top">aws_mqtt_client_connection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#ae0ef948152e00bfda23c0ed186189277">GetUnderlyingConnection</a> () noexcept</td></tr>
 <tr class="separator:ae0ef948152e00bfda23c0ed186189277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeab2a63e1c9aacd81271ba848b92b333"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aeab2a63e1c9aacd81271ba848b92b333">Subscribe</a> (const char *topicFilter, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">OnMessageReceivedHandler</a> &amp;&amp;onMessage, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#aedc46fe650f31ca76c9b045a45258ffc">OnSubAckHandler</a> &amp;&amp;onSubAck) noexcept</td></tr>
+<tr class="memitem:aeab2a63e1c9aacd81271ba848b92b333"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aeab2a63e1c9aacd81271ba848b92b333">Subscribe</a> (const char *topicFilter, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">OnMessageReceivedHandler</a> &amp;&amp;onMessage, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#aedc46fe650f31ca76c9b045a45258ffc">OnSubAckHandler</a> &amp;&amp;onSubAck) noexcept</td></tr>
 <tr class="separator:aeab2a63e1c9aacd81271ba848b92b333"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeb2353a84fc3319375cddb670b7b530"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aeeb2353a84fc3319375cddb670b7b530">Subscribe</a> (const char *topicFilter, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a4c45cd45103957d38303f03f37d251e2">OnPublishReceivedHandler</a> &amp;&amp;onPublish, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#aedc46fe650f31ca76c9b045a45258ffc">OnSubAckHandler</a> &amp;&amp;onSubAck) noexcept</td></tr>
+<tr class="memitem:aeeb2353a84fc3319375cddb670b7b530"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aeeb2353a84fc3319375cddb670b7b530">Subscribe</a> (const char *topicFilter, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a4c45cd45103957d38303f03f37d251e2">OnPublishReceivedHandler</a> &amp;&amp;onPublish, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#aedc46fe650f31ca76c9b045a45258ffc">OnSubAckHandler</a> &amp;&amp;onSubAck) noexcept</td></tr>
 <tr class="separator:aeeb2353a84fc3319375cddb670b7b530"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac338b478427a383dd989aebf5e8cf0e6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#ac338b478427a383dd989aebf5e8cf0e6">Subscribe</a> (const <a class="el" href="namespace_aws_1_1_crt.html#ac975615d2a9140660077ef7b264d9b6c">Vector</a>&lt; std::pair&lt; const char *, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">OnMessageReceivedHandler</a> &gt; &gt; &amp;topicFilters, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a114f4b34cc46025478d479beaacc53ff">OnMultiSubAckHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
+<tr class="memitem:ac338b478427a383dd989aebf5e8cf0e6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#ac338b478427a383dd989aebf5e8cf0e6">Subscribe</a> (const <a class="el" href="namespace_aws_1_1_crt.html#ac975615d2a9140660077ef7b264d9b6c">Vector</a>&lt; std::pair&lt; const char *, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">OnMessageReceivedHandler</a> &gt; &gt; &amp;topicFilters, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a114f4b34cc46025478d479beaacc53ff">OnMultiSubAckHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
 <tr class="separator:ac338b478427a383dd989aebf5e8cf0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae69be97b55ffcfb897bdd31f6c8326a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aae69be97b55ffcfb897bdd31f6c8326a">Subscribe</a> (const <a class="el" href="namespace_aws_1_1_crt.html#ac975615d2a9140660077ef7b264d9b6c">Vector</a>&lt; std::pair&lt; const char *, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a4c45cd45103957d38303f03f37d251e2">OnPublishReceivedHandler</a> &gt; &gt; &amp;topicFilters, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a114f4b34cc46025478d479beaacc53ff">OnMultiSubAckHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
+<tr class="memitem:aae69be97b55ffcfb897bdd31f6c8326a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#aae69be97b55ffcfb897bdd31f6c8326a">Subscribe</a> (const <a class="el" href="namespace_aws_1_1_crt.html#ac975615d2a9140660077ef7b264d9b6c">Vector</a>&lt; std::pair&lt; const char *, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a4c45cd45103957d38303f03f37d251e2">OnPublishReceivedHandler</a> &gt; &gt; &amp;topicFilters, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a114f4b34cc46025478d479beaacc53ff">OnMultiSubAckHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
 <tr class="separator:aae69be97b55ffcfb897bdd31f6c8326a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaab4c2cf826b7e6a6e89a9854cbc527"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#adaab4c2cf826b7e6a6e89a9854cbc527">SetOnMessageHandler</a> (<a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">OnMessageReceivedHandler</a> &amp;&amp;onMessage) noexcept</td></tr>
 <tr class="separator:adaab4c2cf826b7e6a6e89a9854cbc527"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,7 +122,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5d6f5a1a9469a3a5f1d2c9c3f0892aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e092fabbed19219b418ee0b59451bd0"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a0e092fabbed19219b418ee0b59451bd0">Unsubscribe</a> (const char *topicFilter, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44fc5120bbbe950dc76488128259b18f">OnOperationCompleteHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
 <tr class="separator:a0e092fabbed19219b418ee0b59451bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb654b4ee0d543b2e6ba3b54470ab9e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#acb654b4ee0d543b2e6ba3b54470ab9e5">Publish</a> (const char *topic, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a> qos, bool retain, const <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">ByteBuf</a> &amp;payload, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44fc5120bbbe950dc76488128259b18f">OnOperationCompleteHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
+<tr class="memitem:acb654b4ee0d543b2e6ba3b54470ab9e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#acb654b4ee0d543b2e6ba3b54470ab9e5">Publish</a> (const char *topic, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a> qos, bool retain, const <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">ByteBuf</a> &amp;payload, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44fc5120bbbe950dc76488128259b18f">OnOperationCompleteHandler</a> &amp;&amp;onOpComplete) noexcept</td></tr>
 <tr class="separator:acb654b4ee0d543b2e6ba3b54470ab9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -301,7 +301,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> * Aws::Crt::Mqtt::MqttConnection::GetUnderlyingConnection </td>
+          <td class="memname">aws_mqtt_client_connection * Aws::Crt::Mqtt::MqttConnection::GetUnderlyingConnection </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -439,7 +439,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>
@@ -649,7 +649,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>
@@ -698,7 +698,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>
@@ -747,7 +747,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>
@@ -796,7 +796,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>
@@ -839,7 +839,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">QOS</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">QOS</a>&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>

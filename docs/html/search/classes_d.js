@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['namedshadowdeltaupdatedsubscriptionrequest_0',['NamedShadowDeltaUpdatedSubscriptionRequest',['../class_aws_1_1_iotshadow_1_1_named_shadow_delta_updated_subscription_request.html',1,'Aws::Iotshadow']]],
-  ['namedshadowupdatedsubscriptionrequest_1',['NamedShadowUpdatedSubscriptionRequest',['../class_aws_1_1_iotshadow_1_1_named_shadow_updated_subscription_request.html',1,'Aws::Iotshadow']]],
-  ['nextjobexecutionchangedevent_2',['NextJobExecutionChangedEvent',['../class_aws_1_1_iotjobs_1_1_next_job_execution_changed_event.html',1,'Aws::Iotjobs']]],
-  ['nextjobexecutionchangedsubscriptionrequest_3',['NextJobExecutionChangedSubscriptionRequest',['../class_aws_1_1_iotjobs_1_1_next_job_execution_changed_subscription_request.html',1,'Aws::Iotjobs']]]
+  ['onmessageflushcallbackcontainer_0',['OnMessageFlushCallbackContainer',['../struct_aws_1_1_eventstreamrpc_1_1_on_message_flush_callback_container.html',1,'Aws::Eventstreamrpc']]],
+  ['opcompletecallbackdata_1',['OpCompleteCallbackData',['../struct_aws_1_1_crt_1_1_mqtt_1_1_op_complete_callback_data.html',1,'Aws::Crt::Mqtt']]],
+  ['operationerror_2',['OperationError',['../class_aws_1_1_eventstreamrpc_1_1_operation_error.html',1,'Aws::Eventstreamrpc']]],
+  ['operationmodelcontext_3',['OperationModelContext',['../class_aws_1_1_eventstreamrpc_1_1_operation_model_context.html',1,'Aws::Eventstreamrpc']]],
+  ['optional_4',['Optional',['../class_aws_1_1_crt_1_1_optional.html',1,'Aws::Crt']]]
 ];

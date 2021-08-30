@@ -76,11 +76,11 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source.html">aws/crt/Exports.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_stl_allocator_8h_source.html">aws/crt/StlAllocator.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="include_2aws_2crt_2_types_8h_source.html">aws/crt/Types.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_types_8h_source.html">aws/crt/Types.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_http_connection_8h_source.html">aws/crt/http/HttpConnection.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_socket_options_8h_source.html">aws/crt/io/SocketOptions.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_tls_options_8h_source.html">aws/crt/io/TlsOptions.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="client_8h_source.html">aws/mqtt/client.h</a>&gt;</code><br />
+<code>#include &lt;aws/mqtt/client.h&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
@@ -121,7 +121,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:a114f4b34cc46025478d479beaacc53ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0e931986cc3e616c6adf935d760ecb0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#aa0e931986cc3e616c6adf935d760ecb0">Aws::Crt::Mqtt::OnDisconnectHandler</a> = std::function&lt; void(MqttConnection &amp;connection)&gt;</td></tr>
 <tr class="separator:aa0e931986cc3e616c6adf935d760ecb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44b5236aa0361ef97c0595eaf3d48b64"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">Aws::Crt::Mqtt::OnMessageReceivedHandler</a> = std::function&lt; void(MqttConnection &amp;connection, const String &amp;topic, const ByteBuf &amp;payload, bool <a class="el" href="bike__r2_2decode_8c.html#aa36ac9b28eef6905672b29e8e398053a">dup</a>, QOS qos, bool retain)&gt;</td></tr>
+<tr class="memitem:a44b5236aa0361ef97c0595eaf3d48b64"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a44b5236aa0361ef97c0595eaf3d48b64">Aws::Crt::Mqtt::OnMessageReceivedHandler</a> = std::function&lt; void(MqttConnection &amp;connection, const String &amp;topic, const ByteBuf &amp;payload, bool dup, QOS qos, bool retain)&gt;</td></tr>
 <tr class="separator:a44b5236aa0361ef97c0595eaf3d48b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c45cd45103957d38303f03f37d251e2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a4c45cd45103957d38303f03f37d251e2">Aws::Crt::Mqtt::OnPublishReceivedHandler</a> = std::function&lt; void(MqttConnection &amp;connection, const String &amp;topic, const ByteBuf &amp;payload)&gt;</td></tr>
 <tr class="separator:a4c45cd45103957d38303f03f37d251e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
