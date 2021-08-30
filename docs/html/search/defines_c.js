@@ -13,6 +13,5 @@ var searchData=
   ['load64_10',['load64',['../sike__r1__namespace_8h.html#a3691e80ff400dbb52f07d3a085c454f3',1,'sike_r1_namespace.h']]],
   ['log2_5fmsb_11',['LOG2_MSB',['../bike__r1_2defs_8h.html#a4482bcd5bd9bd6e39dc5146c125dfabe',1,'LOG2_MSB():&#160;defs.h'],['../bike__r2_2defs_8h.html#a4482bcd5bd9bd6e39dc5146c125dfabe',1,'LOG2_MSB():&#160;defs.h']]],
   ['log2radix_12',['LOG2RADIX',['../config__r1_8h.html#a54fb8290a7b6a1770daf12fb7300a3d0',1,'config_r1.h']]],
-  ['log_5flevel_5fprefix_5fpadding_13',['LOG_LEVEL_PREFIX_PADDING',['../log__formatter_8c.html#ae9bd05c1fcc74c13935342d9eceecf67',1,'log_formatter.c']]],
-  ['logcat_5fmax_5fbuffer_5fsize_14',['LOGCAT_MAX_BUFFER_SIZE',['../android_2logging_8c.html#a177261bcb1bdbc332c0d6c2165cf39f3',1,'logging.c']]]
+  ['log_5flevel_5fprefix_5fpadding_13',['LOG_LEVEL_PREFIX_PADDING',['../log__formatter_8c.html#ae9bd05c1fcc74c13935342d9eceecf67',1,'log_formatter.c']]]
 ];

@@ -17,6 +17,5 @@ var searchData=
   ['listnamedshadowsforthingresponse_14',['ListNamedShadowsForThingResponse',['../class_aws_1_1_greengrass_1_1_list_named_shadows_for_thing_response.html',1,'Aws::Greengrass']]],
   ['listnamedshadowsforthingresult_15',['ListNamedShadowsForThingResult',['../class_aws_1_1_greengrass_1_1_list_named_shadows_for_thing_result.html',1,'Aws::Greengrass']]],
   ['localdeployment_16',['LocalDeployment',['../class_aws_1_1_greengrass_1_1_local_deployment.html',1,'Aws::Greengrass']]],
-  ['logcat_5fformat_5fdata_17',['logcat_format_data',['../structlogcat__format__data.html',1,'']]],
-  ['lru_5fcache_5fimpl_5fvtable_18',['lru_cache_impl_vtable',['../structlru__cache__impl__vtable.html',1,'']]]
+  ['lru_5fcache_5fimpl_5fvtable_17',['lru_cache_impl_vtable',['../structlru__cache__impl__vtable.html',1,'']]]
 ];

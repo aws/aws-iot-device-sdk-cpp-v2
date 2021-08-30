@@ -15,7 +15,7 @@ var searchData=
   ['log_5fformatter_2eh_12',['log_formatter.h',['../log__formatter_8h.html',1,'']]],
   ['log_5fwriter_2ec_13',['log_writer.c',['../log__writer_8c.html',1,'']]],
   ['log_5fwriter_2eh_14',['log_writer.h',['../log__writer_8h.html',1,'']]],
-  ['logging_2ec_15',['logging.c',['../android_2logging_8c.html',1,'(Global Namespace)'],['../logging_8c.html',1,'(Global Namespace)']]],
+  ['logging_2ec_15',['logging.c',['../logging_8c.html',1,'']]],
   ['logging_2eh_16',['logging.h',['../aws-c-common_2include_2aws_2common_2logging_8h.html',1,'(Global Namespace)'],['../aws-c-io_2include_2aws_2io_2logging_8h.html',1,'(Global Namespace)']]],
   ['lookup3_2einl_17',['lookup3.inl',['../lookup3_8inl.html',1,'']]],
   ['lru_5fcache_2ec_18',['lru_cache.c',['../lru__cache_8c.html',1,'']]],
