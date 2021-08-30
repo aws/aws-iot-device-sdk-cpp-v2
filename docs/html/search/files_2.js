@@ -2,11 +2,11 @@ var searchData=
 [
   ['cjson_2ecpp_0',['cJSON.cpp',['../c_j_s_o_n_8cpp.html',1,'']]],
   ['cjson_2eh_1',['cJSON.h',['../c_j_s_o_n_8h.html',1,'']]],
-  ['code_5fof_5fconduct_2emd_2',['CODE_OF_CONDUCT.md',['../_c_o_d_e___o_f___c_o_n_d_u_c_t_8md.html',1,'(Global Namespace)'],['../crt_2aws-crt-cpp_2_c_o_d_e___o_f___c_o_n_d_u_c_t_8md.html',1,'(Global Namespace)']]],
+  ['code_5fof_5fconduct_2emd_2',['CODE_OF_CONDUCT.md',['../_c_o_d_e___o_f___c_o_n_d_u_c_t_8md.html',1,'']]],
   ['config_2eh_3',['Config.h',['../_config_8h.html',1,'']]],
   ['connectivityinfo_2ecpp_4',['ConnectivityInfo.cpp',['../_connectivity_info_8cpp.html',1,'']]],
   ['connectivityinfo_2eh_5',['ConnectivityInfo.h',['../_connectivity_info_8h.html',1,'']]],
-  ['contributing_2emd_6',['CONTRIBUTING.md',['../_c_o_n_t_r_i_b_u_t_i_n_g_8md.html',1,'(Global Namespace)'],['../crt_2aws-crt-cpp_2_c_o_n_t_r_i_b_u_t_i_n_g_8md.html',1,'(Global Namespace)']]],
+  ['contributing_2emd_6',['CONTRIBUTING.md',['../_c_o_n_t_r_i_b_u_t_i_n_g_8md.html',1,'']]],
   ['create_2dprojects_2epy_7',['create-projects.py',['../create-projects_8py.html',1,'']]],
   ['createcertificatefromcsrrequest_2ecpp_8',['CreateCertificateFromCsrRequest.cpp',['../_create_certificate_from_csr_request_8cpp.html',1,'']]],
   ['createcertificatefromcsrrequest_2eh_9',['CreateCertificateFromCsrRequest.h',['../_create_certificate_from_csr_request_8h.html',1,'']]],
