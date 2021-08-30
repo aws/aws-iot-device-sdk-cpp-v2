@@ -72,44 +72,37 @@ $(function() {
 <div class="contents">
 <a href="mqtt__client__test__helper_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef AWS_MQTT_CLIENT_TEST_HELPER_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define AWS_MQTT_CLIENT_TEST_HELPER_H</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="stdint_8h.html">aws/common/stdint.h</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;aws/common/stdint.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html">aws/mqtt/exports.h</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__allocator.html">aws_allocator</a>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">struct </span>aws_allocator;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">struct </span>aws_byte_cursor;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__string.html">aws_string</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">struct </span>aws_string;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><a class="code hl_define" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>AWS_EXTERN_C_BEGIN</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><a class="code hl_define" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> <a class="code hl_function" href="mqtt__client__test__helper_8h.html#ad32ea16546f99f31864b820ca2d08d3f">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a>(</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    uint16_t packet_id,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *result);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">struct</span> aws_byte_cursor *result);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><a class="code hl_define" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> <a class="code hl_function" href="mqtt__client__test__helper_8h.html#a6eb75eacc9adbf9d9e84bb439455f5a3">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a>(</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    uint16_t packet_id,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__allocator.html">aws_allocator</a> *<a class="code hl_variable" href="structaws__string.html#aec82409439d9c2333004c6b3551386f5">allocator</a>,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__string.html">aws_string</a> **result);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">struct</span> aws_allocator *allocator,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">struct</span> aws_string **result);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><a class="code hl_define" href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>AWS_EXTERN_C_END</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif </span><span class="comment">// AWS_C_IOT_MQTT_CLIENT_TEST_HELPER_H</span></div>
 <div class="ttc" id="acrt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_html"><div class="ttname"><a href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html">exports.h</a></div></div>
 <div class="ttc" id="acrt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_html_a9f8288d6c805910baca30043ee3068bf"><div class="ttname"><a href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a></div><div class="ttdeci">#define AWS_MQTT_API</div><div class="ttdef"><b>Definition:</b> exports.h:22</div></div>
-<div class="ttc" id="amacros_8h_html_a24efb76a3b128abc9c35d83cac0030c5"><div class="ttname"><a href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a></div><div class="ttdeci">#define AWS_EXTERN_C_END</div><div class="ttdef"><b>Definition:</b> macros.h:13</div></div>
-<div class="ttc" id="amacros_8h_html_ab6f66af8231eba5da061b9ada0d29bad"><div class="ttname"><a href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a></div><div class="ttdeci">#define AWS_EXTERN_C_BEGIN</div><div class="ttdef"><b>Definition:</b> macros.h:12</div></div>
 <div class="ttc" id="amqtt__client__test__helper_8h_html_a6eb75eacc9adbf9d9e84bb439455f5a3"><div class="ttname"><a href="mqtt__client__test__helper_8h.html#a6eb75eacc9adbf9d9e84bb439455f5a3">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a></div><div class="ttdeci">AWS_MQTT_API void aws_mqtt_client_get_topic_for_outstanding_publish_packet(struct aws_mqtt_client_connection *connection, uint16_t packet_id, struct aws_allocator *allocator, struct aws_string **result)</div><div class="ttdef"><b>Definition:</b> client.c:2571</div></div>
 <div class="ttc" id="amqtt__client__test__helper_8h_html_ad32ea16546f99f31864b820ca2d08d3f"><div class="ttname"><a href="mqtt__client__test__helper_8h.html#ad32ea16546f99f31864b820ca2d08d3f">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a></div><div class="ttdeci">AWS_EXTERN_C_BEGIN AWS_MQTT_API void aws_mqtt_client_get_payload_for_outstanding_publish_packet(struct aws_mqtt_client_connection *connection, uint16_t packet_id, struct aws_byte_cursor *result)</div><div class="ttdef"><b>Definition:</b> client.c:2556</div></div>
-<div class="ttc" id="astdint_8h_html"><div class="ttname"><a href="stdint_8h.html">stdint.h</a></div></div>
-<div class="ttc" id="astructaws__allocator_html"><div class="ttname"><a href="structaws__allocator.html">aws_allocator</a></div><div class="ttdef"><b>Definition:</b> allocator.h:15</div></div>
-<div class="ttc" id="astructaws__byte__cursor_html"><div class="ttname"><a href="structaws__byte__cursor.html">aws_byte_cursor</a></div><div class="ttdef"><b>Definition:</b> byte_buf.h:38</div></div>
 <div class="ttc" id="astructaws__mqtt__client__connection_html"><div class="ttname"><a href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a></div><div class="ttdef"><b>Definition:</b> client_impl.h:118</div></div>
-<div class="ttc" id="astructaws__string_html"><div class="ttname"><a href="structaws__string.html">aws_string</a></div><div class="ttdef"><b>Definition:</b> string.h:41</div></div>
-<div class="ttc" id="astructaws__string_html_aec82409439d9c2333004c6b3551386f5"><div class="ttname"><a href="structaws__string.html#aec82409439d9c2333004c6b3551386f5">aws_string::allocator</a></div><div class="ttdeci">struct aws_allocator *const allocator</div><div class="ttdef"><b>Definition:</b> string.h:42</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

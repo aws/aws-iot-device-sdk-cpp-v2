@@ -83,16 +83,16 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5968b89752aa354fcbd080c4ec17f394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a5968b89752aa354fcbd080c4ec17f394">aws_compression_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc)</td></tr>
+<tr class="memitem:a5968b89752aa354fcbd080c4ec17f394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a5968b89752aa354fcbd080c4ec17f394">aws_compression_library_init</a> (struct aws_allocator *alloc)</td></tr>
 <tr class="separator:a5968b89752aa354fcbd080c4ec17f394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a897e911367351d91eb55d316a879d51e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a897e911367351d91eb55d316a879d51e">aws_compression_library_clean_up</a> (void)</td></tr>
 <tr class="separator:a897e911367351d91eb55d316a879d51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info.html">aws_error_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
+<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
 <tr class="separator:a255baa9b51b60f5b91a01313637fc353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a259d0901f655216b70a33e9c18ac9fff"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a259d0901f655216b70a33e9c18ac9fff">s_error_list</a></td></tr>
+<tr class="memitem:a259d0901f655216b70a33e9c18ac9fff"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a259d0901f655216b70a33e9c18ac9fff">s_error_list</a></td></tr>
 <tr class="separator:a259d0901f655216b70a33e9c18ac9fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0a762a360f8f4078afaba44e688669"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compression_8c.html#a3e0a762a360f8f4078afaba44e688669">s_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:a3e0a762a360f8f4078afaba44e688669"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,9 +123,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    [(CODE)-<a class="code hl_define" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3b06229058127882513776ee67fb9b5f">AWS_ERROR_ENUM_BEGIN_RANGE</a>(<a class="code hl_define" href="compression_8h.html#a3b72e96aad83f1c1e4628b45f2adfde0">AWS_C_COMPRESSION_PACKAGE_ID</a>)] =                                                \</div>
+<b>Value:</b><div class="fragment"><div class="line">    [(CODE)-AWS_ERROR_ENUM_BEGIN_RANGE(<a class="code hl_define" href="compression_8h.html#a3b72e96aad83f1c1e4628b45f2adfde0">AWS_C_COMPRESSION_PACKAGE_ID</a>)] =                                                \</div>
 <div class="line">        AWS_DEFINE_ERROR_INFO(CODE, STR, <span class="stringliteral">&quot;aws-c-compression&quot;</span>)</div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2error_8h_html_a3b06229058127882513776ee67fb9b5f"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2error_8h.html#a3b06229058127882513776ee67fb9b5f">AWS_ERROR_ENUM_BEGIN_RANGE</a></div><div class="ttdeci">#define AWS_ERROR_ENUM_BEGIN_RANGE(x)</div><div class="ttdef"><b>Definition:</b> error.h:21</div></div>
 <div class="ttc" id="acompression_8h_html_a3b72e96aad83f1c1e4628b45f2adfde0"><div class="ttname"><a href="compression_8h.html#a3b72e96aad83f1c1e4628b45f2adfde0">AWS_C_COMPRESSION_PACKAGE_ID</a></div><div class="ttdeci">#define AWS_C_COMPRESSION_PACKAGE_ID</div><div class="ttdef"><b>Definition:</b> compression.h:23</div></div>
 </div><!-- fragment -->
 </div>
@@ -159,7 +158,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_compression_library_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em></td><td>)</td>
           <td></td>
         </tr>
@@ -180,7 +179,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a> s_error_list</td>
+          <td class="memname">struct aws_error_info_list s_error_list</td>
         </tr>
       </table>
   </td>
@@ -191,10 +190,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .error_list = <a class="code hl_variable" href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>,</div>
-<div class="line">    .count = <a class="code hl_define" href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a>(<a class="code hl_variable" href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>),</div>
+<div class="line">    .count = AWS_ARRAY_SIZE(<a class="code hl_variable" href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>),</div>
 <div class="line">}</div>
 <div class="ttc" id="acompression_8c_html_a255baa9b51b60f5b91a01313637fc353"><div class="ttname"><a href="compression_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a></div><div class="ttdeci">static struct aws_error_info s_errors[]</div><div class="ttdef"><b>Definition:</b> compression.c:23</div></div>
-<div class="ttc" id="amacros_8h_html_a7b837cfd09e209fa32b1129f8bc9c431"><div class="ttname"><a href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a></div><div class="ttdeci">#define AWS_ARRAY_SIZE(array)</div><div class="ttdef"><b>Definition:</b> macros.h:101</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -208,7 +206,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info.html">aws_error_info</a> s_errors[]</td>
+          <td class="memname">struct aws_error_info s_errors[]</td>
         </tr>
       </table>
   </td>

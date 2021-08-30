@@ -76,9 +76,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="pipe_8h_source.html">aws/io/pipe.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="stdbool_8h_source.html">stdbool.h</a>&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -109,16 +109,16 @@ Enumerations</h2></td></tr>
 , <a class="el" href="windows_2iocp_2pipe_8c.html#a8d5185929ae688e65e523d0d68cfa8c3ae84e65ef20c85d42e4148a8b43d0cf53">WRITE_END_STATE_OPEN</a>
  }</td></tr>
 <tr class="separator:a8d5185929ae688e65e523d0d68cfa8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cc2e4244ca368f68e5746185eda6c4a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="windows_2iocp_2pipe_8c.html#a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b">PIPE_BUFFER_SIZE</a> = 4096
-, <a class="el" href="windows_2iocp_2pipe_8c.html#a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca">PIPE_UNIQUE_NAME_MAX_TRIES</a> = 10
+<tr class="memitem:af715e26dfffd1f8de1c18449e2770cff"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="windows_2iocp_2pipe_8c.html#af715e26dfffd1f8de1c18449e2770cffa74893eeaac6bd1f590232d419cb78e6b">PIPE_BUFFER_SIZE</a> = 4096
+, <a class="el" href="windows_2iocp_2pipe_8c.html#af715e26dfffd1f8de1c18449e2770cffa08d85d2a7616785215335f77060f85ca">PIPE_UNIQUE_NAME_MAX_TRIES</a> = 10
  }</td></tr>
-<tr class="separator:a7cc2e4244ca368f68e5746185eda6c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af715e26dfffd1f8de1c18449e2770cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0466b8ae8934cc192ce3ddf319198036"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a0466b8ae8934cc192ce3ddf319198036">s_read_end_on_zero_byte_read_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
 <tr class="separator:a0466b8ae8934cc192ce3ddf319198036"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d067e1958039d585da366f25327dc3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aa3d067e1958039d585da366f25327dc3">s_read_end_report_error_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *user_data, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:aa3d067e1958039d585da366f25327dc3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aa3d067e1958039d585da366f25327dc3">s_read_end_report_error_task</a> (struct aws_task *task, void *user_data, enum aws_task_status status)</td></tr>
 <tr class="separator:aa3d067e1958039d585da366f25327dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a868551d37595441931d710c3f875073b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a868551d37595441931d710c3f875073b">s_write_end_on_write_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
 <tr class="separator:a868551d37595441931d710c3f875073b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +128,7 @@ Functions</h2></td></tr>
 <tr class="separator:abc9bed8b2ab4fb4bb09baca95b6e4e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a0a3bc89c3adc7dc94281785c9c87a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#af9a0a3bc89c3adc7dc94281785c9c87a">aws_pipe_get_unique_name</a> (char *dst, size_t dst_size)</td></tr>
 <tr class="separator:af9a0a3bc89c3adc7dc94281785c9c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf56e2682653ae18d116c31602657792"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#abf56e2682653ae18d116c31602657792">aws_pipe_init</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *read_end_event_loop, struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *write_end_event_loop, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:abf56e2682653ae18d116c31602657792"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#abf56e2682653ae18d116c31602657792">aws_pipe_init</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *read_end_event_loop, struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *write_end_event_loop, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:abf56e2682653ae18d116c31602657792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4c1f67b64cef9353f3a262fa1c8201c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#ae4c1f67b64cef9353f3a262fa1c8201c">aws_pipe_get_read_end_event_loop</a> (const struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:ae4c1f67b64cef9353f3a262fa1c8201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,21 +144,21 @@ Functions</h2></td></tr>
 <tr class="separator:a7e9848629fbb79aa2e32820a610a536f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a146f320d83d3ef8f4d2199c619ddf14c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a146f320d83d3ef8f4d2199c619ddf14c">aws_pipe_unsubscribe_from_readable_events</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:a146f320d83d3ef8f4d2199c619ddf14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fcb5b59e7ea3cf456c552f464b40f05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a3fcb5b59e7ea3cf456c552f464b40f05">aws_pipe_read</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst_buffer, size_t *amount_read)</td></tr>
+<tr class="memitem:a3fcb5b59e7ea3cf456c552f464b40f05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a3fcb5b59e7ea3cf456c552f464b40f05">aws_pipe_read</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct aws_byte_buf *dst_buffer, size_t *amount_read)</td></tr>
 <tr class="separator:a3fcb5b59e7ea3cf456c552f464b40f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0caa54ae90f9251165a3cddd2dc94840"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a0caa54ae90f9251165a3cddd2dc94840">aws_pipe_clean_up_write_end</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end)</td></tr>
 <tr class="separator:a0caa54ae90f9251165a3cddd2dc94840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a1b498acbbeebfbbe976672d7bcaa3dba">aws_pipe_write</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> src_buffer, <a class="el" href="pipe_8h.html#af5d692be5742b1a7a8e8eca17c1c1673">aws_pipe_on_write_completed_fn</a> *on_completed, void *user_data)</td></tr>
+<tr class="memitem:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a1b498acbbeebfbbe976672d7bcaa3dba">aws_pipe_write</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct aws_byte_cursor src_buffer, <a class="el" href="pipe_8h.html#af5d692be5742b1a7a8e8eca17c1c1673">aws_pipe_on_write_completed_fn</a> *on_completed, void *user_data)</td></tr>
 <tr class="separator:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aec8b3f48953ea51b70f09cfa1428130b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#a8346f2b5dfb59d2482010705b9211bdf">AWS_THREAD_LOCAL</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aec8b3f48953ea51b70f09cfa1428130b">tl_unique_name_counter</a> = 0</td></tr>
+<tr class="memitem:aec8b3f48953ea51b70f09cfa1428130b"><td class="memItemLeft" align="right" valign="top">AWS_THREAD_LOCAL uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aec8b3f48953ea51b70f09cfa1428130b">tl_unique_name_counter</a> = 0</td></tr>
 <tr class="separator:aec8b3f48953ea51b70f09cfa1428130b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a7cc2e4244ca368f68e5746185eda6c4a" name="a7cc2e4244ca368f68e5746185eda6c4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cc2e4244ca368f68e5746185eda6c4a">&#9670;&nbsp;</a></span>anonymous enum</h2>
+<a id="af715e26dfffd1f8de1c18449e2770cff" name="af715e26dfffd1f8de1c18449e2770cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af715e26dfffd1f8de1c18449e2770cff">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +169,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b" name="a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b"></a>PIPE_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca" name="a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca"></a>PIPE_UNIQUE_NAME_MAX_TRIES&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af715e26dfffd1f8de1c18449e2770cffa74893eeaac6bd1f590232d419cb78e6b" name="af715e26dfffd1f8de1c18449e2770cffa74893eeaac6bd1f590232d419cb78e6b"></a>PIPE_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af715e26dfffd1f8de1c18449e2770cffa08d85d2a7616785215335f77060f85ca" name="af715e26dfffd1f8de1c18449e2770cffa08d85d2a7616785215335f77060f85ca"></a>PIPE_UNIQUE_NAME_MAX_TRIES&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -371,7 +371,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -400,7 +400,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>dst_buffer</em>, </td>
         </tr>
         <tr>
@@ -416,7 +416,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Read data from the pipe into the destination buffer. Attempts to read enough to fill all remaining space in the buffer, from <code>dst_buffer-&gt;len</code> to <code>dst_buffer-&gt;capacity</code>. <code>dst_buffer-&gt;len</code> is updated to reflect the buffer's new length. <code>num_bytes_read</code> (optional) is set to the total number of bytes read. This function never blocks. If no bytes could be read without blocking, then AWS_OP_ERR is returned and <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> code will be AWS_IO_READ_WOULD_BLOCK. This must be called on the thread of the connected event-loop. </p>
+<p >Read data from the pipe into the destination buffer. Attempts to read enough to fill all remaining space in the buffer, from <code>dst_buffer-&gt;len</code> to <code>dst_buffer-&gt;capacity</code>. <code>dst_buffer-&gt;len</code> is updated to reflect the buffer's new length. <code>num_bytes_read</code> (optional) is set to the total number of bytes read. This function never blocks. If no bytes could be read without blocking, then AWS_OP_ERR is returned and aws_last_error() code will be AWS_IO_READ_WOULD_BLOCK. This must be called on the thread of the connected event-loop. </p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>src_buffer</em>, </td>
         </tr>
         <tr>
@@ -626,7 +626,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_read_end_report_error_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -638,7 +638,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -774,7 +774,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#a8346f2b5dfb59d2482010705b9211bdf">AWS_THREAD_LOCAL</a> uint32_t tl_unique_name_counter = 0</td>
+          <td class="memname">AWS_THREAD_LOCAL uint32_t tl_unique_name_counter = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

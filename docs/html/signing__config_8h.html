@@ -77,8 +77,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="auth_8h_source.html">aws/auth/auth.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="date__time_8h_source.html">aws/common/date_time.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
+<code>#include &lt;aws/common/date_time.h&gt;</code><br />
 </div>
 <p><a href="signing__config_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -91,7 +91,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ac953025a14d19e2b675205f2bc37e912"><td class="memItemLeft" align="right" valign="top">typedef bool()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#ac953025a14d19e2b675205f2bc37e912">aws_should_sign_header_fn</a>(const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, void *userdata)</td></tr>
+<tr class="memitem:ac953025a14d19e2b675205f2bc37e912"><td class="memItemLeft" align="right" valign="top">typedef bool()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#ac953025a14d19e2b675205f2bc37e912">aws_should_sign_header_fn</a>(const struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, void *userdata)</td></tr>
 <tr class="separator:ac953025a14d19e2b675205f2bc37e912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -120,20 +120,20 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a222a589b909a2e394dc00462dd738e13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a222a589b909a2e394dc00462dd738e13">aws_signing_algorithm_to_string</a> (enum <a class="el" href="signing__config_8h.html#a466313bef0cfb7e1e9c1a0234dad772b">aws_signing_algorithm</a> algorithm)</td></tr>
+<tr class="memitem:a222a589b909a2e394dc00462dd738e13"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a222a589b909a2e394dc00462dd738e13">aws_signing_algorithm_to_string</a> (enum <a class="el" href="signing__config_8h.html#a466313bef0cfb7e1e9c1a0234dad772b">aws_signing_algorithm</a> algorithm)</td></tr>
 <tr class="separator:a222a589b909a2e394dc00462dd738e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec4d47e981da99d7b3c86ad096375ac5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#aec4d47e981da99d7b3c86ad096375ac5">aws_validate_aws_signing_config_aws</a> (const struct <a class="el" href="structaws__signing__config__aws.html">aws_signing_config_aws</a> *config)</td></tr>
 <tr class="separator:aec4d47e981da99d7b3c86ad096375ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a20026c447e4caa86c5d5f9f3d42c5d79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a20026c447e4caa86c5d5f9f3d42c5d79">g_aws_signed_body_value_empty_sha256</a></td></tr>
+<tr class="memitem:a20026c447e4caa86c5d5f9f3d42c5d79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a20026c447e4caa86c5d5f9f3d42c5d79">g_aws_signed_body_value_empty_sha256</a></td></tr>
 <tr class="separator:a20026c447e4caa86c5d5f9f3d42c5d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c2134d25381ea96131e19c41064b67b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a0c2134d25381ea96131e19c41064b67b">g_aws_signed_body_value_unsigned_payload</a></td></tr>
+<tr class="memitem:a0c2134d25381ea96131e19c41064b67b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a0c2134d25381ea96131e19c41064b67b">g_aws_signed_body_value_unsigned_payload</a></td></tr>
 <tr class="separator:a0c2134d25381ea96131e19c41064b67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1859a847edf303e0cfaf30e77b753c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#ad1859a847edf303e0cfaf30e77b753c4">g_aws_signed_body_value_streaming_aws4_hmac_sha256_payload</a></td></tr>
+<tr class="memitem:ad1859a847edf303e0cfaf30e77b753c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#ad1859a847edf303e0cfaf30e77b753c4">g_aws_signed_body_value_streaming_aws4_hmac_sha256_payload</a></td></tr>
 <tr class="separator:ad1859a847edf303e0cfaf30e77b753c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86e1b42f77db0bcff58dc571bc9d2295"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a86e1b42f77db0bcff58dc571bc9d2295">g_aws_signed_body_value_streaming_aws4_hmac_sha256_events</a></td></tr>
+<tr class="memitem:a86e1b42f77db0bcff58dc571bc9d2295"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signing__config_8h.html#a86e1b42f77db0bcff58dc571bc9d2295">g_aws_signed_body_value_streaming_aws4_hmac_sha256_events</a></td></tr>
 <tr class="separator:a86e1b42f77db0bcff58dc571bc9d2295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -144,7 +144,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef bool() aws_should_sign_header_fn(const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, void *userdata)</td>
+          <td class="memname">typedef bool() aws_should_sign_header_fn(const struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -248,7 +248,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const char* aws_signing_algorithm_to_string </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const char* aws_signing_algorithm_to_string </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="signing__config_8h.html#a466313bef0cfb7e1e9c1a0234dad772b">aws_signing_algorithm</a>&#160;</td>
           <td class="paramname"><em>algorithm</em></td><td>)</td>
@@ -304,7 +304,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> g_aws_signed_body_value_empty_sha256</td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor g_aws_signed_body_value_empty_sha256</td>
         </tr>
       </table>
   </td>
@@ -328,7 +328,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> g_aws_signed_body_value_streaming_aws4_hmac_sha256_events</td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor g_aws_signed_body_value_streaming_aws4_hmac_sha256_events</td>
         </tr>
       </table>
   </td>
@@ -352,7 +352,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> g_aws_signed_body_value_streaming_aws4_hmac_sha256_payload</td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor g_aws_signed_body_value_streaming_aws4_hmac_sha256_payload</td>
         </tr>
       </table>
   </td>
@@ -375,7 +375,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> g_aws_signed_body_value_unsigned_payload</td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> const struct aws_byte_cursor g_aws_signed_body_value_unsigned_payload</td>
         </tr>
       </table>
   </td>

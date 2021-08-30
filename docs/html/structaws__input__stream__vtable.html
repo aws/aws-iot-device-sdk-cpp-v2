@@ -74,9 +74,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8aeec8bf2c20396c60acf50577984e4b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__input__stream__vtable.html#a8aeec8bf2c20396c60acf50577984e4b">seek</a> )(struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, <a class="el" href="stdint_8h.html#a7c7388565c261c41172ec27cfbbcd9dc">aws_off_t</a> offset, enum <a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_stream_8h.html#a0b9f7391a82ccf025bf6a216c6b3c20d">aws_stream_seek_basis</a> basis)</td></tr>
+<tr class="memitem:a8aeec8bf2c20396c60acf50577984e4b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__input__stream__vtable.html#a8aeec8bf2c20396c60acf50577984e4b">seek</a> )(struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, aws_off_t offset, enum <a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_stream_8h.html#a0b9f7391a82ccf025bf6a216c6b3c20d">aws_stream_seek_basis</a> basis)</td></tr>
 <tr class="separator:a8aeec8bf2c20396c60acf50577984e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac72dd3e3ecbc5a922bd4f4743c2bb6f9"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__input__stream__vtable.html#ac72dd3e3ecbc5a922bd4f4743c2bb6f9">read</a> )(struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dest)</td></tr>
+<tr class="memitem:ac72dd3e3ecbc5a922bd4f4743c2bb6f9"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__input__stream__vtable.html#ac72dd3e3ecbc5a922bd4f4743c2bb6f9">read</a> )(struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, struct aws_byte_buf *dest)</td></tr>
 <tr class="separator:ac72dd3e3ecbc5a922bd4f4743c2bb6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a698b0cee7cddc3edec31926cb4484e10"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__input__stream__vtable.html#a698b0cee7cddc3edec31926cb4484e10">get_status</a> )(struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, struct <a class="el" href="structaws__stream__status.html">aws_stream_status</a> *status)</td></tr>
 <tr class="separator:a698b0cee7cddc3edec31926cb4484e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,7 +135,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_input_stream_vtable::read) (struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dest)</td>
+          <td class="memname">int(* aws_input_stream_vtable::read) (struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, struct aws_byte_buf *dest)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -152,7 +152,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_input_stream_vtable::seek) (struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, <a class="el" href="stdint_8h.html#a7c7388565c261c41172ec27cfbbcd9dc">aws_off_t</a> offset, enum <a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_stream_8h.html#a0b9f7391a82ccf025bf6a216c6b3c20d">aws_stream_seek_basis</a> basis)</td>
+          <td class="memname">int(* aws_input_stream_vtable::seek) (struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, aws_off_t offset, enum <a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_stream_8h.html#a0b9f7391a82ccf025bf6a216c6b3c20d">aws_stream_seek_basis</a> basis)</td>
         </tr>
       </table>
 </div><div class="memdoc">

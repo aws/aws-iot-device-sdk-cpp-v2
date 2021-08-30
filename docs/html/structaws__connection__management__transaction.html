@@ -74,13 +74,13 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a12e2787549ad5b208e6f1e85a19525ee"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__connection__manager.html">aws_http_connection_manager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#a12e2787549ad5b208e6f1e85a19525ee">manager</a></td></tr>
 <tr class="separator:a12e2787549ad5b208e6f1e85a19525ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ffc7845e38432772663c0007399dd0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#ac3ffc7845e38432772663c0007399dd0">allocator</a></td></tr>
+<tr class="memitem:ac3ffc7845e38432772663c0007399dd0"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#ac3ffc7845e38432772663c0007399dd0">allocator</a></td></tr>
 <tr class="separator:ac3ffc7845e38432772663c0007399dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71dc204cd75b03f593ce21f061fde7e1"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#a71dc204cd75b03f593ce21f061fde7e1">completions</a></td></tr>
+<tr class="memitem:a71dc204cd75b03f593ce21f061fde7e1"><td class="memItemLeft" align="right" valign="top">struct aws_linked_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#a71dc204cd75b03f593ce21f061fde7e1">completions</a></td></tr>
 <tr class="separator:a71dc204cd75b03f593ce21f061fde7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0542d77a9d9d728ace2daf2a0c3c8f6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#aa0542d77a9d9d728ace2daf2a0c3c8f6">connection_to_release</a></td></tr>
 <tr class="separator:aa0542d77a9d9d728ace2daf2a0c3c8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e1dd06b947c2463d5c2a52d7e31fd22"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#a7e1dd06b947c2463d5c2a52d7e31fd22">connections_to_release</a></td></tr>
+<tr class="memitem:a7e1dd06b947c2463d5c2a52d7e31fd22"><td class="memItemLeft" align="right" valign="top">struct aws_linked_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#a7e1dd06b947c2463d5c2a52d7e31fd22">connections_to_release</a></td></tr>
 <tr class="separator:a7e1dd06b947c2463d5c2a52d7e31fd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac846f816753e9a951a1af21026aa559c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__connection__manager__snapshot.html">aws_http_connection_manager_snapshot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__connection__management__transaction.html#ac846f816753e9a951a1af21026aa559c">snapshot</a></td></tr>
 <tr class="separator:ac846f816753e9a951a1af21026aa559c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,7 +97,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_connection_management_transaction::allocator</td>
+          <td class="memname">struct aws_allocator* aws_connection_management_transaction::allocator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -111,7 +111,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> aws_connection_management_transaction::completions</td>
+          <td class="memname">struct aws_linked_list aws_connection_management_transaction::completions</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -139,7 +139,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> aws_connection_management_transaction::connections_to_release</td>
+          <td class="memname">struct aws_linked_list aws_connection_management_transaction::connections_to_release</td>
         </tr>
       </table>
 </div><div class="memdoc">

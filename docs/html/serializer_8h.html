@@ -75,7 +75,7 @@ $(function() {
   <div class="headertitle"><div class="title">serializer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_source.html">aws/iotdevice/exports.h</a>&gt;</code><br />
 </div>
 <p><a href="serializer_8h_source.html">Go to the source code of this file.</a></p>
@@ -139,9 +139,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad83b30bd513460685582c83bb54eb8da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8h.html#ad83b30bd513460685582c83bb54eb8da">aws_iot_st_msg_serialize_from_struct</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> message)</td></tr>
+<tr class="memitem:ad83b30bd513460685582c83bb54eb8da"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8h.html#ad83b30bd513460685582c83bb54eb8da">aws_iot_st_msg_serialize_from_struct</a> (struct aws_byte_buf *buffer, struct aws_allocator *allocator, struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> message)</td></tr>
 <tr class="separator:ad83b30bd513460685582c83bb54eb8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07ebbe5c82528c291c88a8ccc3732066"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8h.html#a07ebbe5c82528c291c88a8ccc3732066">aws_iot_st_msg_deserialize_from_cursor</a> (struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> *message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a07ebbe5c82528c291c88a8ccc3732066"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8h.html#a07ebbe5c82528c291c88a8ccc3732066">aws_iot_st_msg_deserialize_from_cursor</a> (struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> *message, struct aws_byte_cursor *cursor, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a07ebbe5c82528c291c88a8ccc3732066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -436,13 +436,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -462,15 +462,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int aws_iot_st_msg_serialize_from_struct </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h.html#a833cb5b01f03d86b6e07aea1710983c9">AWS_IOTDEVICE_API</a> int aws_iot_st_msg_serialize_from_struct </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>

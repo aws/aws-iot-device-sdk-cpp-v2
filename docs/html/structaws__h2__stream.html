@@ -76,38 +76,38 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a2c19fa241f145ffe2eeed1d74829a649"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a2c19fa241f145ffe2eeed1d74829a649">base</a></td></tr>
 <tr class="separator:a2c19fa241f145ffe2eeed1d74829a649"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2939d8bedd4ca6a43024c7441ba8c56e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__linked__list__node.html">aws_linked_list_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a2939d8bedd4ca6a43024c7441ba8c56e">node</a></td></tr>
+<tr class="memitem:a2939d8bedd4ca6a43024c7441ba8c56e"><td class="memItemLeft" align="right" valign="top">struct aws_linked_list_node&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a2939d8bedd4ca6a43024c7441ba8c56e">node</a></td></tr>
 <tr class="separator:a2939d8bedd4ca6a43024c7441ba8c56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e4ce5c205a01be0543086ef561d66a8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a5e4ce5c205a01be0543086ef561d66a8">cross_thread_work_task</a></td></tr>
 <tr class="separator:a5e4ce5c205a01be0543086ef561d66a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ea630b6e0826f865b55e31a43f954d"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:aa27dd4a640b2f18edb35cdad154dd874"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394d">aws_h2_stream_state</a>&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a81cab5225ba52df2b05167c6161f3f0c">state</a></td></tr>
-<tr class="separator:aa27dd4a640b2f18edb35cdad154dd874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf033feedf3b8f174101bae61c914436"><td class="memItemLeft" >&#160;&#160;&#160;int32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a57d66bb595df644b08e8a0bb7b48dc0a">window_size_peer</a></td></tr>
-<tr class="separator:adf033feedf3b8f174101bae61c914436"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af665e707a2b11f346526509f5e3b8f83"><td class="memItemLeft" >&#160;&#160;&#160;int64_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a0af1b93d97b79e94d93d058de047dbdf">window_size_self</a></td></tr>
-<tr class="separator:af665e707a2b11f346526509f5e3b8f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d5be7242d2df8ff4bc9f39575474751"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a9fa11c1613300476c360a3d5c99cf13f">outgoing_message</a></td></tr>
-<tr class="separator:a8d5be7242d2df8ff4bc9f39575474751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac13847ede2ab0665ec0bed0f0e1ced42"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#afd29c08c92db2d944a081845d6a6ce18">received_main_headers</a></td></tr>
-<tr class="separator:ac13847ede2ab0665ec0bed0f0e1ced42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ea630b6e0826f865b55e31a43f954d"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a14ea630b6e0826f865b55e31a43f954d">thread_data</a></td></tr>
-<tr class="separator:a14ea630b6e0826f865b55e31a43f954d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd60e5b89b1f1662cdcf1f36f0c7d4ad"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:aa6eb21779f308f1cd35274e4e74df61a"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a67cea5b0531543309e1c06ce24f10a32">lock</a></td></tr>
-<tr class="separator:aa6eb21779f308f1cd35274e4e74df61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad17307b3505c81eea4e632d12c43f9b7"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#ae57d0a646365f81fd7d3f224a9c2c4a6">is_cross_thread_work_task_scheduled</a></td></tr>
-<tr class="separator:ad17307b3505c81eea4e632d12c43f9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31707e56d2723ae855112b6491aa42c8"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a1b92bb599ee575b331d81ffd2ef68281">window_update_size</a></td></tr>
-<tr class="separator:a31707e56d2723ae855112b6491aa42c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d715c7ad1d360bac7698ee324b3c6c0"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a696872b61bf2c75e912c5896dad7bab8">user_reset_error_code</a></td></tr>
-<tr class="separator:a5d715c7ad1d360bac7698ee324b3c6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac69fe4b9a449f14fd46cd7cf68d2f2c6"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a7a8b606d60c5e0af8483e285c40ca83e">reset_called</a></td></tr>
-<tr class="separator:ac69fe4b9a449f14fd46cd7cf68d2f2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42d1abfcbf60be0299311a6ec93a3ce9"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="h2__stream_8h.html#a6fbb0dfccf48daf422c944592c52ae11">aws_h2_stream_api_state</a>&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#aba963aaa190f262f26bb2ebbf2222678">api_state</a></td></tr>
-<tr class="separator:a42d1abfcbf60be0299311a6ec93a3ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd60e5b89b1f1662cdcf1f36f0c7d4ad"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#abd60e5b89b1f1662cdcf1f36f0c7d4ad">synced_data</a></td></tr>
-<tr class="separator:abd60e5b89b1f1662cdcf1f36f0c7d4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fbf661bfea6bff0fae9d501c897d99"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a924d12588f7849a4d7dead856390004d"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394d">aws_h2_stream_state</a>&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a81cab5225ba52df2b05167c6161f3f0c">state</a></td></tr>
+<tr class="separator:a924d12588f7849a4d7dead856390004d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37334a449b7690d537eba4bb6d490a32"><td class="memItemLeft" >&#160;&#160;&#160;int32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a57d66bb595df644b08e8a0bb7b48dc0a">window_size_peer</a></td></tr>
+<tr class="separator:a37334a449b7690d537eba4bb6d490a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a286bd4f1f1f23dfe7ae0d94ec73da57f"><td class="memItemLeft" >&#160;&#160;&#160;int64_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a0af1b93d97b79e94d93d058de047dbdf">window_size_self</a></td></tr>
+<tr class="separator:a286bd4f1f1f23dfe7ae0d94ec73da57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a676cfd0493a60d66b8543b75439a4e79"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a9fa11c1613300476c360a3d5c99cf13f">outgoing_message</a></td></tr>
+<tr class="separator:a676cfd0493a60d66b8543b75439a4e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cdd6bab467d4c40994188b4b78e9235"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#afd29c08c92db2d944a081845d6a6ce18">received_main_headers</a></td></tr>
+<tr class="separator:a1cdd6bab467d4c40994188b4b78e9235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fbf661bfea6bff0fae9d501c897d99"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#ae1fbf661bfea6bff0fae9d501c897d99">thread_data</a></td></tr>
+<tr class="separator:ae1fbf661bfea6bff0fae9d501c897d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032695d3ac4a5a18c51645dd389ec81f"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a48d10f620747a963efc468f132f4a769"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a67cea5b0531543309e1c06ce24f10a32">lock</a></td></tr>
+<tr class="separator:a48d10f620747a963efc468f132f4a769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a5c2f109b466e578c40cd062beea0d"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#ae57d0a646365f81fd7d3f224a9c2c4a6">is_cross_thread_work_task_scheduled</a></td></tr>
+<tr class="separator:a65a5c2f109b466e578c40cd062beea0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5d20a15e750aa1038285eaae1a9fb8"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a1b92bb599ee575b331d81ffd2ef68281">window_update_size</a></td></tr>
+<tr class="separator:aea5d20a15e750aa1038285eaae1a9fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17efefb809434ff56c8057ae98d14cf"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a696872b61bf2c75e912c5896dad7bab8">user_reset_error_code</a></td></tr>
+<tr class="separator:ab17efefb809434ff56c8057ae98d14cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9553ce353e38d6fc3c6eafecb3b1fdf1"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#a7a8b606d60c5e0af8483e285c40ca83e">reset_called</a></td></tr>
+<tr class="separator:a9553ce353e38d6fc3c6eafecb3b1fdf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b7aeebf49d79cdfa09b3bed5b12df68"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="h2__stream_8h.html#a6fbb0dfccf48daf422c944592c52ae11">aws_h2_stream_api_state</a>&#160;&#160;&#160;<a class="el" href="structaws__h2__stream.html#aba963aaa190f262f26bb2ebbf2222678">api_state</a></td></tr>
+<tr class="separator:a8b7aeebf49d79cdfa09b3bed5b12df68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032695d3ac4a5a18c51645dd389ec81f"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a032695d3ac4a5a18c51645dd389ec81f">synced_data</a></td></tr>
+<tr class="separator:a032695d3ac4a5a18c51645dd389ec81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab949d9c90bcb154f553407af2e6f764b"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#ab949d9c90bcb154f553407af2e6f764b">sent_reset_error_code</a></td></tr>
 <tr class="separator:ab949d9c90bcb154f553407af2e6f764b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96078cb0c474580b4fe10bf7cf22562b"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__stream.html#a96078cb0c474580b4fe10bf7cf22562b">received_reset_error_code</a></td></tr>
@@ -177,7 +177,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> aws_h2_stream::lock</td>
+          <td class="memname">struct aws_mutex aws_h2_stream::lock</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,7 +191,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__linked__list__node.html">aws_linked_list_node</a> aws_h2_stream::node</td>
+          <td class="memname">struct aws_linked_list_node aws_h2_stream::node</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -282,8 +282,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abd60e5b89b1f1662cdcf1f36f0c7d4ad" name="abd60e5b89b1f1662cdcf1f36f0c7d4ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd60e5b89b1f1662cdcf1f36f0c7d4ad">&#9670;&nbsp;</a></span></h2>
+<a id="a032695d3ac4a5a18c51645dd389ec81f" name="a032695d3ac4a5a18c51645dd389ec81f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032695d3ac4a5a18c51645dd389ec81f">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,8 +296,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a14ea630b6e0826f865b55e31a43f954d" name="a14ea630b6e0826f865b55e31a43f954d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14ea630b6e0826f865b55e31a43f954d">&#9670;&nbsp;</a></span></h2>
+<a id="ae1fbf661bfea6bff0fae9d501c897d99" name="ae1fbf661bfea6bff0fae9d501c897d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1fbf661bfea6bff0fae9d501c897d99">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

@@ -47,9 +47,5 @@ var searchData=
   ['string_44',['String',['../namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3',1,'Aws::Crt']]],
   ['string_5fview_45',['string_view',['../namespace_aws_1_1_crt.html#a13e551e2428922b0ad8c1a96d6469eb4',1,'Aws::Crt']]],
   ['stringstream_46',['StringStream',['../namespace_aws_1_1_crt.html#a4ac3c138d617fcbeba85074f442a3cae',1,'Aws::Crt']]],
-  ['stringview_47',['StringView',['../namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab',1,'Aws::Crt']]],
-  ['symfromaddr_5ffn_48',['SymFromAddr_fn',['../windows_2system__info_8c.html#ae6602509922a7ee9c9b6622dc572808d',1,'system_info.c']]],
-  ['symgetlinefromaddr_5ffn_49',['SymGetLineFromAddr_fn',['../windows_2system__info_8c.html#a94606c9d316e23757a6a46ec4013928c',1,'system_info.c']]],
-  ['syminitialize_5ffn_50',['SymInitialize_fn',['../windows_2system__info_8c.html#ac0e5d72fdbfe2658762195b634c1a9dc',1,'system_info.c']]],
-  ['symsetoptions_5ffn_51',['SymSetOptions_fn',['../windows_2system__info_8c.html#a482b2a8d94f0df4307a4327a7cb5feeb',1,'system_info.c']]]
+  ['stringview_47',['StringView',['../namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab',1,'Aws::Crt']]]
 ];

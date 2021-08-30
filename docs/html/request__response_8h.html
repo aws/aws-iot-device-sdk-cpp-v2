@@ -108,7 +108,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:a0c2d80ea8a29a2ad5c7fd6a624b26a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a335feeb23b523ff7272b71a023591c18"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a335feeb23b523ff7272b71a023591c18">aws_http_on_incoming_header_block_done_fn</a>(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> header_block, void *user_data)</td></tr>
 <tr class="separator:a335feeb23b523ff7272b71a023591c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d81447ae81759e6da37ac6fbb83e16d"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a0d81447ae81759e6da37ac6fbb83e16d">aws_http_on_incoming_body_fn</a>(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, void *user_data)</td></tr>
+<tr class="memitem:a0d81447ae81759e6da37ac6fbb83e16d"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a0d81447ae81759e6da37ac6fbb83e16d">aws_http_on_incoming_body_fn</a>(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct aws_byte_cursor *data, void *user_data)</td></tr>
 <tr class="separator:a0d81447ae81759e6da37ac6fbb83e16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcc0da887f34a70585ba517c2981fc07"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#afcc0da887f34a70585ba517c2981fc07">aws_http_on_incoming_request_done_fn</a>(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, void *user_data)</td></tr>
 <tr class="separator:afcc0da887f34a70585ba517c2981fc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,9 +132,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad2d0d0631bb88e313ec351480a916109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#ad2d0d0631bb88e313ec351480a916109">aws_http_header_name_eq</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> name_a, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> name_b)</td></tr>
+<tr class="memitem:ad2d0d0631bb88e313ec351480a916109"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#ad2d0d0631bb88e313ec351480a916109">aws_http_header_name_eq</a> (struct aws_byte_cursor name_a, struct aws_byte_cursor name_b)</td></tr>
 <tr class="separator:ad2d0d0631bb88e313ec351480a916109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca79f1783ecade7d0f8e1bc7a4ebdb56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aca79f1783ecade7d0f8e1bc7a4ebdb56">aws_http_headers_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:aca79f1783ecade7d0f8e1bc7a4ebdb56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aca79f1783ecade7d0f8e1bc7a4ebdb56">aws_http_headers_new</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:aca79f1783ecade7d0f8e1bc7a4ebdb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39114478be16cd910dcd42e26a0429e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a39114478be16cd910dcd42e26a0429e2">aws_http_headers_acquire</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers)</td></tr>
 <tr class="separator:a39114478be16cd910dcd42e26a0429e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,33 +142,33 @@ Functions</h2></td></tr>
 <tr class="separator:a6fef6e2529fa0f345fd6e1d3614145bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac85d9dd50b640770d0f77a82da36b26e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#ac85d9dd50b640770d0f77a82da36b26e">aws_http_headers_add_header</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *header)</td></tr>
 <tr class="separator:ac85d9dd50b640770d0f77a82da36b26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a051e26bf58a1b3199624dfa26b64ba80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a051e26bf58a1b3199624dfa26b64ba80">aws_http_headers_add</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> value)</td></tr>
+<tr class="memitem:a051e26bf58a1b3199624dfa26b64ba80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a051e26bf58a1b3199624dfa26b64ba80">aws_http_headers_add</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor value)</td></tr>
 <tr class="separator:a051e26bf58a1b3199624dfa26b64ba80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d7dc708dad4a532c5c39757ab14681a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a9d7dc708dad4a532c5c39757ab14681a">aws_http_headers_add_array</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *array, size_t <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a>)</td></tr>
 <tr class="separator:a9d7dc708dad4a532c5c39757ab14681a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6adae49b1a73e7e472d08ef86206292a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a6adae49b1a73e7e472d08ef86206292a">aws_http_headers_set</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> value)</td></tr>
+<tr class="memitem:a6adae49b1a73e7e472d08ef86206292a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a6adae49b1a73e7e472d08ef86206292a">aws_http_headers_set</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor value)</td></tr>
 <tr class="separator:a6adae49b1a73e7e472d08ef86206292a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa32fda8866bed9d80c76cb8ebe277edf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aa32fda8866bed9d80c76cb8ebe277edf">aws_http_headers_count</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers)</td></tr>
 <tr class="separator:aa32fda8866bed9d80c76cb8ebe277edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a892e0de7a1d2c960310ed3fe39103fbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a892e0de7a1d2c960310ed3fe39103fbb">aws_http_headers_get_index</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, size_t <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a750b5d744c39a06bfb13e6eb010e35d0">index</a>, struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *out_header)</td></tr>
 <tr class="separator:a892e0de7a1d2c960310ed3fe39103fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff0792b2d262c8f9f691c1125c6736a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aff0792b2d262c8f9f691c1125c6736a8">aws_http_headers_get</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_value)</td></tr>
+<tr class="memitem:aff0792b2d262c8f9f691c1125c6736a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aff0792b2d262c8f9f691c1125c6736a8">aws_http_headers_get</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor *out_value)</td></tr>
 <tr class="separator:aff0792b2d262c8f9f691c1125c6736a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4d219a3a9517352055c008c9d0fff4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#acf4d219a3a9517352055c008c9d0fff4">aws_http_headers_has</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>)</td></tr>
+<tr class="memitem:acf4d219a3a9517352055c008c9d0fff4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#acf4d219a3a9517352055c008c9d0fff4">aws_http_headers_has</a> (const struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>)</td></tr>
 <tr class="separator:acf4d219a3a9517352055c008c9d0fff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fb594cae4d7537bcd7ca93cc086d906"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8fb594cae4d7537bcd7ca93cc086d906">aws_http_headers_erase</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>)</td></tr>
+<tr class="memitem:a8fb594cae4d7537bcd7ca93cc086d906"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8fb594cae4d7537bcd7ca93cc086d906">aws_http_headers_erase</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>)</td></tr>
 <tr class="separator:a8fb594cae4d7537bcd7ca93cc086d906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7340bbf198b2341322d90706efa2b5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a7340bbf198b2341322d90706efa2b5d5">aws_http_headers_erase_value</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> value)</td></tr>
+<tr class="memitem:a7340bbf198b2341322d90706efa2b5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a7340bbf198b2341322d90706efa2b5d5">aws_http_headers_erase_value</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor value)</td></tr>
 <tr class="separator:a7340bbf198b2341322d90706efa2b5d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae161f4fe2de5ba37665e5be1ce5eec0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#ae161f4fe2de5ba37665e5be1ce5eec0e">aws_http_headers_erase_index</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers, size_t <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a750b5d744c39a06bfb13e6eb010e35d0">index</a>)</td></tr>
 <tr class="separator:ae161f4fe2de5ba37665e5be1ce5eec0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af190f53033c877bfecc4e8497b38761d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#af190f53033c877bfecc4e8497b38761d">aws_http_headers_clear</a> (struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *headers)</td></tr>
 <tr class="separator:af190f53033c877bfecc4e8497b38761d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa06fc9a137ef22925c56084ee0a380a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aa06fc9a137ef22925c56084ee0a380a0">aws_http_message_new_request</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:aa06fc9a137ef22925c56084ee0a380a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aa06fc9a137ef22925c56084ee0a380a0">aws_http_message_new_request</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:aa06fc9a137ef22925c56084ee0a380a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aead8d4f8cb0dafa9c8c148dd12d967b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aead8d4f8cb0dafa9c8c148dd12d967b1">aws_http_message_new_request_with_headers</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *existing_headers)</td></tr>
+<tr class="memitem:aead8d4f8cb0dafa9c8c148dd12d967b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#aead8d4f8cb0dafa9c8c148dd12d967b1">aws_http_message_new_request_with_headers</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *existing_headers)</td></tr>
 <tr class="separator:aead8d4f8cb0dafa9c8c148dd12d967b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d4d32099dd517aa3b993b5499471032"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a1d4d32099dd517aa3b993b5499471032">aws_http_message_new_response</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a1d4d32099dd517aa3b993b5499471032"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a1d4d32099dd517aa3b993b5499471032">aws_http_message_new_response</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a1d4d32099dd517aa3b993b5499471032"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a210676061044a73bf9b64f6f0cafc51d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a210676061044a73bf9b64f6f0cafc51d">aws_http_message_acquire</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *message)</td></tr>
 <tr class="separator:a210676061044a73bf9b64f6f0cafc51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,13 +180,13 @@ Functions</h2></td></tr>
 <tr class="separator:a20c90f90a18e1057638bf94fd3c5ff77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7945badc39ecb7d933481698d9fb8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#ab7945badc39ecb7d933481698d9fb8a5">aws_http_message_is_response</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *message)</td></tr>
 <tr class="separator:ab7945badc39ecb7d933481698d9fb8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb921667d6ae03b4fbf85527b4944c5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#abb921667d6ae03b4fbf85527b4944c5c">aws_http_message_get_request_method</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_method)</td></tr>
+<tr class="memitem:abb921667d6ae03b4fbf85527b4944c5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#abb921667d6ae03b4fbf85527b4944c5c">aws_http_message_get_request_method</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct aws_byte_cursor *out_method)</td></tr>
 <tr class="separator:abb921667d6ae03b4fbf85527b4944c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ca7e2e1389920f540e304cd993ab2c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8ca7e2e1389920f540e304cd993ab2c6">aws_http_message_set_request_method</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> method)</td></tr>
+<tr class="memitem:a8ca7e2e1389920f540e304cd993ab2c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8ca7e2e1389920f540e304cd993ab2c6">aws_http_message_set_request_method</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct aws_byte_cursor method)</td></tr>
 <tr class="separator:a8ca7e2e1389920f540e304cd993ab2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11c46663e602b52c6b98f845097103a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a11c46663e602b52c6b98f845097103a5">aws_http_message_get_request_path</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_path)</td></tr>
+<tr class="memitem:a11c46663e602b52c6b98f845097103a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a11c46663e602b52c6b98f845097103a5">aws_http_message_get_request_path</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct aws_byte_cursor *out_path)</td></tr>
 <tr class="separator:a11c46663e602b52c6b98f845097103a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8720eff26b14fa9ba5f95643cd69aa14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8720eff26b14fa9ba5f95643cd69aa14">aws_http_message_set_request_path</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> path)</td></tr>
+<tr class="memitem:a8720eff26b14fa9ba5f95643cd69aa14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a8720eff26b14fa9ba5f95643cd69aa14">aws_http_message_set_request_path</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request_message, struct aws_byte_cursor path)</td></tr>
 <tr class="separator:a8720eff26b14fa9ba5f95643cd69aa14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7da4dfb855928bbf27772227201cdb2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a7da4dfb855928bbf27772227201cdb2e">aws_http_message_get_response_status</a> (const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response_message, int *out_status_code)</td></tr>
 <tr class="separator:a7da4dfb855928bbf27772227201cdb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,9 +224,9 @@ Functions</h2></td></tr>
 <tr class="separator:a354779f1f5e463379ee232ce7ad1087e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e5cef484094ab42048a58a6b765922d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a2e5cef484094ab42048a58a6b765922d">aws_http_stream_get_incoming_response_status</a> (const struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, int *out_status)</td></tr>
 <tr class="separator:a2e5cef484094ab42048a58a6b765922d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92bdbca1904f45bb6df846d5fa851848"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a92bdbca1904f45bb6df846d5fa851848">aws_http_stream_get_incoming_request_method</a> (const struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_method)</td></tr>
+<tr class="memitem:a92bdbca1904f45bb6df846d5fa851848"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a92bdbca1904f45bb6df846d5fa851848">aws_http_stream_get_incoming_request_method</a> (const struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, struct aws_byte_cursor *out_method)</td></tr>
 <tr class="separator:a92bdbca1904f45bb6df846d5fa851848"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29081a15a2079de02bad317be68108b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a29081a15a2079de02bad317be68108b1">aws_http_stream_get_incoming_request_uri</a> (const struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_uri)</td></tr>
+<tr class="memitem:a29081a15a2079de02bad317be68108b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a29081a15a2079de02bad317be68108b1">aws_http_stream_get_incoming_request_uri</a> (const struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, struct aws_byte_cursor *out_uri)</td></tr>
 <tr class="separator:a29081a15a2079de02bad317be68108b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a1c5dc48bdb3212f0376459f26f28d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__response_8h.html#a6a1c5dc48bdb3212f0376459f26f28d5">aws_http_stream_send_response</a> (struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response)</td></tr>
 <tr class="separator:a6a1c5dc48bdb3212f0376459f26f28d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -317,7 +317,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() aws_http_on_incoming_body_fn(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, void *user_data)</td>
+          <td class="memname">typedef int() aws_http_on_incoming_body_fn(struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct aws_byte_cursor *data, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -613,15 +613,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool aws_http_header_name_eq </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool aws_http_header_name_eq </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name_a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name_b</em>&#160;</td>
         </tr>
         <tr>
@@ -671,13 +671,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -808,7 +808,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
@@ -867,13 +867,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -902,13 +902,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_value</em>&#160;</td>
         </tr>
         <tr>
@@ -977,7 +977,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
@@ -1000,7 +1000,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a>* aws_http_headers_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1044,13 +1044,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -1325,7 +1325,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_method</em>&#160;</td>
         </tr>
         <tr>
@@ -1354,7 +1354,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_path</em>&#160;</td>
         </tr>
         <tr>
@@ -1441,7 +1441,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a>* aws_http_message_new_request </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1461,7 +1461,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a>* aws_http_message_new_request_with_headers </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -1490,7 +1490,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__message.html">aws_http_message</a>* aws_http_message_new_response </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1564,7 +1564,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>method</em>&#160;</td>
         </tr>
         <tr>
@@ -1593,7 +1593,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>path</em>&#160;</td>
         </tr>
         <tr>
@@ -1708,7 +1708,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_method</em>&#160;</td>
         </tr>
         <tr>
@@ -1736,7 +1736,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_uri</em>&#160;</td>
         </tr>
         <tr>

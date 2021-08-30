@@ -73,13 +73,13 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="ecc_8h_source.html">aws/cal/ecc.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 </div>
 <p><a href="private_2ecc_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae3dab08eb53e3b7f1334d7e9909b5b85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="private_2ecc_8h.html#ae3dab08eb53e3b7f1334d7e9909b5b85">aws_der_decoder_load_ecc_key_pair</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_public_x_coor, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_public_y_coor, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_private_d, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> *out_curve_name)</td></tr>
+<tr class="memitem:ae3dab08eb53e3b7f1334d7e9909b5b85"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="private_2ecc_8h.html#ae3dab08eb53e3b7f1334d7e9909b5b85">aws_der_decoder_load_ecc_key_pair</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *out_public_x_coor, struct aws_byte_cursor *out_public_y_coor, struct aws_byte_cursor *out_private_d, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> *out_curve_name)</td></tr>
 <tr class="separator:ae3dab08eb53e3b7f1334d7e9909b5b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -90,7 +90,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int aws_der_decoder_load_ecc_key_pair </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int aws_der_decoder_load_ecc_key_pair </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td>
           <td class="paramname"><em>decoder</em>, </td>
@@ -98,19 +98,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_public_x_coor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_public_y_coor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_private_d</em>, </td>
         </tr>
         <tr>

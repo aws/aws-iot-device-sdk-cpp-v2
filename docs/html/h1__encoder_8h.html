@@ -108,27 +108,27 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad1e59cada806788c3f67ce390a116096"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#ad1e59cada806788c3f67ce390a116096">aws_h1_chunk_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
+<tr class="memitem:ad1e59cada806788c3f67ce390a116096"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#ad1e59cada806788c3f67ce390a116096">aws_h1_chunk_new</a> (struct aws_allocator *allocator, const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
 <tr class="separator:ad1e59cada806788c3f67ce390a116096"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bb1a0c4b42a5af0a440eddc752b8186"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a7bb1a0c4b42a5af0a440eddc752b8186">aws_h1_chunk_destroy</a> (struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *chunk)</td></tr>
 <tr class="separator:a7bb1a0c4b42a5af0a440eddc752b8186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab386f903228f42dff507cef1b5c9799a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#ab386f903228f42dff507cef1b5c9799a">aws_h1_chunk_complete_and_destroy</a> (struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *chunk, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *http_stream, int error_code)</td></tr>
 <tr class="separator:ab386f903228f42dff507cef1b5c9799a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65fb7cd04a8ab01b0e7ff81198fc8481"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a65fb7cd04a8ab01b0e7ff81198fc8481">aws_chunk_line_from_options</a> (struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *chunk_line)</td></tr>
+<tr class="memitem:a65fb7cd04a8ab01b0e7ff81198fc8481"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a65fb7cd04a8ab01b0e7ff81198fc8481">aws_chunk_line_from_options</a> (struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options, struct aws_byte_buf *chunk_line)</td></tr>
 <tr class="separator:a65fb7cd04a8ab01b0e7ff81198fc8481"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48876c64d7705aad9290637bc1fe8361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a48876c64d7705aad9290637bc1fe8361">aws_h1_encoder_message_init_from_request</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
+<tr class="memitem:a48876c64d7705aad9290637bc1fe8361"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a48876c64d7705aad9290637bc1fe8361">aws_h1_encoder_message_init_from_request</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct aws_allocator *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct aws_linked_list *pending_chunk_list)</td></tr>
 <tr class="separator:a48876c64d7705aad9290637bc1fe8361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aade6ff5aceeb5b196aa771ba22be0937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#aade6ff5aceeb5b196aa771ba22be0937">aws_h1_encoder_message_init_from_response</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response, bool body_headers_ignored, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
+<tr class="memitem:aade6ff5aceeb5b196aa771ba22be0937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#aade6ff5aceeb5b196aa771ba22be0937">aws_h1_encoder_message_init_from_response</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct aws_allocator *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response, bool body_headers_ignored, struct aws_linked_list *pending_chunk_list)</td></tr>
 <tr class="separator:aade6ff5aceeb5b196aa771ba22be0937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94ed57f2f176c8023dc4b4a325b6f14d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a94ed57f2f176c8023dc4b4a325b6f14d">aws_h1_encoder_message_clean_up</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message)</td></tr>
 <tr class="separator:a94ed57f2f176c8023dc4b4a325b6f14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3849fd276aaecc9f8b703228a006c214"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a3849fd276aaecc9f8b703228a006c214">aws_h1_encoder_init</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a3849fd276aaecc9f8b703228a006c214"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a3849fd276aaecc9f8b703228a006c214">aws_h1_encoder_init</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a3849fd276aaecc9f8b703228a006c214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf3da07dc3c9be84328a177c24c28ace"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#acf3da07dc3c9be84328a177c24c28ace">aws_h1_encoder_clean_up</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
 <tr class="separator:acf3da07dc3c9be84328a177c24c28ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14fbc70de474bcc20b544b514c522ce3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a14fbc70de474bcc20b544b514c522ce3">aws_h1_encoder_start_message</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream)</td></tr>
 <tr class="separator:a14fbc70de474bcc20b544b514c522ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8043a17850ee94b199b0578a5428b899"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a8043a17850ee94b199b0578a5428b899">aws_h1_encoder_process</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf)</td></tr>
+<tr class="memitem:a8043a17850ee94b199b0578a5428b899"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#a8043a17850ee94b199b0578a5428b899">aws_h1_encoder_process</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct aws_byte_buf *out_buf)</td></tr>
 <tr class="separator:a8043a17850ee94b199b0578a5428b899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acac462a616e2fadc085881b0854c3c2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8h.html#acac462a616e2fadc085881b0854c3c2c">aws_h1_encoder_is_message_in_progress</a> (const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
 <tr class="separator:acac462a616e2fadc085881b0854c3c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,7 +177,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>chunk_line</em>&#160;</td>
         </tr>
         <tr>
@@ -251,7 +251,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a>* aws_h1_chunk_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -303,7 +303,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -377,7 +377,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int aws_h1_encoder_message_init_from_request </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int aws_h1_encoder_message_init_from_request </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *&#160;</td>
           <td class="paramname"><em>message</em>, </td>
@@ -385,7 +385,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -397,7 +397,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_linked_list *&#160;</td>
           <td class="paramname"><em>pending_chunk_list</em>&#160;</td>
         </tr>
         <tr>
@@ -426,7 +426,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -444,7 +444,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_linked_list *&#160;</td>
           <td class="paramname"><em>pending_chunk_list</em>&#160;</td>
         </tr>
         <tr>
@@ -474,7 +474,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>out_buf</em>&#160;</td>
         </tr>
         <tr>

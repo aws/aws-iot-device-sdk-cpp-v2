@@ -74,9 +74,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a22f2d275e97337ae3a2491c54ddfd3e1"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a22f2d275e97337ae3a2491c54ddfd3e1">allocator</a></td></tr>
+<tr class="memitem:a22f2d275e97337ae3a2491c54ddfd3e1"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a22f2d275e97337ae3a2491c54ddfd3e1">allocator</a></td></tr>
 <tr class="separator:a22f2d275e97337ae3a2491c54ddfd3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce069cd69caf99c9c9b06d116430c63"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a4ce069cd69caf99c9c9b06d116430c63">host</a></td></tr>
+<tr class="memitem:a4ce069cd69caf99c9c9b06d116430c63"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a4ce069cd69caf99c9c9b06d116430c63">host</a></td></tr>
 <tr class="separator:a4ce069cd69caf99c9c9b06d116430c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fb9c4e8b8e2dd2368a111c3ed511c68"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a8fb9c4e8b8e2dd2368a111c3ed511c68">port</a></td></tr>
 <tr class="separator:a8fb9c4e8b8e2dd2368a111c3ed511c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -84,9 +84,9 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a522be997eed3e386de9d697fb5a79fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab73c9611e153a3b1a0efff9b83f2f5cd"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="connection_8h.html#a188e1e008227bac9ef95f9d351b2c50f">aws_http_proxy_authentication_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#ab73c9611e153a3b1a0efff9b83f2f5cd">auth_type</a></td></tr>
 <tr class="separator:ab73c9611e153a3b1a0efff9b83f2f5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c99edec1d2b576f644018fe20251e9d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a8c99edec1d2b576f644018fe20251e9d">auth_username</a></td></tr>
+<tr class="memitem:a8c99edec1d2b576f644018fe20251e9d"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#a8c99edec1d2b576f644018fe20251e9d">auth_username</a></td></tr>
 <tr class="separator:a8c99edec1d2b576f644018fe20251e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecae5132758a294332d3c4ed0b1eed70"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#aecae5132758a294332d3c4ed0b1eed70">auth_password</a></td></tr>
+<tr class="memitem:aecae5132758a294332d3c4ed0b1eed70"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__proxy__config.html#aecae5132758a294332d3c4ed0b1eed70">auth_password</a></td></tr>
 <tr class="separator:aecae5132758a294332d3c4ed0b1eed70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -99,7 +99,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_http_proxy_config::allocator</td>
+          <td class="memname">struct aws_allocator* aws_http_proxy_config::allocator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -113,7 +113,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_http_proxy_config::auth_password</td>
+          <td class="memname">struct aws_byte_buf aws_http_proxy_config::auth_password</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -141,7 +141,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_http_proxy_config::auth_username</td>
+          <td class="memname">struct aws_byte_buf aws_http_proxy_config::auth_username</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -155,7 +155,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_http_proxy_config::host</td>
+          <td class="memname">struct aws_byte_buf aws_http_proxy_config::host</td>
         </tr>
       </table>
 </div><div class="memdoc">

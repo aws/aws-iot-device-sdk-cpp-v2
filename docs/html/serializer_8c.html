@@ -73,38 +73,38 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="serializer_8h_source.html">aws/iotdevice/private/serializer.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="assert_8h_source.html">aws/common/assert.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h_source.html">aws/common/error.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/assert.h&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
+<code>#include &lt;aws/common/error.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad79aa23e0aefd5c05b5735c79b4066fb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#ad79aa23e0aefd5c05b5735c79b4066fb">s_iot_st_encode_varint_uint32_t</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint32_t n)</td></tr>
+<tr class="memitem:ad79aa23e0aefd5c05b5735c79b4066fb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#ad79aa23e0aefd5c05b5735c79b4066fb">s_iot_st_encode_varint_uint32_t</a> (struct aws_byte_buf *buffer, uint32_t n)</td></tr>
 <tr class="separator:ad79aa23e0aefd5c05b5735c79b4066fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38b8cf541971b40362b6f81d1252754c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a38b8cf541971b40362b6f81d1252754c">s_iot_st_encode_varint_negative_uint32_t</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint32_t n)</td></tr>
+<tr class="memitem:a38b8cf541971b40362b6f81d1252754c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a38b8cf541971b40362b6f81d1252754c">s_iot_st_encode_varint_negative_uint32_t</a> (struct aws_byte_buf *buffer, uint32_t n)</td></tr>
 <tr class="separator:a38b8cf541971b40362b6f81d1252754c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcde54c5307550588380d8cd7a7c84d6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#adcde54c5307550588380d8cd7a7c84d6">s_iot_st_encode_varint_pos</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, int32_t n)</td></tr>
+<tr class="memitem:adcde54c5307550588380d8cd7a7c84d6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#adcde54c5307550588380d8cd7a7c84d6">s_iot_st_encode_varint_pos</a> (struct aws_byte_buf *buffer, int32_t n)</td></tr>
 <tr class="separator:adcde54c5307550588380d8cd7a7c84d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a18e087c53934050fbbc463280a7fbe"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9a18e087c53934050fbbc463280a7fbe">s_iot_st_decode_varint_uint32_t</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, uint32_t *result)</td></tr>
+<tr class="memitem:a9a18e087c53934050fbbc463280a7fbe"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9a18e087c53934050fbbc463280a7fbe">s_iot_st_decode_varint_uint32_t</a> (struct aws_byte_cursor *cursor, uint32_t *result)</td></tr>
 <tr class="separator:a9a18e087c53934050fbbc463280a7fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f242f719b1871edfc5b0503a3f5ea32"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9f242f719b1871edfc5b0503a3f5ea32">s_iot_st_encode_varint</a> (const uint8_t field_number, const uint8_t wire_type, const int32_t value, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a9f242f719b1871edfc5b0503a3f5ea32"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9f242f719b1871edfc5b0503a3f5ea32">s_iot_st_encode_varint</a> (const uint8_t field_number, const uint8_t wire_type, const int32_t value, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a9f242f719b1871edfc5b0503a3f5ea32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add213bde2ef5a96a678e904af0b91b50"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#add213bde2ef5a96a678e904af0b91b50">s_iot_st_encode_lengthdelim</a> (const uint8_t field_number, const uint8_t wire_type, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *payload, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:add213bde2ef5a96a678e904af0b91b50"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#add213bde2ef5a96a678e904af0b91b50">s_iot_st_encode_lengthdelim</a> (const uint8_t field_number, const uint8_t wire_type, struct aws_byte_buf *payload, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:add213bde2ef5a96a678e904af0b91b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6060882f1c1b2d3558f1cfd37a542675"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a6060882f1c1b2d3558f1cfd37a542675">s_iot_st_encode_stream_id</a> (int32_t data, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a6060882f1c1b2d3558f1cfd37a542675"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a6060882f1c1b2d3558f1cfd37a542675">s_iot_st_encode_stream_id</a> (int32_t data, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a6060882f1c1b2d3558f1cfd37a542675"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a64a66b3069731571f4f6a0cc2330f9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a4a64a66b3069731571f4f6a0cc2330f9">s_iot_st_encode_ignorable</a> (int32_t data, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a4a64a66b3069731571f4f6a0cc2330f9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a4a64a66b3069731571f4f6a0cc2330f9">s_iot_st_encode_ignorable</a> (int32_t data, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a4a64a66b3069731571f4f6a0cc2330f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cfb74cacd32ab3a9f7280ed0497a45e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9cfb74cacd32ab3a9f7280ed0497a45e">s_iot_st_encode_type</a> (int32_t data, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a9cfb74cacd32ab3a9f7280ed0497a45e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a9cfb74cacd32ab3a9f7280ed0497a45e">s_iot_st_encode_type</a> (int32_t data, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a9cfb74cacd32ab3a9f7280ed0497a45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f8ba0278663e9bcd8f8b357200338ef"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a3f8ba0278663e9bcd8f8b357200338ef">s_iot_st_encode_payload</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *payload, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a3f8ba0278663e9bcd8f8b357200338ef"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#a3f8ba0278663e9bcd8f8b357200338ef">s_iot_st_encode_payload</a> (struct aws_byte_buf *payload, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a3f8ba0278663e9bcd8f8b357200338ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff7a307088ee8a4f5aee4c3261d09a91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#aff7a307088ee8a4f5aee4c3261d09a91">aws_iot_st_msg_serialize_from_struct</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> message)</td></tr>
+<tr class="memitem:aff7a307088ee8a4f5aee4c3261d09a91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#aff7a307088ee8a4f5aee4c3261d09a91">aws_iot_st_msg_serialize_from_struct</a> (struct aws_byte_buf *buffer, struct aws_allocator *allocator, struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> message)</td></tr>
 <tr class="separator:aff7a307088ee8a4f5aee4c3261d09a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6d0d495da416347047b73252d833e75"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#af6d0d495da416347047b73252d833e75">s_aws_st_decode_lengthdelim</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, int <a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>)</td></tr>
+<tr class="memitem:af6d0d495da416347047b73252d833e75"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#af6d0d495da416347047b73252d833e75">s_aws_st_decode_lengthdelim</a> (struct aws_byte_cursor *cursor, struct aws_byte_buf *buffer, int <a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>)</td></tr>
 <tr class="separator:af6d0d495da416347047b73252d833e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb80bec34b3c6174a4f41a94f92d3538"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#adb80bec34b3c6174a4f41a94f92d3538">aws_iot_st_msg_deserialize_from_cursor</a> (struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> *message, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:adb80bec34b3c6174a4f41a94f92d3538"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serializer_8c.html#adb80bec34b3c6174a4f41a94f92d3538">aws_iot_st_msg_deserialize_from_cursor</a> (struct <a class="el" href="structaws__iot__st__msg.html">aws_iot_st_msg</a> *message, struct aws_byte_cursor *cursor, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:adb80bec34b3c6174a4f41a94f92d3538"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -123,13 +123,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -151,13 +151,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int aws_iot_st_msg_serialize_from_struct </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -188,13 +188,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_aws_st_decode_lengthdelim </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -230,7 +230,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_iot_st_decode_varint_uint32_t </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
@@ -272,7 +272,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -314,13 +314,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>payload</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -350,13 +350,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_iot_st_encode_payload </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>payload</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -392,7 +392,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -428,7 +428,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -476,7 +476,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -506,7 +506,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_iot_st_encode_varint_negative_uint32_t </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -542,7 +542,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_iot_st_encode_varint_pos </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -578,7 +578,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_iot_st_encode_varint_uint32_t </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>

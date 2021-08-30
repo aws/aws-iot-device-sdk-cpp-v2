@@ -79,8 +79,8 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="el" href="h2__decoder_8h_source.html">aws/http/private/h2_decoder.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="hpack_8h_source.html">aws/http/private/hpack.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="strutil_8h_source.html">aws/http/private/strutil.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">aws/common/string.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -135,7 +135,7 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:af518d9236a500c1f5473f59516d750bd"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5">pseudoheader_name</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#af518d9236a500c1f5473f59516d750bd">s_header_to_pseudoheader_name</a> (enum <a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818f">aws_http_header_name</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>)</td></tr>
 <tr class="separator:af518d9236a500c1f5473f59516d750bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cbd6947260ee4cfdb36c38cf180d612"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a5cbd6947260ee4cfdb36c38cf180d612">state_fn</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a5cbd6947260ee4cfdb36c38cf180d612"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a5cbd6947260ee4cfdb36c38cf180d612">state_fn</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a5cbd6947260ee4cfdb36c38cf180d612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad514c4c8a8cc0390bc6545cbf30fe85e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ad514c4c8a8cc0390bc6545cbf30fe85e">DEFINE_STATE</a> (prefix, 9)</td></tr>
 <tr class="separator:ad514c4c8a8cc0390bc6545cbf30fe85e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,7 +185,7 @@ Functions</h2></td></tr>
 <tr class="separator:a594fd52849bff59048bfb5da1f5cba3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e2b923caddfac6294b04dd97990ec70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a6e2b923caddfac6294b04dd97990ec70">aws_h2_decoder_destroy</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder)</td></tr>
 <tr class="separator:a6e2b923caddfac6294b04dd97990ec70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acff0e691b593526a8088154bad7f3170"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#acff0e691b593526a8088154bad7f3170">aws_h2_decode</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data)</td></tr>
+<tr class="memitem:acff0e691b593526a8088154bad7f3170"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#acff0e691b593526a8088154bad7f3170">aws_h2_decode</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *data)</td></tr>
 <tr class="separator:acff0e691b593526a8088154bad7f3170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f8dbcd88e2d299cb7793aebc2cd8ec6"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a3f8dbcd88e2d299cb7793aebc2cd8ec6">s_decoder_switch_state</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, const struct <a class="el" href="structdecoder__state.html">decoder_state</a> *state)</td></tr>
 <tr class="separator:a3f8dbcd88e2d299cb7793aebc2cd8ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,43 +193,43 @@ Functions</h2></td></tr>
 <tr class="separator:a6332200b300928d6c0049c0ab737bf92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefb857dea5abff4e95926f0c9a3cb6c2"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aefb857dea5abff4e95926f0c9a3cb6c2">s_decoder_reset_state</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder)</td></tr>
 <tr class="separator:aefb857dea5abff4e95926f0c9a3cb6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd6b0072e50dba626efbfec26aab6d08"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#afd6b0072e50dba626efbfec26aab6d08">s_decoder_get_payload</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:afd6b0072e50dba626efbfec26aab6d08"><td class="memItemLeft" align="right" valign="top">static struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#afd6b0072e50dba626efbfec26aab6d08">s_decoder_get_payload</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:afd6b0072e50dba626efbfec26aab6d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3173c30efca9bf92fdfc8e6e9d1b9d7"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#af3173c30efca9bf92fdfc8e6e9d1b9d7">s_state_fn_prefix</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:af3173c30efca9bf92fdfc8e6e9d1b9d7"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#af3173c30efca9bf92fdfc8e6e9d1b9d7">s_state_fn_prefix</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:af3173c30efca9bf92fdfc8e6e9d1b9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae309593d4575bc1de753147227bc3d0f"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae309593d4575bc1de753147227bc3d0f">s_state_fn_padding_len</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:ae309593d4575bc1de753147227bc3d0f"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae309593d4575bc1de753147227bc3d0f">s_state_fn_padding_len</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:ae309593d4575bc1de753147227bc3d0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1df0bbc0a71c6e5b302bc0d6306c0b79"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a1df0bbc0a71c6e5b302bc0d6306c0b79">s_state_fn_padding</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a1df0bbc0a71c6e5b302bc0d6306c0b79"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a1df0bbc0a71c6e5b302bc0d6306c0b79">s_state_fn_padding</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a1df0bbc0a71c6e5b302bc0d6306c0b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f3f4ce078240b4fefeb4cf699ad2b85"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a1f3f4ce078240b4fefeb4cf699ad2b85">s_state_fn_priority_block</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a1f3f4ce078240b4fefeb4cf699ad2b85"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a1f3f4ce078240b4fefeb4cf699ad2b85">s_state_fn_priority_block</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a1f3f4ce078240b4fefeb4cf699ad2b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06e8124609fc2923eea41bc52f433355"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a06e8124609fc2923eea41bc52f433355">s_state_fn_frame_data</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a06e8124609fc2923eea41bc52f433355"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a06e8124609fc2923eea41bc52f433355">s_state_fn_frame_data</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a06e8124609fc2923eea41bc52f433355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aededfa652f9a2478f8c8e207a28381dd"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aededfa652f9a2478f8c8e207a28381dd">s_state_fn_frame_headers</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:aededfa652f9a2478f8c8e207a28381dd"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aededfa652f9a2478f8c8e207a28381dd">s_state_fn_frame_headers</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:aededfa652f9a2478f8c8e207a28381dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43a908af2e2747d2378014d9c477a52d"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a43a908af2e2747d2378014d9c477a52d">s_state_fn_frame_priority</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a43a908af2e2747d2378014d9c477a52d"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a43a908af2e2747d2378014d9c477a52d">s_state_fn_frame_priority</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a43a908af2e2747d2378014d9c477a52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a462717659dc718bb2cba80d6fec76c30"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a462717659dc718bb2cba80d6fec76c30">s_state_fn_frame_rst_stream</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a462717659dc718bb2cba80d6fec76c30"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a462717659dc718bb2cba80d6fec76c30">s_state_fn_frame_rst_stream</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a462717659dc718bb2cba80d6fec76c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af94c6cc5a44d1f13aadd5ad0642a5e10"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#af94c6cc5a44d1f13aadd5ad0642a5e10">s_state_fn_frame_settings_begin</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:af94c6cc5a44d1f13aadd5ad0642a5e10"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#af94c6cc5a44d1f13aadd5ad0642a5e10">s_state_fn_frame_settings_begin</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:af94c6cc5a44d1f13aadd5ad0642a5e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21b5c514f1807d599aefe5aff343e747"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a21b5c514f1807d599aefe5aff343e747">s_state_fn_frame_settings_loop</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a21b5c514f1807d599aefe5aff343e747"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a21b5c514f1807d599aefe5aff343e747">s_state_fn_frame_settings_loop</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a21b5c514f1807d599aefe5aff343e747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9755ea99f33c7c3db437947c20cbf91"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aa9755ea99f33c7c3db437947c20cbf91">s_state_fn_frame_settings_i</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:aa9755ea99f33c7c3db437947c20cbf91"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aa9755ea99f33c7c3db437947c20cbf91">s_state_fn_frame_settings_i</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:aa9755ea99f33c7c3db437947c20cbf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9f314018617956458d18d5547b33235"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae9f314018617956458d18d5547b33235">s_state_fn_frame_push_promise</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:ae9f314018617956458d18d5547b33235"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae9f314018617956458d18d5547b33235">s_state_fn_frame_push_promise</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:ae9f314018617956458d18d5547b33235"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa23886fe0b4889f7d64ac59ce7283ef"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#afa23886fe0b4889f7d64ac59ce7283ef">s_state_fn_frame_ping</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:afa23886fe0b4889f7d64ac59ce7283ef"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#afa23886fe0b4889f7d64ac59ce7283ef">s_state_fn_frame_ping</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:afa23886fe0b4889f7d64ac59ce7283ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a489e4c401667397193fa10f051a42f88"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a489e4c401667397193fa10f051a42f88">s_state_fn_frame_goaway</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a489e4c401667397193fa10f051a42f88"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a489e4c401667397193fa10f051a42f88">s_state_fn_frame_goaway</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a489e4c401667397193fa10f051a42f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a949af4f1a35887a6526714f306937356"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a949af4f1a35887a6526714f306937356">s_state_fn_frame_goaway_debug_data</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a949af4f1a35887a6526714f306937356"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a949af4f1a35887a6526714f306937356">s_state_fn_frame_goaway_debug_data</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a949af4f1a35887a6526714f306937356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a665f1e9bd44c6d206c7a6ea2f342cd74"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a665f1e9bd44c6d206c7a6ea2f342cd74">s_state_fn_frame_window_update</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a665f1e9bd44c6d206c7a6ea2f342cd74"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a665f1e9bd44c6d206c7a6ea2f342cd74">s_state_fn_frame_window_update</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a665f1e9bd44c6d206c7a6ea2f342cd74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad902d21c3c4351a91e881bd6e3605d58"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ad902d21c3c4351a91e881bd6e3605d58">s_state_fn_frame_continuation</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:ad902d21c3c4351a91e881bd6e3605d58"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ad902d21c3c4351a91e881bd6e3605d58">s_state_fn_frame_continuation</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:ad902d21c3c4351a91e881bd6e3605d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae269bbaa32b006695477d886f8b06470"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae269bbaa32b006695477d886f8b06470">s_state_fn_frame_unknown</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:ae269bbaa32b006695477d886f8b06470"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae269bbaa32b006695477d886f8b06470">s_state_fn_frame_unknown</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:ae269bbaa32b006695477d886f8b06470"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef9f89b53002eca6e2af92d91140e48b"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#aef9f89b53002eca6e2af92d91140e48b">s_flush_pseudoheaders</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder)</td></tr>
 <tr class="separator:aef9f89b53002eca6e2af92d91140e48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,11 +237,11 @@ Functions</h2></td></tr>
 <tr class="separator:acd9f97418348bbb1338b93d6479d8a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae600169aecaca3a91c0f7e13f4f5f9a3"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#ae600169aecaca3a91c0f7e13f4f5f9a3">s_flush_cookie_header</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder)</td></tr>
 <tr class="separator:ae600169aecaca3a91c0f7e13f4f5f9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57d96ceec191db5a2f4e1e0d54a1e610"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a57d96ceec191db5a2f4e1e0d54a1e610">s_state_fn_header_block_loop</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a57d96ceec191db5a2f4e1e0d54a1e610"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a57d96ceec191db5a2f4e1e0d54a1e610">s_state_fn_header_block_loop</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a57d96ceec191db5a2f4e1e0d54a1e610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a382b54b1c6bdf0c877f8f7f781cb1c20"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a382b54b1c6bdf0c877f8f7f781cb1c20">s_state_fn_header_block_entry</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:a382b54b1c6bdf0c877f8f7f781cb1c20"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a382b54b1c6bdf0c877f8f7f781cb1c20">s_state_fn_header_block_entry</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:a382b54b1c6bdf0c877f8f7f781cb1c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd80b81ce2dad010d73fb09177209838"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#abd80b81ce2dad010d73fb09177209838">s_state_fn_connection_preface_string</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
+<tr class="memitem:abd80b81ce2dad010d73fb09177209838"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#abd80b81ce2dad010d73fb09177209838">s_state_fn_connection_preface_string</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, struct aws_byte_cursor *input)</td></tr>
 <tr class="separator:abd80b81ce2dad010d73fb09177209838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9578034d5cacb63873b0c8609b697de4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a9578034d5cacb63873b0c8609b697de4">aws_h2_decoder_set_setting_header_table_size</a> (struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *decoder, uint32_t data)</td></tr>
 <tr class="separator:a9578034d5cacb63873b0c8609b697de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -258,7 +258,7 @@ Variables</h2></td></tr>
 <tr class="separator:a79b0c5549be72d77de57b7fde3af8a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14711d982d6b81dcc5f5a45e3b8124b1"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a14711d982d6b81dcc5f5a45e3b8124b1">s_decoder_cookie_buffer_initial_size</a> = 512</td></tr>
 <tr class="separator:a14711d982d6b81dcc5f5a45e3b8124b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e94b31f4521fc2ceb128354e92d80a6"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a8e94b31f4521fc2ceb128354e92d80a6">s_pseudoheader_name_to_cursor</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
+<tr class="memitem:a8e94b31f4521fc2ceb128354e92d80a6"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a8e94b31f4521fc2ceb128354e92d80a6">s_pseudoheader_name_to_cursor</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
 <tr class="separator:a8e94b31f4521fc2ceb128354e92d80a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90a8650dc85ca5c3120fef4d99686fa9"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818f">aws_http_header_name</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__decoder_8c.html#a90a8650dc85ca5c3120fef4d99686fa9">s_pseudoheader_to_header_name</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
 <tr class="separator:a90a8650dc85ca5c3120fef4d99686fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -305,12 +305,11 @@ Variables</h2></td></tr>
 <div class="line">                    decoder,                                                                                           \</div>
 <div class="line">                    <span class="stringliteral">&quot;Error from callback &quot;</span> #fn <span class="stringliteral">&quot;, %s-&gt;%s&quot;</span>,                                                             \</div>
 <div class="line">                    <a class="code hl_function" href="h2__frames_8h.html#a536cb84acb8b0d9c9807e38a2bdf5e77">aws_http2_error_code_to_str</a>(vtable_err.h2_code),                                                   \</div>
-<div class="line">                    <a class="code hl_function" href="aws-c-common_2include_2aws_2common_2error_8h.html#a218e5d1f0f7cad34b310d187f47b7786">aws_error_name</a>(vtable_err.aws_code));                                                              \</div>
+<div class="line">                    aws_error_name(vtable_err.aws_code));                                                              \</div>
 <div class="line">                return vtable_err;                                                                                     \</div>
 <div class="line">            }                                                                                                          \</div>
 <div class="line">        }                                                                                                              \</div>
 <div class="line">    } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2error_8h_html_a218e5d1f0f7cad34b310d187f47b7786"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2error_8h.html#a218e5d1f0f7cad34b310d187f47b7786">aws_error_name</a></div><div class="ttdeci">AWS_COMMON_API const char * aws_error_name(int err)</div><div class="ttdef"><b>Definition:</b> error.c:63</div></div>
 <div class="ttc" id="ah2__frames_8h_html_a13d947312a891c5adc17fdbf23fa1e51"><div class="ttname"><a href="h2__frames_8h.html#a13d947312a891c5adc17fdbf23fa1e51">aws_h2err_failed</a></div><div class="ttdeci">AWS_HTTP_API bool aws_h2err_failed(struct aws_h2err err)</div><div class="ttdef"><b>Definition:</b> h2_frames.c:161</div></div>
 <div class="ttc" id="ah2__frames_8h_html_a536cb84acb8b0d9c9807e38a2bdf5e77"><div class="ttname"><a href="h2__frames_8h.html#a536cb84acb8b0d9c9807e38a2bdf5e77">aws_http2_error_code_to_str</a></div><div class="ttdeci">AWS_HTTP_API const char * aws_http2_error_code_to_str(enum aws_http2_error_code h2_error_code)</div><div class="ttdef"><b>Definition:</b> h2_frames.c:100</div></div>
 <div class="ttc" id="aopensslcrypto__ecc_8c_html_ae7fa5a3a68eec45ba0d07dc2bd471a7f"><div class="ttname"><a href="opensslcrypto__ecc_8c.html#ae7fa5a3a68eec45ba0d07dc2bd471a7f">vtable</a></div><div class="ttdeci">static struct aws_ecc_key_pair_vtable vtable</div><div class="ttdef"><b>Definition:</b> opensslcrypto_ecc.c:151</div></div>
@@ -360,7 +359,7 @@ Variables</h2></td></tr>
 <div class="line">                    decoder,                                                                                           \</div>
 <div class="line">                    <span class="stringliteral">&quot;Error from callback &quot;</span> #fn <span class="stringliteral">&quot;, %s-&gt;%s&quot;</span>,                                                             \</div>
 <div class="line">                    <a class="code hl_function" href="h2__frames_8h.html#a536cb84acb8b0d9c9807e38a2bdf5e77">aws_http2_error_code_to_str</a>(vtable_err.h2_code),                                                   \</div>
-<div class="line">                    <a class="code hl_function" href="aws-c-common_2include_2aws_2common_2error_8h.html#a218e5d1f0f7cad34b310d187f47b7786">aws_error_name</a>(vtable_err.aws_code));                                                              \</div>
+<div class="line">                    aws_error_name(vtable_err.aws_code));                                                              \</div>
 <div class="line">                return vtable_err;                                                                                     \</div>
 <div class="line">            }                                                                                                          \</div>
 <div class="line">        }                                                                                                              \</div>
@@ -602,7 +601,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -1333,7 +1332,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_decoder_get_payload </td>
+          <td class="memname">static struct aws_byte_cursor s_decoder_get_payload </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h2__decoder.html">aws_h2_decoder</a> *&#160;</td>
           <td class="paramname"><em>decoder</em>, </td>
@@ -1341,7 +1340,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1605,7 +1604,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1641,7 +1640,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1677,7 +1676,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1713,7 +1712,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1749,7 +1748,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1785,7 +1784,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1821,7 +1820,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1857,7 +1856,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1893,7 +1892,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1929,7 +1928,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -1965,7 +1964,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2001,7 +2000,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2037,7 +2036,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2073,7 +2072,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2109,7 +2108,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2145,7 +2144,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2181,7 +2180,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2217,7 +2216,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2253,7 +2252,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2289,7 +2288,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2325,7 +2324,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2358,7 +2357,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -2478,7 +2477,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* s_pseudoheader_name_to_cursor[<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td>
+          <td class="memname">const struct aws_byte_cursor* s_pseudoheader_name_to_cursor[<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td>
         </tr>
       </table>
   </td>

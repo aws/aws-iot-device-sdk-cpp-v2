@@ -75,10 +75,10 @@ $(function() {
   <div class="headertitle"><div class="title">h2_connection.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="atomics_8h_source.html">aws/common/atomics.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="fifo__cache_8h_source.html">aws/common/fifo_cache.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="hash__table_8h_source.html">aws/common/hash_table.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/atomics.h&gt;</code><br />
+<code>#include &lt;aws/common/fifo_cache.h&gt;</code><br />
+<code>#include &lt;aws/common/hash_table.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="connection__impl_8h_source.html">aws/http/private/connection_impl.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="h2__frames_8h_source.html">aws/http/private/h2_frames.h</a>&gt;</code><br />
 </div>
@@ -117,13 +117,13 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af490b0ce859722e75dd118d67adf2de3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#af490b0ce859722e75dd118d67adf2de3">aws_http_connection_new_http2_server</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, bool manual_window_management, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
+<tr class="memitem:af490b0ce859722e75dd118d67adf2de3"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#af490b0ce859722e75dd118d67adf2de3">aws_http_connection_new_http2_server</a> (struct aws_allocator *allocator, bool manual_window_management, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
 <tr class="separator:af490b0ce859722e75dd118d67adf2de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77c6447657a861edc65df072a472a174"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a77c6447657a861edc65df072a472a174">aws_http_connection_new_http2_client</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, bool manual_window_management, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
+<tr class="memitem:a77c6447657a861edc65df072a472a174"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a77c6447657a861edc65df072a472a174">aws_http_connection_new_http2_client</a> (struct aws_allocator *allocator, bool manual_window_management, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
 <tr class="separator:a77c6447657a861edc65df072a472a174"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c82aa0315cb79ed0037fc9af3749d17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a7c82aa0315cb79ed0037fc9af3749d17">aws_h2_create_headers_from_request</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc)</td></tr>
+<tr class="memitem:a7c82aa0315cb79ed0037fc9af3749d17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__headers.html">aws_http_headers</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a7c82aa0315cb79ed0037fc9af3749d17">aws_h2_create_headers_from_request</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct aws_allocator *alloc)</td></tr>
 <tr class="separator:a7c82aa0315cb79ed0037fc9af3749d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08df12270597dc82662f77451d6e1f4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a08df12270597dc82662f77451d6e1f4c">aws_h2_connection_enqueue_outgoing_frame</a> (struct <a class="el" href="structaws__h2__connection.html">aws_h2_connection</a> *connection, struct <a class="el" href="structaws__h2__frame.html">aws_h2_frame</a> *frame)</td></tr>
+<tr class="memitem:a08df12270597dc82662f77451d6e1f4c"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_END void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#a08df12270597dc82662f77451d6e1f4c">aws_h2_connection_enqueue_outgoing_frame</a> (struct <a class="el" href="structaws__h2__connection.html">aws_h2_connection</a> *connection, struct <a class="el" href="structaws__h2__frame.html">aws_h2_frame</a> *frame)</td></tr>
 <tr class="separator:a08df12270597dc82662f77451d6e1f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad577feef6667681b927b5bbcb02d7c6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__connection_8h.html#ad577feef6667681b927b5bbcb02d7c6d">aws_h2_connection_on_stream_closed</a> (struct <a class="el" href="structaws__h2__connection.html">aws_h2_connection</a> *connection, struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, enum <a class="el" href="h2__connection_8h.html#a02f8816c644828f462a6bdc3c8786112">aws_h2_stream_closed_when</a> closed_when, int aws_error_code)</td></tr>
 <tr class="separator:ad577feef6667681b927b5bbcb02d7c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a> void aws_h2_connection_enqueue_outgoing_frame </td>
+          <td class="memname">AWS_EXTERN_C_END void aws_h2_connection_enqueue_outgoing_frame </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h2__connection.html">aws_h2_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em>, </td>
@@ -342,7 +342,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -383,7 +383,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a>* aws_http_connection_new_http2_client </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -415,9 +415,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a>* aws_http_connection_new_http2_server </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a>* aws_http_connection_new_http2_server </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>

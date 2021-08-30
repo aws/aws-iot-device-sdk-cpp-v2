@@ -76,13 +76,13 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:aac3baeed9b5daecb14c44d663082676a"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#aac3baeed9b5daecb14c44d663082676a">destroy</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver)</td></tr>
 <tr class="separator:aac3baeed9b5daecb14c44d663082676a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a050e92db15327b4d163edb8ddd5839e2"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#a050e92db15327b4d163edb8ddd5839e2">resolve_host</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td></tr>
+<tr class="memitem:a050e92db15327b4d163edb8ddd5839e2"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#a050e92db15327b4d163edb8ddd5839e2">resolve_host</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td></tr>
 <tr class="separator:a050e92db15327b4d163edb8ddd5839e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99065c019b8f3a12a59348fc876d566e"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#a99065c019b8f3a12a59348fc876d566e">record_connection_failure</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *address)</td></tr>
 <tr class="separator:a99065c019b8f3a12a59348fc876d566e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab218c06affbc98dd387691869d707d3e"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#ab218c06affbc98dd387691869d707d3e">purge_cache</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver)</td></tr>
 <tr class="separator:ab218c06affbc98dd387691869d707d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b68962cb5de6e2439e374be57ceb74d"><td class="memItemLeft" align="right" valign="top">size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#a9b68962cb5de6e2439e374be57ceb74d">get_host_address_count</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, uint32_t flags)</td></tr>
+<tr class="memitem:a9b68962cb5de6e2439e374be57ceb74d"><td class="memItemLeft" align="right" valign="top">size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#a9b68962cb5de6e2439e374be57ceb74d">get_host_address_count</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, uint32_t flags)</td></tr>
 <tr class="separator:a9b68962cb5de6e2439e374be57ceb74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe027197f9f5eb019a2709ae046ec19e"><td class="memItemLeft" align="right" valign="top">struct aws_host_listener *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__host__resolver__vtable.html#afe027197f9f5eb019a2709ae046ec19e">add_host_listener</a> )(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__host__listener__options.html">aws_host_listener_options</a> *options)</td></tr>
 <tr class="separator:afe027197f9f5eb019a2709ae046ec19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,7 +129,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t(* aws_host_resolver_vtable::get_host_address_count) (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, uint32_t flags)</td>
+          <td class="memname">size_t(* aws_host_resolver_vtable::get_host_address_count) (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, uint32_t flags)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -189,7 +189,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_host_resolver_vtable::resolve_host) (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td>
+          <td class="memname">int(* aws_host_resolver_vtable::resolve_host) (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">

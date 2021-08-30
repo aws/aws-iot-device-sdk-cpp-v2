@@ -94,9 +94,9 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa527047cfd348f445669be484d16887e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab56e9c832b9eca215aa0e990a031fe86"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#ab56e9c832b9eca215aa0e990a031fe86">change_settings</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__http2__setting.html">aws_http2_setting</a> *settings_array, size_t num_settings, <a class="el" href="connection_8h.html#a96fcc2412e49224b6c36d1356b609ee8">aws_http2_on_change_settings_complete_fn</a> *on_completed, void *user_data)</td></tr>
 <tr class="separator:ab56e9c832b9eca215aa0e990a031fe86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc984d083b5fc1bf331ef75aff635319"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#adc984d083b5fc1bf331ef75aff635319">send_ping</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_completed, void *user_data)</td></tr>
+<tr class="memitem:adc984d083b5fc1bf331ef75aff635319"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#adc984d083b5fc1bf331ef75aff635319">send_ping</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct aws_byte_cursor *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_completed, void *user_data)</td></tr>
 <tr class="separator:adc984d083b5fc1bf331ef75aff635319"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7dc6967dff1d6ea5e5655296515708b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#af7dc6967dff1d6ea5e5655296515708b">send_goaway</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, bool allow_more_streams, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_debug_data)</td></tr>
+<tr class="memitem:af7dc6967dff1d6ea5e5655296515708b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#af7dc6967dff1d6ea5e5655296515708b">send_goaway</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, bool allow_more_streams, const struct aws_byte_cursor *optional_debug_data)</td></tr>
 <tr class="separator:af7dc6967dff1d6ea5e5655296515708b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014d734f3963ffd7e211b680b95c6c3f"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection__vtable.html#a014d734f3963ffd7e211b680b95c6c3f">get_sent_goaway</a> )(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t *out_http2_error, uint32_t *out_last_stream_id)</td></tr>
 <tr class="separator:a014d734f3963ffd7e211b680b95c6c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -283,7 +283,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_http_connection_vtable::send_goaway) (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, bool allow_more_streams, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_debug_data)</td>
+          <td class="memname">int(* aws_http_connection_vtable::send_goaway) (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, bool allow_more_streams, const struct aws_byte_cursor *optional_debug_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -297,7 +297,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_http_connection_vtable::send_ping) (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_completed, void *user_data)</td>
+          <td class="memname">int(* aws_http_connection_vtable::send_ping) (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct aws_byte_cursor *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_completed, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">

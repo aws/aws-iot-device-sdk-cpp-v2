@@ -72,21 +72,21 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3a4686de514dd04ea79235eb25db0520"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a3a4686de514dd04ea79235eb25db0520">allocator</a></td></tr>
+<tr class="memitem:a3a4686de514dd04ea79235eb25db0520"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a3a4686de514dd04ea79235eb25db0520">allocator</a></td></tr>
 <tr class="separator:a3a4686de514dd04ea79235eb25db0520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeb77754e2ce1b9b9e54f81709ae424f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#afeb77754e2ce1b9b9e54f81709ae424f">owner</a></td></tr>
 <tr class="separator:afeb77754e2ce1b9b9e54f81709ae424f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b5f7a23c63e667c3f3e8d7778b4c8e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a55b5f7a23c63e667c3f3e8d7778b4c8e">partition_id</a></td></tr>
+<tr class="memitem:a55b5f7a23c63e667c3f3e8d7778b4c8e"><td class="memItemLeft" align="right" valign="top">struct aws_string *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a55b5f7a23c63e667c3f3e8d7778b4c8e">partition_id</a></td></tr>
 <tr class="separator:a55b5f7a23c63e667c3f3e8d7778b4c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f5c7dfa45ff137fe9b02643dff9182e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a8f5c7dfa45ff137fe9b02643dff9182e">partition_id_cur</a></td></tr>
+<tr class="memitem:a8f5c7dfa45ff137fe9b02643dff9182e"><td class="memItemLeft" align="right" valign="top">struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a8f5c7dfa45ff137fe9b02643dff9182e">partition_id_cur</a></td></tr>
 <tr class="separator:a8f5c7dfa45ff137fe9b02643dff9182e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbdf3d9950ebf3403248c796c2e4f02"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a5de0cc053b68f532c3bf17f84e434c6f"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structretry__bucket.html#a01903503ac6586532fc60104c2767817">current_capacity</a></td></tr>
-<tr class="separator:a5de0cc053b68f532c3bf17f84e434c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5e632f72792d8e33b325340ddf0ef02"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structretry__bucket.html#ae8708ed0ad85586551aea4252622ea93">partition_lock</a></td></tr>
-<tr class="separator:ac5e632f72792d8e33b325340ddf0ef02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbdf3d9950ebf3403248c796c2e4f02"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a7cbdf3d9950ebf3403248c796c2e4f02">synced_data</a></td></tr>
-<tr class="separator:a7cbdf3d9950ebf3403248c796c2e4f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2997c242c8826a2c32e76f9e58e8c7eb"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a47e404d52b07bd2d5073eff070c887eb"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structretry__bucket.html#a01903503ac6586532fc60104c2767817">current_capacity</a></td></tr>
+<tr class="separator:a47e404d52b07bd2d5073eff070c887eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae34643d861dd32b106b90678b6eb1d2"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structretry__bucket.html#ae8708ed0ad85586551aea4252622ea93">partition_lock</a></td></tr>
+<tr class="separator:aae34643d861dd32b106b90678b6eb1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2997c242c8826a2c32e76f9e58e8c7eb"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structretry__bucket.html#a2997c242c8826a2c32e76f9e58e8c7eb">synced_data</a></td></tr>
+<tr class="separator:a2997c242c8826a2c32e76f9e58e8c7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a3a4686de514dd04ea79235eb25db0520" name="a3a4686de514dd04ea79235eb25db0520"></a>
@@ -96,7 +96,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* retry_bucket::allocator</td>
+          <td class="memname">struct aws_allocator* retry_bucket::allocator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -138,7 +138,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__string.html">aws_string</a>* retry_bucket::partition_id</td>
+          <td class="memname">struct aws_string* retry_bucket::partition_id</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -152,7 +152,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> retry_bucket::partition_id_cur</td>
+          <td class="memname">struct aws_byte_cursor retry_bucket::partition_id_cur</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -166,15 +166,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> retry_bucket::partition_lock</td>
+          <td class="memname">struct aws_mutex retry_bucket::partition_lock</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a7cbdf3d9950ebf3403248c796c2e4f02" name="a7cbdf3d9950ebf3403248c796c2e4f02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cbdf3d9950ebf3403248c796c2e4f02">&#9670;&nbsp;</a></span></h2>
+<a id="a2997c242c8826a2c32e76f9e58e8c7eb" name="a2997c242c8826a2c32e76f9e58e8c7eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2997c242c8826a2c32e76f9e58e8c7eb">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

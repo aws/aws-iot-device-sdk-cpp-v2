@@ -67,7 +67,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >C++ wrapper around the aws-c-* libraries. Provides Cross-Platform Transport Protocols and SSL/TLS implementations for C++.</p>
-<h2><a class="anchor" id="autotoc_md505"></a>
+<h2><a class="anchor" id="autotoc_md392"></a>
 Currently Included:</h2>
 <ul>
 <li>aws-c-common: Cross-platform primitives and data structures.</li>
@@ -79,23 +79,23 @@ Currently Included:</h2>
 <li>aws-c-event-stream: C99 implementation of the vnd.amazon.event-stream content-type.</li>
 </ul>
 <p >More protocols and utilities are coming soon, so stay tuned.</p>
-<h1><a class="anchor" id="autotoc_md506"></a>
+<h1><a class="anchor" id="autotoc_md393"></a>
 Building</h1>
 <p >The C99 libraries are already included for your convenience as submodules. If you would like to have us build them by default, be sure to either perform a recursive clone <code>git clone --recursive</code> or initialize the submodules via. <code>git submodule update --init</code>. Then, to build, specify the <code>-DBUILD_DEPS=ON</code> CMake argument.</p>
 <p >If you want to manage these dependencies manually (e.g. you're using them in other projects), simply specify <code>-DCMAKE_PREFIX_PATH</code> to point to the absolute path where you have them installed.</p>
-<h2><a class="anchor" id="autotoc_md507"></a>
+<h2><a class="anchor" id="autotoc_md394"></a>
 MSVC</h2>
 <p >If you want to use a statically linked MSVCRT (/MT, /MTd), you can add <code>-DSTATIC_CRT=ON</code> to your cmake configuration.</p>
-<h1><a class="anchor" id="autotoc_md508"></a>
+<h1><a class="anchor" id="autotoc_md395"></a>
 Dependencies?</h1>
-<h2><a class="anchor" id="autotoc_md509"></a>
+<h2><a class="anchor" id="autotoc_md396"></a>
 Windows and Apple</h2>
 <p >There are no non-OS dependencies that AWS does not own, maintain, and ship.</p>
-<h2><a class="anchor" id="autotoc_md510"></a>
+<h2><a class="anchor" id="autotoc_md397"></a>
 Unix</h2>
 <p >The most likely answer is: none that you should care about.</p>
 <p >We do depend on an openssl compatible libcrypto implementation being in your path if you are on a unix system. Note: we do not actually use libssl. The most likely scenario is that libcrypto is already installed on your system. However, since many linux distributions these days do not provide a 32-bit libcrypto package, if you're trying to perform a 32-bit build you will likely need to build and install libcrypto from source.</p>
-<h1><a class="anchor" id="autotoc_md511"></a>
+<h1><a class="anchor" id="autotoc_md398"></a>
 Common Usage</h1>
 <p >To do anything with IO, you'll need to create a few objects that will be used by the rest of the library.</p>
 <p >For example:</p>
@@ -130,11 +130,11 @@ Common Usage</h1>
 </div><!-- fragment --><p >If you plan on using TLS, you will need a TlsContext. These are NOT CHEAP, so use as few as possible to perform your task. If you're in client mode and not doing anything fancy (e.g. mutual TLS), then you can likely get away with using a single instance for the entire application.</p>
 <div class="fragment"><div class="line">Aws::Crt::Io::ClientBootstrap bootstrap(eventLoopGroup);</div>
 </div><!-- fragment --><p >Lastly, you will need a client or server bootstrap to use a client or server protocol implementation. Since everything is non-blocking and event driven, this handles most of the "callback hell" inherent in the design. Assuming you aren't partitioning threads for particular use-cases, you can have a single instance of this that you pass to multiple clients.</p>
-<h1><a class="anchor" id="autotoc_md512"></a>
+<h1><a class="anchor" id="autotoc_md399"></a>
 Mac-Only TLS Behavior</h1>
 <p >Please note that on Mac, once a private key is used with a certificate, that certificate-key pair is imported into the Mac Keychain. All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically. Beginning in v0.8.10, when a stored private key from the Keychain is used, the following will be logged at the "info" log level:</p>
 <div class="fragment"><div class="line">static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md513"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md400"></a>
 License</h1>
 <p >This library is licensed under the Apache 2.0 License. </p>
 </div></div><!-- contents -->

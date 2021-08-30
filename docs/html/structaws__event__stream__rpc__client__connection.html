@@ -72,13 +72,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aae9b0399e2cbd51ae1c3c5ffda68f777"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#aae9b0399e2cbd51ae1c3c5ffda68f777">allocator</a></td></tr>
+<tr class="memitem:aae9b0399e2cbd51ae1c3c5ffda68f777"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#aae9b0399e2cbd51ae1c3c5ffda68f777">allocator</a></td></tr>
 <tr class="separator:aae9b0399e2cbd51ae1c3c5ffda68f777"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a026bee6961899233c916c379602f165f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a026bee6961899233c916c379602f165f">continuation_table</a></td></tr>
+<tr class="memitem:a026bee6961899233c916c379602f165f"><td class="memItemLeft" align="right" valign="top">struct aws_hash_table&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a026bee6961899233c916c379602f165f">continuation_table</a></td></tr>
 <tr class="separator:a026bee6961899233c916c379602f165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1675e8555b5f3069d897247db356e3cf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a1675e8555b5f3069d897247db356e3cf">bootstrap_ref</a></td></tr>
 <tr class="separator:a1675e8555b5f3069d897247db356e3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c3c9e6e81ced204fabd06e00f40b66b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a2c3c9e6e81ced204fabd06e00f40b66b">ref_count</a></td></tr>
+<tr class="memitem:a2c3c9e6e81ced204fabd06e00f40b66b"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a2c3c9e6e81ced204fabd06e00f40b66b">ref_count</a></td></tr>
 <tr class="separator:a2c3c9e6e81ced204fabd06e00f40b66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02247bffa2f0a3ffa65c4a0adf7d9218"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel.html">aws_channel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a02247bffa2f0a3ffa65c4a0adf7d9218">channel</a></td></tr>
 <tr class="separator:a02247bffa2f0a3ffa65c4a0adf7d9218"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -86,11 +86,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a1086692c7e680df5b45e6ffc922ae9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7668b86287db0ce22bcec7352510c2d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#ab7668b86287db0ce22bcec7352510c2d">latest_stream_id</a></td></tr>
 <tr class="separator:ab7668b86287db0ce22bcec7352510c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace53a59f8980e6c174fd5c4edcdd3199"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#ace53a59f8980e6c174fd5c4edcdd3199">stream_lock</a></td></tr>
+<tr class="memitem:ace53a59f8980e6c174fd5c4edcdd3199"><td class="memItemLeft" align="right" valign="top">struct aws_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#ace53a59f8980e6c174fd5c4edcdd3199">stream_lock</a></td></tr>
 <tr class="separator:ace53a59f8980e6c174fd5c4edcdd3199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a825eed7a16e57d24f41c37c93ec45b64"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a825eed7a16e57d24f41c37c93ec45b64">is_open</a></td></tr>
+<tr class="memitem:a825eed7a16e57d24f41c37c93ec45b64"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a825eed7a16e57d24f41c37c93ec45b64">is_open</a></td></tr>
 <tr class="separator:a825eed7a16e57d24f41c37c93ec45b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78cb74ce3301a34c2325ba3f63fb7083"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a78cb74ce3301a34c2325ba3f63fb7083">handshake_state</a></td></tr>
+<tr class="memitem:a78cb74ce3301a34c2325ba3f63fb7083"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a78cb74ce3301a34c2325ba3f63fb7083">handshake_state</a></td></tr>
 <tr class="separator:a78cb74ce3301a34c2325ba3f63fb7083"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12422ee3de784b48ae7ee83d81f06ba8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__event__stream__rpc__client__connection.html#a12422ee3de784b48ae7ee83d81f06ba8">initial_window_size</a></td></tr>
 <tr class="separator:a12422ee3de784b48ae7ee83d81f06ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,7 +115,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_event_stream_rpc_client_connection::allocator</td>
+          <td class="memname">struct aws_allocator* aws_event_stream_rpc_client_connection::allocator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -171,7 +171,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> aws_event_stream_rpc_client_connection::continuation_table</td>
+          <td class="memname">struct aws_hash_table aws_event_stream_rpc_client_connection::continuation_table</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -213,7 +213,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> aws_event_stream_rpc_client_connection::handshake_state</td>
+          <td class="memname">struct aws_atomic_var aws_event_stream_rpc_client_connection::handshake_state</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,7 +241,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> aws_event_stream_rpc_client_connection::is_open</td>
+          <td class="memname">struct aws_atomic_var aws_event_stream_rpc_client_connection::is_open</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -311,7 +311,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> aws_event_stream_rpc_client_connection::ref_count</td>
+          <td class="memname">struct aws_atomic_var aws_event_stream_rpc_client_connection::ref_count</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -325,7 +325,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> aws_event_stream_rpc_client_connection::stream_lock</td>
+          <td class="memname">struct aws_mutex aws_event_stream_rpc_client_connection::stream_lock</td>
         </tr>
       </table>
 </div><div class="memdoc">

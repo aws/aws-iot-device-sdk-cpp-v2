@@ -88,25 +88,25 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8ee710a837b8b50c9f11597f188d0db0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a8ee710a837b8b50c9f11597f188d0db0">s_sign_message</a> (const struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *message, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *signature_output)</td></tr>
+<tr class="memitem:a8ee710a837b8b50c9f11597f188d0db0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a8ee710a837b8b50c9f11597f188d0db0">s_sign_message</a> (const struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair, const struct aws_byte_cursor *message, struct aws_byte_buf *signature_output)</td></tr>
 <tr class="separator:a8ee710a837b8b50c9f11597f188d0db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25b33a74ba38890d41f8202e63ca76db"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a25b33a74ba38890d41f8202e63ca76db">s_signature_length</a> (const struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair)</td></tr>
 <tr class="separator:a25b33a74ba38890d41f8202e63ca76db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28ae0907ba57048d419b20a3e242c6e1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a28ae0907ba57048d419b20a3e242c6e1">s_verify_signature</a> (const struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *message, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *signature)</td></tr>
+<tr class="memitem:a28ae0907ba57048d419b20a3e242c6e1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a28ae0907ba57048d419b20a3e242c6e1">s_verify_signature</a> (const struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair, const struct aws_byte_cursor *message, const struct aws_byte_cursor *signature)</td></tr>
 <tr class="separator:a28ae0907ba57048d419b20a3e242c6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad41eb9b6bd603e74ad0bb42db0812f25"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#ad41eb9b6bd603e74ad0bb42db0812f25">s_derive_public_key</a> (struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair)</td></tr>
 <tr class="separator:ad41eb9b6bd603e74ad0bb42db0812f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c2a302ce4b1de90fa9444e4fa5427f1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a1c2a302ce4b1de90fa9444e4fa5427f1">s_destroy_key</a> (struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *key_pair)</td></tr>
 <tr class="separator:a1c2a302ce4b1de90fa9444e4fa5427f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af266759e55c9e1520d3d88f38fe25ef7"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structcommoncrypto__ecc__key__pair.html">commoncrypto_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#af266759e55c9e1520d3d88f38fe25ef7">s_alloc_pair_and_init_buffers</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> pub_x, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> pub_y, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> priv_key)</td></tr>
+<tr class="memitem:af266759e55c9e1520d3d88f38fe25ef7"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structcommoncrypto__ecc__key__pair.html">commoncrypto_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#af266759e55c9e1520d3d88f38fe25ef7">s_alloc_pair_and_init_buffers</a> (struct aws_allocator *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, struct aws_byte_cursor pub_x, struct aws_byte_cursor pub_y, struct aws_byte_cursor priv_key)</td></tr>
 <tr class="separator:af266759e55c9e1520d3d88f38fe25ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a365950479dd441979b7643bf5b48b65f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a365950479dd441979b7643bf5b48b65f">aws_ecc_key_pair_new_from_private_key</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *priv_key)</td></tr>
+<tr class="memitem:a365950479dd441979b7643bf5b48b65f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a365950479dd441979b7643bf5b48b65f">aws_ecc_key_pair_new_from_private_key</a> (struct aws_allocator *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, const struct aws_byte_cursor *priv_key)</td></tr>
 <tr class="separator:a365950479dd441979b7643bf5b48b65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9c51d7f68686550264836c372059fd"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a0f9c51d7f68686550264836c372059fd">aws_ecc_key_pair_new_from_public_key</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *public_key_x, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *public_key_y)</td></tr>
+<tr class="memitem:a0f9c51d7f68686550264836c372059fd"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#a0f9c51d7f68686550264836c372059fd">aws_ecc_key_pair_new_from_public_key</a> (struct aws_allocator *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name, const struct aws_byte_cursor *public_key_x, const struct aws_byte_cursor *public_key_y)</td></tr>
 <tr class="separator:a0f9c51d7f68686550264836c372059fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb7ee680846d8fa297534ef14534f5fe"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#abb7ee680846d8fa297534ef14534f5fe">aws_ecc_key_pair_new_generate_random</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name)</td></tr>
+<tr class="memitem:abb7ee680846d8fa297534ef14534f5fe"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#abb7ee680846d8fa297534ef14534f5fe">aws_ecc_key_pair_new_generate_random</a> (struct aws_allocator *allocator, enum <a class="el" href="ecc_8h.html#a27a5bd6641fe1af09fdf80c122dc3119">aws_ecc_curve_name</a> curve_name)</td></tr>
 <tr class="separator:abb7ee680846d8fa297534ef14534f5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab552ddb93fd0ab9b64fb748795e4692e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#ab552ddb93fd0ab9b64fb748795e4692e">aws_ecc_key_pair_new_from_asn1</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *encoded_keys)</td></tr>
+<tr class="memitem:ab552ddb93fd0ab9b64fb748795e4692e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="securityframework__ecc_8c.html#ab552ddb93fd0ab9b64fb748795e4692e">aws_ecc_key_pair_new_from_asn1</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *encoded_keys)</td></tr>
 <tr class="separator:ab552ddb93fd0ab9b64fb748795e4692e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -128,13 +128,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a>* aws_ecc_key_pair_new_from_asn1 </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>encoded_keys</em>&#160;</td>
         </tr>
         <tr>
@@ -157,7 +157,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a>* aws_ecc_key_pair_new_from_private_key </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -169,7 +169,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>priv_key</em>&#160;</td>
         </tr>
         <tr>
@@ -192,7 +192,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a>* aws_ecc_key_pair_new_from_public_key </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -204,13 +204,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>public_key_x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>public_key_y</em>&#160;</td>
         </tr>
         <tr>
@@ -233,7 +233,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__ecc__key__pair.html">aws_ecc_key_pair</a>* aws_ecc_key_pair_new_generate_random </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -265,7 +265,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static struct <a class="el" href="structcommoncrypto__ecc__key__pair.html">commoncrypto_ecc_key_pair</a>* s_alloc_pair_and_init_buffers </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -277,19 +277,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>pub_x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>pub_y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>priv_key</em>&#160;</td>
         </tr>
         <tr>
@@ -377,13 +377,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>message</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>signature_output</em>&#160;</td>
         </tr>
         <tr>
@@ -445,13 +445,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>message</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>signature</em>&#160;</td>
         </tr>
         <tr>

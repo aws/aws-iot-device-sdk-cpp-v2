@@ -77,17 +77,17 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="connection_8h_source.html">aws/http/connection.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="request__response_8h_source.html">aws/http/request_response.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="command__line__parser_8h_source.html">aws/common/command_line_parser.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="condition__variable_8h_source.html">aws/common/condition_variable.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="hash__table_8h_source.html">aws/common/hash_table.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="log__channel_8h_source.html">aws/common/log_channel.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="log__formatter_8h_source.html">aws/common/log_formatter.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="log__writer_8h_source.html">aws/common/log_writer.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">aws/common/string.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/command_line_parser.h&gt;</code><br />
+<code>#include &lt;aws/common/condition_variable.h&gt;</code><br />
+<code>#include &lt;aws/common/hash_table.h&gt;</code><br />
+<code>#include &lt;aws/common/log_channel.h&gt;</code><br />
+<code>#include &lt;aws/common/log_formatter.h&gt;</code><br />
+<code>#include &lt;aws/common/log_writer.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
+<code>#include &lt;aws/common/string.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel__bootstrap_8h_source.html">aws/io/channel_bootstrap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="shared__library_8h_source.html">aws/io/shared_library.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="socket_8h_source.html">aws/io/socket.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_stream_8h_source.html">aws/io/stream.h</a>&gt;</code><br />
@@ -109,11 +109,11 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a4d0cedea4738077d526ab5ab53986692"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#a4d0cedea4738077d526ab5ab53986692">s_usage</a> (int exit_code)</td></tr>
 <tr class="separator:a4d0cedea4738077d526ab5ab53986692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c4e791469572ab6be74db2b055fa225"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#a0c4e791469572ab6be74db2b055fa225">s_parse_signing_context</a> (struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *signing_context, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const char *context_argument)</td></tr>
+<tr class="memitem:a0c4e791469572ab6be74db2b055fa225"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#a0c4e791469572ab6be74db2b055fa225">s_parse_signing_context</a> (struct aws_hash_table *signing_context, struct aws_allocator *allocator, const char *context_argument)</td></tr>
 <tr class="separator:a0c4e791469572ab6be74db2b055fa225"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b46904648190b9d621b7becdd15051"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#af1b46904648190b9d621b7becdd15051">s_parse_options</a> (int argc, char **argv, struct <a class="el" href="structelasticurl__ctx.html">elasticurl_ctx</a> *ctx)</td></tr>
 <tr class="separator:af1b46904648190b9d621b7becdd15051"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab5ed1d449f290e890f756ad76cbd83d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#aab5ed1d449f290e890f756ad76cbd83d">s_on_incoming_body_fn</a> (struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, void *user_data)</td></tr>
+<tr class="memitem:aab5ed1d449f290e890f756ad76cbd83d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#aab5ed1d449f290e890f756ad76cbd83d">s_on_incoming_body_fn</a> (struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, const struct aws_byte_cursor *data, void *user_data)</td></tr>
 <tr class="separator:aab5ed1d449f290e890f756ad76cbd83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb5c57bd9f43f9dcdca0682f5f9dd8a9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#acb5c57bd9f43f9dcdca0682f5f9dd8a9">s_on_incoming_headers_fn</a> (struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> header_block, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *header_array, size_t num_headers, void *user_data)</td></tr>
 <tr class="separator:acb5c57bd9f43f9dcdca0682f5f9dd8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,7 +136,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a40e7df3d6df111c7d3a0c58d03065652"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__cli__option.html">aws_cli_option</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#a40e7df3d6df111c7d3a0c58d03065652">s_long_options</a> []</td></tr>
+<tr class="memitem:a40e7df3d6df111c7d3a0c58d03065652"><td class="memItemLeft" align="right" valign="top">static struct aws_cli_option&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-http_2bin_2elasticurl_2main_8c.html#a40e7df3d6df111c7d3a0c58d03065652">s_long_options</a> []</td></tr>
 <tr class="separator:a40e7df3d6df111c7d3a0c58d03065652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -338,7 +338,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -596,13 +596,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static int s_parse_signing_context </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_table *&#160;</td>
           <td class="paramname"><em>signing_context</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -663,7 +663,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__cli__option.html">aws_cli_option</a> s_long_options[]</td>
+          <td class="memname">struct aws_cli_option s_long_options[]</td>
         </tr>
       </table>
   </td>
@@ -673,35 +673,33 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    {<span class="stringliteral">&quot;cacert&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;a&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;capath&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;b&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;cert&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;c&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;key&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;e&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;connect-timeout&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;f&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;header&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;H&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;data&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;d&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;data-file&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;g&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;method&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;M&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;get&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;G&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;post&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;P&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;head&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;I&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;signing-lib&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;j&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;include&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;i&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;insecure&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;k&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;signing-func&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;l&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;signing-context&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;m&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;output&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;o&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;trace&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;t&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;verbose&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;v&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;version&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;V&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;http2&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;w&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;http1_1&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;W&#39;</span>},</div>
-<div class="line">    {<span class="stringliteral">&quot;help&quot;</span>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;h&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;cacert&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;a&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;capath&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;b&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;cert&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;c&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;key&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;e&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;connect-timeout&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;f&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;header&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;H&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;data&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;d&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;data-file&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;g&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;method&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;M&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;get&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;G&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;post&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;P&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;head&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;I&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;signing-lib&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;j&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;include&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;i&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;insecure&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;k&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;signing-func&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;l&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;signing-context&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;m&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;output&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;o&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;trace&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;t&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;verbose&quot;</span>, AWS_CLI_OPTIONS_REQUIRED_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;v&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;version&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;V&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;http2&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;w&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;http1_1&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;W&#39;</span>},</div>
+<div class="line">    {<span class="stringliteral">&quot;help&quot;</span>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <span class="charliteral">&#39;h&#39;</span>},</div>
 <div class="line">    </div>
-<div class="line">    {<a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, <a class="code hl_enumvalue" href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a>, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, 0},</div>
+<div class="line">    {<a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, AWS_CLI_OPTIONS_NO_ARGUMENT, <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>, 0},</div>
 <div class="line">}</div>
-<div class="ttc" id="acommand__line__parser_8h_html_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b"><div class="ttname"><a href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b">AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</a></div><div class="ttdeci">@ AWS_CLI_OPTIONS_REQUIRED_ARGUMENT</div><div class="ttdef"><b>Definition:</b> command_line_parser.h:11</div></div>
-<div class="ttc" id="acommand__line__parser_8h_html_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca"><div class="ttname"><a href="command__line__parser_8h.html#a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca">AWS_CLI_OPTIONS_NO_ARGUMENT</a></div><div class="ttdeci">@ AWS_CLI_OPTIONS_NO_ARGUMENT</div><div class="ttdef"><b>Definition:</b> command_line_parser.h:10</div></div>
 <div class="ttc" id="anamespace_aws_html_a41b67e809416e9bd96026fa1f414925d"><div class="ttname"><a href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">Aws::NULL</a></div><div class="ttdeci">return NULL</div><div class="ttdef"><b>Definition:</b> cJSON.cpp:951</div></div>
 </div><!-- fragment -->
 </div>

@@ -74,8 +74,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_source.html">aws/cal/exports.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="array__list_8h_source.html">aws/common/array_list.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/array_list.h&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 </div>
 <p><a href="der_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -115,19 +115,19 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9543cd8df33a2376db94d0793da5cd20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a9543cd8df33a2376db94d0793da5cd20">aws_der_encoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, size_t capacity)</td></tr>
+<tr class="memitem:a9543cd8df33a2376db94d0793da5cd20"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a9543cd8df33a2376db94d0793da5cd20">aws_der_encoder_new</a> (struct aws_allocator *allocator, size_t capacity)</td></tr>
 <tr class="separator:a9543cd8df33a2376db94d0793da5cd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a472a565b8d2595772d5391d873013fd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a472a565b8d2595772d5391d873013fd6">aws_der_encoder_destroy</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a472a565b8d2595772d5391d873013fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a528d7d998d3b4f72dcc00d08bc5ba0f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a528d7d998d3b4f72dcc00d08bc5ba0f3">aws_der_encoder_write_integer</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> integer)</td></tr>
+<tr class="memitem:a528d7d998d3b4f72dcc00d08bc5ba0f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a528d7d998d3b4f72dcc00d08bc5ba0f3">aws_der_encoder_write_integer</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor integer)</td></tr>
 <tr class="separator:a528d7d998d3b4f72dcc00d08bc5ba0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63e3c3728987323192a515a361fea2c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a63e3c3728987323192a515a361fea2c0">aws_der_encoder_write_boolean</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, bool <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:a63e3c3728987323192a515a361fea2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b75ffa2e762745825762b535ffc41ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a5b75ffa2e762745825762b535ffc41ac">aws_der_encoder_write_null</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a5b75ffa2e762745825762b535ffc41ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab83f2f05924ab700375bef219d0ef9e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ab83f2f05924ab700375bef219d0ef9e4">aws_der_encoder_write_bit_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> bit_string)</td></tr>
+<tr class="memitem:ab83f2f05924ab700375bef219d0ef9e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ab83f2f05924ab700375bef219d0ef9e4">aws_der_encoder_write_bit_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor bit_string)</td></tr>
 <tr class="separator:ab83f2f05924ab700375bef219d0ef9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6b3c26981e99be7e0774e235c389ae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ab6b3c26981e99be7e0774e235c389ae6">aws_der_encoder_write_octet_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> octet_string)</td></tr>
+<tr class="memitem:ab6b3c26981e99be7e0774e235c389ae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ab6b3c26981e99be7e0774e235c389ae6">aws_der_encoder_write_octet_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor octet_string)</td></tr>
 <tr class="separator:ab6b3c26981e99be7e0774e235c389ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add75a4e6f932d98f08b226b382f773ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#add75a4e6f932d98f08b226b382f773ac">aws_der_encoder_begin_sequence</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:add75a4e6f932d98f08b226b382f773ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,9 +137,9 @@ Functions</h2></td></tr>
 <tr class="separator:a10ecfceb0600454a0d7a9ed32b90fcea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af05bff709363226e2aff58bb05133b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#af05bff709363226e2aff58bb05133b01">aws_der_encoder_end_set</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:af05bff709363226e2aff58bb05133b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10ee776d87ce43eead3804506c6f4775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a10ee776d87ce43eead3804506c6f4775">aws_der_encoder_get_contents</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *contents)</td></tr>
+<tr class="memitem:a10ee776d87ce43eead3804506c6f4775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a10ee776d87ce43eead3804506c6f4775">aws_der_encoder_get_contents</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor *contents)</td></tr>
 <tr class="separator:a10ee776d87ce43eead3804506c6f4775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a020e6fe4b573c1cecc636835282eeb33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a020e6fe4b573c1cecc636835282eeb33">aws_der_decoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input)</td></tr>
+<tr class="memitem:a020e6fe4b573c1cecc636835282eeb33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a020e6fe4b573c1cecc636835282eeb33">aws_der_decoder_new</a> (struct aws_allocator *allocator, struct aws_byte_cursor input)</td></tr>
 <tr class="separator:a020e6fe4b573c1cecc636835282eeb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57ea30b6c62773f38181970c7308c91e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a57ea30b6c62773f38181970c7308c91e">aws_der_decoder_destroy</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a57ea30b6c62773f38181970c7308c91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,13 +151,13 @@ Functions</h2></td></tr>
 <tr class="separator:afa3038c32229ba9d6a0d2f0c462590d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99f1e4ee8a751f9b53a9d607eed82f59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a99f1e4ee8a751f9b53a9d607eed82f59">aws_der_decoder_tlv_count</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a99f1e4ee8a751f9b53a9d607eed82f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bb091d254e4d582340cd288880473b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a9bb091d254e4d582340cd288880473b1">aws_der_decoder_tlv_string</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a885837e2b3d6bfbc536b23ea3e8cf054">string</a>)</td></tr>
+<tr class="memitem:a9bb091d254e4d582340cd288880473b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a9bb091d254e4d582340cd288880473b1">aws_der_decoder_tlv_string</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a885837e2b3d6bfbc536b23ea3e8cf054">string</a>)</td></tr>
 <tr class="separator:a9bb091d254e4d582340cd288880473b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43f5016500ff1eaa08f987eb7bf824af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a43f5016500ff1eaa08f987eb7bf824af">aws_der_decoder_tlv_integer</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *integer)</td></tr>
+<tr class="memitem:a43f5016500ff1eaa08f987eb7bf824af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a43f5016500ff1eaa08f987eb7bf824af">aws_der_decoder_tlv_integer</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *integer)</td></tr>
 <tr class="separator:a43f5016500ff1eaa08f987eb7bf824af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95af9caa5b9d827e1df6e423ff627e21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#a95af9caa5b9d827e1df6e423ff627e21">aws_der_decoder_tlv_boolean</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, bool *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:a95af9caa5b9d827e1df6e423ff627e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad19264e76c9194b6064286212c6756fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ad19264e76c9194b6064286212c6756fb">aws_der_decoder_tlv_blob</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *blob)</td></tr>
+<tr class="memitem:ad19264e76c9194b6064286212c6756fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8h.html#ad19264e76c9194b6064286212c6756fb">aws_der_decoder_tlv_blob</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *blob)</td></tr>
 <tr class="separator:ad19264e76c9194b6064286212c6756fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -233,13 +233,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a>* aws_der_decoder_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -300,7 +300,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>blob</em>&#160;</td>
         </tr>
         <tr>
@@ -397,7 +397,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>integer</em>&#160;</td>
         </tr>
         <tr>
@@ -458,7 +458,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>string</em>&#160;</td>
         </tr>
         <tr>
@@ -644,7 +644,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>contents</em>&#160;</td>
         </tr>
         <tr>
@@ -672,9 +672,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a>* aws_der_encoder_new </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h.html#aa692ea47554141d96737626ab08871da">AWS_CAL_API</a> struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a>* aws_der_encoder_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -716,7 +716,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>bit_string</em>&#160;</td>
         </tr>
         <tr>
@@ -788,7 +788,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>integer</em>&#160;</td>
         </tr>
         <tr>
@@ -849,7 +849,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>octet_string</em>&#160;</td>
         </tr>
         <tr>

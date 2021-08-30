@@ -76,9 +76,9 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:ac3fcf4f0ad7390023462bb6e8dfbc7df"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#ac3fcf4f0ad7390023462bb6e8dfbc7df">on_header</a> )(const struct <a class="el" href="structaws__h1__decoded__header.html">aws_h1_decoded_header</a> *header, void *user_data)</td></tr>
 <tr class="separator:ac3fcf4f0ad7390023462bb6e8dfbc7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ac1a5e163c46fd565943395e58b8984"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#a3ac1a5e163c46fd565943395e58b8984">on_body</a> )(const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, bool finished, void *user_data)</td></tr>
+<tr class="memitem:a3ac1a5e163c46fd565943395e58b8984"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#a3ac1a5e163c46fd565943395e58b8984">on_body</a> )(const struct aws_byte_cursor *data, bool finished, void *user_data)</td></tr>
 <tr class="separator:a3ac1a5e163c46fd565943395e58b8984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69d78797b3a03ae217b3c26ce05cfcaa"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#a69d78797b3a03ae217b3c26ce05cfcaa">on_request</a> )(enum <a class="el" href="http__impl_8h.html#ac79120e1ff515b00fe4965b384fd3f79">aws_http_method</a> method_enum, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *method_str, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *uri, void *user_data)</td></tr>
+<tr class="memitem:a69d78797b3a03ae217b3c26ce05cfcaa"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#a69d78797b3a03ae217b3c26ce05cfcaa">on_request</a> )(enum <a class="el" href="http__impl_8h.html#ac79120e1ff515b00fe4965b384fd3f79">aws_http_method</a> method_enum, const struct aws_byte_cursor *method_str, const struct aws_byte_cursor *uri, void *user_data)</td></tr>
 <tr class="separator:a69d78797b3a03ae217b3c26ce05cfcaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38eedbd0367cd9c1e74c1b0ac3aaf180"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h1__decoder__vtable.html#a38eedbd0367cd9c1e74c1b0ac3aaf180">on_response</a> )(int status_code, void *user_data)</td></tr>
 <tr class="separator:a38eedbd0367cd9c1e74c1b0ac3aaf180"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,7 +93,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_h1_decoder_vtable::on_body) (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, bool finished, void *user_data)</td>
+          <td class="memname">int(* aws_h1_decoder_vtable::on_body) (const struct aws_byte_cursor *data, bool finished, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -137,7 +137,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_h1_decoder_vtable::on_request) (enum <a class="el" href="http__impl_8h.html#ac79120e1ff515b00fe4965b384fd3f79">aws_http_method</a> method_enum, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *method_str, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *uri, void *user_data)</td>
+          <td class="memname">int(* aws_h1_decoder_vtable::on_request) (enum <a class="el" href="http__impl_8h.html#ac79120e1ff515b00fe4965b384fd3f79">aws_http_method</a> method_enum, const struct aws_byte_cursor *method_str, const struct aws_byte_cursor *uri, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">

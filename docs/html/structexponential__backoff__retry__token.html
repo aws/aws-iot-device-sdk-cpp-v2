@@ -74,9 +74,9 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:aea532ce77e9496e1a5ee59244a95c0f9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#aea532ce77e9496e1a5ee59244a95c0f9">base</a></td></tr>
 <tr class="separator:aea532ce77e9496e1a5ee59244a95c0f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd9039d9bc2592053b5294868ddb2e94"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#abd9039d9bc2592053b5294868ddb2e94">current_retry_count</a></td></tr>
+<tr class="memitem:abd9039d9bc2592053b5294868ddb2e94"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#abd9039d9bc2592053b5294868ddb2e94">current_retry_count</a></td></tr>
 <tr class="separator:abd9039d9bc2592053b5294868ddb2e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fe9043a3937ce9df8a5a97e6c238b1e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#a3fe9043a3937ce9df8a5a97e6c238b1e">last_backoff</a></td></tr>
+<tr class="memitem:a3fe9043a3937ce9df8a5a97e6c238b1e"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#a3fe9043a3937ce9df8a5a97e6c238b1e">last_backoff</a></td></tr>
 <tr class="separator:a3fe9043a3937ce9df8a5a97e6c238b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18aee7eb5a420f1066ddf9f0d4dc1671"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#a18aee7eb5a420f1066ddf9f0d4dc1671">max_retries</a></td></tr>
 <tr class="separator:a18aee7eb5a420f1066ddf9f0d4dc1671"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -88,19 +88,19 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a6284a6b26f7269410ffc12d5534824fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52dc3d5b2fd8b57781e24eca08339696"><td class="memItemLeft" align="right" valign="top">uint64_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#a52dc3d5b2fd8b57781e24eca08339696">generate_random</a> )(void)</td></tr>
 <tr class="separator:a52dc3d5b2fd8b57781e24eca08339696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6c89116c85857d1275b21837ab5143e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__task.html">aws_task</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#ae6c89116c85857d1275b21837ab5143e">retry_task</a></td></tr>
+<tr class="memitem:ae6c89116c85857d1275b21837ab5143e"><td class="memItemLeft" align="right" valign="top">struct aws_task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#ae6c89116c85857d1275b21837ab5143e">retry_task</a></td></tr>
 <tr class="separator:ae6c89116c85857d1275b21837ab5143e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae83e35fabfe6bec4acc8aea867297559"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:ac171e01bcf21aa91b85caba394d39f58"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#aaeb7fd373cd835dd464c31db12fd1067">mutex</a></td></tr>
-<tr class="separator:ac171e01bcf21aa91b85caba394d39f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fd445176ceed72f426c81263a53d138"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#a5309bcfbff81fe0e31b7830fa0f4caf0">acquired_fn</a></td></tr>
-<tr class="separator:a5fd445176ceed72f426c81263a53d138"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1639dfa6c3dd4cac52089ad6ff8d55ab"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#a49eba5b5dd43b599a02760cdca68a915">retry_ready_fn</a></td></tr>
-<tr class="separator:a1639dfa6c3dd4cac52089ad6ff8d55ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8777f7520393c45edc963f58ce478f9"><td class="memItemLeft" >&#160;&#160;&#160;void *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#ae63422e207a9efb05cccf074e76430c4">user_data</a></td></tr>
-<tr class="separator:ab8777f7520393c45edc963f58ce478f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae83e35fabfe6bec4acc8aea867297559"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#ae83e35fabfe6bec4acc8aea867297559">thread_data</a></td></tr>
-<tr class="separator:ae83e35fabfe6bec4acc8aea867297559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ba45d56cfc173a8703c9d35dd9b5803"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:ab4a424b03999f0d7fa6b2db8f848e109"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#aaeb7fd373cd835dd464c31db12fd1067">mutex</a></td></tr>
+<tr class="separator:ab4a424b03999f0d7fa6b2db8f848e109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad076a9349cbf7d07fd7eab39b5f9dfa7"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#a5309bcfbff81fe0e31b7830fa0f4caf0">acquired_fn</a></td></tr>
+<tr class="separator:ad076a9349cbf7d07fd7eab39b5f9dfa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b492f9ec78d479f0fae34976a27bc31"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#a49eba5b5dd43b599a02760cdca68a915">retry_ready_fn</a></td></tr>
+<tr class="separator:a1b492f9ec78d479f0fae34976a27bc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62086b379cdd0637035cad2f8e26b49e"><td class="memItemLeft" >&#160;&#160;&#160;void *&#160;&#160;&#160;<a class="el" href="structexponential__backoff__retry__token.html#ae63422e207a9efb05cccf074e76430c4">user_data</a></td></tr>
+<tr class="separator:a62086b379cdd0637035cad2f8e26b49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ba45d56cfc173a8703c9d35dd9b5803"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexponential__backoff__retry__token.html#a9ba45d56cfc173a8703c9d35dd9b5803">thread_data</a></td></tr>
+<tr class="separator:a9ba45d56cfc173a8703c9d35dd9b5803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a5309bcfbff81fe0e31b7830fa0f4caf0" name="a5309bcfbff81fe0e31b7830fa0f4caf0"></a>
@@ -166,7 +166,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> exponential_backoff_retry_token::current_retry_count</td>
+          <td class="memname">struct aws_atomic_var exponential_backoff_retry_token::current_retry_count</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -208,7 +208,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> exponential_backoff_retry_token::last_backoff</td>
+          <td class="memname">struct aws_atomic_var exponential_backoff_retry_token::last_backoff</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -236,7 +236,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> exponential_backoff_retry_token::mutex</td>
+          <td class="memname">struct aws_mutex exponential_backoff_retry_token::mutex</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -264,15 +264,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__task.html">aws_task</a> exponential_backoff_retry_token::retry_task</td>
+          <td class="memname">struct aws_task exponential_backoff_retry_token::retry_task</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ae83e35fabfe6bec4acc8aea867297559" name="ae83e35fabfe6bec4acc8aea867297559"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae83e35fabfe6bec4acc8aea867297559">&#9670;&nbsp;</a></span></h2>
+<a id="a9ba45d56cfc173a8703c9d35dd9b5803" name="a9ba45d56cfc173a8703c9d35dd9b5803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ba45d56cfc173a8703c9d35dd9b5803">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

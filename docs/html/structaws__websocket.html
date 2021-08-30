@@ -72,7 +72,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a119343332b9f0b29e580ca466842475e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a119343332b9f0b29e580ca466842475e">alloc</a></td></tr>
+<tr class="memitem:a119343332b9f0b29e580ca466842475e"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a119343332b9f0b29e580ca466842475e">alloc</a></td></tr>
 <tr class="separator:a119343332b9f0b29e580ca466842475e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a166ba5fff939772e85bcece26639fd55"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a166ba5fff939772e85bcece26639fd55">channel_handler</a></td></tr>
 <tr class="separator:a166ba5fff939772e85bcece26639fd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,64 +102,64 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a898a2e94dab04186f6580bdf6cfa4f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1496a850b004c7cc3723373221446dc3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a1496a850b004c7cc3723373221446dc3">is_server</a></td></tr>
 <tr class="separator:a1496a850b004c7cc3723373221446dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae429a32de868ed70bf1fbdd6a6039309"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a070831a80771a835d2753d70f388ff10"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aaa8b5b62ebbbcc4216f1942b1d8e7180">encoder</a></td></tr>
-<tr class="separator:a070831a80771a835d2753d70f388ff10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52bc5315d781dab6a4365ad09d03c6e6"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a88657aa22a9d9b2b53fdd36e2a6518e7">outgoing_frame_list</a></td></tr>
-<tr class="separator:a52bc5315d781dab6a4365ad09d03c6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0629747ff30f27c8cf3d24b6f5001bed"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structoutgoing__frame.html">outgoing_frame</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ab2bd66b61f892714b464debc24c9d926">current_outgoing_frame</a></td></tr>
-<tr class="separator:a0629747ff30f27c8cf3d24b6f5001bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84b3ae4ca2e3530ad76ec0a204b4ecb8"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a33698e0451baff57aa2c5139df200d8b">decoder</a></td></tr>
-<tr class="separator:a84b3ae4ca2e3530ad76ec0a204b4ecb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63fa7de432c98d4f3c547288a7a11981"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aae43121220ca7cf56e9659e4ff410171">current_incoming_frame</a></td></tr>
-<tr class="separator:a63fa7de432c98d4f3c547288a7a11981"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39730c4ea791c0e0e80c8f1b7049d422"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a9c6083f3fef8d5d72bdd69029879b167">incoming_frame_storage</a></td></tr>
-<tr class="separator:a39730c4ea791c0e0e80c8f1b7049d422"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae795bf388ad9cb1aecfb653952f98eb0"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="websocket_8h.html#ad679ed8349ba7076e743f5e439918fe6">aws_websocket_opcode</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a812524e5125f662b21727339cff4b2c3">continuation_of_opcode</a></td></tr>
-<tr class="separator:ae795bf388ad9cb1aecfb653952f98eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c7a0f33d811ce9f349600cb76add40d"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aa56a870308ad29c7bbc8ef557d182568">incoming_message_window_update</a></td></tr>
-<tr class="separator:a8c7a0f33d811ce9f349600cb76add40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2446310a19102782e083fe8d60ce869"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a0b9862eac35620281570c4461497e774">last_known_right_slot</a></td></tr>
-<tr class="separator:af2446310a19102782e083fe8d60ce869"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cd26c28bfc4a833d6090cb045a2bc5a"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a4da9bc15c1e34bbef2628e4f9a0d1d1b">is_reading_stopped</a></td></tr>
-<tr class="separator:a3cd26c28bfc4a833d6090cb045a2bc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ceaa00f8a6636fa59939a1d6a6e5b9c"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a93cb712e928a35b6a5061539131d3079">is_writing_stopped</a></td></tr>
-<tr class="separator:a2ceaa00f8a6636fa59939a1d6a6e5b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a857d95a2a7fc804cf70ae1bf6e4cf8bc"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a26d7ad3ac159f65948025140e15e0cd8">is_shutting_down_and_waiting_for_close_frame_to_be_written</a></td></tr>
-<tr class="separator:a857d95a2a7fc804cf70ae1bf6e4cf8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd5ddd035123d94fbb3bbf905739a895"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#accb278aeddf6f8a5ede6ad5e7c14ec9d">channel_shutdown_error_code</a></td></tr>
-<tr class="separator:abd5ddd035123d94fbb3bbf905739a895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af313756c11a6bfa242f992ce641133c6"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aeef05480f0072436745c9b92a47871ec">channel_shutdown_free_scarce_resources_immediately</a></td></tr>
-<tr class="separator:af313756c11a6bfa242f992ce641133c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af449e5e608c4d5e9e842aa6cb04412d8"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a2e63e7733ad93af2e593e615e9a9243d">is_waiting_for_write_completion</a></td></tr>
-<tr class="separator:af449e5e608c4d5e9e842aa6cb04412d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24fc5b37363acdc9870a4458c7840df7"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a70ecfa9e41743bc86a309c10df880add">is_waiting_on_payload_stream_task</a></td></tr>
-<tr class="separator:a24fc5b37363acdc9870a4458c7840df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e5477832057d078b17f7a73f92d801"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a7e1f527768f0fbc3677140cb268c96dc">is_midchannel_handler</a></td></tr>
-<tr class="separator:a09e5477832057d078b17f7a73f92d801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae429a32de868ed70bf1fbdd6a6039309"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#ae429a32de868ed70bf1fbdd6a6039309">thread_data</a></td></tr>
-<tr class="separator:ae429a32de868ed70bf1fbdd6a6039309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1490921d5b3879f5484596700e502504"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a7973340900c21da79cdc7618dcc3a94a"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a63476c7f43f920dd069cd73ebf12eeb0">lock</a></td></tr>
-<tr class="separator:a7973340900c21da79cdc7618dcc3a94a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ee6f259900b2ce465d3a27831e6ae25"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a88657aa22a9d9b2b53fdd36e2a6518e7">outgoing_frame_list</a></td></tr>
-<tr class="separator:a9ee6f259900b2ce465d3a27831e6ae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f86704f7632882dc0ec41055954a979"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a6c835dfa50b7f447c0db2865f1a5c08f">window_increment_size</a></td></tr>
-<tr class="separator:a8f86704f7632882dc0ec41055954a979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfbfe1879b0e24beeae270c271072eea"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a4e09e2d3eb3d33067415a5a9c803e8e4">send_frame_error_code</a></td></tr>
-<tr class="separator:adfbfe1879b0e24beeae270c271072eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d57fa4166675a409b14d711c6dbe59"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a317a9909db61515d5c6d1f4b12246c04">shutdown_channel_task_error_code</a></td></tr>
-<tr class="separator:ad5d57fa4166675a409b14d711c6dbe59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b58352547f9b8551ea2c23063c3817a"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a195a3311d42a29eed8215b411fd3b488">is_shutdown_channel_task_scheduled</a></td></tr>
-<tr class="separator:a6b58352547f9b8551ea2c23063c3817a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6634cd2ec49c8c9ebcfb45317037e24"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ab13de25679987c20d1a02a068205ece6">is_move_synced_data_to_thread_task_scheduled</a></td></tr>
-<tr class="separator:af6634cd2ec49c8c9ebcfb45317037e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4d3f563fbee3368738a05331370aa82"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a7e1f527768f0fbc3677140cb268c96dc">is_midchannel_handler</a></td></tr>
-<tr class="separator:ab4d3f563fbee3368738a05331370aa82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51336f7b9332e08171853844929c1d4"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ae61b16f80bb14e842af198a1714f43d7">is_released</a></td></tr>
-<tr class="separator:aa51336f7b9332e08171853844929c1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1490921d5b3879f5484596700e502504"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a1490921d5b3879f5484596700e502504">synced_data</a></td></tr>
-<tr class="separator:a1490921d5b3879f5484596700e502504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950fc65e230d3fc4c269036b1b46655f"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:af94c1f4715c709a15b1c2183ff17c837"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aaa8b5b62ebbbcc4216f1942b1d8e7180">encoder</a></td></tr>
+<tr class="separator:af94c1f4715c709a15b1c2183ff17c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114785c3d5c3aafe570fdb80be93bebb"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_linked_list&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a88657aa22a9d9b2b53fdd36e2a6518e7">outgoing_frame_list</a></td></tr>
+<tr class="separator:a114785c3d5c3aafe570fdb80be93bebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ab30030e10233595ace14c7365acae"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structoutgoing__frame.html">outgoing_frame</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ab2bd66b61f892714b464debc24c9d926">current_outgoing_frame</a></td></tr>
+<tr class="separator:a54ab30030e10233595ace14c7365acae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4444e6f478e7da380023c0034a2dbd99"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a33698e0451baff57aa2c5139df200d8b">decoder</a></td></tr>
+<tr class="separator:a4444e6f478e7da380023c0034a2dbd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f5cdbfce12df01615780a7ac0dd159"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aae43121220ca7cf56e9659e4ff410171">current_incoming_frame</a></td></tr>
+<tr class="separator:a02f5cdbfce12df01615780a7ac0dd159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c81b1b4f19f1ab220e4d0a03d911ae"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a9c6083f3fef8d5d72bdd69029879b167">incoming_frame_storage</a></td></tr>
+<tr class="separator:a67c81b1b4f19f1ab220e4d0a03d911ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5b0a71e20624818c433330faeb42f1"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="websocket_8h.html#ad679ed8349ba7076e743f5e439918fe6">aws_websocket_opcode</a>&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a812524e5125f662b21727339cff4b2c3">continuation_of_opcode</a></td></tr>
+<tr class="separator:a6b5b0a71e20624818c433330faeb42f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad38907415f2ce47847b4b2bd8d18a574"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aa56a870308ad29c7bbc8ef557d182568">incoming_message_window_update</a></td></tr>
+<tr class="separator:ad38907415f2ce47847b4b2bd8d18a574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b95b80392bd34dc31ab2c3da2e48cb0"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a0b9862eac35620281570c4461497e774">last_known_right_slot</a></td></tr>
+<tr class="separator:a7b95b80392bd34dc31ab2c3da2e48cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8619132b8d0919a07aa0fb329dffb9c"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a4da9bc15c1e34bbef2628e4f9a0d1d1b">is_reading_stopped</a></td></tr>
+<tr class="separator:ad8619132b8d0919a07aa0fb329dffb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdbd3fa5a36834c8727b7e1f0def445b"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a93cb712e928a35b6a5061539131d3079">is_writing_stopped</a></td></tr>
+<tr class="separator:abdbd3fa5a36834c8727b7e1f0def445b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d018eba164f43d6ce44cf267589ae18"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a26d7ad3ac159f65948025140e15e0cd8">is_shutting_down_and_waiting_for_close_frame_to_be_written</a></td></tr>
+<tr class="separator:a2d018eba164f43d6ce44cf267589ae18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2045e7e81f93cf5d60d0e9c026bdd7e"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#accb278aeddf6f8a5ede6ad5e7c14ec9d">channel_shutdown_error_code</a></td></tr>
+<tr class="separator:af2045e7e81f93cf5d60d0e9c026bdd7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2791aeb186f6a97b898325616a146f4b"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#aeef05480f0072436745c9b92a47871ec">channel_shutdown_free_scarce_resources_immediately</a></td></tr>
+<tr class="separator:a2791aeb186f6a97b898325616a146f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa55123d8c740e5f0a4573a096635ffb2"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a2e63e7733ad93af2e593e615e9a9243d">is_waiting_for_write_completion</a></td></tr>
+<tr class="separator:aa55123d8c740e5f0a4573a096635ffb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a830f4b8093cef3199f26eb0db8e45bd3"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a70ecfa9e41743bc86a309c10df880add">is_waiting_on_payload_stream_task</a></td></tr>
+<tr class="separator:a830f4b8093cef3199f26eb0db8e45bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e295dc31428abcc4a7766b2c4807ab"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a7e1f527768f0fbc3677140cb268c96dc">is_midchannel_handler</a></td></tr>
+<tr class="separator:a68e295dc31428abcc4a7766b2c4807ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950fc65e230d3fc4c269036b1b46655f"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a950fc65e230d3fc4c269036b1b46655f">thread_data</a></td></tr>
+<tr class="separator:a950fc65e230d3fc4c269036b1b46655f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d774cdd25a71fe17f116911c3f3ff5"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:ae4b03bc1dfd6680b56ab95a0891e5a43"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a63476c7f43f920dd069cd73ebf12eeb0">lock</a></td></tr>
+<tr class="separator:ae4b03bc1dfd6680b56ab95a0891e5a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c3cf21e244231212e9456ec91ae5f37"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_linked_list&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a88657aa22a9d9b2b53fdd36e2a6518e7">outgoing_frame_list</a></td></tr>
+<tr class="separator:a5c3cf21e244231212e9456ec91ae5f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5161eeb2b90e562760bd52f4255ba587"><td class="memItemLeft" >&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a6c835dfa50b7f447c0db2865f1a5c08f">window_increment_size</a></td></tr>
+<tr class="separator:a5161eeb2b90e562760bd52f4255ba587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28367bb1628664cc9bfe442901282a67"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a4e09e2d3eb3d33067415a5a9c803e8e4">send_frame_error_code</a></td></tr>
+<tr class="separator:a28367bb1628664cc9bfe442901282a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4361dff12a74f5e4fb2518f2606c4494"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a317a9909db61515d5c6d1f4b12246c04">shutdown_channel_task_error_code</a></td></tr>
+<tr class="separator:a4361dff12a74f5e4fb2518f2606c4494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25bfe8ea23f0113ce149be7c0a5958fd"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a195a3311d42a29eed8215b411fd3b488">is_shutdown_channel_task_scheduled</a></td></tr>
+<tr class="separator:a25bfe8ea23f0113ce149be7c0a5958fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab159335c9ce3525e7ec5bd5e028f2fc8"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ab13de25679987c20d1a02a068205ece6">is_move_synced_data_to_thread_task_scheduled</a></td></tr>
+<tr class="separator:ab159335c9ce3525e7ec5bd5e028f2fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6317929efb46b23e293184b6795b9a2"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#a7e1f527768f0fbc3677140cb268c96dc">is_midchannel_handler</a></td></tr>
+<tr class="separator:af6317929efb46b23e293184b6795b9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb7a7f13b1e0330d91f22d6fc16b84cb"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__websocket.html#ae61b16f80bb14e842af198a1714f43d7">is_released</a></td></tr>
+<tr class="separator:aeb7a7f13b1e0330d91f22d6fc16b84cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d774cdd25a71fe17f116911c3f3ff5"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__websocket.html#a59d774cdd25a71fe17f116911c3f3ff5">synced_data</a></td></tr>
+<tr class="separator:a59d774cdd25a71fe17f116911c3f3ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a119343332b9f0b29e580ca466842475e" name="a119343332b9f0b29e580ca466842475e"></a>
@@ -169,7 +169,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_websocket::alloc</td>
+          <td class="memname">struct aws_allocator* aws_websocket::alloc</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -533,7 +533,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> aws_websocket::lock</td>
+          <td class="memname">struct aws_mutex aws_websocket::lock</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -617,7 +617,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> aws_websocket::outgoing_frame_list</td>
+          <td class="memname">struct aws_linked_list aws_websocket::outgoing_frame_list</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -666,8 +666,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1490921d5b3879f5484596700e502504" name="a1490921d5b3879f5484596700e502504"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1490921d5b3879f5484596700e502504">&#9670;&nbsp;</a></span></h2>
+<a id="a59d774cdd25a71fe17f116911c3f3ff5" name="a59d774cdd25a71fe17f116911c3f3ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59d774cdd25a71fe17f116911c3f3ff5">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -680,8 +680,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae429a32de868ed70bf1fbdd6a6039309" name="ae429a32de868ed70bf1fbdd6a6039309"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae429a32de868ed70bf1fbdd6a6039309">&#9670;&nbsp;</a></span></h2>
+<a id="a950fc65e230d3fc4c269036b1b46655f" name="a950fc65e230d3fc4c269036b1b46655f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950fc65e230d3fc4c269036b1b46655f">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

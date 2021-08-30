@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['how_20to_20write_20a_20cbmc_20proof_0',['How to Write a CBMC Proof',['../md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g.html',1,'']]]
+  ['post_2dquantum_20cryptography_20for_20s2n_0',['Post-quantum cryptography for s2n',['../md_crt_aws_crt_cpp_crt_s2n_pq_crypto__r_e_a_d_m_e.html',1,'']]],
+  ['preview_3a_20scram_20_26ndash_3b_20short_20cut_20resistant_20aead_20mode_1',['Preview: SCRAM &amp;ndash; Short Cut Resistant AEAD Mode',['../md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e.html',1,'']]]
 ];

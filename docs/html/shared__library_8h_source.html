@@ -75,7 +75,7 @@ $(function() {
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="io_8h.html">aws/io/io.h</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">struct </span><a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">struct </span>aws_byte_cursor;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * A simple platform wrapper for dynamically loading and examining shared libraries</span></div>
@@ -86,7 +86,7 @@ $(function() {
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="shared__library_8h.html#a14e40c31a8ba6d210431468d82bfd077">   20</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="shared__library_8h.html#a14e40c31a8ba6d210431468d82bfd077">aws_generic_function</a>)(void);</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><a class="code hl_define" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>AWS_EXTERN_C_BEGIN</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> * Initializes a dynamically-loaded shared library from its file path location</span></div>
@@ -110,18 +110,15 @@ $(function() {
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *symbol_name,</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_typedef" href="shared__library_8h.html#a14e40c31a8ba6d210431468d82bfd077">aws_generic_function</a> *function_address);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><a class="code hl_define" href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>AWS_EXTERN_C_END</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif </span><span class="comment">/* AWS_COMMON_SHARED_LIBRARY_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="acrt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_html_a26db8dfe8d149d3ddd330c792f3e67df"><div class="ttname"><a href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a></div><div class="ttdeci">#define AWS_IO_API</div><div class="ttdef"><b>Definition:</b> exports.h:24</div></div>
 <div class="ttc" id="aio_8h_html"><div class="ttname"><a href="io_8h.html">io.h</a></div></div>
-<div class="ttc" id="amacros_8h_html_a24efb76a3b128abc9c35d83cac0030c5"><div class="ttname"><a href="macros_8h.html#a24efb76a3b128abc9c35d83cac0030c5">AWS_EXTERN_C_END</a></div><div class="ttdeci">#define AWS_EXTERN_C_END</div><div class="ttdef"><b>Definition:</b> macros.h:13</div></div>
-<div class="ttc" id="amacros_8h_html_ab6f66af8231eba5da061b9ada0d29bad"><div class="ttname"><a href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a></div><div class="ttdeci">#define AWS_EXTERN_C_BEGIN</div><div class="ttdef"><b>Definition:</b> macros.h:12</div></div>
 <div class="ttc" id="ashared__library_8h_html_a14e40c31a8ba6d210431468d82bfd077"><div class="ttname"><a href="shared__library_8h.html#a14e40c31a8ba6d210431468d82bfd077">aws_generic_function</a></div><div class="ttdeci">void(* aws_generic_function)(void)</div><div class="ttdef"><b>Definition:</b> shared_library.h:20</div></div>
 <div class="ttc" id="ashared__library_8h_html_a38c6009fb77ab8268e2c9ac9def275db"><div class="ttname"><a href="shared__library_8h.html#a38c6009fb77ab8268e2c9ac9def275db">aws_shared_library_init</a></div><div class="ttdeci">AWS_EXTERN_C_BEGIN AWS_IO_API int aws_shared_library_init(struct aws_shared_library *library, const char *library_path)</div><div class="ttdef"><b>Definition:</b> shared_library.c:15</div></div>
 <div class="ttc" id="ashared__library_8h_html_a53a8085f03f92c749914635f79f769e4"><div class="ttname"><a href="shared__library_8h.html#a53a8085f03f92c749914635f79f769e4">aws_shared_library_clean_up</a></div><div class="ttdeci">AWS_IO_API void aws_shared_library_clean_up(struct aws_shared_library *library)</div><div class="ttdef"><b>Definition:</b> shared_library.c:33</div></div>
 <div class="ttc" id="ashared__library_8h_html_a98ce57d000825368a537c90604cbc0ec"><div class="ttname"><a href="shared__library_8h.html#a98ce57d000825368a537c90604cbc0ec">aws_shared_library_find_function</a></div><div class="ttdeci">AWS_IO_API int aws_shared_library_find_function(struct aws_shared_library *library, const char *symbol_name, aws_generic_function *function_address)</div><div class="ttdef"><b>Definition:</b> shared_library.c:40</div></div>
-<div class="ttc" id="astructaws__byte__cursor_html"><div class="ttname"><a href="structaws__byte__cursor.html">aws_byte_cursor</a></div><div class="ttdef"><b>Definition:</b> byte_buf.h:38</div></div>
 <div class="ttc" id="astructaws__shared__library_html"><div class="ttname"><a href="structaws__shared__library.html">aws_shared_library</a></div><div class="ttdef"><b>Definition:</b> shared_library.h:16</div></div>
 <div class="ttc" id="astructaws__shared__library_html_a05e400411c6e12da5940b3a117df737d"><div class="ttname"><a href="structaws__shared__library.html#a05e400411c6e12da5940b3a117df737d">aws_shared_library::library_handle</a></div><div class="ttdeci">void * library_handle</div><div class="ttdef"><b>Definition:</b> shared_library.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->

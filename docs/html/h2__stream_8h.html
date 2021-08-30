@@ -77,7 +77,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="h2__frames_8h_source.html">aws/http/private/h2_frames.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="request__response__impl_8h_source.html">aws/http/private/request_response_impl.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel_8h_source.html">aws/io/channel.h</a>&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div>
@@ -128,7 +128,7 @@ Functions</h2></td></tr>
 <tr class="separator:ae67e87ebd29152e596187de3838b3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40cb8648428b59bac90114c9c09b7147"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#a40cb8648428b59bac90114c9c09b7147">aws_h2_stream_on_activated</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, bool *out_has_outgoing_data)</td></tr>
 <tr class="separator:a40cb8648428b59bac90114c9c09b7147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output, int *data_encode_status)</td></tr>
+<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct aws_byte_buf *output, int *data_encode_status)</td></tr>
 <tr class="separator:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc0feece7cabd840c4d28584c604b26c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#acc0feece7cabd840c4d28584c604b26c">aws_h2_stream_on_decoder_headers_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:acc0feece7cabd840c4d28584c604b26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,7 +140,7 @@ Functions</h2></td></tr>
 <tr class="separator:a8e895f1e663394d7edd8d2405a59438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa342407cac15121a7ab79d629c92811d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#aa342407cac15121a7ab79d629c92811d">aws_h2_stream_on_decoder_data_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t payload_len, bool end_stream)</td></tr>
 <tr class="separator:aa342407cac15121a7ab79d629c92811d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#ab29cf7b4b31eb14cd6e1c848ca7920bf">aws_h2_stream_on_decoder_data_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data)</td></tr>
+<tr class="memitem:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#ab29cf7b4b31eb14cd6e1c848ca7920bf">aws_h2_stream_on_decoder_data_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct aws_byte_cursor data)</td></tr>
 <tr class="separator:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dbbd39333aefdd03fe0947b668977c3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8h.html#a6dbbd39333aefdd03fe0947b668977c3">aws_h2_stream_on_decoder_window_update</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t window_size_increment, bool *window_resume)</td></tr>
 <tr class="separator:a6dbbd39333aefdd03fe0947b668977c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -321,7 +321,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
@@ -463,7 +463,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>

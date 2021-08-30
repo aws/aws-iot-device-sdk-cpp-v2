@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_h_m_a_c_8h_source.html">aws/cal/hmac.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="thread_8h_source.html">aws/common/thread.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/thread.h&gt;</code><br />
 <code>#include &lt;windows.h&gt;</code><br />
 <code>#include &lt;bcrypt.h&gt;</code><br />
 <code>#include &lt;winerror.h&gt;</code><br />
@@ -89,13 +89,13 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a184786fa0b6ee372c62563acc0b4fc73"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a184786fa0b6ee372c62563acc0b4fc73">s_destroy</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hash)</td></tr>
 <tr class="separator:a184786fa0b6ee372c62563acc0b4fc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d7d039ee3a2f1ab107a4cd14a5b7259"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a6d7d039ee3a2f1ab107a4cd14a5b7259">s_update</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hash, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hash)</td></tr>
+<tr class="memitem:a6d7d039ee3a2f1ab107a4cd14a5b7259"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a6d7d039ee3a2f1ab107a4cd14a5b7259">s_update</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hash, const struct aws_byte_cursor *to_hash)</td></tr>
 <tr class="separator:a6d7d039ee3a2f1ab107a4cd14a5b7259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94aa905c2ed8066437d7f2d970a6f6b3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a94aa905c2ed8066437d7f2d970a6f6b3">s_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hash, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:a94aa905c2ed8066437d7f2d970a6f6b3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a94aa905c2ed8066437d7f2d970a6f6b3">s_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hash, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:a94aa905c2ed8066437d7f2d970a6f6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e0600578e078766f210718541a052ec"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a9e0600578e078766f210718541a052ec">s_load_alg_handle</a> (void *user_data)</td></tr>
 <tr class="separator:a9e0600578e078766f210718541a052ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret)</td></tr>
+<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *secret)</td></tr>
 <tr class="separator:a2a75179fa3671f67e910908180bbb138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -104,7 +104,7 @@ Variables</h2></td></tr>
 <tr class="separator:afe5150d3d53601bd0f82ddaae7c126d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f8753779ae36af50b487b106d70dc1c"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a7f8753779ae36af50b487b106d70dc1c">s_sha256_hmac_obj_len</a> = 0</td></tr>
 <tr class="separator:a7f8753779ae36af50b487b106d70dc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af873abcebdd2e7c369c0dc8bcebb3686"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#af873abcebdd2e7c369c0dc8bcebb3686">s_sha256_hmac_once</a> = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td></tr>
+<tr class="memitem:af873abcebdd2e7c369c0dc8bcebb3686"><td class="memItemLeft" align="right" valign="top">static aws_thread_once&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#af873abcebdd2e7c369c0dc8bcebb3686">s_sha256_hmac_once</a> = AWS_THREAD_ONCE_STATIC_INIT</td></tr>
 <tr class="separator:af873abcebdd2e7c369c0dc8bcebb3686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a32201fbfffa6796199df4565f34002"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__hmac__vtable.html">aws_hmac_vtable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hmac_8c.html#a3a32201fbfffa6796199df4565f34002">s_sha256_hmac_vtable</a></td></tr>
 <tr class="separator:a3a32201fbfffa6796199df4565f34002"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,13 +119,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__hmac.html">aws_hmac</a>* aws_sha256_hmac_default_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>secret</em>&#160;</td>
         </tr>
         <tr>
@@ -183,7 +183,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -245,7 +245,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_hash</em>&#160;</td>
         </tr>
         <tr>
@@ -319,7 +319,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a> s_sha256_hmac_once = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td>
+          <td class="memname">aws_thread_once s_sha256_hmac_once = AWS_THREAD_ONCE_STATIC_INIT</td>
         </tr>
       </table>
   </td>

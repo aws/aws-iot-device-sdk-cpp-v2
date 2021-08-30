@@ -72,16 +72,16 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3d0d0ae0c2cf73775b0e700f9c42117d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#a3d0d0ae0c2cf73775b0e700f9c42117d">alloc</a></td></tr>
+<tr class="memitem:a3d0d0ae0c2cf73775b0e700f9c42117d"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#a3d0d0ae0c2cf73775b0e700f9c42117d">alloc</a></td></tr>
 <tr class="separator:a3d0d0ae0c2cf73775b0e700f9c42117d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2ab52046bde271529830395334c68d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__array__list.html">aws_array_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#aed2ab52046bde271529830395334c68d">array_list</a></td></tr>
+<tr class="memitem:aed2ab52046bde271529830395334c68d"><td class="memItemLeft" align="right" valign="top">struct aws_array_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#aed2ab52046bde271529830395334c68d">array_list</a></td></tr>
 <tr class="separator:aed2ab52046bde271529830395334c68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7b76ea81bae4a8b2fbf5daa518544c3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#ae7b76ea81bae4a8b2fbf5daa518544c3">refcount</a></td></tr>
+<tr class="memitem:ae7b76ea81bae4a8b2fbf5daa518544c3"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__headers.html#ae7b76ea81bae4a8b2fbf5daa518544c3">refcount</a></td></tr>
 <tr class="separator:ae7b76ea81bae4a8b2fbf5daa518544c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >&ndash; Datastructure Notes &ndash; Headers are stored in a linear array, rather than a hash-table of arrays. The linear array was simpler to implement and may be faster due to having fewer allocations. The API has been designed so we can swap out the implementation later if desired.</p>
-<p >&ndash; String Storage Notes &ndash; We use a single allocation to hold the name and value of each <a class="el" href="structaws__http__header.html">aws_http_header</a>. We could optimize storage by using something like a string pool. If we do this, be sure to maintain the address of existing strings when adding new strings (a dynamic <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> would not suffice). </p>
+<p >&ndash; String Storage Notes &ndash; We use a single allocation to hold the name and value of each <a class="el" href="structaws__http__header.html">aws_http_header</a>. We could optimize storage by using something like a string pool. If we do this, be sure to maintain the address of existing strings when adding new strings (a dynamic aws_byte_buf would not suffice). </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a3d0d0ae0c2cf73775b0e700f9c42117d" name="a3d0d0ae0c2cf73775b0e700f9c42117d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d0d0ae0c2cf73775b0e700f9c42117d">&#9670;&nbsp;</a></span>alloc</h2>
@@ -90,7 +90,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_http_headers::alloc</td>
+          <td class="memname">struct aws_allocator* aws_http_headers::alloc</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -104,7 +104,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> aws_http_headers::array_list</td>
+          <td class="memname">struct aws_array_list aws_http_headers::array_list</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -118,7 +118,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> aws_http_headers::refcount</td>
+          <td class="memname">struct aws_atomic_var aws_http_headers::refcount</td>
         </tr>
       </table>
 </div><div class="memdoc">

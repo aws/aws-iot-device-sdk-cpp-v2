@@ -75,9 +75,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="topic__tree_8h_source.html">aws/mqtt/private/topic_tree.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -92,53 +92,53 @@ Functions</h2></td></tr>
 <tr class="separator:a7d6c10f83a81ccc4bbbc97fd224f3cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55df6d9162385dcfea49e7bb238ade7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a55df6d9162385dcfea49e7bb238ade7f">AWS_STATIC_STRING_FROM_LITERAL</a> (s_multi_level_wildcard, &quot;#&quot;)</td></tr>
 <tr class="separator:a55df6d9162385dcfea49e7bb238ade7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ec502e802b6c8248dbf705cb8ef3d44"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a0ec502e802b6c8248dbf705cb8ef3d44">s_topic_tree_action_create</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *transaction)</td></tr>
+<tr class="memitem:a0ec502e802b6c8248dbf705cb8ef3d44"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a0ec502e802b6c8248dbf705cb8ef3d44">s_topic_tree_action_create</a> (struct aws_array_list *transaction)</td></tr>
 <tr class="separator:a0ec502e802b6c8248dbf705cb8ef3d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a390ba815040c030225e89cbd0f51483e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a390ba815040c030225e89cbd0f51483e">s_topic_tree_action_destroy</a> (struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *action)</td></tr>
 <tr class="separator:a390ba815040c030225e89cbd0f51483e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada57df26650e4559a16f54751a078cd6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ada57df26650e4559a16f54751a078cd6">s_topic_tree_action_to_remove</a> (struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *action, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, size_t size_hint)</td></tr>
+<tr class="memitem:ada57df26650e4559a16f54751a078cd6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ada57df26650e4559a16f54751a078cd6">s_topic_tree_action_to_remove</a> (struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *action, struct aws_allocator *allocator, size_t size_hint)</td></tr>
 <tr class="separator:ada57df26650e4559a16f54751a078cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a954974866014412145eddb649448f27d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a954974866014412145eddb649448f27d">byte_cursor_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:a954974866014412145eddb649448f27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae3890fdceb9483850d60487b8eba6ee"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aae3890fdceb9483850d60487b8eba6ee">s_topic_node_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter, const struct <a class="el" href="structaws__string.html">aws_string</a> *full_topic)</td></tr>
+<tr class="memitem:aae3890fdceb9483850d60487b8eba6ee"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aae3890fdceb9483850d60487b8eba6ee">s_topic_node_new</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *topic_filter, const struct aws_string *full_topic)</td></tr>
 <tr class="separator:aae3890fdceb9483850d60487b8eba6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1128613b0f844466332c077acbc3b460"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a1128613b0f844466332c077acbc3b460">s_topic_node_destroy_hash_foreach_wrap</a> (void *context, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *elem)</td></tr>
+<tr class="memitem:a1128613b0f844466332c077acbc3b460"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a1128613b0f844466332c077acbc3b460">s_topic_node_destroy_hash_foreach_wrap</a> (void *context, struct aws_hash_element *elem)</td></tr>
 <tr class="separator:a1128613b0f844466332c077acbc3b460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdbace96d50fad26a8923e8bc772cefb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#abdbace96d50fad26a8923e8bc772cefb">s_topic_node_destroy</a> (struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *node, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:abdbace96d50fad26a8923e8bc772cefb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#abdbace96d50fad26a8923e8bc772cefb">s_topic_node_destroy</a> (struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *node, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:abdbace96d50fad26a8923e8bc772cefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67f93b645bd660fb888cd2865bc2b308"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a67f93b645bd660fb888cd2865bc2b308">aws_mqtt_topic_tree_init</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a67f93b645bd660fb888cd2865bc2b308"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a67f93b645bd660fb888cd2865bc2b308">aws_mqtt_topic_tree_init</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a67f93b645bd660fb888cd2865bc2b308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dad32c800217bb20087f7b35154f62c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a3dad32c800217bb20087f7b35154f62c">aws_mqtt_topic_tree_clean_up</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree)</td></tr>
 <tr class="separator:a3dad32c800217bb20087f7b35154f62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa70eb6a9ea40bf6c75accab19eaa6630"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aa70eb6a9ea40bf6c75accab19eaa6630">s_topic_node_is_subscription</a> (const struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *node)</td></tr>
 <tr class="separator:aa70eb6a9ea40bf6c75accab19eaa6630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae93de9616f161eea1189918a38c7d3da"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ae93de9616f161eea1189918a38c7d3da">s_topic_tree_iterate_do_recurse</a> (void *context, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *current_elem)</td></tr>
+<tr class="memitem:ae93de9616f161eea1189918a38c7d3da"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ae93de9616f161eea1189918a38c7d3da">s_topic_tree_iterate_do_recurse</a> (void *context, struct aws_hash_element *current_elem)</td></tr>
 <tr class="separator:ae93de9616f161eea1189918a38c7d3da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20f9f0a1d19459136a59d6a6282e952f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a20f9f0a1d19459136a59d6a6282e952f">aws_mqtt_topic_tree_iterate</a> (const struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, <a class="el" href="topic__tree_8h.html#a69b6d023806e7595613edcd9648a1c0b">aws_mqtt_topic_tree_iterator_fn</a> *iterator, void *user_data)</td></tr>
 <tr class="separator:a20f9f0a1d19459136a59d6a6282e952f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cb91caa90ee65342d3883f05da072a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a4cb91caa90ee65342d3883f05da072a8">s_topic_tree_sub_count_iterator</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, void *user_data)</td></tr>
+<tr class="memitem:a4cb91caa90ee65342d3883f05da072a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a4cb91caa90ee65342d3883f05da072a8">s_topic_tree_sub_count_iterator</a> (const struct aws_byte_cursor *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, void *user_data)</td></tr>
 <tr class="separator:a4cb91caa90ee65342d3883f05da072a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac080ce440907d2677a476c443e1ac3fe"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ac080ce440907d2677a476c443e1ac3fe">aws_mqtt_topic_tree_get_sub_count</a> (const struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree)</td></tr>
 <tr class="separator:ac080ce440907d2677a476c443e1ac3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a299c1c4bee51b3de940f64c94c4426e0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a299c1c4bee51b3de940f64c94c4426e0">s_topic_node_string_finder</a> (void *userdata, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *elem)</td></tr>
+<tr class="memitem:a299c1c4bee51b3de940f64c94c4426e0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a299c1c4bee51b3de940f64c94c4426e0">s_topic_node_string_finder</a> (void *userdata, struct aws_hash_element *elem)</td></tr>
 <tr class="separator:a299c1c4bee51b3de940f64c94c4426e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2965dbb74a09ab91cecd434b0d26962"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ab2965dbb74a09ab91cecd434b0d26962">s_topic_tree_action_commit</a> (struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *action, struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree)</td></tr>
 <tr class="separator:ab2965dbb74a09ab91cecd434b0d26962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5535bd81690d058965da29056b45b0c4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a5535bd81690d058965da29056b45b0c4">s_topic_tree_action_roll_back</a> (struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a> *action, struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree)</td></tr>
 <tr class="separator:a5535bd81690d058965da29056b45b0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6a5fc0ee36459cda668d7af5cc69a03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ae6a5fc0ee36459cda668d7af5cc69a03">aws_mqtt_topic_tree_transaction_insert</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *transaction, const struct <a class="el" href="structaws__string.html">aws_string</a> *topic_filter_ori, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="topic__tree_8h.html#ab08dea97759174f17239ffe3c69c1635">aws_mqtt_publish_received_fn</a> *callback, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *cleanup, void *userdata)</td></tr>
+<tr class="memitem:ae6a5fc0ee36459cda668d7af5cc69a03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ae6a5fc0ee36459cda668d7af5cc69a03">aws_mqtt_topic_tree_transaction_insert</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct aws_array_list *transaction, const struct aws_string *topic_filter_ori, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="topic__tree_8h.html#ab08dea97759174f17239ffe3c69c1635">aws_mqtt_publish_received_fn</a> *callback, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *cleanup, void *userdata)</td></tr>
 <tr class="separator:ae6a5fc0ee36459cda668d7af5cc69a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5c77b2949c8852ac7539262edba3788"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ad5c77b2949c8852ac7539262edba3788">aws_mqtt_topic_tree_transaction_remove</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *transaction, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter, void **old_userdata)</td></tr>
+<tr class="memitem:ad5c77b2949c8852ac7539262edba3788"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#ad5c77b2949c8852ac7539262edba3788">aws_mqtt_topic_tree_transaction_remove</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct aws_array_list *transaction, const struct aws_byte_cursor *topic_filter, void **old_userdata)</td></tr>
 <tr class="separator:ad5c77b2949c8852ac7539262edba3788"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1ffb33dac043f59295dedbe1b5a1cc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aa1ffb33dac043f59295dedbe1b5a1cc0">aws_mqtt_topic_tree_transaction_commit</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *transaction)</td></tr>
+<tr class="memitem:aa1ffb33dac043f59295dedbe1b5a1cc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aa1ffb33dac043f59295dedbe1b5a1cc0">aws_mqtt_topic_tree_transaction_commit</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct aws_array_list *transaction)</td></tr>
 <tr class="separator:aa1ffb33dac043f59295dedbe1b5a1cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12e2aedfddda8990239f382d87cd6a0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a12e2aedfddda8990239f382d87cd6a0c">aws_mqtt_topic_tree_transaction_roll_back</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *transaction)</td></tr>
+<tr class="memitem:a12e2aedfddda8990239f382d87cd6a0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a12e2aedfddda8990239f382d87cd6a0c">aws_mqtt_topic_tree_transaction_roll_back</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct aws_array_list *transaction)</td></tr>
 <tr class="separator:a12e2aedfddda8990239f382d87cd6a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb40c00e53cf9c135e2552d0827b8057"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aeb40c00e53cf9c135e2552d0827b8057">aws_mqtt_topic_tree_insert</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, const struct <a class="el" href="structaws__string.html">aws_string</a> *topic_filter, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="topic__tree_8h.html#ab08dea97759174f17239ffe3c69c1635">aws_mqtt_publish_received_fn</a> *callback, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *cleanup, void *userdata)</td></tr>
+<tr class="memitem:aeb40c00e53cf9c135e2552d0827b8057"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#aeb40c00e53cf9c135e2552d0827b8057">aws_mqtt_topic_tree_insert</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, const struct aws_string *topic_filter, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="topic__tree_8h.html#ab08dea97759174f17239ffe3c69c1635">aws_mqtt_publish_received_fn</a> *callback, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *cleanup, void *userdata)</td></tr>
 <tr class="separator:aeb40c00e53cf9c135e2552d0827b8057"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdbc9c7db5b3162c4170991678f5c00a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#abdbc9c7db5b3162c4170991678f5c00a">aws_mqtt_topic_tree_remove</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter)</td></tr>
+<tr class="memitem:abdbc9c7db5b3162c4170991678f5c00a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#abdbc9c7db5b3162c4170991678f5c00a">aws_mqtt_topic_tree_remove</a> (struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, const struct aws_byte_cursor *topic_filter)</td></tr>
 <tr class="separator:abdbc9c7db5b3162c4170991678f5c00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91b017bb0a458ade11aaf57d1291ab4a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a91b017bb0a458ade11aaf57d1291ab4a">s_topic_tree_publish_do_recurse</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *current_sub_part, const struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *current, const struct <a class="el" href="structaws__mqtt__packet__publish.html">aws_mqtt_packet_publish</a> *pub)</td></tr>
+<tr class="memitem:a91b017bb0a458ade11aaf57d1291ab4a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a91b017bb0a458ade11aaf57d1291ab4a">s_topic_tree_publish_do_recurse</a> (const struct aws_byte_cursor *current_sub_part, const struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a> *current, const struct <a class="el" href="structaws__mqtt__packet__publish.html">aws_mqtt_packet_publish</a> *pub)</td></tr>
 <tr class="separator:a91b017bb0a458ade11aaf57d1291ab4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a91656ecae5ccdde82ba3ff9347c7ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="topic__tree_8c.html#a4a91656ecae5ccdde82ba3ff9347c7ac">aws_mqtt_topic_tree_publish</a> (const struct <a class="el" href="structaws__mqtt__topic__tree.html">aws_mqtt_topic_tree</a> *tree, struct <a class="el" href="structaws__mqtt__packet__publish.html">aws_mqtt_packet_publish</a> *pub)</td></tr>
 <tr class="separator:a4a91656ecae5ccdde82ba3ff9347c7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,7 +202,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -231,7 +231,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -276,7 +276,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful insertion, AWS_OP_ERR with <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> populated on failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful insertion, AWS_OP_ERR with aws_last_error() populated on failure. </dd></dl>
 
 </div>
 </div>
@@ -367,7 +367,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>&#160;</td>
         </tr>
         <tr>
@@ -395,7 +395,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>transaction</em>&#160;</td>
         </tr>
         <tr>
@@ -423,13 +423,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>transaction</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -475,7 +475,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful insertion, AWS_OP_ERR with <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> populated on failure. If AWS_OP_ERR is returned, aws_mqtt_topic_tree_transaction_rollback should be called to prevent leaks. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful insertion, AWS_OP_ERR with aws_last_error() populated on failure. If AWS_OP_ERR is returned, aws_mqtt_topic_tree_transaction_rollback should be called to prevent leaks. </dd></dl>
 
 </div>
 </div>
@@ -494,13 +494,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>transaction</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -526,7 +526,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful removal, AWS_OP_ERR with <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> populated on failure. If AWS_OP_ERR is returned, aws_mqtt_topic_tree_transaction_rollback should be called to prevent leaks. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS on successful removal, AWS_OP_ERR with aws_last_error() populated on failure. If AWS_OP_ERR is returned, aws_mqtt_topic_tree_transaction_rollback should be called to prevent leaks. </dd></dl>
 
 </div>
 </div>
@@ -545,7 +545,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>transaction</em>&#160;</td>
         </tr>
         <tr>
@@ -669,7 +669,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -705,7 +705,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_element *&#160;</td>
           <td class="paramname"><em>elem</em>&#160;</td>
         </tr>
         <tr>
@@ -753,19 +753,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static struct <a class="el" href="structaws__mqtt__topic__node.html">aws_mqtt_topic_node</a>* s_topic_node_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>full_topic</em>&#160;</td>
         </tr>
         <tr>
@@ -801,7 +801,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_element *&#160;</td>
           <td class="paramname"><em>elem</em>&#160;</td>
         </tr>
         <tr>
@@ -867,7 +867,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static struct <a class="el" href="structtopic__tree__action.html">topic_tree_action</a>* s_topic_tree_action_create </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>transaction</em></td><td>)</td>
           <td></td>
         </tr>
@@ -961,7 +961,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -1003,7 +1003,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_element *&#160;</td>
           <td class="paramname"><em>current_elem</em>&#160;</td>
         </tr>
         <tr>
@@ -1033,7 +1033,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_topic_tree_publish_do_recurse </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>current_sub_part</em>, </td>
         </tr>
         <tr>
@@ -1072,7 +1072,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">bool s_topic_tree_sub_count_iterator </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
         </tr>
         <tr>
@@ -1109,7 +1109,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >The size of transaction instances. When you initialize an <a class="el" href="structaws__array__list.html">aws_array_list</a> for use as a transaction, pass this as the item size. </p>
+<p >The size of transaction instances. When you initialize an aws_array_list for use as a transaction, pass this as the item size. </p>
 
 </div>
 </div>

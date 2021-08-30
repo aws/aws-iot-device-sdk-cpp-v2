@@ -103,13 +103,13 @@ Functions</h2></td></tr>
 <tr class="separator:ac0d650ec8be681db24a5d1a171fed8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc45dedd3c294727f880d36a1da75b87"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abc45dedd3c294727f880d36a1da75b87">encode_write_bit_pattern</a> (struct <a class="el" href="structencoder__state.html">encoder_state</a> *state, struct <a class="el" href="structaws__huffman__code.html">aws_huffman_code</a> bit_pattern)</td></tr>
 <tr class="separator:abc45dedd3c294727f880d36a1da75b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cd131935be624d7f384be2a8a8edfb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ab0cd131935be624d7f384be2a8a8edfb">aws_huffman_get_encoded_length</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_encode)</td></tr>
+<tr class="memitem:ab0cd131935be624d7f384be2a8a8edfb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ab0cd131935be624d7f384be2a8a8edfb">aws_huffman_get_encoded_length</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct aws_byte_cursor to_encode)</td></tr>
 <tr class="separator:ab0cd131935be624d7f384be2a8a8edfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f624cd40f674e8a1e245f2403a47e80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#a6f624cd40f674e8a1e245f2403a47e80">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_encode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:a6f624cd40f674e8a1e245f2403a47e80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#a6f624cd40f674e8a1e245f2403a47e80">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct aws_byte_cursor *to_encode, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:a6f624cd40f674e8a1e245f2403a47e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa74d1e058aca0dd4d963abb4c56e5766"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#aa74d1e058aca0dd4d963abb4c56e5766">decode_fill_working_bits</a> (struct <a class="el" href="structdecoder__state.html">decoder_state</a> *state)</td></tr>
 <tr class="separator:aa74d1e058aca0dd4d963abb4c56e5766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abbd64651eef64baf2cbdb5dd1273ffb3">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_decode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abbd64651eef64baf2cbdb5dd1273ffb3">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct aws_byte_cursor *to_decode, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -152,13 +152,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_decode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -273,13 +273,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_encode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -365,7 +365,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>to_encode</em>&#160;</td>
         </tr>
         <tr>

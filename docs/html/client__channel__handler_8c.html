@@ -78,10 +78,10 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="el" href="client__impl_8h_source.html">aws/mqtt/private/client_impl.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="packets_8h_source.html">aws/mqtt/private/packets.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="topic__tree_8h_source.html">aws/mqtt/private/topic_tree.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="clock_8h_source.html">aws/common/clock.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="math_8h_source.html">aws/common/math.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/clock.h&gt;</code><br />
+<code>#include &lt;aws/common/math.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -91,32 +91,32 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:afec4a425e3751daf631322394b610875"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#afec4a425e3751daf631322394b610875">packet_handler_fn</a>(struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:afec4a425e3751daf631322394b610875"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#afec4a425e3751daf631322394b610875">packet_handler_fn</a>(struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:afec4a425e3751daf631322394b610875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac4e25fcf7d1d53485e6ff4996bb4ddee"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ac4e25fcf7d1d53485e6ff4996bb4ddee">s_packet_handler_default</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:ac4e25fcf7d1d53485e6ff4996bb4ddee"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ac4e25fcf7d1d53485e6ff4996bb4ddee">s_packet_handler_default</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:ac4e25fcf7d1d53485e6ff4996bb4ddee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb7823fcbe18765a90fb477e846d95ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#acb7823fcbe18765a90fb477e846d95ef">s_on_time_to_ping</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:acb7823fcbe18765a90fb477e846d95ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#acb7823fcbe18765a90fb477e846d95ef">s_on_time_to_ping</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:acb7823fcbe18765a90fb477e846d95ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a367395993cba042f1caf5b5ca340ed8b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a367395993cba042f1caf5b5ca340ed8b">s_schedule_ping</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection)</td></tr>
 <tr class="separator:a367395993cba042f1caf5b5ca340ed8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac39f7627ca26fca7c5fb98a0492835a2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ac39f7627ca26fca7c5fb98a0492835a2">s_packet_handler_connack</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:ac39f7627ca26fca7c5fb98a0492835a2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ac39f7627ca26fca7c5fb98a0492835a2">s_packet_handler_connack</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:ac39f7627ca26fca7c5fb98a0492835a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4271afb7a1bd925bffc53b3d0333e2ea"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a4271afb7a1bd925bffc53b3d0333e2ea">s_packet_handler_publish</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:a4271afb7a1bd925bffc53b3d0333e2ea"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a4271afb7a1bd925bffc53b3d0333e2ea">s_packet_handler_publish</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:a4271afb7a1bd925bffc53b3d0333e2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6c5ce0d3142e6c2873647e6daac7292"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ab6c5ce0d3142e6c2873647e6daac7292">s_packet_handler_ack</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:ab6c5ce0d3142e6c2873647e6daac7292"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ab6c5ce0d3142e6c2873647e6daac7292">s_packet_handler_ack</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:ab6c5ce0d3142e6c2873647e6daac7292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22ff9ab1b5d2f23941b47a8dd64ef829"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a22ff9ab1b5d2f23941b47a8dd64ef829">s_packet_handler_suback</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:a22ff9ab1b5d2f23941b47a8dd64ef829"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a22ff9ab1b5d2f23941b47a8dd64ef829">s_packet_handler_suback</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:a22ff9ab1b5d2f23941b47a8dd64ef829"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d258ae55aa17154af15600cc8ebecd4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a0d258ae55aa17154af15600cc8ebecd4">s_packet_handler_pubrec</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:a0d258ae55aa17154af15600cc8ebecd4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a0d258ae55aa17154af15600cc8ebecd4">s_packet_handler_pubrec</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:a0d258ae55aa17154af15600cc8ebecd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4e316e0143cf5decff8962509c5e78d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ad4e316e0143cf5decff8962509c5e78d">s_packet_handler_pubrel</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:ad4e316e0143cf5decff8962509c5e78d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ad4e316e0143cf5decff8962509c5e78d">s_packet_handler_pubrel</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:ad4e316e0143cf5decff8962509c5e78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa10c5296c2da976e8379fe1e966fcc84"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#aa10c5296c2da976e8379fe1e966fcc84">s_packet_handler_pingresp</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td></tr>
+<tr class="memitem:aa10c5296c2da976e8379fe1e966fcc84"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#aa10c5296c2da976e8379fe1e966fcc84">s_packet_handler_pingresp</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td></tr>
 <tr class="separator:aa10c5296c2da976e8379fe1e966fcc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d8f037aa3f5ab4f1e19acb50e2e4f1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ae2d8f037aa3f5ab4f1e19acb50e2e4f1">s_process_mqtt_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, enum <a class="el" href="fixed__header_8h.html#a88d0cb6ffb07fc72c20665d7ebeec76b">aws_mqtt_packet_type</a> packet_type, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> packet)</td></tr>
+<tr class="memitem:ae2d8f037aa3f5ab4f1e19acb50e2e4f1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#ae2d8f037aa3f5ab4f1e19acb50e2e4f1">s_process_mqtt_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, enum <a class="el" href="fixed__header_8h.html#a88d0cb6ffb07fc72c20665d7ebeec76b">aws_mqtt_packet_type</a> packet_type, struct aws_byte_cursor packet)</td></tr>
 <tr class="separator:ae2d8f037aa3f5ab4f1e19acb50e2e4f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89b7bb76dba8ea2d0dcf6bd16120da32"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a89b7bb76dba8ea2d0dcf6bd16120da32">s_process_read_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message)</td></tr>
 <tr class="separator:a89b7bb76dba8ea2d0dcf6bd16120da32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,13 +132,13 @@ Functions</h2></td></tr>
 <tr class="separator:af3a3805e66828f71c56b1ead9caabea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5514d8457005e30f1cc289136b24b03a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a5514d8457005e30f1cc289136b24b03a">mqtt_get_message_for_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
 <tr class="separator:a5514d8457005e30f1cc289136b24b03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd1e8abb019feae72e961f39376600a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a2bd1e8abb019feae72e961f39376600a">s_request_outgoing_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a2bd1e8abb019feae72e961f39376600a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a2bd1e8abb019feae72e961f39376600a">s_request_outgoing_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a2bd1e8abb019feae72e961f39376600a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60f70675c06991b42b163c6abf244276"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a60f70675c06991b42b163c6abf244276">mqtt_create_request</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, <a class="el" href="client__impl_8h.html#a4ec959b94fcce2a80fe15e2fffd13c74">aws_mqtt_send_request_fn</a> *send_request, void *send_request_ud, <a class="el" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_complete, void *on_complete_ud, bool noRetry)</td></tr>
 <tr class="separator:a60f70675c06991b42b163c6abf244276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a809b03590df270449c5d2a081f73da2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a809b03590df270449c5d2a081f73da2a">mqtt_request_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, int error_code, uint16_t packet_id)</td></tr>
 <tr class="separator:a809b03590df270449c5d2a081f73da2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a043dd0b51fc5dd733ba9b5e435aa7942"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a043dd0b51fc5dd733ba9b5e435aa7942">s_mqtt_disconnect_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a043dd0b51fc5dd733ba9b5e435aa7942"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a043dd0b51fc5dd733ba9b5e435aa7942">s_mqtt_disconnect_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a043dd0b51fc5dd733ba9b5e435aa7942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a537ddf5b57f4d2e84178a0b53a31a270"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__channel__handler_8c.html#a537ddf5b57f4d2e84178a0b53a31a270">mqtt_disconnect_impl</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, int error_code)</td></tr>
 <tr class="separator:a537ddf5b57f4d2e84178a0b53a31a270"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,7 +156,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() packet_handler_fn(struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> message_cursor)</td>
+          <td class="memname">typedef int() packet_handler_fn(struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, struct aws_byte_cursor message_cursor)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -429,7 +429,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -471,7 +471,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -507,7 +507,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -543,7 +543,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -579,7 +579,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -615,7 +615,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -651,7 +651,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -687,7 +687,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -723,7 +723,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -759,7 +759,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>message_cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -801,7 +801,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>packet</em>&#160;</td>
         </tr>
         <tr>
@@ -886,7 +886,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>

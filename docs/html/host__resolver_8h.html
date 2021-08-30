@@ -75,7 +75,7 @@ $(function() {
   <div class="headertitle"><div class="title">host_resolver.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="ref__count_8h_source.html">aws/common/ref_count.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/ref_count.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="io_8h_source.html">aws/io/io.h</a>&gt;</code><br />
 </div>
 <p><a href="host__resolver_8h_source.html">Go to the source code of this file.</a></p>
@@ -97,13 +97,13 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a472032f021ffddd8863e1b8ef50b587f"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a>(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, int err_code, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *host_addresses, void *user_data)</td></tr>
+<tr class="memitem:a472032f021ffddd8863e1b8ef50b587f"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a>(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, int err_code, const struct aws_array_list *host_addresses, void *user_data)</td></tr>
 <tr class="separator:a472032f021ffddd8863e1b8ef50b587f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185a9321bc3fa33f4334fbbca2016bfb"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a185a9321bc3fa33f4334fbbca2016bfb">aws_resolve_host_implementation_fn</a>(struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *output_addresses, void *user_data)</td></tr>
+<tr class="memitem:a185a9321bc3fa33f4334fbbca2016bfb"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a185a9321bc3fa33f4334fbbca2016bfb">aws_resolve_host_implementation_fn</a>(struct aws_allocator *allocator, const struct aws_string *host_name, struct aws_array_list *output_addresses, void *user_data)</td></tr>
 <tr class="separator:a185a9321bc3fa33f4334fbbca2016bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f14a0963d0a5b8216c00de6a7ba0468"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a8f14a0963d0a5b8216c00de6a7ba0468">aws_host_listener_resolved_address_fn</a>(struct aws_host_listener *listener, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *new_address_list, void *user_data)</td></tr>
+<tr class="memitem:a8f14a0963d0a5b8216c00de6a7ba0468"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a8f14a0963d0a5b8216c00de6a7ba0468">aws_host_listener_resolved_address_fn</a>(struct aws_host_listener *listener, const struct aws_array_list *new_address_list, void *user_data)</td></tr>
 <tr class="separator:a8f14a0963d0a5b8216c00de6a7ba0468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9cad7cebe59c969645752991568d3d8"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ae9cad7cebe59c969645752991568d3d8">aws_host_listener_expired_address_fn</a>(struct aws_host_listener *listener, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *expired_address_list, void *user_data)</td></tr>
+<tr class="memitem:ae9cad7cebe59c969645752991568d3d8"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ae9cad7cebe59c969645752991568d3d8">aws_host_listener_expired_address_fn</a>(struct aws_host_listener *listener, const struct aws_array_list *expired_address_list, void *user_data)</td></tr>
 <tr class="separator:ae9cad7cebe59c969645752991568d3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d9d75231229cf40451d67427e2eb3d8"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a3d9d75231229cf40451d67427e2eb3d8">aws_host_listener_shutdown_fn</a>(void *user_data)</td></tr>
 <tr class="separator:a3d9d75231229cf40451d67427e2eb3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,27 +121,27 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a82b5d592aa41f22419d7e4f1b91d3260"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a82b5d592aa41f22419d7e4f1b91d3260">aws_host_address_copy</a> (const struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *from, struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *to)</td></tr>
+<tr class="memitem:a82b5d592aa41f22419d7e4f1b91d3260"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a82b5d592aa41f22419d7e4f1b91d3260">aws_host_address_copy</a> (const struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *from, struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *to)</td></tr>
 <tr class="separator:a82b5d592aa41f22419d7e4f1b91d3260"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3cf1ad894f2f4d7756ce97883903c37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#aa3cf1ad894f2f4d7756ce97883903c37">aws_host_address_move</a> (struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *from, struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *to)</td></tr>
 <tr class="separator:aa3cf1ad894f2f4d7756ce97883903c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b427c37bc775ebae5322b9bf1e0b3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a58b427c37bc775ebae5322b9bf1e0b3d">aws_host_address_clean_up</a> (struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *address)</td></tr>
 <tr class="separator:a58b427c37bc775ebae5322b9bf1e0b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab36ae8540e8e3d2655be0cee0a92521e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ab36ae8540e8e3d2655be0cee0a92521e">aws_default_dns_resolve</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *output_addresses, void *user_data)</td></tr>
+<tr class="memitem:ab36ae8540e8e3d2655be0cee0a92521e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ab36ae8540e8e3d2655be0cee0a92521e">aws_default_dns_resolve</a> (struct aws_allocator *allocator, const struct aws_string *host_name, struct aws_array_list *output_addresses, void *user_data)</td></tr>
 <tr class="separator:ab36ae8540e8e3d2655be0cee0a92521e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9405ac7cdf6e7020ce853ea0ce000cbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a9405ac7cdf6e7020ce853ea0ce000cbf">aws_host_resolver_new_default</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__host__resolver__default__options.html">aws_host_resolver_default_options</a> *options)</td></tr>
+<tr class="memitem:a9405ac7cdf6e7020ce853ea0ce000cbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a9405ac7cdf6e7020ce853ea0ce000cbf">aws_host_resolver_new_default</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__host__resolver__default__options.html">aws_host_resolver_default_options</a> *options)</td></tr>
 <tr class="separator:a9405ac7cdf6e7020ce853ea0ce000cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65ffc8f94135a6f99806e05c18e2892"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ab65ffc8f94135a6f99806e05c18e2892">aws_host_resolver_acquire</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver)</td></tr>
 <tr class="separator:ab65ffc8f94135a6f99806e05c18e2892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a230a320b00320975ca8d01b1e51f5d07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a230a320b00320975ca8d01b1e51f5d07">aws_host_resolver_release</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver)</td></tr>
 <tr class="separator:a230a320b00320975ca8d01b1e51f5d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85019ad28e1f414b624d167664c2ef21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a85019ad28e1f414b624d167664c2ef21">aws_host_resolver_resolve_host</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td></tr>
+<tr class="memitem:a85019ad28e1f414b624d167664c2ef21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a85019ad28e1f414b624d167664c2ef21">aws_host_resolver_resolve_host</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, <a class="el" href="host__resolver_8h.html#a472032f021ffddd8863e1b8ef50b587f">aws_on_host_resolved_result_fn</a> *res, struct <a class="el" href="structaws__host__resolution__config.html">aws_host_resolution_config</a> *config, void *user_data)</td></tr>
 <tr class="separator:a85019ad28e1f414b624d167664c2ef21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8a9f19466f76d2af80d1dce076f9b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#ad8a9f19466f76d2af80d1dce076f9b03">aws_host_resolver_record_connection_failure</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *address)</td></tr>
 <tr class="separator:ad8a9f19466f76d2af80d1dce076f9b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a657bc2cbe187e3ada0c15e95430b5628"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a657bc2cbe187e3ada0c15e95430b5628">aws_host_resolver_purge_cache</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver)</td></tr>
 <tr class="separator:a657bc2cbe187e3ada0c15e95430b5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fdc360ba268b5a2ace7f3a1a54aa3af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a2fdc360ba268b5a2ace7f3a1a54aa3af">aws_host_resolver_get_host_address_count</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, uint32_t flags)</td></tr>
+<tr class="memitem:a2fdc360ba268b5a2ace7f3a1a54aa3af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a2fdc360ba268b5a2ace7f3a1a54aa3af">aws_host_resolver_get_host_address_count</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, uint32_t flags)</td></tr>
 <tr class="separator:a2fdc360ba268b5a2ace7f3a1a54aa3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e76ffed78b14458a78a06dc83c9e766"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct aws_host_listener *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host__resolver_8h.html#a5e76ffed78b14458a78a06dc83c9e766">aws_host_resolver_add_host_listener</a> (struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__host__listener__options.html">aws_host_listener_options</a> *options)</td></tr>
 <tr class="separator:a5e76ffed78b14458a78a06dc83c9e766"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,7 +156,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_host_listener_expired_address_fn( struct aws_host_listener *listener, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *expired_address_list, void *user_data)</td>
+          <td class="memname">typedef void() aws_host_listener_expired_address_fn( struct aws_host_listener *listener, const struct aws_array_list *expired_address_list, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -170,7 +170,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_host_listener_resolved_address_fn( struct aws_host_listener *listener, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *new_address_list, void *user_data)</td>
+          <td class="memname">typedef void() aws_host_listener_resolved_address_fn( struct aws_host_listener *listener, const struct aws_array_list *new_address_list, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_on_host_resolved_result_fn(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, int err_code, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *host_addresses, void *user_data)</td>
+          <td class="memname">typedef void() aws_on_host_resolved_result_fn(struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a> *resolver, const struct aws_string *host_name, int err_code, const struct aws_array_list *host_addresses, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -213,7 +213,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() aws_resolve_host_implementation_fn(struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__string.html">aws_string</a> *host_name, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *output_addresses, void *user_data)</td>
+          <td class="memname">typedef int() aws_resolve_host_implementation_fn(struct aws_allocator *allocator, const struct aws_string *host_name, struct aws_array_list *output_addresses, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -268,19 +268,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int aws_default_dns_resolve </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>host_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>output_addresses</em>, </td>
         </tr>
         <tr>
@@ -327,7 +327,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int aws_host_address_copy </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int aws_host_address_copy </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__host__address.html">aws_host_address</a> *&#160;</td>
           <td class="paramname"><em>from</em>, </td>
@@ -441,7 +441,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>host_name</em>, </td>
         </tr>
         <tr>
@@ -470,7 +470,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__host__resolver.html">aws_host_resolver</a>* aws_host_resolver_new_default </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -609,7 +609,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>host_name</em>, </td>
         </tr>
         <tr>

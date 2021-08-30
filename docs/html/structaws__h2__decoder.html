@@ -80,7 +80,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab3f3ccfe41ccbb1bc1384d3307a3d34a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#ab3f3ccfe41ccbb1bc1384d3307a3d34a">alloc</a></td></tr>
+<tr class="memitem:ab3f3ccfe41ccbb1bc1384d3307a3d34a"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#ab3f3ccfe41ccbb1bc1384d3307a3d34a">alloc</a></td></tr>
 <tr class="separator:ab3f3ccfe41ccbb1bc1384d3307a3d34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66c319bc3a86fb4ec4249dfa285f4b36"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a66c319bc3a86fb4ec4249dfa285f4b36">logging_id</a></td></tr>
 <tr class="separator:a66c319bc3a86fb4ec4249dfa285f4b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -88,7 +88,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ad37c24954331bc3da3a1d309c6504d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04a5dd443bd28522ce8129dfdba91592"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a04a5dd443bd28522ce8129dfdba91592">is_server</a></td></tr>
 <tr class="separator:a04a5dd443bd28522ce8129dfdba91592"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7096410ec0818fa326f8ecbb787b276d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a7096410ec0818fa326f8ecbb787b276d">scratch</a></td></tr>
+<tr class="memitem:a7096410ec0818fa326f8ecbb787b276d"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a7096410ec0818fa326f8ecbb787b276d">scratch</a></td></tr>
 <tr class="separator:a7096410ec0818fa326f8ecbb787b276d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a623da59b5e372ead3c2cbfcf9a66f667"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structdecoder__state.html">decoder_state</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a623da59b5e372ead3c2cbfcf9a66f667">state</a></td></tr>
 <tr class="separator:a623da59b5e372ead3c2cbfcf9a66f667"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -96,20 +96,20 @@ Public Attributes</h2></td></tr>
 <tr class="separator:abf7c3bf40550656edc67782627419f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fc1b6592ec7ff82b0b920472bc65022"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a1fc1b6592ec7ff82b0b920472bc65022">connection_preface_complete</a></td></tr>
 <tr class="separator:a1fc1b6592ec7ff82b0b920472bc65022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7221a7f05ecd2bc1662376959f6c72b6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a7221a7f05ecd2bc1662376959f6c72b6">connection_preface_cursor</a></td></tr>
+<tr class="memitem:a7221a7f05ecd2bc1662376959f6c72b6"><td class="memItemLeft" align="right" valign="top">struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a7221a7f05ecd2bc1662376959f6c72b6">connection_preface_cursor</a></td></tr>
 <tr class="separator:a7221a7f05ecd2bc1662376959f6c72b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64f062069a26c1c22962fcc79e80da0d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2__decoder_1_1aws__frame__in__progress.html">aws_h2_decoder::aws_frame_in_progress</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a64f062069a26c1c22962fcc79e80da0d">frame_in_progress</a></td></tr>
 <tr class="separator:a64f062069a26c1c22962fcc79e80da0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9adac17708b70ee0c26c70183ff7ff5f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html">aws_h2_decoder::aws_header_block_in_progress</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a9adac17708b70ee0c26c70183ff7ff5f">header_block_in_progress</a></td></tr>
 <tr class="separator:a9adac17708b70ee0c26c70183ff7ff5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d570aa47ba5dc92eb944d6279943edf"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a7ef0876a5e22005cbb22700e9a2df3c0"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__decoder.html#af0e97b7283f36fd4976aa6abfa3893d3">enable_push</a></td></tr>
-<tr class="separator:a7ef0876a5e22005cbb22700e9a2df3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a985492fa1e766d426c54670a8e1cab54"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__decoder.html#a79d4bf5838601cdacefaf0846ad17df4">max_frame_size</a></td></tr>
-<tr class="separator:a985492fa1e766d426c54670a8e1cab54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d570aa47ba5dc92eb944d6279943edf"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a9d570aa47ba5dc92eb944d6279943edf">settings</a></td></tr>
-<tr class="separator:a9d570aa47ba5dc92eb944d6279943edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53e5f5d2e1e61298e5c76adbb82a0f71"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__array__list.html">aws_array_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a53e5f5d2e1e61298e5c76adbb82a0f71">settings_buffer_list</a></td></tr>
+<tr class="memitem:aeb5a5fef56c55c380363534fe293b486"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:adb1dba54de40ef26fd669bb97ff17ea5"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__decoder.html#af0e97b7283f36fd4976aa6abfa3893d3">enable_push</a></td></tr>
+<tr class="separator:adb1dba54de40ef26fd669bb97ff17ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d49ba8048e24e259a0b59d6b4a80055"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structaws__h2__decoder.html#a79d4bf5838601cdacefaf0846ad17df4">max_frame_size</a></td></tr>
+<tr class="separator:a8d49ba8048e24e259a0b59d6b4a80055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb5a5fef56c55c380363534fe293b486"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#aeb5a5fef56c55c380363534fe293b486">settings</a></td></tr>
+<tr class="separator:aeb5a5fef56c55c380363534fe293b486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e5f5d2e1e61298e5c76adbb82a0f71"><td class="memItemLeft" align="right" valign="top">struct aws_array_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a53e5f5d2e1e61298e5c76adbb82a0f71">settings_buffer_list</a></td></tr>
 <tr class="separator:a53e5f5d2e1e61298e5c76adbb82a0f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2242f91b9eb04136d0b95590be66e1f4"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__h2__decoder__vtable.html">aws_h2_decoder_vtable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder.html#a2242f91b9eb04136d0b95590be66e1f4">vtable</a></td></tr>
 <tr class="separator:a2242f91b9eb04136d0b95590be66e1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,7 +126,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_h2_decoder::alloc</td>
+          <td class="memname">struct aws_allocator* aws_h2_decoder::alloc</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -154,7 +154,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> aws_h2_decoder::connection_preface_cursor</td>
+          <td class="memname">struct aws_byte_cursor aws_h2_decoder::connection_preface_cursor</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -280,15 +280,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_h2_decoder::scratch</td>
+          <td class="memname">struct aws_byte_buf aws_h2_decoder::scratch</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a9d570aa47ba5dc92eb944d6279943edf" name="a9d570aa47ba5dc92eb944d6279943edf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d570aa47ba5dc92eb944d6279943edf">&#9670;&nbsp;</a></span></h2>
+<a id="aeb5a5fef56c55c380363534fe293b486" name="aeb5a5fef56c55c380363534fe293b486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb5a5fef56c55c380363534fe293b486">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +308,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> aws_h2_decoder::settings_buffer_list</td>
+          <td class="memname">struct aws_array_list aws_h2_decoder::settings_buffer_list</td>
         </tr>
       </table>
 </div><div class="memdoc">

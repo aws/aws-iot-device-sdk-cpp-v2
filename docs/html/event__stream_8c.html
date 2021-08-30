@@ -76,7 +76,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="event__stream_8h_source.html">aws/event-stream/event_stream.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="crc_8h_source.html">aws/checksums/crc.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="encoding_8h_source.html">aws/common/encoding.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/encoding.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="io_8h_source.html">aws/io/io.h</a>&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
@@ -107,21 +107,21 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a659919e7147b184b6e1f1e6f4aaeeed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a659919e7147b184b6e1f1e6f4aaeeed3">aws_event_stream_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a659919e7147b184b6e1f1e6f4aaeeed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a659919e7147b184b6e1f1e6f4aaeeed3">aws_event_stream_library_init</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a659919e7147b184b6e1f1e6f4aaeeed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5722de924a307f0f90a040974f8319a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5722de924a307f0f90a040974f8319a6">aws_event_stream_library_clean_up</a> (void)</td></tr>
 <tr class="separator:a5722de924a307f0f90a040974f8319a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77a7d8b32aed1ee8f74a6464c08b38eb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a77a7d8b32aed1ee8f74a6464c08b38eb">aws_event_stream_compute_headers_required_buffer_len</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers)</td></tr>
+<tr class="memitem:a77a7d8b32aed1ee8f74a6464c08b38eb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a77a7d8b32aed1ee8f74a6464c08b38eb">aws_event_stream_compute_headers_required_buffer_len</a> (const struct aws_array_list *headers)</td></tr>
 <tr class="separator:a77a7d8b32aed1ee8f74a6464c08b38eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fd0d665ce59684263e71396075673bc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a7fd0d665ce59684263e71396075673bc">aws_event_stream_write_headers_to_buffer</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, uint8_t *buffer)</td></tr>
+<tr class="memitem:a7fd0d665ce59684263e71396075673bc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a7fd0d665ce59684263e71396075673bc">aws_event_stream_write_headers_to_buffer</a> (const struct aws_array_list *headers, uint8_t *buffer)</td></tr>
 <tr class="separator:a7fd0d665ce59684263e71396075673bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5762e0b86da62c91f6430f8b634b76cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5762e0b86da62c91f6430f8b634b76cb">aws_event_stream_read_headers_from_buffer</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const uint8_t *buffer, size_t headers_len)</td></tr>
+<tr class="memitem:a5762e0b86da62c91f6430f8b634b76cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5762e0b86da62c91f6430f8b634b76cb">aws_event_stream_read_headers_from_buffer</a> (struct aws_array_list *headers, const uint8_t *buffer, size_t headers_len)</td></tr>
 <tr class="separator:a5762e0b86da62c91f6430f8b634b76cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfbae1515fbb7a9376c524986bd2464f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#adfbae1515fbb7a9376c524986bd2464f">aws_event_stream_message_init</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *payload)</td></tr>
+<tr class="memitem:adfbae1515fbb7a9376c524986bd2464f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#adfbae1515fbb7a9376c524986bd2464f">aws_event_stream_message_init</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct aws_allocator *alloc, struct aws_array_list *headers, struct aws_byte_buf *payload)</td></tr>
 <tr class="separator:adfbae1515fbb7a9376c524986bd2464f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab473226def4839947877da1936d415b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aab473226def4839947877da1936d415b">aws_event_stream_message_from_buffer</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:aab473226def4839947877da1936d415b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aab473226def4839947877da1936d415b">aws_event_stream_message_from_buffer</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct aws_allocator *alloc, struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:aab473226def4839947877da1936d415b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bda472cf24647fa57a9b6b92e741443"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a4bda472cf24647fa57a9b6b92e741443">aws_event_stream_message_from_buffer_copy</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer)</td></tr>
+<tr class="memitem:a4bda472cf24647fa57a9b6b92e741443"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a4bda472cf24647fa57a9b6b92e741443">aws_event_stream_message_from_buffer_copy</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct aws_allocator *alloc, const struct aws_byte_buf *buffer)</td></tr>
 <tr class="separator:a4bda472cf24647fa57a9b6b92e741443"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26c4621829b585f7de4f475bd505a0ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a26c4621829b585f7de4f475bd505a0ff">aws_event_stream_message_clean_up</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message)</td></tr>
 <tr class="separator:a26c4621829b585f7de4f475bd505a0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,7 +131,7 @@ Functions</h2></td></tr>
 <tr class="separator:a4d3fb9104c2f988029c4df0f41c3dc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a394b8d2b8286bab40d0850be83c19f68"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a394b8d2b8286bab40d0850be83c19f68">aws_event_stream_message_prelude_crc</a> (const struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message)</td></tr>
 <tr class="separator:a394b8d2b8286bab40d0850be83c19f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9692799f88038101a6d128d1f623a044"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a9692799f88038101a6d128d1f623a044">aws_event_stream_message_headers</a> (const struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers)</td></tr>
+<tr class="memitem:a9692799f88038101a6d128d1f623a044"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a9692799f88038101a6d128d1f623a044">aws_event_stream_message_headers</a> (const struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct aws_array_list *headers)</td></tr>
 <tr class="separator:a9692799f88038101a6d128d1f623a044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a195722fb3c16eb617928002ca2850bbb"><td class="memItemLeft" align="right" valign="top">const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a195722fb3c16eb617928002ca2850bbb">aws_event_stream_message_payload</a> (const struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message)</td></tr>
 <tr class="separator:a195722fb3c16eb617928002ca2850bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,39 +143,39 @@ Functions</h2></td></tr>
 <tr class="separator:ab2ce8afbeae53f5e97beb0151eb8bba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b964d7698ad710a05a712b135a8d7a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a58b964d7698ad710a05a712b135a8d7a">aws_event_stream_message_to_debug_str</a> (FILE *fd, const struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message)</td></tr>
 <tr class="separator:a58b964d7698ad710a05a712b135a8d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad872fb680e742816749b26cd065df386"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ad872fb680e742816749b26cd065df386">aws_event_stream_headers_list_init</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:ad872fb680e742816749b26cd065df386"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ad872fb680e742816749b26cd065df386">aws_event_stream_headers_list_init</a> (struct aws_array_list *headers, struct aws_allocator *allocator)</td></tr>
 <tr class="separator:ad872fb680e742816749b26cd065df386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae544eb46a56e708860a406a190a097b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ae544eb46a56e708860a406a190a097b3">aws_event_stream_headers_list_cleanup</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers)</td></tr>
+<tr class="memitem:ae544eb46a56e708860a406a190a097b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ae544eb46a56e708860a406a190a097b3">aws_event_stream_headers_list_cleanup</a> (struct aws_array_list *headers)</td></tr>
 <tr class="separator:ae544eb46a56e708860a406a190a097b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaccf411dde930a3c66e4a1726bde006f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aaccf411dde930a3c66e4a1726bde006f">s_add_variable_len_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, uint8_t *value, uint16_t value_len, int8_t copy)</td></tr>
+<tr class="memitem:aaccf411dde930a3c66e4a1726bde006f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aaccf411dde930a3c66e4a1726bde006f">s_add_variable_len_header</a> (struct aws_array_list *headers, struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, uint8_t *value, uint16_t value_len, int8_t copy)</td></tr>
 <tr class="separator:aaccf411dde930a3c66e4a1726bde006f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52a6da218f3958cea304d5d3f2790f2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a52a6da218f3958cea304d5d3f2790f2d">aws_event_stream_add_string_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, const char *value, uint16_t value_len, int8_t copy)</td></tr>
+<tr class="memitem:a52a6da218f3958cea304d5d3f2790f2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a52a6da218f3958cea304d5d3f2790f2d">aws_event_stream_add_string_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, const char *value, uint16_t value_len, int8_t copy)</td></tr>
 <tr class="separator:a52a6da218f3958cea304d5d3f2790f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef1fd2525d4fae960976f26a0b0eff5c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aef1fd2525d4fae960976f26a0b0eff5c">aws_event_stream_create_string_header</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> value)</td></tr>
+<tr class="memitem:aef1fd2525d4fae960976f26a0b0eff5c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aef1fd2525d4fae960976f26a0b0eff5c">aws_event_stream_create_string_header</a> (struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor value)</td></tr>
 <tr class="separator:aef1fd2525d4fae960976f26a0b0eff5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61ef177532d95914bb8056ab3601c10d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a61ef177532d95914bb8056ab3601c10d">aws_event_stream_create_int32_header</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, int32_t value)</td></tr>
+<tr class="memitem:a61ef177532d95914bb8056ab3601c10d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a61ef177532d95914bb8056ab3601c10d">aws_event_stream_create_int32_header</a> (struct aws_byte_cursor <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, int32_t value)</td></tr>
 <tr class="separator:a61ef177532d95914bb8056ab3601c10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9be0d1dabcae971dff094f7aa304811"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ab9be0d1dabcae971dff094f7aa304811">aws_event_stream_add_byte_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int8_t value)</td></tr>
+<tr class="memitem:ab9be0d1dabcae971dff094f7aa304811"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ab9be0d1dabcae971dff094f7aa304811">aws_event_stream_add_byte_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int8_t value)</td></tr>
 <tr class="separator:ab9be0d1dabcae971dff094f7aa304811"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adec15084cfbe261140934ecd9aa18805"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#adec15084cfbe261140934ecd9aa18805">aws_event_stream_add_bool_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int8_t value)</td></tr>
+<tr class="memitem:adec15084cfbe261140934ecd9aa18805"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#adec15084cfbe261140934ecd9aa18805">aws_event_stream_add_bool_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int8_t value)</td></tr>
 <tr class="separator:adec15084cfbe261140934ecd9aa18805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d799a3585e32f06fd744d4d49819962"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a8d799a3585e32f06fd744d4d49819962">aws_event_stream_add_int16_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int16_t value)</td></tr>
+<tr class="memitem:a8d799a3585e32f06fd744d4d49819962"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a8d799a3585e32f06fd744d4d49819962">aws_event_stream_add_int16_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int16_t value)</td></tr>
 <tr class="separator:a8d799a3585e32f06fd744d4d49819962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eaa94435810776cd5a16f0b8be65427"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a0eaa94435810776cd5a16f0b8be65427">aws_event_stream_add_int32_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int32_t value)</td></tr>
+<tr class="memitem:a0eaa94435810776cd5a16f0b8be65427"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a0eaa94435810776cd5a16f0b8be65427">aws_event_stream_add_int32_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int32_t value)</td></tr>
 <tr class="separator:a0eaa94435810776cd5a16f0b8be65427"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e169dab94c8458d8fd6fe2b48fb174"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a09e169dab94c8458d8fd6fe2b48fb174">aws_event_stream_add_int64_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int64_t value)</td></tr>
+<tr class="memitem:a09e169dab94c8458d8fd6fe2b48fb174"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a09e169dab94c8458d8fd6fe2b48fb174">aws_event_stream_add_int64_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int64_t value)</td></tr>
 <tr class="separator:a09e169dab94c8458d8fd6fe2b48fb174"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6e6adff5f8ddefb1853ae02d014c4ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#af6e6adff5f8ddefb1853ae02d014c4ca">aws_event_stream_add_bytebuf_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, uint8_t *value, uint16_t value_len, int8_t copy)</td></tr>
+<tr class="memitem:af6e6adff5f8ddefb1853ae02d014c4ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#af6e6adff5f8ddefb1853ae02d014c4ca">aws_event_stream_add_bytebuf_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, uint8_t *value, uint16_t value_len, int8_t copy)</td></tr>
 <tr class="separator:af6e6adff5f8ddefb1853ae02d014c4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e13990003ff1e7b967ad192fb4f0b37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a0e13990003ff1e7b967ad192fb4f0b37">aws_event_stream_add_timestamp_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int64_t value)</td></tr>
+<tr class="memitem:a0e13990003ff1e7b967ad192fb4f0b37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a0e13990003ff1e7b967ad192fb4f0b37">aws_event_stream_add_timestamp_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, int64_t value)</td></tr>
 <tr class="separator:a0e13990003ff1e7b967ad192fb4f0b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe33bf4c41cf65c96da0ecda532771bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#afe33bf4c41cf65c96da0ecda532771bc">aws_event_stream_add_uuid_header</a> (struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, const uint8_t *value)</td></tr>
+<tr class="memitem:afe33bf4c41cf65c96da0ecda532771bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#afe33bf4c41cf65c96da0ecda532771bc">aws_event_stream_add_uuid_header</a> (struct aws_array_list *headers, const char *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, uint8_t name_len, const uint8_t *value)</td></tr>
 <tr class="separator:afe33bf4c41cf65c96da0ecda532771bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612915cf682079fdfa6ae2af7a33def1"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a612915cf682079fdfa6ae2af7a33def1">aws_event_stream_header_name</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
+<tr class="memitem:a612915cf682079fdfa6ae2af7a33def1"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a612915cf682079fdfa6ae2af7a33def1">aws_event_stream_header_name</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a612915cf682079fdfa6ae2af7a33def1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecb9755818c75c58fbb348e46682c038"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#aecb9755818c75c58fbb348e46682c038">aws_event_stream_header_value_as_byte</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:aecb9755818c75c58fbb348e46682c038"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76a930a2c31d9eceeb88152042e72944"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a76a930a2c31d9eceeb88152042e72944">aws_event_stream_header_value_as_string</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
+<tr class="memitem:a76a930a2c31d9eceeb88152042e72944"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a76a930a2c31d9eceeb88152042e72944">aws_event_stream_header_value_as_string</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a76a930a2c31d9eceeb88152042e72944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5379dd288e1ae8a06ab8353f2d85195e"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5379dd288e1ae8a06ab8353f2d85195e">aws_event_stream_header_value_as_bool</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a5379dd288e1ae8a06ab8353f2d85195e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,11 +185,11 @@ Functions</h2></td></tr>
 <tr class="separator:a6863fa6642ef80e2b0f2f9640fc197be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d9f98244ba9d96d9bd84933cbee7808"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a7d9f98244ba9d96d9bd84933cbee7808">aws_event_stream_header_value_as_int64</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a7d9f98244ba9d96d9bd84933cbee7808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4017727eb2c42999bca416265544f90e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a4017727eb2c42999bca416265544f90e">aws_event_stream_header_value_as_bytebuf</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
+<tr class="memitem:a4017727eb2c42999bca416265544f90e"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a4017727eb2c42999bca416265544f90e">aws_event_stream_header_value_as_bytebuf</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a4017727eb2c42999bca416265544f90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c3dc1d676418ece9eec6d5d296d7039"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a3c3dc1d676418ece9eec6d5d296d7039">aws_event_stream_header_value_as_timestamp</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a3c3dc1d676418ece9eec6d5d296d7039"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22c019a712b69851ecf3fd2a1d6edf27"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a22c019a712b69851ecf3fd2a1d6edf27">aws_event_stream_header_value_as_uuid</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
+<tr class="memitem:a22c019a712b69851ecf3fd2a1d6edf27"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a22c019a712b69851ecf3fd2a1d6edf27">aws_event_stream_header_value_as_uuid</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a22c019a712b69851ecf3fd2a1d6edf27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99dca89afb80ffb3d37e15dfbd831046"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a99dca89afb80ffb3d37e15dfbd831046">aws_event_stream_header_value_length</a> (struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *header)</td></tr>
 <tr class="separator:a99dca89afb80ffb3d37e15dfbd831046"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,24 +219,24 @@ Functions</h2></td></tr>
 <tr class="separator:a8407c8b4502621dabfb041a1074af9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29d76ab139dfcc149a14f596b4ac22e8"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a29d76ab139dfcc149a14f596b4ac22e8">s_start_state</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder, const uint8_t *data, size_t <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a0f1e4ab31fd4f3ca4329091911f1f1af">len</a>, size_t *processed)</td></tr>
 <tr class="separator:a29d76ab139dfcc149a14f596b4ac22e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a222970f5ffc0db929a87fd4d1d55baf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a222970f5ffc0db929a87fd4d1d55baf1">aws_event_stream_streaming_decoder_init</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, <a class="el" href="event__stream_8h.html#a554b6caf1ceb8ea51d58965b1efb9849">aws_event_stream_process_on_payload_segment_fn</a> *on_payload_segment, <a class="el" href="event__stream_8h.html#ae8b317bb7ad7c3476c895baf18b19976">aws_event_stream_prelude_received_fn</a> *on_prelude, <a class="el" href="event__stream_8h.html#a9d68d1878c776aae9d65e8d8ccafd35b">aws_event_stream_header_received_fn</a> *on_header, <a class="el" href="event__stream_8h.html#a63d674f6c4891cfdc16e0f06c944a6b3">aws_event_stream_on_error_fn</a> *on_error, void *user_data)</td></tr>
+<tr class="memitem:a222970f5ffc0db929a87fd4d1d55baf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a222970f5ffc0db929a87fd4d1d55baf1">aws_event_stream_streaming_decoder_init</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder, struct aws_allocator *alloc, <a class="el" href="event__stream_8h.html#a554b6caf1ceb8ea51d58965b1efb9849">aws_event_stream_process_on_payload_segment_fn</a> *on_payload_segment, <a class="el" href="event__stream_8h.html#ae8b317bb7ad7c3476c895baf18b19976">aws_event_stream_prelude_received_fn</a> *on_prelude, <a class="el" href="event__stream_8h.html#a9d68d1878c776aae9d65e8d8ccafd35b">aws_event_stream_header_received_fn</a> *on_header, <a class="el" href="event__stream_8h.html#a63d674f6c4891cfdc16e0f06c944a6b3">aws_event_stream_on_error_fn</a> *on_error, void *user_data)</td></tr>
 <tr class="separator:a222970f5ffc0db929a87fd4d1d55baf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0222b7b6cae50596c0f908e4514ea314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a0222b7b6cae50596c0f908e4514ea314">aws_event_stream_streaming_decoder_clean_up</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder)</td></tr>
 <tr class="separator:a0222b7b6cae50596c0f908e4514ea314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc212d66bb8b2180e40dba8eeefd1a8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#afc212d66bb8b2180e40dba8eeefd1a8f">aws_event_stream_streaming_decoder_pump</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder, const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *data)</td></tr>
+<tr class="memitem:afc212d66bb8b2180e40dba8eeefd1a8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#afc212d66bb8b2180e40dba8eeefd1a8f">aws_event_stream_streaming_decoder_pump</a> (struct <a class="el" href="structaws__event__stream__streaming__decoder.html">aws_event_stream_streaming_decoder</a> *decoder, const struct aws_byte_buf *data)</td></tr>
 <tr class="separator:afc212d66bb8b2180e40dba8eeefd1a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info.html">aws_error_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
+<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
 <tr class="separator:a255baa9b51b60f5b91a01313637fc353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ea700514e70a0da767872486e1c257a"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5ea700514e70a0da767872486e1c257a">s_list</a></td></tr>
+<tr class="memitem:a5ea700514e70a0da767872486e1c257a"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a5ea700514e70a0da767872486e1c257a">s_list</a></td></tr>
 <tr class="separator:a5ea700514e70a0da767872486e1c257a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1e0559553a13cc3bba0f7bbe3b0d638"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#ab1e0559553a13cc3bba0f7bbe3b0d638">s_event_stream_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:ab1e0559553a13cc3bba0f7bbe3b0d638"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb49b87dee5646aba171bce9eda02f6"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__log__subject__info.html">aws_log_subject_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a> []</td></tr>
+<tr class="memitem:a6eb49b87dee5646aba171bce9eda02f6"><td class="memItemLeft" align="right" valign="top">static struct aws_log_subject_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a> []</td></tr>
 <tr class="separator:a6eb49b87dee5646aba171bce9eda02f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af430aa4a6a714c8d2fc49214dfe25694"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__log__subject__info__list.html">aws_log_subject_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#af430aa4a6a714c8d2fc49214dfe25694">s_event_stream_log_subject_list</a></td></tr>
+<tr class="memitem:af430aa4a6a714c8d2fc49214dfe25694"><td class="memItemLeft" align="right" valign="top">static struct aws_log_subject_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#af430aa4a6a714c8d2fc49214dfe25694">s_event_stream_log_subject_list</a></td></tr>
 <tr class="separator:af430aa4a6a714c8d2fc49214dfe25694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f7cba3b236c967075a1127bcd229dd8"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__event__stream__message__prelude.html">aws_event_stream_message_prelude</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream_8c.html#a2f7cba3b236c967075a1127bcd229dd8">s_empty_prelude</a> = {.total_len = 0, .headers_len = 0, .prelude_crc = 0}</td></tr>
 <tr class="separator:a2f7cba3b236c967075a1127bcd229dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -407,7 +407,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_bool_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -448,7 +448,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_byte_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -489,7 +489,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_bytebuf_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -542,7 +542,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_int16_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -583,7 +583,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_int32_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -624,7 +624,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_int64_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -665,7 +665,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_string_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -718,7 +718,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_timestamp_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -759,7 +759,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_add_uuid_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -800,7 +800,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">uint32_t aws_event_stream_compute_headers_required_buffer_len </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">const struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em></td><td>)</td>
           <td></td>
         </tr>
@@ -818,7 +818,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> aws_event_stream_create_int32_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
@@ -846,13 +846,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> aws_event_stream_create_string_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -872,7 +872,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_event_stream_header_name </td>
+          <td class="memname">struct aws_byte_buf aws_event_stream_header_name </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *&#160;</td>
           <td class="paramname"><em>header</em></td><td>)</td>
@@ -929,7 +929,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_event_stream_header_value_as_bytebuf </td>
+          <td class="memname">struct aws_byte_buf aws_event_stream_header_value_as_bytebuf </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *&#160;</td>
           <td class="paramname"><em>header</em></td><td>)</td>
@@ -1005,7 +1005,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_event_stream_header_value_as_string </td>
+          <td class="memname">struct aws_byte_buf aws_event_stream_header_value_as_string </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *&#160;</td>
           <td class="paramname"><em>header</em></td><td>)</td>
@@ -1043,7 +1043,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_event_stream_header_value_as_uuid </td>
+          <td class="memname">struct aws_byte_buf aws_event_stream_header_value_as_uuid </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__event__stream__header__value__pair.html">aws_event_stream_header_value_pair</a> *&#160;</td>
           <td class="paramname"><em>header</em></td><td>)</td>
@@ -1083,7 +1083,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_event_stream_headers_list_cleanup </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1102,13 +1102,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_headers_list_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>&#160;</td>
         </tr>
         <tr>
@@ -1150,7 +1150,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_event_stream_library_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1213,13 +1213,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -1248,13 +1248,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -1283,7 +1283,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>&#160;</td>
         </tr>
         <tr>
@@ -1331,19 +1331,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>payload</em>&#160;</td>
         </tr>
         <tr>
@@ -1490,7 +1490,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_read_headers_from_buffer </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -1550,7 +1550,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -1609,7 +1609,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -1632,7 +1632,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">size_t aws_event_stream_write_headers_to_buffer </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">const struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -1663,7 +1663,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static int s_add_variable_len_header </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -2340,7 +2340,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info.html">aws_error_info</a> s_errors[]</td>
+          <td class="memname">struct aws_error_info s_errors[]</td>
         </tr>
       </table>
   </td>
@@ -2384,7 +2384,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__log__subject__info.html">aws_log_subject_info</a> s_event_stream_log_subject_infos[]</td>
+          <td class="memname">struct aws_log_subject_info s_event_stream_log_subject_infos[]</td>
         </tr>
       </table>
   </td>
@@ -2394,24 +2394,23 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6ad92ebcde4dfbeee857388a5e2abb6451">AWS_LS_EVENT_STREAM_GENERAL</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;event-stream-general&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for aws-c-event-stream logging that defies categorization.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6ae19fabf35b04a2456bac6fa1db96c9b0">AWS_LS_EVENT_STREAM_CHANNEL_HANDLER</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;event-stream-channel-handler&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for event-stream channel handler related logging.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6aaedbed9d2f0dcc7607542af02a6ac00c">AWS_LS_EVENT_STREAM_RPC_SERVER</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;event-stream-rpc-server&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for event-stream rpc server.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6abd422033dc45c541821fc0eb15eb451a">AWS_LS_EVENT_STREAM_RPC_CLIENT</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;event-stream-rpc-client&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for event-stream rpc client.&quot;</span>),</div>
 <div class="line">}</div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2logging_8h_html_a650e3e4d7a6d77813204fb98048a1271"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a></div><div class="ttdeci">#define DEFINE_LOG_SUBJECT_INFO(id, name, desc)</div><div class="ttdef"><b>Definition:</b> logging.h:69</div></div>
 <div class="ttc" id="aevent__stream_8h_html_a4cb79e87206c15f54515436531bfbce6aaedbed9d2f0dcc7607542af02a6ac00c"><div class="ttname"><a href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6aaedbed9d2f0dcc7607542af02a6ac00c">AWS_LS_EVENT_STREAM_RPC_SERVER</a></div><div class="ttdeci">@ AWS_LS_EVENT_STREAM_RPC_SERVER</div><div class="ttdef"><b>Definition:</b> event_stream.h:43</div></div>
 <div class="ttc" id="aevent__stream_8h_html_a4cb79e87206c15f54515436531bfbce6abd422033dc45c541821fc0eb15eb451a"><div class="ttname"><a href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6abd422033dc45c541821fc0eb15eb451a">AWS_LS_EVENT_STREAM_RPC_CLIENT</a></div><div class="ttdeci">@ AWS_LS_EVENT_STREAM_RPC_CLIENT</div><div class="ttdef"><b>Definition:</b> event_stream.h:44</div></div>
 <div class="ttc" id="aevent__stream_8h_html_a4cb79e87206c15f54515436531bfbce6ad92ebcde4dfbeee857388a5e2abb6451"><div class="ttname"><a href="event__stream_8h.html#a4cb79e87206c15f54515436531bfbce6ad92ebcde4dfbeee857388a5e2abb6451">AWS_LS_EVENT_STREAM_GENERAL</a></div><div class="ttdeci">@ AWS_LS_EVENT_STREAM_GENERAL</div><div class="ttdef"><b>Definition:</b> event_stream.h:41</div></div>
@@ -2429,7 +2428,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__log__subject__info__list.html">aws_log_subject_info_list</a> s_event_stream_log_subject_list</td>
+          <td class="memname">struct aws_log_subject_info_list s_event_stream_log_subject_list</td>
         </tr>
       </table>
   </td>
@@ -2440,10 +2439,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .subject_list = <a class="code hl_variable" href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a>,</div>
-<div class="line">    .count = <a class="code hl_define" href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a>(<a class="code hl_variable" href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a>),</div>
+<div class="line">    .count = AWS_ARRAY_SIZE(<a class="code hl_variable" href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a>),</div>
 <div class="line">}</div>
 <div class="ttc" id="aevent__stream_8c_html_a6eb49b87dee5646aba171bce9eda02f6"><div class="ttname"><a href="event__stream_8c.html#a6eb49b87dee5646aba171bce9eda02f6">s_event_stream_log_subject_infos</a></div><div class="ttdeci">static struct aws_log_subject_info s_event_stream_log_subject_infos[]</div><div class="ttdef"><b>Definition:</b> event_stream.c:72</div></div>
-<div class="ttc" id="amacros_8h_html_a7b837cfd09e209fa32b1129f8bc9c431"><div class="ttname"><a href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a></div><div class="ttdeci">#define AWS_ARRAY_SIZE(array)</div><div class="ttdef"><b>Definition:</b> macros.h:101</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2457,7 +2455,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a> s_list</td>
+          <td class="memname">struct aws_error_info_list s_list</td>
         </tr>
       </table>
   </td>
@@ -2468,10 +2466,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .error_list = <a class="code hl_variable" href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>,</div>
-<div class="line">    .count = <span class="keyword">sizeof</span>(<a class="code hl_variable" href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structaws__error__info.html">aws_error_info</a>),</div>
+<div class="line">    .count = <span class="keyword">sizeof</span>(<a class="code hl_variable" href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> aws_error_info),</div>
 <div class="line">}</div>
 <div class="ttc" id="aevent__stream_8c_html_a255baa9b51b60f5b91a01313637fc353"><div class="ttname"><a href="event__stream_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a></div><div class="ttdeci">static struct aws_error_info s_errors[]</div><div class="ttdef"><b>Definition:</b> event_stream.c:24</div></div>
-<div class="ttc" id="astructaws__error__info_html"><div class="ttname"><a href="structaws__error__info.html">aws_error_info</a></div><div class="ttdef"><b>Definition:</b> error.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>

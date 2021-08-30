@@ -72,16 +72,16 @@ $(function() {
   <div class="headertitle"><div class="title">mqtt_client_test_helper.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="stdint_8h_source.html">aws/common/stdint.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/stdint.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_source.html">aws/mqtt/exports.h</a>&gt;</code><br />
 </div>
 <p><a href="mqtt__client__test__helper_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad32ea16546f99f31864b820ca2d08d3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt__client__test__helper_8h.html#ad32ea16546f99f31864b820ca2d08d3f">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *result)</td></tr>
+<tr class="memitem:ad32ea16546f99f31864b820ca2d08d3f"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt__client__test__helper_8h.html#ad32ea16546f99f31864b820ca2d08d3f">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct aws_byte_cursor *result)</td></tr>
 <tr class="separator:ad32ea16546f99f31864b820ca2d08d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb75eacc9adbf9d9e84bb439455f5a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt__client__test__helper_8h.html#a6eb75eacc9adbf9d9e84bb439455f5a3">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__string.html">aws_string</a> **result)</td></tr>
+<tr class="memitem:a6eb75eacc9adbf9d9e84bb439455f5a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt__client__test__helper_8h.html#a6eb75eacc9adbf9d9e84bb439455f5a3">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct aws_allocator *allocator, struct aws_string **result)</td></tr>
 <tr class="separator:a6eb75eacc9adbf9d9e84bb439455f5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -92,7 +92,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void aws_mqtt_client_get_payload_for_outstanding_publish_packet </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> void aws_mqtt_client_get_payload_for_outstanding_publish_packet </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em>, </td>
@@ -106,7 +106,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>result</em>&#160;</td>
         </tr>
         <tr>
@@ -141,13 +141,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__string.html">aws_string</a> **&#160;</td>
+          <td class="paramtype">struct aws_string **&#160;</td>
           <td class="paramname"><em>result</em>&#160;</td>
         </tr>
         <tr>

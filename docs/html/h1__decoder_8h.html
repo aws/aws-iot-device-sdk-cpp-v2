@@ -101,11 +101,11 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad9b426f07e41bf28a10afcab5dd3fd48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#ad9b426f07e41bf28a10afcab5dd3fd48">aws_h1_decoder_new</a> (struct <a class="el" href="structaws__h1__decoder__params.html">aws_h1_decoder_params</a> *params)</td></tr>
+<tr class="memitem:ad9b426f07e41bf28a10afcab5dd3fd48"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#ad9b426f07e41bf28a10afcab5dd3fd48">aws_h1_decoder_new</a> (struct <a class="el" href="structaws__h1__decoder__params.html">aws_h1_decoder_params</a> *params)</td></tr>
 <tr class="separator:ad9b426f07e41bf28a10afcab5dd3fd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba5556c98150889b1d5280849f91fc27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#aba5556c98150889b1d5280849f91fc27">aws_h1_decoder_destroy</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder)</td></tr>
 <tr class="separator:aba5556c98150889b1d5280849f91fc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7831cfafe4f94fa2e2b4a276ad85c0a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#a7831cfafe4f94fa2e2b4a276ad85c0a1">aws_h1_decode</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data)</td></tr>
+<tr class="memitem:a7831cfafe4f94fa2e2b4a276ad85c0a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#a7831cfafe4f94fa2e2b4a276ad85c0a1">aws_h1_decode</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct aws_byte_cursor *data)</td></tr>
 <tr class="separator:a7831cfafe4f94fa2e2b4a276ad85c0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a147e518dfdab3e7b8f6487d6f27c2f36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8h.html#a147e518dfdab3e7b8f6487d6f27c2f36">aws_h1_decoder_set_logging_id</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, const void *id)</td></tr>
 <tr class="separator:a147e518dfdab3e7b8f6487d6f27c2f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +193,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -303,7 +303,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a>* aws_h1_decoder_new </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a>* aws_h1_decoder_new </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h1__decoder__params.html">aws_h1_decoder_params</a> *&#160;</td>
           <td class="paramname"><em>params</em></td><td>)</td>

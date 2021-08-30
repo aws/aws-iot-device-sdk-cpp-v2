@@ -80,7 +80,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a0a97e4487da6b0fb7adae0b3a5552ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1ce84e95e60f6e330ff6b47cbd2864b"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#af1ce84e95e60f6e330ff6b47cbd2864b">block_type</a></td></tr>
 <tr class="separator:af1ce84e95e60f6e330ff6b47cbd2864b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a062a03c5a73d438b227e61d159a95df3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a062a03c5a73d438b227e61d159a95df3">pseudoheader_values</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
+<tr class="memitem:a062a03c5a73d438b227e61d159a95df3"><td class="memItemLeft" align="right" valign="top">struct aws_string *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a062a03c5a73d438b227e61d159a95df3">pseudoheader_values</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
 <tr class="separator:a062a03c5a73d438b227e61d159a95df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64db6d25cf65c38ed87b42a1c589e670"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="request__response_8h.html#af01e6cd12390f752f0a69f36b670b21c">aws_http_header_compression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a64db6d25cf65c38ed87b42a1c589e670">pseudoheader_compression</a> [<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td></tr>
 <tr class="separator:a64db6d25cf65c38ed87b42a1c589e670"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,7 +92,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ae3f80c18987a9315d2b1b57ed4b82e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98ccb5eceb38d80b0358728c436c508d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a98ccb5eceb38d80b0358728c436c508d">malformed</a></td></tr>
 <tr class="separator:a98ccb5eceb38d80b0358728c436c508d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2badfbfa83c8691f79c6808fc27d4cbe"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a2badfbfa83c8691f79c6808fc27d4cbe">cookies</a></td></tr>
+<tr class="memitem:a2badfbfa83c8691f79c6808fc27d4cbe"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a2badfbfa83c8691f79c6808fc27d4cbe">cookies</a></td></tr>
 <tr class="separator:a2badfbfa83c8691f79c6808fc27d4cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a076f24c47af5dd4174d1031eaa3cf998"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="request__response_8h.html#af01e6cd12390f752f0a69f36b670b21c">aws_http_header_compression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder_1_1aws__header__block__in__progress.html#a076f24c47af5dd4174d1031eaa3cf998">cookie_header_compression_type</a></td></tr>
 <tr class="separator:a076f24c47af5dd4174d1031eaa3cf998"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,7 +133,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_h2_decoder::aws_header_block_in_progress::cookies</td>
+          <td class="memname">struct aws_byte_buf aws_h2_decoder::aws_header_block_in_progress::cookies</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -203,7 +203,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__string.html">aws_string</a>* aws_h2_decoder::aws_header_block_in_progress::pseudoheader_values[<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td>
+          <td class="memname">struct aws_string* aws_h2_decoder::aws_header_block_in_progress::pseudoheader_values[<a class="el" href="h2__decoder_8c.html#a53add0297ae7dc530cfbdee43c383da5af747884fdeb7705d81d266a66ffc0e0f">PSEUDOHEADER_COUNT</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">

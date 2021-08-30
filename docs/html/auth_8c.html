@@ -79,11 +79,11 @@ $(function() {
 <code>#include &lt;aws/auth/private/aws_signing.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="cal_8h_source.html">aws/cal/cal.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="http_8h_source.html">aws/http/http.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h_source.html">aws/common/error.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/error.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a00354b297ee62fb3741e277176f07ec2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a00354b297ee62fb3741e277176f07ec2">AWS_DEFINE_ERROR_INFO_AUTH</a>(CODE,  STR)&#160;&#160;&#160;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a139465316660842ba60a37dfcb8eee2a">AWS_DEFINE_ERROR_INFO</a>(CODE, STR, &quot;aws-c-auth&quot;)</td></tr>
+<tr class="memitem:a00354b297ee62fb3741e277176f07ec2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a00354b297ee62fb3741e277176f07ec2">AWS_DEFINE_ERROR_INFO_AUTH</a>(CODE,  STR)&#160;&#160;&#160;AWS_DEFINE_ERROR_INFO(CODE, STR, &quot;aws-c-auth&quot;)</td></tr>
 <tr class="separator:a00354b297ee62fb3741e277176f07ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -92,24 +92,24 @@ Functions</h2></td></tr>
 <tr class="separator:ac5166c1f1f34e72fa1449d1a64856a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40f358ac3a044f9d32405dbb64084cba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a40f358ac3a044f9d32405dbb64084cba">s_cJSONFree</a> (void *ptr)</td></tr>
 <tr class="separator:a40f358ac3a044f9d32405dbb64084cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab826534eef36119eab4f7fd77c67a4cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#ab826534eef36119eab4f7fd77c67a4cc">aws_auth_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:ab826534eef36119eab4f7fd77c67a4cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#ab826534eef36119eab4f7fd77c67a4cc">aws_auth_library_init</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:ab826534eef36119eab4f7fd77c67a4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6cdddedcccc7de62cdf35cf640aaf24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#ae6cdddedcccc7de62cdf35cf640aaf24">aws_auth_library_clean_up</a> (void)</td></tr>
 <tr class="separator:ae6cdddedcccc7de62cdf35cf640aaf24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info.html">aws_error_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
+<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
 <tr class="separator:a255baa9b51b60f5b91a01313637fc353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a259d0901f655216b70a33e9c18ac9fff"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a259d0901f655216b70a33e9c18ac9fff">s_error_list</a></td></tr>
+<tr class="memitem:a259d0901f655216b70a33e9c18ac9fff"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a259d0901f655216b70a33e9c18ac9fff">s_error_list</a></td></tr>
 <tr class="separator:a259d0901f655216b70a33e9c18ac9fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835d0adc3b67170039479bdacbd4a9c8"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__log__subject__info.html">aws_log_subject_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a> []</td></tr>
+<tr class="memitem:a835d0adc3b67170039479bdacbd4a9c8"><td class="memItemLeft" align="right" valign="top">static struct aws_log_subject_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a> []</td></tr>
 <tr class="separator:a835d0adc3b67170039479bdacbd4a9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae663dc311824962cd48cc256ed99198f"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__log__subject__info__list.html">aws_log_subject_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#ae663dc311824962cd48cc256ed99198f">s_auth_log_subject_list</a></td></tr>
+<tr class="memitem:ae663dc311824962cd48cc256ed99198f"><td class="memItemLeft" align="right" valign="top">static struct aws_log_subject_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#ae663dc311824962cd48cc256ed99198f">s_auth_log_subject_list</a></td></tr>
 <tr class="separator:ae663dc311824962cd48cc256ed99198f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0a762a360f8f4078afaba44e688669"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a3e0a762a360f8f4078afaba44e688669">s_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:a3e0a762a360f8f4078afaba44e688669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a460a3899dc4042a3ba4f3315467d57"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a5a460a3899dc4042a3ba4f3315467d57">s_library_allocator</a> = NULL</td></tr>
+<tr class="memitem:a5a460a3899dc4042a3ba4f3315467d57"><td class="memItemLeft" align="right" valign="top">static struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="auth_8c.html#a5a460a3899dc4042a3ba4f3315467d57">s_library_allocator</a> = NULL</td></tr>
 <tr class="separator:a5a460a3899dc4042a3ba4f3315467d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -134,7 +134,7 @@ Variables</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a139465316660842ba60a37dfcb8eee2a">AWS_DEFINE_ERROR_INFO</a>(CODE, STR, &quot;aws-c-auth&quot;)</td>
+          <td></td><td>&#160;&#160;&#160;AWS_DEFINE_ERROR_INFO(CODE, STR, &quot;aws-c-auth&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -171,7 +171,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_auth_library_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -250,7 +250,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__log__subject__info.html">aws_log_subject_info</a> s_auth_log_subject_infos[]</td>
+          <td class="memname">struct aws_log_subject_info s_auth_log_subject_infos[]</td>
         </tr>
       </table>
   </td>
@@ -260,22 +260,21 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7">AWS_LS_AUTH_GENERAL</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;AuthGeneral&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for aws-c-auth logging that defies categorization.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(<a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126">AWS_LS_AUTH_PROFILE</a>, <span class="stringliteral">&quot;AuthProfile&quot;</span>, <span class="stringliteral">&quot;Subject for config profile related logging.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(<a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126">AWS_LS_AUTH_PROFILE</a>, <span class="stringliteral">&quot;AuthProfile&quot;</span>, <span class="stringliteral">&quot;Subject for config profile related logging.&quot;</span>),</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(</div>
 <div class="line">        <a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457">AWS_LS_AUTH_CREDENTIALS_PROVIDER</a>,</div>
 <div class="line">        <span class="stringliteral">&quot;AuthCredentialsProvider&quot;</span>,</div>
 <div class="line">        <span class="stringliteral">&quot;Subject for credentials provider related logging.&quot;</span>),</div>
-<div class="line">    <a class="code hl_define" href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a>(<a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3">AWS_LS_AUTH_SIGNING</a>, <span class="stringliteral">&quot;AuthSigning&quot;</span>, <span class="stringliteral">&quot;Subject for AWS request signing logging.&quot;</span>),</div>
+<div class="line">    DEFINE_LOG_SUBJECT_INFO(<a class="code hl_enumvalue" href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3">AWS_LS_AUTH_SIGNING</a>, <span class="stringliteral">&quot;AuthSigning&quot;</span>, <span class="stringliteral">&quot;Subject for AWS request signing logging.&quot;</span>),</div>
 <div class="line">}</div>
 <div class="ttc" id="aauth_8h_html_a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7"><div class="ttname"><a href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7">AWS_LS_AUTH_GENERAL</a></div><div class="ttdeci">@ AWS_LS_AUTH_GENERAL</div><div class="ttdef"><b>Definition:</b> auth.h:48</div></div>
 <div class="ttc" id="aauth_8h_html_a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3"><div class="ttname"><a href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3">AWS_LS_AUTH_SIGNING</a></div><div class="ttdeci">@ AWS_LS_AUTH_SIGNING</div><div class="ttdef"><b>Definition:</b> auth.h:51</div></div>
 <div class="ttc" id="aauth_8h_html_a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457"><div class="ttname"><a href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457">AWS_LS_AUTH_CREDENTIALS_PROVIDER</a></div><div class="ttdeci">@ AWS_LS_AUTH_CREDENTIALS_PROVIDER</div><div class="ttdef"><b>Definition:</b> auth.h:50</div></div>
 <div class="ttc" id="aauth_8h_html_a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126"><div class="ttname"><a href="auth_8h.html#a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126">AWS_LS_AUTH_PROFILE</a></div><div class="ttdeci">@ AWS_LS_AUTH_PROFILE</div><div class="ttdef"><b>Definition:</b> auth.h:49</div></div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2logging_8h_html_a650e3e4d7a6d77813204fb98048a1271"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2logging_8h.html#a650e3e4d7a6d77813204fb98048a1271">DEFINE_LOG_SUBJECT_INFO</a></div><div class="ttdeci">#define DEFINE_LOG_SUBJECT_INFO(id, name, desc)</div><div class="ttdef"><b>Definition:</b> logging.h:69</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -289,7 +288,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__log__subject__info__list.html">aws_log_subject_info_list</a> s_auth_log_subject_list</td>
+          <td class="memname">struct aws_log_subject_info_list s_auth_log_subject_list</td>
         </tr>
       </table>
   </td>
@@ -300,10 +299,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .subject_list = <a class="code hl_variable" href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a>,</div>
-<div class="line">    .count = <a class="code hl_define" href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a>(<a class="code hl_variable" href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a>),</div>
+<div class="line">    .count = AWS_ARRAY_SIZE(<a class="code hl_variable" href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a>),</div>
 <div class="line">}</div>
 <div class="ttc" id="aauth_8c_html_a835d0adc3b67170039479bdacbd4a9c8"><div class="ttname"><a href="auth_8c.html#a835d0adc3b67170039479bdacbd4a9c8">s_auth_log_subject_infos</a></div><div class="ttdeci">static struct aws_log_subject_info s_auth_log_subject_infos[]</div><div class="ttdef"><b>Definition:</b> auth.c:92</div></div>
-<div class="ttc" id="amacros_8h_html_a7b837cfd09e209fa32b1129f8bc9c431"><div class="ttname"><a href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a></div><div class="ttdeci">#define AWS_ARRAY_SIZE(array)</div><div class="ttdef"><b>Definition:</b> macros.h:101</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -317,7 +315,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a> s_error_list</td>
+          <td class="memname">struct aws_error_info_list s_error_list</td>
         </tr>
       </table>
   </td>
@@ -328,10 +326,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .error_list = <a class="code hl_variable" href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>,</div>
-<div class="line">    .count = <span class="keyword">sizeof</span>(<a class="code hl_variable" href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structaws__error__info.html">aws_error_info</a>),</div>
+<div class="line">    .count = <span class="keyword">sizeof</span>(<a class="code hl_variable" href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> aws_error_info),</div>
 <div class="line">}</div>
 <div class="ttc" id="aauth_8c_html_a255baa9b51b60f5b91a01313637fc353"><div class="ttname"><a href="auth_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a></div><div class="ttdeci">static struct aws_error_info s_errors[]</div><div class="ttdef"><b>Definition:</b> auth.c:19</div></div>
-<div class="ttc" id="astructaws__error__info_html"><div class="ttname"><a href="structaws__error__info.html">aws_error_info</a></div><div class="ttdef"><b>Definition:</b> error.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -345,7 +342,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info.html">aws_error_info</a> s_errors[]</td>
+          <td class="memname">struct aws_error_info s_errors[]</td>
         </tr>
       </table>
   </td>
@@ -367,7 +364,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* s_library_allocator = NULL</td>
+          <td class="memname">struct aws_allocator* s_library_allocator = NULL</td>
         </tr>
       </table>
   </td>

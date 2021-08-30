@@ -76,12 +76,12 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="socket_8h_source.html">aws/io/socket.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="clock_8h_source.html">aws/common/clock.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="condition__variable_8h_source.html">aws/common/condition_variable.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">aws/common/string.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/clock.h&gt;</code><br />
+<code>#include &lt;aws/common/condition_variable.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
+<code>#include &lt;aws/common/string.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;arpa/inet.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="io_8h_source.html">aws/io/io.h</a>&gt;</code><br />
 <code>#include &lt;errno.h&gt;</code><br />
@@ -157,9 +157,9 @@ Functions</h2></td></tr>
 <tr class="separator:a62fff786580b4d2ac3d1a0b2c446b012"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a829ae91f5434336a559ede39d7afd62c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a829ae91f5434336a559ede39d7afd62c">s_socket_destroy_impl</a> (void *user_data)</td></tr>
 <tr class="separator:a829ae91f5434336a559ede39d7afd62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74eeb99128af0452991ba184db70c682"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a74eeb99128af0452991ba184db70c682">s_socket_init</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__socket__options.html">aws_socket_options</a> *options, int existing_socket_fd)</td></tr>
+<tr class="memitem:a74eeb99128af0452991ba184db70c682"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a74eeb99128af0452991ba184db70c682">s_socket_init</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct aws_allocator *alloc, const struct <a class="el" href="structaws__socket__options.html">aws_socket_options</a> *options, int existing_socket_fd)</td></tr>
 <tr class="separator:a74eeb99128af0452991ba184db70c682"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c0ad0b9d31cec48c32b602e396fdd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a44c0ad0b9d31cec48c32b602e396fdd7">aws_socket_init</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__socket__options.html">aws_socket_options</a> *options)</td></tr>
+<tr class="memitem:a44c0ad0b9d31cec48c32b602e396fdd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a44c0ad0b9d31cec48c32b602e396fdd7">aws_socket_init</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct aws_allocator *alloc, const struct <a class="el" href="structaws__socket__options.html">aws_socket_options</a> *options)</td></tr>
 <tr class="separator:a44c0ad0b9d31cec48c32b602e396fdd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2fc7807d434635bf94eed2cd7650ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ab2fc7807d434635bf94eed2cd7650ed8">aws_socket_clean_up</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:ab2fc7807d434635bf94eed2cd7650ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,9 +169,9 @@ Functions</h2></td></tr>
 <tr class="separator:a3ca90b74573d229fcd45a153d8d50dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68877733541e34766534a7fc80ee6683"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a68877733541e34766534a7fc80ee6683">s_socket_connect_event</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__io__handle.html">aws_io_handle</a> *handle, int events, void *user_data)</td></tr>
 <tr class="separator:a68877733541e34766534a7fc80ee6683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60938711d8daa857284203df0cf37ff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#aa60938711d8daa857284203df0cf37ff">s_handle_socket_timeout</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *args, <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:aa60938711d8daa857284203df0cf37ff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#aa60938711d8daa857284203df0cf37ff">s_handle_socket_timeout</a> (struct aws_task *task, void *args, aws_task_status status)</td></tr>
 <tr class="separator:aa60938711d8daa857284203df0cf37ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fbc94355161c548e39d42347e1d17bc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a4fbc94355161c548e39d42347e1d17bc">s_run_connect_success</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a4fbc94355161c548e39d42347e1d17bc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a4fbc94355161c548e39d42347e1d17bc">s_run_connect_success</a> (struct aws_task *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a4fbc94355161c548e39d42347e1d17bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac11f1cbb98630325e431ed8bb9da0e7c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ac11f1cbb98630325e431ed8bb9da0e7c">s_convert_pton_error</a> (int pton_code)</td></tr>
 <tr class="separator:ac11f1cbb98630325e431ed8bb9da0e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
 <tr class="separator:a90808c8d4337b1639c0e6251f410ff3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998a1e9fca72494ebd3a21c1e1b1626b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a998a1e9fca72494ebd3a21c1e1b1626b">s_stop_accept_pred</a> (void *arg)</td></tr>
 <tr class="separator:a998a1e9fca72494ebd3a21c1e1b1626b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98060ccb26256bf6e0873da33f49dc9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ae98060ccb26256bf6e0873da33f49dc9">s_stop_accept_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:ae98060ccb26256bf6e0873da33f49dc9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ae98060ccb26256bf6e0873da33f49dc9">s_stop_accept_task</a> (struct aws_task *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:ae98060ccb26256bf6e0873da33f49dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad201da3c6c23704050e4d302621970aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ad201da3c6c23704050e4d302621970aa">aws_socket_stop_accept</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:ad201da3c6c23704050e4d302621970aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,13 +195,13 @@ Functions</h2></td></tr>
 <tr class="separator:a2cbf466929080e68072a40f394ef1e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4844c9085689850961ff3de6b82ba46c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a4844c9085689850961ff3de6b82ba46c">s_close_predicate</a> (void *arg)</td></tr>
 <tr class="separator:a4844c9085689850961ff3de6b82ba46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c43f90484d67abbfee6330fc15c308"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a66c43f90484d67abbfee6330fc15c308">s_close_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a66c43f90484d67abbfee6330fc15c308"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a66c43f90484d67abbfee6330fc15c308">s_close_task</a> (struct aws_task *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a66c43f90484d67abbfee6330fc15c308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32b913b6d6e6db5bf8abc7e796519f43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a32b913b6d6e6db5bf8abc7e796519f43">aws_socket_close</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:a32b913b6d6e6db5bf8abc7e796519f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65742e50593d04658a6e5ff6789cef99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a65742e50593d04658a6e5ff6789cef99">aws_socket_shutdown_dir</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir)</td></tr>
 <tr class="separator:a65742e50593d04658a6e5ff6789cef99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8603d5f888e8304455586218ea35bcbc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a8603d5f888e8304455586218ea35bcbc">s_written_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a8603d5f888e8304455586218ea35bcbc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a8603d5f888e8304455586218ea35bcbc">s_written_task</a> (struct aws_task *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a8603d5f888e8304455586218ea35bcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad85da6f81e1d82e4bb18bc9e1263b1d1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ad85da6f81e1d82e4bb18bc9e1263b1d1">s_process_write_requests</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structwrite__request.html">write_request</a> *parent_request)</td></tr>
 <tr class="separator:ad85da6f81e1d82e4bb18bc9e1263b1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,9 +213,9 @@ Functions</h2></td></tr>
 <tr class="separator:abcbf14f7cc4ce235fe79f48b5e881573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe0799023794f150487e6f5d5ebe9389"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#afe0799023794f150487e6f5d5ebe9389">aws_socket_subscribe_to_readable_events</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, <a class="el" href="socket_8h.html#aaec2a34992cc154435fc90dd167bf26b">aws_socket_on_readable_fn</a> *on_readable, void *user_data)</td></tr>
 <tr class="separator:afe0799023794f150487e6f5d5ebe9389"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38b94b34ee14b675c063eaedcd304d31"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a38b94b34ee14b675c063eaedcd304d31">aws_socket_read</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, size_t *amount_read)</td></tr>
+<tr class="memitem:a38b94b34ee14b675c063eaedcd304d31"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#a38b94b34ee14b675c063eaedcd304d31">aws_socket_read</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct aws_byte_buf *buffer, size_t *amount_read)</td></tr>
 <tr class="separator:a38b94b34ee14b675c063eaedcd304d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2e9a619d679ee6d8f8d3d5ffac754d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ad2e9a619d679ee6d8f8d3d5ffac754d6">aws_socket_write</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, <a class="el" href="socket_8h.html#a48bbcf4d8dabcf2ca8de7839cf94023d">aws_socket_on_write_completed_fn</a> *written_fn, void *user_data)</td></tr>
+<tr class="memitem:ad2e9a619d679ee6d8f8d3d5ffac754d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ad2e9a619d679ee6d8f8d3d5ffac754d6">aws_socket_write</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct aws_byte_cursor *cursor, <a class="el" href="socket_8h.html#a48bbcf4d8dabcf2ca8de7839cf94023d">aws_socket_on_write_completed_fn</a> *written_fn, void *user_data)</td></tr>
 <tr class="separator:ad2e9a619d679ee6d8f8d3d5ffac754d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0d324bad07b6f9bd805054d39cf05ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_2socket_8c.html#ac0d324bad07b6f9bd805054d39cf05ca">aws_socket_get_error</a> (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:ac0d324bad07b6f9bd805054d39cf05ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -490,7 +490,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -573,7 +573,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -766,7 +766,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
@@ -833,7 +833,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_close_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -845,7 +845,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1015,7 +1015,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_handle_socket_timeout </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -1027,7 +1027,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1203,7 +1203,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_run_connect_success </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -1215,7 +1215,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1373,7 +1373,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -1441,7 +1441,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_stop_accept_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -1453,7 +1453,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1483,7 +1483,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_written_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -1495,7 +1495,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>

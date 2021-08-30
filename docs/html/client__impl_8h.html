@@ -78,9 +78,9 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="el" href="client_8h_source.html">aws/mqtt/client.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="fixed__header_8h_source.html">aws/mqtt/private/fixed_header.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="topic__tree_8h_source.html">aws/mqtt/private/topic_tree.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="hash__table_8h_source.html">aws/common/hash_table.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/hash_table.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel_8h_source.html">aws/io/channel.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel__bootstrap_8h_source.html">aws/io/channel_bootstrap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="message__pool_8h_source.html">aws/io/message_pool.h</a>&gt;</code><br />
@@ -108,7 +108,7 @@ Macros</h2></td></tr>
 <tr class="separator:a6b291bdf726c0109d69deadf5509c579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a633afb0fe2b0832717c01bff239bea7b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__impl_8h.html#a633afb0fe2b0832717c01bff239bea7b">MQTT_CLIENT_CALL_CALLBACK_ARGS</a>(client_ptr,  callback, ...)</td></tr>
 <tr class="separator:a633afb0fe2b0832717c01bff239bea7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac47126c1cd2177993d6defd5ce9afec7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__impl_8h.html#ac47126c1cd2177993d6defd5ce9afec7">ASSERT_SYNCED_DATA_LOCK_HELD</a>(object)&#160;&#160;&#160;<a class="el" href="assert_8h.html#a2c17f0f768532f761b99a8fee0c656f1">AWS_ASSERT</a>(<a class="el" href="windows_2mutex_8c.html#a5fbce9e5b64fbdceb2c34a35cc28bc34">aws_mutex_try_lock</a>(&amp;(object)-&gt;synced_data.lock) == <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a24f294735cddb51d28b7f04883e690f6">AWS_OP_ERR</a>)</td></tr>
+<tr class="memitem:ac47126c1cd2177993d6defd5ce9afec7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client__impl_8h.html#ac47126c1cd2177993d6defd5ce9afec7">ASSERT_SYNCED_DATA_LOCK_HELD</a>(object)&#160;&#160;&#160;AWS_ASSERT(aws_mutex_try_lock(&amp;(object)-&gt;synced_data.lock) == AWS_OP_ERR)</td></tr>
 <tr class="separator:ac47126c1cd2177993d6defd5ce9afec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -166,7 +166,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">object</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="assert_8h.html#a2c17f0f768532f761b99a8fee0c656f1">AWS_ASSERT</a>(<a class="el" href="windows_2mutex_8c.html#a5fbce9e5b64fbdceb2c34a35cc28bc34">aws_mutex_try_lock</a>(&amp;(object)-&gt;synced_data.lock) == <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a24f294735cddb51d28b7f04883e690f6">AWS_OP_ERR</a>)</td>
+          <td>&#160;&#160;&#160;AWS_ASSERT(aws_mutex_try_lock(&amp;(object)-&gt;synced_data.lock) == AWS_OP_ERR)</td>
         </tr>
       </table>
 </div><div class="memdoc">

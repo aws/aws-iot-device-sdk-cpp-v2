@@ -77,11 +77,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_uri_8h_source.html">aws/io/uri.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2common_8h_source.html">aws/common/common.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/common.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -90,32 +90,20 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a8006b58f0c4d054232b6f991fb53955e"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a8006b58f0c4d054232b6f991fb53955e">parse_fn</a>(struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td></tr>
+<tr class="memitem:a8006b58f0c4d054232b6f991fb53955e"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a8006b58f0c4d054232b6f991fb53955e">parse_fn</a>(struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td></tr>
 <tr class="separator:a8006b58f0c4d054232b6f991fb53955e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24ea2b6fc602d7961f56eb04f3324d48"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a24ea2b6fc602d7961f56eb04f3324d48">unchecked_append_canonicalized_character_fn</a>(struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint8_t value)</td></tr>
+<tr class="memitem:a24ea2b6fc602d7961f56eb04f3324d48"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a24ea2b6fc602d7961f56eb04f3324d48">unchecked_append_canonicalized_character_fn</a>(struct aws_byte_buf *buffer, uint8_t value)</td></tr>
 <tr class="separator:a24ea2b6fc602d7961f56eb04f3324d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ab0ce6a33765cfb1c3ceb2f811cc03ce9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9">parser_state</a> { <br />
-&#160;&#160;<a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c">ON_WEEKDAY</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480">ON_SPACE_DELIM</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351">ON_YEAR</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283">ON_MONTH</a>
-, <br />
-&#160;&#160;<a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261">ON_MONTH_DAY</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c">ON_HOUR</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41">ON_MINUTE</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649">ON_SECOND</a>
-, <br />
-&#160;&#160;<a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691">ON_TZ</a>
-, <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400">FINISHED</a>
-, <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4">ON_SCHEME</a>
+&#160;&#160;<a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4">ON_SCHEME</a>
 , <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11">ON_AUTHORITY</a>
-, <br />
-&#160;&#160;<a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded">ON_PATH</a>
+, <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded">ON_PATH</a>
 , <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db">ON_QUERY_STRING</a>
-, <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400">FINISHED</a>
+, <br />
+&#160;&#160;<a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400">FINISHED</a>
 , <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9a2fd6f336d08340583bd620a7f5694c90">ERROR</a>
 <br />
  }</td></tr>
@@ -123,53 +111,53 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4e588e3365971ce259117ca697e4bf4f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a4e588e3365971ce259117ca697e4bf4f">s_parse_scheme</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td></tr>
+<tr class="memitem:a4e588e3365971ce259117ca697e4bf4f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a4e588e3365971ce259117ca697e4bf4f">s_parse_scheme</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td></tr>
 <tr class="separator:a4e588e3365971ce259117ca697e4bf4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefca228f479d66704492eecca19ce67c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#aefca228f479d66704492eecca19ce67c">s_parse_authority</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td></tr>
+<tr class="memitem:aefca228f479d66704492eecca19ce67c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#aefca228f479d66704492eecca19ce67c">s_parse_authority</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td></tr>
 <tr class="separator:aefca228f479d66704492eecca19ce67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53147e25326c74ae60ceec7d92378438"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a53147e25326c74ae60ceec7d92378438">s_parse_path</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td></tr>
+<tr class="memitem:a53147e25326c74ae60ceec7d92378438"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a53147e25326c74ae60ceec7d92378438">s_parse_path</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td></tr>
 <tr class="separator:a53147e25326c74ae60ceec7d92378438"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3553110f0b8b186ad1f68339292aa46f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a3553110f0b8b186ad1f68339292aa46f">s_parse_query_string</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td></tr>
+<tr class="memitem:a3553110f0b8b186ad1f68339292aa46f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a3553110f0b8b186ad1f68339292aa46f">s_parse_query_string</a> (struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td></tr>
 <tr class="separator:a3553110f0b8b186ad1f68339292aa46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12916edc61874b2890a65e2367f8cdad"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a12916edc61874b2890a65e2367f8cdad">s_init_from_uri_str</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a12916edc61874b2890a65e2367f8cdad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0db8aecee077e0d3b419ab890808bd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ac0db8aecee077e0d3b419ab890808bd0">aws_uri_init_parse</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *uri_str)</td></tr>
+<tr class="memitem:ac0db8aecee077e0d3b419ab890808bd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ac0db8aecee077e0d3b419ab890808bd0">aws_uri_init_parse</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct aws_allocator *allocator, const struct aws_byte_cursor *uri_str)</td></tr>
 <tr class="separator:ac0db8aecee077e0d3b419ab890808bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45679de4995ac8359726da89c6e52871"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a45679de4995ac8359726da89c6e52871">aws_uri_init_from_builder_options</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__uri__builder__options.html">aws_uri_builder_options</a> *options)</td></tr>
+<tr class="memitem:a45679de4995ac8359726da89c6e52871"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a45679de4995ac8359726da89c6e52871">aws_uri_init_from_builder_options</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct aws_allocator *allocator, struct <a class="el" href="structaws__uri__builder__options.html">aws_uri_builder_options</a> *options)</td></tr>
 <tr class="separator:a45679de4995ac8359726da89c6e52871"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73c8610748d0612fa20f042842edf4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a73c8610748d0612fa20f042842edf4b0">aws_uri_clean_up</a> (struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a73c8610748d0612fa20f042842edf4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65027965fa964814667bd4a358267bf3"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a65027965fa964814667bd4a358267bf3">aws_uri_scheme</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:a65027965fa964814667bd4a358267bf3"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a65027965fa964814667bd4a358267bf3">aws_uri_scheme</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a65027965fa964814667bd4a358267bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a910de72a51e0e80d5c9050374853a40d"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a910de72a51e0e80d5c9050374853a40d">aws_uri_authority</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:a910de72a51e0e80d5c9050374853a40d"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a910de72a51e0e80d5c9050374853a40d">aws_uri_authority</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a910de72a51e0e80d5c9050374853a40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60bf7db8b694aa382ae5eeb5cc9b7ca7"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a60bf7db8b694aa382ae5eeb5cc9b7ca7">aws_uri_path</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:a60bf7db8b694aa382ae5eeb5cc9b7ca7"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a60bf7db8b694aa382ae5eeb5cc9b7ca7">aws_uri_path</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a60bf7db8b694aa382ae5eeb5cc9b7ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8ecd6ca6b9e678eb4fa1568851ef359"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af8ecd6ca6b9e678eb4fa1568851ef359">aws_uri_query_string</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:af8ecd6ca6b9e678eb4fa1568851ef359"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af8ecd6ca6b9e678eb4fa1568851ef359">aws_uri_query_string</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:af8ecd6ca6b9e678eb4fa1568851ef359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb195e1d630a57d7a60fcdba0e81a131"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#abb195e1d630a57d7a60fcdba0e81a131">aws_uri_path_and_query</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:abb195e1d630a57d7a60fcdba0e81a131"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#abb195e1d630a57d7a60fcdba0e81a131">aws_uri_path_and_query</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:abb195e1d630a57d7a60fcdba0e81a131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ff8cfb335c54c1b8ae3f6170b4e9eb8"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a1ff8cfb335c54c1b8ae3f6170b4e9eb8">aws_uri_host_name</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
+<tr class="memitem:a1ff8cfb335c54c1b8ae3f6170b4e9eb8"><td class="memItemLeft" align="right" valign="top">const struct aws_byte_cursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a1ff8cfb335c54c1b8ae3f6170b4e9eb8">aws_uri_host_name</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:a1ff8cfb335c54c1b8ae3f6170b4e9eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af404b250543b5a8be2df320bdf3a5c80"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af404b250543b5a8be2df320bdf3a5c80">aws_uri_port</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri)</td></tr>
 <tr class="separator:af404b250543b5a8be2df320bdf3a5c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c4963705d2f02b65fa97c3cad517e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a83c4963705d2f02b65fa97c3cad517e3">aws_uri_query_string_next_param</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct <a class="el" href="structaws__uri__param.html">aws_uri_param</a> *param)</td></tr>
 <tr class="separator:a83c4963705d2f02b65fa97c3cad517e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7d1d65d4fd65d3291b6b3546f476a36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ad7d1d65d4fd65d3291b6b3546f476a36">aws_uri_query_string_params</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *out_params)</td></tr>
+<tr class="memitem:ad7d1d65d4fd65d3291b6b3546f476a36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ad7d1d65d4fd65d3291b6b3546f476a36">aws_uri_query_string_params</a> (const struct <a class="el" href="structaws__uri.html">aws_uri</a> *uri, struct aws_array_list *out_params)</td></tr>
 <tr class="separator:ad7d1d65d4fd65d3291b6b3546f476a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a965ba1a7e77649fc4163ece979713dc8"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a965ba1a7e77649fc4163ece979713dc8">s_to_uppercase_hex</a> (uint8_t value)</td></tr>
 <tr class="separator:a965ba1a7e77649fc4163ece979713dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac58ed5e70ee952631b14025d00e234da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ac58ed5e70ee952631b14025d00e234da">s_unchecked_append_canonicalized_path_character</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint8_t value)</td></tr>
+<tr class="memitem:ac58ed5e70ee952631b14025d00e234da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#ac58ed5e70ee952631b14025d00e234da">s_unchecked_append_canonicalized_path_character</a> (struct aws_byte_buf *buffer, uint8_t value)</td></tr>
 <tr class="separator:ac58ed5e70ee952631b14025d00e234da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af710e89b6c5dcde0facbe00c9b233157"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af710e89b6c5dcde0facbe00c9b233157">s_raw_append_canonicalized_param_character</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint8_t value)</td></tr>
+<tr class="memitem:af710e89b6c5dcde0facbe00c9b233157"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af710e89b6c5dcde0facbe00c9b233157">s_raw_append_canonicalized_param_character</a> (struct aws_byte_buf *buffer, uint8_t value)</td></tr>
 <tr class="separator:af710e89b6c5dcde0facbe00c9b233157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af836ff9fb4a9827b4fdb209427345fbb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af836ff9fb4a9827b4fdb209427345fbb">s_encode_cursor_to_buffer</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor, <a class="el" href="uri_8c.html#a24ea2b6fc602d7961f56eb04f3324d48">unchecked_append_canonicalized_character_fn</a> *append_canonicalized_character)</td></tr>
+<tr class="memitem:af836ff9fb4a9827b4fdb209427345fbb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#af836ff9fb4a9827b4fdb209427345fbb">s_encode_cursor_to_buffer</a> (struct aws_byte_buf *buffer, const struct aws_byte_cursor *cursor, <a class="el" href="uri_8c.html#a24ea2b6fc602d7961f56eb04f3324d48">unchecked_append_canonicalized_character_fn</a> *append_canonicalized_character)</td></tr>
 <tr class="separator:af836ff9fb4a9827b4fdb209427345fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9830c567aca22aef708357e533a41c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a0f9830c567aca22aef708357e533a41c">aws_byte_buf_append_encoding_uri_path</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor)</td></tr>
+<tr class="memitem:a0f9830c567aca22aef708357e533a41c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a0f9830c567aca22aef708357e533a41c">aws_byte_buf_append_encoding_uri_path</a> (struct aws_byte_buf *buffer, const struct aws_byte_cursor *cursor)</td></tr>
 <tr class="separator:a0f9830c567aca22aef708357e533a41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a2dcd27e959803ddfe6ea97bdf2a074"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a5a2dcd27e959803ddfe6ea97bdf2a074">aws_byte_buf_append_encoding_uri_param</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor)</td></tr>
+<tr class="memitem:a5a2dcd27e959803ddfe6ea97bdf2a074"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#a5a2dcd27e959803ddfe6ea97bdf2a074">aws_byte_buf_append_encoding_uri_param</a> (struct aws_byte_buf *buffer, const struct aws_byte_cursor *cursor)</td></tr>
 <tr class="separator:a5a2dcd27e959803ddfe6ea97bdf2a074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa269f9a77df39aaa90a9812c971d069a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#aa269f9a77df39aaa90a9812c971d069a">aws_byte_buf_append_decoding_uri</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor)</td></tr>
+<tr class="memitem:aa269f9a77df39aaa90a9812c971d069a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uri_8c.html#aa269f9a77df39aaa90a9812c971d069a">aws_byte_buf_append_decoding_uri</a> (struct aws_byte_buf *buffer, const struct aws_byte_cursor *cursor)</td></tr>
 <tr class="separator:aa269f9a77df39aaa90a9812c971d069a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -187,7 +175,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() parse_fn(struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str)</td>
+          <td class="memname">typedef void() parse_fn(struct <a class="el" href="structuri__parser.html">uri_parser</a> *parser, struct aws_byte_cursor *str)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +189,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() unchecked_append_canonicalized_character_fn(struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, uint8_t value)</td>
+          <td class="memname">typedef void() unchecked_append_canonicalized_character_fn(struct aws_byte_buf *buffer, uint8_t value)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -216,23 +204,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="date__time_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9">parser_state</a></td>
+          <td class="memname">enum <a class="el" href="uri_8c.html#ab0ce6a33765cfb1c3ceb2f811cc03ce9">parser_state</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c"></a>ON_WEEKDAY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480"></a>ON_SPACE_DELIM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351"></a>ON_YEAR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283"></a>ON_MONTH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261"></a>ON_MONTH_DAY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c"></a>ON_HOUR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41"></a>ON_MINUTE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649"></a>ON_SECOND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691"></a>ON_TZ&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400"></a>FINISHED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4"></a>ON_SCHEME&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4"></a>ON_SCHEME&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11"></a>ON_AUTHORITY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded"></a>ON_PATH&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db" name="ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db"></a>ON_QUERY_STRING&#160;</td><td class="fielddoc"></td></tr>
@@ -252,13 +230,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_byte_buf_append_decoding_uri </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -281,13 +259,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_byte_buf_append_encoding_uri_param </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -310,13 +288,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_byte_buf_append_encoding_uri_path </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>&#160;</td>
         </tr>
         <tr>
@@ -337,7 +315,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_authority </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_authority </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -374,7 +352,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_host_name </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_host_name </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -401,7 +379,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -436,13 +414,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>uri_str</em>&#160;</td>
         </tr>
         <tr>
@@ -463,7 +441,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_path </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_path </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -482,7 +460,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_path_and_query </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_path_and_query </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -520,7 +498,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_query_string </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_query_string </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -578,7 +556,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>out_params</em>&#160;</td>
         </tr>
         <tr>
@@ -599,7 +577,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>* aws_uri_scheme </td>
+          <td class="memname">const struct aws_byte_cursor* aws_uri_scheme </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__uri.html">aws_uri</a> *&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -623,13 +601,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static int s_encode_cursor_to_buffer </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cursor</em>, </td>
         </tr>
         <tr>
@@ -697,7 +675,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>str</em>&#160;</td>
         </tr>
         <tr>
@@ -733,7 +711,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>str</em>&#160;</td>
         </tr>
         <tr>
@@ -769,7 +747,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>str</em>&#160;</td>
         </tr>
         <tr>
@@ -805,7 +783,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>str</em>&#160;</td>
         </tr>
         <tr>
@@ -835,7 +813,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_raw_append_canonicalized_param_character </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -897,7 +875,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_unchecked_append_canonicalized_path_character </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>

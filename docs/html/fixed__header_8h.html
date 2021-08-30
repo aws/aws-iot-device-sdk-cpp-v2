@@ -74,7 +74,7 @@ $(function() {
   <div class="headertitle"><div class="title">fixed_header.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="mqtt_8h_source.html">aws/mqtt/mqtt.h</a>&gt;</code><br />
 </div>
 <p><a href="fixed__header_8h_source.html">Go to the source code of this file.</a></p>
@@ -114,9 +114,9 @@ Functions</h2></td></tr>
 <tr class="separator:aa939da00e598d66eb84f34e3158f7a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d354ca6b4241f1a141feea8dcc98e00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fixed__header_8h.html#a6d354ca6b4241f1a141feea8dcc98e00">aws_mqtt_packet_has_flags</a> (const struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
 <tr class="separator:a6d354ca6b4241f1a141feea8dcc98e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5f35b376f25f953c5817eb5dac6ca99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fixed__header_8h.html#aa5f35b376f25f953c5817eb5dac6ca99">aws_mqtt_fixed_header_encode</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, const struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
+<tr class="memitem:aa5f35b376f25f953c5817eb5dac6ca99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fixed__header_8h.html#aa5f35b376f25f953c5817eb5dac6ca99">aws_mqtt_fixed_header_encode</a> (struct aws_byte_buf *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, const struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
 <tr class="separator:aa5f35b376f25f953c5817eb5dac6ca99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a64e315b3f42d32a5e0a262bced13e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fixed__header_8h.html#a8a64e315b3f42d32a5e0a262bced13e0">aws_mqtt_fixed_header_decode</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cur, struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
+<tr class="memitem:a8a64e315b3f42d32a5e0a262bced13e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fixed__header_8h.html#a8a64e315b3f42d32a5e0a262bced13e0">aws_mqtt_fixed_header_decode</a> (struct aws_byte_cursor *cur, struct <a class="el" href="structaws__mqtt__fixed__header.html">aws_mqtt_fixed_header</a> *header)</td></tr>
 <tr class="separator:a8a64e315b3f42d32a5e0a262bced13e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int aws_mqtt_fixed_header_decode </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cur</em>, </td>
         </tr>
         <tr>
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h.html#a9f8288d6c805910baca30043ee3068bf">AWS_MQTT_API</a> int aws_mqtt_fixed_header_encode </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>

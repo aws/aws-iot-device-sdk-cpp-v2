@@ -26,8 +26,7 @@ var searchData=
   ['describejobexecutionrequest_23',['DescribeJobExecutionRequest',['../class_aws_1_1_iotjobs_1_1_describe_job_execution_request.html',1,'Aws::Iotjobs']]],
   ['describejobexecutionresponse_24',['DescribeJobExecutionResponse',['../class_aws_1_1_iotjobs_1_1_describe_job_execution_response.html',1,'Aws::Iotjobs']]],
   ['describejobexecutionsubscriptionrequest_25',['DescribeJobExecutionSubscriptionRequest',['../class_aws_1_1_iotjobs_1_1_describe_job_execution_subscription_request.html',1,'Aws::Iotjobs']]],
-  ['deviceapihandle_26',['DeviceApiHandle',['../class_aws_1_1_iotdevicecommon_1_1_device_api_handle.html',1,'Aws::Iotdevicecommon']]],
-  ['discoverresponse_27',['DiscoverResponse',['../class_aws_1_1_discovery_1_1_discover_response.html',1,'Aws::Discovery']]],
-  ['discoveryclient_28',['DiscoveryClient',['../class_aws_1_1_discovery_1_1_discovery_client.html',1,'Aws::Discovery']]],
-  ['discoveryclientconfig_29',['DiscoveryClientConfig',['../class_aws_1_1_discovery_1_1_discovery_client_config.html',1,'Aws::Discovery']]]
+  ['discoverresponse_26',['DiscoverResponse',['../class_aws_1_1_discovery_1_1_discover_response.html',1,'Aws::Discovery']]],
+  ['discoveryclient_27',['DiscoveryClient',['../class_aws_1_1_discovery_1_1_discovery_client.html',1,'Aws::Discovery']]],
+  ['discoveryclientconfig_28',['DiscoveryClientConfig',['../class_aws_1_1_discovery_1_1_discovery_client_config.html',1,'Aws::Discovery']]]
 ];

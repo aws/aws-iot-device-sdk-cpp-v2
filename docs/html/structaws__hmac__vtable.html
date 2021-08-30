@@ -80,9 +80,9 @@ Public Attributes</h2></td></tr>
 <tr class="separator:affbead3edb56465994df31b511835c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5f51b9b88c9ec80e0c209e7816cb3b2"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__hmac__vtable.html#af5f51b9b88c9ec80e0c209e7816cb3b2">destroy</a> )(struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac)</td></tr>
 <tr class="separator:af5f51b9b88c9ec80e0c209e7816cb3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63abcaf44a53901b4e10d3a7ef3e9f1b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__hmac__vtable.html#a63abcaf44a53901b4e10d3a7ef3e9f1b">update</a> )(struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td></tr>
+<tr class="memitem:a63abcaf44a53901b4e10d3a7ef3e9f1b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__hmac__vtable.html#a63abcaf44a53901b4e10d3a7ef3e9f1b">update</a> )(struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td></tr>
 <tr class="separator:a63abcaf44a53901b4e10d3a7ef3e9f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a738c3a472b8dc512442c616f51917b90"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__hmac__vtable.html#a738c3a472b8dc512442c616f51917b90">finalize</a> )(struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out)</td></tr>
+<tr class="memitem:a738c3a472b8dc512442c616f51917b90"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__hmac__vtable.html#a738c3a472b8dc512442c616f51917b90">finalize</a> )(struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct aws_byte_buf *out)</td></tr>
 <tr class="separator:a738c3a472b8dc512442c616f51917b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -121,7 +121,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_hmac_vtable::finalize) (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out)</td>
+          <td class="memname">int(* aws_hmac_vtable::finalize) (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct aws_byte_buf *out)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -149,7 +149,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_hmac_vtable::update) (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td>
+          <td class="memname">int(* aws_hmac_vtable::update) (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

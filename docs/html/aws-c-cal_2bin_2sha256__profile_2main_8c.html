@@ -73,17 +73,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_source.html">aws/cal/hash.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="clock_8h_source.html">aws/common/clock.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="device__random_8h_source.html">aws/common/device_random.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/clock.h&gt;</code><br />
+<code>#include &lt;aws/common/device_random.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8d799c7ae20a703d0b3fc6140c36825e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a8d799c7ae20a703d0b3fc6140c36825e">s_profile_streaming_hash_at_chunk_size</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_hash, size_t chunk_size, size_t alignment)</td></tr>
+<tr class="memitem:a8d799c7ae20a703d0b3fc6140c36825e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a8d799c7ae20a703d0b3fc6140c36825e">s_profile_streaming_hash_at_chunk_size</a> (struct aws_allocator *allocator, struct aws_byte_cursor to_hash, size_t chunk_size, size_t alignment)</td></tr>
 <tr class="separator:a8d799c7ae20a703d0b3fc6140c36825e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b40af0fd7917b62a6f3b20d3b8007c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a55b40af0fd7917b62a6f3b20d3b8007c">s_profile_oneshot_hash</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_hash)</td></tr>
+<tr class="memitem:a55b40af0fd7917b62a6f3b20d3b8007c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a55b40af0fd7917b62a6f3b20d3b8007c">s_profile_oneshot_hash</a> (struct aws_allocator *allocator, struct aws_byte_cursor to_hash)</td></tr>
 <tr class="separator:a55b40af0fd7917b62a6f3b20d3b8007c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00e1935fbf96abd529cc5fa7bcf22337"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a00e1935fbf96abd529cc5fa7bcf22337">s_run_profiles</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, size_t to_hash_size, const char *profile_name)</td></tr>
+<tr class="memitem:a00e1935fbf96abd529cc5fa7bcf22337"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a00e1935fbf96abd529cc5fa7bcf22337">s_run_profiles</a> (struct aws_allocator *allocator, size_t to_hash_size, const char *profile_name)</td></tr>
 <tr class="separator:a00e1935fbf96abd529cc5fa7bcf22337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-cal_2bin_2sha256__profile_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,13 +119,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_profile_oneshot_hash </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>to_hash</em>&#160;</td>
         </tr>
         <tr>
@@ -155,13 +155,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_profile_streaming_hash_at_chunk_size </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>to_hash</em>, </td>
         </tr>
         <tr>
@@ -204,7 +204,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_run_profiles </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>

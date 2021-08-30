@@ -76,13 +76,13 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="tls__channel__handler_8h_source.html">aws/io/tls_channel_handler.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="encoding_8h_source.html">aws/common/encoding.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="math_8h_source.html">aws/common/math.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">aws/common/string.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/encoding.h&gt;</code><br />
+<code>#include &lt;aws/common/math.h&gt;</code><br />
+<code>#include &lt;aws/common/string.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel_8h_source.html">aws/io/channel.h</a>&gt;</code><br />
 <code>#include &lt;aws/io/file_utils.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;aws/io/pki_utils.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="tls__channel__handler__shared_8h_source.html">aws/io/private/tls_channel_handler_shared.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2statistics_8h_source.html">aws/io/statistics.h</a>&gt;</code><br />
@@ -91,6 +91,7 @@ $(function() {
 <code>#include &lt;security.h&gt;</code><br />
 <code>#include &lt;errno.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 </div><table class="memberdecls">
@@ -120,7 +121,7 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afab811e5c6f4d0858a73f55e7b2d5ff1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#afab811e5c6f4d0858a73f55e7b2d5ff1">aws_tls_init_static_state</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc)</td></tr>
+<tr class="memitem:afab811e5c6f4d0858a73f55e7b2d5ff1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#afab811e5c6f4d0858a73f55e7b2d5ff1">aws_tls_init_static_state</a> (struct aws_allocator *alloc)</td></tr>
 <tr class="separator:afab811e5c6f4d0858a73f55e7b2d5ff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea1cb55465720941c9ae163ae6b1b228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#aea1cb55465720941c9ae163ae6b1b228">aws_tls_clean_up_static_state</a> (void)</td></tr>
 <tr class="separator:aea1cb55465720941c9ae163ae6b1b228"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,7 +155,7 @@ Functions</h2></td></tr>
 <tr class="separator:a0dc7860cc3f833698ac2eabb5cc3ee16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9926638a3b77086c8f697a1c66417c3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ac9926638a3b77086c8f697a1c66417c3">s_process_pending_output_messages</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:ac9926638a3b77086c8f697a1c66417c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e7944243fed68ccb814d71d3d488884"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a9e7944243fed68ccb814d71d3d488884">s_process_pending_output_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a9e7944243fed68ccb814d71d3d488884"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a9e7944243fed68ccb814d71d3d488884">s_process_pending_output_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a9e7944243fed68ccb814d71d3d488884"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89b7bb76dba8ea2d0dcf6bd16120da32"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a89b7bb76dba8ea2d0dcf6bd16120da32">s_process_read_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message)</td></tr>
 <tr class="separator:a89b7bb76dba8ea2d0dcf6bd16120da32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,35 +167,35 @@ Functions</h2></td></tr>
 <tr class="separator:abf6b7a99d5242a62a61b200386a0fefa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9edac38b0573bbed51abbf242d2eaed1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a9edac38b0573bbed51abbf242d2eaed1">s_handler_shutdown</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int error_code, bool abort_immediately)</td></tr>
 <tr class="separator:a9edac38b0573bbed51abbf242d2eaed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3962debd9ca4bc0e65efcf307b94c49"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ac3962debd9ca4bc0e65efcf307b94c49">s_do_negotiation_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:ac3962debd9ca4bc0e65efcf307b94c49"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ac3962debd9ca4bc0e65efcf307b94c49">s_do_negotiation_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:ac3962debd9ca4bc0e65efcf307b94c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad06f1d82e07e642d525301e0d3a11c51"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ad06f1d82e07e642d525301e0d3a11c51">s_secure_channel_handler_destroy</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structsecure__channel__handler.html">secure_channel_handler</a> *sc_handler)</td></tr>
+<tr class="memitem:ad06f1d82e07e642d525301e0d3a11c51"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ad06f1d82e07e642d525301e0d3a11c51">s_secure_channel_handler_destroy</a> (struct aws_allocator *allocator, struct <a class="el" href="structsecure__channel__handler.html">secure_channel_handler</a> *sc_handler)</td></tr>
 <tr class="separator:ad06f1d82e07e642d525301e0d3a11c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43d3807a0d169ba7bd26392dd4ed4d33"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a43d3807a0d169ba7bd26392dd4ed4d33">s_handler_destroy</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:a43d3807a0d169ba7bd26392dd4ed4d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d860abd2afb1ef51c9a9240454a3196"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a2d860abd2afb1ef51c9a9240454a3196">s_reset_statistics</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:a2d860abd2afb1ef51c9a9240454a3196"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c620bb05a415271aa481c61eece3953"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a5c620bb05a415271aa481c61eece3953">s_gather_statistics</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *stats)</td></tr>
+<tr class="memitem:a5c620bb05a415271aa481c61eece3953"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a5c620bb05a415271aa481c61eece3953">s_gather_statistics</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct aws_array_list *stats)</td></tr>
 <tr class="separator:a5c620bb05a415271aa481c61eece3953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad78455205ff54b2fc7dc33eabf5be8ee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ad78455205ff54b2fc7dc33eabf5be8ee">aws_tls_client_handler_start_negotiation</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:ad78455205ff54b2fc7dc33eabf5be8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7254a489149e1b5498b6c3f96d9677d9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a7254a489149e1b5498b6c3f96d9677d9">aws_tls_handler_protocol</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
+<tr class="memitem:a7254a489149e1b5498b6c3f96d9677d9"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a7254a489149e1b5498b6c3f96d9677d9">aws_tls_handler_protocol</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:a7254a489149e1b5498b6c3f96d9677d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6a5bf320d7418b9c63c1e293568f00e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ac6a5bf320d7418b9c63c1e293568f00e">aws_tls_handler_server_name</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
+<tr class="memitem:ac6a5bf320d7418b9c63c1e293568f00e"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#ac6a5bf320d7418b9c63c1e293568f00e">aws_tls_handler_server_name</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:ac6a5bf320d7418b9c63c1e293568f00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8387d727789358f455a3d6dfaf21be89"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a8387d727789358f455a3d6dfaf21be89">s_tls_handler_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, bool is_client_mode)</td></tr>
+<tr class="memitem:a8387d727789358f455a3d6dfaf21be89"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a8387d727789358f455a3d6dfaf21be89">s_tls_handler_new</a> (struct aws_allocator *alloc, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, bool is_client_mode)</td></tr>
 <tr class="separator:a8387d727789358f455a3d6dfaf21be89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af37baf1e235331b32004a746d41aea14"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#af37baf1e235331b32004a746d41aea14">aws_tls_client_handler_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
+<tr class="memitem:af37baf1e235331b32004a746d41aea14"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#af37baf1e235331b32004a746d41aea14">aws_tls_client_handler_new</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:af37baf1e235331b32004a746d41aea14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1ba97fc708587fa7beec313377ded50"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#aa1ba97fc708587fa7beec313377ded50">aws_tls_server_handler_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
+<tr class="memitem:aa1ba97fc708587fa7beec313377ded50"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#aa1ba97fc708587fa7beec313377ded50">aws_tls_server_handler_new</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__tls__connection__options.html">aws_tls_connection_options</a> *options, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:aa1ba97fc708587fa7beec313377ded50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d19516348df097e434589864c86b61f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a5d19516348df097e434589864c86b61f">s_secure_channel_ctx_destroy</a> (struct <a class="el" href="structsecure__channel__ctx.html">secure_channel_ctx</a> *<a class="el" href="structsecure__channel__ctx.html">secure_channel_ctx</a>)</td></tr>
 <tr class="separator:a5d19516348df097e434589864c86b61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa18cf049e3ccafaa38d6b9eed615b0ac"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#aa18cf049e3ccafaa38d6b9eed615b0ac">s_ctx_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options, bool is_client_mode)</td></tr>
+<tr class="memitem:aa18cf049e3ccafaa38d6b9eed615b0ac"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#aa18cf049e3ccafaa38d6b9eed615b0ac">s_ctx_new</a> (struct aws_allocator *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options, bool is_client_mode)</td></tr>
 <tr class="separator:aa18cf049e3ccafaa38d6b9eed615b0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2000b94eba98fddaa032b14b1cc32d1a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a2000b94eba98fddaa032b14b1cc32d1a">aws_tls_server_ctx_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options)</td></tr>
+<tr class="memitem:a2000b94eba98fddaa032b14b1cc32d1a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a2000b94eba98fddaa032b14b1cc32d1a">aws_tls_server_ctx_new</a> (struct aws_allocator *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options)</td></tr>
 <tr class="separator:a2000b94eba98fddaa032b14b1cc32d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ba3f716d77e159c68c850d25d05b9f9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a4ba3f716d77e159c68c850d25d05b9f9">aws_tls_client_ctx_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options)</td></tr>
+<tr class="memitem:a4ba3f716d77e159c68c850d25d05b9f9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__channel__tls__handler_8c.html#a4ba3f716d77e159c68c850d25d05b9f9">aws_tls_client_ctx_new</a> (struct aws_allocator *alloc, const struct <a class="el" href="structaws__tls__ctx__options.html">aws_tls_ctx_options</a> *options)</td></tr>
 <tr class="separator:a4ba3f716d77e159c68c850d25d05b9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -236,10 +237,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> (s &lt;= i) {                                                                                                      \</div>
 <div class="line">        aws_array_list_clean_up(&amp;<a class="code hl_variable" href="aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>);                                                                                   \</div>
-<div class="line">        return <a class="code hl_function" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3f0f1282a739f6e2d29bab8912f1eb7f">aws_raise_error</a>(<a class="code hl_enumvalue" href="aws-c-common_2include_2aws_2common_2error_8h.html#a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50">AWS_ERROR_SHORT_BUFFER</a>);                                                                \</div>
+<div class="line">        return aws_raise_error(AWS_ERROR_SHORT_BUFFER);                                                                \</div>
 <div class="line">    }</div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2error_8h_html_a3f0f1282a739f6e2d29bab8912f1eb7f"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2error_8h.html#a3f0f1282a739f6e2d29bab8912f1eb7f">aws_raise_error</a></div><div class="ttdeci">AWS_STATIC_IMPL int aws_raise_error(int err)</div><div class="ttdef"><b>Definition:</b> error.inl:17</div></div>
-<div class="ttc" id="aaws-c-common_2include_2aws_2common_2error_8h_html_a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50"><div class="ttname"><a href="aws-c-common_2include_2aws_2common_2error_8h.html#a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50">AWS_ERROR_SHORT_BUFFER</a></div><div class="ttdeci">@ AWS_ERROR_SHORT_BUFFER</div><div class="ttdef"><b>Definition:</b> error.h:148</div></div>
 <div class="ttc" id="aaws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_html_a1a175e87536301df98c805ac0636ad7c"><div class="ttname"><a href="aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a></div><div class="ttdeci">const cJSON *const b</div><div class="ttdef"><b>Definition:</b> cJSON.h:259</div></div>
 </div><!-- fragment -->
 </div>
@@ -357,7 +356,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a>* aws_tls_client_ctx_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -386,7 +385,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a>* aws_tls_client_handler_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -438,7 +437,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_tls_handler_protocol </td>
+          <td class="memname">struct aws_byte_buf aws_tls_handler_protocol </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td>
           <td class="paramname"><em>handler</em></td><td>)</td>
@@ -457,7 +456,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_tls_handler_server_name </td>
+          <td class="memname">struct aws_byte_buf aws_tls_handler_server_name </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td>
           <td class="paramname"><em>handler</em></td><td>)</td>
@@ -478,7 +477,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_tls_init_static_state </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em></td><td>)</td>
           <td></td>
         </tr>
@@ -534,7 +533,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a>* aws_tls_server_ctx_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -563,7 +562,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a>* aws_tls_server_handler_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -598,7 +597,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__tls__ctx.html">aws_tls_ctx</a>* s_ctx_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -751,7 +750,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -888,7 +887,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>stats</em>&#160;</td>
         </tr>
         <tr>
@@ -1244,7 +1243,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1410,7 +1409,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_secure_channel_handler_destroy </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -1446,7 +1445,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a>* s_tls_handler_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>

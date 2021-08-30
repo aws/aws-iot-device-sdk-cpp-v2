@@ -68,7 +68,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p ><img src="../docs/images/scram_intro.png" alt="scram" class="inline"/></p>
 <p >SCRAM is a symmetric encryption mode, based on AES-GCM, that includes new cryptographic protections against dangerous short-cuts that applications sometimes take.</p>
-<h1><a class="anchor" id="autotoc_md498"></a>
+<h1><a class="anchor" id="autotoc_md385"></a>
 Cryptographic protection against release of unauthenticated plaintext</h1>
 <p >Modern cryptographic libraries offer 'in place' encryption and decryption. By avoiding copies of the memory, encrypting and decrypting data in place saves both memory and CPU. While offering great performance, this interface depends on a promise from the application developer not to use or look at the decrypted plaintext until it has been authenticated by the cryprographic library. Application developers do not always appreciate that this authentication occurs only once the entire message has been received, and that it is not safe to process the data until then.</p>
 <p >There are two variants of this mis-use:</p>
@@ -81,26 +81,26 @@ Cryptographic protection against release of unauthenticated plaintext</h1>
 <p >When using SCRAM, a recipient simply must first (correctly) compute the message authentication code in order to subsequently decrypt it. There is no significant benefit to skipping this step. If an application does fail to check the result of the message authentication operation, and uses the 'decrypted' data prematurely, the corrupt message will result in a 'random garbage' plaintext. Crucially, an attacker has no control over this random garbage.</p>
 <p ><img src="../docs/images/scram_example.png" alt="" class="inline"/></p>
 <p >For applications that are using SCRAM to simply encrypt bulk data, this kind of application failure still results in data corruption. But for applications that are using SCRAM to encrypt data that must conform to a schema, or data that contains instructions, this kind of application failure is generally much safer. Without any control over the data that is decrypted, an attacker's ability to abuse the application failure, or to find meaningful decryption or message forgery oracles is severely limited.</p>
-<h1><a class="anchor" id="autotoc_md499"></a>
+<h1><a class="anchor" id="autotoc_md386"></a>
 Integration of message padding into the AEAD layer</h1>
 <p >Modern cryptography is extremely good at disguising data as meaningless noise, however analysis of encrypted data volumes and traffic timings remains the most practical attack on well-encrypted information.</p>
 <p >Without any measures to prevent these attacks, the size and timing of encrypted messages can be enough information for an attacker (who has access to the encrypted data) to decipher a voice call, determine the keystrokes used in a password, or to identify content being accessed by using size-based fingerprints.</p>
 <p >To enhance protection against these risks, SCRAM integrates message padding directly into the AEAD encryption layer. The caller indicates a desired 'frame size' and SCRAM will ensure that every encrypted message is rounded up (if needed) to a whole number of frames. Frames can be aligned with network boundaries, such as record sizes or TCP segment sizes, or they can be aligned with storage boundaries such as page sizes or block sizes. It's up to the application.</p>
 <p >By integrating padding, SCRAM handles the details that developers can sometimes get wrong, for example many application developers mistakenly believe that a random amount of padding is sufficient to hide the length of a message.</p>
 <p >Applications using SCRAM don't have to use padding, it's not enforced, but adding padding to the AEAD layer acts as a noteworthy reminder to application developers and code-auditors that obfuscation of message sizes and timings is an important consideration for cryptographic systems. For example, it will be noticable during a code-review that padding has not been chosen.</p>
-<h1><a class="anchor" id="autotoc_md500"></a>
+<h1><a class="anchor" id="autotoc_md387"></a>
 SCRAM algorithm</h1>
 <p >SCRAM is being developed as part of Amazon s2n and is open source. The working specification of the SCRAM algorithm is maintained in Python.</p>
 <p >There are several ways of achieving SCRAM's cryptographic goals, but our choices are heavily guided by ensuring that SCRAM's security proofs can be simple, robust, and build on top of well-established properties of existing cryptographic primitives.</p>
 <p >The design of SCRAM is also intended to make use of operations that are already accelerated in hardware on common platforms including Amazon EC2 instances, the AWS Nitro Platform, commidity and embedded systems.</p>
 <p >SCRAM is not yet finalized; some performance sensitive details of SCRAM may change as we experiment with different workloads and datasets. We are always open to feedback from application developers about how SCRAM may be useful in their applications.</p>
 <p >Once measurements and any changes are finalized, we will be publishing a final SCRAM specification, accompanying security proofs, and other learnings.</p>
-<h1><a class="anchor" id="autotoc_md501"></a>
+<h1><a class="anchor" id="autotoc_md388"></a>
 SCRAM material</h1>
 <ul>
 <li><a href="https://www.youtube.com/watch?time_continue=2489&amp;v=oam8FDNJhbE">Watch AWS CISO Stephen Schmidt announce SCRAM</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md502"></a>
+<h1><a class="anchor" id="autotoc_md389"></a>
 SCRAM team</h1>
 <p >SCRAM is designed and maintained by Shay Gueron, Colm MacCarthaigh, and Alex Weibel from the AWS Cryptography team. Shay Gueron is also a professor at the University of Haifa. </p>
 </div></div><!-- contents -->

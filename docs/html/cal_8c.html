@@ -75,30 +75,30 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="cal_8h_source.html">aws/cal/cal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2common_8h_source.html">aws/common/common.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h_source.html">aws/common/error.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/common.h&gt;</code><br />
+<code>#include &lt;aws/common/error.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a790ae2aa115f2466164d576fc81aa3a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a790ae2aa115f2466164d576fc81aa3a9">AWS_DEFINE_ERROR_INFO_CAL</a>(CODE,  STR)&#160;&#160;&#160;[(CODE)-0x1C00] = <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a139465316660842ba60a37dfcb8eee2a">AWS_DEFINE_ERROR_INFO</a>(CODE, STR, &quot;aws-c-cal&quot;)</td></tr>
+<tr class="memitem:a790ae2aa115f2466164d576fc81aa3a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a790ae2aa115f2466164d576fc81aa3a9">AWS_DEFINE_ERROR_INFO_CAL</a>(CODE,  STR)&#160;&#160;&#160;[(CODE)-0x1C00] = AWS_DEFINE_ERROR_INFO(CODE, STR, &quot;aws-c-cal&quot;)</td></tr>
 <tr class="separator:a790ae2aa115f2466164d576fc81aa3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a407f69e844ac10381051b1d82e7de6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a407f69e844ac10381051b1d82e7de6c2">aws_cal_platform_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a407f69e844ac10381051b1d82e7de6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a407f69e844ac10381051b1d82e7de6c2">aws_cal_platform_init</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a407f69e844ac10381051b1d82e7de6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb680a9a227a90f27c43f8a871248988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#adb680a9a227a90f27c43f8a871248988">aws_cal_platform_clean_up</a> (void)</td></tr>
 <tr class="separator:adb680a9a227a90f27c43f8a871248988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa63491f5049189b76f2271cd1d6370a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#aa63491f5049189b76f2271cd1d6370a5">aws_cal_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:aa63491f5049189b76f2271cd1d6370a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#aa63491f5049189b76f2271cd1d6370a5">aws_cal_library_init</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:aa63491f5049189b76f2271cd1d6370a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f4161db6a38398fc8ceccaed4e3886e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a1f4161db6a38398fc8ceccaed4e3886e">aws_cal_library_clean_up</a> (void)</td></tr>
 <tr class="separator:a1f4161db6a38398fc8ceccaed4e3886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info.html">aws_error_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
+<tr class="memitem:a255baa9b51b60f5b91a01313637fc353"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a> []</td></tr>
 <tr class="separator:a255baa9b51b60f5b91a01313637fc353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ea700514e70a0da767872486e1c257a"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a5ea700514e70a0da767872486e1c257a">s_list</a></td></tr>
+<tr class="memitem:a5ea700514e70a0da767872486e1c257a"><td class="memItemLeft" align="right" valign="top">static struct aws_error_info_list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a5ea700514e70a0da767872486e1c257a">s_list</a></td></tr>
 <tr class="separator:a5ea700514e70a0da767872486e1c257a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a899c46112980667acd5ac9ac8cfca"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a43a899c46112980667acd5ac9ac8cfca">s_cal_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:a43a899c46112980667acd5ac9ac8cfca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,7 +125,7 @@ Variables</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;[(CODE)-0x1C00] = <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a139465316660842ba60a37dfcb8eee2a">AWS_DEFINE_ERROR_INFO</a>(CODE, STR, &quot;aws-c-cal&quot;)</td>
+          <td></td><td>&#160;&#160;&#160;[(CODE)-0x1C00] = AWS_DEFINE_ERROR_INFO(CODE, STR, &quot;aws-c-cal&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -161,7 +161,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_cal_library_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -197,7 +197,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void aws_cal_platform_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -240,7 +240,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info.html">aws_error_info</a> s_errors[]</td>
+          <td class="memname">struct aws_error_info s_errors[]</td>
         </tr>
       </table>
   </td>
@@ -296,7 +296,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a> s_list</td>
+          <td class="memname">struct aws_error_info_list s_list</td>
         </tr>
       </table>
   </td>
@@ -307,10 +307,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    .error_list = <a class="code hl_variable" href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>,</div>
-<div class="line">    .count = <a class="code hl_define" href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a>(<a class="code hl_variable" href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>),</div>
+<div class="line">    .count = AWS_ARRAY_SIZE(<a class="code hl_variable" href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a>),</div>
 <div class="line">}</div>
 <div class="ttc" id="acal_8c_html_a255baa9b51b60f5b91a01313637fc353"><div class="ttname"><a href="cal_8c.html#a255baa9b51b60f5b91a01313637fc353">s_errors</a></div><div class="ttdeci">static struct aws_error_info s_errors[]</div><div class="ttdef"><b>Definition:</b> cal.c:11</div></div>
-<div class="ttc" id="amacros_8h_html_a7b837cfd09e209fa32b1129f8bc9c431"><div class="ttname"><a href="macros_8h.html#a7b837cfd09e209fa32b1129f8bc9c431">AWS_ARRAY_SIZE</a></div><div class="ttdeci">#define AWS_ARRAY_SIZE(array)</div><div class="ttdef"><b>Definition:</b> macros.h:101</div></div>
 </div><!-- fragment -->
 </div>
 </div>

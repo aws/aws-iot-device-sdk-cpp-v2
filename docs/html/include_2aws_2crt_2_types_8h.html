@@ -74,7 +74,7 @@ $(function() {
   <div class="headertitle"><div class="title">Types.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2common_8h_source.html">aws/common/common.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/common/common.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source.html">aws/crt/Exports.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_optional_8h_source.html">aws/crt/Optional.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_stl_allocator_8h_source.html">aws/crt/StlAllocator.h</a>&gt;</code><br />
@@ -105,9 +105,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa760a7d9714d6c28091c2b1cf7029876"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">Aws::Crt::ByteBuf</a> = <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a></td></tr>
+<tr class="memitem:aa760a7d9714d6c28091c2b1cf7029876"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">Aws::Crt::ByteBuf</a> = aws_byte_buf</td></tr>
 <tr class="separator:aa760a7d9714d6c28091c2b1cf7029876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ac076b0baa520bccb2b7236e4e78b7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Aws::Crt::ByteCursor</a> = <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a></td></tr>
+<tr class="memitem:a14ac076b0baa520bccb2b7236e4e78b7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Aws::Crt::ByteCursor</a> = aws_byte_cursor</td></tr>
 <tr class="separator:a14ac076b0baa520bccb2b7236e4e78b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e18a94cc1dada574dfe654349a94ec2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a7e18a94cc1dada574dfe654349a94ec2">Aws::Crt::Io::IStream</a> = std::basic_istream&lt; char, std::char_traits&lt; char &gt; &gt;</td></tr>
 <tr class="separator:a7e18a94cc1dada574dfe654349a94ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,13 +168,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a56e54aa8447e593fbcfc0c3c303db8ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a56e54aa8447e593fbcfc0c3c303db8ca">Aws::Crt::Base64Encode</a> (const Vector&lt; uint8_t &gt; &amp;encode)</td></tr>
 <tr class="separator:a56e54aa8447e593fbcfc0c3c303db8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a6cb5829debad668144b8cdd8071e09"><td class="memTemplParams" colspan="2">template&lt;typename RawType , typename TargetType &gt; </td></tr>
-<tr class="memitem:a6a6cb5829debad668144b8cdd8071e09"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; TargetType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a6a6cb5829debad668144b8cdd8071e09">Aws::Crt::ArrayListToVector</a> (const <a class="el" href="structaws__array__list.html">aws_array_list</a> *array, TypeConvertor&lt; RawType, TargetType &gt; conv)</td></tr>
+<tr class="memitem:a6a6cb5829debad668144b8cdd8071e09"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; TargetType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a6a6cb5829debad668144b8cdd8071e09">Aws::Crt::ArrayListToVector</a> (const aws_array_list *array, TypeConvertor&lt; RawType, TargetType &gt; conv)</td></tr>
 <tr class="separator:a6a6cb5829debad668144b8cdd8071e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f58455ed8bc71f9ac4df7968af1fec"><td class="memTemplParams" colspan="2">template&lt;typename RawType , typename TargetType &gt; </td></tr>
-<tr class="memitem:aa9f58455ed8bc71f9ac4df7968af1fec"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; TargetType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#aa9f58455ed8bc71f9ac4df7968af1fec">Aws::Crt::ArrayListToVector</a> (const <a class="el" href="structaws__array__list.html">aws_array_list</a> *array)</td></tr>
+<tr class="memitem:aa9f58455ed8bc71f9ac4df7968af1fec"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; TargetType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#aa9f58455ed8bc71f9ac4df7968af1fec">Aws::Crt::ArrayListToVector</a> (const aws_array_list *array)</td></tr>
 <tr class="separator:aa9f58455ed8bc71f9ac4df7968af1fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b39db139159f1eaa40dab9ed7813b0f"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
-<tr class="memitem:a7b39db139159f1eaa40dab9ed7813b0f"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a7b39db139159f1eaa40dab9ed7813b0f">Aws::Crt::ArrayListToVector</a> (const <a class="el" href="structaws__array__list.html">aws_array_list</a> *array)</td></tr>
+<tr class="memitem:a7b39db139159f1eaa40dab9ed7813b0f"><td class="memTemplItemLeft" align="right" valign="top">Vector&lt; Type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a7b39db139159f1eaa40dab9ed7813b0f">Aws::Crt::ArrayListToVector</a> (const aws_array_list *array)</td></tr>
 <tr class="separator:a7b39db139159f1eaa40dab9ed7813b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c4fd8ee9c0cc758444e92ae42b23aae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> StringView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a8c4fd8ee9c0cc758444e92ae42b23aae">Aws::Crt::ByteCursorToStringView</a> (const ByteCursor &amp;bc)</td></tr>
 <tr class="separator:a8c4fd8ee9c0cc758444e92ae42b23aae"><td class="memSeparator" colspan="2">&#160;</td></tr>

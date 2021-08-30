@@ -78,7 +78,7 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md246"></a>
+<h1><a class="anchor" id="autotoc_md133"></a>
 Assumptions</h1>
 <p >Generally, we assume well-behaved clients; the correctness of underlying primitives (memory allocation, AWS C Common library, syscalls); and, minor assumptions due to limitations in VCC. More precisely, the proofs assume:</p>
 <ul>
@@ -109,7 +109,7 @@ read, write
 </li>
 <li>The Sequentially Consistent Data Race Free (SC-DRF) guarantee required by the C11 standard: if a program is race-free and contains no non-SC atomic operations, then it has only SC semantics [Note 12, N1570]. We rely on SC-DRF to justify the use of VCC's SC memory model. We manually validate that the event loop implementation contains no non-SC atomic operations. Validation is required for pre-C11 compilers.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md247"></a>
+<h1><a class="anchor" id="autotoc_md134"></a>
 Simplifications</h1>
 <ul>
 <li>Omit modeling of hash-table <code>local_data</code> in event loop.</li>
@@ -129,16 +129,16 @@ int pipe_fds[2] = {0};
 int pipe_fds[2]; pipe_fds[0] = 0; pipe_fds[1] = 0;
 </pre> </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md248"></a>
+<h1><a class="anchor" id="autotoc_md135"></a>
 Trusted computing base</h1>
 <ul>
 <li>Soundness of verification tools: VCC, Boogie, Z3</li>
 <li>C Compiler, because the verification is at the C code-level and the properties proved may not be preserved by compilation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md249"></a>
+<h1><a class="anchor" id="autotoc_md136"></a>
 References</h1>
 <p >[N1570] ISO/IEC. Programming languages – C. International standard 9899:201x, 2011</p>
-<h1><a class="anchor" id="autotoc_md250"></a>
+<h1><a class="anchor" id="autotoc_md137"></a>
 Appendix</h1>
 <p >Assumption on "happens before" induced by <code>epoll_{ctl/wait}</code>. Informally, we need "message-passing" to hold so that the shared data passed from T1-to-T2 is guaranteed not-to-race. </p><pre class="fragment">    // Initially *data == 0 (non-atomic location)
     // T1

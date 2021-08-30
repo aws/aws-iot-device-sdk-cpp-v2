@@ -67,13 +67,13 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >This is a cross-platform C99 implementation of compression algorithms such as gzip, and huffman encoding/decoding. Currently only huffman is implemented.</p>
-<h1><a class="anchor" id="autotoc_md184"></a>
+<h1><a class="anchor" id="autotoc_md71"></a>
 License</h1>
 <p >This library is licensed under the Apache 2.0 License.</p>
-<h1><a class="anchor" id="autotoc_md185"></a>
+<h1><a class="anchor" id="autotoc_md72"></a>
 Usage</h1>
 <p >This library has a strong dependency on <a href="https://github.com/awslabs/aws-c-common">aws-c-common</a>. Please see that repository's <a href="https://github.com/awslabs/aws-c-common/blob/master/README.md">README.md</a> for information on how to install it.</p>
-<h2><a class="anchor" id="autotoc_md186"></a>
+<h2><a class="anchor" id="autotoc_md73"></a>
 Huffman</h2>
 <p >The Huffman implemention in this library is designed around the concept of a generic "symbol coder" object, which defines how each symbol (value between 0 and 255) is encoded and decoded. This object looks like this: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structaws__huffman__code.html">aws_huffman_code</a> (*aws_huffman_symbol_encoder)(uint8_t symbol, <span class="keywordtype">void</span> *userdata);</div>
 <div class="line"><span class="keyword">typedef</span> uint8_t (*aws_huffman_symbol_decoder)(uint32_t bits, uint8_t *symbol, <span class="keywordtype">void</span> *userdata);</div>
@@ -120,7 +120,7 @@ Huffman</h2>
 <div class="ttc" id="ahuffman_8h_html_aef42048ee2ee54c445163ca4dfb05b84"><div class="ttname"><a href="huffman_8h.html#aef42048ee2ee54c445163ca4dfb05b84">aws_huffman_encoder_init</a></div><div class="ttdeci">AWS_EXTERN_C_BEGIN AWS_COMPRESSION_API void aws_huffman_encoder_init(struct aws_huffman_encoder *encoder, struct aws_huffman_symbol_coder *coder)</div><div class="ttdef"><b>Definition:</b> huffman.c:22</div></div>
 <div class="ttc" id="astructaws__huffman__decoder_html"><div class="ttname"><a href="structaws__huffman__decoder.html">aws_huffman_decoder</a></div><div class="ttdef"><b>Definition:</b> huffman.h:84</div></div>
 <div class="ttc" id="astructaws__huffman__encoder_html"><div class="ttname"><a href="structaws__huffman__encoder.html">aws_huffman_encoder</a></div><div class="ttdef"><b>Definition:</b> huffman.h:71</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md187"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md74"></a>
 Encoding</h3>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="huffman_8h.html#abb6619ecad41953fa7c46a4577a9a6a7">aws_huffman_encode</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, <span class="keyword">const</span> <span class="keywordtype">char</span> *to_encode, <span class="keywordtype">size_t</span> *<a class="code hl_typedef" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>, uint8_t *output, <span class="keywordtype">size_t</span> *output_size);</div>
@@ -143,7 +143,7 @@ Encoding</h3>
 <div class="line">}</div>
 <div class="ttc" id="ahuffman_8h_html_a128c1ec79c02828844a9f28d6f52ff9a"><div class="ttname"><a href="huffman_8h.html#a128c1ec79c02828844a9f28d6f52ff9a">aws_huffman_encoder_reset</a></div><div class="ttdeci">AWS_COMPRESSION_API void aws_huffman_encoder_reset(struct aws_huffman_encoder *encoder)</div><div class="ttdef"><b>Definition:</b> huffman.c:32</div></div>
 </div><!-- fragment --><p ><code><a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a></code> also has a <code>uint8_t</code> field called <code>eos_padding</code> that defines how any unwritten bits in the last byte of output are filled. The most significant bits will used. For example, if the last byte contains only 3 bits and <code>eos_padding</code> is <code>0b01010101</code>, <code>01010</code> will be appended to the byte.</p>
-<h3><a class="anchor" id="autotoc_md188"></a>
+<h3><a class="anchor" id="autotoc_md75"></a>
 Decoding</h3>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="huffman_8h.html#a13f0c95fa9e1f8471f63a19fd402010f">aws_huffman_decode</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, <span class="keyword">const</span> uint8_t *to_decode, <span class="keywordtype">size_t</span> *<a class="code hl_typedef" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>, <span class="keywordtype">char</span> *output, <span class="keywordtype">size_t</span> *output_size);</div>
@@ -164,8 +164,7 @@ Decoding</h3>
 <div class="line">    <a class="code hl_function" href="huffman_8h.html#a34c1b6073a00cf0933968f7fb9e699bb">aws_huffman_decoder_reset</a>(decoder);</div>
 <div class="line">}</div>
 <div class="ttc" id="ahuffman_8h_html_a34c1b6073a00cf0933968f7fb9e699bb"><div class="ttname"><a href="huffman_8h.html#a34c1b6073a00cf0933968f7fb9e699bb">aws_huffman_decoder_reset</a></div><div class="ttdeci">AWS_COMPRESSION_API void aws_huffman_decoder_reset(struct aws_huffman_decoder *decoder)</div><div class="ttdef"><b>Definition:</b> huffman.c:48</div></div>
-</div><!-- fragment --><p >Upon completion of a decode, the most significant bits of <code>decoder-&gt;working_bits</code> will contain the final bits of <code>to_decode</code> that could not match a symbol. This is useful for verifying the padding bits of a stream. For example, to validate that a stream ends in all 1's (like HPACK requires), you could do the following: </p><div class="fragment"><div class="line"><a class="code hl_define" href="assert_8h.html#a2c17f0f768532f761b99a8fee0c656f1">AWS_ASSERT</a>(decoder-&gt;working_bits == UINT64_MAX &lt;&lt; (64 - decoder-&gt;num_bits));</div>
-<div class="ttc" id="aassert_8h_html_a2c17f0f768532f761b99a8fee0c656f1"><div class="ttname"><a href="assert_8h.html#a2c17f0f768532f761b99a8fee0c656f1">AWS_ASSERT</a></div><div class="ttdeci">#define AWS_ASSERT(cond)</div><div class="ttdef"><b>Definition:</b> assert.h:47</div></div>
+</div><!-- fragment --><p >Upon completion of a decode, the most significant bits of <code>decoder-&gt;working_bits</code> will contain the final bits of <code>to_decode</code> that could not match a symbol. This is useful for verifying the padding bits of a stream. For example, to validate that a stream ends in all 1's (like HPACK requires), you could do the following: </p><div class="fragment"><div class="line">AWS_ASSERT(decoder-&gt;working_bits == UINT64_MAX &lt;&lt; (64 - decoder-&gt;num_bits));</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

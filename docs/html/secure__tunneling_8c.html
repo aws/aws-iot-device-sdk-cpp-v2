@@ -79,11 +79,11 @@ $(function() {
 <code>#include &lt;<a class="el" href="channel__bootstrap_8h_source.html">aws/io/channel_bootstrap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="tls__channel__handler_8h_source.html">aws/io/tls_channel_handler.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_source.html">aws/iotdevice/iotdevice.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="iotdevice_8h_source.html">aws/iotdevice/iotdevice.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="iotdevice__internals_8h_source.html">aws/iotdevice/private/iotdevice_internals.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="serializer_8h_source.html">aws/iotdevice/private/serializer.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="secure__tunneling_8h_source.html">aws/iotdevice/secure_tunneling.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="math_8h_source.html">math.h</a>&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -107,7 +107,7 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a5365c3f03a9bff4480c5f8d7a7cf7a04"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a5365c3f03a9bff4480c5f8d7a7cf7a04">s_send_websocket_ping</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket)</td></tr>
 <tr class="separator:a5365c3f03a9bff4480c5f8d7a7cf7a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2a8f271014e06b9332cc62f59b43875"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#ad2a8f271014e06b9332cc62f59b43875">s_ping_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *user_data, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> task_status)</td></tr>
+<tr class="memitem:ad2a8f271014e06b9332cc62f59b43875"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#ad2a8f271014e06b9332cc62f59b43875">s_ping_task</a> (struct aws_task *task, void *user_data, enum aws_task_status task_status)</td></tr>
 <tr class="separator:ad2a8f271014e06b9332cc62f59b43875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dca4e1e18982ec929f30967c346fd56"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a9dca4e1e18982ec929f30967c346fd56">s_on_websocket_setup</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, int error_code, int handshake_response_status, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *handshake_response_header_array, size_t num_handshake_response_headers, void *user_data)</td></tr>
 <tr class="separator:a9dca4e1e18982ec929f30967c346fd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +127,7 @@ Functions</h2></td></tr>
 <tr class="separator:a4b6c81196ef7640875a2dc4c1e0d0f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac718b3c0be39a2fbf85d44418b8bd4e8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#ac718b3c0be39a2fbf85d44418b8bd4e8">s_process_received_data</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel)</td></tr>
 <tr class="separator:ac718b3c0be39a2fbf85d44418b8bd4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe49f37d7da2ab1bb41b7ab4018fb704"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#afe49f37d7da2ab1bb41b7ab4018fb704">on_websocket_incoming_frame_payload</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, const struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a> *frame, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *user_data)</td></tr>
+<tr class="memitem:afe49f37d7da2ab1bb41b7ab4018fb704"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#afe49f37d7da2ab1bb41b7ab4018fb704">on_websocket_incoming_frame_payload</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, const struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a> *frame, struct aws_byte_cursor data, void *user_data)</td></tr>
 <tr class="separator:afe49f37d7da2ab1bb41b7ab4018fb704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97804b703a326b56daaeef21a31195fd"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a97804b703a326b56daaeef21a31195fd">s_on_websocket_incoming_frame_complete</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, const struct <a class="el" href="structaws__websocket__incoming__frame.html">aws_websocket_incoming_frame</a> *frame, int error_code, void *user_data)</td></tr>
 <tr class="separator:a97804b703a326b56daaeef21a31195fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,19 +143,19 @@ Functions</h2></td></tr>
 <tr class="separator:ab57bfab7761ac3bf9e021578ea1cd9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af80737b820cacde7f56d40062034f845"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#af80737b820cacde7f56d40062034f845">s_secure_tunneling_on_send_data_complete_callback</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, int error_code, void *user_data)</td></tr>
 <tr class="separator:af80737b820cacde7f56d40062034f845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c64143d267923af900133df6ffd2a32"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a8c64143d267923af900133df6ffd2a32">secure_tunneling_send_data_call</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf, void *user_data)</td></tr>
+<tr class="memitem:a8c64143d267923af900133df6ffd2a32"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a8c64143d267923af900133df6ffd2a32">secure_tunneling_send_data_call</a> (struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *websocket, struct aws_byte_buf *out_buf, void *user_data)</td></tr>
 <tr class="separator:a8c64143d267923af900133df6ffd2a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41cfc58a54f51cbabb3997c935f49b9d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a41cfc58a54f51cbabb3997c935f49b9d">s_init_websocket_send_frame_options</a> (struct <a class="el" href="structaws__websocket__send__frame__options.html">aws_websocket_send_frame_options</a> *frame_options, struct <a class="el" href="structdata__tunnel__pair.html">data_tunnel_pair</a> *pair)</td></tr>
 <tr class="separator:a41cfc58a54f51cbabb3997c935f49b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68fc16468cd6526769380032b17b1bdc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a68fc16468cd6526769380032b17b1bdc">s_init_data_tunnel_pair</a> (struct <a class="el" href="structdata__tunnel__pair.html">data_tunnel_pair</a> *pair, struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
+<tr class="memitem:a68fc16468cd6526769380032b17b1bdc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a68fc16468cd6526769380032b17b1bdc">s_init_data_tunnel_pair</a> (struct <a class="el" href="structdata__tunnel__pair.html">data_tunnel_pair</a> *pair, struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct aws_byte_cursor *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
 <tr class="separator:a68fc16468cd6526769380032b17b1bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69131235efa724bff9de535717df55dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a69131235efa724bff9de535717df55dd">secure_tunneling_init_send_frame</a> (struct <a class="el" href="structaws__websocket__send__frame__options.html">aws_websocket_send_frame_options</a> *frame_options, struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
+<tr class="memitem:a69131235efa724bff9de535717df55dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a69131235efa724bff9de535717df55dd">secure_tunneling_init_send_frame</a> (struct <a class="el" href="structaws__websocket__send__frame__options.html">aws_websocket_send_frame_options</a> *frame_options, struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct aws_byte_cursor *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
 <tr class="separator:a69131235efa724bff9de535717df55dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc414aa3f80309fb406fd2903bfed408"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#abc414aa3f80309fb406fd2903bfed408">s_secure_tunneling_send</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
+<tr class="memitem:abc414aa3f80309fb406fd2903bfed408"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#abc414aa3f80309fb406fd2903bfed408">s_secure_tunneling_send</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct aws_byte_cursor *data, enum <a class="el" href="serializer_8h.html#ab9320fc39d814e580aa71730318a9c7d">aws_iot_st_message_type</a> type)</td></tr>
 <tr class="separator:abc414aa3f80309fb406fd2903bfed408"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4255eba4f804f61de50da2426cce91e7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a4255eba4f804f61de50da2426cce91e7">s_can_send_data_status</a> (void *user_data)</td></tr>
 <tr class="separator:a4255eba4f804f61de50da2426cce91e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8546c8a2d85e9cc5b013496d572c704c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a8546c8a2d85e9cc5b013496d572c704c">s_secure_tunneling_send_data</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data)</td></tr>
+<tr class="memitem:a8546c8a2d85e9cc5b013496d572c704c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a8546c8a2d85e9cc5b013496d572c704c">s_secure_tunneling_send_data</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct aws_byte_cursor *data)</td></tr>
 <tr class="separator:a8546c8a2d85e9cc5b013496d572c704c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a739db083c6c050f5cddaeb351fa10af9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a739db083c6c050f5cddaeb351fa10af9">s_secure_tunneling_send_stream_start</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel)</td></tr>
 <tr class="separator:a739db083c6c050f5cddaeb351fa10af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +171,7 @@ Functions</h2></td></tr>
 <tr class="separator:afd20bfc74433948cbb9832cfe18851df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac592ddab86d793d987c407b21afd12c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#ac592ddab86d793d987c407b21afd12c6">aws_secure_tunnel_close</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel)</td></tr>
 <tr class="separator:ac592ddab86d793d987c407b21afd12c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a927e747d91418155b5f4e104f3b3bd9e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a927e747d91418155b5f4e104f3b3bd9e">aws_secure_tunnel_send_data</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data)</td></tr>
+<tr class="memitem:a927e747d91418155b5f4e104f3b3bd9e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#a927e747d91418155b5f4e104f3b3bd9e">aws_secure_tunnel_send_data</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel, const struct aws_byte_cursor *data)</td></tr>
 <tr class="separator:a927e747d91418155b5f4e104f3b3bd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af399cfb5bfb38d9866b389c3c0b5e428"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="secure__tunneling_8c.html#af399cfb5bfb38d9866b389c3c0b5e428">aws_secure_tunnel_stream_start</a> (struct <a class="el" href="structaws__secure__tunnel.html">aws_secure_tunnel</a> *secure_tunnel)</td></tr>
 <tr class="separator:af399cfb5bfb38d9866b389c3c0b5e428"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -341,7 +341,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -439,7 +439,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -668,7 +668,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -958,7 +958,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static void s_ping_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -970,7 +970,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>task_status</em>&#160;</td>
         </tr>
         <tr>
@@ -1188,7 +1188,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -1230,7 +1230,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -1347,7 +1347,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -1381,7 +1381,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>out_buf</em>, </td>
         </tr>
         <tr>

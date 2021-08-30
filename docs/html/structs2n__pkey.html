@@ -74,30 +74,30 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a78a48d60ce06e26bea0124ab1d009986"><td class="memItemLeft" >union {</td></tr>
-<tr class="memitem:ab07ffd16c44c8c0815befa3473117b66"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__rsa__key.html">s2n_rsa_key</a>&#160;&#160;&#160;<a class="el" href="structs2n__pkey.html#ac9a95739f5cf56168824be1fb6f66a43">rsa_key</a></td></tr>
-<tr class="separator:ab07ffd16c44c8c0815befa3473117b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a570c992558ee47f4056b5629a34376"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__ecdsa__key.html">s2n_ecdsa_key</a>&#160;&#160;&#160;<a class="el" href="structs2n__pkey.html#a0118458b0931834f9d5b97ac4f59d927">ecdsa_key</a></td></tr>
-<tr class="separator:a2a570c992558ee47f4056b5629a34376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78a48d60ce06e26bea0124ab1d009986"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a></td></tr>
-<tr class="separator:a78a48d60ce06e26bea0124ab1d009986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61287f70d4d6a48c51ca99e8ed258860"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:ab6b4325b276f4f1e9063063dc6c5e49b"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__rsa__key.html">s2n_rsa_key</a>&#160;&#160;&#160;<a class="el" href="structs2n__pkey.html#ac9a95739f5cf56168824be1fb6f66a43">rsa_key</a></td></tr>
+<tr class="separator:ab6b4325b276f4f1e9063063dc6c5e49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2668d9642344a41b09d1da58ccad372"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__ecdsa__key.html">s2n_ecdsa_key</a>&#160;&#160;&#160;<a class="el" href="structs2n__pkey.html#a0118458b0931834f9d5b97ac4f59d927">ecdsa_key</a></td></tr>
+<tr class="separator:ae2668d9642344a41b09d1da58ccad372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61287f70d4d6a48c51ca99e8ed258860"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a></td></tr>
+<tr class="separator:a61287f70d4d6a48c51ca99e8ed258860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ca7a2edd3efbada2611579749dd959a"><td class="memItemLeft" align="right" valign="top">EVP_PKEY *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a6ca7a2edd3efbada2611579749dd959a">pkey</a></td></tr>
 <tr class="separator:a6ca7a2edd3efbada2611579749dd959a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a340dbedee000c9a64ceac3768f5065f5"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a340dbedee000c9a64ceac3768f5065f5">size</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td></tr>
+<tr class="memitem:a340dbedee000c9a64ceac3768f5065f5"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a340dbedee000c9a64ceac3768f5065f5">size</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td></tr>
 <tr class="separator:a340dbedee000c9a64ceac3768f5065f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5302537b80a82867dce1a5aaaa31c2a4"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a5302537b80a82867dce1a5aaaa31c2a4">sign</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *priv_key, <a class="el" href="s2n__signature_8h.html#a28050d82b8dc7de14b8b0698eb526780">s2n_signature_algorithm</a> sig_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *digest, struct s2n_blob *signature)</td></tr>
 <tr class="separator:a5302537b80a82867dce1a5aaaa31c2a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d2e869a50380471fb171469fad46869"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a2d2e869a50380471fb171469fad46869">verify</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pub_key, <a class="el" href="s2n__signature_8h.html#a28050d82b8dc7de14b8b0698eb526780">s2n_signature_algorithm</a> sig_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *digest, struct s2n_blob *signature)</td></tr>
 <tr class="separator:a2d2e869a50380471fb171469fad46869"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e42c995a5eef288eba09c27298c3b9f"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a5e42c995a5eef288eba09c27298c3b9f">encrypt</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td></tr>
+<tr class="memitem:a5e42c995a5eef288eba09c27298c3b9f"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a5e42c995a5eef288eba09c27298c3b9f">encrypt</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td></tr>
 <tr class="separator:a5e42c995a5eef288eba09c27298c3b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af20c1671c32be6b9f6974a7013325d5a"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#af20c1671c32be6b9f6974a7013325d5a">decrypt</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td></tr>
+<tr class="memitem:af20c1671c32be6b9f6974a7013325d5a"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#af20c1671c32be6b9f6974a7013325d5a">decrypt</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td></tr>
 <tr class="separator:af20c1671c32be6b9f6974a7013325d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a858a093b3866390458ba4ba78c565f68"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a858a093b3866390458ba4ba78c565f68">match</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pub_key, const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *priv_key)</td></tr>
 <tr class="separator:a858a093b3866390458ba4ba78c565f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a147fb4594674db55f9ae154422d4be48"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a147fb4594674db55f9ae154422d4be48">free</a> )(struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td></tr>
+<tr class="memitem:a147fb4594674db55f9ae154422d4be48"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#a147fb4594674db55f9ae154422d4be48">free</a> )(struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td></tr>
 <tr class="separator:a147fb4594674db55f9ae154422d4be48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1189a112394f3925489db9b886d01e7"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#aa1189a112394f3925489db9b886d01e7">check_key</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td></tr>
+<tr class="memitem:aa1189a112394f3925489db9b886d01e7"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__pkey.html#aa1189a112394f3925489db9b886d01e7">check_key</a> )(const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td></tr>
 <tr class="separator:aa1189a112394f3925489db9b886d01e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -108,7 +108,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_pkey::check_key) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td>
+          <td class="memname">int(* s2n_pkey::check_key) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -122,7 +122,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_pkey::decrypt) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td>
+          <td class="memname">int(* s2n_pkey::decrypt) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -150,7 +150,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_pkey::encrypt) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td>
+          <td class="memname">int(* s2n_pkey::encrypt) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>, struct s2n_blob *in, struct s2n_blob *out)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -164,15 +164,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_pkey::free) (struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td>
+          <td class="memname">int(* s2n_pkey::free) (struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a78a48d60ce06e26bea0124ab1d009986" name="a78a48d60ce06e26bea0124ab1d009986"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78a48d60ce06e26bea0124ab1d009986">&#9670;&nbsp;</a></span></h2>
+<a id="a61287f70d4d6a48c51ca99e8ed258860" name="a61287f70d4d6a48c51ca99e8ed258860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61287f70d4d6a48c51ca99e8ed258860">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +248,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_pkey::size) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a78a48d60ce06e26bea0124ab1d009986">key</a>)</td>
+          <td class="memname">int(* s2n_pkey::size) (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *<a class="el" href="structs2n__pkey.html#a61287f70d4d6a48c51ca99e8ed258860">key</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

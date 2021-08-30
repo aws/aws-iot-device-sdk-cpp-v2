@@ -75,7 +75,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="der_8h_source.html">aws/cal/private/der.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="cal_8h_source.html">aws/cal/cal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -90,25 +90,25 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:aa4c60f6f2bc524cfaccf90032ee56322"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa4c60f6f2bc524cfaccf90032ee56322">s_decode_tlv</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv)</td></tr>
 <tr class="separator:aa4c60f6f2bc524cfaccf90032ee56322"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa94ce0fe3018386d2d096f44a4466416"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa94ce0fe3018386d2d096f44a4466416">s_der_read_tlv</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cur, struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv)</td></tr>
+<tr class="memitem:aa94ce0fe3018386d2d096f44a4466416"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa94ce0fe3018386d2d096f44a4466416">s_der_read_tlv</a> (struct aws_byte_cursor *cur, struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv)</td></tr>
 <tr class="separator:aa94ce0fe3018386d2d096f44a4466416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cd5276781f8bdf4c2698c65a8b02ac9"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a8cd5276781f8bdf4c2698c65a8b02ac9">s_encoded_len</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv)</td></tr>
 <tr class="separator:a8cd5276781f8bdf4c2698c65a8b02ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb34854a4a7f496dfdb073f05a5f8d4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a2bb34854a4a7f496dfdb073f05a5f8d4">s_der_write_tlv</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td></tr>
+<tr class="memitem:a2bb34854a4a7f496dfdb073f05a5f8d4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a2bb34854a4a7f496dfdb073f05a5f8d4">s_der_write_tlv</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv, struct aws_byte_buf *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td></tr>
 <tr class="separator:a2bb34854a4a7f496dfdb073f05a5f8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82fd318eb273be1c931b225f798eecfa"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a82fd318eb273be1c931b225f798eecfa">aws_der_encoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, size_t capacity)</td></tr>
+<tr class="memitem:a82fd318eb273be1c931b225f798eecfa"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a82fd318eb273be1c931b225f798eecfa">aws_der_encoder_new</a> (struct aws_allocator *allocator, size_t capacity)</td></tr>
 <tr class="separator:a82fd318eb273be1c931b225f798eecfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008c8714830309b57bdc3227e232bb85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a008c8714830309b57bdc3227e232bb85">aws_der_encoder_destroy</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a008c8714830309b57bdc3227e232bb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8353d41f8b7e67d98213ace1910e47b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ae8353d41f8b7e67d98213ace1910e47b">aws_der_encoder_write_integer</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> integer)</td></tr>
+<tr class="memitem:ae8353d41f8b7e67d98213ace1910e47b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ae8353d41f8b7e67d98213ace1910e47b">aws_der_encoder_write_integer</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor integer)</td></tr>
 <tr class="separator:ae8353d41f8b7e67d98213ace1910e47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab852a89f1c2d4f2f6b3cf3044c02c2e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ab852a89f1c2d4f2f6b3cf3044c02c2e6">aws_der_encoder_write_boolean</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, bool <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:ab852a89f1c2d4f2f6b3cf3044c02c2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c20f15f606c1020997fdf65db41a80c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a8c20f15f606c1020997fdf65db41a80c">aws_der_encoder_write_null</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a8c20f15f606c1020997fdf65db41a80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8beb85c4ca6d7854b30fd1f64274353d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a8beb85c4ca6d7854b30fd1f64274353d">aws_der_encoder_write_bit_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> bit_string)</td></tr>
+<tr class="memitem:a8beb85c4ca6d7854b30fd1f64274353d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a8beb85c4ca6d7854b30fd1f64274353d">aws_der_encoder_write_bit_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor bit_string)</td></tr>
 <tr class="separator:a8beb85c4ca6d7854b30fd1f64274353d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba28240a830e242ae9b681aa6af7d83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aaba28240a830e242ae9b681aa6af7d83">aws_der_encoder_write_octet_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> octet_string)</td></tr>
+<tr class="memitem:aaba28240a830e242ae9b681aa6af7d83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aaba28240a830e242ae9b681aa6af7d83">aws_der_encoder_write_octet_string</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor octet_string)</td></tr>
 <tr class="separator:aaba28240a830e242ae9b681aa6af7d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af36c9620cbbce1bb76d87ad42de546c6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#af36c9620cbbce1bb76d87ad42de546c6">s_der_encoder_begin_container</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, enum <a class="el" href="der_8h.html#ae437a791664c221e76393a40c87b1762">aws_der_type</a> type)</td></tr>
 <tr class="separator:af36c9620cbbce1bb76d87ad42de546c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,15 +122,15 @@ Functions</h2></td></tr>
 <tr class="separator:a9edac9bc09bde4ddfc6ce0a4a5274b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70db97470588d04ef6f990193bc2b1bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a70db97470588d04ef6f990193bc2b1bc">aws_der_encoder_end_set</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a70db97470588d04ef6f990193bc2b1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92aac395df8efb5c851b12086d6b0a74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a92aac395df8efb5c851b12086d6b0a74">aws_der_encoder_get_contents</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *contents)</td></tr>
+<tr class="memitem:a92aac395df8efb5c851b12086d6b0a74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a92aac395df8efb5c851b12086d6b0a74">aws_der_encoder_get_contents</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct aws_byte_cursor *contents)</td></tr>
 <tr class="separator:a92aac395df8efb5c851b12086d6b0a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87f46f4e8297267363606b7e3e1f2e5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a87f46f4e8297267363606b7e3e1f2e5c">s_decoder_parse</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a87f46f4e8297267363606b7e3e1f2e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a5ef3a4c9071c3c50da9ac0913cf95667">aws_der_decoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input)</td></tr>
+<tr class="memitem:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a5ef3a4c9071c3c50da9ac0913cf95667">aws_der_decoder_new</a> (struct aws_allocator *allocator, struct aws_byte_cursor input)</td></tr>
 <tr class="separator:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89a4ee9934ea836a06f95fe976aecf3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a89a4ee9934ea836a06f95fe976aecf3e">aws_der_decoder_destroy</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a89a4ee9934ea836a06f95fe976aecf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb36deb77b520f57ed79abcac77a3a43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#adb36deb77b520f57ed79abcac77a3a43">s_parse_cursor</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cur)</td></tr>
+<tr class="memitem:adb36deb77b520f57ed79abcac77a3a43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#adb36deb77b520f57ed79abcac77a3a43">s_parse_cursor</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor cur)</td></tr>
 <tr class="separator:adb36deb77b520f57ed79abcac77a3a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915adaf6123b5b1c716aafdb0bfcc32d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a915adaf6123b5b1c716aafdb0bfcc32d">aws_der_decoder_next</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a915adaf6123b5b1c716aafdb0bfcc32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,15 +142,15 @@ Functions</h2></td></tr>
 <tr class="separator:a24386f6b95fc8580909c2df4ebe58407"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5603e3aad459aa7318c8d1f5794164b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa5603e3aad459aa7318c8d1f5794164b">aws_der_decoder_tlv_count</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:aa5603e3aad459aa7318c8d1f5794164b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa67b33f093238847946ad5f5306de389"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa67b33f093238847946ad5f5306de389">s_tlv_to_blob</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *blob)</td></tr>
+<tr class="memitem:aa67b33f093238847946ad5f5306de389"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aa67b33f093238847946ad5f5306de389">s_tlv_to_blob</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv, struct aws_byte_cursor *blob)</td></tr>
 <tr class="separator:aa67b33f093238847946ad5f5306de389"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab18edf130e03781d530b61c3c9f00c7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ab18edf130e03781d530b61c3c9f00c7f">aws_der_decoder_tlv_string</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a885837e2b3d6bfbc536b23ea3e8cf054">string</a>)</td></tr>
+<tr class="memitem:ab18edf130e03781d530b61c3c9f00c7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ab18edf130e03781d530b61c3c9f00c7f">aws_der_decoder_tlv_string</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a885837e2b3d6bfbc536b23ea3e8cf054">string</a>)</td></tr>
 <tr class="separator:ab18edf130e03781d530b61c3c9f00c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac20e3e0d1642fae05627164672341393"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ac20e3e0d1642fae05627164672341393">aws_der_decoder_tlv_integer</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *integer)</td></tr>
+<tr class="memitem:ac20e3e0d1642fae05627164672341393"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ac20e3e0d1642fae05627164672341393">aws_der_decoder_tlv_integer</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *integer)</td></tr>
 <tr class="separator:ac20e3e0d1642fae05627164672341393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ea94d3d687e2e26a2875c70e9506caf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a0ea94d3d687e2e26a2875c70e9506caf">aws_der_decoder_tlv_boolean</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, bool *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:a0ea94d3d687e2e26a2875c70e9506caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04424ef2ae0192cdb94329b6c9530ab7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a04424ef2ae0192cdb94329b6c9530ab7">aws_der_decoder_tlv_blob</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *blob)</td></tr>
+<tr class="memitem:a04424ef2ae0192cdb94329b6c9530ab7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a04424ef2ae0192cdb94329b6c9530ab7">aws_der_decoder_tlv_blob</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct aws_byte_cursor *blob)</td></tr>
 <tr class="separator:a04424ef2ae0192cdb94329b6c9530ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -187,13 +187,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a>* aws_der_decoder_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
@@ -254,7 +254,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>blob</em>&#160;</td>
         </tr>
         <tr>
@@ -351,7 +351,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>integer</em>&#160;</td>
         </tr>
         <tr>
@@ -412,7 +412,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>string</em>&#160;</td>
         </tr>
         <tr>
@@ -598,7 +598,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>contents</em>&#160;</td>
         </tr>
         <tr>
@@ -628,7 +628,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a>* aws_der_encoder_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -670,7 +670,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>bit_string</em>&#160;</td>
         </tr>
         <tr>
@@ -742,7 +742,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>integer</em>&#160;</td>
         </tr>
         <tr>
@@ -803,7 +803,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>octet_string</em>&#160;</td>
         </tr>
         <tr>
@@ -968,7 +968,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">static int s_der_read_tlv </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>cur</em>, </td>
         </tr>
         <tr>
@@ -1010,7 +1010,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>buf</em>&#160;</td>
         </tr>
         <tr>
@@ -1069,7 +1069,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>cur</em>&#160;</td>
         </tr>
         <tr>
@@ -1100,7 +1100,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>blob</em>&#160;</td>
         </tr>
         <tr>

@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_source.html">aws/cal/hash.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="thread_8h_source.html">aws/common/thread.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/thread.h&gt;</code><br />
 <code>#include &lt;windows.h&gt;</code><br />
 <code>#include &lt;bcrypt.h&gt;</code><br />
 <code>#include &lt;winerror.h&gt;</code><br />
@@ -89,17 +89,17 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a91b82180a992b7c28c3359c8c27b4ca0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a91b82180a992b7c28c3359c8c27b4ca0">s_destroy</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash)</td></tr>
 <tr class="separator:a91b82180a992b7c28c3359c8c27b4ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a526efe5a6450e006bd99d1b65753eed2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a526efe5a6450e006bd99d1b65753eed2">s_update</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hash)</td></tr>
+<tr class="memitem:a526efe5a6450e006bd99d1b65753eed2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a526efe5a6450e006bd99d1b65753eed2">s_update</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, const struct aws_byte_cursor *to_hash)</td></tr>
 <tr class="separator:a526efe5a6450e006bd99d1b65753eed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ae58473da633d143da2a72d59c2743"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ac9ae58473da633d143da2a72d59c2743">s_finalize</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:ac9ae58473da633d143da2a72d59c2743"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ac9ae58473da633d143da2a72d59c2743">s_finalize</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:ac9ae58473da633d143da2a72d59c2743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab036d4d8d8610658e703886011ad7f24"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ab036d4d8d8610658e703886011ad7f24">s_load_sha256_alg_handle</a> (void *user_data)</td></tr>
 <tr class="separator:ab036d4d8d8610658e703886011ad7f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a802724e5d7b697bee6129e08c981a657"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a802724e5d7b697bee6129e08c981a657">s_load_md5_alg_handle</a> (void *user_data)</td></tr>
 <tr class="separator:a802724e5d7b697bee6129e08c981a657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ada95b9da50e03731fd4ea6920c6ddc51">aws_sha256_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ada95b9da50e03731fd4ea6920c6ddc51">aws_sha256_default_new</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09ff2c5413718badc2c1251292c1a9b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a09ff2c5413718badc2c1251292c1a9b8">aws_md5_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
+<tr class="memitem:a09ff2c5413718badc2c1251292c1a9b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a09ff2c5413718badc2c1251292c1a9b8">aws_md5_default_new</a> (struct aws_allocator *allocator)</td></tr>
 <tr class="separator:a09ff2c5413718badc2c1251292c1a9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -108,13 +108,13 @@ Variables</h2></td></tr>
 <tr class="separator:a00703e2de2e4b564eb8bfba03e5f73c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3e0918b74c3da8d3e9514b092607515"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#ad3e0918b74c3da8d3e9514b092607515">s_sha256_obj_len</a> = 0</td></tr>
 <tr class="separator:ad3e0918b74c3da8d3e9514b092607515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37a019302a74ac371886279a4d2e7c7a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a37a019302a74ac371886279a4d2e7c7a">s_sha256_once</a> = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td></tr>
+<tr class="memitem:a37a019302a74ac371886279a4d2e7c7a"><td class="memItemLeft" align="right" valign="top">static aws_thread_once&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a37a019302a74ac371886279a4d2e7c7a">s_sha256_once</a> = AWS_THREAD_ONCE_STATIC_INIT</td></tr>
 <tr class="separator:a37a019302a74ac371886279a4d2e7c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26701b63a037e146544815df077b7422"><td class="memItemLeft" align="right" valign="top">static BCRYPT_ALG_HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a26701b63a037e146544815df077b7422">s_md5_alg</a> = NULL</td></tr>
 <tr class="separator:a26701b63a037e146544815df077b7422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1468c75f9272d561e3f5ed6579e9b538"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a1468c75f9272d561e3f5ed6579e9b538">s_md5_obj_len</a> = 0</td></tr>
 <tr class="separator:a1468c75f9272d561e3f5ed6579e9b538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5947efd98dd6ed63d53b51a70f2c9807"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a5947efd98dd6ed63d53b51a70f2c9807">s_md5_once</a> = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td></tr>
+<tr class="memitem:a5947efd98dd6ed63d53b51a70f2c9807"><td class="memItemLeft" align="right" valign="top">static aws_thread_once&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#a5947efd98dd6ed63d53b51a70f2c9807">s_md5_once</a> = AWS_THREAD_ONCE_STATIC_INIT</td></tr>
 <tr class="separator:a5947efd98dd6ed63d53b51a70f2c9807"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2662859f949bbe0371f4de65068e8ca"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__hash__vtable.html">aws_hash_vtable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bcrypt__hash_8c.html#aa2662859f949bbe0371f4de65068e8ca">s_sha256_vtable</a></td></tr>
 <tr class="separator:aa2662859f949bbe0371f4de65068e8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,7 +131,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__hash.html">aws_hash</a>* aws_md5_default_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -149,7 +149,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__hash.html">aws_hash</a>* aws_sha256_default_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em></td><td>)</td>
           <td></td>
         </tr>
@@ -203,7 +203,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -291,7 +291,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_hash</em>&#160;</td>
         </tr>
         <tr>
@@ -364,7 +364,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a> s_md5_once = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td>
+          <td class="memname">aws_thread_once s_md5_once = AWS_THREAD_ONCE_STATIC_INIT</td>
         </tr>
       </table>
   </td>
@@ -463,7 +463,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a> s_sha256_once = <a class="el" href="thread_8h.html#af9af89ab58cf0603da16c1b4864ade79">AWS_THREAD_ONCE_STATIC_INIT</a></td>
+          <td class="memname">aws_thread_once s_sha256_once = AWS_THREAD_ONCE_STATIC_INIT</td>
         </tr>
       </table>
   </td>

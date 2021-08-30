@@ -72,37 +72,37 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab18f35d3344bbcad5fe194e462f60603"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__thread.html">aws_thread</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#ab18f35d3344bbcad5fe194e462f60603">thread_created_on</a></td></tr>
+<tr class="memitem:ab18f35d3344bbcad5fe194e462f60603"><td class="memItemLeft" align="right" valign="top">struct aws_thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#ab18f35d3344bbcad5fe194e462f60603">thread_created_on</a></td></tr>
 <tr class="separator:ab18f35d3344bbcad5fe194e462f60603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111be7443f9a539741ee591617ce2d14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a111be7443f9a539741ee591617ce2d14">thread_joined_to</a></td></tr>
+<tr class="memitem:a111be7443f9a539741ee591617ce2d14"><td class="memItemLeft" align="right" valign="top">aws_thread_id_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a111be7443f9a539741ee591617ce2d14">thread_joined_to</a></td></tr>
 <tr class="separator:a111be7443f9a539741ee591617ce2d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be25921d48f032c5b7931a8f9d40d51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a8be25921d48f032c5b7931a8f9d40d51">running_thread_id</a></td></tr>
+<tr class="memitem:a8be25921d48f032c5b7931a8f9d40d51"><td class="memItemLeft" align="right" valign="top">struct aws_atomic_var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a8be25921d48f032c5b7931a8f9d40d51">running_thread_id</a></td></tr>
 <tr class="separator:a8be25921d48f032c5b7931a8f9d40d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7601712c20f0327e1a27bbecfb9e55bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a7601712c20f0327e1a27bbecfb9e55bc">kq_fd</a></td></tr>
 <tr class="separator:a7601712c20f0327e1a27bbecfb9e55bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c856d53d5e918ed907c90c7164f904e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a5c856d53d5e918ed907c90c7164f904e">cross_thread_signal_pipe</a> [2]</td></tr>
 <tr class="separator:a5c856d53d5e918ed907c90c7164f904e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8ae5108a17e76bdd26268c698635b2"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:ac96e3ca6005121afb05e5a8e18501556"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#ac98ce361cc1f16f1d0fd3090b2666fb5">mutex</a></td></tr>
-<tr class="separator:ac96e3ca6005121afb05e5a8e18501556"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeff6a2a0b04c9f7ade58d0e23b364c1"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a651b81dbe1c2f27410dc31814a20e2ec">thread_signaled</a></td></tr>
-<tr class="separator:adeff6a2a0b04c9f7ade58d0e23b364c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeff450c6337a4c472d71186defcbbf0"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a31cd00f9e01896f28d8c230af434905d">tasks_to_schedule</a></td></tr>
-<tr class="separator:aeeff450c6337a4c472d71186defcbbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6e67b73f8210751831a11225a89d9b0"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="kqueue__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f">event_thread_state</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a423d881079120dae02c7b9459aae93db">state</a></td></tr>
-<tr class="separator:ac6e67b73f8210751831a11225a89d9b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8ae5108a17e76bdd26268c698635b2"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#abe8ae5108a17e76bdd26268c698635b2">cross_thread_data</a></td></tr>
-<tr class="separator:abe8ae5108a17e76bdd26268c698635b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cb42d24e33b1939d6e2a9e26233b70b"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a8ef210d1e6098073b736df03e418e201"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__task__scheduler.html">aws_task_scheduler</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#abd7c512d4f9b194c2c31eeae22b5594f">scheduler</a></td></tr>
-<tr class="separator:a8ef210d1e6098073b736df03e418e201"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf0737f5c5b86237032da9385c4947cf"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a0434dc58d36a02e4449ea27f3d79548b">connected_handle_count</a></td></tr>
-<tr class="separator:adf0737f5c5b86237032da9385c4947cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a812b7c6979cb953313eaf0491e7c81c5"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="kqueue__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f">event_thread_state</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a423d881079120dae02c7b9459aae93db">state</a></td></tr>
-<tr class="separator:a812b7c6979cb953313eaf0491e7c81c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cb42d24e33b1939d6e2a9e26233b70b"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a1cb42d24e33b1939d6e2a9e26233b70b">thread_data</a></td></tr>
-<tr class="separator:a1cb42d24e33b1939d6e2a9e26233b70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8af2bb065f2f7637174d93be942891ff"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__thread__options.html">aws_thread_options</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a8af2bb065f2f7637174d93be942891ff">thread_options</a></td></tr>
+<tr class="memitem:ad16088af988b9fb578b3b7c8cdc0337d"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a40b11109b9988a3184812098edad8aaf"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#ac98ce361cc1f16f1d0fd3090b2666fb5">mutex</a></td></tr>
+<tr class="separator:a40b11109b9988a3184812098edad8aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc2a5350d9e5676edbc47f01731ebbc"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a651b81dbe1c2f27410dc31814a20e2ec">thread_signaled</a></td></tr>
+<tr class="separator:a9dc2a5350d9e5676edbc47f01731ebbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afafaa689dbf22052eff780796e02e7f0"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_linked_list&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a31cd00f9e01896f28d8c230af434905d">tasks_to_schedule</a></td></tr>
+<tr class="separator:afafaa689dbf22052eff780796e02e7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9614cd6385401f1c5a5cc5210a231099"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="kqueue__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f">event_thread_state</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a423d881079120dae02c7b9459aae93db">state</a></td></tr>
+<tr class="separator:a9614cd6385401f1c5a5cc5210a231099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad16088af988b9fb578b3b7c8cdc0337d"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#ad16088af988b9fb578b3b7c8cdc0337d">cross_thread_data</a></td></tr>
+<tr class="separator:ad16088af988b9fb578b3b7c8cdc0337d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b30ac6a0f411b5fcb290974fc157f1"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a6b0212dc58989497dfa0f784a1eafe22"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_task_scheduler&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#abd7c512d4f9b194c2c31eeae22b5594f">scheduler</a></td></tr>
+<tr class="separator:a6b0212dc58989497dfa0f784a1eafe22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5f6f748d6f1d1394773d417a5195bf"><td class="memItemLeft" >&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a0434dc58d36a02e4449ea27f3d79548b">connected_handle_count</a></td></tr>
+<tr class="separator:a5c5f6f748d6f1d1394773d417a5195bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad0ad37d60aea6bb6e26a5e210f01a07"><td class="memItemLeft" >&#160;&#160;&#160;enum <a class="el" href="kqueue__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f">event_thread_state</a>&#160;&#160;&#160;<a class="el" href="structkqueue__loop.html#a423d881079120dae02c7b9459aae93db">state</a></td></tr>
+<tr class="separator:aad0ad37d60aea6bb6e26a5e210f01a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b30ac6a0f411b5fcb290974fc157f1"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a71b30ac6a0f411b5fcb290974fc157f1">thread_data</a></td></tr>
+<tr class="separator:a71b30ac6a0f411b5fcb290974fc157f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8af2bb065f2f7637174d93be942891ff"><td class="memItemLeft" align="right" valign="top">struct aws_thread_options&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkqueue__loop.html#a8af2bb065f2f7637174d93be942891ff">thread_options</a></td></tr>
 <tr class="separator:a8af2bb065f2f7637174d93be942891ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -120,8 +120,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abe8ae5108a17e76bdd26268c698635b2" name="abe8ae5108a17e76bdd26268c698635b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe8ae5108a17e76bdd26268c698635b2">&#9670;&nbsp;</a></span></h2>
+<a id="ad16088af988b9fb578b3b7c8cdc0337d" name="ad16088af988b9fb578b3b7c8cdc0337d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad16088af988b9fb578b3b7c8cdc0337d">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +169,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> kqueue_loop::mutex</td>
+          <td class="memname">struct aws_mutex kqueue_loop::mutex</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> kqueue_loop::running_thread_id</td>
+          <td class="memname">struct aws_atomic_var kqueue_loop::running_thread_id</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__task__scheduler.html">aws_task_scheduler</a> kqueue_loop::scheduler</td>
+          <td class="memname">struct aws_task_scheduler kqueue_loop::scheduler</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -225,7 +225,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> kqueue_loop::tasks_to_schedule</td>
+          <td class="memname">struct aws_linked_list kqueue_loop::tasks_to_schedule</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -239,15 +239,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__thread.html">aws_thread</a> kqueue_loop::thread_created_on</td>
+          <td class="memname">struct aws_thread kqueue_loop::thread_created_on</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a1cb42d24e33b1939d6e2a9e26233b70b" name="a1cb42d24e33b1939d6e2a9e26233b70b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cb42d24e33b1939d6e2a9e26233b70b">&#9670;&nbsp;</a></span></h2>
+<a id="a71b30ac6a0f411b5fcb290974fc157f1" name="a71b30ac6a0f411b5fcb290974fc157f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b30ac6a0f411b5fcb290974fc157f1">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,7 +267,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a> kqueue_loop::thread_joined_to</td>
+          <td class="memname">aws_thread_id_t kqueue_loop::thread_joined_to</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -281,7 +281,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__thread__options.html">aws_thread_options</a> kqueue_loop::thread_options</td>
+          <td class="memname">struct aws_thread_options kqueue_loop::thread_options</td>
         </tr>
       </table>
 </div><div class="memdoc">

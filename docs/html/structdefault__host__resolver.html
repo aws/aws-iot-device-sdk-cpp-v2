@@ -72,13 +72,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a09df27ab4c9773759e7c9f1ef10368e6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a09df27ab4c9773759e7c9f1ef10368e6">allocator</a></td></tr>
+<tr class="memitem:a09df27ab4c9773759e7c9f1ef10368e6"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a09df27ab4c9773759e7c9f1ef10368e6">allocator</a></td></tr>
 <tr class="separator:a09df27ab4c9773759e7c9f1ef10368e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c40daf1eacef909988337e799018472"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a1c40daf1eacef909988337e799018472">resolver_lock</a></td></tr>
+<tr class="memitem:a1c40daf1eacef909988337e799018472"><td class="memItemLeft" align="right" valign="top">struct aws_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a1c40daf1eacef909988337e799018472">resolver_lock</a></td></tr>
 <tr class="separator:a1c40daf1eacef909988337e799018472"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89f4c3b156e05d1bab5fbc0f8f1a2ec5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a89f4c3b156e05d1bab5fbc0f8f1a2ec5">host_entry_table</a></td></tr>
+<tr class="memitem:a89f4c3b156e05d1bab5fbc0f8f1a2ec5"><td class="memItemLeft" align="right" valign="top">struct aws_hash_table&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a89f4c3b156e05d1bab5fbc0f8f1a2ec5">host_entry_table</a></td></tr>
 <tr class="separator:a89f4c3b156e05d1bab5fbc0f8f1a2ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d832dedc7d3e6e31649b0d6d4cc68cf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a5d832dedc7d3e6e31649b0d6d4cc68cf">listener_entry_table</a></td></tr>
+<tr class="memitem:a5d832dedc7d3e6e31649b0d6d4cc68cf"><td class="memItemLeft" align="right" valign="top">struct aws_hash_table&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a5d832dedc7d3e6e31649b0d6d4cc68cf">listener_entry_table</a></td></tr>
 <tr class="separator:a5d832dedc7d3e6e31649b0d6d4cc68cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3664c66c5658d4157fd53e2e8870391c"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="host__resolver_8c.html#ae3514ed634926a8404d7b5901e38b0e2">default_resolver_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdefault__host__resolver.html#a3664c66c5658d4157fd53e2e8870391c">state</a></td></tr>
 <tr class="separator:a3664c66c5658d4157fd53e2e8870391c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,7 +95,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* default_host_resolver::allocator</td>
+          <td class="memname">struct aws_allocator* default_host_resolver::allocator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -109,7 +109,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> default_host_resolver::host_entry_table</td>
+          <td class="memname">struct aws_hash_table default_host_resolver::host_entry_table</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -123,7 +123,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> default_host_resolver::listener_entry_table</td>
+          <td class="memname">struct aws_hash_table default_host_resolver::listener_entry_table</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -151,7 +151,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> default_host_resolver::resolver_lock</td>
+          <td class="memname">struct aws_mutex default_host_resolver::resolver_lock</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -67,29 +67,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >This directory contains code for new post-quantum key exchange mechanisms. There are no known computationally feasible attacks (classical or quantum) against these algorithms when used with the recommended key lengths.</p>
-<h1><a class="anchor" id="autotoc_md466"></a>
+<h1><a class="anchor" id="autotoc_md353"></a>
 Quantum computers</h1>
 <p >Quantum computers use the properties of quantum mechanics to evaluate quantum algorithms. These algorithms can solve some classically hard (exponential time) problems quickly (polynomial time). Shor's algorithm is one such algorithm which can factor large integers, thus breaking RSA encryption and digital signature, and another quantum algorithm can solve the discrete logarithm problem over arbitrary groups thus breaking Diffie–Hellman and elliptic curve Diffie–Hellman key exchange.</p>
-<h1><a class="anchor" id="autotoc_md467"></a>
+<h1><a class="anchor" id="autotoc_md354"></a>
 Post-quantum cryptography</h1>
 <p >Post-quantum public-key cryptographic algorithms run on a classical computer and are conjectured secure against both classical and quantum attacks. NIST is in the process of reviewing submissions and standardizing them, see more info on the <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization">NIST website</a>. Until the review and standardization is complete the post-quantum key exchanges in s2n <b>must not</b> be used for key establishment by themselves. Instead they should only be used as part of a hybrid key exchange, which combines a post-quantum key exchange scheme and a classical key exchange scheme.</p>
-<h1><a class="anchor" id="autotoc_md468"></a>
+<h1><a class="anchor" id="autotoc_md355"></a>
 Hybrid key exchange</h1>
 <p >A hybrid key exchange combines both the high assurance of classical key exchange with the conjectured quantum-resistance of newly proposed key exchanges. For hybrid TLS 1.2, s2n implements the hybrid specification from <a href="https://tools.ietf.org/html/draft-campagna-tls-bike-sike-hybrid-01">this RFC</a>. See <a href="https://github.com/awslabs/s2n/issues/904">this s2n issue</a> for more up-to-date information. For hybrid TLS 1.3, s2n implements the hybrid specification from <a href="https://tools.ietf.org/html/draft-stebila-tls-hybrid-design">this draft RFC</a>. See also <a href="https://docs.google.com/spreadsheets/d/12YarzaNv3XQNLnvDsWLlRKwtZFhRrDdWf36YlzwrPeg/edit#gid=0">this doc</a> that defines hybrid group values for interoperability.</p>
-<h1><a class="anchor" id="autotoc_md469"></a>
+<h1><a class="anchor" id="autotoc_md356"></a>
 SIKE (Supersingular Isogeny Key Encapsulation)</h1>
 <p >The code in the pq-crypto/sike_r1 directory was taken from the <a href="https://csrc.nist.gov/CSRC/media/Projects/Post-Quantum-Cryptography/documents/round-1/submissions/SIKE.zip">round 1 NIST submission</a>. s2n uses the optimized portable implementation to ensure maximum comparability and ease of review. The known answer tests are <a href="https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_sike_r1_kat_test.c">here</a> and use the known answer file from the SIKEp503 round 1 submission.</p>
 <p >The code in the pq-crypto/sike_r2 directory was imported from <a href="https://github.com/open-quantum-safe/liboqs/tree/386372ba7dbef781f0b939f1cf73d33019958d6a/src/kem/sike">liboqs</a>, and implements the <a href="https://csrc.nist.gov/projects/post-quantum-cryptography/round-2-submissions">round 2 NIST submission</a>. s2n is configured to use the optimized assembly implementation on x86_64 processors, and the optimized portable implementation elsewhere. The known answer tests are <a href="https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_sike_r2_kat_test.c">here</a> and use the known answer file from the SIKEP434 round 2 submission.</p>
-<h1><a class="anchor" id="autotoc_md470"></a>
+<h1><a class="anchor" id="autotoc_md357"></a>
 BIKE (Bit Flipping Key Encapsulation)</h1>
 <p >The code in the pq-crypto/bike directory was taken from the <a href="https://bikesuite.org/files/round2/add-impl/Additional_Implementation.2019.03.30.zip">additional implementation</a>. s2n uses the "additional implementation" which ensures constant time primitives, does not use any external libraries besides libcrypto, and does not depend on any specific hardware instructions to ensure maximum comparability and ease of review. The known answer tests are <a href="https://github.com/awslabs/s2n/blob/main/tests/unit/s2n_bike1_l1_r1_kat_test.c">here</a> and use the BIKE1_L1.const.kat from the above Additional_Implementation.2019.03.30.zip. This implementation uses constant time primitives on x86 and aarch64 platforms.</p>
-<h1><a class="anchor" id="autotoc_md471"></a>
+<h1><a class="anchor" id="autotoc_md358"></a>
 How to disable optimized assembly code for PQ Crypto</h1>
 <p >Certain post-quantum KEM algorithms included in s2n use optimized assembly code for efficient computation. When compiling s2n on compatible toolchains, the optimized assembly code will significantly improve performance of the post-quantum cryptographic operations. s2n attempts to detect whether or not the architecture is compatible with the assembly code, and falls back to the portable C implementation if it detects incompatibility. However, some users may wish to manually force s2n to use the portable C implementation. To do so, simply <code>export S2N_NO_PQ_ASM=1</code> as an environment variable before compiling.</p>
-<h1><a class="anchor" id="autotoc_md472"></a>
+<h1><a class="anchor" id="autotoc_md359"></a>
 How to disable all PQ Crypto</h1>
 <p >Users may have need to compile s2n without any PQ crypto support whatsoever. To so do, <code>export S2N_NO_PQ=1</code> as an environment variable before compiling.</p>
-<h1><a class="anchor" id="autotoc_md473"></a>
+<h1><a class="anchor" id="autotoc_md360"></a>
 How to add a new PQ KEM family for use in hybrid TLS 1.2</h1>
 <ol type="1">
 <li>Add the code to <code>pq-crypto/KEM_NAME/</code><ol type="a">
@@ -136,7 +136,7 @@ How to add a new PQ KEM family for use in hybrid TLS 1.2</h1>
 </ol>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md474"></a>
+<h1><a class="anchor" id="autotoc_md361"></a>
 How to add a new variant to an existing PQ KEM family for use in hybrid TLS 1.2</h1>
 <ol type="1">
 <li>Add the code to <code>pq-crypto/KEM_NAME/</code><ol type="a">
@@ -174,7 +174,7 @@ How to add a new variant to an existing PQ KEM family for use in hybrid TLS 1.2<
 </ol>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md475"></a>
+<h1><a class="anchor" id="autotoc_md362"></a>
 How to use PQ cipher suites for hybrid TLS 1.2</h1>
 <ol type="1">
 <li>Checkout s2n <code>git clone <a href="https://github.com/awslabs/s2n.git">https://github.com/awslabs/s2n.git</a></code></li>

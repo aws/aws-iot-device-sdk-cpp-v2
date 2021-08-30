@@ -67,10 +67,10 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >If you are curious about the internals of s2n, or interested in contributing to s2n, this document is for you. If instead you are interested in using s2n in an application that you are developing, please see the accompanying <a href="https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md">Usage Guide</a>.</p>
-<h1><a class="anchor" id="autotoc_md321"></a>
+<h1><a class="anchor" id="autotoc_md208"></a>
 s2n's development principles</h1>
 <p >Before getting into the detail of how s2n works internally, it's worth covering s2n's development principles. These principles guide and inform many of the design decisions we'll go through. We're always open to new principles, if you can think of better ones and make a case for them.</p>
-<h3><a class="anchor" id="autotoc_md322"></a>
+<h3><a class="anchor" id="autotoc_md209"></a>
 Development principles</h3>
 <ul>
 <li><b>Maintain an excellent TLS/SSL implementation</b><br  />
@@ -92,7 +92,7 @@ s2n operates in a security critical space. Even with the most precautionary deve
 <li><b>Make data-driven decisions</b><br  />
 Opinions can differ on security best practices, sometimes in contradictory ways. Where possible, we are guided by facts and measurable data.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md323"></a>
+<h3><a class="anchor" id="autotoc_md210"></a>
 Priorities</h3>
 <p >When weighing up difficult implementation trade-offs our ordered set of priorities are:</p>
 <ol type="1">
@@ -101,13 +101,13 @@ Priorities</h3>
 <li>Ease of use</li>
 <li>Performance.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md324"></a>
+<h3><a class="anchor" id="autotoc_md211"></a>
 Commit and code-review policy</h3>
 <p >s2n is review-then-commit for code changes, and commit-then-review for documentation changes. Code additions are made by pull requests, no author may merge their own pull request on code. Changes to documentation, including code comments, may be made more freely.</p>
-<h1><a class="anchor" id="autotoc_md325"></a>
+<h1><a class="anchor" id="autotoc_md212"></a>
 Coding style and conventions</h1>
 <p >Per our development principles, an important goal is to reduce the cognitive load required to read, review and extend s2n. Although s2n is written in C, s2n adopts several patterns more common to functional programming. Though they are used in a way that is idiomatic and shouldn't feel completely alien in C.</p>
-<h2><a class="anchor" id="autotoc_md326"></a>
+<h2><a class="anchor" id="autotoc_md213"></a>
 High level function design</h2>
 <p >The first convention is that's s2n's functions are generally quite small, no more than a page or two at most and commonly just a few lines. Functions have a clear input and output and are in that sense "pure" functions; for example handling a particular TLS handshake message type takes the message as input, and the output is connection state.</p>
 <div class="fragment"><div class="line"><span class="comment">/* An idiomatic s2n function generally has:</span></div>
@@ -129,7 +129,7 @@ High level function design</h2>
 </div><!-- fragment --><p >Splitting things up this way leads to a shallower call stack, but the main benefit is that functions can read quite declaratively. In the case of message parsers, the function contents can read almost like schemas of the message being parsed.</p>
 <p >A good example file for message parsing to look at is <a href="https://github.com/awslabs/s2n/blob/main/tls/s2n_server_finished.c">tls/s2n_server_finished.c</a>. From reading the file it should be reasonably clear that a server finished message consists just of S2N_TLS_FINISHED_LEN number of bytes, what the next state is and so on.</p>
 <p >As you may also see in that file, the functions for reading and writing a particular message type are in the same file. That way all of context and logic needed to handle that message type can be reviewed and thought about in one place.</p>
-<h2><a class="anchor" id="autotoc_md327"></a>
+<h2><a class="anchor" id="autotoc_md214"></a>
 Error handling and Macros</h2>
 <p >As may also be clear from the above examples, s2n has some conventions for how errors are handled. Firstly, s2n functions should always return <code>S2N_RESULT_ERROR</code> or <code>NULL</code> on error, and <code>S2N_RESULT_OK</code> or a valid pointer on success. s2n also includes a thread local variable: s2n_errno, for indicating the cause of the error. This follows the convention set by libc (with errno), getaddrinfo (gai_errno), net-snmp (snmp_errno), and countless other libraries.</p>
 <p >In s2n, we <b>always</b> check return values. Because of that, the coding pattern:</p>
@@ -146,11 +146,11 @@ Error handling and Macros</h2>
 <div class="fragment"><div class="line">BAIL(<a class="code hl_enumvalue" href="s2n__errno_8h.html#a64ed9ec59a957387654c5e5865325374ad61ca0bcc8f9f8bf3e065de30ad547fb">S2N_ERR_BAD_MESSAGE</a>);</div>
 <div class="ttc" id="as2n__errno_8h_html_a64ed9ec59a957387654c5e5865325374ad61ca0bcc8f9f8bf3e065de30ad547fb"><div class="ttname"><a href="s2n__errno_8h.html#a64ed9ec59a957387654c5e5865325374ad61ca0bcc8f9f8bf3e065de30ad547fb">S2N_ERR_BAD_MESSAGE</a></div><div class="ttdeci">@ S2N_ERR_BAD_MESSAGE</div><div class="ttdef"><b>Definition:</b> s2n_errno.h:68</div></div>
 </div><!-- fragment --><p >the macro will set s2n_errno correctly, as well as some useful debug strings, and return <code>S2N_RESULT_ERROR</code>.</p>
-<h2><a class="anchor" id="autotoc_md328"></a>
+<h2><a class="anchor" id="autotoc_md215"></a>
 Safety checking</h2>
 <p ><a href="https://github.com/awslabs/s2n/blob/main/utils/s2n_safety.h">utils/s2n_safety.h</a> provides several more convenience macros intended to make safety and bounds checking easier. There are checked versions of memcpy (<code>CHECKED_MEMCPY</code>) and memset (<code>CHECKED_MEMSET</code>), as well as predicate testers like <code>ENSURE</code>, <code>ENSURE_GTE</code>, <code>ENSURE_INCLUSIVE_RANGE</code>, <code>ENSURE_EXCLUSIVE_RANGE</code> for performing simple comparisons in a systematic, error-handled, way.</p>
 <p ><em>Note</em>: In general, C preprocessor Macros with embedded control flow are a bad idea, but <code>GUARD</code>, <code>ENSURE</code>, and <code>BAIL</code> are so thoroughly used throughout s2n that it should be a clear and idiomatic pattern, almost forming a small domain specific language.</p>
-<h2><a class="anchor" id="autotoc_md329"></a>
+<h2><a class="anchor" id="autotoc_md216"></a>
 Cleanup on Error</h2>
 <p >As discussed below, s2n rarely allocates resources, and so has nothing to clean up on error. For cases where functions do allocate resources which must be cleaned up, s2n offers two macros:</p>
 <div class="fragment"><div class="line"> </div>
@@ -159,7 +159,7 @@ Cleanup on Error</h2>
 <div class="line"><span class="preprocessor">#define DEFER_CLEANUP(_thealloc, _thecleanup) ...</span></div>
 </div><!-- fragment --><p ><code>GUARD_GOTO( x , label )</code> does traditional "goto" style cleanup: if the function <code>x</code> returns an error, control is transfered to label <code>label</code>. It is the responsibility of the code at <code>label</code> to cleanup any resources, and then return <code>S2N_RESULT_ERROR</code>.</p>
 <p ><code>DEFER_CLEANUP(_thealloc, _thecleanup)</code> is a more failsafe way of ensuring that resources are cleaned up, using the <code>__attribute__((cleanup())</code> destructor mechanism available in modern C compilers. When the variable declared in <code>_thealloc</code> goes out of scope, the cleanup function <code>_thecleanup</code> is automatically called. This guarantees that resources will be cleaned up, no matter how the function exits.</p>
-<h2><a class="anchor" id="autotoc_md330"></a>
+<h2><a class="anchor" id="autotoc_md217"></a>
 Control flow and the state machine</h2>
 <p >Branches can be a source of cognitive load, as they ask the reader to follow a path of thinking, while also remembering that there is another path to be explored. When branches are nested, they can often lead to impossible to grasp combinatorial explosions. s2n tries to systematically reduce the number of branches used in the code in several ways.</p>
 <p >Firstly, there are almost no ifdef calls in s2n. Ifdefs can be a particularly penalizing source of cognitive load. In addition to being a branch, they also ask the reader to mix state from two different languages (C, and the C preprocessor) and they tend to be associated with ugly rendering in IDEs and code formatters. In the few places where ifdef's are necessary, we use them in a careful way without compromising the integrity of the function. <a href="https://github.com/awslabs/s2n/blob/main/tls/s2n_config.c">tls/s2n_config.c</a> is a good example. Rather than mixing the Apple and non-Apple implementations and cluttering one function with several ifdefs, there is a complete implementation of the timer functionality for each platform. Within the POSIX implementation, an ifdef and define are used to use the most precise clock type, but in a way that does not compromise readability.</p>
@@ -176,7 +176,7 @@ Control flow and the state machine</h2>
 <p >For branches on small enumerated types, s2n generally favors switch statements: though switch statements taking up more than about 25 lines of code are discouraged, and a "default:" block is mandatory.</p>
 <p >Another technique for complexity avoidance is that the core TLS state machine within s2n does not use branches and instead uses a table of function pointers (another technique borrowed from functional programming) to dispatch data to the correct handler. This is covered in more detail later in this document.</p>
 <p >Lastly, s2n studiously avoids locks. s2n is designed to be thread-safe, but does so by using atomic data types in the small number of well-isolated variables that may be accessed by multiple threads.</p>
-<h2><a class="anchor" id="autotoc_md331"></a>
+<h2><a class="anchor" id="autotoc_md218"></a>
 Code formatting and commenting</h2>
 <p >s2n is written in C99. The code formatting and indentation should be relatively clear from reading some s2n source files, but there is also an automated "make indent" target that will indent the s2n sources.</p>
 <p >There should be no need for comments to explain <em>what</em> s2n code is doing; variables and functions should be given clear and human-readable names that make their purpose and intent intuitive. Comments explaining <em>why</em> we are doing something are encouraged. Often some context setting is necessary; a reference to an RFC, or a reminder of some critical state that is hard to work directly into the immediate code in a natural way. All comments should be written using C syntax <code>/* */</code> and <b>avoid</b> C++ comments <code>//</code> even though C99 compilers allow <code>//</code>.</p>
@@ -191,7 +191,7 @@ Code formatting and commenting</h2>
 <li>4 spaces, no tabs</li>
 <li>Assuming a terminal that is 120 characters wide is ok</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md332"></a>
+<h1><a class="anchor" id="autotoc_md219"></a>
 Tests</h1>
 <p >s2n is written in C99, a language which lacks a "standard" testing framework. Although there are some more well used C++ testing frameworks, s2n also targets some embedded platforms on which a C++ compiler is unavailable.</p>
 <p >Since testing and test-cases are absolutely mandatory for all s2n functionality, s2n includes its own small testing framework, defined in <a href="https://github.com/awslabs/s2n/blob/main/tests/s2n_test.h">tests/s2n_test.h</a>. The framework consists of 15 macros that allow you to start a test suite, which is a normal C application with a <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a> function, and to validate various expectations.</p>
@@ -200,10 +200,10 @@ Tests</h1>
 <p >In addition to fully covering functionality in the correct cases, s2n tests are also expected to include adversarial or "negative" test cases. For example, the tests performed on record encryption validate that s2n is tamper resistant by attempting to actually tamper with records. Similarly, we validate that our memory handling routines cannot be over-filled by attempting to over-fill them.</p>
 <p >To avoid adding unneeded code to the production build of s2n, there is also a small test library defined at <a href="https://github.com/awslabs/s2n/blob/main/tests/testlib/">tests/testlib/</a> which includes routines useful for test cases. For example, there is a hex parser and emitter, which is useful for defining network data in test cases, but not needed in production.</p>
 <p >Unit tests are run automatically with <code>make</code>. To run a subset of the unit tests, set the <code>UNIT_TESTS</code> environment variable with the unit test name(s). For example: </p><div class="fragment"><div class="line">UNIT_TESTS=s2n_hash_test make</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md333"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md220"></a>
 A tour of s2n memory handling: blobs and stuffers</h1>
 <p >C has a history of issues around memory and buffer handling. To avoid problems in this area, s2n does not use C string functions or standard buffer manipulation patterns. Instead memory regions are tracked explicitly, with <code>s2n_blob</code> structures, and buffers are re-oriented as streams with <code><a class="el" href="structs2n__stuffer.html">s2n_stuffer</a></code> structures.</p>
-<h2><a class="anchor" id="autotoc_md334"></a>
+<h2><a class="anchor" id="autotoc_md221"></a>
 s2n_blob: keeping track of memory ranges</h2>
 <p ><code>s2n_blob</code> is a very simple data structure:</p>
 <div class="fragment"><div class="line"><span class="keyword">struct </span>s2n_blob {</div>
@@ -211,7 +211,7 @@ s2n_blob: keeping track of memory ranges</h2>
 <div class="line">    uint32_t size;</div>
 <div class="line">};</div>
 </div><!-- fragment --><p >Functions that handle memory ranges are expected to at least use blobs (stuffers are better though, as we'll see). A blob can be initialized with an existing memory buffer using <b>s2n_blob_init</b>, but <a href="https://github.com/awslabs/s2n/blob/main/utils/s2n_mem.h">utils/s2n_mem.h</a> also defines routines for dynamically allocated blobs. For handling user data, we prefer the latter, as s2n prevents the memory regions from being swapped to disk and from showing up in core files (where supported).</p>
-<h2><a class="anchor" id="autotoc_md335"></a>
+<h2><a class="anchor" id="autotoc_md222"></a>
 s2n_stuffer: a streaming buffer</h2>
 <p >The stuffer data structure included in s2n is intended to handle all protocol level input and output to memory buffers and is the real work-horse of s2n. At its core a stuffer is a blob and two cursors:</p>
 <div class="fragment"><div class="line"><span class="keyword">struct </span><a class="code hl_struct" href="structs2n__stuffer.html">s2n_stuffer</a> {</div>
@@ -286,7 +286,7 @@ s2n_stuffer: a streaming buffer</h2>
 <div class="line"><span class="comment">/* Stuffer life cycle is now complete, reset everything and wipe */</span></div>
 <div class="line">GUARD(<a class="code hl_function" href="s2n__stuffer_8c.html#a2b6b54f7856d92f06f823bc26d10f4ba">s2n_stuffer_wipe</a>(&amp;in));</div>
 <div class="ttc" id="as2n__stuffer_8c_html_a2b6b54f7856d92f06f823bc26d10f4ba"><div class="ttname"><a href="s2n__stuffer_8c.html#a2b6b54f7856d92f06f823bc26d10f4ba">s2n_stuffer_wipe</a></div><div class="ttdeci">int s2n_stuffer_wipe(struct s2n_stuffer *stuffer)</div><div class="ttdef"><b>Definition:</b> s2n_stuffer.c:197</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md336"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md223"></a>
 s2n_connection and the TLS state machine</h1>
 <p >Every connection is associated with an <a class="el" href="structs2n__connection.html">s2n_connection</a> structure. The details of this structure are opaque to applications, but internally it is where all of the TLS state is managed. To make sense of what is going on, it is necessary to understand how the TLS protocol works at the record and handshake layers.</p>
 <p >When a TLS connection is being started, the first communication consists of handshake messages. The client sends the first message (a client hello), and then the server replies (with a server hello), and so on. Because a server must wait for a client and vice versa, this phase of a TLS connection is not full-duplex. To save on memory, s2n uses a single stuffer for both incoming and outgoing handshake messages and it is located as s2n_connection-&gt;handshake.io (which is a growable stuffer).</p>
@@ -354,10 +354,10 @@ s2n_connection and the TLS state machine</h1>
 <div class="fragment"><div class="line">sig_atomic_t closing;</div>
 <div class="line">sig_atomic_t closed;</div>
 </div><!-- fragment --><p >'closing' is an atomic, but even if it were not it can only be changed from 0 to 1, so an over-write is harmless. Every time a TLS record is fully-written, <a class="el" href="s2n_8h.html#a9afeb514731fa9d74edf6b9e1348c067">s2n_send()</a> checks to see if closing is set to 1. If it is then the reader or writer alert message will be sent (writer takes priority, if both are present) and the connection will be closed. Once the closed is 1, no more I/O may be sent or received on the connection.</p>
-<h1><a class="anchor" id="autotoc_md337"></a>
+<h1><a class="anchor" id="autotoc_md224"></a>
 s2n and entropy</h1>
 <p >s2n provides two deterministic random number generators to every thread. <b>s2n_get_public_random_data()</b> should be used to generate any data that is exposed in a public context including nonces, initialization vectors, and randomized timing values. <b>s2n_get_private_random_data()</b> should be used for data which must be kept secret. Additionally s2n over-rides libcrypto's entropy generation with <b>s2n_get_private_random_data()</b>.</p>
-<h1><a class="anchor" id="autotoc_md338"></a>
+<h1><a class="anchor" id="autotoc_md225"></a>
 Contributing to s2n</h1>
 <p >We are happy to accept contributions to s2n. We suggest the following general procedure:</p>
 <ul>

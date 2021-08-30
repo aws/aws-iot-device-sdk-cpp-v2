@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="compression_8h_source.html">aws/compression/compression.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="byte__buf_8h_source.html">aws/common/byte_buf.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/byte_buf.h&gt;</code><br />
 </div>
 <p><a href="huffman_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -99,7 +99,7 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad1355f1267a48d89bc24082d6cf50608"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__huffman__code.html">aws_huffman_code</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#ad1355f1267a48d89bc24082d6cf50608">aws_huffman_symbol_encoder_fn</a> (uint8_t symbol, void *userdata)</td></tr>
 <tr class="separator:ad1355f1267a48d89bc24082d6cf50608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef42048ee2ee54c445163ca4dfb05b84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#aef42048ee2ee54c445163ca4dfb05b84">aws_huffman_encoder_init</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__huffman__symbol__coder.html">aws_huffman_symbol_coder</a> *coder)</td></tr>
+<tr class="memitem:aef42048ee2ee54c445163ca4dfb05b84"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#aef42048ee2ee54c445163ca4dfb05b84">aws_huffman_encoder_init</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__huffman__symbol__coder.html">aws_huffman_symbol_coder</a> *coder)</td></tr>
 <tr class="separator:aef42048ee2ee54c445163ca4dfb05b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a128c1ec79c02828844a9f28d6f52ff9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#a128c1ec79c02828844a9f28d6f52ff9a">aws_huffman_encoder_reset</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder)</td></tr>
 <tr class="separator:a128c1ec79c02828844a9f28d6f52ff9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,11 +107,11 @@ Functions</h2></td></tr>
 <tr class="separator:acbe357203649d987303f9194d7cf2c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34c1b6073a00cf0933968f7fb9e699bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#a34c1b6073a00cf0933968f7fb9e699bb">aws_huffman_decoder_reset</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder)</td></tr>
 <tr class="separator:a34c1b6073a00cf0933968f7fb9e699bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacfc819118591e6e74218725c4260e95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#aacfc819118591e6e74218725c4260e95">aws_huffman_get_encoded_length</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_encode)</td></tr>
+<tr class="memitem:aacfc819118591e6e74218725c4260e95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#aacfc819118591e6e74218725c4260e95">aws_huffman_get_encoded_length</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct aws_byte_cursor to_encode)</td></tr>
 <tr class="separator:aacfc819118591e6e74218725c4260e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb6619ecad41953fa7c46a4577a9a6a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#abb6619ecad41953fa7c46a4577a9a6a7">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_encode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:abb6619ecad41953fa7c46a4577a9a6a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#abb6619ecad41953fa7c46a4577a9a6a7">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct aws_byte_cursor *to_encode, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:abb6619ecad41953fa7c46a4577a9a6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13f0c95fa9e1f8471f63a19fd402010f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#a13f0c95fa9e1f8471f63a19fd402010f">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_decode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
+<tr class="memitem:a13f0c95fa9e1f8471f63a19fd402010f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#a13f0c95fa9e1f8471f63a19fd402010f">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct aws_byte_cursor *to_decode, struct aws_byte_buf *output)</td></tr>
 <tr class="separator:a13f0c95fa9e1f8471f63a19fd402010f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafc429ed6ec66288f2ca9071146f7183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8h.html#aafc429ed6ec66288f2ca9071146f7183">aws_huffman_decoder_allow_growth</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, bool allow_growth)</td></tr>
 <tr class="separator:aafc429ed6ec66288f2ca9071146f7183"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,13 +157,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_decode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -278,13 +278,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_encode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
@@ -314,7 +314,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void aws_huffman_encoder_init </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-compression_2include_2aws_2compression_2_exports_8h.html#a5175ae8953698ef3caaf21a84570e5ce">AWS_COMPRESSION_API</a> void aws_huffman_encoder_init </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *&#160;</td>
           <td class="paramname"><em>encoder</em>, </td>
@@ -370,7 +370,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>to_encode</em>&#160;</td>
         </tr>
         <tr>

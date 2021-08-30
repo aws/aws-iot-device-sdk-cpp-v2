@@ -95,13 +95,13 @@ Functions</h2></td></tr>
 <tr class="separator:a89b7bb76dba8ea2d0dcf6bd16120da32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20711e7feab6ca80845d955784547479"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a20711e7feab6ca80845d955784547479">s_on_message_write_completed_fn</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message, int err_code, void *user_data)</td></tr>
 <tr class="separator:a20711e7feab6ca80845d955784547479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab284e9df0be79e23535ef9dd0c85c556"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#ab284e9df0be79e23535ef9dd0c85c556">s_write_handler_message</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:ab284e9df0be79e23535ef9dd0c85c556"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#ab284e9df0be79e23535ef9dd0c85c556">s_write_handler_message</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:ab284e9df0be79e23535ef9dd0c85c556"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1163964b041a87239b380b1a9d658420"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a1163964b041a87239b380b1a9d658420">aws_event_stream_channel_handler_write_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *channel_handler, struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, <a class="el" href="event__stream__channel__handler_8h.html#a86c28f1aa5fabade81592ac9688c029b">aws_event_stream_channel_handler_on_message_written_fn</a> *on_message_written, void *user_data)</td></tr>
 <tr class="separator:a1163964b041a87239b380b1a9d658420"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cca0877e84418099978a018b155bfb7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a1cca0877e84418099978a018b155bfb7">aws_event_stream_channel_handler_get_user_data</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *channel_handler)</td></tr>
 <tr class="separator:a1cca0877e84418099978a018b155bfb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eb8d5aced1adcc90c3e813e53db97eb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a3eb8d5aced1adcc90c3e813e53db97eb">s_update_window_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a3eb8d5aced1adcc90c3e813e53db97eb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a3eb8d5aced1adcc90c3e813e53db97eb">s_update_window_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a3eb8d5aced1adcc90c3e813e53db97eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91811fed8823d5fd63097882c9282d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a91811fed8823d5fd63097882c9282d85">aws_event_stream_channel_handler_increment_read_window</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *channel_handler, size_t window_update_size)</td></tr>
 <tr class="separator:a91811fed8823d5fd63097882c9282d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,7 +117,7 @@ Functions</h2></td></tr>
 <tr class="separator:a573c6c56f4f3a65b1dbba1a5720656f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34bcc79668b3034d5d2a9b9c6934fda5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#a34bcc79668b3034d5d2a9b9c6934fda5">s_shutdown</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int error_code, bool free_scarce_resources_immediately)</td></tr>
 <tr class="separator:a34bcc79668b3034d5d2a9b9c6934fda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1fd0098e46b3937aaaa550d9d5fb056"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#ac1fd0098e46b3937aaaa550d9d5fb056">aws_event_stream_channel_handler_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__event__stream__channel__handler__options.html">aws_event_stream_channel_handler_options</a> *handler_options)</td></tr>
+<tr class="memitem:ac1fd0098e46b3937aaaa550d9d5fb056"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__channel__handler_8c.html#ac1fd0098e46b3937aaaa550d9d5fb056">aws_event_stream_channel_handler_new</a> (struct aws_allocator *allocator, const struct <a class="el" href="structaws__event__stream__channel__handler__options.html">aws_event_stream_channel_handler_options</a> *handler_options)</td></tr>
 <tr class="separator:ac1fd0098e46b3937aaaa550d9d5fb056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -186,7 +186,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a>* aws_event_stream_channel_handler_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -577,7 +577,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -619,7 +619,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>

@@ -77,19 +77,19 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret)</td></tr>
+<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *secret)</td></tr>
 <tr class="separator:a2a75179fa3671f67e910908180bbb138"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcb9b61391f31ba0c3680fa8e60284df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#abcb9b61391f31ba0c3680fa8e60284df">aws_sha256_hmac_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret)</td></tr>
+<tr class="memitem:abcb9b61391f31ba0c3680fa8e60284df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#abcb9b61391f31ba0c3680fa8e60284df">aws_sha256_hmac_new</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *secret)</td></tr>
 <tr class="separator:abcb9b61391f31ba0c3680fa8e60284df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a967b9bd94a7fe04075dac4c407c9cf00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a967b9bd94a7fe04075dac4c407c9cf00">aws_set_sha256_hmac_new_fn</a> (<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_h_m_a_c_8h.html#aab6815d6797ca8ea2d161f4300cee717">aws_hmac_new_fn</a> *fn)</td></tr>
 <tr class="separator:a967b9bd94a7fe04075dac4c407c9cf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d5f607578696985c587286736581da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a54d5f607578696985c587286736581da">aws_hmac_destroy</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac)</td></tr>
 <tr class="separator:a54d5f607578696985c587286736581da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a843ee14b212f355c45ad4fb22df58484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a843ee14b212f355c45ad4fb22df58484">aws_hmac_update</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hmac)</td></tr>
+<tr class="memitem:a843ee14b212f355c45ad4fb22df58484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#a843ee14b212f355c45ad4fb22df58484">aws_hmac_update</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct aws_byte_cursor *to_hmac)</td></tr>
 <tr class="separator:a843ee14b212f355c45ad4fb22df58484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1f3b6bab8bc50cc70e8f91d93ad5e6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#ab1f3b6bab8bc50cc70e8f91d93ad5e6a">aws_hmac_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output, size_t truncate_to)</td></tr>
+<tr class="memitem:ab1f3b6bab8bc50cc70e8f91d93ad5e6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#ab1f3b6bab8bc50cc70e8f91d93ad5e6a">aws_hmac_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct aws_byte_buf *output, size_t truncate_to)</td></tr>
 <tr class="separator:ab1f3b6bab8bc50cc70e8f91d93ad5e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af87b0d8cfc70baa70921221d074c2e4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#af87b0d8cfc70baa70921221d074c2e4a">aws_sha256_hmac_compute</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output, size_t truncate_to)</td></tr>
+<tr class="memitem:af87b0d8cfc70baa70921221d074c2e4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hmac_8c.html#af87b0d8cfc70baa70921221d074c2e4a">aws_sha256_hmac_compute</a> (struct aws_allocator *allocator, const struct aws_byte_cursor *secret, const struct aws_byte_cursor *to_hmac, struct aws_byte_buf *output, size_t truncate_to)</td></tr>
 <tr class="separator:af87b0d8cfc70baa70921221d074c2e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -132,7 +132,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
@@ -167,7 +167,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_hmac</em>&#160;</td>
         </tr>
         <tr>
@@ -209,25 +209,25 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_sha256_hmac_compute </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>secret</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>to_hmac</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
@@ -256,13 +256,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__hmac.html">aws_hmac</a>* aws_sha256_hmac_default_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>secret</em>&#160;</td>
         </tr>
         <tr>
@@ -285,13 +285,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__hmac.html">aws_hmac</a>* aws_sha256_hmac_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>secret</em>&#160;</td>
         </tr>
         <tr>

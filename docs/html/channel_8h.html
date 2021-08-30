@@ -77,8 +77,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="io_8h_source.html">aws/io/io.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-common_2include_2aws_2common_2statistics_8h_source.html">aws/common/statistics.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/statistics.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 </div>
 <p><a href="channel_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -101,7 +101,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:a4194ec3bfdd4996d5096e8bfb74db771"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c14ceb5857ea36d97716ec4e03c2922"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a7c14ceb5857ea36d97716ec4e03c2922">aws_channel_on_shutdown_completed_fn</a>(struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, int error_code, void *user_data)</td></tr>
 <tr class="separator:a7c14ceb5857ea36d97716ec4e03c2922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af19f695ba5e5d8dc58cce82c4c1c645e"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#af19f695ba5e5d8dc58cce82c4c1c645e">aws_channel_task_fn</a>(struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:af19f695ba5e5d8dc58cce82c4c1c645e"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#af19f695ba5e5d8dc58cce82c4c1c645e">aws_channel_task_fn</a>(struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:af19f695ba5e5d8dc58cce82c4c1c645e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -115,7 +115,7 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad38c1fc60248fb3d6a85991c26e9c70a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#ad38c1fc60248fb3d6a85991c26e9c70a">aws_channel_task_init</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, <a class="el" href="channel_8h.html#af19f695ba5e5d8dc58cce82c4c1c645e">aws_channel_task_fn</a> *task_fn, void *arg, const char *type_tag)</td></tr>
 <tr class="separator:ad38c1fc60248fb3d6a85991c26e9c70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d4a43fc2d4f7c2989796a8fdc9acd25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__channel.html">aws_channel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a5d4a43fc2d4f7c2989796a8fdc9acd25">aws_channel_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__channel__options.html">aws_channel_options</a> *creation_args)</td></tr>
+<tr class="memitem:a5d4a43fc2d4f7c2989796a8fdc9acd25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__channel.html">aws_channel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a5d4a43fc2d4f7c2989796a8fdc9acd25">aws_channel_new</a> (struct aws_allocator *allocator, const struct <a class="el" href="structaws__channel__options.html">aws_channel_options</a> *creation_args)</td></tr>
 <tr class="separator:a5d4a43fc2d4f7c2989796a8fdc9acd25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a775ccd151af122ab38243fa91c5c93a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a775ccd151af122ab38243fa91c5c93a1">aws_channel_destroy</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:a775ccd151af122ab38243fa91c5c93a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +143,7 @@ Functions</h2></td></tr>
 <tr class="separator:a51c2120a0975dfc93ade9eaf727fed3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a658c7231a979e7326fa3170db2c457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a7a658c7231a979e7326fa3170db2c457">aws_channel_schedule_task_future</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, uint64_t run_at_nanos)</td></tr>
 <tr class="separator:a7a658c7231a979e7326fa3170db2c457"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55119c6f02d991d4ef7955aee7102382"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a55119c6f02d991d4ef7955aee7102382">aws_channel_set_statistics_handler</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__crt__statistics__handler.html">aws_crt_statistics_handler</a> *handler)</td></tr>
+<tr class="memitem:a55119c6f02d991d4ef7955aee7102382"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a55119c6f02d991d4ef7955aee7102382">aws_channel_set_statistics_handler</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct aws_crt_statistics_handler *handler)</td></tr>
 <tr class="separator:a55119c6f02d991d4ef7955aee7102382"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9b9ae95b32036cb22b5c9d9b9f33ff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#ad9b9ae95b32036cb22b5c9d9b9f33ff5">aws_channel_thread_is_callers_thread</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:ad9b9ae95b32036cb22b5c9d9b9f33ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a232600f4a6382fbd522a1eaaaefe3eef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a232600f4a6382fbd522a1eaaaefe3eef">g_aws_channel_max_fragment_size</a></td></tr>
+<tr class="memitem:a232600f4a6382fbd522a1eaaaefe3eef"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8h.html#a232600f4a6382fbd522a1eaaaefe3eef">g_aws_channel_max_fragment_size</a></td></tr>
 <tr class="separator:a232600f4a6382fbd522a1eaaaefe3eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -229,7 +229,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_channel_task_fn(struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td>
+          <td class="memname">typedef void() aws_channel_task_fn(struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -630,7 +630,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> struct <a class="el" href="structaws__channel.html">aws_channel</a>* aws_channel_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -820,7 +820,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__crt__statistics__handler.html">aws_crt_statistics_handler</a> *&#160;</td>
+          <td class="paramtype">struct aws_crt_statistics_handler *&#160;</td>
           <td class="paramname"><em>handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1324,7 +1324,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t g_aws_channel_max_fragment_size</td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> size_t g_aws_channel_max_fragment_size</td>
         </tr>
       </table>
   </td>

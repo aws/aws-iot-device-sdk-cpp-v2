@@ -86,7 +86,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a88751c383d67dacb1ba7c3b9df5b342f"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#a88751c383d67dacb1ba7c3b9df5b342f">aws_websocket_encoder_payload_fn</a>(struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf, void *user_data)</td></tr>
+<tr class="memitem:a88751c383d67dacb1ba7c3b9df5b342f"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#a88751c383d67dacb1ba7c3b9df5b342f">aws_websocket_encoder_payload_fn</a>(struct aws_byte_buf *out_buf, void *user_data)</td></tr>
 <tr class="separator:a88751c383d67dacb1ba7c3b9df5b342f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -109,13 +109,13 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3e5d3d1ed4ee86ea3436f2e63680f91f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#a3e5d3d1ed4ee86ea3436f2e63680f91f">aws_websocket_encoder_init</a> (struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder, <a class="el" href="websocket__encoder_8h.html#a88751c383d67dacb1ba7c3b9df5b342f">aws_websocket_encoder_payload_fn</a> *stream_outgoing_payload, void *user_data)</td></tr>
+<tr class="memitem:a3e5d3d1ed4ee86ea3436f2e63680f91f"><td class="memItemLeft" align="right" valign="top">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#a3e5d3d1ed4ee86ea3436f2e63680f91f">aws_websocket_encoder_init</a> (struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder, <a class="el" href="websocket__encoder_8h.html#a88751c383d67dacb1ba7c3b9df5b342f">aws_websocket_encoder_payload_fn</a> *stream_outgoing_payload, void *user_data)</td></tr>
 <tr class="separator:a3e5d3d1ed4ee86ea3436f2e63680f91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab83c4fb9f6a3245213755f94968ac8b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#ab83c4fb9f6a3245213755f94968ac8b6">aws_websocket_encoder_start_frame</a> (struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder, const struct <a class="el" href="structaws__websocket__frame.html">aws_websocket_frame</a> *frame)</td></tr>
 <tr class="separator:ab83c4fb9f6a3245213755f94968ac8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2990f8100c710c8dd3e59cadcd25bbc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#a2990f8100c710c8dd3e59cadcd25bbc4">aws_websocket_encoder_is_frame_in_progress</a> (const struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder)</td></tr>
 <tr class="separator:a2990f8100c710c8dd3e59cadcd25bbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb67eed83dced53bb774588eb191baad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#abb67eed83dced53bb774588eb191baad">aws_websocket_encoder_process</a> (struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf)</td></tr>
+<tr class="memitem:abb67eed83dced53bb774588eb191baad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__encoder_8h.html#abb67eed83dced53bb774588eb191baad">aws_websocket_encoder_process</a> (struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *encoder, struct aws_byte_buf *out_buf)</td></tr>
 <tr class="separator:abb67eed83dced53bb774588eb191baad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -126,7 +126,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() aws_websocket_encoder_payload_fn(struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf, void *user_data)</td>
+          <td class="memname">typedef int() aws_websocket_encoder_payload_fn(struct aws_byte_buf *out_buf, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -168,7 +168,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void aws_websocket_encoder_init </td>
+          <td class="memname">AWS_EXTERN_C_BEGIN <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void aws_websocket_encoder_init </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__websocket__encoder.html">aws_websocket_encoder</a> *&#160;</td>
           <td class="paramname"><em>encoder</em>, </td>
@@ -228,7 +228,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>out_buf</em>&#160;</td>
         </tr>
         <tr>

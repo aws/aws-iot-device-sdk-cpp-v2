@@ -74,15 +74,15 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a20fb9e2bd58694b7b1a2ac6d186bb412"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#a20fb9e2bd58694b7b1a2ac6d186bb412">connection</a></td></tr>
 <tr class="separator:a20fb9e2bd58694b7b1a2ac6d186bb412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4f9e55ed245f46dc979f96224d7fee8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#ab4f9e55ed245f46dc979f96224d7fee8">topic_string</a></td></tr>
+<tr class="memitem:ab4f9e55ed245f46dc979f96224d7fee8"><td class="memItemLeft" align="right" valign="top">struct aws_string *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#ab4f9e55ed245f46dc979f96224d7fee8">topic_string</a></td></tr>
 <tr class="separator:ab4f9e55ed245f46dc979f96224d7fee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2fe781ed6d4ea8711f798bfea915aca"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#ae2fe781ed6d4ea8711f798bfea915aca">topic</a></td></tr>
+<tr class="memitem:ae2fe781ed6d4ea8711f798bfea915aca"><td class="memItemLeft" align="right" valign="top">struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#ae2fe781ed6d4ea8711f798bfea915aca">topic</a></td></tr>
 <tr class="separator:ae2fe781ed6d4ea8711f798bfea915aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0e07580e7fcd763afa451c8cca6ed4b"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#af0e07580e7fcd763afa451c8cca6ed4b">qos</a></td></tr>
 <tr class="separator:af0e07580e7fcd763afa451c8cca6ed4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e558ded6a39d93d28f3c06be33d9237"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#a4e558ded6a39d93d28f3c06be33d9237">retain</a></td></tr>
 <tr class="separator:a4e558ded6a39d93d28f3c06be33d9237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a2907ee1f341754ba731a336e8ecb91"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#a1a2907ee1f341754ba731a336e8ecb91">payload</a></td></tr>
+<tr class="memitem:a1a2907ee1f341754ba731a336e8ecb91"><td class="memItemLeft" align="right" valign="top">struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#a1a2907ee1f341754ba731a336e8ecb91">payload</a></td></tr>
 <tr class="separator:a1a2907ee1f341754ba731a336e8ecb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa56101d0596e53cac4b092fb9b2c64ef"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mqtt__packet__publish.html">aws_mqtt_packet_publish</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpublish__task__arg.html#aa56101d0596e53cac4b092fb9b2c64ef">publish</a></td></tr>
 <tr class="separator:aa56101d0596e53cac4b092fb9b2c64ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +127,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> publish_task_arg::payload</td>
+          <td class="memname">struct aws_byte_cursor publish_task_arg::payload</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> publish_task_arg::topic</td>
+          <td class="memname">struct aws_byte_cursor publish_task_arg::topic</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__string.html">aws_string</a>* publish_task_arg::topic_string</td>
+          <td class="memname">struct aws_string* publish_task_arg::topic_string</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -72,7 +72,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a314536d96c6d4b885452e234a84a0bf7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a314536d96c6d4b885452e234a84a0bf7">alloc</a></td></tr>
+<tr class="memitem:a314536d96c6d4b885452e234a84a0bf7"><td class="memItemLeft" align="right" valign="top">struct aws_allocator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a314536d96c6d4b885452e234a84a0bf7">alloc</a></td></tr>
 <tr class="separator:a314536d96c6d4b885452e234a84a0bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f186803003a6836c25a63c01a251367"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a6f186803003a6836c25a63c01a251367">bootstrap</a></td></tr>
 <tr class="separator:a6f186803003a6836c25a63c01a251367"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -90,15 +90,15 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9cdbd08ecc509a9f0783db98ac46fd4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75f82275f1df6568c782833208615f51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__socket.html">aws_socket</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a75f82275f1df6568c782833208615f51">socket</a></td></tr>
 <tr class="separator:a75f82275f1df6568c782833208615f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63d26cc151c3eeac14f3936958eaaa87"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a1a9ea5153153089b2d9c22126fc51c88"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#ac72d510f12422f3921ab95b71a603104">lock</a></td></tr>
-<tr class="separator:a1a9ea5153153089b2d9c22126fc51c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91795918faa42ebcdd0c519986dd861e"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#a42ca32351e978ea4b984aff61ac8e04e">is_shutting_down</a></td></tr>
-<tr class="separator:a91795918faa42ebcdd0c519986dd861e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80d312135fc6ecdbe217e217ceaf9c38"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a>&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#a7b7ba5bb715650c8343dee74519a2fcc">channel_to_connection_map</a></td></tr>
-<tr class="separator:a80d312135fc6ecdbe217e217ceaf9c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63d26cc151c3eeac14f3936958eaaa87"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a63d26cc151c3eeac14f3936958eaaa87">synced_data</a></td></tr>
-<tr class="separator:a63d26cc151c3eeac14f3936958eaaa87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b95635097b2935e902f8d3b0fd2f4a3"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:ac7497b65bd02306a8fd3a9869f7439cd"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_mutex&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#ac72d510f12422f3921ab95b71a603104">lock</a></td></tr>
+<tr class="separator:ac7497b65bd02306a8fd3a9869f7439cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acabc7c2d5ffa66371b31f8e07ad88703"><td class="memItemLeft" >&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#a42ca32351e978ea4b984aff61ac8e04e">is_shutting_down</a></td></tr>
+<tr class="separator:acabc7c2d5ffa66371b31f8e07ad88703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e45f3b88318b1f91283ec4f5c96573"><td class="memItemLeft" >&#160;&#160;&#160;struct aws_hash_table&#160;&#160;&#160;<a class="el" href="structaws__http__server.html#a7b7ba5bb715650c8343dee74519a2fcc">channel_to_connection_map</a></td></tr>
+<tr class="separator:a10e45f3b88318b1f91283ec4f5c96573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b95635097b2935e902f8d3b0fd2f4a3"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__server.html#a0b95635097b2935e902f8d3b0fd2f4a3">synced_data</a></td></tr>
+<tr class="separator:a0b95635097b2935e902f8d3b0fd2f4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a314536d96c6d4b885452e234a84a0bf7" name="a314536d96c6d4b885452e234a84a0bf7"></a>
@@ -108,7 +108,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__allocator.html">aws_allocator</a>* aws_http_server::alloc</td>
+          <td class="memname">struct aws_allocator* aws_http_server::alloc</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -136,7 +136,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> aws_http_server::channel_to_connection_map</td>
+          <td class="memname">struct aws_hash_table aws_http_server::channel_to_connection_map</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -192,7 +192,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> aws_http_server::lock</td>
+          <td class="memname">struct aws_mutex aws_http_server::lock</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -255,8 +255,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a63d26cc151c3eeac14f3936958eaaa87" name="a63d26cc151c3eeac14f3936958eaaa87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63d26cc151c3eeac14f3936958eaaa87">&#9670;&nbsp;</a></span></h2>
+<a id="a0b95635097b2935e902f8d3b0fd2f4a3" name="a0b95635097b2935e902f8d3b0fd2f4a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b95635097b2935e902f8d3b0fd2f4a3">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

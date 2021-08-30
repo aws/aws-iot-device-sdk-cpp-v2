@@ -80,9 +80,9 @@ $(function() {
 <code>#include &lt;<a class="el" href="signable_8h_source.html">aws/auth/signable.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_source.html">aws/auth/signing.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="signing__result_8h_source.html">aws/auth/signing_result.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="condition__variable_8h_source.html">aws/common/condition_variable.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="string_8h_source.html">aws/common/string.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/condition_variable.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
+<code>#include &lt;aws/common/string.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="request__response_8h_source.html">aws/http/request_response.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_uri_8h_source.html">aws/io/uri.h</a>&gt;</code><br />
 </div><table class="memberdecls">
@@ -100,29 +100,29 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0d6a8cc32608732bad62a2e622cf071c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a0d6a8cc32608732bad62a2e622cf071c">s_build_request_uri</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, const struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *signing_result)</td></tr>
+<tr class="memitem:a0d6a8cc32608732bad62a2e622cf071c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a0d6a8cc32608732bad62a2e622cf071c">s_build_request_uri</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, const struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *signing_result)</td></tr>
 <tr class="separator:a0d6a8cc32608732bad62a2e622cf071c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af13e2afeb20c0f37bc393c7f1ff89c42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#af13e2afeb20c0f37bc393c7f1ff89c42">aws_apply_signing_result_to_http_request</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result)</td></tr>
+<tr class="memitem:af13e2afeb20c0f37bc393c7f1ff89c42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#af13e2afeb20c0f37bc393c7f1ff89c42">aws_apply_signing_result_to_http_request</a> (struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct aws_allocator *allocator, const struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result)</td></tr>
 <tr class="separator:af13e2afeb20c0f37bc393c7f1ff89c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae52fa11c944bde3f56844750fb2f0fce"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#ae52fa11c944bde3f56844750fb2f0fce">s_aws_signable_http_request_get_property</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__string.html">aws_string</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_value)</td></tr>
+<tr class="memitem:ae52fa11c944bde3f56844750fb2f0fce"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#ae52fa11c944bde3f56844750fb2f0fce">s_aws_signable_http_request_get_property</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct aws_string *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor *out_value)</td></tr>
 <tr class="separator:ae52fa11c944bde3f56844750fb2f0fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4239199699f61e50d8dc8a951e7c2ea4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a4239199699f61e50d8dc8a951e7c2ea4">s_aws_signable_http_request_get_property_list</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__string.html">aws_string</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> **out_list)</td></tr>
+<tr class="memitem:a4239199699f61e50d8dc8a951e7c2ea4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a4239199699f61e50d8dc8a951e7c2ea4">s_aws_signable_http_request_get_property_list</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct aws_string *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_array_list **out_list)</td></tr>
 <tr class="separator:a4239199699f61e50d8dc8a951e7c2ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61cf1fde82657dcfd2c642370bf1596f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a61cf1fde82657dcfd2c642370bf1596f">s_aws_signable_http_request_get_payload_stream</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> **out_input_stream)</td></tr>
 <tr class="separator:a61cf1fde82657dcfd2c642370bf1596f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97ca640577996f0dd2575c901c2315be"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a97ca640577996f0dd2575c901c2315be">s_aws_signable_http_request_destroy</a> (struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable)</td></tr>
 <tr class="separator:a97ca640577996f0dd2575c901c2315be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5faef78a906143530016fcc8a73fbee0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__signable.html">aws_signable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a5faef78a906143530016fcc8a73fbee0">aws_signable_new_http_request</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request)</td></tr>
+<tr class="memitem:a5faef78a906143530016fcc8a73fbee0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__signable.html">aws_signable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a5faef78a906143530016fcc8a73fbee0">aws_signable_new_http_request</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request)</td></tr>
 <tr class="separator:a5faef78a906143530016fcc8a73fbee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d41dc8d0560b8d5c87179f0caaaacb4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a6d41dc8d0560b8d5c87179f0caaaacb4">s_aws_signable_chunk_get_property</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__string.html">aws_string</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *out_value)</td></tr>
+<tr class="memitem:a6d41dc8d0560b8d5c87179f0caaaacb4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a6d41dc8d0560b8d5c87179f0caaaacb4">s_aws_signable_chunk_get_property</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct aws_string *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_byte_cursor *out_value)</td></tr>
 <tr class="separator:a6d41dc8d0560b8d5c87179f0caaaacb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2893c9d7abc8ca482ac6e7dff9fa590"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#ab2893c9d7abc8ca482ac6e7dff9fa590">s_aws_signable_chunk_get_property_list</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__string.html">aws_string</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> **out_list)</td></tr>
+<tr class="memitem:ab2893c9d7abc8ca482ac6e7dff9fa590"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#ab2893c9d7abc8ca482ac6e7dff9fa590">s_aws_signable_chunk_get_property_list</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct aws_string *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#acc128f98d9ceca227038c771308eff39">name</a>, struct aws_array_list **out_list)</td></tr>
 <tr class="separator:ab2893c9d7abc8ca482ac6e7dff9fa590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed433dbf31b30760591a200dcb21a2ed"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#aed433dbf31b30760591a200dcb21a2ed">s_aws_signable_chunk_get_payload_stream</a> (const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> **out_input_stream)</td></tr>
 <tr class="separator:aed433dbf31b30760591a200dcb21a2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0fd980480be33e9de925883983a3185"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#aa0fd980480be33e9de925883983a3185">s_aws_signable_chunk_destroy</a> (struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable)</td></tr>
 <tr class="separator:aa0fd980480be33e9de925883983a3185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a8d2b829749b6ef372ef341ba2bc757"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__signable.html">aws_signable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a2a8d2b829749b6ef372ef341ba2bc757">aws_signable_new_chunk</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *chunk_data, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> previous_signature)</td></tr>
+<tr class="memitem:a2a8d2b829749b6ef372ef341ba2bc757"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__signable.html">aws_signable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sigv4__http__request_8c.html#a2a8d2b829749b6ef372ef341ba2bc757">aws_signable_new_chunk</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *chunk_data, struct aws_byte_cursor previous_signature)</td></tr>
 <tr class="separator:a2a8d2b829749b6ef372ef341ba2bc757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -164,7 +164,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -192,7 +192,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__signable.html">aws_signable</a>* aws_signable_new_chunk </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -204,7 +204,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>previous_signature</em>&#160;</td>
         </tr>
         <tr>
@@ -236,7 +236,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__signable.html">aws_signable</a>* aws_signable_new_http_request </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -344,13 +344,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_value</em>&#160;</td>
         </tr>
         <tr>
@@ -386,13 +386,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> **&#160;</td>
+          <td class="paramtype">struct aws_array_list **&#160;</td>
           <td class="paramname"><em>out_list</em>&#160;</td>
         </tr>
         <tr>
@@ -490,13 +490,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>out_value</em>&#160;</td>
         </tr>
         <tr>
@@ -532,13 +532,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__string.html">aws_string</a> *&#160;</td>
+          <td class="paramtype">const struct aws_string *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> **&#160;</td>
+          <td class="paramtype">struct aws_array_list **&#160;</td>
           <td class="paramname"><em>out_list</em>&#160;</td>
         </tr>
         <tr>
@@ -568,7 +568,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static int s_build_request_uri </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>

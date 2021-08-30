@@ -76,9 +76,9 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="el" href="event__stream__channel__handler_8h_source.html">aws/event-stream/event_stream_channel_handler.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__stream__rpc__client_8h_source.html">aws/event-stream/event_stream_rpc_client.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__stream__rpc__priv_8h_source.html">aws/event-stream/private/event_stream_rpc_priv.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="atomics_8h_source.html">aws/common/atomics.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="hash__table_8h_source.html">aws/common/hash_table.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/atomics.h&gt;</code><br />
+<code>#include &lt;aws/common/hash_table.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel__bootstrap_8h_source.html">aws/io/channel_bootstrap.h</a>&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
@@ -103,13 +103,13 @@ Functions</h2></td></tr>
 <tr class="separator:af0eb7a47793bde57efc566639aa367a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65f9c4b80938c05b5a832312ec4af7c0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a65f9c4b80938c05b5a832312ec4af7c0">s_on_channel_shutdown_fn</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a65f9c4b80938c05b5a832312ec4af7c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace684f4a83b7dc687c674cd3abc6a40e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#ace684f4a83b7dc687c674cd3abc6a40e">s_mark_each_continuation_closed</a> (void *context, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *p_element)</td></tr>
+<tr class="memitem:ace684f4a83b7dc687c674cd3abc6a40e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#ace684f4a83b7dc687c674cd3abc6a40e">s_mark_each_continuation_closed</a> (void *context, struct aws_hash_element *p_element)</td></tr>
 <tr class="separator:ace684f4a83b7dc687c674cd3abc6a40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ca5ee3970483a84b57fc00f2e393232"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a0ca5ee3970483a84b57fc00f2e393232">s_complete_continuation</a> (struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *token)</td></tr>
 <tr class="separator:a0ca5ee3970483a84b57fc00f2e393232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91219c74de56d2729923539ea4627a2a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a91219c74de56d2729923539ea4627a2a">s_complete_and_clear_each_continuation</a> (void *context, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *p_element)</td></tr>
+<tr class="memitem:a91219c74de56d2729923539ea4627a2a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a91219c74de56d2729923539ea4627a2a">s_complete_and_clear_each_continuation</a> (void *context, struct aws_hash_element *p_element)</td></tr>
 <tr class="separator:a91219c74de56d2729923539ea4627a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f98c1909d7e0e4210320dcd5dc31a60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a0f98c1909d7e0e4210320dcd5dc31a60">aws_event_stream_rpc_client_connection_connect</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__event__stream__rpc__client__connection__options.html">aws_event_stream_rpc_client_connection_options</a> *conn_options)</td></tr>
+<tr class="memitem:a0f98c1909d7e0e4210320dcd5dc31a60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a0f98c1909d7e0e4210320dcd5dc31a60">aws_event_stream_rpc_client_connection_connect</a> (struct aws_allocator *allocator, const struct <a class="el" href="structaws__event__stream__rpc__client__connection__options.html">aws_event_stream_rpc_client_connection_options</a> *conn_options)</td></tr>
 <tr class="separator:a0f98c1909d7e0e4210320dcd5dc31a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a1d11ddc64badcfc1a1069b4766cd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#ae2a1d11ddc64badcfc1a1069b4766cd5">aws_event_stream_rpc_client_connection_acquire</a> (const struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection)</td></tr>
 <tr class="separator:ae2a1d11ddc64badcfc1a1069b4766cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,15 +123,15 @@ Functions</h2></td></tr>
 <tr class="separator:a3f22e14ac1b4ebb761269262e4ca4bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2373d4f96fe1658dd01b714acd14920a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a2373d4f96fe1658dd01b714acd14920a">s_on_protocol_message_written_fn</a> (struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, int error_code, void *user_data)</td></tr>
 <tr class="separator:a2373d4f96fe1658dd01b714acd14920a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37563d77cc2ae92cd36572464d66a6a9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a37563d77cc2ae92cd36572464d66a6a9">s_send_protocol_message</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *operation_name, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, int32_t stream_id, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
+<tr class="memitem:a37563d77cc2ae92cd36572464d66a6a9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a37563d77cc2ae92cd36572464d66a6a9">s_send_protocol_message</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation, struct aws_byte_cursor *operation_name, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, int32_t stream_id, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
 <tr class="separator:a37563d77cc2ae92cd36572464d66a6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02b1db12724079713bde98da379f5520"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a02b1db12724079713bde98da379f5520">aws_event_stream_rpc_client_connection_send_protocol_message</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
 <tr class="separator:a02b1db12724079713bde98da379f5520"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57261597553eb126af4ce7c0c3a9761e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a57261597553eb126af4ce7c0c3a9761e">s_connection_error_message_flush_fn</a> (int error_code, void *user_data)</td></tr>
 <tr class="separator:a57261597553eb126af4ce7c0c3a9761e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4643b2707b4eccc063debbdde77f9d6f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a4643b2707b4eccc063debbdde77f9d6f">s_send_connection_level_error</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, uint32_t message_type, uint32_t message_flags, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *message)</td></tr>
+<tr class="memitem:a4643b2707b4eccc063debbdde77f9d6f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a4643b2707b4eccc063debbdde77f9d6f">s_send_connection_level_error</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, uint32_t message_type, uint32_t message_flags, const struct aws_byte_cursor *message)</td></tr>
 <tr class="separator:a4643b2707b4eccc063debbdde77f9d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37e85e34bc1559cd8b724710d65536ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a37e85e34bc1559cd8b724710d65536ef">s_route_message_by_type</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *headers_list, uint32_t stream_id, uint32_t message_type, uint32_t message_flags)</td></tr>
+<tr class="memitem:a37e85e34bc1559cd8b724710d65536ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a37e85e34bc1559cd8b724710d65536ef">s_route_message_by_type</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, struct <a class="el" href="structaws__event__stream__message.html">aws_event_stream_message</a> *message, struct aws_array_list *headers_list, uint32_t stream_id, uint32_t message_type, uint32_t message_flags)</td></tr>
 <tr class="separator:a37e85e34bc1559cd8b724710d65536ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a902e197961b35876a4e8137c30dc21e9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a902e197961b35876a4e8137c30dc21e9">aws_event_stream_rpc_client_connection_new_stream</a> (struct <a class="el" href="structaws__event__stream__rpc__client__connection.html">aws_event_stream_rpc_client_connection</a> *connection, const struct <a class="el" href="structaws__event__stream__rpc__client__stream__continuation__options.html">aws_event_stream_rpc_client_stream_continuation_options</a> *continuation_options)</td></tr>
 <tr class="separator:a902e197961b35876a4e8137c30dc21e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +143,7 @@ Functions</h2></td></tr>
 <tr class="separator:a0e65e355e9eef765a38caa95697cc066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2215df9f7254d388f78a445c273b3c2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a2215df9f7254d388f78a445c273b3c2a">aws_event_stream_rpc_client_continuation_is_closed</a> (const struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation)</td></tr>
 <tr class="separator:a2215df9f7254d388f78a445c273b3c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab609599d002432543d5ff3a474e7ca2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#ab609599d002432543d5ff3a474e7ca2e">aws_event_stream_rpc_client_continuation_activate</a> (struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> operation_name, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
+<tr class="memitem:ab609599d002432543d5ff3a474e7ca2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#ab609599d002432543d5ff3a474e7ca2e">aws_event_stream_rpc_client_continuation_activate</a> (struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation, struct aws_byte_cursor operation_name, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
 <tr class="separator:ab609599d002432543d5ff3a474e7ca2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17b65bbf735e91a0d57f6241b253f340"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__client_8c.html#a17b65bbf735e91a0d57f6241b253f340">aws_event_stream_rpc_client_continuation_send_message</a> (struct <a class="el" href="structaws__event__stream__rpc__client__continuation__token.html">aws_event_stream_rpc_client_continuation_token</a> *continuation, const struct <a class="el" href="structaws__event__stream__rpc__message__args.html">aws_event_stream_rpc_message_args</a> *message_args, <a class="el" href="event__stream__rpc__client_8h.html#a032378059c9f829c8cde8f0a5f305d54">aws_event_stream_rpc_client_message_flush_fn</a> *flush_fn, void *user_data)</td></tr>
 <tr class="separator:a17b65bbf735e91a0d57f6241b253f340"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,7 +205,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_rpc_client_connection_connect </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -368,7 +368,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>operation_name</em>, </td>
         </tr>
         <tr>
@@ -543,7 +543,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_element *&#160;</td>
           <td class="paramname"><em>p_element</em>&#160;</td>
         </tr>
         <tr>
@@ -703,7 +703,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *&#160;</td>
+          <td class="paramtype">struct aws_hash_element *&#160;</td>
           <td class="paramname"><em>p_element</em>&#160;</td>
         </tr>
         <tr>
@@ -925,7 +925,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">struct aws_array_list *&#160;</td>
           <td class="paramname"><em>headers_list</em>, </td>
         </tr>
         <tr>
@@ -991,7 +991,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
@@ -1033,7 +1033,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>operation_name</em>, </td>
         </tr>
         <tr>

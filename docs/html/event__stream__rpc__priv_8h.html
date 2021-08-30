@@ -88,7 +88,7 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a52a9ad66941039966d75d452729fd1f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a52a9ad66941039966d75d452729fd1f3">aws_event_stream_rpc_extract_message_metadata</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *message_headers, int32_t *stream_id, int32_t *message_type, int32_t *message_flags, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *operation_name)</td></tr>
+<tr class="memitem:a52a9ad66941039966d75d452729fd1f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a52a9ad66941039966d75d452729fd1f3">aws_event_stream_rpc_extract_message_metadata</a> (const struct aws_array_list *message_headers, int32_t *stream_id, int32_t *message_type, int32_t *message_flags, struct aws_byte_buf *operation_name)</td></tr>
 <tr class="separator:a52a9ad66941039966d75d452729fd1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29894881fcf48bb6c431b5977b6aa3d4"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a29894881fcf48bb6c431b5977b6aa3d4">aws_event_stream_rpc_hash_streamid</a> (const void *to_hash)</td></tr>
 <tr class="separator:a29894881fcf48bb6c431b5977b6aa3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,23 +97,23 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af57882462dd4147166cb46ae34a80a94"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#af57882462dd4147166cb46ae34a80a94">s_json_content_type_name</a> = <a class="el" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(&quot;:content-type&quot;)</td></tr>
+<tr class="memitem:af57882462dd4147166cb46ae34a80a94"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#af57882462dd4147166cb46ae34a80a94">s_json_content_type_name</a> = AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(&quot;:content-type&quot;)</td></tr>
 <tr class="separator:af57882462dd4147166cb46ae34a80a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf043530f10a973536065464bfac3e5c"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#adf043530f10a973536065464bfac3e5c">s_json_content_type_value</a></td></tr>
+<tr class="memitem:adf043530f10a973536065464bfac3e5c"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#adf043530f10a973536065464bfac3e5c">s_json_content_type_value</a></td></tr>
 <tr class="separator:adf043530f10a973536065464bfac3e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13807732d8a73f7c23388fc99c2d53fc"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a13807732d8a73f7c23388fc99c2d53fc">s_invalid_stream_id_error</a></td></tr>
+<tr class="memitem:a13807732d8a73f7c23388fc99c2d53fc"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a13807732d8a73f7c23388fc99c2d53fc">s_invalid_stream_id_error</a></td></tr>
 <tr class="separator:a13807732d8a73f7c23388fc99c2d53fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a202d928702b41d6d7dcf358d323fa187"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a202d928702b41d6d7dcf358d323fa187">s_invalid_client_stream_id_error</a></td></tr>
+<tr class="memitem:a202d928702b41d6d7dcf358d323fa187"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a202d928702b41d6d7dcf358d323fa187">s_invalid_client_stream_id_error</a></td></tr>
 <tr class="separator:a202d928702b41d6d7dcf358d323fa187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a104d1f9abb0f4e66e0793f996485a33a"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a104d1f9abb0f4e66e0793f996485a33a">s_invalid_new_client_stream_id_error</a></td></tr>
+<tr class="memitem:a104d1f9abb0f4e66e0793f996485a33a"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a104d1f9abb0f4e66e0793f996485a33a">s_invalid_new_client_stream_id_error</a></td></tr>
 <tr class="separator:a104d1f9abb0f4e66e0793f996485a33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268c029da6c9293b4eb75d72b4126e1c"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a268c029da6c9293b4eb75d72b4126e1c">s_invalid_message_type_error</a></td></tr>
+<tr class="memitem:a268c029da6c9293b4eb75d72b4126e1c"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a268c029da6c9293b4eb75d72b4126e1c">s_invalid_message_type_error</a></td></tr>
 <tr class="separator:a268c029da6c9293b4eb75d72b4126e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef3c4e4918d78ec51ec5b264b9af444"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#abef3c4e4918d78ec51ec5b264b9af444">s_invalid_message_error</a></td></tr>
+<tr class="memitem:abef3c4e4918d78ec51ec5b264b9af444"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#abef3c4e4918d78ec51ec5b264b9af444">s_invalid_message_error</a></td></tr>
 <tr class="separator:abef3c4e4918d78ec51ec5b264b9af444"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaec6fb430ffaa0e007f6c3378be9868b"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#aaec6fb430ffaa0e007f6c3378be9868b">s_internal_error</a></td></tr>
+<tr class="memitem:aaec6fb430ffaa0e007f6c3378be9868b"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#aaec6fb430ffaa0e007f6c3378be9868b">s_internal_error</a></td></tr>
 <tr class="separator:aaec6fb430ffaa0e007f6c3378be9868b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20210be5e44c15babef0eaad2aa432c2"><td class="memItemLeft" align="right" valign="top">static const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a20210be5e44c15babef0eaad2aa432c2">s_connect_not_completed_error</a></td></tr>
+<tr class="memitem:a20210be5e44c15babef0eaad2aa432c2"><td class="memItemLeft" align="right" valign="top">static const struct aws_byte_cursor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a20210be5e44c15babef0eaad2aa432c2">s_connect_not_completed_error</a></td></tr>
 <tr class="separator:a20210be5e44c15babef0eaad2aa432c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -147,7 +147,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int aws_event_stream_rpc_extract_message_metadata </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">const struct aws_array_list *&#160;</td>
           <td class="paramname"><em>message_headers</em>, </td>
         </tr>
         <tr>
@@ -171,7 +171,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>operation_name</em>&#160;</td>
         </tr>
         <tr>
@@ -241,7 +241,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_connect_not_completed_error</td>
+          <td class="memname">const struct aws_byte_cursor s_connect_not_completed_error</td>
         </tr>
       </table>
   </td>
@@ -250,11 +250,10 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(</div>
 <div class="line">    <span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;A CONNECT message must be received, and the CONNECT_ACK must be sent in response, before any &quot;</span></div>
 <div class="line">    <span class="stringliteral">&quot;other message-types can be sent on this connection. In addition, only one CONNECT message is allowed on a &quot;</span></div>
 <div class="line">    <span class="stringliteral">&quot;connection.\&quot; }&quot;</span>)</div>
-<div class="ttc" id="abyte__buf_8h_html_a25bb15426b081484f79b35669fc81b90"><div class="ttname"><a href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a></div><div class="ttdeci">#define AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(literal)</div><div class="ttdef"><b>Definition:</b> byte_buf.h:61</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -268,7 +267,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_internal_error</td>
+          <td class="memname">const struct aws_byte_cursor s_internal_error</td>
         </tr>
       </table>
   </td>
@@ -277,7 +276,7 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(</div>
 <div class="line">    <span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;An error occurred on the peer endpoint. This is not likely caused by your endpoint.\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
@@ -292,7 +291,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_invalid_client_stream_id_error</td>
+          <td class="memname">const struct aws_byte_cursor s_invalid_client_stream_id_error</td>
         </tr>
       </table>
   </td>
@@ -302,7 +301,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;stream-id values must be monotonically incrementing. A &quot;</span></div>
+<div class="line">    AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;stream-id values must be monotonically incrementing. A &quot;</span></div>
 <div class="line">                                          <span class="stringliteral">&quot;stream-id arrived that was lower than the last seen stream-id.\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
@@ -317,7 +316,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_invalid_message_error</td>
+          <td class="memname">const struct aws_byte_cursor s_invalid_message_error</td>
         </tr>
       </table>
   </td>
@@ -326,7 +325,7 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(</div>
 <div class="line">    <span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;A message was received with missing required fields. Check that your client is sending at least, &quot;</span></div>
 <div class="line">    <span class="stringliteral">&quot;:message-type, :message-flags, and :stream-id\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
@@ -342,7 +341,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_invalid_message_type_error</td>
+          <td class="memname">const struct aws_byte_cursor s_invalid_message_type_error</td>
         </tr>
       </table>
   </td>
@@ -351,7 +350,7 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(</div>
 <div class="line">    <span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;an invalid value for message-type field was received.\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
@@ -366,7 +365,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_invalid_new_client_stream_id_error</td>
+          <td class="memname">const struct aws_byte_cursor s_invalid_new_client_stream_id_error</td>
         </tr>
       </table>
   </td>
@@ -376,7 +375,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;stream-id values must be monotonically incrementing. A new &quot;</span></div>
+<div class="line">    AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;stream-id values must be monotonically incrementing. A new &quot;</span></div>
 <div class="line">                                          <span class="stringliteral">&quot;stream-id arrived that was incremented by more than 1.\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
@@ -391,7 +390,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_invalid_stream_id_error</td>
+          <td class="memname">const struct aws_byte_cursor s_invalid_stream_id_error</td>
         </tr>
       </table>
   </td>
@@ -401,7 +400,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;non-zero stream-id field is only allowed for messages of &quot;</span></div>
+<div class="line">    AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(<span class="stringliteral">&quot;{ \&quot;message\&quot;: \&quot;non-zero stream-id field is only allowed for messages of &quot;</span></div>
 <div class="line">                                          <span class="stringliteral">&quot;type APPLICATION_MESSAGE. The stream id max value is INT32_MAX.\&quot;; }&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
@@ -416,7 +415,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_json_content_type_name = <a class="el" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(&quot;:content-type&quot;)</td>
+          <td class="memname">const struct aws_byte_cursor s_json_content_type_name = AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(&quot;:content-type&quot;)</td>
         </tr>
       </table>
   </td>
@@ -438,7 +437,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> s_json_content_type_value</td>
+          <td class="memname">const struct aws_byte_cursor s_json_content_type_value</td>
         </tr>
       </table>
   </td>
@@ -448,7 +447,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    <a class="code hl_define" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(<span class="stringliteral">&quot;application/json&quot;</span>)</div>
+<div class="line">    AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL(<span class="stringliteral">&quot;application/json&quot;</span>)</div>
 </div><!-- fragment -->
 </div>
 </div>

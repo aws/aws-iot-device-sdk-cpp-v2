@@ -79,11 +79,11 @@ $(function() {
 <code>#include &lt;<a class="el" href="strutil_8h_source.html">aws/http/private/strutil.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="status__code_8h_source.html">aws/http/status_code.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel_8h_source.html">aws/io/channel.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a9689dc1056c82d2e525536c779cee910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a9689dc1056c82d2e525536c779cee910">AWS_PRECONDITION_ON_CHANNEL_THREAD</a>(STREAM)&#160;&#160;&#160;    <a class="el" href="assert_8h.html#a85e84d0663c92cc36481637c606af164">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td></tr>
+<tr class="memitem:a9689dc1056c82d2e525536c779cee910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a9689dc1056c82d2e525536c779cee910">AWS_PRECONDITION_ON_CHANNEL_THREAD</a>(STREAM)&#160;&#160;&#160;    AWS_PRECONDITION(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td></tr>
 <tr class="separator:a9689dc1056c82d2e525536c779cee910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -98,7 +98,7 @@ Functions</h2></td></tr>
 <tr class="separator:a19b7f3d3bf97aca3352fd83f1e78defc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fb5f7c3d6ca693da77a101a2bb7d0ec"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a2fb5f7c3d6ca693da77a101a2bb7d0ec">s_stream_get_sent_error_code</a> (struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream_base, uint32_t *out_http2_error)</td></tr>
 <tr class="separator:a2fb5f7c3d6ca693da77a101a2bb7d0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6099337646e0c9c7abb521e5744d3213"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6099337646e0c9c7abb521e5744d3213">s_stream_cross_thread_work_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a6099337646e0c9c7abb521e5744d3213"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6099337646e0c9c7abb521e5744d3213">s_stream_cross_thread_work_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a6099337646e0c9c7abb521e5744d3213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d30536133c39f5bd7a4eda50dbe3830"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a0d30536133c39f5bd7a4eda50dbe3830">s_send_rst_and_close_stream</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2err.html">aws_h2err</a> stream_error)</td></tr>
 <tr class="separator:a0d30536133c39f5bd7a4eda50dbe3830"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,7 +122,7 @@ Functions</h2></td></tr>
 <tr class="separator:ae67e87ebd29152e596187de3838b3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40cb8648428b59bac90114c9c09b7147"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a40cb8648428b59bac90114c9c09b7147">aws_h2_stream_on_activated</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, bool *out_has_outgoing_data)</td></tr>
 <tr class="separator:a40cb8648428b59bac90114c9c09b7147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output, int *data_encode_status)</td></tr>
+<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct aws_byte_buf *output, int *data_encode_status)</td></tr>
 <tr class="separator:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc0feece7cabd840c4d28584c604b26c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#acc0feece7cabd840c4d28584c604b26c">aws_h2_stream_on_decoder_headers_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:acc0feece7cabd840c4d28584c604b26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,7 +134,7 @@ Functions</h2></td></tr>
 <tr class="separator:a8e895f1e663394d7edd8d2405a59438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa342407cac15121a7ab79d629c92811d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#aa342407cac15121a7ab79d629c92811d">aws_h2_stream_on_decoder_data_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t payload_len, bool end_stream)</td></tr>
 <tr class="separator:aa342407cac15121a7ab79d629c92811d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#ab29cf7b4b31eb14cd6e1c848ca7920bf">aws_h2_stream_on_decoder_data_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data)</td></tr>
+<tr class="memitem:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#ab29cf7b4b31eb14cd6e1c848ca7920bf">aws_h2_stream_on_decoder_data_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct aws_byte_cursor data)</td></tr>
 <tr class="separator:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dbbd39333aefdd03fe0947b668977c3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6dbbd39333aefdd03fe0947b668977c3">aws_h2_stream_on_decoder_window_update</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t window_size_increment, bool *window_resume)</td></tr>
 <tr class="separator:a6dbbd39333aefdd03fe0947b668977c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,7 +164,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">STREAM</td><td>)</td>
-          <td>&#160;&#160;&#160;    <a class="el" href="assert_8h.html#a85e84d0663c92cc36481637c606af164">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td>
+          <td>&#160;&#160;&#160;    AWS_PRECONDITION(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -193,7 +193,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_buf *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
@@ -335,7 +335,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -748,7 +748,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>

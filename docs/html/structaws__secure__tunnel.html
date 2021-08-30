@@ -88,13 +88,13 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a52495d5992c2b4b0eeb78bebb624effb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50dab06890d61c5a1154be8c1ec9fe59"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__websocket.html">aws_websocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#a50dab06890d61c5a1154be8c1ec9fe59">websocket</a></td></tr>
 <tr class="separator:a50dab06890d61c5a1154be8c1ec9fe59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a192ff8720a09eba72b9ca47c9a1ef94e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#a192ff8720a09eba72b9ca47c9a1ef94e">received_data</a></td></tr>
+<tr class="memitem:a192ff8720a09eba72b9ca47c9a1ef94e"><td class="memItemLeft" align="right" valign="top">struct aws_byte_buf&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#a192ff8720a09eba72b9ca47c9a1ef94e">received_data</a></td></tr>
 <tr class="separator:a192ff8720a09eba72b9ca47c9a1ef94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac75ad609d818981bcadcb4f77f54e091"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#ac75ad609d818981bcadcb4f77f54e091">can_send_data</a></td></tr>
 <tr class="separator:ac75ad609d818981bcadcb4f77f54e091"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2ecb4313d8cea5d4c745abbb796a071"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#af2ecb4313d8cea5d4c745abbb796a071">send_data_mutex</a></td></tr>
+<tr class="memitem:af2ecb4313d8cea5d4c745abbb796a071"><td class="memItemLeft" align="right" valign="top">struct aws_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#af2ecb4313d8cea5d4c745abbb796a071">send_data_mutex</a></td></tr>
 <tr class="separator:af2ecb4313d8cea5d4c745abbb796a071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae42f320d286d77c30b8d83b8fc3de46a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__condition__variable.html">aws_condition_variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#ae42f320d286d77c30b8d83b8fc3de46a">send_data_condition_variable</a></td></tr>
+<tr class="memitem:ae42f320d286d77c30b8d83b8fc3de46a"><td class="memItemLeft" align="right" valign="top">struct aws_condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#ae42f320d286d77c30b8d83b8fc3de46a">send_data_condition_variable</a></td></tr>
 <tr class="separator:ae42f320d286d77c30b8d83b8fc3de46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af69213fa5f2c85e7f481cb5b046c945f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structping__task__context.html">ping_task_context</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__secure__tunnel.html#af69213fa5f2c85e7f481cb5b046c945f">ping_task_context</a></td></tr>
 <tr class="separator:af69213fa5f2c85e7f481cb5b046c945f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,7 +163,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> aws_secure_tunnel::received_data</td>
+          <td class="memname">struct aws_byte_buf aws_secure_tunnel::received_data</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -177,7 +177,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__condition__variable.html">aws_condition_variable</a> aws_secure_tunnel::send_data_condition_variable</td>
+          <td class="memname">struct aws_condition_variable aws_secure_tunnel::send_data_condition_variable</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,7 +191,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> aws_secure_tunnel::send_data_mutex</td>
+          <td class="memname">struct aws_mutex aws_secure_tunnel::send_data_mutex</td>
         </tr>
       </table>
 </div><div class="memdoc">

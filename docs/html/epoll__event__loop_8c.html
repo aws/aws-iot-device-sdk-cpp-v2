@@ -77,12 +77,12 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="atomics_8h_source.html">aws/common/atomics.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="clock_8h_source.html">aws/common/clock.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mutex_8h_source.html">aws/common/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="thread_8h_source.html">aws/common/thread.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/atomics.h&gt;</code><br />
+<code>#include &lt;aws/common/clock.h&gt;</code><br />
+<code>#include &lt;aws/common/mutex.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
+<code>#include &lt;aws/common/thread.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;sys/epoll.h&gt;</code><br />
 <code>#include &lt;errno.h&gt;</code><br />
 <code>#include &lt;limits.h&gt;</code><br />
@@ -105,10 +105,10 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a1fb9092bcdeada2d206bdc74afbbe122"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="epoll__event__loop_8c.html#a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b">DEFAULT_TIMEOUT</a> = 100 * 1000
-, <a class="el" href="epoll__event__loop_8c.html#a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8">MAX_EVENTS</a> = 100
+<tr class="memitem:a394b3903fbf00ba2b6243f60689a5a5f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="epoll__event__loop_8c.html#a394b3903fbf00ba2b6243f60689a5a5faf30df71dff869383fae968f90644988b">DEFAULT_TIMEOUT</a> = 100 * 1000
+, <a class="el" href="epoll__event__loop_8c.html#a394b3903fbf00ba2b6243f60689a5a5fa9776f519b571d5070710cef6885cb9b8">MAX_EVENTS</a> = 100
  }</td></tr>
-<tr class="separator:a1fb9092bcdeada2d206bdc74afbbe122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a394b3903fbf00ba2b6243f60689a5a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -120,11 +120,11 @@ Functions</h2></td></tr>
 <tr class="separator:acfc31f03610b29043dec817307e76127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a848eaf3db34e302ab51a0b1e5db0301d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a848eaf3db34e302ab51a0b1e5db0301d">s_wait_for_stop_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop)</td></tr>
 <tr class="separator:a848eaf3db34e302ab51a0b1e5db0301d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa94599eb2a7b8b9254280095f9754ad5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#aa94599eb2a7b8b9254280095f9754ad5">s_schedule_task_now</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__task.html">aws_task</a> *task)</td></tr>
+<tr class="memitem:aa94599eb2a7b8b9254280095f9754ad5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#aa94599eb2a7b8b9254280095f9754ad5">s_schedule_task_now</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_task *task)</td></tr>
 <tr class="separator:aa94599eb2a7b8b9254280095f9754ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e3ae8cb3038258eb6fa06b3b9240f86"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a2e3ae8cb3038258eb6fa06b3b9240f86">s_schedule_task_future</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__task.html">aws_task</a> *task, uint64_t run_at_nanos)</td></tr>
+<tr class="memitem:a2e3ae8cb3038258eb6fa06b3b9240f86"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a2e3ae8cb3038258eb6fa06b3b9240f86">s_schedule_task_future</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_task *task, uint64_t run_at_nanos)</td></tr>
 <tr class="separator:a2e3ae8cb3038258eb6fa06b3b9240f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c472b11ffdab30e2850c90eb8b2a981"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a5c472b11ffdab30e2850c90eb8b2a981">s_cancel_task</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__task.html">aws_task</a> *task)</td></tr>
+<tr class="memitem:a5c472b11ffdab30e2850c90eb8b2a981"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a5c472b11ffdab30e2850c90eb8b2a981">s_cancel_task</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_task *task)</td></tr>
 <tr class="separator:a5c472b11ffdab30e2850c90eb8b2a981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a145d2830ffa7e965684b3be1e250c5a3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a145d2830ffa7e965684b3be1e250c5a3">s_subscribe_to_io_events</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__io__handle.html">aws_io_handle</a> *handle, int events, <a class="el" href="event__loop_8h.html#a566c239a15c99256d054af59e81a4038">aws_event_loop_on_event_fn</a> *on_event, void *user_data)</td></tr>
 <tr class="separator:a145d2830ffa7e965684b3be1e250c5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,13 +138,13 @@ Functions</h2></td></tr>
 <tr class="separator:a4fd3605d3eb2e52854101ae2e557c991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b9e9feb4dd63eecee47ba9ac21612b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a1b9e9feb4dd63eecee47ba9ac21612b2">aws_open_nonblocking_posix_pipe</a> (int pipe_fds[2])</td></tr>
 <tr class="separator:a1b9e9feb4dd63eecee47ba9ac21612b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a188bd20a712f74ebc46b8bc374b73ea2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a188bd20a712f74ebc46b8bc374b73ea2">aws_event_loop_new_default_with_options</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, const struct <a class="el" href="structaws__event__loop__options.html">aws_event_loop_options</a> *options)</td></tr>
+<tr class="memitem:a188bd20a712f74ebc46b8bc374b73ea2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a188bd20a712f74ebc46b8bc374b73ea2">aws_event_loop_new_default_with_options</a> (struct aws_allocator *alloc, const struct <a class="el" href="structaws__event__loop__options.html">aws_event_loop_options</a> *options)</td></tr>
 <tr class="separator:a188bd20a712f74ebc46b8bc374b73ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad54a0e8fcb26baf1980c55c7205f880f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#ad54a0e8fcb26baf1980c55c7205f880f">s_stop_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *args, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:ad54a0e8fcb26baf1980c55c7205f880f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#ad54a0e8fcb26baf1980c55c7205f880f">s_stop_task</a> (struct aws_task *task, void *args, enum aws_task_status status)</td></tr>
 <tr class="separator:ad54a0e8fcb26baf1980c55c7205f880f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4c13873f170e080cfc0387c3eedecbd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#ab4c13873f170e080cfc0387c3eedecbd">s_schedule_task_common</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__task.html">aws_task</a> *task, uint64_t run_at_nanos)</td></tr>
+<tr class="memitem:ab4c13873f170e080cfc0387c3eedecbd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#ab4c13873f170e080cfc0387c3eedecbd">s_schedule_task_common</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_task *task, uint64_t run_at_nanos)</td></tr>
 <tr class="separator:ab4c13873f170e080cfc0387c3eedecbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dcebf0a9a57c0b6c9ef8082637a24ab"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a0dcebf0a9a57c0b6c9ef8082637a24ab">s_unsubscribe_cleanup_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a0dcebf0a9a57c0b6c9ef8082637a24ab"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#a0dcebf0a9a57c0b6c9ef8082637a24ab">s_unsubscribe_cleanup_task</a> (struct aws_task *task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a0dcebf0a9a57c0b6c9ef8082637a24ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6ed8c42f9186a2438b19ea914917cc9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="epoll__event__loop_8c.html#ac6ed8c42f9186a2438b19ea914917cc9">s_on_tasks_to_schedule</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct <a class="el" href="structaws__io__handle.html">aws_io_handle</a> *handle, int events, void *user_data)</td></tr>
 <tr class="separator:ac6ed8c42f9186a2438b19ea914917cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,8 +187,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a1fb9092bcdeada2d206bdc74afbbe122" name="a1fb9092bcdeada2d206bdc74afbbe122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fb9092bcdeada2d206bdc74afbbe122">&#9670;&nbsp;</a></span>anonymous enum</h2>
+<a id="a394b3903fbf00ba2b6243f60689a5a5f" name="a394b3903fbf00ba2b6243f60689a5a5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394b3903fbf00ba2b6243f60689a5a5f">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,8 +199,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b" name="a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b"></a>DEFAULT_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8" name="a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8"></a>MAX_EVENTS&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a394b3903fbf00ba2b6243f60689a5a5faf30df71dff869383fae968f90644988b" name="a394b3903fbf00ba2b6243f60689a5a5faf30df71dff869383fae968f90644988b"></a>DEFAULT_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a394b3903fbf00ba2b6243f60689a5a5fa9776f519b571d5070710cef6885cb9b8" name="a394b3903fbf00ba2b6243f60689a5a5fa9776f519b571d5070710cef6885cb9b8"></a>MAX_EVENTS&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -215,7 +215,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a>* aws_event_loop_new_default_with_options </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>alloc</em>, </td>
         </tr>
         <tr>
@@ -271,7 +271,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>&#160;</td>
         </tr>
         <tr>
@@ -511,7 +511,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -553,7 +553,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -595,7 +595,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>&#160;</td>
         </tr>
         <tr>
@@ -651,7 +651,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_stop_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -663,7 +663,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -747,7 +747,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_unsubscribe_cleanup_task </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -759,7 +759,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>

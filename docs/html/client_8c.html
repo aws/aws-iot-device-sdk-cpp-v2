@@ -81,12 +81,12 @@ $(function() {
 <code>#include &lt;<a class="el" href="topic__tree_8h_source.html">aws/mqtt/private/topic_tree.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="channel__bootstrap_8h_source.html">aws/io/channel_bootstrap.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="event__loop_8h_source.html">aws/io/event_loop.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="aws-c-io_2include_2aws_2io_2logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="logging_8h_source.html">aws/io/logging.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="socket_8h_source.html">aws/io/socket.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="tls__channel__handler_8h_source.html">aws/io/tls_channel_handler.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="crt_2aws-c-io_2include_2aws_2io_2_uri_8h_source.html">aws/io/uri.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="clock_8h_source.html">aws/common/clock.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="task__scheduler_8h_source.html">aws/common/task_scheduler.h</a>&gt;</code><br />
+<code>#include &lt;aws/common/clock.h&gt;</code><br />
+<code>#include &lt;aws/common/task_scheduler.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -110,7 +110,7 @@ Functions</h2></td></tr>
 <tr class="separator:ad6c0e63cf7be38e49cf118a288bac8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6281aa3a8012dc5654d0a930c1149014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a6281aa3a8012dc5654d0a930c1149014">mqtt_connection_set_state</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, enum <a class="el" href="client__impl_8h.html#a5b3dcf5fc8697c535838cedfc1b171a7">aws_mqtt_client_connection_state</a> state)</td></tr>
 <tr class="separator:a6281aa3a8012dc5654d0a930c1149014"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab979cebc70c98ae55b17e861f9ddbc4e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ab979cebc70c98ae55b17e861f9ddbc4e">aws_mqtt_client_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *bootstrap)</td></tr>
+<tr class="memitem:ab979cebc70c98ae55b17e861f9ddbc4e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ab979cebc70c98ae55b17e861f9ddbc4e">aws_mqtt_client_new</a> (struct aws_allocator *allocator, struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *bootstrap)</td></tr>
 <tr class="separator:ab979cebc70c98ae55b17e861f9ddbc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae04cdb7c12200dbbd8bcf07fdb39269c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ae04cdb7c12200dbbd8bcf07fdb39269c">aws_mqtt_client_acquire</a> (struct <a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a> *client)</td></tr>
 <tr class="separator:ae04cdb7c12200dbbd8bcf07fdb39269c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,11 +118,11 @@ Functions</h2></td></tr>
 <tr class="separator:a6ae5cd2fe69f3a11dbf90e672f3a5f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e24d8132c4076a8ef6a59e127efc7ba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a4e24d8132c4076a8ef6a59e127efc7ba">s_mqtt_client_shutdown</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a4e24d8132c4076a8ef6a59e127efc7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad857f98ea68bdf0d85643ef019f31433"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad857f98ea68bdf0d85643ef019f31433">s_connack_received_timeout</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:ad857f98ea68bdf0d85643ef019f31433"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad857f98ea68bdf0d85643ef019f31433">s_connack_received_timeout</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:ad857f98ea68bdf0d85643ef019f31433"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeba90e170ba122113de96e16cc441095"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aeba90e170ba122113de96e16cc441095">s_mqtt_client_init</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:aeba90e170ba122113de96e16cc441095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af31261645c8052999d9aaa1bd7ee07de"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#af31261645c8052999d9aaa1bd7ee07de">s_attempt_reconnect</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *userdata, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:af31261645c8052999d9aaa1bd7ee07de"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#af31261645c8052999d9aaa1bd7ee07de">s_attempt_reconnect</a> (struct aws_task *task, void *userdata, enum aws_task_status status)</td></tr>
 <tr class="separator:af31261645c8052999d9aaa1bd7ee07de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc9d61af57df369e1bb174958ee09244"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#afc9d61af57df369e1bb174958ee09244">aws_create_reconnect_task</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection)</td></tr>
 <tr class="separator:afc9d61af57df369e1bb174958ee09244"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,9 +144,9 @@ Functions</h2></td></tr>
 <tr class="separator:aefba76482bac8840bea5cb455e8c8a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f4581493065922c061fe88c8e8b6918"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a5f4581493065922c061fe88c8e8b6918">s_check_connection_state_for_configuration</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection)</td></tr>
 <tr class="separator:a5f4581493065922c061fe88c8e8b6918"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fe5564d0ffa341dfb1efb029e718b03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a4fe5564d0ffa341dfb1efb029e718b03">aws_mqtt_client_connection_set_will</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *payload)</td></tr>
+<tr class="memitem:a4fe5564d0ffa341dfb1efb029e718b03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a4fe5564d0ffa341dfb1efb029e718b03">aws_mqtt_client_connection_set_will</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, const struct aws_byte_cursor *payload)</td></tr>
 <tr class="separator:a4fe5564d0ffa341dfb1efb029e718b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b01bbbd1cbb7514ea6922620ceacc5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a41b01bbbd1cbb7514ea6922620ceacc5">aws_mqtt_client_connection_set_login</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *username, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *password)</td></tr>
+<tr class="memitem:a41b01bbbd1cbb7514ea6922620ceacc5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a41b01bbbd1cbb7514ea6922620ceacc5">aws_mqtt_client_connection_set_login</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *username, const struct aws_byte_cursor *password)</td></tr>
 <tr class="separator:a41b01bbbd1cbb7514ea6922620ceacc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85e3b39408a338deb99b4fb351ec8cbb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a85e3b39408a338deb99b4fb351ec8cbb">aws_mqtt_client_connection_set_reconnect_timeout</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint64_t min_timeout, uint64_t max_timeout)</td></tr>
 <tr class="separator:a85e3b39408a338deb99b4fb351ec8cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,7 +164,7 @@ Functions</h2></td></tr>
 <tr class="separator:a2f7e17b08c7b3c700c8ddd8fafd33455"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ad1d4bfa7d3e0da2ad2b42a57d2e39"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a46ad1d4bfa7d3e0da2ad2b42a57d2e39">aws_mqtt_client_connection_disconnect</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, <a class="el" href="client_8h.html#a2d0ff0373f9059b34af07aaf87147e04">aws_mqtt_client_on_disconnect_fn</a> *on_disconnect, void *userdata)</td></tr>
 <tr class="separator:a46ad1d4bfa7d3e0da2ad2b42a57d2e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6db36893b819cb3f64de4139cab771b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ac6db36893b819cb3f64de4139cab771b">s_on_publish_client_wrapper</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *payload, bool <a class="el" href="bike__r2_2decode_8c.html#aa36ac9b28eef6905672b29e8e398053a">dup</a>, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, void *userdata)</td></tr>
+<tr class="memitem:ac6db36893b819cb3f64de4139cab771b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ac6db36893b819cb3f64de4139cab771b">s_on_publish_client_wrapper</a> (const struct aws_byte_cursor *topic, const struct aws_byte_cursor *payload, bool <a class="el" href="bike__r2_2decode_8c.html#aa36ac9b28eef6905672b29e8e398053a">dup</a>, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, void *userdata)</td></tr>
 <tr class="separator:ac6db36893b819cb3f64de4139cab771b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38c9e391295b271f24c73654097e33c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad38c9e391295b271f24c73654097e33c">s_task_topic_release</a> (void *userdata)</td></tr>
 <tr class="separator:ad38c9e391295b271f24c73654097e33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,19 +174,19 @@ Functions</h2></td></tr>
 <tr class="separator:aed2fcd3325446bdbcef54d7b21f925ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27d5da63b781e949f64c5c429f7f621c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a27d5da63b781e949f64c5c429f7f621c">s_subscribe_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, int error_code, void *userdata)</td></tr>
 <tr class="separator:a27d5da63b781e949f64c5c429f7f621c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a246ffe1e8c60488851db2ca3037d8d5f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a246ffe1e8c60488851db2ca3037d8d5f">aws_mqtt_client_connection_subscribe_multiple</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *topic_filters, <a class="el" href="client_8h.html#a11a3408e5ffe9d1c61fe6c15617b8728">aws_mqtt_suback_multi_fn</a> *on_suback, void *on_suback_ud)</td></tr>
+<tr class="memitem:a246ffe1e8c60488851db2ca3037d8d5f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a246ffe1e8c60488851db2ca3037d8d5f">aws_mqtt_client_connection_subscribe_multiple</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_array_list *topic_filters, <a class="el" href="client_8h.html#a11a3408e5ffe9d1c61fe6c15617b8728">aws_mqtt_suback_multi_fn</a> *on_suback, void *on_suback_ud)</td></tr>
 <tr class="separator:a246ffe1e8c60488851db2ca3037d8d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dbb674a2c55bfaa01c04fb548ae60d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a3dbb674a2c55bfaa01c04fb548ae60d7">s_subscribe_single_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, int error_code, void *userdata)</td></tr>
 <tr class="separator:a3dbb674a2c55bfaa01c04fb548ae60d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c4800f328dac4432923c058c46778c4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9c4800f328dac4432923c058c46778c4">aws_mqtt_client_connection_subscribe</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *on_publish, void *on_publish_ud, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *on_ud_cleanup, <a class="el" href="client_8h.html#a57a5b13d3ef0e02da483985f1a24eb10">aws_mqtt_suback_fn</a> *on_suback, void *on_suback_ud)</td></tr>
+<tr class="memitem:a9c4800f328dac4432923c058c46778c4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9c4800f328dac4432923c058c46778c4">aws_mqtt_client_connection_subscribe</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *topic_filter, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, <a class="el" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *on_publish, void *on_publish_ud, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *on_ud_cleanup, <a class="el" href="client_8h.html#a57a5b13d3ef0e02da483985f1a24eb10">aws_mqtt_suback_fn</a> *on_suback, void *on_suback_ud)</td></tr>
 <tr class="separator:a9c4800f328dac4432923c058c46778c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa4758c211da956e65d62a32e5c77441"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="client__impl_8h.html#aed6752d7ea83c84874926b81fe65cce3">aws_mqtt_client_request_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aaa4758c211da956e65d62a32e5c77441">s_subscribe_local_send</a> (uint16_t packet_id, bool is_first_attempt, void *userdata)</td></tr>
 <tr class="separator:aaa4758c211da956e65d62a32e5c77441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a304111f531bca55d3fa08424501860c9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a304111f531bca55d3fa08424501860c9">s_subscribe_local_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, int error_code, void *userdata)</td></tr>
 <tr class="separator:a304111f531bca55d3fa08424501860c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add697b6a87e6fe14441967e251668cb0"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#add697b6a87e6fe14441967e251668cb0">aws_mqtt_client_connection_subscribe_local</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter, <a class="el" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *on_publish, void *on_publish_ud, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *on_ud_cleanup, <a class="el" href="client_8h.html#a57a5b13d3ef0e02da483985f1a24eb10">aws_mqtt_suback_fn</a> *on_suback, void *on_suback_ud)</td></tr>
+<tr class="memitem:add697b6a87e6fe14441967e251668cb0"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#add697b6a87e6fe14441967e251668cb0">aws_mqtt_client_connection_subscribe_local</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *topic_filter, <a class="el" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *on_publish, void *on_publish_ud, <a class="el" href="mqtt_8h.html#a4c072048c5bd312923466806b23cea73">aws_mqtt_userdata_cleanup_fn</a> *on_ud_cleanup, <a class="el" href="client_8h.html#a57a5b13d3ef0e02da483985f1a24eb10">aws_mqtt_suback_fn</a> *on_suback, void *on_suback_ud)</td></tr>
 <tr class="separator:add697b6a87e6fe14441967e251668cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf45cc46b2cc56b15651469e7522d8cc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#acf45cc46b2cc56b15651469e7522d8cc">s_reconnect_resub_iterator</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, void *user_data)</td></tr>
+<tr class="memitem:acf45cc46b2cc56b15651469e7522d8cc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#acf45cc46b2cc56b15651469e7522d8cc">s_reconnect_resub_iterator</a> (const struct aws_byte_cursor *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, void *user_data)</td></tr>
 <tr class="separator:acf45cc46b2cc56b15651469e7522d8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46b133177fe9761b1e28a0c1f76cbb76"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="client__impl_8h.html#aed6752d7ea83c84874926b81fe65cce3">aws_mqtt_client_request_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a46b133177fe9761b1e28a0c1f76cbb76">s_resubscribe_send</a> (uint16_t packet_id, bool is_first_attempt, void *userdata)</td></tr>
 <tr class="separator:a46b133177fe9761b1e28a0c1f76cbb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,21 +198,21 @@ Functions</h2></td></tr>
 <tr class="separator:ab6bf067d60eaa78eaf5853405ada7b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a351ac0b0e40a7c9228ee724f1072be95"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a351ac0b0e40a7c9228ee724f1072be95">s_unsubscribe_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, int error_code, void *userdata)</td></tr>
 <tr class="separator:a351ac0b0e40a7c9228ee724f1072be95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41f67e523e334e53db81a3ae6bd29054"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a41f67e523e334e53db81a3ae6bd29054">aws_mqtt_client_connection_unsubscribe</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter, <a class="el" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_unsuback, void *on_unsuback_ud)</td></tr>
+<tr class="memitem:a41f67e523e334e53db81a3ae6bd29054"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a41f67e523e334e53db81a3ae6bd29054">aws_mqtt_client_connection_unsubscribe</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *topic_filter, <a class="el" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_unsuback, void *on_unsuback_ud)</td></tr>
 <tr class="separator:a41f67e523e334e53db81a3ae6bd29054"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad286746e67188a3037cb187f347d5d00"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad286746e67188a3037cb187f347d5d00">s_get_element_from_outstanding_requests_table</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> **elem)</td></tr>
+<tr class="memitem:ad286746e67188a3037cb187f347d5d00"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad286746e67188a3037cb187f347d5d00">s_get_element_from_outstanding_requests_table</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct aws_hash_element **elem)</td></tr>
 <tr class="separator:ad286746e67188a3037cb187f347d5d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa24a8640648ea96d2473a98c661e2123"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aa24a8640648ea96d2473a98c661e2123">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *result)</td></tr>
+<tr class="memitem:aa24a8640648ea96d2473a98c661e2123"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aa24a8640648ea96d2473a98c661e2123">aws_mqtt_client_get_payload_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct aws_byte_cursor *result)</td></tr>
 <tr class="separator:aa24a8640648ea96d2473a98c661e2123"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d7ff1b53c2e0fff612f53d0f6531c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9d7ff1b53c2e0fff612f53d0f6531c2c">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__string.html">aws_string</a> **result)</td></tr>
+<tr class="memitem:a9d7ff1b53c2e0fff612f53d0f6531c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9d7ff1b53c2e0fff612f53d0f6531c2c">aws_mqtt_client_get_topic_for_outstanding_publish_packet</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, struct aws_allocator *allocator, struct aws_string **result)</td></tr>
 <tr class="separator:a9d7ff1b53c2e0fff612f53d0f6531c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a433cbe3a96219f387a1bf6cafb918eb4"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="client__impl_8h.html#aed6752d7ea83c84874926b81fe65cce3">aws_mqtt_client_request_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a433cbe3a96219f387a1bf6cafb918eb4">s_publish_send</a> (uint16_t packet_id, bool is_first_attempt, void *userdata)</td></tr>
 <tr class="separator:a433cbe3a96219f387a1bf6cafb918eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c4de1cff5dd8c8396991c7e166c7f5b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a1c4de1cff5dd8c8396991c7e166c7f5b">s_publish_complete</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, uint16_t packet_id, int error_code, void *userdata)</td></tr>
 <tr class="separator:a1c4de1cff5dd8c8396991c7e166c7f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad71e05a338c989ae7f5d2a139a863deb"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad71e05a338c989ae7f5d2a139a863deb">aws_mqtt_client_connection_publish</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *payload, <a class="el" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_complete, void *userdata)</td></tr>
+<tr class="memitem:ad71e05a338c989ae7f5d2a139a863deb"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad71e05a338c989ae7f5d2a139a863deb">aws_mqtt_client_connection_publish</a> (struct <a class="el" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection, const struct aws_byte_cursor *topic, enum <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> qos, bool retain, const struct aws_byte_cursor *payload, <a class="el" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_complete, void *userdata)</td></tr>
 <tr class="separator:ad71e05a338c989ae7f5d2a139a863deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9463b1c0fbe60dfd360b14ad55d3defd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9463b1c0fbe60dfd360b14ad55d3defd">s_pingresp_received_timeout</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:a9463b1c0fbe60dfd360b14ad55d3defd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9463b1c0fbe60dfd360b14ad55d3defd">s_pingresp_received_timeout</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, void *arg, enum aws_task_status status)</td></tr>
 <tr class="separator:a9463b1c0fbe60dfd360b14ad55d3defd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90294daccefe4c262243c33c6e27a773"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="client__impl_8h.html#aed6752d7ea83c84874926b81fe65cce3">aws_mqtt_client_request_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a90294daccefe4c262243c33c6e27a773">s_pingreq_send</a> (uint16_t packet_id, bool is_first_attempt, void *userdata)</td></tr>
 <tr class="separator:a90294daccefe4c262243c33c6e27a773"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,7 +329,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection has been successfully initiated, otherwise AWS_OP_ERR and <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> will be set. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection has been successfully initiated, otherwise AWS_OP_ERR and aws_last_error() will be set. </dd></dl>
 
 </div>
 </div>
@@ -371,7 +371,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection is open and is being shutdown, otherwise AWS_OP_ERR and <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> is set. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection is open and is being shutdown, otherwise AWS_OP_ERR and aws_last_error() is set. </dd></dl>
 
 </div>
 </div>
@@ -434,7 +434,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
         </tr>
         <tr>
@@ -452,7 +452,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>payload</em>, </td>
         </tr>
         <tr>
@@ -531,7 +531,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection has been successfully initiated, otherwise AWS_OP_ERR and <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> will be set. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AWS_OP_SUCCESS if the connection has been successfully initiated, otherwise AWS_OP_ERR and aws_last_error() will be set. </dd></dl>
 
 </div>
 </div>
@@ -632,13 +632,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>username</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>password</em>&#160;</td>
         </tr>
         <tr>
@@ -791,7 +791,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
         </tr>
         <tr>
@@ -809,7 +809,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>payload</em>&#160;</td>
         </tr>
         <tr>
@@ -848,7 +848,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -927,7 +927,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -999,7 +999,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *&#160;</td>
+          <td class="paramtype">const struct aws_array_list *&#160;</td>
           <td class="paramname"><em>topic_filters</em>, </td>
         </tr>
         <tr>
@@ -1050,7 +1050,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic_filter</em>, </td>
         </tr>
         <tr>
@@ -1165,7 +1165,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>result</em>&#160;</td>
         </tr>
         <tr>
@@ -1200,13 +1200,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__string.html">aws_string</a> **&#160;</td>
+          <td class="paramtype">struct aws_string **&#160;</td>
           <td class="paramname"><em>result</em>&#160;</td>
         </tr>
         <tr>
@@ -1228,7 +1228,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">struct <a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a>* aws_mqtt_client_new </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>
@@ -1321,7 +1321,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The packet id of the subscribe packet if successfully sent, otherwise 0 (and <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a1322935281a00b323a6307e42738781e">aws_last_error()</a> will be set). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The packet id of the subscribe packet if successfully sent, otherwise 0 (and aws_last_error() will be set). </dd></dl>
 
 </div>
 </div>
@@ -1401,7 +1401,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_attempt_reconnect </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__task.html">aws_task</a> *&#160;</td>
+          <td class="paramtype">struct aws_task *&#160;</td>
           <td class="paramname"><em>task</em>, </td>
         </tr>
         <tr>
@@ -1413,7 +1413,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1507,7 +1507,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -1549,7 +1549,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> **&#160;</td>
+          <td class="paramtype">struct aws_hash_element **&#160;</td>
           <td class="paramname"><em>elem</em>&#160;</td>
         </tr>
         <tr>
@@ -1832,13 +1832,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static void s_on_publish_client_wrapper </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>payload</em>, </td>
         </tr>
         <tr>
@@ -1946,7 +1946,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a>&#160;</td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
           <td class="paramname"><em>status</em>&#160;</td>
         </tr>
         <tr>
@@ -2066,7 +2066,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static bool s_reconnect_resub_iterator </td>
           <td>(</td>
-          <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
+          <td class="paramtype">const struct aws_byte_cursor *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
         </tr>
         <tr>
