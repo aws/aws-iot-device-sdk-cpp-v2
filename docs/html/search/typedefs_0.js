@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5fbike_5ferr_5ft_0',['_bike_err_t',['../bike__r1_2error_8h.html#a930cea7a9ea0748bcb57d8bfcc4044d2',1,'_bike_err_t():&#160;error.h'],['../bike__r2_2error_8h.html#a930cea7a9ea0748bcb57d8bfcc4044d2',1,'_bike_err_t():&#160;error.h']]]
+  ['connectmessageamender_0',['ConnectMessageAmender',['../namespace_aws_1_1_eventstreamrpc.html#ab93b30af2e59415f7453527b9b8a06c4',1,'Aws::Eventstreamrpc']]]
 ];

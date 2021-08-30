@@ -1,29 +1,4 @@
 var searchData=
 [
-  ['r_5fs_0',['r_s',['../structr__s.html',1,'']]],
-  ['read_5fcb_5fargs_1',['read_cb_args',['../structread__cb__args.html',1,'']]],
-  ['read_5fend_5fimpl_2',['read_end_impl',['../structread__end__impl.html',1,'']]],
-  ['rebind_3',['rebind',['../struct_aws_1_1_crt_1_1_stl_allocator_1_1rebind.html',1,'Aws::Crt::StlAllocator']]],
-  ['registerthingrequest_4',['RegisterThingRequest',['../class_aws_1_1_iotidentity_1_1_register_thing_request.html',1,'Aws::Iotidentity']]],
-  ['registerthingresponse_5',['RegisterThingResponse',['../class_aws_1_1_iotidentity_1_1_register_thing_response.html',1,'Aws::Iotidentity']]],
-  ['registerthingsubscriptionrequest_6',['RegisterThingSubscriptionRequest',['../class_aws_1_1_iotidentity_1_1_register_thing_subscription_request.html',1,'Aws::Iotidentity']]],
-  ['rejectederror_7',['RejectedError',['../class_aws_1_1_iotjobs_1_1_rejected_error.html',1,'Aws::Iotjobs']]],
-  ['reporttask_8',['ReportTask',['../class_aws_1_1_iotdevicedefenderv1_1_1_report_task.html',1,'Aws::Iotdevicedefenderv1']]],
-  ['reporttaskbuilder_9',['ReportTaskBuilder',['../class_aws_1_1_iotdevicedefenderv1_1_1_report_task_builder.html',1,'Aws::Iotdevicedefenderv1']]],
-  ['resourcenotfounderror_10',['ResourceNotFoundError',['../class_aws_1_1_greengrass_1_1_resource_not_found_error.html',1,'Aws::Greengrass']]],
-  ['responseretriever_11',['ResponseRetriever',['../class_aws_1_1_eventstreamrpc_1_1_response_retriever.html',1,'Aws::Eventstreamrpc']]],
-  ['restartcomponentoperation_12',['RestartComponentOperation',['../class_aws_1_1_greengrass_1_1_restart_component_operation.html',1,'Aws::Greengrass']]],
-  ['restartcomponentoperationcontext_13',['RestartComponentOperationContext',['../class_aws_1_1_greengrass_1_1_restart_component_operation_context.html',1,'Aws::Greengrass']]],
-  ['restartcomponentrequest_14',['RestartComponentRequest',['../class_aws_1_1_greengrass_1_1_restart_component_request.html',1,'Aws::Greengrass']]],
-  ['restartcomponentresponse_15',['RestartComponentResponse',['../class_aws_1_1_greengrass_1_1_restart_component_response.html',1,'Aws::Greengrass']]],
-  ['restartcomponentresult_16',['RestartComponentResult',['../class_aws_1_1_greengrass_1_1_restart_component_result.html',1,'Aws::Greengrass']]],
-  ['resumecomponentoperation_17',['ResumeComponentOperation',['../class_aws_1_1_greengrass_1_1_resume_component_operation.html',1,'Aws::Greengrass']]],
-  ['resumecomponentoperationcontext_18',['ResumeComponentOperationContext',['../class_aws_1_1_greengrass_1_1_resume_component_operation_context.html',1,'Aws::Greengrass']]],
-  ['resumecomponentrequest_19',['ResumeComponentRequest',['../class_aws_1_1_greengrass_1_1_resume_component_request.html',1,'Aws::Greengrass']]],
-  ['resumecomponentresponse_20',['ResumeComponentResponse',['../class_aws_1_1_greengrass_1_1_resume_component_response.html',1,'Aws::Greengrass']]],
-  ['resumecomponentresult_21',['ResumeComponentResult',['../class_aws_1_1_greengrass_1_1_resume_component_result.html',1,'Aws::Greengrass']]],
-  ['retry_5fbucket_22',['retry_bucket',['../structretry__bucket.html',1,'']]],
-  ['retry_5fbucket_5ftoken_23',['retry_bucket_token',['../structretry__bucket__token.html',1,'']]],
-  ['rpcerror_24',['RpcError',['../struct_aws_1_1_eventstreamrpc_1_1_rpc_error.html',1,'Aws::Eventstreamrpc']]],
-  ['runwithinfo_25',['RunWithInfo',['../class_aws_1_1_greengrass_1_1_run_with_info.html',1,'Aws::Greengrass']]]
+  ['taggedresult_0',['TaggedResult',['../class_aws_1_1_eventstreamrpc_1_1_tagged_result.html',1,'Aws::Eventstreamrpc']]]
 ];

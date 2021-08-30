@@ -1,17 +1,4 @@
 var searchData=
 [
-  ['data_0',['DATA',['../serializer_8h.html#ab9320fc39d814e580aa71730318a9c7da9d7d6f31868d66330397c967c4afd2d2',1,'serializer.h']]],
-  ['debug_1',['Debug',['../namespace_aws_1_1_crt.html#a38935c4922a7101640006354d741ffebaa603905470e2a5b8c13e96b579ef0dba',1,'Aws::Crt']]],
-  ['december_2',['December',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701a82331503174acbae012b2004f6431fa5',1,'Aws::Crt']]],
-  ['decoder_5finitial_5fscratch_5fsize_3',['DECODER_INITIAL_SCRATCH_SIZE',['../h1__connection_8c.html#a80155586fa275b28773c9b203f52cabaae6544594c949a178df7b79f83c61cfcd',1,'h1_connection.c']]],
-  ['default_5ftimeout_4',['DEFAULT_TIMEOUT',['../epoll__event__loop_8c.html#a394b3903fbf00ba2b6243f60689a5a5faf30df71dff869383fae968f90644988b',1,'epoll_event_loop.c']]],
-  ['default_5ftimeout_5fms_5',['DEFAULT_TIMEOUT_MS',['../iocp__event__loop_8c.html#a1fb9092bcdeada2d206bdc74afbbe122a6f3ee53c12faf52a4f48190db20e2567',1,'iocp_event_loop.c']]],
-  ['default_5ftimeout_5fsec_6',['DEFAULT_TIMEOUT_SEC',['../kqueue__event__loop_8c.html#a96a58e29e8dbf2b5bdeb775cba46556ea56577c4e43ee5b2b00ed607177260d54',1,'kqueue_event_loop.c']]],
-  ['deployment_5fstatus_5ffailed_7',['DEPLOYMENT_STATUS_FAILED',['../namespace_aws_1_1_greengrass.html#a1059da0bdd7f427c1e43673b1103d205aadd2a75a7f8f0b08ea99ed800ff3b372',1,'Aws::Greengrass']]],
-  ['deployment_5fstatus_5fin_5fprogress_8',['DEPLOYMENT_STATUS_IN_PROGRESS',['../namespace_aws_1_1_greengrass.html#a1059da0bdd7f427c1e43673b1103d205a01aa01045855711f560fb82a8d43c372',1,'Aws::Greengrass']]],
-  ['deployment_5fstatus_5fqueued_9',['DEPLOYMENT_STATUS_QUEUED',['../namespace_aws_1_1_greengrass.html#a1059da0bdd7f427c1e43673b1103d205aee8b2adfa4e46696846df21f312c467d',1,'Aws::Greengrass']]],
-  ['deployment_5fstatus_5fsucceeded_10',['DEPLOYMENT_STATUS_SUCCEEDED',['../namespace_aws_1_1_greengrass.html#a1059da0bdd7f427c1e43673b1103d205a106d94a0eb281cd41f1e26b9af41d7a7',1,'Aws::Greengrass']]],
-  ['dgram_11',['Dgram',['../namespace_aws_1_1_crt_1_1_io.html#ae5f9aa2fd04a14dfa0cd50a8b56e6b8eac3177658ef36637801bea6fd4f1a1e92',1,'Aws::Crt::Io']]],
-  ['drs_5factive_12',['DRS_ACTIVE',['../host__resolver_8c.html#ae3514ed634926a8404d7b5901e38b0e2a66767de67bbe610d8873da2d0a4981ad',1,'host_resolver.c']]],
-  ['drs_5fshutting_5fdown_13',['DRS_SHUTTING_DOWN',['../host__resolver_8c.html#ae3514ed634926a8404d7b5901e38b0e2afb4b8a81de272f0dd7546a3f839be42d',1,'host_resolver.c']]]
+  ['failed_0',['FAILED',['../namespace_aws_1_1_iotjobs.html#ab23745174d4d2f57ebf542bdbd1bacf0ab9e14d9b2886bcff408b85aefa780419',1,'Aws::Iotjobs']]]
 ];

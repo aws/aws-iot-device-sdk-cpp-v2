@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['bike_2d1_20_2d_20additional_20implementation_20of_20_22bike_3a_20bit_20flipping_20key_20encapsulation_22_2e_0',['BIKE-1 - Additional implementation of &quot;BIKE: Bit Flipping Key Encapsulation&quot;.',['../md_crt_aws_crt_cpp_crt_s2n_pq_crypto_bike_r1__r_e_a_d_m_e.html',1,'(Global Namespace)'],['../md_crt_aws_crt_cpp_crt_s2n_pq_crypto_bike_r2__r_e_a_d_m_e.html',1,'(Global Namespace)']]]
+  ['code_20of_20conduct_0',['Code of Conduct',['../md__c_o_d_e__o_f__c_o_n_d_u_c_t.html',1,'']]],
+  ['contributing_20guidelines_1',['Contributing Guidelines',['../md__c_o_n_t_r_i_b_u_t_i_n_g.html',1,'']]]
 ];
