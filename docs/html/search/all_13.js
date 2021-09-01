@@ -30,5 +30,6 @@ var searchData=
   ['updatethingshadowresult_27',['UpdateThingShadowResult',['../class_aws_1_1_greengrass_1_1_update_thing_shadow_result.html',1,'Aws::Greengrass']]],
   ['updatewindow_28',['UpdateWindow',['../class_aws_1_1_crt_1_1_http_1_1_http_stream.html#ad27cd3913c91ba66ebdd166ac9bc1f2e',1,'Aws::Crt::Http::HttpStream']]],
   ['uri_29',['Uri',['../class_aws_1_1_crt_1_1_io_1_1_uri.html',1,'Aws::Crt::Io::Uri'],['../class_aws_1_1_crt_1_1_io_1_1_uri.html#ad89f20188060ad11ad900409626b74dd',1,'Aws::Crt::Io::Uri::Uri(const ByteCursor &amp;cursor, Allocator *allocator=g_allocator) noexcept'],['../class_aws_1_1_crt_1_1_io_1_1_uri.html#a928b689765c8a886868578c9fdc8881b',1,'Aws::Crt::Io::Uri::Uri(aws_uri_builder_options &amp;builderOptions, Allocator *allocator=g_allocator) noexcept']]],
-  ['uuid_30',['UUID',['../class_aws_1_1_crt_1_1_u_u_i_d.html',1,'Aws::Crt']]]
+  ['usage_30',['Usage',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['uuid_31',['UUID',['../class_aws_1_1_crt_1_1_u_u_i_d.html',1,'Aws::Crt']]]
 ];

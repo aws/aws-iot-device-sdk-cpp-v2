@@ -15,6 +15,6 @@ var searchData=
   ['asstring_12',['AsString',['../class_aws_1_1_crt_1_1_json_object.html#a2e5e65a8d29c90e1fdd66d45b7e4cd65',1,'Aws::Crt::JsonObject::AsString()'],['../class_aws_1_1_crt_1_1_json_view.html#ac27ca43a65bd8aa0b5685290b8ca384a',1,'Aws::Crt::JsonView::AsString()']]],
   ['authtype_13',['AuthType',['../class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options.html#acebea08ca57582414378e350a7ff465d',1,'Aws::Crt::Http::HttpClientConnectionProxyOptions']]],
   ['aws_14',['Aws',['../namespace_aws.html',1,'']]],
-  ['aws_20iot_20device_20sdk_20for_20c_2b_2b_20v2_15',['AWS IoT Device SDK for C++ v2',['../md___users_jkl__documents__a_w_s_sdk_cpp_workspace_aws_iot_device_sdk_cpp_v2__r_e_a_d_m_e.html',1,'(Global Namespace)'],['../md_index.html',1,'(Global Namespace)']]],
+  ['aws_20iot_20device_20sdk_20for_20c_2b_2b_20v2_15',['AWS IoT Device SDK for C++ v2',['../index.html',1,'(Global Namespace)'],['../md___users_jkl__documents__a_w_s_sdk_cpp_workspace_aws_iot_device_sdk_cpp_v2__r_e_a_d_m_e.html',1,'(Global Namespace)']]],
   ['awssigningconfig_16',['AwsSigningConfig',['../class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config.html',1,'Aws::Crt::Auth']]]
 ];
