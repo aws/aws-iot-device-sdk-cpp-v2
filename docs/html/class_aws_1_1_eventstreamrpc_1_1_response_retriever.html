@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html">Eventstreamrpc</a></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_response_retriever.html">ResponseRetriever</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><b>Eventstreamrpc</b></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_response_retriever.html">ResponseRetriever</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -73,99 +73,21 @@ $(function() {
   <div class="headertitle"><div class="title">Aws::Eventstreamrpc::ResponseRetriever Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af330a1165d73f546429dff99e9a886ec"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_response_retriever.html#af330a1165d73f546429dff99e9a886ec">GetInitialResponseFromModelName</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName) const noexcept=0</td></tr>
+<tr class="memitem:af330a1165d73f546429dff99e9a886ec"><td class="memItemLeft" align="right" valign="top"><a id="af330a1165d73f546429dff99e9a886ec" name="af330a1165d73f546429dff99e9a886ec"></a>
+virtual ExpectedResponseFactory&#160;</td><td class="memItemRight" valign="bottom"><b>GetInitialResponseFromModelName</b> (const Crt::String &amp;modelName) const noexcept=0</td></tr>
 <tr class="separator:af330a1165d73f546429dff99e9a886ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4c2650f44c22e0fe667600a8c3c7ba4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_response_retriever.html#ad4c2650f44c22e0fe667600a8c3c7ba4">GetStreamingResponseFromModelName</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName) const noexcept=0</td></tr>
+<tr class="memitem:ad4c2650f44c22e0fe667600a8c3c7ba4"><td class="memItemLeft" align="right" valign="top"><a id="ad4c2650f44c22e0fe667600a8c3c7ba4" name="ad4c2650f44c22e0fe667600a8c3c7ba4"></a>
+virtual ExpectedResponseFactory&#160;</td><td class="memItemRight" valign="bottom"><b>GetStreamingResponseFromModelName</b> (const Crt::String &amp;modelName) const noexcept=0</td></tr>
 <tr class="separator:ad4c2650f44c22e0fe667600a8c3c7ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7a217636d7da8fd64b90eb6beba84c6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_response_retriever.html#ad7a217636d7da8fd64b90eb6beba84c6">GetOperationErrorFromModelName</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName) const noexcept=0</td></tr>
+<tr class="memitem:ad7a217636d7da8fd64b90eb6beba84c6"><td class="memItemLeft" align="right" valign="top"><a id="ad7a217636d7da8fd64b90eb6beba84c6" name="ad7a217636d7da8fd64b90eb6beba84c6"></a>
+virtual ErrorResponseFactory&#160;</td><td class="memItemRight" valign="bottom"><b>GetOperationErrorFromModelName</b> (const Crt::String &amp;modelName) const noexcept=0</td></tr>
 <tr class="separator:ad7a217636d7da8fd64b90eb6beba84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="af330a1165d73f546429dff99e9a886ec" name="af330a1165d73f546429dff99e9a886ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af330a1165d73f546429dff99e9a886ec">&#9670;&nbsp;</a></span>GetInitialResponseFromModelName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a> Aws::Eventstreamrpc::ResponseRetriever::GetInitialResponseFromModelName </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>modelName</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad7a217636d7da8fd64b90eb6beba84c6" name="ad7a217636d7da8fd64b90eb6beba84c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7a217636d7da8fd64b90eb6beba84c6">&#9670;&nbsp;</a></span>GetOperationErrorFromModelName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a> Aws::Eventstreamrpc::ResponseRetriever::GetOperationErrorFromModelName </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>modelName</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad4c2650f44c22e0fe667600a8c3c7ba4" name="ad4c2650f44c22e0fe667600a8c3c7ba4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4c2650f44c22e0fe667600a8c3c7ba4">&#9670;&nbsp;</a></span>GetStreamingResponseFromModelName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a> Aws::Eventstreamrpc::ResponseRetriever::GetStreamingResponseFromModelName </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>modelName</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['failed_5fhash_0',['FAILED_HASH',['../_job_status_8cpp.html#a748e80818b2b1a630bdaaeb6fdedc963',1,'JobStatus.cpp']]],
-  ['fmt_1',['fmt',['../namespace_aws.html#a584c037a1897b77d9876151955335159',1,'Aws']]],
-  ['format_2',['format',['../struct_aws_1_1printbuffer.html#a01c2ef873719689397be924555f3b2aa',1,'Aws::printbuffer::format()'],['../namespace_aws.html#a5b080fcf4aed7e14fb25c2638948af06',1,'Aws::format()']]],
-  ['free_5ffn_3',['free_fn',['../struct_aws_1_1c_j_s_o_n___hooks.html#a45ce27bf4316bc0f91c43984b1a50896',1,'Aws::cJSON_Hooks']]]
+  ['manualwindowmanagement_0',['ManualWindowManagement',['../class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options.html#ae9b4f3a6fb252371e4f432087051152b',1,'Aws::Crt::Http::HttpClientConnectionOptions']]],
+  ['maxconnections_1',['MaxConnections',['../class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options.html#a7fb01bcc751c2f6af2f622682cbe45eb',1,'Aws::Crt::Http::HttpClientConnectionManagerOptions::MaxConnections()'],['../class_aws_1_1_discovery_1_1_discovery_client_config.html#aba8bb6f980d91e0f28feaf7dbc9a6af7',1,'Aws::Discovery::DiscoveryClientConfig::MaxConnections()']]]
 ];

@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html">Eventstreamrpc</a></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html">ClientContinuationHandler</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><b>Eventstreamrpc</b></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html">ClientContinuationHandler</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -74,8 +74,6 @@ $(function() {
   <div class="headertitle"><div class="title">Aws::Eventstreamrpc::ClientContinuationHandler Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Aws::Eventstreamrpc::ClientContinuationHandler:</div>
 <div class="dyncontent">
@@ -116,44 +114,17 @@ Inheritance diagram for Aws::Eventstreamrpc::ClientContinuationHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a46f55663912d0093218bbe72ba28ea70"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#a46f55663912d0093218bbe72ba28ea70">OnContinuationMessage</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a700a767e9c8e9c2564c37e379beb91a8">Crt::List</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;headers, const <a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">Crt::ByteBuf</a> &gt; &amp;payload, <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591">MessageType</a> messageType, uint32_t messageFlags)=0</td></tr>
+<tr class="memitem:a46f55663912d0093218bbe72ba28ea70"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#a46f55663912d0093218bbe72ba28ea70">OnContinuationMessage</a> (const Crt::List&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;headers, const <a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; Crt::ByteBuf &gt; &amp;payload, MessageType messageType, uint32_t messageFlags)=0</td></tr>
 <tr class="separator:a46f55663912d0093218bbe72ba28ea70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a718d00c81d12faac0fab623688614146"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#a718d00c81d12faac0fab623688614146">OnContinuationClosed</a> ()=0</td></tr>
 <tr class="separator:a718d00c81d12faac0fab623688614146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab40407a7f1aece9cad41e736f05323a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#ab40407a7f1aece9cad41e736f05323a1">~ClientContinuationHandler</a> () noexcept</td></tr>
-<tr class="separator:ab40407a7f1aece9cad41e736f05323a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a262d214378ef767fbe67711ef6b302bc"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#a262d214378ef767fbe67711ef6b302bc">ClientContinuation</a></td></tr>
+<tr class="memitem:a262d214378ef767fbe67711ef6b302bc"><td class="memItemLeft" align="right" valign="top"><a id="a262d214378ef767fbe67711ef6b302bc" name="a262d214378ef767fbe67711ef6b302bc"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ClientContinuation</b></td></tr>
 <tr class="separator:a262d214378ef767fbe67711ef6b302bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab40407a7f1aece9cad41e736f05323a1" name="ab40407a7f1aece9cad41e736f05323a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab40407a7f1aece9cad41e736f05323a1">&#9670;&nbsp;</a></span>~ClientContinuationHandler()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Aws::Eventstreamrpc::ClientContinuationHandler::~ClientContinuationHandler </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a718d00c81d12faac0fab623688614146" name="a718d00c81d12faac0fab623688614146"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a718d00c81d12faac0fab623688614146">&#9670;&nbsp;</a></span>OnContinuationClosed()</h2>
@@ -194,19 +165,19 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">virtual void Aws::Eventstreamrpc::ClientContinuationHandler::OnContinuationMessage </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a700a767e9c8e9c2564c37e379beb91a8">Crt::List</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const Crt::List&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">Crt::ByteBuf</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; Crt::ByteBuf &gt; &amp;&#160;</td>
           <td class="paramname"><em>payload</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591">MessageType</a>&#160;</td>
+          <td class="paramtype">MessageType&#160;</td>
           <td class="paramname"><em>messageType</em>, </td>
         </tr>
         <tr>
@@ -231,32 +202,9 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a262d214378ef767fbe67711ef6b302bc" name="a262d214378ef767fbe67711ef6b302bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a262d214378ef767fbe67711ef6b302bc">&#9670;&nbsp;</a></span>ClientContinuation</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_client_continuation.html">ClientContinuation</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
-<li>eventstream_rpc/source/<a class="el" href="_event_stream_client_8cpp.html">EventStreamClient.cpp</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/eventstream_rpc/source/EventStreamClient.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

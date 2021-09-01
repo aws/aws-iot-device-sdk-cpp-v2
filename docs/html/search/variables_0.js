@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_5f_5fpad0_5f_5f_0',['__pad0__',['../namespace_aws.html#a30f044884a662cd71fea7edc7aaf26e6',1,'Aws']]],
-  ['_5f_5fpad1_5f_5f_1',['__pad1__',['../namespace_aws.html#a8ab63ecf5882656ec150ad6dda779008',1,'Aws']]]
+  ['accesskeyid_0',['AccessKeyId',['../struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_static_config.html#aa100bb8c9c5a0ba3e3e59eeb1c65eb68',1,'Aws::Crt::Auth::CredentialsProviderStaticConfig']]],
+  ['authtype_1',['AuthType',['../class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options.html#acebea08ca57582414378e350a7ff465d',1,'Aws::Crt::Http::HttpClientConnectionProxyOptions']]]
 ];

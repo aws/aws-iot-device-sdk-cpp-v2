@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><a class="el" href="namespace_aws_1_1_crt.html">Crt</a></li><li class="navelem"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html">Http</a></li><li class="navelem"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><b>Crt</b></li><li class="navelem"><b>Http</b></li><li class="navelem"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -86,44 +86,25 @@ Inheritance diagram for Aws::Crt::Http::HttpClientConnectionManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3ce78ad105347c7268ef0ebc06343702"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a3ce78ad105347c7268ef0ebc06343702">~HttpClientConnectionManager</a> ()</td></tr>
-<tr class="separator:a3ce78ad105347c7268ef0ebc06343702"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a999fd4f1158b5efdf0c202ecd37d2030">AcquireConnection</a> (const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> &amp;onClientConnectionAvailable) noexcept</td></tr>
+<tr class="memitem:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a999fd4f1158b5efdf0c202ecd37d2030">AcquireConnection</a> (const OnClientConnectionAvailable &amp;onClientConnectionAvailable) noexcept</td></tr>
 <tr class="separator:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24a6f7601af6e8f980a5b505760c9dd4"><td class="memItemLeft" align="right" valign="top">std::future&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a24a6f7601af6e8f980a5b505760c9dd4">InitiateShutdown</a> () noexcept</td></tr>
 <tr class="separator:a24a6f7601af6e8f980a5b505760c9dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a83d183a7fe35511db52f8085a1bfe817"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a83d183a7fe35511db52f8085a1bfe817">NewClientConnectionManager</a> (const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options.html">HttpClientConnectionManagerOptions</a> &amp;connectionManagerOptions, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="memitem:a83d183a7fe35511db52f8085a1bfe817"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a83d183a7fe35511db52f8085a1bfe817">NewClientConnectionManager</a> (const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options.html">HttpClientConnectionManagerOptions</a> &amp;connectionManagerOptions, Allocator *allocator=g_allocator) noexcept</td></tr>
 <tr class="separator:a83d183a7fe35511db52f8085a1bfe817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:af8a15107ebe7178044a1fc62d0ee5bcd"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#af8a15107ebe7178044a1fc62d0ee5bcd">ManagedConnection</a></td></tr>
+<tr class="memitem:af8a15107ebe7178044a1fc62d0ee5bcd"><td class="memItemLeft" align="right" valign="top"><a id="af8a15107ebe7178044a1fc62d0ee5bcd" name="af8a15107ebe7178044a1fc62d0ee5bcd"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ManagedConnection</b></td></tr>
 <tr class="separator:af8a15107ebe7178044a1fc62d0ee5bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Manages a pool of connections to a specific endpoint using the same socket and tls options. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3ce78ad105347c7268ef0ebc06343702" name="a3ce78ad105347c7268ef0ebc06343702"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ce78ad105347c7268ef0ebc06343702">&#9670;&nbsp;</a></span>~HttpClientConnectionManager()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Aws::Crt::Http::HttpClientConnectionManager::~HttpClientConnectionManager </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a999fd4f1158b5efdf0c202ecd37d2030" name="a999fd4f1158b5efdf0c202ecd37d2030"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a999fd4f1158b5efdf0c202ecd37d2030">&#9670;&nbsp;</a></span>AcquireConnection()</h2>
 
@@ -136,7 +117,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">bool Aws::Crt::Http::HttpClientConnectionManager::AcquireConnection </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> &amp;&#160;</td>
+          <td class="paramtype">const OnClientConnectionAvailable &amp;&#160;</td>
           <td class="paramname"><em>onClientConnectionAvailable</em></td><td>)</td>
           <td></td>
         </tr>
@@ -195,8 +176,8 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
-          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code>&#160;</td>
+          <td class="paramtype">Allocator *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code>g_allocator</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,32 +195,9 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="af8a15107ebe7178044a1fc62d0ee5bcd" name="af8a15107ebe7178044a1fc62d0ee5bcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8a15107ebe7178044a1fc62d0ee5bcd">&#9670;&nbsp;</a></span>ManagedConnection</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_managed_connection.html">ManagedConnection</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>crt/aws-crt-cpp/include/aws/crt/http/<a class="el" href="_http_connection_manager_8h_source.html">HttpConnectionManager.h</a></li>
-<li>crt/aws-crt-cpp/source/http/<a class="el" href="_http_connection_manager_8cpp.html">HttpConnectionManager.cpp</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/http/<a class="el" href="_http_connection_manager_8h_source.html">HttpConnectionManager.h</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/http/HttpConnectionManager.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

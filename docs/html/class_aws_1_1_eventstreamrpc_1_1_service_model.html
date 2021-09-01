@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html">Eventstreamrpc</a></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_service_model.html">ServiceModel</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_aws.html">Aws</a></li><li class="navelem"><b>Eventstreamrpc</b></li><li class="navelem"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_service_model.html">ServiceModel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -73,8 +73,6 @@ $(function() {
   <div class="headertitle"><div class="title">Aws::Eventstreamrpc::ServiceModel Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Aws::Eventstreamrpc::ServiceModel:</div>
 <div class="dyncontent">
@@ -87,56 +85,12 @@ Inheritance diagram for Aws::Eventstreamrpc::ServiceModel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab6d0ceab929c2eee3f1db1cbf3b7e6ed"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_service_model.html#ab6d0ceab929c2eee3f1db1cbf3b7e6ed">AllocateOperationErrorFromPayload</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;errorModelName, <a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a> stringView, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator) const noexcept=0</td></tr>
+<tr class="memitem:ab6d0ceab929c2eee3f1db1cbf3b7e6ed"><td class="memItemLeft" align="right" valign="top"><a id="ab6d0ceab929c2eee3f1db1cbf3b7e6ed" name="ab6d0ceab929c2eee3f1db1cbf3b7e6ed"></a>
+virtual Crt::ScopedResource&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AllocateOperationErrorFromPayload</b> (const Crt::String &amp;errorModelName, <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">Crt::StringView</a> stringView, Crt::Allocator *allocator) const noexcept=0</td></tr>
 <tr class="separator:ab6d0ceab929c2eee3f1db1cbf3b7e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab6d0ceab929c2eee3f1db1cbf3b7e6ed" name="ab6d0ceab929c2eee3f1db1cbf3b7e6ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6d0ceab929c2eee3f1db1cbf3b7e6ed">&#9670;&nbsp;</a></span>AllocateOperationErrorFromPayload()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt;<a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a>&gt; Aws::Eventstreamrpc::ServiceModel::AllocateOperationErrorFromPayload </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
-          <td class="paramname"><em>errorModelName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a>&#160;</td>
-          <td class="paramname"><em>stringView</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *&#160;</td>
-          <td class="paramname"><em>allocator</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_aws_1_1_greengrass_1_1_greengrass_core_ipc_service_model.html#af6148d3a168d3e55ad3caa849ecaaa0a">Aws::Greengrass::GreengrassCoreIpcServiceModel</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
+<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/eventstream_rpc/include/aws/eventstreamrpc/<a class="el" href="_event_stream_client_8h_source.html">EventStreamClient.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
