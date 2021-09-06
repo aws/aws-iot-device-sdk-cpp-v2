@@ -61,7 +61,7 @@ and receive.
         "iot:Receive"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/sdk/test/cpp"
       ]
     },
     {
@@ -70,7 +70,7 @@ and receive.
         "iot:Subscribe"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/topic"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/sdk/test/cpp"
       ]
     },
     {
@@ -79,7 +79,7 @@ and receive.
         "iot:Connect"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/basicPubSub"
       ]
     }
 
@@ -93,7 +93,6 @@ To run the basic MQTT Pub-Sub use the following command:
 ``` sh
 ./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
---topic <topic name>
 ```
 
 ## Raw MQTT Pub-Sub

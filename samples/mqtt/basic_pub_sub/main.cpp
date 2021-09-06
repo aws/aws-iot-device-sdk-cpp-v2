@@ -94,8 +94,8 @@ int main(int argc, char *argv[])
     String certificatePath;
     String keyPath;
     String caFile;
-    String topic("test/topic");
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String topic("sdk/test/cpp");
+    String clientId(String("basicPubSub"));
     String signingRegion;
     String proxyHost;
     uint16_t proxyPort(8080);
