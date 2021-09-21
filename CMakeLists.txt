@@ -59,9 +59,6 @@ else()
 endif()
 
 aws_use_package(aws-crt-cpp)
-if (NOT BYO_CRYPTO)
-    aws_use_package(aws-c-iot)
-endif()
 
 add_subdirectory(jobs)
 add_subdirectory(shadow)
