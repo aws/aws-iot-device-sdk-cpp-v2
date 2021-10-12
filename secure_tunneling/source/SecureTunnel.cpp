@@ -13,6 +13,7 @@ namespace Aws
             Crt::Allocator *allocator,
             Aws::Crt::Io::ClientBootstrap *clientBootstrap,
             const Aws::Crt::Io::SocketOptions &socketOptions,
+            Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
             const std::string &accessToken,
             aws_secure_tunneling_local_proxy_mode localProxyMode,
@@ -49,6 +50,13 @@ namespace Aws
             config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
             config.socket_options = &m_socketOptions.GetImpl();
 
+            if (httpClientConnectionProxyOptions)
+            {
+                config.http_proxy_options =
+                    (struct aws_http_proxy_options *)aws_mem_acquire(allocator, sizeof(struct aws_http_proxy_options));
+                httpClientConnectionProxyOptions->InitializeRawProxyOptions(*config.http_proxy_options);
+            }
+
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
@@ -66,6 +74,42 @@ namespace Aws
 
             // Create the secure tunnel
             m_secure_tunnel = aws_secure_tunnel_new(&config);
+        }
+
+        SecureTunnel::SecureTunnel(
+            Crt::Allocator *allocator,
+            Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+            const Aws::Crt::Io::SocketOptions &socketOptions,
+
+            const std::string &accessToken,
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost,
+            const std::string &rootCa,
+
+            OnConnectionComplete onConnectionComplete,
+            OnConnectionShutdown onConnectionShutdown,
+            OnSendDataComplete onSendDataComplete,
+            OnDataReceive onDataReceive,
+            OnStreamStart onStreamStart,
+            OnStreamReset onStreamReset,
+            OnSessionReset onSessionReset)
+            : SecureTunnel::SecureTunnel(
+                  *allocator,
+                  *clientBootstrap,
+                  &socketOptions,
+                  nullptr,
+                  &accessToken,
+                  localProxyMode,
+                  &endpointHost,
+                  &rootCa,
+                  onConnectionComplete,
+                  onConnectionShutdown,
+                  onSendDataComplete,
+                  onDataReceive,
+                  onStreamStart,
+                  onStreamReset,
+                  onSessionReset)
+        {
         }
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept

@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/crt/Optional.h>
+#include <aws/crt/http/HttpConnection.h>
 #include <aws/crt/io/Bootstrap.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/iotdevice/secure_tunneling.h>
@@ -27,14 +29,15 @@ namespace Aws
           public:
             SecureTunnel(
                 // Parameters map to aws_secure_tunneling_connection_config
-                Crt::Allocator *allocator,                        // Should out live this object
-                Aws::Crt::Io::ClientBootstrap *clientBootstrap,   // Should out live this object
-                const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+                Crt::Allocator *allocator,
+                Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+                const Aws::Crt::Io::SocketOptions &socketOptions,
+                Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
-                const std::string &accessToken, // Make a copy and save in this object
+                const std::string &accessToken,
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
-                const std::string &endpointHost, // Make a copy and save in this object
-                const std::string &rootCa,       // Make a copy and save in this object
+                const std::string &endpointHost,
+                const std::string &rootCa,
 
                 OnConnectionComplete onConnectionComplete,
                 OnConnectionShutdown onConnectionShutdown,
@@ -43,6 +46,26 @@ namespace Aws
                 OnStreamStart onStreamStart,
                 OnStreamReset onStreamReset,
                 OnSessionReset onSessionReset);
+
+            SecureTunnel(
+                // Parameters map to aws_secure_tunneling_connection_config
+                Crt::Allocator *allocator,
+                Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+                const Aws::Crt::Io::SocketOptions &socketOptions,
+
+                const std::string &accessToken,
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                const std::string &endpointHost,
+                const std::string &rootCa,
+
+                OnConnectionComplete onConnectionComplete,
+                OnConnectionShutdown onConnectionShutdown,
+                OnSendDataComplete onSendDataComplete,
+                OnDataReceive onDataReceive,
+                OnStreamStart onStreamStart,
+                OnStreamReset onStreamReset,
+                OnSessionReset onSessionReset);
+
             SecureTunnel(const SecureTunnel &) = delete;
             SecureTunnel(SecureTunnel &&) noexcept;
 
