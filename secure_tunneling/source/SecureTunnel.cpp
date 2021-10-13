@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/http/proxy.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 
 namespace Aws
@@ -52,9 +53,12 @@ namespace Aws
 
             if (httpClientConnectionProxyOptions)
             {
-                config.http_proxy_options =
+                aws_http_proxy_options *temp =
                     (struct aws_http_proxy_options *)aws_mem_acquire(allocator, sizeof(struct aws_http_proxy_options));
-                httpClientConnectionProxyOptions->InitializeRawProxyOptions(*config.http_proxy_options);
+                httpClientConnectionProxyOptions->InitializeRawProxyOptions(*temp);
+                config.http_proxy_config =
+                    aws_http_proxy_config_new_tunneling_from_proxy_options(config.allocator, temp);
+                aws_mem_release(allocator, temp);
             }
 
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
