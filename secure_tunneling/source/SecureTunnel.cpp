@@ -42,9 +42,8 @@ namespace Aws
             m_endpointHost = endpointHost;
             m_rootCa = rootCa;
 
-            // Initialize aws_secure_tunneling_connection_config
-            aws_secure_tunnel_options
-                config; // aws_secure_tunneling_connection_config changed to aws_secure_tunnel_options
+            // Initialize aws_secure_tunnel_options
+            aws_secure_tunnel_options config;
             AWS_ZERO_STRUCT(config);
 
             config.allocator = allocator;
