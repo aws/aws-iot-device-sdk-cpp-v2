@@ -66,9 +66,10 @@ namespace Aws
 
             config.user_data = this;
 
+            aws_http_proxy_options temp;
+            AWS_ZERO_STRUCT(temp);
             if (httpClientConnectionProxyOptions != NULL)
             {
-                aws_http_proxy_options temp;
                 httpClientConnectionProxyOptions->InitializeRawProxyOptions(temp);
                 config.http_proxy_options = &temp;
             }
