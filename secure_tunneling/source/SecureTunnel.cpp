@@ -53,7 +53,11 @@ namespace Aws
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
-            config.root_ca = m_rootCa.c_str();
+
+            if (m_rootCa.length() > 0)
+            {
+                config.root_ca = m_rootCa.c_str();
+            }
 
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_connection_shutdown = s_OnConnectionShutdown;
