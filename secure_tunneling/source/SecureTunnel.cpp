@@ -13,6 +13,7 @@ namespace Aws
             Crt::Allocator *allocator,
             Aws::Crt::Io::ClientBootstrap *clientBootstrap,
             const Aws::Crt::Io::SocketOptions &socketOptions,
+            Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
             const std::string &accessToken,
             aws_secure_tunneling_local_proxy_mode localProxyMode,
@@ -41,8 +42,8 @@ namespace Aws
             m_endpointHost = endpointHost;
             m_rootCa = rootCa;
 
-            // Initialize aws_secure_tunneling_connection_config
-            aws_secure_tunneling_connection_config config;
+            // Initialize aws_secure_tunnel_options
+            aws_secure_tunnel_options config;
             AWS_ZERO_STRUCT(config);
 
             config.allocator = allocator;
@@ -52,7 +53,11 @@ namespace Aws
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
-            config.root_ca = m_rootCa.c_str();
+
+            if (m_rootCa.length() > 0)
+            {
+                config.root_ca = m_rootCa.c_str();
+            }
 
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_connection_shutdown = s_OnConnectionShutdown;
@@ -64,8 +69,52 @@ namespace Aws
 
             config.user_data = this;
 
+            aws_http_proxy_options temp;
+            AWS_ZERO_STRUCT(temp);
+            if (httpClientConnectionProxyOptions != NULL)
+            {
+                httpClientConnectionProxyOptions->InitializeRawProxyOptions(temp);
+                config.http_proxy_options = &temp;
+            }
+
             // Create the secure tunnel
             m_secure_tunnel = aws_secure_tunnel_new(&config);
+        }
+
+        SecureTunnel::SecureTunnel(
+            Crt::Allocator *allocator,
+            Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+            const Aws::Crt::Io::SocketOptions &socketOptions,
+
+            const std::string &accessToken,
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost,
+            const std::string &rootCa,
+
+            OnConnectionComplete onConnectionComplete,
+            OnConnectionShutdown onConnectionShutdown,
+            OnSendDataComplete onSendDataComplete,
+            OnDataReceive onDataReceive,
+            OnStreamStart onStreamStart,
+            OnStreamReset onStreamReset,
+            OnSessionReset onSessionReset)
+            : SecureTunnel(
+                  allocator,
+                  clientBootstrap,
+                  socketOptions,
+                  nullptr,
+                  accessToken,
+                  localProxyMode,
+                  endpointHost,
+                  rootCa,
+                  onConnectionComplete,
+                  onConnectionShutdown,
+                  onSendDataComplete,
+                  onDataReceive,
+                  onStreamStart,
+                  onStreamReset,
+                  onSessionReset)
+        {
         }
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
