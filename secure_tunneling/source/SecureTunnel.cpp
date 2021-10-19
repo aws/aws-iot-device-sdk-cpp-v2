@@ -73,8 +73,6 @@ namespace Aws
                 config.http_proxy_options = &temp;
             }
 
-            m_aws_secure_tunnel_options_storage = aws_secure_tunnel_options_storage_new(&config);
-
             // Create the secure tunnel
             m_secure_tunnel = aws_secure_tunnel_new(&config);
         }
@@ -139,7 +137,6 @@ namespace Aws
         {
             if (m_secure_tunnel)
             {
-                aws_secure_tunnel_options_storage_destroy(m_aws_secure_tunnel_options_storage);
                 aws_secure_tunnel_release(m_secure_tunnel);
             }
         }
