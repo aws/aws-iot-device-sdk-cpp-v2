@@ -16,6 +16,18 @@ namespace Aws
             return SecureTunnelConfig(lastError);
         }
 
+        SecureTunnelConfig::SecureTunnelConfig(
+            Crt::Allocator *allocator,
+            Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+            const Aws::Crt::Io::SocketOptions &socketOptions,
+            const std::string &accessToken,
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost)
+            : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
+              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_lastError(0)
+        {
+        }
+
         SecureTunnelConfigBuilder::SecureTunnelConfigBuilder() : m_lastError(AWS_ERROR_INVALID_STATE) {}
 
         SecureTunnelConfigBuilder::SecureTunnelConfigBuilder(
@@ -88,7 +100,7 @@ namespace Aws
                 return SecureTunnelConfig::CreateInvalid(m_lastError);
             }
 
-            auto config = SecureTunnelConfig(
+            SecureTunnelConfig config = SecureTunnelConfig(
                 m_allocator, m_clientBootstrap, m_socketOptions, m_accessToken, m_localProxyMode, m_endpointHost);
 
             config.m_rootCa = m_rootCa;
