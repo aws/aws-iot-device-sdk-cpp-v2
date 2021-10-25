@@ -9,49 +9,123 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
-        SecureTunnel::SecureTunnel(
-            Crt::Allocator *allocator,
-            Aws::Crt::Io::ClientBootstrap *clientBootstrap,
-            const Aws::Crt::Io::SocketOptions &socketOptions,
-            Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
+        SecureTunnelConfigBuilder::SecureTunnelConfigBuilder() : m_lastError(AWS_ERROR_INVALID_STATE) {}
 
-            const std::string &accessToken,
-            aws_secure_tunneling_local_proxy_mode localProxyMode,
-            const std::string &endpointHost,
-            const std::string &rootCa,
+        SecureTunnelConfigBuilder::SecureTunnelConfigBuilder(
+            Crt::Allocator *allocator,                        // Should out live this object          req
+            Aws::Crt::Io::ClientBootstrap *clientBootstrap,   // Should out live this object          req
+            const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object  req
+            const std::string &accessToken, // Make a copy and save in this object                    req
+            aws_secure_tunneling_local_proxy_mode localProxyMode, //                                  req
+            const std::string &endpointHost) // Make a copy and save in this object                  req
+            : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
+              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_lastError(0)
+        {
+        }
 
-            OnConnectionComplete onConnectionComplete,
-            OnConnectionShutdown onConnectionShutdown,
-            OnSendDataComplete onSendDataComplete,
-            OnDataReceive onDataReceive,
-            OnStreamStart onStreamStart,
-            OnStreamReset onStreamReset,
-            OnSessionReset onSessionReset)
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithRootCa(const std::string &rootCa)
+        {
+            m_rootCa = rootCa;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithHttpClientConnectionProxyOptions(
+            Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions)
+        {
+            m_httpClientConnectionProxyOptions = httpClientConnectionProxyOptions;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnConnectionComplete(
+            OnConnectionComplete onConnectionComplete)
+        {
+            m_OnConnectionComplete = onConnectionComplete;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnConnectionShutdown(
+            OnConnectionShutdown onConnectionShutdown)
+        {
+            m_OnConnectionShutdown = onConnectionShutdown;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnSendDataComplete(
+            OnSendDataComplete onSendDataComplete)
+        {
+            m_OnSendDataComplete = onSendDataComplete;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnDataReceive(OnDataReceive onDataReceive)
+        {
+            m_OnDataReceive = onDataReceive;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnStreamStart(OnStreamStart onStreamStart)
+        {
+            m_OnStreamStart = onStreamStart;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnStreamReset(OnStreamReset onStreamReset)
+        {
+            m_OnStreamReset = onStreamReset;
+            return *this;
+        }
+        SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithOnSessionReset(OnSessionReset onSessionReset)
+        {
+            m_OnSessionReset = onSessionReset;
+            return *this;
+        }
+
+        SecureTunnelConfig SecureTunnelConfigBuilder::Build() noexcept
+        {
+            // TODO Create the builder output
+            if (m_lastError != 0)
+            {
+                return SecureTunnelConfig::CreateInvalid(m_lastError);
+            }
+
+            auto config = SecureTunnelConfig(
+                m_allocator, m_clientBootstrap, m_socketOptions, m_accessToken, m_localProxyMode, m_endpointHost);
+
+            config.m_rootCa = m_rootCa;
+            config.m_httpClientConnectionProxyOptions = m_httpClientConnectionProxyOptions;
+
+            config.m_OnConnectionComplete = m_OnConnectionComplete;
+            config.m_OnConnectionShutdown = m_OnConnectionShutdown;
+            config.m_OnSendDataComplete = m_OnSendDataComplete;
+            config.m_OnDataReceive = m_OnDataReceive;
+            config.m_OnStreamStart = m_OnStreamStart;
+            config.m_OnStreamReset = m_OnStreamReset;
+            config.m_OnSessionReset = m_OnSessionReset;
+
+            return config;
+        }
+
+        SecureTunnel::SecureTunnel(SecureTunnelConfig secureTunnelConfig)
         {
             // Client callbacks
-            m_OnConnectionComplete = onConnectionComplete;
-            m_OnConnectionShutdown = onConnectionShutdown;
-            m_OnSendDataComplete = onSendDataComplete;
-            m_OnDataReceive = onDataReceive;
-            m_OnStreamStart = onStreamStart;
-            m_OnStreamReset = onStreamReset;
-            m_OnSessionReset = onSessionReset;
+            m_OnConnectionComplete = secureTunnelConfig.m_OnConnectionComplete;
+            m_OnConnectionShutdown = secureTunnelConfig.m_OnConnectionShutdown;
+            m_OnSendDataComplete = secureTunnelConfig.m_OnSendDataComplete;
+            m_OnDataReceive = secureTunnelConfig.m_OnDataReceive;
+            m_OnStreamStart = secureTunnelConfig.m_OnStreamStart;
+            m_OnStreamReset = secureTunnelConfig.m_OnStreamReset;
+            m_OnSessionReset = secureTunnelConfig.m_OnSessionReset;
 
-            m_socketOptions = socketOptions;
-            m_accessToken = accessToken;
-            m_endpointHost = endpointHost;
-            m_rootCa = rootCa;
+            m_socketOptions = secureTunnelConfig.m_socketOptions;
+            m_accessToken = secureTunnelConfig.m_accessToken;
+            m_endpointHost = secureTunnelConfig.m_endpointHost;
+            m_rootCa = secureTunnelConfig.m_rootCa;
 
             // Initialize aws_secure_tunnel_options
             aws_secure_tunnel_options config;
             AWS_ZERO_STRUCT(config);
 
-            config.allocator = allocator;
-            config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
+            config.allocator = secureTunnelConfig.m_allocator;
+            config.bootstrap = secureTunnelConfig.m_clientBootstrap
+                                   ? secureTunnelConfig.m_clientBootstrap->GetUnderlyingHandle()
+                                   : nullptr;
             config.socket_options = &m_socketOptions.GetImpl();
 
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
-            config.local_proxy_mode = localProxyMode;
+            config.local_proxy_mode = secureTunnelConfig.m_localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
 
             if (m_rootCa.length() > 0)
@@ -71,9 +145,9 @@ namespace Aws
 
             aws_http_proxy_options temp;
             AWS_ZERO_STRUCT(temp);
-            if (httpClientConnectionProxyOptions != NULL)
+            if (secureTunnelConfig.m_httpClientConnectionProxyOptions != NULL)
             {
-                httpClientConnectionProxyOptions->InitializeRawProxyOptions(temp);
+                secureTunnelConfig.m_httpClientConnectionProxyOptions->InitializeRawProxyOptions(temp);
                 config.http_proxy_options = &temp;
             }
 
@@ -98,23 +172,19 @@ namespace Aws
             OnStreamStart onStreamStart,
             OnStreamReset onStreamReset,
             OnSessionReset onSessionReset)
-            : SecureTunnel(
-                  allocator,
-                  clientBootstrap,
-                  socketOptions,
-                  nullptr,
-                  accessToken,
-                  localProxyMode,
-                  endpointHost,
-                  rootCa,
-                  onConnectionComplete,
-                  onConnectionShutdown,
-                  onSendDataComplete,
-                  onDataReceive,
-                  onStreamStart,
-                  onStreamReset,
-                  onSessionReset)
         {
+            auto secureTunnelConfigBuilder = SecureTunnelConfigBuilder(
+                allocator, clientBootstrap, socketOptions, accessToken, localProxyMode, endpointHost);
+            secureTunnelConfigBuilder.WithRootCa(rootCa);
+            secureTunnelConfigBuilder.WithOnConnectionComplete(onConnectionComplete);
+            secureTunnelConfigBuilder.WithOnConnectionShutdown(onConnectionShutdown);
+            secureTunnelConfigBuilder.WithOnSendDataComplete(onSendDataComplete);
+            secureTunnelConfigBuilder.WithOnDataReceive(onDataReceive);
+            secureTunnelConfigBuilder.WithOnStreamStart(onStreamStart);
+            secureTunnelConfigBuilder.WithOnStreamReset(onStreamReset);
+            secureTunnelConfigBuilder.WithOnSessionReset(onSessionReset);
+
+            SecureTunnel(secureTunnelConfigBuilder.Build());
         }
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
