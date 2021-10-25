@@ -191,19 +191,24 @@ namespace Aws
             OnStreamStart onStreamStart,
             OnStreamReset onStreamReset,
             OnSessionReset onSessionReset)
-        {
-            auto secureTunnelConfigBuilder = SecureTunnelConfigBuilder(
-                allocator, clientBootstrap, socketOptions, accessToken, localProxyMode, endpointHost);
-            secureTunnelConfigBuilder.WithRootCa(rootCa);
-            secureTunnelConfigBuilder.WithOnConnectionComplete(onConnectionComplete);
-            secureTunnelConfigBuilder.WithOnConnectionShutdown(onConnectionShutdown);
-            secureTunnelConfigBuilder.WithOnSendDataComplete(onSendDataComplete);
-            secureTunnelConfigBuilder.WithOnDataReceive(onDataReceive);
-            secureTunnelConfigBuilder.WithOnStreamStart(onStreamStart);
-            secureTunnelConfigBuilder.WithOnStreamReset(onStreamReset);
-            secureTunnelConfigBuilder.WithOnSessionReset(onSessionReset);
+            : SecureTunnel(SecureTunnelConfigBuilder(
+                               allocator,
+                               clientBootstrap,
+                               socketOptions,
+                               accessToken,
+                               localProxyMode,
+                               endpointHost)
+                               .WithRootCa(rootCa)
+                               .WithOnConnectionComplete(onConnectionComplete)
+                               .WithOnConnectionShutdown(onConnectionShutdown)
+                               .WithOnSendDataComplete(onSendDataComplete)
+                               .WithOnDataReceive(onDataReceive)
+                               .WithOnStreamStart(onStreamStart)
+                               .WithOnStreamReset(onStreamReset)
+                               .WithOnSessionReset(onSessionReset)
+                               .Build())
 
-            SecureTunnel(secureTunnelConfigBuilder.Build());
+        {
         }
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
