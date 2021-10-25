@@ -9,6 +9,13 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
+        SecureTunnelConfig::SecureTunnelConfig(int lastError) noexcept : m_lastError(lastError) {}
+
+        SecureTunnelConfig SecureTunnelConfig::CreateInvalid(int lastError) noexcept
+        {
+            return SecureTunnelConfig(lastError);
+        }
+
         SecureTunnelConfigBuilder::SecureTunnelConfigBuilder() : m_lastError(AWS_ERROR_INVALID_STATE) {}
 
         SecureTunnelConfigBuilder::SecureTunnelConfigBuilder(
