@@ -26,6 +26,8 @@ namespace Aws
             : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_lastError(0)
         {
+            m_rootCa = "";
+            m_httpClientConnectionProxyOptions = nullptr;
         }
 
         SecureTunnelConfigBuilder::SecureTunnelConfigBuilder() : m_lastError(AWS_ERROR_INVALID_STATE) {}
@@ -40,6 +42,8 @@ namespace Aws
             : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_lastError(0)
         {
+            m_rootCa = "";
+            m_httpClientConnectionProxyOptions = nullptr;
         }
 
         SecureTunnelConfigBuilder &SecureTunnelConfigBuilder::WithRootCa(const std::string &rootCa)
@@ -104,7 +108,10 @@ namespace Aws
                 m_allocator, m_clientBootstrap, m_socketOptions, m_accessToken, m_localProxyMode, m_endpointHost);
 
             config.m_rootCa = m_rootCa;
-            config.m_httpClientConnectionProxyOptions = m_httpClientConnectionProxyOptions;
+            if (m_httpClientConnectionProxyOptions != NULL)
+            {
+                config.m_httpClientConnectionProxyOptions = m_httpClientConnectionProxyOptions;
+            }
 
             config.m_OnConnectionComplete = m_OnConnectionComplete;
             config.m_OnConnectionShutdown = m_OnConnectionShutdown;
