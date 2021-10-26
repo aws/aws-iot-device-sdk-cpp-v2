@@ -80,8 +80,6 @@ namespace Aws
         class AWS_IOTSECURETUNNELING_API SecureTunnelConfigBuilder final
         {
           public:
-            SecureTunnelConfigBuilder();
-
             SecureTunnelConfigBuilder(
                 Crt::Allocator *allocator,                        // Should out live this object          req
                 Aws::Crt::Io::ClientBootstrap *clientBootstrap,   // Should out live this object          req
