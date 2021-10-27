@@ -28,7 +28,6 @@ namespace Aws
         class AWS_IOTSECURETUNNELING_API SecureTunnelBuilder final
         {
           public:
-            static SecureTunnelBuilder CreateInvalid(int lastError) noexcept;
             /**
              * Constructor arguments are minimum required to create a secure tunnel
              */
@@ -60,14 +59,6 @@ namespace Aws
              * Returns a nullptr on fail.
              */
             std::shared_ptr<SecureTunnel> Build() noexcept;
-            /**
-             * @return true if the instance is in a valid state, false otherwise.
-             */
-            explicit operator bool() const noexcept { return m_lastError == 0; }
-            /**
-             * @return the value of the last aws error encountered by operations on this instance.
-             */
-            int LastError() const noexcept { return m_lastError ? m_lastError : AWS_ERROR_UNKNOWN; }
 
           private:
             SecureTunnelBuilder(int lastError) noexcept;
@@ -97,8 +88,6 @@ namespace Aws
             OnStreamStart m_OnStreamStart;
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
-
-            int m_lastError;
 
             friend class SecureTunnel;
         };

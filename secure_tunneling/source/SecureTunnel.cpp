@@ -9,13 +9,6 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
-        SecureTunnelBuilder::SecureTunnelBuilder(int lastError) noexcept : m_lastError(lastError) {}
-
-        SecureTunnelBuilder SecureTunnelBuilder::CreateInvalid(int lastError) noexcept
-        {
-            return SecureTunnelBuilder(lastError);
-        }
-
         SecureTunnelBuilder::SecureTunnelBuilder(
             Crt::Allocator *allocator,                                            // Should out live this object
             const std::shared_ptr<Aws::Crt::Io::ClientBootstrap> clientBootstrap, // Should out live this object
@@ -24,7 +17,7 @@ namespace Aws
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
-              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_lastError(0)
+              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost)
         {
         }
 
@@ -85,13 +78,6 @@ namespace Aws
 
         std::shared_ptr<SecureTunnel> SecureTunnelBuilder::Build() noexcept
         {
-            if (m_lastError != 0)
-            {
-                // Should I be adding some kind of logging here?
-                return nullptr;
-                // return SecureTunnelBuilder::CreateInvalid(m_lastError);
-            }
-
             auto tunnel = std::shared_ptr<SecureTunnel>(new SecureTunnel(
                 m_allocator,
                 m_clientBootstrap.get(),
@@ -111,7 +97,6 @@ namespace Aws
 
             if (tunnel->m_secure_tunnel == nullptr)
             {
-                m_lastError = aws_last_error();
                 return nullptr;
             }
 
