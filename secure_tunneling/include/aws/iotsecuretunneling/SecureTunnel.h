@@ -145,7 +145,8 @@ namespace Aws
 
           private:
             /**
-             * This constructor is used with SecureTunnelBuilder and should be modified when members are added or removed.
+             * This constructor is used with SecureTunnelBuilder and should be modified when members are added or
+             * removed.
              */
             SecureTunnel(
                 Crt::Allocator *allocator,
