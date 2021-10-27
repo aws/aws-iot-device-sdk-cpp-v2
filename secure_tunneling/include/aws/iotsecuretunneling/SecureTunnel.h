@@ -14,6 +14,8 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
+        class SecureTunnel;
+
         // Client callback type definitions
         using OnConnectionComplete = std::function<void(void)>;
         using OnConnectionShutdown = std::function<void(void)>;
@@ -22,6 +24,65 @@ namespace Aws
         using OnStreamStart = std::function<void()>;
         using OnStreamReset = std::function<void(void)>;
         using OnSessionReset = std::function<void(void)>;
+
+        class AWS_IOTSECURETUNNELING_API SecureTunnelBuilder final
+        {
+          public:
+            /**
+             * Constructor arguments are minimum required to create a secure tunnel
+             */
+            SecureTunnelBuilder(
+                Crt::Allocator *allocator,                                            // Should out live this object
+                const std::shared_ptr<Aws::Crt::Io::ClientBootstrap> clientBootstrap, // Should out live this object
+                const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+                const std::string &accessToken,                   // Make a copy and save in this object
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                const std::string &endpointHost); // Make a copy and save in this object
+
+            SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
+            SecureTunnelBuilder &WithHttpClientConnectionProxyOptions(
+                const Aws::Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
+            SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
+            SecureTunnelBuilder &WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown);
+            SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
+            SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
+            SecureTunnelBuilder &WithOnStreamStart(OnStreamStart onStreamStart);
+            SecureTunnelBuilder &WithOnStreamReset(OnStreamReset onStreamReset);
+            SecureTunnelBuilder &WithOnSessionReset(OnSessionReset onSessionReset);
+
+            std::shared_ptr<SecureTunnel> Build() noexcept;
+            /**
+             * @return true if the instance is in a valid state, false otherwise.
+             */
+            explicit operator bool() const noexcept { return m_lastError == 0; }
+            /**
+             * @return the value of the last aws error encountered by operations on this instance.
+             */
+            int LastError() const noexcept { return m_lastError ? m_lastError : AWS_ERROR_UNKNOWN; }
+
+          private:
+            Crt::Allocator *m_allocator;
+            std::shared_ptr<Aws::Crt::Io::ClientBootstrap> m_clientBootstrap;
+            Aws::Crt::Io::SocketOptions m_socketOptions;
+            std::string m_accessToken;
+            aws_secure_tunneling_local_proxy_mode m_localProxyMode;
+            std::string m_endpointHost;
+
+            std::string m_rootCa;
+            Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> m_httpClientConnectionProxyOptions;
+
+            OnConnectionComplete m_OnConnectionComplete;
+            OnConnectionShutdown m_OnConnectionShutdown;
+            OnSendDataComplete m_OnSendDataComplete;
+            OnDataReceive m_OnDataReceive;
+            OnStreamStart m_OnStreamStart;
+            OnStreamReset m_OnStreamReset;
+            OnSessionReset m_OnSessionReset;
+
+            int m_lastError;
+
+            friend class SecureTunnel;
+        };
 
         class AWS_IOTSECURETUNNELING_API SecureTunnelConfig final
         {
