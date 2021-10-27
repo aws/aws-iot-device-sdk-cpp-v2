@@ -120,6 +120,8 @@ namespace Aws
             SecureTunnel &operator=(const SecureTunnel &) = delete;
             SecureTunnel &operator=(SecureTunnel &&) noexcept;
 
+            bool IsValid();
+
             int Connect();
 
             int Close();

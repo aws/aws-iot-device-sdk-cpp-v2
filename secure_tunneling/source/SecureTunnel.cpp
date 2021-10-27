@@ -274,6 +274,8 @@ namespace Aws
             return *this;
         }
 
+        bool SecureTunnel::IsValid() { return m_secure_tunnel ? true : false; }
+
         int SecureTunnel::Connect() { return aws_secure_tunnel_connect(m_secure_tunnel); }
 
         int SecureTunnel::Close() { return aws_secure_tunnel_close(m_secure_tunnel); }
