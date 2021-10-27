@@ -55,7 +55,7 @@ namespace Aws
             SecureTunnelBuilder &WithOnSessionReset(OnSessionReset onSessionReset);
 
             /**
-             * Will return a shared pointer to a new SecureTunnel that countains a 
+             * Will return a shared pointer to a new SecureTunnel that countains a
              * new aws_secure_tunnel that is generated using the set members of SecureTunnelBuilder.
              * Returns a nullptr on fail.
              */
@@ -144,10 +144,10 @@ namespace Aws
             aws_secure_tunnel *GetUnderlyingHandle();
 
           private:
-          /**
-           * This constructor is used with SecureTunnelBuilder and should be modified when members are added or removed.
-           */
-          SecureTunnel(
+            /**
+             * This constructor is used with SecureTunnelBuilder and should be modified when members are added or removed.
+             */
+            SecureTunnel(
                 Crt::Allocator *allocator,
                 Aws::Crt::Io::ClientBootstrap *clientBootstrap,
                 const Aws::Crt::Io::SocketOptions &socketOptions,
@@ -156,8 +156,7 @@ namespace Aws
                 const std::string &endpointHost,
 
                 const std::string &rootCa,
-                Aws::Crt::Http::HttpClientConnectionProxyOptions
-                    *httpClientConnectionProxyOptions,
+                Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
                 OnConnectionComplete onConnectionComplete,
                 OnConnectionShutdown onConnectionShutdown,
