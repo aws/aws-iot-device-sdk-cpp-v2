@@ -176,9 +176,6 @@ namespace Aws
             OnSessionReset m_OnSessionReset;
 
             Aws::Crt::Io::SocketOptions m_socketOptions;
-            std::string m_accessToken;
-            std::string m_endpointHost;
-            std::string m_rootCa;
 
             aws_secure_tunnel *m_secure_tunnel;
 

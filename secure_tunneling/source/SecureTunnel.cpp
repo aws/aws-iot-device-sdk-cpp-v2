@@ -137,9 +137,6 @@ namespace Aws
             m_OnSessionReset = onSessionReset;
 
             m_socketOptions = socketOptions;
-            m_accessToken = accessToken;
-            m_endpointHost = endpointHost;
-            m_rootCa = rootCa;
 
             // Initialize aws_secure_tunnel_options
             aws_secure_tunnel_options config;
@@ -149,13 +146,13 @@ namespace Aws
             config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
             config.socket_options = &m_socketOptions.GetImpl();
 
-            config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
+            config.access_token = aws_byte_cursor_from_c_str(accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
-            config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
+            config.endpoint_host = aws_byte_cursor_from_c_str(endpointHost.c_str());
 
-            if (m_rootCa.length() > 0)
+            if (rootCa.length() > 0)
             {
-                config.root_ca = m_rootCa.c_str();
+                config.root_ca = rootCa.c_str();
             }
 
             config.on_connection_complete = s_OnConnectionComplete;
@@ -231,9 +228,6 @@ namespace Aws
             m_OnSessionReset = other.m_OnSessionReset;
 
             m_socketOptions = other.m_socketOptions;
-            m_accessToken = std::move(other.m_accessToken);
-            m_endpointHost = std::move(other.m_endpointHost);
-            m_rootCa = std::move(other.m_rootCa);
 
             m_secure_tunnel = other.m_secure_tunnel;
 
@@ -263,9 +257,6 @@ namespace Aws
                 m_OnSessionReset = other.m_OnSessionReset;
 
                 m_socketOptions = other.m_socketOptions;
-                m_accessToken = std::move(other.m_accessToken);
-                m_endpointHost = std::move(other.m_endpointHost);
-                m_rootCa = std::move(other.m_rootCa);
 
                 m_secure_tunnel = other.m_secure_tunnel;
 
