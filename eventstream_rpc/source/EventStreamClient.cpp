@@ -966,8 +966,13 @@ namespace Aws
             int errorCode =
                 EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
 
-            // regardless of how the promise gets moved around (or not), this future should stay valid as a return
-            // value.
+            /*
+             * Regardless of how the promise gets moved around (or not), this future should stay valid as a return
+             * value.
+             *
+             * We pull it out early because the call to aws_event_stream_rpc_client_continuation_activate() may complete
+             * and delete the promise before we pull out the future afterwords.
+             */
             std::future<RpcError> retValue = onFlushPromise.get_future();
 
             if (!errorCode)
