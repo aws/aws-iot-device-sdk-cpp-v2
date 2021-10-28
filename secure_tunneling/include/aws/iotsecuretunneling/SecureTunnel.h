@@ -32,8 +32,8 @@ namespace Aws
              * Constructor arguments are the minimum required to create a secure tunnel
              */
             SecureTunnelBuilder(
-                Crt::Allocator *allocator,                                            // Should out live this object
-                const std::shared_ptr<Aws::Crt::Io::ClientBootstrap> clientBootstrap, // Should out live this object
+                Crt::Allocator *allocator,                        // Should out live this object
+                Aws::Crt::Io::ClientBootstrap &clientBootstrap,   // Should out live this object
                 const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
                 const std::string &accessToken,                   // Make a copy and save in this object
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
@@ -65,7 +65,7 @@ namespace Aws
              * Required members
              */
             Crt::Allocator *m_allocator;
-            std::shared_ptr<Aws::Crt::Io::ClientBootstrap> m_clientBootstrap;
+            Aws::Crt::Io::ClientBootstrap *m_clientBootstrap;
             Aws::Crt::Io::SocketOptions m_socketOptions;
             std::string m_accessToken;
             aws_secure_tunneling_local_proxy_mode m_localProxyMode;

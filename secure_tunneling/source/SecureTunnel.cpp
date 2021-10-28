@@ -10,13 +10,13 @@ namespace Aws
     namespace Iotsecuretunneling
     {
         SecureTunnelBuilder::SecureTunnelBuilder(
-            Crt::Allocator *allocator,                                            // Should out live this object
-            const std::shared_ptr<Aws::Crt::Io::ClientBootstrap> clientBootstrap, // Should out live this object
-            const Aws::Crt::Io::SocketOptions &socketOptions,                     // Make a copy and save in this object
-            const std::string &accessToken,                                       // Make a copy and save in this object
+            Crt::Allocator *allocator,                        // Should out live this object
+            Aws::Crt::Io::ClientBootstrap &clientBootstrap,   // Should out live this object
+            const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+            const std::string &accessToken,                   // Make a copy and save in this object
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost) // Make a copy and save in this object
-            : m_allocator(allocator), m_clientBootstrap(clientBootstrap), m_socketOptions(socketOptions),
+            : m_allocator(allocator), m_clientBootstrap(&clientBootstrap), m_socketOptions(socketOptions),
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost)
         {
         }
@@ -80,7 +80,7 @@ namespace Aws
         {
             auto tunnel = std::shared_ptr<SecureTunnel>(new SecureTunnel(
                 m_allocator,
-                m_clientBootstrap.get(),
+                m_clientBootstrap,
                 m_socketOptions,
                 m_accessToken,
                 m_localProxyMode,
