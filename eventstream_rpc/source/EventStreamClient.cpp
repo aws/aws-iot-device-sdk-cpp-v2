@@ -950,6 +950,7 @@ namespace Aws
             struct aws_array_list headersArray;
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
             std::promise<RpcError> onFlushPromise;
+	    std::future<RpcError> retValue;
 
             if (m_continuationToken == nullptr)
             {
@@ -981,6 +982,8 @@ namespace Aws
                 callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
                 callbackContainer->onFlushPromise = std::move(onFlushPromise);
 
+		retValue = callbackContainer->onFlushPromise.get_future();
+		
                 errorCode = aws_event_stream_rpc_client_continuation_activate(
                     m_continuationToken,
                     Crt::ByteCursorFromCString(operationName.c_str()),
@@ -1003,7 +1006,7 @@ namespace Aws
             }
             else
             {
-                return callbackContainer->onFlushPromise.get_future();
+	        return retValue;
             }
 
             return onFlushPromise.get_future();
