@@ -44,7 +44,7 @@ namespace Aws
              */
             SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
             SecureTunnelBuilder &WithHttpClientConnectionProxyOptions(
-                const Aws::Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
+                Aws::Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
             SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
             SecureTunnelBuilder &WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown);
             SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
@@ -75,7 +75,7 @@ namespace Aws
              * Optional members
              */
             std::string m_rootCa;
-            Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> m_httpClientConnectionProxyOptions;
+            Crt::Http::HttpClientConnectionProxyOptions *m_httpClientConnectionProxyOptions;
 
             /**
              * Callbacks
