@@ -950,7 +950,6 @@ namespace Aws
             struct aws_array_list headersArray;
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
             std::promise<RpcError> onFlushPromise;
-            std::future<RpcError> retValue;
 
             if (m_continuationToken == nullptr)
             {
@@ -967,6 +966,10 @@ namespace Aws
             int errorCode =
                 EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
 
+            // regardless of how the promise gets moved around (or not), this future should stay valid as a return
+            // value.
+            std::future<RpcError> retValue = onFlushPromise.get_future();
+
             if (!errorCode)
             {
                 struct aws_event_stream_rpc_message_args msg_args;
@@ -981,8 +984,6 @@ namespace Aws
                 callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
                 callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
                 callbackContainer->onFlushPromise = std::move(onFlushPromise);
-
-                retValue = callbackContainer->onFlushPromise.get_future();
 
                 errorCode = aws_event_stream_rpc_client_continuation_activate(
                     m_continuationToken,
@@ -1004,12 +1005,8 @@ namespace Aws
                 onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 Crt::Delete(callbackContainer, m_allocator);
             }
-            else
-            {
-                return retValue;
-            }
 
-            return onFlushPromise.get_future();
+            return retValue;
         }
 
         std::future<RpcError> ClientContinuation::SendMessage(
