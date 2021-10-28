@@ -29,7 +29,7 @@ namespace Aws
         {
           public:
             /**
-             * Constructor arguments are minimum required to create a secure tunnel
+             * Constructor arguments are the minimum required to create a secure tunnel
              */
             SecureTunnelBuilder(
                 Crt::Allocator *allocator,                                            // Should out live this object
@@ -61,7 +61,6 @@ namespace Aws
             std::shared_ptr<SecureTunnel> Build() noexcept;
 
           private:
-            SecureTunnelBuilder(int lastError) noexcept;
             /**
              * Required members
              */
