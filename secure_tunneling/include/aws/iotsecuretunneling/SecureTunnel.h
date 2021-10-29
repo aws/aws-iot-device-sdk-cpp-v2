@@ -174,9 +174,6 @@ namespace Aws
             OnStreamStart m_OnStreamStart;
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
-
-            Aws::Crt::Io::SocketOptions m_socketOptions;
-
             aws_secure_tunnel *m_secure_tunnel;
 
             friend class SecureTunnelBuilder;

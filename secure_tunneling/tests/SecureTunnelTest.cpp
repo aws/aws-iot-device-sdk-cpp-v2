@@ -86,22 +86,21 @@ static int before(struct aws_allocator *allocator, void *ctx)
     testContext->resolver = unique_ptr<HostResolver>(new DefaultHostResolver(*testContext->elGroup, 8, 30, allocator));
     testContext->clientBootstrap =
         unique_ptr<ClientBootstrap>(new ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
-    testContext->secureTunnel = unique_ptr<SecureTunnel>(new SecureTunnel(
-        allocator,
-        testContext->clientBootstrap.get(),
-        SocketOptions(),
-        "access_token",
-        testContext->localProxyMode,
-        "endpoint",
-        "",
-        s_OnConnectionComplete,
-        s_OnConnectionShutdown,
-        s_OnSendDataComplete,
-        s_OnDataReceive,
-        s_OnStreamStart,
-        s_OnStreamReset,
-        s_OnSessionReset));
-
+    testContext->secureTunnel = unique_ptr<SecureTunnel>(SecureTunnelBuilder(
+                                                             allocator,
+                                                             testContext->clientBootstrap.get(),
+                                                             SocketOptions(),
+                                                             "access_token",
+                                                             testContext->localProxyMode,
+                                                             "endpoint")
+                                                             .WithOnConnectionComplete(s_OnConnectionComplete)
+                                                             .WithOnConnectionShutdown(s_OnConnectionShutdown)
+                                                             .WithOnSendDataComplete(s_OnSendDataComplete)
+                                                             .WithOnDataReceive(s_OnDataReceive)
+                                                             .WithOnStreamStart(s_OnStreamStart)
+                                                             .WithOnStreamReset(s_OnStreamReset)
+                                                             .WithOnStreamReset(s_OnStreamReset)
+                                                             .Build());
     return AWS_ERROR_SUCCESS;
 }
 

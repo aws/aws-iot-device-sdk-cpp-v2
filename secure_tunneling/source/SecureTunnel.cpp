@@ -138,15 +138,13 @@ namespace Aws
             m_OnStreamReset = onStreamReset;
             m_OnSessionReset = onSessionReset;
 
-            m_socketOptions = socketOptions;
-
             // Initialize aws_secure_tunnel_options
             aws_secure_tunnel_options config;
             AWS_ZERO_STRUCT(config);
 
             config.allocator = allocator;
             config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
-            config.socket_options = &m_socketOptions.GetImpl();
+            config.socket_options = &socketOptions.GetImpl();
 
             config.access_token = aws_byte_cursor_from_c_str(accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
@@ -229,8 +227,6 @@ namespace Aws
             m_OnStreamReset = other.m_OnStreamReset;
             m_OnSessionReset = other.m_OnSessionReset;
 
-            m_socketOptions = other.m_socketOptions;
-
             m_secure_tunnel = other.m_secure_tunnel;
 
             other.m_secure_tunnel = nullptr;
@@ -257,8 +253,6 @@ namespace Aws
                 m_OnStreamStart = other.m_OnStreamStart;
                 m_OnStreamReset = other.m_OnStreamReset;
                 m_OnSessionReset = other.m_OnSessionReset;
-
-                m_socketOptions = other.m_socketOptions;
 
                 m_secure_tunnel = other.m_secure_tunnel;
 
