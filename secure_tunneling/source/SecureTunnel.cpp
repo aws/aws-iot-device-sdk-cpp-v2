@@ -18,9 +18,8 @@ namespace Aws
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(&clientBootstrap), m_socketOptions(socketOptions),
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_rootCa(""),
-              m_httpClientConnectionProxyOptions(), m_OnConnectionComplete(nullptr), m_OnConnectionShutdown(nullptr),
-              m_OnSendDataComplete(nullptr), m_OnDataReceive(nullptr), m_OnStreamStart(nullptr),
-              m_OnStreamReset(nullptr), m_OnSessionReset(nullptr)
+              m_httpClientConnectionProxyOptions(), m_OnConnectionComplete(), m_OnConnectionShutdown(),
+              m_OnSendDataComplete(), m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset(), m_OnSessionReset()
         {
         }
 
