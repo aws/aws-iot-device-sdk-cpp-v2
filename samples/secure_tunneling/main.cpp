@@ -172,7 +172,8 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
+    {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -188,7 +189,8 @@ int main(int argc, char *argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
+    {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -209,7 +211,8 @@ int main(int argc, char *argv[])
     }
 
     auto onSubscribeToTunnelsNotifyResponse = [&](Aws::Iotsecuretunneling::SecureTunnelingNotifyResponse *response,
-                                                  int ioErr) -> void {
+                                                  int ioErr) -> void
+    {
         if (ioErr == 0)
         {
             fprintf(stdout, "Received MQTT Tunnel Notification\n");
@@ -245,22 +248,13 @@ int main(int argc, char *argv[])
         {
             fprintf(stderr, "MQTT Connection failed with error %d\n", ioErr);
         }
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
-        }
     };
 
-    auto OnSubscribeComplete = [&](int ioErr) -> void {
+    auto OnSubscribeComplete = [&](int ioErr) -> void
+    {
         if (ioErr)
         {
             fprintf(stderr, "MQTT Connection failed with error %d\n", ioErr);
-        }
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
         }
     };
 
