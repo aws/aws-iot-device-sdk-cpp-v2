@@ -87,21 +87,21 @@ static int before(struct aws_allocator *allocator, void *ctx)
     testContext->clientBootstrap =
         unique_ptr<ClientBootstrap>(new ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
     testContext->secureTunnel = SecureTunnelBuilder(
-        allocator,
-        *testContext->clientBootstrap,
-        SocketOptions(),
-        "access_token",
-        testContext->localProxyMode,
-        "endpoint")
-        .WithRootCa("")
-        .WithOnConnectionComplete(s_OnConnectionComplete)
-        .WithOnConnectionShutdown(s_OnConnectionShutdown)
-        .WithOnSendDataComplete(s_OnSendDataComplete)
-        .WithOnDataReceive(s_OnDataReceive)
-        .WithOnStreamStart(s_OnStreamStart)
-        .WithOnStreamReset(s_OnStreamReset)
-        .WithOnSessionReset(s_OnSessionReset)
-        .Build();
+                                    allocator,
+                                    *testContext->clientBootstrap,
+                                    SocketOptions(),
+                                    "access_token",
+                                    testContext->localProxyMode,
+                                    "endpoint")
+                                    .WithRootCa("")
+                                    .WithOnConnectionComplete(s_OnConnectionComplete)
+                                    .WithOnConnectionShutdown(s_OnConnectionShutdown)
+                                    .WithOnSendDataComplete(s_OnSendDataComplete)
+                                    .WithOnDataReceive(s_OnDataReceive)
+                                    .WithOnStreamStart(s_OnStreamStart)
+                                    .WithOnStreamReset(s_OnStreamReset)
+                                    .WithOnSessionReset(s_OnSessionReset)
+                                    .Build();
     return AWS_ERROR_SUCCESS;
 }
 
