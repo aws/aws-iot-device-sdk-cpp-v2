@@ -21,7 +21,8 @@ namespace Aws
 
         DiscoveryClient::DiscoveryClient(
             const Aws::Discovery::DiscoveryClientConfig &clientConfig,
-            Crt::Allocator *allocator) noexcept
+            Crt::Allocator *allocator,
+            Crt::String ggServerName) noexcept
         {
             AWS_FATAL_ASSERT(clientConfig.TlsContext);
             AWS_FATAL_ASSERT(clientConfig.Bootstrap);
@@ -30,12 +31,12 @@ namespace Aws
 
             Crt::StringStream ss;
 
-            // Temporary fix for connection with china endpoint
-            if (clientConfig.Region == "cn-north-1")
+            // Fix for connection with china endpoint
+            if (ggServerName != "")
             {
-                ss << "greengrass.ats.iot." << clientConfig.Region << ".amazonaws.com.cn";
+                ss << ggServerName;
             }
-            else
+            else 
             {
                 ss << "greengrass-ats.iot." << clientConfig.Region << ".amazonaws.com";
             }
@@ -77,7 +78,8 @@ namespace Aws
 
         std::shared_ptr<DiscoveryClient> DiscoveryClient::CreateClient(
             const Aws::Discovery::DiscoveryClientConfig &clientConfig,
-            Crt::Allocator *allocator)
+            Crt::Allocator *allocator,
+            Crt::String ggServerName)
         {
             auto *toSeat = static_cast<DiscoveryClient *>(aws_mem_acquire(allocator, sizeof(DiscoveryClient)));
             if (toSeat)

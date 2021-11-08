@@ -68,14 +68,16 @@ namespace Aws
 
             static std::shared_ptr<DiscoveryClient> CreateClient(
                 const DiscoveryClientConfig &config,
-                Crt::Allocator *allocator = Crt::DefaultAllocator());
+                Crt::Allocator *allocator = Crt::DefaultAllocator(),
+                Crt::String ggServerName = "");
 
           private:
-            DiscoveryClient(const DiscoveryClientConfig &config, Crt::Allocator *allocator) noexcept;
+            DiscoveryClient(const DiscoveryClientConfig &config, Crt::Allocator *allocator, Crt::String ggServerName = "") noexcept;
 
             std::shared_ptr<Crt::Http::HttpClientConnectionManager> m_connectionManager;
             Crt::String m_hostName;
             Crt::Allocator *m_allocator;
+            Crt::String ggServerName = "";
         };
     } // namespace Discovery
 } // namespace Aws
