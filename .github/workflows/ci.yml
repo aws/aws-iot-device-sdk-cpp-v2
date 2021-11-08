@@ -7,12 +7,15 @@ on:
       - "!main"
 
 env:
-  BUILDER_VERSION: v0.8.12
+  BUILDER_VERSION: v0.8.29
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
   LINUX_BASE_IMAGE: ubuntu-16-x64
   RUN: ${{ github.run_id }}-${{ github.run_number }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: us-east-1
 
 jobs:
   linux-compat:
@@ -22,53 +25,37 @@ jobs:
         image:
           - manylinux2014-x64
           - manylinux2014-x86
+          - al2-x64
+
     steps:
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
-          export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ matrix.image }}:${{ env.BUILDER_VERSION }}
-          docker pull $DOCKER_IMAGE
-          docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }}
+          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
 
-  al2:
-    runs-on: ubuntu-latest
-    steps:
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
-          export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-al2-x64:${{ env.BUILDER_VERSION }}
-          docker pull $DOCKER_IMAGE
-          docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --spec=downstream
-
-  clang-compat:
+  linux-compiler-compat:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [3, 6, 8, 9]
+        version:
+          - clang-3
+          - clang-6
+          - clang-8
+          - clang-9
+          - clang-10
+          - clang-11
+          - gcc-4.8
+          - gcc-5
+          - gcc-6
+          - gcc-7
+          - gcc-8
     steps:
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
-          export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ env.LINUX_BASE_IMAGE }}:${{ env.BUILDER_VERSION }}
-          docker pull $DOCKER_IMAGE
-          docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --compiler=clang-${{ matrix.version }} --config Debug
-
-  gcc-compat:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version: [4.8, 5, 6, 7, 8]
-    steps:
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-      - name: Build ${{ env.PACKAGE_NAME }}
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
-          export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ env.LINUX_BASE_IMAGE }}:${{ env.BUILDER_VERSION }}
-          docker pull $DOCKER_IMAGE
-          docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --compiler=gcc-${{ matrix.version }}
+          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
 
   byo-crypto:
     runs-on: ubuntu-latest
@@ -76,10 +63,17 @@ jobs:
         # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
-        export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ env.LINUX_BASE_IMAGE }}:${{ env.BUILDER_VERSION }}
-        docker pull $DOCKER_IMAGE
-        docker run --env GITHUB_REF $DOCKER_IMAGE --version=${BUILDER_VERSION} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
+        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
+
+  linux-no-cpu-extensions:
+    runs-on: ubuntu-latest
+    steps:
+        # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+    - name: Build ${{ env.PACKAGE_NAME }}
+      run: |
+        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
   windows-vs16:
     runs-on: windows-latest
@@ -110,6 +104,16 @@ jobs:
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
+  windows-no-cpu-extensions:
+    runs-on: windows-latest
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          md D:\a\work
+          cd D:\a\work
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+
   osx:
     runs-on: macos-latest
     steps:
@@ -119,15 +123,16 @@ jobs:
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
+
   check-submodules:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Source
-      uses: actions/checkout@v2
-      with:
-        submodules: true
-        fetch-depth: 0
-    - name: Check Submodules
-      # note: using "@main" because "@${{env.BUILDER_VERSION}}" doesn't work
-      # https://github.com/actions/runner/issues/480
-      uses: awslabs/aws-crt-builder/.github/actions/check-submodules@main
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Check Submodules
+        # note: using "@main" because "@${{env.BUILDER_VERSION}}" doesn't work
+        # https://github.com/actions/runner/issues/480
+        uses: awslabs/aws-crt-builder/.github/actions/check-submodules@main

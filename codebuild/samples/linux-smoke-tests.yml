@@ -1,0 +1,21 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+      - add-apt-repository ppa:ubuntu-toolchain-r/test
+      - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
+      - apt-get update -y
+      - apt-get install clang-8 cmake -y -f
+  pre_build:
+    commands:
+      - export CC=clang-8
+      - export CXX=clang++-8
+  build:
+    commands:
+      - echo Build started on `date`
+      - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/pubsub-linux.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`

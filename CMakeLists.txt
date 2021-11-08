@@ -58,10 +58,14 @@ else()
     set(IN_SOURCE_BUILD OFF)
 endif()
 
+aws_use_package(aws-crt-cpp)
+
 add_subdirectory(jobs)
 add_subdirectory(shadow)
 add_subdirectory(discovery)
 add_subdirectory(identity)
+add_subdirectory(eventstream_rpc)
+add_subdirectory(greengrass_ipc)
 if (NOT BYO_CRYPTO)
     # TODO: get these working with BYO_CRYPTO
     add_subdirectory(iotdevicecommon)
