@@ -253,6 +253,21 @@ int main(int argc, char *argv[])
 
     fprintf(stdout, "I'm gonna make a SecureTunnel!\n");
 
+    auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
+    proxyOptions.HostName = "Host Name";
+    proxyOptions.Port = 0;
+    proxyOptions.TlsOptions = Io::TlsConnectionOptions();
+    proxyOptions.ProxyConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
+    // proxyOptions.ProxyStrategy = Aws::Crt::Http::HttpClientConnectionProxyOptions::ProxyStrategy;
+    proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+
+    //  :
+    // HostName("Name"),
+    // Port(0),
+    // TlsOptions(),
+    // ProxyConnectionType(),
+    // ProxyStrategy(),
+    // AuthType(AwsHttpProxyAuthenticationType::None));
     mSecureTunnel = SecureTunnelBuilder(
                         Aws::Crt::g_allocator,
                         bootstrap,
@@ -261,6 +276,7 @@ int main(int argc, char *argv[])
                         localProxyMode,
                         tunnelEndpoint.c_str())
                         .WithRootCa(caFile.c_str())
+                        .WithHttpClientConnectionProxyOptions(proxyOptions)
                         .WithOnConnectionComplete(OnConnectionComplete)
                         .WithOnConnectionShutdown(OnConnectionShutdown)
                         .WithOnSendDataComplete(OnSendDataComplete)

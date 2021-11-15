@@ -35,14 +35,14 @@ namespace Aws
                 Crt::Allocator *allocator,                        // Should out live this object
                 Aws::Crt::Io::ClientBootstrap &clientBootstrap,   // Should out live this object
                 const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
-                const std::string &accessToken,                   // Make a copy and save in this object
+                const std::string &accessToken, // Make a copy and save in this object (data, not path)
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost); // Make a copy and save in this object
 
             /**
              * Optional members
              */
-            SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
+            SecureTunnelBuilder &WithRootCa(const std::string &rootCa); // Path to rootCa file
             SecureTunnelBuilder &WithHttpClientConnectionProxyOptions(
                 const Aws::Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
             SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
