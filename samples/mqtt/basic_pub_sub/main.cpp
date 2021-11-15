@@ -460,7 +460,7 @@ int main(int argc, char *argv[])
 
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) { 
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-        };
+    };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
@@ -536,13 +536,13 @@ int main(int argc, char *argv[])
                         fprintf(stderr, "Subscribe rejected by the broker.");
                         exit(-1);
                     }
-                else
-                {
-                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    else
+                    {
+                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    }
                 }
-            }
-                subscribeFinishedPromise.set_value();
-            };
+                    subscribeFinishedPromise.set_value();
+                };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
