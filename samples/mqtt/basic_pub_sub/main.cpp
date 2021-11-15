@@ -7,8 +7,6 @@
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/TlsOptions.h>
 
-#include <aws/iotsecuretunneling/SecureTunnel.h>
-
 #include <aws/iot/MqttClient.h>
 
 #include <algorithm>
@@ -108,10 +106,6 @@ int main(int argc, char *argv[])
     String x509CertificatePath;
     String x509KeyPath;
     String x509RootCAFile;
-
-    Aws::Iotsecuretunneling::SecureTunnelBuilder *m_secureTunnel;
-
-    // m_secureTunnel = new Aws::Iotsecuretunneling::SecureTunnelBuilder();
 
     bool useWebSocket = false;
     bool useX509 = false;
@@ -443,8 +437,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -465,16 +458,16 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
-    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
+        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
+    };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -512,8 +505,7 @@ int main(int argc, char *argv[])
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/)
-        {
+                             bool /*retain*/) {
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -531,27 +523,26 @@ int main(int argc, char *argv[])
          */
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
-        {
-            if (errorCode)
-            {
-                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
-                exit(-1);
-            }
-            else
-            {
-                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
+                if (errorCode)
                 {
-                    fprintf(stderr, "Subscribe rejected by the broker.");
+                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
                     exit(-1);
                 }
                 else
                 {
-                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+                    {
+                        fprintf(stderr, "Subscribe rejected by the broker.");
+                        exit(-1);
+                    }
+                    else
+                    {
+                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    }
                 }
-            }
-            subscribeFinishedPromise.set_value();
-        };
+                subscribeFinishedPromise.set_value();
+            };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
