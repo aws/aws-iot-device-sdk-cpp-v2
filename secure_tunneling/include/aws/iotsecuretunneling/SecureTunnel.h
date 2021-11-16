@@ -56,7 +56,8 @@ namespace Aws
             /**
              * Will return a shared pointer to a new SecureTunnel that countains a
              * new aws_secure_tunnel that is generated using the set members of SecureTunnelBuilder.
-             * Returns a nullptr on fail.
+             * On failure, the shared_ptr will contain a nullptr, call Aws::Crt::LastErrorOrUnknown(); to get the reason
+             * for failure.
              */
             std::shared_ptr<SecureTunnel> Build() noexcept;
 
