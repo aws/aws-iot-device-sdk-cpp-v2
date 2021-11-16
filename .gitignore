@@ -1,1 +1,9 @@
 .idea
+.DS_Store
+
+#cmake artifacts
+dependencies
+_build
+build
+_build_*
+cmake-build*
