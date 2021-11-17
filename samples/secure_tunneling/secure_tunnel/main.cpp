@@ -159,14 +159,17 @@ int main(int argc, char *argv[])
                 break;
             case AWS_SECURE_TUNNELING_SOURCE_MODE:
                 fprintf(stdout, "Connection Complete in Source Mode\n");
-                fprintf(stdout, "Sending Stream Start request and message\n");
+                fprintf(stdout, "Sending Stream Start request\n");
                 mSecureTunnel->SendStreamStart();
-                // mSecureTunnel->SendData(ByteCursorFromCString(message.c_str()));
                 break;
         }
     };
 
-    auto OnConnectionShutdown = [&]() { fprintf(stdout, "Connection Shutdown\n"); };
+    auto OnConnectionShutdown = [&]() {
+        fprintf(stdout, "Connection Shutdown\n");
+        fprintf(stdout, "Sample Complete");
+        exit(0);
+    };
 
     auto OnSendDataComplete = [&](int error_code) {
         switch (localProxyMode)
@@ -197,14 +200,15 @@ int main(int argc, char *argv[])
 
     auto OnDataReceive = [&](const struct aws_byte_buf &data) {
         receivedData = std::string((char *)data.buffer, data.len);
-        string returnMessage = "Echo: " + receivedData;
+        string returnMessage = "Echo:" + receivedData;
 
-        fprintf(stdout, "Received: %s\n", receivedData.c_str());
+        fprintf(stdout, "Received: \"%s\"\n", receivedData.c_str());
 
         switch (localProxyMode)
         {
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
                 fprintf(stdout, "Data Receive Complete in Destination\n");
+                fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
                 mSecureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
                 break;
             case AWS_SECURE_TUNNELING_SOURCE_MODE:
@@ -254,20 +258,16 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(3000ms);
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
+            messageCount++;
             string toSend = to_string(messageCount) + ": " + message.c_str();
             if (!mSecureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
             {
-                messageCount++;
-                if (messageCount > 5)
+                fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
+                if (messageCount >= 5)
                 {
                     fprintf(stdout, "Closing Connection\n");
                     mSecureTunnel->Close();
                 }
-            }
-            else
-            {
-                fprintf(stdout, "Sample Complete");
-                exit(0);
             }
         }
     }
