@@ -133,6 +133,10 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
+    /*
+     * You need an event loop group to process IO events.
+     * If you only have a few connections, 1 thread is ideal
+     */
     Io::EventLoopGroup eventLoopGroup(1);
     if (!eventLoopGroup)
     {
@@ -260,6 +264,7 @@ int main(int argc, char *argv[])
         {
             messageCount++;
             string toSend = to_string(messageCount) + ": " + message.c_str();
+
             if (!mSecureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
             {
                 fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
