@@ -20,16 +20,12 @@ static void s_printHelp()
     fprintf(
         stdout,
         "secure-tunnel\n--region <region>\n"
-        "--cert <path to cert>\n"
-        "--key <path to key>\n"
         "--ca_file <optional: path to custom ca>\n"
         "--access_token_file <path to access token> or "
         "--access_token <access token>\n"
         "--localProxyModeSource <optional: sets to Source Mode>\n"
         "--message <optional: message to send>\n\n");
     fprintf(stdout, "region: the region of your iot thing and secure tunnel\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
     fprintf(
         stdout,
         "ca_file: Optional, if the mqtt server uses a certificate that's not already"
@@ -56,20 +52,12 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
     return 0;
 }
 
-// TODO
-// Write comments and document what's going on in this sample
-// Instructions:
-// Start a client in destination mode and connect to secure tunnel using destination access token first
-// Start a client in source mode and it will connect to the destination
-
 int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
     String region;
     String endpoint;
-    String certificatePath;
-    String keyPath;
     String caFile;
     String accessToken;
     String message = "Hello World";
@@ -78,10 +66,9 @@ int main(int argc, char *argv[])
     std::shared_ptr<SecureTunnel> mSecureTunnel;
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--region") || !s_cmdOptionExists(argv, argv + argc, "--cert") ||
-        !s_cmdOptionExists(argv, argv + argc, "--key"))
+    if (!s_cmdOptionExists(argv, argv + argc, "--region"))
     {
-        fprintf(stderr, "--region, --cert, and --key must be set to connect through a secure tunnel");
+        fprintf(stderr, "--region must be set to connect through a secure tunnel");
         s_printHelp();
         exit(-1);
     }
@@ -99,9 +86,6 @@ int main(int argc, char *argv[])
      */
     region = s_getCmdOption(argv, argv + argc, "--region");
     endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
-
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
 
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
