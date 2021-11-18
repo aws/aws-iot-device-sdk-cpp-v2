@@ -19,12 +19,13 @@ static void s_printHelp()
     fprintf(stdout, "Usage:\n");
     fprintf(
         stdout,
-        "secure-tunnel\n--region <region>\n"
-        "--ca_file <optional: path to custom ca>\n"
-        "--access_token_file <path to access token> or "
-        "--access_token <access token>\n"
-        "--localProxyModeSource <optional: sets to Source Mode>\n"
-        "--message <optional: message to send>\n\n");
+        "secure-tunnel\n"
+        "--region                 <region>\n"
+        "--ca_file                <optional: path to custom ca>\n"
+        "--access_token_file      <path to access token> or "
+        "--access_token           <access token>\n"
+        "--localProxyModeSource   <optional: sets to Source Mode>\n"
+        "--message                <optional: message to send>\n\n");
     fprintf(stdout, "region: the region of your iot thing and secure tunnel\n");
     fprintf(
         stdout,
@@ -72,6 +73,11 @@ int main(int argc, char *argv[])
         s_printHelp();
         exit(-1);
     }
+    /*
+     * Generate secure tunneling endpoint using region
+     */
+    region = s_getCmdOption(argv, argv + argc, "--region");
+    endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
     if (!(s_cmdOptionExists(argv, argv + argc, "--access_token_file") ||
           s_cmdOptionExists(argv, argv + argc, "--access_token")))
@@ -80,30 +86,6 @@ int main(int argc, char *argv[])
         s_printHelp();
         exit(-1);
     }
-
-    /*
-     * Generate secure tunneling endpoint using region
-     */
-    region = s_getCmdOption(argv, argv + argc, "--region");
-    endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    /*
-     * localProxyMode is set to destination by default unless flag is set to source
-     */
-    if (s_cmdOptionExists(argv, argv + argc, "--localProxyModeSource"))
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
-    }
-    else
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
-    }
-
     /*
      * Set accessToken either directly or from a file
      */
@@ -126,6 +108,23 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Failed to open access token file");
             exit(-1);
         }
+    }
+
+    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    {
+        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
+    }
+
+    /*
+     * localProxyMode is set to destination by default unless flag is set to source
+     */
+    if (s_cmdOptionExists(argv, argv + argc, "--localProxyModeSource"))
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
+    }
+    else
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
     if (s_cmdOptionExists(argv, argv + argc, "--message"))
