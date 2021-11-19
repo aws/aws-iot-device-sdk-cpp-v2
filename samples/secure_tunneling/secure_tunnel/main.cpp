@@ -57,14 +57,13 @@ int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
-    String region;
-    String endpoint;
-    String caFile;
-    String accessToken;
-    String message = "Hello World";
-    string receivedData = "";
+    string region;
+    string endpoint;
+    string caFile;
+    string accessToken;
+    string message = "Hello World";
     aws_secure_tunneling_local_proxy_mode localProxyMode;
-    std::shared_ptr<SecureTunnel> mSecureTunnel;
+    std::shared_ptr<SecureTunnel> secureTunnel;
 
     /*********************** Parse Arguments ***************************/
     if (!s_cmdOptionExists(argv, argv + argc, "--region"))
@@ -153,6 +152,13 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    /*
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<bool> connectionClosedPromise;
+
     /*********************** Callbacks ***************************/
     auto OnConnectionComplete = [&]() {
         switch (localProxyMode)
@@ -161,17 +167,17 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Connection Complete in Destination Mode\n");
                 break;
             case AWS_SECURE_TUNNELING_SOURCE_MODE:
+                connectionCompletedPromise.set_value(true);
                 fprintf(stdout, "Connection Complete in Source Mode\n");
                 fprintf(stdout, "Sending Stream Start request\n");
-                mSecureTunnel->SendStreamStart();
+                secureTunnel->SendStreamStart();
                 break;
         }
     };
 
     auto OnConnectionShutdown = [&]() {
         fprintf(stdout, "Connection Shutdown\n");
-        fprintf(stdout, "Sample Complete");
-        exit(0);
+        connectionClosedPromise.set_value(true);
     };
 
     auto OnSendDataComplete = [&](int error_code) {
@@ -184,7 +190,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    fprintf(stderr, "Send Data Failed with error code %d\n", error_code);
+                    fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
                 }
 
                 break;
@@ -195,14 +201,14 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    fprintf(stderr, "Send Data Failed with error code %d\n", error_code);
+                    fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
                 }
                 break;
         }
     };
 
     auto OnDataReceive = [&](const struct aws_byte_buf &data) {
-        receivedData = std::string((char *)data.buffer, data.len);
+        string receivedData = std::string((char *)data.buffer, data.len);
         string returnMessage = "Echo:" + receivedData;
 
         fprintf(stdout, "Received: \"%s\"\n", receivedData.c_str());
@@ -212,7 +218,7 @@ int main(int argc, char *argv[])
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
                 fprintf(stdout, "Data Receive Complete in Destination\n");
                 fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
-                mSecureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
+                secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
                 break;
             case AWS_SECURE_TUNNELING_SOURCE_MODE:
                 fprintf(stdout, "Data Receive Complete in Source\n");
@@ -234,7 +240,7 @@ int main(int argc, char *argv[])
     /*
      * Create a new SecureTunnel using the SecureTunnelBuilder
      */
-    mSecureTunnel =
+    secureTunnel =
         SecureTunnelBuilder(
             Aws::Crt::g_allocator, bootstrap, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
             .WithRootCa(caFile.c_str())
@@ -247,30 +253,47 @@ int main(int argc, char *argv[])
             .WithOnSessionReset(OnSessionReset)
             .Build();
 
-    if (!mSecureTunnel)
+    if (!secureTunnel)
     {
-        fprintf(stderr, "Secure Tunnel Creation failed");
+        fprintf(stderr, "Secure Tunnel Creation failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
 
-    mSecureTunnel->Connect();
+    if (secureTunnel->Connect() == AWS_OP_ERR)
+    {
+        fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
     int messageCount = 0;
 
-    while (1)
+    if (connectionCompletedPromise.get_future().get())
     {
-        std::this_thread::sleep_for(3000ms);
-        if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+        while (1)
         {
-            messageCount++;
-            string toSend = to_string(messageCount) + ": " + message.c_str();
+            std::this_thread::sleep_for(3000ms);
 
-            if (!mSecureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
+            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
-                if (messageCount >= 5)
+                messageCount++;
+                string toSend = to_string(messageCount) + ": " + message.c_str();
+
+                if (!secureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
                 {
-                    fprintf(stdout, "Closing Connection\n");
-                    mSecureTunnel->Close();
+                    fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
+                    if (messageCount >= 5)
+                    {
+                        fprintf(stdout, "Closing Connection\n");
+                        if (secureTunnel->Close() == AWS_OP_ERR)
+                        {
+                            fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
+                            exit(-1);
+                        }
+                    }
+                }
+                else if (connectionClosedPromise.get_future().get())
+                {
+                    fprintf(stdout, "Sample Complete");
+                    exit(0);
                 }
             }
         }

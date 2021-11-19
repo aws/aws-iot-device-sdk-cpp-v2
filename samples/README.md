@@ -443,16 +443,6 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
         --csr /tmp/deviceCert.csr
 ```
 
-## Secure Tunnel Notification
-
-This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
-
-This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
-
-On startup, the sample will wait until it receives, and then displays the tunnel notification.
-
-Source: `samples/secure_tunneling/tunnel_notification`
-
 ## Secure Tunnel
 
 This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens.
@@ -482,6 +472,16 @@ Provide the necessary arguments along with the source access token and start a s
 The two samples will then connect to each other through the provided proxy server and then through the AWS Secure Tunnel endpoint and establish a stream through which data can be trasmitted in either direction.
 
 Source: `samples/secure_tunneling/secure_tunnel_proxy`
+
+## Secure Tunnel Notification
+
+This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
+
+This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
+
+On startup, the sample will wait until it receives, and then displays the tunnel notification.
+
+Source: `samples/secure_tunneling/tunnel_notification`
 
 ## Greengrass discovery
 
