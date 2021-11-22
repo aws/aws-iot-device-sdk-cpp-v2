@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotidentity/Exports.h>
 
@@ -11,23 +14,35 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    /*
+     * Data needed to perform a CreateCertificateFromCsr operation.
+     *
+     */
+    class AWS_IOTIDENTITY_API CreateCertificateFromCsrRequest final
     {
+    public:
+        CreateCertificateFromCsrRequest() = default;
 
-        class AWS_IOTIDENTITY_API CreateCertificateFromCsrRequest final
-        {
-          public:
-            CreateCertificateFromCsrRequest() = default;
+        CreateCertificateFromCsrRequest(const Crt::JsonView& doc);
+        CreateCertificateFromCsrRequest& operator=(const Crt::JsonView& doc);
 
-            CreateCertificateFromCsrRequest(const Crt::JsonView &doc);
-            CreateCertificateFromCsrRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> CertificateSigningRequest;
+        /*
+         * The CSR, in PEM format.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateSigningRequest;
 
-          private:
-            static void LoadFromObject(CreateCertificateFromCsrRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+
+
+    private:
+        static void LoadFromObject(CreateCertificateFromCsrRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

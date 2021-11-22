@@ -1,62 +1,68 @@
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 #include <aws/iotshadow/DeleteShadowResponse.h>
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("version"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
+            val.Version = doc.GetInteger("version");
         }
 
-        void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("clientToken"))
         {
-            (void)object;
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        DeleteShadowResponse &DeleteShadowResponse::operator=(const Crt::JsonView &doc)
+        if (doc.ValueExists("timestamp"))
         {
-            *this = DeleteShadowResponse(doc);
-            return *this;
+            val.Timestamp = doc.GetDouble("timestamp");
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+    }
+
+    void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (Version)
+        {
+            object.WithInteger("version", *Version);
+        }
+
+        if (ClientToken)
+        {
+            object.WithString("clientToken", *ClientToken);
+        }
+
+        if (Timestamp)
+        {
+            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+        }
+
+    }
+
+    DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    DeleteShadowResponse& DeleteShadowResponse::operator=(const Crt::JsonView& doc)
+    {
+        *this = DeleteShadowResponse(doc);
+        return *this;
+    }
+
+}
+}

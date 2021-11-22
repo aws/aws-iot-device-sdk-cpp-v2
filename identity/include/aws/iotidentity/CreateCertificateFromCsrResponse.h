@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotidentity/Exports.h>
 
@@ -11,25 +14,49 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    /*
+     * Response payload to a CreateCertificateFromCsr request.
+     *
+     */
+    class AWS_IOTIDENTITY_API CreateCertificateFromCsrResponse final
     {
+    public:
+        CreateCertificateFromCsrResponse() = default;
 
-        class AWS_IOTIDENTITY_API CreateCertificateFromCsrResponse final
-        {
-          public:
-            CreateCertificateFromCsrResponse() = default;
+        CreateCertificateFromCsrResponse(const Crt::JsonView& doc);
+        CreateCertificateFromCsrResponse& operator=(const Crt::JsonView& doc);
 
-            CreateCertificateFromCsrResponse(const Crt::JsonView &doc);
-            CreateCertificateFromCsrResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> CertificateId;
-            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
-            Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
+        /*
+         * The ID of the certificate.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
-          private:
-            static void LoadFromObject(CreateCertificateFromCsrResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+
+        /*
+         * The token to prove ownership of the certificate during provisioning.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
+
+
+        /*
+         * The certificate data, in PEM format.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
+
+
+
+    private:
+        static void LoadFromObject(CreateCertificateFromCsrResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

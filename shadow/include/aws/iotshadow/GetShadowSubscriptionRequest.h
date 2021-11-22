@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotshadow/Exports.h>
 
@@ -11,23 +14,35 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /*
+     * Data needed to subscribe to GetShadow responses.
+     *
+     */
+    class AWS_IOTSHADOW_API GetShadowSubscriptionRequest final
     {
+    public:
+        GetShadowSubscriptionRequest() = default;
 
-        class AWS_IOTSHADOW_API GetShadowSubscriptionRequest final
-        {
-          public:
-            GetShadowSubscriptionRequest() = default;
+        GetShadowSubscriptionRequest(const Crt::JsonView& doc);
+        GetShadowSubscriptionRequest& operator=(const Crt::JsonView& doc);
 
-            GetShadowSubscriptionRequest(const Crt::JsonView &doc);
-            GetShadowSubscriptionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        /*
+         * AWS IoT thing subscribe to GetShadow responses for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-          private:
-            static void LoadFromObject(GetShadowSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+
+
+    private:
+        static void LoadFromObject(GetShadowSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

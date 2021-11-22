@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotshadow/Exports.h>
 
@@ -11,24 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /*
+     * Data needed to subscribe to a device's NamedShadowDelta events.
+     *
+     */
+    class AWS_IOTSHADOW_API NamedShadowDeltaUpdatedSubscriptionRequest final
     {
+    public:
+        NamedShadowDeltaUpdatedSubscriptionRequest() = default;
 
-        class AWS_IOTSHADOW_API NamedShadowDeltaUpdatedSubscriptionRequest final
-        {
-          public:
-            NamedShadowDeltaUpdatedSubscriptionRequest() = default;
+        NamedShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView& doc);
+        NamedShadowDeltaUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
 
-            NamedShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc);
-            NamedShadowDeltaUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+        /*
+         * Name of the AWS IoT thing to get NamedShadowDelta events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-          private:
-            static void LoadFromObject(NamedShadowDeltaUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+
+        /*
+         * Name of the shadow to get ShadowDelta events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+
+
+
+    private:
+        static void LoadFromObject(NamedShadowDeltaUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

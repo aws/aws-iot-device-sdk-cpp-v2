@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotjobs/Exports.h>
 
@@ -11,26 +14,56 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Data needed to make a StartNextPendingJobExecution request.
+     *
+     */
+    class AWS_IOTJOBS_API StartNextPendingJobExecutionRequest final
     {
+    public:
+        StartNextPendingJobExecutionRequest() = default;
 
-        class AWS_IOTJOBS_API StartNextPendingJobExecutionRequest final
-        {
-          public:
-            StartNextPendingJobExecutionRequest() = default;
+        StartNextPendingJobExecutionRequest(const Crt::JsonView& doc);
+        StartNextPendingJobExecutionRequest& operator=(const Crt::JsonView& doc);
 
-            StartNextPendingJobExecutionRequest(const Crt::JsonView &doc);
-            StartNextPendingJobExecutionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
+        /*
+         * IoT Thing the request is relative to.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-          private:
-            static void LoadFromObject(StartNextPendingJobExecutionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+
+        /*
+         * Specifies the amount of time this device has to finish execution of this job.
+         *
+         */
+        Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
+
+
+        /*
+         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+
+        /*
+         * A collection of name-value pairs that describe the status of the job execution. If not specified, the statusDetails are unchanged.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
+
+
+
+    private:
+        static void LoadFromObject(StartNextPendingJobExecutionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

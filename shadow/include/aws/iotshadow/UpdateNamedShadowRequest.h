@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 #include <aws/iotshadow/ShadowState.h>
 
 #include <aws/iotshadow/Exports.h>
@@ -12,27 +15,63 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /*
+     * Data needed to make an UpdateNamedShadow request.
+     *
+     */
+    class AWS_IOTSHADOW_API UpdateNamedShadowRequest final
     {
+    public:
+        UpdateNamedShadowRequest() = default;
 
-        class AWS_IOTSHADOW_API UpdateNamedShadowRequest final
-        {
-          public:
-            UpdateNamedShadowRequest() = default;
+        UpdateNamedShadowRequest(const Crt::JsonView& doc);
+        UpdateNamedShadowRequest& operator=(const Crt::JsonView& doc);
 
-            UpdateNamedShadowRequest(const Crt::JsonView &doc);
-            UpdateNamedShadowRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
-            Aws::Crt::Optional<int32_t> Version;
+        /*
+         * Name of the shadow to update.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-          private:
-            static void LoadFromObject(UpdateNamedShadowRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+
+        /*
+         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+
+        /*
+         * Aws IoT thing to update a named shadow of.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+
+
+        /*
+         * Requested changes to shadow state.  Updates affect only the fields specified.
+         *
+         */
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
+
+
+        /*
+         * (Optional) The Device Shadow service applies the update only if the specified version matches the latest version.
+         *
+         */
+        Aws::Crt::Optional<int32_t> Version;
+
+
+
+    private:
+        static void LoadFromObject(UpdateNamedShadowRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

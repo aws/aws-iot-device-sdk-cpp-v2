@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 #include <aws/crt/DateTime.h>
 #include <aws/iotjobs/JobExecutionSummary.h>
 #include <aws/iotjobs/JobStatus.h>
@@ -14,26 +17,42 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
+     *
+     */
+    class AWS_IOTJOBS_API JobExecutionsChangedEvent final
     {
+    public:
+        JobExecutionsChangedEvent() = default;
 
-        class AWS_IOTJOBS_API JobExecutionsChangedEvent final
-        {
-          public:
-            JobExecutionsChangedEvent() = default;
+        JobExecutionsChangedEvent(const Crt::JsonView& doc);
+        JobExecutionsChangedEvent& operator=(const Crt::JsonView& doc);
 
-            JobExecutionsChangedEvent(const Crt::JsonView &doc);
-            JobExecutionsChangedEvent &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<
-                Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>>
-                Jobs;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        /*
+         * Map from JobStatus to a list of Jobs transitioning to that status.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>> Jobs;
 
-          private:
-            static void LoadFromObject(JobExecutionsChangedEvent &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+
+        /*
+         * The time when the message was sent.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+
+
+
+    private:
+        static void LoadFromObject(JobExecutionsChangedEvent& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

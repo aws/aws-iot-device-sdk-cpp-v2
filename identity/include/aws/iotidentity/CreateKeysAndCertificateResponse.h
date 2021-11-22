@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotidentity/Exports.h>
 
@@ -11,26 +14,56 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    /*
+     * Response payload to a CreateKeysAndCertificate request.
+     *
+     */
+    class AWS_IOTIDENTITY_API CreateKeysAndCertificateResponse final
     {
+    public:
+        CreateKeysAndCertificateResponse() = default;
 
-        class AWS_IOTIDENTITY_API CreateKeysAndCertificateResponse final
-        {
-          public:
-            CreateKeysAndCertificateResponse() = default;
+        CreateKeysAndCertificateResponse(const Crt::JsonView& doc);
+        CreateKeysAndCertificateResponse& operator=(const Crt::JsonView& doc);
 
-            CreateKeysAndCertificateResponse(const Crt::JsonView &doc);
-            CreateKeysAndCertificateResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> CertificateId;
-            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
-            Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
-            Aws::Crt::Optional<Aws::Crt::String> PrivateKey;
+        /*
+         * The certificate id.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
-          private:
-            static void LoadFromObject(CreateKeysAndCertificateResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+
+        /*
+         * The token to prove ownership of the certificate during provisioning.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
+
+
+        /*
+         * The certificate data, in PEM format.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
+
+
+        /*
+         * The private key.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> PrivateKey;
+
+
+
+    private:
+        static void LoadFromObject(CreateKeysAndCertificateResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

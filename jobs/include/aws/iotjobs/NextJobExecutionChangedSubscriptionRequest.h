@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotjobs/Exports.h>
 
@@ -11,23 +14,35 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Data needed to subscribe to NextJobExecutionChanged responses.
+     *
+     */
+    class AWS_IOTJOBS_API NextJobExecutionChangedSubscriptionRequest final
     {
+    public:
+        NextJobExecutionChangedSubscriptionRequest() = default;
 
-        class AWS_IOTJOBS_API NextJobExecutionChangedSubscriptionRequest final
-        {
-          public:
-            NextJobExecutionChangedSubscriptionRequest() = default;
+        NextJobExecutionChangedSubscriptionRequest(const Crt::JsonView& doc);
+        NextJobExecutionChangedSubscriptionRequest& operator=(const Crt::JsonView& doc);
 
-            NextJobExecutionChangedSubscriptionRequest(const Crt::JsonView &doc);
-            NextJobExecutionChangedSubscriptionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        /*
+         * Name of the IoT Thing that you want to subscribe to NextJobExecutionChanged events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-          private:
-            static void LoadFromObject(NextJobExecutionChangedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+
+
+    private:
+        static void LoadFromObject(NextJobExecutionChangedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

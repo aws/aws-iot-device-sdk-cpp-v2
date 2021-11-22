@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 
 #include <aws/iotshadow/Exports.h>
 
@@ -11,24 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /*
+     * Data needed to subscribe to a device's NamedShadowUpdated events.
+     *
+     */
+    class AWS_IOTSHADOW_API NamedShadowUpdatedSubscriptionRequest final
     {
+    public:
+        NamedShadowUpdatedSubscriptionRequest() = default;
 
-        class AWS_IOTSHADOW_API NamedShadowUpdatedSubscriptionRequest final
-        {
-          public:
-            NamedShadowUpdatedSubscriptionRequest() = default;
+        NamedShadowUpdatedSubscriptionRequest(const Crt::JsonView& doc);
+        NamedShadowUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
 
-            NamedShadowUpdatedSubscriptionRequest(const Crt::JsonView &doc);
-            NamedShadowUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        /*
+         * Name of the shadow to get NamedShadowUpdated events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-          private:
-            static void LoadFromObject(NamedShadowUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+
+        /*
+         * Name of the AWS IoT thing to get NamedShadowUpdated events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+
+
+
+    private:
+        static void LoadFromObject(NamedShadowUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

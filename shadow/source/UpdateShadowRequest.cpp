@@ -1,64 +1,70 @@
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 #include <aws/iotshadow/UpdateShadowRequest.h>
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void UpdateShadowRequest::LoadFromObject(UpdateShadowRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void UpdateShadowRequest::LoadFromObject(UpdateShadowRequest &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("state"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("state"))
-            {
-                val.State = doc.GetJsonObject("state");
-            }
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
+            val.State = doc.GetJsonObject("state");
         }
 
-        void UpdateShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("version"))
         {
-            (void)object;
-
-            if (State)
-            {
-                Aws::Crt::JsonObject jsonObject;
-                State->SerializeToObject(jsonObject);
-                object.WithObject("state", std::move(jsonObject));
-            }
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
+            val.Version = doc.GetInteger("version");
         }
 
-        UpdateShadowRequest::UpdateShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        UpdateShadowRequest &UpdateShadowRequest::operator=(const Crt::JsonView &doc)
+        if (doc.ValueExists("clientToken"))
         {
-            *this = UpdateShadowRequest(doc);
-            return *this;
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+    }
+
+    void UpdateShadowRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (State)
+        {
+            Aws::Crt::JsonObject jsonObject;
+            State->SerializeToObject(jsonObject);
+            object.WithObject("state", std::move(jsonObject));
+        }
+
+        if (Version)
+        {
+            object.WithInteger("version", *Version);
+        }
+
+        if (ClientToken)
+        {
+            object.WithString("clientToken", *ClientToken);
+        }
+
+    }
+
+    UpdateShadowRequest::UpdateShadowRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    UpdateShadowRequest& UpdateShadowRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = UpdateShadowRequest(doc);
+        return *this;
+    }
+
+}
+}

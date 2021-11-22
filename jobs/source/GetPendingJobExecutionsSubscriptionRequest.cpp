@@ -1,38 +1,38 @@
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 #include <aws/iotjobs/GetPendingJobExecutionsSubscriptionRequest.h>
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    void GetPendingJobExecutionsSubscriptionRequest::LoadFromObject(GetPendingJobExecutionsSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void GetPendingJobExecutionsSubscriptionRequest::LoadFromObject(
-            GetPendingJobExecutionsSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
-        {
-            (void)val;
-            (void)doc;
-        }
+    }
 
-        void GetPendingJobExecutionsSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
-        {
-            (void)object;
-        }
+    void GetPendingJobExecutionsSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
 
-        GetPendingJobExecutionsSubscriptionRequest::GetPendingJobExecutionsSubscriptionRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+    }
 
-        GetPendingJobExecutionsSubscriptionRequest &GetPendingJobExecutionsSubscriptionRequest::operator=(
-            const Crt::JsonView &doc)
-        {
-            *this = GetPendingJobExecutionsSubscriptionRequest(doc);
-            return *this;
-        }
+    GetPendingJobExecutionsSubscriptionRequest::GetPendingJobExecutionsSubscriptionRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
 
-    } // namespace Iotjobs
-} // namespace Aws
+    GetPendingJobExecutionsSubscriptionRequest& GetPendingJobExecutionsSubscriptionRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = GetPendingJobExecutionsSubscriptionRequest(doc);
+        return *this;
+    }
+
+}
+}
