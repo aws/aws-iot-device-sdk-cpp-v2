@@ -28,6 +28,16 @@ namespace Aws
             INVALID_TOPIC,
 
             /**
+             * The contents of the request could not be interpreted as valid UTF-8-encoded JSON.
+             */
+            INVALID_JSON,
+
+            /**
+             * The contents of the request were invalid. The message contains details about the error.
+             */
+            INVALID_REQUEST,
+
+            /**
              * An update attempted to change the job execution to a state that is invalid because of the job execution's
              * current state. In this case, the body of the error message also contains the executionState field.
              */
@@ -39,14 +49,10 @@ namespace Aws
             RESOURCE_NOT_FOUND,
 
             /**
-             * The contents of the request were invalid. The message contains details about the error.
+             * The expected version specified in the request does not match the version of the job execution in the AWS
+             * IoT Jobs service. In this case, the body of the error message also contains the executionState field.
              */
-            INVALID_REQUEST,
-
-            /**
-             * The request was throttled.
-             */
-            REQUEST_THROTTLED,
+            VERSION_MISMATCH,
 
             /**
              * There was an internal error during the processing of the request.
@@ -54,20 +60,14 @@ namespace Aws
             INTERNAL_ERROR,
 
             /**
+             * The request was throttled.
+             */
+            REQUEST_THROTTLED,
+
+            /**
              * Occurs when a command to describe a job is performed on a job that is in a terminal state.
              */
             TERMINAL_STATE_REACHED,
-
-            /**
-             * The contents of the request could not be interpreted as valid UTF-8-encoded JSON.
-             */
-            INVALID_JSON,
-
-            /**
-             * The expected version specified in the request does not match the version of the job execution in the AWS
-             * IoT Jobs service. In this case, the body of the error message also contains the executionState field.
-             */
-            VERSION_MISMATCH,
 
         };
 

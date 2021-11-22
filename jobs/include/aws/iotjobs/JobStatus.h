@@ -24,19 +24,19 @@ namespace Aws
         {
             /**
              */
-            IN_PROGRESS,
-
-            /**
-             */
-            FAILED,
-
-            /**
-             */
             QUEUED,
 
             /**
              */
+            IN_PROGRESS,
+
+            /**
+             */
             TIMED_OUT,
+
+            /**
+             */
+            FAILED,
 
             /**
              */
