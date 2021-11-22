@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotidentity/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,43 +14,49 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    /*
+     * Response payload to a CreateCertificateFromCsr request.
+     *
+     */
+    class AWS_IOTIDENTITY_API CreateCertificateFromCsrResponse final
     {
+    public:
+        CreateCertificateFromCsrResponse() = default;
+
+        CreateCertificateFromCsrResponse(const Crt::JsonView& doc);
+        CreateCertificateFromCsrResponse& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /*
-         * Response payload to a CreateCertificateFromCsr request.
+         * The ID of the certificate.
          *
          */
-        class AWS_IOTIDENTITY_API CreateCertificateFromCsrResponse final
-        {
-          public:
-            CreateCertificateFromCsrResponse() = default;
+        Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
-            CreateCertificateFromCsrResponse(const Crt::JsonView &doc);
-            CreateCertificateFromCsrResponse &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /*
+         * The token to prove ownership of the certificate during provisioning.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
 
-            /*
-             * The ID of the certificate.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
-            /*
-             * The token to prove ownership of the certificate during provisioning.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
+        /*
+         * The certificate data, in PEM format.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
 
-            /*
-             * The certificate data, in PEM format.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
 
-          private:
-            static void LoadFromObject(CreateCertificateFromCsrResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+
+    private:
+        static void LoadFromObject(CreateCertificateFromCsrResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

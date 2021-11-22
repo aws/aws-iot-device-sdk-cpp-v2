@@ -17,39 +17,42 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
+     *
+     */
+    class AWS_IOTJOBS_API JobExecutionsChangedEvent final
     {
+    public:
+        JobExecutionsChangedEvent() = default;
+
+        JobExecutionsChangedEvent(const Crt::JsonView& doc);
+        JobExecutionsChangedEvent& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /*
-         * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
+         * Map from JobStatus to a list of Jobs transitioning to that status.
          *
          */
-        class AWS_IOTJOBS_API JobExecutionsChangedEvent final
-        {
-          public:
-            JobExecutionsChangedEvent() = default;
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>> Jobs;
 
-            JobExecutionsChangedEvent(const Crt::JsonView &doc);
-            JobExecutionsChangedEvent &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /*
+         * The time when the message was sent.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-            /*
-             * Map from JobStatus to a list of Jobs transitioning to that status.
-             *
-             */
-            Aws::Crt::Optional<
-                Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>>
-                Jobs;
 
-            /*
-             * The time when the message was sent.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-          private:
-            static void LoadFromObject(JobExecutionsChangedEvent &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+    private:
+        static void LoadFromObject(JobExecutionsChangedEvent& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

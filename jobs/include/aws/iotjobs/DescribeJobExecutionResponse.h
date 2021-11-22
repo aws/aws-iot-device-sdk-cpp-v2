@@ -16,43 +16,49 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Response payload to a DescribeJobExecution request.
+     *
+     */
+    class AWS_IOTJOBS_API DescribeJobExecutionResponse final
     {
+    public:
+        DescribeJobExecutionResponse() = default;
+
+        DescribeJobExecutionResponse(const Crt::JsonView& doc);
+        DescribeJobExecutionResponse& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /*
-         * Response payload to a DescribeJobExecution request.
+         * Contains data about a job execution.
          *
          */
-        class AWS_IOTJOBS_API DescribeJobExecutionResponse final
-        {
-          public:
-            DescribeJobExecutionResponse() = default;
+        Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
 
-            DescribeJobExecutionResponse(const Crt::JsonView &doc);
-            DescribeJobExecutionResponse &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /*
+         * A client token used to correlate requests and responses.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /*
-             * Contains data about a job execution.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
 
-            /*
-             * A client token used to correlate requests and responses.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+        /*
+         * The time when the message was sent.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-            /*
-             * The time when the message was sent.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-          private:
-            static void LoadFromObject(DescribeJobExecutionResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+
+    private:
+        static void LoadFromObject(DescribeJobExecutionResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

@@ -7,47 +7,54 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void ShadowState::LoadFromObject(ShadowState& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void ShadowState::LoadFromObject(ShadowState &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("desired"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("desired"))
-            {
-                val.Desired = doc.GetJsonObjectCopy("desired");
-            }
-
-            if (doc.ValueExists("reported"))
-            {
-                val.Reported = doc.GetJsonObjectCopy("reported");
-            }
+            val.Desired = doc.GetJsonObjectCopy("desired");
         }
 
-        void ShadowState::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("reported"))
         {
-            (void)object;
-
-            if (Desired)
-            {
-                object.WithObject("desired", *Desired);
-            }
-
-            if (Reported)
-            {
-                object.WithObject("reported", *Reported);
-            }
+            val.Reported = doc.GetJsonObjectCopy("reported");
         }
 
-        ShadowState::ShadowState(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+    }
 
-        ShadowState &ShadowState::operator=(const Crt::JsonView &doc)
+    void ShadowState::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (Desired)
         {
-            *this = ShadowState(doc);
-            return *this;
+            object.WithObject("desired", *Desired);
+
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+        if (Reported)
+        {
+            object.WithObject("reported", *Reported);
+
+        }
+
+    }
+
+    ShadowState::ShadowState(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    ShadowState& ShadowState::operator=(const Crt::JsonView& doc)
+    {
+        *this = ShadowState(doc);
+        return *this;
+    }
+
+}
+}

@@ -15,62 +15,70 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /*
+     * Contains a subset of information about a job execution.
+     *
+     */
+    class AWS_IOTJOBS_API JobExecutionSummary final
     {
+    public:
+        JobExecutionSummary() = default;
+
+        JobExecutionSummary(const Crt::JsonView& doc);
+        JobExecutionSummary& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /*
-         * Contains a subset of information about a job execution.
+         * The time when the job execution was last updated.
          *
          */
-        class AWS_IOTJOBS_API JobExecutionSummary final
-        {
-          public:
-            JobExecutionSummary() = default;
+        Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
 
-            JobExecutionSummary(const Crt::JsonView &doc);
-            JobExecutionSummary &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /*
+         * A number that identifies a job execution on a device.
+         *
+         */
+        Aws::Crt::Optional<int64_t> ExecutionNumber;
 
-            /*
-             * The time when the job execution was last updated.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
 
-            /*
-             * A number that identifies a job execution on a device.
-             *
-             */
-            Aws::Crt::Optional<int64_t> ExecutionNumber;
+        /*
+         * The time when the job execution started.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
 
-            /*
-             * The time when the job execution started.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
 
-            /*
-             * The version of the job execution. Job execution versions are incremented each time the AWS IoT Jobs
-             * service receives an update from a device.
-             *
-             */
-            Aws::Crt::Optional<int32_t> VersionNumber;
+        /*
+         * The version of the job execution. Job execution versions are incremented each time the AWS IoT Jobs service receives an update from a device.
+         *
+         */
+        Aws::Crt::Optional<int32_t> VersionNumber;
 
-            /*
-             * The unique identifier you assigned to this job when it was created.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> JobId;
 
-            /*
-             * The time when the job execution was enqueued.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> QueuedAt;
+        /*
+         * The unique identifier you assigned to this job when it was created.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> JobId;
 
-          private:
-            static void LoadFromObject(JobExecutionSummary &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+
+        /*
+         * The time when the job execution was enqueued.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::DateTime> QueuedAt;
+
+
+
+    private:
+        static void LoadFromObject(JobExecutionSummary& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

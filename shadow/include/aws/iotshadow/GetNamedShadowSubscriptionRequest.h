@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,37 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /*
+     * Data needed to subscribe to GetNamedShadow responses.
+     *
+     */
+    class AWS_IOTSHADOW_API GetNamedShadowSubscriptionRequest final
     {
+    public:
+        GetNamedShadowSubscriptionRequest() = default;
+
+        GetNamedShadowSubscriptionRequest(const Crt::JsonView& doc);
+        GetNamedShadowSubscriptionRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /*
-         * Data needed to subscribe to GetNamedShadow responses.
+         * AWS IoT thing subscribe to GetNamedShadow responses for.
          *
          */
-        class AWS_IOTSHADOW_API GetNamedShadowSubscriptionRequest final
-        {
-          public:
-            GetNamedShadowSubscriptionRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            GetNamedShadowSubscriptionRequest(const Crt::JsonView &doc);
-            GetNamedShadowSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /*
+         * Name of the shadow to subscribe to GetNamedShadow responses for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-            /*
-             * AWS IoT thing subscribe to GetNamedShadow responses for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /*
-             * Name of the shadow to subscribe to GetNamedShadow responses for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-          private:
-            static void LoadFromObject(GetNamedShadowSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(GetNamedShadowSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

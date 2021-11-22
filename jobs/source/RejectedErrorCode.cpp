@@ -20,93 +20,95 @@ static const size_t TERMINAL_STATE_REACHED_HASH = Aws::Crt::HashString("Terminal
 static const size_t INVALID_JSON_HASH = Aws::Crt::HashString("InvalidJson");
 static const size_t VERSION_MISMATCH_HASH = Aws::Crt::HashString("VersionMismatch");
 
+
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+namespace RejectedErrorCodeMarshaller
+{
+    const char* ToString(RejectedErrorCode status)
     {
-
-        namespace RejectedErrorCodeMarshaller
+        switch(status)
         {
-            const char *ToString(RejectedErrorCode status)
-            {
-                switch (status)
-                {
-                    case RejectedErrorCode::INVALID_TOPIC:
-                        return "InvalidTopic";
-                    case RejectedErrorCode::INVALID_STATE_TRANSITION:
-                        return "InvalidStateTransition";
-                    case RejectedErrorCode::RESOURCE_NOT_FOUND:
-                        return "ResourceNotFound";
-                    case RejectedErrorCode::INVALID_REQUEST:
-                        return "InvalidRequest";
-                    case RejectedErrorCode::REQUEST_THROTTLED:
-                        return "RequestThrottled";
-                    case RejectedErrorCode::INTERNAL_ERROR:
-                        return "InternalError";
-                    case RejectedErrorCode::TERMINAL_STATE_REACHED:
-                        return "TerminalStateReached";
-                    case RejectedErrorCode::INVALID_JSON:
-                        return "InvalidJson";
-                    case RejectedErrorCode::VERSION_MISMATCH:
-                        return "VersionMismatch";
-                    default:
-                        assert(0);
-                        return "UNKNOWN_VALUE";
-                }
-            }
+        case RejectedErrorCode::INVALID_TOPIC:
+            return "InvalidTopic";
+        case RejectedErrorCode::INVALID_STATE_TRANSITION:
+            return "InvalidStateTransition";
+        case RejectedErrorCode::RESOURCE_NOT_FOUND:
+            return "ResourceNotFound";
+        case RejectedErrorCode::INVALID_REQUEST:
+            return "InvalidRequest";
+        case RejectedErrorCode::REQUEST_THROTTLED:
+            return "RequestThrottled";
+        case RejectedErrorCode::INTERNAL_ERROR:
+            return "InternalError";
+        case RejectedErrorCode::TERMINAL_STATE_REACHED:
+            return "TerminalStateReached";
+        case RejectedErrorCode::INVALID_JSON:
+            return "InvalidJson";
+        case RejectedErrorCode::VERSION_MISMATCH:
+            return "VersionMismatch";
+        default:
+            assert(0);
+            return "UNKNOWN_VALUE";
+        }
+    }
 
-            RejectedErrorCode FromString(const Crt::String &str)
-            {
-                size_t hash = Crt::HashString(str.c_str());
+    RejectedErrorCode FromString(const Crt::String& str)
+    {
+        size_t hash = Crt::HashString(str.c_str());
 
-                if (hash == INVALID_TOPIC_HASH)
-                {
-                    return RejectedErrorCode::INVALID_TOPIC;
-                }
+        if (hash == INVALID_TOPIC_HASH)
+        {
+            return RejectedErrorCode::INVALID_TOPIC;
+        }
 
-                if (hash == INVALID_STATE_TRANSITION_HASH)
-                {
-                    return RejectedErrorCode::INVALID_STATE_TRANSITION;
-                }
+        if (hash == INVALID_STATE_TRANSITION_HASH)
+        {
+            return RejectedErrorCode::INVALID_STATE_TRANSITION;
+        }
 
-                if (hash == RESOURCE_NOT_FOUND_HASH)
-                {
-                    return RejectedErrorCode::RESOURCE_NOT_FOUND;
-                }
+        if (hash == RESOURCE_NOT_FOUND_HASH)
+        {
+            return RejectedErrorCode::RESOURCE_NOT_FOUND;
+        }
 
-                if (hash == INVALID_REQUEST_HASH)
-                {
-                    return RejectedErrorCode::INVALID_REQUEST;
-                }
+        if (hash == INVALID_REQUEST_HASH)
+        {
+            return RejectedErrorCode::INVALID_REQUEST;
+        }
 
-                if (hash == REQUEST_THROTTLED_HASH)
-                {
-                    return RejectedErrorCode::REQUEST_THROTTLED;
-                }
+        if (hash == REQUEST_THROTTLED_HASH)
+        {
+            return RejectedErrorCode::REQUEST_THROTTLED;
+        }
 
-                if (hash == INTERNAL_ERROR_HASH)
-                {
-                    return RejectedErrorCode::INTERNAL_ERROR;
-                }
+        if (hash == INTERNAL_ERROR_HASH)
+        {
+            return RejectedErrorCode::INTERNAL_ERROR;
+        }
 
-                if (hash == TERMINAL_STATE_REACHED_HASH)
-                {
-                    return RejectedErrorCode::TERMINAL_STATE_REACHED;
-                }
+        if (hash == TERMINAL_STATE_REACHED_HASH)
+        {
+            return RejectedErrorCode::TERMINAL_STATE_REACHED;
+        }
 
-                if (hash == INVALID_JSON_HASH)
-                {
-                    return RejectedErrorCode::INVALID_JSON;
-                }
+        if (hash == INVALID_JSON_HASH)
+        {
+            return RejectedErrorCode::INVALID_JSON;
+        }
 
-                if (hash == VERSION_MISMATCH_HASH)
-                {
-                    return RejectedErrorCode::VERSION_MISMATCH;
-                }
+        if (hash == VERSION_MISMATCH_HASH)
+        {
+            return RejectedErrorCode::VERSION_MISMATCH;
+        }
 
-                assert(0);
-                return static_cast<RejectedErrorCode>(-1);
-            }
-        } // namespace RejectedErrorCodeMarshaller
-    }     // namespace Iotjobs
-} // namespace Aws
+
+        assert(0);
+        return static_cast<RejectedErrorCode>(-1);
+    }
+}
+}
+}
