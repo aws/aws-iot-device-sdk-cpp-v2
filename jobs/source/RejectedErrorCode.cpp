@@ -61,47 +61,47 @@ namespace Aws
 
                 if (hash == INVALID_TOPIC_HASH)
                 {
-                    return RejectedErrorCode::INVALID_TOPIC;
+                    return RejectedErrorCode::InvalidTopic;
                 }
 
                 if (hash == INVALID_STATE_TRANSITION_HASH)
                 {
-                    return RejectedErrorCode::INVALID_STATE_TRANSITION;
+                    return RejectedErrorCode::InvalidStateTransition;
                 }
 
                 if (hash == RESOURCE_NOT_FOUND_HASH)
                 {
-                    return RejectedErrorCode::RESOURCE_NOT_FOUND;
+                    return RejectedErrorCode::ResourceNotFound;
                 }
 
                 if (hash == INVALID_REQUEST_HASH)
                 {
-                    return RejectedErrorCode::INVALID_REQUEST;
+                    return RejectedErrorCode::InvalidRequest;
                 }
 
                 if (hash == REQUEST_THROTTLED_HASH)
                 {
-                    return RejectedErrorCode::REQUEST_THROTTLED;
+                    return RejectedErrorCode::RequestThrottled;
                 }
 
                 if (hash == INTERNAL_ERROR_HASH)
                 {
-                    return RejectedErrorCode::INTERNAL_ERROR;
+                    return RejectedErrorCode::InternalError;
                 }
 
                 if (hash == TERMINAL_STATE_REACHED_HASH)
                 {
-                    return RejectedErrorCode::TERMINAL_STATE_REACHED;
+                    return RejectedErrorCode::TerminalStateReached;
                 }
 
                 if (hash == INVALID_JSON_HASH)
                 {
-                    return RejectedErrorCode::INVALID_JSON;
+                    return RejectedErrorCode::InvalidJson;
                 }
 
                 if (hash == VERSION_MISMATCH_HASH)
                 {
-                    return RejectedErrorCode::VERSION_MISMATCH;
+                    return RejectedErrorCode::VersionMismatch;
                 }
 
                 assert(0);
