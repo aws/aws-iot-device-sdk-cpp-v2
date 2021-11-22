@@ -17,7 +17,7 @@ namespace Aws
     {
 
         /**
-         * Data needed to subscribe to JobExecutionsChanged responses.
+         * Data needed to subscribe to JobExecutionsChanged events.
          *
          */
         class AWS_IOTJOBS_API JobExecutionsChangedSubscriptionRequest final
