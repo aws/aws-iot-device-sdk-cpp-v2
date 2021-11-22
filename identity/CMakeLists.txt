@@ -90,8 +90,10 @@ target_include_directories(IotIdentity-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-if (NOT IS_SUBDIRECTORY_INCLUDE)
-    aws_use_package(aws-crt-cpp)
+if (BUILD_DEPS)
+    if (NOT IS_SUBDIRECTORY_INCLUDE)
+        aws_use_package(aws-crt-cpp)
+    endif()
 endif()
 
 target_link_libraries(IotIdentity-cpp ${DEP_AWS_LIBS})
@@ -109,10 +111,10 @@ install(EXPORT "IotIdentity-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotIdentity-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotIdentity-cpp-config.cmake"
+configure_file("cmake/iotidentity-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotIdentity-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         DESTINATION "lib/IotIdentity-cpp/cmake/"
         COMPONENT Development)

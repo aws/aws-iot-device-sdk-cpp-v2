@@ -90,8 +90,10 @@ target_include_directories(IotJobs-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-if (NOT IS_SUBDIRECTORY_INCLUDE)
-    aws_use_package(aws-crt-cpp)
+if (BUILD_DEPS)
+    if (NOT IS_SUBDIRECTORY_INCLUDE)
+        aws_use_package(aws-crt-cpp)
+    endif()
 endif()
 
 target_link_libraries(IotJobs-cpp ${DEP_AWS_LIBS})
@@ -109,10 +111,10 @@ install(EXPORT "IotJobs-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotJobs-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotJobs-cpp-config.cmake"
+configure_file("cmake/iotjobs-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotJobs-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         DESTINATION "lib/IotJobs-cpp/cmake/"
         COMPONENT Development)
