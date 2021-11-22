@@ -101,7 +101,9 @@ if (BUILD_TESTING)
     aws_use_package(IotDeviceCommon-cpp)
 endif()
 
-target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS} dl)
+if(NOT WIN32)
+    target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS} dl)
+endif()
 
 install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "include/aws/iotsecuretunneling/" COMPONENT Development)
 
