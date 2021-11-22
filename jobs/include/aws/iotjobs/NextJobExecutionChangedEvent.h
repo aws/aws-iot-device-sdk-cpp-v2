@@ -19,7 +19,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Sent whenever there is a change to which job execution is next on the list of pending job executions for a
          * thing, as defined for DescribeJobExecution with jobId $next. This message is not sent when the next job's
          * execution details change, only when the next job that would be returned by DescribeJobExecution with jobId
@@ -36,13 +36,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Contains data about a job execution.
              *
              */
             Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
 
-            /*
+            /**
              * The time when the message was sent.
              *
              */

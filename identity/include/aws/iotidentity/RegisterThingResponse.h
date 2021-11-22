@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Response payload to a RegisterThing request.
          *
          */
@@ -30,13 +30,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * The name of the IoT thing created during provisioning.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /*
+            /**
              * The device configuration defined in the template.
              *
              */

@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Data needed to subscribe to the responses of the RegisterThing operation.
          *
          */
@@ -30,7 +30,7 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Name of the provisioning template to listen for RegisterThing responses for.
              *
              */

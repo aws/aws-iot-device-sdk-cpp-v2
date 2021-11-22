@@ -18,7 +18,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Contains a subset of information about a job execution.
          *
          */
@@ -32,38 +32,38 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * The time when the job execution was last updated.
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
 
-            /*
+            /**
              * A number that identifies a job execution on a device.
              *
              */
             Aws::Crt::Optional<int64_t> ExecutionNumber;
 
-            /*
+            /**
              * The time when the job execution started.
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
 
-            /*
+            /**
              * The version of the job execution. Job execution versions are incremented each time the AWS IoT Jobs
              * service receives an update from a device.
              *
              */
             Aws::Crt::Optional<int32_t> VersionNumber;
 
-            /*
+            /**
              * The unique identifier you assigned to this job when it was created.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> JobId;
 
-            /*
+            /**
              * The time when the job execution was enqueued.
              *
              */

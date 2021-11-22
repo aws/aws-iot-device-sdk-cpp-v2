@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotshadow
     {
 
-        /*
+        /**
          * Data needed to make a GetNamedShadow request.
          *
          */
@@ -30,20 +30,20 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
              * is reflected in the response.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /*
+            /**
              * Name of the shadow to get.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-            /*
+            /**
              * AWS IoT thing to get the named shadow for.
              *
              */

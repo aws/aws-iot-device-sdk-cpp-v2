@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Data needed to perform a CreateCertificateFromCsr operation.
          *
          */
@@ -30,7 +30,7 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * The CSR, in PEM format.
              *
              */

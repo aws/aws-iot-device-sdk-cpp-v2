@@ -18,7 +18,7 @@ namespace Aws
     namespace Iotshadow
     {
 
-        /*
+        /**
          * Contains the last-updated timestamps for each attribute in the desired and reported sections of the shadow
          * state.
          *
@@ -33,13 +33,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Contains the timestamps for each attribute in the desired section of a shadow's state.
              *
              */
             Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
 
-            /*
+            /**
              * Contains the timestamps for each attribute in the reported section of a shadow's state.
              *
              */

@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotshadow
     {
 
-        /*
+        /**
          * Data needed to subscribe to GetShadow responses.
          *
          */
@@ -30,7 +30,7 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * AWS IoT thing subscribe to GetShadow responses for.
              *
              */

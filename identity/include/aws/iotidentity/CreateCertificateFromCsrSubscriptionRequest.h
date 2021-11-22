@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Data needed to subscribe to the responses of the CreateCertificateFromCsr operation.
          *
          */

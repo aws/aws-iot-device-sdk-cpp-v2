@@ -18,7 +18,7 @@ namespace Aws
     namespace Iotshadow
     {
 
-        /*
+        /**
          * (Potentially partial) state of an AWS IoT thing's shadow.
          *
          */
@@ -32,13 +32,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * The desired shadow state (from external services and devices).
              *
              */
             Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
 
-            /*
+            /**
              * The (last) reported shadow state from the device.
              *
              */

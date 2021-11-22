@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotshadow
     {
 
-        /*
+        /**
          * Data needed to subscribe to DeleteNamedShadow responses for an AWS IoT thing.
          *
          */
@@ -30,13 +30,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * AWS IoT thing to subscribe to DeleteNamedShadow operations for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /*
+            /**
              * Name of the shadow to subscribe to DeleteNamedShadow operations for.
              *
              */

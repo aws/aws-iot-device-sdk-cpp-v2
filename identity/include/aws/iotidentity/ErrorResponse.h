@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Response document containing details about a failed request.
          *
          */
@@ -30,19 +30,19 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Response status code
              *
              */
             Aws::Crt::Optional<int32_t> StatusCode;
 
-            /*
+            /**
              * Response error message
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
 
-            /*
+            /**
              * Response error code
              *
              */

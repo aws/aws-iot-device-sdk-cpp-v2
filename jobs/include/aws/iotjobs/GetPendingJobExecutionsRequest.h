@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Data needed to make a GetPendingJobExecutions request.
          *
          */
@@ -30,13 +30,13 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * IoT Thing the request is relative to.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /*
+            /**
              * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
              * is reflected in the response.
              *

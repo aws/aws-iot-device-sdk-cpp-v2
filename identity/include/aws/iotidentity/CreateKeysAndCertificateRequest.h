@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Data needed to perform a CreateKeysAndCertificate operation.
          *
          */

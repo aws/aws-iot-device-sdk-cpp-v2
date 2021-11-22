@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Data needed to make a StartNextPendingJobExecution request.
          *
          */
@@ -30,26 +30,26 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * IoT Thing the request is relative to.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /*
+            /**
              * Specifies the amount of time this device has to finish execution of this job.
              *
              */
             Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
 
-            /*
+            /**
              * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
              * is reflected in the response.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /*
+            /**
              * A collection of name-value pairs that describe the status of the job execution. If not specified, the
              * statusDetails are unchanged.
              *

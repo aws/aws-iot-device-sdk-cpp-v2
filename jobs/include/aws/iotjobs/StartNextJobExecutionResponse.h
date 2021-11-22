@@ -19,7 +19,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Response payload to a StartNextJobExecution request.
          *
          */
@@ -33,19 +33,19 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * A client token used to correlate requests and responses.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /*
+            /**
              * The time when the message was sent to the device.
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-            /*
+            /**
              * Contains data about a job execution.
              *
              */

@@ -20,7 +20,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
          *
          */
@@ -34,7 +34,7 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Map from JobStatus to a list of Jobs transitioning to that status.
              *
              */
@@ -42,7 +42,7 @@ namespace Aws
                 Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>>
                 Jobs;
 
-            /*
+            /**
              * The time when the message was sent.
              *
              */

@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Data needed to subscribe to StartNextPendingJobExecution responses.
          *
          */
@@ -30,7 +30,7 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * Name of the IoT Thing that you want to subscribe to StartNextPendingJobExecution response events for.
              *
              */

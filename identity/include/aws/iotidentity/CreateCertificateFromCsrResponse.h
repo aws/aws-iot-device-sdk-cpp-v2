@@ -16,7 +16,7 @@ namespace Aws
     namespace Iotidentity
     {
 
-        /*
+        /**
          * Response payload to a CreateCertificateFromCsr request.
          *
          */
@@ -30,19 +30,19 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * The ID of the certificate.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
-            /*
+            /**
              * The token to prove ownership of the certificate during provisioning.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
 
-            /*
+            /**
              * The certificate data, in PEM format.
              *
              */

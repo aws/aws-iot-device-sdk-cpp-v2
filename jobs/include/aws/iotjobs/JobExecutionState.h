@@ -18,7 +18,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Data about the state of a job execution.
          *
          */
@@ -32,20 +32,20 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * A collection of name-value pairs that describe the status of the job execution.
              *
              */
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
 
-            /*
+            /**
              * The version of the job execution. Job execution versions are incremented each time they are updated by a
              * device.
              *
              */
             Aws::Crt::Optional<int32_t> VersionNumber;
 
-            /*
+            /**
              * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED,
              * TIMED_OUT, REJECTED, or REMOVED.
              *

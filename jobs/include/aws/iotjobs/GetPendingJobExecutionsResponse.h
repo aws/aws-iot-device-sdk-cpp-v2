@@ -19,7 +19,7 @@ namespace Aws
     namespace Iotjobs
     {
 
-        /*
+        /**
          * Response payload to a GetPendingJobExecutions request.
          *
          */
@@ -33,25 +33,25 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /*
+            /**
              * A list of JobExecutionSummary objects with status QUEUED.
              *
              */
             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
 
-            /*
+            /**
              * The time when the message was sent.
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-            /*
+            /**
              * A client token used to correlate requests and responses.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /*
+            /**
              * A list of JobExecutionSummary objects with status IN_PROGRESS.
              *
              */
