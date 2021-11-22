@@ -7,54 +7,47 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowMetadata::LoadFromObject(ShadowMetadata& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("desired"))
+        void ShadowMetadata::LoadFromObject(ShadowMetadata &val, const Aws::Crt::JsonView &doc)
         {
-            val.Desired = doc.GetJsonObjectCopy("desired");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("desired"))
+            {
+                val.Desired = doc.GetJsonObjectCopy("desired");
+            }
+
+            if (doc.ValueExists("reported"))
+            {
+                val.Reported = doc.GetJsonObjectCopy("reported");
+            }
         }
 
-        if (doc.ValueExists("reported"))
+        void ShadowMetadata::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Reported = doc.GetJsonObjectCopy("reported");
+            (void)object;
+
+            if (Desired)
+            {
+                object.WithObject("desired", *Desired);
+            }
+
+            if (Reported)
+            {
+                object.WithObject("reported", *Reported);
+            }
         }
 
-    }
+        ShadowMetadata::ShadowMetadata(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-    void ShadowMetadata::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Desired)
+        ShadowMetadata &ShadowMetadata::operator=(const Crt::JsonView &doc)
         {
-            object.WithObject("desired", *Desired);
-
+            *this = ShadowMetadata(doc);
+            return *this;
         }
 
-        if (Reported)
-        {
-            object.WithObject("reported", *Reported);
-
-        }
-
-    }
-
-    ShadowMetadata::ShadowMetadata(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    ShadowMetadata& ShadowMetadata::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowMetadata(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

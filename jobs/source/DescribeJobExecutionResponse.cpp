@@ -7,64 +7,64 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void DescribeJobExecutionResponse::LoadFromObject(DescribeJobExecutionResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("execution"))
+        void DescribeJobExecutionResponse::LoadFromObject(
+            DescribeJobExecutionResponse &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.Execution = doc.GetJsonObject("execution");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("execution"))
+            {
+                val.Execution = doc.GetJsonObject("execution");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
         }
 
-        if (doc.ValueExists("clientToken"))
+        void DescribeJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)object;
+
+            if (Execution)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                Execution->SerializeToObject(jsonObject);
+                object.WithObject("execution", std::move(jsonObject));
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
         }
 
-        if (doc.ValueExists("timestamp"))
+        DescribeJobExecutionResponse::DescribeJobExecutionResponse(const Crt::JsonView &doc)
         {
-            val.Timestamp = doc.GetDouble("timestamp");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void DescribeJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Execution)
+        DescribeJobExecutionResponse &DescribeJobExecutionResponse::operator=(const Crt::JsonView &doc)
         {
-            Aws::Crt::JsonObject jsonObject;
-            Execution->SerializeToObject(jsonObject);
-            object.WithObject("execution", std::move(jsonObject));
+            *this = DescribeJobExecutionResponse(doc);
+            return *this;
         }
 
-        if (ClientToken)
-        {
-            object.WithString("clientToken", *ClientToken);
-        }
-
-        if (Timestamp)
-        {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-        }
-
-    }
-
-    DescribeJobExecutionResponse::DescribeJobExecutionResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    DescribeJobExecutionResponse& DescribeJobExecutionResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = DescribeJobExecutionResponse(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

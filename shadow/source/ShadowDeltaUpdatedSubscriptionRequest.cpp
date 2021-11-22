@@ -7,32 +7,33 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowDeltaUpdatedSubscriptionRequest::LoadFromObject(ShadowDeltaUpdatedSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-    }
+        void ShadowDeltaUpdatedSubscriptionRequest::LoadFromObject(
+            ShadowDeltaUpdatedSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-    void ShadowDeltaUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
+        void ShadowDeltaUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
-    }
+        ShadowDeltaUpdatedSubscriptionRequest::ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    ShadowDeltaUpdatedSubscriptionRequest::ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        ShadowDeltaUpdatedSubscriptionRequest &ShadowDeltaUpdatedSubscriptionRequest::operator=(
+            const Crt::JsonView &doc)
+        {
+            *this = ShadowDeltaUpdatedSubscriptionRequest(doc);
+            return *this;
+        }
 
-    ShadowDeltaUpdatedSubscriptionRequest& ShadowDeltaUpdatedSubscriptionRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowDeltaUpdatedSubscriptionRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

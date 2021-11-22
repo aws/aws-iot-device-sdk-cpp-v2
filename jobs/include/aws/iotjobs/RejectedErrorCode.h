@@ -8,72 +8,73 @@
 
 #include <aws/iotjobs/Exports.h>
 
-#include <aws/crt/Types.h>
 #include <aws/crt/StlAllocator.h>
+#include <aws/crt/Types.h>
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    /**
-     * A value indicating the kind of error encountered while processing an AWS IoT Jobs request
-     *
-     */
-    enum class RejectedErrorCode
+    namespace Iotjobs
     {
-        /**
-         * The request was sent to a topic in the AWS IoT Jobs namespace that does not map to any API.
-         */
-        INVALID_TOPIC,
 
         /**
-         * An update attempted to change the job execution to a state that is invalid because of the job execution's current state. In this case, the body of the error message also contains the executionState field.
+         * A value indicating the kind of error encountered while processing an AWS IoT Jobs request
+         *
          */
-        INVALID_STATE_TRANSITION,
+        enum class RejectedErrorCode
+        {
+            /**
+             * The request was sent to a topic in the AWS IoT Jobs namespace that does not map to any API.
+             */
+            INVALID_TOPIC,
 
-        /**
-         * The JobExecution specified by the request topic does not exist.
-         */
-        RESOURCE_NOT_FOUND,
+            /**
+             * An update attempted to change the job execution to a state that is invalid because of the job execution's
+             * current state. In this case, the body of the error message also contains the executionState field.
+             */
+            INVALID_STATE_TRANSITION,
 
-        /**
-         * The contents of the request were invalid. The message contains details about the error.
-         */
-        INVALID_REQUEST,
+            /**
+             * The JobExecution specified by the request topic does not exist.
+             */
+            RESOURCE_NOT_FOUND,
 
-        /**
-         * The request was throttled.
-         */
-        REQUEST_THROTTLED,
+            /**
+             * The contents of the request were invalid. The message contains details about the error.
+             */
+            INVALID_REQUEST,
 
-        /**
-         * There was an internal error during the processing of the request.
-         */
-        INTERNAL_ERROR,
+            /**
+             * The request was throttled.
+             */
+            REQUEST_THROTTLED,
 
-        /**
-         * Occurs when a command to describe a job is performed on a job that is in a terminal state.
-         */
-        TERMINAL_STATE_REACHED,
+            /**
+             * There was an internal error during the processing of the request.
+             */
+            INTERNAL_ERROR,
 
-        /**
-         * The contents of the request could not be interpreted as valid UTF-8-encoded JSON.
-         */
-        INVALID_JSON,
+            /**
+             * Occurs when a command to describe a job is performed on a job that is in a terminal state.
+             */
+            TERMINAL_STATE_REACHED,
 
-        /**
-         * The expected version specified in the request does not match the version of the job execution in the AWS IoT Jobs service. In this case, the body of the error message also contains the executionState field.
-         */
-        VERSION_MISMATCH,
+            /**
+             * The contents of the request could not be interpreted as valid UTF-8-encoded JSON.
+             */
+            INVALID_JSON,
 
-    };
+            /**
+             * The expected version specified in the request does not match the version of the job execution in the AWS
+             * IoT Jobs service. In this case, the body of the error message also contains the executionState field.
+             */
+            VERSION_MISMATCH,
 
-namespace RejectedErrorCodeMarshaller
-{
-    const char* AWS_IOTJOBS_API ToString(RejectedErrorCode val);
-    RejectedErrorCode AWS_IOTJOBS_API FromString(const Aws::Crt::String& val);
-}
-}
-}
+        };
 
+        namespace RejectedErrorCodeMarshaller
+        {
+            const char *AWS_IOTJOBS_API ToString(RejectedErrorCode val);
+            RejectedErrorCode AWS_IOTJOBS_API FromString(const Aws::Crt::String &val);
+        } // namespace RejectedErrorCodeMarshaller
+    }     // namespace Iotjobs
+} // namespace Aws

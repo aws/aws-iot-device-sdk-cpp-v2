@@ -7,54 +7,47 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowState::LoadFromObject(ShadowState& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("desired"))
+        void ShadowState::LoadFromObject(ShadowState &val, const Aws::Crt::JsonView &doc)
         {
-            val.Desired = doc.GetJsonObjectCopy("desired");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("desired"))
+            {
+                val.Desired = doc.GetJsonObjectCopy("desired");
+            }
+
+            if (doc.ValueExists("reported"))
+            {
+                val.Reported = doc.GetJsonObjectCopy("reported");
+            }
         }
 
-        if (doc.ValueExists("reported"))
+        void ShadowState::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Reported = doc.GetJsonObjectCopy("reported");
+            (void)object;
+
+            if (Desired)
+            {
+                object.WithObject("desired", *Desired);
+            }
+
+            if (Reported)
+            {
+                object.WithObject("reported", *Reported);
+            }
         }
 
-    }
+        ShadowState::ShadowState(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-    void ShadowState::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Desired)
+        ShadowState &ShadowState::operator=(const Crt::JsonView &doc)
         {
-            object.WithObject("desired", *Desired);
-
+            *this = ShadowState(doc);
+            return *this;
         }
 
-        if (Reported)
-        {
-            object.WithObject("reported", *Reported);
-
-        }
-
-    }
-
-    ShadowState::ShadowState(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    ShadowState& ShadowState::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowState(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

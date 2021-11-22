@@ -116,5 +116,5 @@ configure_file("cmake/iotshadow-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotshadow-cpp-config.cmake"
-        DESTINATION "lib/IotShadow-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotShadow-cpp/cmake/"
         COMPONENT Development)
