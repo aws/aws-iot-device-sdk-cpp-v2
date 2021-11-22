@@ -15,49 +15,45 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    /*
-     * Data about the state of a job execution.
-     *
-     */
-    class AWS_IOTJOBS_API JobExecutionState final
+    namespace Iotjobs
     {
-    public:
-        JobExecutionState() = default;
-
-        JobExecutionState(const Crt::JsonView& doc);
-        JobExecutionState& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /*
-         * A collection of name-value pairs that describe the status of the job execution.
+         * Data about the state of a job execution.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
+        class AWS_IOTJOBS_API JobExecutionState final
+        {
+          public:
+            JobExecutionState() = default;
 
+            JobExecutionState(const Crt::JsonView &doc);
+            JobExecutionState &operator=(const Crt::JsonView &doc);
 
-        /*
-         * The version of the job execution. Job execution versions are incremented each time they are updated by a device.
-         *
-         */
-        Aws::Crt::Optional<int32_t> VersionNumber;
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /*
+             * A collection of name-value pairs that describe the status of the job execution.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
 
-        /*
-         * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED, TIMED_OUT, REJECTED, or REMOVED.
-         *
-         */
-        Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
+            /*
+             * The version of the job execution. Job execution versions are incremented each time they are updated by a
+             * device.
+             *
+             */
+            Aws::Crt::Optional<int32_t> VersionNumber;
 
+            /*
+             * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED,
+             * TIMED_OUT, REJECTED, or REMOVED.
+             *
+             */
+            Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
 
-
-    private:
-        static void LoadFromObject(JobExecutionState& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(JobExecutionState &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws

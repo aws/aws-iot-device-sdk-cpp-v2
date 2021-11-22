@@ -7,32 +7,34 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    void CreateCertificateFromCsrSubscriptionRequest::LoadFromObject(CreateCertificateFromCsrSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotidentity
     {
-        (void)val;
-        (void)doc;
 
-    }
+        void CreateCertificateFromCsrSubscriptionRequest::LoadFromObject(
+            CreateCertificateFromCsrSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-    void CreateCertificateFromCsrSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
+        void CreateCertificateFromCsrSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
-    }
+        CreateCertificateFromCsrSubscriptionRequest::CreateCertificateFromCsrSubscriptionRequest(
+            const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    CreateCertificateFromCsrSubscriptionRequest::CreateCertificateFromCsrSubscriptionRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        CreateCertificateFromCsrSubscriptionRequest &CreateCertificateFromCsrSubscriptionRequest::operator=(
+            const Crt::JsonView &doc)
+        {
+            *this = CreateCertificateFromCsrSubscriptionRequest(doc);
+            return *this;
+        }
 
-    CreateCertificateFromCsrSubscriptionRequest& CreateCertificateFromCsrSubscriptionRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = CreateCertificateFromCsrSubscriptionRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotidentity
+} // namespace Aws
