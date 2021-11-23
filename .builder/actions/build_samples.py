@@ -17,6 +17,8 @@ class BuildSamples(Builder.Action):
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
             'samples/jobs/describe_job_execution',
+            'samples/secure_tunneling/secure_tunnel',
+            'samples/secure_tunneling/tunnel_notification',
         ]
         for sample_path in samples:
             build_path = os.path.join('build', sample_path)
