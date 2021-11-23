@@ -7,6 +7,7 @@ env
 pushd $CODEBUILD_SRC_DIR/samples/secure_tunneling/secure_tunnel
 
 mkdir _build
+cd _build
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
