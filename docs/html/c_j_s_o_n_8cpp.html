@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/external/cJSON.cpp File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/source/external/cJSON.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,6 +83,7 @@ $(function() {
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;limits.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="c_j_s_o_n_8h_source.html">aws/crt/external/cJSON.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -103,12 +104,20 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:abad128f70dbd5a06aa93fe79b3acc4df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#abad128f70dbd5a06aa93fe79b3acc4df">isinf</a>(d)&#160;&#160;&#160;(<a class="el" href="c_j_s_o_n_8cpp.html#a11b2d271b8abcb53159ffb82dc29547a">isnan</a>((d - d)) &amp;&amp; !<a class="el" href="c_j_s_o_n_8cpp.html#a11b2d271b8abcb53159ffb82dc29547a">isnan</a>(d))</td></tr>
+<tr class="separator:abad128f70dbd5a06aa93fe79b3acc4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11b2d271b8abcb53159ffb82dc29547a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a11b2d271b8abcb53159ffb82dc29547a">isnan</a>(d)&#160;&#160;&#160;(d != d)</td></tr>
+<tr class="separator:a11b2d271b8abcb53159ffb82dc29547a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8abfcc76130f3f991d124dd22d7e69bc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a8abfcc76130f3f991d124dd22d7e69bc">NAN</a>&#160;&#160;&#160;0.0/0.0</td></tr>
+<tr class="separator:a8abfcc76130f3f991d124dd22d7e69bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fd7640617f7ffead7a9b1408c9d0ae8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a7fd7640617f7ffead7a9b1408c9d0ae8">internal_malloc</a>&#160;&#160;&#160;malloc</td></tr>
 <tr class="separator:a7fd7640617f7ffead7a9b1408c9d0ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a940bb34b2c297c3d8297d506a3955839"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a940bb34b2c297c3d8297d506a3955839">internal_free</a>&#160;&#160;&#160;free</td></tr>
 <tr class="separator:a940bb34b2c297c3d8297d506a3955839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91654176e81c707d28b99dd0bf783ed5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a91654176e81c707d28b99dd0bf783ed5">internal_realloc</a>&#160;&#160;&#160;realloc</td></tr>
 <tr class="separator:a91654176e81c707d28b99dd0bf783ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5714bac836668a1b9af55465b78531ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a5714bac836668a1b9af55465b78531ef">static_strlen</a>(string_literal)&#160;&#160;&#160;(sizeof(string_literal) - sizeof(&quot;&quot;))</td></tr>
+<tr class="separator:a5714bac836668a1b9af55465b78531ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2257377f8b81f4f76a16b698f681af34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a2257377f8b81f4f76a16b698f681af34">can_read</a>(buffer,  size)&#160;&#160;&#160;((buffer != NULL) &amp;&amp; (((buffer)-&gt;offset + size) &lt;= (buffer)-&gt;length))</td></tr>
 <tr class="separator:a2257377f8b81f4f76a16b698f681af34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae210aa01f1afe7510658c392f0f6e128"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#ae210aa01f1afe7510658c392f0f6e128">can_access_at_index</a>(buffer,  index)&#160;&#160;&#160;((buffer != NULL) &amp;&amp; (((buffer)-&gt;offset + index) &lt; (buffer)-&gt;length))</td></tr>
@@ -117,7 +126,7 @@ Macros</h2></td></tr>
 <tr class="separator:a5c873a43d8a78ce9a6d9e8eb41d65d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac538057ef78677344d222b763251af5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#ac538057ef78677344d222b763251af5e">buffer_at_offset</a>(buffer)&#160;&#160;&#160;((buffer)-&gt;content + (buffer)-&gt;offset)</td></tr>
 <tr class="separator:ac538057ef78677344d222b763251af5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13f540fa846f658531751b5ccb78f303"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a13f540fa846f658531751b5ccb78f303">cjson_min</a>(a,  b)&#160;&#160;&#160;((a &lt; b) ? a : b)</td></tr>
+<tr class="memitem:a13f540fa846f658531751b5ccb78f303"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a13f540fa846f658531751b5ccb78f303">cjson_min</a>(a,  b)&#160;&#160;&#160;(((a) &lt; (b)) ? (a) : (b))</td></tr>
 <tr class="separator:a13f540fa846f658531751b5ccb78f303"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -131,24 +140,34 @@ Functions</h2></td></tr>
 <tr class="separator:a93f7115ea681591a5ff4e16967115ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c5185b6eaacaa320bd6461e6b1f9300"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3c5185b6eaacaa320bd6461e6b1f9300">Aws::CJSON_PUBLIC</a> (char *) cJSON_Print(const cJSON *item)</td></tr>
 <tr class="separator:a3c5185b6eaacaa320bd6461e6b1f9300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac581639d083521af4876f735d5de4cb9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac581639d083521af4876f735d5de4cb9">Aws::CJSON_PUBLIC</a> (double) cJSON_GetNumberValue(const cJSON *const item)</td></tr>
+<tr class="separator:ac581639d083521af4876f735d5de4cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d27829e6bffef900563abbaf47e7412"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a8d27829e6bffef900563abbaf47e7412">Aws::case_insensitive_strcmp</a> (const unsigned char *string1, const unsigned char *string2)</td></tr>
 <tr class="separator:a8d27829e6bffef900563abbaf47e7412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac289cada60525380f5f867bbaa5656c6"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac289cada60525380f5f867bbaa5656c6">Aws::cJSON_strdup</a> (const unsigned char *string, const internal_hooks *const hooks)</td></tr>
-<tr class="separator:ac289cada60525380f5f867bbaa5656c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01d47d93a06949c8ca96f24dbad727cf"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a01d47d93a06949c8ca96f24dbad727cf">Aws::cJSON_strdup</a> (const unsigned char *string, const internal_hooks *const hooks)</td></tr>
+<tr class="separator:a01d47d93a06949c8ca96f24dbad727cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1d687877314e31d5943675e06ee24cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ab1d687877314e31d5943675e06ee24cc">Aws::CJSON_PUBLIC</a> (void) cJSON_InitHooks(cJSON_Hooks *hooks)</td></tr>
 <tr class="separator:ab1d687877314e31d5943675e06ee24cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a77fb1e957b91ae41c8cfded00b4b72"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3a77fb1e957b91ae41c8cfded00b4b72">Aws::cJSON_New_Item</a> (const internal_hooks *const hooks)</td></tr>
-<tr class="separator:a3a77fb1e957b91ae41c8cfded00b4b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840ab8ed6917d810a9ad89dc05f94dc3"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a840ab8ed6917d810a9ad89dc05f94dc3">Aws::cJSON_New_Item</a> (const internal_hooks *const hooks)</td></tr>
+<tr class="separator:a840ab8ed6917d810a9ad89dc05f94dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35dd644ce1290d067ad4e4712e2cf2cb"><td class="memItemLeft" align="right" valign="top">static unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a35dd644ce1290d067ad4e4712e2cf2cb">Aws::get_decimal_point</a> (void)</td></tr>
 <tr class="separator:a35dd644ce1290d067ad4e4712e2cf2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34d49beabe3d6e4cda3bb1d7824618de"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a34d49beabe3d6e4cda3bb1d7824618de">Aws::parse_number</a> (cJSON *const item, parse_buffer *const input_buffer)</td></tr>
 <tr class="separator:a34d49beabe3d6e4cda3bb1d7824618de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3853510b4f5047339d3320d807177c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aa3853510b4f5047339d3320d807177c7">Aws::CJSON_PUBLIC</a> (double) cJSON_SetNumberHelper(cJSON *object</td></tr>
-<tr class="separator:aa3853510b4f5047339d3320d807177c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad420539516feeaaa8fd6b4bb93667fc4"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad420539516feeaaa8fd6b4bb93667fc4">Aws::ensure</a> (printbuffer *const p, size_t needed)</td></tr>
-<tr class="separator:ad420539516feeaaa8fd6b4bb93667fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d56c94a24ab1737a296aa934f1e159"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a40d56c94a24ab1737a296aa934f1e159">Aws::if</a> (!(object-&gt;type &amp;<a class="el" href="c_j_s_o_n_8h.html#aa2cb4765308e2bbdf01988b2acdf92d9">cJSON_String</a>)||(object-&gt;type &amp;<a class="el" href="c_j_s_o_n_8h.html#ad3d18116aae3bfa46f13bcfd7fd6d4e7">cJSON_IsReference</a>))</td></tr>
+<tr class="separator:a40d56c94a24ab1737a296aa934f1e159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cfe8a3ec949c3ea1f2575ba5e6c45a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3cfe8a3ec949c3ea1f2575ba5e6c45a7">Aws::if</a> (strlen(valuestring)&lt;=strlen(object-&gt;valuestring))</td></tr>
+<tr class="separator:a3cfe8a3ec949c3ea1f2575ba5e6c45a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aad6720e106bcb7670cd0b41bfad308"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a9aad6720e106bcb7670cd0b41bfad308">Aws::if</a> (copy==NULL)</td></tr>
+<tr class="separator:a9aad6720e106bcb7670cd0b41bfad308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4574ec6559adffb39cd79b02d817fcbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a4574ec6559adffb39cd79b02d817fcbc">Aws::if</a> (object-&gt;valuestring !=NULL)</td></tr>
+<tr class="separator:a4574ec6559adffb39cd79b02d817fcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7206d967f8ff2b339c52f69abf306bf9"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a7206d967f8ff2b339c52f69abf306bf9">Aws::ensure</a> (printbuffer *const p, size_t needed)</td></tr>
+<tr class="separator:a7206d967f8ff2b339c52f69abf306bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af09062d081e3ebada78fb80a9fd0b17d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af09062d081e3ebada78fb80a9fd0b17d">Aws::update_offset</a> (printbuffer *const buffer)</td></tr>
 <tr class="separator:af09062d081e3ebada78fb80a9fd0b17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce28ae241483a0822b9272191e88269"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#afce28ae241483a0822b9272191e88269">Aws::compare_double</a> (double a, double b)</td></tr>
+<tr class="separator:afce28ae241483a0822b9272191e88269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46aaea55283aae98df231e5cac7a2501"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a46aaea55283aae98df231e5cac7a2501">Aws::print_number</a> (const cJSON *const item, printbuffer *const output_buffer)</td></tr>
 <tr class="separator:a46aaea55283aae98df231e5cac7a2501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8a99da6e2e41cffce7bd106fd9c3d4f"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac8a99da6e2e41cffce7bd106fd9c3d4f">Aws::parse_hex4</a> (const unsigned char *const input)</td></tr>
@@ -173,24 +192,30 @@ Functions</h2></td></tr>
 <tr class="separator:ae67c6d428bdee66d2a383f1ef87627d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a196fca4ad89d0a1a1e3173ee08c5d953"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a196fca4ad89d0a1a1e3173ee08c5d953">Aws::print_object</a> (const cJSON *const item, printbuffer *const output_buffer)</td></tr>
 <tr class="separator:a196fca4ad89d0a1a1e3173ee08c5d953"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad473fdd3e62ef766447378b87f833910"><td class="memItemLeft" align="right" valign="top">static parse_buffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad473fdd3e62ef766447378b87f833910">Aws::buffer_skip_whitespace</a> (parse_buffer *const buffer)</td></tr>
-<tr class="separator:ad473fdd3e62ef766447378b87f833910"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a680ab89b3c56c154fc9dd3e0e7c03959"><td class="memItemLeft" align="right" valign="top">static parse_buffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a680ab89b3c56c154fc9dd3e0e7c03959">Aws::skip_utf8_bom</a> (parse_buffer *const buffer)</td></tr>
-<tr class="separator:a680ab89b3c56c154fc9dd3e0e7c03959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2eb4e3a6ec670cc7b3912f683972792"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad2eb4e3a6ec670cc7b3912f683972792">Aws::CJSON_PUBLIC</a> (cJSON *) cJSON_Parse(const char *value</td></tr>
-<tr class="separator:ad2eb4e3a6ec670cc7b3912f683972792"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03d23319778be069cbcbb2f4785e3da3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a03d23319778be069cbcbb2f4785e3da3">Aws::if</a> (value==NULL)</td></tr>
-<tr class="separator:a03d23319778be069cbcbb2f4785e3da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff24bd3e262ebc04aed0dbddad1f838"><td class="memItemLeft" align="right" valign="top">static parse_buffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a4ff24bd3e262ebc04aed0dbddad1f838">Aws::buffer_skip_whitespace</a> (parse_buffer *const buffer)</td></tr>
+<tr class="separator:a4ff24bd3e262ebc04aed0dbddad1f838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5db862d633d83dec6792774dd873967"><td class="memItemLeft" align="right" valign="top">static parse_buffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac5db862d633d83dec6792774dd873967">Aws::skip_utf8_bom</a> (parse_buffer *const buffer)</td></tr>
+<tr class="separator:ac5db862d633d83dec6792774dd873967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac876655e67483a55e2c109396b2cc173"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac876655e67483a55e2c109396b2cc173">Aws::CJSON_PUBLIC</a> (cJSON *) cJSON_Parse(const char *value)</td></tr>
+<tr class="separator:ac876655e67483a55e2c109396b2cc173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeb35c087b6afc23a1ff6a0a8251643d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aaeb35c087b6afc23a1ff6a0a8251643d">Aws::if</a> (NULL==value)</td></tr>
+<tr class="separator:aaeb35c087b6afc23a1ff6a0a8251643d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32486334211783315d0ed93dc02b287"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac32486334211783315d0ed93dc02b287">Aws::cJSON_ParseWithLengthOpts</a> (value, buffer_length, return_parse_end, require_null_terminated)</td></tr>
+<tr class="separator:ac32486334211783315d0ed93dc02b287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05dc0bb6ef87727b204c920256922d26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a05dc0bb6ef87727b204c920256922d26">Aws::if</a> (value==NULL||0==buffer_length)</td></tr>
+<tr class="separator:a05dc0bb6ef87727b204c920256922d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00c4d8e4969bf477a0445a829d49107"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ae00c4d8e4969bf477a0445a829d49107">Aws::if</a> (item==NULL)</td></tr>
 <tr class="separator:ae00c4d8e4969bf477a0445a829d49107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1b17dfde3f134b806ae9ebf014eca5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac1b17dfde3f134b806ae9ebf014eca5c">Aws::if</a> (!parse_value(item, buffer_skip_whitespace(skip_utf8_bom(&amp;buffer))))</td></tr>
 <tr class="separator:ac1b17dfde3f134b806ae9ebf014eca5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0f7a5735f572d10bce1b3e8883c8aeb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aa0f7a5735f572d10bce1b3e8883c8aeb">Aws::if</a> (require_null_terminated)</td></tr>
+<tr class="separator:aa0f7a5735f572d10bce1b3e8883c8aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6ace3dd422875ed330ac6aea1ce08f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aa6ace3dd422875ed330ac6aea1ce08f3">Aws::if</a> (return_parse_end)</td></tr>
 <tr class="separator:aa6ace3dd422875ed330ac6aea1ce08f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3d92d9ef2e6b2355825eb9e2aeffa7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af3d92d9ef2e6b2355825eb9e2aeffa7d">Aws::if</a> (value !=NULL)</td></tr>
 <tr class="separator:af3d92d9ef2e6b2355825eb9e2aeffa7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a411ae7b7f7803fcc0f8ca7fb917f203e"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a411ae7b7f7803fcc0f8ca7fb917f203e">Aws::print</a> (const cJSON *const item, cJSON_bool format, const internal_hooks *const hooks)</td></tr>
-<tr class="separator:a411ae7b7f7803fcc0f8ca7fb917f203e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bfba8fa7e638f4afb49eca272ea3b17"><td class="memItemLeft" align="right" valign="top">static unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3bfba8fa7e638f4afb49eca272ea3b17">Aws::print</a> (const cJSON *const item, cJSON_bool format, const internal_hooks *const hooks)</td></tr>
+<tr class="separator:a3bfba8fa7e638f4afb49eca272ea3b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4827035f31788bf25c9fad589a814cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af4827035f31788bf25c9fad589a814cf">Aws::if</a> (prebuffer&lt; 0)</td></tr>
 <tr class="separator:af4827035f31788bf25c9fad589a814cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a521aa7806a87be77fbcf0eead11e3b2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a521aa7806a87be77fbcf0eead11e3b2d">Aws::if</a> (!p.buffer)</td></tr>
@@ -199,24 +224,24 @@ Functions</h2></td></tr>
 <tr class="separator:ad0331d39975a4ee1af2eabab147e5722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5ef41a8eeca88b69e2eadd83ada05cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af5ef41a8eeca88b69e2eadd83ada05cd">Aws::return</a> (char *) p.buffer</td></tr>
 <tr class="separator:af5ef41a8eeca88b69e2eadd83ada05cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fb370a4e9fce06d7d1495696261babf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a4fb370a4e9fce06d7d1495696261babf">Aws::CJSON_PUBLIC</a> (int) cJSON_GetArraySize(const cJSON *array)</td></tr>
-<tr class="separator:a4fb370a4e9fce06d7d1495696261babf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84ff086ac58a8bad6d530206a3e14c41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a84ff086ac58a8bad6d530206a3e14c41">Aws::if</a> ((len&lt; 0)||(buf==NULL))</td></tr>
-<tr class="separator:a84ff086ac58a8bad6d530206a3e14c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93640eee24f9c7ec95531aa20abb544"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aa93640eee24f9c7ec95531aa20abb544">Aws::CJSON_PUBLIC</a> (cJSON_bool) cJSON_PrintPreallocated(cJSON *item</td></tr>
+<tr class="separator:aa93640eee24f9c7ec95531aa20abb544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ae3f4c0cddf665a172b2cf3f6af535"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a26ae3f4c0cddf665a172b2cf3f6af535">Aws::if</a> ((length&lt; 0)||(buffer==NULL))</td></tr>
+<tr class="separator:a26ae3f4c0cddf665a172b2cf3f6af535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3779cfcea23823f873837663e1c615ba"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3779cfcea23823f873837663e1c615ba">Aws::print_value</a> (item, &amp;p)</td></tr>
 <tr class="separator:a3779cfcea23823f873837663e1c615ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b861c779f9ce34c0c3ddf073cd08bd7"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a6b861c779f9ce34c0c3ddf073cd08bd7">Aws::get_array_item</a> (const cJSON *array, size_t index)</td></tr>
-<tr class="separator:a6b861c779f9ce34c0c3ddf073cd08bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a970757a16082121050ae7901c1ac23"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a7a970757a16082121050ae7901c1ac23">Aws::get_object_item</a> (const cJSON *const object, const char *const name, const cJSON_bool case_sensitive)</td></tr>
-<tr class="separator:a7a970757a16082121050ae7901c1ac23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7224e792a750e2ce35e130ac711903"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3c7224e792a750e2ce35e130ac711903">Aws::get_array_item</a> (const cJSON *array, size_t index)</td></tr>
+<tr class="separator:a3c7224e792a750e2ce35e130ac711903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e63e4f86dc8887b2516f9f1bdc0bba"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ae3e63e4f86dc8887b2516f9f1bdc0bba">Aws::get_object_item</a> (const cJSON *const object, const char *const name, const cJSON_bool case_sensitive)</td></tr>
+<tr class="separator:ae3e63e4f86dc8887b2516f9f1bdc0bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1eb0f3960a4e8b6ad6f625efb12af5b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af1eb0f3960a4e8b6ad6f625efb12af5b">Aws::suffix_object</a> (cJSON *prev, cJSON *item)</td></tr>
 <tr class="separator:af1eb0f3960a4e8b6ad6f625efb12af5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25522ae2791cfc70adb3f11cb5fc4e9f"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a25522ae2791cfc70adb3f11cb5fc4e9f">Aws::create_reference</a> (const cJSON *item, const internal_hooks *const hooks)</td></tr>
-<tr class="separator:a25522ae2791cfc70adb3f11cb5fc4e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3307f02ff8fa9cfe646971f7e32bca8e"><td class="memItemLeft" align="right" valign="top">static cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3307f02ff8fa9cfe646971f7e32bca8e">Aws::create_reference</a> (const cJSON *item, const internal_hooks *const hooks)</td></tr>
+<tr class="separator:a3307f02ff8fa9cfe646971f7e32bca8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff17478656edabc516fdf41d64f9ec9d"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aff17478656edabc516fdf41d64f9ec9d">Aws::add_item_to_array</a> (cJSON *array, cJSON *item)</td></tr>
 <tr class="separator:aff17478656edabc516fdf41d64f9ec9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85ff1e946111ca4075297e862ca225a"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad85ff1e946111ca4075297e862ca225a">Aws::cast_away_const</a> (const void *string)</td></tr>
-<tr class="separator:ad85ff1e946111ca4075297e862ca225a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a6a29029a3d21b29751968a6629b5f"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a55a6a29029a3d21b29751968a6629b5f">Aws::cast_away_const</a> (const void *string)</td></tr>
+<tr class="separator:a55a6a29029a3d21b29751968a6629b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f405df9a3fc956b534bd11ef798157b"><td class="memItemLeft" align="right" valign="top">static cJSON_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a5f405df9a3fc956b534bd11ef798157b">Aws::add_item_to_object</a> (cJSON *const object, const char *const string, cJSON *const item, const internal_hooks *const hooks, const cJSON_bool constant_key)</td></tr>
 <tr class="separator:a5f405df9a3fc956b534bd11ef798157b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac57f3ab724d0e13e095967c0b726c6dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac57f3ab724d0e13e095967c0b726c6dd">Aws::if</a> (add_item_to_object(object, name, null, &amp;global_hooks, false))</td></tr>
@@ -261,8 +286,6 @@ Functions</h2></td></tr>
 <tr class="separator:ab931e1e9f562921dd6dab34cbae3bad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0848b0484eae2889aa586c1f92a00bce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a0848b0484eae2889aa586c1f92a00bce">Aws::if</a> (replacement-&gt;next !=NULL)</td></tr>
 <tr class="separator:a0848b0484eae2889aa586c1f92a00bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9158daf4bb22f43049c40bec0532fd6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a9158daf4bb22f43049c40bec0532fd6d">Aws::if</a> (replacement-&gt;prev !=NULL)</td></tr>
-<tr class="separator:a9158daf4bb22f43049c40bec0532fd6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73113435c094be1be7cb4249392fe7de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a73113435c094be1be7cb4249392fe7de">Aws::if</a> (parent-&gt;child==item)</td></tr>
 <tr class="separator:a73113435c094be1be7cb4249392fe7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2708a08db57e08e3a433dd0804245a9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a2708a08db57e08e3a433dd0804245a9d">Aws::cJSON_Delete</a> (item)</td></tr>
@@ -281,22 +304,28 @@ Functions</h2></td></tr>
 <tr class="separator:a471978b013d4fcfd3e016b9836da3622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd9a063af930c5ff745333835d6ea39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a7dd9a063af930c5ff745333835d6ea39">Aws::while</a> (child !=NULL)</td></tr>
 <tr class="separator:a7dd9a063af930c5ff745333835d6ea39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3f4c18dbf4996b79d37b5881548d397"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad3f4c18dbf4996b79d37b5881548d397">Aws::cJSON_Compare</a> (const cJSON *const a, const cJSON *const b, const cJSON_bool case_sensitive)</td></tr>
-<tr class="separator:ad3f4c18dbf4996b79d37b5881548d397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9be5f3f0cc1e974b9af623207320ab6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ae9be5f3f0cc1e974b9af623207320ab6">Aws::CJSON_PUBLIC</a> (void *) cJSON_malloc(size_t size)</td></tr>
-<tr class="separator:ae9be5f3f0cc1e974b9af623207320ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf3320ef0edcf87fbc5dfb3cafa8764"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aadf3320ef0edcf87fbc5dfb3cafa8764">Aws::if</a> (newitem &amp;&amp;newitem-&gt;child)</td></tr>
+<tr class="separator:aadf3320ef0edcf87fbc5dfb3cafa8764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9864f3c0e53263e54203101bb8dfa352"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a9864f3c0e53263e54203101bb8dfa352">Aws::skip_oneline_comment</a> (char **input)</td></tr>
+<tr class="separator:a9864f3c0e53263e54203101bb8dfa352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d0522520b8068793d40359a9977bc6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a63d0522520b8068793d40359a9977bc6">Aws::skip_multiline_comment</a> (char **input)</td></tr>
+<tr class="separator:a63d0522520b8068793d40359a9977bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9128f53e42fc906c19f3b34f1952f14"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ae9128f53e42fc906c19f3b34f1952f14">Aws::minify_string</a> (char **input, char **output)</td></tr>
+<tr class="separator:ae9128f53e42fc906c19f3b34f1952f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a6ff6e9678e47cf5347872008661d5846"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structerror.html">error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c_j_s_o_n_8cpp.html#a6ff6e9678e47cf5347872008661d5846">global_error</a> = { NULL, 0 }</td></tr>
 <tr class="separator:a6ff6e9678e47cf5347872008661d5846"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c4336c07c59645b4c0203929ef353e1"><td class="memItemLeft" align="right" valign="top">static internal_hooks&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a2c4336c07c59645b4c0203929ef353e1">Aws::global_hooks</a> = {<a class="el" href="c_j_s_o_n_8cpp.html#a7fd7640617f7ffead7a9b1408c9d0ae8">internal_malloc</a>, <a class="el" href="c_j_s_o_n_8cpp.html#a940bb34b2c297c3d8297d506a3955839">internal_free</a>, <a class="el" href="c_j_s_o_n_8cpp.html#a91654176e81c707d28b99dd0bf783ed5">internal_realloc</a>}</td></tr>
+<tr class="memitem:a2c4336c07c59645b4c0203929ef353e1"><td class="memItemLeft" align="right" valign="top">static internal_hooks&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a2c4336c07c59645b4c0203929ef353e1">Aws::global_hooks</a> = { <a class="el" href="c_j_s_o_n_8cpp.html#a7fd7640617f7ffead7a9b1408c9d0ae8">internal_malloc</a>, <a class="el" href="c_j_s_o_n_8cpp.html#a940bb34b2c297c3d8297d506a3955839">internal_free</a>, <a class="el" href="c_j_s_o_n_8cpp.html#a91654176e81c707d28b99dd0bf783ed5">internal_realloc</a> }</td></tr>
 <tr class="separator:a2c4336c07c59645b4c0203929ef353e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66af6ccf03060208c84938554c449ad3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a66af6ccf03060208c84938554c449ad3">Aws::copy</a> = (char*) cJSON_strdup((const unsigned char*)valuestring, &amp;global_hooks)</td></tr>
+<tr class="separator:a66af6ccf03060208c84938554c449ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3076bc67e26c850c1674abaecce578f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c_j_s_o_n_8cpp.html#a6ff6e9678e47cf5347872008661d5846">global_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3076bc67e26c850c1674abaecce578f4">Aws::json</a> = NULL</td></tr>
 <tr class="separator:a3076bc67e26c850c1674abaecce578f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad293c8b15694382c698b662f7acd9f8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c_j_s_o_n_8cpp.html#a6ff6e9678e47cf5347872008661d5846">global_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ad293c8b15694382c698b662f7acd9f8e">Aws::position</a> = 0</td></tr>
 <tr class="separator:ad293c8b15694382c698b662f7acd9f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a059551721f47fdeb9bf9e1816b78b25d"><td class="memItemLeft" align="right" valign="top">buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a059551721f47fdeb9bf9e1816b78b25d">Aws::content</a> = (const unsigned char *) value</td></tr>
+<tr class="memitem:a059551721f47fdeb9bf9e1816b78b25d"><td class="memItemLeft" align="right" valign="top">buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a059551721f47fdeb9bf9e1816b78b25d">Aws::content</a> = (const unsigned char*)value</td></tr>
 <tr class="separator:a059551721f47fdeb9bf9e1816b78b25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b36e73e20878ce98336cfdea0494281"><td class="memItemLeft" align="right" valign="top">buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a4b36e73e20878ce98336cfdea0494281">Aws::offset</a> = 0</td></tr>
 <tr class="separator:a4b36e73e20878ce98336cfdea0494281"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -306,22 +335,14 @@ Variables</h2></td></tr>
 <tr class="separator:a30f044884a662cd71fea7edc7aaf26e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41b67e809416e9bd96026fa1f414925d"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">Aws::NULL</a></td></tr>
 <tr class="separator:a41b67e809416e9bd96026fa1f414925d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab680d00d3625d576b9160710e643da63"><td class="memItemLeft" align="right" valign="top">p&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ab680d00d3625d576b9160710e643da63">Aws::buffer</a> = (unsigned char *) global_hooks.allocate((size_t) prebuffer)</td></tr>
-<tr class="separator:ab680d00d3625d576b9160710e643da63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48fa524edb7fea76dcdea3f7675dcdff"><td class="memItemLeft" align="right" valign="top">p&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a48fa524edb7fea76dcdea3f7675dcdff">Aws::noalloc</a> = false</td></tr>
 <tr class="separator:a48fa524edb7fea76dcdea3f7675dcdff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b080fcf4aed7e14fb25c2638948af06"><td class="memItemLeft" align="right" valign="top">p&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a5b080fcf4aed7e14fb25c2638948af06">Aws::format</a> = fmt</td></tr>
-<tr class="separator:a5b080fcf4aed7e14fb25c2638948af06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14f90ca6f5e95d30c79d04efce16a2ab"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a14f90ca6f5e95d30c79d04efce16a2ab">Aws::buf</a></td></tr>
-<tr class="separator:a14f90ca6f5e95d30c79d04efce16a2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8275fb544361b33cba071af3a547329"><td class="memItemLeft" align="right" valign="top">char const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#aa8275fb544361b33cba071af3a547329">Aws::len</a></td></tr>
-<tr class="separator:aa8275fb544361b33cba071af3a547329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0af31e16c5e60e82beaa1de641126e7"><td class="memItemLeft" align="right" valign="top">item&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ae0af31e16c5e60e82beaa1de641126e7">Aws::next</a> = NULL</td></tr>
 <tr class="separator:ae0af31e16c5e60e82beaa1de641126e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac13279619958273b34f851f8036d53c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac13279619958273b34f851f8036d53c0">Aws::after_inserted</a> = get_array_item(array, (size_t) which)</td></tr>
+<tr class="memitem:ac13279619958273b34f851f8036d53c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac13279619958273b34f851f8036d53c0">Aws::after_inserted</a> = get_array_item(array, (size_t)which)</td></tr>
 <tr class="separator:ac13279619958273b34f851f8036d53c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8fa14f58f07b6cb259c64bbe7658ed0"><td class="memItemLeft" align="right" valign="top">newitem&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#af8fa14f58f07b6cb259c64bbe7658ed0">Aws::prev</a> = after_inserted-&gt;prev</td></tr>
-<tr class="separator:af8fa14f58f07b6cb259c64bbe7658ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acabd5bb5bfe1f1517da61dcd6d8f60e0"><td class="memItemLeft" align="right" valign="top">newitem&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#acabd5bb5bfe1f1517da61dcd6d8f60e0">Aws::prev</a> = after_inserted-&gt;prev</td></tr>
+<tr class="separator:acabd5bb5bfe1f1517da61dcd6d8f60e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1945814c8f094d36232f6e51c560a4dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a1945814c8f094d36232f6e51c560a4dc">Aws::else</a></td></tr>
 <tr class="separator:a1945814c8f094d36232f6e51c560a4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac488d0932f9b9e0686736a3dc7a8bb08"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#ac488d0932f9b9e0686736a3dc7a8bb08">Aws::true</a></td></tr>
@@ -469,7 +490,7 @@ Variables</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((a &lt; b) ? a : b)</td>
+          <td></td><td>&#160;&#160;&#160;(((a) &lt; (b)) ? (a) : (b))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -512,6 +533,80 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define internal_realloc&#160;&#160;&#160;realloc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abad128f70dbd5a06aa93fe79b3acc4df" name="abad128f70dbd5a06aa93fe79b3acc4df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad128f70dbd5a06aa93fe79b3acc4df">&#9670;&nbsp;</a></span>isinf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isinf</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">d</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="c_j_s_o_n_8cpp.html#a11b2d271b8abcb53159ffb82dc29547a">isnan</a>((d - d)) &amp;&amp; !<a class="el" href="c_j_s_o_n_8cpp.html#a11b2d271b8abcb53159ffb82dc29547a">isnan</a>(d))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >MODIFICATIONS: valueInt was moved up to improve alignment. Wrap all symbols in the <a class="el" href="namespace_aws.html">Aws</a> namespace as a short-term collision resolution Replace strcpy() with strncpy()</p>
+<p >Modifications licensed under:</p>
+<p >Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.</p>
+<p >Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at</p>
+<p ><a href="http://aws.amazon.com/apache2.0">http://aws.amazon.com/apache2.0</a></p>
+<p >or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. </p>
+
+</div>
+</div>
+<a id="a11b2d271b8abcb53159ffb82dc29547a" name="a11b2d271b8abcb53159ffb82dc29547a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11b2d271b8abcb53159ffb82dc29547a">&#9670;&nbsp;</a></span>isnan</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isnan</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">d</td><td>)</td>
+          <td>&#160;&#160;&#160;(d != d)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8abfcc76130f3f991d124dd22d7e69bc" name="a8abfcc76130f3f991d124dd22d7e69bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8abfcc76130f3f991d124dd22d7e69bc">&#9670;&nbsp;</a></span>NAN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NAN&#160;&#160;&#160;0.0/0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5714bac836668a1b9af55465b78531ef" name="a5714bac836668a1b9af55465b78531ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5714bac836668a1b9af55465b78531ef">&#9670;&nbsp;</a></span>static_strlen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define static_strlen</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">string_literal</td><td>)</td>
+          <td>&#160;&#160;&#160;(sizeof(string_literal) - sizeof(&quot;&quot;))</td>
         </tr>
       </table>
 </div><div class="memdoc">

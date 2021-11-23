@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/jobs/include/aws/iotjobs/Exports.h Source File</title>
+<title>AWS IoT Device SDK C++ v2: jobs/include/aws/iotjobs/Exports.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,20 +71,26 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="jobs_2include_2aws_2iotjobs_2_exports_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#if defined(AWS_IOTJOBS_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#    ifdef AWS_IOTJOBS_USE_IMPORT_EXPORT</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#        ifdef AWS_IOTJOBS_EXPORTS</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#            define AWS_IOTJOBS_API __declspec(dllexport)</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#        else</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#            define AWS_IOTJOBS_API __declspec(dllimport)</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#        endif </span><span class="comment">/* AWS_IOTJOBS_EXPORTS */</span><span class="preprocessor"></span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#    else</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#        define AWS_IOTJOBS_API</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#    endif </span><span class="comment">/* AWS_IOTJOBS_USE_IMPORT_EXPORT */</span><span class="preprocessor"></span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#else </span><span class="comment">/* defined (AWS_IOTJOBS_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */</span><span class="preprocessor"></span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">   19</a></span><span class="preprocessor">#    define AWS_IOTJOBS_API</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif </span><span class="comment">/* defined (AWS_IOTJOBS__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * This file is generated</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#if defined(AWS_IOTJOBS_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#    ifdef AWS_IOTJOBS_USE_IMPORT_EXPORT</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#        ifdef AWS_IOTJOBS_EXPORTS</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#            define AWS_IOTJOBS_API __declspec(dllexport)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#        else</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#            define AWS_IOTJOBS_API __declspec(dllimport)</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#        endif </span><span class="comment">/* AWS_IOTJOBS_EXPORTS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#    else</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#        define AWS_IOTJOBS_API</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#    endif </span><span class="comment">/* AWS_IOTJOBS_USE_IMPORT_EXPORT */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#else </span><span class="comment">/* defined (AWS_IOTJOBS_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">   20</a></span><span class="preprocessor">#    define AWS_IOTJOBS_API</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif </span><span class="comment">/* defined (AWS_IOTJOBS__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

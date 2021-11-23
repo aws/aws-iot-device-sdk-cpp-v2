@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['pointer_0',['pointer',['../class_aws_1_1_crt_1_1basic__string__view.html#a24192d70a9ca6790ef32e35333911c84',1,'Aws::Crt::basic_string_view']]]
+  ['map_0',['Map',['../namespace_aws_1_1_crt.html#a1cf42e328e4553fa884d30468915df73',1,'Aws::Crt']]],
+  ['messagetype_1',['MessageType',['../namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591',1,'Aws::Eventstreamrpc']]],
+  ['multimap_2',['MultiMap',['../namespace_aws_1_1_crt.html#afa7b355655153ab380ab8e7a11e039aa',1,'Aws::Crt']]]
 ];

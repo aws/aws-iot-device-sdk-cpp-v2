@@ -77,6 +77,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_adaptive_http_proxy_strategy.html">AdaptiveHttpProxyStrategy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data.html">ClientStreamCallbackData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_http_1_1_connection_callback_data.html">ConnectionCallbackData</a></td></tr>
@@ -96,6 +98,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_stream.html">HttpClientStream</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_message.html">HttpMessage</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_proxy_strategy.html">HttpProxyStrategy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_http_1_1_http_proxy_strategy_adaptive_config.html">HttpProxyStrategyAdaptiveConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_http_1_1_http_proxy_strategy_basic_auth_config.html">HttpProxyStrategyBasicAuthConfig</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">HttpRequest</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,13 +136,22 @@ Typedefs</h2></td></tr>
 <tr class="separator:a486282cdd28a7f05e50e1534797c4a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf17b6f7768fa03af126b8c812ef9bd1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> = std::function&lt; void(std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection.html">HttpClientConnection</a> &gt;, int errorCode)&gt;</td></tr>
 <tr class="separator:abf17b6f7768fa03af126b8c812ef9bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae93e8c5831141991600b318b1df21d7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#aae93e8c5831141991600b318b1df21d7">KerberosGetTokenFunction</a> = std::function&lt; bool(<a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;)&gt;</td></tr>
+<tr class="separator:aae93e8c5831141991600b318b1df21d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ff911d785539e09b5620ad25d32e0b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ad6ff911d785539e09b5620ad25d32e0b">NtlmGetTokenFunction</a> = std::function&lt; bool(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;, <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;)&gt;</td></tr>
+<tr class="separator:ad6ff911d785539e09b5620ad25d32e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:af3cef7161b636a6450f5cb4a50021979"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979">AwsHttpProxyAuthenticationType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754">None</a> = AWS_HPAT_NONE
-, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94">Basic</a> = AWS_HPAT_BASIC
+<tr class="memitem:af3cef7161b636a6450f5cb4a50021979"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979">AwsHttpProxyAuthenticationType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754">None</a>
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94">Basic</a>
  }</td></tr>
 <tr class="separator:af3cef7161b636a6450f5cb4a50021979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f13c5720d947936b72cee24545ea82a"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82a">AwsHttpProxyConnectionType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aa0cc0a0507cf3d31e5089f420a4cf8b4b">Legacy</a> = AWS_HPCT_HTTP_LEGACY
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aa6bfd1fd43243576a16927aaae94e96be">Forwarding</a> = AWS_HPCT_HTTP_FORWARD
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aaf2a596e1cc3cc962cdcfc07ed14df40d">Tunneling</a> = AWS_HPCT_HTTP_TUNNEL
+ }</td></tr>
+<tr class="separator:a3f13c5720d947936b72cee24545ea82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba23b4ec95a8d1b95d18b2ffe5d82e5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5">HttpVersion</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5a88183b946cc5f0e8c96b2e66e1c74a7e">Unknown</a> = AWS_HTTP_VERSION_UNKNOWN
 , <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5aa820a7cca3410e94af1e51058023680a">Http1_0</a> = AWS_HTTP_VERSION_1_0
 , <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5a2c494112f4c9bef921aacd3650fd34ea">Http1_1</a> = AWS_HTTP_VERSION_1_1
@@ -151,6 +168,34 @@ Enumerations</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef aws_http_header <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932">Aws::Crt::Http::HttpHeader</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae93e8c5831141991600b318b1df21d7" name="aae93e8c5831141991600b318b1df21d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae93e8c5831141991600b318b1df21d7">&#9670;&nbsp;</a></span>KerberosGetTokenFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#aae93e8c5831141991600b318b1df21d7">Aws::Crt::Http::KerberosGetTokenFunction</a> = typedef std::function&lt;bool(<a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6ff911d785539e09b5620ad25d32e0b" name="ad6ff911d785539e09b5620ad25d32e0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6ff911d785539e09b5620ad25d32e0b">&#9670;&nbsp;</a></span>NtlmGetTokenFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#ad6ff911d785539e09b5620ad25d32e0b">Aws::Crt::Http::NtlmGetTokenFunction</a> = typedef std::function&lt;bool(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;, <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">String</a> &amp;)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -288,10 +333,43 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Mirror of the aws_http_proxy_authentication_type C enum - designates what kind of authentication, if any, to use when connecting to a proxy server </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>enum that designates what kind of authentication, if any, to use when connecting to a proxy server.</dd></dl>
+<p >Here for backwards compatibility. Has been superceded by proxy strategies. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754" name="af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94" name="af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94"></a>Basic&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a3f13c5720d947936b72cee24545ea82a" name="a3f13c5720d947936b72cee24545ea82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f13c5720d947936b72cee24545ea82a">&#9670;&nbsp;</a></span>AwsHttpProxyConnectionType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82a">Aws::Crt::Http::AwsHttpProxyConnectionType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Mirror of aws_http_proxy_connection_type enum. Indicates the basic http proxy behavior of the proxy we're connecting to. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3f13c5720d947936b72cee24545ea82aa0cc0a0507cf3d31e5089f420a4cf8b4b" name="a3f13c5720d947936b72cee24545ea82aa0cc0a0507cf3d31e5089f420a4cf8b4b"></a>Legacy&#160;</td><td class="fielddoc"><p >Deprecated, but 0-valued for backwards compatibility</p>
+<p >If tls options are provided (for the main connection) then treat the proxy as a tunneling proxy If tls options are not provided (for the main connection), then treat the proxy as a forwarding proxy </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3f13c5720d947936b72cee24545ea82aa6bfd1fd43243576a16927aaae94e96be" name="a3f13c5720d947936b72cee24545ea82aa6bfd1fd43243576a16927aaae94e96be"></a>Forwarding&#160;</td><td class="fielddoc"><p >Use the proxy to forward http requests. Attempting to use both this mode and TLS to the destination is a configuration error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3f13c5720d947936b72cee24545ea82aaf2a596e1cc3cc962cdcfc07ed14df40d" name="a3f13c5720d947936b72cee24545ea82aaf2a596e1cc3cc962cdcfc07ed14df40d"></a>Tunneling&#160;</td><td class="fielddoc"><p >Use the proxy to establish an http connection via a CONNECT request to the proxy. Works for both plaintext and tls connections. </p>
+</td></tr>
 </table>
 
 </div>
