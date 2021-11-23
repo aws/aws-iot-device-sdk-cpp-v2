@@ -78,6 +78,16 @@ int main(int argc, char *argv[])
     string proxyUserName;
     string proxyPassword;
 
+    /*
+     * For internal testing
+     */
+    bool isTest = false;
+    int testCount = 5;
+    if (!s_cmdOptionExists(argv, argv + argc, "--test"))
+    {
+        isTest = true;
+    }
+
     std::shared_ptr<SecureTunnel> secureTunnel;
 
     /*********************** Parse Arguments ***************************/
@@ -267,6 +277,14 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Data Receive Complete in Destination\n");
                 fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
                 secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
+                if (isTest)
+                {
+                    testCount--;
+                    if (testCount == 0)
+                    {
+                        exit(0);
+                    }
+                }
                 break;
             case AWS_SECURE_TUNNELING_SOURCE_MODE:
                 fprintf(stdout, "Data Receive Complete in Source\n");
