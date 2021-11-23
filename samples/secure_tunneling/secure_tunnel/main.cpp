@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
+#include <aws/crt/http/HttpProxyStrategy.h>
 #include <aws/iot/MqttClient.h>
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
@@ -20,13 +21,17 @@ static void s_printHelp()
     fprintf(
         stdout,
         "secure-tunnel\n"
-        "--region                 <region>\n"
-        "--ca_file                <optional: path to custom ca>\n"
-        "--access_token_file      <path to access token> or "
-        "--access_token           <access token>\n"
-        "--localProxyModeSource   <optional: sets to Source Mode>\n"
-        "--message                <optional: message to send>\n\n");
-    fprintf(stdout, "region: the region of your iot thing and secure tunnel\n");
+        "--region                <aws region of secure tunnel>\n"
+        "--ca_file               <optional: path to custom ca>\n"
+        "--access_token_file     <path to access token> or "
+        "--access_token          <access token>\n"
+        "--localProxyModeSource  <optional: sets to Source Mode>\n"
+        "--proxy_host            <host name of the proxy server>\n"
+        "--proxy_port            <port of the proxy server>\n"
+        "--proxy_user_name       <optional: user name>\n"
+        "--proxy_password        <optional: password>\n"
+        "--message               <optional: message to send>\n\n");
+    fprintf(stdout, "region: the region of your secure tunnel\n");
     fprintf(
         stdout,
         "ca_file: Optional, if the mqtt server uses a certificate that's not already"
@@ -35,6 +40,10 @@ static void s_printHelp()
     fprintf(stdout, "access_token_file: path to the tunneling access token file\n");
     fprintf(stdout, "access_token: tunneling access token\n");
     fprintf(stdout, "localProxyModeSource: Use to set local proxy mode to source. Default is destination\n");
+    fprintf(stdout, "proxy_host: Host name of the proxy server to connect through\n");
+    fprintf(stdout, "proxy_port: Port of the proxy server to connect through\n");
+    fprintf(stdout, "proxy_user_name: Optional, if proxy server requires a user name\n");
+    fprintf(stdout, "proxy_password: Optional, if proxy server requires a password\n");
     fprintf(stdout, "message: message to send. Default: 'Hello World'\n");
 }
 
@@ -63,6 +72,12 @@ int main(int argc, char *argv[])
     string accessToken;
     string message = "Hello World";
     aws_secure_tunneling_local_proxy_mode localProxyMode;
+
+    string proxyHost;
+    uint16_t proxyPort(8080);
+    string proxyUserName;
+    string proxyPassword;
+
     std::shared_ptr<SecureTunnel> secureTunnel;
 
     /*********************** Parse Arguments ***************************/
@@ -85,6 +100,7 @@ int main(int argc, char *argv[])
         s_printHelp();
         exit(-1);
     }
+
     /*
      * Set accessToken either directly or from a file
      */
@@ -106,6 +122,38 @@ int main(int argc, char *argv[])
         {
             fprintf(stderr, "Failed to open access token file");
             exit(-1);
+        }
+    }
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host") || s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    {
+        if (!s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+        {
+            fprintf(stderr, "--proxy_host must be set to connect through a proxy");
+            s_printHelp();
+            exit(-1);
+        }
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+        {
+            fprintf(stderr, "--proxy_port must be set to connect through a proxy");
+            s_printHelp();
+            exit(-1);
+        }
+        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        if (port > 0 && port <= UINT16_MAX)
+        {
+            proxyPort = static_cast<uint16_t>(port);
+        }
+
+        if (s_cmdOptionExists(argv, argv + argc, "--proxy_user_name"))
+        {
+            proxyUserName = s_getCmdOption(argv, argv + argc, "--proxy_user_name");
+        }
+
+        if (s_cmdOptionExists(argv, argv + argc, "--proxy_password"))
+        {
+            proxyPassword = s_getCmdOption(argv, argv + argc, "--proxy_password");
         }
     }
 
@@ -235,23 +283,81 @@ int main(int argc, char *argv[])
 
     auto OnSessionReset = [&]() { fprintf(stdout, "Session Reset\n"); };
 
-    /*********************** Secure Tunnel Setup ***************************/
-
+    /*********************** Proxy Connection Setup ***************************/
     /*
-     * Create a new SecureTunnel using the SecureTunnelBuilder
+     * Setup HttpClientCommectionProxyOptions for connecting through a proxy before the Secure Tunnel
      */
-    secureTunnel =
-        SecureTunnelBuilder(
-            Aws::Crt::g_allocator, bootstrap, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
-            .WithRootCa(caFile.c_str())
-            .WithOnConnectionComplete(OnConnectionComplete)
-            .WithOnConnectionShutdown(OnConnectionShutdown)
-            .WithOnSendDataComplete(OnSendDataComplete)
-            .WithOnDataReceive(OnDataReceive)
-            .WithOnStreamStart(OnStreamStart)
-            .WithOnStreamReset(OnStreamReset)
-            .WithOnSessionReset(OnSessionReset)
-            .Build();
+
+    if (proxyHost.length() > 0)
+    {
+        auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
+        proxyOptions.HostName = proxyHost.c_str();
+        proxyOptions.Port = proxyPort;
+
+        /*
+         * Set up Proxy Strategy if a user name and password is provided
+         */
+        if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
+        {
+            fprintf(stdout, "Creating proxy strategy\n");
+            Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
+            basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
+            basicAuthConfig.Username = proxyUserName.c_str();
+            basicAuthConfig.Password = proxyPassword.c_str();
+            proxyOptions.ProxyStrategy =
+                Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, Aws::Crt::g_allocator);
+            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
+        }
+        else
+        {
+            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        }
+
+        /*********************** Secure Tunnel Setup ***************************/
+        /*
+         * Create a new SecureTunnel using the SecureTunnelBuilder
+         */
+        secureTunnel = SecureTunnelBuilder(
+                           Aws::Crt::g_allocator,
+                           bootstrap,
+                           SocketOptions(),
+                           accessToken.c_str(),
+                           localProxyMode,
+                           endpoint.c_str())
+                           .WithRootCa(caFile.c_str())
+                           .WithHttpClientConnectionProxyOptions(proxyOptions)
+                           .WithOnConnectionComplete(OnConnectionComplete)
+                           .WithOnConnectionShutdown(OnConnectionShutdown)
+                           .WithOnSendDataComplete(OnSendDataComplete)
+                           .WithOnDataReceive(OnDataReceive)
+                           .WithOnStreamStart(OnStreamStart)
+                           .WithOnStreamReset(OnStreamReset)
+                           .WithOnSessionReset(OnSessionReset)
+                           .Build();
+    }
+    else
+    {
+        /*********************** Secure Tunnel Setup ***************************/
+        /*
+         * Create a new SecureTunnel using the SecureTunnelBuilder
+         */
+        secureTunnel = SecureTunnelBuilder(
+                           Aws::Crt::g_allocator,
+                           bootstrap,
+                           SocketOptions(),
+                           accessToken.c_str(),
+                           localProxyMode,
+                           endpoint.c_str())
+                           .WithRootCa(caFile.c_str())
+                           .WithOnConnectionComplete(OnConnectionComplete)
+                           .WithOnConnectionShutdown(OnConnectionShutdown)
+                           .WithOnSendDataComplete(OnSendDataComplete)
+                           .WithOnDataReceive(OnDataReceive)
+                           .WithOnStreamStart(OnStreamStart)
+                           .WithOnStreamReset(OnStreamReset)
+                           .WithOnSessionReset(OnSessionReset)
+                           .Build();
+    }
 
     if (!secureTunnel)
     {

@@ -455,23 +455,9 @@ Provide the necessary arguments along with the source access token and start a s
 
 The two samples will then connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be trasmitted in either direction.
 
+A proxy server may be used by providing the --proxy_host and --proxy_port arguments. If the proxy server requires a user name and password the --proxy_user_name and --proxy_password arguments should be used.
+
 Source: `samples/secure_tunneling/secure_tunnel`
-
-## Secure Tunnel Proxy
-
-This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through a proxy to the AWS Secure Tunnel endpoint using access tokens.
-
-The Secure Tunnel Proxy sample can connect with the Secure Tunnel sample if you would like to use either the source or destination without a proxy server.
-
-Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.com/iot/) (AWS IoT/Manage/Tunnels/Create tunnel) and retrieve the destination and source access tokens. (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial-open-tunnel.html)
-
-Provide the necessary arguments along with the destination access token and start the sample in destination mode (default).
-
-Provide the necessary arguments along with the source access token and start a second sample in source mode by using the flag --localProxyModeSource.
-
-The two samples will then connect to each other through the provided proxy server and then through the AWS Secure Tunnel endpoint and establish a stream through which data can be trasmitted in either direction.
-
-Source: `samples/secure_tunneling/secure_tunnel_proxy`
 
 ## Secure Tunnel Notification
 
