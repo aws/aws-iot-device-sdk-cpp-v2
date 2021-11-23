@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
      */
     bool isTest = false;
     int testCount = 5;
-    if (!s_cmdOptionExists(argv, argv + argc, "--test"))
+    if (s_cmdOptionExists(argv, argv + argc, "--test"))
     {
         isTest = true;
     }
