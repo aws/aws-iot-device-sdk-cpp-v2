@@ -4,7 +4,7 @@ set -e
 
 env
 
-pushd $CODEBUILD_SRC_DIR/samples/secure_tunneling/secure_tunneling
+pushd $CODEBUILD_SRC_DIR/samples/secure_tunneling/secure_tunnel
 
 mkdir _build
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
