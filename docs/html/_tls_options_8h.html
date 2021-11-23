@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/io/TlsOptions.h File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/include/aws/crt/io/TlsOptions.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,13 +70,16 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">TlsOptions.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="_types_8h_source.html">aws/crt/Types.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_channel_handler_8h_source.html">aws/crt/io/ChannelHandler.h</a>&gt;</code><br />
 <code>#include &lt;aws/io/tls_channel_handler.h&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
 </div>
 <p><a href="_tls_options_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -88,6 +91,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context.html">Aws::Crt::Io::TlsContext</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_channel_handler.html">Aws::Crt::Io::TlsChannelHandler</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_tls_channel_handler.html">Aws::Crt::Io::ClientTlsChannelHandler</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -98,19 +105,23 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespace_aws_1_1_crt_1_1_io"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html">Aws::Crt::Io</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a0a62c795db526f1dae48cac634c9af02"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0a62c795db526f1dae48cac634c9af02">Aws::Crt::Io::NewTlsContextImplCallback</a> = std::function&lt; void *(TlsContextOptions &amp;, TlsMode, Allocator *)&gt;</td></tr>
+<tr class="separator:a0a62c795db526f1dae48cac634c9af02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af21a50e456c2e9f276cab7fa5f5ad484"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#af21a50e456c2e9f276cab7fa5f5ad484">Aws::Crt::Io::DeleteTlsContextImplCallback</a> = std::function&lt; void(void *)&gt;</td></tr>
+<tr class="separator:af21a50e456c2e9f276cab7fa5f5ad484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1caba873184fe5fcb1315873e94b4acc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a1caba873184fe5fcb1315873e94b4acc">Aws::Crt::Io::IsTlsAlpnSupportedCallback</a> = std::function&lt; bool()&gt;</td></tr>
+<tr class="separator:a1caba873184fe5fcb1315873e94b4acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e450401823c1e163680c9e185d33cb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#aa0e450401823c1e163680c9e185d33cb">Aws::Crt::Io::NewClientTlsHandlerCallback</a> = std::function&lt; std::shared_ptr&lt; ClientTlsChannelHandler &gt;(struct aws_channel_slot *slot, const struct aws_tls_connection_options &amp;options, Allocator *allocator)&gt;</td></tr>
+<tr class="separator:aa0e450401823c1e163680c9e185d33cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a0e6e89d764e66080a9abd0513079d1b8"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0e6e89d764e66080a9abd0513079d1b8">Aws::Crt::Io::TlsMode</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0e6e89d764e66080a9abd0513079d1b8aef10c650df47bffd6399e5e78da2a9b1">Aws::Crt::Io::CLIENT</a>
 , <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0e6e89d764e66080a9abd0513079d1b8a3d27c95bfdbea691b250894d96852844">Aws::Crt::Io::SERVER</a>
  }</td></tr>
 <tr class="separator:a0e6e89d764e66080a9abd0513079d1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a17604ecd6ea435342b446170f0699ca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a17604ecd6ea435342b446170f0699ca8">Aws::Crt::Io::InitTlsStaticState</a> (Allocator *alloc) noexcept</td></tr>
-<tr class="separator:a17604ecd6ea435342b446170f0699ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad195bbd0910a895e419d14f8264327a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ad195bbd0910a895e419d14f8264327a2">Aws::Crt::Io::CleanUpTlsStaticState</a> () noexcept</td></tr>
-<tr class="separator:ad195bbd0910a895e419d14f8264327a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

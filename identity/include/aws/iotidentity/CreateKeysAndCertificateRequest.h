@@ -1,7 +1,9 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #include <aws/iotidentity/Exports.h>
@@ -14,6 +16,10 @@ namespace Aws
     namespace Iotidentity
     {
 
+        /**
+         * Data needed to perform a CreateKeysAndCertificate operation.
+         *
+         */
         class AWS_IOTIDENTITY_API CreateKeysAndCertificateRequest final
         {
           public:

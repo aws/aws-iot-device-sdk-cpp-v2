@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['internal_5fhooks_0',['internal_hooks',['../namespace_aws.html#a9c1a23b59bdfc4278a3a82e70471083a',1,'Aws']]],
-  ['istream_1',['IStream',['../namespace_aws_1_1_crt_1_1_io.html#a7e18a94cc1dada574dfe654349a94ec2',1,'Aws::Crt::Io']]],
-  ['iterator_2',['iterator',['../class_aws_1_1_crt_1_1basic__string__view.html#ab9e3918a1235dc5b5f8019bb4fc04fbb',1,'Aws::Crt::basic_string_view']]]
+  ['headervaluetype_0',['HeaderValueType',['../namespace_aws_1_1_eventstreamrpc.html#a6a6036d8e92a0a233c2db987e2445d93',1,'Aws::Eventstreamrpc']]],
+  ['hostaddress_1',['HostAddress',['../namespace_aws_1_1_crt_1_1_io.html#a74f2659525c59a6d43f579af6586a1ce',1,'Aws::Crt::Io']]],
+  ['httpheader_2',['HttpHeader',['../namespace_aws_1_1_crt_1_1_http.html#a06495cd28f64029ef3dbd3b831d7b932',1,'Aws::Crt::Http']]]
 ];

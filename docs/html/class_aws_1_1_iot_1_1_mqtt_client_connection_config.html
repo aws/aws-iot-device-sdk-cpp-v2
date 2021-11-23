@@ -98,9 +98,11 @@ Static Public Member Functions</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a85a96c1d928c2dbdd7e09a1def5d4a8e"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html#a85a96c1d928c2dbdd7e09a1def5d4a8e">MqttClient</a></td></tr>
 <tr class="separator:a85a96c1d928c2dbdd7e09a1def5d4a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba884400cce65e6666c88f2d32cb5070"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html#aba884400cce65e6666c88f2d32cb5070">MqttClientConnectionConfigBuilder</a></td></tr>
+<tr class="separator:aba884400cce65e6666c88f2d32cb5070"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Represents a unique configuration for connecting to a single endpoint. You can use a single instance of this class PER endpoint you want to connect to. This object must live through the lifetime of your connection. </p>
+<div class="textblock"><p >Represents a unique configuration for connecting to a single AWS IoT endpoint. You can use a single instance of this class PER endpoint you want to connect to. This object must live through the lifetime of your connection. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8d7b36212b7ae6b550ff66e89d1a0998" name="a8d7b36212b7ae6b550ff66e89d1a0998"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d7b36212b7ae6b550ff66e89d1a0998">&#9670;&nbsp;</a></span>MqttClientConnectionConfig() <span class="overload">[1/2]</span></h2>
@@ -139,7 +141,16 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Creates a client configuration for use with making new AWS <a class="el" href="namespace_aws_1_1_iot.html">Iot</a> specific MQTT Connections with MTLS. </p>
+<p >Creates a client configuration for use with making new AWS <a class="el" href="namespace_aws_1_1_iot.html">Iot</a> specific MQTT Connections with MTLS.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endpoint</td><td>endpoint to connect to </td></tr>
+    <tr><td class="paramname">port</td><td>port to connect to </td></tr>
+    <tr><td class="paramname">socketOptions</td><td>socket options to use when establishing the connection </td></tr>
+    <tr><td class="paramname">tlsContext</td><td>tls context that should be used for all connections sourced from this config </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -193,7 +204,18 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p >Creates a client configuration for use with making new AWS <a class="el" href="namespace_aws_1_1_iot.html">Iot</a> specific MQTT Connections with web sockets. interceptor: a callback invoked during web socket handshake giving you the opportunity to mutate the request for authorization/signing purposes. If not specified, it's assumed you don't need to sign the request. proxyOptions: optional, if you want to use a proxy with websockets, specify the configuration options here.</p>
-<p >If proxy options are used, the tlsContext is applied to the connection to the remote endpoint, NOT the proxy. To make a tls connection to the proxy itself, you'll want to specify tls options in proxyOptions. </p>
+<p >If proxy options are used, the tlsContext is applied to the connection to the remote endpoint, NOT the proxy. To make a tls connection to the proxy itself, you'll want to specify tls options in proxyOptions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endpoint</td><td>endpoint to connect to </td></tr>
+    <tr><td class="paramname">port</td><td>port to connect to </td></tr>
+    <tr><td class="paramname">socketOptions</td><td>socket options to use when establishing the connection </td></tr>
+    <tr><td class="paramname">tlsContext</td><td>tls context that should be used for all connections sourced from this config </td></tr>
+    <tr><td class="paramname">interceptor</td><td>websocket upgrade handshake transformation function </td></tr>
+    <tr><td class="paramname">proxyOptions</td><td>proxy configuration options </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -299,9 +321,31 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="aba884400cce65e6666c88f2d32cb5070" name="aba884400cce65e6666c88f2d32cb5070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba884400cce65e6666c88f2d32cb5070">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
+<li>crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
+<li>crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

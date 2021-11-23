@@ -108,6 +108,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa89ca9b11fd06e98415700cee41d0539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af780ddec5d44ac39545613efe84a1db2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#af780ddec5d44ac39545613efe84a1db2">WithMinimumTlsVersion</a> (aws_tls_versions minimumTlsVersion) noexcept</td></tr>
 <tr class="separator:af780ddec5d44ac39545613efe84a1db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d711e88a57001ee652525e82bd97b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a26d711e88a57001ee652525e82bd97b2">WithHttpProxyOptions</a> (const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options.html">Crt::Http::HttpClientConnectionProxyOptions</a> &amp;proxyOptions) noexcept</td></tr>
+<tr class="separator:a26d711e88a57001ee652525e82bd97b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae396c5e18a1be6f98bc046805fc4fcd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#ae396c5e18a1be6f98bc046805fc4fcd0">WithMetricsCollection</a> (bool enabled)</td></tr>
+<tr class="separator:ae396c5e18a1be6f98bc046805fc4fcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577996fbb4ed180e38dddc3244253ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a577996fbb4ed180e38dddc3244253ceb">WithSdkName</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;sdkName)</td></tr>
+<tr class="separator:a577996fbb4ed180e38dddc3244253ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae061f5bffb7265309dda480190d55bdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#ae061f5bffb7265309dda480190d55bdb">WithSdkVersion</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;sdkVersion)</td></tr>
+<tr class="separator:ae061f5bffb7265309dda480190d55bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49880efe6d3db29a6d23e85b20ec2bcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html">MqttClientConnectionConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a49880efe6d3db29a6d23e85b20ec2bcc">Build</a> () noexcept</td></tr>
 <tr class="separator:a49880efe6d3db29a6d23e85b20ec2bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d082bf8f0bca028a869a1f14b004028"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a0d082bf8f0bca028a869a1f14b004028">operator bool</a> () const noexcept</td></tr>
@@ -174,7 +182,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets the builder up for MTLS using certPath and pkeyPath. These are files on disk and must be in the PEM format. </p>
+<p >Sets the builder up for MTLS using certPath and pkeyPath. These are files on disk and must be in the PEM format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">certPath</td><td>path to the X509 certificate (pem file) to use </td></tr>
+    <tr><td class="paramname">pkeyPath</td><td>path to the private key (pem file) to use </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -217,7 +232,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets the builder up for MTLS using cert and pkey. These are in-memory buffers and must be in the PEM format. </p>
+<p >Sets the builder up for MTLS using cert and pkey. These are in-memory buffers and must be in the PEM format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cert</td><td>buffer containing the X509 certificate in a PEM format </td></tr>
+    <tr><td class="paramname">pkey</td><td>buffer containing the private key in a PEM format </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -254,7 +276,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets the builder up for Websocket connection. </p>
+<p >Sets the builder up for Websocket connection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>websocket configuration information </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -281,7 +309,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Builds a client configuration object from the set options. </p>
+<p >Builds a client configuration object from the set options.</p>
+<dl class="section return"><dt>Returns</dt><dd>a new client connection config instance </dd></dl>
 
 </div>
 </div>
@@ -360,7 +389,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets the certificate authority for the endpoint you're connecting to. This is a path to a file on disk and must be in PEM format. </p>
+<p >Sets the certificate authority for the endpoint you're connecting to. This is a path to a file on disk and must be in PEM format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">caPath</td><td>path to the CA file in PEM format</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -387,7 +423,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets the certificate authority for the endpoint you're connecting to. This is an in-memory buffer and must be in PEM format. </p>
+<p >Sets the certificate authority for the endpoint you're connecting to. This is an in-memory buffer and must be in PEM format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cert</td><td>buffer containing the CA certificate in a PEM format</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -406,7 +449,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Sets endpoint to connect to. </p>
+<p >Sets endpoint to connect to.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endpoint</td><td>endpoint to connect to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -425,7 +475,74 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Sets endpoint to connect to. </p>
+<p >Sets endpoint to connect to.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endpoint</td><td>endpoint to connect to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
+
+</div>
+</div>
+<a id="a26d711e88a57001ee652525e82bd97b2" name="a26d711e88a57001ee652525e82bd97b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d711e88a57001ee652525e82bd97b2">&#9670;&nbsp;</a></span>WithHttpProxyOptions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp; Aws::Iot::MqttClientConnectionConfigBuilder::WithHttpProxyOptions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options.html">Crt::Http::HttpClientConnectionProxyOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>proxyOptions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Sets http proxy options.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proxyOptions</td><td>proxy configuration options for connection establishment</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
+
+</div>
+</div>
+<a id="ae396c5e18a1be6f98bc046805fc4fcd0" name="ae396c5e18a1be6f98bc046805fc4fcd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae396c5e18a1be6f98bc046805fc4fcd0">&#9670;&nbsp;</a></span>WithMetricsCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp; Aws::Iot::MqttClientConnectionConfigBuilder::WithMetricsCollection </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Whether to send the SDK name and version number in the MQTT CONNECT packet. Default is True.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td>true to send SDK version/name in the connect for metrics gathering purposes</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -452,6 +569,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Sets the minimum tls version that is acceptable for connection establishment</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">minimumTlsVersion</td><td>minimum tls version allowed in client connections</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -478,7 +603,66 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Overrides the default port. By default, if ALPN is supported, 443 will be used. Otherwise 8883 will be used. If you specify 443 and ALPN is not supported, we will still attempt to connect over 443 without ALPN. </p>
+<p >Overrides the default port. By default, if ALPN is supported, 443 will be used. Otherwise 8883 will be used. If you specify 443 and ALPN is not supported, we will still attempt to connect over 443 without ALPN.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>port to connect to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
+
+</div>
+</div>
+<a id="a577996fbb4ed180e38dddc3244253ceb" name="a577996fbb4ed180e38dddc3244253ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577996fbb4ed180e38dddc3244253ceb">&#9670;&nbsp;</a></span>WithSdkName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp; Aws::Iot::MqttClientConnectionConfigBuilder::WithSdkName </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
+          <td class="paramname"><em>sdkName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Overrides the default SDK Name to send as a metric in the MQTT CONNECT packet.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sdkName</td><td>string to use as the SDK name parameter in the connection string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
+
+</div>
+</div>
+<a id="ae061f5bffb7265309dda480190d55bdb" name="ae061f5bffb7265309dda480190d55bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae061f5bffb7265309dda480190d55bdb">&#9670;&nbsp;</a></span>WithSdkVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp; Aws::Iot::MqttClientConnectionConfigBuilder::WithSdkVersion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;&#160;</td>
+          <td class="paramname"><em>sdkVersion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Overrides the default SDK Version to send as a metric in the MQTT CONNECT packet.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sdkVersion</td><td>string to use as the SDK version parameter in the connection string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -505,7 +689,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >TCP option: Sets the connect timeout. Defaults to 3 seconds. </p>
+<p >TCP option: Sets the connect timeout. Defaults to 3 seconds.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectTimeoutMs</td><td>socket connection timeout</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -531,7 +722,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >TCP option: Enables TCP keep alive. Defaults to off. </p>
+<p >TCP option: Enables TCP keep alive. Defaults to off.</p>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -558,7 +750,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >TCP option: Sets the frequency of sending keep alive probes in seconds once the keep alive timeout expires. Defaults to kernel defaults. </p>
+<p >TCP option: Sets the frequency of sending keep alive probes in seconds once the keep alive timeout expires. Defaults to kernel defaults.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keepAliveIntervalSecs</td><td>the frequency of sending keep alive probes in seconds once the keep alive timeout expires</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -585,7 +784,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >TCP option: Sets the amount of keep alive probes allowed to fail before the connection is terminated. Defaults to kernel defaults. </p>
+<p >TCP option: Sets the amount of keep alive probes allowed to fail before the connection is terminated. Defaults to kernel defaults.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxProbes</td><td>the amount of keep alive probes allowed to fail before the connection is terminated</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
@@ -612,13 +818,20 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >TCP option: Sets time before keep alive probes are sent. Defaults to kernel defaults </p>
+<p >TCP option: Sets time before keep alive probes are sent. Defaults to kernel defaults</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keepAliveTimeoutSecs</td><td>time interval of no activity, in seconds, before keep alive probes get sent</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this builder object </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
+<li>crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
+<li>crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

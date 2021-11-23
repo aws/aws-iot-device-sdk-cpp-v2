@@ -98,6 +98,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_chain_default_config.html">CredentialsProviderChainDefaultConfig</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_delegate_config.html">CredentialsProviderDelegateConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_imds_config.html">CredentialsProviderImdsConfig</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_profile_config.html">CredentialsProviderProfileConfig</a></td></tr>
@@ -105,6 +107,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_static_config.html">CredentialsProviderStaticConfig</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_x509_config.html">CredentialsProviderX509Config</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_delegate_credentials_provider_callback_args.html">DelegateCredentialsProviderCallbackArgs</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_auth_1_1_http_signer_callback_data.html">HttpSignerCallbackData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +125,8 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a5c7cfc1fb715fdb4c2d8945678d68199"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a5c7cfc1fb715fdb4c2d8945678d68199">OnCredentialsResolved</a> = std::function&lt; void(std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_credentials.html">Credentials</a> &gt;, int errorCode)&gt;</td></tr>
 <tr class="separator:a5c7cfc1fb715fdb4c2d8945678d68199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac249e833af294ff56a84bfd992f090d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ac249e833af294ff56a84bfd992f090d1">GetCredentialsHandler</a> = std::function&lt; std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_credentials.html">Credentials</a> &gt;()&gt;</td></tr>
+<tr class="separator:ac249e833af294ff56a84bfd992f090d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4ca80a8fc66d38af49bf5431b5c8ebf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ab4ca80a8fc66d38af49bf5431b5c8ebf">OnHttpRequestSigningComplete</a> = std::function&lt; void(const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">Aws::Crt::Http::HttpRequest</a> &gt; &amp;, int)&gt;</td></tr>
 <tr class="separator:ab4ca80a8fc66d38af49bf5431b5c8ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2cea667fd111a653516b658d877922d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae2cea667fd111a653516b658d877922d">ShouldSignHeaderCb</a> = bool(*)(const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> *, void *)</td></tr>
@@ -132,6 +138,7 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:a1ffa3d1dd5b6b4b4c917b5fff2a00bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bb6cb21cf640b39af9e036cfeecdca5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a0bb6cb21cf640b39af9e036cfeecdca5">SigningAlgorithm</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71">SigV4</a> = AWS_SIGNING_ALGORITHM_V4
+, <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a0bb6cb21cf640b39af9e036cfeecdca5a34294474e9d0640cc9e43eddaedacff0">SigV4A</a> = AWS_SIGNING_ALGORITHM_V4_ASYMMETRIC
  }</td></tr>
 <tr class="separator:a0bb6cb21cf640b39af9e036cfeecdca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5eec67d027b78e622d984a5df341a66"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae5eec67d027b78e622d984a5df341a66">SignatureType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc">HttpRequestViaHeaders</a> = AWS_ST_HTTP_REQUEST_HEADERS
@@ -147,12 +154,31 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9eeae13f9e18779ae17865afc0e1c277"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a9eeae13f9e18779ae17865afc0e1c277">s_CreateWrappedProvider</a> (struct aws_credentials_provider *raw_provider, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator)</td></tr>
-<tr class="separator:a9eeae13f9e18779ae17865afc0e1c277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe1f550e2a7d7a33738254652d641711"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#afe1f550e2a7d7a33738254652d641711">s_CreateWrappedProvider</a> (struct aws_credentials_provider *raw_provider, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator)</td></tr>
+<tr class="separator:afe1f550e2a7d7a33738254652d641711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a933df79dd7fa17b74d1b7572f852f4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a8a933df79dd7fa17b74d1b7572f852f4">s_onDelegateGetCredentials</a> (void *delegate_user_data, aws_on_get_credentials_callback_fn callback, void *callback_user_data)</td></tr>
+<tr class="separator:a8a933df79dd7fa17b74d1b7572f852f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24010121ee7b4bb9f216288be62aa939"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a24010121ee7b4bb9f216288be62aa939">s_onDelegateShutdownComplete</a> (void *user_data)</td></tr>
+<tr class="separator:a24010121ee7b4bb9f216288be62aa939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53d9086fb22c2cab6d4679b6ef219696"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a53d9086fb22c2cab6d4679b6ef219696">s_http_signing_complete_fn</a> (struct aws_signing_result *result, int errorCode, void *userdata)</td></tr>
 <tr class="separator:a53d9086fb22c2cab6d4679b6ef219696"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="ac249e833af294ff56a84bfd992f090d1" name="ac249e833af294ff56a84bfd992f090d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac249e833af294ff56a84bfd992f090d1">&#9670;&nbsp;</a></span>GetCredentialsHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ac249e833af294ff56a84bfd992f090d1">Aws::Crt::Auth::GetCredentialsHandler</a> = typedef std::function&lt;std::shared_ptr&lt;<a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_credentials.html">Credentials</a>&gt;()&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Invoked when the native delegate credentials provider needs to fetch a credential. </p>
+
+</div>
+</div>
 <a id="a5c7cfc1fb715fdb4c2d8945678d68199" name="a5c7cfc1fb715fdb4c2d8945678d68199"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5c7cfc1fb715fdb4c2d8945678d68199">&#9670;&nbsp;</a></span>OnCredentialsResolved</h2>
 
@@ -217,11 +243,17 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >What kind of AWS signature should be computed? </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc" name="ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc"></a>HttpRequestViaHeaders&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68" name="ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68"></a>HttpRequestViaQueryParams&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98" name="ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98"></a>HttpRequestChunk&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223" name="ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223"></a>HttpRequestEvent&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc" name="ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc"></a>HttpRequestViaHeaders&#160;</td><td class="fielddoc"><p >A signature for a full http request should be computed, with header updates applied to the signing result. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68" name="ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68"></a>HttpRequestViaQueryParams&#160;</td><td class="fielddoc"><p >A signature for a full http request should be computed, with query param updates applied to the signing result. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98" name="ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98"></a>HttpRequestChunk&#160;</td><td class="fielddoc"><p >Compute a signature for a payload chunk. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223" name="ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223"></a>HttpRequestEvent&#160;</td><td class="fielddoc"><p >Compute a signature for an event stream event.</p>
+<p >This option is not yet supported. </p>
+</td></tr>
 </table>
 
 </div>
@@ -245,9 +277,12 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Controls if signing adds a header containing the canonical request's body value </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754" name="a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2" name="a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2"></a>XAmzContentSha256&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754" name="a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"><p >Do not add a header </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2" name="a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2"></a>XAmzContentSha256&#160;</td><td class="fielddoc"><p >Add the "x-amz-content-sha256" header with the canonical request's body value </p>
+</td></tr>
 </table>
 
 </div>
@@ -271,8 +306,12 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Enumeration indicating what version of the AWS signing process we should use. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71" name="a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71"></a>SigV4&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71" name="a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71"></a>SigV4&#160;</td><td class="fielddoc"><p >Standard AWS Sigv4 signing using a symmetric secret, per <a href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html</a> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0bb6cb21cf640b39af9e036cfeecdca5a34294474e9d0640cc9e43eddaedacff0" name="a0bb6cb21cf640b39af9e036cfeecdca5a34294474e9d0640cc9e43eddaedacff0"></a>SigV4A&#160;</td><td class="fielddoc"><p >A variant of AWS Sigv4 signing that uses ecdsa signatures based on an ECC key, rather than relying on a shared secret. </p>
+</td></tr>
 </table>
 
 </div>
@@ -296,6 +335,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >RTTI indicator for signing configuration. We currently only support a single type (AWS), but we could expand to others in the future if needed. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac" name="a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac"></a>Aws&#160;</td><td class="fielddoc"></td></tr>
 </table>
@@ -303,8 +343,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9eeae13f9e18779ae17865afc0e1c277" name="a9eeae13f9e18779ae17865afc0e1c277"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9eeae13f9e18779ae17865afc0e1c277">&#9670;&nbsp;</a></span>s_CreateWrappedProvider()</h2>
+<a id="afe1f550e2a7d7a33738254652d641711" name="afe1f550e2a7d7a33738254652d641711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe1f550e2a7d7a33738254652d641711">&#9670;&nbsp;</a></span>s_CreateWrappedProvider()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +353,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::shared_ptr&lt;<a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a>&gt; Aws::Crt::Auth::s_CreateWrappedProvider </td>
+          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a> &gt; Aws::Crt::Auth::s_CreateWrappedProvider </td>
           <td>(</td>
           <td class="paramtype">struct aws_credentials_provider *&#160;</td>
           <td class="paramname"><em>raw_provider</em>, </td>
@@ -370,6 +410,74 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a933df79dd7fa17b74d1b7572f852f4" name="a8a933df79dd7fa17b74d1b7572f852f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a933df79dd7fa17b74d1b7572f852f4">&#9670;&nbsp;</a></span>s_onDelegateGetCredentials()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int Aws::Crt::Auth::s_onDelegateGetCredentials </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>delegate_user_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">aws_on_get_credentials_callback_fn&#160;</td>
+          <td class="paramname"><em>callback</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>callback_user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24010121ee7b4bb9f216288be62aa939" name="a24010121ee7b4bb9f216288be62aa939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24010121ee7b4bb9f216288be62aa939">&#9670;&nbsp;</a></span>s_onDelegateShutdownComplete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Aws::Crt::Auth::s_onDelegateShutdownComplete </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>user_data</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>

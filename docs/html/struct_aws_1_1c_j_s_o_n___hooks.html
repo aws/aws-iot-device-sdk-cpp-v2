@@ -68,7 +68,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="struct_aws_1_1c_j_s_o_n___hooks-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Aws::cJSON_Hooks Struct Reference</div></div>
 </div><!--header-->
@@ -76,36 +76,44 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="c_j_s_o_n_8h_source.html">cJSON.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a6fa616f579ebd9e212da2b8cdd0bd25c"><td class="memItemLeft" align="right" valign="top">void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a6fa616f579ebd9e212da2b8cdd0bd25c">malloc_fn</a> )(size_t sz)</td></tr>
-<tr class="separator:a6fa616f579ebd9e212da2b8cdd0bd25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ce27bf4316bc0f91c43984b1a50896"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a45ce27bf4316bc0f91c43984b1a50896">free_fn</a> )(void *ptr)</td></tr>
-<tr class="separator:a45ce27bf4316bc0f91c43984b1a50896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a16a6011cc208ac9a833d3794190bf305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a1a9414de5e4136bd03a743c899af7fdd">void</a> *<a class="el" href="c_j_s_o_n_8h.html#a79203c3ba406ffd5736627cc1e082e38">CJSON_CDECL</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a16a6011cc208ac9a833d3794190bf305">malloc_fn</a> (size_t sz)</td></tr>
+<tr class="separator:a16a6011cc208ac9a833d3794190bf305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a9414de5e4136bd03a743c899af7fdd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a1a9414de5e4136bd03a743c899af7fdd">void</a> (<a class="el" href="c_j_s_o_n_8h.html#a79203c3ba406ffd5736627cc1e082e38">CJSON_CDECL</a> *free_fn)(void *ptr)</td></tr>
+<tr class="separator:a1a9414de5e4136bd03a743c899af7fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a45ce27bf4316bc0f91c43984b1a50896" name="a45ce27bf4316bc0f91c43984b1a50896"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45ce27bf4316bc0f91c43984b1a50896">&#9670;&nbsp;</a></span>free_fn</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a16a6011cc208ac9a833d3794190bf305" name="a16a6011cc208ac9a833d3794190bf305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a6011cc208ac9a833d3794190bf305">&#9670;&nbsp;</a></span>malloc_fn()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* Aws::cJSON_Hooks::free_fn) (void *ptr)</td>
+          <td class="memname"><a class="el" href="struct_aws_1_1c_j_s_o_n___hooks.html#a1a9414de5e4136bd03a743c899af7fdd">void</a> *<a class="el" href="c_j_s_o_n_8h.html#a79203c3ba406ffd5736627cc1e082e38">CJSON_CDECL</a> * Aws::cJSON_Hooks::malloc_fn </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>sz</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a6fa616f579ebd9e212da2b8cdd0bd25c" name="a6fa616f579ebd9e212da2b8cdd0bd25c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fa616f579ebd9e212da2b8cdd0bd25c">&#9670;&nbsp;</a></span>malloc_fn</h2>
+<a id="a1a9414de5e4136bd03a743c899af7fdd" name="a1a9414de5e4136bd03a743c899af7fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a9414de5e4136bd03a743c899af7fdd">&#9670;&nbsp;</a></span>void()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void*(* Aws::cJSON_Hooks::malloc_fn) (size_t sz)</td>
+          <td class="memname">Aws::cJSON_Hooks::void </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c_j_s_o_n_8h.html#a79203c3ba406ffd5736627cc1e082e38">CJSON_CDECL</a> *&#160;</td>
+          <td class="paramname"><em>free_fn</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -113,7 +121,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/external/<a class="el" href="c_j_s_o_n_8h_source.html">cJSON.h</a></li>
+<li>crt/aws-crt-cpp/include/aws/crt/external/<a class="el" href="c_j_s_o_n_8h_source.html">cJSON.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

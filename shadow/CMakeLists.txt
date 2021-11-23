@@ -82,7 +82,7 @@ if (BUILD_SHARED_LIBS)
 else()
     install(TARGETS IotShadow-cpp
             EXPORT IotShadow-cpp-targets
-            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} 
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
@@ -91,9 +91,9 @@ target_include_directories(IotShadow-cpp PUBLIC
         $<INSTALL_INTERFACE:include>)
 
 if (BUILD_DEPS)
-	if (NOT IS_SUBDIRECTORY_INCLUDE)
-		aws_use_package(aws-crt-cpp)
-	endif()
+    if (NOT IS_SUBDIRECTORY_INCLUDE)
+        aws_use_package(aws-crt-cpp)
+    endif()
 endif()
 
 target_link_libraries(IotShadow-cpp ${DEP_AWS_LIBS})
