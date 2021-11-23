@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../docsrc_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)'],['../_r_e_a_d_m_e_8md.html',1,'(Global Namespace)']]],
+  ['readme_2emd_0',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['registerthingrequest_2ecpp_1',['RegisterThingRequest.cpp',['../_register_thing_request_8cpp.html',1,'']]],
   ['registerthingrequest_2eh_2',['RegisterThingRequest.h',['../_register_thing_request_8h.html',1,'']]],
   ['registerthingresponse_2ecpp_3',['RegisterThingResponse.cpp',['../_register_thing_response_8cpp.html',1,'']]],
