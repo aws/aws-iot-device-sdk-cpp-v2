@@ -31,23 +31,23 @@ namespace Aws
             {
                 switch (status)
                 {
-                    case RejectedErrorCode::INVALID_TOPIC:
+                    case RejectedErrorCode::InvalidTopic:
                         return "InvalidTopic";
-                    case RejectedErrorCode::INVALID_STATE_TRANSITION:
+                    case RejectedErrorCode::InvalidStateTransition:
                         return "InvalidStateTransition";
-                    case RejectedErrorCode::RESOURCE_NOT_FOUND:
+                    case RejectedErrorCode::ResourceNotFound:
                         return "ResourceNotFound";
-                    case RejectedErrorCode::INVALID_REQUEST:
+                    case RejectedErrorCode::InvalidRequest:
                         return "InvalidRequest";
-                    case RejectedErrorCode::REQUEST_THROTTLED:
+                    case RejectedErrorCode::RequestThrottled:
                         return "RequestThrottled";
-                    case RejectedErrorCode::INTERNAL_ERROR:
+                    case RejectedErrorCode::InternalError:
                         return "InternalError";
-                    case RejectedErrorCode::TERMINAL_STATE_REACHED:
+                    case RejectedErrorCode::TerminalStateReached:
                         return "TerminalStateReached";
-                    case RejectedErrorCode::INVALID_JSON:
+                    case RejectedErrorCode::InvalidJson:
                         return "InvalidJson";
-                    case RejectedErrorCode::VERSION_MISMATCH:
+                    case RejectedErrorCode::VersionMismatch:
                         return "VersionMismatch";
                     default:
                         assert(0);
