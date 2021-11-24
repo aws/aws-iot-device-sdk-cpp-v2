@@ -17,6 +17,12 @@ read -r a[{1..10}] <<< $(aws iotsecuretunneling open-tunnel)
 SOURCETOKEN=${a[7]}
 DESTINATIONTOKEN=${a[9]}
 
+echo "SOURCETOKEN"
+echo $SOURCETOKEN
+
+echo "DESTINATIONTOKEN"
+echo $DESTINATIONTOKEN
+
 echo "got tokens"
 
 echo "Secure Tunnel Destination test"
