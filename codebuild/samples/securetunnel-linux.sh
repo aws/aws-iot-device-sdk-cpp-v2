@@ -12,9 +12,10 @@ cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
 echo "aws iotsecuretunneling open-tunnel"
-echo $(aws iotsecuretunneling open-tunnel)
+RESPONSE=$(aws iotsecuretunneling open-tunnel)
+echo $RESPONSE
 
-read -r a[{1..10}] <<< $(aws iotsecuretunneling open-tunnel)
+read -r a[{1..10}] <<< RESPONSE
 SOURCETOKEN=${a[7]}
 DESTINATIONTOKEN=${a[9]}
 
