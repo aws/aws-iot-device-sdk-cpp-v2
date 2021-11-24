@@ -13,6 +13,8 @@ make -j
 
 echo "creating tunnel and getting variables"
 
+echo $(aws secretsmanager get-secret-value iotsecuretunneling open-tunnel)
+
 read -r a[{1..10}] <<< $(aws secretsmanager get-secret-value iotsecuretunneling open-tunnel)
 SOURCETOKEN=${a[7]}
 DESTINATIONTOKEN=${a[9]}
