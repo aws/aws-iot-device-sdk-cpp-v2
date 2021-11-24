@@ -11,9 +11,9 @@ cd _build
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
-echo "make -j"
+echo "creating tunnel and getting variables"
 
-read -r a[{1..10}] <<< $(aws iotsecuretunneling open-tunnel)
+read -r a[{1..10}] <<< $(aws secretsmanager get-secret-value iotsecuretunneling open-tunnel)
 SOURCETOKEN=${a[7]}
 DESTINATIONTOKEN=${a[9]}
 
