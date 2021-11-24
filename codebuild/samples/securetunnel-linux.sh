@@ -11,14 +11,13 @@ cd _build
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
-echo "creating tunnel and getting variables"
-
+echo "aws secretsmanager get-secret-value iotsecuretunneling open-tunnel"
 echo $(aws secretsmanager get-secret-value iotsecuretunneling open-tunnel)
 
-echo("secretsmanager return")
+echo "secretsmanager return"
 echo $(aws secretsmanager get-secret-value --secret-id "unit-test/endpoint" --query "SecretString" | cut -f2 -d":" | sed -e 's/[\\\"\}]//g')
 
-echo "tunnel request"
+echo "aws iotsecuretunneling open-tunnel"
 echo $(aws iotsecuretunneling open-tunnel)
 
 read -r a[{1..10}] <<< $(aws secretsmanager get-secret-value iotsecuretunneling open-tunnel)
