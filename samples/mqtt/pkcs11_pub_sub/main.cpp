@@ -3,18 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
-#include <aws/crt/io/Pkcs11.h>
-#include <aws/crt/io/TlsOptions.h>
-
-#include <aws/iot/MqttClient.h>
-
-#include <algorithm>
 #include <aws/crt/UUID.h>
-#include <chrono>
-#include <condition_variable>
-#include <iostream>
-#include <mutex>
-#include <string>
+#include <aws/crt/io/Pkcs11.h>
+#include <aws/iot/MqttClient.h>
 
 using namespace Aws::Crt;
 
@@ -131,7 +122,7 @@ int main(int argc, char *argv[])
     String pkcs11KeyLabel = args.GetOptional("--key_label", "");
     String topic = args.GetOptional("--topic", "test/topic");
     String messagePayload = args.GetOptional("--message", "Hello world!");
-    int messageCount = std::stoi(std::string(args.GetOptional("--count", "10")));
+    int messageCount = std::stoi(args.GetOptional("--count", "10").c_str());
     String caFile = args.GetOptional("--ca_file", "");
     String clientId = args.GetOptional("--client_id", String("test-") + Aws::Crt::UUID().ToString());
 
@@ -184,7 +175,7 @@ int main(int argc, char *argv[])
 
     if (!pkcs11SlotIdStr.empty())
     {
-        uint64_t slotId = std::stoull(std::string(pkcs11SlotIdStr));
+        uint64_t slotId = std::stoull(pkcs11SlotIdStr.c_str());
         pkcs11Options.SetSlotId(slotId);
     }
 
@@ -311,7 +302,7 @@ int main(int argc, char *argv[])
 
     std::mutex receiveMutex;
     std::condition_variable receiveSignal;
-    uint32_t receivedCount = 0;
+    int receivedCount = 0;
 
     /*
      * This is invoked upon the receipt of a Publish on a subscribed topic.
@@ -362,7 +353,7 @@ int main(int argc, char *argv[])
     connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
     subscribeFinishedPromise.get_future().wait();
 
-    uint32_t publishedCount = 0;
+    int publishedCount = 0;
     while (publishedCount < messageCount)
     {
         ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
