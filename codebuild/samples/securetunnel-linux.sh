@@ -30,7 +30,8 @@ echo $DESTINATIONTOKEN
 echo "got tokens"
 
 echo "Secure Tunnel Destination test"
-./secure-tunnel --region us-east-1 --access_token $DESTINATIONTOKEN
+./secure-tunnel --test --region us-east-1 --access_token $DESTINATIONTOKEN &
+sleep 10 &
 
 echo "Secure Tunnel Source test"
 ./secure-tunnel --localProxyModeSource --region us-east-1 --access_token $SOURCETOKEN
