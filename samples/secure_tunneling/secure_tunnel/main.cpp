@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
      * For internal testing
      */
     bool isTest = s_cmdOptionExists(argv, argv + argc, "--test");
-    int testCount = 5;
+    int expectedMessageCount = 5;
 
     std::shared_ptr<SecureTunnel> secureTunnel;
 
@@ -275,8 +275,8 @@ int main(int argc, char *argv[])
                 secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
                 if (isTest)
                 {
-                    testCount--;
-                    if (testCount == 0)
+                    expectedMessageCount--;
+                    if (expectedMessageCount == 0)
                     {
                         exit(0);
                     }
