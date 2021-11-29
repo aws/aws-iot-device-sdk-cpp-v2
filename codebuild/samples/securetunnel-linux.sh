@@ -15,9 +15,11 @@ echo "aws iotsecuretunneling open-tunnel"
 RESPONSE=$(aws iotsecuretunneling open-tunnel)
 echo $RESPONSE
 
+
+
 read -r a[{1..10}] <<< RESPONSE
-SOURCETOKEN=${a[7]}
-DESTINATIONTOKEN=${a[9]}
+SOURCETOKEN= grep -oP '(?<="sourceAccessToken": ")[^"]*' a.json
+DESTINATIONTOKEN=grep -oP '(?<="destinationAccessToken": ")[^"]*' a.json
 
 echo "SOURCETOKEN"
 echo $SOURCETOKEN
