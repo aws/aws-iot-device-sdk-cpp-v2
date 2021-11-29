@@ -18,16 +18,8 @@ array=(${RESPONSE//:/ })
 echo "Assigning SOURCETOKEN"
 SOURCETOKEN="${array[11]}"
 
-echo "SOURCETOKEN"
-echo $SOURCETOKEN
-
 echo "Assigning DESTINATIONTOKEN"
 DESTINATIONTOKEN="${array[13]}"
-
-echo "DESTINATIONTOKEN"
-echo $DESTINATIONTOKEN
-
-echo "got tokens"
 
 echo "Secure Tunnel Destination test"
 ./secure-tunnel --test --region us-east-1 --access_token $DESTINATIONTOKEN &
