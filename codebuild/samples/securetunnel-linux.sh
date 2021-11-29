@@ -13,16 +13,16 @@ make -j
 
 echo "aws iotsecuretunneling open-tunnel"
 RESPONSE=$(aws iotsecuretunneling open-tunnel)
-echo $RESPONSE
+array=(${RESPONSE//:/ })
 
-
-
-read -r a[{1..10}] <<< RESPONSE
-SOURCETOKEN= grep -oP '(?<="sourceAccessToken": ")[^"]*' RESPONSE
-DESTINATIONTOKEN=grep -oP '(?<="destinationAccessToken": ")[^"]*' RESPONSE
+echo "Assigning SOURCETOKEN"
+SOURCETOKEN="${array[11]}"
 
 echo "SOURCETOKEN"
 echo $SOURCETOKEN
+
+echo "Assigning DESTINATIONTOKEN"
+DESTINATIONTOKEN="${array[13]}"
 
 echo "DESTINATIONTOKEN"
 echo $DESTINATIONTOKEN
