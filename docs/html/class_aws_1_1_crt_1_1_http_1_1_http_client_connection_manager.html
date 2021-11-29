@@ -147,7 +147,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Acquires a connection from the pool. onClientConnectionAvailable will be invoked upon an available connection. Returns true if the connection request was successfully queued, returns false if it failed. On failure, onClientConnectionAvailable will not be invoked. After receiving a connection, it will automatically be cleaned up when your last reference to the shared_ptr is released. </p>
+<p >Acquires a connection from the pool. onClientConnectionAvailable will be invoked upon an available connection. Returns true if the connection request was successfully queued, returns false if it failed. On failure, onClientConnectionAvailable will not be invoked. After receiving a connection, it will automatically be cleaned up when your last reference to the shared_ptr is released.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">onClientConnectionAvailable</td><td>callback to invoke when a connection becomes available or the acquisition attempt terminates </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the acquisition was successfully kicked off, false otherwise (no callback) </dd></dl>
 
 </div>
 </div>
@@ -173,7 +180,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Starts shutdown of the connection manager. Returns a future to the connection manager's shutdown process. If EnableBlockingDestruct was enabled on the connection manager options, calling get() on the returned future will block until the last connection is released. If the option is not set, get() will immediately return. </p>
+<p >Starts shutdown of the connection manager. Returns a future to the connection manager's shutdown process. If EnableBlockingDestruct was enabled on the connection manager options, calling get() on the returned future will block until the last connection is released. If the option is not set, get() will immediately return. </p><dl class="section return"><dt>Returns</dt><dd>future which will complete when shutdown has completed </dd></dl>
 
 </div>
 </div>
@@ -210,7 +217,15 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Factory function for connection managers </p>
+<p >Factory function for connection managers</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectionManagerOptions</td><td>connection manager configuration data </td></tr>
+    <tr><td class="paramname">allocator</td><td>allocator to use </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new connection manager instance </dd></dl>
 
 </div>
 </div>
@@ -238,8 +253,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/http/<a class="el" href="_http_connection_manager_8h_source.html">HttpConnectionManager.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/http/<a class="el" href="_http_connection_manager_8cpp.html">HttpConnectionManager.cpp</a></li>
+<li>crt/aws-crt-cpp/include/aws/crt/http/<a class="el" href="_http_connection_manager_8h_source.html">HttpConnectionManager.h</a></li>
+<li>crt/aws-crt-cpp/source/http/<a class="el" href="_http_connection_manager_8cpp.html">HttpConnectionManager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

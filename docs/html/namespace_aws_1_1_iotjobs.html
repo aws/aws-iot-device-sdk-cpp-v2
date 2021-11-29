@@ -375,6 +375,7 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The status of the job execution. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab23745174d4d2f57ebf542bdbd1bacf0a9df29ce7ca629ff1d47bca1149d9faae" name="ab23745174d4d2f57ebf542bdbd1bacf0a9df29ce7ca629ff1d47bca1149d9faae"></a>QUEUED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab23745174d4d2f57ebf542bdbd1bacf0aca69f96c768067fbff6c911ca87bccc9" name="ab23745174d4d2f57ebf542bdbd1bacf0aca69f96c768067fbff6c911ca87bccc9"></a>IN_PROGRESS&#160;</td><td class="fielddoc"></td></tr>
@@ -407,16 +408,26 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >A value indicating the kind of error encountered while processing an AWS IoT Jobs request </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbae4ab25d889337f20e20e9aef1b2b12d8" name="a6503db31b23e2336b0a746dd484338dbae4ab25d889337f20e20e9aef1b2b12d8"></a>InvalidTopic&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba4f67c44b93cc62755fee6051885d5e5a" name="a6503db31b23e2336b0a746dd484338dba4f67c44b93cc62755fee6051885d5e5a"></a>InvalidJson&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbad544eb3da2f68d24cf92a8519ed53a31" name="a6503db31b23e2336b0a746dd484338dbad544eb3da2f68d24cf92a8519ed53a31"></a>InvalidRequest&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba2a3bf15adce643d105afedb3c99044eb" name="a6503db31b23e2336b0a746dd484338dba2a3bf15adce643d105afedb3c99044eb"></a>InvalidStateTransition&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbaadebdf4f798da959fa03f49e81f7ab07" name="a6503db31b23e2336b0a746dd484338dbaadebdf4f798da959fa03f49e81f7ab07"></a>ResourceNotFound&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba2d50084f04994afa70d78b604a22dd31" name="a6503db31b23e2336b0a746dd484338dba2d50084f04994afa70d78b604a22dd31"></a>VersionMismatch&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba8462b58246e70e5c83e5b939a9332cb5" name="a6503db31b23e2336b0a746dd484338dba8462b58246e70e5c83e5b939a9332cb5"></a>InternalError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbae51569f8beb5419c3433660738fb0d9a" name="a6503db31b23e2336b0a746dd484338dbae51569f8beb5419c3433660738fb0d9a"></a>RequestThrottled&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbaa626d87c1dae21fbe1d44dcd9dbc81bd" name="a6503db31b23e2336b0a746dd484338dbaa626d87c1dae21fbe1d44dcd9dbc81bd"></a>TerminalStateReached&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbae4ab25d889337f20e20e9aef1b2b12d8" name="a6503db31b23e2336b0a746dd484338dbae4ab25d889337f20e20e9aef1b2b12d8"></a>InvalidTopic&#160;</td><td class="fielddoc"><p >The request was sent to a topic in the AWS IoT Jobs namespace that does not map to any API. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba4f67c44b93cc62755fee6051885d5e5a" name="a6503db31b23e2336b0a746dd484338dba4f67c44b93cc62755fee6051885d5e5a"></a>InvalidJson&#160;</td><td class="fielddoc"><p >The contents of the request could not be interpreted as valid UTF-8-encoded JSON. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbad544eb3da2f68d24cf92a8519ed53a31" name="a6503db31b23e2336b0a746dd484338dbad544eb3da2f68d24cf92a8519ed53a31"></a>InvalidRequest&#160;</td><td class="fielddoc"><p >The contents of the request were invalid. The message contains details about the error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba2a3bf15adce643d105afedb3c99044eb" name="a6503db31b23e2336b0a746dd484338dba2a3bf15adce643d105afedb3c99044eb"></a>InvalidStateTransition&#160;</td><td class="fielddoc"><p >An update attempted to change the job execution to a state that is invalid because of the job execution's current state. In this case, the body of the error message also contains the executionState field. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbaadebdf4f798da959fa03f49e81f7ab07" name="a6503db31b23e2336b0a746dd484338dbaadebdf4f798da959fa03f49e81f7ab07"></a>ResourceNotFound&#160;</td><td class="fielddoc"><p >The JobExecution specified by the request topic does not exist. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba2d50084f04994afa70d78b604a22dd31" name="a6503db31b23e2336b0a746dd484338dba2d50084f04994afa70d78b604a22dd31"></a>VersionMismatch&#160;</td><td class="fielddoc"><p >The expected version specified in the request does not match the version of the job execution in the AWS IoT Jobs service. In this case, the body of the error message also contains the executionState field. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dba8462b58246e70e5c83e5b939a9332cb5" name="a6503db31b23e2336b0a746dd484338dba8462b58246e70e5c83e5b939a9332cb5"></a>InternalError&#160;</td><td class="fielddoc"><p >There was an internal error during the processing of the request. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbae51569f8beb5419c3433660738fb0d9a" name="a6503db31b23e2336b0a746dd484338dbae51569f8beb5419c3433660738fb0d9a"></a>RequestThrottled&#160;</td><td class="fielddoc"><p >The request was throttled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6503db31b23e2336b0a746dd484338dbaa626d87c1dae21fbe1d44dcd9dbc81bd" name="a6503db31b23e2336b0a746dd484338dbaa626d87c1dae21fbe1d44dcd9dbc81bd"></a>TerminalStateReached&#160;</td><td class="fielddoc"><p >Occurs when a command to describe a job is performed on a job that is in a terminal state. </p>
+</td></tr>
 </table>
 
 </div>

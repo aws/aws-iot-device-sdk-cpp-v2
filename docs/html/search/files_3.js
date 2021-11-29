@@ -24,6 +24,5 @@ var searchData=
   ['discoverresponse_2ecpp_21',['DiscoverResponse.cpp',['../_discover_response_8cpp.html',1,'']]],
   ['discoverresponse_2eh_22',['DiscoverResponse.h',['../_discover_response_8h.html',1,'']]],
   ['discoveryclient_2ecpp_23',['DiscoveryClient.cpp',['../_discovery_client_8cpp.html',1,'']]],
-  ['discoveryclient_2eh_24',['DiscoveryClient.h',['../_discovery_client_8h.html',1,'']]],
-  ['docs_5fgen_5fscript_2epy_25',['docs_gen_script.py',['../crt_2aws-crt-cpp_2docsrc_2docs__gen__script_8py.html',1,'(Global Namespace)'],['../docsrc_2docs__gen__script_8py.html',1,'(Global Namespace)']]]
+  ['discoveryclient_2eh_24',['DiscoveryClient.h',['../_discovery_client_8h.html',1,'']]]
 ];

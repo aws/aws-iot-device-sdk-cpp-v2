@@ -1,8 +1,11 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
+
 #include <aws/iotjobs/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
@@ -13,16 +16,44 @@ namespace Aws
     namespace Iotjobs
     {
 
+        /**
+         * The status of the job execution.
+         *
+         */
         enum class JobStatus
         {
+            /**
+             */
             QUEUED,
+
+            /**
+             */
             IN_PROGRESS,
+
+            /**
+             */
             TIMED_OUT,
+
+            /**
+             */
             FAILED,
+
+            /**
+             */
             SUCCEEDED,
+
+            /**
+             */
             CANCELED,
+
+            /**
+             */
             REJECTED,
+
+            /**
+             */
             REMOVED,
+
         };
 
         namespace JobStatusMarshaller

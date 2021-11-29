@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/crypto/HMAC.h File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/include/aws/crt/crypto/HMAC.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,12 +70,14 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">HMAC.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source.html">aws/crt/Exports.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;aws/cal/hmac.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source.html">aws/crt/Exports.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_types_8h_source.html">aws/crt/Types.h</a>&gt;</code><br />
 </div>
 <p><a href="_h_m_a_c_8h_source.html">Go to the source code of this file.</a></p>
@@ -83,6 +85,8 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c.html">Aws::Crt::Crypto::HMAC</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_h_m_a_c.html">Aws::Crt::Crypto::ByoHMAC</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -93,6 +97,11 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_aws_1_1_crt_1_1_crypto"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html">Aws::Crt::Crypto</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a071f1587abd466d4c473a72b22c68199"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a071f1587abd466d4c473a72b22c68199">Aws::Crt::Crypto::CreateHMACCallback</a> = std::function&lt; std::shared_ptr&lt; ByoHMAC &gt;(size_t digestSize, const ByteCursor &amp;secret, Allocator *)&gt;</td></tr>
+<tr class="separator:a071f1587abd466d4c473a72b22c68199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>

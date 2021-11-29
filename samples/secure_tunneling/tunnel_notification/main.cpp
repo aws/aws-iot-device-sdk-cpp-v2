@@ -15,9 +15,11 @@
 #include <iostream>
 
 #include <algorithm>
+#include <chrono>
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
+#include <thread>
 
 using namespace std;
 using namespace Aws::Iot;
@@ -243,22 +245,12 @@ int main(int argc, char *argv[])
         {
             fprintf(stderr, "MQTT Connection failed with error %d\n", ioErr);
         }
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
-        }
     };
 
     auto OnSubscribeComplete = [&](int ioErr) -> void {
         if (ioErr)
         {
             fprintf(stderr, "MQTT Connection failed with error %d\n", ioErr);
-        }
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
         }
     };
 
@@ -273,6 +265,7 @@ int main(int argc, char *argv[])
     }
     while (1)
     {
+        std::this_thread::sleep_for(500ms);
         continue;
     }
 }

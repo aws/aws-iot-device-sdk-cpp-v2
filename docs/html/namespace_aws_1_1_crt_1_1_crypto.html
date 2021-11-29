@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Aws::Crt::Crypto Namespace Reference</div></div>
@@ -77,10 +78,21 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_hash.html">ByoHash</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_h_m_a_c.html">ByoHMAC</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_hash.html">Hash</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_h_m_a_c.html">HMAC</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a4cfbcef51ab56a99d294f7023714463d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a4cfbcef51ab56a99d294f7023714463d">CreateHashCallback</a> = std::function&lt; std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_hash.html">ByoHash</a> &gt;(size_t digestSize, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td></tr>
+<tr class="separator:a4cfbcef51ab56a99d294f7023714463d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071f1587abd466d4c473a72b22c68199"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a071f1587abd466d4c473a72b22c68199">CreateHMACCallback</a> = std::function&lt; std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_h_m_a_c.html">ByoHMAC</a> &gt;(size_t digestSize, const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;secret, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td></tr>
+<tr class="separator:a071f1587abd466d4c473a72b22c68199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -106,6 +118,35 @@ Variables</h2></td></tr>
 <tr class="memitem:a5a3cbbce1fec90bca7fc18db098ed1e4"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a5a3cbbce1fec90bca7fc18db098ed1e4">SHA256_HMAC_DIGEST_SIZE</a> = 32</td></tr>
 <tr class="separator:a5a3cbbce1fec90bca7fc18db098ed1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a4cfbcef51ab56a99d294f7023714463d" name="a4cfbcef51ab56a99d294f7023714463d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cfbcef51ab56a99d294f7023714463d">&#9670;&nbsp;</a></span>CreateHashCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a4cfbcef51ab56a99d294f7023714463d">Aws::Crt::Crypto::CreateHashCallback</a> = typedef std::function&lt;std::shared_ptr&lt;<a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_hash.html">ByoHash</a>&gt;(size_t digestSize, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a071f1587abd466d4c473a72b22c68199" name="a071f1587abd466d4c473a72b22c68199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071f1587abd466d4c473a72b22c68199">&#9670;&nbsp;</a></span>CreateHMACCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_crypto.html#a071f1587abd466d4c473a72b22c68199">Aws::Crt::Crypto::CreateHMACCallback</a> = typedef std::function&lt;std::shared_ptr&lt;<a class="el" href="class_aws_1_1_crt_1_1_crypto_1_1_byo_h_m_a_c.html">ByoHMAC</a>&gt;(size_t digestSize, const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;secret, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a3c06862c43cfc546119d4cb5071f281b" name="a3c06862c43cfc546119d4cb5071f281b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c06862c43cfc546119d4cb5071f281b">&#9670;&nbsp;</a></span>ComputeMD5() <span class="overload">[1/2]</span></h2>

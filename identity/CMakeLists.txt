@@ -91,9 +91,9 @@ target_include_directories(IotIdentity-cpp PUBLIC
         $<INSTALL_INTERFACE:include>)
 
 if (BUILD_DEPS)
-	if (NOT IS_SUBDIRECTORY_INCLUDE)
-		aws_use_package(aws-crt-cpp)
-	endif()
+    if (NOT IS_SUBDIRECTORY_INCLUDE)
+        aws_use_package(aws-crt-cpp)
+    endif()
 endif()
 
 target_link_libraries(IotIdentity-cpp ${DEP_AWS_LIBS})

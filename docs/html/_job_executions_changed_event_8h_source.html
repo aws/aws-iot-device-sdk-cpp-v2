@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/jobs/include/aws/iotjobs/JobExecutionsChangedEvent.h Source File</title>
+<title>AWS IoT Device SDK C++ v2: jobs/include/aws/iotjobs/JobExecutionsChangedEvent.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,40 +71,48 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="_job_executions_changed_event_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_date_time_8h.html">aws/crt/DateTime.h</a>&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="_job_execution_summary_8h.html">aws/iotjobs/JobExecutionSummary.h</a>&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="_job_status_8h.html">aws/iotjobs/JobStatus.h</a>&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html">aws/iotjobs/Exports.h</a>&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="_json_object_8h.html">aws/crt/JsonObject.h</a>&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="_stl_allocator_8h.html">aws/crt/StlAllocator.h</a>&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * This file is generated</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="_date_time_8h.html">aws/crt/DateTime.h</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="_job_execution_summary_8h.html">aws/iotjobs/JobExecutionSummary.h</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="_job_status_8h.html">aws/iotjobs/JobStatus.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html">aws/iotjobs/Exports.h</a>&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_aws.html">Aws</a></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">namespace </span>Iotjobs</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">   20</a></span>        <span class="keyword">class </span><a class="code hl_define" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">AWS_IOTJOBS_API</a> <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> final</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>          <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aa11ba0196e72eeda78b1ad398934662a">   23</a></span>            <a class="code hl_function" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aa11ba0196e72eeda78b1ad398934662a">JobExecutionsChangedEvent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> &amp;operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordtype">void</span> SerializeToObject(<a class="code hl_class" href="class_aws_1_1_crt_1_1_json_object.html">Crt::JsonObject</a> &amp;doc) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_class" href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional</a>&lt;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                <a class="code hl_typedef" href="namespace_aws_1_1_crt.html#a1cf42e328e4553fa884d30468915df73">Aws::Crt::Map&lt;Aws::Iotjobs::JobStatus, Aws::Crt::Vector&lt;Aws::Iotjobs::JobExecutionSummary&gt;</a>&gt;&gt;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">   32</a></span>                <a class="code hl_variable" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">Jobs</a>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">   33</a></span>            <a class="code hl_class" href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional&lt;Aws::Crt::DateTime&gt;</a> <a class="code hl_variable" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">Timestamp</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="_json_object_8h.html">aws/crt/JsonObject.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="_stl_allocator_8h.html">aws/crt/StlAllocator.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_aws.html">Aws</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">namespace </span>Iotjobs</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">   27</a></span>        <span class="keyword">class </span><a class="code hl_define" href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">AWS_IOTJOBS_API</a> <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> final</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>          <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aa11ba0196e72eeda78b1ad398934662a">   30</a></span>            <a class="code hl_function" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aa11ba0196e72eeda78b1ad398934662a">JobExecutionsChangedEvent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> &amp;operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>          <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keyword">static</span> <span class="keywordtype">void</span> LoadFromObject(<a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> &amp;obj, <span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        };</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    } <span class="comment">// namespace Iotjobs</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>} <span class="comment">// namespace Aws</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordtype">void</span> SerializeToObject(<a class="code hl_class" href="class_aws_1_1_crt_1_1_json_object.html">Crt::JsonObject</a> &amp;doc) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <a class="code hl_class" href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional</a>&lt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                <a class="code hl_typedef" href="namespace_aws_1_1_crt.html#a1cf42e328e4553fa884d30468915df73">Aws::Crt::Map&lt;Aws::Iotjobs::JobStatus, Aws::Crt::Vector&lt;Aws::Iotjobs::JobExecutionSummary&gt;</a>&gt;&gt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">   43</a></span>                <a class="code hl_variable" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">Jobs</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">   49</a></span>            <a class="code hl_class" href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional&lt;Aws::Crt::DateTime&gt;</a> <a class="code hl_variable" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">Timestamp</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>          <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keyword">static</span> <span class="keywordtype">void</span> LoadFromObject(<a class="code hl_class" href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">JobExecutionsChangedEvent</a> &amp;obj, <span class="keyword">const</span> <a class="code hl_class" href="class_aws_1_1_crt_1_1_json_view.html">Crt::JsonView</a> &amp;doc);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        };</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    } <span class="comment">// namespace Iotjobs</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <span class="comment">// namespace Aws</span></div>
 <div class="ttc" id="a_date_time_8h_html"><div class="ttname"><a href="_date_time_8h.html">DateTime.h</a></div></div>
 <div class="ttc" id="a_job_execution_summary_8h_html"><div class="ttname"><a href="_job_execution_summary_8h.html">JobExecutionSummary.h</a></div></div>
 <div class="ttc" id="a_job_status_8h_html"><div class="ttname"><a href="_job_status_8h.html">JobStatus.h</a></div></div>
@@ -112,15 +120,15 @@ $(function() {
 <div class="ttc" id="a_stl_allocator_8h_html"><div class="ttname"><a href="_stl_allocator_8h.html">StlAllocator.h</a></div></div>
 <div class="ttc" id="aclass_aws_1_1_crt_1_1_json_object_html"><div class="ttname"><a href="class_aws_1_1_crt_1_1_json_object.html">Aws::Crt::JsonObject</a></div><div class="ttdef"><b>Definition:</b> JsonObject.h:21</div></div>
 <div class="ttc" id="aclass_aws_1_1_crt_1_1_json_view_html"><div class="ttname"><a href="class_aws_1_1_crt_1_1_json_view.html">Aws::Crt::JsonView</a></div><div class="ttdef"><b>Definition:</b> JsonObject.h:207</div></div>
-<div class="ttc" id="aclass_aws_1_1_crt_1_1_optional_html"><div class="ttname"><a href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional</a></div><div class="ttdef"><b>Definition:</b> Optional.h:22</div></div>
-<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">Aws::Iotjobs::JobExecutionsChangedEvent</a></div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:21</div></div>
-<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html_a968a3d05036ce060c3321043aa911890"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">Aws::Iotjobs::JobExecutionsChangedEvent::Timestamp</a></div><div class="ttdeci">Aws::Crt::Optional&lt; Aws::Crt::DateTime &gt; Timestamp</div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:33</div></div>
+<div class="ttc" id="aclass_aws_1_1_crt_1_1_optional_html"><div class="ttname"><a href="class_aws_1_1_crt_1_1_optional.html">Aws::Crt::Optional</a></div><div class="ttdef"><b>Definition:</b> Optional.h:17</div></div>
+<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html">Aws::Iotjobs::JobExecutionsChangedEvent</a></div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:28</div></div>
+<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html_a968a3d05036ce060c3321043aa911890"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#a968a3d05036ce060c3321043aa911890">Aws::Iotjobs::JobExecutionsChangedEvent::Timestamp</a></div><div class="ttdeci">Aws::Crt::Optional&lt; Aws::Crt::DateTime &gt; Timestamp</div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:49</div></div>
 <div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html_aa11ba0196e72eeda78b1ad398934662a"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aa11ba0196e72eeda78b1ad398934662a">Aws::Iotjobs::JobExecutionsChangedEvent::JobExecutionsChangedEvent</a></div><div class="ttdeci">JobExecutionsChangedEvent()=default</div></div>
-<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html_aba26239e6c6b2430dab204f14a3a2d2a"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">Aws::Iotjobs::JobExecutionsChangedEvent::Jobs</a></div><div class="ttdeci">Aws::Crt::Optional&lt; Aws::Crt::Map&lt; Aws::Iotjobs::JobStatus, Aws::Crt::Vector&lt; Aws::Iotjobs::JobExecutionSummary &gt; &gt; &gt; Jobs</div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:32</div></div>
+<div class="ttc" id="aclass_aws_1_1_iotjobs_1_1_job_executions_changed_event_html_aba26239e6c6b2430dab204f14a3a2d2a"><div class="ttname"><a href="class_aws_1_1_iotjobs_1_1_job_executions_changed_event.html#aba26239e6c6b2430dab204f14a3a2d2a">Aws::Iotjobs::JobExecutionsChangedEvent::Jobs</a></div><div class="ttdeci">Aws::Crt::Optional&lt; Aws::Crt::Map&lt; Aws::Iotjobs::JobStatus, Aws::Crt::Vector&lt; Aws::Iotjobs::JobExecutionSummary &gt; &gt; &gt; Jobs</div><div class="ttdef"><b>Definition:</b> JobExecutionsChangedEvent.h:43</div></div>
 <div class="ttc" id="ajobs_2include_2aws_2iotjobs_2_exports_8h_html"><div class="ttname"><a href="jobs_2include_2aws_2iotjobs_2_exports_8h.html">Exports.h</a></div></div>
-<div class="ttc" id="ajobs_2include_2aws_2iotjobs_2_exports_8h_html_ade8baf38a194e843be5cac2029f44036"><div class="ttname"><a href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">AWS_IOTJOBS_API</a></div><div class="ttdeci">#define AWS_IOTJOBS_API</div><div class="ttdef"><b>Definition:</b> Exports.h:19</div></div>
+<div class="ttc" id="ajobs_2include_2aws_2iotjobs_2_exports_8h_html_ade8baf38a194e843be5cac2029f44036"><div class="ttname"><a href="jobs_2include_2aws_2iotjobs_2_exports_8h.html#ade8baf38a194e843be5cac2029f44036">AWS_IOTJOBS_API</a></div><div class="ttdeci">#define AWS_IOTJOBS_API</div><div class="ttdef"><b>Definition:</b> Exports.h:20</div></div>
 <div class="ttc" id="anamespace_aws_1_1_crt_html_a1cf42e328e4553fa884d30468915df73"><div class="ttname"><a href="namespace_aws_1_1_crt.html#a1cf42e328e4553fa884d30468915df73">Aws::Crt::Map</a></div><div class="ttdeci">std::map&lt; K, V, std::less&lt; K &gt;, StlAllocator&lt; std::pair&lt; const K, V &gt; &gt; &gt; Map</div><div class="ttdef"><b>Definition:</b> Types.h:49</div></div>
-<div class="ttc" id="anamespace_aws_html"><div class="ttname"><a href="namespace_aws.html">Aws</a></div><div class="ttdef"><b>Definition:</b> Api.h:15</div></div>
+<div class="ttc" id="anamespace_aws_html"><div class="ttname"><a href="namespace_aws.html">Aws</a></div><div class="ttdef"><b>Definition:</b> Api.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

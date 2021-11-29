@@ -1,6 +1,7 @@
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 #include <aws/iotjobs/RejectedErrorCode.h>
 
@@ -9,15 +10,15 @@
 
 #include <assert.h>
 
-static const size_t INVALIDTOPIC_HASH = Aws::Crt::HashString("InvalidTopic");
-static const size_t INVALIDJSON_HASH = Aws::Crt::HashString("InvalidJson");
-static const size_t INVALIDREQUEST_HASH = Aws::Crt::HashString("InvalidRequest");
-static const size_t INVALIDSTATETRANSITION_HASH = Aws::Crt::HashString("InvalidStateTransition");
-static const size_t RESOURCENOTFOUND_HASH = Aws::Crt::HashString("ResourceNotFound");
-static const size_t VERSIONMISMATCH_HASH = Aws::Crt::HashString("VersionMismatch");
-static const size_t INTERNALERROR_HASH = Aws::Crt::HashString("InternalError");
-static const size_t REQUESTTHROTTLED_HASH = Aws::Crt::HashString("RequestThrottled");
-static const size_t TERMINALSTATEREACHED_HASH = Aws::Crt::HashString("TerminalStateReached");
+static const size_t INVALID_TOPIC_HASH = Aws::Crt::HashString("InvalidTopic");
+static const size_t INVALID_STATE_TRANSITION_HASH = Aws::Crt::HashString("InvalidStateTransition");
+static const size_t RESOURCE_NOT_FOUND_HASH = Aws::Crt::HashString("ResourceNotFound");
+static const size_t INVALID_REQUEST_HASH = Aws::Crt::HashString("InvalidRequest");
+static const size_t REQUEST_THROTTLED_HASH = Aws::Crt::HashString("RequestThrottled");
+static const size_t INTERNAL_ERROR_HASH = Aws::Crt::HashString("InternalError");
+static const size_t TERMINAL_STATE_REACHED_HASH = Aws::Crt::HashString("TerminalStateReached");
+static const size_t INVALID_JSON_HASH = Aws::Crt::HashString("InvalidJson");
+static const size_t VERSION_MISMATCH_HASH = Aws::Crt::HashString("VersionMismatch");
 
 namespace Aws
 {
@@ -32,22 +33,22 @@ namespace Aws
                 {
                     case RejectedErrorCode::InvalidTopic:
                         return "InvalidTopic";
-                    case RejectedErrorCode::InvalidJson:
-                        return "InvalidJson";
-                    case RejectedErrorCode::InvalidRequest:
-                        return "InvalidRequest";
                     case RejectedErrorCode::InvalidStateTransition:
                         return "InvalidStateTransition";
                     case RejectedErrorCode::ResourceNotFound:
                         return "ResourceNotFound";
-                    case RejectedErrorCode::VersionMismatch:
-                        return "VersionMismatch";
-                    case RejectedErrorCode::InternalError:
-                        return "InternalError";
+                    case RejectedErrorCode::InvalidRequest:
+                        return "InvalidRequest";
                     case RejectedErrorCode::RequestThrottled:
                         return "RequestThrottled";
+                    case RejectedErrorCode::InternalError:
+                        return "InternalError";
                     case RejectedErrorCode::TerminalStateReached:
                         return "TerminalStateReached";
+                    case RejectedErrorCode::InvalidJson:
+                        return "InvalidJson";
+                    case RejectedErrorCode::VersionMismatch:
+                        return "VersionMismatch";
                     default:
                         assert(0);
                         return "UNKNOWN_VALUE";
@@ -58,49 +59,49 @@ namespace Aws
             {
                 size_t hash = Crt::HashString(str.c_str());
 
-                if (hash == INVALIDTOPIC_HASH)
+                if (hash == INVALID_TOPIC_HASH)
                 {
                     return RejectedErrorCode::InvalidTopic;
                 }
 
-                if (hash == INVALIDJSON_HASH)
-                {
-                    return RejectedErrorCode::InvalidJson;
-                }
-
-                if (hash == INVALIDREQUEST_HASH)
-                {
-                    return RejectedErrorCode::InvalidRequest;
-                }
-
-                if (hash == INVALIDSTATETRANSITION_HASH)
+                if (hash == INVALID_STATE_TRANSITION_HASH)
                 {
                     return RejectedErrorCode::InvalidStateTransition;
                 }
 
-                if (hash == RESOURCENOTFOUND_HASH)
+                if (hash == RESOURCE_NOT_FOUND_HASH)
                 {
                     return RejectedErrorCode::ResourceNotFound;
                 }
 
-                if (hash == VERSIONMISMATCH_HASH)
+                if (hash == INVALID_REQUEST_HASH)
                 {
-                    return RejectedErrorCode::VersionMismatch;
+                    return RejectedErrorCode::InvalidRequest;
                 }
 
-                if (hash == INTERNALERROR_HASH)
-                {
-                    return RejectedErrorCode::InternalError;
-                }
-
-                if (hash == REQUESTTHROTTLED_HASH)
+                if (hash == REQUEST_THROTTLED_HASH)
                 {
                     return RejectedErrorCode::RequestThrottled;
                 }
 
-                if (hash == TERMINALSTATEREACHED_HASH)
+                if (hash == INTERNAL_ERROR_HASH)
+                {
+                    return RejectedErrorCode::InternalError;
+                }
+
+                if (hash == TERMINAL_STATE_REACHED_HASH)
                 {
                     return RejectedErrorCode::TerminalStateReached;
+                }
+
+                if (hash == INVALID_JSON_HASH)
+                {
+                    return RejectedErrorCode::InvalidJson;
+                }
+
+                if (hash == VERSION_MISMATCH_HASH)
+                {
+                    return RejectedErrorCode::VersionMismatch;
                 }
 
                 assert(0);
