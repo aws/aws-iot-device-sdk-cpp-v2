@@ -34,4 +34,4 @@ echo "Secure Tunnel Destination test"
 sleep 10 &
 
 echo "Secure Tunnel Source test"
-./secure-tunnel --localProxyModeSource --region us-east-1 --access_token $SOURCETOKEN
+./secure-tunnel --localProxyModeSource --region us-east-1 --access_token $SOURCETOKEN &
