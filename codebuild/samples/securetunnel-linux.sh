@@ -18,8 +18,8 @@ echo $RESPONSE
 
 
 read -r a[{1..10}] <<< RESPONSE
-SOURCETOKEN= grep -oP '(?<="sourceAccessToken": ")[^"]*' a.json
-DESTINATIONTOKEN=grep -oP '(?<="destinationAccessToken": ")[^"]*' a.json
+SOURCETOKEN= grep -oP '(?<="sourceAccessToken": ")[^"]*' RESPONSE
+DESTINATIONTOKEN=grep -oP '(?<="destinationAccessToken": ")[^"]*' RESPONSE
 
 echo "SOURCETOKEN"
 echo $SOURCETOKEN
