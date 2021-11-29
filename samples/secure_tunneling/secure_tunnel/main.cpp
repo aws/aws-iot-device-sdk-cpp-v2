@@ -81,12 +81,8 @@ int main(int argc, char *argv[])
     /*
      * For internal testing
      */
-    bool isTest = false;
+    bool isTest = s_cmdOptionExists(argv, argv + argc, "--test");
     int testCount = 5;
-    if (s_cmdOptionExists(argv, argv + argc, "--test"))
-    {
-        isTest = true;
-    }
 
     std::shared_ptr<SecureTunnel> secureTunnel;
 
