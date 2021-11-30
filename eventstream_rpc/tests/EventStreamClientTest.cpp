@@ -7,6 +7,12 @@
 #include <awstest/EchoTestRpcClient.h>
 
 #include <aws/testing/aws_test_harness.h>
+#if defined(_WIN32)
+// aws_test_harness.h includes Windows.h, which is an abomination.
+// undef macros with clashing names...
+#    undef SetPort
+#    undef GetMessage
+#endif
 
 #include <iostream>
 #include <queue>
