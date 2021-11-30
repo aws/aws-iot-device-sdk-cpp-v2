@@ -1,7 +1,8 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #if defined(AWS_IOTIDENTITY_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)

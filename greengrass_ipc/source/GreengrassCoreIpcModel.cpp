@@ -443,6 +443,10 @@ namespace Aws
             {
                 payloadObject.WithString("posixUser", m_posixUser.value());
             }
+            if (m_windowsUser.has_value())
+            {
+                payloadObject.WithString("windowsUser", m_windowsUser.value());
+            }
             if (m_systemResourceLimits.has_value())
             {
                 Aws::Crt::JsonObject systemResourceLimitsValue;
@@ -456,6 +460,10 @@ namespace Aws
             if (jsonView.ValueExists("posixUser"))
             {
                 runWithInfo.m_posixUser = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("posixUser"));
+            }
+            if (jsonView.ValueExists("windowsUser"))
+            {
+                runWithInfo.m_windowsUser = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("windowsUser"));
             }
             if (jsonView.ValueExists("systemResourceLimits"))
             {

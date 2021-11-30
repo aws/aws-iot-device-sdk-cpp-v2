@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/Api.cpp File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/source/Api.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Api.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -79,8 +80,10 @@ $(function() {
 <code>#include &lt;<a class="el" href="_tls_options_8h_source.html">aws/crt/io/TlsOptions.h</a>&gt;</code><br />
 <code>#include &lt;aws/auth/auth.h&gt;</code><br />
 <code>#include &lt;aws/common/ref_count.h&gt;</code><br />
+<code>#include &lt;aws/event-stream/event_stream.h&gt;</code><br />
 <code>#include &lt;aws/http/http.h&gt;</code><br />
 <code>#include &lt;aws/mqtt/mqtt.h&gt;</code><br />
+<code>#include &lt;aws/s3/s3.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -91,8 +94,8 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a070ad73c54333c051188bf6e0dd6ac6c"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a070ad73c54333c051188bf6e0dd6ac6c">Aws::Crt::s_cJSONAlloc</a> (size_t sz)</td></tr>
-<tr class="separator:a070ad73c54333c051188bf6e0dd6ac6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe096c3613201bfebfbe70090f02fd22"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#afe096c3613201bfebfbe70090f02fd22">Aws::Crt::s_cJSONAlloc</a> (size_t sz)</td></tr>
+<tr class="separator:afe096c3613201bfebfbe70090f02fd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27de811f7c8f5a54fd7255da88cc8acb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a27de811f7c8f5a54fd7255da88cc8acb">Aws::Crt::s_cJSONFree</a> (void *ptr)</td></tr>
 <tr class="separator:a27de811f7c8f5a54fd7255da88cc8acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a323010caf6386d86f1377ff1133e60"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a1a323010caf6386d86f1377ff1133e60">Aws::Crt::s_initApi</a> (Allocator *allocator)</td></tr>
@@ -103,6 +106,23 @@ Functions</h2></td></tr>
 <tr class="separator:aec41cfe367315d4e4e1712f19e3d3061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09743b0ee6cb7e924ce2107ec8f81de6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a09743b0ee6cb7e924ce2107ec8f81de6">Aws::Crt::LastErrorOrUnknown</a> () noexcept</td></tr>
 <tr class="separator:a09743b0ee6cb7e924ce2107ec8f81de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab910d787e0fddb483af94f916681855b"><td class="memItemLeft" align="right" valign="top">static Crypto::CreateHashCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#ab910d787e0fddb483af94f916681855b">Aws::Crt::s_BYOCryptoNewMD5Callback</a></td></tr>
+<tr class="separator:ab910d787e0fddb483af94f916681855b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18af3e33ed26f48e9dc6f4ce5765323d"><td class="memItemLeft" align="right" valign="top">static Crypto::CreateHashCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a18af3e33ed26f48e9dc6f4ce5765323d">Aws::Crt::s_BYOCryptoNewSHA256Callback</a></td></tr>
+<tr class="separator:a18af3e33ed26f48e9dc6f4ce5765323d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f14ae81b2a1b06b67f85d6c97dbdc5"><td class="memItemLeft" align="right" valign="top">static Crypto::CreateHMACCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a52f14ae81b2a1b06b67f85d6c97dbdc5">Aws::Crt::s_BYOCryptoNewSHA256HMACCallback</a></td></tr>
+<tr class="separator:a52f14ae81b2a1b06b67f85d6c97dbdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a899d4b71de582995d49a3d56b71cd5fe"><td class="memItemLeft" align="right" valign="top">static Io::NewClientTlsHandlerCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a899d4b71de582995d49a3d56b71cd5fe">Aws::Crt::s_BYOCryptoNewClientTlsHandlerCallback</a></td></tr>
+<tr class="separator:a899d4b71de582995d49a3d56b71cd5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b43e6818337a1599ac372fa95f02146"><td class="memItemLeft" align="right" valign="top">static Io::NewTlsContextImplCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a7b43e6818337a1599ac372fa95f02146">Aws::Crt::s_BYOCryptoNewTlsContextImplCallback</a></td></tr>
+<tr class="separator:a7b43e6818337a1599ac372fa95f02146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7736ed0e2df72aa52dc5219b9915e5f"><td class="memItemLeft" align="right" valign="top">static Io::DeleteTlsContextImplCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#ab7736ed0e2df72aa52dc5219b9915e5f">Aws::Crt::s_BYOCryptoDeleteTlsContextImplCallback</a></td></tr>
+<tr class="separator:ab7736ed0e2df72aa52dc5219b9915e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a570e9e6a660cdb5a3deb5ccebf8ae745"><td class="memItemLeft" align="right" valign="top">static Io::IsTlsAlpnSupportedCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a570e9e6a660cdb5a3deb5ccebf8ae745">Aws::Crt::s_BYOCryptoIsTlsAlpnSupportedCallback</a></td></tr>
+<tr class="separator:a570e9e6a660cdb5a3deb5ccebf8ae745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

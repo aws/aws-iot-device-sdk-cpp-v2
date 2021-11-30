@@ -86,8 +86,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a358711e0f55a862143bdb4d69081fdfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aced533a1263bc64bbe90847c588363"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#a7aced533a1263bc64bbe90847c588363">MqttClient</a> (<a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&amp;) noexcept</td></tr>
 <tr class="separator:a7aced533a1263bc64bbe90847c588363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d8145cf6a3ab1d83643840fb1bfdffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#a1d8145cf6a3ab1d83643840fb1bfdffc">operator=</a> (const <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;)=delete</td></tr>
-<tr class="separator:a1d8145cf6a3ab1d83643840fb1bfdffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a7531de5bf89c9cb7b09b0487d2488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#a86a7531de5bf89c9cb7b09b0487d2488">operator=</a> (const <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;)=delete</td></tr>
+<tr class="separator:a86a7531de5bf89c9cb7b09b0487d2488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7debecaca342197024397f8fee8a9d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ae7debecaca342197024397f8fee8a9d7">operator=</a> (<a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&amp;) noexcept</td></tr>
 <tr class="separator:ae7debecaca342197024397f8fee8a9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c093255bd0c66560af52dd621c690f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#a1c093255bd0c66560af52dd621c690f5">operator bool</a> () const noexcept</td></tr>
@@ -280,7 +280,16 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Create a new connection object over plain text from the client. The client must outlive all of its connection instances. </p>
+<p >Create a new connection object over plain text from the client. The client must outlive all of its connection instances. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hostName</td><td>endpoint to connect to </td></tr>
+    <tr><td class="paramname">port</td><td>port to connect to </td></tr>
+    <tr><td class="paramname">socketOptions</td><td>socket options to use when establishing the connection </td></tr>
+    <tr><td class="paramname">useWebsocket</td><td>should the connection use websockets or should it use direct mqtt?</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new connection object. Connect() will still need to be called after all further configuration is finished. </dd></dl>
 
 </div>
 </div>
@@ -335,7 +344,18 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Create a new connection object using TLS from the client. The client must outlive all of its connection instances. </p>
+<p >Create a new connection object using TLS from the client. The client must outlive all of its connection instances.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hostName</td><td>endpoint to connect to </td></tr>
+    <tr><td class="paramname">port</td><td>port to connect to </td></tr>
+    <tr><td class="paramname">socketOptions</td><td>socket options to use when establishing the connection </td></tr>
+    <tr><td class="paramname">tlsContext</td><td>tls context to use with the connection </td></tr>
+    <tr><td class="paramname">useWebsocket</td><td>should the connection use websockets or should it use direct mqtt?</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new connection object. Connect() will still need to be called after all further configuration is finished. </dd></dl>
 
 </div>
 </div>
@@ -365,8 +385,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1d8145cf6a3ab1d83643840fb1bfdffc" name="a1d8145cf6a3ab1d83643840fb1bfdffc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d8145cf6a3ab1d83643840fb1bfdffc">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+<a id="a86a7531de5bf89c9cb7b09b0487d2488" name="a86a7531de5bf89c9cb7b09b0487d2488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a7531de5bf89c9cb7b09b0487d2488">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +395,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a>&amp; Aws::Crt::Mqtt::MqttClient::operator= </td>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp; Aws::Crt::Mqtt::MqttClient::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html">MqttClient</a> &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -418,8 +438,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/mqtt/<a class="el" href="crt_2mqtt_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/mqtt/<a class="el" href="mqtt_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
+<li>crt/aws-crt-cpp/include/aws/crt/mqtt/<a class="el" href="crt_2mqtt_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
+<li>crt/aws-crt-cpp/source/mqtt/<a class="el" href="mqtt_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

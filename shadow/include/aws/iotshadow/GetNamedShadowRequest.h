@@ -1,7 +1,9 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #include <aws/iotshadow/Exports.h>
@@ -14,6 +16,10 @@ namespace Aws
     namespace Iotshadow
     {
 
+        /**
+         * Data needed to make a GetNamedShadow request.
+         *
+         */
         class AWS_IOTSHADOW_API GetNamedShadowRequest final
         {
           public:
@@ -24,8 +30,23 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
+             * is reflected in the response.
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+            /**
+             * Name of the shadow to get.
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+
+            /**
+             * AWS IoT thing to get the named shadow for.
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
           private:

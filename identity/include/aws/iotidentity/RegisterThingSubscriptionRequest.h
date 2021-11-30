@@ -1,7 +1,9 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #include <aws/iotidentity/Exports.h>
@@ -14,6 +16,10 @@ namespace Aws
     namespace Iotidentity
     {
 
+        /**
+         * Data needed to subscribe to the responses of the RegisterThing operation.
+         *
+         */
         class AWS_IOTIDENTITY_API RegisterThingSubscriptionRequest final
         {
           public:
@@ -24,6 +30,10 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Name of the provisioning template to listen for RegisterThing responses for.
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> TemplateName;
 
           private:

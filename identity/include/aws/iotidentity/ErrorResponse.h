@@ -1,7 +1,9 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #include <aws/iotidentity/Exports.h>
@@ -14,6 +16,10 @@ namespace Aws
     namespace Iotidentity
     {
 
+        /**
+         * Response document containing details about a failed request.
+         *
+         */
         class AWS_IOTIDENTITY_API ErrorResponse final
         {
           public:
@@ -24,8 +30,22 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Response status code
+             *
+             */
             Aws::Crt::Optional<int32_t> StatusCode;
+
+            /**
+             * Response error message
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
+
+            /**
+             * Response error code
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
 
           private:

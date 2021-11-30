@@ -1,7 +1,9 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #include <aws/iotshadow/Exports.h>
@@ -14,6 +16,10 @@ namespace Aws
     namespace Iotshadow
     {
 
+        /**
+         * Data needed to subscribe to UpdateShadow responses.
+         *
+         */
         class AWS_IOTSHADOW_API UpdateShadowSubscriptionRequest final
         {
           public:
@@ -24,6 +30,10 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Name of the AWS IoT thing to listen to UpdateShadow responses for.
+             *
+             */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
           private:

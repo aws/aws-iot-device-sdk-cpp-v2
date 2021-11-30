@@ -115,8 +115,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8a73362be06183e7e1683089fc700d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b18a519aaf3e375a1f95dde1446306c"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a3b18a519aaf3e375a1f95dde1446306c">basic_string_view</a> (const CharT *s, <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a6697dd734b164e4a595cf11264a6d1fe">size_type</a> <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#af6e611d7026be436ea41468e158304f4">length</a>) noexcept</td></tr>
 <tr class="separator:a3b18a519aaf3e375a1f95dde1446306c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae311da758ece737d07f2f3fa164e56ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#ae311da758ece737d07f2f3fa164e56ce">operator=</a> (const <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a> &amp;) noexcept=default</td></tr>
-<tr class="separator:ae311da758ece737d07f2f3fa164e56ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a8fff697e9f1e90fcf726cb593bd6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a90a8fff697e9f1e90fcf726cb593bd6b">operator=</a> (const <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a> &amp;) noexcept=default</td></tr>
+<tr class="separator:a90a8fff697e9f1e90fcf726cb593bd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08bc3f67369a89f462bb003e199a7950"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#adc897301d42e75c6cba5f2f027bc6523">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a08bc3f67369a89f462bb003e199a7950">begin</a> () const noexcept</td></tr>
 <tr class="separator:a08bc3f67369a89f462bb003e199a7950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f7e87f8859cb3bba6710ae62d4f4e37"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#adc897301d42e75c6cba5f2f027bc6523">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a1f7e87f8859cb3bba6710ae62d4f4e37">end</a> () const noexcept</td></tr>
@@ -239,7 +239,16 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a828690b4d3334ea0c46b9f034ab37f8c"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a6697dd734b164e4a595cf11264a6d1fe">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a828690b4d3334ea0c46b9f034ab37f8c">npos</a> = static_cast&lt;<a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html#a6697dd734b164e4a595cf11264a6d1fe">size_type</a>&gt;(-1)</td></tr>
 <tr class="separator:a828690b4d3334ea0c46b9f034ab37f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename CharT, typename Traits = std::char_traits&lt;CharT&gt;&gt;<br />
+class Aws::Crt::basic_string_view&lt; CharT, Traits &gt;</div><p >Custom string view implementation in order to meet C++11 baseline </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">CharT</td><td></td></tr>
+    <tr><td class="paramname">Traits</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="adc897301d42e75c6cba5f2f027bc6523" name="adc897301d42e75c6cba5f2f027bc6523"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc897301d42e75c6cba5f2f027bc6523">&#9670;&nbsp;</a></span>const_iterator</h2>
 
@@ -2075,8 +2084,8 @@ template&lt;typename CharT , typename Traits  = std::char_traits&lt;CharT&gt;&gt
 
 </div>
 </div>
-<a id="ae311da758ece737d07f2f3fa164e56ce" name="ae311da758ece737d07f2f3fa164e56ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae311da758ece737d07f2f3fa164e56ce">&#9670;&nbsp;</a></span>operator=()</h2>
+<a id="a90a8fff697e9f1e90fcf726cb593bd6b" name="a90a8fff697e9f1e90fcf726cb593bd6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a8fff697e9f1e90fcf726cb593bd6b">&#9670;&nbsp;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2087,7 +2096,7 @@ template&lt;typename CharT , typename Traits  = std::char_traits&lt;CharT&gt;&gt
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a>&amp; <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">Aws::Crt::basic_string_view</a>&lt; CharT, Traits &gt;::operator= </td>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a> &amp; <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">Aws::Crt::basic_string_view</a>&lt; CharT, Traits &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt; &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -2602,7 +2611,7 @@ template&lt;typename CharT , typename Traits  = std::char_traits&lt;CharT&gt;&gt
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/<a class="el" href="_string_view_8h_source.html">StringView.h</a></li>
+<li>crt/aws-crt-cpp/include/aws/crt/<a class="el" href="_string_view_8h_source.html">StringView.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -79,7 +79,11 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_channel_handler.html">ChannelHandler</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">ClientBootstrap</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_tls_channel_handler.html">ClientTlsChannelHandler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html">DefaultHostResolver</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,6 +96,10 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_socket_options.html">SocketOptions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_input_stream.html">StdIOStreamInputStream</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_crt_1_1_io_1_1_task_wrapper.html">TaskWrapper</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_channel_handler.html">TlsChannelHandler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_connection_options.html">TlsConnectionOptions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,11 +122,30 @@ Typedefs</h2></td></tr>
 <tr class="separator:a610cfe7a844d9e8b9ea7e319bc1ed1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af399239ad685d64f2f5b88a0906a232c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#af399239ad685d64f2f5b88a0906a232c">OffsetType</a> = aws_off_t</td></tr>
 <tr class="separator:af399239ad685d64f2f5b88a0906a232c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a62c795db526f1dae48cac634c9af02"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0a62c795db526f1dae48cac634c9af02">NewTlsContextImplCallback</a> = std::function&lt; void *(<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> &amp;, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0e6e89d764e66080a9abd0513079d1b8">TlsMode</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td></tr>
+<tr class="separator:a0a62c795db526f1dae48cac634c9af02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af21a50e456c2e9f276cab7fa5f5ad484"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#af21a50e456c2e9f276cab7fa5f5ad484">DeleteTlsContextImplCallback</a> = std::function&lt; void(void *)&gt;</td></tr>
+<tr class="separator:af21a50e456c2e9f276cab7fa5f5ad484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1caba873184fe5fcb1315873e94b4acc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a1caba873184fe5fcb1315873e94b4acc">IsTlsAlpnSupportedCallback</a> = std::function&lt; bool()&gt;</td></tr>
+<tr class="separator:a1caba873184fe5fcb1315873e94b4acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e450401823c1e163680c9e185d33cb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#aa0e450401823c1e163680c9e185d33cb">NewClientTlsHandlerCallback</a> = std::function&lt; std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_tls_channel_handler.html">ClientTlsChannelHandler</a> &gt;(struct aws_channel_slot *slot, const struct aws_tls_connection_options &amp;options, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator)&gt;</td></tr>
+<tr class="separator:aa0e450401823c1e163680c9e185d33cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e18a94cc1dada574dfe654349a94ec2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a7e18a94cc1dada574dfe654349a94ec2">IStream</a> = std::basic_istream&lt; char, std::char_traits&lt; char &gt; &gt;</td></tr>
 <tr class="separator:a7e18a94cc1dada574dfe654349a94ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:a26cb072017a059e42ff798325aff6e1f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a26cb072017a059e42ff798325aff6e1f">ChannelDirection</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a26cb072017a059e42ff798325aff6e1fa7a1a5f3e79fdc91edf2f5ead9d66abb4">Read</a>
+, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a26cb072017a059e42ff798325aff6e1fa1129c0e4d43f2d121652a7302712cff6">Write</a>
+ }</td></tr>
+<tr class="separator:a26cb072017a059e42ff798325aff6e1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a892c9281932294af71d16fc1ba1b25ed"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a892c9281932294af71d16fc1ba1b25ed">MessageType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a892c9281932294af71d16fc1ba1b25eda321f08d4df04ad288e6e8f4bc371e664">ApplicationData</a>
+ }</td></tr>
+<tr class="separator:a892c9281932294af71d16fc1ba1b25ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66ffc839b6b767e208a2f3bd40be0ad"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ab66ffc839b6b767e208a2f3bd40be0ad">TaskStatus</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ab66ffc839b6b767e208a2f3bd40be0adaa3c06ac743416c5ccf42ce17ec11b31e">RunReady</a>
+, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ab66ffc839b6b767e208a2f3bd40be0ada0e22fe7d45f8e5632a4abf369b24e29c">Canceled</a>
+ }</td></tr>
+<tr class="separator:ab66ffc839b6b767e208a2f3bd40be0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5f9aa2fd04a14dfa0cd50a8b56e6b8e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ae5f9aa2fd04a14dfa0cd50a8b56e6b8e">SocketType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ae5f9aa2fd04a14dfa0cd50a8b56e6b8eaeae835e83c0494a376229f254f7d3392">Stream</a> = AWS_SOCKET_STREAM
 , <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ae5f9aa2fd04a14dfa0cd50a8b56e6b8eac3177658ef36637801bea6fd4f1a1e92">Dgram</a> = AWS_SOCKET_DGRAM
  }</td></tr>
@@ -139,10 +166,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a17604ecd6ea435342b446170f0699ca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a17604ecd6ea435342b446170f0699ca8">InitTlsStaticState</a> (<a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *alloc) noexcept</td></tr>
-<tr class="separator:a17604ecd6ea435342b446170f0699ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad195bbd0910a895e419d14f8264327a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ad195bbd0910a895e419d14f8264327a2">CleanUpTlsStaticState</a> () noexcept</td></tr>
-<tr class="separator:ad195bbd0910a895e419d14f8264327a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e315620600ba9bae9946b5fbb535fa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a06e315620600ba9bae9946b5fbb535fa">s_ChannelTaskCallback</a> (struct aws_channel_task *, void *arg, enum aws_task_status status)</td></tr>
+<tr class="separator:a06e315620600ba9bae9946b5fbb535fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -150,6 +175,20 @@ Variables</h2></td></tr>
 <tr class="separator:a3c79025f57dddde3dca69724cdf1a8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="af21a50e456c2e9f276cab7fa5f5ad484" name="af21a50e456c2e9f276cab7fa5f5ad484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af21a50e456c2e9f276cab7fa5f5ad484">&#9670;&nbsp;</a></span>DeleteTlsContextImplCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#af21a50e456c2e9f276cab7fa5f5ad484">Aws::Crt::Io::DeleteTlsContextImplCallback</a> = typedef std::function&lt;void(void *)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a74f2659525c59a6d43f579af6586a1ce" name="a74f2659525c59a6d43f579af6586a1ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a74f2659525c59a6d43f579af6586a1ce">&#9670;&nbsp;</a></span>HostAddress</h2>
 
@@ -158,6 +197,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a74f2659525c59a6d43f579af6586a1ce">Aws::Crt::Io::HostAddress</a> = typedef aws_host_address</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1caba873184fe5fcb1315873e94b4acc" name="a1caba873184fe5fcb1315873e94b4acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1caba873184fe5fcb1315873e94b4acc">&#9670;&nbsp;</a></span>IsTlsAlpnSupportedCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a1caba873184fe5fcb1315873e94b4acc">Aws::Crt::Io::IsTlsAlpnSupportedCallback</a> = typedef std::function&lt;bool()&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -178,6 +231,34 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aa0e450401823c1e163680c9e185d33cb" name="aa0e450401823c1e163680c9e185d33cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0e450401823c1e163680c9e185d33cb">&#9670;&nbsp;</a></span>NewClientTlsHandlerCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#aa0e450401823c1e163680c9e185d33cb">Aws::Crt::Io::NewClientTlsHandlerCallback</a> = typedef std::function&lt;std::shared_ptr&lt;<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_tls_channel_handler.html">ClientTlsChannelHandler</a>&gt;( struct aws_channel_slot *slot, const struct aws_tls_connection_options &amp;options, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a62c795db526f1dae48cac634c9af02" name="a0a62c795db526f1dae48cac634c9af02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a62c795db526f1dae48cac634c9af02">&#9670;&nbsp;</a></span>NewTlsContextImplCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0a62c795db526f1dae48cac634c9af02">Aws::Crt::Io::NewTlsContextImplCallback</a> = typedef std::function&lt;void *(<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> &amp;, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0e6e89d764e66080a9abd0513079d1b8">TlsMode</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af399239ad685d64f2f5b88a0906a232c" name="af399239ad685d64f2f5b88a0906a232c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af399239ad685d64f2f5b88a0906a232c">&#9670;&nbsp;</a></span>OffsetType</h2>
 
@@ -189,6 +270,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Use int64_t instead for offsets in public APIs. </dd></dl>
 
 </div>
 </div>
@@ -236,6 +318,57 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a26cb072017a059e42ff798325aff6e1f" name="a26cb072017a059e42ff798325aff6e1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26cb072017a059e42ff798325aff6e1f">&#9670;&nbsp;</a></span>ChannelDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a26cb072017a059e42ff798325aff6e1f">Aws::Crt::Io::ChannelDirection</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a26cb072017a059e42ff798325aff6e1fa7a1a5f3e79fdc91edf2f5ead9d66abb4" name="a26cb072017a059e42ff798325aff6e1fa7a1a5f3e79fdc91edf2f5ead9d66abb4"></a>Read&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26cb072017a059e42ff798325aff6e1fa1129c0e4d43f2d121652a7302712cff6" name="a26cb072017a059e42ff798325aff6e1fa1129c0e4d43f2d121652a7302712cff6"></a>Write&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a892c9281932294af71d16fc1ba1b25ed" name="a892c9281932294af71d16fc1ba1b25ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a892c9281932294af71d16fc1ba1b25ed">&#9670;&nbsp;</a></span>MessageType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a892c9281932294af71d16fc1ba1b25ed">Aws::Crt::Io::MessageType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a892c9281932294af71d16fc1ba1b25eda321f08d4df04ad288e6e8f4bc371e664" name="a892c9281932294af71d16fc1ba1b25eda321f08d4df04ad288e6e8f4bc371e664"></a>ApplicationData&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="a12c31e83beb297296621c8a361b58f8e" name="a12c31e83beb297296621c8a361b58f8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a12c31e83beb297296621c8a361b58f8e">&#9670;&nbsp;</a></span>SocketDomain</h2>
 
@@ -311,9 +444,36 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Controls the direction to seek from </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adf764940aea50b061f1ac67366cf41d0a1a06729125544cab7cee73195fc044f0" name="adf764940aea50b061f1ac67366cf41d0a1a06729125544cab7cee73195fc044f0"></a>Begin&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="adf764940aea50b061f1ac67366cf41d0a87557f11575c0ad78e4e28abedc13b6e" name="adf764940aea50b061f1ac67366cf41d0a87557f11575c0ad78e4e28abedc13b6e"></a>End&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ab66ffc839b6b767e208a2f3bd40be0ad" name="ab66ffc839b6b767e208a2f3bd40be0ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66ffc839b6b767e208a2f3bd40be0ad">&#9670;&nbsp;</a></span>TaskStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#ab66ffc839b6b767e208a2f3bd40be0ad">Aws::Crt::Io::TaskStatus</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab66ffc839b6b767e208a2f3bd40be0adaa3c06ac743416c5ccf42ce17ec11b31e" name="ab66ffc839b6b767e208a2f3bd40be0adaa3c06ac743416c5ccf42ce17ec11b31e"></a>RunReady&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab66ffc839b6b767e208a2f3bd40be0ada0e22fe7d45f8e5632a4abf369b24e29c" name="ab66ffc839b6b767e208a2f3bd40be0ada0e22fe7d45f8e5632a4abf369b24e29c"></a>Canceled&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -345,8 +505,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ad195bbd0910a895e419d14f8264327a2" name="ad195bbd0910a895e419d14f8264327a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad195bbd0910a895e419d14f8264327a2">&#9670;&nbsp;</a></span>CleanUpTlsStaticState()</h2>
+<a id="a06e315620600ba9bae9946b5fbb535fa" name="a06e315620600ba9bae9946b5fbb535fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e315620600ba9bae9946b5fbb535fa">&#9670;&nbsp;</a></span>s_ChannelTaskCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,41 +515,32 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void Aws::Crt::Io::CleanUpTlsStaticState </td>
+          <td class="memname">static void Aws::Crt::Io::s_ChannelTaskCallback </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype">struct aws_channel_task *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a17604ecd6ea435342b446170f0699ca8" name="a17604ecd6ea435342b446170f0699ca8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17604ecd6ea435342b446170f0699ca8">&#9670;&nbsp;</a></span>InitTlsStaticState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h.html#a0a3f6c46aee6b588ce99a142cdb22d1d">AWS_CRT_CPP_API</a> void Aws::Crt::Io::InitTlsStaticState </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
-          <td class="paramname"><em>alloc</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum aws_task_status&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

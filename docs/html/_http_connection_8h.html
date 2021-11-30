@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/http/HttpConnection.h File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/include/aws/crt/http/HttpConnection.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,6 +76,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;aws/http/connection.h&gt;</code><br />
+<code>#include &lt;aws/http/proxy.h&gt;</code><br />
 <code>#include &lt;aws/http/request_response.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_types_8h_source.html">aws/crt/Types.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_bootstrap_8h_source.html">aws/crt/io/Bootstrap.h</a>&gt;</code><br />
@@ -133,10 +134,15 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:af3cef7161b636a6450f5cb4a50021979"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979">Aws::Crt::Http::AwsHttpProxyAuthenticationType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754">Aws::Crt::Http::None</a> = AWS_HPAT_NONE
-, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94">Aws::Crt::Http::Basic</a> = AWS_HPAT_BASIC
+<tr class="memitem:af3cef7161b636a6450f5cb4a50021979"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979">Aws::Crt::Http::AwsHttpProxyAuthenticationType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754">Aws::Crt::Http::None</a>
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94">Aws::Crt::Http::Basic</a>
  }</td></tr>
 <tr class="separator:af3cef7161b636a6450f5cb4a50021979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f13c5720d947936b72cee24545ea82a"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82a">Aws::Crt::Http::AwsHttpProxyConnectionType</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aa0cc0a0507cf3d31e5089f420a4cf8b4b">Aws::Crt::Http::Legacy</a> = AWS_HPCT_HTTP_LEGACY
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aa6bfd1fd43243576a16927aaae94e96be">Aws::Crt::Http::Forwarding</a> = AWS_HPCT_HTTP_FORWARD
+, <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#a3f13c5720d947936b72cee24545ea82aaf2a596e1cc3cc962cdcfc07ed14df40d">Aws::Crt::Http::Tunneling</a> = AWS_HPCT_HTTP_TUNNEL
+ }</td></tr>
+<tr class="separator:a3f13c5720d947936b72cee24545ea82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba23b4ec95a8d1b95d18b2ffe5d82e5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5">Aws::Crt::Http::HttpVersion</a> { <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5a88183b946cc5f0e8c96b2e66e1c74a7e">Aws::Crt::Http::Unknown</a> = AWS_HTTP_VERSION_UNKNOWN
 , <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5aa820a7cca3410e94af1e51058023680a">Aws::Crt::Http::Http1_0</a> = AWS_HTTP_VERSION_1_0
 , <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5a2c494112f4c9bef921aacd3650fd34ea">Aws::Crt::Http::Http1_1</a> = AWS_HTTP_VERSION_1_1
