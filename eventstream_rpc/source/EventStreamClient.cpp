@@ -1302,7 +1302,7 @@ namespace Aws
             const Crt::Optional<Crt::ByteBuf> &payload,
             uint32_t messageFlags)
         {
-            bool streamAlreadyTerminated = messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
+            bool streamAlreadyTerminated = (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM) != 0;
 
             Crt::StringView payloadStringView;
             if (payload.has_value())
