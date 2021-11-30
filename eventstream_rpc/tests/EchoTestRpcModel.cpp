@@ -1033,8 +1033,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#CauseServiceErrorResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName()
-        const noexcept
+    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName() const
+        noexcept
     {
         return Aws::Crt::Optional<Aws::Crt::String>();
     }
@@ -1101,15 +1101,15 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
-            const noexcept
+        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+        noexcept
     {
         return EchoStreamingResponse::s_allocateFromPayload(stringView, allocator);
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
-            const noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+        noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1195,8 +1195,8 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamMessagesOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
-            const noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+        noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1211,8 +1211,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#EchoStreamingResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName()
-        const noexcept
+    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName() const
+        noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingMessage");
     }
