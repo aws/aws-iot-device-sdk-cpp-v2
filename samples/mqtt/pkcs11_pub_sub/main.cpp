@@ -107,8 +107,7 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    // Enable logging
-    apiHandle.InitializeLogging(LogLevel::Error, stderr);
+    // apiHandle.InitializeLogging(LogLevel::Error, stderr);
 
     /*********************** Parse Arguments ***************************/
     ArgParser args(argc, argv);
