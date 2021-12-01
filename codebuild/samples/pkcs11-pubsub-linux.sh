@@ -10,7 +10,8 @@ set -x
 
 softhsm2-util --version
 
-# set tokendir, since SoftHSM2's default tokendir path might be invalid on this machine
+# SoftHSM2's default tokendir path might be invalid on this machine
+# so set up a conf file that specifies a known good tokendir path
 mkdir -p /tmp/tokens
 export SOFTHSM2_CONF=/tmp/softhsm2.conf
 echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
@@ -33,7 +34,7 @@ make -j
 ./pkcs11-pub-sub \
     --endpoint $ENDPOINT \
     --cert /tmp/certificate.pem \
-    --pkcs11_lib libsofthsm2.so \
+    --pkcs11_lib /usr/lib/softhsm/libsofthsm2.so \
     --pin 0000 \
     --token_label my-token \
     --key_label my-key
