@@ -21,7 +21,7 @@ softhsm2-util --init-token --free --label my-token --pin 0000 --so-pin 0000
 
 # add private key to token (must be in PKCS#8 format)
 openssl pkcs8 -topk8 -in /tmp/privatekey.pem -out /tmp/privatekey.p8.pem -nocrypt
-softhsm2-util --import /tmp/privatekey.p8.pem --token my-token --label my-label --id BEEFCAFE --pin 0000
+softhsm2-util --import /tmp/privatekey.p8.pem --token my-token --label my-key --id BEEFCAFE --pin 0000
 
 # build and run sample
 pushd $CODEBUILD_SRC_DIR/samples/mqtt/pkcs11_pub_sub
