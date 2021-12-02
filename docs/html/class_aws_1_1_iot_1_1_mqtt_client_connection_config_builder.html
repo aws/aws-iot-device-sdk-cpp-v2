@@ -84,6 +84,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7008ad6608bc1a8269e3fdd591ca0268"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b2967c4415a9432d0f0b3b6e9f8082a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a1b2967c4415a9432d0f0b3b6e9f8082a">MqttClientConnectionConfigBuilder</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> &amp;cert, const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> &amp;pkey, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a1b2967c4415a9432d0f0b3b6e9f8082a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d39e1add92b600508489badcde132f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a42d39e1add92b600508489badcde132f">MqttClientConnectionConfigBuilder</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_pkcs11_options.html">Crt::Io::TlsContextPkcs11Options</a> &amp;pkcs11Options, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a>) noexcept</td></tr>
+<tr class="separator:a42d39e1add92b600508489badcde132f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fd052ff2f36a4c266b53318394e20cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#a4fd052ff2f36a4c266b53318394e20cf">MqttClientConnectionConfigBuilder</a> (const <a class="el" href="struct_aws_1_1_iot_1_1_websocket_config.html">WebsocketConfig</a> &amp;config, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a4fd052ff2f36a4c266b53318394e20cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab759e64586a580a1b817a8c650d0ca5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html">MqttClientConnectionConfigBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder.html#ab759e64586a580a1b817a8c650d0ca5b">WithEndpoint</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;endpoint)</td></tr>
@@ -127,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >Represents configuration parameters for building a <a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html">MqttClientConnectionConfig</a> object. You can use a single instance of this class PER <a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html">MqttClientConnectionConfig</a> you want to generate. If you want to generate a config for a different endpoint or port etc... you need a new instance of this class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9421f049699efe5c84e16b8a7d4474e6" name="a9421f049699efe5c84e16b8a7d4474e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9421f049699efe5c84e16b8a7d4474e6">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9421f049699efe5c84e16b8a7d4474e6">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,7 +146,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a7008ad6608bc1a8269e3fdd591ca0268" name="a7008ad6608bc1a8269e3fdd591ca0268"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7008ad6608bc1a8269e3fdd591ca0268">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7008ad6608bc1a8269e3fdd591ca0268">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,7 +196,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a1b2967c4415a9432d0f0b3b6e9f8082a" name="a1b2967c4415a9432d0f0b3b6e9f8082a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b2967c4415a9432d0f0b3b6e9f8082a">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b2967c4415a9432d0f0b3b6e9f8082a">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,8 +245,45 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a42d39e1add92b600508489badcde132f" name="a42d39e1add92b600508489badcde132f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42d39e1add92b600508489badcde132f">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Aws::Iot::MqttClientConnectionConfigBuilder::MqttClientConnectionConfigBuilder </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_pkcs11_options.html">Crt::Io::TlsContextPkcs11Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>pkcs11Options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Sets the builder up for MTLS, using a PKCS#11 library for private key operations. </p>
+
+</div>
+</div>
 <a id="a4fd052ff2f36a4c266b53318394e20cf" name="a4fd052ff2f36a4c266b53318394e20cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fd052ff2f36a4c266b53318394e20cf">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fd052ff2f36a4c266b53318394e20cf">&#9670;&nbsp;</a></span>MqttClientConnectionConfigBuilder() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

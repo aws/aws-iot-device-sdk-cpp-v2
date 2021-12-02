@@ -115,6 +115,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a5c8b08e4a120d1f4b6651bbdb60a5d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21127a39cdf5ed6e6ffa675db02626c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#a21127a39cdf5ed6e6ffa675db02626c0">InitClientWithMtls</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;cert, const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;pkey, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a21127a39cdf5ed6e6ffa675db02626c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf03d46f6f31873ff66412245ccf518"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#a1cf03d46f6f31873ff66412245ccf518">InitClientWithMtlsPkcs11</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_pkcs11_options.html">TlsContextPkcs11Options</a> &amp;pkcs11Options, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="separator:a1cf03d46f6f31873ff66412245ccf518"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7e9b86c045f26c61b3f8b6ff44cc0f5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ad7e9b86c045f26c61b3f8b6ff44cc0f5">IsAlpnSupported</a> () noexcept</td></tr>
 <tr class="separator:ad7e9b86c045f26c61b3f8b6ff44cc0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -272,6 +274,7 @@ Friends</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">cert</td><td>Certificate contents in memory. </td></tr>
     <tr><td class="paramname">pkey</td><td>Private key contents in memory. </td></tr>
+    <tr><td class="paramname">allocator</td><td>Memory allocator to use. </td></tr>
   </table>
   </dd>
 </dl>
@@ -321,6 +324,52 @@ Friends</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">cert_path</td><td>Path to certificate file. </td></tr>
     <tr><td class="paramname">pkey_path</td><td>Path to private key file. </td></tr>
+    <tr><td class="paramname">allocator</td><td>Memory allocator to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1cf03d46f6f31873ff66412245ccf518" name="a1cf03d46f6f31873ff66412245ccf518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf03d46f6f31873ff66412245ccf518">&#9670;&nbsp;</a></span>InitClientWithMtlsPkcs11()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> Aws::Crt::Io::TlsContextOptions::InitClientWithMtlsPkcs11 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_pkcs11_options.html">TlsContextPkcs11Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>pkcs11Options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> with secure by default options, using a PKCS#11 library for private key operations.</p>
+<p >NOTE: This configuration only works on Unix devices.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkcs11Options</td><td>PKCS#11 options </td></tr>
+    <tr><td class="paramname">allocator</td><td>Memory allocator to use. </td></tr>
   </table>
   </dd>
 </dl>

@@ -7,6 +7,7 @@ var searchData=
   ['sigv4a_4',['SigV4A',['../namespace_aws_1_1_crt_1_1_auth.html#a0bb6cb21cf640b39af9e036cfeecdca5a34294474e9d0640cc9e43eddaedacff0',1,'Aws::Crt::Auth']]],
   ['stopped_5',['Stopped',['../namespace_aws_1_1_iotdevicedefenderv1.html#a09b588a32427e8a6cc07bb218c536e48ac23e2b09ebe6bf4cb5e2a9abe85c0be2',1,'Aws::Iotdevicedefenderv1']]],
   ['stream_6',['Stream',['../namespace_aws_1_1_crt_1_1_io.html#ae5f9aa2fd04a14dfa0cd50a8b56e6b8eaeae835e83c0494a376229f254f7d3392',1,'Aws::Crt::Io']]],
-  ['succeeded_7',['SUCCEEDED',['../namespace_aws_1_1_iotjobs.html#ab23745174d4d2f57ebf542bdbd1bacf0afd9f6519d3f45276829fe74eb2c4bb85',1,'Aws::Iotjobs']]],
-  ['sunday_8',['Sunday',['../namespace_aws_1_1_crt.html#aceed5cb5b58c971ed0503442659e895fa9d1a0949c39e66a0cd65240bc0ac9177',1,'Aws::Crt']]]
+  ['strict_7',['Strict',['../class_aws_1_1_crt_1_1_io_1_1_pkcs11_lib.html#a952ea389c22b244fa0da3f490e2d4b1ba2e979835dd62324f5bfe217449ba4974',1,'Aws::Crt::Io::Pkcs11Lib']]],
+  ['succeeded_8',['SUCCEEDED',['../namespace_aws_1_1_iotjobs.html#ab23745174d4d2f57ebf542bdbd1bacf0afd9f6519d3f45276829fe74eb2c4bb85',1,'Aws::Iotjobs']]],
+  ['sunday_9',['Sunday',['../namespace_aws_1_1_crt.html#aceed5cb5b58c971ed0503442659e895fa9d1a0949c39e66a0cd65240bc0ac9177',1,'Aws::Crt']]]
 ];
