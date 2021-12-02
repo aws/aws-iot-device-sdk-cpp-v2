@@ -53,6 +53,13 @@ else ()
     target_compile_options(GreengrassIpc-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
+if (MSVC)
+    # Generated code files can be very big. Set /bigobj to avoid the following error:
+    # > fatal error C1128: number of sections exceeded object file format limit: compile with /bigobj
+    target_compile_options(GreengrassIpc-cpp PRIVATE /bigobj)
+endif ()
+
+
 if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
     target_compile_definitions(GreengrassIpc-cpp PRIVATE "-DDEBUG_BUILD")
 endif ()
