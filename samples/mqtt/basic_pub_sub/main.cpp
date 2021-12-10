@@ -481,11 +481,9 @@ int main(int argc, char *argv[])
 
     /*
      * Actually perform the connect dance.
-     * This will use default ping behavior of 1 hour and 3 second timeouts.
-     * If you want different behavior, those arguments go into slots 3 & 4.
      */
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), false, 1000))
+    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);

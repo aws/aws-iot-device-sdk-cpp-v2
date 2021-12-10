@@ -21,6 +21,5 @@ var searchData=
   ['onsuback_18',['onSubAck',['../struct_aws_1_1_crt_1_1_mqtt_1_1_sub_ack_callback_data.html#add36322ec469e045f1abbbce8a58e74c',1,'Aws::Crt::Mqtt::SubAckCallbackData::onSubAck()'],['../struct_aws_1_1_crt_1_1_mqtt_1_1_multi_sub_ack_callback_data.html#a9b69cafa709d77ff674e16b42397f6e8',1,'Aws::Crt::Mqtt::MultiSubAckCallbackData::onSubAck()']]],
   ['ontaskcancelled_19',['OnTaskCancelled',['../class_aws_1_1_iotdevicedefenderv1_1_1_report_task.html#ac8f665478320bc196996aed76214a0d8',1,'Aws::Iotdevicedefenderv1::ReportTask']]],
   ['operation_5ferror_20',['OPERATION_ERROR',['../_event_stream_client_8h.html#adc667bae005a42b265bc2baae449373f',1,'EventStreamClient.h']]],
-  ['operation_5fresponse_21',['OPERATION_RESPONSE',['../_event_stream_client_8h.html#a5c3776c3032fd07ededb85385ffdee99',1,'EventStreamClient.h']]],
-  ['output_22',['Output',['../struct_elasticurl_ctx.html#a5ca8baf38fcdc30307e30fe2dbf0eb27',1,'ElasticurlCtx']]]
+  ['operation_5fresponse_21',['OPERATION_RESPONSE',['../_event_stream_client_8h.html#a5c3776c3032fd07ededb85385ffdee99',1,'EventStreamClient.h']]]
 ];

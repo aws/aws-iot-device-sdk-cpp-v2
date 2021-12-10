@@ -113,7 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8191885de55a11491632af50315b5a44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotjobs_1_1_iot_jobs_client.html#a8191885de55a11491632af50315b5a44">PublishStartNextPendingJobExecution</a> (const <a class="el" href="class_aws_1_1_iotjobs_1_1_start_next_pending_job_execution_request.html">Aws::Iotjobs::StartNextPendingJobExecutionRequest</a> &amp;request, <a class="el" href="namespace_aws_1_1_crt_1_1_mqtt.html#a73e44d9ab196e11a9732981690ac5423">Aws::Crt::Mqtt::QOS</a> qos, const <a class="el" href="namespace_aws_1_1_iotjobs.html#a8d27af0de5aa5b8553313acac5320300">OnPublishComplete</a> &amp;onPubAck)</td></tr>
 <tr class="separator:a8191885de55a11491632af50315b5a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >The AWS IoT jobs service can be used to define a set of remote operations that are sent to and executed on one or more devices connected to AWS IoT.</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#jobs-mqtt-api">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#jobs-mqtt-api</a> </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee3ebea986d646ff81eeb61ecd41fc68" name="aee3ebea986d646ff81eeb61ecd41fc68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee3ebea986d646ff81eeb61ecd41fc68">&#9670;&nbsp;</a></span>IotJobsClient()</h2>
 
@@ -214,6 +217,23 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Gets detailed information about a job execution.</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution</a></p>
+<p >Publish a DescribeJobExecution message. If the device is offline, the PUBLISH packet will be sent once the connection resumes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Message to be serialized and sent </td></tr>
+    <tr><td class="paramname">qos</td><td>Quality of Service for delivering this message </td></tr>
+    <tr><td class="paramname">onPubAck</td><td>callback when the publish "completes" (see below)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the message was successfully queued for publication, false if there was an error</dd></dl>
+<ul>
+<li>For QoS 0, completes as soon as the packet is sent.</li>
+<li>For QoS 1, completes when PUBACK is received.</li>
+<li>QoS 2 is not supported by AWS IoT. </li>
+</ul>
 
 </div>
 </div>
@@ -248,6 +268,23 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Gets the list of all jobs for a thing that are not in a terminal state.</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions</a></p>
+<p >Publish a GetPendingJobExecutions message. If the device is offline, the PUBLISH packet will be sent once the connection resumes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Message to be serialized and sent </td></tr>
+    <tr><td class="paramname">qos</td><td>Quality of Service for delivering this message </td></tr>
+    <tr><td class="paramname">onPubAck</td><td>callback when the publish "completes" (see below)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the message was successfully queued for publication, false if there was an error</dd></dl>
+<ul>
+<li>For QoS 0, completes as soon as the packet is sent.</li>
+<li>For QoS 1, completes when PUBACK is received.</li>
+<li>QoS 2 is not supported by AWS IoT. </li>
+</ul>
 
 </div>
 </div>
@@ -282,6 +319,23 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Gets and starts the next pending job execution for a thing (status IN_PROGRESS or QUEUED).</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution</a></p>
+<p >Publish a StartNextPendingJobExecution message. If the device is offline, the PUBLISH packet will be sent once the connection resumes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Message to be serialized and sent </td></tr>
+    <tr><td class="paramname">qos</td><td>Quality of Service for delivering this message </td></tr>
+    <tr><td class="paramname">onPubAck</td><td>callback when the publish "completes" (see below)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the message was successfully queued for publication, false if there was an error</dd></dl>
+<ul>
+<li>For QoS 0, completes as soon as the packet is sent.</li>
+<li>For QoS 1, completes when PUBACK is received.</li>
+<li>QoS 2 is not supported by AWS IoT. </li>
+</ul>
 
 </div>
 </div>
@@ -316,6 +370,23 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Updates the status of a job execution. You can optionally create a step timer by setting a value for the stepTimeoutInMinutes property. If you don't update the value of this property by running UpdateJobExecution again, the job execution times out when the step timer expires.</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution</a></p>
+<p >Publish a UpdateJobExecution message. If the device is offline, the PUBLISH packet will be sent once the connection resumes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Message to be serialized and sent </td></tr>
+    <tr><td class="paramname">qos</td><td>Quality of Service for delivering this message </td></tr>
+    <tr><td class="paramname">onPubAck</td><td>callback when the publish "completes" (see below)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the message was successfully queued for publication, false if there was an error</dd></dl>
+<ul>
+<li>For QoS 0, completes as soon as the packet is sent.</li>
+<li>For QoS 1, completes when PUBACK is received.</li>
+<li>QoS 2 is not supported by AWS IoT. </li>
+</ul>
 
 </div>
 </div>
@@ -356,6 +427,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the accepted topic for the DescribeJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution</a></p>
+<p >Subscribe to DescribeJobExecutionAccepted messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -396,6 +481,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the rejected topic for the DescribeJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution</a></p>
+<p >Subscribe to DescribeJobExecutionRejected messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -436,6 +535,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the accepted topic for the GetPendingJobsExecutions operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions</a></p>
+<p >Subscribe to GetPendingJobExecutionsAccepted messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -476,6 +589,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the rejected topic for the GetPendingJobsExecutions operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions</a></p>
+<p >Subscribe to GetPendingJobExecutionsRejected messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -516,6 +643,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to JobExecutionsChanged notifications for a given IoT thing.</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-jobexecutionschanged">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-jobexecutionschanged</a></p>
+<p >Subscribe to JobExecutionsChangedEvents messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -556,6 +697,19 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-nextjobexecutionchanged">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-nextjobexecutionchanged</a></p>
+<p >Subscribe to NextJobExecutionChangedEvents messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -596,6 +750,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the accepted topic for the StartNextPendingJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution</a></p>
+<p >Subscribe to StartNextPendingJobExecutionAccepted messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -636,6 +804,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the rejected topic for the StartNextPendingJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution</a></p>
+<p >Subscribe to StartNextPendingJobExecutionRejected messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -676,6 +858,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the accepted topic for the UpdateJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution</a></p>
+<p >Subscribe to UpdateJobExecutionAccepted messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
@@ -716,12 +912,26 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Subscribes to the rejected topic for the UpdateJobExecution operation</p>
+<p ><a href="https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution">https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution</a></p>
+<p >Subscribe to UpdateJobExecutionRejected messages</p>
+<p >Once subscribed, <code>handler</code> is invoked each time a message matching the <code>topic</code> is received. It is possible for such messages to arrive before the SUBACK is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Subscription request configuration </td></tr>
+    <tr><td class="paramname">qos</td><td>Maximum requested QoS that server may use when sending messages to the client. The server may grant a lower QoS in the SUBACK </td></tr>
+    <tr><td class="paramname">handler</td><td>callback function to invoke with messages received on the subscription topic </td></tr>
+    <tr><td class="paramname">onSubAck</td><td>callback function invoked on receipt of the SUBACK from the server</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the subscribe was successfully queued, false if there was an error doing so </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/jobs/include/aws/iotjobs/<a class="el" href="_iot_jobs_client_8h_source.html">IotJobsClient.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/jobs/source/<a class="el" href="_iot_jobs_client_8cpp.html">IotJobsClient.cpp</a></li>
+<li>jobs/include/aws/iotjobs/<a class="el" href="_iot_jobs_client_8h_source.html">IotJobsClient.h</a></li>
+<li>jobs/source/<a class="el" href="_iot_jobs_client_8cpp.html">IotJobsClient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

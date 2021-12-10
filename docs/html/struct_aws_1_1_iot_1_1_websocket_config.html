@@ -101,7 +101,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2a3f538f5ae05a41e4ad4f3f287c6d9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_aws_1_1_iot_1_1_websocket_config.html#a2a3f538f5ae05a41e4ad4f3f287c6d9e">ServiceName</a></td></tr>
 <tr class="separator:a2a3f538f5ae05a41e4ad4f3f287c6d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Class encapsulating configuration for establishing an <a class="el" href="namespace_aws.html">Aws</a> IoT mqtt connection via websockets </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3cbae6e4be97378adf57e09b4b3ae855" name="a3cbae6e4be97378adf57e09b4b3ae855"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cbae6e4be97378adf57e09b4b3ae855">&#9670;&nbsp;</a></span>WebsocketConfig() <span class="overload">[1/3]</span></h2>
 
@@ -141,7 +143,14 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Create a websocket configuration for use with the default credentials provider chain. Signing region will be used for Sigv4 signature calculations. </p>
+<p >Create a websocket configuration for use with the default credentials provider chain. Signing region will be used for Sigv4 signature calculations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signingRegion</td><td><a class="el" href="namespace_aws.html">Aws</a> region that is being connected to. Required in order to properly sign the handshake upgrade request </td></tr>
+    <tr><td class="paramname">bootstrap</td><td>client bootstrap to establish any connections needed by the default credentials provider chain which will get built for the user </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -184,7 +193,14 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Create a websocket configuration for use with a custom credentials provider. Signing region will be use for Sigv4 signature calculations. </p>
+<p >Create a websocket configuration for use with a custom credentials provider. Signing region will be used for Sigv4 signature calculations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signingRegion</td><td><a class="el" href="namespace_aws.html">Aws</a> region that is being connected to. Required in order to properly sign the handshake upgrade request </td></tr>
+    <tr><td class="paramname">credentialsProvider</td><td>credentials provider to source AWS credentials from </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -229,7 +245,15 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >Create a websocket configuration for use with a custom credentials provider, and a custom signer.</p>
 <p >You'll need to provide a function for use with creating a signing Config and pass it to createSigningConfig.</p>
-<p >This is useful for cases use with: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/custom-auth.html">https://docs.aws.amazon.com/iot/latest/developerguide/custom-auth.html</a> </p>
+<p >This is useful for cases use with: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/custom-auth.html">https://docs.aws.amazon.com/iot/latest/developerguide/custom-auth.html</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">credentialsProvider</td><td></td></tr>
+    <tr><td class="paramname">signer</td><td></td></tr>
+    <tr><td class="paramname">createSigningConfig</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -273,7 +297,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Specify ProxyOptions to use a proxy with your websocket connection. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Deprecated:</a></b></dt><dd>Specify ProxyOptions to use a proxy with your websocket connection.</dd></dl>
+<p >If MqttClientConnectionConfigBuilder::m_proxyOptions is valid, then that will be used over this value. </p>
 
 </div>
 </div>
@@ -320,8 +345,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
-<li>/Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
+<li>crt/aws-crt-cpp/include/aws/iot/<a class="el" href="iot_2_mqtt_client_8h_source.html">MqttClient.h</a></li>
+<li>crt/aws-crt-cpp/source/iot/<a class="el" href="iot_2_mqtt_client_8cpp.html">MqttClient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

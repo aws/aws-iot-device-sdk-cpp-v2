@@ -12,11 +12,14 @@ class BuildSamples(Builder.Action):
         steps = []
         samples = [
             'samples/mqtt/basic_pub_sub',
+            'samples/mqtt/pkcs11_pub_sub',
             'samples/mqtt/raw_pub_sub',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
             'samples/jobs/describe_job_execution',
+            'samples/secure_tunneling/secure_tunnel',
+            'samples/secure_tunneling/tunnel_notification',
         ]
         for sample_path in samples:
             build_path = os.path.join('build', sample_path)

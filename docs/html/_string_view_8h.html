@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: /Users/jkl/Documents/AWS/sdk-cpp-workspace/aws-iot-device-sdk-cpp-v2/crt/aws-crt-cpp/include/aws/crt/StringView.h File Reference</title>
+<title>AWS IoT Device SDK C++ v2: crt/aws-crt-cpp/include/aws/crt/StringView.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,6 +78,7 @@ $(function() {
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 </div>
@@ -172,14 +173,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a418efb938cb10c49ac316d38e395455b"><td class="memTemplParams" colspan="2">template&lt;class CharT , class Traits &gt; </td></tr>
 <tr class="memitem:a418efb938cb10c49ac316d38e395455b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt.html#a418efb938cb10c49ac316d38e395455b">Aws::Crt::operator&gt;=</a> (typename std::common_type&lt; basic_string_view&lt; CharT, Traits &gt; &gt;::type &amp;lhs, const basic_string_view&lt; CharT, Traits &gt; &amp;rhs) noexcept</td></tr>
 <tr class="separator:a418efb938cb10c49ac316d38e395455b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77c05082b4360f2da9c6ebc0f404e1a4"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#a77c05082b4360f2da9c6ebc0f404e1a4">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char *s, size_t length) noexcept</td></tr>
-<tr class="separator:a77c05082b4360f2da9c6ebc0f404e1a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3735cafe131c554ed78224e8650daec8"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; wchar_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#a3735cafe131c554ed78224e8650daec8">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const wchar_t *s, size_t length) noexcept</td></tr>
-<tr class="separator:a3735cafe131c554ed78224e8650daec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f583858793e46e109c93801ce1ec57"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#af6f583858793e46e109c93801ce1ec57">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char16_t *s, size_t length) noexcept</td></tr>
-<tr class="separator:af6f583858793e46e109c93801ce1ec57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a192f6016ae629df690df81c89896fc2c"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#a192f6016ae629df690df81c89896fc2c">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char32_t *s, size_t length) noexcept</td></tr>
-<tr class="separator:a192f6016ae629df690df81c89896fc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033ce376d78ea93830367ee7f36d3896"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#a033ce376d78ea93830367ee7f36d3896">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char *s, size_t length) noexcept</td></tr>
+<tr class="separator:a033ce376d78ea93830367ee7f36d3896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a4258994835fcac98cc5d46fd43b35"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; wchar_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#a18a4258994835fcac98cc5d46fd43b35">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const wchar_t *s, size_t length) noexcept</td></tr>
+<tr class="separator:a18a4258994835fcac98cc5d46fd43b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac359c4d976ed56c13c7a1c3c613cd98e"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#ac359c4d976ed56c13c7a1c3c613cd98e">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char16_t *s, size_t length) noexcept</td></tr>
+<tr class="separator:ac359c4d976ed56c13c7a1c3c613cd98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9a006c71507f08dc63a354816fb2e7"><td class="memItemLeft" align="right" valign="top">basic_string_view&lt; char32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1literals_1_1string__view__literals.html#aae9a006c71507f08dc63a354816fb2e7">Aws::Crt::literals::string_view_literals::operator&quot;&quot;_sv</a> (const char32_t *s, size_t length) noexcept</td></tr>
+<tr class="separator:aae9a006c71507f08dc63a354816fb2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
