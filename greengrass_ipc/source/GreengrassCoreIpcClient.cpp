@@ -56,6 +56,18 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToIoTCoreOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SubscribeToIoTCoreOperation> GreengrassCoreIpcClient::NewPtrSubscribeToIoTCore(
+            std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler) noexcept
+        {
+            return std::unique_ptr<SubscribeToIoTCoreOperation>(Aws::Crt::New<SubscribeToIoTCoreOperation>(
+                m_allocator,
+                m_connection,
+                streamHandler,
+                m_greengrassCoreIpcServiceModel.m_subscribeToIoTCoreOperationContext,
+                m_allocator));
+        }
+
         ResumeComponentOperation GreengrassCoreIpcClient::NewResumeComponent() noexcept
         {
             return ResumeComponentOperation(

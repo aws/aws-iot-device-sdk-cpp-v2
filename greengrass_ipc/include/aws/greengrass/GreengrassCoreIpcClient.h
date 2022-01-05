@@ -39,6 +39,10 @@ namespace Aws
             bool IsConnected() const noexcept { return m_connection.IsOpen(); }
             void Close() noexcept;
             SubscribeToIoTCoreOperation NewSubscribeToIoTCore(SubscribeToIoTCoreStreamHandler &) noexcept;
+
+            std::unique_ptr<SubscribeToIoTCoreOperation> NewPtrSubscribeToIoTCore(
+                std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler) noexcept;
+
             ResumeComponentOperation NewResumeComponent() noexcept;
             PublishToIoTCoreOperation NewPublishToIoTCore() noexcept;
             SubscribeToConfigurationUpdateOperation NewSubscribeToConfigurationUpdate(

@@ -5134,6 +5134,16 @@ namespace Aws
         {
         }
 
+        SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
+            const SubscribeToIoTCoreOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(streamHandler)
+        {
+        }
+
         std::future<RpcError> SubscribeToIoTCoreOperation::Activate(
             const SubscribeToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept

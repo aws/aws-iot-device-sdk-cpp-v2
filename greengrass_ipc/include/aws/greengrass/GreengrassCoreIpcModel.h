@@ -2616,6 +2616,13 @@ namespace Aws
                 SubscribeToIoTCoreStreamHandler *streamHandler,
                 const SubscribeToIoTCoreOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
+            SubscribeToIoTCoreOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
+                const SubscribeToIoTCoreOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToIoTCoreOperation`
              * @param request The request used for the `SubscribeToIoTCoreOperation`
@@ -2632,6 +2639,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToIoTCoreStreamHandler> pinnedHandler;
         };
 
         class ResumeComponentOperationContext : public OperationModelContext
