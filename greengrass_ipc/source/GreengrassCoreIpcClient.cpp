@@ -63,7 +63,7 @@ namespace Aws
             return std::unique_ptr<SubscribeToIoTCoreOperation>(Aws::Crt::New<SubscribeToIoTCoreOperation>(
                 m_allocator,
                 m_connection,
-                streamHandler,
+                std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToIoTCoreOperationContext,
                 m_allocator));
         }

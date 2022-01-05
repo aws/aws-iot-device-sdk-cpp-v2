@@ -5140,7 +5140,7 @@ namespace Aws
             const SubscribeToIoTCoreOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(streamHandler)
+              pinnedHandler(std::move(streamHandler))
         {
         }
 
