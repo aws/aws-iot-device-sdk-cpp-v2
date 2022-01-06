@@ -1,3 +1,4 @@
+#include <aws/crt/Types.h>
 #include <aws/crt/io/Bootstrap.h>
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
 
@@ -73,11 +74,31 @@ namespace Aws
             return ResumeComponentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_resumeComponentOperationContext, m_allocator);
         }
+
+        std::unique_ptr<ResumeComponentOperation> GreengrassCoreIpcClient::NewPtrResumeComponent() noexcept
+        {
+            return std::unique_ptr<ResumeComponentOperation>(Aws::Crt::New<ResumeComponentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_resumeComponentOperationContext,
+                m_allocator));
+        }
+
         PublishToIoTCoreOperation GreengrassCoreIpcClient::NewPublishToIoTCore() noexcept
         {
             return PublishToIoTCoreOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_publishToIoTCoreOperationContext, m_allocator);
         }
+
+        std::unique_ptr<PublishToIoTCoreOperation> GreengrassCoreIpcClient::NewPtrPublishToIoTCore() noexcept
+        {
+            return std::unique_ptr<PublishToIoTCoreOperation>(Aws::Crt::New<PublishToIoTCoreOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_publishToIoTCoreOperationContext,
+                m_allocator));
+        }
+
         SubscribeToConfigurationUpdateOperation GreengrassCoreIpcClient::NewSubscribeToConfigurationUpdate(
             SubscribeToConfigurationUpdateStreamHandler &streamHandler) noexcept
         {
@@ -87,16 +108,50 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToConfigurationUpdateOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SubscribeToConfigurationUpdateOperation> GreengrassCoreIpcClient::
+            NewPtrSubscribeToConfigurationUpdate(
+                std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler) noexcept
+        {
+            return std::unique_ptr<SubscribeToConfigurationUpdateOperation>(
+                Aws::Crt::New<SubscribeToConfigurationUpdateOperation>(
+                    m_allocator,
+                    m_connection,
+                    std::move(streamHandler),
+                    m_greengrassCoreIpcServiceModel.m_subscribeToConfigurationUpdateOperationContext,
+                    m_allocator));
+        }
+
         DeleteThingShadowOperation GreengrassCoreIpcClient::NewDeleteThingShadow() noexcept
         {
             return DeleteThingShadowOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_deleteThingShadowOperationContext, m_allocator);
         }
+
+        std::unique_ptr<DeleteThingShadowOperation> GreengrassCoreIpcClient::NewPtrDeleteThingShadow() noexcept
+        {
+            return std::unique_ptr<DeleteThingShadowOperation>(Aws::Crt::New<DeleteThingShadowOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_deleteThingShadowOperationContext,
+                m_allocator));
+        }
+
         DeferComponentUpdateOperation GreengrassCoreIpcClient::NewDeferComponentUpdate() noexcept
         {
             return DeferComponentUpdateOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_deferComponentUpdateOperationContext, m_allocator);
         }
+
+        std::unique_ptr<DeferComponentUpdateOperation> GreengrassCoreIpcClient::NewPtrDeferComponentUpdate() noexcept
+        {
+            return std::unique_ptr<DeferComponentUpdateOperation>(Aws::Crt::New<DeferComponentUpdateOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_deferComponentUpdateOperationContext,
+                m_allocator));
+        }
+
         SubscribeToValidateConfigurationUpdatesOperation GreengrassCoreIpcClient::
             NewSubscribeToValidateConfigurationUpdates(
                 SubscribeToValidateConfigurationUpdatesStreamHandler &streamHandler) noexcept
@@ -107,11 +162,35 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToValidateConfigurationUpdatesOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SubscribeToValidateConfigurationUpdatesOperation> GreengrassCoreIpcClient::
+            NewPtrSubscribeToValidateConfigurationUpdates(
+                std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler) noexcept
+        {
+            return std::unique_ptr<SubscribeToValidateConfigurationUpdatesOperation>(
+                Aws::Crt::New<SubscribeToValidateConfigurationUpdatesOperation>(
+                    m_allocator,
+                    m_connection,
+                    std::move(streamHandler),
+                    m_greengrassCoreIpcServiceModel.m_subscribeToValidateConfigurationUpdatesOperationContext,
+                    m_allocator));
+        }
+
         GetConfigurationOperation GreengrassCoreIpcClient::NewGetConfiguration() noexcept
         {
             return GetConfigurationOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_getConfigurationOperationContext, m_allocator);
         }
+
+        std::unique_ptr<GetConfigurationOperation> GreengrassCoreIpcClient::NewPtrGetConfiguration() noexcept
+        {
+            return std::unique_ptr<GetConfigurationOperation>(Aws::Crt::New<GetConfigurationOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getConfigurationOperationContext,
+                m_allocator));
+        }
+
         SubscribeToTopicOperation GreengrassCoreIpcClient::NewSubscribeToTopic(
             SubscribeToTopicStreamHandler &streamHandler) noexcept
         {
@@ -121,31 +200,93 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToTopicOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SubscribeToTopicOperation> GreengrassCoreIpcClient::NewPtrSubscribeToTopic(
+            std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler) noexcept
+        {
+            return std::unique_ptr<SubscribeToTopicOperation>(Aws::Crt::New<SubscribeToTopicOperation>(
+                m_allocator,
+                m_connection,
+                std::move(streamHandler),
+                m_greengrassCoreIpcServiceModel.m_subscribeToTopicOperationContext,
+                m_allocator));
+        }
+
         GetComponentDetailsOperation GreengrassCoreIpcClient::NewGetComponentDetails() noexcept
         {
             return GetComponentDetailsOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_getComponentDetailsOperationContext, m_allocator);
         }
+
+        std::unique_ptr<GetComponentDetailsOperation> GreengrassCoreIpcClient::NewPtrGetComponentDetails() noexcept
+        {
+            return std::unique_ptr<GetComponentDetailsOperation>(Aws::Crt::New<GetComponentDetailsOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getComponentDetailsOperationContext,
+                m_allocator));
+        }
+
         PublishToTopicOperation GreengrassCoreIpcClient::NewPublishToTopic() noexcept
         {
             return PublishToTopicOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_publishToTopicOperationContext, m_allocator);
         }
+
+        std::unique_ptr<PublishToTopicOperation> GreengrassCoreIpcClient::NewPtrPublishToTopic() noexcept
+        {
+            return std::unique_ptr<PublishToTopicOperation>(Aws::Crt::New<PublishToTopicOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_publishToTopicOperationContext,
+                m_allocator));
+        }
+
         ListComponentsOperation GreengrassCoreIpcClient::NewListComponents() noexcept
         {
             return ListComponentsOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_listComponentsOperationContext, m_allocator);
         }
+
+        std::unique_ptr<ListComponentsOperation> GreengrassCoreIpcClient::NewPtrListComponents() noexcept
+        {
+            return std::unique_ptr<ListComponentsOperation>(Aws::Crt::New<ListComponentsOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_listComponentsOperationContext,
+                m_allocator));
+        }
+
         CreateDebugPasswordOperation GreengrassCoreIpcClient::NewCreateDebugPassword() noexcept
         {
             return CreateDebugPasswordOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_createDebugPasswordOperationContext, m_allocator);
         }
+
+        std::unique_ptr<CreateDebugPasswordOperation> GreengrassCoreIpcClient::NewPtrCreateDebugPassword() noexcept
+        {
+            return std::unique_ptr<CreateDebugPasswordOperation>(Aws::Crt::New<CreateDebugPasswordOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_createDebugPasswordOperationContext,
+                m_allocator));
+        }
+
         GetThingShadowOperation GreengrassCoreIpcClient::NewGetThingShadow() noexcept
         {
             return GetThingShadowOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_getThingShadowOperationContext, m_allocator);
         }
+
+        std::unique_ptr<GetThingShadowOperation> GreengrassCoreIpcClient::NewPtrGetThingShadow() noexcept
+        {
+            return std::unique_ptr<GetThingShadowOperation>(Aws::Crt::New<GetThingShadowOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getThingShadowOperationContext,
+                m_allocator));
+        }
+
         SendConfigurationValidityReportOperation GreengrassCoreIpcClient::NewSendConfigurationValidityReport() noexcept
         {
             return SendConfigurationValidityReportOperation(
@@ -153,16 +294,48 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_sendConfigurationValidityReportOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SendConfigurationValidityReportOperation> GreengrassCoreIpcClient::
+            NewPtrSendConfigurationValidityReport() noexcept
+        {
+            return std::unique_ptr<SendConfigurationValidityReportOperation>(
+                Aws::Crt::New<SendConfigurationValidityReportOperation>(
+                    m_allocator,
+                    m_connection,
+                    m_greengrassCoreIpcServiceModel.m_sendConfigurationValidityReportOperationContext,
+                    m_allocator));
+        }
+
         UpdateThingShadowOperation GreengrassCoreIpcClient::NewUpdateThingShadow() noexcept
         {
             return UpdateThingShadowOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_updateThingShadowOperationContext, m_allocator);
         }
+
+        std::unique_ptr<UpdateThingShadowOperation> GreengrassCoreIpcClient::NewPtrUpdateThingShadow() noexcept
+        {
+            return std::unique_ptr<UpdateThingShadowOperation>(Aws::Crt::New<UpdateThingShadowOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_updateThingShadowOperationContext,
+                m_allocator));
+        }
+
         UpdateConfigurationOperation GreengrassCoreIpcClient::NewUpdateConfiguration() noexcept
         {
             return UpdateConfigurationOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_updateConfigurationOperationContext, m_allocator);
         }
+
+        std::unique_ptr<UpdateConfigurationOperation> GreengrassCoreIpcClient::NewPtrUpdateConfiguration() noexcept
+        {
+            return std::unique_ptr<UpdateConfigurationOperation>(Aws::Crt::New<UpdateConfigurationOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_updateConfigurationOperationContext,
+                m_allocator));
+        }
+
         ValidateAuthorizationTokenOperation GreengrassCoreIpcClient::NewValidateAuthorizationToken() noexcept
         {
             return ValidateAuthorizationTokenOperation(
@@ -170,31 +343,92 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_validateAuthorizationTokenOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<ValidateAuthorizationTokenOperation> GreengrassCoreIpcClient::
+            NewPtrValidateAuthorizationToken() noexcept
+        {
+            return std::unique_ptr<ValidateAuthorizationTokenOperation>(
+                Aws::Crt::New<ValidateAuthorizationTokenOperation>(
+                    m_allocator,
+                    m_connection,
+                    m_greengrassCoreIpcServiceModel.m_validateAuthorizationTokenOperationContext,
+                    m_allocator));
+        }
+
         RestartComponentOperation GreengrassCoreIpcClient::NewRestartComponent() noexcept
         {
             return RestartComponentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_restartComponentOperationContext, m_allocator);
         }
+
+        std::unique_ptr<RestartComponentOperation> GreengrassCoreIpcClient::NewPtrRestartComponent() noexcept
+        {
+            return std::unique_ptr<RestartComponentOperation>(Aws::Crt::New<RestartComponentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_restartComponentOperationContext,
+                m_allocator));
+        }
+
         GetLocalDeploymentStatusOperation GreengrassCoreIpcClient::NewGetLocalDeploymentStatus() noexcept
         {
             return GetLocalDeploymentStatusOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_getLocalDeploymentStatusOperationContext, m_allocator);
         }
+
+        std::unique_ptr<GetLocalDeploymentStatusOperation> GreengrassCoreIpcClient::
+            NewPtrGetLocalDeploymentStatus() noexcept
+        {
+            return std::unique_ptr<GetLocalDeploymentStatusOperation>(Aws::Crt::New<GetLocalDeploymentStatusOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getLocalDeploymentStatusOperationContext,
+                m_allocator));
+        }
+
         GetSecretValueOperation GreengrassCoreIpcClient::NewGetSecretValue() noexcept
         {
             return GetSecretValueOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_getSecretValueOperationContext, m_allocator);
         }
+
+        std::unique_ptr<GetSecretValueOperation> GreengrassCoreIpcClient::NewPtrGetSecretValue() noexcept
+        {
+            return std::unique_ptr<GetSecretValueOperation>(Aws::Crt::New<GetSecretValueOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getSecretValueOperationContext,
+                m_allocator));
+        }
+
         UpdateStateOperation GreengrassCoreIpcClient::NewUpdateState() noexcept
         {
             return UpdateStateOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_updateStateOperationContext, m_allocator);
         }
+
+        std::unique_ptr<UpdateStateOperation> GreengrassCoreIpcClient::NewPtrUpdateState() noexcept
+        {
+            return std::unique_ptr<UpdateStateOperation>(Aws::Crt::New<UpdateStateOperation>(
+                m_allocator, m_connection, m_greengrassCoreIpcServiceModel.m_updateStateOperationContext, m_allocator));
+        }
+
         ListNamedShadowsForThingOperation GreengrassCoreIpcClient::NewListNamedShadowsForThing() noexcept
         {
             return ListNamedShadowsForThingOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_listNamedShadowsForThingOperationContext, m_allocator);
         }
+
+        std::unique_ptr<ListNamedShadowsForThingOperation> GreengrassCoreIpcClient::
+            NewPtrListNamedShadowsForThing() noexcept
+        {
+            return std::unique_ptr<ListNamedShadowsForThingOperation>(Aws::Crt::New<ListNamedShadowsForThingOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_listNamedShadowsForThingOperationContext,
+                m_allocator));
+        }
+
         SubscribeToComponentUpdatesOperation GreengrassCoreIpcClient::NewSubscribeToComponentUpdates(
             SubscribeToComponentUpdatesStreamHandler &streamHandler) noexcept
         {
@@ -204,25 +438,78 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToComponentUpdatesOperationContext,
                 m_allocator);
         }
+
+        std::unique_ptr<SubscribeToComponentUpdatesOperation> GreengrassCoreIpcClient::
+            NewPtrSubscribeToComponentUpdates(
+                std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler) noexcept
+        {
+            return std::unique_ptr<SubscribeToComponentUpdatesOperation>(
+                Aws::Crt::New<SubscribeToComponentUpdatesOperation>(
+                    m_allocator,
+                    m_connection,
+                    std::move(streamHandler),
+                    m_greengrassCoreIpcServiceModel.m_subscribeToComponentUpdatesOperationContext,
+                    m_allocator));
+        }
+
         ListLocalDeploymentsOperation GreengrassCoreIpcClient::NewListLocalDeployments() noexcept
         {
             return ListLocalDeploymentsOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_listLocalDeploymentsOperationContext, m_allocator);
         }
+
+        std::unique_ptr<ListLocalDeploymentsOperation> GreengrassCoreIpcClient::NewPtrListLocalDeployments() noexcept
+        {
+            return std::unique_ptr<ListLocalDeploymentsOperation>(Aws::Crt::New<ListLocalDeploymentsOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_listLocalDeploymentsOperationContext,
+                m_allocator));
+        }
+
         StopComponentOperation GreengrassCoreIpcClient::NewStopComponent() noexcept
         {
             return StopComponentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_stopComponentOperationContext, m_allocator);
         }
+
+        std::unique_ptr<StopComponentOperation> GreengrassCoreIpcClient::NewPtrStopComponent() noexcept
+        {
+            return std::unique_ptr<StopComponentOperation>(Aws::Crt::New<StopComponentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_stopComponentOperationContext,
+                m_allocator));
+        }
+
         PauseComponentOperation GreengrassCoreIpcClient::NewPauseComponent() noexcept
         {
             return PauseComponentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_pauseComponentOperationContext, m_allocator);
         }
+
+        std::unique_ptr<PauseComponentOperation> GreengrassCoreIpcClient::NewPtrPauseComponent() noexcept
+        {
+            return std::unique_ptr<PauseComponentOperation>(Aws::Crt::New<PauseComponentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_pauseComponentOperationContext,
+                m_allocator));
+        }
+
         CreateLocalDeploymentOperation GreengrassCoreIpcClient::NewCreateLocalDeployment() noexcept
         {
             return CreateLocalDeploymentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_createLocalDeploymentOperationContext, m_allocator);
+        }
+
+        std::unique_ptr<CreateLocalDeploymentOperation> GreengrassCoreIpcClient::NewPtrCreateLocalDeployment() noexcept
+        {
+            return std::unique_ptr<CreateLocalDeploymentOperation>(Aws::Crt::New<CreateLocalDeploymentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_createLocalDeploymentOperationContext,
+                m_allocator));
         }
 
     } // namespace Greengrass
