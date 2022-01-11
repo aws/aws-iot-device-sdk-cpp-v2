@@ -60,7 +60,7 @@ namespace Aws
              */
             Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> ProxyOptions;
 
-            /** The full string of the greengrass server endpoint that you want to connect to. 
+            /** The full string of the greengrass server endpoint that you want to connect to.
              * Defaults to this over using Region to connect to server
              * Optional. (mutually exclusive with ggServerName)
              */
