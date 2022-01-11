@@ -59,6 +59,11 @@ namespace Aws
              * Optional.
              */
             Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> ProxyOptions;
+
+            /** The full string of the greengrass server endpoint that you want to connect to
+             * Optional.
+             */
+            Crt::Optional<Crt::String> ggServerName;
         };
 
         class AWS_DISCOVERY_API DiscoveryClient final
@@ -68,16 +73,14 @@ namespace Aws
 
             static std::shared_ptr<DiscoveryClient> CreateClient(
                 const DiscoveryClientConfig &config,
-                Crt::Allocator *allocator = Crt::DefaultAllocator(),
-                Crt::String ggServerName = "");
+                Crt::Allocator *allocator = Crt::DefaultAllocator());
 
           private:
-            DiscoveryClient(const DiscoveryClientConfig &config, Crt::Allocator *allocator, Crt::String ggServerName = "") noexcept;
+            DiscoveryClient(const DiscoveryClientConfig &config, Crt::Allocator *allocator) noexcept;
 
             std::shared_ptr<Crt::Http::HttpClientConnectionManager> m_connectionManager;
             Crt::String m_hostName;
             Crt::Allocator *m_allocator;
-            Crt::String ggServerName = "";
         };
     } // namespace Discovery
 } // namespace Aws

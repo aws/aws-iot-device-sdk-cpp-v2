@@ -15,14 +15,13 @@ namespace Aws
     namespace Discovery
     {
         DiscoveryClientConfig::DiscoveryClientConfig() noexcept
-            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions()
+            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions(), ggServerName()
         {
         }
 
         DiscoveryClient::DiscoveryClient(
             const Aws::Discovery::DiscoveryClientConfig &clientConfig,
-            Crt::Allocator *allocator,
-            Crt::String ggServerName) noexcept
+            Crt::Allocator *allocator) noexcept
         {
             AWS_FATAL_ASSERT(clientConfig.TlsContext);
             AWS_FATAL_ASSERT(clientConfig.Bootstrap);
@@ -32,9 +31,9 @@ namespace Aws
             Crt::StringStream ss;
 
             // Fix for connection with china endpoint
-            if (ggServerName != "")
+            if (clientConfig.ggServerName)
             {
-                ss << ggServerName;
+                ss << *clientConfig.ggServerName;
             }
             else 
             {
@@ -78,8 +77,7 @@ namespace Aws
 
         std::shared_ptr<DiscoveryClient> DiscoveryClient::CreateClient(
             const Aws::Discovery::DiscoveryClientConfig &clientConfig,
-            Crt::Allocator *allocator,
-            Crt::String ggServerName)
+            Crt::Allocator *allocator)
         {
             auto *toSeat = static_cast<DiscoveryClient *>(aws_mem_acquire(allocator, sizeof(DiscoveryClient)));
             if (toSeat)
