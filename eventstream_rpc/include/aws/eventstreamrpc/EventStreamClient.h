@@ -292,7 +292,7 @@ namespace Aws
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
             virtual void OnContinuationClosed() = 0;
-            ~ClientContinuationHandler() noexcept;
+            virtual ~ClientContinuationHandler() noexcept;
 
           private:
             friend class ClientContinuation;
@@ -487,7 +487,7 @@ namespace Aws
             const ServiceModel &m_serviceModel;
         };
 
-        class AWS_EVENTSTREAMRPC_API ClientOperation : private ClientContinuationHandler
+        class AWS_EVENTSTREAMRPC_API ClientOperation : public ClientContinuationHandler
         {
           public:
             ClientOperation(

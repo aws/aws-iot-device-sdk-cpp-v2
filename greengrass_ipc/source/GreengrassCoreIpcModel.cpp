@@ -5134,6 +5134,16 @@ namespace Aws
         {
         }
 
+        SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
+            const SubscribeToIoTCoreOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(std::move(streamHandler))
+        {
+        }
+
         std::future<RpcError> SubscribeToIoTCoreOperation::Activate(
             const SubscribeToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -5373,6 +5383,16 @@ namespace Aws
         {
         }
 
+        SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
+            const SubscribeToConfigurationUpdateOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(std::move(streamHandler))
+        {
+        }
+
         std::future<RpcError> SubscribeToConfigurationUpdateOperation::Activate(
             const SubscribeToConfigurationUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -5609,6 +5629,16 @@ namespace Aws
         {
         }
 
+        SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
+            const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(std::move(streamHandler))
+        {
+        }
+
         std::future<RpcError> SubscribeToValidateConfigurationUpdatesOperation::Activate(
             const SubscribeToValidateConfigurationUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -5780,6 +5810,16 @@ namespace Aws
             const SubscribeToTopicOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator)
+        {
+        }
+
+        SubscribeToTopicOperation::SubscribeToTopicOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
+            const SubscribeToTopicOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(std::move(streamHandler))
         {
         }
 
@@ -6849,6 +6889,16 @@ namespace Aws
             const SubscribeToComponentUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator)
+        {
+        }
+
+        SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
+            const SubscribeToComponentUpdatesOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+              pinnedHandler(std::move(streamHandler))
         {
         }
 
