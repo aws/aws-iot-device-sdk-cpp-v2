@@ -15,8 +15,8 @@ namespace Aws
     namespace Discovery
     {
         DiscoveryClientConfig::DiscoveryClientConfig() noexcept
-            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions(), 
-            ggServerName()
+            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions(),
+              ggServerName()
         {
         }
 
@@ -36,7 +36,7 @@ namespace Aws
             {
                 ss << *clientConfig.ggServerName;
             }
-            else 
+            else
             {
                 ss << "greengrass-ats.iot." << clientConfig.Region << ".amazonaws.com";
             }
