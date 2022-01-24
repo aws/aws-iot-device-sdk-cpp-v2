@@ -5127,20 +5127,10 @@ namespace Aws
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
             ClientConnection &connection,
-            SubscribeToIoTCoreStreamHandler *streamHandler,
-            const SubscribeToIoTCoreOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
-        {
-        }
-
-        SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
-            ClientConnection &connection,
             std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
             const SubscribeToIoTCoreOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(std::move(streamHandler))
+            : ClientOperation(connection, streamHandler, operationContext, allocator)
         {
         }
 
@@ -5376,20 +5366,10 @@ namespace Aws
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
             ClientConnection &connection,
-            SubscribeToConfigurationUpdateStreamHandler *streamHandler,
-            const SubscribeToConfigurationUpdateOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
-        {
-        }
-
-        SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
-            ClientConnection &connection,
             std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
             const SubscribeToConfigurationUpdateOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(std::move(streamHandler))
+            : ClientOperation(connection, streamHandler, operationContext, allocator)
         {
         }
 
@@ -5622,20 +5602,10 @@ namespace Aws
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
             ClientConnection &connection,
-            SubscribeToValidateConfigurationUpdatesStreamHandler *streamHandler,
-            const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
-        {
-        }
-
-        SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
-            ClientConnection &connection,
             std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
             const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(std::move(streamHandler))
+            : ClientOperation(connection, streamHandler, operationContext, allocator)
         {
         }
 
@@ -5806,20 +5776,10 @@ namespace Aws
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
             ClientConnection &connection,
-            SubscribeToTopicStreamHandler *streamHandler,
-            const SubscribeToTopicOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
-        {
-        }
-
-        SubscribeToTopicOperation::SubscribeToTopicOperation(
-            ClientConnection &connection,
             std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
             const SubscribeToTopicOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(std::move(streamHandler))
+            : ClientOperation(connection, streamHandler, operationContext, allocator)
         {
         }
 
@@ -6885,20 +6845,10 @@ namespace Aws
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
             ClientConnection &connection,
-            SubscribeToComponentUpdatesStreamHandler *streamHandler,
-            const SubscribeToComponentUpdatesOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
-        {
-        }
-
-        SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
-            ClientConnection &connection,
             std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
             const SubscribeToComponentUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-              pinnedHandler(std::move(streamHandler))
+            : ClientOperation(connection, streamHandler, operationContext, allocator)
         {
         }
 

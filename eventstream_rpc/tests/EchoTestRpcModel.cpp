@@ -1143,20 +1143,10 @@ namespace Awstest
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
         ClientConnection &connection,
-        CauseStreamServiceToErrorStreamHandler *streamHandler,
-        const CauseStreamServiceToErrorOperationContext &operationContext,
-        Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler, operationContext, allocator)
-    {
-    }
-
-    CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
-        ClientConnection &connection,
         std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
         const CauseStreamServiceToErrorOperationContext &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-          pinnedHandler(std::move(streamHandler))
+        : ClientOperation(connection, streamHandler, operationContext, allocator)
     {
     }
 
@@ -1240,20 +1230,10 @@ namespace Awstest
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
         ClientConnection &connection,
-        EchoStreamMessagesStreamHandler *streamHandler,
-        const EchoStreamMessagesOperationContext &operationContext,
-        Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler, operationContext, allocator)
-    {
-    }
-
-    EchoStreamMessagesOperation::EchoStreamMessagesOperation(
-        ClientConnection &connection,
         std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
         const EchoStreamMessagesOperationContext &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
-          pinnedHandler(std::move(streamHandler))
+        : ClientOperation(connection, streamHandler, operationContext, allocator)
     {
     }
 
