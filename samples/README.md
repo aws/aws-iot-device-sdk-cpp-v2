@@ -35,11 +35,7 @@ cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages through an MQTT connection.
-On startup, the device connects to the server and subscribes to a topic.
-
-The terminal prompts the user for input. Type something and press enter to publish a message to the topic.
-Since the sample is subscribed to the same topic, it will also receive the message back from the server.
-Type `quit` and press enter to end the sample.
+On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
 
 Source: `samples/mqtt/basic_pub_sub/main.cpp`
 
@@ -92,7 +88,7 @@ and receive.
 To run the basic MQTT Pub-Sub use the following command:
 
 ``` sh
-./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA1>
 --cert <path to the certificate> --key <path to the private key>
 --topic <topic name>
 ```
