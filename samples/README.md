@@ -93,6 +93,23 @@ To run the basic MQTT Pub-Sub use the following command:
 --topic <topic name>
 ```
 
+To run this sample using websockets, see below:
+
+<details>
+<summary>(Websockets)</summary>
+
+To run using Websockets, use the following command:
+
+``` sh
+./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA1>
+--use_websocket --signing_region <signing_region>
+```
+
+Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
+See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for documentation on how to get the AWS credentials, which then you can set to the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS`, and `AWS_SESSION_TOKEN` environment variables.
+
+</details>
+
 ## PKCS#11 MQTT Pub-Sub
 
 This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub),
