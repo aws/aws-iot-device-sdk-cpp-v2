@@ -24,6 +24,12 @@ cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_
 cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 ```
 
+To view the commands for a given sample, run the compiled program and pass `--help`.
+
+```
+./basic-pub-sub --help
+```
+
 #### Note
 
 * `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
@@ -172,6 +178,16 @@ This is a starting point for using custom
 
 source: `samples/mqtt/raw_pub_sub/main.cpp`
 
+To run the Raw MQTT Pub-Sub sample use the following command:
+
+``` sh
+./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA1>
+--cert <path to the certificate> --key <path to the private key>
+--topic <topic name> --user_name <user name to send on connect> --password <password to send on connect>
+```
+
+This will allow you to run the program. To disconnect and exit the program, enter `exit`.
+
 ## Shadow
 
 This sample uses the AWS IoT
@@ -253,6 +269,16 @@ and receive.
 </pre>
 </details>
 
+To run the Shadow sample use the following command:
+
+``` sh
+./shadow-sync --endpoint <endpoint> --ca_file <path to root CA1>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --shadow_property <shadow property name>
+```
+
+This will allow you to run the program and set the shadow property. To disconnect and exit the program, enter `quit`.
+
 ## Jobs
 
 This sample uses the AWS IoT
@@ -276,53 +302,67 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Publish"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Receive"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/rejected"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Subscribe"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/rejected"
-      ]
-    },
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/<b>thingname</b>",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/pubtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/job/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/dc/subtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Receive",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/subtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:DescribeJobExecution",
+        "iot:GetPendingJobExecutions",
+        "iot:StartNextPendingJobExecution",
+        "iot:UpdateJobExecution"
+      ],
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>"
     }
-
   ]
 }
 </pre>
+
+See the [Basic job policy example](https://docs.aws.amazon.com/iot/latest/developerguide/basic-jobs-example.html) page for another policy example.
 </details>
+
+To run the job sample use the following command:
+
+``` sh
+./describe-job-execution --endpoint <endpoint> --ca_file <path to root CA1>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --job_id <the job id>
+```
+
+Note that if you get a `Service Error 4 occurred` error, you may have incorrectly input the job id. The job id needs to exactly match the job id in the AWS console.
 
 ## Fleet provisioning
 
