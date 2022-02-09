@@ -94,7 +94,7 @@ To run the basic MQTT Pub-Sub use the following command:
 ``` sh
 ./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
---topic <topic name>
+--topic <optional: topic name>
 ```
 
 ## PKCS#11 MQTT Pub-Sub
@@ -239,6 +239,10 @@ and receive.
 }
 </pre>
 </details>
+
+``` sh
+./shadow-sync --endpoint <endpoint> --cert <path to cert> --key <path to key> --ca_file <optional: path to custom ca> --thing_name <thing name> --shadow_property <Name of property in shadow to keep in sync.>
+```
 
 ## Jobs
 
