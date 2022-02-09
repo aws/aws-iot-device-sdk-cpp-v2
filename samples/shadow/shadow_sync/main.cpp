@@ -74,17 +74,20 @@ static void s_changeShadowValue(
     JsonObject desired;
     JsonObject reported;
 
-    if (value == "null") {
+    if (value == "null")
+    {
         JsonObject nullObject;
         nullObject.AsNull();
         desired.WithObject(shadowProperty, nullObject);
         reported.WithObject(shadowProperty, nullObject);
     }
-    else if (value == "clear_shadow") {
+    else if (value == "clear_shadow")
+    {
         desired.AsNull();
         reported.AsNull();
     }
-    else {
+    else
+    {
         desired.WithString(shadowProperty, value);
         reported.WithString(shadowProperty, value);
     }
@@ -336,13 +339,15 @@ int main(int argc, char *argv[])
         auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
-                if (response->State->Reported) {
+                if (response->State->Reported)
+                {
                     fprintf(
                         stdout,
                         "Finished updating reported shadow value to %s.\n",
                         response->State->Reported->View().GetString(shadowProperty).c_str());
                 }
-                else {
+                else
+                {
                     fprintf(stdout, "Finished clearing shadow properties\n");
                 }
                 fprintf(stdout, "Enter desired value:\n");
