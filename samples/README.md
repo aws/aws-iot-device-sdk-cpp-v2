@@ -56,7 +56,6 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
     {
       "Effect": "Allow",
       "Action": [
@@ -85,7 +84,6 @@ and receive.
         "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
       ]
     }
-
   ]
 }
 </pre>
@@ -94,7 +92,7 @@ and receive.
 To run the basic MQTT Pub-Sub use the following command:
 
 ``` sh
-./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA1>
+./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --topic <topic name>
 ```
@@ -107,7 +105,7 @@ To run this sample using websockets, see below:
 To run using Websockets, use the following command:
 
 ``` sh
-./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA1>
+./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
 --use_websocket --signing_region <signing_region>
 ```
 
@@ -166,7 +164,7 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
 5)  Now you can run the sample:
     ```sh
-    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA1.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
+    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
 
@@ -181,7 +179,7 @@ source: `samples/mqtt/raw_pub_sub/main.cpp`
 To run the Raw MQTT Pub-Sub sample use the following command:
 
 ``` sh
-./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA1>
+./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --topic <topic name> --user_name <user name to send on connect> --password <password to send on connect>
 ```
@@ -221,7 +219,6 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
     {
       "Effect": "Allow",
       "Action": [
@@ -263,7 +260,6 @@ and receive.
       "Action": "iot:Connect",
       "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
-
   ]
 }
 </pre>
@@ -272,7 +268,7 @@ and receive.
 To run the Shadow sample use the following command:
 
 ``` sh
-./shadow-sync --endpoint <endpoint> --ca_file <path to root CA1>
+./shadow-sync --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --thing_name <thing name> --shadow_property <shadow property name>
 ```
@@ -357,7 +353,7 @@ See the [Basic job policy example](https://docs.aws.amazon.com/iot/latest/develo
 To run the job sample use the following command:
 
 ``` sh
-./describe-job-execution --endpoint <endpoint> --ca_file <path to root CA1>
+./describe-job-execution --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --thing_name <thing name> --job_id <the job id>
 ```
