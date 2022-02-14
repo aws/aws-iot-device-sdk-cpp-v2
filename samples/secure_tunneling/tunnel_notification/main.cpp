@@ -101,7 +101,10 @@ int main(int argc, char *argv[])
      */
     if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
+        fprintf(
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 

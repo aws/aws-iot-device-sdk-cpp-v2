@@ -8,7 +8,6 @@
 #include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
-#include <aws/crt/io/DefaultBootstrap.h>
 
 #include <algorithm>
 #include <aws/crt/UUID.h>
@@ -275,7 +274,10 @@ int main(int argc, char *argv[])
      */
     if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
+        fprintf(
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
