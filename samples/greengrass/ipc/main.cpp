@@ -64,20 +64,13 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
+    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver resolver(eventLoopGroup, 64, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, resolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
@@ -115,7 +108,7 @@ int main(int argc, char *argv[])
      * so that it is destroyed AFTER the client is destroyed.
      */
     SampleLifecycleHandler lifecycleHandler;
-    GreengrassCoreIpcClient client(bootstrap);
+    GreengrassCoreIpcClient client(Io::ClientBootstrap::GetOrCreateStaticDefault());
     auto connectionStatus = client.Connect(lifecycleHandler).get();
 
     if (!connectionStatus)
@@ -261,6 +254,12 @@ int main(int argc, char *argv[])
     {
         continue;
     }
+
+    /**
+     * Free the static default ClientBootstrap
+     * (will also free the static default HostResolver and EventLoopGroup)
+     */
+    Io::ClientBootstrap::ReleaseStaticDefault();
 
     return 0;
 }

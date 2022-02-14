@@ -8,6 +8,7 @@
 #include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
+#include <aws/crt/io/DefaultBootstrap.h>
 
 #include <algorithm>
 #include <aws/crt/UUID.h>
@@ -268,24 +269,13 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 1, 5);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
@@ -347,7 +337,7 @@ int main(int argc, char *argv[])
                 return -1;
             }
 
-            x509Config.Bootstrap = &bootstrap;
+            x509Config.Bootstrap = &Io::ClientBootstrap::GetOrCreateStaticDefault();
             x509Config.Endpoint = x509Endpoint;
             x509Config.RoleAlias = x509RoleAlias;
             x509Config.ThingName = x509ThingName;
@@ -362,7 +352,7 @@ int main(int argc, char *argv[])
         else
         {
             Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-            defaultConfig.Bootstrap = &bootstrap;
+            defaultConfig.Bootstrap = &Io::ClientBootstrap::GetOrCreateStaticDefault();
 
             provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
         }
@@ -404,7 +394,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
     /*
      * Since no exceptions are used, always check the bool operator
      * when an error could have occurred.
@@ -575,6 +565,12 @@ int main(int argc, char *argv[])
         {
             connectionClosedPromise.get_future().wait();
         }
+
+        /**
+         * Free the static default ClientBootstrap
+         * (will also free the static default HostResolver and EventLoopGroup)
+         */
+        Io::ClientBootstrap::ReleaseStaticDefault();
     }
     else
     {

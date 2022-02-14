@@ -168,28 +168,17 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
+        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
-    Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 1, 5);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
-        exit(-1);
-    }
-
-    Mqtt::MqttClient client(bootstrap);
+    Mqtt::MqttClient client(Io::ClientBootstrap::GetOrCreateStaticDefault());
     Io::TlsContextOptions ctxOptions = Io::TlsContextOptions::InitDefaultClient();
 
     if (!certificatePath.empty() && !keyPath.empty())
@@ -447,5 +436,12 @@ int main(int argc, char *argv[])
     {
         connectionClosedPromise.get_future().wait();
     }
+
+    /**
+     * Free the static default ClientBootstrap
+     * (will also free the static default HostResolver and EventLoopGroup)
+     */
+    Io::ClientBootstrap::ReleaseStaticDefault();
+
     return 0;
 }

@@ -122,14 +122,6 @@ int main(int argc, char *argv[])
         proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
-    {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
     /*
      * We're using Mutual TLS for Mqtt, so we need to load our client certificates
      */
@@ -162,17 +154,18 @@ int main(int argc, char *argv[])
     Io::SocketOptions socketOptions;
     socketOptions.SetConnectTimeoutMs(3000);
 
-    Io::DefaultHostResolver hostResolver(eventLoopGroup, 64, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
-
-    if (!bootstrap)
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
+    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.Bootstrap = &bootstrap;
+    clientConfig.Bootstrap = &Io::ClientBootstrap::GetOrCreateStaticDefault();
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
     clientConfig.Region = region;
@@ -187,7 +180,7 @@ int main(int argc, char *argv[])
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
     std::promise<void> connectionFinishedPromise;
@@ -372,6 +365,12 @@ int main(int argc, char *argv[])
     {
         shutdownCompletedPromise.get_future().wait();
     }
+
+    /**
+     * Free the static default ClientBootstrap
+     * (will also free the static default HostResolver and EventLoopGroup)
+     */
+    Io::ClientBootstrap::ReleaseStaticDefault();
 
     return 0;
 }

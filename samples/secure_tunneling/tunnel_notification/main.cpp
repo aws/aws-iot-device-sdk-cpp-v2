@@ -95,24 +95,13 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
     {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
         exit(-1);
     }
 
@@ -138,7 +127,7 @@ int main(int argc, char *argv[])
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
 
     /*
      * Since no exceptions are used, always check the bool operator
@@ -268,4 +257,10 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(500ms);
         continue;
     }
+
+    /**
+     * Free the static default ClientBootstrap
+     * (will also free the static default HostResolver and EventLoopGroup)
+     */
+    Io::ClientBootstrap::ReleaseStaticDefault();
 }
