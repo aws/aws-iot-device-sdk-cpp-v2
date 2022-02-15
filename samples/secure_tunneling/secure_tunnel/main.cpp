@@ -408,7 +408,6 @@ int main(int argc, char *argv[])
 
                     /**
                      * Free the static default ClientBootstrap
-                     * (will also free the static default HostResolver and EventLoopGroup)
                      */
                     Io::ClientBootstrap::ReleaseStaticDefault();
 
