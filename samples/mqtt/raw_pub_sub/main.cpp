@@ -15,53 +15,9 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "raw-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
-        " --use_websocket --user_name <username> --password <password> --protocol_name <protocol> "
-        " --auth_params=<comma delimited list> --proxy_host <host> --proxy_port <port>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format. Don't use with use_websocket\n");
-    fprintf(stdout, "key: path to your key in PEM format. Dont use with use_websocket\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
-    fprintf(stdout, "client_id: client id to use (optional)\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
-    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
-    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
-    fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
-    fprintf(stdout, "password: Password to send with mqtt connect.\n");
-    fprintf(stdout, "protocol_name: (optional) defaults to x-amzn-mqtt-ca.\n");
-    fprintf(
-        stdout,
-        "auth_params: (optional) Comma delimited list of auth parameters. For websockets these will be set as headers. "
-        "For raw mqtt these will be appended to user_name.\n\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -91,73 +47,55 @@ int main(int argc, char *argv[])
     bool useWebSocket = false;
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("raw_pub_sub");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("topic", "<topic>", "Topic to publish, subscribe to. (optional).");
+    cmdUtils.RegisterCommand("client_id", "<client id>", "Client id to use (optional).");
+    cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional).");
+    cmdUtils.RegisterCommand("proxy_host", "<host>", "Host name of the http proxy to use (optional).");
+    cmdUtils.RegisterCommand("proxy_port", "<port>", "port of the http proxy to use (optional).");
+    cmdUtils.RegisterCommand("user_name", "<user name>", "User name to send with mqtt connect.");
+    cmdUtils.RegisterCommand("password", "<password>", "Password to send with mqtt connect.");
+    cmdUtils.RegisterCommand("protocol_name", "<protocol>", "defaults to x-amzn-mqtt-ca (optional).");
+    cmdUtils.RegisterCommand(
+        "auth_params",
+        "<comma delimited list>",
+        "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
+    cmdUtils.RegisterCommand(Utils::CommandLineOption("help", "", "Prints this message"));
+    cmdUtils.SendArguments(argv, argv + argc);
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--key"))
+    if (cmdUtils.HasCommand("help"))
     {
-        keyPath = s_getCmdOption(argv, argv + argc, "--key");
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--cert"))
-    {
-        certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    }
-    if (s_getCmdOption(argv, argv + argc, "--topic"))
-    {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--client_id"))
-    {
-        clientId = s_getCmdOption(argv, argv + argc, "--client_id");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--use_websocket"))
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    keyPath = cmdUtils.GetCommandOrDefault("key", keyPath);
+    certificatePath = cmdUtils.GetCommandOrDefault("cert", certificatePath);
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    clientId = cmdUtils.GetCommandOrDefault("client_id", clientId);
+    if (cmdUtils.HasCommand("use_websocket"))
     {
         protocolName = "http/1.1";
         useWebSocket = true;
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    if (cmdUtils.HasCommand("proxy_port"))
     {
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-    {
-        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        int port = atoi(cmdUtils.GetCommand("proxy_port").c_str());
         if (port > 0 && port <= UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
         }
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--user_name"))
+    userName = cmdUtils.GetCommandOrDefault("user_name", userName);
+    password = cmdUtils.GetCommandOrDefault("password", password);
+    protocolName = cmdUtils.GetCommandOrDefault("protocol_name", protocolName);
+    if (cmdUtils.HasCommand("auth_params"))
     {
-        userName = s_getCmdOption(argv, argv + argc, "--user_name");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--password"))
-    {
-        password = s_getCmdOption(argv, argv + argc, "--password");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--protocol_name"))
-    {
-        protocolName = s_getCmdOption(argv, argv + argc, "--protocol_name");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--auth_params"))
-    {
-        String params = s_getCmdOption(argv, argv + argc, "--auth_params");
+        String params = cmdUtils.GetCommand("auth_params");
         ByteCursor commaDelimitedParams = ByteCursorFromCString(params.c_str());
         ByteCursor split;
         AWS_ZERO_STRUCT(split);
@@ -228,7 +166,8 @@ int main(int argc, char *argv[])
         {
             /* set authorizer headers on the outgoing websocket upgrade request. */
             connection->WebsocketInterceptor = [&](std::shared_ptr<Http::HttpRequest> req,
-                                                   const Mqtt::OnWebSocketHandshakeInterceptComplete &onComplete) {
+                                                   const Mqtt::OnWebSocketHandshakeInterceptComplete &onComplete)
+            {
                 for (auto &param : authParams)
                 {
                     Http::HttpHeader header;
@@ -238,13 +177,13 @@ int main(int argc, char *argv[])
                     AWS_ZERO_STRUCT(nameOrValue);
                     if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
                     {
-                        s_printHelp();
+                        cmdUtils.PrintHelp();
                         exit(-1);
                     }
                     header.name = nameOrValue;
                     if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
                     {
-                        s_printHelp();
+                        cmdUtils.PrintHelp();
                         exit(-1);
                     }
                     header.value = nameOrValue;
@@ -292,7 +231,8 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
+    {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -313,16 +253,16 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-    };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Mqtt::MqttConnection &)
+    {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -334,16 +274,18 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    connection->SetOnMessageHandler([](Mqtt::MqttConnection &,
-                                       const String &topic,
-                                       const ByteBuf &payload,
-                                       bool /*dup*/,
-                                       Mqtt::QOS /*qos*/,
-                                       bool /*retain*/) {
-        fprintf(stdout, "Generic Publish received on topic %s, payload:\n", topic.c_str());
-        fwrite(payload.buffer, 1, payload.len, stdout);
-        fprintf(stdout, "\n");
-    });
+    connection->SetOnMessageHandler(
+        [](Mqtt::MqttConnection &,
+           const String &topic,
+           const ByteBuf &payload,
+           bool /*dup*/,
+           Mqtt::QOS /*qos*/,
+           bool /*retain*/)
+        {
+            fprintf(stdout, "Generic Publish received on topic %s, payload:\n", topic.c_str());
+            fwrite(payload.buffer, 1, payload.len, stdout);
+            fprintf(stdout, "\n");
+        });
 
     /*
      * Actually perform the connect dance.
@@ -367,7 +309,8 @@ int main(int argc, char *argv[])
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
+                             bool /*retain*/)
+        {
             fprintf(stdout, "Publish received on topic %s\n", topic.c_str());
             fprintf(stdout, "\n Message:\n");
             fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
@@ -379,26 +322,27 @@ int main(int argc, char *argv[])
          */
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-                if (errorCode)
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
+        {
+            if (errorCode)
+            {
+                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                exit(-1);
+            }
+            else
+            {
+                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
                 {
-                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                    fprintf(stderr, "Subscribe rejected by the broker.");
                     exit(-1);
                 }
                 else
                 {
-                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
-                    {
-                        fprintf(stderr, "Subscribe rejected by the broker.");
-                        exit(-1);
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
-                    }
+                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
                 }
-                subscribeFinishedPromise.set_value();
-            };
+            }
+            subscribeFinishedPromise.set_value();
+        };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
@@ -420,7 +364,8 @@ int main(int argc, char *argv[])
 
             ByteBuf payload = ByteBufFromArray((const uint8_t *)input.data(), input.length());
 
-            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
+            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t packetId, int errorCode)
+            {
                 if (packetId)
                 {
                     fprintf(stdout, "Operation on packetId %d Succeeded\n", packetId);

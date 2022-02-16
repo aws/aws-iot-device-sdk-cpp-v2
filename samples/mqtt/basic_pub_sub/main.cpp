@@ -16,70 +16,9 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic <topic> --message <message> --count <count>"
-        " --client_id <client id> --ca_file <optional: path to custom ca>"
-        " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
-        " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
-        " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(
-        stdout,
-        "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
-    fprintf(stdout, "message: override payload of published messages. (optional, defaults to \"Hello world!\"))\n");
-    fprintf(stdout, "count: number of messages to publish. (optional, defaults to 10)\n");
-    fprintf(stdout, "client_id: client id to use (optional)\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
-    fprintf(
-        stdout,
-        "signing_region: used for websocket signer it should only be specific if websockets are used. (required for "
-        "websockets)\n");
-    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
-    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
-
-    fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
-    fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
-    fprintf(stdout, "  x509_endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
-    fprintf(stdout, "  x509_thing: Thing name to fetch x509 credentials on behalf of (required for x509)\n");
-    fprintf(
-        stdout,
-        "  x509_cert: Path to the IoT thing certificate used in fetching x509 credentials (required for x509)\n");
-    fprintf(
-        stdout,
-        "  x509_key: Path to the IoT thing private key used in fetching x509 credentials (required for x509)\n");
-    fprintf(
-        stdout,
-        "  x509_rootca: Path to the root certificate used in fetching x509 credentials (required for x509)\n\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -114,74 +53,87 @@ int main(int argc, char *argv[])
     String messagePayload("Hello world!");
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("basic_pub_sub");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.UpdateCommandHelp(
+        "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");
+    cmdUtils.UpdateCommandHelp(
+        "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
+    cmdUtils.RegisterCommand("topic", "<topic>", "Topic to publish, subscribe to. (optional)");
+    cmdUtils.RegisterCommand(
+        "client_id",
+        "<client id>"
+        "Client id to use (optional)");
+    cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
+    cmdUtils.RegisterCommand(
+        "signing_region",
+        "<region>",
+        "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
+    cmdUtils.RegisterCommand("proxy_host", "<proxy host>", "Host name of the http proxy to use (optional)");
+    cmdUtils.RegisterCommand("proxy_port", "<proxy port>", "Port of the http proxy to use (optional)");
+    cmdUtils.RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
+    cmdUtils.RegisterCommand(
+        "x509_role_alias", "<role alias>", "Role alias to use with the x509 credentials provider (required for x509)");
+    cmdUtils.RegisterCommand(
+        "x509_endpoint", "<endpoint>", "Endpoint to fetch x509 credentials from (required for x509)");
+    cmdUtils.RegisterCommand(
+        "x509_thing", "<thing name>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+    cmdUtils.RegisterCommand(
+        "x509_cert",
+        "<path to cert>",
+        "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
+    cmdUtils.RegisterCommand(
+        "x509_key",
+        "<path to key>",
+        "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
+    cmdUtils.RegisterCommand(
+        "x509_rootca",
+        "<path to root ca>",
+        "Path to the root certificate used in fetching x509 credentials (required for x509)");
+    cmdUtils.RegisterCommand("message", "<message>", "The message to send in the payload (optional)");
+    cmdUtils.RegisterCommand("count", "<count>", "The number of messages to send (optional)");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    cmdUtils.SendArguments(argv, argv + argc);
+
+    if (cmdUtils.HasCommand("help"))
     {
-        s_printHelp();
-        return 1;
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--key"))
-    {
-        keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--cert"))
-    {
-        certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    }
-
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    keyPath = cmdUtils.GetCommandOrDefault("key", keyPath);
+    certificatePath = cmdUtils.GetCommandOrDefault("cert", certificatePath);
     if (keyPath.empty() != certificatePath.empty())
     {
-        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and the private key\n");
-        s_printHelp();
+        cmdUtils.PrintHelp();
+        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and private key\n");
         return 1;
     }
-    if (s_getCmdOption(argv, argv + argc, "--topic"))
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    clientId = cmdUtils.GetCommandOrDefault("client_id", clientId);
+    if (cmdUtils.HasCommand("use_websocket"))
     {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--client_id"))
-    {
-        clientId = s_getCmdOption(argv, argv + argc, "--client_id");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--use_websocket"))
-    {
-        if (!s_cmdOptionExists(argv, argv + argc, "--signing_region"))
-        {
-            fprintf(stdout, "Websockets require a signing region to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
         useWebSocket = true;
-        signingRegion = s_getCmdOption(argv, argv + argc, "--signing_region");
+        signingRegion =
+            cmdUtils.GetCommandRequired("signing_region", "Websockets require a signing region to be specified.");
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    if (cmdUtils.HasCommand("prox_port"))
     {
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-    {
-        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
-        if (port > 0 && port <= UINT16_MAX)
+        int port = atoi(cmdUtils.GetCommand("proxy_port").c_str());
+        if (port > 0 && port < UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
         }
     }
-
     bool usingMtls = !certificatePath.empty() && !keyPath.empty();
 
     /* one or the other, but not both nor neither */
     if (useWebSocket == usingMtls)
     {
+        cmdUtils.PrintHelp();
         if (useWebSocket && usingMtls)
         {
             fprintf(stdout, "You must use either websockets or mtls for authentication, but not both.\n");
@@ -190,77 +142,35 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "You must use either websockets or mtls for authentication.\n");
         }
-
-        s_printHelp();
         return 1;
     }
 
     // x509 credentials provider configuration
-    if (s_cmdOptionExists(argv, argv + argc, "--x509"))
+    if (cmdUtils.HasCommand("x509"))
     {
         if (!useWebSocket)
         {
+            cmdUtils.PrintHelp();
             fprintf(stdout, "X509 credentials sourcing requires websockets to be enabled and configured.\n");
-            s_printHelp();
             return 1;
         }
-
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509_role_alias"))
-        {
-            fprintf(stdout, "X509 credentials sourcing requires an x509 role alias to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
-        x509RoleAlias = s_getCmdOption(argv, argv + argc, "--x509_role_alias");
-
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509_endpoint"))
-        {
-            fprintf(stdout, "X509 credentials sourcing requires an x509 endpoint to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
-        x509Endpoint = s_getCmdOption(argv, argv + argc, "--x509_endpoint");
-
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509_thing"))
-        {
-            fprintf(stdout, "X509 credentials sourcing requires an x509 thing name to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
-        x509ThingName = s_getCmdOption(argv, argv + argc, "--x509_thing");
-
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509_cert"))
-        {
-            fprintf(stdout, "X509 credentials sourcing requires an Iot thing certificate to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
-        x509CertificatePath = s_getCmdOption(argv, argv + argc, "--x509_cert");
-
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509_key"))
-        {
-            fprintf(stdout, "X509 credentials sourcing requires an Iot thing private key to be specified.\n");
-            s_printHelp();
-            return 1;
-        }
-        x509KeyPath = s_getCmdOption(argv, argv + argc, "--x509_key");
-
-        if (s_cmdOptionExists(argv, argv + argc, "--x509_rootca"))
-        {
-            x509RootCAFile = s_getCmdOption(argv, argv + argc, "--x509_rootca");
-        }
-
-        useX509 = true;
+        x509RoleAlias = cmdUtils.GetCommandRequired(
+            "x509_role_alias", "X509 credentials sourcing requires an x509 role alias to be specified.");
+        x509Endpoint = cmdUtils.GetCommandRequired(
+            "x509_endpoint", "X509 credentials sourcing requires an x509 endpoint to be specified.");
+        x509ThingName = cmdUtils.GetCommandRequired(
+            "x509_thing", "X509 credentials sourcing requires an x509 thing name to be specified.");
+        x509CertificatePath = cmdUtils.GetCommandRequired(
+            "x509_cert", "X509 credentials sourcing requires an IoT certificate to be specified.");
+        x509KeyPath = cmdUtils.GetCommandRequired(
+            "x509_key", "X509 credentials sourcing requires an IoT thing private key to be specified.");
+        x509RootCAFile = cmdUtils.GetCommandOrDefault("x509_rootca", x509RootCAFile);
     }
 
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
+    messagePayload = cmdUtils.GetCommandOrDefault("message", messagePayload);
+    if (cmdUtils.HasCommand("count"))
     {
-        messagePayload = s_getCmdOption(argv, argv + argc, "--message");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--count"))
-    {
-        int count = atoi(s_getCmdOption(argv, argv + argc, "--count"));
+        int count = atoi(cmdUtils.GetCommand("count").c_str());
         if (count > 0)
         {
             messageCount = count;
@@ -378,7 +288,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        s_printHelp();
+        cmdUtils.PrintHelp();
     }
 
     if (!proxyHost.empty())
@@ -437,7 +347,8 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
+    {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -458,16 +369,16 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-    };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Mqtt::MqttConnection &)
+    {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -503,7 +414,8 @@ int main(int argc, char *argv[])
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
+                             bool /*retain*/)
+        {
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -521,26 +433,27 @@ int main(int argc, char *argv[])
          */
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-                if (errorCode)
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
+        {
+            if (errorCode)
+            {
+                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                exit(-1);
+            }
+            else
+            {
+                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
                 {
-                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                    fprintf(stderr, "Subscribe rejected by the broker.");
                     exit(-1);
                 }
                 else
                 {
-                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
-                    {
-                        fprintf(stderr, "Subscribe rejected by the broker.");
-                        exit(-1);
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
-                    }
+                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
                 }
-                subscribeFinishedPromise.set_value();
-            };
+            }
+            subscribeFinishedPromise.set_value();
+        };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
