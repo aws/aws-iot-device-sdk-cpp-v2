@@ -189,12 +189,12 @@ int main(int argc, char *argv[])
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */
-    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
             stderr,
             "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -206,7 +206,8 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionClosedPromise;
 
     /*********************** Callbacks ***************************/
-    auto OnConnectionComplete = [&]() {
+    auto OnConnectionComplete = [&]()
+    {
         switch (localProxyMode)
         {
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
@@ -221,12 +222,14 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnConnectionShutdown = [&]() {
+    auto OnConnectionShutdown = [&]()
+    {
         fprintf(stdout, "Connection Shutdown\n");
         connectionClosedPromise.set_value(true);
     };
 
-    auto OnSendDataComplete = [&](int error_code) {
+    auto OnSendDataComplete = [&](int error_code)
+    {
         switch (localProxyMode)
         {
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
@@ -253,7 +256,8 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnDataReceive = [&](const struct aws_byte_buf &data) {
+    auto OnDataReceive = [&](const struct aws_byte_buf &data)
+    {
         string receivedData = std::string((char *)data.buffer, data.len);
         string returnMessage = "Echo:" + receivedData;
 
@@ -325,7 +329,7 @@ int main(int argc, char *argv[])
          */
         secureTunnel = SecureTunnelBuilder(
                            Aws::Crt::g_allocator,
-                           Io::ClientBootstrap::GetOrCreateStaticDefault(),
+                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
                            SocketOptions(),
                            accessToken.c_str(),
                            localProxyMode,
@@ -349,7 +353,7 @@ int main(int argc, char *argv[])
          */
         secureTunnel = SecureTunnelBuilder(
                            Aws::Crt::g_allocator,
-                           Io::ClientBootstrap::GetOrCreateStaticDefault(),
+                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
                            SocketOptions(),
                            accessToken.c_str(),
                            localProxyMode,
@@ -405,11 +409,6 @@ int main(int argc, char *argv[])
                 else if (connectionClosedPromise.get_future().get())
                 {
                     fprintf(stdout, "Sample Complete");
-
-                    /**
-                     * Free the static default ClientBootstrap
-                     */
-                    Io::ClientBootstrap::ReleaseStaticDefault();
 
                     exit(0);
                 }

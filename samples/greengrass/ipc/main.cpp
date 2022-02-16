@@ -68,12 +68,12 @@ int main(int argc, char *argv[])
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */
-    if (!Io::ClientBootstrap::GetOrCreateStaticDefault())
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
             stderr,
             "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(Io::ClientBootstrap::GetOrCreateStaticDefault().LastError()));
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
      * so that it is destroyed AFTER the client is destroyed.
      */
     SampleLifecycleHandler lifecycleHandler;
-    GreengrassCoreIpcClient client(Io::ClientBootstrap::GetOrCreateStaticDefault());
+    GreengrassCoreIpcClient client(*apiHandle.GetOrCreateStaticDefaultClientBootstrap());
     auto connectionStatus = client.Connect(lifecycleHandler).get();
 
     if (!connectionStatus)
@@ -257,11 +257,6 @@ int main(int argc, char *argv[])
     {
         continue;
     }
-
-    /**
-     * Free the static default ClientBootstrap
-     */
-    Io::ClientBootstrap::ReleaseStaticDefault();
 
     return 0;
 }
