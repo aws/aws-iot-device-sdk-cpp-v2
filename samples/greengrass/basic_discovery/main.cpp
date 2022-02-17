@@ -14,46 +14,10 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "basic-discovery --region <optional: region> --cert <path to cert>"
-        " --key <path to key> --ca_file <optional: path to custom ca>"
-        " --thing_name <thing name> --topic <optional: topic> "
-        " --mode <optional: both|publish|subscribe> --message <optional: message to publish>"
-        " --proxy-host <optional: proxy host name> --proxy-port <optional: proxy port>\n\n");
-    fprintf(stdout, "region: the region for your green grass groups, default us-east-1\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(stdout, "ca_file: ca file to use in verifying TLS connections.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "topic: targeted topic. Default is test/topic\n");
-    fprintf(stdout, "mode: default both\n");
-    fprintf(stdout, "message: message to publish. default 'Hello World'\n");
-    fprintf(stdout, "proxy-host: proxy host to use for discovery call. Default is to not use a proxy.\n");
-    fprintf(stdout, "proxy-port: proxy port to use for discovery call.\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -75,52 +39,44 @@ int main(int argc, char *argv[])
     String message("Hello World");
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--cert") && s_cmdOptionExists(argv, argv + argc, "--key") &&
-          s_cmdOptionExists(argv, argv + argc, "--thing_name")))
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("basic-discovery");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RemoveCommand("endpoint");
+    cmdUtils.RegisterCommand(
+        "region", "<region>", "The region for your green grass groups, default us-east-1 (optional)");
+    cmdUtils.RegisterCommand("thing_name", "<thing name>", "The name of your IOT thing");
+    cmdUtils.RegisterCommand("topic", "<topic>", "Targeted topic. Default is test/topic (optional)");
+    cmdUtils.RegisterCommand("mode", "<both|publish|subscribe>", "Default both (optional)");
+    cmdUtils.RegisterCommand("message", "<message to publish>", "Message to publish. Default 'Hello World' (optional)");
+    cmdUtils.RegisterCommand(
+        "proxy_host",
+        "<proxy host name>",
+        "Proxy host to use for discovery call. Default is to not use a proxy. (optional)");
+    cmdUtils.RegisterCommand("proxy_port", "<proxy port>", "Proxy port to use for discovery call. (optional)");
+    cmdUtils.SendArguments(argv, argv + argc);
+
+    if (cmdUtils.HasCommand("help"))
     {
-        s_printHelp();
-        return 0;
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    certificatePath = cmdUtils.GetCommandRequired("cert");
+    keyPath = cmdUtils.GetCommandRequired("key");
+    thingName = cmdUtils.GetCommandRequired("thing_name");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    region = cmdUtils.GetCommandOrDefault("region", region);
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    mode = cmdUtils.GetCommandOrDefault("mode", mode);
+    message = cmdUtils.GetCommandOrDefault("message", message);
+    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    if (cmdUtils.HasCommand("proxy_port"))
     {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--region"))
-    {
-        region = s_getCmdOption(argv, argv + argc, "--region");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--topic"))
-    {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--mode"))
-    {
-        mode = s_getCmdOption(argv, argv + argc, "--mode");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
-    {
-        message = s_getCmdOption(argv, argv + argc, "--message");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy-host"))
-    {
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy-host");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy-port"))
-    {
-        String portString = s_getCmdOption(argv, argv + argc, "--proxy-port");
+        String portString = cmdUtils.GetCommand("proxy_port");
         proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
+
+    /********************** Now Setup an Mqtt Client ******************/
 
     Io::EventLoopGroup eventLoopGroup(1);
     if (!eventLoopGroup)
@@ -193,132 +149,138 @@ int main(int argc, char *argv[])
     std::promise<void> connectionFinishedPromise;
     std::promise<void> shutdownCompletedPromise;
 
-    discoveryClient->Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
-        if (!error && response->GGGroups)
+    discoveryClient->Discover(
+        thingName,
+        [&](DiscoverResponse *response, int error, int httpResponseCode)
         {
-            auto groupToUse = std::move(response->GGGroups->at(0));
-
-            auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
-
-            fprintf(
-                stdout,
-                "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
-                groupToUse.GGGroupId->c_str(),
-                groupToUse.Cores->at(0).ThingArn->c_str(),
-                connectivityInfo.HostAddress->c_str(),
-                (int)connectivityInfo.Port.value());
-
-            connection = mqttClient.NewConnection(
-                Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
-                    .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
-                    .WithPortOverride(connectivityInfo.Port.value())
-                    .WithEndpoint(connectivityInfo.HostAddress.value())
-                    .Build());
-
-            if (!connection)
+            if (!error && response->GGGroups)
             {
-                fprintf(stderr, "Connection setup failed with error %s", ErrorDebugString(mqttClient.LastError()));
-                exit(-1);
-            }
+                auto groupToUse = std::move(response->GGGroups->at(0));
 
-            connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
-                                                    Mqtt::MqttConnection &conn,
-                                                    int errorCode,
-                                                    Mqtt::ReturnCode /*returnCode*/,
-                                                    bool /*sessionPresent*/) {
-                if (!errorCode)
+                auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
+
+                fprintf(
+                    stdout,
+                    "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
+                    groupToUse.GGGroupId->c_str(),
+                    groupToUse.Cores->at(0).ThingArn->c_str(),
+                    connectivityInfo.HostAddress->c_str(),
+                    (int)connectivityInfo.Port.value());
+
+                connection = mqttClient.NewConnection(
+                    Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
+                        .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
+                        .WithPortOverride(connectivityInfo.Port.value())
+                        .WithEndpoint(connectivityInfo.HostAddress.value())
+                        .Build());
+
+                if (!connection)
                 {
-                    fprintf(
-                        stdout,
-                        "Connected to group %s, using connection to %s:%d\n",
-                        groupToUse.GGGroupId->c_str(),
-                        connectivityInfo.HostAddress->c_str(),
-                        (int)connectivityInfo.Port.value());
+                    fprintf(stderr, "Connection setup failed with error %s", ErrorDebugString(mqttClient.LastError()));
+                    exit(-1);
+                }
 
-                    if (mode == "both" || mode == "subscribe")
+                connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
+                                                        Mqtt::MqttConnection &conn,
+                                                        int errorCode,
+                                                        Mqtt::ReturnCode /*returnCode*/,
+                                                        bool /*sessionPresent*/)
+                {
+                    if (!errorCode)
                     {
-                        auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
-                                             const String &receivedOnTopic,
-                                             const ByteBuf &payload,
-                                             bool /*dup*/,
-                                             Mqtt::QOS /*qos*/,
-                                             bool /*retain*/) {
-                            fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
-                            fprintf(stdout, "Message: \n");
-                            fwrite(payload.buffer, 1, payload.len, stdout);
-                            fprintf(stdout, "\n");
-                        };
+                        fprintf(
+                            stdout,
+                            "Connected to group %s, using connection to %s:%d\n",
+                            groupToUse.GGGroupId->c_str(),
+                            connectivityInfo.HostAddress->c_str(),
+                            (int)connectivityInfo.Port.value());
 
-                        auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
-                                            uint16_t /*packetId*/,
-                                            const String &topic,
-                                            Mqtt::QOS /*qos*/,
-                                            int errorCode) {
-                            if (!errorCode)
+                        if (mode == "both" || mode == "subscribe")
+                        {
+                            auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
+                                                 const String &receivedOnTopic,
+                                                 const ByteBuf &payload,
+                                                 bool /*dup*/,
+                                                 Mqtt::QOS /*qos*/,
+                                                 bool /*retain*/)
                             {
-                                fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
-                                connectionFinishedPromise.set_value();
-                            }
-                            else
-                            {
-                                fprintf(
-                                    stderr,
-                                    "Failed to subscribe to %s with error %s. Exiting\n",
-                                    topic.c_str(),
-                                    aws_error_debug_str(errorCode));
-                                exit(-1);
-                            }
-                        };
+                                fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
+                                fprintf(stdout, "Message: \n");
+                                fwrite(payload.buffer, 1, payload.len, stdout);
+                                fprintf(stdout, "\n");
+                            };
 
-                        conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+                            auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
+                                                uint16_t /*packetId*/,
+                                                const String &topic,
+                                                Mqtt::QOS /*qos*/,
+                                                int errorCode)
+                            {
+                                if (!errorCode)
+                                {
+                                    fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
+                                    connectionFinishedPromise.set_value();
+                                }
+                                else
+                                {
+                                    fprintf(
+                                        stderr,
+                                        "Failed to subscribe to %s with error %s. Exiting\n",
+                                        topic.c_str(),
+                                        aws_error_debug_str(errorCode));
+                                    exit(-1);
+                                }
+                            };
+
+                            conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+                        }
+                        else
+                        {
+                            connectionFinishedPromise.set_value();
+                        }
                     }
                     else
                     {
-                        connectionFinishedPromise.set_value();
+                        fprintf(
+                            stderr,
+                            "Error connecting to group %s, using connection to %s:%d\n",
+                            groupToUse.GGGroupId->c_str(),
+                            connectivityInfo.HostAddress->c_str(),
+                            (int)connectivityInfo.Port.value());
+                        fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
+                        exit(-1);
                     }
-                }
-                else
+                };
+
+                connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode)
+                { fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode)); };
+
+                connection->OnConnectionResumed =
+                    [](Mqtt::MqttConnection & /*connection*/, Mqtt::ReturnCode /*connectCode*/, bool /*sessionPresent*/)
+                { fprintf(stdout, "Connection resumed\n"); };
+
+                connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/)
                 {
-                    fprintf(
-                        stderr,
-                        "Error connecting to group %s, using connection to %s:%d\n",
-                        groupToUse.GGGroupId->c_str(),
-                        connectivityInfo.HostAddress->c_str(),
-                        (int)connectivityInfo.Port.value());
-                    fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
+                    fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
+                    shutdownCompletedPromise.set_value();
+                };
+
+                if (!connection->Connect(thingName.c_str(), false))
+                {
+                    fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
                     exit(-1);
                 }
-            };
-
-            connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode) {
-                fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
-            };
-
-            connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
-                                                 Mqtt::ReturnCode /*connectCode*/,
-                                                 bool /*sessionPresent*/) { fprintf(stdout, "Connection resumed\n"); };
-
-            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
-                fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
-                shutdownCompletedPromise.set_value();
-            };
-
-            if (!connection->Connect(thingName.c_str(), false))
+            }
+            else
             {
-                fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
+                fprintf(
+                    stderr,
+                    "Discover failed with error: %s, and http response code %d\n",
+                    aws_error_debug_str(error),
+                    httpResponseCode);
                 exit(-1);
             }
-        }
-        else
-        {
-            fprintf(
-                stderr,
-                "Discover failed with error: %s, and http response code %d\n",
-                aws_error_debug_str(error),
-                httpResponseCode);
-            exit(-1);
-        }
-    });
+        });
 
     {
         connectionFinishedPromise.get_future().wait();
@@ -352,7 +314,8 @@ int main(int argc, char *argv[])
             ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
             ByteBuf *payloadPtr = &payload;
 
-            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
+            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode)
+            {
                 aws_byte_buf_clean_up(payloadPtr);
 
                 if (packetId)
