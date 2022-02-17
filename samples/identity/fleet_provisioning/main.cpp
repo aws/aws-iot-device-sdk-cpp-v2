@@ -133,8 +133,7 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
+            stderr, "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -177,8 +176,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -194,8 +192,7 @@ int main(int argc, char *argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -231,8 +228,7 @@ int main(int argc, char *argv[])
         std::promise<void> registerAcceptedCompletedPromise;
         std::promise<void> registerRejectedCompletedPromise;
 
-        auto onCsrPublishSubAck = [&](int ioErr)
-        {
+        auto onCsrPublishSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error publishing to CreateCertificateFromCsr: %s\n", ErrorDebugString(ioErr));
@@ -242,8 +238,7 @@ int main(int argc, char *argv[])
             csrPublishCompletedPromise.set_value();
         };
 
-        auto onCsrAcceptedSubAck = [&](int ioErr)
-        {
+        auto onCsrAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -254,8 +249,7 @@ int main(int argc, char *argv[])
             csrAcceptedCompletedPromise.set_value();
         };
 
-        auto onCsrRejectedSubAck = [&](int ioErr)
-        {
+        auto onCsrRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -265,8 +259,7 @@ int main(int argc, char *argv[])
             csrRejectedCompletedPromise.set_value();
         };
 
-        auto onCsrAccepted = [&](CreateCertificateFromCsrResponse *response, int ioErr)
-        {
+        auto onCsrAccepted = [&](CreateCertificateFromCsrResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -280,16 +273,12 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onCsrRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onCsrRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout,
-                    "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode,
-                    error->ErrorMessage->c_str(),
-                    error->ErrorCode->c_str());
+                    stdout, "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
                 exit(-1);
             }
             else
@@ -299,8 +288,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onKeysPublishSubAck = [&](int ioErr)
-        {
+        auto onKeysPublishSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
@@ -310,8 +298,7 @@ int main(int argc, char *argv[])
             keysPublishCompletedPromise.set_value();
         };
 
-        auto onKeysAcceptedSubAck = [&](int ioErr)
-        {
+        auto onKeysAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -322,8 +309,7 @@ int main(int argc, char *argv[])
             keysAcceptedCompletedPromise.set_value();
         };
 
-        auto onKeysRejectedSubAck = [&](int ioErr)
-        {
+        auto onKeysRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -333,8 +319,7 @@ int main(int argc, char *argv[])
             keysRejectedCompletedPromise.set_value();
         };
 
-        auto onKeysAccepted = [&](CreateKeysAndCertificateResponse *response, int ioErr)
-        {
+        auto onKeysAccepted = [&](CreateKeysAndCertificateResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -348,16 +333,12 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onKeysRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onKeysRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout,
-                    "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode,
-                    error->ErrorMessage->c_str(),
-                    error->ErrorCode->c_str());
+                    stdout, "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
                 exit(-1);
             }
             else
@@ -367,8 +348,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onRegisterAcceptedSubAck = [&](int ioErr)
-        {
+        auto onRegisterAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to RegisterThing accepted: %s\n", ErrorDebugString(ioErr));
@@ -378,8 +358,7 @@ int main(int argc, char *argv[])
             registerAcceptedCompletedPromise.set_value();
         };
 
-        auto onRegisterRejectedSubAck = [&](int ioErr)
-        {
+        auto onRegisterRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to RegisterThing rejected: %s\n", ErrorDebugString(ioErr));
@@ -388,8 +367,7 @@ int main(int argc, char *argv[])
             registerRejectedCompletedPromise.set_value();
         };
 
-        auto onRegisterAccepted = [&](RegisterThingResponse *response, int ioErr)
-        {
+        auto onRegisterAccepted = [&](RegisterThingResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(stdout, "RegisterThingResponse ThingName: %s.\n", response->ThingName->c_str());
@@ -401,16 +379,12 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onRegisterRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onRegisterRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout,
-                    "RegisterThing failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode,
-                    error->ErrorMessage->c_str(),
-                    error->ErrorCode->c_str());
+                    stdout, "RegisterThing failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
             }
             else
             {
@@ -419,8 +393,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onRegisterPublishSubAck = [&](int ioErr)
-        {
+        auto onRegisterPublishSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error publishing to RegisterThing: %s\n", ErrorDebugString(ioErr));

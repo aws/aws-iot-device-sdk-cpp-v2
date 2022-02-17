@@ -21,9 +21,7 @@ namespace Utils
     }
 
     void CommandLineUtils::RegisterCommand(
-        Aws::Crt::String CommandName,
-        Aws::Crt::String ExampleInput,
-        Aws::Crt::String HelpOutput)
+        Aws::Crt::String CommandName, Aws::Crt::String ExampleInput, Aws::Crt::String HelpOutput)
     {
         RegisterCommand(CommandLineOption(CommandName, ExampleInput, HelpOutput));
     }
@@ -80,8 +78,7 @@ namespace Utils
     }
 
     Aws::Crt::String CommandLineUtils::GetCommandRequired(
-        Aws::Crt::String command,
-        Aws::Crt::String OptionalAdditionalMessage)
+        Aws::Crt::String command, Aws::Crt::String OptionalAdditionalMessage)
     {
         if (HasCommand(command))
         {

@@ -62,13 +62,11 @@ int main(int argc, char *argv[])
         "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
     cmdUtils.RegisterCommand("topic", "<topic>", "Topic to publish, subscribe to. (optional)");
     cmdUtils.RegisterCommand(
-        "client_id",
-        "<client id>"
-        "Client id to use (optional)");
+        "client_id", "<client id>"
+                     "Client id to use (optional)");
     cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
     cmdUtils.RegisterCommand(
-        "signing_region",
-        "<region>",
+        "signing_region", "<region>",
         "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
     cmdUtils.RegisterCommand("proxy_host", "<proxy host>", "Host name of the http proxy to use (optional)");
     cmdUtils.RegisterCommand("proxy_port", "<proxy port>", "Port of the http proxy to use (optional)");
@@ -80,16 +78,13 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "x509_thing", "<thing name>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
     cmdUtils.RegisterCommand(
-        "x509_cert",
-        "<path to cert>",
+        "x509_cert", "<path to cert>",
         "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
     cmdUtils.RegisterCommand(
-        "x509_key",
-        "<path to key>",
+        "x509_key", "<path to key>",
         "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
     cmdUtils.RegisterCommand(
-        "x509_rootca",
-        "<path to root ca>",
+        "x509_rootca", "<path to root ca>",
         "Path to the root certificate used in fetching x509 credentials (required for x509)");
     cmdUtils.RegisterCommand("message", "<message>", "The message to send in the payload (optional)");
     cmdUtils.RegisterCommand("count", "<count>", "The number of messages to send (optional)");
@@ -224,8 +219,7 @@ int main(int argc, char *argv[])
             if (!tlsCtxOptions)
             {
                 fprintf(
-                    stderr,
-                    "Unable to initialize tls context options, error: %s!\n",
+                    stderr, "Unable to initialize tls context options, error: %s!\n",
                     ErrorDebugString(tlsCtxOptions.LastError()));
                 return -1;
             }
@@ -239,8 +233,7 @@ int main(int argc, char *argv[])
             if (!x509TlsCtx)
             {
                 fprintf(
-                    stderr,
-                    "Unable to create tls context, error: %s!\n",
+                    stderr, "Unable to create tls context, error: %s!\n",
                     ErrorDebugString(x509TlsCtx.GetInitializationError()));
                 return -1;
             }
@@ -251,8 +244,7 @@ int main(int argc, char *argv[])
             if (!x509Config.TlsOptions)
             {
                 fprintf(
-                    stderr,
-                    "Unable to create tls options from tls context, error: %s!\n",
+                    stderr, "Unable to create tls options from tls context, error: %s!\n",
                     ErrorDebugString(x509Config.TlsOptions.LastError()));
                 return -1;
             }
@@ -308,8 +300,7 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
+            stderr, "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -347,8 +338,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -369,16 +359,16 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
-    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
+        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
+    };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -409,13 +399,8 @@ int main(int argc, char *argv[])
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
-        auto onMessage = [&](Mqtt::MqttConnection &,
-                             const String &topic,
-                             const ByteBuf &byteBuf,
-                             bool /*dup*/,
-                             Mqtt::QOS /*qos*/,
-                             bool /*retain*/)
-        {
+        auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool /*dup*/,
+                             Mqtt::QOS /*qos*/, bool /*retain*/) {
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -432,9 +417,8 @@ int main(int argc, char *argv[])
          * Subscribe for incoming publish messages on topic.
          */
         std::promise<void> subscribeFinishedPromise;
-        auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
-        {
+        auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS,
+                            int errorCode) {
             if (errorCode)
             {
                 fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));

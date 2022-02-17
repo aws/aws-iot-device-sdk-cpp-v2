@@ -51,9 +51,7 @@ namespace Utils
          * @param HelpOutput The message to show with the command when printing all commands via help
          */
         void RegisterCommand(
-            Aws::Crt::String CommandName,
-            Aws::Crt::String ExampleInput,
-            Aws::Crt::String HelpOutput = "");
+            Aws::Crt::String CommandName, Aws::Crt::String ExampleInput, Aws::Crt::String HelpOutput = "");
 
         /**
          * Removes the command if it has already been registered
@@ -117,8 +115,7 @@ namespace Utils
          * @return Aws::Crt::String The value passed into the program at the command name
          */
         Aws::Crt::String GetCommandRequired(
-            Aws::Crt::String CommandName,
-            Aws::Crt::String OptionalAdditionalMessage = "");
+            Aws::Crt::String CommandName, Aws::Crt::String OptionalAdditionalMessage = "");
 
         /**
          * Prints to the console/terminal all of the commands and their descriptions.

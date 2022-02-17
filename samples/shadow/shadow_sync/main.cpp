@@ -30,10 +30,7 @@ using namespace Aws::Iotshadow;
 static const char *SHADOW_VALUE_DEFAULT = "off";
 
 static void s_changeShadowValue(
-    IotShadowClient &client,
-    const String &thingName,
-    const String &shadowProperty,
-    const String &value)
+    IotShadowClient &client, const String &thingName, const String &shadowProperty, const String &value)
 {
     fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
 
@@ -67,8 +64,7 @@ static void s_changeShadowValue(
     updateShadowRequest.ThingName = thingName;
     updateShadowRequest.State = state;
 
-    auto publishCompleted = [thingName, value](int ioErr)
-    {
+    auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
@@ -103,8 +99,7 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("thing_name", "<thing name>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand(
-        "shadow_property",
-        "<Name of property in shadow to keep in sync>",
+        "shadow_property", "<Name of property in shadow to keep in sync>",
         "The name of the shadow property you want to change.");
     cmdUtils.SendArguments(argv, argv + argc);
 
@@ -153,8 +148,7 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
+            stderr, "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -197,8 +191,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -214,8 +207,7 @@ int main(int argc, char *argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionCompletedPromise.set_value(true);
@@ -243,8 +235,7 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeDeltaAcceptedCompletedPromise;
         std::promise<void> subscribeDeltaRejectedCompletedPromise;
 
-        auto onDeltaUpdatedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
@@ -253,8 +244,7 @@ int main(int argc, char *argv[])
             subscribeDeltaCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
@@ -263,8 +253,7 @@ int main(int argc, char *argv[])
             subscribeDeltaAcceptedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
@@ -273,8 +262,7 @@ int main(int argc, char *argv[])
             subscribeDeltaRejectedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr)
-        {
+        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
             if (event)
             {
                 fprintf(stdout, "Received shadow delta event.\n");
@@ -284,8 +272,7 @@ int main(int argc, char *argv[])
                     if (objectView.IsNull())
                     {
                         fprintf(
-                            stdout,
-                            "Delta reports that %s was deleted. Resetting defaults...\n",
+                            stdout, "Delta reports that %s was deleted. Resetting defaults...\n",
                             shadowProperty.c_str());
                         s_changeShadowValue(shadowClient, thingName, shadowProperty, SHADOW_VALUE_DEFAULT);
                     }
@@ -294,8 +281,7 @@ int main(int argc, char *argv[])
                         fprintf(
                             stdout,
                             "Delta reports that \"%s\" has a desired value of \"%s\", Changing local value...\n",
-                            shadowProperty.c_str(),
-                            event->State->View().GetString(shadowProperty).c_str());
+                            shadowProperty.c_str(), event->State->View().GetString(shadowProperty).c_str());
                         s_changeShadowValue(
                             shadowClient, thingName, shadowProperty, event->State->View().GetString(shadowProperty));
                     }
@@ -313,8 +299,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr)
-        {
+        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 if (response->State->Reported)
@@ -337,14 +322,11 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout,
-                    "Update of shadow state failed with message %s and code %d.",
-                    error->Message->c_str(),
+                    stdout, "Update of shadow state failed with message %s and code %d.", error->Message->c_str(),
                     *error->Code);
             }
             else
@@ -364,15 +346,11 @@ int main(int argc, char *argv[])
         updateShadowSubscriptionRequest.ThingName = thingName;
 
         shadowClient.SubscribeToUpdateShadowAccepted(
-            updateShadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
-            onUpdateShadowAccepted,
+            updateShadowSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onUpdateShadowAccepted,
             onDeltaUpdatedAcceptedSubAck);
 
         shadowClient.SubscribeToUpdateShadowRejected(
-            updateShadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
-            onUpdateShadowRejected,
+            updateShadowSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onUpdateShadowRejected,
             onDeltaUpdatedRejectedSubAck);
 
         subscribeDeltaCompletedPromise.get_future().wait();

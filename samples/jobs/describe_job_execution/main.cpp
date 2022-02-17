@@ -93,8 +93,7 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
+            stderr, "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -138,8 +137,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -155,8 +153,7 @@ int main(int argc, char *argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -187,13 +184,11 @@ int main(int argc, char *argv[])
         // This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
         // to be cautious make sure the subscribe has finished before doing the publish.
         std::promise<void> subAckedPromise;
-        auto subAckHandler = [&](int)
-        {
+        auto subAckHandler = [&](int) {
             /* if error code returns it will be recorded by the other callback */
             subAckedPromise.set_value();
         };
-        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-        {
+        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -211,8 +206,7 @@ int main(int argc, char *argv[])
         subAckedPromise.get_future().wait();
 
         subAckedPromise = std::promise<void>();
-        auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-        {
+        auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -238,8 +232,7 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.ClientToken = uuid.ToString();
         std::promise<void> publishDescribeJobExeCompletedPromise;
 
-        auto publishHandler = [&](int ioErr)
-        {
+        auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
