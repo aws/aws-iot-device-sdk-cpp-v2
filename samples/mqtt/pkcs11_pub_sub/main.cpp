@@ -139,7 +139,8 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr, "Client Configuration initialization failed with error %s\n",
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -239,8 +240,12 @@ int main(int argc, char *argv[])
     /*
      * This is invoked upon the receipt of a Publish on a subscribed topic.
      */
-    auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool /*dup*/,
-                         Mqtt::QOS /*qos*/, bool /*retain*/) {
+    auto onMessage = [&](Mqtt::MqttConnection &,
+                         const String &topic,
+                         const ByteBuf &byteBuf,
+                         bool /*dup*/,
+                         Mqtt::QOS /*qos*/,
+                         bool /*retain*/) {
         {
             std::lock_guard<std::mutex> lock(receiveMutex);
             ++receivedCount;

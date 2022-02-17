@@ -95,7 +95,8 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr, "Client Configuration initialization failed with error %s\n",
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -186,7 +187,10 @@ int main(int argc, char *argv[])
             std::string region = response->Region->c_str();
 
             fprintf(
-                stdout, "Recv: Token:%s, Mode:%s, Region:%s\n", clientAccessToken.c_str(), clientMode.c_str(),
+                stdout,
+                "Recv: Token:%s, Mode:%s, Region:%s\n",
+                clientAccessToken.c_str(),
+                clientMode.c_str(),
                 region.c_str());
 
             size_t nServices = response->Services->size();

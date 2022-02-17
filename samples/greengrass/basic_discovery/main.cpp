@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("mode", "<both|publish|subscribe>", "Default both (optional)");
     cmdUtils.RegisterCommand("message", "<message to publish>", "Message to publish. Default 'Hello World' (optional)");
     cmdUtils.RegisterCommand(
-        "proxy_host", "<proxy host name>",
+        "proxy_host",
+        "<proxy host name>",
         "Proxy host to use for discovery call. Default is to not use a proxy. (optional)");
     cmdUtils.RegisterCommand("proxy_port", "<proxy port>", "Proxy port to use for discovery call. (optional)");
     cmdUtils.SendArguments(argv, argv + argc);
@@ -156,9 +157,12 @@ int main(int argc, char *argv[])
             auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
 
             fprintf(
-                stdout, "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
-                groupToUse.GGGroupId->c_str(), groupToUse.Cores->at(0).ThingArn->c_str(),
-                connectivityInfo.HostAddress->c_str(), (int)connectivityInfo.Port.value());
+                stdout,
+                "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
+                groupToUse.GGGroupId->c_str(),
+                groupToUse.Cores->at(0).ThingArn->c_str(),
+                connectivityInfo.HostAddress->c_str(),
+                (int)connectivityInfo.Port.value());
 
             connection = mqttClient.NewConnection(
                 Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
@@ -174,26 +178,38 @@ int main(int argc, char *argv[])
             }
 
             connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
-                                                    Mqtt::MqttConnection &conn, int errorCode,
-                                                    Mqtt::ReturnCode /*returnCode*/, bool /*sessionPresent*/) {
+                                                    Mqtt::MqttConnection &conn,
+                                                    int errorCode,
+                                                    Mqtt::ReturnCode /*returnCode*/,
+                                                    bool /*sessionPresent*/) {
                 if (!errorCode)
                 {
                     fprintf(
-                        stdout, "Connected to group %s, using connection to %s:%d\n", groupToUse.GGGroupId->c_str(),
-                        connectivityInfo.HostAddress->c_str(), (int)connectivityInfo.Port.value());
+                        stdout,
+                        "Connected to group %s, using connection to %s:%d\n",
+                        groupToUse.GGGroupId->c_str(),
+                        connectivityInfo.HostAddress->c_str(),
+                        (int)connectivityInfo.Port.value());
 
                     if (mode == "both" || mode == "subscribe")
                     {
-                        auto onMessage = [&](Mqtt::MqttConnection & /*connection*/, const String &receivedOnTopic,
-                                             const ByteBuf &payload, bool /*dup*/, Mqtt::QOS /*qos*/, bool /*retain*/) {
+                        auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
+                                             const String &receivedOnTopic,
+                                             const ByteBuf &payload,
+                                             bool /*dup*/,
+                                             Mqtt::QOS /*qos*/,
+                                             bool /*retain*/) {
                             fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
                             fprintf(stdout, "Message: \n");
                             fwrite(payload.buffer, 1, payload.len, stdout);
                             fprintf(stdout, "\n");
                         };
 
-                        auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/, uint16_t /*packetId*/,
-                                            const String &topic, Mqtt::QOS /*qos*/, int errorCode) {
+                        auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
+                                            uint16_t /*packetId*/,
+                                            const String &topic,
+                                            Mqtt::QOS /*qos*/,
+                                            int errorCode) {
                             if (!errorCode)
                             {
                                 fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
@@ -202,7 +218,9 @@ int main(int argc, char *argv[])
                             else
                             {
                                 fprintf(
-                                    stderr, "Failed to subscribe to %s with error %s. Exiting\n", topic.c_str(),
+                                    stderr,
+                                    "Failed to subscribe to %s with error %s. Exiting\n",
+                                    topic.c_str(),
                                     aws_error_debug_str(errorCode));
                                 exit(-1);
                             }
@@ -218,8 +236,10 @@ int main(int argc, char *argv[])
                 else
                 {
                     fprintf(
-                        stderr, "Error connecting to group %s, using connection to %s:%d\n",
-                        groupToUse.GGGroupId->c_str(), connectivityInfo.HostAddress->c_str(),
+                        stderr,
+                        "Error connecting to group %s, using connection to %s:%d\n",
+                        groupToUse.GGGroupId->c_str(),
+                        connectivityInfo.HostAddress->c_str(),
                         (int)connectivityInfo.Port.value());
                     fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
                     exit(-1);
@@ -248,7 +268,9 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(
-                stderr, "Discover failed with error: %s, and http response code %d\n", aws_error_debug_str(error),
+                stderr,
+                "Discover failed with error: %s, and http response code %d\n",
+                aws_error_debug_str(error),
                 httpResponseCode);
             exit(-1);
         }

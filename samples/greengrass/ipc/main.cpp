@@ -82,7 +82,8 @@ int main(int argc, char *argv[])
         bool OnErrorCallback(RpcError status) override
         {
             fprintf(
-                stdout, "Processing messages from the Greengrass Core resulted in error: %s\n",
+                stdout,
+                "Processing messages from the Greengrass Core resulted in error: %s\n",
                 status.StatusToString().c_str());
             return true;
         }
@@ -167,7 +168,8 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(
-                stderr, "Attempting to receive the response from the server failed with error code %s\n",
+                stderr,
+                "Attempting to receive the response from the server failed with error code %s\n",
                 subscribeResult.GetRpcError().StatusToString().c_str());
         }
     }
@@ -185,7 +187,9 @@ int main(int argc, char *argv[])
     if (!requestStatus)
     {
         fprintf(
-            stderr, "Failed to publish to %s topic with error %s\n", topic.c_str(),
+            stderr,
+            "Failed to publish to %s topic with error %s\n",
+            topic.c_str(),
             requestStatus.StatusToString().c_str());
         exit(-1);
     }
@@ -224,7 +228,8 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(
-                stderr, "Attempting to receive the response from the server failed with error code %s\n",
+                stderr,
+                "Attempting to receive the response from the server failed with error code %s\n",
                 publishResult.GetRpcError().StatusToString().c_str());
         }
     }

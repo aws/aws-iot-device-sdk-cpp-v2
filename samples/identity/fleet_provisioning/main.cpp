@@ -133,7 +133,8 @@ int main(int argc, char *argv[])
     if (!clientConfig)
     {
         fprintf(
-            stderr, "Client Configuration initialization failed with error %s\n",
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
             ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
@@ -277,8 +278,11 @@ int main(int argc, char *argv[])
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout, "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
+                    stdout,
+                    "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode,
+                    error->ErrorMessage->c_str(),
+                    error->ErrorCode->c_str());
                 exit(-1);
             }
             else
@@ -337,8 +341,11 @@ int main(int argc, char *argv[])
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout, "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
+                    stdout,
+                    "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode,
+                    error->ErrorMessage->c_str(),
+                    error->ErrorCode->c_str());
                 exit(-1);
             }
             else
@@ -383,8 +390,11 @@ int main(int argc, char *argv[])
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
-                    stdout, "RegisterThing failed with statusCode %d, errorMessage %s and errorCode %s.",
-                    *error->StatusCode, error->ErrorMessage->c_str(), error->ErrorCode->c_str());
+                    stdout,
+                    "RegisterThing failed with statusCode %d, errorMessage %s and errorCode %s.",
+                    *error->StatusCode,
+                    error->ErrorMessage->c_str(),
+                    error->ErrorCode->c_str());
             }
             else
             {

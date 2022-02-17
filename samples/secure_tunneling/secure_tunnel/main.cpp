@@ -42,12 +42,14 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "ca_file", "<path to custom ca>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     cmdUtils.RegisterCommand(
-        "access_token_file", "<path to access token>",
+        "access_token_file",
+        "<path to access token>",
         "Path to the tunneling access token file (optional if --access_token used).");
     cmdUtils.RegisterCommand(
         "access_token", "<access token>", "Tunneling access token (optional if --access_token_file used).");
     cmdUtils.RegisterCommand(
-        "local_proxy_mode_source", "<sets to Source Mode>",
+        "local_proxy_mode_source",
+        "<sets to Source Mode>",
         "Use to set local proxy mode to source. Default is destination (optional).");
     cmdUtils.RegisterCommand(
         "proxy_host", "<host name of the proxy server>", "Host name of the proxy server to connect through");
@@ -168,15 +170,15 @@ int main(int argc, char *argv[])
     auto OnConnectionComplete = [&]() {
         switch (localProxyMode)
         {
-        case AWS_SECURE_TUNNELING_DESTINATION_MODE:
-            fprintf(stdout, "Connection Complete in Destination Mode\n");
-            break;
-        case AWS_SECURE_TUNNELING_SOURCE_MODE:
-            connectionCompletedPromise.set_value(true);
-            fprintf(stdout, "Connection Complete in Source Mode\n");
-            fprintf(stdout, "Sending Stream Start request\n");
-            secureTunnel->SendStreamStart();
-            break;
+            case AWS_SECURE_TUNNELING_DESTINATION_MODE:
+                fprintf(stdout, "Connection Complete in Destination Mode\n");
+                break;
+            case AWS_SECURE_TUNNELING_SOURCE_MODE:
+                connectionCompletedPromise.set_value(true);
+                fprintf(stdout, "Connection Complete in Source Mode\n");
+                fprintf(stdout, "Sending Stream Start request\n");
+                secureTunnel->SendStreamStart();
+                break;
         }
     };
 
@@ -188,27 +190,27 @@ int main(int argc, char *argv[])
     auto OnSendDataComplete = [&](int error_code) {
         switch (localProxyMode)
         {
-        case AWS_SECURE_TUNNELING_DESTINATION_MODE:
-            if (!error_code)
-            {
-                fprintf(stdout, "Send Data Complete in Destination Mode\n");
-            }
-            else
-            {
-                fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
-            }
+            case AWS_SECURE_TUNNELING_DESTINATION_MODE:
+                if (!error_code)
+                {
+                    fprintf(stdout, "Send Data Complete in Destination Mode\n");
+                }
+                else
+                {
+                    fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
+                }
 
-            break;
-        case AWS_SECURE_TUNNELING_SOURCE_MODE:
-            if (!error_code)
-            {
-                fprintf(stdout, "Send Data Complete in Source Mode\n");
-            }
-            else
-            {
-                fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
-            }
-            break;
+                break;
+            case AWS_SECURE_TUNNELING_SOURCE_MODE:
+                if (!error_code)
+                {
+                    fprintf(stdout, "Send Data Complete in Source Mode\n");
+                }
+                else
+                {
+                    fprintf(stderr, "Send Data Failed: %s\n", ErrorDebugString(error_code));
+                }
+                break;
         }
     };
 
@@ -220,22 +222,22 @@ int main(int argc, char *argv[])
 
         switch (localProxyMode)
         {
-        case AWS_SECURE_TUNNELING_DESTINATION_MODE:
-            fprintf(stdout, "Data Receive Complete in Destination\n");
-            fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
-            secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
-            if (isTest)
-            {
-                expectedMessageCount--;
-                if (expectedMessageCount == 0)
+            case AWS_SECURE_TUNNELING_DESTINATION_MODE:
+                fprintf(stdout, "Data Receive Complete in Destination\n");
+                fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
+                secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
+                if (isTest)
                 {
-                    exit(0);
+                    expectedMessageCount--;
+                    if (expectedMessageCount == 0)
+                    {
+                        exit(0);
+                    }
                 }
-            }
-            break;
-        case AWS_SECURE_TUNNELING_SOURCE_MODE:
-            fprintf(stdout, "Data Receive Complete in Source\n");
-            break;
+                break;
+            case AWS_SECURE_TUNNELING_SOURCE_MODE:
+                fprintf(stdout, "Data Receive Complete in Source\n");
+                break;
         }
     };
 
@@ -283,7 +285,11 @@ int main(int argc, char *argv[])
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator, bootstrap, SocketOptions(), accessToken.c_str(), localProxyMode,
+                           Aws::Crt::g_allocator,
+                           bootstrap,
+                           SocketOptions(),
+                           accessToken.c_str(),
+                           localProxyMode,
                            endpoint.c_str())
                            .WithRootCa(caFile.c_str())
                            .WithHttpClientConnectionProxyOptions(proxyOptions)
@@ -303,7 +309,11 @@ int main(int argc, char *argv[])
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator, bootstrap, SocketOptions(), accessToken.c_str(), localProxyMode,
+                           Aws::Crt::g_allocator,
+                           bootstrap,
+                           SocketOptions(),
+                           accessToken.c_str(),
+                           localProxyMode,
                            endpoint.c_str())
                            .WithRootCa(caFile.c_str())
                            .WithOnConnectionComplete(OnConnectionComplete)

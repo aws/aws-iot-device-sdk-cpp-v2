@@ -59,7 +59,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("password", "<password>", "Password to send with mqtt connect.");
     cmdUtils.RegisterCommand("protocol_name", "<protocol>", "defaults to x-amzn-mqtt-ca (optional).");
     cmdUtils.RegisterCommand(
-        "auth_params", "<comma delimited list>",
+        "auth_params",
+        "<comma delimited list>",
         "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
     cmdUtils.RegisterCommand(Utils::CommandLineOption("help", "", "Prints this message"));
     cmdUtils.SendArguments(argv, argv + argc);
@@ -271,8 +272,12 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    connection->SetOnMessageHandler([](Mqtt::MqttConnection &, const String &topic, const ByteBuf &payload,
-                                       bool /*dup*/, Mqtt::QOS /*qos*/, bool /*retain*/) {
+    connection->SetOnMessageHandler([](Mqtt::MqttConnection &,
+                                       const String &topic,
+                                       const ByteBuf &payload,
+                                       bool /*dup*/,
+                                       Mqtt::QOS /*qos*/,
+                                       bool /*retain*/) {
         fprintf(stdout, "Generic Publish received on topic %s, payload:\n", topic.c_str());
         fwrite(payload.buffer, 1, payload.len, stdout);
         fprintf(stdout, "\n");
@@ -295,8 +300,12 @@ int main(int argc, char *argv[])
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
-        auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool /*dup*/,
-                             Mqtt::QOS /*qos*/, bool /*retain*/) {
+        auto onMessage = [&](Mqtt::MqttConnection &,
+                             const String &topic,
+                             const ByteBuf &byteBuf,
+                             bool /*dup*/,
+                             Mqtt::QOS /*qos*/,
+                             bool /*retain*/) {
             fprintf(stdout, "Publish received on topic %s\n", topic.c_str());
             fprintf(stdout, "\n Message:\n");
             fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
@@ -307,27 +316,27 @@ int main(int argc, char *argv[])
          * Subscribe for incoming publish messages on topic.
          */
         std::promise<void> subscribeFinishedPromise;
-        auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS,
-                            int errorCode) {
-            if (errorCode)
-            {
-                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
-                exit(-1);
-            }
-            else
-            {
-                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+        auto onSubAck =
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
+                if (errorCode)
                 {
-                    fprintf(stderr, "Subscribe rejected by the broker.");
+                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
                     exit(-1);
                 }
                 else
                 {
-                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+                    {
+                        fprintf(stderr, "Subscribe rejected by the broker.");
+                        exit(-1);
+                    }
+                    else
+                    {
+                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    }
                 }
-            }
-            subscribeFinishedPromise.set_value();
-        };
+                subscribeFinishedPromise.set_value();
+            };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
