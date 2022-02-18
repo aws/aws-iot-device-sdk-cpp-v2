@@ -12,7 +12,6 @@
 
 #include "../../utils/CommandLineUtils.h"
 
-//using namespace std;
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
