@@ -12,26 +12,27 @@
 
 #include "../../utils/CommandLineUtils.h"
 
-using namespace std;
+//using namespace std;
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
+using namespace std::chrono_literals;
 
 int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
-    string region;
-    string endpoint;
-    string caFile;
-    string accessToken;
-    string message = "Hello World";
+    String region;
+    String endpoint;
+    String caFile;
+    String accessToken;
+    String message = "Hello World";
     aws_secure_tunneling_local_proxy_mode localProxyMode;
 
-    string proxyHost;
+    String proxyHost;
     uint16_t proxyPort(8080);
-    string proxyUserName;
-    string proxyPassword;
+    String proxyUserName;
+    String proxyPassword;
 
     std::shared_ptr<SecureTunnel> secureTunnel;
 
@@ -71,7 +72,7 @@ int main(int argc, char *argv[])
     /*
      * Generate secure tunneling endpoint using region
      */
-    region = cmdUtils.GetCommandRequired("region").c_str();
+    region = cmdUtils.GetCommandRequired("region");
     endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
     if (!(cmdUtils.HasCommand("access_token_file") || cmdUtils.HasCommand("access_token")))
@@ -83,13 +84,13 @@ int main(int argc, char *argv[])
 
     if (cmdUtils.HasCommand("access_token"))
     {
-        accessToken = cmdUtils.GetCommand("access_token").c_str();
+        accessToken = cmdUtils.GetCommand("access_token");
     }
     else
     {
-        accessToken = cmdUtils.GetCommand("access_token_file").c_str();
+        accessToken = cmdUtils.GetCommand("access_token_file");
 
-        ifstream accessTokenFile(accessToken.c_str());
+        std::ifstream accessTokenFile(accessToken.c_str());
         if (accessTokenFile.is_open())
         {
             getline(accessTokenFile, accessToken);
@@ -112,11 +113,11 @@ int main(int argc, char *argv[])
         {
             proxyPort = static_cast<uint16_t>(port);
         }
-        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "").c_str();
-        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "").c_str();
+        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "");
+        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "");
     }
 
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", "").c_str();
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
 
     /*
      * localProxyMode is set to destination by default unless flag is set to source
@@ -130,7 +131,7 @@ int main(int argc, char *argv[])
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    message = cmdUtils.GetCommandOrDefault("message", "Hello World").c_str();
+    message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
     /*
      * For internal testing
@@ -216,8 +217,8 @@ int main(int argc, char *argv[])
     };
 
     auto OnDataReceive = [&](const struct aws_byte_buf &data) {
-        string receivedData = std::string((char *)data.buffer, data.len);
-        string returnMessage = "Echo:" + receivedData;
+        String receivedData = String((char *)data.buffer, data.len);
+        String returnMessage = "Echo:" + receivedData;
 
         fprintf(stdout, "Received: \"%s\"\n", receivedData.c_str());
 
@@ -349,7 +350,7 @@ int main(int argc, char *argv[])
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 messageCount++;
-                string toSend = to_string(messageCount) + ": " + message.c_str();
+                String toSend = (std::to_string(messageCount) + ": " + message.c_str()).c_str();
 
                 if (!secureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
                 {
