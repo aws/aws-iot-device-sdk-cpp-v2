@@ -17,7 +17,7 @@ namespace Utils
             fprintf(stdout, "Cannot register command: %s: Command already registered!", option.CommandName.c_str());
             return;
         }
-        RegisteredCommands.insert({ option.CommandName, option });
+        RegisteredCommands.insert({option.CommandName, option});
     }
 
     void CommandLineUtils::RegisterCommand(
@@ -94,7 +94,6 @@ namespace Utils
             fprintf(stderr, "%s\n", OptionalAdditionalMessage.c_str());
         }
         exit(-1);
-        return Aws::Crt::String();
     }
 
     void CommandLineUtils::PrintHelp()

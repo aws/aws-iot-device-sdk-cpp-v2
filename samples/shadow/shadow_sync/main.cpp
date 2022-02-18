@@ -29,7 +29,11 @@ using namespace Aws::Iotshadow;
 
 static const char *SHADOW_VALUE_DEFAULT = "off";
 
-static void s_changeShadowValue(IotShadowClient &client, const String &thingName, const String &shadowProperty, const String &value)
+static void s_changeShadowValue(
+    IotShadowClient &client,
+    const String &thingName,
+    const String &shadowProperty,
+    const String &value)
 {
     fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
 

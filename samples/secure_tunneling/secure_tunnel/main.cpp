@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     /*
      * Generate secure tunneling endpoint using region
      */
-    region = cmdUtils.GetCommandRequired("region");
+    region = cmdUtils.GetCommandRequired("region").c_str();
     endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
     if (!(cmdUtils.HasCommand("access_token_file") || cmdUtils.HasCommand("access_token")))
@@ -83,11 +83,11 @@ int main(int argc, char *argv[])
 
     if (cmdUtils.HasCommand("access_token"))
     {
-        accessToken = cmdUtils.GetCommand("access_token");
+        accessToken = cmdUtils.GetCommand("access_token").c_str();
     }
     else
     {
-        accessToken = cmdUtils.GetCommand("access_token_file");
+        accessToken = cmdUtils.GetCommand("access_token_file").c_str();
 
         ifstream accessTokenFile(accessToken.c_str());
         if (accessTokenFile.is_open())
@@ -104,18 +104,19 @@ int main(int argc, char *argv[])
 
     if (cmdUtils.HasCommand("proxy_host") || cmdUtils.HasCommand("proxy_port"))
     {
-        proxyHost = cmdUtils.GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.");
+        proxyHost =
+            cmdUtils.GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str();
         int port = atoi(
             cmdUtils.GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
         if (port > 0 && port <= UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
         }
-        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "");
-        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "");
+        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "").c_str();
+        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "").c_str();
     }
 
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", "").c_str();
 
     /*
      * localProxyMode is set to destination by default unless flag is set to source
@@ -129,7 +130,7 @@ int main(int argc, char *argv[])
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    message = cmdUtils.GetCommandOrDefault("message", "Hello World").c_str();
 
     /*
      * For internal testing

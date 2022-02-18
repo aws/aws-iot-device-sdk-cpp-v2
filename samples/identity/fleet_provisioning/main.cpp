@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
     if (cmdUtils.HasCommand("csr"))
     {
-        csrFile = getFileData(cmdUtils.GetCommand("csr").c_str());
+        csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
 
     /********************** Now Setup an Mqtt Client ******************/
