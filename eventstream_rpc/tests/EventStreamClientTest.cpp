@@ -12,11 +12,6 @@
 #include <queue>
 #include <sstream>
 
-#ifdef WIN32
-#    undef SetPort
-#    undef GetMessage
-#endif
-
 using namespace Aws::Crt;
 using namespace Aws::Eventstreamrpc;
 using namespace Awstest;
