@@ -20,4 +20,4 @@ endif ()
 
 find_package(aws-crt-cpp REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} AWS::aws-crt-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)
