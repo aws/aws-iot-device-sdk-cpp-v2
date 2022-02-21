@@ -19,5 +19,6 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
+find_package(aws-c-iot REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::aws-c-iot)
