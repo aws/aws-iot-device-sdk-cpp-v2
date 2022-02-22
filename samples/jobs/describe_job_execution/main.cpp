@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("describe-job-execution");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("thing_name", "<thing name>", "The name of your IOT thing.");
-    cmdUtils.RegisterCommand("job_id", "<job id>", "The job id you want to describe.");
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
+    cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
     cmdUtils.SendArguments(argv, argv + argc);
 
     if (cmdUtils.HasCommand("help"))

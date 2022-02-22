@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("tunnel_notification");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("thing_name", "<thing name>", "The name of your IOT thing");
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
     cmdUtils.SendArguments(argv, argv + argc);
 
     if (cmdUtils.HasCommand("help"))

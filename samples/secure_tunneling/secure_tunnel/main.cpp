@@ -38,29 +38,29 @@ int main(int argc, char *argv[])
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("secure_tunnel");
-    cmdUtils.RegisterCommand("region", "<aws region of secure tunnel>", "The region of your secure tunnel");
+    cmdUtils.RegisterCommand("region", "<str>", "The region of your secure tunnel");
     cmdUtils.RegisterCommand(
-        "ca_file", "<path to custom ca>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+        "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     cmdUtils.RegisterCommand(
         "access_token_file",
-        "<path to access token>",
+        "<path>",
         "Path to the tunneling access token file (optional if --access_token used).");
     cmdUtils.RegisterCommand(
-        "access_token", "<access token>", "Tunneling access token (optional if --access_token_file used).");
+        "access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
     cmdUtils.RegisterCommand(
         "local_proxy_mode_source",
-        "<sets to Source Mode>",
-        "Use to set local proxy mode to source. Default is destination (optional).");
+        "<str>",
+        "Use to set local proxy mode to source (optional, default='destination').");
     cmdUtils.RegisterCommand(
-        "proxy_host", "<host name of the proxy server>", "Host name of the proxy server to connect through");
-    cmdUtils.RegisterCommand("proxy_port", "<port of the proxy server>", "Port of the proxy server to connect through");
+        "proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
+    cmdUtils.RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     cmdUtils.RegisterCommand(
-        "proxy_user_name", "<user name>", "User name passed if proxy server requires a user name (optional)");
+        "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils.RegisterCommand(
-        "proxy_password", "<password>", "Password passed if proxy server requires a password (optional)");
-    cmdUtils.RegisterCommand("message", "<message>", "Message to send. Default: 'Hello World' (optional)");
+        "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
+    cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
-    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional - ignore unless testing).");
+    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     cmdUtils.SendArguments(argv, argv + argc);
 
     if (cmdUtils.HasCommand("help"))

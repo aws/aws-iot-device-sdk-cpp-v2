@@ -79,9 +79,9 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("fleet-provisioning");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("template_name", "<template name>", "The name of your provisioning template");
-    cmdUtils.RegisterCommand("template_parameters", "<template parameters>", "Template parameters json");
-    cmdUtils.RegisterCommand("csr", "<path to csr>", "Path to CSR in PEM format (optional)");
+    cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
+    cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
+    cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
     cmdUtils.SendArguments(argv, argv + argc);
 
     if (cmdUtils.HasCommand("help"))

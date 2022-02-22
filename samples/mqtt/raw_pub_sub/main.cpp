@@ -50,14 +50,14 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("raw_pub_sub");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("topic", "<topic>", "Topic to publish, subscribe to. (optional).");
-    cmdUtils.RegisterCommand("client_id", "<client id>", "Client id to use (optional).");
+    cmdUtils.RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic').");
+    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
     cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional).");
-    cmdUtils.RegisterCommand("proxy_host", "<host>", "Host name of the http proxy to use (optional).");
-    cmdUtils.RegisterCommand("proxy_port", "<port>", "port of the http proxy to use (optional).");
-    cmdUtils.RegisterCommand("user_name", "<user name>", "User name to send with mqtt connect.");
-    cmdUtils.RegisterCommand("password", "<password>", "Password to send with mqtt connect.");
-    cmdUtils.RegisterCommand("protocol_name", "<protocol>", "defaults to x-amzn-mqtt-ca (optional).");
+    cmdUtils.RegisterCommand("proxy_host", "<str>", "Host name of the http proxy to use (optional).");
+    cmdUtils.RegisterCommand("proxy_port", "<int>", "port of the http proxy to use (optional, default='8080').");
+    cmdUtils.RegisterCommand("user_name", "<str>", "User name to send with mqtt connect.");
+    cmdUtils.RegisterCommand("password", "<str>", "Password to send with mqtt connect.");
+    cmdUtils.RegisterCommand("protocol_name", "<str>", "The X.509 client certificate auth (optional, default='x-amzn-mqtt-ca').");
     cmdUtils.RegisterCommand(
         "auth_params",
         "<comma delimited list>",

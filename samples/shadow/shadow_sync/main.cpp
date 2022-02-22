@@ -100,10 +100,10 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("shadow_sync");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("thing_name", "<thing name>", "The name of your IOT thing.");
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand(
         "shadow_property",
-        "<Name of property in shadow to keep in sync>",
+        "<str>",
         "The name of the shadow property you want to change.");
     cmdUtils.SendArguments(argv, argv + argc);
 
