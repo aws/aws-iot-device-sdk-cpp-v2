@@ -42,18 +42,13 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     cmdUtils.RegisterCommand(
-        "access_token_file",
-        "<path>",
-        "Path to the tunneling access token file (optional if --access_token used).");
+        "access_token_file", "<path>", "Path to the tunneling access token file (optional if --access_token used).");
+    cmdUtils.RegisterCommand("access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
     cmdUtils.RegisterCommand(
-        "access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
+        "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
+    cmdUtils.RegisterCommand("proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
     cmdUtils.RegisterCommand(
-        "local_proxy_mode_source",
-        "<str>",
-        "Use to set local proxy mode to source (optional, default='destination').");
-    cmdUtils.RegisterCommand(
-        "proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
-    cmdUtils.RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+        "proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     cmdUtils.RegisterCommand(
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils.RegisterCommand(

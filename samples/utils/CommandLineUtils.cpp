@@ -118,11 +118,10 @@ namespace Utils
 
     void CommandLineUtils::AddCommonMQTTCommands()
     {
-        RegisterCommand(Utils::CommandLineOption(
-            "endpoint", "<str>", "The endpoint of the mqtt server not including a port."));
-        RegisterCommand(Utils::CommandLineOption("key", "<path>", "Path to your key in PEM format."));
         RegisterCommand(
-            Utils::CommandLineOption("cert", "<path>", "Path to your client certificate in PEM format."));
+            Utils::CommandLineOption("endpoint", "<str>", "The endpoint of the mqtt server not including a port."));
+        RegisterCommand(Utils::CommandLineOption("key", "<path>", "Path to your key in PEM format."));
+        RegisterCommand(Utils::CommandLineOption("cert", "<path>", "Path to your client certificate in PEM format."));
         RegisterCommand(Utils::CommandLineOption(
             "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default)."));
     }

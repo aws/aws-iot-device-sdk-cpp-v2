@@ -47,12 +47,11 @@ int main(int argc, char *argv[])
         "region", "<str>", "The region for your Greengrass groups (optional, default='us-east-1').");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
     cmdUtils.RegisterCommand("topic", "<str>", "Targeted topic (optional, default='test/topic')");
-    cmdUtils.RegisterCommand("mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
+    cmdUtils.RegisterCommand(
+        "mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
     cmdUtils.RegisterCommand("message", "<str>", "Message to publish (optional, default='Hello World').");
     cmdUtils.RegisterCommand(
-        "proxy_host",
-        "<str>",
-        "Proxy host to use for discovery call. Default is to not use a proxy. (optional)");
+        "proxy_host", "<str>", "Proxy host to use for discovery call. Default is to not use a proxy. (optional)");
     cmdUtils.RegisterCommand("proxy_port", "<int>", "Proxy port to use for discovery call. (optional, default='0')");
     cmdUtils.SendArguments(argv, argv + argc);
 

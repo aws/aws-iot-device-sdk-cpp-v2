@@ -75,8 +75,7 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
     cmdUtils.RegisterCommand(
         "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
-    cmdUtils.RegisterCommand(
-        "x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
+    cmdUtils.RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
     cmdUtils.RegisterCommand(
         "x509_thing", "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
     cmdUtils.RegisterCommand(
@@ -88,10 +87,9 @@ int main(int argc, char *argv[])
         "<path>",
         "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
     cmdUtils.RegisterCommand(
-        "x509_rootca",
-        "<path>",
-        "Path to the root certificate used in fetching x509 credentials (required for x509)");
-    cmdUtils.RegisterCommand("message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
+        "x509_rootca", "<path>", "Path to the root certificate used in fetching x509 credentials (required for x509)");
+    cmdUtils.RegisterCommand(
+        "message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
     cmdUtils.SendArguments(argv, argv + argc);

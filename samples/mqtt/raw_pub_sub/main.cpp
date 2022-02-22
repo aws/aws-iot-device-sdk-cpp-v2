@@ -57,7 +57,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("proxy_port", "<int>", "port of the http proxy to use (optional, default='8080').");
     cmdUtils.RegisterCommand("user_name", "<str>", "User name to send with mqtt connect.");
     cmdUtils.RegisterCommand("password", "<str>", "Password to send with mqtt connect.");
-    cmdUtils.RegisterCommand("protocol_name", "<str>", "The X.509 client certificate auth (optional, default='x-amzn-mqtt-ca').");
+    cmdUtils.RegisterCommand(
+        "protocol_name", "<str>", "The X.509 client certificate auth (optional, default='x-amzn-mqtt-ca').");
     cmdUtils.RegisterCommand(
         "auth_params",
         "<comma delimited list>",
