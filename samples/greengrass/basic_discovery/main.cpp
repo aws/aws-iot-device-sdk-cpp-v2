@@ -221,8 +221,7 @@ int main(int argc, char *argv[])
                                                     Mqtt::MqttConnection &conn,
                                                     int errorCode,
                                                     Mqtt::ReturnCode /*returnCode*/,
-                                                    bool /*sessionPresent*/)
-            {
+                                                    bool /*sessionPresent*/) {
                 if (!errorCode)
                 {
                     fprintf(
