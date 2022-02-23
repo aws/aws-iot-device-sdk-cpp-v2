@@ -426,8 +426,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -448,16 +447,18 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
-    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
+        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
+    };
 
-    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
+    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) {
+        fprintf(stdout, "Connection resumed\n");
+    };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -493,8 +494,7 @@ int main(int argc, char *argv[])
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/)
-        {
+                             bool /*retain*/) {
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -512,8 +512,7 @@ int main(int argc, char *argv[])
          */
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
-        {
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
             if (errorCode)
             {
                 fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));

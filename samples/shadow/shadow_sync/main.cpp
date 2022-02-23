@@ -84,8 +84,7 @@ static void s_changeShadowValue(
     updateShadowRequest.ThingName = thingName;
     updateShadowRequest.State = state;
 
-    auto publishCompleted = [thingName, value](int ioErr)
-    {
+    auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
@@ -203,8 +202,7 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -220,8 +218,7 @@ int main(int argc, char *argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionCompletedPromise.set_value(true);
@@ -249,8 +246,7 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeDeltaAcceptedCompletedPromise;
         std::promise<void> subscribeDeltaRejectedCompletedPromise;
 
-        auto onDeltaUpdatedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
@@ -259,8 +255,7 @@ int main(int argc, char *argv[])
             subscribeDeltaCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
@@ -269,8 +264,7 @@ int main(int argc, char *argv[])
             subscribeDeltaAcceptedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
@@ -279,8 +273,7 @@ int main(int argc, char *argv[])
             subscribeDeltaRejectedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr)
-        {
+        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
             if (event)
             {
                 fprintf(stdout, "Received shadow delta event.\n");
@@ -320,8 +313,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr)
-        {
+        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(
@@ -337,8 +329,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
                 fprintf(

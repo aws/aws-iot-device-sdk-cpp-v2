@@ -206,8 +206,7 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionClosedPromise;
 
     /*********************** Callbacks ***************************/
-    auto OnConnectionComplete = [&]()
-    {
+    auto OnConnectionComplete = [&]() {
         switch (localProxyMode)
         {
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
@@ -222,14 +221,12 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnConnectionShutdown = [&]()
-    {
+    auto OnConnectionShutdown = [&]() {
         fprintf(stdout, "Connection Shutdown\n");
         connectionClosedPromise.set_value(true);
     };
 
-    auto OnSendDataComplete = [&](int error_code)
-    {
+    auto OnSendDataComplete = [&](int error_code) {
         switch (localProxyMode)
         {
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
@@ -256,8 +253,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnDataReceive = [&](const struct aws_byte_buf &data)
-    {
+    auto OnDataReceive = [&](const struct aws_byte_buf &data) {
         string receivedData = std::string((char *)data.buffer, data.len);
         string returnMessage = "Echo:" + receivedData;
 
