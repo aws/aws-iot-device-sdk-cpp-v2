@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
-          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--thing_name") ))
+          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--thing_name")))
     {
         s_printHelp();
         return 0;
@@ -304,9 +304,7 @@ int main(int argc, char *argv[])
                     JsonView objectView = event->State->View().GetJsonObject(SHADOW_PROPERTY);
                     if (objectView.IsNull())
                     {
-                        fprintf(
-                            stdout,
-                            "Delta reports that %s was deleted. Resetting defaults...\n", SHADOW_PROPERTY);
+                        fprintf(stdout, "Delta reports that %s was deleted. Resetting defaults...\n", SHADOW_PROPERTY);
                         s_changeShadowValue(shadowClient, thingName, SHADOW_PROPERTY, SHADOW_VALUE_DEFAULT);
                     }
                     else
@@ -406,5 +404,6 @@ int main(int argc, char *argv[])
     {
         connectionClosedPromise.get_future().wait();
     }
+
     return 0;
 }

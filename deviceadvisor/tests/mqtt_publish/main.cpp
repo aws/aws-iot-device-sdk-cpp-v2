@@ -495,7 +495,6 @@ int main(int argc, char *argv[])
         std::condition_variable receiveSignal;
         uint32_t receivedCount = 0;
 
-
         uint32_t publishedCount = 0;
         while (publishedCount < messageCount)
         {
@@ -512,7 +511,6 @@ int main(int argc, char *argv[])
             std::unique_lock<std::mutex> receivedLock(receiveMutex);
             receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
         }
-
 
         /* Disconnect */
         if (connection->Disconnect())
