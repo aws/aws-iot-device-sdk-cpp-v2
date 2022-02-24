@@ -23,7 +23,7 @@ static void s_printHelp()
     fprintf(stdout, "Usage:\n");
     fprintf(
         stdout,
-        "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
+        "mqtt_publish --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic <topic> --message <message> --count <count>"
         " --client_id <client id> --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
