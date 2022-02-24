@@ -396,9 +396,8 @@ int main(int argc, char *argv[])
         subscribeDeltaAcceptedCompletedPromise.get_future().wait();
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
-
-        // Reset the property
-        fprintf(stdout, "Reset Desired state of %s to %s\n", SHADOW_PROPERTY, SHADOW_VALUE_DEFAULT);
+        // Update the property
+        fprintf(stdout, "Update Desired state of %s to %s\n", SHADOW_PROPERTY, SHADOW_VALUE_DEFAULT);
         s_changeShadowValue(shadowClient, thingName, SHADOW_PROPERTY, SHADOW_VALUE_DEFAULT);
     }
 
