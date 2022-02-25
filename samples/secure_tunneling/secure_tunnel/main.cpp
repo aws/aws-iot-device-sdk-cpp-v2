@@ -189,12 +189,12 @@ int main(int argc, char *argv[])
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
+    if (apiHandle.GetOrCreateDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
             stderr,
             "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
+            ErrorDebugString(apiHandle.GetOrCreateDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -325,7 +325,7 @@ int main(int argc, char *argv[])
          */
         secureTunnel = SecureTunnelBuilder(
                            Aws::Crt::g_allocator,
-                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
+                           *apiHandle.GetOrCreateDefaultClientBootstrap(),
                            SocketOptions(),
                            accessToken.c_str(),
                            localProxyMode,
@@ -349,7 +349,7 @@ int main(int argc, char *argv[])
          */
         secureTunnel = SecureTunnelBuilder(
                            Aws::Crt::g_allocator,
-                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
+                           *apiHandle.GetOrCreateDefaultClientBootstrap(),
                            SocketOptions(),
                            accessToken.c_str(),
                            localProxyMode,

@@ -158,17 +158,17 @@ int main(int argc, char *argv[])
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
+    if (apiHandle.GetOrCreateDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
             stderr,
             "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
+            ErrorDebugString(apiHandle.GetOrCreateDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.Bootstrap = apiHandle.GetOrCreateStaticDefaultClientBootstrap();
+    clientConfig.Bootstrap = apiHandle.GetOrCreateDefaultClientBootstrap();
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
     clientConfig.Region = region;
