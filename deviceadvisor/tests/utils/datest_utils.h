@@ -12,6 +12,12 @@ using namespace Aws::Crt;
 
 namespace DATest_Utils
 {
+
+const char *ENV_ENDPONT = "DA_ENDPOINT";
+const char *ENV_CERTI = "DA_CERTI";
+const char *ENV_KEY = "DA_KEY";
+const char *ENV_TOPIC = "DA_TOPIC";
+
     void s_getenv(const char *env_name, String &var)
     {
         size_t requiredSize = 0;

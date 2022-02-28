@@ -19,10 +19,6 @@
 using namespace Aws::Crt;
 using namespace DATest_Utils;
 
-const char *ENV_ENDPONT = "DA_ENDPOINT";
-const char *ENV_CERTI = "DA_CERTI";
-const char *ENV_KEY = "DA_KEY";
-
 int main()
 {
 
