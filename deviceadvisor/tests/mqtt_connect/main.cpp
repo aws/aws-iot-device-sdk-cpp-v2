@@ -3,9 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
-#include <aws/crt/StlAllocator.h>
 #include <aws/crt/auth/Credentials.h>
-#include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
 
@@ -15,42 +13,15 @@
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
-#include <stdlib.h>
+
+#include "../utils/datest_utils.h"
 
 using namespace Aws::Crt;
+using namespace DATest_Utils;
 
-const char* ENV_ENDPONT = "DA_ENDPOINT";
-const char* ENV_CERTI = "DA_CERTI";
-const char* ENV_KEY = "DA_KEY";
-
-void s_printEnvError(const char* var)
-{
-    fprintf(stdout, "Failed to found environment variable : %s\n", var);
-}
-
-void s_getenv(const char* env_name, String& var) 
-{
-    size_t requiredSize = 0;
-    getenv_s(&requiredSize, NULL, 0, env_name);
-    if (requiredSize == 0)
-    {
-        fprintf(stdout, "Failed to find environment variable: %s.\n", env_name);
-        exit(-1);
-    }
-
-    char *libvar = (char *)malloc((requiredSize + 1) * sizeof(char));
-    memset(libvar, 0, requiredSize + 1);
-    if (!libvar)
-    {
-        printf("Failed to allocate memory!\n");
-        exit(1);
-    }
-
-    // Get the value of the LIB environment variable.
-    getenv_s(&requiredSize, libvar, requiredSize, env_name);
-
-    var = libvar;
-}
+const char *ENV_ENDPONT = "DA_ENDPOINT";
+const char *ENV_CERTI = "DA_CERTI";
+const char *ENV_KEY = "DA_KEY";
 
 int main()
 {
@@ -71,7 +42,6 @@ int main()
     s_getenv(ENV_ENDPONT, endpoint);
     s_getenv(ENV_CERTI, certificatePath);
     s_getenv(ENV_KEY, keyPath);
-
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
@@ -97,9 +67,7 @@ int main()
 
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
-
     builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-
 
     builder.WithEndpoint(endpoint);
 
