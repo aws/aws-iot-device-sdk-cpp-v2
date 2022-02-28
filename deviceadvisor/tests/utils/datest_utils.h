@@ -13,10 +13,14 @@ using namespace Aws::Crt;
 namespace DATest_Utils
 {
 
-const char *ENV_ENDPONT = "DA_ENDPOINT";
-const char *ENV_CERTI = "DA_CERTI";
-const char *ENV_KEY = "DA_KEY";
-const char *ENV_TOPIC = "DA_TOPIC";
+    const char *ENV_ENDPONT = "DA_ENDPOINT";
+    const char *ENV_CERTI = "DA_CERTI";
+    const char *ENV_KEY = "DA_KEY";
+    const char *ENV_TOPIC = "DA_TOPIC";
+    const char *ENV_THING_NAME = "DA_THING_NAME";
+    const char *ENV_SHADOW_PROPERTY = "DA_SHADOW_PROPERTY";
+    const char *ENV_SHADOW_VALUE_SET = "DA_SHADOW_VALUE_SET";
+    const char *ENV_SHADOW_VALUE_DEFAULT = "DA_SHADOW_VALUE_DEFAULT";
 
     void s_getenv(const char *env_name, String &var)
     {
