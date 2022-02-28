@@ -72,9 +72,25 @@ static void s_changeShadowValue(
 
     ShadowState state;
     JsonObject desired;
-    desired.WithString(shadowProperty, value);
     JsonObject reported;
-    reported.WithString(shadowProperty, value);
+
+    if (value == "null")
+    {
+        JsonObject nullObject;
+        nullObject.AsNull();
+        desired.WithObject(shadowProperty, nullObject);
+        reported.WithObject(shadowProperty, nullObject);
+    }
+    else if (value == "clear_shadow")
+    {
+        desired.AsNull();
+        reported.AsNull();
+    }
+    else
+    {
+        desired.WithString(shadowProperty, value);
+        reported.WithString(shadowProperty, value);
+    }
     state.Desired = desired;
     state.Reported = reported;
 
@@ -280,7 +296,6 @@ int main(int argc, char *argv[])
                 if (event->State && event->State->View().ValueExists(shadowProperty))
                 {
                     JsonView objectView = event->State->View().GetJsonObject(shadowProperty);
-
                     if (objectView.IsNull())
                     {
                         fprintf(
@@ -316,10 +331,17 @@ int main(int argc, char *argv[])
         auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
-                fprintf(
-                    stdout,
-                    "Finished updating reported shadow value to %s.\n",
-                    response->State->Reported->View().GetString(shadowProperty).c_str());
+                if (response->State->Reported)
+                {
+                    fprintf(
+                        stdout,
+                        "Finished updating reported shadow value to %s.\n",
+                        response->State->Reported->View().GetString(shadowProperty).c_str());
+                }
+                else
+                {
+                    fprintf(stdout, "Finished clearing shadow properties\n");
+                }
                 fprintf(stdout, "Enter desired value:\n");
             }
             else
