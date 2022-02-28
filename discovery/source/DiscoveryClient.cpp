@@ -25,7 +25,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
         {
             AWS_FATAL_ASSERT(clientConfig.TlsContext);
-            AWS_FATAL_ASSERT(clientConfig.Bootstrap);
 
             m_allocator = allocator;
 
@@ -59,7 +58,16 @@ namespace Aws
 
             Crt::Http::HttpClientConnectionOptions connectionOptions;
             connectionOptions.SocketOptions = clientConfig.SocketOptions;
-            connectionOptions.Bootstrap = clientConfig.Bootstrap;
+
+            if (clientConfig.Bootstrap != nullptr)
+            {
+                connectionOptions.Bootstrap = clientConfig.Bootstrap;
+            }
+            else
+            {
+                connectionOptions.Bootstrap = Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap();
+            }
+            
             connectionOptions.TlsOptions = tlsConnectionOptions;
             connectionOptions.HostName = Crt::String((const char *)serverName.ptr, serverName.len);
             connectionOptions.Port = port;

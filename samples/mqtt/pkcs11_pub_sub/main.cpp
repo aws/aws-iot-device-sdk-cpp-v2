@@ -126,10 +126,6 @@ int main(int argc, char *argv[])
     String clientId = args.GetOptional("--client_id", String("test-") + Aws::Crt::UUID().ToString());
 
     /********************** Now Setup an Mqtt Client ******************/
-    /**
-     * Create the default ClientBootstrap, which will create the default
-     * EventLoopGroup (to process IO events) and HostResolver.
-     */
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -194,7 +190,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
+    Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {
         fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));

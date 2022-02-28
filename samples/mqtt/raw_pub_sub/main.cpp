@@ -168,10 +168,6 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /**
-     * Create the default ClientBootstrap, which will create the default
-     * EventLoopGroup (to process IO events) and HostResolver.
-     */
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -181,7 +177,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Mqtt::MqttClient client(*apiHandle.GetOrCreateStaticDefaultClientBootstrap());
+    Mqtt::MqttClient client;
     Io::TlsContextOptions ctxOptions = Io::TlsContextOptions::InitDefaultClient();
 
     if (!certificatePath.empty() && !keyPath.empty())

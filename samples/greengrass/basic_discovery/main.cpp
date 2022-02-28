@@ -168,7 +168,6 @@ int main(int argc, char *argv[])
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.Bootstrap = apiHandle.GetOrCreateStaticDefaultClientBootstrap();
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
     clientConfig.Region = region;
@@ -183,7 +182,7 @@ int main(int argc, char *argv[])
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
-    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
+    Aws::Iot::MqttClient mqttClient;
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
     std::promise<void> connectionFinishedPromise;

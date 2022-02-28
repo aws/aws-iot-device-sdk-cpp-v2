@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/crt/Api.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 
 namespace Aws
@@ -20,6 +21,20 @@ namespace Aws
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_rootCa(""),
               m_httpClientConnectionProxyOptions(), m_OnConnectionComplete(), m_OnConnectionShutdown(),
               m_OnSendDataComplete(), m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset(), m_OnSessionReset()
+        {
+        }
+
+        SecureTunnelBuilder::SecureTunnelBuilder(
+            Crt::Allocator *allocator,                        // Should out live this object
+            const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+            const std::string &accessToken,                   // Make a copy and save in this object
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost) // Make a copy and save in this object
+            : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
+              m_socketOptions(socketOptions), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
+              m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(), m_OnConnectionComplete(),
+              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset(),
+              m_OnSessionReset()
         {
         }
 
@@ -200,6 +215,45 @@ namespace Aws
             : SecureTunnel(
                   allocator,
                   clientBootstrap,
+                  socketOptions,
+                  accessToken,
+                  localProxyMode,
+                  endpointHost,
+                  rootCa,
+                  nullptr,
+                  onConnectionComplete,
+                  onConnectionShutdown,
+                  onSendDataComplete,
+                  onDataReceive,
+                  onStreamStart,
+                  onStreamReset,
+                  onSessionReset)
+        {
+        }
+
+        /**
+         * Should be deprecated when possible.
+         * SecureTunnelBuilder::Build() should be used to generate new SecureTunnels
+         */
+        SecureTunnel::SecureTunnel(
+            Crt::Allocator *allocator,
+            const Aws::Crt::Io::SocketOptions &socketOptions,
+
+            const std::string &accessToken,
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost,
+            const std::string &rootCa,
+
+            OnConnectionComplete onConnectionComplete,
+            OnConnectionShutdown onConnectionShutdown,
+            OnSendDataComplete onSendDataComplete,
+            OnDataReceive onDataReceive,
+            OnStreamStart onStreamStart,
+            OnStreamReset onStreamReset,
+            OnSessionReset onSessionReset)
+            : SecureTunnel(
+                  allocator,
+                  Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap(),
                   socketOptions,
                   accessToken,
                   localProxyMode,

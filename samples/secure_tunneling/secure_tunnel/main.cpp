@@ -185,10 +185,6 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
-    /**
-     * Create the default ClientBootstrap, which will create the default
-     * EventLoopGroup (to process IO events) and HostResolver.
-     */
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -325,7 +321,6 @@ int main(int argc, char *argv[])
          */
         secureTunnel = SecureTunnelBuilder(
                            Aws::Crt::g_allocator,
-                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
                            SocketOptions(),
                            accessToken.c_str(),
                            localProxyMode,

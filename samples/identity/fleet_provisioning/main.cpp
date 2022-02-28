@@ -136,10 +136,6 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /**
-     * Create the default ClientBootstrap, which will create the default
-     * EventLoopGroup (to process IO events) and HostResolver.
-     */
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -171,7 +167,7 @@ int main(int argc, char *argv[])
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
+    Aws::Iot::MqttClient mqttClient;
 
     /*
      * Since no exceptions are used, always check the bool operator
