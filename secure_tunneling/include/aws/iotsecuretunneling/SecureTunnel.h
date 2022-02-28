@@ -38,7 +38,7 @@ namespace Aws
                 const std::string &accessToken,                   // Make a copy and save in this object
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost); // Make a copy and save in this object
-            
+
             /**
              * Constructor arguments are the minimum required to create a secure tunnel
              */
@@ -122,7 +122,7 @@ namespace Aws
                 OnStreamStart onStreamStart,
                 OnStreamReset onStreamReset,
                 OnSessionReset onSessionReset);
-            
+
             SecureTunnel(
                 Crt::Allocator *allocator,                        // Should out live this object
                 const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object

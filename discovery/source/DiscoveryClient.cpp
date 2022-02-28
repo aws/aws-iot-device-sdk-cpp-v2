@@ -67,7 +67,7 @@ namespace Aws
             {
                 connectionOptions.Bootstrap = Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap();
             }
-            
+
             connectionOptions.TlsOptions = tlsConnectionOptions;
             connectionOptions.HostName = Crt::String((const char *)serverName.ptr, serverName.len);
             connectionOptions.Port = port;

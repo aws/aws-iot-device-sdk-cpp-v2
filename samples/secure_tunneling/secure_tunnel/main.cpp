@@ -320,11 +320,7 @@ int main(int argc, char *argv[])
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator,
-                           SocketOptions(),
-                           accessToken.c_str(),
-                           localProxyMode,
-                           endpoint.c_str())
+                           Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
                            .WithRootCa(caFile.c_str())
                            .WithHttpClientConnectionProxyOptions(proxyOptions)
                            .WithOnConnectionComplete(OnConnectionComplete)
@@ -343,12 +339,7 @@ int main(int argc, char *argv[])
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator,
-                           *apiHandle.GetOrCreateStaticDefaultClientBootstrap(),
-                           SocketOptions(),
-                           accessToken.c_str(),
-                           localProxyMode,
-                           endpoint.c_str())
+                           Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
                            .WithRootCa(caFile.c_str())
                            .WithOnConnectionComplete(OnConnectionComplete)
                            .WithOnConnectionShutdown(OnConnectionShutdown)
