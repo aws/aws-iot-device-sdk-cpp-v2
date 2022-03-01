@@ -185,24 +185,12 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -331,23 +319,19 @@ int main(int argc, char *argv[])
         /*
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
-        secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator,
-                           bootstrap,
-                           SocketOptions(),
-                           accessToken.c_str(),
-                           localProxyMode,
-                           endpoint.c_str())
-                           .WithRootCa(caFile.c_str())
-                           .WithHttpClientConnectionProxyOptions(proxyOptions)
-                           .WithOnConnectionComplete(OnConnectionComplete)
-                           .WithOnConnectionShutdown(OnConnectionShutdown)
-                           .WithOnSendDataComplete(OnSendDataComplete)
-                           .WithOnDataReceive(OnDataReceive)
-                           .WithOnStreamStart(OnStreamStart)
-                           .WithOnStreamReset(OnStreamReset)
-                           .WithOnSessionReset(OnSessionReset)
-                           .Build();
+        secureTunnel =
+            SecureTunnelBuilder(
+                Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
+                .WithRootCa(caFile.c_str())
+                .WithHttpClientConnectionProxyOptions(proxyOptions)
+                .WithOnConnectionComplete(OnConnectionComplete)
+                .WithOnConnectionShutdown(OnConnectionShutdown)
+                .WithOnSendDataComplete(OnSendDataComplete)
+                .WithOnDataReceive(OnDataReceive)
+                .WithOnStreamStart(OnStreamStart)
+                .WithOnStreamReset(OnStreamReset)
+                .WithOnSessionReset(OnSessionReset)
+                .Build();
     }
     else
     {
@@ -355,22 +339,18 @@ int main(int argc, char *argv[])
         /*
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
-        secureTunnel = SecureTunnelBuilder(
-                           Aws::Crt::g_allocator,
-                           bootstrap,
-                           SocketOptions(),
-                           accessToken.c_str(),
-                           localProxyMode,
-                           endpoint.c_str())
-                           .WithRootCa(caFile.c_str())
-                           .WithOnConnectionComplete(OnConnectionComplete)
-                           .WithOnConnectionShutdown(OnConnectionShutdown)
-                           .WithOnSendDataComplete(OnSendDataComplete)
-                           .WithOnDataReceive(OnDataReceive)
-                           .WithOnStreamStart(OnStreamStart)
-                           .WithOnStreamReset(OnStreamReset)
-                           .WithOnSessionReset(OnSessionReset)
-                           .Build();
+        secureTunnel =
+            SecureTunnelBuilder(
+                Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
+                .WithRootCa(caFile.c_str())
+                .WithOnConnectionComplete(OnConnectionComplete)
+                .WithOnConnectionShutdown(OnConnectionShutdown)
+                .WithOnSendDataComplete(OnSendDataComplete)
+                .WithOnDataReceive(OnDataReceive)
+                .WithOnStreamStart(OnStreamStart)
+                .WithOnStreamReset(OnStreamReset)
+                .WithOnSessionReset(OnSessionReset)
+                .Build();
     }
 
     if (!secureTunnel)
@@ -413,6 +393,7 @@ int main(int argc, char *argv[])
                 else if (connectionClosedPromise.get_future().get())
                 {
                     fprintf(stdout, "Sample Complete");
+
                     exit(0);
                 }
             }

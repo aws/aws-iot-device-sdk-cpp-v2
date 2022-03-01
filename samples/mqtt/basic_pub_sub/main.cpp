@@ -268,24 +268,12 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 1, 5);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -347,7 +335,6 @@ int main(int argc, char *argv[])
                 return -1;
             }
 
-            x509Config.Bootstrap = &bootstrap;
             x509Config.Endpoint = x509Endpoint;
             x509Config.RoleAlias = x509RoleAlias;
             x509Config.ThingName = x509ThingName;
@@ -362,8 +349,6 @@ int main(int argc, char *argv[])
         else
         {
             Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-            defaultConfig.Bootstrap = &bootstrap;
-
             provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
         }
 
@@ -404,7 +389,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
     /*
      * Since no exceptions are used, always check the bool operator
      * when an error could have occurred.
