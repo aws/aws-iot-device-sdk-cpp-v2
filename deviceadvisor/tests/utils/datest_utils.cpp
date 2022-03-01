@@ -31,14 +31,14 @@ bool DeviceAdvisorEnvironment::init(TestType type)
     aws_get_environment_value(allocator, AWS_SHADOW_VALUE_SET, &s_shadow_value);
 
     endpoint = aws_string_c_str(s_endpoint);
-    certificationPath = aws_string_c_str(s_certificate);
+    certificatePath = aws_string_c_str(s_certificate);
     keyPath = aws_string_c_str(s_key);
     topic = aws_string_c_str(s_topic);
     thing_name = aws_string_c_str(s_thing_name);
     shadowProperty = aws_string_c_str(s_shadow_property);
     shadowValue = aws_string_c_str(s_shadow_value);
 
-    if (endpoint.empty() || certificationPath.empty() || keyPath.empty())
+    if (endpoint.empty() || certificatePath.empty() || keyPath.empty())
     {
         return false;
     }

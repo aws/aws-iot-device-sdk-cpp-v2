@@ -33,7 +33,7 @@ namespace DATest_Utils
     struct DeviceAdvisorEnvironment
     {
         String endpoint;
-        String certificationPath;
+        String certificatePath;
         String keyPath;
         String topic;
         String thing_name;

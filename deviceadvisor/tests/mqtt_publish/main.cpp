@@ -29,20 +29,13 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String topic;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     String messagePayload("Hello world!");
 
     /*********************** Parse Arguments ***************************/
-    s_getenv(ENV_ENDPONT, endpoint);
-    s_getenv(ENV_CERTI, certificatePath);
-    s_getenv(ENV_KEY, keyPath);
-    s_getenv(ENV_TOPIC, topic);
+    DeviceAdvisorEnvironment daEnv;
+    daEnv.init(TestType::SUB_PUB);
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
@@ -52,8 +45,6 @@ int main()
     Io::EventLoopGroup eventLoopGroup(1);
     if (!eventLoopGroup)
     {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
         exit(-1);
     }
 
@@ -62,23 +53,18 @@ int main()
 
     if (!bootstrap)
     {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
         exit(-1);
     }
 
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+    builder = Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
 
-    builder.WithEndpoint(endpoint);
+    builder.WithEndpoint(daEnv.endpoint);
 
     auto clientConfig = builder.Build();
 
     if (!clientConfig)
     {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
 
@@ -89,7 +75,6 @@ int main()
      */
     if (!mqttClient)
     {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
         exit(-1);
     }
 
@@ -101,7 +86,6 @@ int main()
 
     if (!connection)
     {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
         exit(-1);
     }
 
@@ -119,52 +103,38 @@ int main()
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
             connectionCompletedPromise.set_value(false);
         }
         else
         {
             if (returnCode != AWS_MQTT_CONNECT_ACCEPTED)
             {
-                fprintf(stdout, "Connection failed with mqtt return code %d\n", (int)returnCode);
                 connectionCompletedPromise.set_value(false);
             }
             else
             {
-                fprintf(stdout, "Connection completed successfully.");
                 connectionCompletedPromise.set_value(true);
             }
         }
     };
-
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-    };
-
-    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
-            fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
         }
     };
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
-    connection->OnConnectionInterrupted = std::move(onInterrupted);
-    connection->OnConnectionResumed = std::move(onResumed);
 
     /*
      * Actually perform the connect dance.
      */
-    fprintf(stdout, "Connecting...\n");
     if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
-        fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
@@ -174,7 +144,7 @@ int main()
         ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
         auto onPublishComplete = [&](Mqtt::MqttConnection &, uint16_t, int) {};
-        connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+        connection->Publish(daEnv.topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
 
         /* Disconnect */
         if (connection->Disconnect())

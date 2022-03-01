@@ -59,7 +59,7 @@ int main()
 
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificationPath.c_str(), daVars.keyPath.c_str());
+    builder = Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
 
     builder.WithEndpoint(daVars.endpoint);
 
