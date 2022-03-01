@@ -2,10 +2,10 @@
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
  */
-#include <aws/crt/Api.h>
-#include <aws/iot/MqttClient.h>
-#include <aws/crt/UUID.h>
 #include <algorithm>
+#include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
+#include <aws/iot/MqttClient.h>
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
@@ -37,13 +37,13 @@ int main()
      * You need an event loop group to process IO events.
      * If you only have a few connections, 1 thread is ideal
      */
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS) 
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
-        exit(-1); 
+        exit(-1);
     }
 
-    Aws::Iot::MqttClientConnectionConfigBuilder builder
-        = Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
+    Aws::Iot::MqttClientConnectionConfigBuilder builder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
 
     builder.WithEndpoint(daEnv.endpoint);
 

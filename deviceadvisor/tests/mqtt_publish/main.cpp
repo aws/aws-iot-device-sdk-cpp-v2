@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
-#include <aws/iot/MqttClient.h>
 #include <aws/crt/UUID.h>
+#include <aws/iot/MqttClient.h>
 
 #include <algorithm>
 #include <chrono>
@@ -30,7 +30,7 @@ int main()
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daEnv;
-    if(!daEnv.init(TestType::SUB_PUB))
+    if (!daEnv.init(TestType::SUB_PUB))
     {
         exit(-1);
     }
@@ -45,8 +45,8 @@ int main()
         exit(-1);
     }
 
-    Aws::Iot::MqttClientConnectionConfigBuilder builder
-        = Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
+    Aws::Iot::MqttClientConnectionConfigBuilder builder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
     builder.WithEndpoint(daEnv.endpoint);
 
     auto clientConfig = builder.Build();
