@@ -3,14 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
-#include <aws/crt/StlAllocator.h>
-#include <aws/crt/auth/Credentials.h>
-#include <aws/crt/io/TlsOptions.h>
-
 #include <aws/iot/MqttClient.h>
+#include <aws/crt/UUID.h>
 
 #include <algorithm>
-#include <aws/crt/UUID.h>
 #include <chrono>
 #include <condition_variable>
 #include <iostream>
@@ -30,35 +26,27 @@ int main()
      */
     ApiHandle apiHandle;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
-
     String messagePayload("Hello world!");
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daEnv;
-    daEnv.init(TestType::SUB_PUB);
+    if(!daEnv.init(TestType::SUB_PUB))
+    {
+        exit(-1);
+    }
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
      * You need an event loop group to process IO events.
      * If you only have a few connections, 1 thread is ideal
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         exit(-1);
     }
 
-    Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 1, 5);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        exit(-1);
-    }
-
-    Aws::Iot::MqttClientConnectionConfigBuilder builder;
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
-
+    Aws::Iot::MqttClientConnectionConfigBuilder builder
+        = Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
     builder.WithEndpoint(daEnv.endpoint);
 
     auto clientConfig = builder.Build();
@@ -68,7 +56,7 @@ int main()
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
     /*
      * Since no exceptions are used, always check the bool operator
      * when an error could have occurred.

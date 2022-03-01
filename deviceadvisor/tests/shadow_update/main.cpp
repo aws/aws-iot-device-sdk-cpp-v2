@@ -5,19 +5,13 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/UUID.h>
-#include <aws/crt/io/HostResolver.h>
-
 #include <aws/iot/MqttClient.h>
 
-#include <aws/iotshadow/ErrorResponse.h>
 #include <aws/iotshadow/IotShadowClient.h>
 #include <aws/iotshadow/UpdateShadowRequest.h>
-#include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
 #include <algorithm>
 #include <condition_variable>
-#include <iostream>
 #include <mutex>
 
 #include "../utils/datest_utils.h"
@@ -48,23 +42,17 @@ int main()
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daEnv;
-    daEnv.init(TestType::SHADOW);
+    if (!daEnv.init(TestType::SHADOW))
+    {
+        exit(-1);
+    }
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
      * You need an event loop group to process IO events.
      * If you only have a few connections, 1 thread is ideal
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
-    {
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver hostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
-
-    if (!bootstrap)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         exit(-1);
     }
@@ -84,7 +72,7 @@ int main()
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
 
     /*
      * Since no exceptions are used, always check the bool operator

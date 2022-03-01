@@ -43,24 +43,13 @@ int main()
      * You need an event loop group to process IO events.
      * If you only have a few connections, 1 thread is ideal
      */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         exit(-1);
     }
 
-    Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 1, 5);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        exit(-1);
-    }
-
-    Aws::Iot::MqttClientConnectionConfigBuilder builder;
-
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
-
+    Aws::Iot::MqttClientConnectionConfigBuilder builder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
     builder.WithEndpoint(daVars.endpoint);
 
     auto clientConfig = builder.Build();
@@ -70,7 +59,7 @@ int main()
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
     /*
      * Since no exceptions are used, always check the bool operator
      * when an error could have occurred.
