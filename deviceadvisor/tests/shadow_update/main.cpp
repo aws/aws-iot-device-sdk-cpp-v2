@@ -6,13 +6,11 @@
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/UUID.h>
 #include <aws/iot/MqttClient.h>
-
 #include <aws/iotshadow/IotShadowClient.h>
 #include <aws/iotshadow/UpdateShadowRequest.h>
+#include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
-#include <algorithm>
 #include <condition_variable>
-#include <mutex>
 
 #include "../utils/datest_utils.h"
 
@@ -49,88 +47,53 @@ int main()
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
+     * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        exit(-1);
-    }
 
-    auto clientConfigBuilder =
+    Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
-    clientConfigBuilder.WithEndpoint(daEnv.endpoint);
-    auto clientConfig = clientConfigBuilder.Build();
-
+    builder.WithEndpoint(daEnv.endpoint);
+    auto clientConfig = builder.Build();
     if (!clientConfig)
     {
         exit(-1);
     }
 
     /*
-     * Now Create a client. This can not throw.
-     * An instance of a client must outlive its connections.
-     * It is the users responsibility to make sure of this.
+     * Setup up mqttClients
      */
-    Aws::Iot::MqttClient mqttClient;
 
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
+    Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {
         exit(-1);
     }
+
     /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
+     * Now create a connection object.
      */
     auto connection = mqttClient.NewConnection(clientConfig);
-
-    if (!*connection)
+    if (!connection)
     {
         exit(-1);
     }
 
     /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
+     * Invoked when connection and disconnection has completed.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
     std::promise<void> shadowUpdatePromise;
 
-    /*
-     * This will execute when an mqtt connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode /*returnCode*/, bool) {
-        if (errorCode)
-        {
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            connectionCompletedPromise.set_value(true);
-        }
+    connection->OnConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+        connectionCompletedPromise.set_value(errorCode == AWS_ERROR_SUCCESS && returnCode == AWS_MQTT_CONNECT_ACCEPTED);
     };
-
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
-        {
-            connectionClosedPromise.set_value();
-        }
-    };
-
-    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
-    connection->OnDisconnect = std::move(onDisconnect);
+    connection->OnDisconnect = [&](Mqtt::MqttConnection &) { connectionClosedPromise.set_value(); };
 
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), true, 0))
+    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         exit(-1);
     }
@@ -138,8 +101,13 @@ int main()
     if (connectionCompletedPromise.get_future().get())
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
+
         ShadowState shadowState;
         s_setShadowState(daEnv.shadowProperty, daEnv.shadowValue, shadowState);
+
+        /*
+         * The program will ignore the shadow updat error. If the update failed, device adivsor should report error.
+         */
         auto publishCompleted = [&shadowUpdatePromise](int /*ioErr*/) { shadowUpdatePromise.set_value(); };
 
         UpdateShadowRequest updateShadowRequest;
@@ -147,16 +115,22 @@ int main()
         updateShadowRequest.ClientToken = uuid.ToString();
         updateShadowRequest.ThingName = daEnv.thing_name;
         updateShadowRequest.State = shadowState;
-        // Update the property
-        shadowClient.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
-
+        /*
+         * Update the shadow property. We use AWS_MQTT_QOS_AT_MOST_ONCE since the device advisor will not send
+         * back PUBACK. In case we busy waiting on the
+         */
+        shadowClient.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
         shadowUpdatePromise.get_future().wait();
-    }
 
-    /* Disconnect */
-    if (connection->Disconnect())
+        /* Disconnect */
+        if (connection->Disconnect())
+        {
+            connectionClosedPromise.get_future().wait();
+        }
+    }
+    else
     {
-        connectionClosedPromise.get_future().wait();
+        exit(-1);
     }
 
     return 0;

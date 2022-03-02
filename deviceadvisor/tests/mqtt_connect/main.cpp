@@ -3,16 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
 #include <aws/crt/auth/Credentials.h>
-
 #include <aws/iot/MqttClient.h>
 
-#include <algorithm>
-#include <aws/crt/UUID.h>
-#include <chrono>
 #include <condition_variable>
-#include <iostream>
-#include <mutex>
 
 #include "../utils/datest_utils.h"
 
@@ -40,85 +35,46 @@ int main()
 
     /********************** Now Setup an Mqtt Client ******************/
     /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
+     * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        exit(-1);
-    }
 
     Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
     builder.WithEndpoint(daVars.endpoint);
-
     auto clientConfig = builder.Build();
-
     if (!clientConfig)
     {
         exit(-1);
     }
 
-    Aws::Iot::MqttClient mqttClient;
     /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
+     * Setup up mqttClients
      */
+
+    Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {
         exit(-1);
     }
 
     /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
+     * Now create a connection object.
      */
     auto connection = mqttClient.NewConnection(clientConfig);
-
     if (!connection)
     {
         exit(-1);
     }
 
     /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
+     * Invoked when connection and disconnection has completed.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
-
-    /*
-     * This will execute when an mqtt connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            if (returnCode != AWS_MQTT_CONNECT_ACCEPTED)
-            {
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                connectionCompletedPromise.set_value(true);
-            }
-        }
+    connection->OnConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+        connectionCompletedPromise.set_value(errorCode == AWS_ERROR_SUCCESS && returnCode == AWS_MQTT_CONNECT_ACCEPTED);
     };
-
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
-        {
-            connectionClosedPromise.set_value();
-        }
-    };
-
-    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
-    connection->OnDisconnect = std::move(onDisconnect);
+    connection->OnDisconnect = [&](Mqtt::MqttConnection &) { connectionClosedPromise.set_value(); };
 
     /*
      * Actually perform the connect dance.
@@ -128,17 +84,15 @@ int main()
         exit(-1);
     }
 
-    if (connectionCompletedPromise.get_future().get())
-    {
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
-        }
-    }
-    else
+    if (!connectionCompletedPromise.get_future().get())
     {
         exit(-1);
+    }
+
+    /* Disconnect */
+    if (connection->Disconnect())
+    {
+        connectionClosedPromise.get_future().wait();
     }
 
     return 0;
