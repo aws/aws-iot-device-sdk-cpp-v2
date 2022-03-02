@@ -64,20 +64,16 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver resolver(eventLoopGroup, 64, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, resolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -115,7 +111,7 @@ int main(int argc, char *argv[])
      * so that it is destroyed AFTER the client is destroyed.
      */
     SampleLifecycleHandler lifecycleHandler;
-    GreengrassCoreIpcClient client(bootstrap);
+    GreengrassCoreIpcClient client(*apiHandle.GetOrCreateStaticDefaultClientBootstrap());
     auto connectionStatus = client.Connect(lifecycleHandler).get();
 
     if (!connectionStatus)
