@@ -72,9 +72,25 @@ static void s_changeShadowValue(
 
     ShadowState state;
     JsonObject desired;
-    desired.WithString(shadowProperty, value);
     JsonObject reported;
-    reported.WithString(shadowProperty, value);
+
+    if (value == "null")
+    {
+        JsonObject nullObject;
+        nullObject.AsNull();
+        desired.WithObject(shadowProperty, nullObject);
+        reported.WithObject(shadowProperty, nullObject);
+    }
+    else if (value == "clear_shadow")
+    {
+        desired.AsNull();
+        reported.AsNull();
+    }
+    else
+    {
+        desired.WithString(shadowProperty, value);
+        reported.WithString(shadowProperty, value);
+    }
     state.Desired = desired;
     state.Reported = reported;
 
@@ -134,24 +150,12 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver hostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -177,7 +181,7 @@ int main(int argc, char *argv[])
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
 
     /*
      * Since no exceptions are used, always check the bool operator
@@ -288,7 +292,6 @@ int main(int argc, char *argv[])
                 if (event->State && event->State->View().ValueExists(shadowProperty))
                 {
                     JsonView objectView = event->State->View().GetJsonObject(shadowProperty);
-
                     if (objectView.IsNull())
                     {
                         fprintf(
@@ -324,10 +327,17 @@ int main(int argc, char *argv[])
         auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
-                fprintf(
-                    stdout,
-                    "Finished updating reported shadow value to %s.\n",
-                    response->State->Reported->View().GetString(shadowProperty).c_str());
+                if (response->State->Reported)
+                {
+                    fprintf(
+                        stdout,
+                        "Finished updating reported shadow value to %s.\n",
+                        response->State->Reported->View().GetString(shadowProperty).c_str());
+                }
+                else
+                {
+                    fprintf(stdout, "Finished clearing shadow properties\n");
+                }
                 fprintf(stdout, "Enter desired value:\n");
             }
             else
@@ -399,5 +409,6 @@ int main(int argc, char *argv[])
     {
         connectionClosedPromise.get_future().wait();
     }
+
     return 0;
 }

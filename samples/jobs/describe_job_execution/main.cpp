@@ -94,24 +94,12 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -137,7 +125,7 @@ int main(int argc, char *argv[])
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
 
     /*
      * Since no exceptions are used, always check the bool operator
@@ -284,5 +272,6 @@ int main(int argc, char *argv[])
     {
         connectionClosedPromise.get_future().wait();
     }
+
     return 0;
 }
