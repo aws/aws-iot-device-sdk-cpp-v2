@@ -15,7 +15,7 @@ using namespace Aws::Greengrass;
 /* Used to check that the publish has been received so that the demo can exit successfully. */
 static std::atomic_bool s_publishReceived(false);
 
-int main(int argc, char *argv[])
+int main(const int argc, const char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*

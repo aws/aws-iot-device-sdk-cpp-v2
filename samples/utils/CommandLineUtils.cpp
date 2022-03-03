@@ -8,80 +8,83 @@
 
 namespace Utils
 {
-    void CommandLineUtils::RegisterProgramName(Aws::Crt::String NewProgramName) { ProgramName = NewProgramName; }
+    void CommandLineUtils::RegisterProgramName(Aws::Crt::String newProgramName)
+    {
+        m_programName = std::move(newProgramName);
+    }
 
     void CommandLineUtils::RegisterCommand(CommandLineOption option)
     {
-        if (RegisteredCommands.count(option.CommandName))
+        if (m_registeredCommands.count(option.m_commandName))
         {
-            fprintf(stdout, "Cannot register command: %s: Command already registered!", option.CommandName.c_str());
+            fprintf(stdout, "Cannot register command: %s: Command already registered!", option.m_commandName.c_str());
             return;
         }
-        RegisteredCommands.insert({option.CommandName, option});
+        m_registeredCommands.insert({option.m_commandName, option});
     }
 
     void CommandLineUtils::RegisterCommand(
-        Aws::Crt::String CommandName,
-        Aws::Crt::String ExampleInput,
-        Aws::Crt::String HelpOutput)
+        Aws::Crt::String commandName,
+        Aws::Crt::String exampleInput,
+        Aws::Crt::String helpOutput)
     {
-        RegisterCommand(CommandLineOption(CommandName, ExampleInput, HelpOutput));
+        RegisterCommand(CommandLineOption(commandName, exampleInput, helpOutput));
     }
 
-    void CommandLineUtils::RemoveCommand(Aws::Crt::String CommandName)
+    void CommandLineUtils::RemoveCommand(Aws::Crt::String commandName)
     {
-        if (RegisteredCommands.count(CommandName))
+        if (m_registeredCommands.count(commandName))
         {
-            RegisteredCommands.erase(CommandName);
+            m_registeredCommands.erase(commandName);
         }
     }
 
-    void CommandLineUtils::UpdateCommandHelp(Aws::Crt::String CommandName, Aws::Crt::String NewCommandHelp)
+    void CommandLineUtils::UpdateCommandHelp(Aws::Crt::String commandName, Aws::Crt::String newCommandHelp)
     {
-        if (RegisteredCommands.count(CommandName))
+        if (m_registeredCommands.count(commandName))
         {
-            RegisteredCommands.at(CommandName).HelpOutput = NewCommandHelp;
+            m_registeredCommands.at(commandName).m_helpOutput = std::move(newCommandHelp);
         }
     }
 
-    void CommandLineUtils::SendArguments(char **begin, char **end)
+    void CommandLineUtils::SendArguments(const char **argv, const char **argc)
     {
-        if (BeginPosition != nullptr || EndPosition != nullptr)
+        if (m_beginPosition != nullptr || m_endPosition != nullptr)
         {
             fprintf(stdout, "Arguments already sent!");
             return;
         }
-        BeginPosition = begin;
-        EndPosition = end;
+        m_beginPosition = argv;
+        m_endPosition = argc;
     }
 
     bool CommandLineUtils::HasCommand(Aws::Crt::String command)
     {
-        return std::find(BeginPosition, EndPosition, "--" + command) != EndPosition;
+        return std::find(m_beginPosition, m_endPosition, "--" + command) != m_endPosition;
     }
 
     Aws::Crt::String CommandLineUtils::GetCommand(Aws::Crt::String command)
     {
-        char **itr = std::find(BeginPosition, EndPosition, "--" + command);
-        if (itr != EndPosition && ++itr != EndPosition)
+        const char **itr = std::find(m_beginPosition, m_endPosition, "--" + command);
+        if (itr != m_endPosition && ++itr != m_endPosition)
         {
             return Aws::Crt::String(*itr);
         }
         return "";
     }
 
-    Aws::Crt::String CommandLineUtils::GetCommandOrDefault(Aws::Crt::String command, Aws::Crt::String CommandDefault)
+    Aws::Crt::String CommandLineUtils::GetCommandOrDefault(Aws::Crt::String command, Aws::Crt::String commandDefault)
     {
         if (HasCommand(command))
         {
             return Aws::Crt::String(GetCommand(command));
         }
-        return CommandDefault;
+        return commandDefault;
     }
 
     Aws::Crt::String CommandLineUtils::GetCommandRequired(
         Aws::Crt::String command,
-        Aws::Crt::String OptionalAdditionalMessage)
+        Aws::Crt::String optionalAdditionalMessage)
     {
         if (HasCommand(command))
         {
@@ -89,9 +92,9 @@ namespace Utils
         }
         PrintHelp();
         fprintf(stderr, "Missing required argument: --%s\n", command.c_str());
-        if (OptionalAdditionalMessage != "")
+        if (optionalAdditionalMessage != "")
         {
-            fprintf(stderr, "%s\n", OptionalAdditionalMessage.c_str());
+            fprintf(stderr, "%s\n", optionalAdditionalMessage.c_str());
         }
         exit(-1);
     }
@@ -99,18 +102,18 @@ namespace Utils
     void CommandLineUtils::PrintHelp()
     {
         fprintf(stdout, "Usage:\n");
-        fprintf(stdout, "%s", ProgramName.c_str());
+        fprintf(stdout, "%s", m_programName.c_str());
 
-        for (auto const &pair : RegisteredCommands)
+        for (auto const &pair : m_registeredCommands)
         {
-            fprintf(stdout, " --%s %s", pair.first.c_str(), pair.second.ExampleInput.c_str());
+            fprintf(stdout, " --%s %s", pair.first.c_str(), pair.second.m_exampleInput.c_str());
         }
 
         fprintf(stdout, "\n\n");
 
-        for (auto const &pair : RegisteredCommands)
+        for (auto const &pair : m_registeredCommands)
         {
-            fprintf(stdout, "* %s:\t\t%s\n", pair.first.c_str(), pair.second.HelpOutput.c_str());
+            fprintf(stdout, "* %s:\t\t%s\n", pair.first.c_str(), pair.second.m_helpOutput.c_str());
         }
 
         fprintf(stdout, "\n");

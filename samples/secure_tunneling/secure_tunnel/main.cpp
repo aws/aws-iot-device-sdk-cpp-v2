@@ -17,7 +17,7 @@ using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
 using namespace std::chrono_literals;
 
-int main(int argc, char *argv[])
+int main(const int argc, const char *argv[])
 {
     ApiHandle apiHandle;
 

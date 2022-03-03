@@ -13,15 +13,15 @@ namespace Utils
      */
     struct CommandLineOption
     {
-        Aws::Crt::String CommandName;
-        Aws::Crt::String ExampleInput;
-        Aws::Crt::String HelpOutput;
+        Aws::Crt::String m_commandName;
+        Aws::Crt::String m_exampleInput;
+        Aws::Crt::String m_helpOutput;
 
-        CommandLineOption(Aws::Crt::String p_Name, Aws::Crt::String p_ExampleInput, Aws::Crt::String p_Help = "")
+        CommandLineOption(Aws::Crt::String inputName, Aws::Crt::String inputExampleInput, Aws::Crt::String inputHelp = "")
         {
-            CommandName = p_Name;
-            ExampleInput = p_ExampleInput;
-            HelpOutput = p_Help;
+            m_commandName = std::move(inputName);
+            m_exampleInput = std::move(inputExampleInput);
+            m_helpOutput = std::move(inputHelp);
         }
     };
 
@@ -35,45 +35,46 @@ namespace Utils
         /**
          * Changes the program name to the name given. The program name is shown when calling help and showing all the
          * commands.
-         * @param NewProgramName The program name to show when executing PrintHelp
+         * @param newProgramName The program name to show when executing PrintHelp
          */
-        void RegisterProgramName(Aws::Crt::String NewProgramName);
+        void RegisterProgramName(Aws::Crt::String newProgramName);
 
         /**
          * Adds a new command to the utility. Used to show command data when printing all commands.
-         * @param NewCommand The command struct containing the new command/argument data
+         * @param newCommand The command struct containing the new command/argument data
          */
-        void RegisterCommand(CommandLineOption NewCommand);
+        void RegisterCommand(CommandLineOption newCommand);
         /**
          * Adds a new command to the utility. Used to show command data when printing all commands.
-         * @param CommandName The name of the command
-         * @param ExampleInput Example input for the command (example "<endpoint>")
-         * @param HelpOutput The message to show with the command when printing all commands via help
+         * @param commandName The name of the command
+         * @param exampleInput Example input for the command (example "<endpoint>")
+         * @param helpOutput The message to show with the command when printing all commands via help
          */
         void RegisterCommand(
-            Aws::Crt::String CommandName,
-            Aws::Crt::String ExampleInput,
-            Aws::Crt::String HelpOutput = "");
+            Aws::Crt::String commandName,
+            Aws::Crt::String exampleInput,
+            Aws::Crt::String helpOutput = "");
 
         /**
          * Removes the command if it has already been registered
-         * @param CommandName
+         * @param commandName
          */
-        void RemoveCommand(Aws::Crt::String CommandName);
+        void RemoveCommand(Aws::Crt::String commandName);
 
         /**
          * Updates the help text of a registered command. If the given command does not exist, nothing happens
-         * @param NewCommandHelp
+         * @param commandName The name of the command
+         * @param newCommandHelp
          */
-        void UpdateCommandHelp(Aws::Crt::String CommandName, Aws::Crt::String NewCommandHelp);
+        void UpdateCommandHelp(Aws::Crt::String commandName, Aws::Crt::String newCommandHelp);
 
         /**
          * Called to give the class a copy of the begin and end character pointers that contain the arguments from the
          * terminal/console
-         * @param begin The beginning of terminal/console input
-         * @param end The end of terminal/console input
+         * @param argv The beginning of terminal/console input
+         * @param argc The end of terminal/console input
          */
-        void SendArguments(char **begin, char **end);
+        void SendArguments(const char **argv, const char **argc);
 
         /**
          * Returns true if the command was inputted into the terminal/console
@@ -131,9 +132,9 @@ namespace Utils
         void AddCommonMQTTCommands();
 
       private:
-        Aws::Crt::String ProgramName = "Application";
-        char **BeginPosition = nullptr;
-        char **EndPosition = nullptr;
-        Aws::Crt::Map<Aws::Crt::String, CommandLineOption> RegisteredCommands;
+        Aws::Crt::String m_programName = "Application";
+        const char **m_beginPosition = nullptr;
+        const char **m_endPosition = nullptr;
+        Aws::Crt::Map<Aws::Crt::String, CommandLineOption> m_registeredCommands;
     };
 } // namespace Utils

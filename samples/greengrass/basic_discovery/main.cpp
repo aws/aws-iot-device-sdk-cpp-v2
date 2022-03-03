@@ -19,7 +19,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
 
-int main(int argc, char *argv[])
+int main(const int argc, const char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
