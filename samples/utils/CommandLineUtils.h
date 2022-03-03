@@ -17,7 +17,10 @@ namespace Utils
         Aws::Crt::String m_exampleInput;
         Aws::Crt::String m_helpOutput;
 
-        CommandLineOption(Aws::Crt::String inputName, Aws::Crt::String inputExampleInput, Aws::Crt::String inputHelp = "")
+        CommandLineOption(
+            Aws::Crt::String inputName,
+            Aws::Crt::String inputExampleInput,
+            Aws::Crt::String inputHelp = "")
         {
             m_commandName = std::move(inputName);
             m_exampleInput = std::move(inputExampleInput);
