@@ -117,9 +117,9 @@ int main()
         updateShadowRequest.State = shadowState;
         /*
          * Update the shadow property. We use AWS_MQTT_QOS_AT_MOST_ONCE since the device advisor will not send
-         * back PUBACK. In case we busy waiting on the
+         * back PUBACK. In case we busy waiting on the PUBACK, we used AWS_MQTT_QOS_AT_MOST_ONCE for now.
          */
-        shadowClient.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
+        shadowClient.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_MOST_ONCE, publishCompleted);
         shadowUpdatePromise.get_future().wait();
 
         /* Disconnect */
