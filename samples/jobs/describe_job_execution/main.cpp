@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
-    const char** const_argv = (const char**)argv;
-    cmdUtils.SendArguments( const_argv, const_argv + argc);
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

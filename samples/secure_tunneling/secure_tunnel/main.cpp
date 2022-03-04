@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
     cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
-    const char** const_argv = (const char**)argv;
-    cmdUtils.SendArguments( const_argv, const_argv + argc);
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

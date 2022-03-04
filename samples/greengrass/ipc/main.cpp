@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterProgramName("greengrass-ipc");
     cmdUtils.RegisterCommand("topic", "<str>", "Targeted topic (optional, default='test/topic').");
     cmdUtils.RegisterCommand("message", "<str>", "Message to publish (optional, default='Hello World').");
-    const char** const_argv = (const char**)argv;
-    cmdUtils.SendArguments( const_argv, const_argv + argc);
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

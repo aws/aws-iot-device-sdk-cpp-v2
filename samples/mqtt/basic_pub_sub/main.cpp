@@ -92,8 +92,8 @@ int main(int argc, char *argv[])
         "message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
-    const char** const_argv = (const char**)argv;
-    cmdUtils.SendArguments( const_argv, const_argv + argc);
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("count", "<int>", "Number of messages to publish. (optional, default=10).");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
-    const char** const_argv = (const char**)argv;
-    cmdUtils.SendArguments( const_argv, const_argv + argc);
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {
