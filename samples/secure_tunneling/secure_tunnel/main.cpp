@@ -17,7 +17,7 @@ using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
 using namespace std::chrono_literals;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
@@ -56,7 +56,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
     cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

@@ -53,7 +53,7 @@ static std::string getFileData(std::string const &fileName)
     return str;
 }
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
@@ -82,7 +82,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
     cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
     cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

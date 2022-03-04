@@ -11,7 +11,7 @@
 
 using namespace Aws::Crt;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
@@ -39,7 +39,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterCommand("count", "<int>", "Number of messages to publish. (optional, default=10).");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

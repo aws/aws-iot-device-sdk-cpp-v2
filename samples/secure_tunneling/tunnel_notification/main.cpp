@@ -29,7 +29,7 @@ using namespace Aws::Crt;
 using namespace Aws::Crt::Mqtt;
 using namespace Aws::Iotsecuretunneling;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
@@ -49,7 +49,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterProgramName("tunnel_notification");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

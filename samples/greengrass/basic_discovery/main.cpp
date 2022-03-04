@@ -19,7 +19,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
@@ -53,7 +53,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterCommand(
         "proxy_host", "<str>", "Proxy host to use for discovery call. Default is to not use a proxy. (optional)");
     cmdUtils.RegisterCommand("proxy_port", "<int>", "Proxy port to use for discovery call. (optional, default='0')");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

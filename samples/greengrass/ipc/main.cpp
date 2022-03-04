@@ -15,7 +15,7 @@ using namespace Aws::Greengrass;
 /* Used to check that the publish has been received so that the demo can exit successfully. */
 static std::atomic_bool s_publishReceived(false);
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
@@ -31,7 +31,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.RegisterProgramName("greengrass-ipc");
     cmdUtils.RegisterCommand("topic", "<str>", "Targeted topic (optional, default='test/topic').");
     cmdUtils.RegisterCommand("message", "<str>", "Message to publish (optional, default='Hello World').");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

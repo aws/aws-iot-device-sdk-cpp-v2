@@ -80,7 +80,7 @@ static void s_changeShadowValue(
     client.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
 }
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
@@ -102,7 +102,8 @@ int main(const int argc, const char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

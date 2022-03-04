@@ -19,7 +19,7 @@
 
 using namespace Aws::Crt;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
@@ -64,7 +64,8 @@ int main(const int argc, const char *argv[])
         "<comma delimited list>",
         "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
     cmdUtils.RegisterCommand(Utils::CommandLineOption("help", "", "Prints this message"));
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {

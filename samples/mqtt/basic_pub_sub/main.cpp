@@ -20,7 +20,7 @@
 
 using namespace Aws::Crt;
 
-int main(const int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
@@ -92,7 +92,8 @@ int main(const int argc, const char *argv[])
         "message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
-    cmdUtils.SendArguments(argv, argv + argc);
+    const char** const_argv = (const char**)argv;
+    cmdUtils.SendArguments( const_argv, const_argv + argc);
 
     if (cmdUtils.HasCommand("help"))
     {
