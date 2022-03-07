@@ -1,8 +1,11 @@
 import boto3
 
 client = boto3.client('iot')
-response = client.create_thing(
-    thingName='ci_test'
-)
-
-print("TEST: successed calling iot python sdk")
+print("boto3: create thing failed")
+try
+    response = client.create_thing(
+        thingName='ci_test'
+    )
+    print("Sucess: create thing failed")
+except error:
+    print("Failed: create thing failed")
