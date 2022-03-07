@@ -27,8 +27,9 @@ jobs:
   windows-no-cpu-extensions:
     runs-on: windows-latest
     steps:
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Run DA python script
         run: |
           da test starts...
           python deviceadvisor\script\run.py
