@@ -28,6 +28,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+      - uses: actions/checkout@v2
         run: |
-          echo da test starts...
+          da test starts...
           python deviceadvisor\script\run.py
