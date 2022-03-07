@@ -1,0 +1,49 @@
+name: DeviceAdvisor
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+
+env:
+  BUILDER_VERSION: v0.8.29
+  BUILDER_SOURCE: releases
+  BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
+  PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
+  LINUX_BASE_IMAGE: ubuntu-16-x64
+  RUN: ${{ github.run_id }}-${{ github.run_number }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: us-east-1
+  # env for Device Advisor
+  DA_TOPIC: test/da
+  DA_SHADOW_PROPERTY: datest
+  DA_SHADOW_VALUE_SET: ON
+  DA_SHADOW_VALUE_DEFAULT: OFF
+
+
+jobs:
+  windows-no-cpu-extensions:
+    runs-on: windows-latest
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          md D:\a\work
+          cd D:\a\work
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+          python deviceadvisor\script\run.py
+
+  check-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Check Submodules
+        # note: using "@main" because "@${{env.BUILDER_VERSION}}" doesn't work
+        # https://github.com/actions/runner/issues/480
+        uses: awslabs/aws-crt-builder/.github/actions/check-submodules@main
