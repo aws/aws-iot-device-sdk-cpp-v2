@@ -32,4 +32,5 @@ jobs:
       - name: Run DA python script
         run: |
           echo 'da test starts...'
+          pip install boto3
           python deviceadvisor\script\run.py
