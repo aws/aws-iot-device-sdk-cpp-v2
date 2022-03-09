@@ -1,0 +1,19 @@
+{
+    "tests" :["MQTT Connect", "MQTT Publish", "MQTT Subscribe", "Shadow Publish", "Shadow Update"],
+    "test_suite_ids" :
+    {
+        "MQTT Connect" : "c77nbzmo9o7j",
+        "MQTT Publish" : "guv3q06ln6hx",
+        "MQTT Subscribe" : "iqq13pp7xdgu",
+        "Shadow Publish" : "t93vz3zuxc8a",
+        "Shadow Update" : "daosd9ywr4kh"
+    },
+    "test_exe_path" :
+    {
+        "MQTT Connect" : "deviceadvisor/tests/build/Debug/mqtt_connect",
+        "MQTT Publish" : "deviceadvisor/tests/build/Debug/mqtt_publish",
+        "MQTT Subscribe" : "deviceadvisor/tests/build/Debug/mqtt_subscribe",
+        "Shadow Publish" : "deviceadvisor/tests/build/Debug/shadow_update",
+        "Shadow Update" : "deviceadvisor/tests/build/Debug/shadow_update"
+    }
+}
