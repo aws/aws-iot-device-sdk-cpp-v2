@@ -32,7 +32,5 @@ jobs:
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} build_da skip_samples
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} build_da=1 skip_samples=0
           echo 'da test starts...'
-          python3 -m pip install boto3
-          python deviceadvisor\script\run.py
