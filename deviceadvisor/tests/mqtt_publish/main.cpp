@@ -89,7 +89,7 @@ int main()
         ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
         auto onPublishComplete = [&](Mqtt::MqttConnection &, uint16_t, int) { publishFinishedPromise.set_value(); };
-        connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+        connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
         publishFinishedPromise.get_future().wait();
 
         /* Disconnect */
