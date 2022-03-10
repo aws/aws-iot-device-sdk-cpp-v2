@@ -77,6 +77,8 @@ namespace Aws
              */
             int LastError() const noexcept { return m_lastError; }
 
+            int RegisterCustomMetricNumber(aws_byte_cursor metric_name, aws_iotdevice_defender_get_number_fn *metric_func);
+
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;

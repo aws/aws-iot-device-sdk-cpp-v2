@@ -61,6 +61,12 @@ namespace Aws
             }
         }
 
+        int ReportTask::RegisterCustomMetricNumber(aws_byte_cursor metric_name, aws_iotdevice_defender_get_number_fn *metric_func)
+        {
+            return aws_iotdevice_defender_config_register_number_metric(
+                m_taskConfig, &metric_name, metric_func, this);
+        }
+
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
 
         int ReportTask::StartTask() noexcept
