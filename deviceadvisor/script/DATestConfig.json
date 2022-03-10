@@ -10,10 +10,10 @@
     },
     "test_exe_path" :
     {
-        "MQTT Connect" : "deviceadvisor/tests/mqtt_connect/build/RelWithDebInfo/mqtt_connect",
-        "MQTT Publish" : "deviceadvisor/tests/mqtt_publish/build/RelWithDebInfo/mqtt_publish",
-        "MQTT Subscribe" : "deviceadvisor/tests/mqtt_subscribe/build/RelWithDebInfo/mqtt_subscribe",
-        "Shadow Publish" : "deviceadvisor/tests/shadow_update/build/RelWithDebInfo/shadow_update",
-        "Shadow Update" : "deviceadvisor/tests/shadow_update/build/RelWithDebInfo/shadow_update"
+        "MQTT Connect" : "deviceadvisor/tests/mqtt_connect/RelWithDebInfo/mqtt_connect",
+        "MQTT Publish" : "deviceadvisor/tests/mqtt_publish/RelWithDebInfo/mqtt_publish",
+        "MQTT Subscribe" : "deviceadvisor/tests/mqtt_subscribe/RelWithDebInfo/mqtt_subscribe",
+        "Shadow Publish" : "deviceadvisor/tests/shadow_update/RelWithDebInfo/shadow_update",
+        "Shadow Update" : "deviceadvisor/tests/shadow_update/RelWithDebInfo/shadow_update"
     }
 }
