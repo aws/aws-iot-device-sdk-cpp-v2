@@ -6,7 +6,7 @@ import sys
 class BuildSamples(Builder.Action):
     def run(self, env):
         if env.args.cli_config['variables'].get('build_da', "0") == "0":
-            print('skip_da is not defined. Skipping device advisor samples...')
+            print('build_da is not defined. Skipping device advisor samples...')
             return
 
         steps = []
