@@ -10,6 +10,12 @@
 #include <aws/testing/aws_test_harness.h>
 #include <utility>
 
+int global_metric_func(int64_t *output, void* data) {
+    *output = 10;
+    fprintf(stdout, "\nGet custom metric number called!!!\n");
+    return AWS_OP_SUCCESS;
+};
+
 static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocator, void *ctx)
 {
    (void)ctx;
@@ -53,14 +59,18 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
 
        // ================
        // Add the custom metric
-       aws_iotdevice_defender_get_number_fn *metric_func = [](int64_t *output, void* data) {
+       aws_iotdevice_defender_get_number_fn *local_metric_func = [](int64_t *output, void* data) {
            *output = 10;
            fprintf(stdout, "\nGet custom metric number called!!!\n");
            return AWS_OP_SUCCESS;
        };
        ASSERT_INT_EQUALS(
            AWS_OP_SUCCESS,
-           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber"), metric_func));
+           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_One"), local_metric_func));
+
+       ASSERT_INT_EQUALS(
+           AWS_OP_SUCCESS,
+           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_Two"), &global_metric_func));
         // ================
 
        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
