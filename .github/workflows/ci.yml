@@ -40,7 +40,7 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} build_da=1
 
   linux-compiler-compat:
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} build_da=1 --compiler=${{ matrix.compiler }}
 
   byo-crypto:
     runs-on: ubuntu-latest
@@ -72,7 +72,7 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} build_da=1 --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
 
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest
@@ -81,7 +81,7 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} build_da=1 --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
   windows-vs16:
     runs-on: windows-latest
@@ -91,7 +91,7 @@ jobs:
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} build_da=1 --spec=downstream
 
   windows-vs14:
     runs-on: windows-latest
@@ -110,7 +110,7 @@ jobs:
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} build_da=1 --spec=downstream
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
@@ -120,7 +120,7 @@ jobs:
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} build_da=1 --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
   osx:
     runs-on: macos-latest
@@ -129,7 +129,7 @@ jobs:
         run: |
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
           chmod a+x builder
-          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          ./builder build -p ${{ env.PACKAGE_NAME }} build_da=1 --spec=downstream
 
 
   check-submodules:
