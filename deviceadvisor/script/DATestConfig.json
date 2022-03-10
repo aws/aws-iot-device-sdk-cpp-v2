@@ -2,11 +2,11 @@
     "tests" :["MQTT Connect", "MQTT Publish", "MQTT Subscribe", "Shadow Publish", "Shadow Update"],
     "test_suite_ids" :
     {
-        "MQTT Connect" : "c77nbzmo9o7j",
-        "MQTT Publish" : "guv3q06ln6hx",
-        "MQTT Subscribe" : "iqq13pp7xdgu",
-        "Shadow Publish" : "t93vz3zuxc8a",
-        "Shadow Update" : "daosd9ywr4kh"
+        "MQTT Connect" : "ejbdzmo3hf3v",
+        "MQTT Publish" : "euw7favf6an4",
+        "MQTT Subscribe" : "01o8vo6no7sd",
+        "Shadow Publish" : "elztm2jebc1q",
+        "Shadow Update" : "vuydgrbbbfce"
     },
     "test_exe_path" :
     {
