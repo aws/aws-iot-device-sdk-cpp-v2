@@ -15,7 +15,7 @@ env:
   RUN: ${{ github.run_id }}-${{ github.run_number }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: us-east-1
+  AWS_DEFAULT_REGION: us-east-1
   # env for Device Advisor
   DA_TOPIC: test/da
   DA_SHADOW_PROPERTY: datest
@@ -31,6 +31,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Run DA python script
         run: |
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream build_da
           echo 'da test starts...'
           pip install boto3
           python deviceadvisor\script\run.py
