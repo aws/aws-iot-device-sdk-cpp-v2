@@ -7,7 +7,7 @@ class BuildSamples(Builder.Action):
     def run(self, env):
         skip_da = False
         skip_samples = False
-        if env.args.cli_config['variables'].get('skip_da', "0") != "1":
+        if env.args.cli_config['variables'].get('skip_da', "0") != "0":
             skip_da = True
             print('skip_da is defined. Skipping device advisor samples...')
         if env.args.cli_config['variables'].get('skip_samples', "0") != "0":
