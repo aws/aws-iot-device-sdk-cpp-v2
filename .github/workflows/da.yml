@@ -27,10 +27,10 @@ jobs:
   windows-no-cpu-extensions:
     runs-on: windows-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
       - name: Run DA python script
         run: |
+          md D:\a\work
+          cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream build_da skip_samples
           echo 'da test starts...'
