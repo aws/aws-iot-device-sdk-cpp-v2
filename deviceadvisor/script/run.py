@@ -20,8 +20,8 @@ dataClient = boto3.client('iot-data')
 f = open('deviceadvisor/script/DATestConfig.json')
 DATestConfig = json.load(f)
 f.close()
-certificate_path = os.path.join(".",'certificate.pem.crt') # = os.path.join(env.install_dir, 'certificate.pem.crt')
-key_path = os.path.join(".",'private.pem.key') # = os.path.join(env.install_dir,'private.pem.key')
+certificate_path = 'certificate.pem.crt' # = os.path.join(env.install_dir, 'certificate.pem.crt')
+key_path = 'private.pem.key' # = os.path.join(env.install_dir,'private.pem.key')
 shadowProperty = os.environ["DA_SHADOW_PROPERTY"]
 shadowDefault = os.environ["DA_SHADOW_VALUE_DEFAULT"]
 
@@ -163,7 +163,7 @@ for test_name in DATestConfig['tests']:
                 continue
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
-                exe_path = os.path.join(".",DATestConfig['test_exe_path'][test_name])
+                exe_path = os.path.join("build",DATestConfig['test_exe_path'][test_name])
                 print("start running " + exe_path)
                 result = subprocess.run(exe_path)
             elif (test_result_responds['status'] != 'RUNNING'):
