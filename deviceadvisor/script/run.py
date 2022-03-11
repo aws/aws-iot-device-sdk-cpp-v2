@@ -15,6 +15,9 @@ def delete_thing_with_certi(thingName, certiId, certiArn):
     client.delete_certificate(certificateId = certiId, forceDelete = True)
     client.delete_thing(thingName = thingName)
 
+# debug linux environment variables
+print(os.environ)
+
 client = boto3.client('iot')
 dataClient = boto3.client('iot-data')
 f = open('deviceadvisor/script/DATestConfig.json')
