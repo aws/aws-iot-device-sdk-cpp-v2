@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import platform
+from time import sleep
 
 def delete_thing_with_certi(thingName, certiId, certiArn):
     client.detach_thing_principal(
@@ -155,6 +156,8 @@ for test_name in DATestConfig['tests']:
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
 
         while True:
+            # sleep for 0.01s every loop to avoid TooManyRequestsException
+            sleep(0.05)
             test_result_responds = deviceAdvisor.get_suite_run(
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
