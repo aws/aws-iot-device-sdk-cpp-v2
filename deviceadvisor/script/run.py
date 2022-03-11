@@ -156,8 +156,8 @@ for test_name in DATestConfig['tests']:
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
 
         while True:
-            # sleep for 0.01s every loop to avoid TooManyRequestsException
-            sleep(0.05)
+            # sleep for 0.1s every loop to avoid TooManyRequestsException
+            sleep(1)
             test_result_responds = deviceAdvisor.get_suite_run(
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
