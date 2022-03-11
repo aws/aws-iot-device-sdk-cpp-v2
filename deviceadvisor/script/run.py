@@ -6,6 +6,8 @@ import subprocess
 import platform
 from time import sleep
 
+##############################################
+# Cleanup Certificates and Things and created certificate and private key file
 def delete_thing_with_certi(thingName, certiId, certiArn):
     client.detach_thing_principal(
         thingName = thingName,
@@ -15,19 +17,32 @@ def delete_thing_with_certi(thingName, certiId, certiArn):
     newStatus ='INACTIVE')
     client.delete_certificate(certificateId = certiId, forceDelete = True)
     client.delete_thing(thingName = thingName)
+    os.remove(os.environ["DA_CERTI"])
+    os.remove(os.environ["DA_KEY"])
 
-# debug linux environment variables
-print(os.environ)
 
+##############################################
+# Initialize variables
+# create aws clients
 client = boto3.client('iot')
 dataClient = boto3.client('iot-data')
+deviceAdvisor = boto3.client('iotdeviceadvisor')
+
+# load test config
 f = open('deviceadvisor/script/DATestConfig.json')
 DATestConfig = json.load(f)
 f.close()
-certificate_path = 'certificate.pem.crt' # = os.path.join(env.install_dir, 'certificate.pem.crt')
-key_path = 'private.pem.key' # = os.path.join(env.install_dir,'private.pem.key')
+
+# create an temporary certificate/key file path
+certificate_path = 'certificate.pem.crt'
+key_path = 'private.pem.key'
+
+# load environment variables requried for testing
 shadowProperty = os.environ['DA_SHADOW_PROPERTY']
 shadowDefault = os.environ['DA_SHADOW_VALUE_DEFAULT']
+
+# test result
+test_result = {}
 
 ##############################################
 # create a test thing 
@@ -46,7 +61,7 @@ try:
     os.environ["DA_THING_NAME"] = thing_name
     
 except Exception as e:
-    print("[Device Advisor]Error: Failed to create thing: " + e)
+    print("[Device Advisor]Error: Failed to create thing: " + thing_name)
     exit(-1)
 
 
@@ -108,11 +123,11 @@ except:
 
 ##############################################
 # Run device advisor
-deviceAdvisor = boto3.client('iotdeviceadvisor')
-test_result = {}
 for test_name in DATestConfig['tests']:
     try:
-        # set default shadow
+        ######################################
+        # set default shadow, for shadow update, if the
+        # shadow does not exists, update will fail
         payload_shadow = json.dumps(
         {
         "state": {
@@ -128,7 +143,7 @@ for test_name in DATestConfig['tests']:
             thingName = thing_name,
             payload = payload_shadow)
         get_shadow_response = dataClient.get_thing_shadow(thingName = thing_name)
-        # make sure shadow is created
+        # make sure shadow is created before we go to next step
         while(get_shadow_response is None): 
             get_shadow_response = dataClient.get_thing_shadow(thingName = thing_name)
         
@@ -156,35 +171,52 @@ for test_name in DATestConfig['tests']:
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
 
         while True:
-            # sleep for 0.1s every loop to avoid TooManyRequestsException
+            # sleep for 1s every loop to avoid TooManyRequestsException
             sleep(1)
             test_result_responds = deviceAdvisor.get_suite_run(
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
             )
+            # If the status is PENDING or the responds does not loaded, the test suite is still loading
             if (test_result_responds['status'] == 'PENDING' or
             len(test_result_responds['testResult']['groups']) == 0 or # test group has not been loaded
             len(test_result_responds['testResult']['groups'][0]['tests']) == 0 or #test case has not been loaded
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
                 continue
+            
+            # Start to run the test sample after the status turns into RUNNING
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
-                exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])
+                exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
+                # Windows and MAC/LINUX has a different build folder structure
                 if platform.system() == 'Windows':
                     exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
                 else:
                     exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
+                print("start to run" + exe_path)
+                result = subprocess.run(exe_path, timeout = 60*5)
 
-                print("start running " + exe_path)
-                result = subprocess.run(exe_path)
+            # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
                 test_result[test_name] = test_result_responds['status']
                 break
     except Exception as e:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-        print("[Device Advisor]Error: Failed to test: " + e)
+        print("[Device Advisor]Error: Failed to test: "+ test_name)
         exit(-1)
 
-#cleanup things
-delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
+##############################################
+# print result and cleanup things
 print(test_result)
+failed = False
+for test in test_result
+    if(test_result[test] != "PASS" and
+    test_result[test] != PASS_WITH_WARNINGS):
+        print("[Device Advisor]Error: Test \"" + test + "\" Failed with status:" + test_result[test])
+        failed = True
+if failed:
+    # if the test failed, we keep the thing on the server so that we can track the error
+    exit(-1)
+
+delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
+exit(0)
