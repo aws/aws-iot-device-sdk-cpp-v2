@@ -25,8 +25,8 @@ DATestConfig = json.load(f)
 f.close()
 certificate_path = 'certificate.pem.crt' # = os.path.join(env.install_dir, 'certificate.pem.crt')
 key_path = 'private.pem.key' # = os.path.join(env.install_dir,'private.pem.key')
-shadowProperty = os.environ["DA_SHADOW_PROPERTY"]
-shadowDefault = os.environ["DA_SHADOW_VALUE_DEFAULT"]
+shadowProperty = os.environ['DA_SHADOW_PROPERTY']
+shadowDefault = os.environ['DA_SHADOW_VALUE_DEFAULT']
 
 ##############################################
 # create a test thing 
