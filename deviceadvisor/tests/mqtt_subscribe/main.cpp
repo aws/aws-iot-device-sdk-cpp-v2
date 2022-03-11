@@ -96,9 +96,11 @@ int main()
                              Mqtt::QOS /*qos*/,
                              bool /*retain*/) {};
 
-        auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t /*packetId*/, const String & /*topic*/, Mqtt::QOS /*QoS*/, int /*errorCode*/) {
-            };
+        auto onSubAck = [&](Mqtt::MqttConnection &,
+                            uint16_t /*packetId*/,
+                            const String & /*topic*/,
+                            Mqtt::QOS /*QoS*/,
+                            int /*errorCode*/) {};
 
         connection->Subscribe(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
 
