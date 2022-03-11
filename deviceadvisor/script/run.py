@@ -209,13 +209,13 @@ for test_name in DATestConfig['tests']:
 # print result and cleanup things
 print(test_result)
 failed = False
-for test in test_result
+for test in test_result:
     if(test_result[test] != "PASS" and
     test_result[test] != PASS_WITH_WARNINGS):
         print("[Device Advisor]Error: Test \"" + test + "\" Failed with status:" + test_result[test])
         failed = True
 if failed:
-    # if the test failed, we keep the thing on the server so that we can track the error
+    # if the test failed, we dont clean the Thing so that we can track the error
     exit(-1)
 
 delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
