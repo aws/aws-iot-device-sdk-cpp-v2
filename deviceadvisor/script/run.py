@@ -164,7 +164,7 @@ for test_name in DATestConfig['tests']:
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
                 exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])
-                if os.platform.system() == 'Windows':
+                if platform.system() == 'Windows':
                     exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
                 else:
                     exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
