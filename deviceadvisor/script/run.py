@@ -211,7 +211,7 @@ print(test_result)
 failed = False
 for test in test_result:
     if(test_result[test] != "PASS" and
-    test_result[test] != PASS_WITH_WARNINGS):
+    test_result[test] != "PASS_WITH_WARNINGS"):
         print("[Device Advisor]Error: Test \"" + test + "\" Failed with status:" + test_result[test])
         failed = True
 if failed:
