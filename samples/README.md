@@ -602,11 +602,10 @@ This sample uses the following custom metrics:
 * `CustomNumber` - type: `number`.
 * `CustomNumberTwo` - type `number`.
 * `CustomNumberList` - type `number-list`.
-* `CustomString` - type `string-list`.
 * `CustomStringList` - type `string-list`.
 * `CustomIPList` - type `ip-list`.
 
-**Note:** This sample **only runs on Linux** currently. If running on other systems, it will run but will not send Device Defender metrics.
+**Note:** This sample **only runs on Linux**. Device Defender is only supported on Linux.
 
 To run the basic Device Defender use the following command:
 

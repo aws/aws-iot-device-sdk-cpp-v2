@@ -61,16 +61,6 @@ namespace Aws
             }
         }
 
-        int ReportTask::RegisterCustomMetricNumber(aws_byte_cursor metric_name, aws_iotdevice_defender_get_number_fn *metric_func)
-        {
-            return aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig, &metric_name, metric_func, this);
-        }
-        int ReportTask::RegisterCustomMetricNumber(aws_byte_cursor metric_name, std::function<int(int64_t *, void*)> *metric_func) {
-            return aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig,&metric_name, *metric_func->target<aws_iotdevice_defender_get_number_fn*>(), this);
-        }
-
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
 
         int ReportTask::StartTask() noexcept
@@ -122,6 +112,49 @@ namespace Aws
             this->m_allocator = nullptr;
             this->OnTaskCancelled = nullptr;
             this->cancellationUserdata = nullptr;
+        }
+
+        int ReportTask::RegisterCustomMetricNumber(aws_byte_cursor metricName, aws_iotdevice_defender_get_number_fn *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_number_metric(
+                m_taskConfig, &metricName, metricFunc, this);
+        }
+
+        int ReportTask::RegisterCustomMetricNumber(aws_byte_cursor metricName, std::function<int(int64_t *, void*)> *metricFunc) {
+            return aws_iotdevice_defender_config_register_number_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_fn*>(), this);
+        }
+
+        int ReportTask::RegisterCustomMetricNumberList(aws_byte_cursor metricName, aws_iotdevice_defender_get_number_list_fn *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_number_list_metric(
+                m_taskConfig, &metricName, metricFunc, this);
+        }
+
+        int ReportTask::RegisterCustomMetricNumberList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc) {
+            return aws_iotdevice_defender_config_register_number_list_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_list_fn*>(), this);
+        }
+
+        int ReportTask::RegisterCustomMetricStringList(aws_byte_cursor metricName, aws_iotdevice_defender_get_string_list_fn *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_string_list_metric(
+                m_taskConfig, &metricName, metricFunc, this);
+        }
+
+        int ReportTask::RegisterCustomMetricStringList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc) {
+            return aws_iotdevice_defender_config_register_string_list_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_string_list_fn*>(), this);
+        }
+
+        int ReportTask::RegisterCustomMetricIpAddressList(aws_byte_cursor metricName, aws_iotdevice_defender_get_ip_list_fn *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_ip_list_metric(
+                m_taskConfig, &metricName, metricFunc, this);
+        }
+        int ReportTask::RegisterCustomMetricIpAddressList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc) {
+            return aws_iotdevice_defender_config_register_ip_list_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_ip_list_fn*>(), this);
         }
 
         ReportTaskBuilder::ReportTaskBuilder(
