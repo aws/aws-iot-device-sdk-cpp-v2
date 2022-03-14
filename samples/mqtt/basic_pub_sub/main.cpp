@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.AddCommonx509Commands();
+    cmdUtils.AddCommonX509Commands();
     cmdUtils.AddCommonWebsocketCommands();
     cmdUtils.UpdateCommandHelp(
         "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");

@@ -135,7 +135,7 @@ namespace Utils
         RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     }
 
-    void CommandLineUtils::AddCommonx509Commands()
+    void CommandLineUtils::AddCommonX509Commands()
     {
         RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
         RegisterCommand(

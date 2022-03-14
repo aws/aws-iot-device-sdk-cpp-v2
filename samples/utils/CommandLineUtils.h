@@ -143,7 +143,7 @@ namespace Utils
          * A helper function that adds x509, x509_role_alias, x509_endpoint, x509_thing, x509_cert,
          * x509_key, and x509_ca_file commands
          */
-        void AddCommonx509Commands();
+        void AddCommonX509Commands();
 
         /**
          * A helper function that adds topic and message commands
