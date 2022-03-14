@@ -5,6 +5,7 @@ import os
 import subprocess
 import platform
 from time import sleep
+import sys
 
 sys.stdout = open('da_test.output', 'w')
 
