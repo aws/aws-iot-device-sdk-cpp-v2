@@ -21,6 +21,7 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stdout);
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String messagePayload("Hello world!");
 
