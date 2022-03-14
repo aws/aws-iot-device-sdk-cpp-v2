@@ -29,8 +29,7 @@ int main(int argc, char *argv[])
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("greengrass-ipc");
-    cmdUtils.RegisterCommand("topic", "<str>", "Targeted topic (optional, default='test/topic').");
-    cmdUtils.RegisterCommand("message", "<str>", "Message to publish (optional, default='Hello World').");
+    cmdUtils.AddCommonTopicMessageCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 

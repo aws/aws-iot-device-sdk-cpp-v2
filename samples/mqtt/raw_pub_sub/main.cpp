@@ -50,11 +50,12 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("raw_pub_sub");
     cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic').");
+    cmdUtils.AddCommonProxyCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.AddCommonWebsocketCommands();
+    cmdUtils.RemoveCommand("message");
+    cmdUtils.RemoveCommand("region");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
-    cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional).");
-    cmdUtils.RegisterCommand("proxy_host", "<str>", "Host name of the http proxy to use (optional).");
-    cmdUtils.RegisterCommand("proxy_port", "<int>", "port of the http proxy to use (optional, default='8080').");
     cmdUtils.RegisterCommand("user_name", "<str>", "User name to send with mqtt connect.");
     cmdUtils.RegisterCommand("password", "<str>", "Password to send with mqtt connect.");
     cmdUtils.RegisterCommand(

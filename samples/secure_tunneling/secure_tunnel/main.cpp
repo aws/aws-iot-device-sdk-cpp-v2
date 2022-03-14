@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.AddCommonProxyCommands();
     cmdUtils.RegisterProgramName("secure_tunnel");
     cmdUtils.RegisterCommand("region", "<str>", "The region of your secure tunnel");
     cmdUtils.RegisterCommand(
@@ -46,16 +47,13 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
     cmdUtils.RegisterCommand(
         "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
-    cmdUtils.RegisterCommand("proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
-    cmdUtils.RegisterCommand(
-        "proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+    cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     cmdUtils.RegisterCommand(
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils.RegisterCommand(
         "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
-    cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
-    cmdUtils.RegisterCommand("help", "", "Prints this message");
-    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 

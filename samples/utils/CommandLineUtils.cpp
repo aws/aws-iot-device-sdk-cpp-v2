@@ -128,4 +128,47 @@ namespace Utils
         RegisterCommand(Utils::CommandLineOption(
             "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default)."));
     }
+
+    void CommandLineUtils::AddCommonProxyCommands()
+    {
+        RegisterCommand("proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
+        RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+    }
+
+    void CommandLineUtils::AddCommonx509Commands()
+    {
+        RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
+        RegisterCommand(
+            "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
+        RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
+        RegisterCommand("x509_thing", "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+        RegisterCommand(
+            "x509_cert",
+            "<path>",
+            "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
+        RegisterCommand(
+            "x509_key",
+            "<path>",
+            "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
+        RegisterCommand(
+            "x509_ca_file",
+            "<path>",
+            "Path to the root certificate used in fetching x509 credentials (required for x509)");
+    }
+
+    void CommandLineUtils::AddCommonTopicMessageCommands()
+    {
+        RegisterCommand("message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
+        RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
+    }
+
+    void CommandLineUtils::AddCommonWebsocketCommands()
+    {
+        RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
+        RegisterCommand(
+            "signing_region",
+            "<str>",
+            "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
+    }
+
 } // namespace Utils

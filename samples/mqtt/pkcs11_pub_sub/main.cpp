@@ -26,16 +26,13 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("pkcs11_pub_sub");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
     cmdUtils.RemoveCommand("key");
     cmdUtils.RegisterCommand("pkcs11_lib", "<path>", "Path to PKCS#11 library.");
     cmdUtils.RegisterCommand("pin", "<str>", "User PIN for logging into PKCS#11 token.");
     cmdUtils.RegisterCommand("token_label", "<str>", "Label of the PKCS#11 token to use (optional).");
     cmdUtils.RegisterCommand("slot_id", "<int>", "Slot ID containing PKCS#11 token to use (optional).");
     cmdUtils.RegisterCommand("key_label", "<str>", "Label of private key on the PKCS#11 token (optional).");
-    cmdUtils.RegisterCommand(
-        "topic", "<mqtt topic>", "MQTT topic for subscribe and publish (optional, default='/test/topic').");
-    cmdUtils.RegisterCommand(
-        "message", "<mqtt message>", "MQTT message to publish (optional, default='Hello World!').");
     cmdUtils.RegisterCommand("count", "<int>", "Number of messages to publish. (optional, default=10).");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
     cmdUtils.RegisterCommand("help", "", "Prints this message");

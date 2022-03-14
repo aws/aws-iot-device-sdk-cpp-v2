@@ -134,6 +134,27 @@ namespace Utils
          */
         void AddCommonMQTTCommands();
 
+        /**
+         * A helper function that adds proxy_port, proxy_username, proxy_password, and proxy_host commands.
+         */
+        void AddCommonProxyCommands();
+
+        /**
+         * A helper function that adds x509, x509_role_alias, x509_endpoint, x509_thing, x509_cert,
+         * x509_key, and x509_ca_file commands
+         */
+        void AddCommonx509Commands();
+
+        /**
+         * A helper function that adds topic and message commands
+         */
+        void AddCommonTopicMessageCommands();
+
+        /**
+         * A helper function that adds use_websocket and signing_region
+         */
+        void AddCommonWebsocketCommands();
+
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;

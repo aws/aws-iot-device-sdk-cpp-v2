@@ -56,40 +56,18 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("basic_pub_sub");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonProxyCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.AddCommonx509Commands();
+    cmdUtils.AddCommonWebsocketCommands();
     cmdUtils.UpdateCommandHelp(
         "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");
     cmdUtils.UpdateCommandHelp(
         "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
-    cmdUtils.RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     cmdUtils.RegisterCommand(
         "client_id",
         "<str>"
         "Client id to use (optional, default='test-*')");
-    cmdUtils.RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
-    cmdUtils.RegisterCommand(
-        "signing_region",
-        "<str>",
-        "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
-    cmdUtils.RegisterCommand("proxy_host", "<str>", "Host name of the http proxy to use (optional)");
-    cmdUtils.RegisterCommand("proxy_port", "<int>", "Port of the http proxy to use (optional, default='8080')");
-    cmdUtils.RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
-    cmdUtils.RegisterCommand(
-        "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
-    cmdUtils.RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
-    cmdUtils.RegisterCommand(
-        "x509_thing", "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
-    cmdUtils.RegisterCommand(
-        "x509_cert",
-        "<path>",
-        "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
-    cmdUtils.RegisterCommand(
-        "x509_key",
-        "<path>",
-        "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
-    cmdUtils.RegisterCommand(
-        "x509_rootca", "<path>", "Path to the root certificate used in fetching x509 credentials (required for x509)");
-    cmdUtils.RegisterCommand(
-        "message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
     const char **const_argv = (const char **)argv;
@@ -163,7 +141,7 @@ int main(int argc, char *argv[])
             "x509_cert", "X509 credentials sourcing requires an IoT certificate to be specified.");
         x509KeyPath = cmdUtils.GetCommandRequired(
             "x509_key", "X509 credentials sourcing requires an IoT thing private key to be specified.");
-        x509RootCAFile = cmdUtils.GetCommandOrDefault("x509_rootca", x509RootCAFile);
+        x509RootCAFile = cmdUtils.GetCommandOrDefault("x509_ca_file", x509RootCAFile);
     }
 
     messagePayload = cmdUtils.GetCommandOrDefault("message", messagePayload);
