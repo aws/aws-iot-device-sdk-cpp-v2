@@ -54,21 +54,21 @@ try:
     # 'thingArn': 'string',
     # 'thingId': 'string'
     # }
-    print("[Device Advisor]Info: Started to create thing...", flush=True)
+    print("[Device Advisor]Info: Started to create thing...")
     create_thing_response = client.create_thing(
         thingName=thing_name
     )
     os.environ["DA_THING_NAME"] = thing_name
     
 except Exception as e:
-    print("[Device Advisor]Error: Failed to create thing: " + thing_name, flush=True)
+    print("[Device Advisor]Error: Failed to create thing: " + thing_name)
     exit(-1)
 
 
 ##############################################
 # create certificate and keys used for testing
 try:
-    print("[Device Advisor]Info: Started to create certificate...", flush=True)
+    print("[Device Advisor]Info: Started to create certificate...")
     # create_cert_response:
     # {
     # 'certificateArn': 'string',
@@ -99,13 +99,13 @@ try:
 
 except:
     client.delete_thing(thingName = thing_name)
-    print("[Device Advisor]Error: Failed to create certificate.", flush=True)
+    print("[Device Advisor]Error: Failed to create certificate.")
     exit(-1)
 
 ##############################################
 # attach certification to thing
 try:
-    print("[Device Advisor]Info: Attach certificate to test thing...", flush=True)
+    print("[Device Advisor]Info: Attach certificate to test thing...")
     # attache the certificate to thing
     client.attach_thing_principal(
         thingName = thing_name,
@@ -117,7 +117,7 @@ try:
 
 except:
     delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-    print("[Device Advisor]Error: Failed to attach certificate.", flush=True)
+    print("[Device Advisor]Error: Failed to attach certificate.")
     exit(-1)
 
 
@@ -154,7 +154,7 @@ for test_name in DATestConfig['tests']:
         # 'suiteRunArn': 'string',
         # 'createdAt': datetime(2015, 1, 1)
         # }
-        print("[Device Advisor]Info: Start device advisor test: " + test_name, flush=True)
+        print("[Device Advisor]Info: Start device advisor test: " + test_name)
         test_start_response = deviceAdvisor.start_suite_run(
         suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
         suiteRunConfiguration={
@@ -193,15 +193,10 @@ for test_name in DATestConfig['tests']:
                     exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
                 else:
                     exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
-                print("start to run" + exe_path, flush=True)
-                # result = subprocess.run(exe_path, timeout = 60*5)
-                # output, err = proc.communicate()
-                # print(output)
-                proc = subprocess.Popen([exe_path], 
-                        stdout=subprocess.PIPE,
-                        )
-                stdout_value = proc.communicate()[0]
-                print ('stdout:', repr(stdout_value), flush=True)
+                print("start to run" + exe_path)
+                result = subprocess.run(exe_path, timeout = 60*5, capture_output = True)
+                output, err = proc.communicate()
+                print(output)
 
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
@@ -209,7 +204,7 @@ for test_name in DATestConfig['tests']:
                 break
     except Exception as e:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-        print("[Device Advisor]Error: Failed to test: "+ test_name, flush=True)
+        print("[Device Advisor]Error: Failed to test: "+ test_name)
         exit(-1)
 
 ##############################################
