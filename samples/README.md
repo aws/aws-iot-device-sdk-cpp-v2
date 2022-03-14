@@ -2,6 +2,7 @@
 
 * [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
 * [PKCS#11 MQTT Pub-Sub](#pkcs11-mqtt-pub-sub)
+* [Windows Certificate MQTT Pub-Sub](#windows-certificate-mqtt-pub-sub)
 * [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
 * [Fleet provisioning](#fleet-provisioning)
 * [Shadow](#shadow)
@@ -167,6 +168,9 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
     ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
+## Windows Certificate MQTT Pub-Sub
+
+TODO FILL ME IN
 
 ## Raw MQTT Pub-Sub
 
