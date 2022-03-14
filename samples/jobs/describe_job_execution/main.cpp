@@ -19,43 +19,10 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "describe-job-execution --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --ca_file <optional: path to custom ca>"
-        " --thing_name <thing name> --job_id <job id>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "job_id: the job id you want to describe.\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -74,24 +41,25 @@ int main(int argc, char *argv[])
     String jobId;
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
-          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--thing_name") &&
-          s_cmdOptionExists(argv, argv + argc, "--job_id")))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("describe-job-execution");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
+    cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-    jobId = s_getCmdOption(argv, argv + argc, "--job_id");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    if (cmdUtils.HasCommand("help"))
     {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    certificatePath = cmdUtils.GetCommandRequired("cert");
+    keyPath = cmdUtils.GetCommandRequired("key");
+    thingName = cmdUtils.GetCommandRequired("thing_name");
+    jobId = cmdUtils.GetCommandRequired("job_id");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
 
     /********************** Now Setup an Mqtt Client ******************/
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)

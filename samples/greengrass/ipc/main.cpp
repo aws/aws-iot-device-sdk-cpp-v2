@@ -7,34 +7,13 @@
 
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Greengrass;
 
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(stdout, "greengrass-ipc --topic <optional: topic> --message <optional: message to publish>\n\n");
-    fprintf(stdout, "topic: targeted topic. Default is test/topic\n");
-    fprintf(stdout, "message: message to publish. default 'Hello World'\n");
-}
-
 /* Used to check that the publish has been received so that the demo can exit successfully. */
 static std::atomic_bool s_publishReceived(false);
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -48,21 +27,19 @@ int main(int argc, char *argv[])
     String message("Hello World");
 
     /*********************** Parse Arguments ***************************/
-    if (s_cmdOptionExists(argv, argv + argc, "--help"))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("greengrass-ipc");
+    cmdUtils.AddCommonTopicMessageCommands();
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (s_cmdOptionExists(argv, argv + argc, "--topic"))
+    if (cmdUtils.HasCommand("help"))
     {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
-    {
-        message = s_getCmdOption(argv, argv + argc, "--message");
-    }
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    message = cmdUtils.GetCommandOrDefault("message", message);
 
     /**
      * Create the default ClientBootstrap, which will create the default

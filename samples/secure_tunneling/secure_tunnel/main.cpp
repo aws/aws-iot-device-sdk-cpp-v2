@@ -10,115 +10,80 @@
 
 #include <fstream>
 
-using namespace std;
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "secure-tunnel\n"
-        "--region                <aws region of secure tunnel>\n"
-        "--ca_file               <optional: path to custom ca>\n"
-        "--access_token_file     <path to access token> or "
-        "--access_token          <access token>\n"
-        "--localProxyModeSource  <optional: sets to Source Mode>\n"
-        "--proxy_host            <host name of the proxy server>\n"
-        "--proxy_port            <port of the proxy server>\n"
-        "--proxy_user_name       <optional: user name>\n"
-        "--proxy_password        <optional: password>\n"
-        "--message               <optional: message to send>\n\n");
-    fprintf(stdout, "region: the region of your secure tunnel\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "access_token_file: path to the tunneling access token file\n");
-    fprintf(stdout, "access_token: tunneling access token\n");
-    fprintf(stdout, "localProxyModeSource: Use to set local proxy mode to source. Default is destination\n");
-    fprintf(stdout, "proxy_host: Host name of the proxy server to connect through\n");
-    fprintf(stdout, "proxy_port: Port of the proxy server to connect through\n");
-    fprintf(stdout, "proxy_user_name: Optional, if proxy server requires a user name\n");
-    fprintf(stdout, "proxy_password: Optional, if proxy server requires a password\n");
-    fprintf(stdout, "message: message to send. Default: 'Hello World'\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
+using namespace std::chrono_literals;
 
 int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
-    string region;
-    string endpoint;
-    string caFile;
-    string accessToken;
-    string message = "Hello World";
+    String region;
+    String endpoint;
+    String caFile;
+    String accessToken;
+    String message = "Hello World";
     aws_secure_tunneling_local_proxy_mode localProxyMode;
 
-    string proxyHost;
+    String proxyHost;
     uint16_t proxyPort(8080);
-    string proxyUserName;
-    string proxyPassword;
-
-    /*
-     * For internal testing
-     */
-    bool isTest = s_cmdOptionExists(argv, argv + argc, "--test");
-    int expectedMessageCount = 5;
+    String proxyUserName;
+    String proxyPassword;
 
     std::shared_ptr<SecureTunnel> secureTunnel;
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--region"))
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.AddCommonProxyCommands();
+    cmdUtils.RegisterProgramName("secure_tunnel");
+    cmdUtils.RegisterCommand("region", "<str>", "The region of your secure tunnel");
+    cmdUtils.RegisterCommand(
+        "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+    cmdUtils.RegisterCommand(
+        "access_token_file", "<path>", "Path to the tunneling access token file (optional if --access_token used).");
+    cmdUtils.RegisterCommand("access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
+    cmdUtils.RegisterCommand(
+        "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
+    cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
+    cmdUtils.RegisterCommand(
+        "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
+    cmdUtils.RegisterCommand(
+        "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
+
+    if (cmdUtils.HasCommand("help"))
     {
-        fprintf(stderr, "--region must be set to connect through a secure tunnel");
-        s_printHelp();
+        cmdUtils.PrintHelp();
         exit(-1);
     }
     /*
      * Generate secure tunneling endpoint using region
      */
-    region = s_getCmdOption(argv, argv + argc, "--region");
+    region = cmdUtils.GetCommandRequired("region");
     endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
-    if (!(s_cmdOptionExists(argv, argv + argc, "--access_token_file") ||
-          s_cmdOptionExists(argv, argv + argc, "--access_token")))
+    if (!(cmdUtils.HasCommand("access_token_file") || cmdUtils.HasCommand("access_token")))
     {
+        cmdUtils.PrintHelp();
         fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
-        s_printHelp();
         exit(-1);
     }
 
-    /*
-     * Set accessToken either directly or from a file
-     */
-    if (s_cmdOptionExists(argv, argv + argc, "--access_token"))
+    if (cmdUtils.HasCommand("access_token"))
     {
-        accessToken = s_getCmdOption(argv, argv + argc, "--access_token");
+        accessToken = cmdUtils.GetCommand("access_token");
     }
-    else if (s_cmdOptionExists(argv, argv + argc, "--access_token_file"))
+    else
     {
-        accessToken = s_getCmdOption(argv, argv + argc, "--access_token_file");
+        accessToken = cmdUtils.GetCommand("access_token_file");
 
-        ifstream accessTokenFile(accessToken.c_str());
+        std::ifstream accessTokenFile(accessToken.c_str());
         if (accessTokenFile.is_open())
         {
             getline(accessTokenFile, accessToken);
@@ -130,48 +95,27 @@ int main(int argc, char *argv[])
             exit(-1);
         }
     }
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host") || s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-    {
-        if (!s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
-        {
-            fprintf(stderr, "--proxy_host must be set to connect through a proxy");
-            s_printHelp();
-            exit(-1);
-        }
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-        {
-            fprintf(stderr, "--proxy_port must be set to connect through a proxy");
-            s_printHelp();
-            exit(-1);
-        }
-        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+    if (cmdUtils.HasCommand("proxy_host") || cmdUtils.HasCommand("proxy_port"))
+    {
+        proxyHost =
+            cmdUtils.GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str();
+        int port = atoi(
+            cmdUtils.GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
         if (port > 0 && port <= UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
         }
-
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_user_name"))
-        {
-            proxyUserName = s_getCmdOption(argv, argv + argc, "--proxy_user_name");
-        }
-
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_password"))
-        {
-            proxyPassword = s_getCmdOption(argv, argv + argc, "--proxy_password");
-        }
+        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "");
+        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "");
     }
 
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
 
     /*
      * localProxyMode is set to destination by default unless flag is set to source
      */
-    if (s_cmdOptionExists(argv, argv + argc, "--localProxyModeSource"))
+    if (cmdUtils.HasCommand("localProxyModeSource"))
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
@@ -180,10 +124,13 @@ int main(int argc, char *argv[])
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
-    {
-        message = s_getCmdOption(argv, argv + argc, "--message");
-    }
+    message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+
+    /*
+     * For internal testing
+     */
+    bool isTest = cmdUtils.HasCommand("test");
+    int expectedMessageCount = 5;
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
@@ -250,8 +197,8 @@ int main(int argc, char *argv[])
     };
 
     auto OnDataReceive = [&](const struct aws_byte_buf &data) {
-        string receivedData = std::string((char *)data.buffer, data.len);
-        string returnMessage = "Echo:" + receivedData;
+        String receivedData = String((char *)data.buffer, data.len);
+        String returnMessage = "Echo:" + receivedData;
 
         fprintf(stdout, "Received: \"%s\"\n", receivedData.c_str());
 
@@ -375,7 +322,7 @@ int main(int argc, char *argv[])
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 messageCount++;
-                string toSend = to_string(messageCount) + ": " + message.c_str();
+                String toSend = (std::to_string(messageCount) + ": " + message.c_str()).c_str();
 
                 if (!secureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
                 {
