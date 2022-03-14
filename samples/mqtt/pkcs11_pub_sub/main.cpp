@@ -7,96 +7,9 @@
 #include <aws/crt/io/Pkcs11.h>
 #include <aws/iot/MqttClient.h>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "basic-pub-sub"
-        " --endpoint <hostname>"
-        " --cert <path>"
-        " --pkcs11_lib <path>"
-        " --pin <str>"
-        " [--token_label <str>]"
-        " [--slot_id <int>]"
-        " [--key_label <str>]"
-        " [--topic <mqtt topic>]"
-        " [--message <str>]"
-        " [--count <int>]"
-        " [--client_id <str>]"
-        " [--ca_file <path>]"
-        "\n\n");
-    fprintf(stdout, "endpoint       Endpoint of the mqtt server not including a port.\n");
-    fprintf(stdout, "cert           Path to your client certificate in PEM format.\n");
-    fprintf(stdout, "pkcs11_lib     Path to PKCS#11 library.\n");
-    fprintf(stdout, "pin            User PIN for logging into PKCS#11 token.\n");
-    fprintf(stdout, "token_label    Label of the PKCS#11 token to use (optional).\n");
-    fprintf(stdout, "slot_id        Slot ID containing PKCS#11 token to use (optional).\n");
-    fprintf(stdout, "key_label      Label of private key on the PKCS#11 token (optional).\n");
-    fprintf(stdout, "topic          MQTT topic for subscribe and publish (optional, default='/test/topic').\n");
-    fprintf(stdout, "message        MQTT message to publish (optional, default='Hello World!').\n");
-    fprintf(stdout, "count          Number of messages to publish. (optional, default=10).\n");
-    fprintf(stdout, "client_id      Client id to use (optional, default='test-*').\n");
-    fprintf(stdout, "ca_file:       Path to AmazonRootCA1.pem (optional, system trust store used by default).\n");
-    fprintf(stdout, "\n");
-}
-
-class ArgParser
-{
-  public:
-    ArgParser(int argc, char *argv[])
-    {
-        m_argv = argv;
-        m_argvEnd = argv + argc;
-
-        if (Exists("--help"))
-        {
-            s_printHelp();
-            exit(0);
-        }
-    }
-
-    bool Exists(const String &name) const { return std::find(m_argv, m_argvEnd, name) != m_argvEnd; }
-
-    String GetRequired(const String &name) const
-    {
-        const char *val = FindValue(name);
-        if (val == nullptr)
-        {
-            s_printHelp();
-            fprintf(stderr, "Missing required argument: %s\n", name.c_str());
-            exit(-1);
-        }
-        return val;
-    }
-
-    String GetOptional(const String &name, const String &defaultVal)
-    {
-        const char *val = FindValue(name);
-        if (val == nullptr)
-        {
-            return defaultVal;
-        }
-        return val;
-    }
-
-  private:
-    const char *FindValue(const String &name) const
-    {
-        char **itr = std::find(m_argv, m_argvEnd, name);
-        if (itr == m_argvEnd || ++itr == m_argvEnd)
-        {
-            return nullptr;
-        }
-        return *itr;
-    }
-
-  private:
-    char **m_argv;
-    char **m_argvEnd;
-};
 
 int main(int argc, char *argv[])
 {
@@ -110,20 +23,39 @@ int main(int argc, char *argv[])
     // apiHandle.InitializeLogging(LogLevel::Error, stderr);
 
     /*********************** Parse Arguments ***************************/
-    ArgParser args(argc, argv);
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("pkcs11_pub_sub");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.RemoveCommand("key");
+    cmdUtils.RegisterCommand("pkcs11_lib", "<path>", "Path to PKCS#11 library.");
+    cmdUtils.RegisterCommand("pin", "<str>", "User PIN for logging into PKCS#11 token.");
+    cmdUtils.RegisterCommand("token_label", "<str>", "Label of the PKCS#11 token to use (optional).");
+    cmdUtils.RegisterCommand("slot_id", "<int>", "Slot ID containing PKCS#11 token to use (optional).");
+    cmdUtils.RegisterCommand("key_label", "<str>", "Label of private key on the PKCS#11 token (optional).");
+    cmdUtils.RegisterCommand("count", "<int>", "Number of messages to publish. (optional, default=10).");
+    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    String endpoint = args.GetRequired("--endpoint");
-    String certificatePath = args.GetRequired("--cert");
-    String pkcs11LibPath = args.GetRequired("--pkcs11_lib");
-    String pkcs11UserPin = args.GetRequired("--pin");
-    String pkcs11TokenLabel = args.GetOptional("--token_label", "");
-    String pkcs11SlotIdStr = args.GetOptional("--slot_id", "");
-    String pkcs11KeyLabel = args.GetOptional("--key_label", "");
-    String topic = args.GetOptional("--topic", "test/topic");
-    String messagePayload = args.GetOptional("--message", "Hello world!");
-    int messageCount = std::stoi(args.GetOptional("--count", "10").c_str());
-    String caFile = args.GetOptional("--ca_file", "");
-    String clientId = args.GetOptional("--client_id", String("test-") + Aws::Crt::UUID().ToString());
+    if (cmdUtils.HasCommand("help"))
+    {
+        cmdUtils.PrintHelp();
+        exit(-1);
+    }
+    String endpoint = cmdUtils.GetCommandRequired("endpoint");
+    String certificatePath = cmdUtils.GetCommandRequired("cert");
+    String pkcs11LibPath = cmdUtils.GetCommandRequired("pkcs11_lib");
+    String pkcs11UserPin = cmdUtils.GetCommandRequired("pin");
+    String pkcs11TokenLabel = cmdUtils.GetCommandOrDefault("token_label", "");
+    String pkcs11SlotIdStr = cmdUtils.GetCommandOrDefault("slot_id", "");
+    String pkcs11KeyLabel = cmdUtils.GetCommandOrDefault("key_label", "");
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
+    int messageCount = std::stoi(cmdUtils.GetCommandOrDefault("count", "10").c_str());
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
 
     /********************** Now Setup an Mqtt Client ******************/
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)

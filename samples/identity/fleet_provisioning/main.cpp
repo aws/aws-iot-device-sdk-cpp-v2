@@ -32,46 +32,12 @@
 #include <string>
 #include <thread>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono;      // nanoseconds, system_clock, seconds
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "fleet-provisioning --endpoint <endpoint> --ca_file <optional: path to custom ca> --cert <path to cert>"
-        " --key <path to key> --templateName <template name> --templateParameters <template parameters> --csr "
-        "<optional: path to csr> \n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "csr: path to CSR in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "template_name: the name of your provisioning template\n");
-    fprintf(stdout, "template_parameters: template parameters json\n");
-}
-
-static bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-static char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 static void sleep(int sleeptime)
 {
@@ -110,29 +76,29 @@ int main(int argc, char *argv[])
     apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
-          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--template_name") &&
-          s_cmdOptionExists(argv, argv + argc, "--template_parameters")))
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("fleet-provisioning");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
+    cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
+    cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
+
+    if (cmdUtils.HasCommand("help"))
     {
-        s_printHelp();
-        return 0;
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    templateName = s_getCmdOption(argv, argv + argc, "--template_name");
-    templateParameters = s_getCmdOption(argv, argv + argc, "--template_parameters");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    certificatePath = cmdUtils.GetCommandRequired("cert");
+    keyPath = cmdUtils.GetCommandRequired("key");
+    templateName = cmdUtils.GetCommandRequired("template_name");
+    templateParameters = cmdUtils.GetCommandRequired("template_parameters");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    if (cmdUtils.HasCommand("csr"))
     {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    // if CSRFile provided
-    if (s_cmdOptionExists(argv, argv + argc, "--csr"))
-    {
-        csrFile = getFileData(s_getCmdOption(argv, argv + argc, "--csr")).c_str();
+        csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
 
     /********************** Now Setup an Mqtt Client ******************/
