@@ -310,12 +310,15 @@ int main(int argc, char *argv[])
        }
        // ======================================================================
 
-       uint32_t publishedCount = 0;
+       int publishedCount = 0;
        while (publishedCount < count && (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
        {
            ++publishedCount;
            fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
-           std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
+
+           if (publishedCount != count) {
+               std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
+           }
        }
 
        // Stop the task so we stop sending device defender metrics

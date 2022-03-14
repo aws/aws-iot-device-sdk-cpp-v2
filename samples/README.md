@@ -8,6 +8,7 @@
 * [Jobs](#jobs)
 * [Greengrass discovery](#greengrass-discovery)
 * [Greengrass IPC](#greengrass-ipc)
+* [Device Defender](#device-defender)
 
 ## Build Instruction
 
@@ -586,3 +587,67 @@ This sample is intended for use with the following tutorials in the AWS IoT Gree
 This sample must be run from within a Greengrass V2 component using an appropriate policy to perform `aws.greengrass#PublishToIoTCore` and `aws.greengrass#SubscribeToIoTCore` operations on `test/topic` or any other topic passed as a CLI argument.
 
 For more information about Greengrass interprocess communication (IPC), see [here](https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html). This sample uses IPC to perform [IoT Core MQTT operations](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-iot-core-mqtt.html).
+
+## Device Defender
+
+This sample uses the AWS IoT [Device Defender]() Service to send on device metrics to AWS.
+
+Source: `samples/device_defender/basic_report/main.cpp`
+
+On startup, the sample will make a MQTT connection and a Device Defender task to send metrics every minute or at the time interval passed as a CLI argument. This sample shows how to send custom metrics in addition to the standard metrics that are always sent with Device Defender.
+
+You will need to create a **Security Profile** to see the metric results in the AWS console. You can create a Security Profile by going to `Detect -> Security Profiles` from the AWS IOT Console. To see the custom metrics, you will need to add them in `Detect -> Metrics` and then press the `Create` button to make a new custom metric.
+
+This sample uses the following custom metrics:
+* `CustomNumber` - type: `number`.
+* `CustomNumberTwo` - type `number`.
+* `CustomNumberList` - type `number-list`.
+* `CustomString` - type `string-list`.
+* `CustomStringList` - type `string-list`.
+* `CustomIPList` - type `ip-list`.
+
+**Note:** This sample **only runs on Linux** currently. If running on other systems, it will run but will not send Device Defender metrics.
+
+To run the basic Device Defender use the following command:
+
+``` sh
+./basic-report --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name>
+```
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, publish, and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json/rejected"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
