@@ -29,7 +29,8 @@ static void s_printHelp()
    fprintf(
        stdout,
        "basic-report --endpoint <endpoint> --cert <path to cert>"
-       " --key <path to key> --ca_file <optional: path to custom ca>\n\n");
+       " --key <path to key> --ca_file <optional: path to custom ca>"
+       "--thing_name <str> --report_time <int> --count <int>\n\n");
    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
    fprintf(
        stdout,
@@ -40,6 +41,9 @@ static void s_printHelp()
        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
        " in your trust store, set this.\n");
    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
+   fprintf(stdout, "thing_name: The name of your IoT thing (optional, default='TestThing')\n");
+   fprintf(stdout, "report_time: The frequency to send Device Defender reports in seconds (optional, default='60')\n");
+   fprintf(stdout, "count: The number of reports to send (optional, default='10')\n");
 }
 
 bool s_cmdOptionExists(char **begin, char **end, const String &option)
@@ -57,6 +61,13 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
    return 0;
 }
 
+int s_getCustomMetricNumber(int64_t *output, void* data)
+{
+    /** Set to a random number between -50 and 50 */
+    *output = (rand() % 100 + 1) - 50;
+    return AWS_OP_SUCCESS;
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -70,7 +81,9 @@ int main(int argc, char *argv[])
    String certificatePath;
    String keyPath;
    String caFile;
-   String topic("test/topic");
+   String thingName("TestThing");
+   int reportTime = 60u;
+   int count = 10;
    String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
    /*********************** Parse Arguments ***************************/
@@ -102,6 +115,31 @@ int main(int argc, char *argv[])
    {
        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
    }
+   if (s_cmdOptionExists(argv, argv + argc, "--thing_name"))
+   {
+       thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
+   }
+   if (s_cmdOptionExists(argv, argv + argc, "--report_time"))
+   {
+       int reportTimeTmp = atoi(s_getCmdOption(argv, argv + argc, "--report_time"));
+       if (reportTimeTmp > 0) {
+           reportTime = reportTimeTmp;
+       }
+   }
+   if (s_cmdOptionExists(argv, argv + argc, "--count"))
+   {
+       int countTmp = atoi(s_getCmdOption(argv, argv + argc, "--count"));
+       if (countTmp > 0) {
+           count = countTmp;
+       }
+   }
+
+   // TMP TEST
+   fprintf(stdout, "Random Number 01: %d\n", rand() % 100 + 1);
+   fprintf(stdout, "Random Number 02: %d\n", rand() % 100 + 1);
+   fprintf(stdout, "Random Number 03: %d\n", rand() % 100 + 1);
+   fprintf(stdout, "Random Number 04: %d\n", rand() % 100 + 1);
+   // TMP TEST
 
    /********************** Now Setup an Mqtt Client ******************/
    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
@@ -187,7 +225,7 @@ int main(int argc, char *argv[])
            }
            else
            {
-               fprintf(stdout, "Connection completed successfully.");
+               fprintf(stdout, "Connection completed successfully.\n");
                connectionCompletedPromise.set_value(true);
            }
        }
@@ -226,37 +264,10 @@ int main(int argc, char *argv[])
 
    if (connectionCompletedPromise.get_future().get())
    {
-       std::mutex receiveMutex;
-       std::condition_variable receiveSignal;
-       uint32_t receivedCount = 0;
-
-       /*
-        * This is invoked upon the receipt of a Publish on a subscribed topic.
-        */
-       auto onMessage = [&](Mqtt::MqttConnection &,
-                            const String &topic,
-                            const ByteBuf &byteBuf,
-                            bool /*dup*/,
-                            Mqtt::QOS /*qos*/,
-                            bool /*retain*/) {
-           {
-               std::lock_guard<std::mutex> lock(receiveMutex);
-               ++receivedCount;
-               fprintf(stdout, "Publish #%d received on topic %s\n", receivedCount, topic.c_str());
-               fprintf(stdout, "Message: ");
-               fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
-               fprintf(stdout, "\n");
-           }
-
-           receiveSignal.notify_all();
-       };
-
+       // Device defender setup and metric registration
        // ======================================================================
        Aws::Crt::Allocator *allocator = Aws::Crt::DefaultAllocator();
        Aws::Crt::Io::EventLoopGroup *eventLoopGroup = Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup();
-       const Aws::Crt::String thingName("TestThing");
-
-       int result = -1;
 
        bool callbackSuccess = false;
        auto onCancelled = [&](void *a) -> void {
@@ -265,98 +276,49 @@ int main(int argc, char *argv[])
        };
 
        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, thingName);
-       taskBuilder.WithTaskPeriodSeconds((uint32_t)1UL)
-           .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
+       taskBuilder.WithTaskPeriodSeconds((uint32_t)reportTime)
+           .WithNetworkConnectionSamplePeriodSeconds((uint32_t)reportTime)
            .WithTaskCancelledHandler(onCancelled)
            .WithTaskCancellationUserData(&callbackSuccess);
-
        std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-       // ================
-       // Add the custom metric
-       aws_iotdevice_defender_get_number_fn *local_metric_func = [](int64_t *output, void* data) {
+       // Add the custom metrics
+       aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](int64_t *output, void* data) {
            *output = 10;
            fprintf(stdout, "\nGet custom metric number called!!!\n");
            return AWS_OP_SUCCESS;
        };
-       task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_One"), local_metric_func);
+       task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_One"), s_localGetCustomMetricNumber);
+       task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_Two"), &s_getCustomMetricNumber);
 
-       /*
-       ASSERT_INT_EQUALS(
-           AWS_OP_SUCCESS,
-           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber_Two"), &global_metric_func));
-        */
-       // ================
-
-       result = task->StartTask();
-       fprintf(stdout, "\n\nDevice Defender Result: %d\n\n", result);
-       if ((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running == (int)task->GetStatus()) {
-           fprintf(stdout, "\n\nDevice Defender Task is running\n\n");
+       // Start the Device Defender task
+       if (task->StartTask() != AWS_OP_SUCCESS) {
+           fprintf(stdout, "Device Defender failed to initialize task.\n");
+           exit(-1);
        } else {
-           fprintf(stdout, "\n\nDevice Defender Task is NOT running\n\n");
+           fprintf(stdout, "Device Defender initialized.\n");
+       }
+
+       if ((int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
+       {
+           fprintf(stdout, "Device Defender task running.\n");
+       }
+       else
+       {
+           fprintf(stdout, "Device Defender task in unknown status. Status: %d\n", (int)task->GetStatus());
+           exit(-1);
        }
        // ======================================================================
 
-       /*
-        * Subscribe for incoming publish messages on topic.
-        */
-       std::promise<void> subscribeFinishedPromise;
-       auto onSubAck =
-           [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-           if (errorCode)
-           {
-               fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
-               exit(-1);
-           }
-           else
-           {
-               if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
-               {
-                   fprintf(stderr, "Subscribe rejected by the broker.");
-                   exit(-1);
-               }
-               else
-               {
-                   fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
-               }
-           }
-           subscribeFinishedPromise.set_value();
-
-           // FOR TESTING
-           //task->StopTask();
-       };
-
-       connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
-       subscribeFinishedPromise.get_future().wait();
-
        uint32_t publishedCount = 0;
-       while (publishedCount < 2)
+       while (publishedCount < count && (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
        {
-           String messagePayload = "test";
-           ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
-
-           auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
-           connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
            ++publishedCount;
-
-           //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-           std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+           fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
+           std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
        }
 
-       {
-           std::unique_lock<std::mutex> receivedLock(receiveMutex);
-           receiveSignal.wait(receivedLock, [&] { return receivedCount >= 2; });
-       }
-
-       /*
-        * Unsubscribe from the topic.
-        */
-       std::promise<void> unsubscribeFinishedPromise;
-       connection->Unsubscribe(
-           topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
-       unsubscribeFinishedPromise.get_future().wait();
-
-       // FOR TESTING
+       // Stop the task so we stop sending device defender metrics
        task->StopTask();
 
        /* Disconnect */
