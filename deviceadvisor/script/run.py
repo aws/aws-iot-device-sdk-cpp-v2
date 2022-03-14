@@ -61,7 +61,7 @@ try:
     os.environ["DA_THING_NAME"] = thing_name
     
 except Exception as e:
-    print("[Device Advisor]Error: Failed to create thing: " + thing_name, , flush=True)
+    print("[Device Advisor]Error: Failed to create thing: " + thing_name, flush=True)
     exit(-1)
 
 
