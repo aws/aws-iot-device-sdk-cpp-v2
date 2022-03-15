@@ -198,6 +198,7 @@ namespace Aws
 
         int ReportTask::s_getCustomMetricCpuUsage(int64_t *output, void *data)
         {
+            (void)(data); // prevent warnings over unused parameter
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
             int return_result = AWS_OP_ERR;
@@ -251,6 +252,11 @@ namespace Aws
             unsigned long long *totalSystem,
             unsigned long long *totalIdle)
         {
+            *totalUser = 0; // prevent warnings over unused parameter on Windows and Mac
+            *totalUserLow = 0; // prevent warnings over unused parameter on Windows and Mac
+            *totalSystem = 0; // prevent warnings over unused parameter on Windows and Mac
+            *totalIdle = 0; // prevent warnings over unused parameter on Windows and Mac
+
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
             FILE *file;
@@ -264,12 +270,6 @@ namespace Aws
             }
             return;
 #endif
-
-            // OS not supported? Set to zero.
-            s_cpuLastTotalUser = 0;
-            s_cpuLastTotalUserLow = 0;
-            s_cpuLastTotalSystem = 0;
-            s_cpuLastTotalIdle = 0;
         }
 
         int ReportTask::RegisterCustomMetricMemoryUsage()
@@ -280,6 +280,7 @@ namespace Aws
 
         int ReportTask::s_getCustomMetricMemoryUsage(int64_t *output, void *data)
         {
+            (void)(data); // prevent warnings over unused parameter
 // Get the Memory usage from Linux
 #if defined(__linux__) || defined(__unix__)
             struct sysinfo memoryInfo;
@@ -305,6 +306,7 @@ namespace Aws
 
         int ReportTask::s_getCustomMetricProcessorCount(int64_t *output, void *data)
         {
+            (void)(data); // prevent warnings over unused parameter
             *output = (int64_t)std::thread::hardware_concurrency();
             return AWS_OP_SUCCESS;
         }
