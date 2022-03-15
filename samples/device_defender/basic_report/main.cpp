@@ -95,9 +95,7 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
     cmdUtils.RegisterCommand(
-        "report_time",
-        "<int>",
-        "The frequency to send Device Defender reports in seconds (optional, default='60')");
+        "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
     cmdUtils.RegisterCommand("help", "", "Prints this message");
     const char **const_argv = (const char **)argv;
@@ -113,7 +111,7 @@ int main(int argc, char *argv[])
     certificatePath = cmdUtils.GetCommandRequired("cert");
     caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
     thingName = cmdUtils.GetCommandOrDefault("thing_name", thingName);
-    
+
     if (cmdUtils.HasCommand("report_time"))
     {
         int tmpReportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
