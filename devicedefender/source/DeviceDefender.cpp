@@ -252,10 +252,10 @@ namespace Aws
             unsigned long long *totalSystem,
             unsigned long long *totalIdle)
         {
-            *totalUser = 0; // prevent warnings over unused parameter on Windows and Mac
+            *totalUser = 0;    // prevent warnings over unused parameter on Windows and Mac
             *totalUserLow = 0; // prevent warnings over unused parameter on Windows and Mac
-            *totalSystem = 0; // prevent warnings over unused parameter on Windows and Mac
-            *totalIdle = 0; // prevent warnings over unused parameter on Windows and Mac
+            *totalSystem = 0;  // prevent warnings over unused parameter on Windows and Mac
+            *totalIdle = 0;    // prevent warnings over unused parameter on Windows and Mac
 
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
