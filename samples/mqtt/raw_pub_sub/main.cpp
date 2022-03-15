@@ -15,53 +15,9 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "raw-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
-        " --use_websocket --user_name <username> --password <password> --protocol_name <protocol> "
-        " --auth_params=<comma delimited list> --proxy_host <host> --proxy_port <port>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format. Don't use with use_websocket\n");
-    fprintf(stdout, "key: path to your key in PEM format. Dont use with use_websocket\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
-    fprintf(stdout, "client_id: client id to use (optional)\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
-    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
-    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
-    fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
-    fprintf(stdout, "password: Password to send with mqtt connect.\n");
-    fprintf(stdout, "protocol_name: (optional) defaults to x-amzn-mqtt-ca.\n");
-    fprintf(
-        stdout,
-        "auth_params: (optional) Comma delimited list of auth parameters. For websockets these will be set as headers. "
-        "For raw mqtt these will be appended to user_name.\n\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -91,73 +47,58 @@ int main(int argc, char *argv[])
     bool useWebSocket = false;
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("raw_pub_sub");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonProxyCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.AddCommonWebsocketCommands();
+    cmdUtils.RemoveCommand("message");
+    cmdUtils.RemoveCommand("region");
+    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
+    cmdUtils.RegisterCommand("user_name", "<str>", "User name to send with mqtt connect.");
+    cmdUtils.RegisterCommand("password", "<str>", "Password to send with mqtt connect.");
+    cmdUtils.RegisterCommand(
+        "protocol_name", "<str>", "The X.509 client certificate auth (optional, default='x-amzn-mqtt-ca').");
+    cmdUtils.RegisterCommand(
+        "auth_params",
+        "<comma delimited list>",
+        "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
+    cmdUtils.RegisterCommand(Utils::CommandLineOption("help", "", "Prints this message"));
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--key"))
+    if (cmdUtils.HasCommand("help"))
     {
-        keyPath = s_getCmdOption(argv, argv + argc, "--key");
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--cert"))
-    {
-        certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    }
-    if (s_getCmdOption(argv, argv + argc, "--topic"))
-    {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--client_id"))
-    {
-        clientId = s_getCmdOption(argv, argv + argc, "--client_id");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--use_websocket"))
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    keyPath = cmdUtils.GetCommandOrDefault("key", keyPath);
+    certificatePath = cmdUtils.GetCommandOrDefault("cert", certificatePath);
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    clientId = cmdUtils.GetCommandOrDefault("client_id", clientId);
+    if (cmdUtils.HasCommand("use_websocket"))
     {
         protocolName = "http/1.1";
         useWebSocket = true;
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    if (cmdUtils.HasCommand("proxy_port"))
     {
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-    {
-        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        int port = atoi(cmdUtils.GetCommand("proxy_port").c_str());
         if (port > 0 && port <= UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
         }
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--user_name"))
+    userName = cmdUtils.GetCommandOrDefault("user_name", userName);
+    password = cmdUtils.GetCommandOrDefault("password", password);
+    protocolName = cmdUtils.GetCommandOrDefault("protocol_name", protocolName);
+    if (cmdUtils.HasCommand("auth_params"))
     {
-        userName = s_getCmdOption(argv, argv + argc, "--user_name");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--password"))
-    {
-        password = s_getCmdOption(argv, argv + argc, "--password");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--protocol_name"))
-    {
-        protocolName = s_getCmdOption(argv, argv + argc, "--protocol_name");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--auth_params"))
-    {
-        String params = s_getCmdOption(argv, argv + argc, "--auth_params");
+        String params = cmdUtils.GetCommand("auth_params");
         ByteCursor commaDelimitedParams = ByteCursorFromCString(params.c_str());
         ByteCursor split;
         AWS_ZERO_STRUCT(split);
@@ -226,13 +167,13 @@ int main(int argc, char *argv[])
                     AWS_ZERO_STRUCT(nameOrValue);
                     if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
                     {
-                        s_printHelp();
+                        cmdUtils.PrintHelp();
                         exit(-1);
                     }
                     header.name = nameOrValue;
                     if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
                     {
-                        s_printHelp();
+                        cmdUtils.PrintHelp();
                         exit(-1);
                     }
                     header.value = nameOrValue;
