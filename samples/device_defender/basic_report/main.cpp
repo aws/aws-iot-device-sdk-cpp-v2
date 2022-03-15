@@ -321,7 +321,7 @@ int main(int argc, char *argv[])
             aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
         task->RegisterCustomMetricIpAddressList(
             aws_byte_cursor_from_c_str("CustomIPList"), s_getCustomMetricIPAddressList);
-        
+
         // Send additional device custom metrics
         task->RegisterCustomMetricCpuUsage();
         task->RegisterCustomMetricMemoryUsage();

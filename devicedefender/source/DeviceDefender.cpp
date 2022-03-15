@@ -9,8 +9,8 @@
 #include <aws/iotdevicedefender/DeviceDefender.h>
 
 #if defined(__linux__) || defined(__unix__)
-#include <sys/types.h>
-#include <sys/sysinfo.h>
+#    include <sys/sysinfo.h>
+#    include <sys/types.h>
 #endif
 
 #include <thread>
@@ -73,7 +73,8 @@ namespace Aws
             }
 
             // Cache initial CPU usage
-            s_getCurrentCpuUsage(&s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
+            s_getCurrentCpuUsage(
+                &s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -197,8 +198,8 @@ namespace Aws
 
         int ReportTask::s_getCustomMetricCpuUsage(int64_t *output, void *data)
         {
-            // Get the CPU usage from Linux
-            #if defined(__linux__) || defined(__unix__)
+// Get the CPU usage from Linux
+#if defined(__linux__) || defined(__unix__)
             int return_result = AWS_OP_ERR;
             unsigned long long totalUser, totalUserLow, totalSystem, totalIdle, total;
             s_getCurrentCpuUsage(&totalUser, &totalUserLow, &totalSystem, &totalIdle);
@@ -212,7 +213,8 @@ namespace Aws
             }
             else
             {
-                total = (totalUser - s_cpuLastTotalUser) + (totalUserLow - s_cpuLastTotalUserLow) + (totalSystem - s_cpuLastTotalSystem);
+                total = (totalUser - s_cpuLastTotalUser) + (totalUserLow - s_cpuLastTotalUserLow) +
+                        (totalSystem - s_cpuLastTotalSystem);
                 percent = total;
                 total += totalIdle - s_cpuLastTotalIdle;
                 percent = (percent / total) * 100;
@@ -236,7 +238,7 @@ namespace Aws
             s_cpuLastTotalIdle = totalIdle;
 
             return return_result;
-            #endif
+#endif
 
             // OS not supported? Just return an error and set the output to 0
             *output = 0;
@@ -244,17 +246,19 @@ namespace Aws
         }
 
         void ReportTask::s_getCurrentCpuUsage(
-                unsigned long long *totalUser, unsigned long long *totalUserLow,
-                unsigned long long *totalSystem, unsigned long long *totalIdle)
+            unsigned long long *totalUser,
+            unsigned long long *totalUserLow,
+            unsigned long long *totalSystem,
+            unsigned long long *totalIdle)
         {
-            // Get the CPU usage from Linux
-            #if defined(__linux__) || defined(__unix__)
-            FILE* file;
+// Get the CPU usage from Linux
+#if defined(__linux__) || defined(__unix__)
+            FILE *file;
             file = fopen("/proc/stat", "r");
             fscanf(file, "cpu %llu %llu %llu %llu", totalUser, totalUserLow, totalSystem, totalIdle);
             fclose(file);
             return;
-            #endif
+#endif
 
             // OS not supported? Set to zero.
             s_cpuLastTotalUser = 0;
@@ -265,13 +269,14 @@ namespace Aws
 
         int ReportTask::RegisterCustomMetricMemoryUsage()
         {
-            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("memory_usage"), &s_getCustomMetricMemoryUsage);
+            return RegisterCustomMetricNumber(
+                aws_byte_cursor_from_c_str("memory_usage"), &s_getCustomMetricMemoryUsage);
         }
 
         int ReportTask::s_getCustomMetricMemoryUsage(int64_t *output, void *data)
         {
-            // Get the Memory usage from Linux
-            #if defined(__linux__) || defined(__unix__)
+// Get the Memory usage from Linux
+#if defined(__linux__) || defined(__unix__)
             struct sysinfo memoryInfo;
             sysinfo(&memoryInfo);
             unsigned long long physicalMemoryUsed = memoryInfo.totalram - memoryInfo.freeram;
@@ -280,7 +285,7 @@ namespace Aws
             physicalMemoryUsed = physicalMemoryUsed / (1024);
             *output = (int64_t)physicalMemoryUsed;
             return AWS_OP_SUCCESS;
-            #endif
+#endif
 
             // OS not supported? Just return an error and set the output to 0
             *output = 0;
@@ -289,7 +294,8 @@ namespace Aws
 
         int ReportTask::RegisterCustomMetricProcessorCount()
         {
-            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("processor_count"), &s_getCustomMetricProcessorCount);
+            return RegisterCustomMetricNumber(
+                aws_byte_cursor_from_c_str("processor_count"), &s_getCustomMetricProcessorCount);
         }
 
         int ReportTask::s_getCustomMetricProcessorCount(int64_t *output, void *data)
