@@ -254,9 +254,14 @@ namespace Aws
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
             FILE *file;
+            int matchedResults;
             file = fopen("/proc/stat", "r");
-            fscanf(file, "cpu %llu %llu %llu %llu", totalUser, totalUserLow, totalSystem, totalIdle);
+            matchedResults = fscanf(file, "cpu %llu %llu %llu %llu", totalUser, totalUserLow, totalSystem, totalIdle);
             fclose(file);
+            if (matchedResults == EOF || matchedResults != 4)
+            {
+                aws_raise_error(AWS_ERROR_IOTDEVICE_DEFENDER_INVALID_REPORT_INTERVAL);
+            }
             return;
 #endif
 
