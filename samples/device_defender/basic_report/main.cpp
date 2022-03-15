@@ -71,10 +71,10 @@ int s_getCustomMetricNumber(int64_t *output, void *data)
 int s_getCustomMetricNumberList(aws_array_list *output, void *data)
 {
     aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(int64_t *));
-    int64_t s_metricListNumberOne = 7;
-    int64_t s_metricListNumberTwo = 8;
-    int64_t s_metricListNumberThree = 9;
-    int64_t s_metricListNumberFour = 10;
+    int64_t s_metricListNumberOne = 1;
+    int64_t s_metricListNumberTwo = 2;
+    int64_t s_metricListNumberThree = 3;
+    int64_t s_metricListNumberFour = 4;
     aws_array_list_push_back(output, &s_metricListNumberOne);
     aws_array_list_push_back(output, &s_metricListNumberTwo);
     aws_array_list_push_back(output, &s_metricListNumberThree);
@@ -321,6 +321,11 @@ int main(int argc, char *argv[])
             aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
         task->RegisterCustomMetricIpAddressList(
             aws_byte_cursor_from_c_str("CustomIPList"), s_getCustomMetricIPAddressList);
+        
+        // Send additional device custom metrics
+        task->RegisterCustomMetricCpuUsage();
+        task->RegisterCustomMetricMemoryUsage();
+        task->RegisterCustomMetricProcessorCount();
 
         // Start the Device Defender task
         if (task->StartTask() != AWS_OP_SUCCESS)

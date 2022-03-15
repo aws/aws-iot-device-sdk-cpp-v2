@@ -599,11 +599,14 @@ On startup, the sample will make a MQTT connection and a Device Defender task to
 You will need to create a **Security Profile** to see the metric results in the AWS console. You can create a Security Profile by going to `Detect -> Security Profiles` from the AWS IOT Console. To see the custom metrics, you will need to add them in `Detect -> Metrics` and then press the `Create` button to make a new custom metric.
 
 This sample uses the following custom metrics:
-* `CustomNumber` - type: `number`.
-* `CustomNumberTwo` - type `number`.
-* `CustomNumberList` - type `number-list`.
-* `CustomStringList` - type `string-list`.
-* `CustomIPList` - type `ip-list`.
+* `CustomNumber` - type: `number` info: always sends the number `10`.
+* `CustomNumberTwo` - type `number` info: sends a random number from `-50` to `50`.
+* `CustomNumberList` - type `number-list` info: sends a predefined list of numbers.
+* `CustomStringList` - type `string-list` info: sends a predefined list of strings.
+* `CustomIPList` - type `ip-list` info: sends a predefined list of documentation IP addresses.
+* `cpu_usage` - type `number` info: sends the device CPU usage as a percentage.
+* `memory_usage` - type `number` info: sends the device memory usage in kilobytes.
+* `processor_count` - type `number` info: sends the device processor count.
 
 **Note:** This sample **only runs on Linux**. Device Defender is only supported on Linux.
 

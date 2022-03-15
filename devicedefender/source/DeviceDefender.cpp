@@ -8,6 +8,13 @@
 #include <aws/common/clock.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
 
+#if defined(__linux__) || defined(__unix__)
+#include <sys/types.h>
+#include <sys/sysinfo.h>
+#endif
+
+#include <thread>
+
 namespace Aws
 {
     namespace Crt
@@ -17,6 +24,11 @@ namespace Aws
 
     namespace Iotdevicedefenderv1
     {
+        // Define statics
+        unsigned long long ReportTask::s_cpuLastTotalUser = 0;
+        unsigned long long ReportTask::s_cpuLastTotalUserLow = 0;
+        unsigned long long ReportTask::s_cpuLastTotalSystem = 0;
+        unsigned long long ReportTask::s_cpuLastTotalIdle = 0;
 
         void ReportTask::s_onDefenderV1TaskCancelled(void *userData)
         {
@@ -59,6 +71,9 @@ namespace Aws
             {
                 m_lastError = aws_last_error();
             }
+
+            // Cache initial CPU usage
+            s_getCurrentCpuUsage(&s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -173,6 +188,114 @@ namespace Aws
         {
             return aws_iotdevice_defender_config_register_ip_list_metric(
                 m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_ip_list_fn *>(), this);
+        }
+
+        int ReportTask::RegisterCustomMetricCpuUsage()
+        {
+            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
+        }
+
+        int ReportTask::s_getCustomMetricCpuUsage(int64_t *output, void *data)
+        {
+            // Get the CPU usage from Linux
+            #if defined(__linux__) || defined(__unix__)
+            int return_result = AWS_OP_ERR;
+            unsigned long long totalUser, totalUserLow, totalSystem, totalIdle, total;
+            s_getCurrentCpuUsage(&totalUser, &totalUserLow, &totalSystem, &totalIdle);
+            double percent;
+
+            // Overflow detection
+            if (totalUser < s_cpuLastTotalUser || totalUserLow < s_cpuLastTotalUserLow ||
+                totalSystem < s_cpuLastTotalSystem || totalIdle < s_cpuLastTotalIdle)
+            {
+                *output = 0;
+            }
+            else
+            {
+                total = (totalUser - s_cpuLastTotalUser) + (totalUserLow - s_cpuLastTotalUserLow) + (totalSystem - s_cpuLastTotalSystem);
+                percent = total;
+                total += totalIdle - s_cpuLastTotalIdle;
+                percent = (percent / total) * 100;
+
+                // If percent is negative, then there was an error (overflow?)
+                if (percent < 0)
+                {
+                    *output = 0;
+                    return_result = AWS_OP_ERR;
+                }
+                else
+                {
+                    *output = (int64_t)percent;
+                    return_result = AWS_OP_SUCCESS;
+                }
+            }
+
+            s_cpuLastTotalUser = totalUser;
+            s_cpuLastTotalUserLow = totalUserLow;
+            s_cpuLastTotalSystem = totalSystem;
+            s_cpuLastTotalIdle = totalIdle;
+
+            return return_result;
+            #endif
+
+            // OS not supported? Just return an error and set the output to 0
+            *output = 0;
+            return AWS_OP_ERR;
+        }
+
+        void ReportTask::s_getCurrentCpuUsage(
+                unsigned long long *totalUser, unsigned long long *totalUserLow,
+                unsigned long long *totalSystem, unsigned long long *totalIdle)
+        {
+            // Get the CPU usage from Linux
+            #if defined(__linux__) || defined(__unix__)
+            FILE* file;
+            file = fopen("/proc/stat", "r");
+            fscanf(file, "cpu %llu %llu %llu %llu", totalUser, totalUserLow, totalSystem, totalIdle);
+            fclose(file);
+            return;
+            #endif
+
+            // OS not supported? Set to zero.
+            s_cpuLastTotalUser = 0;
+            s_cpuLastTotalUserLow = 0;
+            s_cpuLastTotalSystem = 0;
+            s_cpuLastTotalIdle = 0;
+        }
+
+        int ReportTask::RegisterCustomMetricMemoryUsage()
+        {
+            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("memory_usage"), &s_getCustomMetricMemoryUsage);
+        }
+
+        int ReportTask::s_getCustomMetricMemoryUsage(int64_t *output, void *data)
+        {
+            // Get the Memory usage from Linux
+            #if defined(__linux__) || defined(__unix__)
+            struct sysinfo memoryInfo;
+            sysinfo(&memoryInfo);
+            unsigned long long physicalMemoryUsed = memoryInfo.totalram - memoryInfo.freeram;
+            physicalMemoryUsed *= memoryInfo.mem_unit;
+            // Return data in Kilobytes
+            physicalMemoryUsed = physicalMemoryUsed / (1024);
+            *output = (int64_t)physicalMemoryUsed;
+            return AWS_OP_SUCCESS;
+            #endif
+
+            // OS not supported? Just return an error and set the output to 0
+            *output = 0;
+            return AWS_OP_ERR;
+        }
+
+        int ReportTask::RegisterCustomMetricProcessorCount()
+        {
+            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("processor_count"), &s_getCustomMetricProcessorCount);
+        }
+
+        int ReportTask::s_getCustomMetricProcessorCount(int64_t *output, void *data)
+        {
+            *output = (int64_t)std::thread::hardware_concurrency();
+            return AWS_OP_SUCCESS;
         }
 
         ReportTaskBuilder::ReportTaskBuilder(

@@ -188,6 +188,34 @@ namespace Aws
             int RegisterCustomMetricIpAddressList(
                 aws_byte_cursor metricName,
                 std::function<int(aws_array_list *, void *)> *metricFunc);
+            
+            /**
+             * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
+             * "cpu_usage". Calling this function will make the task report CPU usage each time a report is generated.
+             * 
+             * Note: The CPU usage reported is in percentage ("12" = 12% CPU)
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             */
+            int RegisterCustomMetricCpuUsage();
+
+            /**
+             * Registers a custom metric number that will report the RAM memory usage automatically into a custom metric called
+             * "memory_usage". Calling this function will make the task report memory usage each time a report is generated.
+             * 
+             * Note: The memory usage reported is in kilobytes.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             */
+            int RegisterCustomMetricMemoryUsage();
+
+            /**
+             * Registers a custom metric number that will report the number of processors automatically into a custom metric called
+             * "processor_count". Calling this function will make the task report processor count each time a report is generated.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             */
+            int RegisterCustomMetricProcessorCount();
 
           private:
             Crt::Allocator *m_allocator;
@@ -210,6 +238,39 @@ namespace Aws
                 void *cancellationUserdata = nullptr) noexcept;
 
             static void s_onDefenderV1TaskCancelled(void *userData);
+
+            /**
+             * Reports CPU usage to the custom metric
+             */
+            static int s_getCustomMetricCpuUsage(int64_t *output, void *data);
+
+            /**
+             * A helper function to get the CPU usage from the computer and populate the passed-in unsigned long long pointers.
+             * @param totalUser The total user CPU usage
+             * @param totalUserLow The low total user CPU usage
+             * @param totalSystem The total system CPU usage
+             * @param totalIdle The total idle CPU usage
+             */
+            static void s_getCurrentCpuUsage(
+                unsigned long long *totalUser, unsigned long long *totalUserLow,
+                unsigned long long *totalSystem, unsigned long long *totalIdle);
+
+            /** Static variables to store the last CPU usage call. */
+            static unsigned long long s_cpuLastTotalUser;
+            static unsigned long long s_cpuLastTotalUserLow;
+            static unsigned long long s_cpuLastTotalSystem;
+            static unsigned long long s_cpuLastTotalIdle;
+
+            /**
+             * Reports physical memory usage to the custom metric.
+             */
+            static int s_getCustomMetricMemoryUsage(int64_t *output, void *data);
+
+            /**
+             * Reports processor count to the custom metric
+             */
+            static int s_getCustomMetricProcessorCount(int64_t *output, void *data);
+            
         };
 
         /**
