@@ -21,45 +21,9 @@
 
 #include <aws/crt/Api.h>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "basic-report --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --ca_file <optional: path to custom ca>"
-        "--thing_name <str> --report_time <int> --count <int>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(
-        stdout,
-        "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "thing_name: The name of your IoT thing (optional, default='TestThing')\n");
-    fprintf(stdout, "report_time: The frequency to send Device Defender reports in seconds (optional, default='60')\n");
-    fprintf(stdout, "count: The number of reports to send (optional, default='10')\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int s_getCustomMetricNumber(int64_t *output, void *data)
 {
@@ -129,52 +93,44 @@ int main(int argc, char *argv[])
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
-    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
-    {
-        s_printHelp();
-        return 1;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("basic-report");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
+    cmdUtils.RegisterCommand(
+        "report_time",
+        "<int>",
+        "The frequency to send Device Defender reports in seconds (optional, default='60')");
+    cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--key"))
+    if (cmdUtils.HasCommand("help"))
     {
-        keyPath = s_getCmdOption(argv, argv + argc, "--key");
+        cmdUtils.PrintHelp();
+        exit(-1);
     }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--cert"))
+    endpoint = cmdUtils.GetCommandRequired("endpoint");
+    keyPath = cmdUtils.GetCommandRequired("key");
+    certificatePath = cmdUtils.GetCommandRequired("cert");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    thingName = cmdUtils.GetCommandOrDefault("thing_name", thingName);
+    
+    if (cmdUtils.HasCommand("report_time"))
     {
-        certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    }
-
-    if (keyPath.empty() || certificatePath.empty())
-    {
-        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and the private key\n");
-        s_printHelp();
-        return 1;
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--thing_name"))
-    {
-        thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-    }
-    if (s_cmdOptionExists(argv, argv + argc, "--report_time"))
-    {
-        int reportTimeTmp = atoi(s_getCmdOption(argv, argv + argc, "--report_time"));
-        if (reportTimeTmp > 0)
+        int tmpReportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
+        if (tmpReportTime > 0)
         {
-            reportTime = reportTimeTmp;
+            reportTime = tmpReportTime;
         }
     }
-    if (s_cmdOptionExists(argv, argv + argc, "--count"))
+    if (cmdUtils.HasCommand("count"))
     {
-        int countTmp = atoi(s_getCmdOption(argv, argv + argc, "--count"));
-        if (countTmp > 0)
+        int tmpCount = atoi(cmdUtils.GetCommand("count").c_str());
+        if (tmpCount > 0)
         {
-            count = countTmp;
+            count = tmpCount;
         }
     }
 
