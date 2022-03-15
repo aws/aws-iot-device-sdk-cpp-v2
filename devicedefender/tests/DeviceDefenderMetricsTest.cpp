@@ -1,7 +1,7 @@
 /**
-* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-* SPDX-License-Identifier: Apache-2.0.
-*/
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include "aws/common/error.h"
 #include <aws/crt/Api.h>
 
@@ -10,15 +10,16 @@
 #include <aws/testing/aws_test_harness.h>
 #include <utility>
 
-int global_metric_func(int64_t *output, void* data) {
+int global_metric_func(int64_t *output, void *data)
+{
     *output = 10;
     return AWS_OP_SUCCESS;
 };
 
 static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocator, void *ctx)
 {
-   (void)ctx;
-   {
+    (void)ctx;
+    {
         Aws::Crt::ApiHandle apiHandle(allocator);
         Aws::Iotdevicecommon::DeviceApiHandle deviceApiHandle(allocator);
         Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
@@ -41,34 +42,34 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         bool taskStopped = false;
 
         auto onCancelled = [&](void *a) -> void {
-           auto *data = reinterpret_cast<bool *>(a);
-           *data = true;
-           taskStopped = true;
-           cv.notify_one();
+            auto *data = reinterpret_cast<bool *>(a);
+            *data = true;
+            taskStopped = true;
+            cv.notify_one();
         };
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, mqttConnection, eventLoopGroup, thingName);
         taskBuilder.WithTaskPeriodSeconds((uint32_t)1UL)
-           .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
-           .WithTaskCancelledHandler(onCancelled)
-           .WithTaskCancellationUserData(&callbackSuccess);
+            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
+            .WithTaskCancelledHandler(onCancelled)
+            .WithTaskCancellationUserData(&callbackSuccess);
 
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // ================
         // Add the custom metrics
-        aws_iotdevice_defender_get_number_fn *local_metric_func = [](int64_t *output, void* data) {
-           *output = 10;
+        aws_iotdevice_defender_get_number_fn *local_metric_func = [](int64_t *output, void *data) {
+            *output = 10;
             return AWS_OP_SUCCESS;
         };
         ASSERT_INT_EQUALS(
-           AWS_OP_SUCCESS,
-           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_func));
+            AWS_OP_SUCCESS,
+            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_func));
         ASSERT_INT_EQUALS(
-           AWS_OP_SUCCESS,
-           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &global_metric_func));
-        
-        aws_iotdevice_defender_get_number_list_fn *local_metric_list_func = [](aws_array_list* output, void* data) {
+            AWS_OP_SUCCESS,
+            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &global_metric_func));
+
+        aws_iotdevice_defender_get_number_list_fn *local_metric_list_func = [](aws_array_list *output, void *data) {
             aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(int64_t *));
             int64_t list_num_01 = 101;
             int64_t list_num_02 = 102;
@@ -80,9 +81,10 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         ASSERT_INT_EQUALS(
             AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_list_func));
-        
-        aws_iotdevice_defender_get_string_list_fn *local_metric_str_list_func = [](aws_array_list* output, void* data) {
+            task->RegisterCustomMetricNumberList(
+                aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_list_func));
+
+        aws_iotdevice_defender_get_string_list_fn *local_metric_str_list_func = [](aws_array_list *output, void *data) {
             aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
             aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
             aws_array_list_push_back(output, &list_str_01);
@@ -96,10 +98,10 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         ASSERT_INT_EQUALS(
             AWS_OP_SUCCESS,
-            task->RegisterCustomMetricStringList(aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func));
-        
+            task->RegisterCustomMetricStringList(
+                aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func));
 
-        aws_iotdevice_defender_get_string_list_fn *local_metric_ip_list_func = [](aws_array_list* output, void* data) {
+        aws_iotdevice_defender_get_string_list_fn *local_metric_ip_list_func = [](aws_array_list *output, void *data) {
             aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
             aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
             aws_array_list_push_back(output, &list_str_01);
@@ -113,7 +115,8 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         ASSERT_INT_EQUALS(
             AWS_OP_SUCCESS,
-            task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func));
+            task->RegisterCustomMetricIpAddressList(
+                aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func));
 
         // ================
 
@@ -140,17 +143,16 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         ASSERT_FALSE(mqttClient);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
-   }
+    }
 
-   return AWS_ERROR_SUCCESS;
+    return AWS_ERROR_SUCCESS;
 }
 AWS_TEST_CASE(DeviceDefenderCustomMetricSuccess, s_TestDeviceDefenderCustomMetricSuccess)
 
-
 static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, void *ctx)
 {
-   (void)ctx;
-   {
+    (void)ctx;
+    {
         Aws::Crt::ApiHandle apiHandle(allocator);
         Aws::Iotdevicecommon::DeviceApiHandle deviceApiHandle(allocator);
         Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
@@ -173,28 +175,28 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         bool taskStopped = false;
 
         auto onCancelled = [&](void *a) -> void {
-           auto *data = reinterpret_cast<bool *>(a);
-           *data = true;
-           taskStopped = true;
-           cv.notify_one();
+            auto *data = reinterpret_cast<bool *>(a);
+            *data = true;
+            taskStopped = true;
+            cv.notify_one();
         };
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, mqttConnection, eventLoopGroup, thingName);
         taskBuilder.WithTaskPeriodSeconds((uint32_t)1UL)
-           .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
-           .WithTaskCancelledHandler(onCancelled)
-           .WithTaskCancellationUserData(&callbackSuccess);
+            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
+            .WithTaskCancelledHandler(onCancelled)
+            .WithTaskCancellationUserData(&callbackSuccess);
 
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the error custom metric
-        aws_iotdevice_defender_get_number_fn *number_metric_func = [](int64_t *output, void* data) {
-           *output = 10;
+        aws_iotdevice_defender_get_number_fn *number_metric_func = [](int64_t *output, void *data) {
+            *output = 10;
             return AWS_OP_ERR;
         };
         ASSERT_INT_EQUALS(
-           AWS_OP_SUCCESS,
-           task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), number_metric_func));
+            AWS_OP_SUCCESS,
+            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), number_metric_func));
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
 
@@ -215,7 +217,7 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         ASSERT_FALSE(mqttClient);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
-   }
-   return AWS_ERROR_SUCCESS;
+    }
+    return AWS_ERROR_SUCCESS;
 }
 AWS_TEST_CASE(DeviceDefenderCustomMetricFail, s_TestDeviceDefenderCustomMetricFail)

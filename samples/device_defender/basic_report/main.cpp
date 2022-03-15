@@ -1,7 +1,7 @@
 /**
-* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-* SPDX-License-Identifier: Apache-2.0.
-*/
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/auth/Credentials.h>
@@ -61,14 +61,14 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
     return 0;
 }
 
-int s_getCustomMetricNumber(int64_t *output, void* data)
+int s_getCustomMetricNumber(int64_t *output, void *data)
 {
     /** Set to a random number between -50 and 50 */
     *output = (rand() % 100 + 1) - 50;
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricNumberList(aws_array_list *output, void* data)
+int s_getCustomMetricNumberList(aws_array_list *output, void *data)
 {
     aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(int64_t *));
     int64_t s_metricListNumberOne = 7;
@@ -82,7 +82,7 @@ int s_getCustomMetricNumberList(aws_array_list *output, void* data)
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricStringList(aws_array_list *output, void* data)
+int s_getCustomMetricStringList(aws_array_list *output, void *data)
 {
     aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
     aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
@@ -96,7 +96,7 @@ int s_getCustomMetricStringList(aws_array_list *output, void* data)
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricIPAddressList(aws_array_list *output, void* data)
+int s_getCustomMetricIPAddressList(aws_array_list *output, void *data)
 {
     aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
     aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
@@ -113,7 +113,7 @@ int s_getCustomMetricIPAddressList(aws_array_list *output, void* data)
 int main(int argc, char *argv[])
 {
 
-   /************************ Setup the Lib ****************************/
+    /************************ Setup the Lib ****************************/
     /*
      * Do the global initialization for the API.
      */
@@ -164,21 +164,23 @@ int main(int argc, char *argv[])
     if (s_cmdOptionExists(argv, argv + argc, "--report_time"))
     {
         int reportTimeTmp = atoi(s_getCmdOption(argv, argv + argc, "--report_time"));
-        if (reportTimeTmp > 0) {
+        if (reportTimeTmp > 0)
+        {
             reportTime = reportTimeTmp;
         }
     }
     if (s_cmdOptionExists(argv, argv + argc, "--count"))
     {
         int countTmp = atoi(s_getCmdOption(argv, argv + argc, "--count"));
-        if (countTmp > 0) {
+        if (countTmp > 0)
+        {
             count = countTmp;
         }
     }
 
     /********************** Now Setup an Mqtt Client ******************/
     // To enable logging, uncomment the code below
-    //apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stdout);
+    // apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stdout);
 
     Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
@@ -254,7 +256,7 @@ int main(int argc, char *argv[])
     };
 
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-       fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
+        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
@@ -284,8 +286,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-   if (connectionCompletedPromise.get_future().get())
-   {
+    if (connectionCompletedPromise.get_future().get())
+    {
         // Device defender setup and metric registration
         // ======================================================================
         Aws::Crt::Allocator *allocator = Aws::Crt::DefaultAllocator();
@@ -293,35 +295,41 @@ int main(int argc, char *argv[])
 
         bool callbackSuccess = false;
         auto onCancelled = [&](void *a) -> void {
-           auto *data = reinterpret_cast<bool *>(a);
-           *data = true;
+            auto *data = reinterpret_cast<bool *>(a);
+            *data = true;
         };
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, thingName);
         taskBuilder.WithTaskPeriodSeconds((uint32_t)reportTime)
             .WithNetworkConnectionSamplePeriodSeconds((uint32_t)reportTime)
-           .WithTaskCancelledHandler(onCancelled)
-           .WithTaskCancellationUserData(&callbackSuccess);
+            .WithTaskCancelledHandler(onCancelled)
+            .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the custom metrics
         // (Inline function example)
-        aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](int64_t *output, void* data) {
-           *output = 10;
-           return AWS_OP_SUCCESS;
+        aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](int64_t *output, void *data) {
+            *output = 10;
+            return AWS_OP_SUCCESS;
         };
 
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &s_getCustomMetricNumber);
-        task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
-        task->RegisterCustomMetricStringList(aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
-        task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), s_getCustomMetricIPAddressList);
+        task->RegisterCustomMetricNumberList(
+            aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
+        task->RegisterCustomMetricStringList(
+            aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
+        task->RegisterCustomMetricIpAddressList(
+            aws_byte_cursor_from_c_str("CustomIPList"), s_getCustomMetricIPAddressList);
 
         // Start the Device Defender task
-        if (task->StartTask() != AWS_OP_SUCCESS) {
+        if (task->StartTask() != AWS_OP_SUCCESS)
+        {
             fprintf(stdout, "Device Defender failed to initialize task.\n");
             exit(-1);
-        } else {
+        }
+        else
+        {
             fprintf(stdout, "Device Defender initialized.\n");
         }
 
@@ -337,12 +345,14 @@ int main(int argc, char *argv[])
         // ======================================================================
 
         int publishedCount = 0;
-        while (publishedCount < count && (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
+        while (publishedCount < count &&
+               (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
             fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
 
-            if (publishedCount != count) {
+            if (publishedCount != count)
+            {
                 std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
             }
         }
@@ -355,11 +365,11 @@ int main(int argc, char *argv[])
         {
             connectionClosedPromise.get_future().wait();
         }
-   }
-   else
-   {
-       exit(-1);
-   }
+    }
+    else
+    {
+        exit(-1);
+    }
 
-   return 0;
+    return 0;
 }

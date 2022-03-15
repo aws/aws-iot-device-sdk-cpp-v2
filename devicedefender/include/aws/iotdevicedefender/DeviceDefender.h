@@ -78,100 +78,116 @@ namespace Aws
             int LastError() const noexcept { return m_lastError; }
 
             /**
-             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the number cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumber(aws_byte_cursor metricName, aws_iotdevice_defender_get_number_fn *metricFunc);
+            int RegisterCustomMetricNumber(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_number_fn *metricFunc);
 
             /**
-             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the number cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumber(aws_byte_cursor metricName, std::function<int(int64_t *, void*)> *metricFunc);
+            int RegisterCustomMetricNumber(
+                aws_byte_cursor metricName,
+                std::function<int(int64_t *, void *)> *metricFunc);
 
             /**
-             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the number list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumberList(aws_byte_cursor metricName, aws_iotdevice_defender_get_number_list_fn *metricFunc);
+            int RegisterCustomMetricNumberList(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_number_list_fn *metricFunc);
 
             /**
-             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the number list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumberList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc);
+            int RegisterCustomMetricNumberList(
+                aws_byte_cursor metricName,
+                std::function<int(aws_array_list *, void *)> *metricFunc);
 
             /**
-             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the string list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricStringList(aws_byte_cursor metricName, aws_iotdevice_defender_get_string_list_fn *metricFunc);
+            int RegisterCustomMetricStringList(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_string_list_fn *metricFunc);
 
             /**
-             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the string list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricStringList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc);
+            int RegisterCustomMetricStringList(
+                aws_byte_cursor metricName,
+                std::function<int(aws_array_list *, void *)> *metricFunc);
 
             /**
-             * Registers a custom metric IP address list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric IP address list function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the IP address list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricIpAddressList(aws_byte_cursor metricName, aws_iotdevice_defender_get_ip_list_fn *metricFunc);
+            int RegisterCustomMetricIpAddressList(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_ip_list_fn *metricFunc);
 
             /**
-             * Registers a custom metric IP address list function to the Device Defender result. Will call the "metricFunc" function
-             * that is passed in each time a report is generated so it's data can be passed along with the other device
-             * defender payload data with the metric name of "metricName".
+             * Registers a custom metric IP address list function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
              *          Will return AWS_OP_ERR if the IP address list cannot be registered or the data passed
              *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricIpAddressList(aws_byte_cursor metricName, std::function<int(aws_array_list *, void*)> *metricFunc);
+            int RegisterCustomMetricIpAddressList(
+                aws_byte_cursor metricName,
+                std::function<int(aws_array_list *, void *)> *metricFunc);
 
           private:
             Crt::Allocator *m_allocator;
