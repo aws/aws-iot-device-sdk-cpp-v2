@@ -606,7 +606,7 @@ This sample uses the following custom metrics:
 * `CustomIPList` - type `ip-list` info: sends a predefined list of documentation IP addresses.
 * `cpu_usage` - type `number` info: sends the device CPU usage as a percentage.
 * `memory_usage` - type `number` info: sends the device memory usage in kilobytes.
-* `processor_count` - type `number` info: sends the device processor count.
+* `process_count` - type `number` info: sends the number of processes on the device.
 
 **Note:** This sample **only runs on Linux**. Device Defender is only supported on Linux.
 

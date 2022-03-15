@@ -109,6 +109,8 @@ namespace Aws
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -123,6 +125,8 @@ namespace Aws
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -137,6 +141,8 @@ namespace Aws
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -151,6 +157,10 @@ namespace Aws
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
+             * 
+             * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -165,6 +175,10 @@ namespace Aws
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
              * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
              * with the other device defender payload data with the metric name of "metricName".
+             * 
+             * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -179,6 +193,8 @@ namespace Aws
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
              * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
              * with the other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
@@ -186,6 +202,66 @@ namespace Aws
              *          ("metricName" or "metricFunc") is incorrect.
              */
             int RegisterCustomMetricIpAddressList(
+                aws_byte_cursor metricName,
+                std::function<int(aws_array_list *, void *)> *metricFunc);
+            
+            /**
+             * Registers a custom metric double number function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the double number.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *          Will return AWS_OP_ERR if the double cannot be registered or the data passed
+             *          ("metricName" or "metricFunc") is incorrect.
+             */
+            int RegisterCustomMetricNumberDouble(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_number_double_fn *metricFunc);
+            
+            /**
+             * Registers a custom metric double number function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the double number.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *          Will return AWS_OP_ERR if the double cannot be registered or the data passed
+             *          ("metricName" or "metricFunc") is incorrect.
+             */
+            int RegisterCustomMetricNumberDouble(
+                aws_byte_cursor metricName,
+                std::function<int(double *, void *)> *metricFunc);
+            
+            /**
+             * Registers a custom metric double number list function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the double number list.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *          Will return AWS_OP_ERR if the double number list cannot be registered or the data passed
+             *          ("metricName" or "metricFunc") is incorrect.
+             */
+            int RegisterCustomMetricNumberDoubleList(
+                aws_byte_cursor metricName,
+                aws_iotdevice_defender_get_number_double_list_fn *metricFunc);
+            
+            /**
+             * Registers a custom metric double number list function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
+             * 
+             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the double number list.
+             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
+             *          Will return AWS_OP_ERR if the double number list cannot be registered or the data passed
+             *          ("metricName" or "metricFunc") is incorrect.
+             */
+            int RegisterCustomMetricNumberDoubleList(
                 aws_byte_cursor metricName,
                 std::function<int(aws_array_list *, void *)> *metricFunc);
 
@@ -206,18 +282,18 @@ namespace Aws
              *
              * Note: The memory usage reported is in kilobytes.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             *      Will return AWS_OP_ERR if the memory usage cannot be registered
              */
             int RegisterCustomMetricMemoryUsage();
 
             /**
-             * Registers a custom metric number that will report the number of processors automatically into a custom
-             * metric called "processor_count". Calling this function will make the task report processor count each
+             * Registers a custom metric number that will report the number of processes automatically into a custom
+             * metric called "process_count". Calling this function will make the task report processor count each
              * time a report is generated.
              * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             *      Will return AWS_OP_ERR if the process count cannot be registered
              */
-            int RegisterCustomMetricProcessorCount();
+            int RegisterCustomMetricProcessCount();
 
           private:
             Crt::Allocator *m_allocator;
@@ -244,7 +320,7 @@ namespace Aws
             /**
              * Reports CPU usage to the custom metric
              */
-            static int s_getCustomMetricCpuUsage(int64_t *output, void *data);
+            static int s_getCustomMetricCpuUsage(double *output, void *data);
 
             /**
              * A helper function to get the CPU usage from the computer and populate the passed-in unsigned long long
@@ -274,7 +350,7 @@ namespace Aws
             /**
              * Reports processor count to the custom metric
              */
-            static int s_getCustomMetricProcessorCount(int64_t *output, void *data);
+            static int s_getCustomMetricProcessCount(int64_t *output, void *data);
         };
 
         /**

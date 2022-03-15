@@ -34,11 +34,10 @@ int s_getCustomMetricNumber(int64_t *output, void *data)
 
 int s_getCustomMetricNumberList(aws_array_list *output, void *data)
 {
-    aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(int64_t *));
-    int64_t s_metricListNumberOne = 1;
-    int64_t s_metricListNumberTwo = 2;
-    int64_t s_metricListNumberThree = 3;
-    int64_t s_metricListNumberFour = 4;
+    double s_metricListNumberOne = 1.5;
+    double s_metricListNumberTwo = 2.2;
+    double s_metricListNumberThree = 3.9;
+    double s_metricListNumberFour = 4.1;
     aws_array_list_push_back(output, &s_metricListNumberOne);
     aws_array_list_push_back(output, &s_metricListNumberTwo);
     aws_array_list_push_back(output, &s_metricListNumberThree);
@@ -48,7 +47,6 @@ int s_getCustomMetricNumberList(aws_array_list *output, void *data)
 
 int s_getCustomMetricStringList(aws_array_list *output, void *data)
 {
-    aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
     aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
     aws_array_list_push_back(output, &list_str_01);
     aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Two Fish");
@@ -62,7 +60,6 @@ int s_getCustomMetricStringList(aws_array_list *output, void *data)
 
 int s_getCustomMetricIPAddressList(aws_array_list *output, void *data)
 {
-    aws_array_list_init_dynamic(output, Aws::Crt::DefaultAllocator(), 0, sizeof(aws_string *));
     aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
     aws_array_list_push_back(output, &list_str_01);
     aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "198.51.100.0");
@@ -135,9 +132,6 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    // To enable logging, uncomment the code below
-    // apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stdout);
-
     Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
     builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
@@ -264,14 +258,14 @@ int main(int argc, char *argv[])
 
         // Add the custom metrics
         // (Inline function example)
-        aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](int64_t *output, void *data) {
-            *output = 10;
+        aws_iotdevice_defender_get_number_double_fn *s_localGetCustomMetricNumber = [](double *output, void *data) {
+            *output = 8.2;
             return AWS_OP_SUCCESS;
         };
 
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
+        task->RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &s_getCustomMetricNumber);
-        task->RegisterCustomMetricNumberList(
+        task->RegisterCustomMetricNumberDoubleList(
             aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
         task->RegisterCustomMetricStringList(
             aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
@@ -281,7 +275,7 @@ int main(int argc, char *argv[])
         // Send additional device custom metrics
         task->RegisterCustomMetricCpuUsage();
         task->RegisterCustomMetricMemoryUsage();
-        task->RegisterCustomMetricProcessorCount();
+        task->RegisterCustomMetricProcessCount();
 
         // Start the Device Defender task
         if (task->StartTask() != AWS_OP_SUCCESS)

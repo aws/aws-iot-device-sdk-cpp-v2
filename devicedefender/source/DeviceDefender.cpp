@@ -13,8 +13,6 @@
 #    include <sys/types.h>
 #endif
 
-#include <thread>
-
 namespace Aws
 {
     namespace Crt
@@ -183,6 +181,7 @@ namespace Aws
         {
             return aws_iotdevice_defender_config_register_ip_list_metric(m_taskConfig, &metricName, metricFunc, this);
         }
+
         int ReportTask::RegisterCustomMetricIpAddressList(
             aws_byte_cursor metricName,
             std::function<int(aws_array_list *, void *)> *metricFunc)
@@ -191,12 +190,42 @@ namespace Aws
                 m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_ip_list_fn *>(), this);
         }
 
-        int ReportTask::RegisterCustomMetricCpuUsage()
+        int ReportTask::RegisterCustomMetricNumberDouble(
+            aws_byte_cursor metricName,
+            aws_iotdevice_defender_get_number_double_fn *metricFunc)
         {
-            return RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
+            return aws_iotdevice_defender_config_register_number_double_metric(m_taskConfig, &metricName, metricFunc, this);
+        }
+        
+        int ReportTask::RegisterCustomMetricNumberDouble(
+            aws_byte_cursor metricName,
+            std::function<int(double *, void *)> *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_number_double_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_double_fn *>(), this);
         }
 
-        int ReportTask::s_getCustomMetricCpuUsage(int64_t *output, void *data)
+        int ReportTask::RegisterCustomMetricNumberDoubleList(
+            aws_byte_cursor metricName,
+            aws_iotdevice_defender_get_number_double_list_fn *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_number_double_list_metric(m_taskConfig, &metricName, metricFunc, this);
+        }
+        
+        int ReportTask::RegisterCustomMetricNumberDoubleList(
+            aws_byte_cursor metricName,
+            std::function<int(aws_array_list *, void *)> *metricFunc)
+        {
+            return aws_iotdevice_defender_config_register_number_double_list_metric(
+                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_double_list_fn *>(), this);
+        }
+
+        int ReportTask::RegisterCustomMetricCpuUsage()
+        {
+            return RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
+        }
+
+        int ReportTask::s_getCustomMetricCpuUsage(double *output, void *data)
         {
             (void)(data); // prevent warnings over unused parameter
 // Get the CPU usage from Linux
@@ -228,7 +257,7 @@ namespace Aws
                 }
                 else
                 {
-                    *output = (int64_t)percent;
+                    *output = percent;
                     return_result = AWS_OP_SUCCESS;
                 }
             }
@@ -298,17 +327,25 @@ namespace Aws
             return AWS_OP_ERR;
         }
 
-        int ReportTask::RegisterCustomMetricProcessorCount()
+        int ReportTask::RegisterCustomMetricProcessCount()
         {
             return RegisterCustomMetricNumber(
-                aws_byte_cursor_from_c_str("processor_count"), &s_getCustomMetricProcessorCount);
+                aws_byte_cursor_from_c_str("process_count"), &s_getCustomMetricProcessCount);
         }
 
-        int ReportTask::s_getCustomMetricProcessorCount(int64_t *output, void *data)
+        int ReportTask::s_getCustomMetricProcessCount(int64_t *output, void *data)
         {
             (void)(data); // prevent warnings over unused parameter
-            *output = (int64_t)std::thread::hardware_concurrency();
+// Get the process count from Linux
+#if defined(__linux__) || defined(__unix__)
+            struct sysinfo systemInfo;
+            sysinfo(&systemInfo);
+            *output = (int64_t)systemInfo.procs;
             return AWS_OP_SUCCESS;
+#endif
+            // OS not supported? Just return an error and set the output to 0
+            *output = 0;
+            return AWS_OP_ERR;
         }
 
         ReportTaskBuilder::ReportTaskBuilder(
