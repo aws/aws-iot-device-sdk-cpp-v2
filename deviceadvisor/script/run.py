@@ -7,7 +7,7 @@ import platform
 from time import sleep
 import sys
 
-sys.stdout = open('da_test.output', 'w')
+# sys.stdout = open('da_test.output', 'w')
 
 ##############################################
 # Cleanup Certificates and Things and created certificate and private key file
@@ -65,7 +65,7 @@ try:
     
 except Exception as e:
     print("[Device Advisor]Error: Failed to create thing: " + thing_name)
-    sys.stdout.close()
+    # sys.stdout.close()
     exit(-1)
 
 
@@ -104,7 +104,7 @@ try:
 except:
     client.delete_thing(thingName = thing_name)
     print("[Device Advisor]Error: Failed to create certificate.")
-    sys.stdout.close()
+    # sys.stdout.close()
     exit(-1)
 
 ##############################################
@@ -123,7 +123,7 @@ try:
 except:
     delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
     print("[Device Advisor]Error: Failed to attach certificate.")
-    sys.stdout.close()
+    # sys.stdout.close()
     exit(-1)
 
 
@@ -200,7 +200,7 @@ for test_name in DATestConfig['tests']:
                 else:
                     exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
                 print("start to run" + exe_path)
-                result = subprocess.run(exe_path, timeout = 60*5, stdout=sys.stdout)
+                result = subprocess.run(exe_path, timeout = 60*5)
                 print(result)
 
             # If the test finalizing or store the test result
@@ -210,7 +210,7 @@ for test_name in DATestConfig['tests']:
     except Exception as e:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
         print("[Device Advisor]Error: Failed to test: "+ test_name)
-        sys.stdout.close()
+        # sys.stdout.close()
         exit(-1)
 
 ##############################################
@@ -224,7 +224,7 @@ for test in test_result:
         failed = True
 if failed:
     # if the test failed, we dont clean the Thing so that we can track the error
-    sys.stdout.close()
+    # sys.stdout.close()
     exit(-1)
 
 delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
