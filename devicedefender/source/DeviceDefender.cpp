@@ -194,9 +194,10 @@ namespace Aws
             aws_byte_cursor metricName,
             aws_iotdevice_defender_get_number_double_fn *metricFunc)
         {
-            return aws_iotdevice_defender_config_register_number_double_metric(m_taskConfig, &metricName, metricFunc, this);
+            return aws_iotdevice_defender_config_register_number_double_metric(
+                m_taskConfig, &metricName, metricFunc, this);
         }
-        
+
         int ReportTask::RegisterCustomMetricNumberDouble(
             aws_byte_cursor metricName,
             std::function<int(double *, void *)> *metricFunc)
@@ -209,20 +210,25 @@ namespace Aws
             aws_byte_cursor metricName,
             aws_iotdevice_defender_get_number_double_list_fn *metricFunc)
         {
-            return aws_iotdevice_defender_config_register_number_double_list_metric(m_taskConfig, &metricName, metricFunc, this);
+            return aws_iotdevice_defender_config_register_number_double_list_metric(
+                m_taskConfig, &metricName, metricFunc, this);
         }
-        
+
         int ReportTask::RegisterCustomMetricNumberDoubleList(
             aws_byte_cursor metricName,
             std::function<int(aws_array_list *, void *)> *metricFunc)
         {
             return aws_iotdevice_defender_config_register_number_double_list_metric(
-                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_double_list_fn *>(), this);
+                m_taskConfig,
+                &metricName,
+                *metricFunc->target<aws_iotdevice_defender_get_number_double_list_fn *>(),
+                this);
         }
 
         int ReportTask::RegisterCustomMetricCpuUsage()
         {
-            return RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
+            return RegisterCustomMetricNumberDouble(
+                aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
         }
 
         int ReportTask::s_getCustomMetricCpuUsage(double *output, void *data)

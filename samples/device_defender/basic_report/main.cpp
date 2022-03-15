@@ -261,7 +261,8 @@ int main(int argc, char *argv[])
             return AWS_OP_SUCCESS;
         };
 
-        task->RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
+        task->RegisterCustomMetricNumberDouble(
+            aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &s_getCustomMetricNumber);
         task->RegisterCustomMetricNumberDoubleList(
             aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
