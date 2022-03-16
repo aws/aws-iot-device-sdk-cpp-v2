@@ -36,7 +36,6 @@ namespace Utils
     class CommandLineUtils
     {
       public:
-
         CommandLineUtils();
 
         /**
@@ -163,7 +162,6 @@ namespace Utils
          * A helper function that adds use_websocket and signing_region
          */
         void AddCommonWebsocketCommands();
-
 
         /**
          * A helper function that builds and returns a PKCS11 direct MQTT connection.

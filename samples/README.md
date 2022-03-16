@@ -1,6 +1,7 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
 * [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
+* [Websocket MQTT Pub-Sub](#websocket-mqtt-pub-sub)
 * [PKCS#11 MQTT Pub-Sub](#pkcs11-mqtt-pub-sub)
 * [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
 * [Fleet provisioning](#fleet-provisioning)
@@ -97,22 +98,68 @@ To run the basic MQTT Pub-Sub use the following command:
 --topic <topic name>
 ```
 
-To run this sample using websockets, see below:
+## Websocket MQTT Pub-Sub
+
+This sample uses the
+[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
+for AWS IoT to send and receive messages through an MQTT connection via websockets.
+On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
+
+Source: `samples/mqtt/websocket_pub_sub/main.cpp`
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
 
 <details>
-<summary>(Websockets)</summary>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/topic"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
-To run using Websockets, use the following command:
+To run the websocket MQTT Pub-Sub use the following command:
 
 ``` sh
-./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
+./websocket-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
 --use_websocket --signing_region <signing_region>
 ```
 
 Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
 See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for documentation on how to get the AWS credentials, which then you can set to the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS`, and `AWS_SESSION_TOKEN` environment variables.
-
-</details>
 
 ## PKCS#11 MQTT Pub-Sub
 

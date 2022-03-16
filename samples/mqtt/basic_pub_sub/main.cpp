@@ -39,10 +39,7 @@ int main(int argc, char *argv[])
         "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");
     cmdUtils.UpdateCommandHelp(
         "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
-    cmdUtils.RegisterCommand(
-        "client_id",
-        "<str>",
-        "Client id to use (optional, default='test-*')");
+    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);

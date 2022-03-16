@@ -4,9 +4,9 @@
  */
 #include "CommandLineUtils.h"
 #include <aws/crt/Api.h>
+#include <aws/crt/Types.h>
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/Pkcs11.h>
-#include <aws/crt/Types.h>
 #include <iostream>
 
 namespace Utils
@@ -196,9 +196,11 @@ namespace Utils
         RegisterCommand("key_label", "<str>", "Label of private key on the PKCS#11 token (optional).");
     }
 
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(Aws::Iot::MqttClient *client)
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
+        Aws::Iot::MqttClient *client)
     {
-        std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib = Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired("pkcs11_lib"));
+        std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib =
+            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired("pkcs11_lib"));
         if (!pkcs11Lib)
         {
             fprintf(stderr, "Pkcs11Lib failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
@@ -228,7 +230,10 @@ namespace Utils
         Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder(pkcs11Options);
         if (!clientConfigBuilder)
         {
-            fprintf(stderr, "MqttClientConnectionConfigBuilder failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
+            fprintf(
+                stderr,
+                "MqttClientConnectionConfigBuilder failed: %s\n",
+                Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
             exit(-1);
         }
 
@@ -241,17 +246,16 @@ namespace Utils
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
 
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketX509MQTTConnection(Aws::Iot::MqttClient *client)
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketX509MQTTConnection(
+        Aws::Iot::MqttClient *client)
     {
         Aws::Crt::Io::TlsContext x509TlsCtx;
         Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
 
         std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
 
-        Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
-            Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(
-                GetCommandRequired("x509_cert").c_str(),
-                GetCommandRequired("x509_key").c_str());
+        Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(
+            GetCommandRequired("x509_cert").c_str(), GetCommandRequired("x509_key").c_str());
         if (!tlsCtxOptions)
         {
             fprintf(
@@ -292,7 +296,8 @@ namespace Utils
         x509Config.ThingName = GetCommandRequired("x509_thing");
 
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        if (HasCommand("proxy_host")) {
+        if (HasCommand("proxy_host"))
+        {
             proxyOptions = GetProxyOptionsForMQTTConnection();
             x509Config.ProxyOptions = proxyOptions;
         }
@@ -319,7 +324,8 @@ namespace Utils
         clientConfigBuilder.WithEndpoint(GetCommandRequired("endpoint"));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnection(Aws::Iot::MqttClient *client)
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnection(
+        Aws::Iot::MqttClient *client)
     {
         Aws::Crt::Io::TlsContext x509TlsCtx;
         Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
@@ -332,7 +338,7 @@ namespace Utils
         if (!provider)
         {
             fprintf(stderr, "Failure to create credentials provider!\n");
-            exit (-1);
+            exit(-1);
         }
 
         Aws::Iot::WebsocketConfig config(GetCommandRequired("signing_region"), provider);
@@ -342,27 +348,31 @@ namespace Utils
         {
             clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
         }
-        if (HasCommand("proxy_host")) {
+        if (HasCommand("proxy_host"))
+        {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
         }
 
         clientConfigBuilder.WithEndpoint(GetCommandRequired("endpoint"));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnection(Aws::Iot::MqttClient *client)
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnection(
+        Aws::Iot::MqttClient *client)
     {
         Aws::Crt::String certificatePath = GetCommandRequired("cert");
         Aws::Crt::String keyPath = GetCommandRequired("key");
         Aws::Crt::String endpoint = GetCommandRequired("endpoint");
 
-        auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+        auto clientConfigBuilder =
+            Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
         clientConfigBuilder.WithEndpoint(endpoint);
 
         if (HasCommand("ca_file"))
         {
             clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
         }
-        if (HasCommand("proxy_host")) {
+        if (HasCommand("proxy_host"))
+        {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
         }
 
@@ -439,7 +449,10 @@ namespace Utils
         auto connection = client->NewConnection(clientConfig);
         if (!*connection)
         {
-            fprintf(stderr, "MQTT Connection Creation failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
+            fprintf(
+                stderr,
+                "MQTT Connection Creation failed with error %s\n",
+                Aws::Crt::ErrorDebugString(connection->LastError()));
             exit(-1);
         }
         return connection;
