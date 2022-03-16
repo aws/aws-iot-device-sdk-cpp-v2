@@ -20,30 +20,18 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    // apiHandle.InitializeLogging(LogLevel::Error, stderr);
-
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("pkcs11_pub_sub");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonTopicMessageCommands();
     cmdUtils.RemoveCommand("key");
-    cmdUtils.RegisterCommand("pkcs11_lib", "<path>", "Path to PKCS#11 library.");
-    cmdUtils.RegisterCommand("pin", "<str>", "User PIN for logging into PKCS#11 token.");
-    cmdUtils.RegisterCommand("token_label", "<str>", "Label of the PKCS#11 token to use (optional).");
-    cmdUtils.RegisterCommand("slot_id", "<int>", "Slot ID containing PKCS#11 token to use (optional).");
-    cmdUtils.RegisterCommand("key_label", "<str>", "Label of private key on the PKCS#11 token (optional).");
+    cmdUtils.AddCommonPKCS11Commands();
     cmdUtils.RegisterCommand("count", "<int>", "Number of messages to publish. (optional, default=10).");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
-    cmdUtils.RegisterCommand("help", "", "Prints this message");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
     String endpoint = cmdUtils.GetCommandRequired("endpoint");
     String certificatePath = cmdUtils.GetCommandRequired("cert");
     String pkcs11LibPath = cmdUtils.GetCommandRequired("pkcs11_lib");

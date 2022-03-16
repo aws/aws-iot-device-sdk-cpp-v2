@@ -5,6 +5,7 @@
  */
 
 #include <aws/crt/Types.h>
+#include <aws/iot/MqttClient.h>
 
 namespace Utils
 {
@@ -35,6 +36,9 @@ namespace Utils
     class CommandLineUtils
     {
       public:
+
+        CommandLineUtils();
+
         /**
          * Changes the program name to the name given. The program name is shown when calling help and showing all the
          * commands.
@@ -146,6 +150,11 @@ namespace Utils
         void AddCommonX509Commands();
 
         /**
+         * A helper function that adds pkcs11_lib, pin, token_label, slot_id, and key_label commands
+         */
+        void AddCommonPKCS11Commands();
+
+        /**
          * A helper function that adds topic and message commands
          */
         void AddCommonTopicMessageCommands();
@@ -155,10 +164,65 @@ namespace Utils
          */
         void AddCommonWebsocketCommands();
 
+
+        /**
+         * A helper function that builds and returns a PKCS11 direct MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonPKCS11Commands function.
+         * @param client The client to use to make the connection.
+         * @return The created direct PKCS11 MQTT connection.
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildPKCS11MQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a websocket x509 MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonPKCS11Commands function.
+         * @param client The client to use to make the connection.
+         * @return The created websocket x509 MQTT connection.
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketX509MQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a websocket MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonWebsocketCommands function.
+         * @param client The client to use to make the connection
+         * @return The created websocket MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a direct MQTT connection using a key and certificate.
+         * @param client The client to use to make the connection
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonWebsocketCommands function.
+         * @return The created direct MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a MQTT connection automatically based
+         * on the commands passed into CommandLineUtils. Will make a direct MQTT connection, PKCS11 MQTT connection,
+         * a websocket connection, or a x509 connection via websockets.
+         * @return The automatically created connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildMQTTConnection();
+
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;
         const char **m_endPosition = nullptr;
         Aws::Crt::Map<Aws::Crt::String, CommandLineOption> m_registeredCommands;
+
+        Aws::Iot::MqttClient m_internal_client;
+        Aws::Crt::Http::HttpClientConnectionProxyOptions GetProxyOptionsForMQTTConnection();
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
+            Aws::Iot::MqttClient *client,
+            Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
     };
 } // namespace Utils

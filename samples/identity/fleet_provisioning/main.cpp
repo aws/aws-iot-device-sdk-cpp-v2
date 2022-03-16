@@ -60,20 +60,11 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
-    String templateName;
-    String templateParameters;
     String csrFile;
 
     String token;
     RegisterThingResponse registerThingResponse;
-
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -85,76 +76,17 @@ int main(int argc, char *argv[])
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    endpoint = cmdUtils.GetCommandRequired("endpoint");
-    certificatePath = cmdUtils.GetCommandRequired("cert");
-    keyPath = cmdUtils.GetCommandRequired("key");
-    templateName = cmdUtils.GetCommandRequired("template_name");
-    templateParameters = cmdUtils.GetCommandRequired("template_parameters");
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    String templateName = cmdUtils.GetCommandRequired("template_name");
+    String templateParameters = cmdUtils.GetCommandRequired("template_parameters");
     if (cmdUtils.HasCommand("csr"))
     {
         csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
 
-    /********************** Now Setup an Mqtt Client ******************/
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        fprintf(
-            stderr,
-            "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
-        exit(-1);
-    }
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    clientConfigBuilder.WithEndpoint(endpoint);
-    if (!caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(caFile.c_str());
-    }
-    auto clientConfig = clientConfigBuilder.Build();
-
-    if (!clientConfig)
-    {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now Create a client. This can not throw.
-     * An instance of a client must outlive its connections.
-     * It is the users responsibility to make sure of this.
-     */
-    Aws::Iot::MqttClient mqttClient;
-
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
-    if (!mqttClient)
-    {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
-        exit(-1);
-    }
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
-     */
-    auto connection = mqttClient.NewConnection(clientConfig);
-
-    if (!*connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
-    }
+    /* Get a MQTT client connection from the command parser */
+    auto connection = cmdUtils.BuildMQTTConnection();
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior

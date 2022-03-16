@@ -21,11 +21,7 @@ int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
 
-    String region;
-    String endpoint;
-    String caFile;
     String accessToken;
-    String message = "Hello World";
     aws_secure_tunneling_local_proxy_mode localProxyMode;
 
     String proxyHost;
@@ -48,7 +44,6 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
     cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
-    cmdUtils.RegisterCommand("help", "", "Prints this message");
     cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     cmdUtils.RegisterCommand(
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
@@ -57,16 +52,11 @@ int main(int argc, char *argv[])
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
     /*
      * Generate secure tunneling endpoint using region
      */
-    region = cmdUtils.GetCommandRequired("region");
-    endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
+    String region = cmdUtils.GetCommandRequired("region");
+    String endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
     if (!(cmdUtils.HasCommand("access_token_file") || cmdUtils.HasCommand("access_token")))
     {
@@ -110,7 +100,7 @@ int main(int argc, char *argv[])
         proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "");
     }
 
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
 
     /*
      * localProxyMode is set to destination by default unless flag is set to source
@@ -124,7 +114,7 @@ int main(int argc, char *argv[])
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
     /*
      * For internal testing

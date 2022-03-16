@@ -27,23 +27,8 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
-    String topic("test/topic");
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
-    String proxyHost;
     uint16_t proxyPort(8080);
-    String userName;
-    String password;
-    // Valid protocol names are documented on page:
-    // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
-    // Use "mqtt" for Custom Authentication
-    String protocolName("x-amzn-mqtt-ca"); // X.509 client certificate auth
     Vector<String> authParams;
-
     bool useWebSocket = false;
 
     /*********************** Parse Arguments ***************************/
@@ -64,27 +49,21 @@ int main(int argc, char *argv[])
         "auth_params",
         "<comma delimited list>",
         "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
-    cmdUtils.RegisterCommand(Utils::CommandLineOption("help", "", "Prints this message"));
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    endpoint = cmdUtils.GetCommandRequired("endpoint");
-    keyPath = cmdUtils.GetCommandOrDefault("key", keyPath);
-    certificatePath = cmdUtils.GetCommandOrDefault("cert", certificatePath);
-    topic = cmdUtils.GetCommandOrDefault("topic", topic);
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
-    clientId = cmdUtils.GetCommandOrDefault("client_id", clientId);
+    String endpoint = cmdUtils.GetCommandRequired("endpoint");
+    String keyPath = cmdUtils.GetCommandOrDefault("key", "");
+    String certificatePath = cmdUtils.GetCommandOrDefault("cert", "");
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
     if (cmdUtils.HasCommand("use_websocket"))
     {
         protocolName = "http/1.1";
         useWebSocket = true;
     }
-    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
     if (cmdUtils.HasCommand("proxy_port"))
     {
         int port = atoi(cmdUtils.GetCommand("proxy_port").c_str());
@@ -93,9 +72,13 @@ int main(int argc, char *argv[])
             proxyPort = static_cast<uint16_t>(port);
         }
     }
-    userName = cmdUtils.GetCommandOrDefault("user_name", userName);
-    password = cmdUtils.GetCommandOrDefault("password", password);
-    protocolName = cmdUtils.GetCommandOrDefault("protocol_name", protocolName);
+    String userName = cmdUtils.GetCommandOrDefault("user_name", "");
+    String password = cmdUtils.GetCommandOrDefault("password", "");
+
+    // Valid protocol names are documented on page:
+    // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
+    // Use "mqtt" for Custom Authentication
+    String protocolName = cmdUtils.GetCommandOrDefault("protocol_name", "x-amzn-mqtt-ca"); // X.509 client certificate auth
     if (cmdUtils.HasCommand("auth_params"))
     {
         String params = cmdUtils.GetCommand("auth_params");

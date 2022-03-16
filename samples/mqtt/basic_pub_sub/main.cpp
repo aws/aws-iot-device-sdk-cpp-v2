@@ -12,8 +12,6 @@
 #include <algorithm>
 #include <aws/crt/UUID.h>
 #include <chrono>
-#include <condition_variable>
-#include <iostream>
 #include <mutex>
 
 #include "../../utils/CommandLineUtils.h"
@@ -28,29 +26,8 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
-    String topic("test/topic");
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
-    String signingRegion;
-    String proxyHost;
     uint16_t proxyPort(8080);
-
-    String x509Endpoint;
-    String x509ThingName;
-    String x509RoleAlias;
-    String x509CertificatePath;
-    String x509KeyPath;
-    String x509RootCAFile;
-
-    bool useWebSocket = false;
-    bool useX509 = false;
-
     uint32_t messageCount = 10;
-    String messagePayload("Hello world!");
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -58,45 +35,26 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.AddCommonX509Commands();
-    cmdUtils.AddCommonWebsocketCommands();
     cmdUtils.UpdateCommandHelp(
         "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");
     cmdUtils.UpdateCommandHelp(
         "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
     cmdUtils.RegisterCommand(
         "client_id",
-        "<str>"
+        "<str>",
         "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
-    cmdUtils.RegisterCommand("help", "", "Prints this message");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    endpoint = cmdUtils.GetCommandRequired("endpoint");
-    keyPath = cmdUtils.GetCommandOrDefault("key", keyPath);
-    certificatePath = cmdUtils.GetCommandOrDefault("cert", certificatePath);
-    if (keyPath.empty() != certificatePath.empty())
-    {
-        cmdUtils.PrintHelp();
-        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and private key\n");
-        return 1;
-    }
-    topic = cmdUtils.GetCommandOrDefault("topic", topic);
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
-    clientId = cmdUtils.GetCommandOrDefault("client_id", clientId);
-    if (cmdUtils.HasCommand("use_websocket"))
-    {
-        useWebSocket = true;
-        signingRegion =
-            cmdUtils.GetCommandRequired("signing_region", "Websockets require a signing region to be specified.");
-    }
-    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    String endpoint = cmdUtils.GetCommandRequired("endpoint");
+    String keyPath = cmdUtils.GetCommandRequired("key");
+    String certificatePath = cmdUtils.GetCommandRequired("cert");
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
+
+    String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
     if (cmdUtils.HasCommand("prox_port"))
     {
         int port = atoi(cmdUtils.GetCommand("proxy_port").c_str());
@@ -105,46 +63,8 @@ int main(int argc, char *argv[])
             proxyPort = static_cast<uint16_t>(port);
         }
     }
-    bool usingMtls = !certificatePath.empty() && !keyPath.empty();
 
-    /* one or the other, but not both nor neither */
-    if (useWebSocket == usingMtls)
-    {
-        cmdUtils.PrintHelp();
-        if (useWebSocket && usingMtls)
-        {
-            fprintf(stdout, "You must use either websockets or mtls for authentication, but not both.\n");
-        }
-        else
-        {
-            fprintf(stdout, "You must use either websockets or mtls for authentication.\n");
-        }
-        return 1;
-    }
-
-    // x509 credentials provider configuration
-    if (cmdUtils.HasCommand("x509"))
-    {
-        if (!useWebSocket)
-        {
-            cmdUtils.PrintHelp();
-            fprintf(stdout, "X509 credentials sourcing requires websockets to be enabled and configured.\n");
-            return 1;
-        }
-        x509RoleAlias = cmdUtils.GetCommandRequired(
-            "x509_role_alias", "X509 credentials sourcing requires an x509 role alias to be specified.");
-        x509Endpoint = cmdUtils.GetCommandRequired(
-            "x509_endpoint", "X509 credentials sourcing requires an x509 endpoint to be specified.");
-        x509ThingName = cmdUtils.GetCommandRequired(
-            "x509_thing", "X509 credentials sourcing requires an x509 thing name to be specified.");
-        x509CertificatePath = cmdUtils.GetCommandRequired(
-            "x509_cert", "X509 credentials sourcing requires an IoT certificate to be specified.");
-        x509KeyPath = cmdUtils.GetCommandRequired(
-            "x509_key", "X509 credentials sourcing requires an IoT thing private key to be specified.");
-        x509RootCAFile = cmdUtils.GetCommandOrDefault("x509_ca_file", x509RootCAFile);
-    }
-
-    messagePayload = cmdUtils.GetCommandOrDefault("message", messagePayload);
+    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
     if (cmdUtils.HasCommand("count"))
     {
         int count = atoi(cmdUtils.GetCommand("count").c_str());
@@ -164,100 +84,17 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+    Aws::Iot::MqttClientConnectionConfigBuilder builder;
+    builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+
     if (!proxyHost.empty())
     {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-    }
-
-    Aws::Crt::Io::TlsContext x509TlsCtx;
-    Aws::Iot::MqttClientConnectionConfigBuilder builder;
-
-    if (!certificatePath.empty() && !keyPath.empty())
-    {
-        builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    }
-    else if (useWebSocket)
-    {
-        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
-        if (useX509)
-        {
-            Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
-                Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(x509CertificatePath.c_str(), x509KeyPath.c_str());
-            if (!tlsCtxOptions)
-            {
-                fprintf(
-                    stderr,
-                    "Unable to initialize tls context options, error: %s!\n",
-                    ErrorDebugString(tlsCtxOptions.LastError()));
-                return -1;
-            }
-
-            if (!x509RootCAFile.empty())
-            {
-                tlsCtxOptions.OverrideDefaultTrustStore(nullptr, x509RootCAFile.c_str());
-            }
-
-            x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
-            if (!x509TlsCtx)
-            {
-                fprintf(
-                    stderr,
-                    "Unable to create tls context, error: %s!\n",
-                    ErrorDebugString(x509TlsCtx.GetInitializationError()));
-                return -1;
-            }
-
-            Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
-
-            x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
-            if (!x509Config.TlsOptions)
-            {
-                fprintf(
-                    stderr,
-                    "Unable to create tls options from tls context, error: %s!\n",
-                    ErrorDebugString(x509Config.TlsOptions.LastError()));
-                return -1;
-            }
-
-            x509Config.Endpoint = x509Endpoint;
-            x509Config.RoleAlias = x509RoleAlias;
-            x509Config.ThingName = x509ThingName;
-
-            if (!proxyHost.empty())
-            {
-                x509Config.ProxyOptions = proxyOptions;
-            }
-
-            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
-        }
-        else
-        {
-            Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-        }
-
-        if (!provider)
-        {
-            fprintf(stderr, "Failure to create credentials provider!\n");
-            return -1;
-        }
-
-        Aws::Iot::WebsocketConfig config(signingRegion, provider);
-        builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
-    }
-    else
-    {
-        cmdUtils.PrintHelp();
-    }
-
-    if (!proxyHost.empty())
-    {
         builder.WithHttpProxyOptions(proxyOptions);
     }
-
     if (!caFile.empty())
     {
         builder.WithCertificateAuthority(caFile.c_str());
@@ -266,7 +103,6 @@ int main(int argc, char *argv[])
     builder.WithEndpoint(endpoint);
 
     auto clientConfig = builder.Build();
-
     if (!clientConfig)
     {
         fprintf(
@@ -292,12 +128,13 @@ int main(int argc, char *argv[])
      * and its underlying memory is managed by the client.
      */
     auto connection = mqttClient.NewConnection(clientConfig);
-
     if (!connection)
     {
         fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
         exit(-1);
     }
+
+    /********************** Pub Sub section of sample *****************/
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior

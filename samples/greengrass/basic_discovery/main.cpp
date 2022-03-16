@@ -26,17 +26,7 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String proxyHost;
     uint16_t proxyPort = 0;
-    String region("us-east-1");
-    String certificatePath;
-    String keyPath;
-    String caFile;
-    String thingName;
-    String topic("test/topic");
-    String mode("both");
-    String message("Hello World");
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -53,20 +43,15 @@ int main(int argc, char *argv[])
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    certificatePath = cmdUtils.GetCommandRequired("cert");
-    keyPath = cmdUtils.GetCommandRequired("key");
-    thingName = cmdUtils.GetCommandRequired("thing_name");
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
-    region = cmdUtils.GetCommandOrDefault("region", region);
-    topic = cmdUtils.GetCommandOrDefault("topic", topic);
-    mode = cmdUtils.GetCommandOrDefault("mode", mode);
-    message = cmdUtils.GetCommandOrDefault("message", message);
-    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    String certificatePath = cmdUtils.GetCommandRequired("cert");
+    String thingName = cmdUtils.GetCommandRequired("thing_name");
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String keyPath = cmdUtils.GetCommandOrDefault("key", "");
+    String region = cmdUtils.GetCommandOrDefault("region", "us-east-1");
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String mode = cmdUtils.GetCommandOrDefault("mode", "both");
+    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
     if (cmdUtils.HasCommand("proxy_port"))
     {
         String portString = cmdUtils.GetCommand("proxy_port");
