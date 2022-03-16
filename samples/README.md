@@ -1,9 +1,9 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
-* [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
-* [Websocket MQTT Pub-Sub](#websocket-mqtt-pub-sub)
-* [PKCS#11 MQTT Pub-Sub](#pkcs11-mqtt-pub-sub)
-* [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
+* [Basic Pub-Sub](#basic-pub-sub)
+* [Websocket Connect](#websocket-connect)
+* [PKCS#11 Connect](#pkcs11-connect)
+* [Raw Connect](#raw-connect)
 * [Fleet provisioning](#fleet-provisioning)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
@@ -37,14 +37,14 @@ To view the commands for a given sample, run the compiled program and pass `--he
 
 * `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
-## Basic MQTT Pub-Sub
+## Basic Pub-Sub
 
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages through an MQTT connection.
 On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
 
-Source: `samples/mqtt/basic_pub_sub/main.cpp`
+Source: `samples/pub_sub/basic_pub_sub/main.cpp`
 
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
@@ -98,14 +98,11 @@ To run the basic MQTT Pub-Sub use the following command:
 --topic <topic name>
 ```
 
-## Websocket MQTT Pub-Sub
+## Websocket Connect
 
-This sample uses the
-[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
-for AWS IoT to send and receive messages through an MQTT connection via websockets.
-On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
+This sample makes an MQTT connection via websockets and then disconnects. On startup, the device connects to the server via websockets, waits a half seconds, and then disconnects. This sample is for reference on connecting via websockets.
 
-Source: `samples/mqtt/websocket_pub_sub/main.cpp`
+Source: `samples/mqtt/websocket-connect/main.cpp`
 
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
@@ -151,24 +148,23 @@ and receive.
 </pre>
 </details>
 
-To run the websocket MQTT Pub-Sub use the following command:
+To run the websocket connect use the following command:
 
 ``` sh
-./websocket-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
---use_websocket --signing_region <signing_region>
+./websocket-connect --endpoint <endpoint> --ca_file <path to root CA> --signing_region <signing_region>
 ```
 
 Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
 See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for documentation on how to get the AWS credentials, which then you can set to the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS`, and `AWS_SESSION_TOKEN` environment variables.
 
-## PKCS#11 MQTT Pub-Sub
+## PKCS#11 Connect
 
-This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub),
+This sample is similar to the [Basic Pub-Sub](#basic-pub-sub),
 but the private key for mutual TLS is stored on a PKCS#11 compatible smart card or Hardware Security Module (HSM)
 
 WARNING: Unix only. Currently, TLS integration with PKCS#11 is only available on Unix devices.
 
-source: `samples/mqtt/pkcs11_pub_sub/main/cpp`
+source: `samples/mqtt/pkcs11_connect/main.cpp`
 
 To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the PKCS#11 device:
 
@@ -211,24 +207,24 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
 5)  Now you can run the sample:
     ```sh
-    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
+    ./pkcs11-connect --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
 
-## Raw MQTT Pub-Sub
+## Raw Connect
 
-This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub), but the connection setup is more manual.
+This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection setup is more manual.
 This is a starting point for using custom
 [Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
 
-source: `samples/mqtt/raw_pub_sub/main.cpp`
+source: `samples/mqtt/raw_connect/main.cpp`
 
 To run the Raw MQTT Pub-Sub sample use the following command:
 
 ``` sh
-./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+./raw-connect --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
---topic <topic name> --user_name <user name to send on connect> --password <password to send on connect>
+--user_name <user name to send on connect> --password <password to send on connect>
 ```
 
 This will allow you to run the program. To disconnect and exit the program, enter `exit`.
