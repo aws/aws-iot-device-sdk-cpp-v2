@@ -78,7 +78,7 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         exit(-1);
     }

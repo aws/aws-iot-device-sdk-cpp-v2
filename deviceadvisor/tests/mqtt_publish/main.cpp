@@ -79,7 +79,7 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         exit(-1);
     }
@@ -91,7 +91,6 @@ int main()
 
         auto onPublishComplete = [&](Mqtt::MqttConnection &, uint16_t, int) { publishFinishedPromise.set_value(); };
         connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
-        publishFinishedPromise.get_future().wait();
 
         /* Disconnect */
         if (connection->Disconnect())
