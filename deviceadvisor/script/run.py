@@ -204,7 +204,7 @@ for test_name in DATestConfig['tests']:
                     print("start to run" + exe_path)
                     result = subprocess.run(exe_path, timeout = 60*5)
                     print(result)
-                    test_started = True
+                    # test_started = True
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
                 test_result[test_name] = test_result_responds['status']
