@@ -422,7 +422,7 @@ namespace Utils
         int ProxyPort = atoi(GetCommandOrDefault("proxy_port", "8080").c_str());
         if (ProxyPort > 0 && ProxyPort < UINT16_MAX)
         {
-            proxyOptions.Port = ProxyPort;
+            proxyOptions.Port = static_cast<uint16_t>(ProxyPort);
         }
         else
         {
