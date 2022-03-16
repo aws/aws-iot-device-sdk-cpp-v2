@@ -176,6 +176,7 @@ for test_name in DATestConfig['tests']:
         )
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
 
+        test_started = False
         while True:
             # sleep for 1s every loop to avoid TooManyRequestsException
             sleep(1)
@@ -193,16 +194,17 @@ for test_name in DATestConfig['tests']:
             # Start to run the test sample after the status turns into RUNNING
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
-                exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
-                # Windows and MAC/LINUX has a different build folder structure
-                if platform.system() == 'Windows':
-                    exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
-                else:
-                    exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
-                print("start to run" + exe_path)
-                result = subprocess.run(exe_path, timeout = 60*5)
-                print(result)
-
+                exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])
+                if not test_started:
+                    # Windows and MAC/LINUX has a different build folder structure
+                    if platform.system() == 'Windows':
+                        exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
+                    else:
+                        exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
+                    print("start to run" + exe_path)
+                    result = subprocess.run(exe_path, timeout = 60*5)
+                    print(result)
+                    test_started = True
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
                 test_result[test_name] = test_result_responds['status']
