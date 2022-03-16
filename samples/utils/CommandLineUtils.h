@@ -133,7 +133,7 @@ namespace Utils
         void PrintHelp();
 
         /**
-         * A helper function that adds endpoint, key, cert, and ca_file commands
+         * A helper function that adds endpoint and ca_file commands
          */
         void AddCommonMQTTCommands();
 
@@ -149,25 +149,15 @@ namespace Utils
         void AddCommonX509Commands();
 
         /**
-         * A helper function that adds pkcs11_lib, pin, token_label, slot_id, and key_label commands
-         */
-        void AddCommonPKCS11Commands();
-
-        /**
          * A helper function that adds topic and message commands
          */
         void AddCommonTopicMessageCommands();
 
         /**
-         * A helper function that adds use_websocket and signing_region
-         */
-        void AddCommonWebsocketCommands();
-
-        /**
          * A helper function that builds and returns a PKCS11 direct MQTT connection.
          *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonPKCS11Commands function.
+         * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
+         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example.
          * @param client The client to use to make the connection.
          * @return The created direct PKCS11 MQTT connection.
          */
@@ -177,7 +167,7 @@ namespace Utils
          * A helper function that builds and returns a websocket x509 MQTT connection.
          *
          * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonPKCS11Commands function.
+         * AddCommonX509Commands function. See mqtt/x509_connect for example.
          * @param client The client to use to make the connection.
          * @return The created websocket x509 MQTT connection.
          */
@@ -186,8 +176,8 @@ namespace Utils
         /**
          * A helper function that builds and returns a websocket MQTT connection.
          *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonWebsocketCommands function.
+         * Will get the required data from the CommandLineUtils from the "signing_region" command.
+         * See mqtt/websocket_connect for example.
          * @param client The client to use to make the connection
          * @return The created websocket MQTT connection
          */
@@ -198,7 +188,7 @@ namespace Utils
          * @param client The client to use to make the connection
          *
          * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonWebsocketCommands function.
+         * AddCommonMQTTCommands function, "cert" command, and "key" command. See mqtt/basic_connect for example.
          * @return The created direct MQTT connection
          */
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);

@@ -5,7 +5,6 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/auth/Credentials.h>
-#include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
 
@@ -27,29 +26,26 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
     uint16_t proxyPort(8080);
-    uint32_t messageCount = 10;
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic_pub_sub");
+    cmdUtils.RegisterProgramName("websocket-connect");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonProxyCommands();
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.UpdateCommandHelp(
-        "key", "Path to your key in PEM format. If this is not set you must specify use_websocket");
-    cmdUtils.UpdateCommandHelp(
-        "cert", "Path to your client certificate in PEM format. If this is not set you must specify use_websocket");
+    cmdUtils.RegisterCommand(
+        "signing_region",
+        "<str>",
+        "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     String endpoint = cmdUtils.GetCommandRequired("endpoint");
-    String keyPath = cmdUtils.GetCommandRequired("key");
-    String certificatePath = cmdUtils.GetCommandRequired("cert");
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
+
+    String signingRegion =
+        cmdUtils.GetCommandRequired("signing_region", "Websockets require a signing region to be specified.");
 
     String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
     if (cmdUtils.HasCommand("prox_port"))
@@ -58,16 +54,6 @@ int main(int argc, char *argv[])
         if (port > 0 && port < UINT16_MAX)
         {
             proxyPort = static_cast<uint16_t>(port);
-        }
-    }
-
-    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
-    if (cmdUtils.HasCommand("count"))
-    {
-        int count = atoi(cmdUtils.GetCommand("count").c_str());
-        if (count > 0)
-        {
-            messageCount = count;
         }
     }
 
@@ -82,7 +68,17 @@ int main(int argc, char *argv[])
     }
 
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+        Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    if (!provider)
+    {
+        fprintf(stderr, "Failure to create credentials provider!\n");
+        return -1;
+    }
+
+    Aws::Iot::WebsocketConfig config(signingRegion, provider);
+    builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
 
     if (!proxyHost.empty())
     {
@@ -90,6 +86,7 @@ int main(int argc, char *argv[])
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+
         builder.WithHttpProxyOptions(proxyOptions);
     }
     if (!caFile.empty())
@@ -131,8 +128,6 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /********************** Pub Sub section of sample *****************/
-
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
@@ -158,7 +153,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                fprintf(stdout, "Connection completed successfully.");
+                fprintf(stdout, "Connection completed successfully.\n");
                 connectionCompletedPromise.set_value(true);
             }
         }
@@ -167,17 +162,14 @@ int main(int argc, char *argv[])
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
-
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
-        {
-            fprintf(stdout, "Disconnect completed\n");
-            connectionClosedPromise.set_value();
-        }
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
     };
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -197,84 +189,8 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        std::mutex receiveMutex;
-        std::condition_variable receiveSignal;
-        uint32_t receivedCount = 0;
-
-        /*
-         * This is invoked upon the receipt of a Publish on a subscribed topic.
-         */
-        auto onMessage = [&](Mqtt::MqttConnection &,
-                             const String &topic,
-                             const ByteBuf &byteBuf,
-                             bool /*dup*/,
-                             Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
-            {
-                std::lock_guard<std::mutex> lock(receiveMutex);
-                ++receivedCount;
-                fprintf(stdout, "Publish #%d received on topic %s\n", receivedCount, topic.c_str());
-                fprintf(stdout, "Message: ");
-                fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
-                fprintf(stdout, "\n");
-            }
-
-            receiveSignal.notify_all();
-        };
-
-        /*
-         * Subscribe for incoming publish messages on topic.
-         */
-        std::promise<void> subscribeFinishedPromise;
-        auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-                if (errorCode)
-                {
-                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
-                    exit(-1);
-                }
-                else
-                {
-                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
-                    {
-                        fprintf(stderr, "Subscribe rejected by the broker.");
-                        exit(-1);
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
-                    }
-                }
-                subscribeFinishedPromise.set_value();
-            };
-
-        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
-        subscribeFinishedPromise.get_future().wait();
-
-        uint32_t publishedCount = 0;
-        while (publishedCount < messageCount)
-        {
-            ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
-
-            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
-            connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
-            ++publishedCount;
-
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        }
-
-        {
-            std::unique_lock<std::mutex> receivedLock(receiveMutex);
-            receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
-        }
-
-        /*
-         * Unsubscribe from the topic.
-         */
-        std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(
-            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
-        unsubscribeFinishedPromise.get_future().wait();
+        /* Wait for half a second */
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
         /* Disconnect */
         if (connection->Disconnect())

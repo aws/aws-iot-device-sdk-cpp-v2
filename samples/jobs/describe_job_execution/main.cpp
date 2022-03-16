@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("describe-job-execution");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
     const char **const_argv = (const char **)argv;

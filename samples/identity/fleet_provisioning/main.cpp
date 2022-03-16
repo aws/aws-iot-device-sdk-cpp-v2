@@ -70,6 +70,8 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("fleet-provisioning");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
     cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
     cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
@@ -82,8 +84,6 @@ int main(int argc, char *argv[])
     {
         csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
-
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();

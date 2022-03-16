@@ -32,11 +32,12 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("basic-discovery");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.AddCommonTopicMessageCommands();
     cmdUtils.RemoveCommand("endpoint");
-    cmdUtils.RegisterCommand(
-        "region", "<str>", "The region for your Greengrass groups (optional, default='us-east-1').");
+    cmdUtils.RegisterCommand("region", "<str>", "The region for your Greengrass groups.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
     cmdUtils.RegisterCommand(
         "mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
@@ -47,7 +48,7 @@ int main(int argc, char *argv[])
     String thingName = cmdUtils.GetCommandRequired("thing_name");
     String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
     String keyPath = cmdUtils.GetCommandOrDefault("key", "");
-    String region = cmdUtils.GetCommandOrDefault("region", "us-east-1");
+    String region = cmdUtils.GetCommandRequired("region");
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String mode = cmdUtils.GetCommandOrDefault("mode", "both");
     String message = cmdUtils.GetCommandOrDefault("message", "Hello World");

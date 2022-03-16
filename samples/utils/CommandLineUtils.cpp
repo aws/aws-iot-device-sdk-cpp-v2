@@ -137,12 +137,9 @@ namespace Utils
 
     void CommandLineUtils::AddCommonMQTTCommands()
     {
+        RegisterCommand("endpoint", "<str>", "The endpoint of the mqtt server not including a port.");
         RegisterCommand(
-            Utils::CommandLineOption("endpoint", "<str>", "The endpoint of the mqtt server not including a port."));
-        RegisterCommand(Utils::CommandLineOption("key", "<path>", "Path to your key in PEM format."));
-        RegisterCommand(Utils::CommandLineOption("cert", "<path>", "Path to your client certificate in PEM format."));
-        RegisterCommand(Utils::CommandLineOption(
-            "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default)."));
+            "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     }
 
     void CommandLineUtils::AddCommonProxyCommands()
@@ -153,7 +150,6 @@ namespace Utils
 
     void CommandLineUtils::AddCommonX509Commands()
     {
-        RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
         RegisterCommand(
             "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
         RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
@@ -176,24 +172,6 @@ namespace Utils
     {
         RegisterCommand("message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
         RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
-    }
-
-    void CommandLineUtils::AddCommonWebsocketCommands()
-    {
-        RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
-        RegisterCommand(
-            "signing_region",
-            "<str>",
-            "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
-    }
-
-    void CommandLineUtils::AddCommonPKCS11Commands()
-    {
-        RegisterCommand("pkcs11_lib", "<path>", "Path to PKCS#11 library.");
-        RegisterCommand("pin", "<str>", "User PIN for logging into PKCS#11 token.");
-        RegisterCommand("token_label", "<str>", "Label of the PKCS#11 token to use (optional).");
-        RegisterCommand("slot_id", "<int>", "Slot ID containing PKCS#11 token to use (optional).");
-        RegisterCommand("key_label", "<str>", "Label of private key on the PKCS#11 token (optional).");
     }
 
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
@@ -398,9 +376,9 @@ namespace Utils
         {
             return BuildPKCS11MQTTConnection(&m_internal_client);
         }
-        else if (HasCommand("use_websocket"))
+        else if (HasCommand("signing_region"))
         {
-            if (HasCommand("x509"))
+            if (HasCommand("x509_endpoint"))
             {
                 return BuildWebsocketX509MQTTConnection(&m_internal_client);
             }
