@@ -22,7 +22,7 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
@@ -79,7 +79,7 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/), 6000)
     {
         exit(5);
     }
