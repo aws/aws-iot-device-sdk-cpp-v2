@@ -30,7 +30,7 @@ int main()
     DeviceAdvisorEnvironment daVars;
     if (!daVars.init(TestType::CONNECT))
     {
-        return -1;
+        return 1;
     }
 
     /********************** Now Setup an Mqtt Client ******************/
@@ -44,7 +44,7 @@ int main()
     auto clientConfig = builder.Build();
     if (!clientConfig)
     {
-        exit(-1);
+        exit(2);
     }
 
     /*
@@ -54,7 +54,7 @@ int main()
     Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {
-        exit(-1);
+        exit(3);
     }
 
     /*
@@ -63,7 +63,7 @@ int main()
     auto connection = mqttClient.NewConnection(clientConfig);
     if (!connection)
     {
-        exit(-1);
+        exit(4);
     }
 
     /*
@@ -81,12 +81,12 @@ int main()
      */
     if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
-        exit(-1);
+        exit(5);
     }
 
     if (!connectionCompletedPromise.get_future().get())
     {
-        exit(-1);
+        exit(6);
     }
 
     /* Disconnect */
