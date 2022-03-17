@@ -90,15 +90,6 @@ int main(int argc, char *argv[])
     }
 
     /********************** Now Setup an Mqtt Client ******************/
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        fprintf(
-            stderr,
-            "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
-        exit(-1);
-    }
-
     Mqtt::MqttClient client;
     Io::TlsContextOptions ctxOptions = Io::TlsContextOptions::InitDefaultClient();
 
@@ -210,16 +201,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            if (returnCode != AWS_MQTT_CONNECT_ACCEPTED)
-            {
-                fprintf(stdout, "Connection failed with mqtt return code %d\n", (int)returnCode);
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                fprintf(stdout, "Connection completed successfully.\n");
-                connectionCompletedPromise.set_value(true);
-            }
+            fprintf(stdout, "Connection completed successfully.\n");
+            connectionCompletedPromise.set_value(true);
         }
     };
 
@@ -251,21 +234,17 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    if (connectionCompletedPromise.get_future().get())
+    // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
+    if (connectionCompletedPromise.get_future().get() == false)
     {
-        /* Wait for half a second */
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-        /* Disconnect */
-        if (connection->Disconnect())
-        {
-            connectionClosedPromise.get_future().wait();
-        }
-    }
-    else
-    {
+        fprintf(stderr, "Connection failed\n");
         exit(-1);
     }
 
+    /* Disconnect */
+    if (connection->Disconnect())
+    {
+        connectionClosedPromise.get_future().wait();
+    }
     return 0;
 }

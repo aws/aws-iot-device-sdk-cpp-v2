@@ -75,16 +75,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            if (returnCode != AWS_MQTT_CONNECT_ACCEPTED)
-            {
-                fprintf(stdout, "Connection failed with mqtt return code %d\n", (int)returnCode);
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                fprintf(stdout, "Connection completed successfully.");
-                connectionCompletedPromise.set_value(true);
-            }
+            fprintf(stdout, "Connection completed successfully.");
+            connectionCompletedPromise.set_value(true);
         }
     };
 
