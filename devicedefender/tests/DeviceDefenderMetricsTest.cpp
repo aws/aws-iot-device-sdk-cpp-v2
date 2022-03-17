@@ -10,9 +10,9 @@
 #include <aws/testing/aws_test_harness.h>
 #include <utility>
 
-int global_metric_number_func(int64_t *output, void *data)
+int global_metric_number_func(double *output, void *data)
 {
-    *output = 10;
+    *output = 1.2;
     return AWS_OP_SUCCESS;
 };
 
@@ -58,52 +58,23 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
 
         // ================
         // Add the custom metrics
-        aws_iotdevice_defender_get_number_fn *local_metric_number_func = [](int64_t *output, void *data) {
+        aws_iotdevice_defender_get_number_fn *local_metric_number_func = [](double *output, void *data) {
             *output = 10;
             return AWS_OP_SUCCESS;
         };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_number_func));
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &global_metric_number_func));
-
-        aws_iotdevice_defender_get_number_double_fn *local_metric_number_double_func = [](double *output, void *data) {
-            *output = 4.25;
-            return AWS_OP_SUCCESS;
-        };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("CustomDoubleNumber"), local_metric_number_double_func));
+        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_number_func);
+        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &global_metric_number_func);
 
         aws_iotdevice_defender_get_number_list_fn *local_metric_number_list_func = [](aws_array_list *output, void *data) {
-            int64_t list_num_01 = 101;
-            int64_t list_num_02 = 102;
-            int64_t list_num_03 = 103;
+            double list_num_01 = 101;
+            double list_num_02 = 102;
+            double list_num_03 = 103;
             aws_array_list_push_back(output, &list_num_01);
             aws_array_list_push_back(output, &list_num_02);
             aws_array_list_push_back(output, &list_num_03);
             return AWS_OP_SUCCESS;
         };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumberList(
-                aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_number_list_func));
-        
-        aws_iotdevice_defender_get_number_double_list_fn *local_metric_number_double_list_func = [](aws_array_list *output, void *data) {
-            double list_num_01 = 1.01;
-            double list_num_02 = 1.02;
-            double list_num_03 = 1.03;
-            aws_array_list_push_back(output, &list_num_01);
-            aws_array_list_push_back(output, &list_num_02);
-            aws_array_list_push_back(output, &list_num_03);
-            return AWS_OP_SUCCESS;
-        };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumberDoubleList(
-                aws_byte_cursor_from_c_str("CustomNumberDoubleList"), local_metric_number_double_list_func));
+        task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_number_list_func);
 
         aws_iotdevice_defender_get_string_list_fn *local_metric_str_list_func = [](aws_array_list *output, void *data) {
             aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
@@ -116,10 +87,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             aws_array_list_push_back(output, &list_str_04);
             return AWS_OP_SUCCESS;
         };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricStringList(
-                aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func));
+        task->RegisterCustomMetricStringList(aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func);
 
         aws_iotdevice_defender_get_string_list_fn *local_metric_ip_list_func = [](aws_array_list *output, void *data) {
             aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
@@ -132,10 +100,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             aws_array_list_push_back(output, &list_str_04);
             return AWS_OP_SUCCESS;
         };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricIpAddressList(
-                aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func));
+        task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func);
 
         // ================
 
@@ -209,13 +174,11 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the error custom metric
-        aws_iotdevice_defender_get_number_fn *number_metric_func = [](int64_t *output, void *data) {
+        aws_iotdevice_defender_get_number_fn *number_metric_func = [](double *output, void *data) {
             *output = 10;
             return AWS_OP_ERR;
         };
-        ASSERT_INT_EQUALS(
-            AWS_OP_SUCCESS,
-            task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), number_metric_func));
+        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), number_metric_func);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
 

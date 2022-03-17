@@ -83,11 +83,8 @@ namespace Aws
              * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the number cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumber(
+            void RegisterCustomMetricNumber(
                 aws_byte_cursor metricName,
                 aws_iotdevice_defender_get_number_fn *metricFunc);
 
@@ -97,13 +94,10 @@ namespace Aws
              * other device defender payload data with the metric name of "metricName".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the number cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumber(
+            void RegisterCustomMetricNumber(
                 aws_byte_cursor metricName,
-                std::function<int(int64_t *, void *)> *metricFunc);
+                std::function<int(double *, void *)> *metricFunc);
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
@@ -113,11 +107,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the number list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumberList(
+            void RegisterCustomMetricNumberList(
                 aws_byte_cursor metricName,
                 aws_iotdevice_defender_get_number_list_fn *metricFunc);
 
@@ -129,11 +120,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the number list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricNumberList(
+            void RegisterCustomMetricNumberList(
                 aws_byte_cursor metricName,
                 std::function<int(aws_array_list *, void *)> *metricFunc);
 
@@ -145,11 +133,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the string list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricStringList(
+            void RegisterCustomMetricStringList(
                 aws_byte_cursor metricName,
                 aws_iotdevice_defender_get_string_list_fn *metricFunc);
 
@@ -163,11 +148,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the string list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricStringList(
+            void RegisterCustomMetricStringList(
                 aws_byte_cursor metricName,
                 std::function<int(aws_array_list *, void *)> *metricFunc);
 
@@ -181,11 +163,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the IP address list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricIpAddressList(
+            void RegisterCustomMetricIpAddressList(
                 aws_byte_cursor metricName,
                 aws_iotdevice_defender_get_ip_list_fn *metricFunc);
 
@@ -197,71 +176,8 @@ namespace Aws
              * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the IP address list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
              */
-            int RegisterCustomMetricIpAddressList(
-                aws_byte_cursor metricName,
-                std::function<int(aws_array_list *, void *)> *metricFunc);
-            
-            /**
-             * Registers a custom metric double number function to the Device Defender result. Will call the
-             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
-             * with the other device defender payload data with the metric name of "metricName".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the double number.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the double cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
-             */
-            int RegisterCustomMetricNumberDouble(
-                aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_number_double_fn *metricFunc);
-            
-            /**
-             * Registers a custom metric double number function to the Device Defender result. Will call the
-             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
-             * with the other device defender payload data with the metric name of "metricName".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the double number.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the double cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
-             */
-            int RegisterCustomMetricNumberDouble(
-                aws_byte_cursor metricName,
-                std::function<int(double *, void *)> *metricFunc);
-            
-            /**
-             * Registers a custom metric double number list function to the Device Defender result. Will call the
-             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
-             * with the other device defender payload data with the metric name of "metricName".
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the double number list.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the double number list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
-             */
-            int RegisterCustomMetricNumberDoubleList(
-                aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_number_double_list_fn *metricFunc);
-            
-            /**
-             * Registers a custom metric double number list function to the Device Defender result. Will call the
-             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
-             * with the other device defender payload data with the metric name of "metricName".
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the double number list.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *          Will return AWS_OP_ERR if the double number list cannot be registered or the data passed
-             *          ("metricName" or "metricFunc") is incorrect.
-             */
-            int RegisterCustomMetricNumberDoubleList(
+            void RegisterCustomMetricIpAddressList(
                 aws_byte_cursor metricName,
                 std::function<int(aws_array_list *, void *)> *metricFunc);
 
@@ -269,11 +185,9 @@ namespace Aws
              * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
              * "cpu_usage". Calling this function will make the task report CPU usage each time a report is generated.
              *
-             * Note: The CPU usage reported is in percentage ("12" = 12% CPU)
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *      Will return AWS_OP_ERR if the CPU usage cannot be registered
+             * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU)
              */
-            int RegisterCustomMetricCpuUsage();
+            void RegisterCustomMetricCpuUsage();
 
             /**
              * Registers a custom metric number that will report the RAM memory usage automatically into a custom metric
@@ -281,19 +195,15 @@ namespace Aws
              * generated.
              *
              * Note: The memory usage reported is in kilobytes.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *      Will return AWS_OP_ERR if the memory usage cannot be registered
              */
-            int RegisterCustomMetricMemoryUsage();
+            void RegisterCustomMetricMemoryUsage();
 
             /**
              * Registers a custom metric number that will report the number of processes automatically into a custom
              * metric called "process_count". Calling this function will make the task report processor count each
              * time a report is generated.
-             * @return AWS_OP_SUCCESS if the custom metric was registered successfully.
-             *      Will return AWS_OP_ERR if the process count cannot be registered
              */
-            int RegisterCustomMetricProcessCount();
+            void RegisterCustomMetricProcessCount();
 
           private:
             Crt::Allocator *m_allocator;
@@ -345,12 +255,12 @@ namespace Aws
             /**
              * Reports physical memory usage to the custom metric.
              */
-            static int s_getCustomMetricMemoryUsage(int64_t *output, void *data);
+            static int s_getCustomMetricMemoryUsage(double *output, void *data);
 
             /**
              * Reports processor count to the custom metric
              */
-            static int s_getCustomMetricProcessCount(int64_t *output, void *data);
+            static int s_getCustomMetricProcessCount(double *output, void *data);
         };
 
         /**

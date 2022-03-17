@@ -25,10 +25,10 @@
 
 using namespace Aws::Crt;
 
-int s_getCustomMetricNumber(int64_t *output, void *data)
+int s_getCustomMetricNumber(double *output, void *data)
 {
     /** Set to a random number between -50 and 50 */
-    *output = (rand() % 100 + 1) - 50;
+    *output = (double)((rand() % 100 + 1) - 50);
     return AWS_OP_SUCCESS;
 }
 
@@ -256,14 +256,14 @@ int main(int argc, char *argv[])
 
         // Add the custom metrics
         // (Inline function example)
-        aws_iotdevice_defender_get_number_double_fn *s_localGetCustomMetricNumber = [](double *output, void *data) {
+        aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](double *output, void *data) {
             *output = 8.2;
             return AWS_OP_SUCCESS;
         };
 
-        task->RegisterCustomMetricNumberDouble(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
+        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &s_getCustomMetricNumber);
-        task->RegisterCustomMetricNumberDoubleList(
+        task->RegisterCustomMetricNumberList(
             aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
         task->RegisterCustomMetricStringList(
             aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
