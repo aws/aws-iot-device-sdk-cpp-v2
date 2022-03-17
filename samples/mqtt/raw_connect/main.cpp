@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            fprintf(stdout, "Connection completed successfully.\n");
+            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
             connectionCompletedPromise.set_value(true);
         }
     };
