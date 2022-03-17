@@ -10,7 +10,7 @@
 #include <aws/testing/aws_test_harness.h>
 #include <utility>
 
-int global_metric_number_func(double *output, void *data)
+int global_metric_number_func(double *output)
 {
     *output = 1.2;
     return AWS_OP_SUCCESS;
@@ -58,49 +58,41 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
 
         // ================
         // Add the custom metrics
-        aws_iotdevice_defender_get_number_fn *local_metric_number_func = [](double *output, void *data) {
+        std::function<int(double *)> local_metric_number_func = [](double *output) {
             *output = 10;
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_number_func);
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &global_metric_number_func);
+        std::function<int(double *)> global_metric_number_func_ref = global_metric_number_func;
+        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), global_metric_number_func_ref);
 
-        aws_iotdevice_defender_get_number_list_fn *local_metric_number_list_func = [](aws_array_list *output, void *data) {
-            double list_num_01 = 101;
-            double list_num_02 = 102;
-            double list_num_03 = 103;
-            aws_array_list_push_back(output, &list_num_01);
-            aws_array_list_push_back(output, &list_num_02);
-            aws_array_list_push_back(output, &list_num_03);
+        std::function<int(std::vector<double> *)> local_metric_number_list_func = [](std::vector<double> *output) {
+            output->push_back(101);
+            output->push_back(102);
+            output->push_back(103);
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_number_list_func);
 
-        aws_iotdevice_defender_get_string_list_fn *local_metric_str_list_func = [](aws_array_list *output, void *data) {
-            aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
-            aws_array_list_push_back(output, &list_str_01);
-            aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Two Fish");
-            aws_array_list_push_back(output, &list_str_02);
-            aws_string *list_str_03 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Red Fish");
-            aws_array_list_push_back(output, &list_str_03);
-            aws_string *list_str_04 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Blue Fish");
-            aws_array_list_push_back(output, &list_str_04);
+        /*
+        std::function<int(std::vector<std::string> *)> local_metric_str_list_func = [](std::vector<std::string> *output) {
+            output->push_back("One Fish");
+            output->push_back("Two Fish");
+            output->push_back("Red Fish");
+            output->push_back("Blue Fish");
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricStringList(aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func);
 
-        aws_iotdevice_defender_get_string_list_fn *local_metric_ip_list_func = [](aws_array_list *output, void *data) {
-            aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
-            aws_array_list_push_back(output, &list_str_01);
-            aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "198.51.100.0");
-            aws_array_list_push_back(output, &list_str_02);
-            aws_string *list_str_03 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "203.0.113.0");
-            aws_array_list_push_back(output, &list_str_03);
-            aws_string *list_str_04 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "233.252.0.0");
-            aws_array_list_push_back(output, &list_str_04);
+        std::function<int(std::vector<std::string> *)> local_metric_ip_list_func = [](std::vector<std::string> *output) {
+            output->push_back("192.0.2.0");
+            output->push_back("198.51.100.0");
+            output->push_back("203.0.113.0");
+            output->push_back("233.252.0.0");
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func);
+        */
 
         // ================
 
@@ -174,7 +166,7 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the error custom metric
-        aws_iotdevice_defender_get_number_fn *number_metric_func = [](double *output, void *data) {
+        std::function<int(double *)> number_metric_func = [](double *output) {
             *output = 10;
             return AWS_OP_ERR;
         };

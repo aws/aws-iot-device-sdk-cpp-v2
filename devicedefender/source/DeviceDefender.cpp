@@ -130,69 +130,169 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricNumber(
             aws_byte_cursor metricName,
-            aws_iotdevice_defender_get_number_fn *metricFunc)
+            std::function<int(double*)> metricFunc)
         {
-            aws_iotdevice_defender_config_register_number_metric(m_taskConfig, &metricName, metricFunc, this);
-        }
-
-        void ReportTask::RegisterCustomMetricNumber(
-            aws_byte_cursor metricName,
-            std::function<int(double *, void *)> *metricFunc)
-        {
+            m_storedCustomMetricsNumberFunctions.push_back(metricFunc);
+            customMetricData data;
+            data.index = m_storedCustomMetricsNumberFunctions.size() - 1;
+            data.task = this;
+            storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_fn *>(), this);
+                m_taskConfig, &metricName, s_getCustomMetricNumber, &data);
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
             aws_byte_cursor metricName,
-            aws_iotdevice_defender_get_number_list_fn *metricFunc)
+            std::function<int(std::vector<double> *)> &metricFunc)
         {
+            m_storedCustomMetricsNumberListFunctions.push_back(metricFunc);
+            customMetricData data;
+            data.index = m_storedCustomMetricsNumberListFunctions.size() - 1;
+            data.task = this;
+            storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_list_metric(
-                m_taskConfig, &metricName, metricFunc, this);
-        }
-
-        void ReportTask::RegisterCustomMetricNumberList(
-            aws_byte_cursor metricName,
-            std::function<int(aws_array_list *, void *)> *metricFunc)
-        {
-            aws_iotdevice_defender_config_register_number_list_metric(
-                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_number_list_fn *>(), this);
+                m_taskConfig, &metricName, s_getCustomMetricNumberList, &data);
         }
 
         void ReportTask::RegisterCustomMetricStringList(
             aws_byte_cursor metricName,
-            aws_iotdevice_defender_get_string_list_fn *metricFunc)
+            std::function<int(std::vector<std::string> *)> &metricFunc)
         {
+            m_storedCustomMetricsStringListFunctions.push_back(metricFunc);
+            customMetricData data;
+            data.index = m_storedCustomMetricsStringListFunctions.size() - 1;
+            data.task = this;
+            storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_string_list_metric(
-                m_taskConfig, &metricName, metricFunc, this);
-        }
-
-        void ReportTask::RegisterCustomMetricStringList(
-            aws_byte_cursor metricName,
-            std::function<int(aws_array_list *, void *)> *metricFunc)
-        {
-            aws_iotdevice_defender_config_register_string_list_metric(
-                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_string_list_fn *>(), this);
+                m_taskConfig, &metricName, s_getCustomMetricStringList, &data);
         }
 
         void ReportTask::RegisterCustomMetricIpAddressList(
             aws_byte_cursor metricName,
-            aws_iotdevice_defender_get_ip_list_fn *metricFunc)
+            std::function<int(std::vector<std::string> *)> &metricFunc)
         {
-            aws_iotdevice_defender_config_register_ip_list_metric(m_taskConfig, &metricName, metricFunc, this);
-        }
-
-        void ReportTask::RegisterCustomMetricIpAddressList(
-            aws_byte_cursor metricName,
-            std::function<int(aws_array_list *, void *)> *metricFunc)
-        {
+            m_storedCustomMetricsIpListFunctions.push_back(metricFunc);
+            customMetricData data;
+            data.index = m_storedCustomMetricsIpListFunctions.size() - 1;
+            data.task = this;
+            storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_ip_list_metric(
-                m_taskConfig, &metricName, *metricFunc->target<aws_iotdevice_defender_get_ip_list_fn *>(), this);
+                m_taskConfig, &metricName, s_getCustomMetricIpList, &data);
+        }
+
+        std::function<int(double*)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
+        {
+            if (index >= 0 && index < m_storedCustomMetricsNumberFunctions.size())
+            {
+                return &m_storedCustomMetricsNumberFunctions[index];
+            }
+            return nullptr;
+        }
+
+        std::function<int(std::vector<double>*)> *ReportTask::GetStoredCustomMetricNumberList(size_t &index)
+        {
+            if (index >= 0 && index < m_storedCustomMetricsNumberListFunctions.size())
+            {
+                return &m_storedCustomMetricsNumberListFunctions[index];
+            }
+            return nullptr;
+        }
+
+        std::function<int(std::vector<std::string>*)> *ReportTask::GetStoredCustomMetricStringList(size_t &index)
+        {
+            if (index >= 0 && index < m_storedCustomMetricsStringListFunctions.size())
+            {
+                return &m_storedCustomMetricsStringListFunctions[index];
+            }
+            return nullptr;
+        }
+
+        std::function<int(std::vector<std::string>*)> *ReportTask::GetStoredCustomMetricIpList(size_t &index)
+        {
+            if (index >= 0 && index < m_storedCustomMetricsIpListFunctions.size())
+            {
+                return &m_storedCustomMetricsIpListFunctions[index];
+            }
+            return nullptr;
+        }
+
+        int ReportTask::s_getCustomMetricNumber(double *output, void *data)
+        {
+            customMetricData *storedData = (customMetricData*)data;
+            std::function<int(double*)> *tmp = storedData->task->GetStoredCustomMetricNumber(storedData->index);
+            if (tmp == nullptr) {
+                return AWS_OP_ERR;
+            }
+            std::function<int(double*)> tmpRef = *tmp;
+            int returnValue = tmpRef(output);
+            return returnValue;
+        }
+
+        int ReportTask::s_getCustomMetricNumberList(aws_array_list *output, void *data)
+        {
+            customMetricData *storedData = (customMetricData*)data;
+            std::function<int(std::vector<double>*)> *tmp = storedData->task->GetStoredCustomMetricNumberList(storedData->index);
+            if (tmp == nullptr) {
+                return AWS_OP_ERR;
+            }
+            std::function<int(std::vector<double>*)> tmpRef = *tmp;
+
+            std::vector<double> function_data = std::vector<double>();
+            int returnValue = tmpRef(&function_data);
+
+            for (size_t i = 0; i < function_data.size(); i++)
+            {
+                aws_array_list_push_back(output, &function_data.at(i));
+            }
+            
+            return returnValue;
+        }
+
+        int ReportTask::s_getCustomMetricStringList(aws_array_list *output, void *data)
+        {
+            customMetricData *storedData = (customMetricData*)data;
+            std::function<int(std::vector<std::string>*)> *tmp = storedData->task->GetStoredCustomMetricStringList(storedData->index);
+            if (tmp == nullptr) {
+                return AWS_OP_ERR;
+            }
+            std::function<int(std::vector<std::string>*)> tmpRef = *tmp;
+
+            std::vector<std::string> function_data = std::vector<std::string>();
+            int returnValue = tmpRef(&function_data);
+
+            // Something with code below causes seg fault when written to JSON (likely memory issue - Pointers disappear or get unreferenced?)
+            for (size_t i = 0; i < function_data.size(); i++)
+            {
+                aws_array_list_push_back(output, aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), function_data[i].c_str()));
+            }
+            
+            return returnValue;
+        }
+
+        int ReportTask::s_getCustomMetricIpList(aws_array_list *output, void *data)
+        {
+            customMetricData *storedData = (customMetricData*)data;
+            std::function<int(std::vector<std::string>*)> *tmp = storedData->task->GetStoredCustomMetricIpList(storedData->index);
+            if (tmp == nullptr) {
+                return AWS_OP_ERR;
+            }
+            std::function<int(std::vector<std::string>*)> tmpRef = *tmp;
+
+            std::vector<std::string> function_data = std::vector<std::string>();
+            int returnValue = tmpRef(&function_data);
+
+            // Something with code below causes seg fault when written to JSON (likely memory issue - Pointers disappear or get unreferenced?)
+            for (size_t i = 0; i < function_data.size(); i++)
+            {
+                aws_array_list_push_back(output, aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), function_data.at(i).c_str()));
+            }
+            return returnValue;
         }
 
         void ReportTask::RegisterCustomMetricCpuUsage()
         {
-            RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("cpu_usage"), &s_getCustomMetricCpuUsage);
+            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricCpuUsage;
+            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("cpu_usage"), func);
         }
 
         int ReportTask::s_getCustomMetricCpuUsage(double *output, void *data)
@@ -273,8 +373,8 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricMemoryUsage()
         {
-            RegisterCustomMetricNumber(
-                aws_byte_cursor_from_c_str("memory_usage"), &s_getCustomMetricMemoryUsage);
+            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricMemoryUsage;
+            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("memory_usage"), func);
         }
 
         int ReportTask::s_getCustomMetricMemoryUsage(double *output, void *data)
@@ -299,8 +399,8 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricProcessCount()
         {
-            RegisterCustomMetricNumber(
-                aws_byte_cursor_from_c_str("process_count"), &s_getCustomMetricProcessCount);
+            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricProcessCount;
+            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("process_count"), func);
         }
 
         int ReportTask::s_getCustomMetricProcessCount(double *output, void *data)

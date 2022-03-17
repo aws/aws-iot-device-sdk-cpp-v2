@@ -86,57 +86,19 @@ namespace Aws
              */
             void RegisterCustomMetricNumber(
                 aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_number_fn *metricFunc);
-
-            /**
-             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc"
-             * function that is passed in each time a report is generated so it's data can be passed along with the
-             * other device defender payload data with the metric name of "metricName".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the number data.
-             */
-            void RegisterCustomMetricNumber(
-                aws_byte_cursor metricName,
-                std::function<int(double *, void *)> *metricFunc);
+                std::function<int(double*)> metricFunc);
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
              * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              */
             void RegisterCustomMetricNumberList(
                 aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_number_list_fn *metricFunc);
-
-            /**
-             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
-             * function that is passed in each time a report is generated so it's data can be passed along with the
-             * other device defender payload data with the metric name of "metricName".
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the number list data.
-             */
-            void RegisterCustomMetricNumberList(
-                aws_byte_cursor metricName,
-                std::function<int(aws_array_list *, void *)> *metricFunc);
-
-            /**
-             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
-             * function that is passed in each time a report is generated so it's data can be passed along with the
-             * other device defender payload data with the metric name of "metricName".
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the string list data.
-             */
-            void RegisterCustomMetricStringList(
-                aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_string_list_fn *metricFunc);
+                std::function<int(std::vector<double> *)> &metricFunc);
 
             /**
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
@@ -144,42 +106,24 @@ namespace Aws
              * other device defender payload data with the metric name of "metricName".
              * 
              * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
              */
             void RegisterCustomMetricStringList(
                 aws_byte_cursor metricName,
-                std::function<int(aws_array_list *, void *)> *metricFunc);
+                std::function<int(std::vector<std::string> *)> &metricFunc);
 
             /**
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
              * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
              * with the other device defender payload data with the metric name of "metricName".
              * 
-             * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              */
             void RegisterCustomMetricIpAddressList(
                 aws_byte_cursor metricName,
-                aws_iotdevice_defender_get_ip_list_fn *metricFunc);
-
-            /**
-             * Registers a custom metric IP address list function to the Device Defender result. Will call the
-             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
-             * with the other device defender payload data with the metric name of "metricName".
-             * 
-             * Note: You do not need to initialize the aws_array_list! It is already initialized when passed to "metricFunc".
-             * @param metricName The key name for the data.
-             * @param metricFunc The function that is called to get the IP address list data.
-             */
-            void RegisterCustomMetricIpAddressList(
-                aws_byte_cursor metricName,
-                std::function<int(aws_array_list *, void *)> *metricFunc);
+                std::function<int(std::vector<std::string> *)> &metricFunc);
 
             /**
              * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
@@ -205,6 +149,11 @@ namespace Aws
              */
             void RegisterCustomMetricProcessCount();
 
+            std::function<int(double*)> *GetStoredCustomMetricNumber(size_t &index);
+            std::function<int(std::vector<double>*)> *GetStoredCustomMetricNumberList(size_t &index);
+            std::function<int(std::vector<std::string>*)> *GetStoredCustomMetricStringList(size_t &index);
+            std::function<int(std::vector<std::string>*)> *GetStoredCustomMetricIpList(size_t &index);
+
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;
@@ -226,6 +175,20 @@ namespace Aws
                 void *cancellationUserdata = nullptr) noexcept;
 
             static void s_onDefenderV1TaskCancelled(void *userData);
+
+            struct customMetricData {
+                size_t index;
+                ReportTask *task;
+            };
+            static int s_getCustomMetricNumber(double *output, void *customData);
+            static int s_getCustomMetricNumberList(aws_array_list *output, void *customData);
+            static int s_getCustomMetricStringList(aws_array_list *output, void *customData);
+            static int s_getCustomMetricIpList(aws_array_list *output, void *customData);
+            std::vector<std::function<int(double*)>> m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double*)>>();
+            std::vector<std::function<int(std::vector<double>*)>> m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double>*)>>();
+            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+            std::vector<customMetricData> storedCustomMetricData = std::vector<customMetricData>();
 
             /**
              * Reports CPU usage to the custom metric
