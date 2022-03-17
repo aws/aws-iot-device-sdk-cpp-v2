@@ -104,7 +104,7 @@ namespace Aws
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
-             * 
+             *
              * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the string list data.
