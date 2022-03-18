@@ -189,7 +189,7 @@ namespace Aws
             std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions;
             std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions;
 
-            std::vector<customMetricData> storedCustomMetricData = std::vector<customMetricData>();
+            std::vector<customMetricData *> storedCustomMetricData = std::vector<customMetricData *>();
 
             /**
              * Reports CPU usage to the custom metric

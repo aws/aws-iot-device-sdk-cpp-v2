@@ -127,6 +127,11 @@ namespace Aws
                 aws_iotdevice_defender_config_clean_up(m_taskConfig);
                 this->m_taskConfig = nullptr;
             }
+            for (size_t i = 0; i < storedCustomMetricData.size(); i++)
+            {
+                Aws::Crt::Delete(storedCustomMetricData[i], m_allocator);
+            }
+            storedCustomMetricData.clear();
             this->m_owningTask = nullptr;
             this->m_allocator = nullptr;
             this->OnTaskCancelled = nullptr;
@@ -138,13 +143,13 @@ namespace Aws
             std::function<int(double*)> &metricFunc)
         {
             m_storedCustomMetricsNumberFunctions.push_back(metricFunc);
-            customMetricData data;
+            customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
-            data.index = m_storedCustomMetricsNumberFunctions.size() - 1;
-            data.task = this;
+            data->index = m_storedCustomMetricsNumberFunctions.size() - 1;
+            data->task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig, &cursor, s_getCustomMetricNumber, &data);
+                m_taskConfig, &cursor, s_getCustomMetricNumber, data);
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
@@ -152,13 +157,13 @@ namespace Aws
             std::function<int(std::vector<double> *)> &metricFunc)
         {
             m_storedCustomMetricsNumberListFunctions.push_back(metricFunc);
-            customMetricData data;
+            customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
-            data.index = m_storedCustomMetricsNumberListFunctions.size() - 1;
-            data.task = this;
+            data->index = m_storedCustomMetricsNumberListFunctions.size() - 1;
+            data->task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_list_metric(
-                m_taskConfig, &cursor, s_getCustomMetricNumberList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricNumberList, data);
         }
 
         void ReportTask::RegisterCustomMetricStringList(
@@ -166,13 +171,13 @@ namespace Aws
             std::function<int(std::vector<std::string> *)> &metricFunc)
         {
             m_storedCustomMetricsStringListFunctions.push_back(metricFunc);
-            customMetricData data;
+            customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
-            data.index = m_storedCustomMetricsStringListFunctions.size() - 1;
-            data.task = this;
+            data->index = m_storedCustomMetricsStringListFunctions.size() - 1;
+            data->task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_string_list_metric(
-                m_taskConfig, &cursor, s_getCustomMetricStringList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricStringList, data);
         }
 
         void ReportTask::RegisterCustomMetricIpAddressList(
@@ -180,20 +185,20 @@ namespace Aws
             std::function<int(std::vector<std::string> *)> &metricFunc)
         {
             m_storedCustomMetricsIpListFunctions.push_back(metricFunc);
-            customMetricData data;
+            customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
-            data.index = m_storedCustomMetricsIpListFunctions.size() - 1;
-            data.task = this;
+            data->index = m_storedCustomMetricsIpListFunctions.size() - 1;
+            data->task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_ip_list_metric(
-                m_taskConfig, &cursor, s_getCustomMetricIpList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricIpList, data);
         }
 
         std::function<int(double*)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberFunctions.size())
             {
-                return &m_storedCustomMetricsNumberFunctions[index];
+                return &m_storedCustomMetricsNumberFunctions.at(index);
             }
             return nullptr;
         }
@@ -202,7 +207,7 @@ namespace Aws
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberListFunctions.size())
             {
-                return &m_storedCustomMetricsNumberListFunctions[index];
+                return &m_storedCustomMetricsNumberListFunctions.at(index);
             }
             return nullptr;
         }
@@ -211,7 +216,7 @@ namespace Aws
         {
             if (index >= 0 && index < m_storedCustomMetricsStringListFunctions.size())
             {
-                return &m_storedCustomMetricsStringListFunctions[index];
+                return &m_storedCustomMetricsStringListFunctions.at(index);
             }
             return nullptr;
         }
@@ -220,7 +225,7 @@ namespace Aws
         {
             if (index >= 0 && index < m_storedCustomMetricsIpListFunctions.size())
             {
-                return &m_storedCustomMetricsIpListFunctions[index];
+                return &m_storedCustomMetricsIpListFunctions.at(index);
             }
             return nullptr;
         }

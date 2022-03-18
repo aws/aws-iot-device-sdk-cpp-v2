@@ -242,8 +242,6 @@ int main(int argc, char *argv[])
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-        apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
-
         // Add the custom metrics
         // (Inline function example)
         std::function<int(double *)> s_localGetCustomMetricNumber = [](double *output) {
@@ -252,6 +250,7 @@ int main(int argc, char *argv[])
         };
         task->RegisterCustomMetricNumber("CustomNumber", s_localGetCustomMetricNumber);
         std::function<int(double *)> s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
+
         task->RegisterCustomMetricNumber("CustomNumberTwo", s_getCustomMetricNumberFunc);
         std::function<int(std::vector<double> *)> s_getCustomMetricNumberListFunc = s_getCustomMetricNumberList;
         task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
