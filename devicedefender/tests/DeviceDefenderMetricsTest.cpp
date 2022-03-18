@@ -74,22 +74,24 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         task->RegisterCustomMetricNumberList("CustomNumberList", local_metric_number_list_func);
 
-        std::function<int(std::vector<std::string> *)> local_metric_str_list_func = [](std::vector<std::string> *output) {
-            output->push_back("One Fish");
-            output->push_back("Two Fish");
-            output->push_back("Red Fish");
-            output->push_back("Blue Fish");
-            return AWS_OP_SUCCESS;
-        };
+        std::function<int(std::vector<std::string> *)> local_metric_str_list_func =
+            [](std::vector<std::string> *output) {
+                output->push_back("One Fish");
+                output->push_back("Two Fish");
+                output->push_back("Red Fish");
+                output->push_back("Blue Fish");
+                return AWS_OP_SUCCESS;
+            };
         task->RegisterCustomMetricStringList("CustomStringList", local_metric_str_list_func);
 
-        std::function<int(std::vector<std::string> *)> local_metric_ip_list_func = [](std::vector<std::string> *output) {
-            output->push_back("192.0.2.0");
-            output->push_back("198.51.100.0");
-            output->push_back("203.0.113.0");
-            output->push_back("233.252.0.0");
-            return AWS_OP_SUCCESS;
-        };
+        std::function<int(std::vector<std::string> *)> local_metric_ip_list_func =
+            [](std::vector<std::string> *output) {
+                output->push_back("192.0.2.0");
+                output->push_back("198.51.100.0");
+                output->push_back("203.0.113.0");
+                output->push_back("233.252.0.0");
+                return AWS_OP_SUCCESS;
+            };
         task->RegisterCustomMetricIpAddressList("CustomIPList", local_metric_ip_list_func);
 
         // ================

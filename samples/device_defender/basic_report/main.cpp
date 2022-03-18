@@ -256,7 +256,8 @@ int main(int argc, char *argv[])
         task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
         std::function<int(std::vector<std::string> *)> s_getCustomMetricStringListFunc = s_getCustomMetricStringList;
         task->RegisterCustomMetricStringList("CustomStringList", s_getCustomMetricStringListFunc);
-        std::function<int(std::vector<std::string> *)> s_getCustomMetricIpAddressListFunc = s_getCustomMetricIpAddressList;
+        std::function<int(std::vector<std::string> *)> s_getCustomMetricIpAddressListFunc =
+            s_getCustomMetricIpAddressList;
         task->RegisterCustomMetricIpAddressList("CustomIPList", s_getCustomMetricIpAddressListFunc);
 
         // Send additional device custom metrics

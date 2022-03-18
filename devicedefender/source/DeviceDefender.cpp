@@ -73,11 +73,11 @@ namespace Aws
             // Cache initial CPU usage
             s_getCurrentCpuUsage(
                 &s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
-            
-            m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double*)>>();
-            m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double>*)>>();
-            m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
-            m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+
+            m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double *)>>();
+            m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double> *)>>();
+            m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string> *)>>();
+            m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string> *)>>();
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -140,7 +140,7 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricNumber(
             const std::string &metricName,
-            std::function<int(double*)> &metricFunc)
+            std::function<int(double *)> &metricFunc)
         {
             m_storedCustomMetricsNumberFunctions.push_back(metricFunc);
             customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
@@ -148,8 +148,7 @@ namespace Aws
             data->index = m_storedCustomMetricsNumberFunctions.size() - 1;
             data->task = this;
             storedCustomMetricData.push_back(data);
-            aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig, &cursor, s_getCustomMetricNumber, data);
+            aws_iotdevice_defender_config_register_number_metric(m_taskConfig, &cursor, s_getCustomMetricNumber, data);
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
@@ -190,11 +189,10 @@ namespace Aws
             data->index = m_storedCustomMetricsIpListFunctions.size() - 1;
             data->task = this;
             storedCustomMetricData.push_back(data);
-            aws_iotdevice_defender_config_register_ip_list_metric(
-                m_taskConfig, &cursor, s_getCustomMetricIpList, data);
+            aws_iotdevice_defender_config_register_ip_list_metric(m_taskConfig, &cursor, s_getCustomMetricIpList, data);
         }
 
-        std::function<int(double*)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
+        std::function<int(double *)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberFunctions.size())
             {
@@ -203,7 +201,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<double>*)> *ReportTask::GetStoredCustomMetricNumberList(size_t &index)
+        std::function<int(std::vector<double> *)> *ReportTask::GetStoredCustomMetricNumberList(size_t &index)
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberListFunctions.size())
             {
@@ -212,7 +210,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<std::string>*)> *ReportTask::GetStoredCustomMetricStringList(size_t &index)
+        std::function<int(std::vector<std::string> *)> *ReportTask::GetStoredCustomMetricStringList(size_t &index)
         {
             if (index >= 0 && index < m_storedCustomMetricsStringListFunctions.size())
             {
@@ -221,7 +219,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<std::string>*)> *ReportTask::GetStoredCustomMetricIpList(size_t &index)
+        std::function<int(std::vector<std::string> *)> *ReportTask::GetStoredCustomMetricIpList(size_t &index)
         {
             if (index >= 0 && index < m_storedCustomMetricsIpListFunctions.size())
             {
@@ -232,24 +230,27 @@ namespace Aws
 
         int ReportTask::s_getCustomMetricNumber(double *output, void *data)
         {
-            customMetricData *storedData = (customMetricData*)data;
-            std::function<int(double*)> *tmp = storedData->task->GetStoredCustomMetricNumber(storedData->index);
-            if (tmp == nullptr) {
+            customMetricData *storedData = (customMetricData *)data;
+            std::function<int(double *)> *tmp = storedData->task->GetStoredCustomMetricNumber(storedData->index);
+            if (tmp == nullptr)
+            {
                 return AWS_OP_ERR;
             }
-            std::function<int(double*)> tmpRef = *tmp;
+            std::function<int(double *)> tmpRef = *tmp;
             int returnValue = tmpRef(output);
             return returnValue;
         }
 
         int ReportTask::s_getCustomMetricNumberList(aws_array_list *output, void *data)
         {
-            customMetricData *storedData = (customMetricData*)data;
-            std::function<int(std::vector<double>*)> *tmp = storedData->task->GetStoredCustomMetricNumberList(storedData->index);
-            if (tmp == nullptr) {
+            customMetricData *storedData = (customMetricData *)data;
+            std::function<int(std::vector<double> *)> *tmp =
+                storedData->task->GetStoredCustomMetricNumberList(storedData->index);
+            if (tmp == nullptr)
+            {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<double>*)> tmpRef = *tmp;
+            std::function<int(std::vector<double> *)> tmpRef = *tmp;
 
             std::vector<double> function_data = std::vector<double>();
             int returnValue = tmpRef(&function_data);
@@ -258,46 +259,52 @@ namespace Aws
             {
                 aws_array_list_push_back(output, &function_data.at(i));
             }
-            
+
             return returnValue;
         }
 
         int ReportTask::s_getCustomMetricStringList(aws_array_list *output, void *data)
         {
-            customMetricData *storedData = (customMetricData*)data;
-            std::function<int(std::vector<std::string>*)> *tmp = storedData->task->GetStoredCustomMetricStringList(storedData->index);
-            if (tmp == nullptr) {
+            customMetricData *storedData = (customMetricData *)data;
+            std::function<int(std::vector<std::string> *)> *tmp =
+                storedData->task->GetStoredCustomMetricStringList(storedData->index);
+            if (tmp == nullptr)
+            {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<std::string>*)> tmpRef = *tmp;
+            std::function<int(std::vector<std::string> *)> tmpRef = *tmp;
 
             std::vector<std::string> function_data = std::vector<std::string>();
             int returnValue = tmpRef(&function_data);
 
             for (size_t i = 0; i < function_data.size(); i++)
             {
-                aws_string *tmp_str = aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
+                aws_string *tmp_str =
+                    aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
                 aws_array_list_push_back(output, &tmp_str);
             }
-            
+
             return returnValue;
         }
 
         int ReportTask::s_getCustomMetricIpList(aws_array_list *output, void *data)
         {
-            customMetricData *storedData = (customMetricData*)data;
-            std::function<int(std::vector<std::string>*)> *tmp = storedData->task->GetStoredCustomMetricIpList(storedData->index);
-            if (tmp == nullptr) {
+            customMetricData *storedData = (customMetricData *)data;
+            std::function<int(std::vector<std::string> *)> *tmp =
+                storedData->task->GetStoredCustomMetricIpList(storedData->index);
+            if (tmp == nullptr)
+            {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<std::string>*)> tmpRef = *tmp;
+            std::function<int(std::vector<std::string> *)> tmpRef = *tmp;
 
             std::vector<std::string> function_data = std::vector<std::string>();
             int returnValue = tmpRef(&function_data);
 
             for (size_t i = 0; i < function_data.size(); i++)
             {
-                aws_string *tmp_str = aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
+                aws_string *tmp_str =
+                    aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
                 aws_array_list_push_back(output, &tmp_str);
             }
             return returnValue;

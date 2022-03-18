@@ -84,15 +84,13 @@ namespace Aws
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
              */
-            void RegisterCustomMetricNumber(
-                const std::string &metricName,
-                std::function<int(double*)> &metricFunc);
+            void RegisterCustomMetricNumber(const std::string &metricName, std::function<int(double *)> &metricFunc);
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
              * function that is passed in each time a report is generated so it's data can be passed along with the
              * other device defender payload data with the metric name of "metricName".
-             * 
+             *
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number list data.
              */
@@ -117,7 +115,7 @@ namespace Aws
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
              * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
              * with the other device defender payload data with the metric name of "metricName".
-             * 
+             *
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the IP address list data.
              */
@@ -149,10 +147,10 @@ namespace Aws
              */
             void RegisterCustomMetricProcessCount();
 
-            std::function<int(double*)> *GetStoredCustomMetricNumber(size_t &index);
-            std::function<int(std::vector<double>*)> *GetStoredCustomMetricNumberList(size_t &index);
-            std::function<int(std::vector<std::string>*)> *GetStoredCustomMetricStringList(size_t &index);
-            std::function<int(std::vector<std::string>*)> *GetStoredCustomMetricIpList(size_t &index);
+            std::function<int(double *)> *GetStoredCustomMetricNumber(size_t &index);
+            std::function<int(std::vector<double> *)> *GetStoredCustomMetricNumberList(size_t &index);
+            std::function<int(std::vector<std::string> *)> *GetStoredCustomMetricStringList(size_t &index);
+            std::function<int(std::vector<std::string> *)> *GetStoredCustomMetricIpList(size_t &index);
 
           private:
             Crt::Allocator *m_allocator;
@@ -176,7 +174,8 @@ namespace Aws
 
             static void s_onDefenderV1TaskCancelled(void *userData);
 
-            struct customMetricData {
+            struct customMetricData
+            {
                 size_t index;
                 ReportTask *task;
             };
@@ -184,10 +183,10 @@ namespace Aws
             static int s_getCustomMetricNumberList(aws_array_list *output, void *customData);
             static int s_getCustomMetricStringList(aws_array_list *output, void *customData);
             static int s_getCustomMetricIpList(aws_array_list *output, void *customData);
-            std::vector<std::function<int(double*)>> m_storedCustomMetricsNumberFunctions;
-            std::vector<std::function<int(std::vector<double>*)>> m_storedCustomMetricsNumberListFunctions;
-            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions;
-            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions;
+            std::vector<std::function<int(double *)>> m_storedCustomMetricsNumberFunctions;
+            std::vector<std::function<int(std::vector<double> *)>> m_storedCustomMetricsNumberListFunctions;
+            std::vector<std::function<int(std::vector<std::string> *)>> m_storedCustomMetricsStringListFunctions;
+            std::vector<std::function<int(std::vector<std::string> *)>> m_storedCustomMetricsIpListFunctions;
 
             std::vector<customMetricData *> storedCustomMetricData = std::vector<customMetricData *>();
 
