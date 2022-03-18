@@ -62,9 +62,9 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             *output = 10;
             return AWS_OP_SUCCESS;
         };
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), local_metric_number_func);
+        task->RegisterCustomMetricNumber("CustomNumberOne", local_metric_number_func);
         std::function<int(double *)> global_metric_number_func_ref = global_metric_number_func;
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), global_metric_number_func_ref);
+        task->RegisterCustomMetricNumber("CustomNumberTwo", global_metric_number_func_ref);
 
         std::function<int(std::vector<double> *)> local_metric_number_list_func = [](std::vector<double> *output) {
             output->push_back(101);
@@ -72,7 +72,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             output->push_back(103);
             return AWS_OP_SUCCESS;
         };
-        task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_number_list_func);
+        task->RegisterCustomMetricNumberList("CustomNumberList", local_metric_number_list_func);
 
         std::function<int(std::vector<std::string> *)> local_metric_str_list_func = [](std::vector<std::string> *output) {
             output->push_back("One Fish");
@@ -81,7 +81,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             output->push_back("Blue Fish");
             return AWS_OP_SUCCESS;
         };
-        task->RegisterCustomMetricStringList(aws_byte_cursor_from_c_str("CustomStringList"), local_metric_str_list_func);
+        task->RegisterCustomMetricStringList("CustomStringList", local_metric_str_list_func);
 
         std::function<int(std::vector<std::string> *)> local_metric_ip_list_func = [](std::vector<std::string> *output) {
             output->push_back("192.0.2.0");
@@ -90,7 +90,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             output->push_back("233.252.0.0");
             return AWS_OP_SUCCESS;
         };
-        task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func);
+        task->RegisterCustomMetricIpAddressList("CustomIPList", local_metric_ip_list_func);
 
         // ================
 
@@ -168,7 +168,7 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
             *output = 10;
             return AWS_OP_ERR;
         };
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberOne"), number_metric_func);
+        task->RegisterCustomMetricNumber("CustomNumberOne", number_metric_func);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
 

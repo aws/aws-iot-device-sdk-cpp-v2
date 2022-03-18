@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "args": [
+                "--endpoint", "a37bosfsrcgx5c-ats.iot.us-east-1.amazonaws.com",
+                "--ca_file", "home/ncbeard/Downloads/TestThingCerts/AmazonRootCA1.pem",
+                "--cert", "home/ncbeard/Downloads/TestThingCerts/50552356456ed560db85cb05e46fe795f8e5d4e784ad32ec3e2cc6e8f7ee70a8-certificate.pem.crt",
+                "--key", "50552356456ed560db85cb05e46fe795f8e5d4e784ad32ec3e2cc6e8f7ee70a8-private.pem.key",
+                "--thing_name", "TestThing",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

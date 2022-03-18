@@ -85,8 +85,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number data.
              */
             void RegisterCustomMetricNumber(
-                aws_byte_cursor metricName,
-                std::function<int(double*)> metricFunc);
+                const std::string &metricName,
+                std::function<int(double*)> &metricFunc);
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
@@ -97,7 +97,7 @@ namespace Aws
              * @param metricFunc The function that is called to get the number list data.
              */
             void RegisterCustomMetricNumberList(
-                aws_byte_cursor metricName,
+                const std::string &metricName,
                 std::function<int(std::vector<double> *)> &metricFunc);
 
             /**
@@ -110,7 +110,7 @@ namespace Aws
              * @param metricFunc The function that is called to get the string list data.
              */
             void RegisterCustomMetricStringList(
-                aws_byte_cursor metricName,
+                const std::string &metricName,
                 std::function<int(std::vector<std::string> *)> &metricFunc);
 
             /**
@@ -122,7 +122,7 @@ namespace Aws
              * @param metricFunc The function that is called to get the IP address list data.
              */
             void RegisterCustomMetricIpAddressList(
-                aws_byte_cursor metricName,
+                const std::string &metricName,
                 std::function<int(std::vector<std::string> *)> &metricFunc);
 
             /**
@@ -184,17 +184,17 @@ namespace Aws
             static int s_getCustomMetricNumberList(aws_array_list *output, void *customData);
             static int s_getCustomMetricStringList(aws_array_list *output, void *customData);
             static int s_getCustomMetricIpList(aws_array_list *output, void *customData);
-            std::vector<std::function<int(double*)>> m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double*)>>();
-            std::vector<std::function<int(std::vector<double>*)>> m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double>*)>>();
-            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
-            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+            std::vector<std::function<int(double*)>> m_storedCustomMetricsNumberFunctions;
+            std::vector<std::function<int(std::vector<double>*)>> m_storedCustomMetricsNumberListFunctions;
+            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions;
+            std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions;
 
             std::vector<customMetricData> storedCustomMetricData = std::vector<customMetricData>();
 
             /**
              * Reports CPU usage to the custom metric
              */
-            static int s_getCustomMetricCpuUsage(double *output, void *data);
+            static int s_getCustomMetricCpuUsage(double *output);
 
             /**
              * A helper function to get the CPU usage from the computer and populate the passed-in unsigned long long
@@ -219,12 +219,12 @@ namespace Aws
             /**
              * Reports physical memory usage to the custom metric.
              */
-            static int s_getCustomMetricMemoryUsage(double *output, void *data);
+            static int s_getCustomMetricMemoryUsage(double *output);
 
             /**
              * Reports processor count to the custom metric
              */
-            static int s_getCustomMetricProcessCount(double *output, void *data);
+            static int s_getCustomMetricProcessCount(double *output);
         };
 
         /**

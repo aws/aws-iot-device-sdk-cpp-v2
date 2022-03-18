@@ -37,8 +37,6 @@ namespace Aws
             {
                 taskWrapper->OnTaskCancelled(taskWrapper->cancellationUserdata);
             }
-
-            fprintf(stdout, "\n\nTask finished!\n\n");
         }
 
         ReportTask::ReportTask(
@@ -75,6 +73,11 @@ namespace Aws
             // Cache initial CPU usage
             s_getCurrentCpuUsage(
                 &s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
+            
+            m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double*)>>();
+            m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double>*)>>();
+            m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+            m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -131,55 +134,59 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricNumber(
-            aws_byte_cursor metricName,
-            std::function<int(double*)> metricFunc)
+            const std::string &metricName,
+            std::function<int(double*)> &metricFunc)
         {
             m_storedCustomMetricsNumberFunctions.push_back(metricFunc);
             customMetricData data;
+            aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             data.index = m_storedCustomMetricsNumberFunctions.size() - 1;
             data.task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_metric(
-                m_taskConfig, &metricName, s_getCustomMetricNumber, &data);
+                m_taskConfig, &cursor, s_getCustomMetricNumber, &data);
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
-            aws_byte_cursor metricName,
+            const std::string &metricName,
             std::function<int(std::vector<double> *)> &metricFunc)
         {
             m_storedCustomMetricsNumberListFunctions.push_back(metricFunc);
             customMetricData data;
+            aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             data.index = m_storedCustomMetricsNumberListFunctions.size() - 1;
             data.task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_number_list_metric(
-                m_taskConfig, &metricName, s_getCustomMetricNumberList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricNumberList, &data);
         }
 
         void ReportTask::RegisterCustomMetricStringList(
-            aws_byte_cursor metricName,
+            const std::string &metricName,
             std::function<int(std::vector<std::string> *)> &metricFunc)
         {
             m_storedCustomMetricsStringListFunctions.push_back(metricFunc);
             customMetricData data;
+            aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             data.index = m_storedCustomMetricsStringListFunctions.size() - 1;
             data.task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_string_list_metric(
-                m_taskConfig, &metricName, s_getCustomMetricStringList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricStringList, &data);
         }
 
         void ReportTask::RegisterCustomMetricIpAddressList(
-            aws_byte_cursor metricName,
+            const std::string &metricName,
             std::function<int(std::vector<std::string> *)> &metricFunc)
         {
             m_storedCustomMetricsIpListFunctions.push_back(metricFunc);
             customMetricData data;
+            aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             data.index = m_storedCustomMetricsIpListFunctions.size() - 1;
             data.task = this;
             storedCustomMetricData.push_back(data);
             aws_iotdevice_defender_config_register_ip_list_metric(
-                m_taskConfig, &metricName, s_getCustomMetricIpList, &data);
+                m_taskConfig, &cursor, s_getCustomMetricIpList, &data);
         }
 
         std::function<int(double*)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
@@ -293,13 +300,12 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage()
         {
-            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricCpuUsage;
-            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("cpu_usage"), func);
+            std::function<int(double *)> func = ReportTask::s_getCustomMetricCpuUsage;
+            RegisterCustomMetricNumber("cpu_usage", func);
         }
 
-        int ReportTask::s_getCustomMetricCpuUsage(double *output, void *data)
+        int ReportTask::s_getCustomMetricCpuUsage(double *output)
         {
-            (void)(data); // prevent warnings over unused parameter
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
             int return_result = AWS_OP_ERR;
@@ -375,13 +381,12 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricMemoryUsage()
         {
-            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricMemoryUsage;
-            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("memory_usage"), func);
+            std::function<int(double *)> func = ReportTask::s_getCustomMetricMemoryUsage;
+            RegisterCustomMetricNumber("memory_usage", func);
         }
 
-        int ReportTask::s_getCustomMetricMemoryUsage(double *output, void *data)
+        int ReportTask::s_getCustomMetricMemoryUsage(double *output)
         {
-            (void)(data); // prevent warnings over unused parameter
 // Get the Memory usage from Linux
 #if defined(__linux__) || defined(__unix__)
             struct sysinfo memoryInfo;
@@ -401,13 +406,12 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricProcessCount()
         {
-            //std::function<int(double *, void *)> func = ReportTask::s_getCustomMetricProcessCount;
-            //RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("process_count"), func);
+            std::function<int(double *)> func = ReportTask::s_getCustomMetricProcessCount;
+            RegisterCustomMetricNumber("process_count", func);
         }
 
-        int ReportTask::s_getCustomMetricProcessCount(double *output, void *data)
+        int ReportTask::s_getCustomMetricProcessCount(double *output)
         {
-            (void)(data); // prevent warnings over unused parameter
 // Get the process count from Linux
 #if defined(__linux__) || defined(__unix__)
             struct sysinfo systemInfo;

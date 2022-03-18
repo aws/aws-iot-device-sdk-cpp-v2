@@ -25,49 +25,37 @@
 
 using namespace Aws::Crt;
 
-int s_getCustomMetricNumber(double *output, void *data)
+int s_getCustomMetricNumber(double *output)
 {
     /** Set to a random number between -50 and 50 */
     *output = (double)((rand() % 100 + 1) - 50);
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricNumberList(aws_array_list *output, void *data)
+int s_getCustomMetricNumberList(std::vector<double> *output)
 {
-    double s_metricListNumberOne = 1.5;
-    double s_metricListNumberTwo = 2.2;
-    double s_metricListNumberThree = 3.9;
-    double s_metricListNumberFour = 4.1;
-    aws_array_list_push_back(output, &s_metricListNumberOne);
-    aws_array_list_push_back(output, &s_metricListNumberTwo);
-    aws_array_list_push_back(output, &s_metricListNumberThree);
-    aws_array_list_push_back(output, &s_metricListNumberFour);
+    output->push_back(1.5);
+    output->push_back(2.2);
+    output->push_back(3.9);
+    output->push_back(4.1);
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricStringList(aws_array_list *output, void *data)
+int s_getCustomMetricStringList(std::vector<std::string> *output)
 {
-    aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "One Fish");
-    aws_array_list_push_back(output, &list_str_01);
-    aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Two Fish");
-    aws_array_list_push_back(output, &list_str_02);
-    aws_string *list_str_03 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Red Fish");
-    aws_array_list_push_back(output, &list_str_03);
-    aws_string *list_str_04 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "Blue Fish");
-    aws_array_list_push_back(output, &list_str_04);
+    output->push_back("One Fish");
+    output->push_back("Two Fish");
+    output->push_back("Red Fish");
+    output->push_back("Blue Fish");
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricIPAddressList(aws_array_list *output, void *data)
+int s_getCustomMetricIpAddressList(std::vector<std::string> *output)
 {
-    aws_string *list_str_01 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "192.0.2.0");
-    aws_array_list_push_back(output, &list_str_01);
-    aws_string *list_str_02 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "198.51.100.0");
-    aws_array_list_push_back(output, &list_str_02);
-    aws_string *list_str_03 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "203.0.113.0");
-    aws_array_list_push_back(output, &list_str_03);
-    aws_string *list_str_04 = aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), "233.252.0.0");
-    aws_array_list_push_back(output, &list_str_04);
+    output->push_back("192.0.2.0");
+    output->push_back("198.51.100.0");
+    output->push_back("203.0.113.0");
+    output->push_back("233.252.0.0");
     return AWS_OP_SUCCESS;
 }
 
@@ -254,21 +242,23 @@ int main(int argc, char *argv[])
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
+        apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+
         // Add the custom metrics
         // (Inline function example)
-        aws_iotdevice_defender_get_number_fn *s_localGetCustomMetricNumber = [](double *output, void *data) {
+        std::function<int(double *)> s_localGetCustomMetricNumber = [](double *output) {
             *output = 8.2;
             return AWS_OP_SUCCESS;
         };
-
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumber"), s_localGetCustomMetricNumber);
-        task->RegisterCustomMetricNumber(aws_byte_cursor_from_c_str("CustomNumberTwo"), &s_getCustomMetricNumber);
-        task->RegisterCustomMetricNumberList(
-            aws_byte_cursor_from_c_str("CustomNumberList"), &s_getCustomMetricNumberList);
-        task->RegisterCustomMetricStringList(
-            aws_byte_cursor_from_c_str("CustomStringList"), s_getCustomMetricStringList);
-        task->RegisterCustomMetricIpAddressList(
-            aws_byte_cursor_from_c_str("CustomIPList"), s_getCustomMetricIPAddressList);
+        task->RegisterCustomMetricNumber("CustomNumber", s_localGetCustomMetricNumber);
+        std::function<int(double *)> s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
+        task->RegisterCustomMetricNumber("CustomNumberTwo", s_getCustomMetricNumberFunc);
+        std::function<int(std::vector<double> *)> s_getCustomMetricNumberListFunc = s_getCustomMetricNumberList;
+        task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
+        std::function<int(std::vector<std::string> *)> s_getCustomMetricStringListFunc = s_getCustomMetricStringList;
+        task->RegisterCustomMetricStringList("CustomStringList", s_getCustomMetricStringListFunc);
+        std::function<int(std::vector<std::string> *)> s_getCustomMetricIpAddressListFunc = s_getCustomMetricIpAddressList;
+        task->RegisterCustomMetricIpAddressList("CustomIPList", s_getCustomMetricIpAddressListFunc);
 
         // Send additional device custom metrics
         task->RegisterCustomMetricCpuUsage();
