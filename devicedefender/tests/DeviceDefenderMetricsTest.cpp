@@ -74,7 +74,6 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         task->RegisterCustomMetricNumberList(aws_byte_cursor_from_c_str("CustomNumberList"), local_metric_number_list_func);
 
-        /*
         std::function<int(std::vector<std::string> *)> local_metric_str_list_func = [](std::vector<std::string> *output) {
             output->push_back("One Fish");
             output->push_back("Two Fish");
@@ -92,7 +91,6 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricIpAddressList(aws_byte_cursor_from_c_str("CustomIPList"), local_metric_ip_list_func);
-        */
 
         // ================
 

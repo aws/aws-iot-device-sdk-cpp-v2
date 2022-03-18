@@ -188,6 +188,7 @@ namespace Aws
             std::vector<std::function<int(std::vector<double>*)>> m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double>*)>>();
             std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
             std::vector<std::function<int(std::vector<std::string>*)>> m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string>*)>>();
+
             std::vector<customMetricData> storedCustomMetricData = std::vector<customMetricData>();
 
             /**

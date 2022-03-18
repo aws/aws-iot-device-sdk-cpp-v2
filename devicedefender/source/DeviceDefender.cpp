@@ -37,6 +37,8 @@ namespace Aws
             {
                 taskWrapper->OnTaskCancelled(taskWrapper->cancellationUserdata);
             }
+
+            fprintf(stdout, "\n\nTask finished!\n\n");
         }
 
         ReportTask::ReportTask(
@@ -260,10 +262,10 @@ namespace Aws
             std::vector<std::string> function_data = std::vector<std::string>();
             int returnValue = tmpRef(&function_data);
 
-            // Something with code below causes seg fault when written to JSON (likely memory issue - Pointers disappear or get unreferenced?)
             for (size_t i = 0; i < function_data.size(); i++)
             {
-                aws_array_list_push_back(output, aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), function_data[i].c_str()));
+                aws_string *tmp_str = aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
+                aws_array_list_push_back(output, &tmp_str);
             }
             
             return returnValue;
@@ -281,10 +283,10 @@ namespace Aws
             std::vector<std::string> function_data = std::vector<std::string>();
             int returnValue = tmpRef(&function_data);
 
-            // Something with code below causes seg fault when written to JSON (likely memory issue - Pointers disappear or get unreferenced?)
             for (size_t i = 0; i < function_data.size(); i++)
             {
-                aws_array_list_push_back(output, aws_string_new_from_c_str(Aws::Crt::DefaultAllocator(), function_data.at(i).c_str()));
+                aws_string *tmp_str = aws_string_new_from_c_str(storedData->task->m_allocator, function_data[i].c_str());
+                aws_array_list_push_back(output, &tmp_str);
             }
             return returnValue;
         }
