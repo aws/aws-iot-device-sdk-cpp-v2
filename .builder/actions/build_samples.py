@@ -16,7 +16,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/pkcs11_connect',
             'samples/mqtt/raw_connect',
             'samples/mqtt/websocket_connect',
-            'samples/mqtt/x509_connect',
+            'samples/mqtt/x509_credentials_provider_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
