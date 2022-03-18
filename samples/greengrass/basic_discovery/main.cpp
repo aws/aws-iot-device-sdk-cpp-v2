@@ -14,46 +14,10 @@
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "basic-discovery --region <optional: region> --cert <path to cert>"
-        " --key <path to key> --ca_file <optional: path to custom ca>"
-        " --thing_name <thing name> --topic <optional: topic> "
-        " --mode <optional: both|publish|subscribe> --message <optional: message to publish>"
-        " --proxy-host <optional: proxy host name> --proxy-port <optional: proxy port>\n\n");
-    fprintf(stdout, "region: the region for your green grass groups, default us-east-1\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(stdout, "ca_file: ca file to use in verifying TLS connections.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "topic: targeted topic. Default is test/topic\n");
-    fprintf(stdout, "mode: default both\n");
-    fprintf(stdout, "message: message to publish. default 'Hello World'\n");
-    fprintf(stdout, "proxy-host: proxy host to use for discovery call. Default is to not use a proxy.\n");
-    fprintf(stdout, "proxy-port: proxy port to use for discovery call.\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -75,59 +39,38 @@ int main(int argc, char *argv[])
     String message("Hello World");
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--cert") && s_cmdOptionExists(argv, argv + argc, "--key") &&
-          s_cmdOptionExists(argv, argv + argc, "--thing_name")))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("basic-discovery");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonProxyCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.RemoveCommand("endpoint");
+    cmdUtils.RegisterCommand(
+        "region", "<str>", "The region for your Greengrass groups (optional, default='us-east-1').");
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
+    cmdUtils.RegisterCommand(
+        "mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    if (cmdUtils.HasCommand("help"))
     {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--region"))
-    {
-        region = s_getCmdOption(argv, argv + argc, "--region");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--topic"))
-    {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--mode"))
-    {
-        mode = s_getCmdOption(argv, argv + argc, "--mode");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
-    {
-        message = s_getCmdOption(argv, argv + argc, "--message");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy-host"))
-    {
-        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy-host");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--proxy-port"))
-    {
-        String portString = s_getCmdOption(argv, argv + argc, "--proxy-port");
-        proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
-    }
-
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
-    {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
+        cmdUtils.PrintHelp();
         exit(-1);
+    }
+    certificatePath = cmdUtils.GetCommandRequired("cert");
+    keyPath = cmdUtils.GetCommandRequired("key");
+    thingName = cmdUtils.GetCommandRequired("thing_name");
+    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    region = cmdUtils.GetCommandOrDefault("region", region);
+    topic = cmdUtils.GetCommandOrDefault("topic", topic);
+    mode = cmdUtils.GetCommandOrDefault("mode", mode);
+    message = cmdUtils.GetCommandOrDefault("message", message);
+    proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", proxyHost);
+    if (cmdUtils.HasCommand("proxy_port"))
+    {
+        String portString = cmdUtils.GetCommand("proxy_port");
+        proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
     /*
@@ -162,17 +105,20 @@ int main(int argc, char *argv[])
     Io::SocketOptions socketOptions;
     socketOptions.SetConnectTimeoutMs(3000);
 
-    Io::DefaultHostResolver hostResolver(eventLoopGroup, 64, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
-
-    if (!bootstrap)
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        fprintf(
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.Bootstrap = &bootstrap;
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
     clientConfig.Region = region;
@@ -187,7 +133,7 @@ int main(int argc, char *argv[])
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
-    Aws::Iot::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient;
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
     std::promise<void> connectionFinishedPromise;

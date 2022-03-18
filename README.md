@@ -26,10 +26,12 @@ __Jump To:__
 ## Installation
 
 ### Minimum Requirements
-
 * C++ 11 or higher
 * CMake 3.1+
 * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
+
+[Step-by-step instructions](./PREREQUISITES.md)
+
 
 ### Build from source
 

@@ -24,6 +24,12 @@ cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_
 cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 ```
 
+To view the commands for a given sample, run the compiled program and pass `--help`.
+
+```
+./basic-pub-sub --help
+```
+
 #### Note
 
 * `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
@@ -35,11 +41,7 @@ cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages through an MQTT connection.
-On startup, the device connects to the server and subscribes to a topic.
-
-The terminal prompts the user for input. Type something and press enter to publish a message to the topic.
-Since the sample is subscribed to the same topic, it will also receive the message back from the server.
-Type `quit` and press enter to end the sample.
+On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
 
 Source: `samples/mqtt/basic_pub_sub/main.cpp`
 
@@ -54,7 +56,6 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
     {
       "Effect": "Allow",
       "Action": [
@@ -83,7 +84,6 @@ and receive.
         "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
       ]
     }
-
   ]
 }
 </pre>
@@ -96,6 +96,23 @@ To run the basic MQTT Pub-Sub use the following command:
 --cert <path to the certificate> --key <path to the private key>
 --topic <topic name>
 ```
+
+To run this sample using websockets, see below:
+
+<details>
+<summary>(Websockets)</summary>
+
+To run using Websockets, use the following command:
+
+``` sh
+./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
+--use_websocket --signing_region <signing_region>
+```
+
+Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
+See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for documentation on how to get the AWS credentials, which then you can set to the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS`, and `AWS_SESSION_TOKEN` environment variables.
+
+</details>
 
 ## PKCS#11 MQTT Pub-Sub
 
@@ -147,7 +164,7 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
 5)  Now you can run the sample:
     ```sh
-    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA1.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
+    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
 
@@ -158,6 +175,16 @@ This is a starting point for using custom
 [Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
 
 source: `samples/mqtt/raw_pub_sub/main.cpp`
+
+To run the Raw MQTT Pub-Sub sample use the following command:
+
+``` sh
+./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--topic <topic name> --user_name <user name to send on connect> --password <password to send on connect>
+```
+
+This will allow you to run the program. To disconnect and exit the program, enter `exit`.
 
 ## Shadow
 
@@ -192,7 +219,6 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
     {
       "Effect": "Allow",
       "Action": [
@@ -234,11 +260,20 @@ and receive.
       "Action": "iot:Connect",
       "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
-
   ]
 }
 </pre>
 </details>
+
+To run the Shadow sample use the following command:
+
+``` sh
+./shadow-sync --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --shadow_property <shadow property name>
+```
+
+This will allow you to run the program and set the shadow property. To disconnect and exit the program, enter `quit`.
 
 ## Jobs
 
@@ -263,53 +298,67 @@ and receive.
 {
   "Version": "2012-10-17",
   "Statement": [
-
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Publish"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Receive"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/rejected"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Subscribe"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify-next",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/rejected"
-      ]
-    },
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/<b>thingname</b>",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/pubtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/job/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/dc/subtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Receive",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/subtopic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:DescribeJobExecution",
+        "iot:GetPendingJobExecutions",
+        "iot:StartNextPendingJobExecution",
+        "iot:UpdateJobExecution"
+      ],
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>"
     }
-
   ]
 }
 </pre>
+
+See the [Basic job policy example](https://docs.aws.amazon.com/iot/latest/developerguide/basic-jobs-example.html) page for another policy example.
 </details>
+
+To run the job sample use the following command:
+
+``` sh
+./describe-job-execution --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --job_id <the job id>
+```
+
+Note that if you get a `Service Error 4 occurred` error, you may have incorrectly input the job id. The job id needs to exactly match the job id in the AWS console.
 
 ## Fleet provisioning
 
@@ -526,7 +575,11 @@ Source: `samples/secure_tunneling/tunnel_notification`
 
 ## Greengrass discovery
 
-This sample is intended for direct usage with the Greengrass Discovery tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).
+This sample is intended for use with the following tutorials in the AWS IoT Greengrass documentation:
+
+* [Connect and test client devices](https://docs.aws.amazon.com/greengrass/v2/developerguide/client-devices-tutorial.html) (Greengrass V2)
+* [Test client device communications](https://docs.aws.amazon.com/greengrass/v2/developerguide/test-client-device-communications.html) (Greengrass V2)
+* [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html) (Greengrass V1)
 
 ## Greengrass IPC
 

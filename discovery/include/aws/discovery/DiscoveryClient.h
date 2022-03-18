@@ -27,7 +27,7 @@ namespace Aws
 
             /**
              * The client bootstrap to use for setting up and tearing down connections.
-             * Required.
+             * If not defined, the static default will be used instead.
              */
             Crt::Io::ClientBootstrap *Bootstrap;
 
