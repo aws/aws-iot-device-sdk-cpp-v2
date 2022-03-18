@@ -30,14 +30,14 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic_pub_sub");
+    cmdUtils.RegisterProgramName("x509-credentials-provider-connect");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.AddCommonX509Commands();
     cmdUtils.RegisterCommand(
         "signing_region",
         "<str>",
-        "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
+        "Used for websocket signer");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     const char **const_argv = (const char **)argv;
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     String x509Endpoint = cmdUtils.GetCommandRequired(
         "x509_endpoint", "X509 credentials sourcing requires an x509 endpoint to be specified.");
     String x509ThingName = cmdUtils.GetCommandRequired(
-        "x509_thing", "X509 credentials sourcing requires an x509 thing name to be specified.");
+        "x509_thing_name", "X509 credentials sourcing requires an x509 thing name to be specified.");
     String x509CertificatePath = cmdUtils.GetCommandRequired(
         "x509_cert", "X509 credentials sourcing requires an IoT certificate to be specified.");
     String x509KeyPath = cmdUtils.GetCommandRequired(

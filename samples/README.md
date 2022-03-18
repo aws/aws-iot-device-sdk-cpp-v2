@@ -4,6 +4,7 @@
 * [Websocket Connect](#websocket-connect)
 * [PKCS#11 Connect](#pkcs11-connect)
 * [Raw Connect](#raw-connect)
+* [x509 Credentials Provider Connect](#x509-credentials-provider-connect)
 * [Fleet provisioning](#fleet-provisioning)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
@@ -151,7 +152,7 @@ and receive.
 To run the websocket connect use the following command:
 
 ``` sh
-./websocket-connect --endpoint <endpoint> --ca_file <path to root CA> --signing_region <signing_region>
+./websocket-connect --endpoint <endpoint> --ca_file <path to root CA> --signing_region <signing region>
 ```
 
 Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
@@ -225,6 +226,24 @@ To run the Raw MQTT Pub-Sub sample use the following command:
 ./raw-connect --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --user_name <user name to send on connect> --password <password to send on connect>
+```
+
+This will allow you to run the program. To disconnect and exit the program, enter `exit`.
+
+## x509 Credentials Provider Connect
+
+This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection uses a X.509 certificate
+to prove client identity during the websocket handshake rather than during the TLS handshake.
+
+source: `samples/mqtt/x509_credentials_provider_connect/main.cpp`
+
+To run the x509 Credentials Provider Connect sample use the following command:
+
+``` sh
+./x509-credentials-provider-connect --endpoint <endpoint> --ca_file <path to root CA>
+--signing_region <signing region> --x509_ca_file <path to x509 CA>
+--x509_cert <path to x509 cert> --x509_endpoint <x509 endpoint>
+-- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
 ```
 
 This will allow you to run the program. To disconnect and exit the program, enter `exit`.

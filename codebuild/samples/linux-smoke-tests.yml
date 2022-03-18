@@ -17,7 +17,7 @@ phases:
       - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/pubsub-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/connect-websocket-linux.sh
-      - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-pubsub-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-connect-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/securetunnel-linux.sh
   post_build:
     commands:

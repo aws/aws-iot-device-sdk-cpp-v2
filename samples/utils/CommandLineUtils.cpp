@@ -14,7 +14,7 @@ namespace Utils
     CommandLineUtils::CommandLineUtils()
     {
         // Automatically register the help command
-        RegisterCommand("help", "", "Prints this message");
+        RegisterCommand(m_cmd_help, "", "Prints this message");
     }
 
     void CommandLineUtils::RegisterProgramName(Aws::Crt::String newProgramName)
@@ -67,7 +67,7 @@ namespace Utils
         m_endPosition = argc;
 
         // Automatically check and print the help message if the help command is present
-        if (HasCommand("help"))
+        if (HasCommand(m_cmd_help))
         {
             PrintHelp();
             exit(-1);
@@ -137,48 +137,49 @@ namespace Utils
 
     void CommandLineUtils::AddCommonMQTTCommands()
     {
-        RegisterCommand("endpoint", "<str>", "The endpoint of the mqtt server not including a port.");
+        RegisterCommand(m_cmd_endpoint, "<str>", "The endpoint of the mqtt server not including a port.");
         RegisterCommand(
-            "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+            m_cmd_ca_file, "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     }
 
     void CommandLineUtils::AddCommonProxyCommands()
     {
-        RegisterCommand("proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
-        RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+        RegisterCommand(m_cmd_proxy_host, "<str>", "Host name of the proxy server to connect through (optional)");
+        RegisterCommand(m_cmd_proxy_port, "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     }
 
     void CommandLineUtils::AddCommonX509Commands()
     {
         RegisterCommand(
-            "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
-        RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
-        RegisterCommand("x509_thing", "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+            m_cmd_x509_role, "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
+        RegisterCommand(m_cmd_x509_endpoint, "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
         RegisterCommand(
-            "x509_cert",
+            m_cmd_x509_thing_name, "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+        RegisterCommand(
+            m_cmd_x509_cert_file,
             "<path>",
             "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
         RegisterCommand(
-            "x509_key",
+            m_cmd_x509_key_file,
             "<path>",
             "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
         RegisterCommand(
-            "x509_ca_file",
+            m_cmd_x509_ca_file,
             "<path>",
             "Path to the root certificate used in fetching x509 credentials (required for x509)");
     }
 
     void CommandLineUtils::AddCommonTopicMessageCommands()
     {
-        RegisterCommand("message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
-        RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
+        RegisterCommand(m_cmd_messsage, "<str>", "The message to send in the payload (optional, default='Hello world!')");
+        RegisterCommand(m_cmd_topic, "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     }
 
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
         Aws::Iot::MqttClient *client)
     {
         std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib =
-            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired("pkcs11_lib"));
+            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired(m_cmd_pkcs11_cert));
         if (!pkcs11Lib)
         {
             fprintf(stderr, "Pkcs11Lib failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
@@ -186,23 +187,23 @@ namespace Utils
         }
 
         Aws::Crt::Io::TlsContextPkcs11Options pkcs11Options(pkcs11Lib);
-        pkcs11Options.SetCertificateFilePath(GetCommandRequired("cert"));
-        pkcs11Options.SetUserPin(GetCommandRequired("pin"));
+        pkcs11Options.SetCertificateFilePath(GetCommandRequired(m_cmd_cert_file));
+        pkcs11Options.SetUserPin(GetCommandRequired(m_cmd_pkcs11_pin));
 
-        if (HasCommand("token_label"))
+        if (HasCommand(m_cmd_pkcs11_token))
         {
-            pkcs11Options.SetTokenLabel(GetCommand("token_label"));
+            pkcs11Options.SetTokenLabel(GetCommand(m_cmd_pkcs11_token));
         }
 
-        if (HasCommand("slot_id"))
+        if (HasCommand(m_cmd_pkcs11_slot))
         {
-            uint64_t slotId = std::stoull(GetCommand("slot_id").c_str());
+            uint64_t slotId = std::stoull(GetCommand(m_cmd_pkcs11_slot).c_str());
             pkcs11Options.SetSlotId(slotId);
         }
 
-        if (HasCommand("key_label"))
+        if (HasCommand(m_cmd_pkcs11_key))
         {
-            pkcs11Options.SetPrivateKeyObjectLabel(GetCommand("key_label"));
+            pkcs11Options.SetPrivateKeyObjectLabel(GetCommand(m_cmd_pkcs11_key));
         }
 
         Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder(pkcs11Options);
@@ -215,12 +216,12 @@ namespace Utils
             exit(-1);
         }
 
-        if (HasCommand("ca_file"))
+        if (HasCommand(m_cmd_ca_file))
         {
-            clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
         }
 
-        clientConfigBuilder.WithEndpoint(GetCommandRequired("endpoint"));
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
 
@@ -233,7 +234,7 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
 
         Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(
-            GetCommandRequired("x509_cert").c_str(), GetCommandRequired("x509_key").c_str());
+            GetCommandRequired(m_cmd_x509_cert_file).c_str(), GetCommandRequired(m_cmd_x509_key_file).c_str());
         if (!tlsCtxOptions)
         {
             fprintf(
@@ -243,9 +244,9 @@ namespace Utils
             exit(-1);
         }
 
-        if (HasCommand("x509_ca_file"))
+        if (HasCommand(m_cmd_x509_ca_file))
         {
-            tlsCtxOptions.OverrideDefaultTrustStore(nullptr, GetCommand("x509_ca_file").c_str());
+            tlsCtxOptions.OverrideDefaultTrustStore(nullptr, GetCommand(m_cmd_x509_ca_file).c_str());
         }
 
         x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
@@ -269,12 +270,12 @@ namespace Utils
             exit(-1);
         }
 
-        x509Config.Endpoint = GetCommandRequired("x509_endpoint");
-        x509Config.RoleAlias = GetCommandRequired("x509_role_alias");
-        x509Config.ThingName = GetCommandRequired("x509_thing");
+        x509Config.Endpoint = GetCommandRequired(m_cmd_x509_endpoint);
+        x509Config.RoleAlias = GetCommandRequired(m_cmd_x509_role);
+        x509Config.ThingName = GetCommandRequired(m_cmd_x509_thing_name);
 
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        if (HasCommand("proxy_host"))
+        if (HasCommand(m_cmd_proxy_host))
         {
             proxyOptions = GetProxyOptionsForMQTTConnection();
             x509Config.ProxyOptions = proxyOptions;
@@ -287,19 +288,19 @@ namespace Utils
             exit(-1);
         }
 
-        Aws::Iot::WebsocketConfig config(GetCommandRequired("signing_region"), provider);
+        Aws::Iot::WebsocketConfig config(GetCommandRequired(m_cmd_signing_region), provider);
         clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
 
-        if (HasCommand("ca_file"))
+        if (HasCommand(m_cmd_ca_file))
         {
-            clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
         }
-        if (HasCommand("proxy_host"))
+        if (HasCommand(m_cmd_proxy_host))
         {
             clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
         }
 
-        clientConfigBuilder.WithEndpoint(GetCommandRequired("endpoint"));
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnection(
@@ -319,37 +320,37 @@ namespace Utils
             exit(-1);
         }
 
-        Aws::Iot::WebsocketConfig config(GetCommandRequired("signing_region"), provider);
+        Aws::Iot::WebsocketConfig config(GetCommandRequired(m_cmd_signing_region), provider);
         clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
 
-        if (HasCommand("ca_file"))
+        if (HasCommand(m_cmd_ca_file))
         {
-            clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
         }
-        if (HasCommand("proxy_host"))
+        if (HasCommand(m_cmd_proxy_host))
         {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
         }
 
-        clientConfigBuilder.WithEndpoint(GetCommandRequired("endpoint"));
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnection(
         Aws::Iot::MqttClient *client)
     {
-        Aws::Crt::String certificatePath = GetCommandRequired("cert");
-        Aws::Crt::String keyPath = GetCommandRequired("key");
-        Aws::Crt::String endpoint = GetCommandRequired("endpoint");
+        Aws::Crt::String certificatePath = GetCommandRequired(m_cmd_cert_file);
+        Aws::Crt::String keyPath = GetCommandRequired(m_cmd_key_file);
+        Aws::Crt::String endpoint = GetCommandRequired(m_cmd_endpoint);
 
         auto clientConfigBuilder =
             Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
         clientConfigBuilder.WithEndpoint(endpoint);
 
-        if (HasCommand("ca_file"))
+        if (HasCommand(m_cmd_ca_file))
         {
-            clientConfigBuilder.WithCertificateAuthority(GetCommand("ca_file").c_str());
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
         }
-        if (HasCommand("proxy_host"))
+        if (HasCommand(m_cmd_proxy_host))
         {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
         }
@@ -372,13 +373,13 @@ namespace Utils
             }
         }
 
-        if (HasCommand("pkcs11_lib"))
+        if (HasCommand(m_cmd_pkcs11_lib))
         {
             return BuildPKCS11MQTTConnection(&m_internal_client);
         }
-        else if (HasCommand("signing_region"))
+        else if (HasCommand(m_cmd_signing_region))
         {
-            if (HasCommand("x509_endpoint"))
+            if (HasCommand(m_cmd_x509_endpoint))
             {
                 return BuildWebsocketX509MQTTConnection(&m_internal_client);
             }
@@ -396,8 +397,8 @@ namespace Utils
     Aws::Crt::Http::HttpClientConnectionProxyOptions CommandLineUtils::GetProxyOptionsForMQTTConnection()
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        proxyOptions.HostName = GetCommand("proxy_host");
-        int ProxyPort = atoi(GetCommandOrDefault("proxy_port", "8080").c_str());
+        proxyOptions.HostName = GetCommand(m_cmd_proxy_host);
+        int ProxyPort = atoi(GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         if (ProxyPort > 0 && ProxyPort < UINT16_MAX)
         {
             proxyOptions.Port = static_cast<uint16_t>(ProxyPort);

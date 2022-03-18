@@ -212,5 +212,30 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
             Aws::Iot::MqttClient *client,
             Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
+
+        /** Constants for commonly used/needed commands */
+        const Aws::Crt::String m_cmd_endpoint = "endpoint";
+        const Aws::Crt::String m_cmd_ca_file = "ca_file";
+        const Aws::Crt::String m_cmd_cert_file = "cert";
+        const Aws::Crt::String m_cmd_key_file = "key";
+        const Aws::Crt::String m_cmd_proxy_host = "proxy_host";
+        const Aws::Crt::String m_cmd_proxy_port = "proxy_port";
+        const Aws::Crt::String m_cmd_signing_region = "signing_region";
+        const Aws::Crt::String m_cmd_x509_endpoint = "x509_endpoint";
+        const Aws::Crt::String m_cmd_x509_role = "x509_role_alias";
+        const Aws::Crt::String m_cmd_x509_thing_name = "x509_thing_name";
+        const Aws::Crt::String m_cmd_x509_cert_file = "x509_cert";
+        const Aws::Crt::String m_cmd_x509_key_file = "x509_key";
+        const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
+        const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
+        const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
+        const Aws::Crt::String m_cmd_pkcs11_pin = "pkcs11_pin";
+        const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
+        const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
+        const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
+        const Aws::Crt::String m_cmd_messsage = "message";
+        const Aws::Crt::String m_cmd_topic = "topic";
+        const Aws::Crt::String m_cmd_help = "help";
+
     };
 } // namespace Utils
