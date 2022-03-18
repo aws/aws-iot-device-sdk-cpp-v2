@@ -236,6 +236,5 @@ namespace Utils
         const Aws::Crt::String m_cmd_messsage = "message";
         const Aws::Crt::String m_cmd_topic = "topic";
         const Aws::Crt::String m_cmd_help = "help";
-
     };
 } // namespace Utils

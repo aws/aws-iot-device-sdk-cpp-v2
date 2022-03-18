@@ -34,10 +34,7 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.AddCommonX509Commands();
-    cmdUtils.RegisterCommand(
-        "signing_region",
-        "<str>",
-        "Used for websocket signer");
+    cmdUtils.RegisterCommand("signing_region", "<str>", "Used for websocket signer");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     const char **const_argv = (const char **)argv;

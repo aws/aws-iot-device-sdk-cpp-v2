@@ -145,7 +145,8 @@ namespace Utils
     void CommandLineUtils::AddCommonProxyCommands()
     {
         RegisterCommand(m_cmd_proxy_host, "<str>", "Host name of the proxy server to connect through (optional)");
-        RegisterCommand(m_cmd_proxy_port, "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+        RegisterCommand(
+            m_cmd_proxy_port, "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     }
 
     void CommandLineUtils::AddCommonX509Commands()
@@ -171,7 +172,8 @@ namespace Utils
 
     void CommandLineUtils::AddCommonTopicMessageCommands()
     {
-        RegisterCommand(m_cmd_messsage, "<str>", "The message to send in the payload (optional, default='Hello world!')");
+        RegisterCommand(
+            m_cmd_messsage, "<str>", "The message to send in the payload (optional, default='Hello world!')");
         RegisterCommand(m_cmd_topic, "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     }
 
