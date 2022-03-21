@@ -36,7 +36,7 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String clientId(String("test-") /*+ Aws::Crt::UUID().ToString()*/);
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daEnv;
@@ -93,7 +93,7 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
     {
         exit(-1);
     }

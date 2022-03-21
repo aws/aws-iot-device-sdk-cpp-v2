@@ -21,7 +21,8 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stdout);
+    String clientId(String("test-") /* + Aws::Crt::UUID().ToString()*/);
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daVars;
@@ -77,7 +78,7 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
     {
         exit(-1);
     }
@@ -96,26 +97,13 @@ int main()
                              Mqtt::QOS /*qos*/,
                              bool /*retain*/) {};
 
-        auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String & /*topic*/, Mqtt::QOS QoS, int errorCode) {
-                if (errorCode || (!packetId || QoS == AWS_MQTT_QOS_FAILURE))
-                {
-                    exit(-1);
-                }
-                subscribeFinishedPromise.set_value();
-            };
+        auto onSubAck = [&](Mqtt::MqttConnection &,
+                            uint16_t /*packetId*/,
+                            const String & /*topic*/,
+                            Mqtt::QOS /*QoS*/,
+                            int /*errorCode*/) {};
 
-        connection->Subscribe(daVars.topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
-        subscribeFinishedPromise.get_future().wait();
-
-        /*
-         * Unsubscribe from the topic.
-         */
-        std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(daVars.topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
-            unsubscribeFinishedPromise.set_value();
-        });
-        unsubscribeFinishedPromise.get_future().wait();
+        connection->Subscribe(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
 
         /* Disconnect */
         if (connection->Disconnect())

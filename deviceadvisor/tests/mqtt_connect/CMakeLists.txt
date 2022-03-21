@@ -5,6 +5,7 @@ project(mqtt_connect CXX)
 file(GLOB SRC_FILES
        "*.cpp"
        "../utils/*.cpp"
+       "../utils/*.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

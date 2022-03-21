@@ -21,14 +21,15 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+    String clientId(String("test-") /*+ Aws::Crt::UUID().ToString()*/);
     String messagePayload("Hello world!");
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daVars;
     if (!daVars.init(TestType::SUB_PUB))
     {
-        exit(-1);
+        exit(1);
     }
 
     /********************** Now Setup an Mqtt Client ******************/
@@ -36,13 +37,15 @@ int main()
      * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
 
+    fprintf(stderr, "log certificate path: %s", daVars.certificatePath.c_str());
+    fprintf(stderr, "log key path: %s", daVars.keyPath.c_str());
     Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
     builder.WithEndpoint(daVars.endpoint);
     auto clientConfig = builder.Build();
     if (!clientConfig)
     {
-        exit(-1);
+        exit(2);
     }
 
     /*
@@ -52,7 +55,7 @@ int main()
     Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {
-        exit(-1);
+        exit(3);
     }
 
     /*
@@ -61,7 +64,7 @@ int main()
     auto connection = mqttClient.NewConnection(clientConfig);
     if (!connection)
     {
-        exit(-1);
+        exit(4);
     }
 
     /*
@@ -78,9 +81,9 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
     {
-        exit(-1);
+        exit(5);
     }
 
     if (connectionCompletedPromise.get_future().get())
@@ -89,8 +92,10 @@ int main()
         ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
         auto onPublishComplete = [&](Mqtt::MqttConnection &, uint16_t, int) { publishFinishedPromise.set_value(); };
-        connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+        connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
+        fprintf(stderr, "waiting on publish..... ");
         publishFinishedPromise.get_future().wait();
+        fprintf(stderr, "get on publish..... ");
 
         /* Disconnect */
         if (connection->Disconnect())
@@ -100,7 +105,7 @@ int main()
     }
     else
     {
-        exit(-1);
+        exit(6);
     }
 
     return 0;
