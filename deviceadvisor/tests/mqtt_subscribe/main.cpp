@@ -22,7 +22,7 @@ int main()
      */
     ApiHandle apiHandle;
     apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stdout);
-    String clientId(String("test-") /* + Aws::Crt::UUID().ToString()*/);
+    String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daVars;
@@ -78,7 +78,8 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
+    if (!connection->Connect(
+            clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
     {
         exit(-1);
     }
