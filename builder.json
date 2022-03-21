@@ -27,11 +27,12 @@
     "build",
     "build-samples"
   ],
+  "test_steps": [    
+    "python3 -m pip install boto3",
+    "python3 deviceadvisor/script/DATestRun.py"],
   "variants" : {
-    "device_advisor": {
-        "!test_steps": [    
-          "python3 -m pip install boto3",
-          "python3 deviceadvisor/script/run.py"]
+    "skip_test": {
+        "!test_steps": []
     }
   }
 }
