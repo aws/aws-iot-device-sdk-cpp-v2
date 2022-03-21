@@ -1,6 +1,7 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
 * [Basic Pub-Sub](#basic-pub-sub)
+* [Basic Connect](#basic-connect)
 * [Websocket Connect](#websocket-connect)
 * [PKCS#11 Connect](#pkcs11-connect)
 * [Raw Connect](#raw-connect)
@@ -99,11 +100,11 @@ To run the basic MQTT Pub-Sub use the following command:
 --topic <topic name>
 ```
 
-## Websocket Connect
+## Basic Connect
 
-This sample makes an MQTT connection via websockets and then disconnects. On startup, the device connects to the server via websockets, waits a half seconds, and then disconnects. This sample is for reference on connecting via websockets.
+This sample makes an MQTT connection using a certificate and key file. On startup, the device connects to the server using the certificate and key files, and then disconnects. This sample is for reference on connecting via certificate and key files.
 
-Source: `samples/mqtt/websocket-connect/main.cpp`
+Source: `samples/mqtt/basic-connect/main.cpp`
 
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
@@ -119,22 +120,40 @@ and receive.
     {
       "Effect": "Allow",
       "Action": [
-        "iot:Publish",
-        "iot:Receive"
+        "iot:Connect"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
       ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Subscribe"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/topic"
-      ]
-    },
+    }
+  ]
+}
+</pre>
+</details>
+
+To run the basic connect sample use the following command:
+
+``` sh
+./basic-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to the certificate> --key <path to the private key>
+```
+
+## Websocket Connect
+
+This sample makes an MQTT connection via websockets and then disconnects. On startup, the device connects to the server via websockets and then disconnects. This sample is for reference on connecting via websockets.
+
+Source: `samples/mqtt/websocket-connect/main.cpp`
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
       "Effect": "Allow",
       "Action": [
@@ -160,7 +179,7 @@ See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/develope
 
 ## PKCS#11 Connect
 
-This sample is similar to the [Basic Pub-Sub](#basic-pub-sub),
+This sample is similar to the [Basic Connect](#basic-connect),
 but the private key for mutual TLS is stored on a PKCS#11 compatible smart card or Hardware Security Module (HSM)
 
 WARNING: Unix only. Currently, TLS integration with PKCS#11 is only available on Unix devices.
@@ -211,10 +230,34 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
     ./pkcs11-connect --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
 ## Raw Connect
 
-This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection setup is more manual.
+This sample is similar to the [Basic Connect](#basic-connect), but the connection setup is more manual.
 This is a starting point for using custom
 [Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
 
@@ -229,6 +272,31 @@ To run the Raw MQTT Pub-Sub sample use the following command:
 ```
 
 This will allow you to run the program. To disconnect and exit the program, enter `exit`.
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
 ## x509 Credentials Provider Connect
 
@@ -246,7 +314,30 @@ To run the x509 Credentials Provider Connect sample use the following command:
 -- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
 ```
 
-This will allow you to run the program. To disconnect and exit the program, enter `exit`.
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
 ## Shadow
 
