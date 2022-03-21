@@ -104,12 +104,9 @@ To run the basic MQTT Pub-Sub use the following command:
 
 This sample makes an MQTT connection using a certificate and key file. On startup, the device connects to the server using the certificate and key files, and then disconnects. This sample is for reference on connecting via certificate and key files.
 
-Source: `samples/mqtt/basic-connect/main.cpp`
+Source: `samples/mqtt/basic_connect/main.cpp`
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -141,12 +138,9 @@ To run the basic connect sample use the following command:
 
 This sample makes an MQTT connection via websockets and then disconnects. On startup, the device connects to the server via websockets and then disconnects. This sample is for reference on connecting via websockets.
 
-Source: `samples/mqtt/websocket-connect/main.cpp`
+Source: `samples/mqtt/websocket_connect/main.cpp`
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -230,10 +224,7 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
     ./pkcs11-connect --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -271,12 +262,7 @@ To run the Raw MQTT Pub-Sub sample use the following command:
 --user_name <user name to send on connect> --password <password to send on connect>
 ```
 
-This will allow you to run the program. To disconnect and exit the program, enter `exit`.
-
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -314,10 +300,7 @@ To run the x509 Credentials Provider Connect sample use the following command:
 -- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
 ```
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
 <summary>(see sample policy)</summary>
