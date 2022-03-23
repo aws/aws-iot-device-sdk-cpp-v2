@@ -30,7 +30,7 @@ class BuildSamples(Builder.Action):
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             for cmake_step in args.cmake-extra:
                 steps[-1].append(cmake_step)
-            print steps[-1]
+            print(steps[-1])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
