@@ -183,68 +183,8 @@ int main(int argc, char *argv[])
         connection->SetHttpProxyOptions(proxyOptions);
     }
 
-    /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
-     */
-    std::promise<bool> connectionCompletedPromise;
-    std::promise<void> connectionClosedPromise;
-
-    /*
-     * This will execute when an mqtt connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(true);
-        }
-    };
-
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-    };
-    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
-
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
-        fprintf(stdout, "Disconnect completed\n");
-        connectionClosedPromise.set_value();
-    };
-
-    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
-    connection->OnDisconnect = std::move(onDisconnect);
-    connection->OnConnectionInterrupted = std::move(onInterrupted);
-    connection->OnConnectionResumed = std::move(onResumed);
-
-    /*
-     * Actually perform the connect dance.
-     */
-    fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
-    {
-        fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
-    }
-
-    // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
-    if (connectionCompletedPromise.get_future().get() == false)
-    {
-        fprintf(stderr, "Connection failed\n");
-        exit(-1);
-    }
-
-    /* Disconnect */
-    if (connection->Disconnect())
-    {
-        connectionClosedPromise.get_future().wait();
-    }
+    // Connect and then disconnect using the connection we created
+    // (see SampleConnectAndDisconnect for implementation)
+    cmdUtils.SampleConnectAndDisconnect(connection, clientId);
     return 0;
 }

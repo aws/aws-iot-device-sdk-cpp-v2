@@ -250,7 +250,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 
 This sample is similar to the [Basic Connect](#basic-connect), but the connection setup is more manual.
 This is a starting point for using custom
-[Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
+[Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html) or [Custom Authentication](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html).
 
 source: `samples/mqtt/raw_connect/main.cpp`
 
@@ -287,7 +287,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 ## x509 Credentials Provider Connect
 
 This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection uses a X.509 certificate
-to prove client identity during the websocket handshake rather than during the TLS handshake.
+to source the AWS credentials when connecting.
 
 source: `samples/mqtt/x509_credentials_provider_connect/main.cpp`
 

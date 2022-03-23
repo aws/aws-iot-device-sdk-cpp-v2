@@ -157,7 +157,7 @@ namespace Utils
          * A helper function that builds and returns a PKCS11 direct MQTT connection.
          *
          * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
-         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example.
+         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example setup.
          * @param client The client to use to make the connection.
          * @return The created direct PKCS11 MQTT connection.
          */
@@ -167,7 +167,7 @@ namespace Utils
          * A helper function that builds and returns a websocket x509 MQTT connection.
          *
          * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonX509Commands function. See mqtt/x509_connect for example.
+         * AddCommonX509Commands function. See mqtt/x509_connect for example setup.
          * @param client The client to use to make the connection.
          * @return The created websocket x509 MQTT connection.
          */
@@ -177,7 +177,7 @@ namespace Utils
          * A helper function that builds and returns a websocket MQTT connection.
          *
          * Will get the required data from the CommandLineUtils from the "signing_region" command.
-         * See mqtt/websocket_connect for example.
+         * See mqtt/websocket_connect for example setup.
          * @param client The client to use to make the connection
          * @return The created websocket MQTT connection
          */
@@ -200,6 +200,14 @@ namespace Utils
          * @return The automatically created connection
          */
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildMQTTConnection();
+
+        /**
+         * A helper function that uses a MQTT connection to connect, and then disconnect from AWS servers. This is used
+         * in all the connect samples to show how to make a connection.
+         * @param connection The MqttConnection to use when making a connection
+         * @param clientId The client ID to send with the connection
+         */
+        void SampleConnectAndDisconnect(std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection, Aws::Crt::String clientId);
 
       private:
         Aws::Crt::String m_programName = "Application";
@@ -233,7 +241,7 @@ namespace Utils
         const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
         const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
         const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
-        const Aws::Crt::String m_cmd_messsage = "message";
+        const Aws::Crt::String m_cmd_message = "message";
         const Aws::Crt::String m_cmd_topic = "topic";
         const Aws::Crt::String m_cmd_help = "help";
     };

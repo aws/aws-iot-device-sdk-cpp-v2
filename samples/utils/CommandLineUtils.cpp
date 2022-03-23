@@ -173,7 +173,7 @@ namespace Utils
     void CommandLineUtils::AddCommonTopicMessageCommands()
     {
         RegisterCommand(
-            m_cmd_messsage, "<str>", "The message to send in the payload (optional, default='Hello world!')");
+            m_cmd_message, "<str>", "The message to send in the payload (optional, default='Hello world!')");
         RegisterCommand(m_cmd_topic, "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     }
 
@@ -437,6 +437,74 @@ namespace Utils
             exit(-1);
         }
         return connection;
+    }
+
+
+    void CommandLineUtils::SampleConnectAndDisconnect(std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection, Aws::Crt::String clientId)
+    {
+        /*
+        * In a real world application you probably don't want to enforce synchronous behavior
+        * but this is a sample console application, so we'll just do that with a condition variable.
+        */
+        std::promise<bool> connectionCompletedPromise;
+        std::promise<void> connectionClosedPromise;
+
+        /*
+        * This will execute when an mqtt connect has completed or failed.
+        */
+        auto onConnectionCompleted = [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+        auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
+            fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
+        };
+        auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
+
+        /*
+        * Invoked when a disconnect message has completed.
+        */
+        auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+            fprintf(stdout, "Disconnect completed\n");
+            connectionClosedPromise.set_value();
+        };
+
+        connection->OnConnectionCompleted = std::move(onConnectionCompleted);
+        connection->OnDisconnect = std::move(onDisconnect);
+        connection->OnConnectionInterrupted = std::move(onInterrupted);
+        connection->OnConnectionResumed = std::move(onResumed);
+
+        /*
+        * Actually perform the connect dance.
+        */
+        fprintf(stdout, "Connecting...\n");
+        if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+        {
+            fprintf(stderr, "MQTT Connection failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
+            exit(-1);
+        }
+
+        // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
+        if (connectionCompletedPromise.get_future().get() == false)
+        {
+            fprintf(stderr, "Connection failed\n");
+            exit(-1);
+        }
+
+        /* Disconnect */
+        if (connection->Disconnect())
+        {
+            connectionClosedPromise.get_future().wait();
+        }
     }
 
 } // namespace Utils
