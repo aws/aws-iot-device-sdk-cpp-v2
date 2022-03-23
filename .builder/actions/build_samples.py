@@ -9,6 +9,11 @@ class BuildSamples(Builder.Action):
             print('skip_samples is defined. Skipping samples...')
             return
 
+        # test to see if the args are passed in
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--cmake-extra', action='append', default=[])
+        cmd_args = parser.parse_known_args(env.args.args)[0]
+
         steps = []
         samples = [
             'samples/mqtt/basic_pub_sub',
@@ -28,7 +33,7 @@ class BuildSamples(Builder.Action):
                           f'-H{sample_path}',
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            for cmake_step in env.args.cmake_extra:
+            for cmake_step in cmd_args.cmake_extra:
                 steps[-1].append(cmake_step)
             print(steps[-1])
             steps.append(['cmake',
