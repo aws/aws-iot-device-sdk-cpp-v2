@@ -28,7 +28,7 @@ class BuildSamples(Builder.Action):
                           f'-H{sample_path}',
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            for cmake_step in env.args.cmake-extra:
+            for cmake_step in env.args.cmake_extra:
                 steps[-1].append(cmake_step)
             print(steps[-1])
             steps.append(['cmake',
