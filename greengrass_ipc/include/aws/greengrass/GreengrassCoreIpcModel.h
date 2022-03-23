@@ -11,6 +11,8 @@
 #include <aws/crt/DateTime.h>
 #include <aws/greengrass/Exports.h>
 
+#include <memory>
+
 using namespace Aws::Eventstreamrpc;
 
 namespace Aws
@@ -270,6 +272,8 @@ namespace Aws
             RunWithInfo(const RunWithInfo &) = default;
             void SetPosixUser(const Aws::Crt::String &posixUser) noexcept { m_posixUser = posixUser; }
             Aws::Crt::Optional<Aws::Crt::String> GetPosixUser() noexcept { return m_posixUser; }
+            void SetWindowsUser(const Aws::Crt::String &windowsUser) noexcept { m_windowsUser = windowsUser; }
+            Aws::Crt::Optional<Aws::Crt::String> GetWindowsUser() noexcept { return m_windowsUser; }
             void SetSystemResourceLimits(const SystemResourceLimits &systemResourceLimits) noexcept
             {
                 m_systemResourceLimits = systemResourceLimits;
@@ -294,6 +298,7 @@ namespace Aws
 
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_posixUser;
+            Aws::Crt::Optional<Aws::Crt::String> m_windowsUser;
             Aws::Crt::Optional<SystemResourceLimits> m_systemResourceLimits;
         };
 
@@ -2700,6 +2705,11 @@ namespace Aws
                 SubscribeToIoTCoreStreamHandler *streamHandler,
                 const SubscribeToIoTCoreOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            SubscribeToIoTCoreOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
+                const SubscribeToIoTCoreOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToIoTCoreOperation`
              * @param request The request used for the `SubscribeToIoTCoreOperation`
@@ -2718,6 +2728,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToIoTCoreStreamHandler> pinnedHandler;
         };
 
         class ResumeComponentOperationContext : public OperationModelContext
@@ -2961,6 +2974,11 @@ namespace Aws
                 SubscribeToConfigurationUpdateStreamHandler *streamHandler,
                 const SubscribeToConfigurationUpdateOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            SubscribeToConfigurationUpdateOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
+                const SubscribeToConfigurationUpdateOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToConfigurationUpdateOperation`
              * @param request The request used for the
@@ -2980,6 +2998,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> pinnedHandler;
         };
 
         class DeleteThingShadowOperationContext : public OperationModelContext
@@ -3216,6 +3237,11 @@ namespace Aws
                 SubscribeToValidateConfigurationUpdatesStreamHandler *streamHandler,
                 const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            SubscribeToValidateConfigurationUpdatesOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
+                const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the
              * `SubscribeToValidateConfigurationUpdatesOperation`
@@ -3236,6 +3262,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> pinnedHandler;
         };
 
         class GetConfigurationOperationContext : public OperationModelContext
@@ -3422,6 +3451,11 @@ namespace Aws
                 SubscribeToTopicStreamHandler *streamHandler,
                 const SubscribeToTopicOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            SubscribeToTopicOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
+                const SubscribeToTopicOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToTopicOperation`
              * @param request The request used for the `SubscribeToTopicOperation`
@@ -3440,6 +3474,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToTopicStreamHandler> pinnedHandler;
         };
 
         class GetComponentDetailsOperationContext : public OperationModelContext
@@ -4478,6 +4515,11 @@ namespace Aws
                 SubscribeToComponentUpdatesStreamHandler *streamHandler,
                 const SubscribeToComponentUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            SubscribeToComponentUpdatesOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
+                const SubscribeToComponentUpdatesOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToComponentUpdatesOperation`
              * @param request The request used for the
@@ -4497,6 +4539,9 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> pinnedHandler;
         };
 
         class ListLocalDeploymentsOperationContext : public OperationModelContext

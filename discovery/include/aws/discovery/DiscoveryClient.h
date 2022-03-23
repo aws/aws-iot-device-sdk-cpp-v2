@@ -27,7 +27,7 @@ namespace Aws
 
             /**
              * The client bootstrap to use for setting up and tearing down connections.
-             * Required.
+             * If not defined, the static default will be used instead.
              */
             Crt::Io::ClientBootstrap *Bootstrap;
 
@@ -45,7 +45,7 @@ namespace Aws
 
             /**
              * The value of the Aws region to connect to.
-             * Required.
+             * Optional. (mutually exclusive with ggServerName)
              */
             Crt::String Region;
 
@@ -59,6 +59,12 @@ namespace Aws
              * Optional.
              */
             Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> ProxyOptions;
+
+            /** The full string of the greengrass server endpoint that you want to connect to.
+             * Defaults to this over using Region to connect to server
+             * Optional. (mutually exclusive with ggServerName)
+             */
+            Crt::Optional<Crt::String> ggServerName;
         };
 
         class AWS_DISCOVERY_API DiscoveryClient final

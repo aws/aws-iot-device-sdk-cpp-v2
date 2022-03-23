@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['offset_0',['offset',['../struct_aws_1_1printbuffer.html#a8d0c13149e89437ac0910b81a092ef12',1,'Aws::printbuffer::offset()'],['../struct_aws_1_1parse__buffer.html#a2e5df5f1a04c2a88d825366d8cf754a7',1,'Aws::parse_buffer::offset()'],['../namespace_aws.html#a4b36e73e20878ce98336cfdea0494281',1,'Aws::offset()']]],
+  ['offset_0',['offset',['../struct_aws_1_1parse__buffer.html#a2e5df5f1a04c2a88d825366d8cf754a7',1,'Aws::parse_buffer::offset()'],['../struct_aws_1_1printbuffer.html#a8d0c13149e89437ac0910b81a092ef12',1,'Aws::printbuffer::offset()'],['../namespace_aws.html#a4b36e73e20878ce98336cfdea0494281',1,'Aws::offset()']]],
   ['onconnectioncompleted_1',['OnConnectionCompleted',['../class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#af3c4eef93ed2eba8ef22ff16066d0e2c',1,'Aws::Crt::Mqtt::MqttConnection']]],
   ['onconnectioninterrupted_2',['OnConnectionInterrupted',['../class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#a1e77801f332c1a9740f80f50614806e2',1,'Aws::Crt::Mqtt::MqttConnection']]],
   ['onconnectionresumed_3',['OnConnectionResumed',['../class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html#ac7795ed1c4b50b8ddf1ac58d11e7bf43',1,'Aws::Crt::Mqtt::MqttConnection']]],

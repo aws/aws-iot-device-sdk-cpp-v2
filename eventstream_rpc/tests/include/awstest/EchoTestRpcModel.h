@@ -11,6 +11,8 @@
 #include <aws/crt/DateTime.h>
 #include <awstest/Exports.h>
 
+#include <memory>
+
 using namespace Aws::Eventstreamrpc;
 
 namespace Awstest
@@ -728,6 +730,11 @@ namespace Awstest
             CauseStreamServiceToErrorStreamHandler *streamHandler,
             const CauseStreamServiceToErrorOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        CauseStreamServiceToErrorOperation(
+            ClientConnection &connection,
+            std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
+            const CauseStreamServiceToErrorOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
         /**
          * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
          * @param request The request used for the
@@ -747,6 +754,9 @@ namespace Awstest
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
+
+      private:
+        std::shared_ptr<CauseStreamServiceToErrorStreamHandler> pinnedHandler;
     };
 
     class EchoStreamMessagesStreamHandler : public StreamResponseHandler
@@ -836,6 +846,11 @@ namespace Awstest
             EchoStreamMessagesStreamHandler *streamHandler,
             const EchoStreamMessagesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        EchoStreamMessagesOperation(
+            ClientConnection &connection,
+            std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
+            const EchoStreamMessagesOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
         /**
          * Used to activate a stream for the `EchoStreamMessagesOperation`
          * @param request The request used for the `EchoStreamMessagesOperation`
@@ -854,6 +869,9 @@ namespace Awstest
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
+
+      private:
+        std::shared_ptr<EchoStreamMessagesStreamHandler> pinnedHandler;
     };
 
     class EchoMessageOperationContext : public OperationModelContext

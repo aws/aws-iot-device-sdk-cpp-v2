@@ -1150,6 +1150,16 @@ namespace Awstest
     {
     }
 
+    CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
+        ClientConnection &connection,
+        std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
+        const CauseStreamServiceToErrorOperationContext &operationContext,
+        Aws::Crt::Allocator *allocator) noexcept
+        : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+          pinnedHandler(std::move(streamHandler))
+    {
+    }
+
     std::future<RpcError> CauseStreamServiceToErrorOperation::Activate(
         const EchoStreamingRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -1234,6 +1244,16 @@ namespace Awstest
         const EchoStreamMessagesOperationContext &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, streamHandler, operationContext, allocator)
+    {
+    }
+
+    EchoStreamMessagesOperation::EchoStreamMessagesOperation(
+        ClientConnection &connection,
+        std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
+        const EchoStreamMessagesOperationContext &operationContext,
+        Aws::Crt::Allocator *allocator) noexcept
+        : ClientOperation(connection, streamHandler.get(), operationContext, allocator),
+          pinnedHandler(std::move(streamHandler))
     {
     }
 
