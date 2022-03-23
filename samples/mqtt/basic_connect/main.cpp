@@ -4,7 +4,6 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
-#include <aws/crt/io/TlsOptions.h>
 
 #include "../../utils/CommandLineUtils.h"
 

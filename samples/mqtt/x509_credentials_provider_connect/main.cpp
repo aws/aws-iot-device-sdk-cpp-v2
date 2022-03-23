@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    uint16_t proxyPort(8080);
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
