@@ -86,7 +86,7 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
 
   windows-vs14:
-    runs-on: windows-latest
+    runs-on: windows-2019 # windows-2019 is last env with Visual Studio 2015 (v14.0)
     strategy:
       matrix:
         arch: [Win32, x64]
