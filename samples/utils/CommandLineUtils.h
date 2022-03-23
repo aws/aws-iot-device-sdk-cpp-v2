@@ -207,7 +207,9 @@ namespace Utils
          * @param connection The MqttConnection to use when making a connection
          * @param clientId The client ID to send with the connection
          */
-        void SampleConnectAndDisconnect(std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection, Aws::Crt::String clientId);
+        void SampleConnectAndDisconnect(
+            std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
+            Aws::Crt::String clientId);
 
       private:
         Aws::Crt::String m_programName = "Application";
