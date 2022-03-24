@@ -239,7 +239,7 @@ namespace Utils
         const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
         const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
         const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
-        const Aws::Crt::String m_cmd_pkcs11_pin = "pkcs11_pin";
+        const Aws::Crt::String m_cmd_pkcs11_pin = "pin";
         const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
         const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
         const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
