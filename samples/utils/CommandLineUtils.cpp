@@ -181,7 +181,7 @@ namespace Utils
         Aws::Iot::MqttClient *client)
     {
         std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib =
-            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired(m_cmd_pkcs11_cert));
+            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired(m_cmd_pkcs11_lib));
         if (!pkcs11Lib)
         {
             fprintf(stderr, "Pkcs11Lib failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
