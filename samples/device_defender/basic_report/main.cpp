@@ -37,7 +37,7 @@ int s_getCustomMetricNumberList(Vector<double> *output)
     output->push_back(1.5);
     output->push_back(2.2);
     output->push_back(3.9);
-    output->push_back(4.1);
+    output->push_back(9.9);
     return AWS_OP_SUCCESS;
 }
 
