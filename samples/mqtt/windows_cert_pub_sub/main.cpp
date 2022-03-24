@@ -6,89 +6,9 @@
 #include <aws/crt/UUID.h>
 #include <aws/iot/MqttClient.h>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "windows-cert-pub-sub"
-        " --endpoint <hostname>"
-        " --cert <path>"
-        " [--topic <mqtt topic>]"
-        " [--message <str>]"
-        " [--count <int>]"
-        " [--client_id <str>]"
-        " [--ca_file <path>]"
-        "\n\n");
-    fprintf(stdout, "endpoint       Endpoint of the mqtt server not including a port.\n");
-    fprintf(
-        stdout,
-        "cert           Path to certificate in Windows certificate store.\n"
-        "               e.g. 'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'\n");
-    fprintf(stdout, "topic          MQTT topic for subscribe and publish (optional, default='/test/topic').\n");
-    fprintf(stdout, "message        MQTT message to publish (optional, default='Hello World!').\n");
-    fprintf(stdout, "count          Number of messages to publish. (optional, default=10).\n");
-    fprintf(stdout, "client_id      Client id to use (optional, default='test-*').\n");
-    fprintf(stdout, "ca_file:       Path to AmazonRootCA1.pem (optional, system trust store used by default).\n");
-    fprintf(stdout, "\n");
-}
-
-class ArgParser
-{
-  public:
-    ArgParser(int argc, char *argv[])
-    {
-        m_argv = argv;
-        m_argvEnd = argv + argc;
-
-        if (Exists("--help"))
-        {
-            s_printHelp();
-            exit(0);
-        }
-    }
-
-    bool Exists(const String &name) const { return std::find(m_argv, m_argvEnd, name) != m_argvEnd; }
-
-    String GetRequired(const String &name) const
-    {
-        const char *val = FindValue(name);
-        if (val == nullptr)
-        {
-            s_printHelp();
-            fprintf(stderr, "Missing required argument: %s\n", name.c_str());
-            exit(-1);
-        }
-        return val;
-    }
-
-    String GetOptional(const String &name, const String &defaultVal)
-    {
-        const char *val = FindValue(name);
-        if (val == nullptr)
-        {
-            return defaultVal;
-        }
-        return val;
-    }
-
-  private:
-    const char *FindValue(const String &name) const
-    {
-        char **itr = std::find(m_argv, m_argvEnd, name);
-        if (itr == m_argvEnd || ++itr == m_argvEnd)
-        {
-            return nullptr;
-        }
-        return *itr;
-    }
-
-  private:
-    char **m_argv;
-    char **m_argvEnd;
-};
 
 int main(int argc, char *argv[])
 {
@@ -102,15 +22,34 @@ int main(int argc, char *argv[])
     apiHandle.InitializeLogging(LogLevel::Error, stderr);
 
     /*********************** Parse Arguments ***************************/
-    ArgParser args(argc, argv);
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("windows-cert-pub-sub");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.RemoveCommand("cert");
+    cmdUtils.RemoveCommand("key");
+    cmdUtils.RegisterCommand(
+        "cert",
+        "<str>",
+        "Your client certificate in the Windows certificate store. e.g. "
+        "'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'");
+    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
+    cmdUtils.RegisterCommand("help", "", "Prints this message");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    String endpoint = args.GetRequired("--endpoint");
-    String certificatePath = args.GetRequired("--cert");
-    String topic = args.GetOptional("--topic", "test/topic");
-    String messagePayload = args.GetOptional("--message", "Hello world!");
-    int messageCount = std::stoi(args.GetOptional("--count", "10").c_str());
-    String caFile = args.GetOptional("--ca_file", "");
-    String clientId = args.GetOptional("--client_id", String("test-") + Aws::Crt::UUID().ToString());
+    if (cmdUtils.HasCommand("help"))
+    {
+        cmdUtils.PrintHelp();
+        exit(-1);
+    }
+    String endpoint = cmdUtils.GetCommandRequired("endpoint");
+    String windowsCertStorePath = cmdUtils.GetCommandRequired("cert");
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
+    int messageCount = std::stoi(cmdUtils.GetCommandOrDefault("count", "10").c_str());
+    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
+    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
 
     /********************** Now Setup an Mqtt Client ******************/
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
@@ -122,7 +61,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Iot::MqttClientConnectionConfigBuilder builder(certificatePath.c_str());
+    Aws::Iot::MqttClientConnectionConfigBuilder builder(windowsCertStorePath.c_str());
     if (!builder)
     {
         fprintf(stderr, "MqttClientConnectionConfigBuilder failed: %s\n", ErrorDebugString(Aws::Crt::LastError()));

@@ -173,18 +173,18 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 WARNING: Windows only
 
 This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub),
-but the device's certificate and private key are in a
+but your certificate and private key are in a
 [Windows certificate store](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/certificate-stores),
 rather than simply being files on disk.
 
 To run this sample you need the path to your certificate in the store,
 which will look something like:
-"CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
-(where "CurrentUser\My" is the store and "A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6" is the certificate's thumbprint)
+"CurrentUser\MY\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
+(where "CurrentUser\MY" is the store and "A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6" is the certificate's thumbprint)
 
-If your private key and certificate are on a
+If your certificate and private key are in a
 [TPM](https://docs.microsoft.com/en-us/windows/security/information-protection/tpm/trusted-platform-module-overview),
-you would access them through their certificate store path.
+you would use them by passing their certificate store path.
 
 source: `samples/mqtt/windows_cert_pub_sub/main.cpp`
 
@@ -194,7 +194,7 @@ To run this sample with a basic certificate from AWS IoT Core:
 
 2)  Combine the certificate and private key into a single .pfx file.
 
-    You will be prompted for a pasword while creating this file. Remember it for the next step.
+    You will be prompted for a password while creating this file. Remember it for the next step.
 
     If you have OpenSSL installed:
     ```powershell
@@ -209,11 +209,11 @@ To run this sample with a basic certificate from AWS IoT Core:
 3)  Add the .pfx file to a Windows certificate store using PowerShell's
     [Import-PfxCertificate](https://docs.microsoft.com/en-us/powershell/module/pki/import-pfxcertificate)
 
-    In this example we're adding it to "CurrentUser\My"
+    In this example we're adding it to "CurrentUser\MY"
 
     ```powershell
     $mypwd = Get-Credential -UserName 'Enter password below' -Message 'Enter password below'
-    Import-PfxCertificate -FilePath certificate.pfx -CertStoreLocation Cert:\CurrentUser\My -Password $mypwd.Password
+    Import-PfxCertificate -FilePath certificate.pfx -CertStoreLocation Cert:\CurrentUser\MY -Password $mypwd.Password
     ```
 
     Note the certificate thumbprint that is printed out:
@@ -223,11 +223,11 @@ To run this sample with a basic certificate from AWS IoT Core:
     A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6  CN=AWS IoT Certificate
     ```
 
-    So this certificate's path would be: "CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
+    So this certificate's path would be: "CurrentUser\MY\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
 
 4) Now you can run the sample:
 
-    ```sh
+    ```
     ./windows-cert-pub-sub.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
     ```
 
