@@ -22,12 +22,6 @@ namespace Aws
 
     namespace Iotdevicedefenderv1
     {
-        // Define statics
-        unsigned long long ReportTask::s_cpuLastTotalUser = 0;
-        unsigned long long ReportTask::s_cpuLastTotalUserLow = 0;
-        unsigned long long ReportTask::s_cpuLastTotalSystem = 0;
-        unsigned long long ReportTask::s_cpuLastTotalIdle = 0;
-
         void ReportTask::s_onDefenderV1TaskCancelled(void *userData)
         {
             auto *taskWrapper = reinterpret_cast<ReportTask *>(userData);
@@ -71,13 +65,8 @@ namespace Aws
             }
 
             // Cache initial CPU usage
-            s_getCurrentCpuUsage(
-                &s_cpuLastTotalUser, &s_cpuLastTotalUserLow, &s_cpuLastTotalSystem, &s_cpuLastTotalIdle);
-
-            m_storedCustomMetricsNumberFunctions = std::vector<std::function<int(double *)>>();
-            m_storedCustomMetricsNumberListFunctions = std::vector<std::function<int(std::vector<double> *)>>();
-            m_storedCustomMetricsStringListFunctions = std::vector<std::function<int(std::vector<std::string> *)>>();
-            m_storedCustomMetricsIpListFunctions = std::vector<std::function<int(std::vector<std::string> *)>>();
+            getCurrentCpuUsage(
+                &m_cpuLastTotalUser, &m_cpuLastTotalUserLow, &m_cpuLastTotalSystem, &m_cpuLastTotalIdle);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -139,8 +128,8 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricNumber(
-            const std::string &metricName,
-            std::function<int(double *)> &metricFunc)
+            const Crt::String &metricName,
+            CustomMetricNumberFunction &metricFunc) noexcept
         {
             m_storedCustomMetricsNumberFunctions.push_back(metricFunc);
             customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
@@ -152,8 +141,8 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
-            const std::string &metricName,
-            std::function<int(std::vector<double> *)> &metricFunc)
+            const Crt::String &metricName,
+            CustomMetricNumberListFunction &metricFunc) noexcept
         {
             m_storedCustomMetricsNumberListFunctions.push_back(metricFunc);
             customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
@@ -166,8 +155,8 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricStringList(
-            const std::string &metricName,
-            std::function<int(std::vector<std::string> *)> &metricFunc)
+            const Crt::String &metricName,
+            CustomMetricStringListFunction &metricFunc) noexcept
         {
             m_storedCustomMetricsStringListFunctions.push_back(metricFunc);
             customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
@@ -180,8 +169,8 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricIpAddressList(
-            const std::string &metricName,
-            std::function<int(std::vector<std::string> *)> &metricFunc)
+            const Crt::String &metricName,
+            CustomMetricIpListFunction &metricFunc) noexcept
         {
             m_storedCustomMetricsIpListFunctions.push_back(metricFunc);
             customMetricData *data = Aws::Crt::New<customMetricData>(m_allocator);
@@ -192,7 +181,7 @@ namespace Aws
             aws_iotdevice_defender_config_register_ip_list_metric(m_taskConfig, &cursor, s_getCustomMetricIpList, data);
         }
 
-        std::function<int(double *)> *ReportTask::GetStoredCustomMetricNumber(size_t &index)
+        const CustomMetricNumberFunction *ReportTask::GetStoredCustomMetricNumber(size_t index) noexcept
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberFunctions.size())
             {
@@ -201,7 +190,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<double> *)> *ReportTask::GetStoredCustomMetricNumberList(size_t &index)
+        const CustomMetricNumberListFunction *ReportTask::GetStoredCustomMetricNumberList(size_t index) noexcept
         {
             if (index >= 0 && index < m_storedCustomMetricsNumberListFunctions.size())
             {
@@ -210,7 +199,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<std::string> *)> *ReportTask::GetStoredCustomMetricStringList(size_t &index)
+        const CustomMetricStringListFunction *ReportTask::GetStoredCustomMetricStringList(size_t index) noexcept
         {
             if (index >= 0 && index < m_storedCustomMetricsStringListFunctions.size())
             {
@@ -219,7 +208,7 @@ namespace Aws
             return nullptr;
         }
 
-        std::function<int(std::vector<std::string> *)> *ReportTask::GetStoredCustomMetricIpList(size_t &index)
+        const CustomMetricIpListFunction *ReportTask::GetStoredCustomMetricIpList(size_t index) noexcept
         {
             if (index >= 0 && index < m_storedCustomMetricsIpListFunctions.size())
             {
@@ -228,31 +217,31 @@ namespace Aws
             return nullptr;
         }
 
-        int ReportTask::s_getCustomMetricNumber(double *output, void *data)
+        int ReportTask::s_getCustomMetricNumber(double *output, void *data) noexcept
         {
             customMetricData *storedData = (customMetricData *)data;
-            std::function<int(double *)> *tmp = storedData->task->GetStoredCustomMetricNumber(storedData->index);
+            const CustomMetricNumberFunction *tmp = storedData->task->GetStoredCustomMetricNumber(storedData->index);
             if (tmp == nullptr)
             {
                 return AWS_OP_ERR;
             }
-            std::function<int(double *)> tmpRef = *tmp;
+            CustomMetricNumberFunction tmpRef = *tmp;
             int returnValue = tmpRef(output);
             return returnValue;
         }
 
-        int ReportTask::s_getCustomMetricNumberList(aws_array_list *output, void *data)
+        int ReportTask::s_getCustomMetricNumberList(aws_array_list *output, void *data) noexcept
         {
             customMetricData *storedData = (customMetricData *)data;
-            std::function<int(std::vector<double> *)> *tmp =
+            const CustomMetricNumberListFunction *tmp =
                 storedData->task->GetStoredCustomMetricNumberList(storedData->index);
             if (tmp == nullptr)
             {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<double> *)> tmpRef = *tmp;
+            CustomMetricNumberListFunction tmpRef = *tmp;
 
-            std::vector<double> function_data = std::vector<double>();
+            Crt::Vector<double> function_data = Crt::Vector<double>();
             int returnValue = tmpRef(&function_data);
 
             for (size_t i = 0; i < function_data.size(); i++)
@@ -263,18 +252,18 @@ namespace Aws
             return returnValue;
         }
 
-        int ReportTask::s_getCustomMetricStringList(aws_array_list *output, void *data)
+        int ReportTask::s_getCustomMetricStringList(aws_array_list *output, void *data) noexcept
         {
             customMetricData *storedData = (customMetricData *)data;
-            std::function<int(std::vector<std::string> *)> *tmp =
+            const CustomMetricStringListFunction *tmp =
                 storedData->task->GetStoredCustomMetricStringList(storedData->index);
             if (tmp == nullptr)
             {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<std::string> *)> tmpRef = *tmp;
+            CustomMetricStringListFunction tmpRef = *tmp;
 
-            std::vector<std::string> function_data = std::vector<std::string>();
+            Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
             int returnValue = tmpRef(&function_data);
 
             for (size_t i = 0; i < function_data.size(); i++)
@@ -287,18 +276,18 @@ namespace Aws
             return returnValue;
         }
 
-        int ReportTask::s_getCustomMetricIpList(aws_array_list *output, void *data)
+        int ReportTask::s_getCustomMetricIpList(aws_array_list *output, void *data) noexcept
         {
             customMetricData *storedData = (customMetricData *)data;
-            std::function<int(std::vector<std::string> *)> *tmp =
+            const CustomMetricIpListFunction *tmp =
                 storedData->task->GetStoredCustomMetricIpList(storedData->index);
             if (tmp == nullptr)
             {
                 return AWS_OP_ERR;
             }
-            std::function<int(std::vector<std::string> *)> tmpRef = *tmp;
+            CustomMetricIpListFunction tmpRef = *tmp;
 
-            std::vector<std::string> function_data = std::vector<std::string>();
+            Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
             int returnValue = tmpRef(&function_data);
 
             for (size_t i = 0; i < function_data.size(); i++)
@@ -310,33 +299,33 @@ namespace Aws
             return returnValue;
         }
 
-        void ReportTask::RegisterCustomMetricCpuUsage()
+        void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            std::function<int(double *)> func = ReportTask::s_getCustomMetricCpuUsage;
+            CustomMetricNumberFunction func = std::bind(&ReportTask::getCustomMetricCpuUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("cpu_usage", func);
         }
 
-        int ReportTask::s_getCustomMetricCpuUsage(double *output)
+        int ReportTask::getCustomMetricCpuUsage(double *output)
         {
 // Get the CPU usage from Linux
 #if defined(__linux__) || defined(__unix__)
             int return_result = AWS_OP_ERR;
-            unsigned long long totalUser, totalUserLow, totalSystem, totalIdle, total;
-            s_getCurrentCpuUsage(&totalUser, &totalUserLow, &totalSystem, &totalIdle);
+            uint64_t totalUser, totalUserLow, totalSystem, totalIdle, total;
+            getCurrentCpuUsage(&totalUser, &totalUserLow, &totalSystem, &totalIdle);
             double percent;
 
             // Overflow detection
-            if (totalUser < s_cpuLastTotalUser || totalUserLow < s_cpuLastTotalUserLow ||
-                totalSystem < s_cpuLastTotalSystem || totalIdle < s_cpuLastTotalIdle)
+            if (totalUser < m_cpuLastTotalUser || totalUserLow < m_cpuLastTotalUserLow ||
+                totalSystem < m_cpuLastTotalSystem || totalIdle < m_cpuLastTotalIdle)
             {
                 *output = 0;
             }
             else
             {
-                total = (totalUser - s_cpuLastTotalUser) + (totalUserLow - s_cpuLastTotalUserLow) +
-                        (totalSystem - s_cpuLastTotalSystem);
+                total = (totalUser - m_cpuLastTotalUser) + (totalUserLow - m_cpuLastTotalUserLow) +
+                        (totalSystem - m_cpuLastTotalSystem);
                 percent = total;
-                total += totalIdle - s_cpuLastTotalIdle;
+                total += totalIdle - m_cpuLastTotalIdle;
                 percent = (percent / total) * 100;
 
                 // If percent is negative, then there was an error (overflow?)
@@ -352,10 +341,10 @@ namespace Aws
                 }
             }
 
-            s_cpuLastTotalUser = totalUser;
-            s_cpuLastTotalUserLow = totalUserLow;
-            s_cpuLastTotalSystem = totalSystem;
-            s_cpuLastTotalIdle = totalIdle;
+            m_cpuLastTotalUser = totalUser;
+            m_cpuLastTotalUserLow = totalUserLow;
+            m_cpuLastTotalSystem = totalSystem;
+            m_cpuLastTotalIdle = totalIdle;
 
             return return_result;
 #endif
@@ -365,11 +354,11 @@ namespace Aws
             return AWS_OP_ERR;
         }
 
-        void ReportTask::s_getCurrentCpuUsage(
-            unsigned long long *totalUser,
-            unsigned long long *totalUserLow,
-            unsigned long long *totalSystem,
-            unsigned long long *totalIdle)
+        void ReportTask::getCurrentCpuUsage(
+            uint64_t *totalUser,
+            uint64_t *totalUserLow,
+            uint64_t *totalSystem,
+            uint64_t *totalIdle)
         {
             *totalUser = 0;    // prevent warnings over unused parameter on Windows and Mac
             *totalUserLow = 0; // prevent warnings over unused parameter on Windows and Mac
@@ -381,7 +370,12 @@ namespace Aws
             FILE *file;
             int matchedResults;
             file = fopen("/proc/stat", "r");
-            matchedResults = fscanf(file, "cpu %llu %llu %llu %llu", totalUser, totalUserLow, totalSystem, totalIdle);
+            matchedResults = fscanf(
+                file, "cpu %llu %llu %llu %llu",
+                (long long unsigned int *) totalUser,
+                (long long unsigned int *) totalUserLow,
+                (long long unsigned int *) totalSystem,
+                (long long unsigned int *) totalIdle);
             fclose(file);
             if (matchedResults == EOF || matchedResults != 4)
             {
@@ -391,19 +385,19 @@ namespace Aws
 #endif
         }
 
-        void ReportTask::RegisterCustomMetricMemoryUsage()
+        void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
         {
-            std::function<int(double *)> func = ReportTask::s_getCustomMetricMemoryUsage;
+            CustomMetricNumberFunction func = std::bind(&ReportTask::getCustomMetricMemoryUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("memory_usage", func);
         }
 
-        int ReportTask::s_getCustomMetricMemoryUsage(double *output)
+        int ReportTask::getCustomMetricMemoryUsage(double *output)
         {
 // Get the Memory usage from Linux
 #if defined(__linux__) || defined(__unix__)
             struct sysinfo memoryInfo;
             sysinfo(&memoryInfo);
-            unsigned long long physicalMemoryUsed = memoryInfo.totalram - memoryInfo.freeram;
+            uint64_t physicalMemoryUsed = memoryInfo.totalram - memoryInfo.freeram;
             physicalMemoryUsed *= memoryInfo.mem_unit;
             // Return data in Kilobytes
             physicalMemoryUsed = physicalMemoryUsed / (1024);
@@ -416,13 +410,13 @@ namespace Aws
             return AWS_OP_ERR;
         }
 
-        void ReportTask::RegisterCustomMetricProcessCount()
+        void ReportTask::RegisterCustomMetricProcessCount() noexcept
         {
-            std::function<int(double *)> func = ReportTask::s_getCustomMetricProcessCount;
+            CustomMetricNumberFunction func = std::bind(&ReportTask::getCustomMetricProcessCount, this, std::placeholders::_1);
             RegisterCustomMetricNumber("process_count", func);
         }
 
-        int ReportTask::s_getCustomMetricProcessCount(double *output)
+        int ReportTask::getCustomMetricProcessCount(double *output)
         {
 // Get the process count from Linux
 #if defined(__linux__) || defined(__unix__)

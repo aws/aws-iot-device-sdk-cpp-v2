@@ -31,6 +31,11 @@ namespace Aws
 
         using ReportFormat = aws_iotdevice_defender_report_format;
 
+        using CustomMetricNumberFunction = std::function<int(double *)>;
+        using CustomMetricNumberListFunction = std::function<int(Crt::Vector<double> *)>;
+        using CustomMetricStringListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
+        using CustomMetricIpListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
+
         /**
          * Enum used to expose the status of a DeviceDefenderV1 task.
          */
@@ -84,7 +89,7 @@ namespace Aws
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
              */
-            void RegisterCustomMetricNumber(const std::string &metricName, std::function<int(double *)> &metricFunc);
+            void RegisterCustomMetricNumber(const Crt::String &metricName, CustomMetricNumberFunction &metricFunc) noexcept;
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
@@ -95,8 +100,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number list data.
              */
             void RegisterCustomMetricNumberList(
-                const std::string &metricName,
-                std::function<int(std::vector<double> *)> &metricFunc);
+                const Crt::String &metricName,
+                CustomMetricNumberListFunction &metricFunc) noexcept;
 
             /**
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
@@ -108,8 +113,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the string list data.
              */
             void RegisterCustomMetricStringList(
-                const std::string &metricName,
-                std::function<int(std::vector<std::string> *)> &metricFunc);
+                const Crt::String &metricName,
+                CustomMetricStringListFunction &metricFunc) noexcept;
 
             /**
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
@@ -120,8 +125,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the IP address list data.
              */
             void RegisterCustomMetricIpAddressList(
-                const std::string &metricName,
-                std::function<int(std::vector<std::string> *)> &metricFunc);
+                const Crt::String &metricName,
+                CustomMetricIpListFunction &metricFunc) noexcept;
 
             /**
              * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
@@ -129,7 +134,7 @@ namespace Aws
              *
              * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU)
              */
-            void RegisterCustomMetricCpuUsage();
+            void RegisterCustomMetricCpuUsage() noexcept;
 
             /**
              * Registers a custom metric number that will report the RAM memory usage automatically into a custom metric
@@ -138,19 +143,19 @@ namespace Aws
              *
              * Note: The memory usage reported is in kilobytes.
              */
-            void RegisterCustomMetricMemoryUsage();
+            void RegisterCustomMetricMemoryUsage() noexcept;
 
             /**
              * Registers a custom metric number that will report the number of processes automatically into a custom
              * metric called "process_count". Calling this function will make the task report processor count each
              * time a report is generated.
              */
-            void RegisterCustomMetricProcessCount();
+            void RegisterCustomMetricProcessCount() noexcept;
 
-            std::function<int(double *)> *GetStoredCustomMetricNumber(size_t &index);
-            std::function<int(std::vector<double> *)> *GetStoredCustomMetricNumberList(size_t &index);
-            std::function<int(std::vector<std::string> *)> *GetStoredCustomMetricStringList(size_t &index);
-            std::function<int(std::vector<std::string> *)> *GetStoredCustomMetricIpList(size_t &index);
+            const CustomMetricNumberFunction *GetStoredCustomMetricNumber(size_t index) noexcept;
+            const CustomMetricNumberListFunction *GetStoredCustomMetricNumberList(size_t index) noexcept;
+            const CustomMetricStringListFunction *GetStoredCustomMetricStringList(size_t index) noexcept;
+            const CustomMetricIpListFunction *GetStoredCustomMetricIpList(size_t index) noexcept;
 
           private:
             Crt::Allocator *m_allocator;
@@ -179,51 +184,51 @@ namespace Aws
                 size_t index;
                 ReportTask *task;
             };
-            static int s_getCustomMetricNumber(double *output, void *customData);
-            static int s_getCustomMetricNumberList(aws_array_list *output, void *customData);
-            static int s_getCustomMetricStringList(aws_array_list *output, void *customData);
-            static int s_getCustomMetricIpList(aws_array_list *output, void *customData);
-            std::vector<std::function<int(double *)>> m_storedCustomMetricsNumberFunctions;
-            std::vector<std::function<int(std::vector<double> *)>> m_storedCustomMetricsNumberListFunctions;
-            std::vector<std::function<int(std::vector<std::string> *)>> m_storedCustomMetricsStringListFunctions;
-            std::vector<std::function<int(std::vector<std::string> *)>> m_storedCustomMetricsIpListFunctions;
+            static int s_getCustomMetricNumber(double *output, void *customData) noexcept;
+            static int s_getCustomMetricNumberList(aws_array_list *output, void *customData) noexcept;
+            static int s_getCustomMetricStringList(aws_array_list *output, void *customData) noexcept;
+            static int s_getCustomMetricIpList(aws_array_list *output, void *customData) noexcept;
+            Crt::Vector<CustomMetricNumberFunction> m_storedCustomMetricsNumberFunctions;
+            Crt::Vector<CustomMetricNumberListFunction> m_storedCustomMetricsNumberListFunctions;
+            Crt::Vector<CustomMetricStringListFunction> m_storedCustomMetricsStringListFunctions;
+            Crt::Vector<CustomMetricIpListFunction> m_storedCustomMetricsIpListFunctions;
 
-            std::vector<customMetricData *> storedCustomMetricData = std::vector<customMetricData *>();
+            Crt::Vector<customMetricData *> storedCustomMetricData = Crt::Vector<customMetricData *>();
 
             /**
              * Reports CPU usage to the custom metric
              */
-            static int s_getCustomMetricCpuUsage(double *output);
+            int getCustomMetricCpuUsage(double *output);
 
             /**
-             * A helper function to get the CPU usage from the computer and populate the passed-in unsigned long long
+             * A helper function to get the CPU usage from the computer and populate the passed-in uint64_t
              * pointers.
              * @param totalUser The total user CPU usage
              * @param totalUserLow The low total user CPU usage
              * @param totalSystem The total system CPU usage
              * @param totalIdle The total idle CPU usage
              */
-            static void s_getCurrentCpuUsage(
-                unsigned long long *totalUser,
-                unsigned long long *totalUserLow,
-                unsigned long long *totalSystem,
-                unsigned long long *totalIdle);
+            void getCurrentCpuUsage(
+                uint64_t *totalUser,
+                uint64_t *totalUserLow,
+                uint64_t *totalSystem,
+                uint64_t *totalIdle);
 
             /** Static variables to store the last CPU usage call. */
-            static unsigned long long s_cpuLastTotalUser;
-            static unsigned long long s_cpuLastTotalUserLow;
-            static unsigned long long s_cpuLastTotalSystem;
-            static unsigned long long s_cpuLastTotalIdle;
+            uint64_t m_cpuLastTotalUser;
+            uint64_t m_cpuLastTotalUserLow;
+            uint64_t m_cpuLastTotalSystem;
+            uint64_t m_cpuLastTotalIdle;
 
             /**
              * Reports physical memory usage to the custom metric.
              */
-            static int s_getCustomMetricMemoryUsage(double *output);
+            int getCustomMetricMemoryUsage(double *output);
 
             /**
-             * Reports processor count to the custom metric
+             * Reports process count to the custom metric
              */
-            static int s_getCustomMetricProcessCount(double *output);
+            int getCustomMetricProcessCount(double *output);
         };
 
         /**

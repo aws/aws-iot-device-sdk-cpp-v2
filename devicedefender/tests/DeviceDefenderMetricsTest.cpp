@@ -4,6 +4,7 @@
  */
 #include "aws/common/error.h"
 #include <aws/crt/Api.h>
+#include "aws/crt/Types.h"
 
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
@@ -66,7 +67,7 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         std::function<int(double *)> global_metric_number_func_ref = global_metric_number_func;
         task->RegisterCustomMetricNumber("CustomNumberTwo", global_metric_number_func_ref);
 
-        std::function<int(std::vector<double> *)> local_metric_number_list_func = [](std::vector<double> *output) {
+        std::function<int(Aws::Crt::Vector<double> *)> local_metric_number_list_func = [](Aws::Crt::Vector<double> *output) {
             output->push_back(101);
             output->push_back(102);
             output->push_back(103);
@@ -74,8 +75,8 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         };
         task->RegisterCustomMetricNumberList("CustomNumberList", local_metric_number_list_func);
 
-        std::function<int(std::vector<std::string> *)> local_metric_str_list_func =
-            [](std::vector<std::string> *output) {
+        std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_str_list_func =
+            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
                 output->push_back("One Fish");
                 output->push_back("Two Fish");
                 output->push_back("Red Fish");
@@ -84,8 +85,8 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
             };
         task->RegisterCustomMetricStringList("CustomStringList", local_metric_str_list_func);
 
-        std::function<int(std::vector<std::string> *)> local_metric_ip_list_func =
-            [](std::vector<std::string> *output) {
+        std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_ip_list_func =
+            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
                 output->push_back("192.0.2.0");
                 output->push_back("198.51.100.0");
                 output->push_back("203.0.113.0");

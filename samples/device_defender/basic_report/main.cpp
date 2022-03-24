@@ -32,7 +32,7 @@ int s_getCustomMetricNumber(double *output)
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricNumberList(std::vector<double> *output)
+int s_getCustomMetricNumberList(Vector<double> *output)
 {
     output->push_back(1.5);
     output->push_back(2.2);
@@ -41,7 +41,7 @@ int s_getCustomMetricNumberList(std::vector<double> *output)
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricStringList(std::vector<std::string> *output)
+int s_getCustomMetricStringList(Vector<String> *output)
 {
     output->push_back("One Fish");
     output->push_back("Two Fish");
@@ -50,7 +50,7 @@ int s_getCustomMetricStringList(std::vector<std::string> *output)
     return AWS_OP_SUCCESS;
 }
 
-int s_getCustomMetricIpAddressList(std::vector<std::string> *output)
+int s_getCustomMetricIpAddressList(Vector<String> *output)
 {
     output->push_back("192.0.2.0");
     output->push_back("198.51.100.0");
@@ -244,19 +244,19 @@ int main(int argc, char *argv[])
 
         // Add the custom metrics
         // (Inline function example)
-        std::function<int(double *)> s_localGetCustomMetricNumber = [](double *output) {
+        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output) {
             *output = 8.2;
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricNumber("CustomNumber", s_localGetCustomMetricNumber);
-        std::function<int(double *)> s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
 
+        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
         task->RegisterCustomMetricNumber("CustomNumberTwo", s_getCustomMetricNumberFunc);
-        std::function<int(std::vector<double> *)> s_getCustomMetricNumberListFunc = s_getCustomMetricNumberList;
+        Aws::Iotdevicedefenderv1::CustomMetricNumberListFunction s_getCustomMetricNumberListFunc = s_getCustomMetricNumberList;
         task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
-        std::function<int(std::vector<std::string> *)> s_getCustomMetricStringListFunc = s_getCustomMetricStringList;
+        Aws::Iotdevicedefenderv1::CustomMetricStringListFunction s_getCustomMetricStringListFunc = s_getCustomMetricStringList;
         task->RegisterCustomMetricStringList("CustomStringList", s_getCustomMetricStringListFunc);
-        std::function<int(std::vector<std::string> *)> s_getCustomMetricIpAddressListFunc =
+        Aws::Iotdevicedefenderv1::CustomMetricIpListFunction s_getCustomMetricIpAddressListFunc =
             s_getCustomMetricIpAddressList;
         task->RegisterCustomMetricIpAddressList("CustomIPList", s_getCustomMetricIpAddressListFunc);
 
