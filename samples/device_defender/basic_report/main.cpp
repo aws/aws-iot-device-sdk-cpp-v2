@@ -170,7 +170,8 @@ int main(int argc, char *argv[])
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
+    {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -191,16 +192,16 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
-    };
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error)); };
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Mqtt::MqttConnection &)
+    {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -230,7 +231,8 @@ int main(int argc, char *argv[])
         Aws::Crt::Io::EventLoopGroup *eventLoopGroup = Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup();
 
         bool callbackSuccess = false;
-        auto onCancelled = [&](void *a) -> void {
+        auto onCancelled = [&](void *a) -> void
+        {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
         };
@@ -244,7 +246,8 @@ int main(int argc, char *argv[])
 
         // Add the custom metrics
         // (Inline function example)
-        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output) {
+        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output)
+        {
             *output = 8.2;
             return AWS_OP_SUCCESS;
         };
@@ -252,9 +255,11 @@ int main(int argc, char *argv[])
 
         Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
         task->RegisterCustomMetricNumber("CustomNumberTwo", s_getCustomMetricNumberFunc);
-        Aws::Iotdevicedefenderv1::CustomMetricNumberListFunction s_getCustomMetricNumberListFunc = s_getCustomMetricNumberList;
+        Aws::Iotdevicedefenderv1::CustomMetricNumberListFunction s_getCustomMetricNumberListFunc =
+            s_getCustomMetricNumberList;
         task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
-        Aws::Iotdevicedefenderv1::CustomMetricStringListFunction s_getCustomMetricStringListFunc = s_getCustomMetricStringList;
+        Aws::Iotdevicedefenderv1::CustomMetricStringListFunction s_getCustomMetricStringListFunc =
+            s_getCustomMetricStringList;
         task->RegisterCustomMetricStringList("CustomStringList", s_getCustomMetricStringListFunc);
         Aws::Iotdevicedefenderv1::CustomMetricIpListFunction s_getCustomMetricIpAddressListFunc =
             s_getCustomMetricIpAddressList;

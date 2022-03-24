@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include "aws/common/error.h"
-#include <aws/crt/Api.h>
 #include "aws/crt/Types.h"
+#include <aws/crt/Api.h>
 
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
@@ -42,7 +42,8 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void {
+        auto onCancelled = [&](void *a) -> void
+        {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -59,7 +60,8 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
 
         // ================
         // Add the custom metrics
-        std::function<int(double *)> local_metric_number_func = [](double *output) {
+        std::function<int(double *)> local_metric_number_func = [](double *output)
+        {
             *output = 10;
             return AWS_OP_SUCCESS;
         };
@@ -67,7 +69,9 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         std::function<int(double *)> global_metric_number_func_ref = global_metric_number_func;
         task->RegisterCustomMetricNumber("CustomNumberTwo", global_metric_number_func_ref);
 
-        std::function<int(Aws::Crt::Vector<double> *)> local_metric_number_list_func = [](Aws::Crt::Vector<double> *output) {
+        std::function<int(Aws::Crt::Vector<double> *)> local_metric_number_list_func =
+            [](Aws::Crt::Vector<double> *output)
+        {
             output->push_back(101);
             output->push_back(102);
             output->push_back(103);
@@ -76,23 +80,25 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         task->RegisterCustomMetricNumberList("CustomNumberList", local_metric_number_list_func);
 
         std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_str_list_func =
-            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
-                output->push_back("One Fish");
-                output->push_back("Two Fish");
-                output->push_back("Red Fish");
-                output->push_back("Blue Fish");
-                return AWS_OP_SUCCESS;
-            };
+            [](Aws::Crt::Vector<Aws::Crt::String> *output)
+        {
+            output->push_back("One Fish");
+            output->push_back("Two Fish");
+            output->push_back("Red Fish");
+            output->push_back("Blue Fish");
+            return AWS_OP_SUCCESS;
+        };
         task->RegisterCustomMetricStringList("CustomStringList", local_metric_str_list_func);
 
         std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_ip_list_func =
-            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
-                output->push_back("192.0.2.0");
-                output->push_back("198.51.100.0");
-                output->push_back("203.0.113.0");
-                output->push_back("233.252.0.0");
-                return AWS_OP_SUCCESS;
-            };
+            [](Aws::Crt::Vector<Aws::Crt::String> *output)
+        {
+            output->push_back("192.0.2.0");
+            output->push_back("198.51.100.0");
+            output->push_back("203.0.113.0");
+            output->push_back("233.252.0.0");
+            return AWS_OP_SUCCESS;
+        };
         task->RegisterCustomMetricIpAddressList("CustomIPList", local_metric_ip_list_func);
 
         // ================
@@ -151,7 +157,8 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void {
+        auto onCancelled = [&](void *a) -> void
+        {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -167,7 +174,8 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the error custom metric
-        std::function<int(double *)> number_metric_func = [](double *output) {
+        std::function<int(double *)> number_metric_func = [](double *output)
+        {
             *output = 10;
             return AWS_OP_ERR;
         };
