@@ -36,6 +36,113 @@ namespace Aws
         using CustomMetricStringListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
         using CustomMetricIpListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
 
+        // ========
+        enum class CustomMetricType
+        {
+            Unknown = 0,
+            Number = 1,
+            NumberList = 2,
+            StringList = 3,
+            IpList = 4,
+        };
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricBase
+        {
+            public:
+                CustomMetricType type;
+                Crt::Allocator *m_allocator;
+        };
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumber : public CustomMetricBase
+        {
+            public:
+                CustomMetricNumberFunction function;
+
+                void SetCustomMetricData(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator)
+                {
+                    type = CustomMetricType::Number;
+                    function = std::move(inputFunction);
+                    m_allocator = inputAllocator;
+                };
+                static int MetricFunction(double *output, void* data)
+                {
+                    CustomMetricNumber *stuff = (CustomMetricNumber *)data;
+                    return stuff->function(output);
+                };
+        };
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumberList : public CustomMetricBase
+        {
+            public:
+                CustomMetricNumberListFunction function;
+
+                void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator)
+                {
+                    type = CustomMetricType::NumberList;
+                    function = std::move(inputFunction);
+                    m_allocator = inputAllocator;
+                };
+                static int MetricFunction(aws_array_list *output, void* data)
+                {
+                    CustomMetricNumberList *stuff = (CustomMetricNumberList *)data;
+                    Crt::Vector<double> function_data = Crt::Vector<double>();
+                    int returnValue = stuff->function(&function_data);
+                    for (size_t i = 0; i < function_data.size(); i++)
+                    {
+                        aws_array_list_push_back(output, &function_data.at(i));
+                    }
+                    return returnValue;
+                };
+        };
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricStringList : public CustomMetricBase
+        {
+            public:
+                CustomMetricStringListFunction function;
+
+                void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator)
+                {
+                    type = CustomMetricType::StringList;
+                    function = std::move(inputFunction);
+                    m_allocator = inputAllocator;
+                };
+                static int MetricFunction(aws_array_list *output, void* data)
+                {
+                    CustomMetricStringList *stuff = (CustomMetricStringList *)data;
+                    Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
+                    int returnValue = stuff->function(&function_data);
+                    for (size_t i = 0; i < function_data.size(); i++)
+                    {
+                        aws_string *tmp_str =
+                            aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
+                        aws_array_list_push_back(output, &tmp_str);
+                    }
+                    return returnValue;
+                };
+        };
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricIpList : public CustomMetricBase
+        {
+            public:
+                CustomMetricIpListFunction function;
+
+                void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator)
+                {
+                    type = CustomMetricType::IpList;
+                    function = std::move(inputFunction);
+                    m_allocator = inputAllocator;
+                };
+                static int MetricFunction(aws_array_list *output, void* data)
+                {
+                    CustomMetricIpList *stuff = (CustomMetricIpList *)data;
+                    Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
+                    int returnValue = stuff->function(&function_data);
+                    for (size_t i = 0; i < function_data.size(); i++)
+                    {
+                        aws_string *tmp_str =
+                            aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
+                        aws_array_list_push_back(output, &tmp_str);
+                    }
+                    return returnValue;
+                };
+        };
+        // ========
+
         /**
          * Enum used to expose the status of a DeviceDefenderV1 task.
          */
@@ -152,10 +259,12 @@ namespace Aws
              */
             void RegisterCustomMetricProcessCount() noexcept;
 
+            /*
             const CustomMetricNumberFunction *GetStoredCustomMetricNumber(size_t index) noexcept;
             const CustomMetricNumberListFunction *GetStoredCustomMetricNumberList(size_t index) noexcept;
             const CustomMetricStringListFunction *GetStoredCustomMetricStringList(size_t index) noexcept;
             const CustomMetricIpListFunction *GetStoredCustomMetricIpList(size_t index) noexcept;
+            */
 
           private:
             Crt::Allocator *m_allocator;
@@ -179,6 +288,7 @@ namespace Aws
 
             static void s_onDefenderV1TaskCancelled(void *userData);
 
+            /*
             struct customMetricData
             {
                 size_t index;
@@ -194,6 +304,8 @@ namespace Aws
             Crt::Vector<CustomMetricIpListFunction> m_storedCustomMetricsIpListFunctions;
 
             Crt::Vector<customMetricData *> storedCustomMetricData = Crt::Vector<customMetricData *>();
+            */
+            Crt::Vector<CustomMetricBase *> storedCustomMetrics;
 
             /**
              * Reports CPU usage to the custom metric

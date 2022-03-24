@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
         // (Inline function example)
         Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output)
         {
-            *output = 8.2;
+            *output = 8.4;
             return AWS_OP_SUCCESS;
         };
         task->RegisterCustomMetricNumber("CustomNumber", s_localGetCustomMetricNumber);
