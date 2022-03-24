@@ -228,7 +228,7 @@ To run this sample with a basic certificate from AWS IoT Core:
 4) Now you can run the sample:
 
     ```
-    ./windows-cert-pub-sub.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
+    .\windows-cert-pub-sub.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
     ```
 
 ## Raw MQTT Pub-Sub
