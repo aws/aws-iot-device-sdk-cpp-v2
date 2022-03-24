@@ -41,109 +41,109 @@ namespace Aws
          */
         class AWS_IOTDEVICEDEFENDER_API CustomMetricBase
         {
-            public:
-                Crt::Allocator *m_allocator;
+          public:
+            Crt::Allocator *m_allocator;
         };
         /**
          * A base class used to store all custom number metrics. Only used internally.
          */
         class AWS_IOTDEVICEDEFENDER_API CustomMetricNumber : public CustomMetricBase
         {
-            public:
-                CustomMetricNumberFunction function;
-                void SetCustomMetricData(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
-                static int GetMetricFunction(double *output, void* data);
+          public:
+            CustomMetricNumberFunction function;
+            void SetCustomMetricData(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(double *output, void *data);
         };
         /**
          * A base class used to store all custom number list metrics. Only used internally.
          */
         class AWS_IOTDEVICEDEFENDER_API CustomMetricNumberList : public CustomMetricBase
         {
-            public:
-                CustomMetricNumberListFunction function;
-                void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
-                static int GetMetricFunction(aws_array_list *output, void* data);
+          public:
+            CustomMetricNumberListFunction function;
+            void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
 
-                /*
-                void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator)
+            /*
+            void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator)
+            {
+                function = std::move(inputFunction);
+                m_allocator = inputAllocator;
+            };
+            static int MetricFunction(aws_array_list *output, void* data)
+            {
+                CustomMetricNumberList *stuff = (CustomMetricNumberList *)data;
+                Crt::Vector<double> function_data = Crt::Vector<double>();
+                int returnValue = stuff->function(&function_data);
+                for (size_t i = 0; i < function_data.size(); i++)
                 {
-                    function = std::move(inputFunction);
-                    m_allocator = inputAllocator;
-                };
-                static int MetricFunction(aws_array_list *output, void* data)
-                {
-                    CustomMetricNumberList *stuff = (CustomMetricNumberList *)data;
-                    Crt::Vector<double> function_data = Crt::Vector<double>();
-                    int returnValue = stuff->function(&function_data);
-                    for (size_t i = 0; i < function_data.size(); i++)
-                    {
-                        aws_array_list_push_back(output, &function_data.at(i));
-                    }
-                    return returnValue;
-                };
-                */
+                    aws_array_list_push_back(output, &function_data.at(i));
+                }
+                return returnValue;
+            };
+            */
         };
         /**
          * A base class used to store all custom string list metrics. Only used internally.
          */
         class AWS_IOTDEVICEDEFENDER_API CustomMetricStringList : public CustomMetricBase
         {
-            public:
-                CustomMetricStringListFunction function;
-                void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
-                static int GetMetricFunction(aws_array_list *output, void* data);
+          public:
+            CustomMetricStringListFunction function;
+            void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
 
-                /*
-                void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator)
+            /*
+            void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator)
+            {
+                function = std::move(inputFunction);
+                m_allocator = inputAllocator;
+            };
+            static int MetricFunction(aws_array_list *output, void* data)
+            {
+                CustomMetricStringList *stuff = (CustomMetricStringList *)data;
+                Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
+                int returnValue = stuff->function(&function_data);
+                for (size_t i = 0; i < function_data.size(); i++)
                 {
-                    function = std::move(inputFunction);
-                    m_allocator = inputAllocator;
-                };
-                static int MetricFunction(aws_array_list *output, void* data)
-                {
-                    CustomMetricStringList *stuff = (CustomMetricStringList *)data;
-                    Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
-                    int returnValue = stuff->function(&function_data);
-                    for (size_t i = 0; i < function_data.size(); i++)
-                    {
-                        aws_string *tmp_str =
-                            aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
-                        aws_array_list_push_back(output, &tmp_str);
-                    }
-                    return returnValue;
-                };
-                */
+                    aws_string *tmp_str =
+                        aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
+                    aws_array_list_push_back(output, &tmp_str);
+                }
+                return returnValue;
+            };
+            */
         };
         /**
          * A base class used to store all custom ip list metrics. Only used internally.
          */
         class AWS_IOTDEVICEDEFENDER_API CustomMetricIpList : public CustomMetricBase
         {
-            public:
-                CustomMetricIpListFunction function;
-                void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
-                static int GetMetricFunction(aws_array_list *output, void* data);
+          public:
+            CustomMetricIpListFunction function;
+            void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
 
-                /*
-                void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator)
+            /*
+            void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator)
+            {
+                function = std::move(inputFunction);
+                m_allocator = inputAllocator;
+            };
+            static int MetricFunction(aws_array_list *output, void* data)
+            {
+                CustomMetricIpList *stuff = (CustomMetricIpList *)data;
+                Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
+                int returnValue = stuff->function(&function_data);
+                for (size_t i = 0; i < function_data.size(); i++)
                 {
-                    function = std::move(inputFunction);
-                    m_allocator = inputAllocator;
-                };
-                static int MetricFunction(aws_array_list *output, void* data)
-                {
-                    CustomMetricIpList *stuff = (CustomMetricIpList *)data;
-                    Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
-                    int returnValue = stuff->function(&function_data);
-                    for (size_t i = 0; i < function_data.size(); i++)
-                    {
-                        aws_string *tmp_str =
-                            aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
-                        aws_array_list_push_back(output, &tmp_str);
-                    }
-                    return returnValue;
-                };
-                */
+                    aws_string *tmp_str =
+                        aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
+                    aws_array_list_push_back(output, &tmp_str);
+                }
+                return returnValue;
+            };
+            */
         };
         // ========
 
@@ -200,7 +200,9 @@ namespace Aws
              * @param metricName The key name for the data.
              * @param metricFunc The function that is called to get the number data.
              */
-            void RegisterCustomMetricNumber(const Crt::String &metricName, CustomMetricNumberFunction &metricFunc) noexcept;
+            void RegisterCustomMetricNumber(
+                const Crt::String &metricName,
+                CustomMetricNumberFunction &metricFunc) noexcept;
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
