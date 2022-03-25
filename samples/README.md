@@ -6,7 +6,7 @@
 * [PKCS#11 Connect](#pkcs11-connect)
 * [Raw Connect](#raw-connect)
 * [x509 Credentials Provider Connect](#x509-credentials-provider-connect)
-* [Windows Certificate MQTT Pub-Sub](#windows-certificate-mqtt-pub-sub)
+* [Windows Certificate MQTT Connect](#windows-certificate-mqtt-connect)
 * [Fleet provisioning](#fleet-provisioning)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
@@ -247,11 +247,11 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 </pre>
 </details>
 
-## Windows Certificate MQTT Pub-Sub
+## Windows Certificate MQTT Connect
 
 WARNING: Windows only
 
-This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub),
+This sample is similar to the [Basic Connect](#basic-connect),
 but your certificate and private key are in a
 [Windows certificate store](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/certificate-stores),
 rather than simply being files on disk.
@@ -265,7 +265,7 @@ If your certificate and private key are in a
 [TPM](https://docs.microsoft.com/en-us/windows/security/information-protection/tpm/trusted-platform-module-overview),
 you would use them by passing their certificate store path.
 
-source: `samples/mqtt/windows_cert_pub_sub/main.cpp`
+source: `samples/mqtt/windows_cert_connect/main.cpp`
 
 To run this sample with a basic certificate from AWS IoT Core:
 
@@ -307,7 +307,7 @@ To run this sample with a basic certificate from AWS IoT Core:
 4) Now you can run the sample:
 
     ```
-    .\windows-cert-pub-sub.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
+    .\windows-cert-connect.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
     ```
 
 ## Raw Connect

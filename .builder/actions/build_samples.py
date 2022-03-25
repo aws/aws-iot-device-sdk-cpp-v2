@@ -23,7 +23,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/raw_connect',
             'samples/mqtt/websocket_connect',
             'samples/mqtt/x509_credentials_provider_connect',
-            'samples/mqtt/windows_cert_pub_sub',
+            'samples/mqtt/windows_cert_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
