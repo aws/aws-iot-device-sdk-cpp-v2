@@ -6,11 +6,9 @@ import subprocess
 import platform
 from time import sleep
 
-# TMP - just return exit(0) for now so I can test this on Linux without it accidentally running
-exit(0)
-
 # On something other than Linux? Pass the test instantly since Device Defender is only supported on Linux
-if platform.system != "linux" or platform.system != "linux2":
+if platform.system() != "Linux":
+    print ("[Device Defender]Info: Skipped Test - " + platform.system() + " not supported (Only Linux supported currently)")
     exit(0)
 
 ##############################################
@@ -25,14 +23,19 @@ def delete_thing_with_certi(thingName, certiId, certiArn):
     client.delete_certificate(certificateId = certiId, forceDelete = True)
     client.delete_thing(thingName = thingName)
 
+    print ("[Device Defender]Info: Deleted thing with name: " + thingName)
+
 
 ##############################################
 # Initialize variables
 # create aws client
-client = boto3.client('iot')
+client = boto3.client('iot', region_name='us-east-1')
 # create an temporary certificate/key file path
 certificate_path = os.path.join(os.getcwd(), 'certificate.pem.crt')
 key_path = os.path.join(os.getcwd(), 'private.pem.key')
+# Other variables
+metrics_added = []
+clientMade = False
 
 ##############################################
 # create a test thing
@@ -48,6 +51,7 @@ try:
     create_thing_response = client.create_thing(
         thingName=thing_name
     )
+    clientMade = True
 
 except Exception as e:
     print("[Device Defender]Error: Failed to create thing: " + thing_name)
@@ -89,6 +93,13 @@ except:
 ##############################################
 # attach certification to thing
 try:
+    print("[Device Defender]Info: Attach policy to certificate...")
+    # attach policy to thing
+    client.attach_policy(
+        policyName="DeviceDefenderTestPolicy",
+        target=create_cert_response["certificateArn"]
+    )
+
     print("[Device Defender]Info: Attach certificate to test thing...")
     # attache the certificate to thing
     client.attach_thing_principal(
@@ -100,7 +111,10 @@ try:
     certificate_id = create_cert_response['certificateId']
 
 except:
-    delete_thing_with_certi(thing_name, certificate_id, certificate_arn )
+    if certificate_id:
+        delete_thing_with_certi(thing_name, certificate_id, certificate_arn )
+    else:
+        client.delete_thing(thingName = thing_name)
     print("[Device Defender]Error: Failed to attach certificate.")
     exit(-1)
 
@@ -109,52 +123,49 @@ except:
 try:
 
     # Get the Device Defender endpoint
-    endpoint_response = client.describe_endpoint(endpointType='string')["endpointAddress"]
+    endpoint_response = client.describe_endpoint(endpointType='iot:Data-ATS')["endpointAddress"]
 
-    # add the custom metrics we need for the test
-    metrics_added = []
-    try:
-        # Note - we do not care about the device defender creation ARN paths and such for this test, so we don't really need to check return values.
-        custom_metric_num_01 = client.create_custom_metric(metricName='CustomNumber', displayName="DD Custom Number", metricType='number', tags=[])
-        metrics_added.append("CustonNumber")
-        custom_metric_num_02 = client.create_custom_metric(metricName='CustomNumberTwo', displayName="DD Custom Number 2", metricType='number', tags=[])
-        metrics_added.append("CustonNumberTwo")
-        custom_metric_num_list = client.create_custom_metric(metricName='CustomNumberList', displayName="DD Custom Number list", metricType='number-list', tags=[])
-        metrics_added.append("CustonNumberList")
-        custom_metric_string_list = client.create_custom_metric(metricName='CustomStringList', displayName="DD Custom String list", metricType='string-list', tags=[])
-        metrics_added.append("CustomStringList")
-        custom_metric_ip_list = client.create_custom_metric(metricName='CustomIPList', displayName="DD Custom IP list", metricType='string-list', tags=[])
-        metrics_added.append("CustomIPList")
+    print ("[Device Defender]Info: Adding custom metrics...")
+    metrics_to_add = [
+        {"name":"CustonNumber", "display_name":"DD Custom Number", "type":"number"},
+        {"name":"CustomNumberTwo", "display_name":"DD Custom Number 2", "type":"number"},
+        {"name":"CustomNumberList", "display_name":"DD Custom Number List", "type":"number-list"},
+        {"name":"CustomStringList", "display_name":"DD Custom String List", "type":"string-list"},
+        {"name":"CustomIPList", "display_name":"DD Custom IP List", "type":"ip-address-list"},
+        {"name":"cpu_usage", "display_name":"DD Cpu Usage", "type":"number"},
+        {"name":"memory_usage", "display_name":"DD Memory Usage", "type":"number"},
+        {"name":"process_count", "display_name":"DD Process count", "type":"number"}
+    ]
+    for current_metric in metrics_to_add:
+        try:
+            client.create_custom_metric(
+                metricName=current_metric["name"],
+                displayName=current_metric["display_name"],
+                metricType=current_metric["type"],
+                tags=[]
+            )
+            metrics_added.append(current_metric["name"])
+            print ("[Device Defender]Info: Metric with name: " + current_metric["name"] + " added.")
+        except:
+            print ("[Device Defender]Info: Metric with name: " + current_metric["name"] + " already present. Skipping and will not delete...")
+            continue
 
-        custom_metric_num_01 = client.create_custom_metric(metricName='cpu_usage', displayName="DD CPU usage", metricType='number', tags=[])
-        metrics_added.append("cpu_usage")
-        custom_metric_num_01 = client.create_custom_metric(metricName='memory_usage', displayName="DD Memory usage", metricType='number', tags=[])
-        metrics_added.append("memory_usage")
-        custom_metric_num_01 = client.create_custom_metric(metricName='process_count', displayName="DD Process count", metricType='number', tags=[])
-        metrics_added.append("process_count")
-    # Note: Exceptions can occur if the metric already exists
-    except:
-        # delete custom metrics we added
-        for metric_name in metrics_added:
-            client.delete_custom_metric(metricName=metric_name)
-        metrics_added = []
-
-        delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-        print("[Device Defender]Error: Failed to create custom metrics.")
-        exit(-1)
-
+    print ("[Device Defender]Info: Running sample (this should take ~60 seconds).")
     # Run the sample:
     exe_path = "build/samples/device_defender/basic_report/"
-    # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
-    exe_path = os.path.join(exe_path, "basic_report")
-    print("start to run: " + exe_path)
-    # The Device Defender sample will take 1 minute to run even if successful (since samples are sent every minute), so we'll add an extra 60 seconds to pad it a bit
-    result = subprocess.run(args=[exe_path, "--endpoint", endpoint_response, "--cert", certificate_path, "--key", key_path, "--thing_name", thing_name, "--count", 1], timeout = 60*2)
-    # Sleep for test duration time
-    sleep(60*2)
+    # If running locally, comment out the line above and uncomment the line below:
+    # exe_path = "samples/device_defender/basic_report/build/"
 
-    # There does not appear to be any way to get the metrics from the device - so we'll just have to assume it worked?
-    # TODO - investigate finding way to get custom metric data
+    # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
+    exe_path = os.path.join(exe_path, "basic-report")
+    print("[Device Defender]Info: Start to run: " + exe_path)
+    # The Device Defender sample will take ~1 minute to run even if successful 
+    # (since samples are sent every minute)
+    arguments = [exe_path, "--endpoint", endpoint_response, "--cert", certificate_path, "--key", key_path, "--thing_name", thing_name, "--count", "2"]
+    result = subprocess.run(arguments, timeout = 60*2, check=True)
+    print ("[Device Defender]Info: Sample finished running.")
+
+    # There does not appear to be any way to get the metrics from the device - so we'll assume that if it didn't return -1, then it worked
 
     # delete custom metrics we added
     for metric_name in metrics_added:
@@ -167,7 +178,12 @@ except Exception as e:
     # delete custom metrics we added
     for metric_name in metrics_added:
         client.delete_custom_metric(metricName=metric_name)
+    
+    if clientMade:
+        delete_thing_with_certi(thing_name, certificate_id , certificate_arn )
 
     print("[Device Defender]Error: Failed to test: Basic Report")
+    exit(-1)
 
+print ("[Device Defender]Info: Basic Report sample test passed")
 exit(0)

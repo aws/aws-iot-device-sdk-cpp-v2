@@ -632,22 +632,15 @@ must provide privileges for this sample to connect, publish, and receive.
       "Effect": "Allow",
       "Action": [
         "iot:Publish",
-        "iot:Receive"
+        "iot:Subscribe",
+        "iot:RetainPublish"
       ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/defender/metrics/json/rejected"
-      ]
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:*/$aws/things/*/defender/metrics/*"
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:Connect"
-      ],
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
-      ]
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/*"
     }
   ]
 }
