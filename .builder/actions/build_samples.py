@@ -21,7 +21,24 @@ class BuildSamples(Builder.Action):
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
         ]
+        defender_samples = []
+
+        # Linux only builds
+        if sys.platform == "linux" or sys.platform == "linux2":
+            defender_samples.append('samples/device_defender/basic_report')
+
         for sample_path in samples:
+            build_path = os.path.join('build', sample_path)
+            steps.append(['cmake',
+                          f'-B{build_path}',
+                          f'-H{sample_path}',
+                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            steps.append(['cmake',
+                          '--build', build_path,
+                          '--config', 'RelWithDebInfo'])
+
+        for sample_path in defender_samples:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',
