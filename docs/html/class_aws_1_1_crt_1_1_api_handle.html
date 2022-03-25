@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_aws_1_1_crt_1_1_api_handle-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Aws::Crt::ApiHandle Class Reference</div></div>
 </div><!--header-->
@@ -108,6 +109,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8a96e651ddf6c7f55686cf854cd670e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17f39c5e445fff59d57993e645d84744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a17f39c5e445fff59d57993e645d84744">SetBYOCryptoTlsContextCallbacks</a> (<a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a0a62c795db526f1dae48cac634c9af02">Io::NewTlsContextImplCallback</a> &amp;&amp;newCallback, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#af21a50e456c2e9f276cab7fa5f5ad484">Io::DeleteTlsContextImplCallback</a> &amp;&amp;deleteCallback, <a class="el" href="namespace_aws_1_1_crt_1_1_io.html#a1caba873184fe5fcb1315873e94b4acc">Io::IsTlsAlpnSupportedCallback</a> &amp;&amp;alpnCallback)</td></tr>
 <tr class="separator:a17f39c5e445fff59d57993e645d84744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a48afb6dbda9f3ac75e8ff68a8c89ebc5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">Io::ClientBootstrap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a48afb6dbda9f3ac75e8ff68a8c89ebc5">GetOrCreateStaticDefaultClientBootstrap</a> ()</td></tr>
+<tr class="separator:a48afb6dbda9f3ac75e8ff68a8c89ebc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b3a82843a2b6f4e1d084e5c9d7fb46"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">Io::EventLoopGroup</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a70b3a82843a2b6f4e1d084e5c9d7fb46">GetOrCreateStaticDefaultEventLoopGroup</a> ()</td></tr>
+<tr class="separator:a70b3a82843a2b6f4e1d084e5c9d7fb46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a0df71b8b8222b01669915f8bbc3af"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_host_resolver.html">Io::HostResolver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a85a0df71b8b8222b01669915f8bbc3af">GetOrCreateStaticDefaultHostResolver</a> ()</td></tr>
+<tr class="separator:a85a0df71b8b8222b01669915f8bbc3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A singleton object representing the init/cleanup state of the entire CRT. It's invalid to have more than one active simultaneously and it's also invalid to use CRT functionality without one active. </p>
@@ -233,6 +243,95 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a48afb6dbda9f3ac75e8ff68a8c89ebc5" name="a48afb6dbda9f3ac75e8ff68a8c89ebc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48afb6dbda9f3ac75e8ff68a8c89ebc5">&#9670;&nbsp;</a></span>GetOrCreateStaticDefaultClientBootstrap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">Io::ClientBootstrap</a> * Aws::Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Gets the static default ClientBootstrap, creating it if necessary.</p>
+<p >This default will be used when a ClientBootstrap is not explicitly passed but is needed to allow the process to function. An example of this would be in the MQTT connection creation workflow. The default ClientBootstrap will use the default EventLoopGroup and HostResolver, creating them if necessary.</p>
+<p >The default ClientBootstrap will be automatically managed and released by the API handle when it's resources are being freed, not requiring any manual memory management.</p>
+<dl class="section return"><dt>Returns</dt><dd>ClientBootstrap* A pointer to the static default ClientBootstrap </dd></dl>
+
+</div>
+</div>
+<a id="a70b3a82843a2b6f4e1d084e5c9d7fb46" name="a70b3a82843a2b6f4e1d084e5c9d7fb46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b3a82843a2b6f4e1d084e5c9d7fb46">&#9670;&nbsp;</a></span>GetOrCreateStaticDefaultEventLoopGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">Io::EventLoopGroup</a> * Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Gets the static default EventLoopGroup, creating it if necessary.</p>
+<p >This default will be used when a EventLoopGroup is not explicitly passed but is needed to allow the process to function. An example of this would be in the MQTT connection creation workflow.</p>
+<p >The EventLoopGroup will automatically pick a default number of threads based on the system. You can manually adjust the number of threads being used by creating a EventLoopGroup and passing it through the SetDefaultEventLoopGroup function.</p>
+<p >The default EventLoopGroup will be automatically managed and released by the API handle when it's resources are being freed, not requiring any manual memory management.</p>
+<dl class="section return"><dt>Returns</dt><dd>EventLoopGroup* A pointer to the static default EventLoopGroup </dd></dl>
+
+</div>
+</div>
+<a id="a85a0df71b8b8222b01669915f8bbc3af" name="a85a0df71b8b8222b01669915f8bbc3af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a0df71b8b8222b01669915f8bbc3af">&#9670;&nbsp;</a></span>GetOrCreateStaticDefaultHostResolver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_host_resolver.html">Io::HostResolver</a> * Aws::Crt::ApiHandle::GetOrCreateStaticDefaultHostResolver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Gets the static default HostResolver, creating it if necessary.</p>
+<p >This default will be used when a HostResolver is not explicitly passed but is needed to allow the process to function. An example of this would be in the MQTT connection creation workflow.</p>
+<p >The HostResolver will be set to have a maximum of 8 entries by default. You can manually adjust the maximum number of entries being used by creating a HostResolver and passing it through the SetDefaultEventLoopGroup function.</p>
+<p >The default HostResolver will be automatically managed and released by the API handle when it's resources are being freed, not requiring any manual memory management.</p>
+<dl class="section return"><dt>Returns</dt><dd>HostResolver* A pointer to the static default HostResolver </dd></dl>
+
+</div>
+</div>
 <a id="a43ddce38d8b357ff8dfb64838d544f0a" name="a43ddce38d8b357ff8dfb64838d544f0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a43ddce38d8b357ff8dfb64838d544f0a">&#9670;&nbsp;</a></span>InitializeLogging() <span class="overload">[1/2]</span></h2>
 

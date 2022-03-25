@@ -1,6 +1,7 @@
 import Builder
 import os
 import sys
+import argparse
 
 
 class BuildSamples(Builder.Action):
@@ -8,6 +9,11 @@ class BuildSamples(Builder.Action):
         if env.args.cli_config['variables'].get('skip_samples', "0") != "0":
             print('skip_samples is defined. Skipping samples...')
             return
+
+        # parse extra cmake configs
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--cmake-extra', action='append', default=[])
+        cmd_args = parser.parse_known_args(env.args.args)[0]
 
         steps = []
         samples = [
@@ -17,6 +23,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/raw_connect',
             'samples/mqtt/websocket_connect',
             'samples/mqtt/x509_credentials_provider_connect',
+            'samples/mqtt/windows_cert_pub_sub',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
@@ -31,6 +38,8 @@ class BuildSamples(Builder.Action):
                           f'-H{sample_path}',
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            # append extra cmake configs
+            steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])

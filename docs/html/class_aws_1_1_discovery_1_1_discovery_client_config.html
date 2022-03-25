@@ -106,6 +106,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aba8bb6f980d91e0f28feaf7dbc9a6af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3acafd24d1878afd38b360ce341a779"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options.html">Crt::Http::HttpClientConnectionProxyOptions</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_discovery_1_1_discovery_client_config.html#ad3acafd24d1878afd38b360ce341a779">ProxyOptions</a></td></tr>
 <tr class="separator:ad3acafd24d1878afd38b360ce341a779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34694cb68d7ad085fdff0342a0dd511f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_discovery_1_1_discovery_client_config.html#a34694cb68d7ad085fdff0342a0dd511f">ggServerName</a></td></tr>
+<tr class="separator:a34694cb68d7ad085fdff0342a0dd511f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ae07e110a04400bf229b1b8ca5694c5" name="a2ae07e110a04400bf229b1b8ca5694c5"></a>
@@ -275,7 +277,22 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >The client bootstrap to use for setting up and tearing down connections. Required. </p>
+<p >The client bootstrap to use for setting up and tearing down connections. If not defined, the static default will be used instead. </p>
+
+</div>
+</div>
+<a id="a34694cb68d7ad085fdff0342a0dd511f" name="a34694cb68d7ad085fdff0342a0dd511f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34694cb68d7ad085fdff0342a0dd511f">&#9670;&nbsp;</a></span>ggServerName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt;<a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a>&gt; Aws::Discovery::DiscoveryClientConfig::ggServerName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >The full string of the greengrass server endpoint that you want to connect to. Defaults to this over using Region to connect to server Optional. (mutually exclusive with ggServerName) </p>
 
 </div>
 </div>
@@ -320,7 +337,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >The value of the <a class="el" href="namespace_aws.html">Aws</a> region to connect to. Required. </p>
+<p >The value of the <a class="el" href="namespace_aws.html">Aws</a> region to connect to. Optional. (mutually exclusive with ggServerName) </p>
 
 </div>
 </div>
