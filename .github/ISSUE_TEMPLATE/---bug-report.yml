@@ -54,12 +54,12 @@ body:
       label: Logs/output
       description: |
         If applicable, add logs or error output.
+	
+	*REMEMBER TO SANITIZE YOUR PERSONAL INFO*
 
-		*REMEMBER TO SANITIZE YOUR PERSONAL INFO*
-
-		```
-		ApiHandle::InitializeLogging(...)
-		```
+	```
+	ApiHandle::InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+	```
     validations:
       required: false
 
