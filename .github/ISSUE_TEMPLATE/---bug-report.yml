@@ -59,7 +59,7 @@ body:
         
         ```
         ApiHandle::InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
-	```
+        ```
     validations:
       required: false
 
