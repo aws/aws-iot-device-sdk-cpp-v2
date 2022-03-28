@@ -64,7 +64,7 @@ body:
       required: false
 
   - type: textarea
-    id: logs
+    id: context
     attributes:
       label: Additional context
       description: |
