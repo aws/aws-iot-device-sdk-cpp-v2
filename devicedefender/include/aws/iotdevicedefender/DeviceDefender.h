@@ -43,6 +43,8 @@ namespace Aws
         {
           public:
             Crt::Allocator *m_allocator;
+
+            virtual ~CustomMetricBase(){};
         };
         /**
          * A base class used to store all custom number metrics. Only used internally.
@@ -50,8 +52,8 @@ namespace Aws
         class AWS_IOTDEVICEDEFENDER_API CustomMetricNumber : public CustomMetricBase
         {
           public:
-            CustomMetricNumberFunction function;
-            void SetCustomMetricData(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
+            CustomMetricNumberFunction m_metricFunction;
+            CustomMetricNumber(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
             static int GetMetricFunction(double *output, void *data);
         };
         /**
@@ -60,28 +62,9 @@ namespace Aws
         class AWS_IOTDEVICEDEFENDER_API CustomMetricNumberList : public CustomMetricBase
         {
           public:
-            CustomMetricNumberListFunction function;
-            void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
+            CustomMetricNumberListFunction m_metricFunction;
+            CustomMetricNumberList(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
             static int GetMetricFunction(aws_array_list *output, void *data);
-
-            /*
-            void SetCustomMetricData(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator)
-            {
-                function = std::move(inputFunction);
-                m_allocator = inputAllocator;
-            };
-            static int MetricFunction(aws_array_list *output, void* data)
-            {
-                CustomMetricNumberList *stuff = (CustomMetricNumberList *)data;
-                Crt::Vector<double> function_data = Crt::Vector<double>();
-                int returnValue = stuff->function(&function_data);
-                for (size_t i = 0; i < function_data.size(); i++)
-                {
-                    aws_array_list_push_back(output, &function_data.at(i));
-                }
-                return returnValue;
-            };
-            */
         };
         /**
          * A base class used to store all custom string list metrics. Only used internally.
@@ -89,30 +72,9 @@ namespace Aws
         class AWS_IOTDEVICEDEFENDER_API CustomMetricStringList : public CustomMetricBase
         {
           public:
-            CustomMetricStringListFunction function;
-            void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
+            CustomMetricStringListFunction m_metricFunction;
+            CustomMetricStringList(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
             static int GetMetricFunction(aws_array_list *output, void *data);
-
-            /*
-            void SetCustomMetricData(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator)
-            {
-                function = std::move(inputFunction);
-                m_allocator = inputAllocator;
-            };
-            static int MetricFunction(aws_array_list *output, void* data)
-            {
-                CustomMetricStringList *stuff = (CustomMetricStringList *)data;
-                Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
-                int returnValue = stuff->function(&function_data);
-                for (size_t i = 0; i < function_data.size(); i++)
-                {
-                    aws_string *tmp_str =
-                        aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
-                    aws_array_list_push_back(output, &tmp_str);
-                }
-                return returnValue;
-            };
-            */
         };
         /**
          * A base class used to store all custom ip list metrics. Only used internally.
@@ -120,30 +82,9 @@ namespace Aws
         class AWS_IOTDEVICEDEFENDER_API CustomMetricIpList : public CustomMetricBase
         {
           public:
-            CustomMetricIpListFunction function;
-            void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
+            CustomMetricIpListFunction m_metricFunction;
+            CustomMetricIpList(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
             static int GetMetricFunction(aws_array_list *output, void *data);
-
-            /*
-            void SetCustomMetricData(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator)
-            {
-                function = std::move(inputFunction);
-                m_allocator = inputAllocator;
-            };
-            static int MetricFunction(aws_array_list *output, void* data)
-            {
-                CustomMetricIpList *stuff = (CustomMetricIpList *)data;
-                Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
-                int returnValue = stuff->function(&function_data);
-                for (size_t i = 0; i < function_data.size(); i++)
-                {
-                    aws_string *tmp_str =
-                        aws_string_new_from_c_str(stuff->m_allocator, function_data[i].c_str());
-                    aws_array_list_push_back(output, &tmp_str);
-                }
-                return returnValue;
-            };
-            */
         };
         // ========
 
@@ -201,8 +142,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number data.
              */
             void RegisterCustomMetricNumber(
-                const Crt::String &metricName,
-                CustomMetricNumberFunction &metricFunc) noexcept;
+                const Crt::String &&metricName,
+                CustomMetricNumberFunction &&metricFunc) noexcept;
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
@@ -213,8 +154,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number list data.
              */
             void RegisterCustomMetricNumberList(
-                const Crt::String &metricName,
-                CustomMetricNumberListFunction &metricFunc) noexcept;
+                const Crt::String &&metricName,
+                CustomMetricNumberListFunction &&metricFunc) noexcept;
 
             /**
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
@@ -226,8 +167,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the string list data.
              */
             void RegisterCustomMetricStringList(
-                const Crt::String &metricName,
-                CustomMetricStringListFunction &metricFunc) noexcept;
+                const Crt::String &&metricName,
+                CustomMetricStringListFunction &&metricFunc) noexcept;
 
             /**
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
@@ -238,8 +179,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the IP address list data.
              */
             void RegisterCustomMetricIpAddressList(
-                const Crt::String &metricName,
-                CustomMetricIpListFunction &metricFunc) noexcept;
+                const Crt::String &&metricName,
+                CustomMetricIpListFunction &&metricFunc) noexcept;
 
             /**
              * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
@@ -289,7 +230,7 @@ namespace Aws
 
             // Holds all of the custom metrics created for this task. These are pointers that will be
             // automatically created and cleaned by ReportTask when it is destroyed.
-            Crt::Vector<CustomMetricBase *> storedCustomMetrics;
+            Crt::Vector<std::shared_ptr<CustomMetricBase>> storedCustomMetrics;
 
             /**
              * Reports CPU usage to the custom metric

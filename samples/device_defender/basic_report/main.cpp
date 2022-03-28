@@ -248,19 +248,19 @@ int main(int argc, char *argv[])
             *output = 8.4;
             return AWS_OP_SUCCESS;
         };
-        task->RegisterCustomMetricNumber("CustomNumber", s_localGetCustomMetricNumber);
+        task->RegisterCustomMetricNumber("CustomNumber", std::move(s_localGetCustomMetricNumber));
 
         Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_getCustomMetricNumberFunc = s_getCustomMetricNumber;
-        task->RegisterCustomMetricNumber("CustomNumberTwo", s_getCustomMetricNumberFunc);
+        task->RegisterCustomMetricNumber("CustomNumberTwo", std::move(s_getCustomMetricNumberFunc));
         Aws::Iotdevicedefenderv1::CustomMetricNumberListFunction s_getCustomMetricNumberListFunc =
             s_getCustomMetricNumberList;
-        task->RegisterCustomMetricNumberList("CustomNumberList", s_getCustomMetricNumberListFunc);
+        task->RegisterCustomMetricNumberList("CustomNumberList", std::move(s_getCustomMetricNumberListFunc));
         Aws::Iotdevicedefenderv1::CustomMetricStringListFunction s_getCustomMetricStringListFunc =
             s_getCustomMetricStringList;
-        task->RegisterCustomMetricStringList("CustomStringList", s_getCustomMetricStringListFunc);
+        task->RegisterCustomMetricStringList("CustomStringList", std::move(s_getCustomMetricStringListFunc));
         Aws::Iotdevicedefenderv1::CustomMetricIpListFunction s_getCustomMetricIpAddressListFunc =
             s_getCustomMetricIpAddressList;
-        task->RegisterCustomMetricIpAddressList("CustomIPList", s_getCustomMetricIpAddressListFunc);
+        task->RegisterCustomMetricIpAddressList("CustomIPList", std::move(s_getCustomMetricIpAddressListFunc));
 
         // Send additional device custom metrics
         task->RegisterCustomMetricCpuUsage();
