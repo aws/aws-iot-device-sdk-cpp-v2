@@ -53,7 +53,7 @@ body:
     attributes:
       label: Logs/output
       description: |
-        If applicable, add logs or error output.
+	If applicable, add logs or error output.
 	
 	*REMEMBER TO SANITIZE YOUR PERSONAL INFO*
 
