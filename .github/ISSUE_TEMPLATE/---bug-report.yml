@@ -1,0 +1,73 @@
+name: "\U0001F41B Bug report"
+description: If something isn't working as expected 🤔
+title: 'Short description of bug'
+labels: [bug, needs-triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Describe the bug?
+      description: |
+      	A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: Platform/OS/Device
+      description: |
+        What are you running the sdk on?
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: SDK Version Number
+      description: |
+        Example: v1.5.2 
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: To Reproduce (observed behavior)
+      description: |
+        Steps to reproduce the behavior (please share minimal code snippets)
+    validations:
+      required: false
+      
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: |
+        A clear and concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/output
+      description: |
+        If applicable, add logs or error output.
+
+		*REMEMBER TO SANITIZE YOUR PERSONAL INFO*
+
+		```
+		ApiHandle::InitializeLogging(...)
+		```
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context about the problem here.
+    validations:
+      required: false
