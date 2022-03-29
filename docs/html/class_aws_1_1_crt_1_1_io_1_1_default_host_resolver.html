@@ -89,6 +89,8 @@ Inheritance diagram for Aws::Crt::Io::DefaultHostResolver:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ef472852bb17f01d4e7013b4bcb58a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html#a2ef472852bb17f01d4e7013b4bcb58a9">DefaultHostResolver</a> (<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">EventLoopGroup</a> &amp;elGroup, size_t maxHosts, size_t maxTTL, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a2ef472852bb17f01d4e7013b4bcb58a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba6693c4f8a08d7c4e91bc50553fb921"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html#aba6693c4f8a08d7c4e91bc50553fb921">DefaultHostResolver</a> (size_t maxHosts, size_t maxTTL, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="separator:aba6693c4f8a08d7c4e91bc50553fb921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5afc7f0e2880b4bcf8331f0a4c4486a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html#a5afc7f0e2880b4bcf8331f0a4c4486a0">~DefaultHostResolver</a> ()</td></tr>
 <tr class="separator:a5afc7f0e2880b4bcf8331f0a4c4486a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59e25b42b810a6f62b31b9db794536cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html#a59e25b42b810a6f62b31b9db794536cd">DefaultHostResolver</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_default_host_resolver.html">DefaultHostResolver</a> &amp;)=delete</td></tr>
@@ -113,7 +115,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >A wrapper around the CRT default host resolution system that uses getaddrinfo() farmed off to separate threads in order to resolve names. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ef472852bb17f01d4e7013b4bcb58a9" name="a2ef472852bb17f01d4e7013b4bcb58a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ef472852bb17f01d4e7013b4bcb58a9">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef472852bb17f01d4e7013b4bcb58a9">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,6 +170,57 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aba6693c4f8a08d7c4e91bc50553fb921" name="aba6693c4f8a08d7c4e91bc50553fb921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6693c4f8a08d7c4e91bc50553fb921">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Aws::Crt::Io::DefaultHostResolver::DefaultHostResolver </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxHosts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxTTL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Resolves DNS addresses using the default <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">EventLoopGroup</a>.</p>
+<p >For more information on the default <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">EventLoopGroup</a> see <a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a70b3a82843a2b6f4e1d084e5c9d7fb46">Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxHosts</td><td>the number of unique hosts to maintain in the cache. </td></tr>
+    <tr><td class="paramname">maxTTL</td><td>how long to keep an address in the cache before evicting it. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5afc7f0e2880b4bcf8331f0a4c4486a0" name="a5afc7f0e2880b4bcf8331f0a4c4486a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5afc7f0e2880b4bcf8331f0a4c4486a0">&#9670;&nbsp;</a></span>~DefaultHostResolver()</h2>
 
@@ -186,7 +239,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a59e25b42b810a6f62b31b9db794536cd" name="a59e25b42b810a6f62b31b9db794536cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59e25b42b810a6f62b31b9db794536cd">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e25b42b810a6f62b31b9db794536cd">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,7 +265,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3b8ceca8e65d425eadffc389225b0010" name="a3b8ceca8e65d425eadffc389225b0010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b8ceca8e65d425eadffc389225b0010">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8ceca8e65d425eadffc389225b0010">&#9670;&nbsp;</a></span>DefaultHostResolver() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
