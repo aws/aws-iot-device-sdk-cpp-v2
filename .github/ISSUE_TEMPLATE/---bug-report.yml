@@ -1,73 +1,73 @@
-name: "\U0001F41B Bug report"
-description: If something isn't working as expected 🤔
-title: 'Short description of bug'
+name: "\U0001F41B Bug Report"
+description: File a bug report
+title: "(short issue description)"
 labels: [bug, needs-triage]
 body:
   - type: textarea
-    id: problem
+    id: description
     attributes:
-      label: Describe the bug?
-      description: |
-        A clear and concise description of what the bug is.
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
     validations:
       required: true
 
-  - type: input
-    id: platform
-    attributes:
-      label: Platform/OS/Device
-      description: |
-        What are you running the sdk on?
-    validations:
-      required: true
-
-  - type: input
-    id: version
-    attributes:
-      label: SDK Version Number
-      description: |
-        Example: v1.5.2 
-    validations:
-      required: true
-
-  - type: textarea
-    id: repro
-    attributes:
-      label: To Reproduce (observed behavior)
-      description: |
-        Steps to reproduce the behavior (please share minimal code snippets)
-    validations:
-      required: false
-      
   - type: textarea
     id: expected
     attributes:
       label: Expected behavior
       description: |
-        A clear and concise description of what you expected to happen.
+        Tell us what should happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior
+      description: |
+        Tell us what happens instead of the expected behavior.
+        Include full errors, uncaught exceptions, stack traces, and relevant logs.
+    validations:
+        required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        Provide a self-contained, concise snippet of code that can be used to reproduce the issue.
+        For more complex issues provide a repo with the smallest sample that reproduces the bug.
+        Avoid including business logic or unrelated code, it makes diagnosis more difficult.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Possible Solution
+      description: |
+        Suggest a fix/reason for the bug
     validations:
       required: false
 
-  - type: textarea
-    id: logs
+  - type: input
+    id: cpp-sdk-version
     attributes:
-      label: Logs/output
-      description: |
-        If applicable, add logs or error output.
-        
-        *REMEMBER TO SANITIZE YOUR PERSONAL INFO*
-        
-        ```
-        ApiHandle::InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
-        ```
+      label: AWS CPP SDK version used
     validations:
-      required: false
+      required: true
 
-  - type: textarea
-    id: context
+  - type: input
+    id: compiler-version
     attributes:
-      label: Additional context
-      description: |
-        Add any other context about the problem here.
+      label: Compiler and Version used
+      description: gcc --version / Visual Studio / clang --version
     validations:
-      required: false
+      required: true
+
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System and version
+    validations:
+      required: true
