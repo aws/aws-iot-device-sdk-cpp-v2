@@ -51,9 +51,9 @@ body:
       required: false
 
   - type: input
-    id: cpp-sdk-version
+    id: aws-iot-device-sdk-cpp-v2
     attributes:
-      label: AWS CPP SDK version used
+      label: aws-iot-device-sdk-cpp-v2 version used
     validations:
       required: true
 
