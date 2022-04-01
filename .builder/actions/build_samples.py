@@ -17,10 +17,13 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
-            'samples/mqtt/basic_pub_sub',
-            'samples/mqtt/pkcs11_pub_sub',
-            'samples/mqtt/raw_pub_sub',
-            'samples/mqtt/windows_cert_pub_sub',
+            'samples/pub_sub/basic_pub_sub',
+            'samples/mqtt/basic_connect',
+            'samples/mqtt/pkcs11_connect',
+            'samples/mqtt/raw_connect',
+            'samples/mqtt/websocket_connect',
+            'samples/mqtt/x509_credentials_provider_connect',
+            'samples/mqtt/windows_cert_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',

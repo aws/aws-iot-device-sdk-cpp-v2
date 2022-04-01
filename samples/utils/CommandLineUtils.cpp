@@ -3,11 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 #include "CommandLineUtils.h"
+#include <aws/crt/Api.h>
 #include <aws/crt/Types.h>
+#include <aws/crt/auth/Credentials.h>
+#include <aws/crt/io/Pkcs11.h>
 #include <iostream>
 
 namespace Utils
 {
+    CommandLineUtils::CommandLineUtils()
+    {
+        // Automatically register the help command
+        RegisterCommand(m_cmd_help, "", "Prints this message");
+    }
+
     void CommandLineUtils::RegisterProgramName(Aws::Crt::String newProgramName)
     {
         m_programName = std::move(newProgramName);
@@ -56,6 +65,13 @@ namespace Utils
         }
         m_beginPosition = argv;
         m_endPosition = argc;
+
+        // Automatically check and print the help message if the help command is present
+        if (HasCommand(m_cmd_help))
+        {
+            PrintHelp();
+            exit(-1);
+        }
     }
 
     bool CommandLineUtils::HasCommand(Aws::Crt::String command)
@@ -121,54 +137,379 @@ namespace Utils
 
     void CommandLineUtils::AddCommonMQTTCommands()
     {
+        RegisterCommand(m_cmd_endpoint, "<str>", "The endpoint of the mqtt server not including a port.");
         RegisterCommand(
-            Utils::CommandLineOption("endpoint", "<str>", "The endpoint of the mqtt server not including a port."));
-        RegisterCommand(Utils::CommandLineOption("key", "<path>", "Path to your key in PEM format."));
-        RegisterCommand(Utils::CommandLineOption("cert", "<path>", "Path to your client certificate in PEM format."));
-        RegisterCommand(Utils::CommandLineOption(
-            "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default)."));
+            m_cmd_ca_file, "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
     }
 
     void CommandLineUtils::AddCommonProxyCommands()
     {
-        RegisterCommand("proxy_host", "<str>", "Host name of the proxy server to connect through (optional)");
-        RegisterCommand("proxy_port", "<int>", "Port of the proxy server to connect through (optional, default='8080'");
+        RegisterCommand(m_cmd_proxy_host, "<str>", "Host name of the proxy server to connect through (optional)");
+        RegisterCommand(
+            m_cmd_proxy_port, "<int>", "Port of the proxy server to connect through (optional, default='8080'");
     }
 
     void CommandLineUtils::AddCommonX509Commands()
     {
-        RegisterCommand("x509", "", "Use the x509 credentials provider while using websockets (optional)");
         RegisterCommand(
-            "x509_role_alias", "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
-        RegisterCommand("x509_endpoint", "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
-        RegisterCommand("x509_thing", "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+            m_cmd_x509_role, "<str>", "Role alias to use with the x509 credentials provider (required for x509)");
+        RegisterCommand(m_cmd_x509_endpoint, "<str>", "Endpoint to fetch x509 credentials from (required for x509)");
         RegisterCommand(
-            "x509_cert",
+            m_cmd_x509_thing_name, "<str>", "Thing name to fetch x509 credentials on behalf of (required for x509)");
+        RegisterCommand(
+            m_cmd_x509_cert_file,
             "<path>",
             "Path to the IoT thing certificate used in fetching x509 credentials (required for x509)");
         RegisterCommand(
-            "x509_key",
+            m_cmd_x509_key_file,
             "<path>",
             "Path to the IoT thing private key used in fetching x509 credentials (required for x509)");
         RegisterCommand(
-            "x509_ca_file",
+            m_cmd_x509_ca_file,
             "<path>",
             "Path to the root certificate used in fetching x509 credentials (required for x509)");
     }
 
     void CommandLineUtils::AddCommonTopicMessageCommands()
     {
-        RegisterCommand("message", "<str>", "The message to send in the payload (optional, default='Hello world!')");
-        RegisterCommand("topic", "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
+        RegisterCommand(
+            m_cmd_message, "<str>", "The message to send in the payload (optional, default='Hello world!')");
+        RegisterCommand(m_cmd_topic, "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     }
 
-    void CommandLineUtils::AddCommonWebsocketCommands()
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
+        Aws::Iot::MqttClient *client)
     {
-        RegisterCommand("use_websocket", "", "If specified, uses a websocket over https (optional)");
-        RegisterCommand(
-            "signing_region",
-            "<str>",
-            "Used for websocket signer it should only be specific if websockets are used. (required for websockets)");
+        std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib =
+            Aws::Crt::Io::Pkcs11Lib::Create(GetCommandRequired(m_cmd_pkcs11_lib));
+        if (!pkcs11Lib)
+        {
+            fprintf(stderr, "Pkcs11Lib failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
+            exit(-1);
+        }
+
+        Aws::Crt::Io::TlsContextPkcs11Options pkcs11Options(pkcs11Lib);
+        pkcs11Options.SetCertificateFilePath(GetCommandRequired(m_cmd_cert_file));
+        pkcs11Options.SetUserPin(GetCommandRequired(m_cmd_pkcs11_pin));
+
+        if (HasCommand(m_cmd_pkcs11_token))
+        {
+            pkcs11Options.SetTokenLabel(GetCommand(m_cmd_pkcs11_token));
+        }
+
+        if (HasCommand(m_cmd_pkcs11_slot))
+        {
+            uint64_t slotId = std::stoull(GetCommand(m_cmd_pkcs11_slot).c_str());
+            pkcs11Options.SetSlotId(slotId);
+        }
+
+        if (HasCommand(m_cmd_pkcs11_key))
+        {
+            pkcs11Options.SetPrivateKeyObjectLabel(GetCommand(m_cmd_pkcs11_key));
+        }
+
+        Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder(pkcs11Options);
+        if (!clientConfigBuilder)
+        {
+            fprintf(
+                stderr,
+                "MqttClientConnectionConfigBuilder failed: %s\n",
+                Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
+            exit(-1);
+        }
+
+        if (HasCommand(m_cmd_ca_file))
+        {
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
+        }
+
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketX509MQTTConnection(
+        Aws::Iot::MqttClient *client)
+    {
+        Aws::Crt::Io::TlsContext x509TlsCtx;
+        Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
+
+        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+
+        Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(
+            GetCommandRequired(m_cmd_x509_cert_file).c_str(), GetCommandRequired(m_cmd_x509_key_file).c_str());
+        if (!tlsCtxOptions)
+        {
+            fprintf(
+                stderr,
+                "Unable to initialize tls context options, error: %s!\n",
+                Aws::Crt::ErrorDebugString(tlsCtxOptions.LastError()));
+            exit(-1);
+        }
+
+        if (HasCommand(m_cmd_x509_ca_file))
+        {
+            tlsCtxOptions.OverrideDefaultTrustStore(nullptr, GetCommand(m_cmd_x509_ca_file).c_str());
+        }
+
+        x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+        if (!x509TlsCtx)
+        {
+            fprintf(
+                stderr,
+                "Unable to create tls context, error: %s!\n",
+                Aws::Crt::ErrorDebugString(x509TlsCtx.GetInitializationError()));
+            exit(-1);
+        }
+
+        Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
+        x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
+        if (!x509Config.TlsOptions)
+        {
+            fprintf(
+                stderr,
+                "Unable to create tls options from tls context, error: %s!\n",
+                Aws::Crt::ErrorDebugString(x509Config.TlsOptions.LastError()));
+            exit(-1);
+        }
+
+        x509Config.Endpoint = GetCommandRequired(m_cmd_x509_endpoint);
+        x509Config.RoleAlias = GetCommandRequired(m_cmd_x509_role);
+        x509Config.ThingName = GetCommandRequired(m_cmd_x509_thing_name);
+
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        if (HasCommand(m_cmd_proxy_host))
+        {
+            proxyOptions = GetProxyOptionsForMQTTConnection();
+            x509Config.ProxyOptions = proxyOptions;
+        }
+
+        provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
+        if (!provider)
+        {
+            fprintf(stderr, "Failure to create credentials provider!\n");
+            exit(-1);
+        }
+
+        Aws::Iot::WebsocketConfig config(GetCommandRequired(m_cmd_signing_region), provider);
+        clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+
+        if (HasCommand(m_cmd_ca_file))
+        {
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
+        }
+        if (HasCommand(m_cmd_proxy_host))
+        {
+            clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+        }
+
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnection(
+        Aws::Iot::MqttClient *client)
+    {
+        Aws::Crt::Io::TlsContext x509TlsCtx;
+        Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
+
+        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+
+        Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+        provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+
+        if (!provider)
+        {
+            fprintf(stderr, "Failure to create credentials provider!\n");
+            exit(-1);
+        }
+
+        Aws::Iot::WebsocketConfig config(GetCommandRequired(m_cmd_signing_region), provider);
+        clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+
+        if (HasCommand(m_cmd_ca_file))
+        {
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
+        }
+        if (HasCommand(m_cmd_proxy_host))
+        {
+            clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
+        }
+
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnection(
+        Aws::Iot::MqttClient *client)
+    {
+        Aws::Crt::String certificatePath = GetCommandRequired(m_cmd_cert_file);
+        Aws::Crt::String keyPath = GetCommandRequired(m_cmd_key_file);
+        Aws::Crt::String endpoint = GetCommandRequired(m_cmd_endpoint);
+
+        auto clientConfigBuilder =
+            Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+        clientConfigBuilder.WithEndpoint(endpoint);
+
+        if (HasCommand(m_cmd_ca_file))
+        {
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
+        }
+        if (HasCommand(m_cmd_proxy_host))
+        {
+            clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
+        }
+
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildMQTTConnection()
+    {
+        if (!m_internal_client)
+        {
+            m_internal_client = Aws::Iot::MqttClient();
+            if (!m_internal_client)
+            {
+                fprintf(
+                    stderr,
+                    "MQTT Client Creation failed with error %s\n",
+                    Aws::Crt::ErrorDebugString(m_internal_client.LastError()));
+                exit(-1);
+            }
+        }
+
+        if (HasCommand(m_cmd_pkcs11_lib))
+        {
+            return BuildPKCS11MQTTConnection(&m_internal_client);
+        }
+        else if (HasCommand(m_cmd_signing_region))
+        {
+            if (HasCommand(m_cmd_x509_endpoint))
+            {
+                return BuildWebsocketX509MQTTConnection(&m_internal_client);
+            }
+            else
+            {
+                return BuildWebsocketMQTTConnection(&m_internal_client);
+            }
+        }
+        else
+        {
+            return BuildDirectMQTTConnection(&m_internal_client);
+        }
+    }
+
+    Aws::Crt::Http::HttpClientConnectionProxyOptions CommandLineUtils::GetProxyOptionsForMQTTConnection()
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = GetCommand(m_cmd_proxy_host);
+        int ProxyPort = atoi(GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        if (ProxyPort > 0 && ProxyPort < UINT16_MAX)
+        {
+            proxyOptions.Port = static_cast<uint16_t>(ProxyPort);
+        }
+        else
+        {
+            proxyOptions.Port = 8080;
+        }
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        return proxyOptions;
+    }
+
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::GetClientConnectionForMQTTConnection(
+        Aws::Iot::MqttClient *client,
+        Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder)
+    {
+        auto clientConfig = clientConfigBuilder->Build();
+        if (!clientConfig)
+        {
+            fprintf(
+                stderr,
+                "Client Configuration initialization failed with error %s\n",
+                Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+            exit(-1);
+        }
+
+        auto connection = client->NewConnection(clientConfig);
+        if (!*connection)
+        {
+            fprintf(
+                stderr,
+                "MQTT Connection Creation failed with error %s\n",
+                Aws::Crt::ErrorDebugString(connection->LastError()));
+            exit(-1);
+        }
+        return connection;
+    }
+
+    void CommandLineUtils::SampleConnectAndDisconnect(
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
+        Aws::Crt::String clientId)
+    {
+        /*
+         * In a real world application you probably don't want to enforce synchronous behavior
+         * but this is a sample console application, so we'll just do that with a condition variable.
+         */
+        std::promise<bool> connectionCompletedPromise;
+        std::promise<void> connectionClosedPromise;
+
+        /*
+         * This will execute when an mqtt connect has completed or failed.
+         */
+        auto onConnectionCompleted =
+            [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+                if (errorCode)
+                {
+                    fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                    connectionCompletedPromise.set_value(false);
+                }
+                else
+                {
+                    fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                    connectionCompletedPromise.set_value(true);
+                }
+            };
+
+        auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
+            fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
+        };
+        auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) {
+            fprintf(stdout, "Connection resumed\n");
+        };
+
+        /*
+         * Invoked when a disconnect message has completed.
+         */
+        auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+            fprintf(stdout, "Disconnect completed\n");
+            connectionClosedPromise.set_value();
+        };
+
+        connection->OnConnectionCompleted = std::move(onConnectionCompleted);
+        connection->OnDisconnect = std::move(onDisconnect);
+        connection->OnConnectionInterrupted = std::move(onInterrupted);
+        connection->OnConnectionResumed = std::move(onResumed);
+
+        /*
+         * Actually perform the connect dance.
+         */
+        fprintf(stdout, "Connecting...\n");
+        if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+        {
+            fprintf(
+                stderr, "MQTT Connection failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
+            exit(-1);
+        }
+
+        // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
+        if (connectionCompletedPromise.get_future().get() == false)
+        {
+            fprintf(stderr, "Connection failed\n");
+            exit(-1);
+        }
+
+        /* Disconnect */
+        if (connection->Disconnect())
+        {
+            connectionClosedPromise.get_future().wait();
+        }
     }
 
 } // namespace Utils
