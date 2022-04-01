@@ -5,6 +5,7 @@
  */
 
 #include <aws/crt/Types.h>
+#include <aws/iot/MqttClient.h>
 
 namespace Utils
 {
@@ -35,6 +36,8 @@ namespace Utils
     class CommandLineUtils
     {
       public:
+        CommandLineUtils();
+
         /**
          * Changes the program name to the name given. The program name is shown when calling help and showing all the
          * commands.
@@ -130,7 +133,7 @@ namespace Utils
         void PrintHelp();
 
         /**
-         * A helper function that adds endpoint, key, cert, and ca_file commands
+         * A helper function that adds endpoint and ca_file commands
          */
         void AddCommonMQTTCommands();
 
@@ -151,14 +154,97 @@ namespace Utils
         void AddCommonTopicMessageCommands();
 
         /**
-         * A helper function that adds use_websocket and signing_region
+         * A helper function that builds and returns a PKCS11 direct MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
+         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example setup.
+         * @param client The client to use to make the connection.
+         * @return The created direct PKCS11 MQTT connection.
          */
-        void AddCommonWebsocketCommands();
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildPKCS11MQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a websocket x509 MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonX509Commands function. See mqtt/x509_connect for example setup.
+         * @param client The client to use to make the connection.
+         * @return The created websocket x509 MQTT connection.
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketX509MQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a websocket MQTT connection.
+         *
+         * Will get the required data from the CommandLineUtils from the "signing_region" command.
+         * See mqtt/websocket_connect for example setup.
+         * @param client The client to use to make the connection
+         * @return The created websocket MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a direct MQTT connection using a key and certificate.
+         * @param client The client to use to make the connection
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonMQTTCommands function, "cert" command, and "key" command. See mqtt/basic_connect for example.
+         * @return The created direct MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a MQTT connection automatically based
+         * on the commands passed into CommandLineUtils. Will make a direct MQTT connection, PKCS11 MQTT connection,
+         * a websocket connection, or a x509 connection via websockets.
+         * @return The automatically created connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildMQTTConnection();
+
+        /**
+         * A helper function that uses a MQTT connection to connect, and then disconnect from AWS servers. This is used
+         * in all the connect samples to show how to make a connection.
+         * @param connection The MqttConnection to use when making a connection
+         * @param clientId The client ID to send with the connection
+         */
+        void SampleConnectAndDisconnect(
+            std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
+            Aws::Crt::String clientId);
 
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;
         const char **m_endPosition = nullptr;
         Aws::Crt::Map<Aws::Crt::String, CommandLineOption> m_registeredCommands;
+
+        Aws::Iot::MqttClient m_internal_client;
+        Aws::Crt::Http::HttpClientConnectionProxyOptions GetProxyOptionsForMQTTConnection();
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
+            Aws::Iot::MqttClient *client,
+            Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
+
+        /** Constants for commonly used/needed commands */
+        const Aws::Crt::String m_cmd_endpoint = "endpoint";
+        const Aws::Crt::String m_cmd_ca_file = "ca_file";
+        const Aws::Crt::String m_cmd_cert_file = "cert";
+        const Aws::Crt::String m_cmd_key_file = "key";
+        const Aws::Crt::String m_cmd_proxy_host = "proxy_host";
+        const Aws::Crt::String m_cmd_proxy_port = "proxy_port";
+        const Aws::Crt::String m_cmd_signing_region = "signing_region";
+        const Aws::Crt::String m_cmd_x509_endpoint = "x509_endpoint";
+        const Aws::Crt::String m_cmd_x509_role = "x509_role_alias";
+        const Aws::Crt::String m_cmd_x509_thing_name = "x509_thing_name";
+        const Aws::Crt::String m_cmd_x509_cert_file = "x509_cert";
+        const Aws::Crt::String m_cmd_x509_key_file = "x509_key";
+        const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
+        const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
+        const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
+        const Aws::Crt::String m_cmd_pkcs11_pin = "pin";
+        const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
+        const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
+        const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
+        const Aws::Crt::String m_cmd_message = "message";
+        const Aws::Crt::String m_cmd_topic = "topic";
+        const Aws::Crt::String m_cmd_help = "help";
     };
 } // namespace Utils

@@ -4,7 +4,7 @@ set -e
 
 env
 
-pushd $CODEBUILD_SRC_DIR/samples/pub_sub/basic_pub_sub
+pushd $CODEBUILD_SRC_DIR/samples/mqtt/websocket_connect
 
 mkdir _build
 cd _build
@@ -13,10 +13,7 @@ make -j
 
 ENDPOINT=$(aws secretsmanager get-secret-value --secret-id "unit-test/endpoint" --query "SecretString" | cut -f2 -d":" | sed -e 's/[\\\"\}]//g')
 
-echo "Mqtt Direct test"
-./basic-pub-sub --endpoint $ENDPOINT --key /tmp/privatekey.pem --cert /tmp/certificate.pem
-
 echo "Websocket test"
-./basic-pub-sub --endpoint $ENDPOINT --use_websocket --signing_region us-east-1
+./websocket-connect --endpoint $ENDPOINT --use_websocket --signing_region us-east-1
 
 popd
