@@ -222,7 +222,7 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
 5)  Now you can run the sample:
     ```sh
-    ./pkcs11-connect --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
+    ./pkcs11-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to certificate> --pkcs11_lib <path to PKCS11 lib> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
 Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
@@ -307,7 +307,7 @@ To run this sample with a basic certificate from AWS IoT Core:
 4) Now you can run the sample:
 
     ```
-    .\windows-cert-connect.exe --endpoint xxxx-ats.iot.xxxx.amazonaws.com --ca_file AmazonRootCA.pem --cert CurrentUser\My\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6
+    .\windows-cert-connect.exe --endpoint <endpoint> --ca_file <path to root CA> --cert <path to certificate>
     ```
 
 ## Raw Connect
@@ -699,11 +699,11 @@ and `--key` appropriately:
 
 ``` sh
 ./fleet-provisioning \
-        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
-        --ca_file [pathToRootCA] \
-        --cert /tmp/provision.cert.pem \
-        --key /tmp/provision.private.key \
-        --template_name [TemplateName] \
+        --endpoint <endpoint> \
+        --ca_file <path to CA file> \
+        --cert <path to certificate> \
+        --key <path to key> \
+        --template_name <template name> \
         --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
 ```
 
@@ -738,13 +738,13 @@ Finally, supply the certificate signing request while invoking the provisioning 
 using a permanent certificate set, replace the paths specified in the `--cert` and `--key` arguments:
 ``` sh
 ./fleet-provisioning \
-        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
-        --ca_file [pathToRootCA] \
-        --cert /tmp/provision.cert.pem \
-        --key /tmp/provision.private.key \
-        --template_name [TemplateName] \
+        --endpoint <endpoint> \
+        --ca_file <path to root CA> \
+        --cert <path to certificate> \
+        --key <path to key> \
+        --template_name <template name> \
         --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}" \
-        --csr /tmp/deviceCert.csr
+        --csr <path to csr file>
 ```
 
 ## Secure Tunnel
