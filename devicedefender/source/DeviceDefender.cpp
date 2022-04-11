@@ -13,6 +13,8 @@
 #    include <sys/types.h>
 #endif
 
+#include <aws/common/metric_reporter.h>
+
 namespace Aws
 {
     namespace Crt
@@ -134,7 +136,8 @@ namespace Aws
             }
 
             // Cache initial CPU usage
-            getCurrentCpuUsage(&m_cpuLastTotalUser, &m_cpuLastTotalUserLow, &m_cpuLastTotalSystem, &m_cpuLastTotalIdle);
+            double init_double = 1;
+            aws_get_custom_metric_cpu_usage(&init_double);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -240,137 +243,20 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::getCustomMetricCpuUsage, this, std::placeholders::_1);
+            CustomMetricNumberFunction func = aws_get_custom_metric_cpu_usage;
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
-        }
-
-        int ReportTask::getCustomMetricCpuUsage(double *output)
-        {
-// Get the CPU usage from Linux
-#if defined(__linux__) || defined(__unix__)
-            int return_result = AWS_OP_ERR;
-            uint64_t totalUser, totalUserLow, totalSystem, totalIdle, total;
-            getCurrentCpuUsage(&totalUser, &totalUserLow, &totalSystem, &totalIdle);
-            double percent;
-
-            // Overflow detection
-            if (totalUser < m_cpuLastTotalUser || totalUserLow < m_cpuLastTotalUserLow ||
-                totalSystem < m_cpuLastTotalSystem || totalIdle < m_cpuLastTotalIdle)
-            {
-                *output = 0;
-            }
-            else
-            {
-                total = (totalUser - m_cpuLastTotalUser) + (totalUserLow - m_cpuLastTotalUserLow) +
-                        (totalSystem - m_cpuLastTotalSystem);
-                percent = total;
-                total += totalIdle - m_cpuLastTotalIdle;
-                percent = (percent / total) * 100;
-
-                // If percent is negative, then there was an error (overflow?)
-                if (percent < 0)
-                {
-                    *output = 0;
-                    return_result = AWS_OP_ERR;
-                }
-                else
-                {
-                    *output = percent;
-                    return_result = AWS_OP_SUCCESS;
-                }
-            }
-
-            m_cpuLastTotalUser = totalUser;
-            m_cpuLastTotalUserLow = totalUserLow;
-            m_cpuLastTotalSystem = totalSystem;
-            m_cpuLastTotalIdle = totalIdle;
-
-            return return_result;
-#endif
-
-            // OS not supported? Just return an error and set the output to 0
-            *output = 0;
-            return AWS_OP_ERR;
-        }
-
-        void ReportTask::getCurrentCpuUsage(
-            uint64_t *totalUser,
-            uint64_t *totalUserLow,
-            uint64_t *totalSystem,
-            uint64_t *totalIdle)
-        {
-            *totalUser = 0;    // prevent warnings over unused parameter on Windows and Mac
-            *totalUserLow = 0; // prevent warnings over unused parameter on Windows and Mac
-            *totalSystem = 0;  // prevent warnings over unused parameter on Windows and Mac
-            *totalIdle = 0;    // prevent warnings over unused parameter on Windows and Mac
-
-// Get the CPU usage from Linux
-#if defined(__linux__) || defined(__unix__)
-            FILE *file;
-            int matchedResults;
-            file = fopen("/proc/stat", "r");
-            matchedResults = fscanf(
-                file,
-                "cpu %llu %llu %llu %llu",
-                (long long unsigned int *)totalUser,
-                (long long unsigned int *)totalUserLow,
-                (long long unsigned int *)totalSystem,
-                (long long unsigned int *)totalIdle);
-            fclose(file);
-            if (matchedResults == EOF || matchedResults != 4)
-            {
-                aws_raise_error(AWS_ERROR_IOTDEVICE_DEFENDER_INVALID_REPORT_INTERVAL);
-            }
-            return;
-#endif
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
         {
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::getCustomMetricMemoryUsage, this, std::placeholders::_1);
+            CustomMetricNumberFunction func = aws_get_custom_metric_memory_usage;
             RegisterCustomMetricNumber("memory_usage", std::move(func));
-        }
-
-        int ReportTask::getCustomMetricMemoryUsage(double *output)
-        {
-// Get the Memory usage from Linux
-#if defined(__linux__) || defined(__unix__)
-            struct sysinfo memoryInfo;
-            sysinfo(&memoryInfo);
-            uint64_t physicalMemoryUsed = memoryInfo.totalram - memoryInfo.freeram;
-            physicalMemoryUsed *= memoryInfo.mem_unit;
-            // Return data in Kilobytes
-            physicalMemoryUsed = physicalMemoryUsed / (1024);
-            *output = (double)physicalMemoryUsed;
-            return AWS_OP_SUCCESS;
-#endif
-
-            // OS not supported? Just return an error and set the output to 0
-            *output = 0;
-            return AWS_OP_ERR;
         }
 
         void ReportTask::RegisterCustomMetricProcessCount() noexcept
         {
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::getCustomMetricProcessCount, this, std::placeholders::_1);
+            CustomMetricNumberFunction func = aws_get_custom_metric_process_count;
             RegisterCustomMetricNumber("process_count", std::move(func));
-        }
-
-        int ReportTask::getCustomMetricProcessCount(double *output)
-        {
-// Get the process count from Linux
-#if defined(__linux__) || defined(__unix__)
-            struct sysinfo systemInfo;
-            sysinfo(&systemInfo);
-            *output = (double)systemInfo.procs;
-            return AWS_OP_SUCCESS;
-#endif
-            // OS not supported? Just return an error and set the output to 0
-            *output = 0;
-            return AWS_OP_ERR;
         }
 
         ReportTaskBuilder::ReportTaskBuilder(

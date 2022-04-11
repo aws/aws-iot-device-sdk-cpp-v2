@@ -231,41 +231,6 @@ namespace Aws
             // Holds all of the custom metrics created for this task. These are pointers that will be
             // automatically created and cleaned by ReportTask when it is destroyed.
             Crt::Vector<std::shared_ptr<CustomMetricBase>> storedCustomMetrics;
-
-            /**
-             * Reports CPU usage to the custom metric
-             */
-            int getCustomMetricCpuUsage(double *output);
-
-            /**
-             * A helper function to get the CPU usage from the computer and populate the passed-in uint64_t
-             * pointers.
-             * @param totalUser The total user CPU usage
-             * @param totalUserLow The low total user CPU usage
-             * @param totalSystem The total system CPU usage
-             * @param totalIdle The total idle CPU usage
-             */
-            void getCurrentCpuUsage(
-                uint64_t *totalUser,
-                uint64_t *totalUserLow,
-                uint64_t *totalSystem,
-                uint64_t *totalIdle);
-
-            /** Static variables to store the last CPU usage call. */
-            uint64_t m_cpuLastTotalUser;
-            uint64_t m_cpuLastTotalUserLow;
-            uint64_t m_cpuLastTotalSystem;
-            uint64_t m_cpuLastTotalIdle;
-
-            /**
-             * Reports physical memory usage to the custom metric.
-             */
-            int getCustomMetricMemoryUsage(double *output);
-
-            /**
-             * Reports process count to the custom metric
-             */
-            int getCustomMetricProcessCount(double *output);
         };
 
         /**
