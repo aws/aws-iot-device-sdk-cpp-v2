@@ -8,12 +8,7 @@
 #include <aws/common/clock.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
 
-#if defined(__linux__) || defined(__unix__)
-#    include <sys/sysinfo.h>
-#    include <sys/types.h>
-#endif
-
-#include <aws/common/metric_reporter.h>
+#include <aws/common/system_info.h>
 
 namespace Aws
 {
@@ -137,7 +132,7 @@ namespace Aws
 
             // Cache initial CPU usage
             double init_double = 1;
-            aws_get_custom_metric_cpu_usage(&init_double);
+            aws_get_cpu_usage(&init_double);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -243,19 +238,19 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_custom_metric_cpu_usage;
+            CustomMetricNumberFunction func = aws_get_cpu_usage;
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_custom_metric_memory_usage;
+            CustomMetricNumberFunction func = aws_get_memory_usage;
             RegisterCustomMetricNumber("memory_usage", std::move(func));
         }
 
         void ReportTask::RegisterCustomMetricProcessCount() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_custom_metric_process_count;
+            CustomMetricNumberFunction func = aws_get_process_count;
             RegisterCustomMetricNumber("process_count", std::move(func));
         }
 
