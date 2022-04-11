@@ -23,9 +23,6 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    String topic("test/topic");
-    String message("Hello World");
-
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("greengrass-ipc");
@@ -33,13 +30,8 @@ int main(int argc, char *argv[])
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    topic = cmdUtils.GetCommandOrDefault("topic", topic);
-    message = cmdUtils.GetCommandOrDefault("message", message);
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
     /**
      * Create the default ClientBootstrap, which will create the default

@@ -24,14 +24,14 @@ openssl pkcs8 -topk8 -in /tmp/privatekey.pem -out /tmp/privatekey.p8.pem -nocryp
 softhsm2-util --import /tmp/privatekey.p8.pem --token my-token --label my-key --id BEEFCAFE --pin 0000
 
 # build and run sample
-pushd $CODEBUILD_SRC_DIR/samples/mqtt/pkcs11_pub_sub
+pushd $CODEBUILD_SRC_DIR/samples/mqtt/pkcs11_connect
 
 mkdir _build
 cd _build
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
-./pkcs11-pub-sub \
+./pkcs11-connect \
     --endpoint $ENDPOINT \
     --cert /tmp/certificate.pem \
     --pkcs11_lib /usr/lib/softhsm/libsofthsm2.so \
