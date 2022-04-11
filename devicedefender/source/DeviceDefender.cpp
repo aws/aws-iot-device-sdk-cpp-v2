@@ -195,7 +195,7 @@ namespace Aws
             CustomMetricNumberFunction &&metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricNumber> data =
-                std::shared_ptr<CustomMetricNumber>(new CustomMetricNumber(metricFunc, m_allocator));
+                Aws::Crt::MakeShared<CustomMetricNumber>(m_allocator, metricFunc, m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_number_metric(
@@ -207,7 +207,7 @@ namespace Aws
             CustomMetricNumberListFunction &&metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricNumberList> data =
-                std::shared_ptr<CustomMetricNumberList>(new CustomMetricNumberList(metricFunc, m_allocator));
+                Aws::Crt::MakeShared<CustomMetricNumberList>(m_allocator, metricFunc, m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_number_list_metric(
@@ -219,7 +219,7 @@ namespace Aws
             CustomMetricStringListFunction &&metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricStringList> data =
-                std::shared_ptr<CustomMetricStringList>(new CustomMetricStringList(metricFunc, m_allocator));
+                Aws::Crt::MakeShared<CustomMetricStringList>(m_allocator, metricFunc, m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_string_list_metric(
@@ -231,7 +231,7 @@ namespace Aws
             CustomMetricIpListFunction &&metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricIpList> data =
-                std::shared_ptr<CustomMetricIpList>(new CustomMetricIpList(metricFunc, m_allocator));
+                Aws::Crt::MakeShared<CustomMetricIpList>(m_allocator, metricFunc, m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_ip_list_metric(
