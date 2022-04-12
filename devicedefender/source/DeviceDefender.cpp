@@ -129,10 +129,6 @@ namespace Aws
             {
                 m_lastError = aws_last_error();
             }
-
-            // Cache initial CPU usage
-            double init_double = 1;
-            aws_get_cpu_usage(&init_double);
         }
 
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
@@ -238,8 +234,22 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_cpu_usage;
+            CustomMetricNumberFunction func = std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
+        }
+
+        int ReportTask::CustomMetricGetCpuUsage(double *output)
+        {
+            // Skip the first result as we need to have accurate cached results for future results
+            if (m_cpu_is_first_check == true) {
+                m_cpu_is_first_check = false;
+                aws_get_cpu_usage(&m_cpu_last_total_user, &m_cpu_last_total_user_low,
+                    &m_cpu_last_total_system, &m_cpu_last_total_idle, output);
+                *output = 0;
+                return AWS_OP_ERR;
+            }
+            return aws_get_cpu_usage(&m_cpu_last_total_user, &m_cpu_last_total_user_low,
+                &m_cpu_last_total_system, &m_cpu_last_total_idle, output);
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept

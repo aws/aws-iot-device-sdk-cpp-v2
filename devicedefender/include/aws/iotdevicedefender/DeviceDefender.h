@@ -186,7 +186,8 @@ namespace Aws
              * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
              * "cpu_usage". Calling this function will make the task report CPU usage each time a report is generated.
              *
-             * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU)
+             * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU).
+             * Also, the first report is always skipped, as polling has to be at a consistent timing and requires cached results.
              */
             void RegisterCustomMetricCpuUsage() noexcept;
 
@@ -214,6 +215,16 @@ namespace Aws
             int m_lastError;
             std::shared_ptr<Crt::Mqtt::MqttConnection> m_mqttConnection;
             Crt::Io::EventLoopGroup &m_eventLoopGroup;
+
+            // Needed for tracking CPU usage
+            uint64_t m_cpu_last_total_user = 0;
+            uint64_t m_cpu_last_total_user_low = 0;
+            uint64_t m_cpu_last_total_system = 0;
+            uint64_t m_cpu_last_total_idle = 0;
+            // We need to skip the first test for accurate results and just cache the values but not use them.
+            bool m_cpu_is_first_check = true;
+            // The function called by Device Defender to get the CPU usage
+            int CustomMetricGetCpuUsage(double *output);
 
             ReportTask(
                 Crt::Allocator *allocator,
