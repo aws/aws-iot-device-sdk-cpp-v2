@@ -80,6 +80,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f06bf02c18de0c646ab6b0df59d0fe1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client.html#a9f06bf02c18de0c646ab6b0df59d0fe1">MqttClient</a> (<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">Crt::Io::ClientBootstrap</a> &amp;bootstrap, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a9f06bf02c18de0c646ab6b0df59d0fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a088065e7fececc4e8630702a68ea4d08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client.html#a088065e7fececc4e8630702a68ea4d08">MqttClient</a> (<a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a>) noexcept</td></tr>
+<tr class="separator:a088065e7fececc4e8630702a68ea4d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5faca751007ca4a3eebda88a6c06b2b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">Crt::Mqtt::MqttConnection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client.html#ac5faca751007ca4a3eebda88a6c06b2b">NewConnection</a> (const <a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html">MqttClientConnectionConfig</a> &amp;config) noexcept</td></tr>
 <tr class="separator:ac5faca751007ca4a3eebda88a6c06b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7019e052869b4b121aed212f2b3347a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iot_1_1_mqtt_client.html#a7019e052869b4b121aed212f2b3347a4">LastError</a> () const noexcept</td></tr>
@@ -91,7 +93,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >AWS IOT specific Mqtt Client. Sets defaults for using the AWS IOT service. You'll need an instance of <a class="el" href="class_aws_1_1_iot_1_1_mqtt_client_connection_config.html">MqttClientConnectionConfig</a> to use. Once NewConnection returns, you use it's return value identically to how you would use <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">Aws::Crt::Mqtt::MqttConnection</a> </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f06bf02c18de0c646ab6b0df59d0fe1" name="a9f06bf02c18de0c646ab6b0df59d0fe1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f06bf02c18de0c646ab6b0df59d0fe1">&#9670;&nbsp;</a></span>MqttClient()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f06bf02c18de0c646ab6b0df59d0fe1">&#9670;&nbsp;</a></span>MqttClient() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,6 +125,34 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a088065e7fececc4e8630702a68ea4d08" name="a088065e7fececc4e8630702a68ea4d08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088065e7fececc4e8630702a68ea4d08">&#9670;&nbsp;</a></span>MqttClient() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Aws::Iot::MqttClient::MqttClient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">Crt::g_allocator</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Constructs a new Mqtt Client object using the static default ClientBootstrap.</p>
+<p >For more information on the default ClientBootstrap see Aws::Crt::ApiHandle::GetOrCreateDefaultClientBootstrap </p>
 
 </div>
 </div>

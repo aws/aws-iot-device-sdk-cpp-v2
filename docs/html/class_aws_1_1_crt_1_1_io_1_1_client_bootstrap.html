@@ -80,6 +80,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ede19b93c955dd2cbf12e1905356bce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#a3ede19b93c955dd2cbf12e1905356bce">ClientBootstrap</a> (<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">EventLoopGroup</a> &amp;elGroup, <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_host_resolver.html">HostResolver</a> &amp;resolver, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a3ede19b93c955dd2cbf12e1905356bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8575a2f12f8c7a423d07bc2ba4fac5f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#a8575a2f12f8c7a423d07bc2ba4fac5f0">ClientBootstrap</a> (<a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="separator:a8575a2f12f8c7a423d07bc2ba4fac5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11cd43598dc65f15aa29a41904841508"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#a11cd43598dc65f15aa29a41904841508">~ClientBootstrap</a> ()</td></tr>
 <tr class="separator:a11cd43598dc65f15aa29a41904841508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6669a24157928a6182dce6fbd0ed87e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#ac6669a24157928a6182dce6fbd0ed87e">ClientBootstrap</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">ClientBootstrap</a> &amp;)=delete</td></tr>
@@ -104,7 +106,7 @@ Public Member Functions</h2></td></tr>
 <p >Note that <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">ClientBootstrap</a> may not clean up all its behind-the-scenes resources immediately upon destruction. If you need to know when behind-the-scenes shutdown is complete, use <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#ad33fec27c1600aaeb8e30ec32b1302c9">SetShutdownCompleteCallback()</a> or <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html#a0021ef57bec8381f73c69e5e4c46c0e1">EnableBlockingShutdown()</a> (only safe on main thread). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3ede19b93c955dd2cbf12e1905356bce" name="a3ede19b93c955dd2cbf12e1905356bce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ede19b93c955dd2cbf12e1905356bce">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ede19b93c955dd2cbf12e1905356bce">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,6 +154,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a8575a2f12f8c7a423d07bc2ba4fac5f0" name="a8575a2f12f8c7a423d07bc2ba4fac5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8575a2f12f8c7a423d07bc2ba4fac5f0">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Aws::Crt::Io::ClientBootstrap::ClientBootstrap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Uses the default <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_event_loop_group.html">EventLoopGroup</a> and <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_host_resolver.html">HostResolver</a>. See <a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a70b3a82843a2b6f4e1d084e5c9d7fb46">Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup</a> and <a class="el" href="class_aws_1_1_crt_1_1_api_handle.html#a85a0df71b8b8222b01669915f8bbc3af">Aws::Crt::ApiHandle::GetOrCreateStaticDefaultHostResolver</a> </p>
+
+</div>
+</div>
 <a id="a11cd43598dc65f15aa29a41904841508" name="a11cd43598dc65f15aa29a41904841508"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11cd43598dc65f15aa29a41904841508">&#9670;&nbsp;</a></span>~ClientBootstrap()</h2>
 
@@ -170,7 +199,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac6669a24157928a6182dce6fbd0ed87e" name="ac6669a24157928a6182dce6fbd0ed87e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6669a24157928a6182dce6fbd0ed87e">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6669a24157928a6182dce6fbd0ed87e">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +225,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a615bc843746ff0c53ffef5cc71b8f935" name="a615bc843746ff0c53ffef5cc71b8f935"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a615bc843746ff0c53ffef5cc71b8f935">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a615bc843746ff0c53ffef5cc71b8f935">&#9670;&nbsp;</a></span>ClientBootstrap() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
