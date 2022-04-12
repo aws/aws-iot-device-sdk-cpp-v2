@@ -249,7 +249,8 @@ namespace Aws
                     &m_cpu_last_total_user,
                     &m_cpu_last_total_user_low,
                     &m_cpu_last_total_system,
-                    &m_cpu_last_total_idle, output);
+                    &m_cpu_last_total_idle,
+                    output);
                 *output = 0;
                 return AWS_OP_ERR;
             }
@@ -257,7 +258,8 @@ namespace Aws
                 &m_cpu_last_total_user,
                 &m_cpu_last_total_user_low,
                 &m_cpu_last_total_system,
-                &m_cpu_last_total_idle, output);
+                &m_cpu_last_total_idle,
+                output);
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
