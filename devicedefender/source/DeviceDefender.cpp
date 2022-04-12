@@ -234,22 +234,30 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            CustomMetricNumberFunction func = std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
+            CustomMetricNumberFunction func =
+                std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
         }
 
         int ReportTask::CustomMetricGetCpuUsage(double *output)
         {
             // Skip the first result as we need to have accurate cached results for future results
-            if (m_cpu_is_first_check == true) {
+            if (m_cpu_is_first_check == true)
+            {
                 m_cpu_is_first_check = false;
-                aws_get_cpu_usage(&m_cpu_last_total_user, &m_cpu_last_total_user_low,
-                    &m_cpu_last_total_system, &m_cpu_last_total_idle, output);
+                aws_get_cpu_usage(
+                    &m_cpu_last_total_user,
+                    &m_cpu_last_total_user_low,
+                    &m_cpu_last_total_system,
+                    &m_cpu_last_total_idle, output);
                 *output = 0;
                 return AWS_OP_ERR;
             }
-            return aws_get_cpu_usage(&m_cpu_last_total_user, &m_cpu_last_total_user_low,
-                &m_cpu_last_total_system, &m_cpu_last_total_idle, output);
+            return aws_get_cpu_usage(
+                &m_cpu_last_total_user,
+                &m_cpu_last_total_user_low,
+                &m_cpu_last_total_system,
+                &m_cpu_last_total_idle, output);
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept

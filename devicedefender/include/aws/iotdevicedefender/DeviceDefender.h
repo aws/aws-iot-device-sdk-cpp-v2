@@ -187,7 +187,8 @@ namespace Aws
              * "cpu_usage". Calling this function will make the task report CPU usage each time a report is generated.
              *
              * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU).
-             * Also, the first report is always skipped, as polling has to be at a consistent timing and requires cached results.
+             * Also, the first report is always skipped, as polling has to be at a consistent timing and requires cached
+             * results.
              */
             void RegisterCustomMetricCpuUsage() noexcept;
 
