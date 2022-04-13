@@ -9,6 +9,8 @@
 #include <aws/crt/io/EventLoopGroup.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
+#include <aws/common/cpu_usage_sampler.h>
+
 #include <aws/iotdevice/device_defender.h>
 
 namespace Aws
@@ -218,12 +220,7 @@ namespace Aws
             Crt::Io::EventLoopGroup &m_eventLoopGroup;
 
             // Needed for tracking CPU usage
-            uint64_t m_cpu_last_total_user = 0;
-            uint64_t m_cpu_last_total_user_low = 0;
-            uint64_t m_cpu_last_total_system = 0;
-            uint64_t m_cpu_last_total_idle = 0;
-            // We need to skip the first test for accurate results and just cache the values but not use them.
-            bool m_cpu_is_first_check = true;
+            cpu_usage_sampler *m_cpu_sampler = nullptr;
             // The function called by Device Defender to get the CPU usage, memory, and process count (mainly for conversion)
             int CustomMetricGetCpuUsage(double *output);
             int CustomMetricGetMemoryUsage(double *output);

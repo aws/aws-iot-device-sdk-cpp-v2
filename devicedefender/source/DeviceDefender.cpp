@@ -173,6 +173,9 @@ namespace Aws
         ReportTask::~ReportTask()
         {
             StopTask();
+            if (m_cpu_sampler) {
+                aws_cpu_sampler_cleanup(m_cpu_sampler);
+            }
             if (m_taskConfig)
             {
                 aws_iotdevice_defender_config_clean_up(m_taskConfig);
@@ -234,6 +237,21 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
+            /*
+            CustomMetricNumberFunction func =
+                std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
+            RegisterCustomMetricNumber("cpu_usage", std::move(func));
+            */
+
+            if (m_cpu_sampler != nullptr) {
+                aws_raise_error(AWS_ERROR_INVALID_STATE);
+                return; // cannot re-register!
+            }
+            if (aws_cpu_sampler_new(m_allocator, m_cpu_sampler) != AWS_OP_SUCCESS) {
+                aws_raise_error(AWS_ERROR_UNKNOWN); // shouldn't be possible, but...
+                return;
+            }
+            fprintf(stdout, "\nMade CPU sampler!\n");
             CustomMetricNumberFunction func =
                 std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
@@ -241,25 +259,11 @@ namespace Aws
 
         int ReportTask::CustomMetricGetCpuUsage(double *output)
         {
-            // Skip the first result as we need to have accurate cached results for future results
-            if (m_cpu_is_first_check == true)
-            {
-                m_cpu_is_first_check = false;
-                aws_get_cpu_usage(
-                    &m_cpu_last_total_user,
-                    &m_cpu_last_total_user_low,
-                    &m_cpu_last_total_system,
-                    &m_cpu_last_total_idle,
-                    output);
-                *output = 0;
+            if (m_cpu_sampler == nullptr) {
+                fprintf(stdout, "\nDoes not have CPU sampler!\n");
                 return AWS_OP_ERR;
             }
-            return aws_get_cpu_usage(
-                &m_cpu_last_total_user,
-                &m_cpu_last_total_user_low,
-                &m_cpu_last_total_system,
-                &m_cpu_last_total_idle,
-                output);
+            return aws_cpu_sampler_get_sample(m_cpu_sampler, output);
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept

@@ -85,7 +85,6 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
-    cmdUtils.RegisterCommand("help", "", "Prints this message");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
