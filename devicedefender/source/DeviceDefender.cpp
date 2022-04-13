@@ -264,14 +264,32 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_memory_usage;
+            CustomMetricNumberFunction func =
+                std::bind(&ReportTask::CustomMetricGetMemoryUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("memory_usage", std::move(func));
+        }
+
+        int ReportTask::CustomMetricGetMemoryUsage(double *output)
+        {
+            int64_t output_int = 0;
+            int return_val = aws_get_memory_usage(&output_int);
+            *output = (double)output_int;
+            return return_val;
         }
 
         void ReportTask::RegisterCustomMetricProcessCount() noexcept
         {
-            CustomMetricNumberFunction func = aws_get_process_count;
+            CustomMetricNumberFunction func =
+                std::bind(&ReportTask::CustomMetricGetProcessUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("process_count", std::move(func));
+        }
+
+        int ReportTask::CustomMetricGetProcessUsage(double *output)
+        {
+            int64_t output_int = 0;
+            int return_val = aws_get_process_count(&output_int);
+            *output = (double)output_int;
+            return return_val;
         }
 
         ReportTaskBuilder::ReportTaskBuilder(

@@ -224,8 +224,10 @@ namespace Aws
             uint64_t m_cpu_last_total_idle = 0;
             // We need to skip the first test for accurate results and just cache the values but not use them.
             bool m_cpu_is_first_check = true;
-            // The function called by Device Defender to get the CPU usage
+            // The function called by Device Defender to get the CPU usage, memory, and process count (mainly for conversion)
             int CustomMetricGetCpuUsage(double *output);
+            int CustomMetricGetMemoryUsage(double *output);
+            int CustomMetricGetProcessUsage(double *output);
 
             ReportTask(
                 Crt::Allocator *allocator,
