@@ -175,7 +175,7 @@ namespace Aws
             StopTask();
             if (m_cpu_sampler)
             {
-                aws_cpu_sampler_clean_up(m_cpu_sampler);
+                aws_cpu_sampler_destroy(m_cpu_sampler);
             }
             if (m_taskConfig)
             {
