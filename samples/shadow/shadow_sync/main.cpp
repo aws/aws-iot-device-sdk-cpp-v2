@@ -87,90 +87,24 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
-    String thingName;
-    String shadowProperty;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("shadow_sync");
     cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (cmdUtils.HasCommand("help"))
-    {
-        cmdUtils.PrintHelp();
-        exit(-1);
-    }
-    endpoint = cmdUtils.GetCommandRequired("endpoint");
-    certificatePath = cmdUtils.GetCommandRequired("cert");
-    keyPath = cmdUtils.GetCommandRequired("key");
-    thingName = cmdUtils.GetCommandRequired("thing_name");
-    shadowProperty = cmdUtils.GetCommandRequired("shadow_property");
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
+    String thingName = cmdUtils.GetCommandRequired("thing_name");
+    String shadowProperty = cmdUtils.GetCommandRequired("shadow_property");
 
-    /********************** Now Setup an Mqtt Client ******************/
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        fprintf(
-            stderr,
-            "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
-        exit(-1);
-    }
-
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    clientConfigBuilder.WithEndpoint(endpoint);
-    if (!caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(caFile.c_str());
-    }
-    auto clientConfig = clientConfigBuilder.Build();
-
-    if (!clientConfig)
-    {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now Create a client. This can not throw.
-     * An instance of a client must outlive its connections.
-     * It is the users responsibility to make sure of this.
-     */
-    Aws::Iot::MqttClient mqttClient;
-
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
-    if (!mqttClient)
-    {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
-        exit(-1);
-    }
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
-     */
-    auto connection = mqttClient.NewConnection(clientConfig);
-
-    if (!*connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
-    }
+    /* Get a MQTT client connection from the command parser */
+    auto connection = cmdUtils.BuildMQTTConnection();
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -180,7 +114,7 @@ int main(int argc, char *argv[])
     std::promise<void> connectionClosedPromise;
 
     /*
-     * This will execute when an mqtt connect has completed or failed.
+     * This will execute when a mqtt connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)

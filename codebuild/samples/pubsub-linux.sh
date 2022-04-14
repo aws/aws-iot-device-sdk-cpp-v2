@@ -4,7 +4,7 @@ set -e
 
 env
 
-pushd $CODEBUILD_SRC_DIR/samples/mqtt/basic_pub_sub
+pushd $CODEBUILD_SRC_DIR/samples/pub_sub/basic_pub_sub
 
 mkdir _build
 cd _build

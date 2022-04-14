@@ -96,6 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a941099713f68de668e8f366af9946c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9cd96f33ba5c3f1333d5ece85b8062d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ad9cd96f33ba5c3f1333d5ece85b8062d">LastError</a> () const noexcept</td></tr>
 <tr class="separator:ad9cd96f33ba5c3f1333d5ece85b8062d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad57508e5324b488889b08cc690f9ed3a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ad57508e5324b488889b08cc690f9ed3a">SetKeychainPath</a> (<a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;keychain_path) noexcept</td></tr>
+<tr class="separator:ad57508e5324b488889b08cc690f9ed3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2063851f18dbc35dea7e7eb5aaeff04d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#a2063851f18dbc35dea7e7eb5aaeff04d">SetAlpnList</a> (const char *alpnList) noexcept</td></tr>
 <tr class="separator:a2063851f18dbc35dea7e7eb5aaeff04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94e652e626b9b6f5b6fcde274244fcb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#a94e652e626b9b6f5b6fcde274244fcb7">SetVerifyPeer</a> (bool verifyPeer) noexcept</td></tr>
@@ -117,6 +119,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a21127a39cdf5ed6e6ffa675db02626c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cf03d46f6f31873ff66412245ccf518"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#a1cf03d46f6f31873ff66412245ccf518">InitClientWithMtlsPkcs11</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_pkcs11_options.html">TlsContextPkcs11Options</a> &amp;pkcs11Options, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a1cf03d46f6f31873ff66412245ccf518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f4281940e9c08e142b718b7b3e8926"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ae4f4281940e9c08e142b718b7b3e8926">InitClientWithMtlsPkcs12</a> (const char *pkcs12_path, const char *pkcs12_pwd, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="separator:ae4f4281940e9c08e142b718b7b3e8926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f73085eebadedd566ddc9df9d40a80"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ad6f73085eebadedd566ddc9df9d40a80">InitClientWithMtlsSystemPath</a> (const char *windowsCertStorePath, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="separator:ad6f73085eebadedd566ddc9df9d40a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7e9b86c045f26c61b3f8b6ff44cc0f5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html#ad7e9b86c045f26c61b3f8b6ff44cc0f5">IsAlpnSupported</a> () noexcept</td></tr>
 <tr class="separator:ad7e9b86c045f26c61b3f8b6ff44cc0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -270,7 +276,9 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> with secure by default options, with client certificate and private key. These are in memory buffers. These buffers must be in the PEM format. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> for mutual TLS (mTLS), with client certificate and private key. These are in memory buffers. These buffers must be in the PEM format.</p>
+<p >NOTE: This is unsupported on iOS.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cert</td><td>Certificate contents in memory. </td></tr>
     <tr><td class="paramname">pkey</td><td>Private key contents in memory. </td></tr>
@@ -320,7 +328,9 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> with secure by default options, with client certificate and private key. These are paths to a file on disk. These files must be in the PEM format. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> for mutual TLS (mTLS), with client certificate and private key. These are paths to a file on disk. These files must be in the PEM format.</p>
+<p >NOTE: This is unsupported on iOS.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cert_path</td><td>Path to certificate file. </td></tr>
     <tr><td class="paramname">pkey_path</td><td>Path to private key file. </td></tr>
@@ -364,12 +374,108 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> with secure by default options, using a PKCS#11 library for private key operations.</p>
-<p >NOTE: This configuration only works on Unix devices.</p>
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> for mutual TLS (mTLS), using a PKCS#11 library for private key operations.</p>
+<p >NOTE: This only works on Unix devices.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pkcs11Options</td><td>PKCS#11 options </td></tr>
     <tr><td class="paramname">allocator</td><td>Memory allocator to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae4f4281940e9c08e142b718b7b3e8926" name="ae4f4281940e9c08e142b718b7b3e8926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f4281940e9c08e142b718b7b3e8926">&#9670;&nbsp;</a></span>InitClientWithMtlsPkcs12()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> Aws::Crt::Io::TlsContextOptions::InitClientWithMtlsPkcs12 </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pkcs12_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pkcs12_pwd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> for mutual TLS (mTLS), with client certificate and private key in the PKCS#12 format.</p>
+<p >NOTE: This only works on Apple devices.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkcs12_path</td><td>Path to PKCS #12 file. The file is loaded from disk and stored internally. It must remain in memory for the lifetime of the returned object. </td></tr>
+    <tr><td class="paramname">pkcs12_pwd</td><td>Password to PKCS #12 file. It must remain in memory for the lifetime of the returned object. </td></tr>
+    <tr><td class="paramname">allocator</td><td>Memory allocator to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad6f73085eebadedd566ddc9df9d40a80" name="ad6f73085eebadedd566ddc9df9d40a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f73085eebadedd566ddc9df9d40a80">&#9670;&nbsp;</a></span>InitClientWithMtlsSystemPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> Aws::Crt::Io::TlsContextOptions::InitClientWithMtlsSystemPath </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>windowsCertStorePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *&#160;</td>
+          <td class="paramname"><em>allocator</em> = <code><a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Initializes <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context_options.html">TlsContextOptions</a> for mutual TLS (mTLS), using a client certificate in a Windows certificate store.</p>
+<p >NOTE: This only works on Windows.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">windowsCertStorePath</td><td>Path to certificate in a Windows certificate store. The path must use backslashes and end with the certificate's thumbprint. Example: <code>CurrentUser\MY\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6</code> </td></tr>
   </table>
   </dd>
 </dl>
@@ -637,6 +743,35 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad57508e5324b488889b08cc690f9ed3a" name="ad57508e5324b488889b08cc690f9ed3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57508e5324b488889b08cc690f9ed3a">&#9670;&nbsp;</a></span>SetKeychainPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Aws::Crt::Io::TlsContextOptions::SetKeychainPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;&#160;</td>
+          <td class="paramname"><em>keychain_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Custom keychain management is deprecated.</dd></dl>
+<p >By default the certificates and private keys are stored in the default keychain of the account of the process. If you instead wish to provide your own keychain for storing them, this makes the <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context.html">TlsContext</a> to use that instead. NOTE: The password of your keychain must be empty.</p>
+<p >NOTE: This only works on MacOS. </p>
 
 </div>
 </div>

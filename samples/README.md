@@ -1,8 +1,12 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
-* [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
-* [PKCS#11 MQTT Pub-Sub](#pkcs11-mqtt-pub-sub)
-* [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
+* [Basic Pub-Sub](#basic-pub-sub)
+* [Basic Connect](#basic-connect)
+* [Websocket Connect](#websocket-connect)
+* [PKCS#11 Connect](#pkcs11-connect)
+* [Raw Connect](#raw-connect)
+* [x509 Credentials Provider Connect](#x509-credentials-provider-connect)
+* [Windows Certificate MQTT Connect](#windows-certificate-mqtt-connect)
 * [Fleet provisioning](#fleet-provisioning)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
@@ -36,14 +40,14 @@ To view the commands for a given sample, run the compiled program and pass `--he
 
 * `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
-## Basic MQTT Pub-Sub
+## Basic Pub-Sub
 
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages through an MQTT connection.
 On startup, the device connects to the server, subscribes to a topic, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
 
-Source: `samples/mqtt/basic_pub_sub/main.cpp`
+Source: `samples/pub_sub/basic_pub_sub/main.cpp`
 
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
@@ -97,31 +101,85 @@ To run the basic MQTT Pub-Sub use the following command:
 --topic <topic name>
 ```
 
-To run this sample using websockets, see below:
+## Basic Connect
+
+This sample makes an MQTT connection using a certificate and key file. On startup, the device connects to the server using the certificate and key files, and then disconnects. This sample is for reference on connecting via certificate and key files.
+
+Source: `samples/mqtt/basic_connect/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
 <details>
-<summary>(Websockets)</summary>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
-To run using Websockets, use the following command:
+To run the basic connect sample use the following command:
 
 ``` sh
-./basic-pub-sub --endpoint <endpoint> --topic <topic name> --ca_file <path to root CA>
---use_websocket --signing_region <signing_region>
+./basic-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to the certificate> --key <path to the private key>
+```
+
+## Websocket Connect
+
+This sample makes an MQTT connection via websockets and then disconnects. On startup, the device connects to the server via websockets and then disconnects. This sample is for reference on connecting via websockets.
+
+Source: `samples/mqtt/websocket_connect/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
+
+To run the websocket connect use the following command:
+
+``` sh
+./websocket-connect --endpoint <endpoint> --ca_file <path to root CA> --signing_region <signing region>
 ```
 
 Note that using Websockets will attempt to fetch the AWS credentials from your enviornment variables or local files.
 See the [authorizing direct AWS](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for documentation on how to get the AWS credentials, which then you can set to the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS`, and `AWS_SESSION_TOKEN` environment variables.
 
-</details>
+## PKCS#11 Connect
 
-## PKCS#11 MQTT Pub-Sub
-
-This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub),
+This sample is similar to the [Basic Connect](#basic-connect),
 but the private key for mutual TLS is stored on a PKCS#11 compatible smart card or Hardware Security Module (HSM)
 
 WARNING: Unix only. Currently, TLS integration with PKCS#11 is only available on Unix devices.
 
-source: `samples/mqtt/pkcs11_pub_sub/main/cpp`
+source: `samples/mqtt/pkcs11_connect/main.cpp`
 
 To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the PKCS#11 device:
 
@@ -144,9 +202,9 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
     If this spits out an error message, create a config file:
     *   Default location: `~/.config/softhsm2/softhsm2.conf`
-    *   This file must specify token dir, default value is:
+    *   This file must specify a valid token directory:
         ```
-        directories.tokendir = /usr/local/var/lib/softhsm/tokens/
+        directories.tokendir = /path/for/my/softhsm/tokens/
         ```
 
 4)  Create token and import private key.
@@ -164,27 +222,169 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
 
 5)  Now you can run the sample:
     ```sh
-    ./pkcs11-pub-sub --endpoint <xxxx-ats.iot.xxxx.amazonaws.com> --ca_file <AmazonRootCA.pem> --cert <certificate.pem.crt> --pkcs11_lib <libsofthsm2.so> --pin <user-pin> --token_label <token-label> --key_label <key-label>
+    ./pkcs11-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to certificate> --pkcs11_lib <path to PKCS11 lib> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 
-## Raw MQTT Pub-Sub
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
-This sample is similar to the [Basic Pub-Sub](#basic-mqtt-pub-sub), but the connection setup is more manual.
+## Windows Certificate MQTT Connect
+
+WARNING: Windows only
+
+This sample is similar to the [Basic Connect](#basic-connect),
+but your certificate and private key are in a
+[Windows certificate store](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/certificate-stores),
+rather than simply being files on disk.
+
+To run this sample you need the path to your certificate in the store,
+which will look something like:
+"CurrentUser\MY\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
+(where "CurrentUser\MY" is the store and "A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6" is the certificate's thumbprint)
+
+If your certificate and private key are in a
+[TPM](https://docs.microsoft.com/en-us/windows/security/information-protection/tpm/trusted-platform-module-overview),
+you would use them by passing their certificate store path.
+
+source: `samples/mqtt/windows_cert_connect/main.cpp`
+
+To run this sample with a basic certificate from AWS IoT Core:
+
+1)  Create an IoT Thing with a certificate and key if you haven't already.
+
+2)  Combine the certificate and private key into a single .pfx file.
+
+    You will be prompted for a password while creating this file. Remember it for the next step.
+
+    If you have OpenSSL installed:
+    ```powershell
+    openssl pkcs12 -in certificate.pem.crt -inkey private.pem.key -out certificate.pfx
+    ```
+
+    Otherwise use [CertUtil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil).
+    ```powershell
+    certutil -mergePFX certificate.pem.crt,private.pem.key certificate.pfx
+    ```
+
+3)  Add the .pfx file to a Windows certificate store using PowerShell's
+    [Import-PfxCertificate](https://docs.microsoft.com/en-us/powershell/module/pki/import-pfxcertificate)
+
+    In this example we're adding it to "CurrentUser\MY"
+
+    ```powershell
+    $mypwd = Get-Credential -UserName 'Enter password below' -Message 'Enter password below'
+    Import-PfxCertificate -FilePath certificate.pfx -CertStoreLocation Cert:\CurrentUser\MY -Password $mypwd.Password
+    ```
+
+    Note the certificate thumbprint that is printed out:
+    ```
+    Thumbprint                                Subject
+    ----------                                -------
+    A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6  CN=AWS IoT Certificate
+    ```
+
+    So this certificate's path would be: "CurrentUser\MY\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6"
+
+4) Now you can run the sample:
+
+    ```
+    .\windows-cert-connect.exe --endpoint <endpoint> --ca_file <path to root CA> --cert <path to certificate>
+    ```
+
+## Raw Connect
+
+This sample is similar to the [Basic Connect](#basic-connect), but the connection setup is more manual.
 This is a starting point for using custom
-[Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
+[Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html) or [Custom Authentication](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html).
 
-source: `samples/mqtt/raw_pub_sub/main.cpp`
+source: `samples/mqtt/raw_connect/main.cpp`
 
 To run the Raw MQTT Pub-Sub sample use the following command:
 
 ``` sh
-./raw-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+./raw-connect --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
---topic <topic name> --user_name <user name to send on connect> --password <password to send on connect>
+--user_name <user name to send on connect> --password <password to send on connect>
 ```
 
-This will allow you to run the program. To disconnect and exit the program, enter `exit`.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
+
+## x509 Credentials Provider Connect
+
+This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection uses a X.509 certificate
+to source the AWS credentials when connecting.
+
+source: `samples/mqtt/x509_credentials_provider_connect/main.cpp`
+
+To run the x509 Credentials Provider Connect sample use the following command:
+
+``` sh
+./x509-credentials-provider-connect --endpoint <endpoint> --ca_file <path to root CA>
+--signing_region <signing region> --x509_ca_file <path to x509 CA>
+--x509_cert <path to x509 cert> --x509_endpoint <x509 endpoint>
+-- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
+```
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
 ## Shadow
 
@@ -499,11 +699,11 @@ and `--key` appropriately:
 
 ``` sh
 ./fleet-provisioning \
-        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
-        --ca_file [pathToRootCA] \
-        --cert /tmp/provision.cert.pem \
-        --key /tmp/provision.private.key \
-        --template_name [TemplateName] \
+        --endpoint <endpoint> \
+        --ca_file <path to CA file> \
+        --cert <path to certificate> \
+        --key <path to key> \
+        --template_name <template name> \
         --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
 ```
 
@@ -538,13 +738,13 @@ Finally, supply the certificate signing request while invoking the provisioning 
 using a permanent certificate set, replace the paths specified in the `--cert` and `--key` arguments:
 ``` sh
 ./fleet-provisioning \
-        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
-        --ca_file [pathToRootCA] \
-        --cert /tmp/provision.cert.pem \
-        --key /tmp/provision.private.key \
-        --template_name [TemplateName] \
+        --endpoint <endpoint> \
+        --ca_file <path to root CA> \
+        --cert <path to certificate> \
+        --key <path to key> \
+        --template_name <template name> \
         --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}" \
-        --csr /tmp/deviceCert.csr
+        --csr <path to csr file>
 ```
 
 ## Secure Tunnel
