@@ -174,7 +174,7 @@ namespace Aws
         {
             StopTask();
             if (m_cpu_sampler) {
-                aws_cpu_sampler_cleanup(m_cpu_sampler);
+                aws_cpu_sampler_clean_up(m_cpu_sampler);
             }
             if (m_taskConfig)
             {
@@ -237,21 +237,16 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            /*
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
-            RegisterCustomMetricNumber("cpu_usage", std::move(func));
-            */
-
             if (m_cpu_sampler != nullptr) {
                 aws_raise_error(AWS_ERROR_INVALID_STATE);
                 return; // cannot re-register!
             }
-            if (aws_cpu_sampler_new(m_allocator, m_cpu_sampler) != AWS_OP_SUCCESS) {
-                aws_raise_error(AWS_ERROR_UNKNOWN); // shouldn't be possible, but...
+            m_cpu_sampler = aws_cpu_sampler_new(m_allocator);
+            if (m_cpu_sampler == nullptr)
+            {
+                aws_raise_error(AWS_ERROR_UNKNOWN); // Something went wrong allocating!
                 return;
             }
-            fprintf(stdout, "\nMade CPU sampler!\n");
             CustomMetricNumberFunction func =
                 std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
             RegisterCustomMetricNumber("cpu_usage", std::move(func));
@@ -260,8 +255,7 @@ namespace Aws
         int ReportTask::CustomMetricGetCpuUsage(double *output)
         {
             if (m_cpu_sampler == nullptr) {
-                fprintf(stdout, "\nDoes not have CPU sampler!\n");
-                return AWS_OP_ERR;
+                return AWS_OP_ERR; // cannot report without CPU sampler
             }
             return aws_cpu_sampler_get_sample(m_cpu_sampler, output);
         }
