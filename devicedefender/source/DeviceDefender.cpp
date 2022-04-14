@@ -173,7 +173,8 @@ namespace Aws
         ReportTask::~ReportTask()
         {
             StopTask();
-            if (m_cpu_sampler) {
+            if (m_cpu_sampler)
+            {
                 aws_cpu_sampler_clean_up(m_cpu_sampler);
             }
             if (m_taskConfig)
@@ -237,7 +238,8 @@ namespace Aws
 
         void ReportTask::RegisterCustomMetricCpuUsage() noexcept
         {
-            if (m_cpu_sampler != nullptr) {
+            if (m_cpu_sampler != nullptr)
+            {
                 aws_raise_error(AWS_ERROR_INVALID_STATE);
                 return; // cannot re-register!
             }
@@ -254,7 +256,8 @@ namespace Aws
 
         int ReportTask::CustomMetricGetCpuUsage(double *output)
         {
-            if (m_cpu_sampler == nullptr) {
+            if (m_cpu_sampler == nullptr)
+            {
                 return AWS_OP_ERR; // cannot report without CPU sampler
             }
             return aws_cpu_sampler_get_sample(m_cpu_sampler, output);

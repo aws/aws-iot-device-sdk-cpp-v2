@@ -221,7 +221,8 @@ namespace Aws
 
             // Needed for tracking CPU usage
             aws_cpu_sampler *m_cpu_sampler = nullptr;
-            // The function called by Device Defender to get the CPU usage, memory, and process count (mainly for conversion)
+            // The function called by Device Defender to get the CPU usage, memory, and process count
+            // (Mainly for conversion)
             int CustomMetricGetCpuUsage(double *output);
             int CustomMetricGetMemoryUsage(double *output);
             int CustomMetricGetProcessUsage(double *output);
