@@ -1110,20 +1110,12 @@ namespace Aws
 
         ClientOperation::ClientOperation(
             ClientConnection &connection,
-            StreamResponseHandler *streamHandler,
+            std::shared_ptr<StreamResponseHandler> streamHandler,
             const OperationModelContext &operationModelContext,
             Crt::Allocator *allocator) noexcept
             : m_operationModelContext(operationModelContext), m_messageCount(0), m_allocator(allocator),
               m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0),
               m_streamClosedCalled(false)
-        {
-        }
-
-        ClientOperation::ClientOperation(ClientOperation &&rhs) noexcept
-            : m_operationModelContext(rhs.m_operationModelContext), m_messageCount(std::move(rhs.m_messageCount)),
-              m_allocator(std::move(rhs.m_allocator)), m_streamHandler(rhs.m_streamHandler),
-              m_clientContinuation(std::move(rhs.m_clientContinuation)),
-              m_initialResponsePromise(std::move(rhs.m_initialResponsePromise))
         {
         }
 
