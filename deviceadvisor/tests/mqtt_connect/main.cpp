@@ -22,7 +22,6 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
@@ -37,7 +36,6 @@ int main()
     /*
      * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
-
     Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
     builder.WithEndpoint(daVars.endpoint);
@@ -79,7 +77,8 @@ int main()
     /*
      * Actually perform the connect dance.
      */
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(
+            clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
     {
         exit(-1);
     }

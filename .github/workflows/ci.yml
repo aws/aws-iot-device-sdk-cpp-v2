@@ -2,9 +2,8 @@ name: CI
 
 on:
   push:
-    branches:
-      - "*"
-      - "!main"
+    branches-ignore:
+      - 'main'
 
 env:
   BUILDER_VERSION: v0.8.29
@@ -13,9 +12,9 @@ env:
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
   LINUX_BASE_IMAGE: ubuntu-16-x64
   RUN: ${{ github.run_id }}-${{ github.run_number }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DATEST_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DATEST_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: us-east-1
 
 jobs:
   linux-compat:
@@ -64,7 +63,7 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
 
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest

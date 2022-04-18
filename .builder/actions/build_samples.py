@@ -6,10 +6,6 @@ import argparse
 
 class BuildSamples(Builder.Action):
     def run(self, env):
-        if env.args.cli_config['variables'].get('skip_samples', "0") != "0":
-            print('skip_samples is defined. Skipping samples...')
-            return
-
         # parse extra cmake configs
         parser = argparse.ArgumentParser()
         parser.add_argument('--cmake-extra', action='append', default=[])
@@ -31,17 +27,37 @@ class BuildSamples(Builder.Action):
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
         ]
+        da_samples = [
+            'deviceadvisor/tests/mqtt_connect',
+            'deviceadvisor/tests/mqtt_publish',
+            'deviceadvisor/tests/mqtt_subscribe',
+            'deviceadvisor/tests/shadow_update'
+        ]
+
         for sample_path in samples:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
-                          f'-B{build_path}',
-                          f'-H{sample_path}',
-                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+                        f'-B{build_path}',
+                        f'-H{sample_path}',
+                        f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                        '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
-                          '--build', build_path,
-                          '--config', 'RelWithDebInfo'])
+                        '--build', build_path,
+                        '--config', 'RelWithDebInfo'])
+        
+        for sample_path in da_samples:
+            build_path = os.path.join('build', sample_path)
+            steps.append(['cmake',
+                        f'-B{build_path}',
+                        f'-H{sample_path}',
+                        f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                        '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            # append extra cmake configs
+            steps[-1].extend(cmd_args.cmake_extra)
+            steps.append(['cmake',
+                        '--build', build_path,
+                        '--config', 'RelWithDebInfo'])
 
         return Builder.Script(steps)
