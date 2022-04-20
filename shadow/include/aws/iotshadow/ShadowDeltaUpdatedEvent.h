@@ -35,6 +35,13 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
+             * An opaque token used to correlate requests and responses.  Present only if a client token was used in the
+             * request.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+            /**
              * The current version of the document for the device's shadow.
              *
              */

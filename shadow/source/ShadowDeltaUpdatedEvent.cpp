@@ -15,6 +15,11 @@ namespace Aws
             (void)val;
             (void)doc;
 
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
@@ -39,6 +44,11 @@ namespace Aws
         void ShadowDeltaUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
 
             if (Version)
             {

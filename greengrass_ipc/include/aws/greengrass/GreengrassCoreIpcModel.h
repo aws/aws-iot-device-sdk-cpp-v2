@@ -2702,11 +2702,6 @@ namespace Aws
           public:
             SubscribeToIoTCoreOperation(
                 ClientConnection &connection,
-                SubscribeToIoTCoreStreamHandler *streamHandler,
-                const SubscribeToIoTCoreOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-            SubscribeToIoTCoreOperation(
-                ClientConnection &connection,
                 std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
                 const SubscribeToIoTCoreOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -2728,9 +2723,6 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            std::shared_ptr<SubscribeToIoTCoreStreamHandler> pinnedHandler;
         };
 
         class ResumeComponentOperationContext : public OperationModelContext
@@ -2971,11 +2963,6 @@ namespace Aws
           public:
             SubscribeToConfigurationUpdateOperation(
                 ClientConnection &connection,
-                SubscribeToConfigurationUpdateStreamHandler *streamHandler,
-                const SubscribeToConfigurationUpdateOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-            SubscribeToConfigurationUpdateOperation(
-                ClientConnection &connection,
                 std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
                 const SubscribeToConfigurationUpdateOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -2998,9 +2985,6 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> pinnedHandler;
         };
 
         class DeleteThingShadowOperationContext : public OperationModelContext
@@ -3234,11 +3218,6 @@ namespace Aws
           public:
             SubscribeToValidateConfigurationUpdatesOperation(
                 ClientConnection &connection,
-                SubscribeToValidateConfigurationUpdatesStreamHandler *streamHandler,
-                const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-            SubscribeToValidateConfigurationUpdatesOperation(
-                ClientConnection &connection,
                 std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
                 const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -3262,9 +3241,6 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> pinnedHandler;
         };
 
         class GetConfigurationOperationContext : public OperationModelContext
@@ -3448,11 +3424,6 @@ namespace Aws
           public:
             SubscribeToTopicOperation(
                 ClientConnection &connection,
-                SubscribeToTopicStreamHandler *streamHandler,
-                const SubscribeToTopicOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-            SubscribeToTopicOperation(
-                ClientConnection &connection,
                 std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
                 const SubscribeToTopicOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -3474,9 +3445,6 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            std::shared_ptr<SubscribeToTopicStreamHandler> pinnedHandler;
         };
 
         class GetComponentDetailsOperationContext : public OperationModelContext
@@ -4512,11 +4480,6 @@ namespace Aws
           public:
             SubscribeToComponentUpdatesOperation(
                 ClientConnection &connection,
-                SubscribeToComponentUpdatesStreamHandler *streamHandler,
-                const SubscribeToComponentUpdatesOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-            SubscribeToComponentUpdatesOperation(
-                ClientConnection &connection,
                 std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
                 const SubscribeToComponentUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -4539,9 +4502,6 @@ namespace Aws
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> pinnedHandler;
         };
 
         class ListLocalDeploymentsOperationContext : public OperationModelContext

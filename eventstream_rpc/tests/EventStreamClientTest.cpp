@@ -181,9 +181,9 @@ static int s_TestOperationWhileDisconnected(struct aws_allocator *allocator, voi
         Aws::Crt::String expectedMessage("l33t");
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         ASSERT_TRUE(requestFuture.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
-        auto result = echoMessage.GetOperationResult().get();
+        auto result = echoMessage->GetOperationResult().get();
         ASSERT_FALSE(result);
         auto error = result.GetRpcError();
         ASSERT_TRUE(error.baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
@@ -218,9 +218,9 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         auto echoMessage = client.NewEchoMessage();
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        auto result = echoMessage.GetResult().get();
+        auto result = echoMessage->GetResult().get();
         ASSERT_TRUE(result);
         auto response = result.GetOperationResponse();
         ASSERT_NOT_NULL(response);
@@ -240,9 +240,9 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         Aws::Crt::String expectedMessage("l33t");
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         ASSERT_TRUE(requestFuture.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
-        auto result = echoMessage.GetOperationResult().get();
+        auto result = echoMessage->GetOperationResult().get();
         ASSERT_FALSE(result);
         auto error = result.GetRpcError();
         ASSERT_TRUE(error.baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
@@ -257,14 +257,14 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         auto echoMessage = client.NewEchoMessage();
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         MessageData differentMessage;
         differentMessage.SetBooleanMessage(true);
         echoMessageRequest.SetMessage(differentMessage);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        auto result = echoMessage.GetResult().get();
+        auto result = echoMessage->GetResult().get();
         ASSERT_TRUE(result);
         auto response = result.GetOperationResponse();
         ASSERT_NOT_NULL(response);
@@ -280,17 +280,17 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         auto echoMessage = client.NewEchoMessage();
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         MessageData differentMessage;
         differentMessage.SetBooleanMessage(true);
         echoMessageRequest.SetMessage(differentMessage);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        echoMessage.Close().wait();
-        echoMessage.Close().wait();
-        echoMessage.Close().wait();
-        echoMessage.Close().wait();
+        echoMessage->Close().wait();
+        echoMessage->Close().wait();
+        echoMessage->Close().wait();
+        echoMessage->Close().wait();
     }
 
     /* Close without waiting on activation or close futures. */
@@ -302,16 +302,16 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         auto echoMessage = client.NewEchoMessage();
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         MessageData differentMessage;
         differentMessage.SetBooleanMessage(true);
         echoMessageRequest.SetMessage(differentMessage);
-        echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-        echoMessage.Close();
-        echoMessage.Close();
-        echoMessage.Close();
-        echoMessage.Close();
+        echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        echoMessage->Close();
+        echoMessage->Close();
+        echoMessage->Close();
+        echoMessage->Close();
     }
 
     /* Close without waiting for TERMINATE_STREAM to flush then immediately trying to activate. */
@@ -323,15 +323,15 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         auto echoMessage = client.NewEchoMessage();
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         MessageData differentMessage;
         differentMessage.SetBooleanMessage(true);
         echoMessageRequest.SetMessage(differentMessage);
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        auto closeFuture = echoMessage.Close();
-        requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto closeFuture = echoMessage->Close();
+        requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         closeFuture.wait();
         requestFuture.wait();
     }
@@ -349,9 +349,9 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         ASSERT_TRUE(failedStatus.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED);
         auto echoMessage = client.NewEchoMessage();
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        auto result = echoMessage.GetResult().get();
+        auto result = echoMessage->GetResult().get();
         ASSERT_TRUE(result);
         auto response = result.GetOperationResponse();
         ASSERT_NOT_NULL(response);
@@ -368,9 +368,9 @@ static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
         ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED);
         auto echoMessage = client.NewEchoMessage();
         echoMessageRequest.SetMessage(messageData);
-        auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         requestFuture.wait();
-        auto result = echoMessage.GetResult().get();
+        auto result = echoMessage->GetResult().get();
         ASSERT_TRUE(result);
         auto response = result.GetOperationResponse();
         ASSERT_NOT_NULL(response);
@@ -510,8 +510,8 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             auto echoMessage = client.NewEchoMessage();
             messageData.SetStringMessage(expectedMessage);
             echoMessageRequest.SetMessage(messageData);
-            auto requestStatus = echoMessage.Activate(echoMessageRequest, s_onMessageFlush).get();
-            auto resultFuture = echoMessage.GetResult();
+            auto requestStatus = echoMessage->Activate(echoMessageRequest, s_onMessageFlush).get();
+            auto resultFuture = echoMessage->GetResult();
             /* The response may never arrive depending on how many ongoing requests are made
              * so in case of timeout, assume success. */
             std::future_status status = resultFuture.wait_for(std::chrono::seconds(5));
@@ -519,7 +519,7 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             {
                 return AWS_OP_SUCCESS;
             }
-            auto result = echoMessage.GetResult().get();
+            auto result = echoMessage->GetResult().get();
             ASSERT_TRUE(result);
             auto response = result.GetOperationResponse();
             ASSERT_NOT_NULL(response);

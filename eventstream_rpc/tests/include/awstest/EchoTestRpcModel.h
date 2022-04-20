@@ -727,11 +727,6 @@ namespace Awstest
       public:
         CauseStreamServiceToErrorOperation(
             ClientConnection &connection,
-            CauseStreamServiceToErrorStreamHandler *streamHandler,
-            const CauseStreamServiceToErrorOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-        CauseStreamServiceToErrorOperation(
-            ClientConnection &connection,
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
             const CauseStreamServiceToErrorOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -754,9 +749,6 @@ namespace Awstest
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
-
-      private:
-        std::shared_ptr<CauseStreamServiceToErrorStreamHandler> pinnedHandler;
     };
 
     class EchoStreamMessagesStreamHandler : public StreamResponseHandler
@@ -843,11 +835,6 @@ namespace Awstest
       public:
         EchoStreamMessagesOperation(
             ClientConnection &connection,
-            EchoStreamMessagesStreamHandler *streamHandler,
-            const EchoStreamMessagesOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
-        EchoStreamMessagesOperation(
-            ClientConnection &connection,
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
             const EchoStreamMessagesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
@@ -869,9 +856,6 @@ namespace Awstest
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
-
-      private:
-        std::shared_ptr<EchoStreamMessagesStreamHandler> pinnedHandler;
     };
 
     class EchoMessageOperationContext : public OperationModelContext
