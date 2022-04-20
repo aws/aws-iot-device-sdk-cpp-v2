@@ -212,6 +212,11 @@ int main(int argc, char *argv[])
                         s_changeShadowValue(
                             shadowClient, thingName, shadowProperty, event->State->View().GetString(shadowProperty));
                     }
+
+                    if (event->ClientToken)
+                    {
+                        fprintf(stdout, "  ClientToken: %s\n", event->ClientToken->c_str());
+                    }
                 }
                 else
                 {
