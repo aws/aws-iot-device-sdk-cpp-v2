@@ -175,7 +175,7 @@ namespace Aws
             StopTask();
             if (m_cpu_sampler)
             {
-                aws_cpu_sampler_destroy(m_cpu_sampler);
+                aws_system_cpu_sampler_destroy(m_cpu_sampler);
             }
             if (m_taskConfig)
             {
@@ -243,7 +243,7 @@ namespace Aws
                 aws_raise_error(AWS_ERROR_INVALID_STATE);
                 return; // cannot re-register!
             }
-            m_cpu_sampler = aws_cpu_sampler_new(m_allocator);
+            m_cpu_sampler = aws_system_cpu_sampler_new(m_allocator);
             if (m_cpu_sampler == nullptr)
             {
                 aws_raise_error(AWS_ERROR_UNKNOWN); // Something went wrong allocating!
@@ -260,7 +260,7 @@ namespace Aws
             {
                 return AWS_OP_ERR; // cannot report without CPU sampler
             }
-            return aws_cpu_sampler_get_sample(m_cpu_sampler, output);
+            return aws_system_cpu_sampler_get_sample(m_cpu_sampler, output);
         }
 
         void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
@@ -272,8 +272,8 @@ namespace Aws
 
         int ReportTask::CustomMetricGetMemoryUsage(double *output)
         {
-            int64_t output_int = 0;
-            int return_val = aws_get_memory_usage(&output_int);
+            uint64_t output_int = 0;
+            int return_val = aws_get_system_memory_usage(&output_int);
             *output = (double)output_int;
             return return_val;
         }
@@ -287,8 +287,8 @@ namespace Aws
 
         int ReportTask::CustomMetricGetProcessUsage(double *output)
         {
-            int64_t output_int = 0;
-            int return_val = aws_get_process_count(&output_int);
+            uint64_t output_int = 0;
+            int return_val = aws_get_system_process_count(&output_int);
             *output = (double)output_int;
             return return_val;
         }

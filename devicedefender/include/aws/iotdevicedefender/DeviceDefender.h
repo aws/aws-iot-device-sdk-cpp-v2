@@ -220,7 +220,7 @@ namespace Aws
             Crt::Io::EventLoopGroup &m_eventLoopGroup;
 
             // Needed for tracking CPU usage
-            aws_cpu_sampler *m_cpu_sampler = nullptr;
+            aws_system_cpu_sampler *m_cpu_sampler = nullptr;
             // The function called by Device Defender to get the CPU usage, memory, and process count
             // (Mainly for conversion)
             int CustomMetricGetCpuUsage(double *output);
