@@ -17,6 +17,11 @@
 #include <aws/iotshadow/UpdateShadowResponse.h>
 #include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
+#include <aws/iotshadow/GetShadowRequest.h>
+#include <aws/iotshadow/GetShadowResponse.h>
+#include <aws/iotshadow/GetShadowSubscriptionRequest.h>
+#include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
+
 #include <algorithm>
 #include <condition_variable>
 #include <iostream>
@@ -88,6 +93,7 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String currentShadowValue("");
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -155,6 +161,9 @@ int main(int argc, char *argv[])
     if (connectionCompletedPromise.get_future().get())
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
+
+        // ==================== Shadow Delta Updates ====================
+        // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
 
         std::promise<void> subscribeDeltaCompletedPromise;
         std::promise<void> subscribeDeltaAcceptedCompletedPromise;
@@ -236,16 +245,14 @@ int main(int argc, char *argv[])
             {
                 if (response->State->Reported)
                 {
-                    fprintf(
-                        stdout,
-                        "Finished updating reported shadow value to %s.\n",
-                        response->State->Reported->View().GetString(shadowProperty).c_str());
+                    currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
                 }
                 else
                 {
                     fprintf(stdout, "Finished clearing shadow properties\n");
+                    currentShadowValue = "";
                 }
-                fprintf(stdout, "Enter desired value:\n");
+                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
             }
             else
             {
@@ -295,9 +302,126 @@ int main(int argc, char *argv[])
         subscribeDeltaAcceptedCompletedPromise.get_future().wait();
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
+        // ==================== Shadow Value Get ====================
+        // This section is to get the initial value of the Shadow document.
+
+        std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
+        std::promise<void> subscribeGetShadowRejectedCompletedPromise;
+        std::promise<void> onGetShadowRequestCompletedPromise;
+        std::promise<void> gotInitialShadowPromise;
+
+        auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
+            {
+                fprintf(stderr, "Error subscribing to get shadow document accepted: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+            subscribeGetShadowAcceptedCompletedPromise.set_value();
+        };
+
+        auto onGetShadowUpdatedRejectedSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
+            {
+                fprintf(stderr, "Error subscribing to get shadow document rejected: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+            subscribeGetShadowRejectedCompletedPromise.set_value();
+        };
+
+        auto onGetShadowRequestSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
+            {
+                fprintf(stderr, "Error getting shadow document: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+            onGetShadowRequestCompletedPromise.set_value();
+        };
+
+        auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
+            {
+                fprintf(stderr, "Error getting shadow value from document: %s.\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+            if (response)
+            {
+                fprintf(stdout, "Received shadow document.\n");
+                if (response->State && response->State->Reported->View().ValueExists(shadowProperty))
+                {
+                    JsonView objectView = response->State->Reported->View().GetJsonObject(shadowProperty);
+                    if (objectView.IsNull())
+                    {
+                        fprintf(stdout, "Shadow contains \"%s\" but is null.\n", shadowProperty.c_str());
+                        currentShadowValue = "";
+                    }
+                    else
+                    {
+                        currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
+                        fprintf(
+                            stdout,
+                            "Shadow contains \"%s\". Updating local value to \"%s\"...\n",
+                            shadowProperty.c_str(),
+                            currentShadowValue.c_str());
+                    }
+                }
+                else
+                {
+                    fprintf(stdout, "Shadow currently does not contain \"%s\".\n", shadowProperty.c_str());
+                    currentShadowValue = "";
+                }
+                gotInitialShadowPromise.set_value();
+            }
+        };
+
+        auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
+            if (ioErr == AWS_OP_SUCCESS)
+            {
+                fprintf(
+                    stdout,
+                    "Getting shadow document failed with message %s and code %d.",
+                    error->Message->c_str(),
+                    *error->Code);
+            }
+            else
+            {
+                fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+        };
+
+        GetShadowSubscriptionRequest shadowSubscriptionRequest;
+        shadowSubscriptionRequest.ThingName = thingName;
+
+        shadowClient.SubscribeToGetShadowAccepted(
+            shadowSubscriptionRequest,
+            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            onGetShadowAccepted,
+            onGetShadowUpdatedAcceptedSubAck);
+
+        shadowClient.SubscribeToGetShadowRejected(
+            shadowSubscriptionRequest,
+            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            onGetShadowRejected,
+            onGetShadowUpdatedRejectedSubAck);
+
+        subscribeGetShadowAcceptedCompletedPromise.get_future().wait();
+        subscribeGetShadowRejectedCompletedPromise.get_future().wait();
+
+        GetShadowRequest shadowGetRequest;
+        shadowGetRequest.ThingName = thingName;
+
+        // Get the current shadow document so we start with the correct value
+        shadowClient.PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
+
+        onGetShadowRequestCompletedPromise.get_future().wait();
+        gotInitialShadowPromise.get_future().wait();
+
+        // ==================== Shadow change value input loop ====================
+        // This section is to getting user input and changing the shadow value pased on that input.
+
+        fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
         while (true)
         {
-            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
             String input;
             std::cin >> input;
 
@@ -307,7 +431,15 @@ int main(int argc, char *argv[])
                 break;
             }
 
-            s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+            if (input == currentShadowValue)
+            {
+                fprintf(stdout, "Shadow is already set to \"%s\"\n", currentShadowValue.c_str());
+                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+            }
+            else
+            {
+                s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+            }
         }
     }
 
