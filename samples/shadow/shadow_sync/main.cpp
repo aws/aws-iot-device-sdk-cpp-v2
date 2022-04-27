@@ -75,7 +75,7 @@ static void s_changeShadowValue(
     auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(stderr, "failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
+            fprintf(stderr, "Failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
             return;
         }
 
@@ -197,6 +197,12 @@ int main(int argc, char *argv[])
         };
 
         auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
+            if (ioErr)
+            {
+                fprintf(stdout, "Error processing shadow delta: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+
             if (event)
             {
                 fprintf(stdout, "Received shadow delta event.\n");
@@ -232,49 +238,38 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Delta did not report a change in \"%s\".\n", shadowProperty.c_str());
                 }
             }
-
-            if (ioErr)
-            {
-                fprintf(stdout, "Error processing shadow delta: %s\n", ErrorDebugString(ioErr));
-                exit(-1);
-            }
         };
 
         auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
-            if (ioErr == AWS_OP_SUCCESS)
-            {
-                if (response->State->Reported)
-                {
-                    currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
-                }
-                else
-                {
-                    fprintf(stdout, "Finished clearing shadow properties\n");
-                    currentShadowValue = "";
-                }
-                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
-            }
-            else
+            if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+
+            if (response->State->Reported)
+            {
+                currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
+            }
+            else
+            {
+                fprintf(stdout, "Finished clearing shadow properties\n");
+                currentShadowValue = "";
+            }
+            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
         };
 
         auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
-            if (ioErr == AWS_OP_SUCCESS)
-            {
-                fprintf(
-                    stdout,
-                    "Update of shadow state failed with message %s and code %d.",
-                    error->Message->c_str(),
-                    *error->Code);
-            }
-            else
+            if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(
+                stdout,
+                "Update of shadow state failed with message %s and code %d.",
+                error->Message->c_str(),
+                *error->Code);
         };
 
         ShadowDeltaUpdatedSubscriptionRequest shadowDeltaUpdatedRequest;
@@ -374,19 +369,17 @@ int main(int argc, char *argv[])
         };
 
         auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
-            if (ioErr == AWS_OP_SUCCESS)
-            {
-                fprintf(
-                    stdout,
-                    "Getting shadow document failed with message %s and code %d.",
-                    error->Message->c_str(),
-                    *error->Code);
-            }
-            else
+            if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(
+                stdout,
+                "Getting shadow document failed with message %s and code %d.\n",
+                error->Message->c_str(),
+                *error->Code);
+            gotInitialShadowPromise.set_value();
         };
 
         GetShadowSubscriptionRequest shadowSubscriptionRequest;
