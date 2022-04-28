@@ -9,7 +9,7 @@
 #include <aws/crt/io/EventLoopGroup.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
-#include <aws/common/cpu_usage_sampler.h>
+#include <aws/common/system_info.h>
 
 #include <aws/iotdevice/device_defender.h>
 
@@ -184,32 +184,6 @@ namespace Aws
                 const Crt::String &&metricName,
                 CustomMetricIpListFunction &&metricFunc) noexcept;
 
-            /**
-             * Registers a custom metric number that will report the CPU usage automatically into a custom metric called
-             * "cpu_usage". Calling this function will make the task report CPU usage each time a report is generated.
-             *
-             * Note: The CPU usage reported is in percentage ("12.0" = 12% CPU).
-             * Also, the first report is always skipped, as polling has to be at a consistent timing and requires cached
-             * results.
-             */
-            void RegisterCustomMetricCpuUsage() noexcept;
-
-            /**
-             * Registers a custom metric number that will report the RAM memory usage automatically into a custom metric
-             * called "memory_usage". Calling this function will make the task report memory usage each time a report is
-             * generated.
-             *
-             * Note: The memory usage reported is in kilobytes.
-             */
-            void RegisterCustomMetricMemoryUsage() noexcept;
-
-            /**
-             * Registers a custom metric number that will report the number of processes automatically into a custom
-             * metric called "process_count". Calling this function will make the task report processor count each
-             * time a report is generated.
-             */
-            void RegisterCustomMetricProcessCount() noexcept;
-
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;
@@ -218,14 +192,6 @@ namespace Aws
             int m_lastError;
             std::shared_ptr<Crt::Mqtt::MqttConnection> m_mqttConnection;
             Crt::Io::EventLoopGroup &m_eventLoopGroup;
-
-            // Needed for tracking CPU usage
-            aws_system_cpu_sampler *m_cpu_sampler = nullptr;
-            // The function called by Device Defender to get the CPU usage, memory, and process count
-            // (Mainly for conversion)
-            int CustomMetricGetCpuUsage(double *output);
-            int CustomMetricGetMemoryUsage(double *output);
-            int CustomMetricGetProcessUsage(double *output);
 
             ReportTask(
                 Crt::Allocator *allocator,

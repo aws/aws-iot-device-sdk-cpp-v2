@@ -8,8 +8,6 @@
 #include <aws/common/clock.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
 
-#include <aws/common/system_info.h>
-
 namespace Aws
 {
     namespace Crt
@@ -173,10 +171,6 @@ namespace Aws
         ReportTask::~ReportTask()
         {
             StopTask();
-            if (m_cpu_sampler)
-            {
-                aws_system_cpu_sampler_destroy(m_cpu_sampler);
-            }
             if (m_taskConfig)
             {
                 aws_iotdevice_defender_config_clean_up(m_taskConfig);
@@ -234,63 +228,6 @@ namespace Aws
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_ip_list_metric(
                 m_taskConfig, &cursor, CustomMetricIpList::GetMetricFunction, data.get());
-        }
-
-        void ReportTask::RegisterCustomMetricCpuUsage() noexcept
-        {
-            if (m_cpu_sampler != nullptr)
-            {
-                aws_raise_error(AWS_ERROR_INVALID_STATE);
-                return; // cannot re-register!
-            }
-            m_cpu_sampler = aws_system_cpu_sampler_new(m_allocator);
-            if (m_cpu_sampler == nullptr)
-            {
-                aws_raise_error(AWS_ERROR_UNKNOWN); // Something went wrong allocating!
-                return;
-            }
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::CustomMetricGetCpuUsage, this, std::placeholders::_1);
-            RegisterCustomMetricNumber("cpu_usage", std::move(func));
-        }
-
-        int ReportTask::CustomMetricGetCpuUsage(double *output)
-        {
-            if (m_cpu_sampler == nullptr)
-            {
-                return AWS_OP_ERR; // cannot report without CPU sampler
-            }
-            return aws_system_cpu_sampler_get_sample(m_cpu_sampler, output);
-        }
-
-        void ReportTask::RegisterCustomMetricMemoryUsage() noexcept
-        {
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::CustomMetricGetMemoryUsage, this, std::placeholders::_1);
-            RegisterCustomMetricNumber("memory_usage", std::move(func));
-        }
-
-        int ReportTask::CustomMetricGetMemoryUsage(double *output)
-        {
-            uint64_t output_int = 0;
-            int return_val = aws_get_system_memory_usage(&output_int);
-            *output = (double)output_int;
-            return return_val;
-        }
-
-        void ReportTask::RegisterCustomMetricProcessCount() noexcept
-        {
-            CustomMetricNumberFunction func =
-                std::bind(&ReportTask::CustomMetricGetProcessUsage, this, std::placeholders::_1);
-            RegisterCustomMetricNumber("process_count", std::move(func));
-        }
-
-        int ReportTask::CustomMetricGetProcessUsage(double *output)
-        {
-            uint64_t output_int = 0;
-            int return_val = aws_get_system_process_count(&output_int);
-            *output = (double)output_int;
-            return return_val;
         }
 
         ReportTaskBuilder::ReportTaskBuilder(

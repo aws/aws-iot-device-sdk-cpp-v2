@@ -261,11 +261,6 @@ int main(int argc, char *argv[])
             s_getCustomMetricIpAddressList;
         task->RegisterCustomMetricIpAddressList("CustomIPList", std::move(s_getCustomMetricIpAddressListFunc));
 
-        // Send additional device custom metrics
-        task->RegisterCustomMetricCpuUsage();
-        task->RegisterCustomMetricMemoryUsage();
-        task->RegisterCustomMetricProcessCount();
-
         // Start the Device Defender task
         if (task->StartTask() != AWS_OP_SUCCESS)
         {
