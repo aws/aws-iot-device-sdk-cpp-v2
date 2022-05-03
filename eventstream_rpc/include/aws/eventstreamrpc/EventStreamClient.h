@@ -386,7 +386,7 @@ namespace Aws
             virtual bool OnStreamError(Crt::ScopedResource<OperationError> operationError, RpcError rpcError);
         };
 
-        enum AWS_EVENTSTREAMRPC_API ResultType
+        enum ResultType
         {
             OPERATION_RESPONSE,
             OPERATION_ERROR,

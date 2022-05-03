@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - 'main'
+      - 'docs'
 
 env:
   BUILDER_VERSION: v0.8.29
@@ -116,6 +117,17 @@ jobs:
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
+  # check that docs can still build
+  check-docs:
+    runs-on: ubuntu-20.04 # latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Check docs
+        run: |
+          sudo apt-get install -y doxygen
+          ./make-docs.py
 
   check-submodules:
     runs-on: ubuntu-latest
