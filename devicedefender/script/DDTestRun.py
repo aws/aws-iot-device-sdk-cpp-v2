@@ -54,7 +54,8 @@ try:
     create_thing_response = client.create_thing(
         thingName=thing_name
     )
-    thing_arn = create_thing_response.thingArn
+    #print(create_thing_response)
+    thing_arn = create_thing_response["thingArn"]
     client_made_thing = True
 
 except Exception as e:
@@ -105,37 +106,40 @@ try:
     # 'policyVersionId': 'string'
     # }
 
-    # Create the policy document
-    policy_document_json = "{"
-    policy_document_json += "\"Version\": \"2012-10-17\""
-    policy_document_json += "\"Statement\": ["
-    policy_document_json += "{"
-    policy_document_json += "\"Effect\":\"Allow\""
-    policy_document_json += "\"Action\":\"["
-    policy_document_json += "\"iot:Publish\","
-    policy_document_json += "\"iot:Subscribe\","
-    policy_document_json += "\"iot:RetainPublish\","
-    policy_document_json += "]"
-    policy_document_json += "\"Resource\": \"" + thing_arn + ":*/$aws/things/*/defender/metrics/*\""
-    policy_document_json += "},"
-    policy_document_json += "{"
-    policy_document_json += "\"Effect\":\"Allow\""
-    policy_document_json += "\"Action\":\"Iot:Connect\""
-    policy_document_json += "\"Resource\":\"" + thing_arn + "/*\""
-    policy_document_json += "}"
-    policy_document_json += "]"
-    policy_document_json += "}"
-
+    # We only need a short section of the thing arn
+    thing_arn_split = thing_arn.split(":")
+    thing_arn_short = thing_arn_split[0] + ':' + thing_arn_split[1] + ':' + thing_arn_split[2] + ':' + thing_arn_split[3] + ":" + thing_arn_split[4]
+    policy_document_json = (
+        '{'
+        '"Version": "2012-10-17",'
+        '"Statement": ['
+            '{'
+            '"Effect": "Allow",'
+            '"Action": ['
+                '"iot:Publish",'
+                '"iot:Subscribe",'
+                '"iot:RetainPublish"'
+            '],'
+            f'"Resource": "{thing_arn_short}:*/$aws/things/*/defender/metrics/*"'
+            '},'
+            '{'
+            '"Effect": "Allow",'
+            '"Action": "iot:Connect",'
+            f'"Resource": "{thing_arn_short}:client/*"'
+            '}'
+        ']'
+        '}'
+    )
     create_policy_response = client.create_policy(
         policyName=thing_name + "_policy",
         policyDocument=policy_document_json
     )
     client_made_policy = True
-except:
-    if client_made_policy:
-        client.delete_policy(policyName=thing_name + "_policy")
+except Exception as e:
     if client_made_thing:
         client.delete_thing(thingName=thing_name)
+    if client_made_policy:
+        client.delete_policy(policyName=thing_name + "_policy")
     print("[Device Defender]Error: Failed to create policy.")
     exit(-1)
 
@@ -147,7 +151,7 @@ try:
     print("[Device Defender]Info: Attach policy to certificate...")
     # attach policy to thing
     client.attach_policy(
-        policyName=thing_name + "_policy"
+        policyName=thing_name + "_policy",
         target=create_cert_response["certificateArn"]
     )
 
@@ -216,7 +220,7 @@ try:
     # Run the sample:
     exe_path = "build/samples/device_defender/basic_report/"
     # If running locally, comment out the line above and uncomment the line below:
-    # exe_path = "samples/device_defender/basic_report/build/"
+    #exe_path = "samples/device_defender/basic_report/build/"
 
     # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
     exe_path = os.path.join(exe_path, "basic-report")
