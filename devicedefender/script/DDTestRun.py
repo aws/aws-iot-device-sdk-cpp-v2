@@ -36,7 +36,9 @@ certificate_path = os.path.join(os.getcwd(), 'certificate.pem.crt')
 key_path = os.path.join(os.getcwd(), 'private.pem.key')
 # Other variables
 metrics_added = []
-clientMade = False
+thing_arn = None
+client_made_thing = False
+client_made_policy = False
 
 ##############################################
 # create a test thing
@@ -52,7 +54,8 @@ try:
     create_thing_response = client.create_thing(
         thingName=thing_name
     )
-    clientMade = True
+    thing_arn = create_thing_response.thingArn
+    client_made_thing = True
 
 except Exception as e:
     print("[Device Defender]Error: Failed to create thing: " + thing_name)
@@ -92,12 +95,59 @@ except:
     exit(-1)
 
 ##############################################
+# Create policy
+try:
+    print("[Device Defender]Info: Started to create policy...")
+    # {
+    # 'policyName': 'string',
+    # 'policyArn': 'string',
+    # 'policyDocument': 'string',
+    # 'policyVersionId': 'string'
+    # }
+
+    # Create the policy document
+    policy_document_json = "{"
+    policy_document_json += "\"Version\": \"2012-10-17\""
+    policy_document_json += "\"Statement\": ["
+    policy_document_json += "{"
+    policy_document_json += "\"Effect\":\"Allow\""
+    policy_document_json += "\"Action\":\"["
+    policy_document_json += "\"iot:Publish\","
+    policy_document_json += "\"iot:Subscribe\","
+    policy_document_json += "\"iot:RetainPublish\","
+    policy_document_json += "]"
+    policy_document_json += "\"Resource\": \"" + thing_arn + ":*/$aws/things/*/defender/metrics/*\""
+    policy_document_json += "},"
+    policy_document_json += "{"
+    policy_document_json += "\"Effect\":\"Allow\""
+    policy_document_json += "\"Action\":\"Iot:Connect\""
+    policy_document_json += "\"Resource\":\"" + thing_arn + "/*\""
+    policy_document_json += "}"
+    policy_document_json += "]"
+    policy_document_json += "}"
+
+    create_policy_response = client.create_policy(
+        policyName=thing_name + "_policy",
+        policyDocument=policy_document_json
+    )
+    client_made_policy = True
+except:
+    if client_made_policy:
+        client.delete_policy(policyName=thing_name + "_policy")
+    if client_made_thing:
+        client.delete_thing(thingName=thing_name)
+    print("[Device Defender]Error: Failed to create policy.")
+    exit(-1)
+
+##############################################
+
+##############################################
 # attach certification to thing
 try:
     print("[Device Defender]Info: Attach policy to certificate...")
     # attach policy to thing
     client.attach_policy(
-        policyName="DeviceDefenderTestPolicy",
+        policyName=thing_name + "_policy"
         target=create_cert_response["certificateArn"]
     )
 
@@ -116,6 +166,10 @@ except:
         delete_thing_with_certi(thing_name, certificate_id, certificate_arn)
     else:
         client.delete_thing(thingName=thing_name)
+    
+    if client_made_policy:
+        client.delete_policy(policyName=thing_name + "_policy")
+    
     print("[Device Defender]Error: Failed to attach certificate.")
     exit(-1)
 
@@ -182,14 +236,17 @@ try:
 
     # Delete
     delete_thing_with_certi(thing_name, certificate_id, certificate_arn)
+    client.delete_policy(policyName=thing_name + "_policy")
 
 except Exception as e:
     # delete custom metrics we added
     for metric_name in metrics_added:
         client.delete_custom_metric(metricName=metric_name)
 
-    if clientMade:
+    if client_made_thing:
         delete_thing_with_certi(thing_name, certificate_id, certificate_arn)
+    if client_made_policy:
+        client.delete_policy(policyName=thing_name + "_policy")
 
     print("[Device Defender]Error: Failed to test: Basic Report")
     exit(-1)
