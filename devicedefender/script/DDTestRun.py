@@ -130,7 +130,6 @@ try:
         ']'
         '}'
     )
-
     create_policy_response = client.create_policy(
         policyName=thing_name + "_policy",
         policyDocument=policy_document_json
