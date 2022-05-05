@@ -9,8 +9,6 @@
 #include <aws/crt/io/EventLoopGroup.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
-#include <aws/common/system_info.h>
-
 #include <aws/iotdevice/device_defender.h>
 
 namespace Aws

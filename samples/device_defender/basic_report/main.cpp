@@ -68,10 +68,6 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
     String thingName("TestThing");
     int reportTime = 60u;
     int count = 10;
@@ -93,10 +89,6 @@ int main(int argc, char *argv[])
         cmdUtils.PrintHelp();
         exit(-1);
     }
-    endpoint = cmdUtils.GetCommandRequired("endpoint");
-    keyPath = cmdUtils.GetCommandRequired("key");
-    certificatePath = cmdUtils.GetCommandRequired("cert");
-    caFile = cmdUtils.GetCommandOrDefault("ca_file", caFile);
     thingName = cmdUtils.GetCommandOrDefault("thing_name", thingName);
 
     if (cmdUtils.HasCommand("report_time"))
@@ -116,42 +108,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    /********************** Now Setup an Mqtt Client ******************/
-    Aws::Crt::Io::TlsContext x509TlsCtx;
-    Aws::Iot::MqttClientConnectionConfigBuilder builder;
-    builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    if (!caFile.empty())
-    {
-        builder.WithCertificateAuthority(caFile.c_str());
-    }
-    builder.WithEndpoint(endpoint);
-    auto clientConfig = builder.Build();
-
-    if (!clientConfig)
-    {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
-    }
-
-    Aws::Iot::MqttClient mqttClient;
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
-    if (!mqttClient)
-    {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
-     */
-    auto connection = mqttClient.NewConnection(clientConfig);
+    // Make a MQTT client and create a connection using a certificate and key
+    // Note: The data for the connection is gotten from cmdUtils
+    // (see BuildDirectMQTTConnection for implementation)
+    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnection(&mqttClient);
 
     if (!connection)
     {
