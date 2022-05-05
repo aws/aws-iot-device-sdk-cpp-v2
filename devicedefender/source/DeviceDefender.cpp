@@ -17,6 +17,61 @@ namespace Aws
 
     namespace Iotdevicedefenderv1
     {
+        /**
+         * A base class used to store all custom metrics in the same container. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricBase
+        {
+          public:
+            Crt::Allocator *m_allocator;
+
+            virtual ~CustomMetricBase(){};
+        };
+
+        /**
+         * A base class used to store all custom number metrics. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumber : public CustomMetricBase
+        {
+          public:
+            CustomMetricNumberFunction m_metricFunction;
+            CustomMetricNumber(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(double *output, void *data);
+        };
+
+        /**
+         * A base class used to store all custom number list metrics. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumberList : public CustomMetricBase
+        {
+          public:
+            CustomMetricNumberListFunction m_metricFunction;
+            CustomMetricNumberList(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
+        };
+
+        /**
+         * A base class used to store all custom string list metrics. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricStringList : public CustomMetricBase
+        {
+          public:
+            CustomMetricStringListFunction m_metricFunction;
+            CustomMetricStringList(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
+        };
+
+        /**
+         * A base class used to store all custom ip list metrics. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricIpList : public CustomMetricBase
+        {
+          public:
+            CustomMetricIpListFunction m_metricFunction;
+            CustomMetricIpList(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
+            static int GetMetricFunction(aws_array_list *output, void *data);
+        };
+
         // Custom number metric setup and metric function getter.
         CustomMetricNumber::CustomMetricNumber(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator)
         {
@@ -183,11 +238,11 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricNumber(
-            const Crt::String &&metricName,
-            CustomMetricNumberFunction &&metricFunc) noexcept
+            const Crt::String metricName,
+            CustomMetricNumberFunction metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricNumber> data =
-                Aws::Crt::MakeShared<CustomMetricNumber>(m_allocator, metricFunc, m_allocator);
+                Aws::Crt::MakeShared<CustomMetricNumber>(m_allocator, std::move(metricFunc), m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_number_metric(
@@ -195,11 +250,11 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricNumberList(
-            const Crt::String &&metricName,
-            CustomMetricNumberListFunction &&metricFunc) noexcept
+            const Crt::String metricName,
+            CustomMetricNumberListFunction metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricNumberList> data =
-                Aws::Crt::MakeShared<CustomMetricNumberList>(m_allocator, metricFunc, m_allocator);
+                Aws::Crt::MakeShared<CustomMetricNumberList>(m_allocator, std::move(metricFunc), m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_number_list_metric(
@@ -207,11 +262,11 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricStringList(
-            const Crt::String &&metricName,
-            CustomMetricStringListFunction &&metricFunc) noexcept
+            const Crt::String metricName,
+            CustomMetricStringListFunction metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricStringList> data =
-                Aws::Crt::MakeShared<CustomMetricStringList>(m_allocator, metricFunc, m_allocator);
+                Aws::Crt::MakeShared<CustomMetricStringList>(m_allocator, std::move(metricFunc), m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_string_list_metric(
@@ -219,11 +274,11 @@ namespace Aws
         }
 
         void ReportTask::RegisterCustomMetricIpAddressList(
-            const Crt::String &&metricName,
-            CustomMetricIpListFunction &&metricFunc) noexcept
+            const Crt::String metricName,
+            CustomMetricIpListFunction metricFunc) noexcept
         {
             std::shared_ptr<CustomMetricIpList> data =
-                Aws::Crt::MakeShared<CustomMetricIpList>(m_allocator, metricFunc, m_allocator);
+                Aws::Crt::MakeShared<CustomMetricIpList>(m_allocator, std::move(metricFunc), m_allocator);
             storedCustomMetrics.push_back(data);
             aws_byte_cursor cursor = aws_byte_cursor_from_c_str(metricName.c_str());
             aws_iotdevice_defender_config_register_ip_list_metric(

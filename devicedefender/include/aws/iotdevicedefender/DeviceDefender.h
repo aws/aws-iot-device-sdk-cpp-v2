@@ -39,54 +39,7 @@ namespace Aws
         /**
          * A base class used to store all custom metrics in the same container. Only used internally.
          */
-        class AWS_IOTDEVICEDEFENDER_API CustomMetricBase
-        {
-          public:
-            Crt::Allocator *m_allocator;
-
-            virtual ~CustomMetricBase(){};
-        };
-        /**
-         * A base class used to store all custom number metrics. Only used internally.
-         */
-        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumber : public CustomMetricBase
-        {
-          public:
-            CustomMetricNumberFunction m_metricFunction;
-            CustomMetricNumber(CustomMetricNumberFunction inputFunction, Crt::Allocator *inputAllocator);
-            static int GetMetricFunction(double *output, void *data);
-        };
-        /**
-         * A base class used to store all custom number list metrics. Only used internally.
-         */
-        class AWS_IOTDEVICEDEFENDER_API CustomMetricNumberList : public CustomMetricBase
-        {
-          public:
-            CustomMetricNumberListFunction m_metricFunction;
-            CustomMetricNumberList(CustomMetricNumberListFunction inputFunction, Crt::Allocator *inputAllocator);
-            static int GetMetricFunction(aws_array_list *output, void *data);
-        };
-        /**
-         * A base class used to store all custom string list metrics. Only used internally.
-         */
-        class AWS_IOTDEVICEDEFENDER_API CustomMetricStringList : public CustomMetricBase
-        {
-          public:
-            CustomMetricStringListFunction m_metricFunction;
-            CustomMetricStringList(CustomMetricStringListFunction inputFunction, Crt::Allocator *inputAllocator);
-            static int GetMetricFunction(aws_array_list *output, void *data);
-        };
-        /**
-         * A base class used to store all custom ip list metrics. Only used internally.
-         */
-        class AWS_IOTDEVICEDEFENDER_API CustomMetricIpList : public CustomMetricBase
-        {
-          public:
-            CustomMetricIpListFunction m_metricFunction;
-            CustomMetricIpList(CustomMetricIpListFunction inputFunction, Crt::Allocator *inputAllocator);
-            static int GetMetricFunction(aws_array_list *output, void *data);
-        };
-        // ========
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricBase;
 
         /**
          * Enum used to expose the status of a DeviceDefenderV1 task.
@@ -142,8 +95,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number data.
              */
             void RegisterCustomMetricNumber(
-                const Crt::String &&metricName,
-                CustomMetricNumberFunction &&metricFunc) noexcept;
+                const Crt::String metricName,
+                CustomMetricNumberFunction metricFunc) noexcept;
 
             /**
              * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
@@ -154,8 +107,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the number list data.
              */
             void RegisterCustomMetricNumberList(
-                const Crt::String &&metricName,
-                CustomMetricNumberListFunction &&metricFunc) noexcept;
+                const Crt::String metricName,
+                CustomMetricNumberListFunction metricFunc) noexcept;
 
             /**
              * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
@@ -167,8 +120,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the string list data.
              */
             void RegisterCustomMetricStringList(
-                const Crt::String &&metricName,
-                CustomMetricStringListFunction &&metricFunc) noexcept;
+                const Crt::String metricName,
+                CustomMetricStringListFunction metricFunc) noexcept;
 
             /**
              * Registers a custom metric IP address list function to the Device Defender result. Will call the
@@ -179,8 +132,8 @@ namespace Aws
              * @param metricFunc The function that is called to get the IP address list data.
              */
             void RegisterCustomMetricIpAddressList(
-                const Crt::String &&metricName,
-                CustomMetricIpListFunction &&metricFunc) noexcept;
+                const Crt::String metricName,
+                CustomMetricIpListFunction metricFunc) noexcept;
 
           private:
             Crt::Allocator *m_allocator;
