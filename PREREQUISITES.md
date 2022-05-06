@@ -48,7 +48,7 @@ MinGW-w64 is fully supported on [Visual Studio Code](https://code.visualstudio.c
 
 #### MSVC
 
-Microsoft Visual C++ (MSVC) is a C++ compilter that is supported and maintained by Microsoft, and is supported by the C++ SDK. To install MSVC, you will need to install Visual Studio using the instructions below.
+Microsoft Visual C++ (MSVC) is a C++ compiler that is supported and maintained by Microsoft, and is supported by the C++ SDK. To install MSVC, you will need to install Visual Studio using the instructions below.
 
 Install Visual Studio with MSVC
 1. Download **Visual Studio Installer** https://visualstudio.microsoft.com/downloads/
