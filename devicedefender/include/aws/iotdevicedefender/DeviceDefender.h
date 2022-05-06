@@ -31,6 +31,16 @@ namespace Aws
 
         using ReportFormat = aws_iotdevice_defender_report_format;
 
+        using CustomMetricNumberFunction = std::function<int(double *)>;
+        using CustomMetricNumberListFunction = std::function<int(Crt::Vector<double> *)>;
+        using CustomMetricStringListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
+        using CustomMetricIpListFunction = std::function<int(Crt::Vector<Crt::String> *)>;
+
+        /**
+         * A base class used to store all custom metrics in the same container. Only used internally.
+         */
+        class AWS_IOTDEVICEDEFENDER_API CustomMetricBase;
+
         /**
          * Enum used to expose the status of a DeviceDefenderV1 task.
          */
@@ -77,6 +87,54 @@ namespace Aws
              */
             int LastError() const noexcept { return m_lastError; }
 
+            /**
+             * Registers a custom metric number function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the number data.
+             */
+            void RegisterCustomMetricNumber(
+                const Crt::String metricName,
+                CustomMetricNumberFunction metricFunc) noexcept;
+
+            /**
+             * Registers a custom metric number list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
+             *
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the number list data.
+             */
+            void RegisterCustomMetricNumberList(
+                const Crt::String metricName,
+                CustomMetricNumberListFunction metricFunc) noexcept;
+
+            /**
+             * Registers a custom metric string list function to the Device Defender result. Will call the "metricFunc"
+             * function that is passed in each time a report is generated so it's data can be passed along with the
+             * other device defender payload data with the metric name of "metricName".
+             *
+             * Only valid IP addresses will show up in the Device Defender metrics even if it sends correctly.
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the string list data.
+             */
+            void RegisterCustomMetricStringList(
+                const Crt::String metricName,
+                CustomMetricStringListFunction metricFunc) noexcept;
+
+            /**
+             * Registers a custom metric IP address list function to the Device Defender result. Will call the
+             * "metricFunc" function that is passed in each time a report is generated so it's data can be passed along
+             * with the other device defender payload data with the metric name of "metricName".
+             *
+             * @param metricName The key name for the data.
+             * @param metricFunc The function that is called to get the IP address list data.
+             */
+            void RegisterCustomMetricIpAddressList(
+                const Crt::String metricName,
+                CustomMetricIpListFunction metricFunc) noexcept;
+
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;
@@ -98,6 +156,10 @@ namespace Aws
                 void *cancellationUserdata = nullptr) noexcept;
 
             static void s_onDefenderV1TaskCancelled(void *userData);
+
+            // Holds all of the custom metrics created for this task. These are pointers that will be
+            // automatically created and cleaned by ReportTask when it is destroyed.
+            Crt::Vector<std::shared_ptr<CustomMetricBase>> storedCustomMetrics;
         };
 
         /**

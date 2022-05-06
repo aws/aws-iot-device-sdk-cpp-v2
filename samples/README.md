@@ -12,6 +12,7 @@
 * [Jobs](#jobs)
 * [Greengrass discovery](#greengrass-discovery)
 * [Greengrass IPC](#greengrass-ipc)
+* [Device Defender](#device-defender)
 
 ## Build Instruction
 
@@ -786,3 +787,59 @@ This sample is intended for use with the following tutorials in the AWS IoT Gree
 This sample must be run from within a Greengrass V2 component using an appropriate policy to perform `aws.greengrass#PublishToIoTCore` and `aws.greengrass#SubscribeToIoTCore` operations on `test/topic` or any other topic passed as a CLI argument.
 
 For more information about Greengrass interprocess communication (IPC), see [here](https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html). This sample uses IPC to perform [IoT Core MQTT operations](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-iot-core-mqtt.html).
+
+## Device Defender
+
+This sample uses the AWS IoT [Device Defender]() Service to send on device metrics to AWS.
+
+Source: `samples/device_defender/basic_report/main.cpp`
+
+On startup, the sample will make a MQTT connection and a Device Defender task to send metrics every minute or at the time interval passed as a CLI argument. This sample shows how to send custom metrics in addition to the standard metrics that are always sent with Device Defender.
+
+You will need to create a **Security Profile** to see the metric results in the AWS console. You can create a Security Profile by going to `Detect -> Security Profiles` from the AWS IOT Console. To see the custom metrics, you will need to add them in `Detect -> Metrics` and then press the `Create` button to make a new custom metric.
+
+This sample uses the following custom metrics:
+* `CustomNumber` - type: `number` info: always sends the number `10`.
+* `CustomNumberTwo` - type `number` info: sends a random number from `-50` to `50`.
+* `CustomNumberList` - type `number-list` info: sends a predefined list of numbers.
+* `CustomStringList` - type `string-list` info: sends a predefined list of strings.
+* `CustomIPList` - type `ip-list` info: sends a predefined list of documentation IP addresses.
+
+**Note:** This sample **only runs on Linux**. Device Defender is only supported on Linux.
+
+To run the basic Device Defender use the following command:
+
+``` sh
+./basic-report --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name>
+```
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, publish, and receive.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Subscribe",
+        "iot:RetainPublish"
+      ],
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:*/$aws/things/*/defender/metrics/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/*"
+    }
+  ]
+}
+</pre>
+</details>
