@@ -154,6 +154,12 @@ namespace Utils
         void AddCommonTopicMessageCommands();
 
         /**
+         * A helper function taht adds custom_auth_username, custom_auth_authorizer_name, custom_auth_authorizer_signature
+         * and custom_auth_password commands
+         */
+        void AddCommonCustomAuthorizerCommands();
+
+        /**
          * A helper function that builds and returns a PKCS11 direct MQTT connection.
          *
          * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
@@ -192,6 +198,16 @@ namespace Utils
          * @return The created direct MQTT connection
          */
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
+
+        /**
+         * A helper function that builds and returns a direct MQTT connection that will connect through a CustomAuthorizer.
+         * @param client The client to use to make the connection
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
+         * @return The created direct MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnectionWithCustomAuthorizer(Aws::Iot::MqttClient *client);
 
         /**
          * A helper function that builds and returns a MQTT connection automatically based
@@ -246,5 +262,9 @@ namespace Utils
         const Aws::Crt::String m_cmd_message = "message";
         const Aws::Crt::String m_cmd_topic = "topic";
         const Aws::Crt::String m_cmd_help = "help";
+        const Aws::Crt::String m_cmd_custom_auth_username = "custom_auth_username";
+        const Aws::Crt::String m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
+        const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
+        const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
     };
 } // namespace Utils
