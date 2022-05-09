@@ -31,7 +31,8 @@ int main(int argc, char *argv[])
     // Note: The data for the connection is gotten from cmdUtils
     // (see BuildDirectMQTTConnectionWithCustomAuthorizer for implementation)
     Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnectionWithCustomAuthorizer(&client);
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection =
+        cmdUtils.BuildDirectMQTTConnectionWithCustomAuthorizer(&client);
 
     // Get the client ID to send with the connection
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
