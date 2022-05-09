@@ -393,7 +393,8 @@ namespace Utils
 
         auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder::NewDefaultBuilder();
         clientConfigBuilder.WithEndpoint(endpoint);
-        clientConfigBuilder.WithCustomAuthorizer(auth_username, auth_authorizer_name, auth_authorizer_signature, auth_password);
+        clientConfigBuilder.WithCustomAuthorizer(
+            auth_username, auth_authorizer_name, auth_authorizer_signature, auth_password);
 
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }

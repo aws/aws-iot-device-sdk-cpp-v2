@@ -154,8 +154,8 @@ namespace Utils
         void AddCommonTopicMessageCommands();
 
         /**
-         * A helper function taht adds custom_auth_username, custom_auth_authorizer_name, custom_auth_authorizer_signature
-         * and custom_auth_password commands
+         * A helper function taht adds custom_auth_username, custom_auth_authorizer_name,
+         * custom_auth_authorizer_signature and custom_auth_password commands
          */
         void AddCommonCustomAuthorizerCommands();
 
@@ -200,14 +200,16 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
 
         /**
-         * A helper function that builds and returns a direct MQTT connection that will connect through a CustomAuthorizer.
+         * A helper function that builds and returns a direct MQTT connection that will connect through a
+         * CustomAuthorizer.
          * @param client The client to use to make the connection
          *
          * Will get the required data from the CommandLineUtils from arguments defined in the
          * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
          * @return The created direct MQTT connection
          */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnectionWithCustomAuthorizer(Aws::Iot::MqttClient *client);
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnectionWithCustomAuthorizer(
+            Aws::Iot::MqttClient *client);
 
         /**
          * A helper function that builds and returns a MQTT connection automatically based
