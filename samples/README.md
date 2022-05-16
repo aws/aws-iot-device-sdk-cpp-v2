@@ -844,7 +844,7 @@ must provide privileges for this sample to connect, publish, and receive.
 </pre>
 </details>
 
-**Note:** There are some formatting and data requirements for custom metrics in Device Defender, which are listed below. If you input data that does not fit into the requirements below, it will be sent in the JSON packet like expected, but Device Defender will not show/retain the data! If you are trying to send data and not seeing it show up on Device Defender, please double check that your data fits into the requiements below.
+**Note:** The formatting and data requirements for custom metrics in Device Defender are listed below. If you input data that does not follow the requirements, it will be sent in the JSON packet but Device Defender will not show/retain the data! If your data is not showing up in Device Defender, please double check that your data fits into the requirements below.
 
 * `number` and `number-list` types: Supports precision up to 15 digits. Supports both positive and negative values.
 * `string-list` type: Supports letters A through Z (uppercase and lowercase) and the characters `:`, `_`, `-`, `/`, and `.
