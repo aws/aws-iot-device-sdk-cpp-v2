@@ -15,6 +15,7 @@
 #include <aws/iotjobs/RejectedError.h>
 
 #include <algorithm>
+#include <chrono>
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
@@ -167,6 +168,9 @@ int main(int argc, char *argv[])
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
         publishDescribeJobExeCompletedPromise.get_future().wait();
     }
+
+    /* Wait just a little bit to let the console print */
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     /* Disconnect */
     if (connection->Disconnect())
