@@ -38,7 +38,7 @@ namespace Aws
         {
         }
 
-        IotShadowClient::operator bool() const noexcept { return *m_connection; }
+        IotShadowClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
         int IotShadowClient::GetLastError() const noexcept { return aws_last_error(); }
 
