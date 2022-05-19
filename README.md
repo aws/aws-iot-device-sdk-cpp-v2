@@ -20,7 +20,7 @@ __Jump To:__
 * [Installation](#Installation)
 * [Samples](./samples)
 * [Getting Help](#Getting-Help)
-* [FAQ](FAQ.md)
+* [FAQ](./Documents/FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 
 ## Installation
@@ -30,7 +30,7 @@ __Jump To:__
     * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 * CMake 3.1+
 
-[Step-by-step instructions](./PREREQUISITES.md)
+[Step-by-step instructions](./Documents/PREREQUISITES.md)
 
 
 ### Build from source
@@ -99,7 +99,7 @@ The best way to interact with our team is through GitHub. You can [open an issue
 
 Please make sure to check out our resources too before opening an issue:
 
-* Our [FAQ](FAQ.md)
+* Our [FAQ](./Documents/FAQ.md)
 * [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
 * Our [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
 * Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
@@ -114,9 +114,10 @@ is provided by code that been generated from a model of the service.
 
 We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
 
-* [Contributions Guidelines](CONTRIBUTING.md)
+* [Contributions Guidelines](./Documents/CONTRIBUTING.md)
 * Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
-* Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+* Create discussion questions [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions)
+* Find a bug open an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 
 ## License
 
