@@ -227,7 +227,7 @@ namespace Utils
             int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
             if (tmp_port > 0)
             {
-                clientConfigBuilder.WithPortOverride(tmp_port);
+                clientConfigBuilder.WithPortOverride((uint64_t)tmp_port);
             }
         }
 
@@ -314,7 +314,7 @@ namespace Utils
             int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
             if (tmp_port > 0)
             {
-                clientConfigBuilder.WithPortOverride(tmp_port);
+                clientConfigBuilder.WithPortOverride((uint64_t)tmp_port);
             }
         }
 
@@ -354,7 +354,7 @@ namespace Utils
             int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
             if (tmp_port > 0)
             {
-                clientConfigBuilder.WithPortOverride(tmp_port);
+                clientConfigBuilder.WithPortOverride((uint64_t)tmp_port);
             }
         }
 
@@ -385,7 +385,7 @@ namespace Utils
             int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
             if (tmp_port > 0)
             {
-                clientConfigBuilder.WithPortOverride(tmp_port);
+                clientConfigBuilder.WithPortOverride((uint64_t)tmp_port);
             }
         }
 
