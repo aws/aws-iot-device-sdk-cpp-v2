@@ -222,6 +222,14 @@ namespace Utils
         {
             clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
         }
+        if (HasCommand(m_cmd_port_override))
+        {
+            int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
+            if (tmp_port > 0)
+            {
+                clientConfigBuilder.WithPortOverride(tmp_port);
+            }
+        }
 
         clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
@@ -301,6 +309,14 @@ namespace Utils
         {
             clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
         }
+        if (HasCommand(m_cmd_port_override))
+        {
+            int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
+            if (tmp_port > 0)
+            {
+                clientConfigBuilder.WithPortOverride(tmp_port);
+            }
+        }
 
         clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
@@ -333,6 +349,14 @@ namespace Utils
         {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
         }
+        if (HasCommand(m_cmd_port_override))
+        {
+            int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
+            if (tmp_port > 0)
+            {
+                clientConfigBuilder.WithPortOverride(tmp_port);
+            }
+        }
 
         clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
@@ -355,6 +379,14 @@ namespace Utils
         if (HasCommand(m_cmd_proxy_host))
         {
             clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
+        }
+        if (HasCommand(m_cmd_port_override))
+        {
+            int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
+            if (tmp_port > 0)
+            {
+                clientConfigBuilder.WithPortOverride(tmp_port);
+            }
         }
 
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);

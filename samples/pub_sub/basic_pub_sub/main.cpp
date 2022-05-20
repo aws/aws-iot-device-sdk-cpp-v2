@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonTopicMessageCommands();
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
+    cmdUtils.RegisterCommand("port_override", "<int>", "The port override to use when connecting (optional)");
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
