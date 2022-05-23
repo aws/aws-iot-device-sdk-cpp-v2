@@ -245,6 +245,7 @@ namespace Utils
         const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
         const Aws::Crt::String m_cmd_message = "message";
         const Aws::Crt::String m_cmd_topic = "topic";
+        const Aws::Crt::String m_cmd_port_override = "port_override";
         const Aws::Crt::String m_cmd_help = "help";
     };
 } // namespace Utils
