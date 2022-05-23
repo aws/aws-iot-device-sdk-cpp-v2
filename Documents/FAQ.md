@@ -41,9 +41,11 @@ CMake Error at CMakeLists.txt:46 (include):
  include could not find load file:
   AwsFindPackage
 ```
-Make sure to use `--recursive` in the git clone command
-
+Make sure to use `--recursive` in the git clone command:
 `git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git`
+
+If you have already downloaded this repository you can update the submodules with this command:
+`git submodule update --init --recursive`
 
 
 ### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)
@@ -120,4 +122,4 @@ Here is an example launch.json file to run the pubsub sample
 * [Here](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) are the AWS IoT Core docs for more details about IoT Core
 * [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass 
 * [Discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) questions are also a great way to ask other questions about this sdk.
-* If you find a bug or want a new feature for this sdk go to issues [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+* [Open an issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues) if you find a bug or have a feature request
