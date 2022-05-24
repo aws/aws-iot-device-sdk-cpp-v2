@@ -206,11 +206,6 @@ namespace Aws
             m_stateMutex.unlock();
 
             m_underlyingConnection = nullptr;
-
-            for (auto *i : m_continuationCallbackVector)
-            {
-                Crt::Delete<ContinuationCallbackData>(i, m_allocator);
-            }
         }
 
         bool ConnectionLifecycleHandler::OnErrorCallback(RpcError error)
@@ -849,12 +844,10 @@ namespace Aws
             options.on_continuation = ClientContinuation::s_onContinuationMessage;
             options.on_continuation_closed = ClientContinuation::s_onContinuationClosed;
 
-            const std::lock_guard<std::mutex> lock(connection->m_continuationVectorMutex);
-            ContinuationCallbackData *callbackData = Crt::New<ContinuationCallbackData>(m_allocator, this, m_allocator);
-            connection->m_continuationCallbackVector.emplace_back(callbackData);
+            m_callbackData = Crt::New<ContinuationCallbackData>(m_allocator, this, m_allocator);
 
-            m_continuationHandler.m_callbackData = callbackData;
-            options.user_data = reinterpret_cast<void *>(callbackData);
+            m_continuationHandler.m_callbackData = m_callbackData;
+            options.user_data = reinterpret_cast<void *>(m_callbackData);
 
             if (connection->IsOpen())
             {
@@ -862,9 +855,9 @@ namespace Aws
                     aws_event_stream_rpc_client_connection_new_stream(connection->m_underlyingConnection, &options);
                 if (m_continuationToken == nullptr)
                 {
-                    Crt::Delete<ContinuationCallbackData>(callbackData, m_allocator);
-                    connection->m_continuationCallbackVector.pop_back();
+                    Crt::Delete<ContinuationCallbackData>(m_callbackData, m_allocator);
                     m_continuationHandler.m_callbackData = nullptr;
+                    m_callbackData = nullptr;
                 }
             }
         }
@@ -875,6 +868,10 @@ namespace Aws
             {
                 aws_event_stream_rpc_client_continuation_release(m_continuationToken);
                 m_continuationToken = nullptr;
+            }
+            if (m_callbackData != nullptr)
+            {
+                Crt::Delete<ContinuationCallbackData>(m_callbackData, m_allocator);
             }
         }
 
