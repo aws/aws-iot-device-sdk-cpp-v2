@@ -328,6 +328,7 @@ namespace Aws
             Crt::Allocator *m_allocator;
             ClientContinuationHandler &m_continuationHandler;
             struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
+            ContinuationCallbackData *m_callbackData;
             static void s_onContinuationMessage(
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
                 const struct aws_event_stream_rpc_message_args *messageArgs,
@@ -619,8 +620,6 @@ namespace Aws
                 CONNECTED,
                 DISCONNECTING,
             };
-            std::mutex m_continuationVectorMutex;
-            Crt::Vector<ContinuationCallbackData *> m_continuationCallbackVector;
             /* This recursive mutex protects m_clientState & m_connectionWillSetup */
             std::recursive_mutex m_stateMutex;
             Crt::Allocator *m_allocator;
