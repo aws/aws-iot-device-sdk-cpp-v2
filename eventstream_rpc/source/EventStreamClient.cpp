@@ -871,18 +871,15 @@ namespace Aws
             }
             if (m_callbackData != nullptr)
             {
+                {
+                    const std::lock_guard<std::mutex> lock(m_callbackData->callbackMutex);
+                    m_callbackData->continuationDestroyed = true;
+                }
                 Crt::Delete<ContinuationCallbackData>(m_callbackData, m_allocator);
             }
         }
 
-        ClientContinuationHandler::~ClientContinuationHandler() noexcept
-        {
-            if (m_callbackData)
-            {
-                const std::lock_guard<std::mutex> lock(m_callbackData->callbackMutex);
-                m_callbackData->continuationDestroyed = true;
-            }
-        }
+        ClientContinuationHandler::~ClientContinuationHandler() noexcept {}
 
         void ClientContinuation::s_onContinuationMessage(
             struct aws_event_stream_rpc_client_continuation_token *continuationToken,
