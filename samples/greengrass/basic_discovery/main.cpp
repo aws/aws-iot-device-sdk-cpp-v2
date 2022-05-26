@@ -42,6 +42,9 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand(
         "mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
     const char **const_argv = (const char **)argv;
+    cmdUtils.UpdateCommandHelp(
+        "message",
+        "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
     cmdUtils.SendArguments(const_argv, const_argv + argc);
 
     String certificatePath = cmdUtils.GetCommandRequired("cert");
@@ -51,7 +54,7 @@ int main(int argc, char *argv[])
     String region = cmdUtils.GetCommandRequired("region");
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String mode = cmdUtils.GetCommandOrDefault("mode", "both");
-    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    String message = cmdUtils.GetCommandOrDefault("message", "");
     String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
     if (cmdUtils.HasCommand("proxy_port"))
     {
@@ -256,22 +259,35 @@ int main(int argc, char *argv[])
         connectionFinishedPromise.get_future().wait();
     }
 
+    bool first_input = true;
     while (true)
     {
-        String input;
+        String input = "";
         if (mode == "both" || mode == "publish")
         {
-            fprintf(
-                stdout,
-                "Enter the message you want to publish to topic %s and press enter. Enter 'exit' to exit this "
-                "program.\n",
-                topic.c_str());
+            if (message == "")
+            {
+                fprintf(
+                    stdout,
+                    "Enter the message you want to publish to topic %s and press enter. Enter 'exit' to exit this "
+                    "program.\n",
+                    topic.c_str());
+                std::getline(std::cin, input);
+                message = input;
+            }
+            else if (first_input == false)
+            {
+                fprintf(stdout, "Enter a new message or enter 'exit' or 'quit' to exit the program.\n");
+                std::getline(std::cin, input);
+                message = input;
+            }
+            first_input = false;
         }
         else
         {
-            fprintf(stdout, "Enter exit or quit to exit the program.\n");
+            fprintf(stdout, "Enter 'exit' or 'quit' to exit the program.\n");
+            std::getline(std::cin, input);
         }
-        std::getline(std::cin, input);
 
         if (input == "exit" || input == "quit")
         {
