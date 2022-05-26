@@ -20,6 +20,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/websocket_connect',
             'samples/mqtt/x509_credentials_provider_connect',
             'samples/mqtt/windows_cert_connect',
+            'samples/mqtt/custom_authorizer_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/identity/fleet_provisioning',
@@ -52,7 +53,7 @@ class BuildSamples(Builder.Action):
             steps.append(['cmake',
                         '--build', build_path,
                         '--config', 'RelWithDebInfo'])
-        
+
         for sample_path in da_samples:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',

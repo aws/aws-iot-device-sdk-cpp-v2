@@ -177,6 +177,27 @@ namespace Utils
         RegisterCommand(m_cmd_topic, "<str>", "Topic to publish, subscribe to. (optional, default='test/topic')");
     }
 
+    void CommandLineUtils::AddCommonCustomAuthorizerCommands()
+    {
+        RegisterCommand(
+            m_cmd_custom_auth_username,
+            "<str>",
+            "The name to send when connecting through the custom authorizer (optional)");
+        RegisterCommand(
+            m_cmd_custom_auth_authorizer_name,
+            "<str>",
+            "The name of the custom authorizer to connect to (optional but required for everything but custom "
+            "domains)");
+        RegisterCommand(
+            m_cmd_custom_auth_authorizer_signature,
+            "<str>",
+            "The signature to send when connecting through a custom authorizer (optional)");
+        RegisterCommand(
+            m_cmd_custom_auth_password,
+            "<str>",
+            "The password to send when connecting through a custom authorizer (optional)");
+    }
+
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
         Aws::Iot::MqttClient *client)
     {
@@ -392,6 +413,24 @@ namespace Utils
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
 
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnectionWithCustomAuthorizer(
+        Aws::Iot::MqttClient *client)
+    {
+        Aws::Crt::String auth_username = GetCommandOrDefault(m_cmd_custom_auth_username, "");
+        Aws::Crt::String auth_authorizer_name = GetCommandOrDefault(m_cmd_custom_auth_authorizer_name, "");
+        Aws::Crt::String auth_authorizer_signature = GetCommandOrDefault(m_cmd_custom_auth_authorizer_signature, "");
+        Aws::Crt::String auth_password = GetCommandOrDefault(m_cmd_custom_auth_password, "");
+
+        Aws::Crt::String endpoint = GetCommandRequired(m_cmd_endpoint);
+
+        auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder::NewDefaultBuilder();
+        clientConfigBuilder.WithEndpoint(endpoint);
+        clientConfigBuilder.WithCustomAuthorizer(
+            auth_username, auth_authorizer_name, auth_authorizer_signature, auth_password);
+
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildMQTTConnection()
     {
         if (!m_internal_client)
@@ -421,6 +460,10 @@ namespace Utils
             {
                 return BuildWebsocketMQTTConnection(&m_internal_client);
             }
+        }
+        else if (HasCommand(m_cmd_custom_auth_authorizer_name))
+        {
+            return BuildDirectMQTTConnectionWithCustomAuthorizer(&m_internal_client);
         }
         else
         {
