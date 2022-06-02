@@ -20,52 +20,75 @@ __Jump To:__
 * [Installation](#Installation)
 * [Samples](./samples)
 * [Getting Help](#Getting-Help)
-* [FAQ](FAQ.md)
+* [FAQ](./documents/FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
+
 
 ## Installation
 
 ### Minimum Requirements
 * C++ 11 or higher
+    * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 * CMake 3.1+
-* Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 
-[Step-by-step instructions](./PREREQUISITES.md)
+[Step-by-step instructions](./documents/PREREQUISITES.md)
 
 
 ### Build from source
 
-#### Automatically Build and Install AWS Dependencies
-
-Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
-
 #### MacOS and Linux
 
 ``` sh
-mkdir sdk-cpp-workspace
-cd sdk-cpp-workspace
+# Create a workspace directory to hold all the SDK files
+mkdir sdk-workspace
+cd sdk-workspace
+# Clone the repository
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
+# Ensure all submodules are properly updated
+cd aws-iot-device-sdk-cpp-v2
+git submodule update --init --recursive
+cd ..
+# Make a build directory for the SDK. Can use any name.
+# If working with multiple SDKs, using a SDK-specific name is helpful.
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
+# Generate the SDK build files.
+# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory.
+#     (Example: "/Users/example/sdk-workspace/).
+# -DCMAKE_BUILD_TYPE can be "Release", "RelWithDebInfo", or "Debug"
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path to sdk-workspace>" -DCMAKE_BUILD_TYPE="Debug" ../aws-iot-device-sdk-cpp-v2
+# Build and install the library. Once installed, you can develop with the SDK and run the samples
 cmake --build . --target install
 ```
 
 #### Windows
 
 ``` sh
-mkdir sdk-cpp-workspace
+# Create a workspace directory to hold all the SDK files
+mkdir sdk-workspace
 cd sdk-cpp-workspace
+# Clone the repository
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
+# Ensure all submodules are properly updated
+cd aws-iot-device-sdk-cpp-v2
+git submodule update --init --recursive
+cd ..
+# Make a build directory for the SDK. Can use any name.
+# If working with multiple SDKs, using a SDK-specific name is helpful.
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
+# Generate the SDK build files.
+# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory.
+#     (Example: "C:/users/example/sdk-workspace/).
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" ../aws-iot-device-sdk-cpp-v2
-cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
+# Build and install the library. Once installed, you can develop with the SDK and run the samples
+# -config can be "Release", "RelWithDebInfo", or "Debug"
+cmake --build . --target install --config "Debug"
 ```
 
-Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
-
-`--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
+**Windows specific notes**:
+* Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
+* `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
 ## Samples
 
@@ -77,7 +100,7 @@ The best way to interact with our team is through GitHub. You can [open an issue
 
 Please make sure to check out our resources too before opening an issue:
 
-* Our [FAQ](FAQ.md)
+* Our [FAQ](./documents/FAQ.md)
 * [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
 * Our [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
 * Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
@@ -92,10 +115,11 @@ is provided by code that been generated from a model of the service.
 
 We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
 
-* [Contributions Guidelines](CONTRIBUTING.md)
+* [Contributions Guidelines](./documents/CONTRIBUTING.md)
 * Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
-* Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+* Create discussion questions [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions)
+* Find a bug open an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 
 ## License
 
-This library is licensed under the [Apache 2.0 License](LICENSE).
+This library is licensed under the [Apache 2.0 License](./documents/LICENSE).

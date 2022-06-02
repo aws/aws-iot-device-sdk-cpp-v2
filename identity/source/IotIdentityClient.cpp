@@ -26,7 +26,7 @@ namespace Aws
         {
         }
 
-        IotIdentityClient::operator bool() const noexcept { return *m_connection; }
+        IotIdentityClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
         int IotIdentityClient::GetLastError() const noexcept { return aws_last_error(); }
 

@@ -328,6 +328,7 @@ namespace Aws
             Crt::Allocator *m_allocator;
             ClientContinuationHandler &m_continuationHandler;
             struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
+            ContinuationCallbackData *m_callbackData;
             static void s_onContinuationMessage(
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
                 const struct aws_event_stream_rpc_message_args *messageArgs,
@@ -386,7 +387,7 @@ namespace Aws
             virtual bool OnStreamError(Crt::ScopedResource<OperationError> operationError, RpcError rpcError);
         };
 
-        enum AWS_EVENTSTREAMRPC_API ResultType
+        enum ResultType
         {
             OPERATION_RESPONSE,
             OPERATION_ERROR,
@@ -492,12 +493,16 @@ namespace Aws
           public:
             ClientOperation(
                 ClientConnection &connection,
-                StreamResponseHandler *streamHandler,
+                std::shared_ptr<StreamResponseHandler> streamHandler,
                 const OperationModelContext &operationModelContext,
                 Crt::Allocator *allocator) noexcept;
             ~ClientOperation() noexcept;
+
             ClientOperation(const ClientOperation &clientOperation) noexcept = delete;
-            ClientOperation(ClientOperation &&clientOperation) noexcept;
+            ClientOperation(ClientOperation &&clientOperation) noexcept = delete;
+            bool operator=(const ClientOperation &clientOperation) noexcept = delete;
+            bool operator=(ClientOperation &&clientOperation) noexcept = delete;
+
             std::future<RpcError> Close(OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
             std::future<TaggedResult> GetOperationResult() noexcept;
 
@@ -547,7 +552,7 @@ namespace Aws
 
             uint32_t m_messageCount;
             Crt::Allocator *m_allocator;
-            StreamResponseHandler *m_streamHandler;
+            std::shared_ptr<StreamResponseHandler> m_streamHandler;
             ClientContinuation m_clientContinuation;
             /* This mutex protects m_resultReceived & m_closeState. */
             std::mutex m_continuationMutex;
@@ -615,8 +620,6 @@ namespace Aws
                 CONNECTED,
                 DISCONNECTING,
             };
-            std::mutex m_continuationVectorMutex;
-            Crt::Vector<ContinuationCallbackData *> m_continuationCallbackVector;
             /* This recursive mutex protects m_clientState & m_connectionWillSetup */
             std::recursive_mutex m_stateMutex;
             Crt::Allocator *m_allocator;

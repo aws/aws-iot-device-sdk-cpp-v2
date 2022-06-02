@@ -15,47 +15,15 @@
 #include <aws/iotjobs/RejectedError.h>
 
 #include <algorithm>
+#include <chrono>
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "describe-job-execution --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --ca_file <optional: path to custom ca>"
-        " --thing_name <thing name> --job_id <job id>\n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "job_id: the job id you want to describe.\n");
-}
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -64,102 +32,24 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
-    String thingName;
-    String jobId;
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
-          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--thing_name") &&
-          s_cmdOptionExists(argv, argv + argc, "--job_id")))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("describe-job-execution");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
+    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
+    cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-    jobId = s_getCmdOption(argv, argv + argc, "--job_id");
+    String thingName = cmdUtils.GetCommandRequired("thing_name");
+    String jobId = cmdUtils.GetCommandRequired("job_id");
 
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
-    {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
-        exit(-1);
-    }
-
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    clientConfigBuilder.WithEndpoint(endpoint);
-    if (!caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(caFile.c_str());
-    }
-    auto clientConfig = clientConfigBuilder.Build();
-
-    if (!clientConfig)
-    {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now Create a client. This can not throw.
-     * An instance of a client must outlive its connections.
-     * It is the users responsibility to make sure of this.
-     */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
-
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
-    if (!mqttClient)
-    {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
-     */
-    auto connection = mqttClient.NewConnection(clientConfig);
-
-    if (!*connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
-    }
+    /* Get a MQTT client connection from the command parser */
+    auto connection = cmdUtils.BuildMQTTConnection();
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -279,10 +169,14 @@ int main(int argc, char *argv[])
         publishDescribeJobExeCompletedPromise.get_future().wait();
     }
 
+    /* Wait just a little bit to let the console print */
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
     /* Disconnect */
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();
     }
+
     return 0;
 }

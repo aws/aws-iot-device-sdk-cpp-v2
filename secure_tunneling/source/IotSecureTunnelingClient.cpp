@@ -29,7 +29,7 @@ namespace Aws
         {
         }
 
-        IotSecureTunnelingClient::operator bool() const noexcept { return *m_connection; }
+        IotSecureTunnelingClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
         int IotSecureTunnelingClient::GetLastError() const noexcept { return aws_last_error(); }
 

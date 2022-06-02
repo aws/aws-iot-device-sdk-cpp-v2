@@ -40,6 +40,16 @@ namespace Aws
                 const std::string &endpointHost); // Make a copy and save in this object
 
             /**
+             * Constructor arguments are the minimum required to create a secure tunnel
+             */
+            SecureTunnelBuilder(
+                Crt::Allocator *allocator,                        // Should out live this object
+                const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+                const std::string &accessToken,                   // Make a copy and save in this object
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                const std::string &endpointHost); // Make a copy and save in this object
+
+            /**
              * Optional members
              */
             SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
@@ -98,6 +108,23 @@ namespace Aws
             SecureTunnel(
                 Crt::Allocator *allocator,                        // Should out live this object
                 Aws::Crt::Io::ClientBootstrap *clientBootstrap,   // Should out live this object
+                const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
+
+                const std::string &accessToken, // Make a copy and save in this object
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                const std::string &endpointHost, // Make a copy and save in this object
+                const std::string &rootCa,       // Make a copy and save in this object
+
+                OnConnectionComplete onConnectionComplete,
+                OnConnectionShutdown onConnectionShutdown,
+                OnSendDataComplete onSendDataComplete,
+                OnDataReceive onDataReceive,
+                OnStreamStart onStreamStart,
+                OnStreamReset onStreamReset,
+                OnSessionReset onSessionReset);
+
+            SecureTunnel(
+                Crt::Allocator *allocator,                        // Should out live this object
                 const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
 
                 const std::string &accessToken, // Make a copy and save in this object

@@ -32,46 +32,12 @@
 #include <string>
 #include <thread>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono;      // nanoseconds, system_clock, seconds
-
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(
-        stdout,
-        "fleet-provisioning --endpoint <endpoint> --ca_file <optional: path to custom ca> --cert <path to cert>"
-        " --key <path to key> --templateName <template name> --templateParameters <template parameters> --csr "
-        "<optional: path to csr> \n\n");
-    fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format\n");
-    fprintf(stdout, "csr: path to CSR in PEM format\n");
-    fprintf(stdout, "key: path to your key in PEM format\n");
-    fprintf(
-        stdout,
-        "ca_file: Optional, if the mqtt server uses a certificate that's not already"
-        " in your trust store, set this.\n");
-    fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
-    fprintf(stdout, "template_name: the name of your provisioning template\n");
-    fprintf(stdout, "template_parameters: template parameters json\n");
-}
-
-static bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-static char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 static void sleep(int sleeptime)
 {
@@ -94,113 +60,33 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-
-    String endpoint;
-    String certificatePath;
-    String keyPath;
-    String caFile;
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
-    String templateName;
-    String templateParameters;
     String csrFile;
 
     String token;
     RegisterThingResponse registerThingResponse;
 
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
-
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
-          s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--template_name") &&
-          s_cmdOptionExists(argv, argv + argc, "--template_parameters")))
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("fleet-provisioning");
+    cmdUtils.AddCommonMQTTCommands();
+    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
+    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
+    cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
+    cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
+    cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
+
+    String templateName = cmdUtils.GetCommandRequired("template_name");
+    String templateParameters = cmdUtils.GetCommandRequired("template_parameters");
+    if (cmdUtils.HasCommand("csr"))
     {
-        s_printHelp();
-        return 0;
+        csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
 
-    endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
-    certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
-    keyPath = s_getCmdOption(argv, argv + argc, "--key");
-    templateName = s_getCmdOption(argv, argv + argc, "--template_name");
-    templateParameters = s_getCmdOption(argv, argv + argc, "--template_parameters");
-
-    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
-    {
-        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
-    }
-
-    // if CSRFile provided
-    if (s_cmdOptionExists(argv, argv + argc, "--csr"))
-    {
-        csrFile = getFileData(s_getCmdOption(argv, argv + argc, "--csr")).c_str();
-    }
-
-    /********************** Now Setup an Mqtt Client ******************/
-    /*
-     * You need an event loop group to process IO events.
-     * If you only have a few connections, 1 thread is ideal
-     */
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
-    {
-        fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver hostResolver(eventLoopGroup, 2, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
-        exit(-1);
-    }
-
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    clientConfigBuilder.WithEndpoint(endpoint);
-    if (!caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(caFile.c_str());
-    }
-    auto clientConfig = clientConfigBuilder.Build();
-
-    if (!clientConfig)
-    {
-        fprintf(
-            stderr,
-            "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Now Create a client. This can not throw.
-     * An instance of a client must outlive its connections.
-     * It is the users responsibility to make sure of this.
-     */
-    Aws::Iot::MqttClient mqttClient(bootstrap);
-
-    /*
-     * Since no exceptions are used, always check the bool operator
-     * when an error could have occurred.
-     */
-    if (!mqttClient)
-    {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
-        exit(-1);
-    }
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
-     */
-    auto connection = mqttClient.NewConnection(clientConfig);
-
-    if (!*connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
-    }
+    /* Get a MQTT client connection from the command parser */
+    auto connection = cmdUtils.BuildMQTTConnection();
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -570,5 +456,6 @@ int main(int argc, char *argv[])
     {
         connectionClosedPromise.get_future().wait();
     }
+
     return 0;
 }

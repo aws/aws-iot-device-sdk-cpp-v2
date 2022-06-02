@@ -7,34 +7,13 @@
 
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
 
+#include "../../utils/CommandLineUtils.h"
+
 using namespace Aws::Crt;
 using namespace Aws::Greengrass;
 
-static void s_printHelp()
-{
-    fprintf(stdout, "Usage:\n");
-    fprintf(stdout, "greengrass-ipc --topic <optional: topic> --message <optional: message to publish>\n\n");
-    fprintf(stdout, "topic: targeted topic. Default is test/topic\n");
-    fprintf(stdout, "message: message to publish. default 'Hello World'\n");
-}
-
 /* Used to check that the publish has been received so that the demo can exit successfully. */
 static std::atomic_bool s_publishReceived(false);
-
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
-{
-    return std::find(begin, end, option) != end;
-}
-
-char *s_getCmdOption(char **begin, char **end, const String &option)
-{
-    char **itr = std::find(begin, end, option);
-    if (itr != end && ++itr != end)
-    {
-        return *itr;
-    }
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
@@ -44,40 +23,26 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    String topic("test/topic");
-    String message("Hello World");
-
     /*********************** Parse Arguments ***************************/
-    if (s_cmdOptionExists(argv, argv + argc, "--help"))
-    {
-        s_printHelp();
-        return 0;
-    }
+    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+    cmdUtils.RegisterProgramName("greengrass-ipc");
+    cmdUtils.AddCommonTopicMessageCommands();
+    const char **const_argv = (const char **)argv;
+    cmdUtils.SendArguments(const_argv, const_argv + argc);
 
-    if (s_cmdOptionExists(argv, argv + argc, "--topic"))
-    {
-        topic = s_getCmdOption(argv, argv + argc, "--topic");
-    }
+    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
+    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
-    if (s_cmdOptionExists(argv, argv + argc, "--message"))
-    {
-        message = s_getCmdOption(argv, argv + argc, "--message");
-    }
-
-    Io::EventLoopGroup eventLoopGroup(1);
-    if (!eventLoopGroup)
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
+    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
-            stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
-        exit(-1);
-    }
-
-    Io::DefaultHostResolver resolver(eventLoopGroup, 64, 30);
-    Io::ClientBootstrap bootstrap(eventLoopGroup, resolver);
-
-    if (!bootstrap)
-    {
-        fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+            stderr,
+            "ClientBootstrap failed with error %s\n",
+            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
         exit(-1);
     }
 
@@ -115,7 +80,7 @@ int main(int argc, char *argv[])
      * so that it is destroyed AFTER the client is destroyed.
      */
     SampleLifecycleHandler lifecycleHandler;
-    GreengrassCoreIpcClient client(bootstrap);
+    GreengrassCoreIpcClient client(*apiHandle.GetOrCreateStaticDefaultClientBootstrap());
     auto connectionStatus = client.Connect(lifecycleHandler).get();
 
     if (!connectionStatus)

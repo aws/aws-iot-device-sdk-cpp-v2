@@ -42,98 +42,67 @@ namespace Aws
                 const ConnectionConfig &connectionConfig = DefaultConnectionConfig()) noexcept;
             bool IsConnected() const noexcept { return m_connection.IsOpen(); }
             void Close() noexcept;
-            SubscribeToIoTCoreOperation NewSubscribeToIoTCore(SubscribeToIoTCoreStreamHandler &streamHandler) noexcept;
-            std::unique_ptr<SubscribeToIoTCoreOperation> NewPtrSubscribeToIoTCore(
+            std::shared_ptr<SubscribeToIoTCoreOperation> NewSubscribeToIoTCore(
                 std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler) noexcept;
 
-            ResumeComponentOperation NewResumeComponent() noexcept;
-            std::unique_ptr<ResumeComponentOperation> NewPtrResumeComponent() noexcept;
+            std::shared_ptr<ResumeComponentOperation> NewResumeComponent() noexcept;
 
-            PublishToIoTCoreOperation NewPublishToIoTCore() noexcept;
-            std::unique_ptr<PublishToIoTCoreOperation> NewPtrPublishToIoTCore() noexcept;
+            std::shared_ptr<PublishToIoTCoreOperation> NewPublishToIoTCore() noexcept;
 
-            SubscribeToConfigurationUpdateOperation NewSubscribeToConfigurationUpdate(
-                SubscribeToConfigurationUpdateStreamHandler &streamHandler) noexcept;
-            std::unique_ptr<SubscribeToConfigurationUpdateOperation> NewPtrSubscribeToConfigurationUpdate(
+            std::shared_ptr<SubscribeToConfigurationUpdateOperation> NewSubscribeToConfigurationUpdate(
                 std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler) noexcept;
 
-            DeleteThingShadowOperation NewDeleteThingShadow() noexcept;
-            std::unique_ptr<DeleteThingShadowOperation> NewPtrDeleteThingShadow() noexcept;
+            std::shared_ptr<DeleteThingShadowOperation> NewDeleteThingShadow() noexcept;
 
-            DeferComponentUpdateOperation NewDeferComponentUpdate() noexcept;
-            std::unique_ptr<DeferComponentUpdateOperation> NewPtrDeferComponentUpdate() noexcept;
+            std::shared_ptr<DeferComponentUpdateOperation> NewDeferComponentUpdate() noexcept;
 
-            SubscribeToValidateConfigurationUpdatesOperation NewSubscribeToValidateConfigurationUpdates(
-                SubscribeToValidateConfigurationUpdatesStreamHandler &streamHandler) noexcept;
-            std::unique_ptr<SubscribeToValidateConfigurationUpdatesOperation>
-                NewPtrSubscribeToValidateConfigurationUpdates(
+            std::shared_ptr<SubscribeToValidateConfigurationUpdatesOperation>
+                NewSubscribeToValidateConfigurationUpdates(
                     std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler) noexcept;
 
-            GetConfigurationOperation NewGetConfiguration() noexcept;
-            std::unique_ptr<GetConfigurationOperation> NewPtrGetConfiguration() noexcept;
+            std::shared_ptr<GetConfigurationOperation> NewGetConfiguration() noexcept;
 
-            SubscribeToTopicOperation NewSubscribeToTopic(SubscribeToTopicStreamHandler &streamHandler) noexcept;
-            std::unique_ptr<SubscribeToTopicOperation> NewPtrSubscribeToTopic(
+            std::shared_ptr<SubscribeToTopicOperation> NewSubscribeToTopic(
                 std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler) noexcept;
 
-            GetComponentDetailsOperation NewGetComponentDetails() noexcept;
-            std::unique_ptr<GetComponentDetailsOperation> NewPtrGetComponentDetails() noexcept;
+            std::shared_ptr<GetComponentDetailsOperation> NewGetComponentDetails() noexcept;
 
-            PublishToTopicOperation NewPublishToTopic() noexcept;
-            std::unique_ptr<PublishToTopicOperation> NewPtrPublishToTopic() noexcept;
+            std::shared_ptr<PublishToTopicOperation> NewPublishToTopic() noexcept;
 
-            ListComponentsOperation NewListComponents() noexcept;
-            std::unique_ptr<ListComponentsOperation> NewPtrListComponents() noexcept;
+            std::shared_ptr<ListComponentsOperation> NewListComponents() noexcept;
 
-            CreateDebugPasswordOperation NewCreateDebugPassword() noexcept;
-            std::unique_ptr<CreateDebugPasswordOperation> NewPtrCreateDebugPassword() noexcept;
+            std::shared_ptr<CreateDebugPasswordOperation> NewCreateDebugPassword() noexcept;
 
-            GetThingShadowOperation NewGetThingShadow() noexcept;
-            std::unique_ptr<GetThingShadowOperation> NewPtrGetThingShadow() noexcept;
+            std::shared_ptr<GetThingShadowOperation> NewGetThingShadow() noexcept;
 
-            SendConfigurationValidityReportOperation NewSendConfigurationValidityReport() noexcept;
-            std::unique_ptr<SendConfigurationValidityReportOperation> NewPtrSendConfigurationValidityReport() noexcept;
+            std::shared_ptr<SendConfigurationValidityReportOperation> NewSendConfigurationValidityReport() noexcept;
 
-            UpdateThingShadowOperation NewUpdateThingShadow() noexcept;
-            std::unique_ptr<UpdateThingShadowOperation> NewPtrUpdateThingShadow() noexcept;
+            std::shared_ptr<UpdateThingShadowOperation> NewUpdateThingShadow() noexcept;
 
-            UpdateConfigurationOperation NewUpdateConfiguration() noexcept;
-            std::unique_ptr<UpdateConfigurationOperation> NewPtrUpdateConfiguration() noexcept;
+            std::shared_ptr<UpdateConfigurationOperation> NewUpdateConfiguration() noexcept;
 
-            ValidateAuthorizationTokenOperation NewValidateAuthorizationToken() noexcept;
-            std::unique_ptr<ValidateAuthorizationTokenOperation> NewPtrValidateAuthorizationToken() noexcept;
+            std::shared_ptr<ValidateAuthorizationTokenOperation> NewValidateAuthorizationToken() noexcept;
 
-            RestartComponentOperation NewRestartComponent() noexcept;
-            std::unique_ptr<RestartComponentOperation> NewPtrRestartComponent() noexcept;
+            std::shared_ptr<RestartComponentOperation> NewRestartComponent() noexcept;
 
-            GetLocalDeploymentStatusOperation NewGetLocalDeploymentStatus() noexcept;
-            std::unique_ptr<GetLocalDeploymentStatusOperation> NewPtrGetLocalDeploymentStatus() noexcept;
+            std::shared_ptr<GetLocalDeploymentStatusOperation> NewGetLocalDeploymentStatus() noexcept;
 
-            GetSecretValueOperation NewGetSecretValue() noexcept;
-            std::unique_ptr<GetSecretValueOperation> NewPtrGetSecretValue() noexcept;
+            std::shared_ptr<GetSecretValueOperation> NewGetSecretValue() noexcept;
 
-            UpdateStateOperation NewUpdateState() noexcept;
-            std::unique_ptr<UpdateStateOperation> NewPtrUpdateState() noexcept;
+            std::shared_ptr<UpdateStateOperation> NewUpdateState() noexcept;
 
-            ListNamedShadowsForThingOperation NewListNamedShadowsForThing() noexcept;
-            std::unique_ptr<ListNamedShadowsForThingOperation> NewPtrListNamedShadowsForThing() noexcept;
+            std::shared_ptr<ListNamedShadowsForThingOperation> NewListNamedShadowsForThing() noexcept;
 
-            SubscribeToComponentUpdatesOperation NewSubscribeToComponentUpdates(
-                SubscribeToComponentUpdatesStreamHandler &streamHandler) noexcept;
-            std::unique_ptr<SubscribeToComponentUpdatesOperation> NewPtrSubscribeToComponentUpdates(
+            std::shared_ptr<SubscribeToComponentUpdatesOperation> NewSubscribeToComponentUpdates(
                 std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler) noexcept;
 
-            ListLocalDeploymentsOperation NewListLocalDeployments() noexcept;
-            std::unique_ptr<ListLocalDeploymentsOperation> NewPtrListLocalDeployments() noexcept;
+            std::shared_ptr<ListLocalDeploymentsOperation> NewListLocalDeployments() noexcept;
 
-            StopComponentOperation NewStopComponent() noexcept;
-            std::unique_ptr<StopComponentOperation> NewPtrStopComponent() noexcept;
+            std::shared_ptr<StopComponentOperation> NewStopComponent() noexcept;
 
-            PauseComponentOperation NewPauseComponent() noexcept;
-            std::unique_ptr<PauseComponentOperation> NewPtrPauseComponent() noexcept;
+            std::shared_ptr<PauseComponentOperation> NewPauseComponent() noexcept;
 
-            CreateLocalDeploymentOperation NewCreateLocalDeployment() noexcept;
-            std::unique_ptr<CreateLocalDeploymentOperation> NewPtrCreateLocalDeployment() noexcept;
+            std::shared_ptr<CreateLocalDeploymentOperation> NewCreateLocalDeployment() noexcept;
 
             ~GreengrassCoreIpcClient() noexcept;
 

@@ -40,26 +40,19 @@ namespace Awstest
             const ConnectionConfig &connectionConfig = DefaultConnectionConfig()) noexcept;
         bool IsConnected() const noexcept { return m_connection.IsOpen(); }
         void Close() noexcept;
-        GetAllProductsOperation NewGetAllProducts() noexcept;
-        std::unique_ptr<GetAllProductsOperation> NewPtrGetAllProducts() noexcept;
+        std::shared_ptr<GetAllProductsOperation> NewGetAllProducts() noexcept;
 
-        CauseServiceErrorOperation NewCauseServiceError() noexcept;
-        std::unique_ptr<CauseServiceErrorOperation> NewPtrCauseServiceError() noexcept;
+        std::shared_ptr<CauseServiceErrorOperation> NewCauseServiceError() noexcept;
 
-        CauseStreamServiceToErrorOperation NewCauseStreamServiceToError(
-            CauseStreamServiceToErrorStreamHandler &streamHandler) noexcept;
-        std::unique_ptr<CauseStreamServiceToErrorOperation> NewPtrCauseStreamServiceToError(
+        std::shared_ptr<CauseStreamServiceToErrorOperation> NewCauseStreamServiceToError(
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler) noexcept;
 
-        EchoStreamMessagesOperation NewEchoStreamMessages(EchoStreamMessagesStreamHandler &streamHandler) noexcept;
-        std::unique_ptr<EchoStreamMessagesOperation> NewPtrEchoStreamMessages(
+        std::shared_ptr<EchoStreamMessagesOperation> NewEchoStreamMessages(
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler) noexcept;
 
-        EchoMessageOperation NewEchoMessage() noexcept;
-        std::unique_ptr<EchoMessageOperation> NewPtrEchoMessage() noexcept;
+        std::shared_ptr<EchoMessageOperation> NewEchoMessage() noexcept;
 
-        GetAllCustomersOperation NewGetAllCustomers() noexcept;
-        std::unique_ptr<GetAllCustomersOperation> NewPtrGetAllCustomers() noexcept;
+        std::shared_ptr<GetAllCustomersOperation> NewGetAllCustomers() noexcept;
 
         ~EchoTestRpcClient() noexcept;
 

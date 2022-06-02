@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - "*"
-      - "!main"
+    branches-ignore:
+      - 'main'
+      - 'docs'
 
 env:
   BUILDER_VERSION: v0.8.29
@@ -13,9 +13,9 @@ env:
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
   LINUX_BASE_IMAGE: ubuntu-16-x64
   RUN: ${{ github.run_id }}-${{ github.run_number }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DATEST_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DATEST_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: us-east-1
 
 jobs:
   linux-compat:
@@ -64,7 +64,7 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
 
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest
@@ -75,7 +75,7 @@ jobs:
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
-  windows-vs16:
+  windows:
     runs-on: windows-latest
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
@@ -83,26 +83,20 @@ jobs:
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
 
   windows-vs14:
-    runs-on: windows-latest
+    runs-on: windows-2019 # windows-2019 is last env with Visual Studio 2015 (v14.0)
     strategy:
       matrix:
-        arch: [x86, x64]
+        arch: [Win32, x64]
     steps:
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          toolset: 14.0
-          arch: ${{ matrix.arch }}
-          uwp: false
-          spectre: true
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           md D:\a\work
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
@@ -123,6 +117,17 @@ jobs:
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
+  # check that docs can still build
+  check-docs:
+    runs-on: ubuntu-20.04 # latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Check docs
+        run: |
+          sudo apt-get install -y doxygen
+          ./make-docs.py
 
   check-submodules:
     runs-on: ubuntu-latest
