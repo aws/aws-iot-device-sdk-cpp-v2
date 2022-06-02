@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import platform
+import re
 from time import sleep
 
 ##############################################
@@ -20,6 +21,19 @@ def delete_thing_with_certi(thingName, certiId, certiArn):
     os.remove(os.environ["DA_CERTI"])
     os.remove(os.environ["DA_KEY"])
 
+def process_logs(log_group, log_stream, thing_name):
+    logs_client = boto3.client('logs')
+    response = logs_client.get_log_events(
+        logGroupName=log_group,
+        logStreamName=log_stream
+    )
+    log_file = thing_name + ".log"
+    f = open(log_file, 'w')
+    for event in response["events"]:
+        f.write(event['message'])
+    f.close()
+    s3.Bucket(os.environ['DA_S3_NAME']).upload_file(log_file, log_file)
+    os.remove(log_file)
 
 ##############################################
 # Initialize variables
@@ -27,6 +41,7 @@ def delete_thing_with_certi(thingName, certiId, certiArn):
 client = boto3.client('iot')
 dataClient = boto3.client('iot-data')
 deviceAdvisor = boto3.client('iotdeviceadvisor')
+s3 = boto3.resource('s3')
 
 # load test config
 f = open('deviceadvisor/script/DATestConfig.json')
@@ -202,10 +217,18 @@ for test_name in DATestConfig['tests']:
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
                 test_result[test_name] = test_result_responds['status']
-                if(test_result[test_name] == "PASS"):
-                    delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-                break
+                # If the test failed, upload the logs to S3 before clean up
+                if(test_result[test_name] != "PASS"):
+                    log_url = test_result_responds['testResult']['groups'][0]['tests'][0]['logUrl']
+                    group_string = re.search('group=(.*);', log_url)
+                    log_group = group_string.group(1)
+                    stream_string = re.search('stream=(.*)', log_url)
+                    log_stream = stream_string.group(1)
+                    process_logs(log_group, log_stream, thing_name)
+                delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
+                break;
     except Exception as e:
+        delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
         print("[Device Advisor]Error: Failed to test: "+ test_name)
 
 ##############################################
