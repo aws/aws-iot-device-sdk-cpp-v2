@@ -79,7 +79,7 @@ int main()
      * Actually perform the connect dance.
      */
     if (!connection->Connect(
-            clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 6000 /*pingTimeoutMs*/))
+            clientId.c_str(), true /*cleanSession*/, 1000 /*keepAliveTimeSecs*/, 60000 /*pingTimeoutMs*/))
     {
         exit(5);
     }
