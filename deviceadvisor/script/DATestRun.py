@@ -35,6 +35,7 @@ def process_logs(log_group, log_stream, thing_name):
     f.close()
     s3.Bucket(os.environ['DA_S3_NAME']).upload_file(log_file, log_file)
     os.remove(log_file)
+    print("[Device Advisor] Issues on test " + test_name + ". Please check out the logs at "+thing_name+".log on S3.")
 
 def sleep_with_backoff(base, max):
     sleep(random.randint(base,max))
@@ -47,6 +48,8 @@ client = boto3.client('iot')
 dataClient = boto3.client('iot-data')
 deviceAdvisor = boto3.client('iotdeviceadvisor')
 s3 = boto3.resource('s3')
+
+# const
 BACKOFF_BASE = 5
 BACKOFF_MAX = 10
 
