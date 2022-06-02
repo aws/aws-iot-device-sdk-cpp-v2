@@ -19,6 +19,7 @@ phases:
       - $CODEBUILD_SRC_DIR/codebuild/samples/connect-websocket-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-connect-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/securetunnel-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/connect-custom-authorizer-linux.sh
   post_build:
     commands:
       - echo Build completed on `date`
