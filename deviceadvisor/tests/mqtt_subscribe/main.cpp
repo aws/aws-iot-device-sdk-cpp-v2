@@ -97,17 +97,13 @@ int main()
                              const ByteBuf & /*byteBuf*/,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
-            subscriptionCompletedPromise.set_value();
-                             };
+                             bool /*retain*/) { subscriptionCompletedPromise.set_value(); };
 
         auto onSubAck = [&](Mqtt::MqttConnection &,
                             uint16_t /*packetId*/,
                             const String & /*topic*/,
                             Mqtt::QOS /*QoS*/,
-                            int /*errorCode*/) {
-            subscriptionCompletedPromise.set_value();
-                            };
+                            int /*errorCode*/) { subscriptionCompletedPromise.set_value(); };
 
         connection->Subscribe(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
         subscriptionCompletedPromise.get_future().wait();
