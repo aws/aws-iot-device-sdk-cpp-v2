@@ -68,6 +68,7 @@ int main()
      * Invoked when connection and disconnection has completed.
      */
     std::promise<bool> connectionCompletedPromise;
+    std::promise<void> subscriptionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
     connection->OnConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
@@ -96,15 +97,20 @@ int main()
                              const ByteBuf & /*byteBuf*/,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {};
+                             bool /*retain*/) {
+            subscriptionCompletedPromise.set_value();
+                             };
 
         auto onSubAck = [&](Mqtt::MqttConnection &,
                             uint16_t /*packetId*/,
                             const String & /*topic*/,
                             Mqtt::QOS /*QoS*/,
-                            int /*errorCode*/) {};
+                            int /*errorCode*/) {
+            subscriptionCompletedPromise.set_value();
+                            };
 
         connection->Subscribe(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+        subscriptionCompletedPromise.get_future().wait();
 
         /* Disconnect */
         if (connection->Disconnect())
