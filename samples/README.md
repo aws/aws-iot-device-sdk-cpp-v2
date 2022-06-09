@@ -51,10 +51,7 @@ On startup, the device connects to the server, subscribes to a topic, and begins
 
 Source: `samples/pub_sub/basic_pub_sub/main.cpp`
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -109,7 +106,7 @@ This sample makes an MQTT connection using a certificate and key file. On startu
 
 Source: `samples/mqtt/basic_connect/main.cpp`
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -143,7 +140,7 @@ This sample makes an MQTT connection via websockets and then disconnects. On sta
 
 Source: `samples/mqtt/websocket_connect/main.cpp`
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -227,7 +224,7 @@ To run this sample using [SoftHSM2](https://www.opendnssec.org/softhsm/) as the 
     ./pkcs11-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to certificate> --pkcs11_lib <path to PKCS11 lib> --pin <user-pin> --token_label <token-label> --key_label <key-label>
     ```
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -268,6 +265,28 @@ If your certificate and private key are in a
 you would use them by passing their certificate store path.
 
 source: `samples/mqtt/windows_cert_connect/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
 
 To run this sample with a basic certificate from AWS IoT Core:
 
@@ -328,7 +347,7 @@ To run the Raw MQTT Pub-Sub sample use the following command:
 --user_name <user name to send on connect> --password <password to send on connect>
 ```
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -366,7 +385,7 @@ To run the x509 Credentials Provider Connect sample use the following command:
 -- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
 ```
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -392,7 +411,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 
 This sample makes an MQTT connection and connects through a [Custom Authorizer](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html). On startup, the device connects to the server and then disconnects. This sample is for reference on connecting using a custom authorizer.
 
-Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -445,10 +464,7 @@ value.
 
 Source: `samples/shadow/shadow_sync/main.cpp`
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -525,10 +541,8 @@ On startup, the sample describes a job that is pending execution.
 
 Source: `samples/jobs/describe_job_execution/main.cpp`
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
+
 <details>
 <summary>(see sample policy)</summary>
 <pre>
@@ -624,10 +638,7 @@ Run the sample like this to provision using Csr:
 --template_name <template name> --template_parameters <template parameters json> --csr <path to the CSR in PEM format>
 ```
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, subscribe, publish,
-and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -851,9 +862,7 @@ To run the basic Device Defender use the following command:
 --thing_name <thing name>
 ```
 
-Your Thing's
-[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
-must provide privileges for this sample to connect, publish, and receive.
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 <details>
 <summary>(see sample policy)</summary>
