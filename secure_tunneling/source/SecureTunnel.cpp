@@ -408,7 +408,7 @@ namespace Aws
 
         void SecureTunnel::OnTerminationComplete() { m_TerminationComplete.set_value(); }
 
-        void SecureTunnel::Stop()
+        void SecureTunnel::Shutdown()
         {
             Close();
             aws_secure_tunnel_release(m_secure_tunnel);

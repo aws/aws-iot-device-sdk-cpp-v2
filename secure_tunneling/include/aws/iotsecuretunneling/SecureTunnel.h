@@ -155,7 +155,7 @@ namespace Aws
 
             int Close();
 
-            void Stop();
+            void Shutdown();
 
             int SendData(const Crt::ByteCursor &data);
 

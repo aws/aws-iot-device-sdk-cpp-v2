@@ -109,7 +109,7 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
 {
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
-    testContext->secureTunnel->Stop();
+    testContext->secureTunnel->Shutdown();
 
     testContext->secureTunnel.reset();
     testContext->clientBootstrap.reset();
