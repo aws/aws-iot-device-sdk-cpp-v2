@@ -53,43 +53,43 @@ namespace Aws
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionComplete(OnConnectionComplete onConnectionComplete)
         {
-            m_OnConnectionComplete = onConnectionComplete;
+            m_OnConnectionComplete = std::move(onConnectionComplete);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown)
         {
-            m_OnConnectionShutdown = onConnectionShutdown;
+            m_OnConnectionShutdown = std::move(onConnectionShutdown);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnSendDataComplete(OnSendDataComplete onSendDataComplete)
         {
-            m_OnSendDataComplete = onSendDataComplete;
+            m_OnSendDataComplete = std::move(onSendDataComplete);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnDataReceive(OnDataReceive onDataReceive)
         {
-            m_OnDataReceive = onDataReceive;
+            m_OnDataReceive = std::move(onDataReceive);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamStart(OnStreamStart onStreamStart)
         {
-            m_OnStreamStart = onStreamStart;
+            m_OnStreamStart = std::move(onStreamStart);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamReset(OnStreamReset onStreamReset)
         {
-            m_OnStreamReset = onStreamReset;
+            m_OnStreamReset = std::move(onStreamReset);
             return *this;
         }
 
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnSessionReset(OnSessionReset onSessionReset)
         {
-            m_OnSessionReset = onSessionReset;
+            m_OnSessionReset = std::move(onSessionReset);
             return *this;
         }
 
@@ -144,13 +144,13 @@ namespace Aws
             OnSessionReset onSessionReset)
         {
             // Client callbacks
-            m_OnConnectionComplete = onConnectionComplete;
-            m_OnConnectionShutdown = onConnectionShutdown;
-            m_OnSendDataComplete = onSendDataComplete;
-            m_OnDataReceive = onDataReceive;
-            m_OnStreamStart = onStreamStart;
-            m_OnStreamReset = onStreamReset;
-            m_OnSessionReset = onSessionReset;
+            m_OnConnectionComplete = std::move(onConnectionComplete);
+            m_OnConnectionShutdown = std::move(onConnectionShutdown);
+            m_OnSendDataComplete = std::move(onSendDataComplete);
+            m_OnDataReceive = std::move(onDataReceive);
+            m_OnStreamStart = std::move(onStreamStart);
+            m_OnStreamReset = std::move(onStreamReset);
+            m_OnSessionReset = std::move(onSessionReset);
 
             // Initialize aws_secure_tunnel_options
             aws_secure_tunnel_options config;
@@ -176,6 +176,7 @@ namespace Aws
             config.on_stream_start = s_OnStreamStart;
             config.on_stream_reset = s_OnStreamReset;
             config.on_session_reset = s_OnSessionReset;
+            config.on_termination_complete = s_OnTerminationComplete;
 
             config.user_data = this;
 
@@ -272,13 +273,15 @@ namespace Aws
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
         {
-            m_OnConnectionComplete = other.m_OnConnectionComplete;
-            m_OnConnectionShutdown = other.m_OnConnectionShutdown;
-            m_OnSendDataComplete = other.m_OnSendDataComplete;
-            m_OnDataReceive = other.m_OnDataReceive;
-            m_OnStreamStart = other.m_OnStreamStart;
-            m_OnStreamReset = other.m_OnStreamReset;
-            m_OnSessionReset = other.m_OnSessionReset;
+            m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
+            m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
+            m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
+            m_OnDataReceive = std::move(other.m_OnDataReceive);
+            m_OnStreamStart = std::move(other.m_OnStreamStart);
+            m_OnStreamReset = std::move(other.m_OnStreamReset);
+            m_OnSessionReset = std::move(other.m_OnSessionReset);
+
+            m_TerminationComplete = std::move(other.m_TerminationComplete);
 
             m_secure_tunnel = other.m_secure_tunnel;
 
@@ -299,13 +302,15 @@ namespace Aws
             {
                 this->~SecureTunnel();
 
-                m_OnConnectionComplete = other.m_OnConnectionComplete;
-                m_OnConnectionShutdown = other.m_OnConnectionShutdown;
-                m_OnSendDataComplete = other.m_OnSendDataComplete;
-                m_OnDataReceive = other.m_OnDataReceive;
-                m_OnStreamStart = other.m_OnStreamStart;
-                m_OnStreamReset = other.m_OnStreamReset;
-                m_OnSessionReset = other.m_OnSessionReset;
+                m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
+                m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
+                m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
+                m_OnDataReceive = std::move(other.m_OnDataReceive);
+                m_OnStreamStart = std::move(other.m_OnStreamStart);
+                m_OnStreamReset = std::move(other.m_OnStreamReset);
+                m_OnSessionReset = std::move(other.m_OnSessionReset);
+
+                m_TerminationComplete = std::move(other.m_TerminationComplete);
 
                 m_secure_tunnel = other.m_secure_tunnel;
 
@@ -395,5 +400,21 @@ namespace Aws
             }
         }
 
+        void SecureTunnel::s_OnTerminationComplete(void *user_data)
+        {
+            auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
+            secureTunnel->OnTerminationComplete();
+        }
+
+        void SecureTunnel::OnTerminationComplete() { m_TerminationComplete.set_value(); }
+
+        void SecureTunnel::Shutdown()
+        {
+            Close();
+            aws_secure_tunnel_release(m_secure_tunnel);
+            m_secure_tunnel = nullptr;
+
+            m_TerminationComplete.get_future().wait();
+        }
     } // namespace Iotsecuretunneling
 } // namespace Aws

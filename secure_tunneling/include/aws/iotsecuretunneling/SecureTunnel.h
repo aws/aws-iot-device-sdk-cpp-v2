@@ -10,6 +10,8 @@
 #include <aws/iotdevice/secure_tunneling.h>
 #include <aws/iotsecuretunneling/Exports.h>
 
+#include <future>
+
 namespace Aws
 {
     namespace Iotsecuretunneling
@@ -153,6 +155,8 @@ namespace Aws
 
             int Close();
 
+            void Shutdown();
+
             int SendData(const Crt::ByteCursor &data);
 
             int SendStreamStart();
@@ -193,6 +197,9 @@ namespace Aws
             static void s_OnStreamStart(void *user_data);
             static void s_OnStreamReset(void *user_data);
             static void s_OnSessionReset(void *user_data);
+            static void s_OnTerminationComplete(void *user_data);
+
+            void OnTerminationComplete();
 
             // Client callbacks
             OnConnectionComplete m_OnConnectionComplete;
@@ -203,6 +210,8 @@ namespace Aws
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
             aws_secure_tunnel *m_secure_tunnel;
+
+            std::promise<void> m_TerminationComplete;
 
             friend class SecureTunnelBuilder;
         };
