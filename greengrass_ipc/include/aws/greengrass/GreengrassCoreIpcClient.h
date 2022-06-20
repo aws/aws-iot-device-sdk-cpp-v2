@@ -30,12 +30,10 @@ namespace Aws
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Connect the client to the server
-             * @param lifecycleHandler An interface that is called upon when lifecycle
-             * events relating to the connection occur.
-             * @param connectionConfig The configuration parameters used for establishing
-             * the connection.
-             * @return An `RpcError` that can be used to check whether the connection was
-             * established.
+             * @param lifecycleHandler An interface that is called upon when lifecycle events relating to the connection
+             * occur.
+             * @param connectionConfig The configuration parameters used for establishing the connection.
+             * @return An `RpcError` that can be used to check whether the connection was established.
              */
             std::future<RpcError> Connect(
                 ConnectionLifecycleHandler &lifecycleHandler,
@@ -67,7 +65,16 @@ namespace Aws
 
             std::shared_ptr<GetComponentDetailsOperation> NewGetComponentDetails() noexcept;
 
+            std::shared_ptr<GetClientDeviceAuthTokenOperation> NewGetClientDeviceAuthToken() noexcept;
+
             std::shared_ptr<PublishToTopicOperation> NewPublishToTopic() noexcept;
+
+            std::shared_ptr<SubscribeToCertificateUpdatesOperation> NewSubscribeToCertificateUpdates(
+                std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler) noexcept;
+
+            std::shared_ptr<VerifyClientDeviceIdentityOperation> NewVerifyClientDeviceIdentity() noexcept;
+
+            std::shared_ptr<AuthorizeClientDeviceActionOperation> NewAuthorizeClientDeviceAction() noexcept;
 
             std::shared_ptr<ListComponentsOperation> NewListComponents() noexcept;
 

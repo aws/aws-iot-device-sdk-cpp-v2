@@ -21,6 +21,30 @@ namespace Aws
     {
         class GreengrassCoreIpcClient;
         class GreengrassCoreIpcServiceModel;
+        class MessageContext : public AbstractShapeBase
+        {
+          public:
+            MessageContext() noexcept {}
+            MessageContext(const MessageContext &) = default;
+            void SetTopic(const Aws::Crt::String &topic) noexcept { m_topic = topic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopic() noexcept { return m_topic; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(MessageContext &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(MessageContext *) noexcept;
+            /* This needs to be defined so that `MessageContext` can be used as a key in maps. */
+            bool operator<(const MessageContext &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_topic;
+        };
+
         class SystemResourceLimits : public AbstractShapeBase
         {
           public:
@@ -36,8 +60,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SystemResourceLimits *) noexcept;
-            /* This needs to be defined so that `SystemResourceLimits` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `SystemResourceLimits` can be used as a key in maps. */
             bool operator<(const SystemResourceLimits &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -67,8 +90,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ValidateConfigurationUpdateEvent *) noexcept;
-            /* This needs to be defined so that `ValidateConfigurationUpdateEvent` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `ValidateConfigurationUpdateEvent` can be used as a key in maps. */
             bool operator<(const ValidateConfigurationUpdateEvent &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -95,8 +117,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(MQTTMessage *) noexcept;
-            /* This needs to be defined so that `MQTTMessage` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `MQTTMessage` can be used as a key in maps. */
             bool operator<(const MQTTMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -123,8 +144,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ConfigurationUpdateEvent *) noexcept;
-            /* This needs to be defined so that `ConfigurationUpdateEvent` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `ConfigurationUpdateEvent` can be used as a key in maps. */
             bool operator<(const ConfigurationUpdateEvent &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -149,8 +169,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PostComponentUpdateEvent *) noexcept;
-            /* This needs to be defined so that `PostComponentUpdateEvent` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `PostComponentUpdateEvent` can be used as a key in maps. */
             bool operator<(const PostComponentUpdateEvent &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -176,8 +195,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PreComponentUpdateEvent *) noexcept;
-            /* This needs to be defined so that `PreComponentUpdateEvent` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PreComponentUpdateEvent` can be used as a key in maps. */
             bool operator<(const PreComponentUpdateEvent &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -187,6 +205,50 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_deploymentId;
             Aws::Crt::Optional<bool> m_isGgcRestarting;
+        };
+
+        class CertificateUpdate : public AbstractShapeBase
+        {
+          public:
+            CertificateUpdate() noexcept {}
+            CertificateUpdate(const CertificateUpdate &) = default;
+            void SetPrivateKey(const Aws::Crt::String &privateKey) noexcept { m_privateKey = privateKey; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPrivateKey() noexcept { return m_privateKey; }
+            void SetPublicKey(const Aws::Crt::String &publicKey) noexcept { m_publicKey = publicKey; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPublicKey() noexcept { return m_publicKey; }
+            void SetCertificate(const Aws::Crt::String &certificate) noexcept { m_certificate = certificate; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificate() noexcept { return m_certificate; }
+            void SetCaCertificates(const Aws::Crt::Vector<Aws::Crt::String> &caCertificates) noexcept
+            {
+                m_caCertificates = caCertificates;
+            }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetCaCertificates() noexcept
+            {
+                return m_caCertificates;
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CertificateUpdate &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CertificateUpdate *) noexcept;
+            /* This needs to be defined so that `CertificateUpdate` can be used as a key in maps. */
+            bool operator<(const CertificateUpdate &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_privateKey;
+            Aws::Crt::Optional<Aws::Crt::String> m_publicKey;
+            Aws::Crt::Optional<Aws::Crt::String> m_certificate;
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> m_caCertificates;
+        };
+
+        enum CertificateType
+        {
+            CERTIFICATE_TYPE_SERVER
         };
 
         enum ConfigurationValidityStatus
@@ -202,14 +264,17 @@ namespace Aws
             BinaryMessage(const BinaryMessage &) = default;
             void SetMessage(const Aws::Crt::Vector<uint8_t> &message) noexcept { m_message = message; }
             Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetMessage() noexcept { return m_message; }
+            /* The context is ignored if used in PublishMessage. */
+            void SetContext(const MessageContext &context) noexcept { m_context = context; }
+            /* The context is ignored if used in PublishMessage. */
+            Aws::Crt::Optional<MessageContext> GetContext() noexcept { return m_context; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(BinaryMessage &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(BinaryMessage *) noexcept;
-            /* This needs to be defined so that `BinaryMessage` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `BinaryMessage` can be used as a key in maps. */
             bool operator<(const BinaryMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -218,6 +283,7 @@ namespace Aws
 
           private:
             Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> m_message;
+            Aws::Crt::Optional<MessageContext> m_context;
         };
 
         class JsonMessage : public AbstractShapeBase
@@ -227,14 +293,17 @@ namespace Aws
             JsonMessage(const JsonMessage &) = default;
             void SetMessage(const Aws::Crt::JsonObject &message) noexcept { m_message = message; }
             Aws::Crt::Optional<Aws::Crt::JsonObject> GetMessage() noexcept { return m_message; }
+            /* The context is ignored if used in PublishMessage. */
+            void SetContext(const MessageContext &context) noexcept { m_context = context; }
+            /* The context is ignored if used in PublishMessage. */
+            Aws::Crt::Optional<MessageContext> GetContext() noexcept { return m_context; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(JsonMessage &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(JsonMessage *) noexcept;
-            /* This needs to be defined so that `JsonMessage` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `JsonMessage` can be used as a key in maps. */
             bool operator<(const JsonMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -243,6 +312,7 @@ namespace Aws
 
           private:
             Aws::Crt::Optional<Aws::Crt::JsonObject> m_message;
+            Aws::Crt::Optional<MessageContext> m_context;
         };
 
         enum DeploymentStatus
@@ -263,6 +333,42 @@ namespace Aws
             LIFECYCLE_STATE_BROKEN,
             LIFECYCLE_STATE_STARTING,
             LIFECYCLE_STATE_STOPPING
+        };
+
+        class MQTTCredential : public AbstractShapeBase
+        {
+          public:
+            MQTTCredential() noexcept {}
+            MQTTCredential(const MQTTCredential &) = default;
+            void SetClientId(const Aws::Crt::String &clientId) noexcept { m_clientId = clientId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientId() noexcept { return m_clientId; }
+            void SetCertificatePem(const Aws::Crt::String &certificatePem) noexcept
+            {
+                m_certificatePem = certificatePem;
+            }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificatePem() noexcept { return m_certificatePem; }
+            void SetUsername(const Aws::Crt::String &username) noexcept { m_username = username; }
+            Aws::Crt::Optional<Aws::Crt::String> GetUsername() noexcept { return m_username; }
+            void SetPassword(const Aws::Crt::String &password) noexcept { m_password = password; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPassword() noexcept { return m_password; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(MQTTCredential &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(MQTTCredential *) noexcept;
+            /* This needs to be defined so that `MQTTCredential` can be used as a key in maps. */
+            bool operator<(const MQTTCredential &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_clientId;
+            Aws::Crt::Optional<Aws::Crt::String> m_certificatePem;
+            Aws::Crt::Optional<Aws::Crt::String> m_username;
+            Aws::Crt::Optional<Aws::Crt::String> m_password;
         };
 
         class RunWithInfo : public AbstractShapeBase
@@ -288,8 +394,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(RunWithInfo *) noexcept;
-            /* This needs to be defined so that `RunWithInfo` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `RunWithInfo` can be used as a key in maps. */
             bool operator<(const RunWithInfo &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -300,6 +405,49 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_posixUser;
             Aws::Crt::Optional<Aws::Crt::String> m_windowsUser;
             Aws::Crt::Optional<SystemResourceLimits> m_systemResourceLimits;
+        };
+
+        class ClientDeviceCredential : public AbstractShapeBase
+        {
+          public:
+            ClientDeviceCredential() noexcept {}
+            ClientDeviceCredential &operator=(const ClientDeviceCredential &) noexcept;
+            ClientDeviceCredential(const ClientDeviceCredential &objectToCopy) { *this = objectToCopy; }
+            void SetClientDeviceCertificate(const Aws::Crt::String &clientDeviceCertificate) noexcept
+            {
+                m_clientDeviceCertificate = clientDeviceCertificate;
+                m_chosenMember = TAG_CLIENT_DEVICE_CERTIFICATE;
+            }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceCertificate() noexcept
+            {
+                if (m_chosenMember == TAG_CLIENT_DEVICE_CERTIFICATE)
+                {
+                    return m_clientDeviceCertificate;
+                }
+                else
+                {
+                    return Aws::Crt::Optional<Aws::Crt::String>();
+                }
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(ClientDeviceCredential &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(ClientDeviceCredential *) noexcept;
+            /* This needs to be defined so that `ClientDeviceCredential` can be used as a key in maps. */
+            bool operator<(const ClientDeviceCredential &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            enum ChosenMember
+            {
+                TAG_CLIENT_DEVICE_CERTIFICATE
+            } m_chosenMember;
+            Aws::Crt::Optional<Aws::Crt::String> m_clientDeviceCertificate;
         };
 
         enum ReportedLifecycleState
@@ -340,8 +488,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ValidateConfigurationUpdateEvents *) noexcept;
-            /* This needs to be defined so that `ValidateConfigurationUpdateEvents` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `ValidateConfigurationUpdateEvents` can be used as a key in maps. */
             bool operator<(const ValidateConfigurationUpdateEvents &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -400,8 +547,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscriptionResponseMessage *) noexcept;
-            /* This needs to be defined so that `SubscriptionResponseMessage` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `SubscriptionResponseMessage` can be used as a key in maps. */
             bool operator<(const SubscriptionResponseMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -416,6 +562,12 @@ namespace Aws
             } m_chosenMember;
             Aws::Crt::Optional<JsonMessage> m_jsonMessage;
             Aws::Crt::Optional<BinaryMessage> m_binaryMessage;
+        };
+
+        enum ReceiveMode
+        {
+            RECEIVE_MODE_RECEIVE_ALL_MESSAGES,
+            RECEIVE_MODE_RECEIVE_MESSAGES_FROM_OTHERS
         };
 
         class IoTCoreMessage : public AbstractShapeBase
@@ -446,8 +598,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(IoTCoreMessage *) noexcept;
-            /* This needs to be defined so that `IoTCoreMessage` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `IoTCoreMessage` can be used as a key in maps. */
             bool operator<(const IoTCoreMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -490,8 +641,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ConfigurationUpdateEvents *) noexcept;
-            /* This needs to be defined so that `ConfigurationUpdateEvents` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `ConfigurationUpdateEvents` can be used as a key in maps. */
             bool operator<(const ConfigurationUpdateEvents &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -550,8 +700,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ComponentUpdatePolicyEvents *) noexcept;
-            /* This needs to be defined so that `ComponentUpdatePolicyEvents` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `ComponentUpdatePolicyEvents` can be used as a key in maps. */
             bool operator<(const ComponentUpdatePolicyEvents &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -566,6 +715,73 @@ namespace Aws
             } m_chosenMember;
             Aws::Crt::Optional<PreComponentUpdateEvent> m_preUpdateEvent;
             Aws::Crt::Optional<PostComponentUpdateEvent> m_postUpdateEvent;
+        };
+
+        class CertificateUpdateEvent : public AbstractShapeBase
+        {
+          public:
+            CertificateUpdateEvent() noexcept {}
+            CertificateUpdateEvent &operator=(const CertificateUpdateEvent &) noexcept;
+            CertificateUpdateEvent(const CertificateUpdateEvent &objectToCopy) { *this = objectToCopy; }
+            void SetCertificateUpdate(const CertificateUpdate &certificateUpdate) noexcept
+            {
+                m_certificateUpdate = certificateUpdate;
+                m_chosenMember = TAG_CERTIFICATE_UPDATE;
+            }
+            Aws::Crt::Optional<CertificateUpdate> GetCertificateUpdate() noexcept
+            {
+                if (m_chosenMember == TAG_CERTIFICATE_UPDATE)
+                {
+                    return m_certificateUpdate;
+                }
+                else
+                {
+                    return Aws::Crt::Optional<CertificateUpdate>();
+                }
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CertificateUpdateEvent &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CertificateUpdateEvent *) noexcept;
+            /* This needs to be defined so that `CertificateUpdateEvent` can be used as a key in maps. */
+            bool operator<(const CertificateUpdateEvent &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            enum ChosenMember
+            {
+                TAG_CERTIFICATE_UPDATE
+            } m_chosenMember;
+            Aws::Crt::Optional<CertificateUpdate> m_certificateUpdate;
+        };
+
+        class CertificateOptions : public AbstractShapeBase
+        {
+          public:
+            CertificateOptions() noexcept {}
+            CertificateOptions(const CertificateOptions &) = default;
+            void SetCertificateType(CertificateType certificateType) noexcept;
+            Aws::Crt::Optional<CertificateType> GetCertificateType() noexcept;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CertificateOptions &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CertificateOptions *) noexcept;
+            /* This needs to be defined so that `CertificateOptions` can be used as a key in maps. */
+            bool operator<(const CertificateOptions &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_certificateType;
         };
 
         class ConfigurationValidityReport : public AbstractShapeBase
@@ -585,8 +801,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ConfigurationValidityReport *) noexcept;
-            /* This needs to be defined so that `ConfigurationValidityReport` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `ConfigurationValidityReport` can be used as a key in maps. */
             bool operator<(const ConfigurationValidityReport &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -649,8 +864,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishMessage *) noexcept;
-            /* This needs to be defined so that `PublishMessage` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `PublishMessage` can be used as a key in maps. */
             bool operator<(const PublishMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -717,8 +931,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SecretValue *) noexcept;
-            /* This needs to be defined so that `SecretValue` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `SecretValue` can be used as a key in maps. */
             bool operator<(const SecretValue &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -750,8 +963,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(LocalDeployment *) noexcept;
-            /* This needs to be defined so that `LocalDeployment` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `LocalDeployment` can be used as a key in maps. */
             bool operator<(const LocalDeployment &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -785,8 +997,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ComponentDetails *) noexcept;
-            /* This needs to be defined so that `ComponentDetails` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `ComponentDetails` can be used as a key in maps. */
             bool operator<(const ComponentDetails &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -798,6 +1009,100 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_version;
             Aws::Crt::Optional<Aws::Crt::String> m_state;
             Aws::Crt::Optional<Aws::Crt::JsonObject> m_configuration;
+        };
+
+        class CredentialDocument : public AbstractShapeBase
+        {
+          public:
+            CredentialDocument() noexcept {}
+            CredentialDocument &operator=(const CredentialDocument &) noexcept;
+            CredentialDocument(const CredentialDocument &objectToCopy) { *this = objectToCopy; }
+            void SetMqttCredential(const MQTTCredential &mqttCredential) noexcept
+            {
+                m_mqttCredential = mqttCredential;
+                m_chosenMember = TAG_MQTT_CREDENTIAL;
+            }
+            Aws::Crt::Optional<MQTTCredential> GetMqttCredential() noexcept
+            {
+                if (m_chosenMember == TAG_MQTT_CREDENTIAL)
+                {
+                    return m_mqttCredential;
+                }
+                else
+                {
+                    return Aws::Crt::Optional<MQTTCredential>();
+                }
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CredentialDocument &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CredentialDocument *) noexcept;
+            /* This needs to be defined so that `CredentialDocument` can be used as a key in maps. */
+            bool operator<(const CredentialDocument &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            enum ChosenMember
+            {
+                TAG_MQTT_CREDENTIAL
+            } m_chosenMember;
+            Aws::Crt::Optional<MQTTCredential> m_mqttCredential;
+        };
+
+        class VerifyClientDeviceIdentityResponse : public AbstractShapeBase
+        {
+          public:
+            VerifyClientDeviceIdentityResponse() noexcept {}
+            VerifyClientDeviceIdentityResponse(const VerifyClientDeviceIdentityResponse &) = default;
+            void SetIsValidClientDevice(const bool &isValidClientDevice) noexcept
+            {
+                m_isValidClientDevice = isValidClientDevice;
+            }
+            Aws::Crt::Optional<bool> GetIsValidClientDevice() noexcept { return m_isValidClientDevice; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(VerifyClientDeviceIdentityResponse &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(VerifyClientDeviceIdentityResponse *) noexcept;
+            /* This needs to be defined so that `VerifyClientDeviceIdentityResponse` can be used as a key in maps. */
+            bool operator<(const VerifyClientDeviceIdentityResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<bool> m_isValidClientDevice;
+        };
+
+        class VerifyClientDeviceIdentityRequest : public AbstractShapeBase
+        {
+          public:
+            VerifyClientDeviceIdentityRequest() noexcept {}
+            VerifyClientDeviceIdentityRequest(const VerifyClientDeviceIdentityRequest &) = default;
+            void SetCredential(const ClientDeviceCredential &credential) noexcept { m_credential = credential; }
+            Aws::Crt::Optional<ClientDeviceCredential> GetCredential() noexcept { return m_credential; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(VerifyClientDeviceIdentityRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(VerifyClientDeviceIdentityRequest *) noexcept;
+            /* This needs to be defined so that `VerifyClientDeviceIdentityRequest` can be used as a key in maps. */
+            bool operator<(const VerifyClientDeviceIdentityRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<ClientDeviceCredential> m_credential;
         };
 
         class InvalidTokenError : public OperationError
@@ -813,8 +1118,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(InvalidTokenError *) noexcept;
-            /* This needs to be defined so that `InvalidTokenError` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `InvalidTokenError` can be used as a key in maps. */
             bool operator<(const InvalidTokenError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -838,8 +1142,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ValidateAuthorizationTokenResponse *) noexcept;
-            /* This needs to be defined so that `ValidateAuthorizationTokenResponse` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `ValidateAuthorizationTokenResponse` can be used as a key in maps. */
             bool operator<(const ValidateAuthorizationTokenResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -863,8 +1166,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ValidateAuthorizationTokenRequest *) noexcept;
-            /* This needs to be defined so that `ValidateAuthorizationTokenRequest` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `ValidateAuthorizationTokenRequest` can be used as a key in maps. */
             bool operator<(const ValidateAuthorizationTokenRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -888,8 +1190,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateThingShadowResponse *) noexcept;
-            /* This needs to be defined so that `UpdateThingShadowResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `UpdateThingShadowResponse` can be used as a key in maps. */
             bool operator<(const UpdateThingShadowResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -917,8 +1218,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateThingShadowRequest *) noexcept;
-            /* This needs to be defined so that `UpdateThingShadowRequest` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `UpdateThingShadowRequest` can be used as a key in maps. */
             bool operator<(const UpdateThingShadowRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -942,8 +1242,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateStateResponse *) noexcept;
-            /* This needs to be defined so that `UpdateStateResponse` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `UpdateStateResponse` can be used as a key in maps. */
             bool operator<(const UpdateStateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -966,8 +1265,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateStateRequest *) noexcept;
-            /* This needs to be defined so that `UpdateStateRequest` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `UpdateStateRequest` can be used as a key in maps. */
             bool operator<(const UpdateStateRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -991,8 +1289,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(FailedUpdateConditionCheckError *) noexcept;
-            /* This needs to be defined so that `FailedUpdateConditionCheckError` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `FailedUpdateConditionCheckError` can be used as a key in maps. */
             bool operator<(const FailedUpdateConditionCheckError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1016,8 +1313,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ConflictError *) noexcept;
-            /* This needs to be defined so that `ConflictError` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `ConflictError` can be used as a key in maps. */
             bool operator<(const ConflictError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1039,8 +1335,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateConfigurationResponse *) noexcept;
-            /* This needs to be defined so that `UpdateConfigurationResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `UpdateConfigurationResponse` can be used as a key in maps. */
             bool operator<(const UpdateConfigurationResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1067,8 +1362,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateConfigurationRequest *) noexcept;
-            /* This needs to be defined so that `UpdateConfigurationRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `UpdateConfigurationRequest` can be used as a key in maps. */
             bool operator<(const UpdateConfigurationRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1095,9 +1389,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesResponse *) noexcept;
-            /* This needs to be defined so that
-             * `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key in
-             * maps. */
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key
+             * in maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1121,8 +1414,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesRequest *) noexcept;
-            /* This needs to be defined so that
-             * `SubscribeToValidateConfigurationUpdatesRequest` can be used as a key in
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesRequest` can be used as a key in
              * maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesRequest &) const noexcept;
             static const char *MODEL_NAME;
@@ -1138,7 +1430,9 @@ namespace Aws
           public:
             SubscribeToTopicResponse() noexcept {}
             SubscribeToTopicResponse(const SubscribeToTopicResponse &) = default;
+            /* Deprecated No longer used */
             void SetTopicName(const Aws::Crt::String &topicName) noexcept { m_topicName = topicName; }
+            /* Deprecated No longer used */
             Aws::Crt::Optional<Aws::Crt::String> GetTopicName() noexcept { return m_topicName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToTopicResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -1146,8 +1440,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToTopicResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToTopicResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `SubscribeToTopicResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToTopicResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1165,14 +1458,15 @@ namespace Aws
             SubscribeToTopicRequest(const SubscribeToTopicRequest &) = default;
             void SetTopic(const Aws::Crt::String &topic) noexcept { m_topic = topic; }
             Aws::Crt::Optional<Aws::Crt::String> GetTopic() noexcept { return m_topic; }
+            void SetReceiveMode(ReceiveMode receiveMode) noexcept;
+            Aws::Crt::Optional<ReceiveMode> GetReceiveMode() noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToTopicRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToTopicRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToTopicRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `SubscribeToTopicRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToTopicRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1181,6 +1475,7 @@ namespace Aws
 
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
+            Aws::Crt::Optional<Aws::Crt::String> m_receiveMode;
         };
 
         class SubscribeToIoTCoreResponse : public AbstractShapeBase
@@ -1194,8 +1489,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToIoTCoreResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToIoTCoreResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `SubscribeToIoTCoreResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToIoTCoreResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1220,8 +1514,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToIoTCoreRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToIoTCoreRequest` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `SubscribeToIoTCoreRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToIoTCoreRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1246,8 +1539,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToConfigurationUpdateResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToConfigurationUpdateResponse`
-             * can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToConfigurationUpdateResponse` can be used as a key in maps.
+             */
             bool operator<(const SubscribeToConfigurationUpdateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1274,8 +1567,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToConfigurationUpdateRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToConfigurationUpdateRequest`
-             * can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToConfigurationUpdateRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToConfigurationUpdateRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1298,8 +1590,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToComponentUpdatesResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToComponentUpdatesResponse` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToComponentUpdatesResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToComponentUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1320,8 +1611,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToComponentUpdatesRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToComponentUpdatesRequest` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToComponentUpdatesRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToComponentUpdatesRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1329,6 +1619,56 @@ namespace Aws
             Aws::Crt::String GetModelName() const noexcept override;
 
           private:
+        };
+
+        class SubscribeToCertificateUpdatesResponse : public AbstractShapeBase
+        {
+          public:
+            SubscribeToCertificateUpdatesResponse() noexcept {}
+            SubscribeToCertificateUpdatesResponse(const SubscribeToCertificateUpdatesResponse &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(
+                SubscribeToCertificateUpdatesResponse &,
+                const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToCertificateUpdatesResponse *) noexcept;
+            /* This needs to be defined so that `SubscribeToCertificateUpdatesResponse` can be used as a key in maps. */
+            bool operator<(const SubscribeToCertificateUpdatesResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+        };
+
+        class SubscribeToCertificateUpdatesRequest : public AbstractShapeBase
+        {
+          public:
+            SubscribeToCertificateUpdatesRequest() noexcept {}
+            SubscribeToCertificateUpdatesRequest(const SubscribeToCertificateUpdatesRequest &) = default;
+            void SetCertificateOptions(const CertificateOptions &certificateOptions) noexcept
+            {
+                m_certificateOptions = certificateOptions;
+            }
+            Aws::Crt::Optional<CertificateOptions> GetCertificateOptions() noexcept { return m_certificateOptions; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(SubscribeToCertificateUpdatesRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToCertificateUpdatesRequest *) noexcept;
+            /* This needs to be defined so that `SubscribeToCertificateUpdatesRequest` can be used as a key in maps. */
+            bool operator<(const SubscribeToCertificateUpdatesRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<CertificateOptions> m_certificateOptions;
         };
 
         class StopComponentResponse : public AbstractShapeBase
@@ -1346,8 +1686,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(StopComponentResponse *) noexcept;
-            /* This needs to be defined so that `StopComponentResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `StopComponentResponse` can be used as a key in maps. */
             bool operator<(const StopComponentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1372,8 +1711,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(StopComponentRequest *) noexcept;
-            /* This needs to be defined so that `StopComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `StopComponentRequest` can be used as a key in maps. */
             bool operator<(const StopComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1397,8 +1735,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportResponse *) noexcept;
-            /* This needs to be defined so that `SendConfigurationValidityReportResponse`
-             * can be used as a key in maps. */
+            /* This needs to be defined so that `SendConfigurationValidityReportResponse` can be used as a key in maps.
+             */
             bool operator<(const SendConfigurationValidityReportResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1429,8 +1767,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportRequest *) noexcept;
-            /* This needs to be defined so that `SendConfigurationValidityReportRequest`
-             * can be used as a key in maps. */
+            /* This needs to be defined so that `SendConfigurationValidityReportRequest` can be used as a key in maps.
+             */
             bool operator<(const SendConfigurationValidityReportRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1452,8 +1790,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ResumeComponentResponse *) noexcept;
-            /* This needs to be defined so that `ResumeComponentResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ResumeComponentResponse` can be used as a key in maps. */
             bool operator<(const ResumeComponentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1476,8 +1813,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ResumeComponentRequest *) noexcept;
-            /* This needs to be defined so that `ResumeComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ResumeComponentRequest` can be used as a key in maps. */
             bool operator<(const ResumeComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1501,8 +1837,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ComponentNotFoundError *) noexcept;
-            /* This needs to be defined so that `ComponentNotFoundError` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ComponentNotFoundError` can be used as a key in maps. */
             bool operator<(const ComponentNotFoundError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1528,8 +1863,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(RestartComponentResponse *) noexcept;
-            /* This needs to be defined so that `RestartComponentResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `RestartComponentResponse` can be used as a key in maps. */
             bool operator<(const RestartComponentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1554,8 +1888,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(RestartComponentRequest *) noexcept;
-            /* This needs to be defined so that `RestartComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `RestartComponentRequest` can be used as a key in maps. */
             bool operator<(const RestartComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1577,8 +1910,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToTopicResponse *) noexcept;
-            /* This needs to be defined so that `PublishToTopicResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToTopicResponse` can be used as a key in maps. */
             bool operator<(const PublishToTopicResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1603,8 +1935,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToTopicRequest *) noexcept;
-            /* This needs to be defined so that `PublishToTopicRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToTopicRequest` can be used as a key in maps. */
             bool operator<(const PublishToTopicRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1627,8 +1958,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToIoTCoreResponse *) noexcept;
-            /* This needs to be defined so that `PublishToIoTCoreResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `PublishToIoTCoreResponse` can be used as a key in maps. */
             bool operator<(const PublishToIoTCoreResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1655,8 +1985,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToIoTCoreRequest *) noexcept;
-            /* This needs to be defined so that `PublishToIoTCoreRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToIoTCoreRequest` can be used as a key in maps. */
             bool operator<(const PublishToIoTCoreRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1680,8 +2009,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PauseComponentResponse *) noexcept;
-            /* This needs to be defined so that `PauseComponentResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PauseComponentResponse` can be used as a key in maps. */
             bool operator<(const PauseComponentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1704,8 +2032,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PauseComponentRequest *) noexcept;
-            /* This needs to be defined so that `PauseComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PauseComponentRequest` can be used as a key in maps. */
             bool operator<(const PauseComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1733,8 +2060,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListNamedShadowsForThingResponse *) noexcept;
-            /* This needs to be defined so that `ListNamedShadowsForThingResponse` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `ListNamedShadowsForThingResponse` can be used as a key in maps. */
             bool operator<(const ListNamedShadowsForThingResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1764,8 +2090,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListNamedShadowsForThingRequest *) noexcept;
-            /* This needs to be defined so that `ListNamedShadowsForThingRequest` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `ListNamedShadowsForThingRequest` can be used as a key in maps. */
             bool operator<(const ListNamedShadowsForThingRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1797,8 +2122,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListLocalDeploymentsResponse *) noexcept;
-            /* This needs to be defined so that `ListLocalDeploymentsResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `ListLocalDeploymentsResponse` can be used as a key in maps. */
             bool operator<(const ListLocalDeploymentsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1820,8 +2144,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListLocalDeploymentsRequest *) noexcept;
-            /* This needs to be defined so that `ListLocalDeploymentsRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `ListLocalDeploymentsRequest` can be used as a key in maps. */
             bool operator<(const ListLocalDeploymentsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1847,8 +2170,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListComponentsResponse *) noexcept;
-            /* This needs to be defined so that `ListComponentsResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ListComponentsResponse` can be used as a key in maps. */
             bool operator<(const ListComponentsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1870,8 +2192,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListComponentsRequest *) noexcept;
-            /* This needs to be defined so that `ListComponentsRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ListComponentsRequest` can be used as a key in maps. */
             bool operator<(const ListComponentsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1894,8 +2215,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetThingShadowResponse *) noexcept;
-            /* This needs to be defined so that `GetThingShadowResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetThingShadowResponse` can be used as a key in maps. */
             bool operator<(const GetThingShadowResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1921,8 +2241,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetThingShadowRequest *) noexcept;
-            /* This needs to be defined so that `GetThingShadowRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetThingShadowRequest` can be used as a key in maps. */
             bool operator<(const GetThingShadowRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1956,8 +2275,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetSecretValueResponse *) noexcept;
-            /* This needs to be defined so that `GetSecretValueResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetSecretValueResponse` can be used as a key in maps. */
             bool operator<(const GetSecretValueResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1988,8 +2306,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetSecretValueRequest *) noexcept;
-            /* This needs to be defined so that `GetSecretValueRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetSecretValueRequest` can be used as a key in maps. */
             bool operator<(const GetSecretValueRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2015,8 +2332,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetLocalDeploymentStatusResponse *) noexcept;
-            /* This needs to be defined so that `GetLocalDeploymentStatusResponse` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `GetLocalDeploymentStatusResponse` can be used as a key in maps. */
             bool operator<(const GetLocalDeploymentStatusResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2040,8 +2356,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetLocalDeploymentStatusRequest *) noexcept;
-            /* This needs to be defined so that `GetLocalDeploymentStatusRequest` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `GetLocalDeploymentStatusRequest` can be used as a key in maps. */
             bool operator<(const GetLocalDeploymentStatusRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2067,8 +2382,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetConfigurationResponse *) noexcept;
-            /* This needs to be defined so that `GetConfigurationResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `GetConfigurationResponse` can be used as a key in maps. */
             bool operator<(const GetConfigurationResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2095,8 +2409,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetConfigurationRequest *) noexcept;
-            /* This needs to be defined so that `GetConfigurationRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetConfigurationRequest` can be used as a key in maps. */
             bool operator<(const GetConfigurationRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2124,8 +2437,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetComponentDetailsResponse *) noexcept;
-            /* This needs to be defined so that `GetComponentDetailsResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `GetComponentDetailsResponse` can be used as a key in maps. */
             bool operator<(const GetComponentDetailsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2149,8 +2461,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetComponentDetailsRequest *) noexcept;
-            /* This needs to be defined so that `GetComponentDetailsRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `GetComponentDetailsRequest` can be used as a key in maps. */
             bool operator<(const GetComponentDetailsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2159,6 +2470,81 @@ namespace Aws
 
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_componentName;
+        };
+
+        class InvalidCredentialError : public OperationError
+        {
+          public:
+            InvalidCredentialError() noexcept {}
+            InvalidCredentialError(const InvalidCredentialError &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(InvalidCredentialError &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(InvalidCredentialError *) noexcept;
+            /* This needs to be defined so that `InvalidCredentialError` can be used as a key in maps. */
+            bool operator<(const InvalidCredentialError &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class GetClientDeviceAuthTokenResponse : public AbstractShapeBase
+        {
+          public:
+            GetClientDeviceAuthTokenResponse() noexcept {}
+            GetClientDeviceAuthTokenResponse(const GetClientDeviceAuthTokenResponse &) = default;
+            void SetClientDeviceAuthToken(const Aws::Crt::String &clientDeviceAuthToken) noexcept
+            {
+                m_clientDeviceAuthToken = clientDeviceAuthToken;
+            }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() noexcept { return m_clientDeviceAuthToken; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(GetClientDeviceAuthTokenResponse &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(GetClientDeviceAuthTokenResponse *) noexcept;
+            /* This needs to be defined so that `GetClientDeviceAuthTokenResponse` can be used as a key in maps. */
+            bool operator<(const GetClientDeviceAuthTokenResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_clientDeviceAuthToken;
+        };
+
+        class GetClientDeviceAuthTokenRequest : public AbstractShapeBase
+        {
+          public:
+            GetClientDeviceAuthTokenRequest() noexcept {}
+            GetClientDeviceAuthTokenRequest(const GetClientDeviceAuthTokenRequest &) = default;
+            void SetCredential(const CredentialDocument &credential) noexcept { m_credential = credential; }
+            Aws::Crt::Optional<CredentialDocument> GetCredential() noexcept { return m_credential; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(GetClientDeviceAuthTokenRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(GetClientDeviceAuthTokenRequest *) noexcept;
+            /* This needs to be defined so that `GetClientDeviceAuthTokenRequest` can be used as a key in maps. */
+            bool operator<(const GetClientDeviceAuthTokenRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<CredentialDocument> m_credential;
         };
 
         class DeleteThingShadowResponse : public AbstractShapeBase
@@ -2174,8 +2560,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeleteThingShadowResponse *) noexcept;
-            /* This needs to be defined so that `DeleteThingShadowResponse` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `DeleteThingShadowResponse` can be used as a key in maps. */
             bool operator<(const DeleteThingShadowResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2201,8 +2586,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeleteThingShadowRequest *) noexcept;
-            /* This needs to be defined so that `DeleteThingShadowRequest` can be used as
-             * a key in maps. */
+            /* This needs to be defined so that `DeleteThingShadowRequest` can be used as a key in maps. */
             bool operator<(const DeleteThingShadowRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2231,8 +2615,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ResourceNotFoundError *) noexcept;
-            /* This needs to be defined so that `ResourceNotFoundError` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ResourceNotFoundError` can be used as a key in maps. */
             bool operator<(const ResourceNotFoundError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2256,8 +2639,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeferComponentUpdateResponse *) noexcept;
-            /* This needs to be defined so that `DeferComponentUpdateResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `DeferComponentUpdateResponse` can be used as a key in maps. */
             bool operator<(const DeferComponentUpdateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2284,8 +2666,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeferComponentUpdateRequest *) noexcept;
-            /* This needs to be defined so that `DeferComponentUpdateRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `DeferComponentUpdateRequest` can be used as a key in maps. */
             bool operator<(const DeferComponentUpdateRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2296,31 +2677,6 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_deploymentId;
             Aws::Crt::Optional<Aws::Crt::String> m_message;
             Aws::Crt::Optional<int64_t> m_recheckAfterMs;
-        };
-
-        class InvalidArgumentsError : public OperationError
-        {
-          public:
-            InvalidArgumentsError() noexcept {}
-            InvalidArgumentsError(const InvalidArgumentsError &) = default;
-            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
-            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
-            static void s_loadFromJsonView(InvalidArgumentsError &, const Aws::Crt::JsonView &) noexcept;
-            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
-                Aws::Crt::StringView,
-                Aws::Crt::Allocator *) noexcept;
-            static void s_customDeleter(InvalidArgumentsError *) noexcept;
-            /* This needs to be defined so that `InvalidArgumentsError` can be used as a
-             * key in maps. */
-            bool operator<(const InvalidArgumentsError &) const noexcept;
-            static const char *MODEL_NAME;
-
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            Aws::Crt::Optional<Aws::Crt::String> m_message;
         };
 
         class InvalidArtifactsDirectoryPathError : public OperationError
@@ -2336,8 +2692,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(InvalidArtifactsDirectoryPathError *) noexcept;
-            /* This needs to be defined so that `InvalidArtifactsDirectoryPathError` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `InvalidArtifactsDirectoryPathError` can be used as a key in maps. */
             bool operator<(const InvalidArtifactsDirectoryPathError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2361,8 +2716,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(InvalidRecipeDirectoryPathError *) noexcept;
-            /* This needs to be defined so that `InvalidRecipeDirectoryPathError` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `InvalidRecipeDirectoryPathError` can be used as a key in maps. */
             bool operator<(const InvalidRecipeDirectoryPathError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2386,8 +2740,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateLocalDeploymentResponse *) noexcept;
-            /* This needs to be defined so that `CreateLocalDeploymentResponse` can be
-             * used as a key in maps. */
+            /* This needs to be defined so that `CreateLocalDeploymentResponse` can be used as a key in maps. */
             bool operator<(const CreateLocalDeploymentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2461,8 +2814,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateLocalDeploymentRequest *) noexcept;
-            /* This needs to be defined so that `CreateLocalDeploymentRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `CreateLocalDeploymentRequest` can be used as a key in maps. */
             bool operator<(const CreateLocalDeploymentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2477,56 +2829,6 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, RunWithInfo>> m_componentToRunWithInfo;
             Aws::Crt::Optional<Aws::Crt::String> m_recipeDirectoryPath;
             Aws::Crt::Optional<Aws::Crt::String> m_artifactsDirectoryPath;
-        };
-
-        class ServiceError : public OperationError
-        {
-          public:
-            ServiceError() noexcept {}
-            ServiceError(const ServiceError &) = default;
-            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
-            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
-            static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
-            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
-                Aws::Crt::StringView,
-                Aws::Crt::Allocator *) noexcept;
-            static void s_customDeleter(ServiceError *) noexcept;
-            /* This needs to be defined so that `ServiceError` can be used as a key in
-             * maps. */
-            bool operator<(const ServiceError &) const noexcept;
-            static const char *MODEL_NAME;
-
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            Aws::Crt::Optional<Aws::Crt::String> m_message;
-        };
-
-        class UnauthorizedError : public OperationError
-        {
-          public:
-            UnauthorizedError() noexcept {}
-            UnauthorizedError(const UnauthorizedError &) = default;
-            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
-            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
-            static void s_loadFromJsonView(UnauthorizedError &, const Aws::Crt::JsonView &) noexcept;
-            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
-                Aws::Crt::StringView,
-                Aws::Crt::Allocator *) noexcept;
-            static void s_customDeleter(UnauthorizedError *) noexcept;
-            /* This needs to be defined so that `UnauthorizedError` can be used as a key
-             * in maps. */
-            bool operator<(const UnauthorizedError &) const noexcept;
-            static const char *MODEL_NAME;
-
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-
-          private:
-            Aws::Crt::Optional<Aws::Crt::String> m_message;
         };
 
         class CreateDebugPasswordResponse : public AbstractShapeBase
@@ -2559,8 +2861,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateDebugPasswordResponse *) noexcept;
-            /* This needs to be defined so that `CreateDebugPasswordResponse` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `CreateDebugPasswordResponse` can be used as a key in maps. */
             bool operator<(const CreateDebugPasswordResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2586,8 +2887,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateDebugPasswordRequest *) noexcept;
-            /* This needs to be defined so that `CreateDebugPasswordRequest` can be used
-             * as a key in maps. */
+            /* This needs to be defined so that `CreateDebugPasswordRequest` can be used as a key in maps. */
             bool operator<(const CreateDebugPasswordRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2597,16 +2897,167 @@ namespace Aws
           private:
         };
 
+        class InvalidClientDeviceAuthTokenError : public OperationError
+        {
+          public:
+            InvalidClientDeviceAuthTokenError() noexcept {}
+            InvalidClientDeviceAuthTokenError(const InvalidClientDeviceAuthTokenError &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(InvalidClientDeviceAuthTokenError &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(InvalidClientDeviceAuthTokenError *) noexcept;
+            /* This needs to be defined so that `InvalidClientDeviceAuthTokenError` can be used as a key in maps. */
+            bool operator<(const InvalidClientDeviceAuthTokenError &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class InvalidArgumentsError : public OperationError
+        {
+          public:
+            InvalidArgumentsError() noexcept {}
+            InvalidArgumentsError(const InvalidArgumentsError &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(InvalidArgumentsError &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(InvalidArgumentsError *) noexcept;
+            /* This needs to be defined so that `InvalidArgumentsError` can be used as a key in maps. */
+            bool operator<(const InvalidArgumentsError &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class ServiceError : public OperationError
+        {
+          public:
+            ServiceError() noexcept {}
+            ServiceError(const ServiceError &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(ServiceError *) noexcept;
+            /* This needs to be defined so that `ServiceError` can be used as a key in maps. */
+            bool operator<(const ServiceError &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class UnauthorizedError : public OperationError
+        {
+          public:
+            UnauthorizedError() noexcept {}
+            UnauthorizedError(const UnauthorizedError &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(UnauthorizedError &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(UnauthorizedError *) noexcept;
+            /* This needs to be defined so that `UnauthorizedError` can be used as a key in maps. */
+            bool operator<(const UnauthorizedError &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class AuthorizeClientDeviceActionResponse : public AbstractShapeBase
+        {
+          public:
+            AuthorizeClientDeviceActionResponse() noexcept {}
+            AuthorizeClientDeviceActionResponse(const AuthorizeClientDeviceActionResponse &) = default;
+            void SetIsAuthorized(const bool &isAuthorized) noexcept { m_isAuthorized = isAuthorized; }
+            Aws::Crt::Optional<bool> GetIsAuthorized() noexcept { return m_isAuthorized; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(AuthorizeClientDeviceActionResponse &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(AuthorizeClientDeviceActionResponse *) noexcept;
+            /* This needs to be defined so that `AuthorizeClientDeviceActionResponse` can be used as a key in maps. */
+            bool operator<(const AuthorizeClientDeviceActionResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<bool> m_isAuthorized;
+        };
+
+        class AuthorizeClientDeviceActionRequest : public AbstractShapeBase
+        {
+          public:
+            AuthorizeClientDeviceActionRequest() noexcept {}
+            AuthorizeClientDeviceActionRequest(const AuthorizeClientDeviceActionRequest &) = default;
+            void SetClientDeviceAuthToken(const Aws::Crt::String &clientDeviceAuthToken) noexcept
+            {
+                m_clientDeviceAuthToken = clientDeviceAuthToken;
+            }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() noexcept { return m_clientDeviceAuthToken; }
+            void SetOperation(const Aws::Crt::String &operation) noexcept { m_operation = operation; }
+            Aws::Crt::Optional<Aws::Crt::String> GetOperation() noexcept { return m_operation; }
+            void SetResource(const Aws::Crt::String &resource) noexcept { m_resource = resource; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResource() noexcept { return m_resource; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(AuthorizeClientDeviceActionRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(AuthorizeClientDeviceActionRequest *) noexcept;
+            /* This needs to be defined so that `AuthorizeClientDeviceActionRequest` can be used as a key in maps. */
+            bool operator<(const AuthorizeClientDeviceActionRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_clientDeviceAuthToken;
+            Aws::Crt::Optional<Aws::Crt::String> m_operation;
+            Aws::Crt::Optional<Aws::Crt::String> m_resource;
+        };
+
         class SubscribeToIoTCoreStreamHandler : public StreamResponseHandler
         {
           public:
             virtual void OnStreamEvent(IoTCoreMessage *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -2625,8 +3076,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `UnauthorizedError`.
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(UnauthorizedError *operationError)
@@ -2636,8 +3086,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving ANY error response from the
-             * server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -2652,8 +3101,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -2708,10 +3156,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `SubscribeToIoTCoreOperation`
              * @param request The request used for the `SubscribeToIoTCoreOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SubscribeToIoTCoreRequest &request,
@@ -2773,10 +3219,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `ResumeComponentOperation`
              * @param request The request used for the `ResumeComponentOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const ResumeComponentRequest &request,
@@ -2838,10 +3282,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `PublishToIoTCoreOperation`
              * @param request The request used for the `PublishToIoTCoreOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const PublishToIoTCoreRequest &request,
@@ -2861,10 +3303,8 @@ namespace Aws
             virtual void OnStreamEvent(ConfigurationUpdateEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -2883,8 +3323,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `ResourceNotFoundError`.
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(ResourceNotFoundError *operationError)
@@ -2894,8 +3333,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving ANY error response from the
-             * server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -2910,8 +3348,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -2968,12 +3405,9 @@ namespace Aws
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToConfigurationUpdateOperation`
-             * @param request The request used for the
-             * `SubscribeToConfigurationUpdateOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param request The request used for the `SubscribeToConfigurationUpdateOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SubscribeToConfigurationUpdateRequest &request,
@@ -3035,10 +3469,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `DeleteThingShadowOperation`
              * @param request The request used for the `DeleteThingShadowOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const DeleteThingShadowRequest &request,
@@ -3102,10 +3534,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `DeferComponentUpdateOperation`
              * @param request The request used for the `DeferComponentUpdateOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const DeferComponentUpdateRequest &request,
@@ -3125,10 +3555,8 @@ namespace Aws
             virtual void OnStreamEvent(ValidateConfigurationUpdateEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3147,8 +3575,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving ANY error response from the
-             * server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -3163,8 +3590,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -3222,14 +3648,10 @@ namespace Aws
                 const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
-             * Used to activate a stream for the
-             * `SubscribeToValidateConfigurationUpdatesOperation`
-             * @param request The request used for the
-             * `SubscribeToValidateConfigurationUpdatesOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * Used to activate a stream for the `SubscribeToValidateConfigurationUpdatesOperation`
+             * @param request The request used for the `SubscribeToValidateConfigurationUpdatesOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SubscribeToValidateConfigurationUpdatesRequest &request,
@@ -3291,10 +3713,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `GetConfigurationOperation`
              * @param request The request used for the `GetConfigurationOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const GetConfigurationRequest &request,
@@ -3314,10 +3734,8 @@ namespace Aws
             virtual void OnStreamEvent(SubscriptionResponseMessage *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3326,8 +3744,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `InvalidArgumentsError`.
+             * A callback that is invoked upon receiving an error of type `InvalidArgumentsError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(InvalidArgumentsError *operationError)
@@ -3347,8 +3764,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `UnauthorizedError`.
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(UnauthorizedError *operationError)
@@ -3358,8 +3774,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving ANY error response from the
-             * server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -3374,8 +3789,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -3430,10 +3844,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `SubscribeToTopicOperation`
              * @param request The request used for the `SubscribeToTopicOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SubscribeToTopicRequest &request,
@@ -3495,10 +3907,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `GetComponentDetailsOperation`
              * @param request The request used for the `GetComponentDetailsOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const GetComponentDetailsRequest &request,
@@ -3507,6 +3917,72 @@ namespace Aws
              * Retrieve the result from activating the stream.
              */
             std::future<GetComponentDetailsResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
+        class GetClientDeviceAuthTokenOperationContext : public OperationModelContext
+        {
+          public:
+            GetClientDeviceAuthTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class GetClientDeviceAuthTokenResult
+        {
+          public:
+            GetClientDeviceAuthTokenResult() noexcept {}
+            GetClientDeviceAuthTokenResult(TaggedResult &&taggedResult) noexcept
+                : m_taggedResult(std::move(taggedResult))
+            {
+            }
+            GetClientDeviceAuthTokenResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<GetClientDeviceAuthTokenResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class GetClientDeviceAuthTokenOperation : public ClientOperation
+        {
+          public:
+            GetClientDeviceAuthTokenOperation(
+                ClientConnection &connection,
+                const GetClientDeviceAuthTokenOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetClientDeviceAuthTokenOperation`
+             * @param request The request used for the `GetClientDeviceAuthTokenOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const GetClientDeviceAuthTokenRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<GetClientDeviceAuthTokenResult> GetResult() noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3560,10 +4036,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `PublishToTopicOperation`
              * @param request The request used for the `PublishToTopicOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const PublishToTopicRequest &request,
@@ -3572,6 +4046,272 @@ namespace Aws
              * Retrieve the result from activating the stream.
              */
             std::future<PublishToTopicResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
+        class SubscribeToCertificateUpdatesStreamHandler : public StreamResponseHandler
+        {
+          public:
+            virtual void OnStreamEvent(CertificateUpdateEvent *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
+            virtual bool OnStreamError(RpcError rpcError)
+            {
+                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(UnauthorizedError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error of type `InvalidArgumentsError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(InvalidArgumentsError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving ANY error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+          private:
+            /**
+             * Invoked when a message is received on this continuation.
+             */
+            void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+            /**
+             * Invoked when a message is received on this continuation but results in an error.
+             *
+             * This callback can return true so that the stream is closed afterwards.
+             */
+            bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
+        };
+        class SubscribeToCertificateUpdatesOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToCertificateUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class SubscribeToCertificateUpdatesResult
+        {
+          public:
+            SubscribeToCertificateUpdatesResult() noexcept {}
+            SubscribeToCertificateUpdatesResult(TaggedResult &&taggedResult) noexcept
+                : m_taggedResult(std::move(taggedResult))
+            {
+            }
+            SubscribeToCertificateUpdatesResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<SubscribeToCertificateUpdatesResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class SubscribeToCertificateUpdatesOperation : public ClientOperation
+        {
+          public:
+            SubscribeToCertificateUpdatesOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
+                const SubscribeToCertificateUpdatesOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToCertificateUpdatesOperation`
+             * @param request The request used for the `SubscribeToCertificateUpdatesOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const SubscribeToCertificateUpdatesRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<SubscribeToCertificateUpdatesResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
+        class VerifyClientDeviceIdentityOperationContext : public OperationModelContext
+        {
+          public:
+            VerifyClientDeviceIdentityOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class VerifyClientDeviceIdentityResult
+        {
+          public:
+            VerifyClientDeviceIdentityResult() noexcept {}
+            VerifyClientDeviceIdentityResult(TaggedResult &&taggedResult) noexcept
+                : m_taggedResult(std::move(taggedResult))
+            {
+            }
+            VerifyClientDeviceIdentityResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<VerifyClientDeviceIdentityResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class VerifyClientDeviceIdentityOperation : public ClientOperation
+        {
+          public:
+            VerifyClientDeviceIdentityOperation(
+                ClientConnection &connection,
+                const VerifyClientDeviceIdentityOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `VerifyClientDeviceIdentityOperation`
+             * @param request The request used for the `VerifyClientDeviceIdentityOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const VerifyClientDeviceIdentityRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<VerifyClientDeviceIdentityResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
+        class AuthorizeClientDeviceActionOperationContext : public OperationModelContext
+        {
+          public:
+            AuthorizeClientDeviceActionOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class AuthorizeClientDeviceActionResult
+        {
+          public:
+            AuthorizeClientDeviceActionResult() noexcept {}
+            AuthorizeClientDeviceActionResult(TaggedResult &&taggedResult) noexcept
+                : m_taggedResult(std::move(taggedResult))
+            {
+            }
+            AuthorizeClientDeviceActionResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<AuthorizeClientDeviceActionResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class AuthorizeClientDeviceActionOperation : public ClientOperation
+        {
+          public:
+            AuthorizeClientDeviceActionOperation(
+                ClientConnection &connection,
+                const AuthorizeClientDeviceActionOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `AuthorizeClientDeviceActionOperation`
+             * @param request The request used for the `AuthorizeClientDeviceActionOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const AuthorizeClientDeviceActionRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<AuthorizeClientDeviceActionResult> GetResult() noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3625,10 +4365,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `ListComponentsOperation`
              * @param request The request used for the `ListComponentsOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const ListComponentsRequest &request,
@@ -3690,10 +4428,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `CreateDebugPasswordOperation`
              * @param request The request used for the `CreateDebugPasswordOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const CreateDebugPasswordRequest &request,
@@ -3755,10 +4491,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `GetThingShadowOperation`
              * @param request The request used for the `GetThingShadowOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const GetThingShadowRequest &request,
@@ -3821,14 +4555,10 @@ namespace Aws
                 const SendConfigurationValidityReportOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
-             * Used to activate a stream for the
-             * `SendConfigurationValidityReportOperation`
-             * @param request The request used for the
-             * `SendConfigurationValidityReportOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * Used to activate a stream for the `SendConfigurationValidityReportOperation`
+             * @param request The request used for the `SendConfigurationValidityReportOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SendConfigurationValidityReportRequest &request,
@@ -3890,10 +4620,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `UpdateThingShadowOperation`
              * @param request The request used for the `UpdateThingShadowOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const UpdateThingShadowRequest &request,
@@ -3955,10 +4683,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `UpdateConfigurationOperation`
              * @param request The request used for the `UpdateConfigurationOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const UpdateConfigurationRequest &request,
@@ -4022,12 +4748,9 @@ namespace Aws
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `ValidateAuthorizationTokenOperation`
-             * @param request The request used for the
-             * `ValidateAuthorizationTokenOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param request The request used for the `ValidateAuthorizationTokenOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const ValidateAuthorizationTokenRequest &request,
@@ -4089,10 +4812,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `RestartComponentOperation`
              * @param request The request used for the `RestartComponentOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const RestartComponentRequest &request,
@@ -4157,10 +4878,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `GetLocalDeploymentStatusOperation`
              * @param request The request used for the `GetLocalDeploymentStatusOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const GetLocalDeploymentStatusRequest &request,
@@ -4222,10 +4941,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `GetSecretValueOperation`
              * @param request The request used for the `GetSecretValueOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const GetSecretValueRequest &request,
@@ -4287,10 +5004,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `UpdateStateOperation`
              * @param request The request used for the `UpdateStateOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const UpdateStateRequest &request,
@@ -4355,10 +5070,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `ListNamedShadowsForThingOperation`
              * @param request The request used for the `ListNamedShadowsForThingOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const ListNamedShadowsForThingRequest &request,
@@ -4378,10 +5091,8 @@ namespace Aws
             virtual void OnStreamEvent(ComponentUpdatePolicyEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -4400,8 +5111,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `ResourceNotFoundError`.
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(ResourceNotFoundError *operationError)
@@ -4411,8 +5121,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving ANY error response from the
-             * server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -4427,8 +5136,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -4485,12 +5193,9 @@ namespace Aws
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
             /**
              * Used to activate a stream for the `SubscribeToComponentUpdatesOperation`
-             * @param request The request used for the
-             * `SubscribeToComponentUpdatesOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param request The request used for the `SubscribeToComponentUpdatesOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const SubscribeToComponentUpdatesRequest &request,
@@ -4554,10 +5259,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `ListLocalDeploymentsOperation`
              * @param request The request used for the `ListLocalDeploymentsOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const ListLocalDeploymentsRequest &request,
@@ -4619,10 +5322,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `StopComponentOperation`
              * @param request The request used for the `StopComponentOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const StopComponentRequest &request,
@@ -4684,10 +5385,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `PauseComponentOperation`
              * @param request The request used for the `PauseComponentOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const PauseComponentRequest &request,
@@ -4751,10 +5450,8 @@ namespace Aws
             /**
              * Used to activate a stream for the `CreateLocalDeploymentOperation`
              * @param request The request used for the `CreateLocalDeploymentOperation`
-             * @param onMessageFlushCallback An optional callback that is invoked when the
-             * request is flushed.
-             * @return An `RpcError` that can be used to check whether the stream was
-             * activated.
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
              */
             std::future<RpcError> Activate(
                 const CreateLocalDeploymentRequest &request,
@@ -4791,7 +5488,11 @@ namespace Aws
             GetConfigurationOperationContext m_getConfigurationOperationContext;
             SubscribeToTopicOperationContext m_subscribeToTopicOperationContext;
             GetComponentDetailsOperationContext m_getComponentDetailsOperationContext;
+            GetClientDeviceAuthTokenOperationContext m_getClientDeviceAuthTokenOperationContext;
             PublishToTopicOperationContext m_publishToTopicOperationContext;
+            SubscribeToCertificateUpdatesOperationContext m_subscribeToCertificateUpdatesOperationContext;
+            VerifyClientDeviceIdentityOperationContext m_verifyClientDeviceIdentityOperationContext;
+            AuthorizeClientDeviceActionOperationContext m_authorizeClientDeviceActionOperationContext;
             ListComponentsOperationContext m_listComponentsOperationContext;
             CreateDebugPasswordOperationContext m_createDebugPasswordOperationContext;
             GetThingShadowOperationContext m_getThingShadowOperationContext;
