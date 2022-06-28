@@ -203,7 +203,7 @@ namespace Utils
         RegisterCommand(
             m_cmd_verbosity,
             "<log level>",
-            "The logging level to use. Choices are 'trace', 'debug', 'info', 'warn', 'error', 'fatal', and 'none'. "
+            "The logging level to use. Choices are 'Trace', 'Debug', 'Info', 'Warn', 'Error', 'Fatal', and 'None'. "
             "(optional, default='none')");
     }
 
@@ -213,27 +213,27 @@ namespace Utils
         if (HasCommand("verbosity"))
         {
             Aws::Crt::String verbosity = GetCommand(m_cmd_verbosity);
-            if (verbosity == "fatal")
+            if (verbosity == "Fatal")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Fatal, stderr);
             }
-            else if (verbosity == "error")
+            else if (verbosity == "Error")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
             }
-            else if (verbosity == "warn")
+            else if (verbosity == "Warn")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Warn, stderr);
             }
-            else if (verbosity == "info")
+            else if (verbosity == "Info")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Info, stderr);
             }
-            else if (verbosity == "debug")
+            else if (verbosity == "Debug")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
             }
-            else if (verbosity == "trace")
+            else if (verbosity == "Trace")
             {
                 apiHandle->InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
             }
