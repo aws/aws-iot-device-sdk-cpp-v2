@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/crt/Api.h>
 #include <aws/crt/Types.h>
 #include <aws/iot/MqttClient.h>
 
@@ -154,10 +155,20 @@ namespace Utils
         void AddCommonTopicMessageCommands();
 
         /**
-         * A helper function taht adds custom_auth_username, custom_auth_authorizer_name,
+         * A helper function that adds custom_auth_username, custom_auth_authorizer_name,
          * custom_auth_authorizer_signature and custom_auth_password commands
          */
         void AddCommonCustomAuthorizerCommands();
+
+        /**
+         * A helper function that adds the verbosity command for controlling logging in the samples
+         */
+        void AddLoggingCommands();
+
+        /**
+         * Starts logging based on the result of the verbosity command
+         */
+        void StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle);
 
         /**
          * A helper function that builds and returns a PKCS11 direct MQTT connection.
@@ -269,5 +280,6 @@ namespace Utils
         const Aws::Crt::String m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
         const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
         const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
+        const Aws::Crt::String m_cmd_verbosity = "verbosity";
     };
 } // namespace Utils

@@ -51,8 +51,10 @@ int main(int argc, char *argv[])
         "auth_params",
         "<comma delimited list>",
         "Comma delimited list of auth parameters. For websockets these will be set as headers (optional).");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String endpoint = cmdUtils.GetCommandRequired("endpoint");
     String keyPath = cmdUtils.GetCommandOrDefault("key", "");

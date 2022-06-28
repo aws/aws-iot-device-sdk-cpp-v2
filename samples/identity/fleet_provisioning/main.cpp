@@ -75,8 +75,10 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("template_name", "<str>", "The name of your provisioning template");
     cmdUtils.RegisterCommand("template_parameters", "<json>", "Template parameters json");
     cmdUtils.RegisterCommand("csr", "<path>", "Path to CSR in PEM format (optional)");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String templateName = cmdUtils.GetCommandRequired("template_name");
     String templateParameters = cmdUtils.GetCommandRequired("template_parameters");

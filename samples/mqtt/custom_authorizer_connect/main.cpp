@@ -24,8 +24,11 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.AddCommonCustomAuthorizerCommands();
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
+    cmdUtils.RemoveCommand("ca_file");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     // Make a MQTT client and create a connection through a custom authorizer
     // Note: The data for the connection is gotten from cmdUtils

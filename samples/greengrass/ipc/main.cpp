@@ -27,8 +27,10 @@ int main(int argc, char *argv[])
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
     cmdUtils.RegisterProgramName("greengrass-ipc");
     cmdUtils.AddCommonTopicMessageCommands();
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String message = cmdUtils.GetCommandOrDefault("message", "Hello World");

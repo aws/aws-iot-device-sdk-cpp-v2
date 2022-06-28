@@ -198,6 +198,52 @@ namespace Utils
             "The password to send when connecting through a custom authorizer (optional)");
     }
 
+    void CommandLineUtils::AddLoggingCommands()
+    {
+        RegisterCommand(
+            m_cmd_verbosity,
+            "<log level>",
+            "The logging level to use. Choices are 'trace', 'debug', 'info', 'warn', 'error', 'fatal', and 'none'. "
+            "(optional, default='none')");
+    }
+
+    void CommandLineUtils::StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle)
+    {
+        // Process logging command
+        if (HasCommand("verbosity"))
+        {
+            Aws::Crt::String verbosity = GetCommand(m_cmd_verbosity);
+            if (verbosity == "fatal")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Fatal, stderr);
+            }
+            else if (verbosity == "error")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
+            }
+            else if (verbosity == "warn")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Warn, stderr);
+            }
+            else if (verbosity == "info")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Info, stderr);
+            }
+            else if (verbosity == "debug")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+            }
+            else if (verbosity == "trace")
+            {
+                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+            }
+            else
+            {
+                // If none or unknown, then do nothing
+            }
+        }
+    }
+
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildPKCS11MQTTConnection(
         Aws::Iot::MqttClient *client)
     {

@@ -31,8 +31,10 @@ int main(int argc, char *argv[])
         "Your client certificate in the Windows certificate store. e.g. "
         "'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String endpoint = cmdUtils.GetCommandRequired("endpoint");
     String windowsCertStorePath = cmdUtils.GetCommandRequired("cert");
