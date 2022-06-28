@@ -39,8 +39,10 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
     cmdUtils.RegisterCommand("port_override", "<int>", "The port override to use when connecting (optional)");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());

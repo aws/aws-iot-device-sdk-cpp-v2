@@ -103,8 +103,10 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String thingName = cmdUtils.GetCommandRequired("thing_name");
     String shadowProperty = cmdUtils.GetCommandRequired("shadow_property");

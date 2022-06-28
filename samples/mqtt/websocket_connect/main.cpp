@@ -34,8 +34,10 @@ int main(int argc, char *argv[])
     cmdUtils.AddCommonProxyCommands();
     cmdUtils.RegisterCommand("signing_region", "<str>", "The signing region used for the websocket signer");
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     // Make a MQTT client and create a connection using websockets
     // Note: The data for the connection is gotten from cmdUtils
