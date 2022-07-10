@@ -45,7 +45,9 @@ int main(int argc, char *argv[])
     cmdUtils.UpdateCommandHelp(
         "message",
         "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
+    cmdUtils.AddLoggingCommands();
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String certificatePath = cmdUtils.GetCommandRequired("cert");
     String thingName = cmdUtils.GetCommandRequired("thing_name");

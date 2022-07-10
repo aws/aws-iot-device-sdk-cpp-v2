@@ -22,15 +22,21 @@ namespace Aws
                 Aws::Crt::String("aws.greengrass#ComponentNotFoundError"),
                 ComponentNotFoundError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#ResourceNotFoundError"), ResourceNotFoundError::s_allocateFromPayload);
+                Aws::Crt::String("aws.greengrass#InvalidCredentialError"),
+                InvalidCredentialError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#InvalidArgumentsError"), InvalidArgumentsError::s_allocateFromPayload);
+                Aws::Crt::String("aws.greengrass#ResourceNotFoundError"), ResourceNotFoundError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidArtifactsDirectoryPathError"),
                 InvalidArtifactsDirectoryPathError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidRecipeDirectoryPathError"),
                 InvalidRecipeDirectoryPathError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#InvalidClientDeviceAuthTokenError"),
+                InvalidClientDeviceAuthTokenError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#InvalidArgumentsError"), InvalidArgumentsError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#ServiceError"), ServiceError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
@@ -148,12 +154,54 @@ namespace Aws
                 m_allocator);
         }
 
+        std::shared_ptr<GetClientDeviceAuthTokenOperation> GreengrassCoreIpcClient::
+            NewGetClientDeviceAuthToken() noexcept
+        {
+            return Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_getClientDeviceAuthTokenOperationContext,
+                m_allocator);
+        }
+
         std::shared_ptr<PublishToTopicOperation> GreengrassCoreIpcClient::NewPublishToTopic() noexcept
         {
             return Aws::Crt::MakeShared<PublishToTopicOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_publishToTopicOperationContext,
+                m_allocator);
+        }
+
+        std::shared_ptr<SubscribeToCertificateUpdatesOperation> GreengrassCoreIpcClient::
+            NewSubscribeToCertificateUpdates(
+                std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler) noexcept
+        {
+            return Aws::Crt::MakeShared<SubscribeToCertificateUpdatesOperation>(
+                m_allocator,
+                m_connection,
+                std::move(streamHandler),
+                m_greengrassCoreIpcServiceModel.m_subscribeToCertificateUpdatesOperationContext,
+                m_allocator);
+        }
+
+        std::shared_ptr<VerifyClientDeviceIdentityOperation> GreengrassCoreIpcClient::
+            NewVerifyClientDeviceIdentity() noexcept
+        {
+            return Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_verifyClientDeviceIdentityOperationContext,
+                m_allocator);
+        }
+
+        std::shared_ptr<AuthorizeClientDeviceActionOperation> GreengrassCoreIpcClient::
+            NewAuthorizeClientDeviceAction() noexcept
+        {
+            return Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_authorizeClientDeviceActionOperationContext,
                 m_allocator);
         }
 

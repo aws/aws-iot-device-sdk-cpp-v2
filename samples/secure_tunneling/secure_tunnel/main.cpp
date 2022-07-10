@@ -49,8 +49,10 @@ int main(int argc, char *argv[])
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils.RegisterCommand(
         "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
+    cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
+    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     /*
      * Generate secure tunneling endpoint using region
