@@ -21,6 +21,16 @@ namespace Aws
     {
         class GreengrassCoreIpcClient;
         class GreengrassCoreIpcServiceModel;
+        enum MetricUnitType
+        {
+            METRIC_UNIT_TYPE_BYTES,
+            METRIC_UNIT_TYPE_BYTES_PER_SECOND,
+            METRIC_UNIT_TYPE_COUNT,
+            METRIC_UNIT_TYPE_COUNT_PER_SECOND,
+            METRIC_UNIT_TYPE_MEGABYTES,
+            METRIC_UNIT_TYPE_SECONDS
+        };
+
         class MessageContext : public AbstractShapeBase
         {
           public:
@@ -255,6 +265,36 @@ namespace Aws
         {
             CONFIGURATION_VALIDITY_STATUS_ACCEPTED,
             CONFIGURATION_VALIDITY_STATUS_REJECTED
+        };
+
+        class Metric : public AbstractShapeBase
+        {
+          public:
+            Metric() noexcept {}
+            Metric(const Metric &) = default;
+            void SetName(const Aws::Crt::String &name) noexcept { m_name = name; }
+            Aws::Crt::Optional<Aws::Crt::String> GetName() noexcept { return m_name; }
+            void SetUnit(MetricUnitType unit) noexcept;
+            Aws::Crt::Optional<MetricUnitType> GetUnit() noexcept;
+            void SetValue(const double &value) noexcept { m_value = value; }
+            Aws::Crt::Optional<double> GetValue() noexcept { return m_value; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(Metric &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(Metric *) noexcept;
+            /* This needs to be defined so that `Metric` can be used as a key in maps. */
+            bool operator<(const Metric &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_name;
+            Aws::Crt::Optional<Aws::Crt::String> m_unit;
+            Aws::Crt::Optional<double> m_value;
         };
 
         class BinaryMessage : public AbstractShapeBase
@@ -1899,6 +1939,51 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_componentName;
         };
 
+        class PutComponentMetricResponse : public AbstractShapeBase
+        {
+          public:
+            PutComponentMetricResponse() noexcept {}
+            PutComponentMetricResponse(const PutComponentMetricResponse &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(PutComponentMetricResponse &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(PutComponentMetricResponse *) noexcept;
+            /* This needs to be defined so that `PutComponentMetricResponse` can be used as a key in maps. */
+            bool operator<(const PutComponentMetricResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+        };
+
+        class PutComponentMetricRequest : public AbstractShapeBase
+        {
+          public:
+            PutComponentMetricRequest() noexcept {}
+            PutComponentMetricRequest(const PutComponentMetricRequest &) = default;
+            void SetMetrics(const Aws::Crt::Vector<Metric> &metrics) noexcept { m_metrics = metrics; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Metric>> GetMetrics() noexcept { return m_metrics; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(PutComponentMetricRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(PutComponentMetricRequest *) noexcept;
+            /* This needs to be defined so that `PutComponentMetricRequest` can be used as a key in maps. */
+            bool operator<(const PutComponentMetricRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::Vector<Metric>> m_metrics;
+        };
+
         class PublishToTopicResponse : public AbstractShapeBase
         {
           public:
@@ -3479,6 +3564,69 @@ namespace Aws
              * Retrieve the result from activating the stream.
              */
             std::future<DeleteThingShadowResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
+        class PutComponentMetricOperationContext : public OperationModelContext
+        {
+          public:
+            PutComponentMetricOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class PutComponentMetricResult
+        {
+          public:
+            PutComponentMetricResult() noexcept {}
+            PutComponentMetricResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            PutComponentMetricResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<PutComponentMetricResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class PutComponentMetricOperation : public ClientOperation
+        {
+          public:
+            PutComponentMetricOperation(
+                ClientConnection &connection,
+                const PutComponentMetricOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `PutComponentMetricOperation`
+             * @param request The request used for the `PutComponentMetricOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const PutComponentMetricRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<PutComponentMetricResult> GetResult() noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5482,6 +5630,7 @@ namespace Aws
             PublishToIoTCoreOperationContext m_publishToIoTCoreOperationContext;
             SubscribeToConfigurationUpdateOperationContext m_subscribeToConfigurationUpdateOperationContext;
             DeleteThingShadowOperationContext m_deleteThingShadowOperationContext;
+            PutComponentMetricOperationContext m_putComponentMetricOperationContext;
             DeferComponentUpdateOperationContext m_deferComponentUpdateOperationContext;
             SubscribeToValidateConfigurationUpdatesOperationContext
                 m_subscribeToValidateConfigurationUpdatesOperationContext;
