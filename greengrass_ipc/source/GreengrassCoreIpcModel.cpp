@@ -564,10 +564,7 @@ namespace Aws
 
         const char *Metric::MODEL_NAME = "aws.greengrass#Metric";
 
-        Aws::Crt::String Metric::GetModelName() const noexcept
-        {
-            return Metric::MODEL_NAME;
-        }
+        Aws::Crt::String Metric::GetModelName() const noexcept { return Metric::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> Metric::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -6696,15 +6693,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
-                const noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
         {
             return PutComponentMetricResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
-                const noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6721,8 +6718,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PutComponentMetricResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName()
-            const noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName() const
+            noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
