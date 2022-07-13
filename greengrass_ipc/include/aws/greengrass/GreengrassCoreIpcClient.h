@@ -52,6 +52,8 @@ namespace Aws
 
             std::shared_ptr<DeleteThingShadowOperation> NewDeleteThingShadow() noexcept;
 
+            std::shared_ptr<PutComponentMetricOperation> NewPutComponentMetric() noexcept;
+
             std::shared_ptr<DeferComponentUpdateOperation> NewDeferComponentUpdate() noexcept;
 
             std::shared_ptr<SubscribeToValidateConfigurationUpdatesOperation>

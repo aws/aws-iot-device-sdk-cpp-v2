@@ -104,6 +104,15 @@ namespace Aws
                 m_allocator);
         }
 
+        std::shared_ptr<PutComponentMetricOperation> GreengrassCoreIpcClient::NewPutComponentMetric() noexcept
+        {
+            return Aws::Crt::MakeShared<PutComponentMetricOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_putComponentMetricOperationContext,
+                m_allocator);
+        }
+
         std::shared_ptr<DeferComponentUpdateOperation> GreengrassCoreIpcClient::NewDeferComponentUpdate() noexcept
         {
             return Aws::Crt::MakeShared<DeferComponentUpdateOperation>(

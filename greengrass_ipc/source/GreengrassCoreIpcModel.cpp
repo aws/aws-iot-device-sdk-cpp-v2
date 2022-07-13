@@ -471,6 +471,121 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void Metric::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_name.has_value())
+            {
+                payloadObject.WithString("name", m_name.value());
+            }
+            if (m_unit.has_value())
+            {
+                payloadObject.WithString("unit", m_unit.value());
+            }
+            if (m_value.has_value())
+            {
+                payloadObject.WithDouble("value", m_value.value());
+            }
+        }
+
+        void Metric::s_loadFromJsonView(Metric &metric, const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("name"))
+            {
+                metric.m_name = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("name"));
+            }
+            if (jsonView.ValueExists("unit"))
+            {
+                metric.m_unit = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("unit"));
+            }
+            if (jsonView.ValueExists("value"))
+            {
+                metric.m_value = Aws::Crt::Optional<double>(jsonView.GetDouble("value"));
+            }
+        }
+
+        void Metric::SetUnit(MetricUnitType unit) noexcept
+        {
+            switch (unit)
+            {
+                case METRIC_UNIT_TYPE_BYTES:
+                    m_unit = Aws::Crt::String("BYTES");
+                    break;
+                case METRIC_UNIT_TYPE_BYTES_PER_SECOND:
+                    m_unit = Aws::Crt::String("BYTES_PER_SECOND");
+                    break;
+                case METRIC_UNIT_TYPE_COUNT:
+                    m_unit = Aws::Crt::String("COUNT");
+                    break;
+                case METRIC_UNIT_TYPE_COUNT_PER_SECOND:
+                    m_unit = Aws::Crt::String("COUNT_PER_SECOND");
+                    break;
+                case METRIC_UNIT_TYPE_MEGABYTES:
+                    m_unit = Aws::Crt::String("MEGABYTES");
+                    break;
+                case METRIC_UNIT_TYPE_SECONDS:
+                    m_unit = Aws::Crt::String("SECONDS");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<MetricUnitType> Metric::GetUnit() noexcept
+        {
+            if (!m_unit.has_value())
+                return Aws::Crt::Optional<MetricUnitType>();
+            if (m_unit.value() == Aws::Crt::String("BYTES"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_BYTES);
+            }
+            if (m_unit.value() == Aws::Crt::String("BYTES_PER_SECOND"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_BYTES_PER_SECOND);
+            }
+            if (m_unit.value() == Aws::Crt::String("COUNT"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_COUNT);
+            }
+            if (m_unit.value() == Aws::Crt::String("COUNT_PER_SECOND"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_COUNT_PER_SECOND);
+            }
+            if (m_unit.value() == Aws::Crt::String("MEGABYTES"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_MEGABYTES);
+            }
+            if (m_unit.value() == Aws::Crt::String("SECONDS"))
+            {
+                return Aws::Crt::Optional<MetricUnitType>(METRIC_UNIT_TYPE_SECONDS);
+            }
+
+            return Aws::Crt::Optional<MetricUnitType>();
+        }
+
+        const char *Metric::MODEL_NAME = "aws.greengrass#Metric";
+
+        Aws::Crt::String Metric::GetModelName() const noexcept { return Metric::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> Metric::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<Metric> shape(Aws::Crt::New<Metric>(allocator), Metric::s_customDeleter);
+            shape->m_allocator = allocator;
+            Metric::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void Metric::s_customDeleter(Metric *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void BinaryMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
@@ -3636,6 +3751,109 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void PutComponentMetricResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            (void)payloadObject;
+        }
+
+        void PutComponentMetricResponse::s_loadFromJsonView(
+            PutComponentMetricResponse &putComponentMetricResponse,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            (void)putComponentMetricResponse;
+            (void)jsonView;
+        }
+
+        const char *PutComponentMetricResponse::MODEL_NAME = "aws.greengrass#PutComponentMetricResponse";
+
+        Aws::Crt::String PutComponentMetricResponse::GetModelName() const noexcept
+        {
+            return PutComponentMetricResponse::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricResponse::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<PutComponentMetricResponse> shape(
+                Aws::Crt::New<PutComponentMetricResponse>(allocator), PutComponentMetricResponse::s_customDeleter);
+            shape->m_allocator = allocator;
+            PutComponentMetricResponse::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void PutComponentMetricResponse::s_customDeleter(PutComponentMetricResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void PutComponentMetricRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_metrics.has_value())
+            {
+                Aws::Crt::JsonObject metricsList;
+                Aws::Crt::Vector<Aws::Crt::JsonObject> metricsListJsonArray;
+                for (const auto &metricsListItem : m_metrics.value())
+                {
+                    Aws::Crt::JsonObject metricsListJsonArrayItem;
+                    metricsListItem.SerializeToJsonObject(metricsListJsonArrayItem);
+                    metricsListJsonArray.emplace_back(std::move(metricsListJsonArrayItem));
+                }
+                metricsList.AsArray(std::move(metricsListJsonArray));
+                payloadObject.WithObject("metrics", std::move(metricsList));
+            }
+        }
+
+        void PutComponentMetricRequest::s_loadFromJsonView(
+            PutComponentMetricRequest &putComponentMetricRequest,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("metrics"))
+            {
+                putComponentMetricRequest.m_metrics = Aws::Crt::Vector<Metric>();
+                for (const Aws::Crt::JsonView &metricsListJsonView : jsonView.GetArray("metrics"))
+                {
+                    Aws::Crt::Optional<Metric> metricsListItem;
+                    metricsListItem = Metric();
+                    Metric::s_loadFromJsonView(metricsListItem.value(), metricsListJsonView);
+                    putComponentMetricRequest.m_metrics.value().push_back(metricsListItem.value());
+                }
+            }
+        }
+
+        const char *PutComponentMetricRequest::MODEL_NAME = "aws.greengrass#PutComponentMetricRequest";
+
+        Aws::Crt::String PutComponentMetricRequest::GetModelName() const noexcept
+        {
+            return PutComponentMetricRequest::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricRequest::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<PutComponentMetricRequest> shape(
+                Aws::Crt::New<PutComponentMetricRequest>(allocator), PutComponentMetricRequest::s_customDeleter);
+            shape->m_allocator = allocator;
+            PutComponentMetricRequest::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void PutComponentMetricRequest::s_customDeleter(PutComponentMetricRequest *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void PublishToTopicResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
@@ -6468,6 +6686,75 @@ namespace Aws
             return m_operationModelContext.GetOperationName();
         }
 
+        PutComponentMetricOperationContext::PutComponentMetricOperationContext(
+            const GreengrassCoreIpcServiceModel &serviceModel) noexcept
+            : OperationModelContext(serviceModel)
+        {
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
+        {
+            return PutComponentMetricResponse::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
+        {
+            (void)stringView;
+            (void)allocator;
+            return nullptr;
+        }
+
+        Aws::Crt::String PutComponentMetricOperationContext::GetRequestModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PutComponentMetricRequest");
+        }
+
+        Aws::Crt::String PutComponentMetricOperationContext::GetInitialResponseModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PutComponentMetricResponse");
+        }
+
+        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName() const
+            noexcept
+        {
+            return Aws::Crt::Optional<Aws::Crt::String>();
+        }
+
+        Aws::Crt::String PutComponentMetricOperationContext::GetOperationName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PutComponentMetric");
+        }
+
+        std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+        }
+
+        PutComponentMetricOperation::PutComponentMetricOperation(
+            ClientConnection &connection,
+            const PutComponentMetricOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, nullptr, operationContext, allocator)
+        {
+        }
+
+        std::future<RpcError> PutComponentMetricOperation::Activate(
+            const PutComponentMetricRequest &request,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        }
+
+        Aws::Crt::String PutComponentMetricOperation::GetModelName() const noexcept
+        {
+            return m_operationModelContext.GetOperationName();
+        }
+
         DeferComponentUpdateOperationContext::DeferComponentUpdateOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
             : OperationModelContext(serviceModel)
@@ -8473,7 +8760,8 @@ namespace Aws
         GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel() noexcept
             : m_subscribeToIoTCoreOperationContext(*this), m_resumeComponentOperationContext(*this),
               m_publishToIoTCoreOperationContext(*this), m_subscribeToConfigurationUpdateOperationContext(*this),
-              m_deleteThingShadowOperationContext(*this), m_deferComponentUpdateOperationContext(*this),
+              m_deleteThingShadowOperationContext(*this), m_putComponentMetricOperationContext(*this),
+              m_deferComponentUpdateOperationContext(*this),
               m_subscribeToValidateConfigurationUpdatesOperationContext(*this),
               m_getConfigurationOperationContext(*this), m_subscribeToTopicOperationContext(*this),
               m_getComponentDetailsOperationContext(*this), m_getClientDeviceAuthTokenOperationContext(*this),
