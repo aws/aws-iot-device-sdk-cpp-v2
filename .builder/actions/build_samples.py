@@ -23,6 +23,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/custom_authorizer_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
+            'samples/greengrass/ipc'
             'samples/identity/fleet_provisioning',
             'samples/jobs/describe_job_execution',
             'samples/secure_tunneling/secure_tunnel',
@@ -44,28 +45,28 @@ class BuildSamples(Builder.Action):
         for sample_path in samples:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
-                        f'-B{build_path}',
-                        f'-H{sample_path}',
-                        f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                        '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+                          f'-B{build_path}',
+                          f'-H{sample_path}',
+                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
-                        '--build', build_path,
-                        '--config', 'RelWithDebInfo'])
+                          '--build', build_path,
+                          '--config', 'RelWithDebInfo'])
 
         for sample_path in da_samples:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
-                        f'-B{build_path}',
-                        f'-H{sample_path}',
-                        f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                        '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+                          f'-B{build_path}',
+                          f'-H{sample_path}',
+                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
-                        '--build', build_path,
-                        '--config', 'RelWithDebInfo'])
+                          '--build', build_path,
+                          '--config', 'RelWithDebInfo'])
 
         for sample_path in defender_samples:
             build_path = os.path.join('build', sample_path)
