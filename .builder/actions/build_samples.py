@@ -23,7 +23,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/custom_authorizer_connect',
             'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
-            'samples/greengrass/ipc'
+            'samples/greengrass/ipc',
             'samples/identity/fleet_provisioning',
             'samples/jobs/describe_job_execution',
             'samples/secure_tunneling/secure_tunnel',
