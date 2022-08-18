@@ -13,21 +13,22 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
-            'samples/pub_sub/basic_pub_sub',
-            'samples/mqtt/basic_connect',
-            'samples/mqtt/pkcs11_connect',
-            'samples/mqtt/raw_connect',
-            'samples/mqtt/websocket_connect',
-            'samples/mqtt/x509_credentials_provider_connect',
-            'samples/mqtt/windows_cert_connect',
-            'samples/mqtt/custom_authorizer_connect',
-            'samples/shadow/shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
             'samples/identity/fleet_provisioning',
             'samples/jobs/describe_job_execution',
+            'samples/mqtt/basic_connect',
+            'samples/mqtt/custom_authorizer_connect',
+            'samples/mqtt/pkcs11_connect',
+            'samples/mqtt/raw_connect',
+            'samples/mqtt/websocket_connect',
+            'samples/mqtt/windows_cert_connect',
+            'samples/mqtt/x509_credentials_provider_connect',
+            'samples/mqtt/custom_authorizer_connect',
+            "samples/pub_sub/basic_pub_sub",
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
+            'samples/shadow/shadow_sync',
         ]
 
         defender_samples = []
