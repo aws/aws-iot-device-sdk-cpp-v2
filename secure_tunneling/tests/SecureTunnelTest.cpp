@@ -6,7 +6,6 @@
 #include <aws/common/byte_buf.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/http/http.h>
-#include <aws/iotdevice/private/secure_tunneling_impl.h>
 #include <aws/iotdevice/private/serializer.h>
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
