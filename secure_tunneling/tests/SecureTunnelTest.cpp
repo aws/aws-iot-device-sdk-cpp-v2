@@ -30,6 +30,35 @@ extern "C"
         void *user_data);
 }
 
+struct aws_secure_tunnel
+{
+    /* Static settings */
+    struct aws_allocator *alloc;
+    struct aws_secure_tunnel_options_storage *options_storage;
+    struct aws_secure_tunnel_options *options;
+    struct aws_tls_ctx *tls_ctx;
+    struct aws_tls_connection_options tls_con_opt;
+    struct aws_secure_tunnel_vtable vtable;
+    struct aws_websocket_vtable websocket_vtable;
+
+    struct aws_ref_count ref_count;
+
+    /* Used only during initial websocket setup. Otherwise, should be NULL */
+    struct aws_http_message *handshake_request;
+
+    /* Dynamic data */
+    int32_t stream_id;
+    struct aws_websocket *websocket;
+
+    /* Stores what has been received but not processed */
+    struct aws_byte_buf received_data;
+
+    /* The secure tunneling endpoint ELB drops idle connect after 1 minute. We need to send a ping periodically to keep
+     * the connection */
+
+    struct ping_task_context *ping_task_context;
+};
+
 struct SecureTunnelingTestContext
 {
     unique_ptr<DeviceApiHandle> deviceApiHandle;
