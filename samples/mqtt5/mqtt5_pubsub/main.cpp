@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
         std::shared_ptr<Mqtt5::SubAckPacket> suback = client->Subscribe(subPacket).get_future().get();
         if (suback != nullptr)
         {
-            fprintf(stdout, "Subscription Success.");
+            fprintf(stdout, "Subscription Success.\n");
 
             uint32_t publishedCount = 0;
             while (publishedCount < messageCount)
