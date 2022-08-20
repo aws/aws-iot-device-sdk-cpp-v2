@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic-connect");
+    cmdUtils.RegisterProgramName("mqtt5_pubsub");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
     cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
@@ -58,23 +58,23 @@ int main(int argc, char *argv[])
                                       Mqtt5::Mqtt5Client &,
                                       std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>,
                                       std::shared_ptr<Aws::Crt::Mqtt5::NegotiatedSettings> settings) {
-        fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.", settings->getClientId().c_str());
+        fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", settings->getClientId().c_str());
         connectionPromise.set_value(true);
     };
 
     builder.onConnectionFailure =
         [&connectionPromise](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>) {
-            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.", aws_error_debug_str(error_code));
+            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(error_code));
             connectionPromise.set_value(false);
         };
 
     builder.onStopped = [&stoppedPromise](Aws::Crt::Mqtt5::Mqtt5Client &) {
-        fprintf(stdout, "Mqtt5 Client stopped.");
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     };
 
     builder.onAttemptingConnect = [](Aws::Crt::Mqtt5::Mqtt5Client &) {
-        fprintf(stdout, "Mqtt5 Client attempting connection...");
+        fprintf(stdout, "Mqtt5 Client attempting connection...\n");
     };
 
     builder.onDisconnection = [&disconnectPromise](
@@ -83,11 +83,11 @@ int main(int argc, char *argv[])
                                   std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect) {
         if (errorCode == 0)
         {
-            fprintf(stdout, "Mqtt5 Client disconnected.");
+            fprintf(stdout, "Mqtt5 Client disconnected.\n");
         }
         else
         {
-            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.", aws_error_debug_str(errorCode));
+            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(errorCode));
         }
         disconnectPromise.set_value();
     };
@@ -101,14 +101,13 @@ int main(int argc, char *argv[])
 
         std::lock_guard<std::mutex> lock(receiveMutex);
         ++receivedCount;
-        fprintf(stdout, "Publish received on topic %s\n", publish->getTopic().c_str());
-        fprintf(stdout, "Message: ");
+        fprintf(stdout, "Publish received on topic %s:", publish->getTopic().c_str());
         fwrite(publish->getPayload().ptr, 1, publish->getPayload().len, stdout);
         fprintf(stdout, "\n");
 
         for (Mqtt5::UserProperty prop : publish->getUserProperties())
         {
-            fprintf(stdout, "\twith UserProperty:(%s,%s)", prop.getName().c_str(), prop.getValue().c_str());
+            fprintf(stdout, "\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
         }
         receiveSignal.notify_all();
     };
@@ -118,7 +117,7 @@ int main(int argc, char *argv[])
 
     if (client == nullptr)
     {
-        fprintf(stdout, "Client creation failed.");
+        fprintf(stdout, "Client creation failed.\n");
         return -1;
     }
 
@@ -129,7 +128,7 @@ int main(int argc, char *argv[])
             return -1;
         }
 
-        Mqtt5::Subscription sub1("test/topic1", Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+        Mqtt5::Subscription sub1(testTopic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         sub1.withNoLocal(false);
         Mqtt5::SubscribePacket subPacket;
         subPacket.withSubscription(std::move(sub1));
@@ -154,8 +153,21 @@ int main(int argc, char *argv[])
             std::unique_lock<std::mutex> receivedLock(receiveMutex);
             receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
         }
+        else
+        {
+            fprintf(stdout, "Subscription Failed.\n");
+            for (int errorCode : suback->getReasonCodes())
+            {
+                fprintf(stdout, "Mqtt5 Client subscription failed with error: %s.\n", aws_error_debug_str(errorCode));            
+            }
+        }
 
-        client->Stop();
+        if (!client->Stop())
+        {
+            fprintf(stdout, "Failed to disconnect from the mqtt connection. Exiting..\n");
+            return -1;
+        }
+        disconnectPromise.get_future().wait();
     }
 
     return 0;
