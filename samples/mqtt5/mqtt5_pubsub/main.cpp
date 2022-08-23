@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
         sub1.withNoLocal(false);
         Mqtt5::SubscribePacket subPacket;
         subPacket.withSubscription(std::move(sub1));
-        std::shared_ptr<Mqtt5::SubAckPacket> suback = client->Subscribe(subPacket).get_future().get();
+        std::shared_ptr<Mqtt5::SubAckPacket> suback = client->Subscribe(subPacket);
         if (suback != nullptr)
         {
             fprintf(stdout, "Subscription Success.\n");
@@ -144,8 +144,8 @@ int main(int argc, char *argv[])
                 ByteCursor payload = ByteCursorFromString(message);
 
                 Mqtt5::PublishPacket publish(testTopic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
-                client->Publish(publish).get_future().wait();
-                ++publishedCount;
+                if(client->Publish(publish) != nullptr)
+                    ++publishedCount;
 
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
