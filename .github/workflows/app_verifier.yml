@@ -31,13 +31,11 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
-      - name: Run with AppVerifier
+      - name: Run and check AppVerifier
         run: |
           appverif -enable heaps -for ${{ env.APP_VERIFIER_EXE }}
           {{ env.APP_VERIFIER_EXE }}
           appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
           appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
-      - name: Parse AppVerifier XML
-        run: |
           python -m pip install termcolor
-          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ APP_VERIFIER_OUTPUT_XML }}
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ env.APP_VERIFIER_OUTPUT_XML }}
