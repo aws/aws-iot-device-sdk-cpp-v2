@@ -27,7 +27,7 @@ if (UNIX AND NOT APPLE)
     # If the symbols from libcrypto.a aren't hidden then SoftHSM will sometimes
     # call functions from libcrypto.so and sometimes call functions from libcrypto.a,
     # and we'll get weird crashes because the two crypto libraries have different implementations.
-    set_property(TARGET ${PROJECT_NAME} APPEND_STRING PROPERTY LINK_FLAGS -Wl,--exclude-libs,libcrypto.a)
+    set_property(TARGET ${PROJECT_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -Wl,--exclude-libs,libcrypto.a")
 endif()
 
 find_package(aws-crt-cpp REQUIRED)
