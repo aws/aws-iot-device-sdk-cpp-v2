@@ -233,7 +233,9 @@ def main():
     argument_parser.add_argument("--file", metavar="C:\\example\\file.xml", required=True, help="Path to XML file from AppVerifier")
     parsed_commands = argument_parser.parse_args()
 
+    print("\n" + colored("Starting AppVerifier XML check...", "green"))
     xml_result = parseXML(parsed_commands.file)
+    print ("\n")
     exit(xml_result)
 
 if __name__ == "__main__":

@@ -91,10 +91,15 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
       - name: Run and check AppVerifier
         run: |
+          echo Enabling AppVerifier:
           appverif -enable heaps -for ${{ env.APP_VERIFIER_EXE }}
+          echo Running sample:
           ${{ env.APP_VERIFIER_EXE }}
+          echo Exporting XML log:
           appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo Disabling AppVerifier:
           appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo Starting AppVerifier XML utility
           python -m pip install termcolor
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
@@ -110,6 +115,19 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
+      - name: Run and check AppVerifier
+        run: |
+          echo Enabling AppVerifier:
+          appverif -enable heaps -for ${{ env.APP_VERIFIER_EXE }}
+          echo Running sample:
+          ${{ env.APP_VERIFIER_EXE }}
+          echo Exporting XML log:
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo Disabling AppVerifier:
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo Starting AppVerifier XML utility
+          python -m pip install termcolor
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
@@ -120,6 +138,19 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+      - name: Run and check AppVerifier
+        run: |
+          echo Enabling AppVerifier:
+          appverif -enable heaps -for ${{ env.APP_VERIFIER_EXE }}
+          echo Running sample:
+          ${{ env.APP_VERIFIER_EXE }}
+          echo Exporting XML log:
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo Disabling AppVerifier:
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo Starting AppVerifier XML utility
+          python -m pip install termcolor
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   # osx:
   #   runs-on: macos-latest
