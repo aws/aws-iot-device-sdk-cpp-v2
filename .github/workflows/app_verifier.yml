@@ -1,0 +1,43 @@
+name: AppVerifier
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+      - 'docs'
+
+env:
+  BUILDER_VERSION: v0.8.29
+  BUILDER_SOURCE: releases
+  BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
+  PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
+  RUN: ${{ github.run_id }}-${{ github.run_number }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DATEST_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DATEST_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: us-east-1
+
+  # For now, use the PubSub sample
+  APP_VERIFIER_EXE: .\samples\pub_sub\basic_pub_sub\build\RelWithDebInfo\basic-pub-sub.exe
+  APP_VERIFIER_OUTPUT_XML: .\app_verifier_output.xml
+  APP_VERIFIER_OUTPUT_XML_HELPER: .\utils\appverifier_xml_util.py
+
+jobs:
+  windows:
+    runs-on: windows-latest-app-verifier
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          md D:\a\work
+          cd D:\a\work
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+      - name: Run with AppVerifier
+        run: |
+          appverif -enable heaps -for ${{ env.APP_VERIFIER_EXE }}
+          {{ env.APP_VERIFIER_EXE }}
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+      - name: Parse AppVerifier XML
+        run: |
+          python -m pip install termcolor
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --file ${{ APP_VERIFIER_OUTPUT_XML }}
