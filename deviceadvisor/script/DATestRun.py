@@ -181,6 +181,7 @@ for test_name in DATestConfig['tests']:
         # }
         print("[Device Advisor]Info: Start device advisor test: " + test_name)
         sleep_with_backoff(BACKOFF_BASE, BACKOFF_MAX)
+        print("[Device Advisor]Info: About to start suite run for device advisor test: " + test_name)
         test_start_response = deviceAdvisor.start_suite_run(
         suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
         suiteRunConfiguration={
@@ -191,6 +192,7 @@ for test_name in DATestConfig['tests']:
         })
 
         # get DA endpoint
+        print("[Device Advisor]Info: About to get DA endpoint for device advisor test: " + test_name)
         endpoint_response = deviceAdvisor.get_endpoint(
             thingArn = create_thing_response['thingArn']
         )
@@ -199,6 +201,7 @@ for test_name in DATestConfig['tests']:
         while True:
             # sleep for 1s every loop to avoid TooManyRequestsException
             sleep_with_backoff(BACKOFF_BASE, BACKOFF_MAX)
+            print("[Device Advisor]Info: About to get suite run for device advisor test: " + test_name)
             test_result_responds = deviceAdvisor.get_suite_run(
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
@@ -214,6 +217,7 @@ for test_name in DATestConfig['tests']:
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
                 try:
+                    print("[Device Advisor]Info: About to get run application for test: " + test_name)
                     exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
                     # Windows and MAC/LINUX has a different build folder structure
                     if platform.system() == 'Windows':
@@ -227,6 +231,7 @@ for test_name in DATestConfig['tests']:
 
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
+                print("[Device Advisor]Info: Test is finalizing or storing the test result for test: " + test_name)
                 test_result[test_name] = test_result_responds['status']
                 # If the test failed, upload the logs to S3 before clean up
                 if(test_result[test_name] != "PASS"):
