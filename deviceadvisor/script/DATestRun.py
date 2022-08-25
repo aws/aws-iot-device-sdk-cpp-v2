@@ -35,7 +35,7 @@ def process_logs(log_group, log_stream, thing_name):
     f.close()
     s3.Bucket(os.environ['DA_S3_NAME']).upload_file(log_file, log_file)
     os.remove(log_file)
-    print("[Device Advisor] Issues on test " + test_name + ". Please check out the logs at "+thing_name+".log on S3.")
+    print("[Device Advisor] Issues on test " + test_name + ". Please check out the logs at "+thing_name+".log on S3.", flush=True)
 
 def sleep_with_backoff(base, max):
     sleep(random.randint(base,max))
@@ -80,21 +80,21 @@ for test_name in DATestConfig['tests']:
         # 'thingArn': 'string',
         # 'thingId': 'string'
         # }
-        print("[Device Advisor]Info: Started to create thing...")
+        print("[Device Advisor]Info: Started to create thing...", flush=True)
         create_thing_response = client.create_thing(
             thingName=thing_name
         )
         os.environ["DA_THING_NAME"] = thing_name
         
     except Exception as e:
-        print("[Device Advisor]Error: Failed to create thing: " + thing_name)
+        print("[Device Advisor]Error: Failed to create thing: " + thing_name, flush=True)
         exit(-1)
 
 
     ##############################################
     # create certificate and keys used for testing
     try:
-        print("[Device Advisor]Info: Started to create certificate...")
+        print("[Device Advisor]Info: Started to create certificate...", flush=True)
         # create_cert_response:
         # {
         # 'certificateArn': 'string',
@@ -125,13 +125,13 @@ for test_name in DATestConfig['tests']:
 
     except:
         client.delete_thing(thingName = thing_name)
-        print("[Device Advisor]Error: Failed to create certificate.")
+        print("[Device Advisor]Error: Failed to create certificate.", flush=True)
         exit(-1)
 
     ##############################################
     # attach certification to thing
     try:
-        print("[Device Advisor]Info: Attach certificate to test thing...")
+        print("[Device Advisor]Info: Attach certificate to test thing...", flush=True)
         # attache the certificate to thing
         client.attach_thing_principal(
             thingName = thing_name,
@@ -143,7 +143,7 @@ for test_name in DATestConfig['tests']:
 
     except:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-        print("[Device Advisor]Error: Failed to attach certificate.")
+        print("[Device Advisor]Error: Failed to attach certificate.", flush=True)
         exit(-1)
 
 
@@ -179,9 +179,9 @@ for test_name in DATestConfig['tests']:
         # 'suiteRunArn': 'string',
         # 'createdAt': datetime(2015, 1, 1)
         # }
-        print("[Device Advisor]Info: Start device advisor test: " + test_name)
+        print("[Device Advisor]Info: Start device advisor test: " + test_name, flush=True)
         sleep_with_backoff(BACKOFF_BASE, BACKOFF_MAX)
-        print("[Device Advisor]Info: About to start suite run for device advisor test: " + test_name)
+        print("[Device Advisor]Info: About to start suite run for device advisor test: " + test_name, flush=True)
         test_start_response = deviceAdvisor.start_suite_run(
         suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
         suiteRunConfiguration={
@@ -192,7 +192,7 @@ for test_name in DATestConfig['tests']:
         })
 
         # get DA endpoint
-        print("[Device Advisor]Info: About to get DA endpoint for device advisor test: " + test_name)
+        print("[Device Advisor]Info: About to get DA endpoint for device advisor test: " + test_name, flush=True)
         endpoint_response = deviceAdvisor.get_endpoint(
             thingArn = create_thing_response['thingArn']
         )
@@ -201,11 +201,12 @@ for test_name in DATestConfig['tests']:
         while True:
             # sleep for 1s every loop to avoid TooManyRequestsException
             sleep_with_backoff(BACKOFF_BASE, BACKOFF_MAX)
-            print("[Device Advisor]Info: About to get suite run for device advisor test: " + test_name)
+            print("[Device Advisor]Info: About to get suite run for device advisor test: " + test_name, flush=True)
             test_result_responds = deviceAdvisor.get_suite_run(
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
             )
+            print("[Device Advisor] Status: " + test_result_responds['status'], flush=True)
             # If the status is PENDING or the responds does not loaded, the test suite is still loading
             if (test_result_responds['status'] == 'PENDING' or
             len(test_result_responds['testResult']['groups']) == 0 or # test group has not been loaded
@@ -217,21 +218,21 @@ for test_name in DATestConfig['tests']:
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
                 try:
-                    print("[Device Advisor]Info: About to get run application for test: " + test_name)
+                    print("[Device Advisor]Info: About to get run application for test: " + test_name, flush=True)
                     exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
                     # Windows and MAC/LINUX has a different build folder structure
                     if platform.system() == 'Windows':
                         exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
                     else:
                         exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
-                    print("start to run" + exe_path)
+                    print("start to run" + exe_path, flush=True)
                     result = subprocess.run(exe_path, timeout = 60*2)
                 except:
                     continue
 
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
-                print("[Device Advisor]Info: Test is finalizing or storing the test result for test: " + test_name)
+                print("[Device Advisor]Info: Test is finalizing or storing the test result for test: " + test_name, flush=True)
                 test_result[test_name] = test_result_responds['status']
                 # If the test failed, upload the logs to S3 before clean up
                 if(test_result[test_name] != "PASS"):
@@ -242,19 +243,19 @@ for test_name in DATestConfig['tests']:
                     log_stream = stream_string.group(1)
                     process_logs(log_group, log_stream, thing_name)
                 delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-                break;
+                break
     except Exception as e:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-        print("[Device Advisor]Error: Failed to test: "+ test_name)
+        print("[Device Advisor]Error: Failed to test: "+ test_name, flush=True)
 
 ##############################################
 # print result and cleanup things
-print(test_result)
+print(test_result, flush=True)
 failed = False
 for test in test_result:
     if(test_result[test] != "PASS" and
     test_result[test] != "PASS_WITH_WARNINGS"):
-        print("[Device Advisor]Error: Test \"" + test + "\" Failed with status:" + test_result[test])
+        print("[Device Advisor]Error: Test \"" + test + "\" Failed with status:" + test_result[test], flush=True)
         failed = True
 if failed:
     # if the test failed, we dont clean the Thing so that we can track the error
