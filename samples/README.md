@@ -14,6 +14,7 @@
 * [Greengrass discovery](#greengrass-discovery)
 * [Greengrass IPC](#greengrass-ipc)
 * [Device Defender](#device-defender)
+* [Cycle Pub-Sub](#cycle-pub-sub)
 
 ## Build Instruction
 
@@ -894,3 +895,66 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 * `number` and `number-list` types: Supports precision up to 15 digits. Supports both positive and negative values.
 * `string-list` type: Supports letters A through Z (uppercase and lowercase) and the characters `:`, `_`, `-`, `/`, and `.
 * `ip-list` type: Supports only valid IPV4 and IPV6 addresses.
+
+## Cycle Pub-Sub
+
+This sample uses the
+[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
+for AWS IoT to send and receive messages through a series of MQTT connections.
+
+This sample will create a series of clients, and then randomly perform operations on them (connect, disconnect, publish, subscribe, etc) every few seconds. Status updates on what each client in the sample are doing are continually printed to the console and the sample will run until the time duration set is complete.
+
+This sample is primarily for testing stability over a period of time for testing/CI, but it also shows how to perform operations across multiple clients.
+
+Source: `samples/pub_sub/cycle_pub_sub/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, unsubscribe, publish, and receive. Make sure your policy allows a client ID of `test-client-*` to connect.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/shared_topic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test-client-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe",
+        "iot:Unsubscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/shared_topic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test-client-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-client-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
+
+To run the cycle MQTT Pub-Sub use the following command:
+
+``` sh
+./cycle-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+```
