@@ -206,7 +206,7 @@ for test_name in DATestConfig['tests']:
                 suiteDefinitionId=DATestConfig['test_suite_ids'][test_name],
                 suiteRunId=test_start_response['suiteRunId']
             )
-            print("[Device Advisor] Status: " + test_result_responds['status'], flush=True)
+            print("[Device Advisor] Status: " + test_result_responds['status'] + " group result: " + test_result_responds['testResult']['groups'][0]['tests'][0]['status'], flush=True)
             # If the status is PENDING or the responds does not loaded, the test suite is still loading
             if (test_result_responds['status'] == 'PENDING' or
             len(test_result_responds['testResult']['groups']) == 0 or # test group has not been loaded
