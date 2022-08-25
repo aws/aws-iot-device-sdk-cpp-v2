@@ -215,7 +215,7 @@ def parseXML(filepath):
             print (colored("AppVerifier entries were not marked as severe", "green"))
             return 0
     else:
-        print(colored("No AppVerifier entries found! AppVerifier ran without entries", "green"))
+        print(colored("No AppVerifier entries found! AppVerifier ran successfully and did not generate any entries", "green"))
         return 0
 
 def getErrorCodeMeaning(element_layer_name, element_code):
