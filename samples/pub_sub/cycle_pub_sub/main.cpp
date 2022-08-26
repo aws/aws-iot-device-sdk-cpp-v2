@@ -33,7 +33,7 @@ struct CycleClient
 void createNewClient(CycleClient *empty_client, size_t index, Utils::CommandLineUtils *cmd_utils)
 {
     empty_client->client = cmd_utils->BuildMQTTConnection();
-    empty_client->client_id = "test-client-";
+    empty_client->client_id = "test-" + Aws::Crt::UUID().ToString() + "-client-";
     empty_client->client_id.append(std::to_string(index).c_str());
 
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {

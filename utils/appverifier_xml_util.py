@@ -34,31 +34,31 @@ s_AppVerifier_ErrorCodeHelp = {
         "0x305": "The current thread is calling an API with a handle to an object with an incorrect object type"
     },
     "Heaps": {
-        "0x001": "Unknown error encountered that cannot be determined/classified by AppVerifier",
-        "0x002": "The application touched non-accessible page. Typically is caused by a buffer overrun error",
-        "0x003": "A heap created with HEAP_NO_SERIALIZE flag was accessed simultaneously from two threads",
-        "0x004": "The size of the block in a 'HeapAlloc' or 'HeapReAlloc' operation was above any reasonable value",
-        "0x005": "Heap structure did not include magic value from AppVerifier - meaning somehow the internal heap " \
+        "0x01": "Unknown error encountered that cannot be determined/classified by AppVerifier",
+        "0x02": "The application touched non-accessible page. Typically is caused by a buffer overrun error",
+        "0x03": "A heap created with HEAP_NO_SERIALIZE flag was accessed simultaneously from two threads",
+        "0x04": "The size of the block in a 'HeapAlloc' or 'HeapReAlloc' operation was above any reasonable value",
+        "0x05": "Heap structure did not include magic value from AppVerifier - meaning somehow the internal heap " \
                     "structure was corrupted or a bogus value was used as heap handle",
-        "0x006": "Typically means block was allocated in one heap and freed in another",
-        "0x007": "Block was freed twice",
-        "0x008": "Generic error due to corruption in the heap block that AppVerifier cannot place more specifically",
-        "0x009": "Tried to destroy the default process heap",
-        "0x00A": "Access violation raised while executing heap manager code",
-        "0x00B": "AppVerifier could not determine any particular type of corruption for the block. " \
+        "0x06": "Typically means block was allocated in one heap and freed in another",
+        "0x07": "Block was freed twice",
+        "0x08": "Generic error due to corruption in the heap block that AppVerifier cannot place more specifically",
+        "0x09": "Tried to destroy the default process heap",
+        "0x0A": "Access violation raised while executing heap manager code",
+        "0x0B": "AppVerifier could not determine any particular type of corruption for the block. " \
                     "Generally means heap points to non-accessible memory area",
-        "0x00C": "AppVerifier could not determine any particular type of corruption for the block. " \
+        "0x0C": "AppVerifier could not determine any particular type of corruption for the block. " \
                     "Generally happens if during heap free operation you pass an address that poins to a non-accessible memory area. " \
                     "Can also occur with double free situations",
-        "0x00D": "Block of memory is written to after being freed",
-        "0x00E": "Freed block marked as non-accessible had access attempt",
-        "0x00F": "Magic pattern added by AppVerifier at end of heap block changed. " \
+        "0x0D": "Block of memory is written to after being freed",
+        "0x0E": "Freed block marked as non-accessible had access attempt",
+        "0x0F": "Magic pattern added by AppVerifier at end of heap block changed. " \
                     "Typically means buffer overrun errors",
-        "0x010": "Buffer underruns",
-        "0x011": "Buffer underruns",
-        "0x012": "Buffer underruns",
-        "0x013": "Non-accessible page at end of heap allocation was touched. Typically caused by a buffer overrun error",
-        "0x014": "Page heap manager detected internal inconsistencies while calling GetProcessHeaps"
+        "0x10": "Buffer underruns",
+        "0x11": "Buffer underruns",
+        "0x12": "Buffer underruns",
+        "0x13": "Non-accessible page at end of heap allocation was touched. Typically caused by a buffer overrun error",
+        "0x14": "Page heap manager detected internal inconsistencies while calling GetProcessHeaps"
     },
     "Leak": {
         "0x900": "Owner DLL of the allocation was dynamically unloaded while owning resources",
