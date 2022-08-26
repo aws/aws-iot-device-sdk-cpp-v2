@@ -198,6 +198,11 @@ for test_name in DATestConfig['tests']:
         )
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
 
+        # Track how many pending requests we have gotten
+        pending_count = 0
+        # Have we run the test?
+        haveRunTest = False
+
         while True:
             # sleep for 1s every loop to avoid TooManyRequestsException
             sleep_with_backoff(BACKOFF_BASE, BACKOFF_MAX)
@@ -214,21 +219,41 @@ for test_name in DATestConfig['tests']:
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
                 continue
             
+            if (test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
+                pending_count += 1
+            if (pending_count >= 5):
+                if (haveRunTest == False):
+                    try:
+                        print("[Device Advisor]Info: About to get run application for test: " + test_name, flush=True)
+                        exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
+                        # Windows and MAC/LINUX has a different build folder structure
+                        if platform.system() == 'Windows':
+                            exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
+                        else:
+                            exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
+                        print("start to run" + exe_path, flush=True)
+                        haveRunTest = True
+                        result = subprocess.run(exe_path, timeout = 60*2)
+                    except:
+                        continue
+
             # Start to run the test sample after the status turns into RUNNING
             elif (test_result_responds['status'] == 'RUNNING' and 
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
-                try:
-                    print("[Device Advisor]Info: About to get run application for test: " + test_name, flush=True)
-                    exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
-                    # Windows and MAC/LINUX has a different build folder structure
-                    if platform.system() == 'Windows':
-                        exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
-                    else:
-                        exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
-                    print("start to run" + exe_path, flush=True)
-                    result = subprocess.run(exe_path, timeout = 60*2)
-                except:
-                    continue
+                if (haveRunTest == False):
+                    try:
+                        print("[Device Advisor]Info: About to get run application for test: " + test_name, flush=True)
+                        exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
+                        # Windows and MAC/LINUX has a different build folder structure
+                        if platform.system() == 'Windows':
+                            exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
+                        else:
+                            exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
+                        print("start to run" + exe_path, flush=True)
+                        haveRunTest = True
+                        result = subprocess.run(exe_path, timeout = 60*2)
+                    except:
+                        continue
 
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
