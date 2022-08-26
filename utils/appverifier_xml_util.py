@@ -2,11 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0.
 
 # Built-in
-from ast import arg
+from asyncio import subprocess
 import xml.etree.ElementTree as ElementTree
 import argparse
-# Needs to be installed via pip - for terminal colored output
-from termcolor import colored
+import os
+import subprocess
+import pathlib
+# Needs to be installed via pip
+import boto3 # - for launching sample
+from termcolor import colored # - for terminal colored output
 
 s_AppVerifier_LogText = "{Application Verifier}logSession"
 s_AppVerifier_EntryText = "{Application Verifier}logEntry"
@@ -151,7 +155,7 @@ s_AppVerifier_ErrorCodeHelp = {
         "0x350": "A DLL that allocated a TLS index is being unloaded before freeing that TLS index",
         "0x351": "The internal verifier structures used to store the state of TLS slots for thread are corrupted",
         "0x352": "An invalid TLS index is used"
-    }   
+    }
 }
 
 
@@ -173,12 +177,12 @@ def parseXML(filepath):
             xml_is_app_verifier = True
         elif (elem.tag == s_AppVerifier_EntryText):
             app_verifier_entries.append(elem)
-    
+
     # If the XML does not have any AppVerifier data, then something went wrong!
     if (xml_is_app_verifier == False):
         print (colored("XML File from AppVerifier does not include a AppVerifier session!", "red"), flush=True)
         return -1
-    
+
     # If we have AppVerifier entries, then a test or tests failed, so process the data,
     # print it, and then return with an error to stop the GitHub action from passing
     if (len(app_verifier_entries) > 0):
@@ -209,13 +213,13 @@ def parseXML(filepath):
             flush=True)
 
         if (severity_error_found == True):
-            print (colored("\nFailed due to AppVerifier finding entries marked as severe", "red"))
+            print (colored("\nFailed due to AppVerifier finding entries marked as severe", "red"), flush=True)
             return -1
         else:
-            print (colored("AppVerifier entries were not marked as severe", "green"))
+            print (colored("AppVerifier entries were not marked as severe", "green"), flush=True)
             return 0
     else:
-        print(colored("No AppVerifier entries found! AppVerifier ran successfully and did not generate any entries", "green"))
+        print(colored("No AppVerifier entries found! AppVerifier ran successfully and did not generate any entries", "green"), flush=True)
         return 0
 
 def getErrorCodeMeaning(element_layer_name, element_code):
@@ -228,15 +232,89 @@ def getErrorCodeMeaning(element_layer_name, element_code):
     return "Util-script unknown layer: " + element_layer_name + " and error code: " + element_code
 
 
+def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate, sample_secret_private_key, sample_arguments):
+
+    print("Getting credentials from secrets...", flush=True)
+    secrets_client = boto3.client("secretsmanager", region_name="us-east-1")
+    sample_endpoint = secrets_client.get_secret_value(SecretId=sample_secret_endpoint)["SecretString"]
+    sample_certificate = secrets_client.get_secret_value(SecretId=sample_secret_certificate)
+    sample_private_key = secrets_client.get_secret_value(SecretId=sample_secret_private_key)
+
+    current_folder = pathlib.Path(__file__).resolve()
+    # Remove the name of the python file
+    current_folder = str(current_folder).replace("appverifier_xml_util.py", "")
+
+    print("Saving credentials to file...", flush=True)
+    tmp_certificate_file_path = str(current_folder) + "tmp_certificate.pem"
+    tmp_private_key_path = str(current_folder) + "tmp_privatekey.pem.key"
+    with open(tmp_certificate_file_path, "w") as file:
+        file.write(sample_certificate["SecretString"])
+    with open(tmp_private_key_path, "w") as file:
+        file.write(sample_private_key["SecretString"])
+    print("Saved credentials to file...", flush=True)
+
+    print("Processing arguments...", flush=True)
+    launch_arguments = []
+    launch_arguments.append("--endpoint")
+    launch_arguments.append(sample_endpoint)
+    launch_arguments.append("--cert")
+    launch_arguments.append(tmp_certificate_file_path)
+    launch_arguments.append("--key")
+    launch_arguments.append(tmp_private_key_path)
+    sample_arguments_split = sample_arguments.split(" ")
+    for arg in sample_arguments_split:
+        launch_arguments.append(arg)
+
+    print("Running sample...", flush=True)
+    exit_code = 0
+    sample_return = subprocess.run(args=launch_arguments, executable=sample_file)
+    exit_code = sample_return.returncode
+
+    print("Deleting credentials files...", flush=True)
+    os.remove(tmp_certificate_file_path)
+    os.remove(tmp_private_key_path)
+
+    if (exit_code == 0):
+        print(colored("Finished running sample! Exiting with success", "green"), flush=True)
+    else:
+        print (colored("Sample did not return success!", "red"))
+
+    return exit_code
+
+
 def main():
     argument_parser = argparse.ArgumentParser(description="AppVerifier XML output util")
-    argument_parser.add_argument("--file", metavar="C:\\example\\file.xml", required=True, help="Path to XML file from AppVerifier")
+    argument_parser.add_argument("--launch_sample", metavar="<True/False>", required=False, default=False, type=bool,
+        help="If true, will launch the sample with the given arguments. Note that endpoint, certificate, and private key are all gotten via Boto3 secrets")
+    argument_parser.add_argument("--sample_file", metavar="<C:\\example\\sample.exe>", required=False, default="", help="Sample to launch that AppVerifier is following")
+    argument_parser.add_argument("--sample_secret_endpoint", metavar="<Name of endpoint secret>", required=False, default="unit-test/endpoint", help="The name of the secret containing the endpoint")
+    argument_parser.add_argument("--sample_secret_certificate", metavar="<Name of certificate secret>", required=False, default="unit-test/certificate", help="The name of the secret containing the certificate PEM file")
+    argument_parser.add_argument("--sample_secret_private_key", metavar="<Name of private key secret>", required=False, default="unit-test/privatekey", help="The name of the secret containing the private key PEM file")
+    argument_parser.add_argument("--sample_arguments", metavar="<Arguments here in single string!>", required=False, default="", help="Arguments to pass to sample")
+
+    argument_parser.add_argument("--parse_xml", metavar="<True/False>", required=False, default=False, type=bool)
+    argument_parser.add_argument("--xml_file", metavar="<C:\\example\\file.xml>", required=False, help="Path to XML file from AppVerifier")
+
     parsed_commands = argument_parser.parse_args()
 
-    print("\n" + colored("Starting AppVerifier XML check...", "green"))
-    xml_result = parseXML(parsed_commands.file)
-    print ("\n")
-    exit(xml_result)
+    if (parsed_commands.launch_sample == True):
+        print("\n" + colored("Starting to launch sample...", "green"), flush=True)
+        sample_result = launchSample(
+            parsed_commands.sample_file,
+            parsed_commands.sample_secret_endpoint,
+            parsed_commands.sample_secret_certificate,
+            parsed_commands.sample_secret_private_key,
+            parsed_commands.sample_arguments)
+        print ("\n")
+        exit(sample_result)
+    elif (parsed_commands.parse_xml == True):
+        print("\n" + colored("Starting AppVerifier XML check...", "green"), flush=True)
+        xml_result = parseXML(parsed_commands.file)
+        print ("\n")
+        exit(xml_result)
+    else:
+        print("\n" + colored("Error! Was not told to start sample or parse XML!", "red") + "\n", flush=True)
+        exit(-1)
 
 if __name__ == "__main__":
     main()
