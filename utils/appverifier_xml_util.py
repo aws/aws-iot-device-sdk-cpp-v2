@@ -235,10 +235,14 @@ def getErrorCodeMeaning(element_layer_name, element_code):
 def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate, sample_secret_private_key, sample_arguments):
 
     print("Getting credentials from secrets...", flush=True)
-    secrets_client = boto3.client("secretsmanager", region_name="us-east-1")
-    sample_endpoint = secrets_client.get_secret_value(SecretId=sample_secret_endpoint)["SecretString"]
-    sample_certificate = secrets_client.get_secret_value(SecretId=sample_secret_certificate)
-    sample_private_key = secrets_client.get_secret_value(SecretId=sample_secret_private_key)
+    try:
+        secrets_client = boto3.client("secretsmanager", region_name="us-east-1")
+        sample_endpoint = secrets_client.get_secret_value(SecretId=sample_secret_endpoint)["SecretString"]
+        sample_certificate = secrets_client.get_secret_value(SecretId=sample_secret_certificate)
+        sample_private_key = secrets_client.get_secret_value(SecretId=sample_secret_private_key)
+    except:
+        print (colored("Could not get secrets to launch sample!", "red"))
+        exit(-1)
 
     current_folder = pathlib.Path(__file__).resolve()
     # Remove the name of the python file
@@ -278,6 +282,9 @@ def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate,
         print(colored("Finished running sample! Exiting with success", "green"), flush=True)
     else:
         print (colored("Sample did not return success!", "red"))
+        print ("Sample log: \n")
+        print (sample_return.stdout)
+        print ("\n")
 
     return exit_code
 
@@ -309,7 +316,7 @@ def main():
         exit(sample_result)
     elif (parsed_commands.parse_xml == True):
         print("\n" + colored("Starting AppVerifier XML check...", "green"), flush=True)
-        xml_result = parseXML(parsed_commands.file)
+        xml_result = parseXML(parsed_commands.xml_file)
         print ("\n")
         exit(xml_result)
     else:
