@@ -33,7 +33,8 @@ struct CycleClient
 void createNewClient(CycleClient *empty_client, size_t index, Utils::CommandLineUtils *cmd_utils)
 {
     empty_client->client = cmd_utils->BuildMQTTConnection();
-    empty_client->client_id = "test-client-" + std::to_string(index);
+    empty_client->client_id = "test-client-";
+    empty_client->client_id.append(std::to_string(index).c_str());
 
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
@@ -429,7 +430,7 @@ int main(int argc, char *argv[])
     // Stop all the clients
     for (size_t i = 0; i < config_clients; i++)
     {
-        operationStop(&clients_holder.at(i), i);
+        operationStop(&clients_holder.at(i), (int)i);
     }
     // Wait a second
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
