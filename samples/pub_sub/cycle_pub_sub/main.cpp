@@ -430,8 +430,8 @@ int main(int argc, char *argv[])
     {
         operationStop(&clients_holder.at(i), (int)i);
     }
-    // Wait a second
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    // Wait for a couple seconds
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     fprintf(stdout, "\nCycle pub-sub sample complete\n\n");
     return 0;
