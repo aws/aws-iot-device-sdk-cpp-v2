@@ -26,6 +26,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/x509_credentials_provider_connect',
             'samples/mqtt/custom_authorizer_connect',
             "samples/pub_sub/basic_pub_sub",
+            "samples/pub_sub/cycle_pub_sub",
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
             'samples/shadow/shadow_sync',

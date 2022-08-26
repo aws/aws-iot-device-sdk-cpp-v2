@@ -18,7 +18,7 @@ env:
   AWS_DEFAULT_REGION: us-east-1
 
   # For now, use the PubSub sample
-  APP_VERIFIER_EXE: D:\a\work\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe
+  APP_VERIFIER_EXE: D:\a\work\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe
   APP_VERIFIER_OUTPUT_XML: D:\a\work\aws-iot-device-sdk-cpp-v2\app_verifier_output.xml
   APP_VERIFIER_OUTPUT_XML_HELPER: D:\a\work\aws-iot-device-sdk-cpp-v2\utils\appverifier_xml_util.py
   # All of the tests that will be run by AppVerifier

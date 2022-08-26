@@ -282,9 +282,13 @@ def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate,
         print(colored("Finished running sample! Exiting with success", "green"), flush=True)
     else:
         print (colored("Sample did not return success!", "red"))
-        print ("Sample log: \n")
-        print (sample_return.stdout)
-        print ("\n")
+        if (sample_return.stdout != None or sample_return.stderr != None):
+            print ("Sample log: \n")
+            if (sample_return.stdout != None):
+                print (sample_return.stdout)
+            if (sample_return.stderr != None):
+                print (sample_return.stderr)
+            print ("\n")
 
     return exit_code
 
