@@ -83,6 +83,7 @@ enum OPERATIONS
 
 void operationNull(CycleClient *current_client, int index)
 {
+    (void)current_client;
     // Do nothing!
     fprintf(stdout, "[OP] Null called for client %i\n", index);
 }
@@ -326,7 +327,7 @@ void performRandomOperation(std::vector<CycleClient> *clients_holder, size_t len
     int random_index = rand() % OPERATION_LENGTH;
     for (size_t i = 0; i < length; i++)
     {
-        performOperation(&clients_holder->at(i), i, random_index);
+        performOperation(&clients_holder->at(i), (int)i, random_index);
         random_index = rand() % OPERATION_LENGTH;
     }
 }
@@ -407,19 +408,16 @@ int main(int argc, char *argv[])
     // Start the loop
     bool done = false;
     auto nowTime = std::chrono::steady_clock::now();
-    uint32_t time_difference = 0;
-    uint32_t operations_executed = 0;
+    uint64_t time_difference = 0;
 
     while (!done)
     {
         nowTime = std::chrono::steady_clock::now();
-        time_difference = std::chrono::duration_cast<std::chrono::seconds>(nowTime - startTime).count();
+        time_difference = (uint64_t)std::chrono::duration_cast<std::chrono::seconds>(nowTime - startTime).count();
         if (time_difference >= config_seconds)
         {
             done = true;
         }
-
-        operations_executed += 1;
         performRandomOperation(&clients_holder, config_clients);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1000 * config_tps));
