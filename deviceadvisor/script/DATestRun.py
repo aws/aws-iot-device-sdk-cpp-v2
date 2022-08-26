@@ -215,8 +215,7 @@ for test_name in DATestConfig['tests']:
             # If the status is PENDING or the responds does not loaded, the test suite is still loading
             if (test_result_responds['status'] == 'PENDING' or
             len(test_result_responds['testResult']['groups']) == 0 or # test group has not been loaded
-            len(test_result_responds['testResult']['groups'][0]['tests']) == 0 or #test case has not been loaded
-            test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
+            len(test_result_responds['testResult']['groups'][0]['tests']) == 0): #test case has not been loaded
                 continue
             
             if (test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
