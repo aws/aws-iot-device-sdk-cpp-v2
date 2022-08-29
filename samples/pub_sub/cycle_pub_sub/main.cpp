@@ -39,17 +39,15 @@ std::vector<CycleClient> clients_holder;
  * A helper function to get the CycleClient struct associated with the passed-in MqttConnection.
  * This allows us to get the CycleClient data in the MQTT callbacks.
  *
- * @param clients_holder The vector containing all the CycleClients
+ * @param clients The vector containing all the CycleClients
  * @param connection The MqttConnection to find the CycleClient for
  * @return The CycleClient associated with the MqttConnection or nullptr if none is found
  */
-CycleClient *getClientFromConnection(
-    std::vector<CycleClient> *clients_holder,
-    Aws::Crt::Mqtt::MqttConnection *connection)
+CycleClient *getClientFromConnection(std::vector<CycleClient> *clients, Aws::Crt::Mqtt::MqttConnection *connection)
 {
-    for (int i = 0; i < clients_holder->size(); i++)
+    for (int i = 0; i < clients->size(); i++)
     {
-        CycleClient *current_client = &clients_holder->at(i);
+        CycleClient *current_client = &clients->at(i);
         if (current_client->client.get() == connection)
         {
             return current_client;
@@ -254,12 +252,7 @@ void operationSubscribe(CycleClient *current_client, int index)
     }
     fprintf(stdout, "[OP] About to subscribe client %i\n", index);
 
-    auto onMessage = [&](Mqtt::MqttConnection &,
-                         const String &topic,
-                         const ByteBuf &byteBuf,
-                         bool /*dup*/,
-                         Mqtt::QOS /*qos*/,
-                         bool /*retain*/) {
+    auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool, Mqtt::QOS, bool) {
         {
             fprintf(stdout, "[Lifecycle] Publish received on topic %s\n", topic.c_str());
             fprintf(stdout, "[Lifecycle] Message: ");
@@ -269,11 +262,7 @@ void operationSubscribe(CycleClient *current_client, int index)
     };
 
     std::promise<void> subscribeFinishedPromise;
-    auto onSubAck = [&](Mqtt::MqttConnection &connection,
-                        uint16_t packetId,
-                        const String &topic,
-                        Mqtt::QOS QoS,
-                        int errorCode) {
+    auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
         if (errorCode)
         {
             fprintf(stderr, "[Lifecycle] Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
@@ -505,14 +494,14 @@ void performOperation(CycleClient *current_client, int index, int random_index)
 /**
  * Iterates through the vector holding all of the clients and performs a random operation
  *
- * @param clients_holder A vector containing all of the clients
+ * @param clients A vector containing all of the clients
  */
-void performRandomOperation(std::vector<CycleClient> *clients_holder)
+void performRandomOperation(std::vector<CycleClient> *clients)
 {
     int random_index = rand() % OPERATION_LENGTH;
-    for (size_t i = 0; i < clients_holder->size(); i++)
+    for (size_t i = 0; i < clients->size(); i++)
     {
-        performOperation(&clients_holder->at(i), (int)i, random_index);
+        performOperation(&clients->at(i), (int)i, random_index);
         random_index = rand() % OPERATION_LENGTH;
     }
 }
@@ -588,7 +577,7 @@ int main(int argc, char *argv[])
     auto startTime = std::chrono::steady_clock::now();
 
     // Seed the random number generator with the current time
-    srand(time(nullptr));
+    srand((unsigned int)time(nullptr));
 
     // Start the loop
     bool done = false;
