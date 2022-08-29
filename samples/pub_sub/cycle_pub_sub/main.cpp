@@ -45,7 +45,7 @@ std::vector<CycleClient> clients_holder;
  */
 CycleClient *getClientFromConnection(std::vector<CycleClient> *clients, Aws::Crt::Mqtt::MqttConnection *connection)
 {
-    for (int i = 0; i < clients->size(); i++)
+    for (size_t i = 0; i < clients->size(); i++)
     {
         CycleClient *current_client = &clients->at(i);
         if (current_client->client.get() == connection)
