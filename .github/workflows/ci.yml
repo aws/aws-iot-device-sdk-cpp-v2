@@ -93,17 +93,17 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
       - name: Run and check AppVerifier
         run: |
-          echo Enabling AppVerifier:
+          echo "Enabling AppVerifier:"
           appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility sample run:
+          echo "Starting AppVerifier utility sample run:"
           python -m pip install termcolor
           python -m pip install boto3
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
-          echo Exporting XML log:
+          echo "Exporting XML log:"
           appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
-          echo Disabling AppVerifier:
+          echo "Disabling AppVerifier:"
           appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility parsing XML:
+          echo "Starting AppVerifier utility parsing XML:"
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   windows-vs14:
@@ -120,17 +120,17 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
       - name: Run and check AppVerifier
         run: |
-          echo Enabling AppVerifier:
+          echo "Enabling AppVerifier:"
           appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility sample run:
+          echo "Starting AppVerifier utility sample run:"
           python -m pip install termcolor
           python -m pip install boto3
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
-          echo Exporting XML log:
+          echo "Exporting XML log:"
           appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
-          echo Disabling AppVerifier:
+          echo "Disabling AppVerifier:"
           appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility parsing XML:
+          echo "Starting AppVerifier utility parsing XML:"
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   windows-no-cpu-extensions:
@@ -144,17 +144,17 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
       - name: Run and check AppVerifier
         run: |
-          echo Enabling AppVerifier:
+          echo "Enabling AppVerifier:"
           appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility sample run:
+          echo "Starting AppVerifier utility sample run:"
           python -m pip install termcolor
           python -m pip install boto3
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
-          echo Exporting XML log:
+          echo "Exporting XML log:"
           appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
-          echo Disabling AppVerifier:
+          echo "Disabling AppVerifier:"
           appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
-          echo Starting AppVerifier utility parsing XML:
+          echo "Starting AppVerifier utility parsing XML:"
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   # osx:
