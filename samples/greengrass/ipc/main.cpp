@@ -96,6 +96,10 @@ int main(int argc, char *argv[])
      */
     class SubscribeStreamHandler : public SubscribeToIoTCoreStreamHandler
     {
+      public:
+        virtual ~SubscribeStreamHandler() {}
+
+      private:
         void OnStreamEvent(IoTCoreMessage *response) override
         {
             auto message = response->GetMessage();
@@ -111,21 +115,21 @@ int main(int argc, char *argv[])
         };
     };
 
-    SubscribeStreamHandler streamHandler;
+    auto streamHandler = MakeShared<SubscribeStreamHandler>(DefaultAllocator());
     auto subscribeOperation = client.NewSubscribeToIoTCore(streamHandler);
     SubscribeToIoTCoreRequest subscribeRequest;
     subscribeRequest.SetQos(QOS_AT_LEAST_ONCE);
     subscribeRequest.SetTopicName(topic);
 
     fprintf(stdout, "Attempting to subscribe to %s topic\n", topic.c_str());
-    auto requestStatus = subscribeOperation.Activate(subscribeRequest).get();
+    auto requestStatus = subscribeOperation->Activate(subscribeRequest).get();
     if (!requestStatus)
     {
         fprintf(stderr, "Failed to send subscription request to %s topic\n", topic.c_str());
         exit(-1);
     }
 
-    auto subscribeResultFuture = subscribeOperation.GetResult();
+    auto subscribeResultFuture = subscribeOperation->GetResult();
     /*
     // To avoid throwing exceptions, wait on the result for a specified timeout:
     if (subscribeResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
@@ -172,7 +176,7 @@ int main(int argc, char *argv[])
     publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
     fprintf(stdout, "Attempting to publish to %s topic\n", topic.c_str());
-    requestStatus = publishOperation.Activate(publishRequest).get();
+    requestStatus = publishOperation->Activate(publishRequest).get();
     if (!requestStatus)
     {
         fprintf(
@@ -183,7 +187,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    auto publishResultFuture = publishOperation.GetResult();
+    auto publishResultFuture = publishOperation->GetResult();
     /*
     // To avoid throwing exceptions, wait on the result for a specified timeout:
     if (publishResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
