@@ -898,13 +898,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 
 ## Cycle Pub-Sub
 
-This sample uses the
-[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
-for AWS IoT to send and receive messages through a series of MQTT connections.
+This sample will create a series of clients, and then randomly perform operations on them (*connect, disconnect, publish, subscribe, etc.*) every few seconds. Status updates on what each client in the sample are doing are continually printed to the console and the sample will run until the time duration set is complete.
 
-This sample will create a series of clients, and then randomly perform operations on them (connect, disconnect, publish, subscribe, etc) every few seconds. Status updates on what each client in the sample are doing are continually printed to the console and the sample will run until the time duration set is complete.
-
-This sample is primarily for testing stability over a period of time for testing/CI, but it also shows how to perform operations across multiple clients.
+This sample is primarily for testing stability over a period of time for testing and CI, but it also shows how to randomly perform operations across multiple clients.
 
 Source: `samples/pub_sub/cycle_pub_sub/main.cpp`
 
@@ -952,7 +948,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 </pre>
 </details>
 
-To run the cycle MQTT Pub-Sub use the following command:
+To run the Cycle Pub-Sub sample, use the following command:
 
 ``` sh
 ./cycle-pub-sub --endpoint <endpoint> --ca_file <path to root CA>

@@ -25,62 +25,62 @@ env:
   APP_VERIFIER_TESTS: Exceptions Handles Heaps Leak Locks Memory SRWLock Threadpool TLS
 
 jobs:
-  # linux-compat:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       image:
-  #         - manylinux2014-x64
-  #         - manylinux2014-x86
-  #         - al2-x64
+  linux-compat:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image:
+          - manylinux2014-x64
+          - manylinux2014-x86
+          - al2-x64
 
-  #   steps:
-  #     # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-  #     - name: Build ${{ env.PACKAGE_NAME }}
-  #       run: |
-  #         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-  #         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
+    steps:
+      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+      - name: Build ${{ env.PACKAGE_NAME }}
+        run: |
+          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
 
-  # linux-compiler-compat:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       version:
-  #         - clang-3
-  #         - clang-6
-  #         - clang-8
-  #         - clang-9
-  #         - clang-10
-  #         - clang-11
-  #         - gcc-4.8
-  #         - gcc-5
-  #         - gcc-6
-  #         - gcc-7
-  #         - gcc-8
-  #   steps:
-  #     # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-  #     - name: Build ${{ env.PACKAGE_NAME }}
-  #       run: |
-  #         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-  #         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
+  linux-compiler-compat:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - clang-3
+          - clang-6
+          - clang-8
+          - clang-9
+          - clang-10
+          - clang-11
+          - gcc-4.8
+          - gcc-5
+          - gcc-6
+          - gcc-7
+          - gcc-8
+    steps:
+      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+      - name: Build ${{ env.PACKAGE_NAME }}
+        run: |
+          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
 
-  # byo-crypto:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-  #   - name: Build ${{ env.PACKAGE_NAME }}
-  #     run: |
-  #       aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-  #       ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
+  byo-crypto:
+    runs-on: ubuntu-latest
+    steps:
+        # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+    - name: Build ${{ env.PACKAGE_NAME }}
+      run: |
+        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
 
-  # linux-no-cpu-extensions:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-  #   - name: Build ${{ env.PACKAGE_NAME }}
-  #     run: |
-  #       aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-  #       ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+  linux-no-cpu-extensions:
+    runs-on: ubuntu-latest
+    steps:
+        # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+    - name: Build ${{ env.PACKAGE_NAME }}
+      run: |
+        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
   windows:
     runs-on: windows-latest
@@ -157,14 +157,14 @@ jobs:
           echo "Starting AppVerifier utility parsing XML:"
           python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
-  # osx:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - name: Build ${{ env.PACKAGE_NAME }} + consumers
-  #       run: |
-  #         python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
-  #         chmod a+x builder
-  #         ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+  osx:
+    runs-on: macos-latest
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
+          chmod a+x builder
+          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
   # check that docs can still build
   check-docs:
