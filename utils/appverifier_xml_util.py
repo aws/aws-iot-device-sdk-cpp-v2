@@ -9,8 +9,8 @@ import os
 import subprocess
 import pathlib
 # Needs to be installed via pip
-import boto3 # - for launching sample
-from termcolor import colored # - for terminal colored output
+import boto3  # - for launching sample
+from termcolor import colored  # - for terminal colored output
 
 s_AppVerifier_LogText = "{Application Verifier}logSession"
 s_AppVerifier_EntryText = "{Application Verifier}logEntry"
@@ -25,12 +25,12 @@ s_AppVerifier_ErrorCodeHelp = {
     "Handles": {
         "0x300": "The function on the top of the stack passed an invalid handle to system routines",
         "0x301": "The function on the top of the stack passed an invalid TLS index to TLS system routines",
-        "0x302": "The function on the top of the stack called WaitForMultipleObjects with NULL as the address " \
-                    "of the array of handles to wait for or with zero as the number of handles",
+        "0x302": "The function on the top of the stack called WaitForMultipleObjects with NULL as the address "
+        "of the array of handles to wait for or with zero as the number of handles",
         "0x303": "The function on the top of the stack passed a NULL handle to system routines",
-        "0x304": "The  current thread is currently running code inside the DllMain function of one " \
-                    "of the DLLs loaded in the current process and it calls WaitForSingleObject or " \
-                    "WaitForMultipleObjects to wait on a thread handle in the same process",
+        "0x304": "The  current thread is currently running code inside the DllMain function of one "
+        "of the DLLs loaded in the current process and it calls WaitForSingleObject or "
+        "WaitForMultipleObjects to wait on a thread handle in the same process",
         "0x305": "The current thread is calling an API with a handle to an object with an incorrect object type"
     },
     "Heaps": {
@@ -38,22 +38,22 @@ s_AppVerifier_ErrorCodeHelp = {
         "0x02": "The application touched non-accessible page. Typically is caused by a buffer overrun error",
         "0x03": "A heap created with HEAP_NO_SERIALIZE flag was accessed simultaneously from two threads",
         "0x04": "The size of the block in a 'HeapAlloc' or 'HeapReAlloc' operation was above any reasonable value",
-        "0x05": "Heap structure did not include magic value from AppVerifier - meaning somehow the internal heap " \
-                    "structure was corrupted or a bogus value was used as heap handle",
+        "0x05": "Heap structure did not include magic value from AppVerifier - meaning somehow the internal heap "
+        "structure was corrupted or a bogus value was used as heap handle",
         "0x06": "Typically means block was allocated in one heap and freed in another",
         "0x07": "Block was freed twice",
         "0x08": "Generic error due to corruption in the heap block that AppVerifier cannot place more specifically",
         "0x09": "Tried to destroy the default process heap",
         "0x0A": "Access violation raised while executing heap manager code",
-        "0x0B": "AppVerifier could not determine any particular type of corruption for the block. " \
-                    "Generally means heap points to non-accessible memory area",
-        "0x0C": "AppVerifier could not determine any particular type of corruption for the block. " \
-                    "Generally happens if during heap free operation you pass an address that poins to a non-accessible memory area. " \
-                    "Can also occur with double free situations",
+        "0x0B": "AppVerifier could not determine any particular type of corruption for the block. "
+        "Generally means heap points to non-accessible memory area",
+        "0x0C": "AppVerifier could not determine any particular type of corruption for the block. "
+        "Generally happens if during heap free operation you pass an address that poins to a non-accessible memory area. "
+        "Can also occur with double free situations",
         "0x0D": "Block of memory is written to after being freed",
         "0x0E": "Freed block marked as non-accessible had access attempt",
-        "0x0F": "Magic pattern added by AppVerifier at end of heap block changed. " \
-                    "Typically means buffer overrun errors",
+        "0x0F": "Magic pattern added by AppVerifier at end of heap block changed. "
+        "Typically means buffer overrun errors",
         "0x10": "Buffer underruns",
         "0x11": "Buffer underruns",
         "0x12": "Buffer underruns",
@@ -71,12 +71,12 @@ s_AppVerifier_ErrorCodeHelp = {
     },
     "Locks": {
         "0x200": "A thread is terminated, suspended, or in a state in which it cannot hold a critical section",
-        "0x201": "A DLL has a global variable containing a critical section and the DLL is unloaded but the " \
-                    "critical section has not been deleted",
-        "0x202": "A heap allocation contains a critical section, the allocation is freed, and the critical section " \
-                    "has not been deleted",
-        "0x203": "Typicaly means a critical section has been initialized more than once. May mean the critical section " \
-                    "or its debug information structure has been corrupted",
+        "0x201": "A DLL has a global variable containing a critical section and the DLL is unloaded but the "
+        "critical section has not been deleted",
+        "0x202": "A heap allocation contains a critical section, the allocation is freed, and the critical section "
+        "has not been deleted",
+        "0x203": "Typicaly means a critical section has been initialized more than once. May mean the critical section "
+        "or its debug information structure has been corrupted",
         "0x204": "Memory containing a critical section was freed but the critical section has not been deleted using 'DeleteCriticalSection'",
         "0x205": "The DebugInfo field of the critical section is pointing to freed memory",
         "0x206": "The owner thread ID is invalid in the current context",
@@ -115,10 +115,10 @@ s_AppVerifier_ErrorCodeHelp = {
         "0x616": "The application is trying to run code from an address that is non-executable or free",
         "0x617": "An exception occurred while initializing a buffer specified as output parameter for a Win32 or (non-AWS) CRT API",
         "0x618": "An exception occurred while calling HeapSize for a heap block that is being freed",
-        "0x619": "The program is calling VirtualFree with an IpAddress parameter that is not the base address returned by " \
-                    "the VirtualAlloc or VirtualAllocEx function when the region of pages was reserved",
-        "0x61A": "The program is calling UnmapViewOfFile with an IpBaseAddress parameter that is not identical to the value returned" \
-                    "by a previous call to the MapViewOfFile or MapViewOfFileEx function",
+        "0x619": "The program is calling VirtualFree with an IpAddress parameter that is not the base address returned by "
+        "the VirtualAlloc or VirtualAllocEx function when the region of pages was reserved",
+        "0x61A": "The program is calling UnmapViewOfFile with an IpBaseAddress parameter that is not identical to the value returned"
+        "by a previous call to the MapViewOfFile or MapViewOfFileEx function",
         "0x61B": "A callback function in the threadpool thread is rasing an exception",
         "0x61C": "The application is trying to run code from an address that is non-executable or free",
         "0x61D": "The application is created an executable heap",
@@ -140,8 +140,8 @@ s_AppVerifier_ErrorCodeHelp = {
         "0x702": "One or more messages left as unprocessed when threadpool thread is returned to the threadpool",
         "0x703": "Any window is kept alive when threadpool thread is returned to the threadpool",
         "0x704": "ExitThread is called on a threadpool thread",
-        "0x705": "Callback function changed the thread token to impersonate another user and forgot to reset it before " \
-                    "returning it to the threadpool",
+        "0x705": "Callback function changed the thread token to impersonate another user and forgot to reset it before "
+        "returning it to the threadpool",
         "0x706": "Windows API that requires dedicated or persistent thread called from threadpool",
         "0x707": "Callback function forgot to close or reset the current transaction handle",
         "0x708": "Callback function called CoInit and CoUnInit in differing amounts (unbalanced)",
@@ -159,7 +159,7 @@ s_AppVerifier_ErrorCodeHelp = {
 }
 
 
-def parseXML(filepath):
+def parseXML(filepath, dump_xml_on_error):
     xml_is_app_verifier = False
     app_verifier_entries = []
 
@@ -168,7 +168,8 @@ def parseXML(filepath):
     try:
         xml_tree = ElementTree.parse(filepath)
     except:
-        print(colored("Exception occured while trying to open XML file!", "red"), flush=True)
+        print(
+            colored("Exception occured while trying to open XML file!", "red"), flush=True)
         return -1
 
     # Go through every element in the XML tree
@@ -180,13 +181,14 @@ def parseXML(filepath):
 
     # If the XML does not have any AppVerifier data, then something went wrong!
     if (xml_is_app_verifier == False):
-        print (colored("XML File from AppVerifier does not include a AppVerifier session!", "red"), flush=True)
+        print(colored(
+            "XML File from AppVerifier does not include a AppVerifier session!", "red"), flush=True)
         return -1
 
     # If we have AppVerifier entries, then a test or tests failed, so process the data,
     # print it, and then return with an error to stop the GitHub action from passing
     if (len(app_verifier_entries) > 0):
-        print (colored("AppVerifier entries found:", "yellow"), flush=True)
+        print(colored("AppVerifier entries found:", "yellow"), flush=True)
         severity_error_found = False
 
         for entry in app_verifier_entries:
@@ -201,10 +203,13 @@ def parseXML(filepath):
                 print_red = True
 
             if (print_red):
-                print (colored(f"[{element_time}] {element_severity.upper()} - Test: {element_layer_name} - Stop Code: {element_code}", "red"), flush=True)
+                print(colored(
+                    f"[{element_time}] {element_severity.upper()} - Test: {element_layer_name} - Stop Code: {element_code}", "red"), flush=True)
             else:
-                print (f"[{element_time}] {element_severity.upper()} - Test: {element_layer_name} - Stop Code: {element_code}", flush=True)
-            print("\t" + getErrorCodeMeaning(element_layer_name, element_code), flush=True)
+                print(
+                    f"[{element_time}] {element_severity.upper()} - Test: {element_layer_name} - Stop Code: {element_code}", flush=True)
+            print("\t" + getErrorCodeMeaning(element_layer_name,
+                  element_code), flush=True)
 
         print(
             "\nNOTE: The error codes and information provided are just guesses based on the error code.\n"
@@ -212,15 +217,25 @@ def parseXML(filepath):
             "about the error from its error code and how to debug it.",
             flush=True)
 
+        if (severity_error_found == True and dump_xml_on_error != None):
+            if (dump_xml_on_error == True):
+                print(colored("\nRaw XML output for errors found:\n", "red"), flush=True)
+                for entry in app_verifier_entries:
+                    print(ElementTree.tostring(
+                        entry, encoding="unicode"), flush=True)
+
         if (severity_error_found == True):
-            print (colored("\nFailed due to AppVerifier finding entries marked as severe", "red"), flush=True)
+            print(colored(
+                "\nFailed due to AppVerifier finding entries marked as severe", "red"), flush=True)
             return -1
         else:
-            print (colored("AppVerifier entries were not marked as severe", "green"), flush=True)
+            print(
+                colored("AppVerifier entries were not marked as severe", "green"), flush=True)
             return 0
     else:
         print(colored("No AppVerifier entries found! AppVerifier ran successfully and did not generate any entries", "green"), flush=True)
         return 0
+
 
 def getErrorCodeMeaning(element_layer_name, element_code):
     if (element_layer_name in s_AppVerifier_ErrorCodeHelp):
@@ -236,12 +251,16 @@ def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate,
 
     print("Getting credentials from secrets...", flush=True)
     try:
-        secrets_client = boto3.client("secretsmanager", region_name="us-east-1")
-        sample_endpoint = secrets_client.get_secret_value(SecretId=sample_secret_endpoint)["SecretString"]
-        sample_certificate = secrets_client.get_secret_value(SecretId=sample_secret_certificate)
-        sample_private_key = secrets_client.get_secret_value(SecretId=sample_secret_private_key)
+        secrets_client = boto3.client(
+            "secretsmanager", region_name="us-east-1")
+        sample_endpoint = secrets_client.get_secret_value(
+            SecretId=sample_secret_endpoint)["SecretString"]
+        sample_certificate = secrets_client.get_secret_value(
+            SecretId=sample_secret_certificate)
+        sample_private_key = secrets_client.get_secret_value(
+            SecretId=sample_secret_private_key)
     except:
-        print (colored("Could not get secrets to launch sample!", "red"))
+        print(colored("Could not get secrets to launch sample!", "red"))
         exit(-1)
 
     current_folder = pathlib.Path(__file__).resolve()
@@ -271,7 +290,8 @@ def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate,
 
     print("Running sample...", flush=True)
     exit_code = 0
-    sample_return = subprocess.run(args=launch_arguments, executable=sample_file)
+    sample_return = subprocess.run(
+        args=launch_arguments, executable=sample_file)
     exit_code = sample_return.returncode
 
     print("Deleting credentials files...", flush=True)
@@ -279,24 +299,42 @@ def launchSample(sample_file, sample_secret_endpoint, sample_secret_certificate,
     os.remove(tmp_private_key_path)
 
     if (exit_code == 0):
-        print(colored("Finished running sample! Exiting with success", "green"), flush=True)
+        print(colored("Finished running sample! Exiting with success",
+              "green"), flush=True)
     else:
-        print (colored("Sample did not return success! Exit code " + str(exit_code), "red"))
+        print(colored("Sample did not return success! Exit code " + str(exit_code), "red"))
     return exit_code
 
 
-def main():
-    argument_parser = argparse.ArgumentParser(description="AppVerifier XML output util")
-    argument_parser.add_argument("--launch_sample", metavar="<True/False>", required=False, default=False, type=bool,
-        help="If true, will launch the sample with the given arguments. Note that endpoint, certificate, and private key are all gotten via Boto3 secrets")
-    argument_parser.add_argument("--sample_file", metavar="<C:\\example\\sample.exe>", required=False, default="", help="Sample to launch that AppVerifier is following")
-    argument_parser.add_argument("--sample_secret_endpoint", metavar="<Name of endpoint secret>", required=False, default="unit-test/endpoint", help="The name of the secret containing the endpoint")
-    argument_parser.add_argument("--sample_secret_certificate", metavar="<Name of certificate secret>", required=False, default="unit-test/certificate", help="The name of the secret containing the certificate PEM file")
-    argument_parser.add_argument("--sample_secret_private_key", metavar="<Name of private key secret>", required=False, default="unit-test/privatekey", help="The name of the secret containing the private key PEM file")
-    argument_parser.add_argument("--sample_arguments", metavar="<Arguments here in single string!>", required=False, default="", help="Arguments to pass to sample")
+def booleanString(string):
+    string = string.lower()
+    if string not in {"false", "true"}:
+        raise ValueError("Boolean is not true or false!")
+    return string == "true"
 
-    argument_parser.add_argument("--parse_xml", metavar="<True/False>", required=False, default=False, type=bool)
-    argument_parser.add_argument("--xml_file", metavar="<C:\\example\\file.xml>", required=False, help="Path to XML file from AppVerifier")
+
+def main():
+    argument_parser = argparse.ArgumentParser(
+        description="AppVerifier XML output util")
+    argument_parser.add_argument("--launch_sample", metavar="<True/False>", required=False, default=False, type=booleanString,
+                                 help="If true, will launch the sample with the given arguments. Note that endpoint, certificate, and private key are all gotten via Boto3 secrets")
+    argument_parser.add_argument("--sample_file", metavar="<C:\\example\\sample.exe>",
+                                 required=False, default="", help="Sample to launch that AppVerifier is following")
+    argument_parser.add_argument("--sample_secret_endpoint", metavar="<Name of endpoint secret>",
+                                 required=False, default="unit-test/endpoint", help="The name of the secret containing the endpoint")
+    argument_parser.add_argument("--sample_secret_certificate", metavar="<Name of certificate secret>", required=False,
+                                 default="unit-test/certificate", help="The name of the secret containing the certificate PEM file")
+    argument_parser.add_argument("--sample_secret_private_key", metavar="<Name of private key secret>", required=False,
+                                 default="unit-test/privatekey", help="The name of the secret containing the private key PEM file")
+    argument_parser.add_argument("--sample_arguments", metavar="<Arguments here in single string!>",
+                                 required=False, default="", help="Arguments to pass to sample")
+
+    argument_parser.add_argument("--parse_xml", metavar="<True/False>", required=False, default=False,
+                                 type=booleanString, help="If true, the utility script will parse the AppVerifier XML passed")
+    argument_parser.add_argument("--xml_file", metavar="<C:\\example\\file.xml>",
+                                 required=False, help="Path to XML file from AppVerifier")
+    argument_parser.add_argument("--dump_xml_on_error", metavar="<True/False>", default=True, required=False,
+                                 type=booleanString, help="If true, the XML for found issues will be printed to the console")
 
     parsed_commands = argument_parser.parse_args()
 
@@ -308,16 +346,20 @@ def main():
             parsed_commands.sample_secret_certificate,
             parsed_commands.sample_secret_private_key,
             parsed_commands.sample_arguments)
-        print ("\n")
+        print("\n")
         exit(sample_result)
     elif (parsed_commands.parse_xml == True):
         print("\n" + colored("Starting AppVerifier XML check...", "green"), flush=True)
-        xml_result = parseXML(parsed_commands.xml_file)
-        print ("\n")
+        print(parsed_commands.dump_xml_on_error)
+        xml_result = parseXML(parsed_commands.xml_file,
+                              parsed_commands.dump_xml_on_error)
+        print("\n")
         exit(xml_result)
     else:
-        print("\n" + colored("Error! Was not told to start sample or parse XML!", "red") + "\n", flush=True)
+        print("\n" + colored("Error! Was not told to start sample or parse XML!",
+              "red") + "\n", flush=True)
         exit(-1)
+
 
 if __name__ == "__main__":
     main()
