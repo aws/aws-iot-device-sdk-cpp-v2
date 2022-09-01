@@ -5,6 +5,7 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
 #include <aws/iot/Mqtt5Client.h>
+#include <aws/crt/mqtt/Mqtt5Packets.h>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->withClientConnectionSuccessCallback([&connectionPromise](
-                                                     std::shared_ptr<Mqtt5::Mqtt5Client>,
+                                                     Mqtt5::Mqtt5Client&,
                                                      std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>,
                                                      std::shared_ptr<Aws::Crt::Mqtt5::NegotiatedSettings> settings) {
         fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", settings->getClientId().c_str());
@@ -71,22 +72,24 @@ int main(int argc, char *argv[])
     });
 
     builder->withClientConnectionFailureCallback(
-        [&connectionPromise](
-            std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>) {
+        [&connectionPromise](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>)
+        {
             fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(error_code));
             connectionPromise.set_value(false);
         });
 
-    builder->withClientStoppedCallback([&stoppedPromise](std::shared_ptr<Mqtt5::Mqtt5Client>) {
+    builder->withClientStoppedCallback(
+        [&stoppedPromise](Mqtt5::Mqtt5Client &)
+        {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
 
-    builder->withClientAttemptingConnectCallback(
-        [](std::shared_ptr<Mqtt5::Mqtt5Client>) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
+    builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client&)
+                                                 { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
 
     builder->withClientDisconnectionCallback([&disconnectPromise](
-                                                 std::shared_ptr<Mqtt5::Mqtt5Client>,
+                                                 Mqtt5::Mqtt5Client &,
                                                  int errorCode,
                                                  std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect) {
         if (errorCode == 0)
