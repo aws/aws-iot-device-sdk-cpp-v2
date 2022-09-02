@@ -43,23 +43,16 @@ int main(int argc, char *argv[])
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
         cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
 
-    Aws::Iot::Mqtt5CustomAuthConfig authconfig;
-    authconfig.WithAuthrizaerName("SdkTestingAuthorizerNoSigning2")
-        .WithUsername("Derp")
-        .WithPassword(ByteCursorFromCString("test"));
-
     // Setup connection options
     std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> connectOptions = std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
     // Get the client ID to send with the connection
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
     connectOptions->withClientId(clientId);
     builder->withConnectOptions(connectOptions);
-    builder->WithCustomAuthorizer(authconfig);
 
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
     std::promise<void> disconnectPromise;
-
     std::promise<bool> subscribeSuccess;
 
     // Setup lifecycle callbacks
