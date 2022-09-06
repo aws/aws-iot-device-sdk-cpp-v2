@@ -17,7 +17,7 @@ pushd $(dirname $0) > /dev/null
 git checkout main
 
 version=$(git describe --tags --abbrev=0)
-sed --in-place -r -e "s/set\\(AWS_SDK_CPP_VERSION \".+\"\\)/set(AWS_SDK_CPP_VERSION \"${version}\")/" CMakeLists.txt
+sed -i -r -e 's/set(AWS_SDK_CPP_VERSION "[^"]*"/set(AWS_SDK_CPP_VERSION "'${version}'"/' CMakeLists.txt
 echo "Updating AWS_SDK_CPP_VERSION default to ${version}"
 
 if git diff --exit-code CMakeLists.txt > /dev/null; then
