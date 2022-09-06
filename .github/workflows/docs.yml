@@ -21,6 +21,11 @@ jobs:
       - name: Update docs branch
         run: |
           sudo apt-get install -y doxygen
+
+          version=$(git describe --tags --abbrev=0)
+          sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
+          echo "Updating AWS_SDK_CPP_VERSION default to ${version//v}"
+
           ./make-docs.py
 
       - name: Commit
