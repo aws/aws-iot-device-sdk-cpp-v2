@@ -17,6 +17,12 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DATEST_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: us-east-1
 
+  APP_VERIFIER_EXE: D:\a\work\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe
+  APP_VERIFIER_OUTPUT_XML: D:\a\work\aws-iot-device-sdk-cpp-v2\app_verifier_output.xml
+  APP_VERIFIER_OUTPUT_XML_HELPER: D:\a\work\aws-iot-device-sdk-cpp-v2\utils\appverifier_xml_util.py
+  # All of the tests that will be run by AppVerifier
+  APP_VERIFIER_TESTS: Exceptions Handles Heaps Leak Locks Memory SRWLock Threadpool TLS
+
 jobs:
   linux-compat:
     runs-on: ubuntu-latest
@@ -84,6 +90,20 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+      - name: Run and check AppVerifier
+        run: |
+          echo "Enabling AppVerifier:"
+          appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility sample run:"
+          python -m pip install termcolor
+          python -m pip install boto3
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
+          echo "Exporting XML log:"
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo "Disabling AppVerifier:"
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility parsing XML:"
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   windows-vs14:
     runs-on: windows-2019 # windows-2019 is last env with Visual Studio 2015 (v14.0)
@@ -97,6 +117,20 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
+      - name: Run and check AppVerifier
+        run: |
+          echo "Enabling AppVerifier:"
+          appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility sample run:"
+          python -m pip install termcolor
+          python -m pip install boto3
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
+          echo "Exporting XML log:"
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo "Disabling AppVerifier:"
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility parsing XML:"
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
@@ -107,6 +141,20 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+      - name: Run and check AppVerifier
+        run: |
+          echo "Enabling AppVerifier:"
+          appverif -enable ${{ env.APP_VERIFIER_TESTS }} -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility sample run:"
+          python -m pip install termcolor
+          python -m pip install boto3
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --launch_sample true --sample_file ${{ env.APP_VERIFIER_EXE }}
+          echo "Exporting XML log:"
+          appverif -export log -for ${{ env.APP_VERIFIER_EXE }} -with to=${{ env.APP_VERIFIER_OUTPUT_XML }}
+          echo "Disabling AppVerifier:"
+          appverif -delete settings -for ${{ env.APP_VERIFIER_EXE }}
+          echo "Starting AppVerifier utility parsing XML:"
+          python ${{ env.APP_VERIFIER_OUTPUT_XML_HELPER }} --parse_xml true --xml_file ${{ env.APP_VERIFIER_OUTPUT_XML }}
 
   osx:
     runs-on: macos-latest
