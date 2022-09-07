@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
     /*
      * localProxyMode is set to destination by default unless flag is set to source
      */
-    if (cmdUtils.HasCommand("localProxyModeSource"))
+    if (cmdUtils.HasCommand("local_proxy_mode_source"))
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
