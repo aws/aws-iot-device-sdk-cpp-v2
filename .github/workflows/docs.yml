@@ -20,20 +20,22 @@ jobs:
 
       - name: Update docs branch
         run: |
-          echo "Compiling doxygen 1.8.20 from source"
+          echo "Compiling and installing doxygen 1.8.20 from source"
           sudo apt-get install -y llvm-10 clang-10 libclang-10-dev
           git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
           cd doxygen
           mkdir build
           cd build
           cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -Duse_libclang=ON ..
-          make
-          make install
+          sudo make
+          sudo make install
           cd ../..
+          echo "Finished compiling and installing Doxygen"
 
+          echo "Updating AWS_SDK_CPP_VERSION default to ${version//v}"
           version=$(git describe --tags --abbrev=0)
           sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
-          echo "Updating AWS_SDK_CPP_VERSION default to ${version//v}"
+          echo "Finished updating AWS_SDK_CPP_VERSION default to ${version//v}"
 
           ./make-docs.py
 

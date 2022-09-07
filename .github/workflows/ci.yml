@@ -127,16 +127,17 @@ jobs:
       - name: Check docs
         run: |
 
-          echo "Compiling doxygen 1.8.20 from source"
+          echo "Compiling and installing doxygen 1.8.20 from source"
           sudo apt-get install -y llvm-10 clang-10 libclang-10-dev
           git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
           cd doxygen
           mkdir build
           cd build
           cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -Duse_libclang=ON ..
-          make
-          make install
+          sudo make
+          sudo make install
           cd ../..
+          echo "Finished compiling and installing Doxygen"
 
           ./make-docs.py
 
