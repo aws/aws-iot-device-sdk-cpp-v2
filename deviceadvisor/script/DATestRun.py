@@ -71,7 +71,7 @@ test_result = {}
 
 for test_name in DATestConfig['tests']:
     ##############################################
-    # create a test thing 
+    # create a test thing
     thing_name = "DATest_" + str(uuid.uuid4())
     try:
         # create_thing_response:
@@ -85,7 +85,7 @@ for test_name in DATestConfig['tests']:
             thingName=thing_name
         )
         os.environ["DA_THING_NAME"] = thing_name
-        
+
     except Exception as e:
         print("[Device Advisor]Error: Failed to create thing: " + thing_name)
         exit(-1)
@@ -100,7 +100,7 @@ for test_name in DATestConfig['tests']:
         # 'certificateArn': 'string',
         # 'certificateId': 'string',
         # 'certificatePem': 'string',
-        # 'keyPair': 
+        # 'keyPair':
         #   {
         #     'PublicKey': 'string',
         #     'PrivateKey': 'string'
@@ -118,8 +118,8 @@ for test_name in DATestConfig['tests']:
         f = open(key_path, "w")
         f.write(create_cert_response['keyPair']['PrivateKey'])
         f.close()
-        
-        # setup environment variable 
+
+        # setup environment variable
         os.environ["DA_CERTI"] = certificate_path
         os.environ["DA_KEY"] = key_path
 
@@ -169,9 +169,9 @@ for test_name in DATestConfig['tests']:
             payload = payload_shadow)
         get_shadow_response = dataClient.get_thing_shadow(thingName = thing_name)
         # make sure shadow is created before we go to next step
-        while(get_shadow_response is None): 
+        while(get_shadow_response is None):
             get_shadow_response = dataClient.get_thing_shadow(thingName = thing_name)
-        
+
         # start device advisor test
         # test_start_response
         # {
@@ -209,12 +209,12 @@ for test_name in DATestConfig['tests']:
             len(test_result_responds['testResult']['groups'][0]['tests']) == 0 or #test case has not been loaded
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'PENDING'):
                 continue
-            
+
             # Start to run the test sample after the status turns into RUNNING
-            elif (test_result_responds['status'] == 'RUNNING' and 
+            elif (test_result_responds['status'] == 'RUNNING' and
             test_result_responds['testResult']['groups'][0]['tests'][0]['status'] == 'RUNNING'):
                 try:
-                    exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])                
+                    exe_path = os.path.join("build/deviceadvisor/tests/",DATestConfig['test_exe_path'][test_name])
                     # Windows and MAC/LINUX has a different build folder structure
                     if platform.system() == 'Windows':
                         exe_path = os.path.join(exe_path, "RelWithDebInfo",DATestConfig['test_exe_path'][test_name])
@@ -237,7 +237,7 @@ for test_name in DATestConfig['tests']:
                     log_stream = stream_string.group(1)
                     process_logs(log_group, log_stream, thing_name)
                 delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
-                break;
+                break
     except Exception as e:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
         print("[Device Advisor]Error: Failed to test: "+ test_name)
@@ -254,5 +254,5 @@ for test in test_result:
 if failed:
     # if the test failed, we dont clean the Thing so that we can track the error
     exit(-1)
-    
+
 exit(0)
