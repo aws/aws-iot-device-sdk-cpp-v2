@@ -27,7 +27,7 @@ jobs:
           mkdir build
           cd build
           cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -Duse_libclang=ON ..
-          sudo make
+          sudo make -j 4
           sudo make install
           cd ../..
           echo "Finished compiling and installing Doxygen"
