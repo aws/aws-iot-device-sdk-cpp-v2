@@ -9,6 +9,8 @@
 * [Windows Certificate MQTT Connect](#windows-certificate-mqtt-connect)
 * [Custom Authorizer Connect](#custom-authorizer-connect)
 * [Fleet provisioning](#fleet-provisioning)
+* [Secure Tunnel](#secure-tunnel)
+* [Secure Tunnel Notification](#secure-tunnel-notification)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
 * [Greengrass discovery](#greengrass-discovery)
@@ -800,27 +802,40 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
 
 This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens.
 
+Source: `samples/secure_tunneling/secure_tunnel`
+
 Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.com/iot/) (AWS IoT/Manage/Tunnels/Create tunnel) and retrieve the destination and source access tokens. (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial-open-tunnel.html)
 
 Provide the necessary arguments along with the destination access token and start the sample in destination mode (default).
 
+``` sh
+./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --region <region> --access_token_file <path to destination access token> 
+```
+
 Provide the necessary arguments along with the source access token and start a second sample in source mode by using the flag --localProxyModeSource.
+
+``` sh
+./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --region <region> --access_token_file <path to source access token> 
+--localProxyModeSource
+```
 
 The two samples will then connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be trasmitted in either direction.
 
 A proxy server may be used by providing the --proxy_host and --proxy_port arguments. If the proxy server requires a user name and password the --proxy_user_name and --proxy_password arguments should be used.
 
-Source: `samples/secure_tunneling/secure_tunnel`
-
 ## Secure Tunnel Notification
 
 This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
 
+Source: `samples/secure_tunneling/tunnel_notification`
+
 This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
 
 On startup, the sample will wait until it receives, and then displays the tunnel notification.
-
-Source: `samples/secure_tunneling/tunnel_notification`
 
 ## Greengrass discovery
 
