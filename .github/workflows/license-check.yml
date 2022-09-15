@@ -43,4 +43,6 @@ jobs:
         run: for filename in $(< fileList.txt); do ./scancode-toolkit/scancode -l -n 30 --json-pp - ./new-ref/$filename | grep short_name | sort | uniq >> new-licenses.txt; done
       # compare
       - name: License test
-        run: if ! cmp old-licenses.txt new-licenses.txt; then echo "Licenses differ! Failing."; exit -1; else echo "Licenses are the same. Success."; exit 0; fi
+        run: |
+          if [-s old-licenses.txt]; then echo "No old licenses to compare"; exit 0; else fi;
+          if ! cmp old-licenses.txt new-licenses.txt; then echo "Licenses differ! Failing."; exit -1; else echo "Licenses are the same. Success."; exit 0; fi
