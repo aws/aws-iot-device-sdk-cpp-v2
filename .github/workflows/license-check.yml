@@ -44,5 +44,4 @@ jobs:
       # compare
       - name: License test
         run: |
-          if [ -s old-licenses.txt ]; then echo "No old licenses to compare"; exit 0; fi;
           if ! cmp old-licenses.txt new-licenses.txt; then echo "Licenses differ! Failing."; exit -1; else echo "Licenses are the same. Success."; exit 0; fi
