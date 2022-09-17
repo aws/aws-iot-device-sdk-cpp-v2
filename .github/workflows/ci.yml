@@ -196,6 +196,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+          fetch-depth: 0
       - name: Check for edits to code-generated files
         run: |
           ./utils/check_codegen_edits.py
