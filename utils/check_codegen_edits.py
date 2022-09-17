@@ -36,9 +36,6 @@ def main():
     # chdir to project root
     os.chdir(os.path.join(os.path.dirname(__file__), '..'))
 
-    subprocess.run(['git', 'fetch', args.diff_repo, args.diff_branch],
-                   check=True)
-
     # get all files with diffs
     git_cmd = ['git', 'diff', '--name-only',
                f"{args.diff_repo}/{args.diff_branch}"]
