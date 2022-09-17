@@ -36,12 +36,14 @@ def main():
     # chdir to project root
     os.chdir(os.path.join(os.path.dirname(__file__), '..'))
 
-    subprocess.run(['git', 'fetch', args.diff_repo, args.diff_branch], check=True)
+    subprocess.run(['git', 'fetch', args.diff_repo, args.diff_branch],
+                   check=True)
 
     # get all files with diffs
-    git_diff = subprocess.run(['git', 'diff', '--name-only', args.diff_against],
-                              check=True, stdout=subprocess.PIPE)
-    diff_files = git_diff.stdout.decode().splitlines()
+    git_cmd = ['git', 'diff', '--name-only',
+               f"{args.diff_repo}/{args.diff_branch}"]
+    git_result = subprocess.run(git_cmd, check=True, stdout=subprocess.PIPE)
+    diff_files = git_result.stdout.decode().splitlines()
 
     # figure out which files were code-generated
     print('Checking files with diffs...')
