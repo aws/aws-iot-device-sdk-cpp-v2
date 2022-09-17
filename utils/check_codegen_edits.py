@@ -27,12 +27,16 @@ You can ignore this error if you are in fact running the code generator.
 def main():
     parser = argparse.ArgumentParser(
         description="Detect edits to code-generated files")
-    parser.add_argument('--diff-against', default='main',
+    parser.add_argument('--diff-branch', default='main',
                         help="Branch/commit to diff against")
+    parser.add_argument('--diff-repo', default='origin',
+                        help="Repository to diff against")
     args = parser.parse_args()
 
     # chdir to project root
     os.chdir(os.path.join(os.path.dirname(__file__), '..'))
+
+    subprocess.run(['git', 'fetch', args.diff_repo, args.diff_branch], check=True)
 
     # get all files with diffs
     git_diff = subprocess.run(['git', 'diff', '--name-only', args.diff_against],
