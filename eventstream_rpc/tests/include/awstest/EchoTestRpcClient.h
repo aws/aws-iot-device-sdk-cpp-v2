@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-/* This file is generated. */asdf
+/* This file is generated. */
 
 #include <awstest/EchoTestRpcModel.h>
 
