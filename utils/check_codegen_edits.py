@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 import argparse
+import fnmatch
 import os
 import subprocess
 import sys
 
 CODEGEN_PHRASES = [
     'This file is generated',
+]
+
+IGNORE_PATTERNS = [
+    'utils/*',  # this script has the phrase in it
 ]
 
 ERROR_MSG = """
@@ -39,15 +44,20 @@ def main():
     any_codegen = False
     for filepath in diff_files:
         is_codegen = False
-        with open(filepath) as f:
-            text = f.read()
-            for phrase in CODEGEN_PHRASES:
-                if phrase in text:
-                    is_codegen = True
-                    any_codegen = True
-                    break
+        ignore = any([fnmatch.fnmatch(filepath, pat)
+                     for pat in IGNORE_PATTERNS])
+        if not ignore:
+            with open(filepath) as f:
+                text = f.read()
+                for phrase in CODEGEN_PHRASES:
+                    if phrase in text:
+                        is_codegen = True
+                        any_codegen = True
+                        break
         if is_codegen:
             print(f"  ⛔️ GENERATED - {filepath}")
+        elif ignore:
+            print(f"  ✅ ignored   - {filepath}")
         else:
             print(f"  ✅ normal    - {filepath}")
 
