@@ -157,3 +157,13 @@ jobs:
         # note: using "@main" because "@${{env.BUILDER_VERSION}}" doesn't work
         # https://github.com/actions/runner/issues/480
         uses: awslabs/aws-crt-builder/.github/actions/check-submodules@main
+
+  check-codegen-edits:
+    runs-on: ubuntu-20.04 # latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Check for edits to code-generated files
+        run: |
+          ./utils/check_codegen_edits.py
