@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import fnmatch
+from genericpath import isfile
 import os
 import subprocess
 import sys
@@ -47,8 +48,12 @@ def main():
     any_codegen = False
     for filepath in diff_files:
         is_codegen = False
-        ignore = any([fnmatch.fnmatch(filepath, pat)
-                     for pat in IGNORE_PATTERNS])
+        ignore = False
+        if not os.path.isfile(filepath):
+            ignore = True
+        if any([fnmatch.fnmatch(filepath, pat)
+                for pat in IGNORE_PATTERNS]):
+            ignore = True
         if not ignore:
             with open(filepath) as f:
                 text = f.read()
