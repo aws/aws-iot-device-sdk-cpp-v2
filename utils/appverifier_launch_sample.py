@@ -132,7 +132,7 @@ def main():
         parsed_commands.sample_secret_certificate,
         parsed_commands.sample_secret_private_key,
         parsed_commands.sample_arguments)
-    
+
     print ("Parsing XML...")
     tmp_xml_file_path = os.path.join(tempfile.gettempdir(), "tmp.xml")
     xml_result = checkAppVerifierXML(parsed_commands.sample_file, tmp_xml_file_path)
