@@ -49,7 +49,6 @@ int main()
     /*
      * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
-
     Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daEnv.certificatePath.c_str(), daEnv.keyPath.c_str());
     builder.WithEndpoint(daEnv.endpoint);
@@ -62,7 +61,6 @@ int main()
     /*
      * Setup up mqttClients
      */
-
     Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {

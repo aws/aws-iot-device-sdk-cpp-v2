@@ -8,11 +8,6 @@
     "crt"
   ],
   "env": {
-    "DA_TOPIC": "test/da",
-    "DA_SHADOW_PROPERTY": "datest",
-    "DA_SHADOW_VALUE_SET": "ON",
-    "DA_SHADOW_VALUE_DEFAULT": "OFF",
-    "DA_S3_NAME": "aws-iot-sdk-deviceadvisor-logs"
   },
   "hosts": {
     "manylinux": {
@@ -28,10 +23,7 @@
     "build",
     "build-samples"
   ],
-  "test_steps": [
-    "python3 -m pip install boto3",
-    "python3 deviceadvisor/script/DATestRun.py",
-    "python3 devicedefender/script/DDTestRun.py"],
+  "test_steps": [],
   "variants" : {
     "skip_sample": {
         "!test_steps": [],

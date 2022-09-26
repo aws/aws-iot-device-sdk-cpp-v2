@@ -25,7 +25,6 @@ int main()
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
     /*********************** Parse Arguments ***************************/
-
     DeviceAdvisorEnvironment daVars;
     if (!daVars.init(TestType::CONNECT))
     {
@@ -48,7 +47,6 @@ int main()
     /*
      * Setup up mqttClients
      */
-
     Aws::Iot::MqttClient mqttClient;
     if (!mqttClient)
     {

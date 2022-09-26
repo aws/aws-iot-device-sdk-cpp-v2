@@ -27,8 +27,6 @@ using namespace Aws::Crt;
 
 int s_getCustomMetricNumber(double *output)
 {
-    /** Set to a random number between -50 and 50 */
-    //*output = (double)((rand() % 100 + 1) - 50);
     *output = 100;
     return AWS_OP_SUCCESS;
 }
@@ -111,9 +109,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Make a MQTT client and create a connection using a certificate and key
-    // Note: The data for the connection is gotten from cmdUtils
-    // (see BuildDirectMQTTConnection for implementation)
+    /**
+     * Make a MQTT client and create a connection using a certificate and key
+     * Note: The data for the connection is gotten from cmdUtils
+     * (see BuildDirectMQTTConnection for implementation)
+     */
     Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnection(&mqttClient);
 
@@ -123,15 +123,15 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an mqtt connect has completed or failed.
+    /**
+     * This will execute when an MQTT connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
-    /*
+    /**
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    /*
+    /**
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
@@ -187,8 +187,8 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        // Device defender setup and metric registration
-        // ======================================================================
+        /* Device defender setup and metric registration */
+        /* ====================================================================== */
         Aws::Crt::Allocator *allocator = Aws::Crt::DefaultAllocator();
         Aws::Crt::Io::EventLoopGroup *eventLoopGroup = Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup();
 
@@ -205,8 +205,10 @@ int main(int argc, char *argv[])
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-        // Add the custom metrics
-        // (Inline function example)
+        /**
+         * Add the custom metrics
+         * (Inline function example)
+         */
         Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output) {
             *output = 8.4;
             return AWS_OP_SUCCESS;
@@ -225,7 +227,7 @@ int main(int argc, char *argv[])
             s_getCustomMetricIpAddressList;
         task->RegisterCustomMetricIpAddressList("CustomIPList", std::move(s_getCustomMetricIpAddressListFunc));
 
-        // Start the Device Defender task
+        /* Start the Device Defender task */
         if (task->StartTask() != AWS_OP_SUCCESS)
         {
             fprintf(stdout, "Device Defender failed to initialize task.\n");
@@ -260,7 +262,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        // Stop the task so we stop sending device defender metrics
+        /* Stop the task so we stop sending device defender metrics */
         task->StopTask();
 
         /* Disconnect */
