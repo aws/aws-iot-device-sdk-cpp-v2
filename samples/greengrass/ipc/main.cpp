@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
     }
 
     /* Wait for the publish to be received since this sample subscribes to the same topic it publishes to. */
-    while (!s_publishReceivead.load())
+    while (!s_publishReceived.load())
     {
         continue;
     }
