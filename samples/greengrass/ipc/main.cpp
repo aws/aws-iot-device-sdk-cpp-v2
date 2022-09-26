@@ -18,7 +18,7 @@ static std::atomic_bool s_publishReceived(false);
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Inheriting from ConnectionLifecycleHandler allows us to define callbacks that are
      * called upon when connection lifecycle events occur.
      */
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
             return true;
         }
     };
-    /*
+    /**
      * Note: The lifecycle handler should be declared before the client
      * so that it is destroyed AFTER the client is destroyed.
      */
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Upon receiving a message on the topic, print it and set an atomic bool so that the demo can complete.
      */
     class SubscribeStreamHandler : public SubscribeToIoTCoreStreamHandler
@@ -130,15 +130,6 @@ int main(int argc, char *argv[])
     }
 
     auto subscribeResultFuture = subscribeOperation->GetResult();
-    /*
-    // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (subscribeResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
-    {
-        fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
-        exit(-1);
-    }
-    */
-
     auto subscribeResult = subscribeResultFuture.get();
     if (subscribeResult)
     {
@@ -150,7 +141,7 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = subscribeResult.GetOperationError();
-            /*
+            /**
              * This pointer can be casted to any error type like so:
              * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
@@ -188,14 +179,6 @@ int main(int argc, char *argv[])
     }
 
     auto publishResultFuture = publishOperation->GetResult();
-    /*
-    // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (publishResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
-    {
-        fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
-        exit(-1);
-    }
-    */
 
     auto publishResult = publishResultFuture.get();
     if (publishResult)
@@ -210,7 +193,7 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = publishResult.GetOperationError();
-            /*
+            /**a
              * This pointer can be casted to any error type like so:
              * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
@@ -228,7 +211,7 @@ int main(int argc, char *argv[])
     }
 
     /* Wait for the publish to be received since this sample subscribes to the same topic it publishes to. */
-    while (!s_publishReceived.load())
+    while (!s_publishReceivead.load())
     {
         continue;
     }

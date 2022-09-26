@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Device Defender task in unknown status. Status: %d\n", (int)task->GetStatus());
             exit(-1);
         }
-        // ======================================================================
+        /* ====================================================================== */
 
         int publishedCount = 0;
         while (publishedCount < count &&

@@ -22,7 +22,7 @@ using namespace Aws::Discovery;
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -64,8 +64,8 @@ int main(int argc, char *argv[])
         proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
-    /*
-     * We're using Mutual TLS for Mqtt, so we need to load our client certificates
+    /**
+     * We're using Mutual TLS for MQTT, so we need to load our client certificates
      */
     Io::TlsContextOptions tlsCtxOptions =
         Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Default Socket options to use. IPV4 will be ignored based on what DNS
      * tells us.
      */
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
     {
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
-        clientConfig.ProxyOptions = proxyOptions; //
+        clientConfig.ProxyOptions = proxyOptions;
     }
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);

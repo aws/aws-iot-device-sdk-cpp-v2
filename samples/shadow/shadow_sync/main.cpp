@@ -104,7 +104,8 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
-    cmdUtils.RegisterCommand("is_ci", "<str>", "If set to 'True' then it will run in CI mode (will publish to shadow automatically).");
+    cmdUtils.RegisterCommand(
+        "is_ci", "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
     cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
@@ -112,19 +113,19 @@ int main(int argc, char *argv[])
 
     String thingName = cmdUtils.GetCommandRequired("thing_name");
     String shadowProperty = cmdUtils.GetCommandRequired("shadow_property");
-    String isCI = cmdUtils.GetCommandOrDefault("is_ci", "");
+    bool isCI = cmdUtils.HasCommand("is_ci");
 
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
+    /**
      * This will execute when a mqtt connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
@@ -140,7 +141,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /*
+    /**
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
@@ -153,7 +154,7 @@ int main(int argc, char *argv[])
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    /*
+    /**
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
@@ -167,8 +168,9 @@ int main(int argc, char *argv[])
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        // ==================== Shadow Delta Updates ====================
-        // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
+        /* ==================== Shadow Delta Updates ==================== */
+        /* This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
+         */
 
         std::promise<void> subscribeDeltaCompletedPromise;
         std::promise<void> subscribeDeltaAcceptedCompletedPromise;
@@ -261,7 +263,11 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Finished clearing shadow properties\n");
                 currentShadowValue = "";
             }
-            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+
+            if (isCI == false)
+            {
+                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+            }
         };
 
         auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
@@ -302,8 +308,8 @@ int main(int argc, char *argv[])
         subscribeDeltaAcceptedCompletedPromise.get_future().wait();
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
-        // ==================== Shadow Value Get ====================
-        // This section is to get the initial value of the Shadow document.
+        /* ==================== Shadow Value Get ==================== */
+        /* This section is to get the initial value of the Shadow document */
 
         std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
         std::promise<void> subscribeGetShadowRejectedCompletedPromise;
@@ -408,17 +414,20 @@ int main(int argc, char *argv[])
         GetShadowRequest shadowGetRequest;
         shadowGetRequest.ThingName = thingName;
 
-        // Get the current shadow document so we start with the correct value
+        /* Get the current shadow document so we start with the correct value */
         shadowClient.PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
 
         onGetShadowRequestCompletedPromise.get_future().wait();
         gotInitialShadowPromise.get_future().wait();
 
-        // ==================== Shadow change value input loop ====================
-        // This section is to getting user input and changing the shadow value passed to that input.
-        // If in CI, then input is automatically passed
+        /* ==================== Shadow change value input loop ==================== */
+        /**
+         * This section is to getting user input and changing the shadow value passed to that input.
+         * If in CI, then input is automatically passed
+         */
 
-        if (isCI != "True") {
+        if (isCI == false)
+        {
             fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
             while (true)
             {
@@ -441,10 +450,14 @@ int main(int argc, char *argv[])
                     s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
                 }
             }
-        } else {
+        }
+        else
+        {
             int messagesSent = 0;
-            while (messagesSent < 5) {
-                String input = "Shadow_Value_" + std::to_string(messagesSent);
+            while (messagesSent < 5)
+            {
+                String input = "Shadow_Value_";
+                input += std::to_string(messagesSent);
                 s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
                 /* Sleep so there is a gap between shadow updates */
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));

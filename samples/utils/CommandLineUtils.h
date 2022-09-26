@@ -252,7 +252,7 @@ namespace Utils
             Aws::Iot::MqttClient *client,
             Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
 
-        /** Constants for commonly used/needed commands */
+        /* Constants for commonly used/needed commands */
         const Aws::Crt::String m_cmd_endpoint = "endpoint";
         const Aws::Crt::String m_cmd_ca_file = "ca_file";
         const Aws::Crt::String m_cmd_cert_file = "cert";
@@ -282,4 +282,4 @@ namespace Utils
         const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
         const Aws::Crt::String m_cmd_verbosity = "verbosity";
     };
-} // namespace Utils
+} /* namespace Utils */

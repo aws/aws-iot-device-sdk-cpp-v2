@@ -23,15 +23,17 @@ int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
     uint16_t proxyPort(8080);
-    // Valid protocol names are documented on page:
-    // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
-    // Use "mqtt" for Custom Authentication
-    String protocolName("x-amzn-mqtt-ca"); // X.509 client certificate auth
+    /**
+     * Valid protocol names are documented on page:
+     * https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
+     * Use "mqtt" for Custom Authentication
+     */
+    String protocolName("x-amzn-mqtt-ca"); /* X.509 client certificate auth */
     Vector<String> authParams;
     bool useWebSocket = false;
 
@@ -185,8 +187,10 @@ int main(int argc, char *argv[])
         connection->SetHttpProxyOptions(proxyOptions);
     }
 
-    // Connect and then disconnect using the connection we created
-    // (see SampleConnectAndDisconnect for implementation)
+    /**
+     * Connect and then disconnect using the connection we created
+     * (see SampleConnectAndDisconnect for implementation)
+     */
     cmdUtils.SampleConnectAndDisconnect(connection, clientId);
     return 0;
 }

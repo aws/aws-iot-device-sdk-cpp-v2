@@ -32,7 +32,7 @@ using namespace Aws::Iotsecuretunneling;
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -55,14 +55,14 @@ int main(int argc, char *argv[])
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
+    /**
      * This will execute when an mqtt connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /*
+    /**
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    /*
+    /**
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");

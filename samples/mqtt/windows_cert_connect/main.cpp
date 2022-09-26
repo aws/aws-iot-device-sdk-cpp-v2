@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
-    /*
+    /**
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Note that that remainder of this code is identical to how the other connect samples setup their connection.
      */
 
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Now create a connection object. Note: This type is move only
      * and its underlying memory is managed by the client.
      */
@@ -98,8 +98,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // Connect and then disconnect using the connection we created
-    // (see SampleConnectAndDisconnect for implementation)
+    /**
+     * Connect and then disconnect using the connection we created
+     * (see SampleConnectAndDisconnect for implementation)
+     */
     cmdUtils.SampleConnectAndDisconnect(connection, clientId);
 
     return 0;
