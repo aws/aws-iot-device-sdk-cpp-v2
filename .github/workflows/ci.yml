@@ -34,10 +34,10 @@ jobs:
 
     steps:
       - name: configure AWS credentials (containers)
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
-        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
@@ -62,10 +62,10 @@ jobs:
           - gcc-8
     steps:
       - name: configure AWS credentials (containers)
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
-        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
@@ -194,10 +194,10 @@ jobs:
         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
         python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
     - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
     - name: Run and check AppVerifier
       run: |
         cd D:\a\work
