@@ -31,6 +31,8 @@ jobs:
           - manylinux2014-x64
           - manylinux2014-x86
           - al2-x64
+    permissions:
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: configure AWS credentials (containers)
@@ -60,6 +62,8 @@ jobs:
           - gcc-6
           - gcc-7
           - gcc-8
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
         uses: aws-actions/configure-aws-credentials@v1
@@ -74,6 +78,8 @@ jobs:
 
   byo-crypto:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
     - name: configure AWS credentials (containers)
       uses: aws-actions/configure-aws-credentials@v1
@@ -88,6 +94,8 @@ jobs:
 
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
     - name: configure AWS credentials (containers)
       uses: aws-actions/configure-aws-credentials@v1
@@ -102,6 +110,8 @@ jobs:
 
   windows:
     runs-on: windows-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
@@ -132,6 +142,8 @@ jobs:
     strategy:
       matrix:
         arch: [Win32, x64]
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
@@ -159,6 +171,8 @@ jobs:
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
@@ -186,6 +200,8 @@ jobs:
 
   windows-app-verifier:
     runs-on: windows-2022 # latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
     - name: Build ${{ env.PACKAGE_NAME }} + consumers
       run: |
@@ -207,6 +223,8 @@ jobs:
 
   osx:
     runs-on: macos-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |

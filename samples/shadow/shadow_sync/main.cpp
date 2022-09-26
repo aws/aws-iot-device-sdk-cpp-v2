@@ -26,7 +26,6 @@
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
-#include <string>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -456,8 +455,7 @@ int main(int argc, char *argv[])
             int messagesSent = 0;
             while (messagesSent < 5)
             {
-                String input = "Shadow_Value_";
-                input += std::to_string(messagesSent);
+                String input = "Shadow_Value_CPP";
                 s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
                 /* Sleep so there is a gap between shadow updates */
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
