@@ -144,6 +144,8 @@ except Exception as e:
 
 ##############################################
 # attach certification to thing
+certificate_id = None
+certificate_arn = None
 try:
     print("[Device Defender]Info: Attach policy to certificate...")
     # attach policy to thing

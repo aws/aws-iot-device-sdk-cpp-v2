@@ -373,7 +373,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Shadow sample
         run: |
-          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/shadow/shadow_sync/shadow-sync' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --is_ci true'
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/shadow/shadow_sync/shadow-sync' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --shadow_property color --is_ci true'
       - name: configure AWS credentials (Jobs)
         uses: aws-actions/configure-aws-credentials@v1
         with:
