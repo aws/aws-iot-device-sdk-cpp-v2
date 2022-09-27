@@ -1,10 +1,8 @@
-
 import boto3
 import uuid
 import os
 import subprocess
 import platform
-from time import sleep
 
 # On something other than Linux? Pass the test instantly since Device Defender is only supported on Linux
 if platform.system() != "Linux":
@@ -54,7 +52,6 @@ try:
     create_thing_response = client.create_thing(
         thingName=thing_name
     )
-    #print(create_thing_response)
     thing_arn = create_thing_response["thingArn"]
     client_made_thing = True
 
@@ -170,10 +167,10 @@ except:
         delete_thing_with_certi(thing_name, certificate_id, certificate_arn)
     else:
         client.delete_thing(thingName=thing_name)
-    
+
     if client_made_policy:
         client.delete_policy(policyName=thing_name + "_policy")
-    
+
     print("[Device Defender]Error: Failed to attach certificate.")
     exit(-1)
 

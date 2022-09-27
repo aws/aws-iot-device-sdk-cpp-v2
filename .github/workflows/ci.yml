@@ -26,6 +26,7 @@ env:
   CI_JOBS_ROLE: ${{ secrets.AWS_CI_JOBS_ROLE }}
   CI_FLEET_PROVISIONING_ROLE: ${{ secrets.AWS_CI_FLEET_PROVISIONING_ROLE }}
   CI_DEVICE_ADVISOR: ${{ secrets.AWS_CI_DEVICE_ADVISOR_ROLE }}
+  CI_DEVICE_DEFENDER: ${{ secrets.AWS_CI_DEVICE_DEFENDER_ROLE }}
 
 jobs:
   linux-compat:
@@ -300,7 +301,15 @@ jobs:
         run: |
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
-      # TODO - add Defender Defender!
+      - name: configure AWS credentials (Device Defender)
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.CI_DEVICE_DEFENDER }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run DeviceDefemder
+        run: |
+          cd ./aws-iot-device-sdk-cpp-v2
+          python3 ./devicedefender/script/DDTestRun.py
 
   # Runs the samples and ensures that everything is working
   linux-smoke-tests:
@@ -364,7 +373,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Shadow sample
         run: |
-          python3 ./utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/shadow/shadow_sync/shadow-sync' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --is_ci true'
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/shadow/shadow_sync/shadow-sync' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --is_ci true'
       - name: configure AWS credentials (Jobs)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -372,7 +381,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Jobs sample
         run: |
-          python3 ./utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/jobs/describe_job_execution/describe-job-execution' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Jobs/cert' --sample_secret_private_key 'ci/Jobs/key' --sample_arguments '--thing_name CI_Jobs_Thing --job_id CI_Jobs_Thing_Job_1'
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/jobs/describe_job_execution/describe-job-execution' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Jobs/cert' --sample_secret_private_key 'ci/Jobs/key' --sample_arguments '--thing_name CI_Jobs_Thing --job_id CI_Jobs_Thing_Job_1'
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -382,8 +391,8 @@ jobs:
         run: |
           echo "Generating UUID for IoT thing"
           Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ./utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/identity/fleet_provisioning/fleet-provisioning' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/FleetProvisioning/cert' --sample_secret_private_key 'ci/FleetProvisioning/key' --sample_arguments "--template_name CI_FleetProvisioning_Template --template_parameters '{SerialNumber:${Sample_UUID}}'"
-          python3 utils/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/identity/fleet_provisioning/fleet-provisioning' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/FleetProvisioning/cert' --sample_secret_private_key 'ci/FleetProvisioning/key' --sample_arguments "--template_name CI_FleetProvisioning_Template --template_parameters '{SerialNumber:${Sample_UUID}}'"
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       # TODO: Add SecureTunneling
 
   # check that docs can still build
