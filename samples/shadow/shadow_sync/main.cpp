@@ -455,7 +455,8 @@ int main(int argc, char *argv[])
             int messagesSent = 0;
             while (messagesSent < 5)
             {
-                String input = "Shadow_Value_CPP";
+                String input = "Shadow_Value_";
+                input.append(std::to_string(messagesSent).c_str());
                 s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
                 /* Sleep so there is a gap between shadow updates */
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
