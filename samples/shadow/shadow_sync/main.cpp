@@ -148,8 +148,8 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            fprintf(stdout, "\n About to set connectionCompletedPromise to true \n");
-            connectionCompletedPromise.set_value(true);
+            fprintf(stdout, "\n About to set connectionClosedPromise to true \n");
+            connectionClosedPromise.set_value();
         }
     };
 
@@ -399,6 +399,7 @@ int main(int argc, char *argv[])
                 "Getting shadow document failed with message %s and code %d.\n",
                 error->Message->c_str(),
                 *error->Code);
+            fprintf(stdout, "\n About to set gotInitialShadowPromise \n");
             gotInitialShadowPromise.set_value();
         };
 
