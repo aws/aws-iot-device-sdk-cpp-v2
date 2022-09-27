@@ -131,11 +131,13 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
+            fprintf(stdout, "\n About to set connectionCompletedPromise to false \n");
             connectionCompletedPromise.set_value(false);
         }
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+            fprintf(stdout, "\n About to set connectionCompletedPromise to true \n");
             connectionCompletedPromise.set_value(true);
         }
     };
@@ -146,6 +148,7 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
+            fprintf(stdout, "\n About to set connectionCompletedPromise to true \n");
             connectionCompletedPromise.set_value(true);
         }
     };
@@ -181,6 +184,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set subscribeDeltaCompletedPromise \n");
             subscribeDeltaCompletedPromise.set_value();
         };
 
@@ -190,6 +194,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set subscribeDeltaAcceptedCompletedPromise \n");
             subscribeDeltaAcceptedCompletedPromise.set_value();
         };
 
@@ -199,6 +204,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set subscribeDeltaRejectedCompletedPromise \n");
             subscribeDeltaRejectedCompletedPromise.set_value();
         };
 
@@ -321,6 +327,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to get shadow document accepted: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set subscribeGetShadowAcceptedCompletedPromise \n");
             subscribeGetShadowAcceptedCompletedPromise.set_value();
         };
 
@@ -330,6 +337,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to get shadow document rejected: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set subscribeGetShadowRejectedCompletedPromise \n");
             subscribeGetShadowRejectedCompletedPromise.set_value();
         };
 
@@ -339,6 +347,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error getting shadow document: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            fprintf(stdout, "\n About to set onGetShadowRequestCompletedPromise \n");
             onGetShadowRequestCompletedPromise.set_value();
         };
 
@@ -374,6 +383,7 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Shadow currently does not contain \"%s\".\n", shadowProperty.c_str());
                     currentShadowValue = "";
                 }
+                fprintf(stdout, "\n About to set gotInitialShadowPromise \n");
                 gotInitialShadowPromise.set_value();
             }
         };
