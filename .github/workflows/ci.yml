@@ -38,7 +38,6 @@ jobs:
           - al2-x64
     permissions:
       id-token: write # This is required for requesting the JWT
-
     steps:
       - name: configure AWS credentials (containers)
         uses: aws-actions/configure-aws-credentials@v1
@@ -276,16 +275,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup C++
         run: |
-          sudo apt install build-essential
+          sudo apt-get -qq update -y
+          sudo apt-get -qq install -y build-essential
           sudo apt install cmake
           gcc --version
-          cd ./aws-iot-device-sdk-cpp-v2
-          git submodule update --init --recursive
-          cd ..
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+          echo "Downloading source"
+          git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ github.head_ref || github.ref_name }}
+          echo "Running builder"
+          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
