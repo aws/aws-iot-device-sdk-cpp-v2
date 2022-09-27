@@ -268,21 +268,20 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
-      - name: Checkout Sources
-        uses: actions/checkout@v2
       - name: Setup C++
         run: |
           sudo apt-get -qq update -y
           sudo apt-get -qq install -y build-essential
           sudo apt install cmake
           gcc --version
+          cmake --version
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           echo "Downloading source"
           git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ github.head_ref || github.ref_name }}
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
