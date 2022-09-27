@@ -87,6 +87,9 @@ int main(int argc, char *argv[])
         csrFile = getFileData(cmdUtils.GetCommand("csr").c_str()).c_str();
     }
 
+    // Print template parameters
+    fprintf(stdout, "Template parameters output: %s", templateParameters.c_str());
+
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();
 
