@@ -49,7 +49,7 @@ def DeleteIoTThing(parsed_commands):
 
 def main():
     argument_parser = argparse.ArgumentParser(
-        description="AppVerifier XML output util")
+        description="Delete IoT Thing")
     argument_parser.add_argument("--thing_name", metavar="<The name of the IoT thing to delete>", required=True,
                                  help="The name of the IoT thing to delete")
     argument_parser.add_argument("--region", metavar="<Name of region>",

@@ -160,7 +160,7 @@ def launch_sample(parsed_commands, sample_endpoint, sample_certificate, sample_p
 
 def main():
     argument_parser = argparse.ArgumentParser(
-        description="AppVerifier XML output util")
+        description="Run Sample in CI")
     argument_parser.add_argument("--language", metavar="<CPP, Java, Python, or Javascript>", required=True,
                                  help="The name of the programming language. Used to determine how to launch the sample")
     argument_parser.add_argument("--sample_file",
