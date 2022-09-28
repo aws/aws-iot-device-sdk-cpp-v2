@@ -15,8 +15,6 @@ current_folder = pathlib.Path(__file__).resolve()
 
 
 def getSecretsAndLaunch(parsed_commands):
-    global tmp_certificate_file_path
-    global tmp_private_key_path
     exit_code = 0
 
     print ("Creating secure tunnel client using Boto3")
@@ -29,7 +27,7 @@ def getSecretsAndLaunch(parsed_commands):
 
     tunnel_data = None
     try:
-        tunnel_client.open_tunnel()
+        tunnel_data = tunnel_client.open_tunnel()
     except Exception:
         print ("Could not open tunnel!")
         exit(-1)
@@ -39,7 +37,7 @@ def getSecretsAndLaunch(parsed_commands):
 
     print ("Closing tunnel...")
     try:
-        tunnel_client.close_tunnel(tunnel_data["tunnelId"])
+        tunnel_client.close_tunnel(tunnelId=tunnel_data["tunnelId"], delete=True)
     except Exception:
         print ("Could not close tunnel!")
         exit(-1)
@@ -50,11 +48,12 @@ def getSecretsAndLaunch(parsed_commands):
 def launch_samples(parsed_commands, tunnel_data):
     exit_code = 0
 
-    # Right now secure tunneling is only in C++, so we only support C++
-    launch_arguments_destination = ["test", "region", parsed_commands.sample_region, "access_token", tunnel_data["destinationAccessToken"]]
-    launch_arguments_source = ["localProxyModeSource", "region", parsed_commands.sample_region, "access_token", tunnel_data["sourceAccessToken"]]
+    # Right now secure tunneling is only in C++, so we only support launching the sample in the C++ way
+    launch_arguments_destination = ["--test", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["destinationAccessToken"]]
+    launch_arguments_source = ["--local_proxy_mode_source", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["sourceAccessToken"]]
 
     destination_run = subprocess.Popen(args=launch_arguments_destination, executable=parsed_commands.sample_file)
+    print ("About to sleep before running source part of sample...")
     sleep(10) # Sleep to give the destination some time to run
     source_run = subprocess.Popen(args=launch_arguments_source, executable=parsed_commands.sample_file)
 
