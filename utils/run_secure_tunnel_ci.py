@@ -23,7 +23,8 @@ def getSecretsAndLaunch(parsed_commands):
     tunnel_client = None
     try:
         tunnel_client = boto3.client("IoTSecureTunneling", region_name=parsed_commands.sample_region)
-    except Exception:
+    except Exception as ex:
+        print (ex)
         print ("Could not create tunnel client!")
         exit(-1)
 
