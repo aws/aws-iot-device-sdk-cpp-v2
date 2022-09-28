@@ -410,10 +410,10 @@ jobs:
           DESTINATIONTOKEN="${array[13]}"
 
           echo "Secure Tunnel Destination test"
-          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_arguments "--test true --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${DESTINATIONTOKEN}" &
+          ./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel --test --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${DESTINATIONTOKEN} &
           sleep 10 &
           echo "Secure Tunnel Source test" &
-          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_arguments "--localProxyModeSource true --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${SOURCETOKEN}"
+          ./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel --localProxyModeSource --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${SOURCETOKEN}
 
   # check that docs can still build
   check-docs:
