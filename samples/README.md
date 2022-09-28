@@ -554,18 +554,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "iot:Connect",
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/<b>thingname</b>",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
-      ]
-    },
-    {
-      "Effect": "Allow",
       "Action": "iot:Publish",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/job/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/get",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get"
@@ -573,19 +564,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     },
     {
       "Effect": "Allow",
-      "Action": "iot:Subscribe",
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/events/jobExecution/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/get/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/get/*"
-      ]
-    },
-    {
-      "Effect": "Allow",
       "Action": "iot:Receive",
       "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify-next",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/*",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/*",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get/*",
@@ -594,13 +575,19 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:DescribeJobExecution",
-        "iot:GetPendingJobExecutions",
-        "iot:StartNextPendingJobExecution",
-        "iot:UpdateJobExecution"
-      ],
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>"
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/get/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/get/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
   ]
 }
@@ -656,7 +643,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "iot:Publish"
+      "Action": "iot:Publish",
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
@@ -665,7 +652,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     },
     {
       "Effect": "Allow",
-      "Action": "iot:Receive"
+      "Action": [
+        "iot:Receive"
+      ],
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/rejected",
@@ -677,7 +666,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     },
     {
       "Effect": "Allow",
-      "Action": "iot:Subscribe"
+      "Action": [
+        "iot:Subscribe"
+      ],
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/rejected",
