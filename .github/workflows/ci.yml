@@ -401,7 +401,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Secure Tunneling sample
         run: |
-          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_secure_tunnel.py --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel' --sample_region ${{ env.AWS_DEFAULT_REGION }}
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_secure_tunnel_ci.py --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel' --sample_region ${{ env.AWS_DEFAULT_REGION }}
 
   # check that docs can still build
   check-docs:
