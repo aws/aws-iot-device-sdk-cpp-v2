@@ -292,12 +292,14 @@ int main(int argc, char *argv[])
                 .Build();
     }
 
+    fprintf(stdout, "\n About to check if we have a secure tunnel \n");
     if (!secureTunnel)
     {
         fprintf(stderr, "Secure Tunnel Creation failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
 
+    fprintf(stdout, "\n About to connect the secure tunnel \n");
     if (secureTunnel->Connect() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
@@ -305,10 +307,13 @@ int main(int argc, char *argv[])
     }
     int messageCount = 0;
 
+    fprintf(stdout, "\n About to start waiting on connectionCompletePromise \n");
     if (connectionCompletedPromise.get_future().get())
     {
-        while (1)
+        fprintf(stdout, "\n About to wait in loop after connection complete \n");
+        while (true)
         {
+            fprintf(stdout, "\n Loop call \n");
             std::this_thread::sleep_for(3000ms);
 
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
