@@ -401,19 +401,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Secure Tunneling sample
         run: |
-          echo "Opening Secure Tunnel for testing..."
-          RESPONSE=$(aws iotsecuretunneling open-tunnel)
-          array=(${RESPONSE//:/ })
-          echo "Assigning SOURCETOKEN"
-          SOURCETOKEN="${array[11]}"
-          echo "Assigning DESTINATIONTOKEN"
-          DESTINATIONTOKEN="${array[13]}"
-
-          echo "Secure Tunnel Destination test"
-          ./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel --test --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${DESTINATIONTOKEN} &
-          sleep 10 &
-          echo "Secure Tunnel Source test" &
-          ./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel --localProxyModeSource --region ${{ env.AWS_DEFAULT_REGION }} --access_token ${SOURCETOKEN}
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_secure_tunnel.py --sample_file './aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel' --sample_region ${{ env.AWS_DEFAULT_REGION }}
 
   # check that docs can still build
   check-docs:
