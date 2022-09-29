@@ -203,7 +203,7 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python -m pip install boto3
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -235,7 +235,7 @@ jobs:
         cd ${{ env.CI_FOLDER }}
         echo "Starting to run AppVerifier with cycle pub-sub sample"
         python -m pip install boto3
-        python ${{ env.CI_UTILS_FOLDER }}\appverifier_launch_sample.py --sample_file "${{ CI_SAMPLES_FOLDER }}\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
+        python ${{ env.CI_UTILS_FOLDER }}\appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
 
   osx:
     runs-on: macos-latest
@@ -255,7 +255,7 @@ jobs:
       - name: run PubSub sample
         run: |
           python3 -m pip install boto3
-          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+          python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -286,7 +286,7 @@ jobs:
       - name: run PubSub sample
         run: |
           python3 -m pip install boto3
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -336,13 +336,13 @@ jobs:
       - name: run Basic Connect sample
         run: |
           python3 -m pip install boto3
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/mqtt/basic_connect/basic-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/basic_connect/basic-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run Websocket Connect sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/mqtt/websocket_connect/websocket-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_arguments '--signing_region us-east-1'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/websocket_connect/websocket-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_arguments '--signing_region us-east-1'
       - name: run PubSub sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run PKCS11 Connect sample
         run: |
           sudo apt-get update -y
@@ -351,7 +351,7 @@ jobs:
           mkdir -p /tmp/tokens
           export SOFTHSM2_CONF=/tmp/softhsm2.conf
           echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/mqtt/pkcs11_connect/pkcs11-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/keyp8' --sample_run_softhsm 'true' --sample_arguments '--pkcs11_lib /usr/lib/softhsm/libsofthsm2.so --pin 0000 --token_label my-token --key_label my-key'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/pkcs11_connect/pkcs11-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/keyp8' --sample_run_softhsm 'true' --sample_arguments '--pkcs11_lib /usr/lib/softhsm/libsofthsm2.so --pin 0000 --token_label my-token --key_label my-key'
       - name: configure AWS credentials (Custom Authorizer)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -359,7 +359,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run CustomAuthorizerConnect sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/mqtt/custom_authorizer_connect/custom-authorizer-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_custom_authorizer_name 'ci/CustomAuthorizer/name' --sample_secret_custom_authorizer_password 'ci/CustomAuthorizer/password'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/custom_authorizer_connect/custom-authorizer-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_custom_authorizer_name 'ci/CustomAuthorizer/name' --sample_secret_custom_authorizer_password 'ci/CustomAuthorizer/password'
       - name: configure AWS credentials (Shadow)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -367,7 +367,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Shadow sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/shadow/shadow_sync/shadow-sync" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --shadow_property color --is_ci true'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/shadow/shadow_sync/shadow-sync" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Shadow/cert' --sample_secret_private_key 'ci/Shadow/key' --sample_arguments '--thing_name CI_Shadow_Thing --shadow_property color --is_ci true'
       - name: configure AWS credentials (Jobs)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -375,7 +375,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Jobs sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/jobs/describe_job_execution/describe-job-execution" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Jobs/cert' --sample_secret_private_key 'ci/Jobs/key' --sample_arguments '--thing_name CI_Jobs_Thing --job_id CI_Jobs_Thing_Job_1'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/jobs/describe_job_execution/describe-job-execution" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/Jobs/cert' --sample_secret_private_key 'ci/Jobs/key' --sample_arguments '--thing_name CI_Jobs_Thing --job_id CI_Jobs_Thing_Job_1'
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -385,7 +385,7 @@ jobs:
         run: |
           echo "Generating UUID for IoT thing"
           Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ CI_SAMPLES_FOLDER }}/identity/fleet_provisioning/fleet-provisioning" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/FleetProvisioning/cert' --sample_secret_private_key 'ci/FleetProvisioning/key' --sample_arguments "--template_name CI_FleetProvisioning_Template --template_parameters {\"SerialNumber\":\"${Sample_UUID}\"}"
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/identity/fleet_provisioning/fleet-provisioning" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/FleetProvisioning/cert' --sample_secret_private_key 'ci/FleetProvisioning/key' --sample_arguments "--template_name CI_FleetProvisioning_Template --template_parameters {\"SerialNumber\":\"${Sample_UUID}\"}"
           python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       - name: configure AWS credentials (Secure tunneling)
         uses: aws-actions/configure-aws-credentials@v1
@@ -394,7 +394,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Secure Tunneling sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "${{ CI_SAMPLES_FOLDER }}/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
 
   # check that docs can still build
   check-docs:
