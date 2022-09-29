@@ -37,7 +37,7 @@ def process_logs(log_group, log_stream, thing_name):
     try:
         secrets_client = boto3.client(
             "secretsmanager", region_name=os.environ["AWS_DEFAULT_REGION"])
-        s3_bucket_name = secrets_client.get_secret_value("ci/DeviceAdvisor/s3bucket")["SecretString"]
+        s3_bucket_name = secrets_client.get_secret_value(SecretId="ci/DeviceAdvisor/s3bucket")["SecretString"]
         s3.Bucket(s3_bucket_name).upload_file(log_file, log_file)
         print("[Device Advisor] Device Advisor Log file uploaded to "+ log_file)
 
@@ -151,6 +151,25 @@ for test_name in DATestConfig['tests']:
         print("[Device Advisor] Error: Failed to create certificate.")
         exit(-1)
 
+    certificate_arn = create_cert_response['certificateArn']
+    certificate_id = create_cert_response['certificateId']
+
+    ##############################################
+    # attach policy to certificate
+    try:
+        secrets_client = boto3.client(
+            "secretsmanager", region_name=os.environ["AWS_DEFAULT_REGION"])
+        policy_name = secrets_client.get_secret_value(SecretId="ci/DeviceAdvisor/policy_name")["SecretString"]
+        client.attach_policy (
+            policyName= policy_name,
+            target = certificate_arn
+        )
+    except Exception as ex:
+        print (ex)
+        delete_thing_with_certi(thing_name, certificate_id, certificate_arn )
+        print("[Device Advisor] Error: Failed to attach policy.")
+        exit(-1)
+
     ##############################################
     # attach certification to thing
     try:
@@ -160,9 +179,6 @@ for test_name in DATestConfig['tests']:
             thingName = thing_name,
             principal = create_cert_response['certificateArn']
         )
-
-        certificate_arn = create_cert_response['certificateArn']
-        certificate_id = create_cert_response['certificateId']
 
     except Exception:
         delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
