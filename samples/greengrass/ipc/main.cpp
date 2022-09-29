@@ -18,7 +18,7 @@ static std::atomic_bool s_publishReceived(false);
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
-    /**
+    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
-    /**
+    /*
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /**
+    /*
      * Inheriting from ConnectionLifecycleHandler allows us to define callbacks that are
      * called upon when connection lifecycle events occur.
      */
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
             return true;
         }
     };
-    /**
+    /*
      * Note: The lifecycle handler should be declared before the client
      * so that it is destroyed AFTER the client is destroyed.
      */
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /**
+    /*
      * Upon receiving a message on the topic, print it and set an atomic bool so that the demo can complete.
      */
     class SubscribeStreamHandler : public SubscribeToIoTCoreStreamHandler
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = subscribeResult.GetOperationError();
-            /**
+            /*
              * This pointer can be casted to any error type like so:
              * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = publishResult.GetOperationError();
-            /**a
+            /*
              * This pointer can be casted to any error type like so:
              * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);

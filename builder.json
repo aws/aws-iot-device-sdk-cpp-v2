@@ -23,10 +23,8 @@
     "build",
     "build-samples"
   ],
-  "test_steps": [],
   "variants" : {
     "skip_sample": {
-        "!test_steps": [],
         "!build_steps": [
           "build"
         ]

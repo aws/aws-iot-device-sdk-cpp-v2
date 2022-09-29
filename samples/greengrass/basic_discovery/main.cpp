@@ -22,7 +22,7 @@ using namespace Aws::Discovery;
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
-    /**
+    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
-    /**
+    /*
      * We're using Mutual TLS for MQTT, so we need to load our client certificates
      */
     Io::TlsContextOptions tlsCtxOptions =
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /**
+    /*
      * Default Socket options to use. IPV4 will be ignored based on what DNS
      * tells us.
      */

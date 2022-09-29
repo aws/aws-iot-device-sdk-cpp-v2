@@ -565,7 +565,7 @@ int main(int argc, char *argv[])
 
     /******************** Start the client cycle ***********************/
 
-    /* Make the clients */
+    // Make the clients
     for (size_t i = 0; i < config_clients; i++)
     {
         clients_holder.push_back(CycleClient());
@@ -573,13 +573,13 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Created client %zu\n", i);
     }
 
-    /* Get the current time */
+    // Get the current time
     auto startTime = std::chrono::steady_clock::now();
 
-    /* Seed the random number generator with the current time */
+    // Seed the random number generator with the current time
     srand((unsigned int)time(nullptr));
 
-    /* Start the loop */
+    // Start the loop
     bool done = false;
     auto nowTime = std::chrono::steady_clock::now();
     uint64_t time_difference = 0;
@@ -598,7 +598,7 @@ int main(int argc, char *argv[])
 
     /*************************** Clean up ******************************/
 
-    /* Stop all the clients and clear the vector */
+    // Stop all the clients and clear the vector
     for (size_t i = 0; i < config_clients; i++)
     {
         operationStop(&clients_holder.at(i), (int)i);

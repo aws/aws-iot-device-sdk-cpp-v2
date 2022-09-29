@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
-    /**
+    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -31,21 +31,17 @@ int main(int argc, char *argv[])
     cmdUtils.SendArguments(const_argv, const_argv + argc);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
-    /**
-     * Make a MQTT client and create a connection using a certificate and key
-     * Note: The data for the connection is gotten from cmdUtils
-     * (see BuildDirectMQTTConnection for implementation)
-     */
+    // Make a MQTT client and create a connection using a certificate and key
+    // Note: The data for the connection is gotten from cmdUtils
+    // (see BuildDirectMQTTConnection for implementation)
     Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnection(&client);
 
-    /* Get the client ID to send with the connection */
+    // Get the client ID to send with the connection
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
 
-    /**
-     * Connect and then disconnect using the connection we created
-     * (see SampleConnectAndDisconnect for implementation)
-     */
+    // Connect and then disconnect using the connection we created
+    // (see SampleConnectAndDisconnect for implementation)
     cmdUtils.SampleConnectAndDisconnect(connection, clientId);
     return 0;
 }

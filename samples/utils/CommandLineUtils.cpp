@@ -13,7 +13,7 @@ namespace Utils
 {
     CommandLineUtils::CommandLineUtils()
     {
-        /* Automatically register the help command */
+        // Automatically register the help command
         RegisterCommand(m_cmd_help, "", "Prints this message");
     }
 
@@ -66,7 +66,7 @@ namespace Utils
         m_beginPosition = argv;
         m_endPosition = argc;
 
-        /* Automatically check and print the help message if the help command is present */
+        // Automatically check and print the help message if the help command is present
         if (HasCommand(m_cmd_help))
         {
             PrintHelp();
@@ -239,7 +239,7 @@ namespace Utils
             }
             else
             {
-                /* If none or unknown, then do nothing */
+                // If none or unknown, then do nothing
             }
         }
     }
@@ -564,14 +564,14 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
         Aws::Crt::String clientId)
     {
-        /**
+        /*
          * In a real world application you probably don't want to enforce synchronous behavior
          * but this is a sample console application, so we'll just do that with a condition variable.
          */
         std::promise<bool> connectionCompletedPromise;
         std::promise<void> connectionClosedPromise;
 
-        /**
+        /*
          * This will execute when an mqtt connect has completed or failed.
          */
         auto onConnectionCompleted =
@@ -595,7 +595,7 @@ namespace Utils
             fprintf(stdout, "Connection resumed\n");
         };
 
-        /**
+        /*
          * Invoked when a disconnect message has completed.
          */
         auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
@@ -608,7 +608,7 @@ namespace Utils
         connection->OnConnectionInterrupted = std::move(onInterrupted);
         connection->OnConnectionResumed = std::move(onResumed);
 
-        /**
+        /*
          * Actually perform the connect dance.
          */
         fprintf(stdout, "Connecting...\n");
@@ -619,7 +619,7 @@ namespace Utils
             exit(-1);
         }
 
-        /* wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise... */
+        // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
         if (connectionCompletedPromise.get_future().get() == false)
         {
             fprintf(stderr, "Connection failed\n");
@@ -633,4 +633,4 @@ namespace Utils
         }
     }
 
-} /* namespace Utils */
+} // namespace Utils

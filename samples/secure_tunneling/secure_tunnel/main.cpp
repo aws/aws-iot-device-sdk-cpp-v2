@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     cmdUtils.SendArguments(const_argv, const_argv + argc);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
-    /**
+    /*
      * Generate secure tunneling endpoint using region
      */
     String region = cmdUtils.GetCommandRequired("region");
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
     String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
 
-    /**
+    /*
      * localProxyMode is set to destination by default unless flag is set to source
      */
     if (cmdUtils.HasCommand("local_proxy_mode_source"))
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
     String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
-    /**
+    /*
      * For internal testing
      */
     bool isTest = cmdUtils.HasCommand("test");
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /**
+    /*
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
@@ -215,7 +215,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /**
+    /*
      * This only fires in Destination Mode
      */
     auto OnStreamStart = [&]() { fprintf(stdout, "Stream Started in Destination Mode\n"); };
@@ -225,7 +225,7 @@ int main(int argc, char *argv[])
     auto OnSessionReset = [&]() { fprintf(stdout, "Session Reset\n"); };
 
     /*********************** Proxy Connection Setup ***************************/
-    /**
+    /*
      * Setup HttpClientCommectionProxyOptions for connecting through a proxy before the Secure Tunnel
      */
 
@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
         proxyOptions.HostName = proxyHost.c_str();
         proxyOptions.Port = proxyPort;
 
-        /**
+        /*
          * Set up Proxy Strategy if a user name and password is provided
          */
         if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
         }
 
         /*********************** Secure Tunnel Setup ***************************/
-        /**
+        /*
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel =

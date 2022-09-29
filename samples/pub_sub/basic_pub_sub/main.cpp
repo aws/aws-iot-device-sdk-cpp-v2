@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 {
 
     /************************ Setup the Lib ****************************/
-    /**
+    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -61,14 +61,14 @@ int main(int argc, char *argv[])
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();
 
-    /**
+    /*
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /**
+    /*
      * This will execute when an MQTT connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
-    /**
+    /*
      * Invoked when a disconnect message has completed.
      */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    /**
+    /*
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
         std::condition_variable receiveSignal;
         uint32_t receivedCount = 0;
 
-        /**
+        /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
         auto onMessage = [&](Mqtt::MqttConnection &,
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
             receiveSignal.notify_all();
         };
 
-        /**
+        /*
          * Subscribe for incoming publish messages on topic.
          */
         std::promise<void> subscribeFinishedPromise;
@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
             receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
         }
 
-        /**
+        /*
          * Unsubscribe from the topic.
          */
         std::promise<void> unsubscribeFinishedPromise;
