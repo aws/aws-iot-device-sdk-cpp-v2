@@ -209,7 +209,7 @@ namespace Utils
 
     void CommandLineUtils::StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle)
     {
-        /* Process logging command */
+        // Process logging command
         if (HasCommand("verbosity"))
         {
             Aws::Crt::String verbosity = GetCommand(m_cmd_verbosity);

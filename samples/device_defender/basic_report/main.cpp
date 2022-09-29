@@ -121,12 +121,16 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /*
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    // This will execute when an MQTT connect has completed or failed.
+    /*
+     * This will execute when an mqtt connect has completed or failed.
+     */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
@@ -154,7 +158,9 @@ int main(int argc, char *argv[])
 
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
-    // Invoked when a disconnect message has completed.
+    /*
+     * Invoked when a disconnect message has completed.
+     */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
@@ -167,7 +173,9 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    // Actually perform the connect dance.
+    /*
+     * Actually perform the connect dance.
+     */
     fprintf(stdout, "Connecting...\n");
     if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
@@ -178,7 +186,7 @@ int main(int argc, char *argv[])
     if (connectionCompletedPromise.get_future().get())
     {
         // Device defender setup and metric registration
-        /* ====================================================================== */
+        // ======================================================================
         Aws::Crt::Allocator *allocator = Aws::Crt::DefaultAllocator();
         Aws::Crt::Io::EventLoopGroup *eventLoopGroup = Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup();
 
@@ -253,7 +261,7 @@ int main(int argc, char *argv[])
         // Stop the task so we stop sending device defender metrics
         task->StopTask();
 
-        // Disconnect
+        /* Disconnect */
         if (connection->Disconnect())
         {
             connectionClosedPromise.get_future().wait();

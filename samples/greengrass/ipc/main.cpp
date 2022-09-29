@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
-    /*
+    /**
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.
      */

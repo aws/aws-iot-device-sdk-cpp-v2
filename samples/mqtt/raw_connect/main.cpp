@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     // Valid protocol names are documented on page:
     // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
     // Use "mqtt" for Custom Authentication
-    String protocolName("x-amzn-mqtt-ca"); /* X.509 client certificate auth */
+    String protocolName("x-amzn-mqtt-ca"); // X.509 client certificate auth
     Vector<String> authParams;
     bool useWebSocket = false;
 

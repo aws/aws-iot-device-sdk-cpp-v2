@@ -275,7 +275,7 @@ int main(int argc, char *argv[])
     else
     {
         /*********************** Secure Tunnel Setup ***************************/
-        /**
+        /*
          * Create a new SecureTunnel using the SecureTunnelBuilder
          */
         secureTunnel =

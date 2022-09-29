@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
         // ==================== Shadow Value Get ====================
-        // This section is to get the initial value of the Shadow document
+        // This section is to get the initial value of the Shadow document.
 
         std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
         std::promise<void> subscribeGetShadowRejectedCompletedPromise;

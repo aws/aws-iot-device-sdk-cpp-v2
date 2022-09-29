@@ -107,10 +107,8 @@ int main(int argc, char *argv[])
         describeJobExecutionSubscriptionRequest.ThingName = thingName;
         describeJobExecutionSubscriptionRequest.JobId = jobId;
 
-        /*
-         * This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
-         * to be cautious make sure the subscribe has finished before doing the publish.
-         */
+        // This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
+        // to be cautious make sure the subscribe has finished before doing the publish.
         std::promise<void> subAckedPromise;
         auto subAckHandler = [&](int) {
             /* if error code returns it will be recorded by the other callback */
