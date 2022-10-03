@@ -138,6 +138,10 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '.\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+      - name: run Windows Connect
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\mqtt\windows_cert_connect\RelWithDebInfo\windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -173,6 +177,10 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '.\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+      - name: run Windows Connect
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\mqtt\windows_cert_connect\RelWithDebInfo\windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -204,6 +212,10 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+      - name: run Windows Connect
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\mqtt\windows_cert_connect\RelWithDebInfo\windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
