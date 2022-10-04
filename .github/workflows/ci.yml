@@ -128,6 +128,9 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+      - name: Running samples in CI setup
+        run: |
+          python -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -136,7 +139,6 @@ jobs:
       - name: run PubSub sample
         run: |
           cd ${{ env.CI_FOLDER }}
-          python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '.\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run Windows Certificate Connect sample
         run: |
@@ -150,7 +152,7 @@ jobs:
       - name: run DeviceAdvisor
         run: |
           cd ${{ env.CI_FOLDER }}\aws-iot-device-sdk-cpp-v2
-          python3 ./deviceadvisor/script/DATestRun.py
+          python ./deviceadvisor/script/DATestRun.py
 
   windows-vs14:
     runs-on: windows-2019 # windows-2019 is last env with Visual Studio 2015 (v14.0)
@@ -167,6 +169,9 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv140 --cmake-extra=-A${{ matrix.arch }}
+      - name: Running samples in CI setup
+        run: |
+          python -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -175,7 +180,6 @@ jobs:
       - name: run PubSub sample
         run: |
           cd ${{ env.CI_FOLDER }}
-          python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '.\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run Windows Certificate Connect sample
         run: |
@@ -189,7 +193,7 @@ jobs:
       - name: run DeviceAdvisor
         run: |
           cd ${{ env.CI_FOLDER }}\aws-iot-device-sdk-cpp-v2
-          python3 ./deviceadvisor/script/DATestRun.py
+          python ./deviceadvisor/script/DATestRun.py
 
   windows-no-cpu-extensions:
     runs-on: windows-latest
@@ -202,6 +206,9 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+      - name: Running samples in CI setup
+        run: |
+          python -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -210,7 +217,6 @@ jobs:
       - name: run PubSub sample
         run: |
           cd ${{ env.CI_FOLDER }}
-          python -m pip install boto3
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\basic_pub_sub\RelWithDebInfo\basic-pub-sub.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run Windows Certificate Connect sample
         run: |
@@ -224,7 +230,7 @@ jobs:
       - name: run DeviceAdvisor
         run: |
           cd ${{ env.CI_FOLDER }}\aws-iot-device-sdk-cpp-v2
-          python3 ./deviceadvisor/script/DATestRun.py
+          python ./deviceadvisor/script/DATestRun.py
 
   windows-app-verifier:
     runs-on: windows-2022 # latest
@@ -237,6 +243,9 @@ jobs:
         cd ${{ env.CI_FOLDER }}
         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
         python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+    - name: Running samples in CI setup
+        run: |
+          python -m pip install boto3
     - name: configure AWS credentials (CyclePubSub)
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -246,7 +255,6 @@ jobs:
       run: |
         cd ${{ env.CI_FOLDER }}
         echo "Starting to run AppVerifier with cycle pub-sub sample"
-        python -m pip install boto3
         python ${{ env.CI_UTILS_FOLDER }}\appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
 
   osx:
@@ -259,6 +267,9 @@ jobs:
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+      - name: Running samples in CI setup
+        run: |
+          python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -266,7 +277,6 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run PubSub sample
         run: |
-          python3 -m pip install boto3
           python3 ./aws-iot-device-sdk-cpp-v2/utils/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
@@ -290,6 +300,9 @@ jobs:
         run: |
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+      - name: Running samples in CI setup
+        run: |
+          python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -297,7 +310,6 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run PubSub sample
         run: |
-          python3 -m pip install boto3
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
@@ -340,6 +352,12 @@ jobs:
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+      - name: Running samples in CI setup
+        run: |
+          python3 -m pip install boto3
+          sudo apt-get update -y
+          sudo apt-get install softhsm -y
+          softhsm2-util --version
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -347,7 +365,6 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run Basic Connect sample
         run: |
-          python3 -m pip install boto3
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/basic_connect/basic-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run Websocket Connect sample
         run: |
@@ -357,9 +374,6 @@ jobs:
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
       - name: run PKCS11 Connect sample
         run: |
-          sudo apt-get update -y
-          sudo apt-get install softhsm -y
-          softhsm2-util --version
           mkdir -p /tmp/tokens
           export SOFTHSM2_CONF=/tmp/softhsm2.conf
           echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
