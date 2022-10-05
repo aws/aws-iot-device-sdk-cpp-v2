@@ -1,0 +1,20 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  update-version:
+    runs-on: ubuntu-20.04 # latest
+    permissions:
+      contents: write # allow push
+
+    steps:
+    - name: Checkout Sources
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Update Version
+      run: ./update-version.sh ${{ secrets.GITHUB_TOKEN }} ${{ secrets.TAG_PR_TOKEN }}

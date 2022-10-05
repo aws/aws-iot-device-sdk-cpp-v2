@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.1)
-project(aws-iot-device-sdk-cpp-v2)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(AwsGetVersion)
+aws_get_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
+message(STATUS "AWS SDK C++ ${FULL_VERSION}")
+
+project(aws-iot-device-sdk-cpp-v2
+    VERSION ${SIMPLE_VERSION})
 
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
-option(BUILD_SAMPLES "Build samples as part of the build" OFF)
+option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
@@ -33,6 +40,12 @@ set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
 string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
+        COMPATIBILITY ExactVersion
+)
 
 if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
