@@ -144,7 +144,7 @@ jobs:
         run: |
 
           echo "Compiling and installing doxygen 1.8.20 from source"
-          sudo apt-get install -y llvm-toolchain-11
+          sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
           git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
           cd doxygen
           mkdir build
