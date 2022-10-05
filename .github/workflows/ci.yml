@@ -107,7 +107,7 @@ jobs:
           cd D:\a\work
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-  
+
   windows-app-verifier:
     runs-on: windows-2022 # latest
     steps:
@@ -144,7 +144,7 @@ jobs:
         run: |
 
           echo "Compiling and installing doxygen 1.8.20 from source"
-          sudo apt-get install -y llvm-10 clang-10 libclang-10-dev
+          sudo apt-get install -y llvm-10 clang-9 libclang-9-dev
           git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
           cd doxygen
           mkdir build

@@ -1,5 +1,3 @@
-find_package(Git QUIET)
-
 function(aws_get_version var_version_simple var_version_full var_git_hash)
     # Simple version is "MAJOR.MINOR.PATCH" from VERSION file
     file(READ "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" version_simple)
@@ -7,7 +5,7 @@ function(aws_get_version var_version_simple var_version_full var_git_hash)
     set(${var_version_simple} ${version_simple} PARENT_SCOPE)
 
     # Get git hash
-    aws_git_try("rev-parse HEAD" git_hash git_success)
+    aws_git_try("rev-parse --short=8 HEAD" git_hash git_success)
     if (git_success)
         set(${var_git_hash} ${git_hash} PARENT_SCOPE)
 
@@ -27,14 +25,14 @@ function(aws_get_version var_version_simple var_version_full var_git_hash)
     if (is_exact_version)
         set(${var_version_full} ${version_simple} PARENT_SCOPE)
     else()
-        string(SUBSTRING ${git_hash} 0 7 git_hash_short)
-        set(${var_version_full} "${version_simple}-dev+${git_hash_short}" PARENT_SCOPE)
+        set(${var_version_full} "${version_simple}-dev+${git_hash}" PARENT_SCOPE)
     endif()
 endfunction()
 
 function(aws_git_try args var_output var_success)
     set(${var_success} FALSE PARENT_SCOPE)
     set(${var_output} "" PARENT_SCOPE)
+    find_package(Git QUIET)
 
     if (GIT_FOUND)
         separate_arguments(args UNIX_COMMAND ${args})
