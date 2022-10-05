@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
-project(IotDeviceCommon-cpp CXX C)
+
+project(IotDeviceCommon-cpp
+        VERSION ${SIMPLE_VERSION}
+        LANGUAGES CXX C)
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -106,6 +109,12 @@ if (BUILD_SHARED_LIBS)
 else()
     set(TARGET_DIR "static")
 endif()
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config-version.cmake"
+        COMPATIBILITY ExactVersion
+)
 
 install(EXPORT "IotDeviceCommon-cpp-targets"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/${TARGET_DIR}"

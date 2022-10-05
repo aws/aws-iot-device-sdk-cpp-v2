@@ -41,12 +41,6 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
-        COMPATIBILITY ExactVersion
-)
-
 if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
         set(CMAKE_BUILD_TYPE "RelWithDebInfo")

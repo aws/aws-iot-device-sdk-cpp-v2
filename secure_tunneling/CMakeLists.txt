@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
-project(IotSecureTunneling-cpp CXX C)
+
+project(IotSecureTunneling-cpp
+        VERSION ${SIMPLE_VERSION}
+        LANGUAGES CXX C)
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -110,6 +113,12 @@ if (BUILD_SHARED_LIBS)
 else()
     set(TARGET_DIR "static")
 endif()
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config-version.cmake"
+        COMPATIBILITY ExactVersion
+)
 
 install(EXPORT "IotSecureTunneling-cpp-targets"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/${TARGET_DIR}"

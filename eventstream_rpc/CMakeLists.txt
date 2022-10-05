@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
-project(EventstreamRpc-cpp CXX)
+
+project(EventstreamRpc-cpp
+        VERSION ${SIMPLE_VERSION}
+        LANGUAGES CXX)
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -104,6 +107,12 @@ if (BUILD_SHARED_LIBS)
 else()
     set(TARGET_DIR "static")
 endif()
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/eventstreamrpc-cpp-config-version.cmake"
+        COMPATIBILITY ExactVersion
+)
 
 install(EXPORT "EventstreamRpc-cpp-targets"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/EventstreamRpc-cpp/cmake/${TARGET_DIR}"
