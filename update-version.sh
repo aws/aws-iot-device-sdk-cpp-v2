@@ -20,6 +20,13 @@ version=$(git describe --tags --abbrev=0)
 version_without_v=$(echo ${version} | cut -f2 -dv)
 echo "${version_without_v}" > VERSION
 
+echo "Updating sub-project versions"
+# First part finds all CMakeList.txt that is 2 spaces deep and no more, limiting it to things like eventstream_rpc/CmakeLists.txt.
+# The second part runs sed (using -exec) and replaces the version string in "set(ENV{_sub_project_version} 1.0.0" with the version of the SDK
+find . -name "CMakeLists.txt" -maxdepth 2 -mindepth 2 -exec sed -i -r -e 's/set(ENV{_sub_project_version} "[^"]*"/set(ENV{_sub_project_version} "'${version_without_v}'"/' {} +
+# This just removes any backup files created by "sed" after calling it.
+find . -name "CMakeLists.txt-r" -maxdepth 2 -mindepth 2 -exec rm {} +
+
 if git diff --exit-code VERSION > /dev/null; then
     echo "No version change"
 else
@@ -29,6 +36,9 @@ else
     git config --local user.email "aws-sdk-common-runtime@amazon.com"
     git config --local user.name "GitHub Actions"
     git add VERSION
+    # Add the changed CMakeLists.txt files in sub-projects
+    find . -name "CMakeLists.txt" -maxdepth 2 -mindepth 2 -exec git add {} +
+
     git commit -m "Updated version to ${version}"
 
     echo $TAG_PR_TOKEN | gh auth login --with-token

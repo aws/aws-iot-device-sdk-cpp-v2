@@ -4,6 +4,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(AwsGetVersion)
 aws_get_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
 message(STATUS "AWS SDK C++ ${FULL_VERSION}")
+# This is required so we can properly use SIMPLE_VERSION in sub-project CMake files
+set(${SIMPLE_VERSION} ${SIMPLE_VERSION})
 
 project(aws-iot-device-sdk-cpp-v2
     VERSION ${SIMPLE_VERSION})

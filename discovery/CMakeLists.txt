@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 3.1)
 
+if (NOT DEFINED ${SIMPLE_VERSION})
+    set(ENV{_sub_project_version} "1.19.1")
+else()
+    set(ENV{_sub_project_version} ${SIMPLE_VERSION})
+endif()
+message("Discovery version is $ENV{_sub_project_version}")
+
 project(Discovery-cpp
-        VERSION ${SIMPLE_VERSION}
+        VERSION $ENV{_sub_project_version}
         LANGUAGES CXX)
 
 set(RUNTIME_DIRECTORY bin)
@@ -112,7 +119,7 @@ endif()
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/discovery-cpp-config-version.cmake"
-        COMPATIBILITY ExactVersion
+        COMPATIBILITY SameMajorVersion
 )
 
 install(EXPORT "Discovery-cpp-targets"
