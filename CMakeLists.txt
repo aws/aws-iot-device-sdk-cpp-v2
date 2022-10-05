@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.1)
-project(aws-iot-device-sdk-cpp-v2)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(AwsGetVersion)
+aws_get_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
+message(STATUS "AWS SDK C++ ${FULL_VERSION}")
+
+project(aws-iot-device-sdk-cpp-v2
+    VERSION ${SIMPLE_VERSION})
 
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
-option(BUILD_SAMPLES "Build samples as part of the build" OFF)
+option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
@@ -28,20 +35,6 @@ if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
     set(FIND_LIBRARY_USE_LIB64_PATHS true)
 endif()
 
-if (NOT DEFINED AWS_SDK_CPP_VERSION)
-    set(AWS_SDK_CPP_VERSION "v1.18.6")
-    # Try to determine the current git tag and use that as the version
-    execute_process(COMMAND git describe --tags
-        RESULT_VARIABLE GIT_EXIT_CODE
-        OUTPUT_VARIABLE GIT_TAG
-        ERROR_QUIET
-        OUTPUT_STRIP_TRAILING_WHITESPACE)
-    if (NOT GIT_EXIT_CODE)
-        set(AWS_SDK_CPP_VERSION ${GIT_TAG})
-    endif()
-endif()
-message(STATUS "AWS SDK C++ ${AWS_SDK_CPP_VERSION}")
-
 # This is required in order to append /lib/cmake to each element in CMAKE_PREFIX_PATH
 set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
 string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
@@ -49,10 +42,8 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
 include(CMakePackageConfigHelpers)
-STRING(REPLACE "v" "" AWS_SDK_CPP_VERSION_WITHOUT_V ${AWS_SDK_CPP_VERSION})
 write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
-        VERSION ${AWS_SDK_CPP_VERSION_WITHOUT_V}
         COMPATIBILITY ExactVersion
 )
 
