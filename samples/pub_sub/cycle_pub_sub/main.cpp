@@ -143,7 +143,7 @@ enum OPERATIONS
 /**
  * The null operation - does nothing.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationNull(CycleClient *current_client, int index)
@@ -156,7 +156,7 @@ void operationNull(CycleClient *current_client, int index)
 /**
  * The start operation will connect the passed-in client, if it is not already connected.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationStart(CycleClient *current_client, int index)
@@ -197,7 +197,7 @@ void operationStart(CycleClient *current_client, int index)
 /**
  * The stop operation will disconnect the passed-in client, if it is not already disconnected.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationStop(CycleClient *current_client, int index)
@@ -235,7 +235,7 @@ void operationStop(CycleClient *current_client, int index)
  * The subscribe operation will subscribe to the shared topic and the client Id
  * topic of the passed-in client, if not already subscribed.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationSubscribe(CycleClient *current_client, int index)
@@ -301,7 +301,7 @@ void operationSubscribe(CycleClient *current_client, int index)
  * The unsubscribe operation will unsubscribe to the shared topic and the client Id
  * topic of the passed-in client, if not already unsubscribed.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationUnsubscribe(CycleClient *current_client, int index)
@@ -338,7 +338,7 @@ void operationUnsubscribe(CycleClient *current_client, int index)
 /**
  * The publish operation will publish a payload to the passed-in topic using the passed-in QOS.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  * @param QOS The QOS to use with the publish
  * @param topic The topic to publish the message to
@@ -364,7 +364,7 @@ void operationPublish(CycleClient *current_client, int index, Aws::Crt::Mqtt::QO
 /**
  * The publish QOS 0 operation will publish a QOS 0 message to the "topic1" topic
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishQOS0(CycleClient *current_client, int index)
@@ -375,7 +375,7 @@ void operationPublishQOS0(CycleClient *current_client, int index)
 /**
  * The publish QOS 1 operation will publish a QOS 1 message to the "topic1" topic
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishQOS1(CycleClient *current_client, int index)
@@ -387,7 +387,7 @@ void operationPublishQOS1(CycleClient *current_client, int index)
  * The publish to subscribed QOS 0 operation will publish a QOS 0 message to the
  * client Id topic.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishToSubscribedTopicQOS0(CycleClient *current_client, int index)
@@ -399,7 +399,7 @@ void operationPublishToSubscribedTopicQOS0(CycleClient *current_client, int inde
  * The publish to subscribed QOS 1 operation will publish a QOS 1 message to the
  * client Id topic.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishToSubscribedTopicQOS1(CycleClient *current_client, int index)
@@ -411,7 +411,7 @@ void operationPublishToSubscribedTopicQOS1(CycleClient *current_client, int inde
  * The publish to shared QOS 0 operation will publish a QOS 0 message to the
  * shared topic that all clients can be subscribed to.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishToSharedTopicQOS0(CycleClient *current_client, int index)
@@ -423,7 +423,7 @@ void operationPublishToSharedTopicQOS0(CycleClient *current_client, int index)
  * The publish to shared QOS 1 operation will publish a QOS 1 message to the
  * shared topic that all clients can be subscribed to.
  *
- * @param current_client The client to operform the operation on
+ * @param current_client The client to perform the operation on
  * @param index The index of the client passed
  */
 void operationPublishToSharedTopicQOS1(CycleClient *current_client, int index)

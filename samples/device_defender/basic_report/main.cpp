@@ -27,8 +27,6 @@ using namespace Aws::Crt;
 
 int s_getCustomMetricNumber(double *output)
 {
-    /** Set to a random number between -50 and 50 */
-    //*output = (double)((rand() % 100 + 1) - 50);
     *output = 100;
     return AWS_OP_SUCCESS;
 }

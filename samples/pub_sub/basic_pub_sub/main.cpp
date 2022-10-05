@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
     std::promise<void> connectionClosedPromise;
 
     /*
-     * This will execute when an mqtt connect has completed or failed.
+     * This will execute when an MQTT connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
