@@ -130,15 +130,6 @@ int main(int argc, char *argv[])
     }
 
     auto subscribeResultFuture = subscribeOperation->GetResult();
-    /*
-    // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (subscribeResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
-    {
-        fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
-        exit(-1);
-    }
-    */
-
     auto subscribeResult = subscribeResultFuture.get();
     if (subscribeResult)
     {
@@ -188,14 +179,6 @@ int main(int argc, char *argv[])
     }
 
     auto publishResultFuture = publishOperation->GetResult();
-    /*
-    // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (publishResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
-    {
-        fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
-        exit(-1);
-    }
-    */
 
     auto publishResult = publishResultFuture.get();
     if (publishResult)

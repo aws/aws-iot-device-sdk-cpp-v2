@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
                 if (isTest)
                 {
                     expectedMessageCount--;
-                    if (expectedMessageCount == 0)
+                    if (expectedMessageCount <= 0)
                     {
                         exit(0);
                     }
@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        while (1)
+        while (true)
         {
             std::this_thread::sleep_for(3000ms);
 
