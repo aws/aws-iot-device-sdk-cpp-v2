@@ -9,6 +9,7 @@
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 
 #include <fstream>
+#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
