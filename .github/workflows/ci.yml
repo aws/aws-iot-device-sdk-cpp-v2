@@ -7,7 +7,7 @@ on:
       - 'docs'
 
 env:
-  BUILDER_VERSION: v0.8.29
+  BUILDER_VERSION: v0.9.20
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
@@ -41,6 +41,11 @@ jobs:
           - manylinux2014-x64
           - manylinux2014-x86
           - al2-x64
+          - alpine-3.16-x64
+          - alpine-3.16-x86
+          - alpine-3.16-armv6
+          - alpine-3.16-armv7
+          - alpine-3.16-arm64
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
@@ -49,7 +54,8 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+      - name: Install qemu/docker
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes          
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
