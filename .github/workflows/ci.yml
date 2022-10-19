@@ -69,6 +69,8 @@ jobs:
       matrix:
         image:
           - raspbian-bullseye
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
         uses: aws-actions/configure-aws-credentials@v1
