@@ -435,7 +435,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run X509 sample
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/x509_credentials_provider_connect/x509_credentials_provider_connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate_x509 'ci/PubSub/cert' --sample_secret_private_key_x509 'ci/PubSub/key' --sample_secret_ca_x509 'ci/PubSub/ca' --sample_secret_endpoint_x509 'ci/X509/endpoint_credentials' --sample_secret_alias_x509 'ci/X509/alias' --sample_arguments '--signing_region us-east-1 --x509_thing_name CI_PubSub_Thing'
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/x509_credentials_provider_connect/x509-credentials-provider-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate_x509 'ci/PubSub/cert' --sample_secret_private_key_x509 'ci/PubSub/key' --sample_secret_ca_x509 'ci/PubSub/ca' --sample_secret_endpoint_x509 'ci/X509/endpoint_credentials' --sample_secret_alias_x509 'ci/X509/alias' --sample_arguments '--signing_region us-east-1 --x509_thing_name CI_PubSub_Thing'
 
   # check that docs can still build
   check-docs:
