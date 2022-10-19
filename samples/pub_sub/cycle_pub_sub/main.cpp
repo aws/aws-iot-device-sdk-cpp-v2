@@ -4,15 +4,16 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
+#include <aws/crt/UUID.h>
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/TlsOptions.h>
-
 #include <aws/iot/MqttClient.h>
 
 #include <algorithm>
-#include <aws/crt/UUID.h>
+
 #include <chrono>
 #include <mutex>
+#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 

@@ -18,6 +18,7 @@
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
+#include <thread>
 
 #include <aws/crt/Api.h>
 
