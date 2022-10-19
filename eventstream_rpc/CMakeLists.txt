@@ -1,15 +1,25 @@
 cmake_minimum_required(VERSION 3.1)
 
-if (NOT DEFINED ${SIMPLE_VERSION})
-    set(ENV{_sub_project_version} "1.19.1")
+if (DEFINED SIMPLE_VERSION)
+    set(_sub_project_version ${SIMPLE_VERSION})
 else()
-    set(ENV{_sub_project_version} ${SIMPLE_VERSION})
+    if (EXISTS "../VERSION")
+        file(READ "..//VERSION" version_simple)
+        string(STRIP ${version_simple} version_simple)
+        set(_sub_project_version ${version_simple})
+    endif()
 endif()
-message("EventStreamRPC version is $ENV{_sub_project_version}")
 
-project(EventstreamRpc-cpp
-        VERSION $ENV{_sub_project_version}
+if (DEFINED _sub_project_version)
+    message("EventStreamRPC version is ${_sub_project_version}")
+    project(EventstreamRpc-cpp
+            VERSION ${_sub_project_version}
+            LANGUAGES CXX)
+else()
+    message("EventStreamRPC version is unknown")
+    project(EventstreamRpc-cpp
         LANGUAGES CXX)
+endif()
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -116,10 +126,12 @@ else()
 endif()
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
+if (DEFINED _sub_project_version)
+    write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/eventstreamrpc-cpp-config-version.cmake"
         COMPATIBILITY SameMajorVersion
-)
+    )
+endif()
 
 install(EXPORT "EventstreamRpc-cpp-targets"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/EventstreamRpc-cpp/cmake/${TARGET_DIR}"

@@ -1,15 +1,25 @@
 cmake_minimum_required(VERSION 3.1)
 
-if (NOT DEFINED ${SIMPLE_VERSION})
-    set(ENV{_sub_project_version} "1.19.1")
+if (DEFINED SIMPLE_VERSION)
+    set(_sub_project_version ${SIMPLE_VERSION})
 else()
-    set(ENV{_sub_project_version} ${SIMPLE_VERSION})
+    if (EXISTS "../VERSION")
+        file(READ "..//VERSION" version_simple)
+        string(STRIP ${version_simple} version_simple)
+        set(_sub_project_version ${version_simple})
+    endif()
 endif()
-message("Shadow version is $ENV{_sub_project_version}")
 
-project(IotShadow-cpp
-        VERSION $ENV{_sub_project_version}
+if (DEFINED _sub_project_version)
+    message("Shadow version is ${_sub_project_version}")
+    project(IotShadow-cpp
+            VERSION ${_sub_project_version}
+            LANGUAGES CXX)
+else()
+    message("Shadow version is unknown")
+    project(IotShadow-cpp
         LANGUAGES CXX)
+endif()
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -117,10 +127,12 @@ else()
 endif()
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
+if (DEFINED _sub_project_version)
+    write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/iotshadow-cpp-config-version.cmake"
         COMPATIBILITY SameMajorVersion
-)
+    )
+endif()
 
 install(EXPORT "IotShadow-cpp-targets"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotShadow-cpp/cmake/${TARGET_DIR}"
