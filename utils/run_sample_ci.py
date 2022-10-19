@@ -17,6 +17,7 @@ else:
     current_folder += "/"
 tmp_certificate_file_path = str(current_folder) + "tmp_certificate.pem"
 tmp_private_key_path = str(current_folder) + "tmp_privatekey.pem.key"
+tmp_ca_file_path = str(current_folder) + "tmp_ca.pem"
 tmp_pfx_file_path = str(current_folder) + "tmp_pfx_certificate.pfx"
 tmp_pfx_certificate_path = ""
 tmp_pfx_certificate_store_location = "CurrentUser\\My"
@@ -26,6 +27,7 @@ tmp_pfx_password = "" # Setting a password causes issues, but an empty string is
 def get_secrets_and_launch(parsed_commands):
     global tmp_certificate_file_path
     global tmp_private_key_path
+    global tmp_ca_file_path
     global tmp_pfx_file_path
     global tmp_pfx_certificate_path
     exit_code = 0
@@ -34,6 +36,11 @@ def get_secrets_and_launch(parsed_commands):
     sample_private_key = ""
     sample_custom_authorizer_name = ""
     sample_custom_authorizer_password = ""
+    sample_certificate_x509 = ""
+    sample_private_key_x509 = ""
+    sample_ca_x509 = ""
+    sample_endpoint_x509 = ""
+    sample_role_alias_x509 = ""
 
     print("Attempting to get credentials from secrets using Boto3...")
     secrets_client = boto3.client(
@@ -56,12 +63,41 @@ def get_secrets_and_launch(parsed_commands):
                 # lgtm [py/clear-text-storage-sensitive-data]
                 file.write(secret_data["SecretString"])
             sample_private_key = tmp_private_key_path
+
         if (parsed_commands.sample_secret_custom_authorizer_name != ""):
             sample_custom_authorizer_name = secrets_client.get_secret_value(
                 SecretId=parsed_commands.sample_secret_custom_authorizer_name)["SecretString"]
         if (parsed_commands.sample_secret_custom_authorizer_password != ""):
             sample_custom_authorizer_password = secrets_client.get_secret_value(
                 SecretId=parsed_commands.sample_secret_custom_authorizer_password)["SecretString"]
+
+        if (parsed_commands.sample_secret_certificate_x509 != ""):
+            secret_data = secrets_client.get_secret_value(
+                SecretId=parsed_commands.sample_secret_certificate_x509)
+            with open(tmp_certificate_file_path, "w") as file:
+                # lgtm [py/clear-text-storage-sensitive-data]
+                file.write(secret_data["SecretString"])
+            sample_certificate_x509 = tmp_certificate_file_path
+        if (parsed_commands.sample_secret_private_key_x509 != ""):
+            secret_data = secrets_client.get_secret_value(
+                SecretId=parsed_commands.sample_secret_private_key_x509)
+            with open(tmp_private_key_path, "w") as file:
+                # lgtm [py/clear-text-storage-sensitive-data]
+                file.write(secret_data["SecretString"])
+            sample_private_key_x509 = tmp_private_key_path
+        if (parsed_commands.sample_secret_ca_x509 != ""):
+            secret_data = secrets_client.get_secret_value(
+                SecretId=parsed_commands.sample_secret_ca_x509)
+            with open(tmp_ca_file_path, "w") as file:
+                # lgtm [py/clear-text-storage-sensitive-data]
+                file.write(secret_data["SecretString"])
+            sample_ca_x509 = tmp_ca_file_path
+        if (parsed_commands.sample_secret_endpoint_x509 != ""):
+            sample_endpoint_x509 = secrets_client.get_secret_value(
+                SecretId=parsed_commands.sample_secret_endpoint_x509)["SecretString"]
+        if (parsed_commands.sample_secret_alias_x509 != ""):
+            sample_role_alias_x509 = secrets_client.get_secret_value(
+                SecretId=parsed_commands.sample_secret_alias_x509)["SecretString"]
 
     except Exception:
         sys.exit("ERROR: Could not get secrets to launch sample!")
@@ -78,8 +114,17 @@ def get_secrets_and_launch(parsed_commands):
     exit_code = extra_step_return
     if (extra_step_return == 0):
         print("Launching sample...")
-        exit_code = launch_sample(parsed_commands, sample_endpoint, sample_certificate,
-                                sample_private_key, sample_custom_authorizer_name, sample_custom_authorizer_password)
+        exit_code = launch_sample(parsed_commands=parsed_commands,
+                                sample_endpoint=sample_endpoint,
+                                sample_certificate=sample_certificate,
+                                sample_private_key=sample_private_key,
+                                sample_custom_authorizer_name=sample_custom_authorizer_name,
+                                sample_custom_authorizer_password=sample_custom_authorizer_password,
+                                sample_certificate_x509=sample_certificate_x509,
+                                sample_private_key_x509=sample_private_key_x509,
+                                sample_ca_x509=sample_ca_x509,
+                                sample_endpoint_x509=sample_endpoint_x509,
+                                sample_role_alias_x509=sample_role_alias_x509)
 
         if (exit_code == 0):
             print("SUCCESS: Finished running sample! Exiting with success")
@@ -95,6 +140,8 @@ def get_secrets_and_launch(parsed_commands):
         os.remove(tmp_private_key_path)
     if (os.path.isfile(tmp_pfx_file_path)):
         os.remove(tmp_pfx_file_path)
+    if (os.path.isfile(tmp_ca_file_path)):
+        os.remove(tmp_ca_file_path)
 
     return exit_code
 
@@ -200,7 +247,10 @@ def make_windows_pfx_file():
         return 1
 
 
-def launch_sample(parsed_commands, sample_endpoint, sample_certificate, sample_private_key, sample_custom_authorizer_name, sample_custom_authorizer_password):
+def launch_sample(parsed_commands, sample_endpoint, sample_certificate, sample_private_key,
+                sample_custom_authorizer_name, sample_custom_authorizer_password,
+                sample_certificate_x509, sample_private_key_x509, sample_ca_x509,
+                sample_endpoint_x509, sample_role_alias_x509):
     global tmp_certificate_file_path
     global tmp_private_key_path
     global tmp_pfx_file_path
@@ -223,6 +273,21 @@ def launch_sample(parsed_commands, sample_endpoint, sample_certificate, sample_p
     if (sample_custom_authorizer_password != ""):
         launch_arguments.append("--custom_auth_password")
         launch_arguments.append(sample_custom_authorizer_password)
+    if (sample_certificate_x509 != ""):
+        launch_arguments.append("--x509_cert")
+        launch_arguments.append(sample_certificate_x509)
+    if (sample_private_key_x509 != ""):
+        launch_arguments.append("--x509_key")
+        launch_arguments.append(sample_private_key_x509)
+    if (sample_ca_x509 != ""):
+        launch_arguments.append("--x509_ca_file")
+        launch_arguments.append(sample_ca_x509)
+    if (sample_endpoint_x509 != ""):
+        launch_arguments.append("--x509_endpoint")
+        launch_arguments.append(sample_endpoint_x509)
+    if (sample_role_alias_x509 != ""):
+        launch_arguments.append("--x509_role_alias")
+        launch_arguments.append(sample_role_alias_x509)
     if (parsed_commands.sample_arguments != ""):
         sample_arguments_split = parsed_commands.sample_arguments.split(" ")
         for arg in sample_arguments_split:
@@ -329,6 +394,16 @@ def main():
     argument_parser.add_argument("--sample_run_certutil", metavar="<Set to 'True' to run Certutil (Windows ONLY)>", required=False,
                                  default="", help="Runs CertUtil on the private key and certificate passed and makes a certificate.pfx file, "
                                  "which is used automatically in the --cert argument. Used for Windows Certificate Connect sample")
+    argument_parser.add_argument("--sample_secret_certificate_x509", metavar="<Name of certificate secret to use in X509>", required=False,
+                                 default="", help="The name of the secret containing the certificate PEM file to use in X509")
+    argument_parser.add_argument("--sample_secret_private_key_x509", metavar="<Name of private key secret to use in X509>", required=False,
+                                 default="", help="The name of the secret containing the private key PEM file to use in X509")
+    argument_parser.add_argument("--sample_secret_ca_x509", metavar="<Name of CA key secret to use in X509>", required=False,
+                                 default="", help="The name of the secret containing the CA PEM file to use in X509")
+    argument_parser.add_argument("--sample_secret_endpoint_x509", metavar="<Name of credentials provider endpoint secret>",
+                                 required=False, default="", help="The name of the secret containing the credentials provider endpoint (X509)")
+    argument_parser.add_argument("--sample_secret_alias_x509", metavar="<Name of the IoT role alias secret>",
+                                 required=False, default="", help="The name of the secret containing the IoT Core role alias (X509)")
     argument_parser.add_argument("--sample_arguments", metavar="<Arguments here in single string!>",
                                  required=False, default="",
                                  help="Arguments to pass to sample. In Java, these arguments will be in a double quote (\") string")
