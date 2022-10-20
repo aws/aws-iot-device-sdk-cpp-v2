@@ -1,24 +1,9 @@
 cmake_minimum_required(VERSION 3.1)
 
+project(IotJobs-cpp LANGUAGES CXX)
 if (DEFINED SIMPLE_VERSION)
-    set(_sub_project_version ${SIMPLE_VERSION})
-else()
-    if (EXISTS "../VERSION")
-        file(READ "..//VERSION" version_simple)
-        string(STRIP ${version_simple} version_simple)
-        set(_sub_project_version ${version_simple})
-    endif()
-endif()
-
-if (DEFINED _sub_project_version)
-    message("Jobs version is ${_sub_project_version}")
-    project(IotJobs-cpp
-            VERSION ${_sub_project_version}
-            LANGUAGES CXX)
-else()
-    message("Jobs version is unknown")
-    project(IotJobs-cpp
-        LANGUAGES CXX)
+    message("Jobs version is ${SIMPLE_VERSION}")
+    set(PROJECT_VERSION ${SIMPLE_VERSION})
 endif()
 
 set(RUNTIME_DIRECTORY bin)
@@ -127,7 +112,7 @@ else()
 endif()
 
 include(CMakePackageConfigHelpers)
-if (DEFINED _sub_project_version)
+if (DEFINED SIMPLE_VERSION)
     write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config-version.cmake"
         COMPATIBILITY SameMajorVersion

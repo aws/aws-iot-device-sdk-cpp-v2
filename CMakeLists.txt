@@ -48,7 +48,13 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Tell the CRT the version of the SDK for the metrics string
-set(AWS_IOT_SDK_VERSION ${SIMPLE_VERSION})
+if (DEFINED FULL_VERSION_METRIC)
+    # Remove the "dev+" part if it exists
+    string(REPLACE "dev+" "" FULL_VERSION_METRIC ${FULL_VERSION})
+    set(AWS_IOT_SDK_VERSION v${FULL_VERSION_METRIC})
+else()
+    set(AWS_IOT_SDK_VERSION v${SIMPLE_VERSION})
+endif()
 
 if (BUILD_DEPS)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-crt-cpp/crt/aws-c-common/cmake")
