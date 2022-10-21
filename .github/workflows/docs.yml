@@ -32,10 +32,10 @@ jobs:
           cd ../..
           echo "Finished compiling and installing Doxygen"
 
-          echo "Updating AWS_SDK_CPP_VERSION default to ${version//v}"
-          version=$(git describe --tags --abbrev=0)
+          version=$(cat ./VERSION)
+          echo "Updating documentation version to ${version//v}"
           sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
-          echo "Finished updating AWS_SDK_CPP_VERSION default to ${version//v}"
+          echo "Finished updating documentation version to ${version//v}"
 
           ./make-docs.py
 
