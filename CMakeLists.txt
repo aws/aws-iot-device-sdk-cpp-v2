@@ -41,16 +41,19 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
-        COMPATIBILITY ExactVersion
-)
-
 if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
         set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     endif()
+endif()
+
+# Tell the CRT the version of the SDK for the metrics string
+if (DEFINED FULL_VERSION_METRIC)
+    # Remove the "dev+" part if it exists
+    string(REPLACE "dev+" "" FULL_VERSION_METRIC ${FULL_VERSION})
+    set(AWS_IOT_SDK_VERSION v${FULL_VERSION_METRIC})
+else()
+    set(AWS_IOT_SDK_VERSION v${SIMPLE_VERSION})
 endif()
 
 if (BUILD_DEPS)

@@ -6,16 +6,16 @@ phases:
       - add-apt-repository ppa:ubuntu-toolchain-r/test
       - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
       - apt-get update -y
-      - apt-get install clang-8 cmake softhsm -y -f
-  pre_build:
-    commands:
-      - export CC=clang-8
-      - export CXX=clang++-8
+      - apt-get install cmake softhsm -y -f
   build:
     commands:
       - echo Build started on `date`
       - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/connect-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/custom-auth-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-connect-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/pubsub-linux.sh
+      - $CODEBUILD_SRC_DIR/codebuild/samples/shadow-linux.sh
   post_build:
     commands:
       - echo Build completed on `date`
