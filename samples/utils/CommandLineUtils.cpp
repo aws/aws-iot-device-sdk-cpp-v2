@@ -247,15 +247,15 @@ namespace Utils
             {
                 logLevel = Aws::Crt::LogLevel::None;
             }
-        }
 
-        if (HasCommand("log_file"))
-        {
-            apiHandle->InitializeLogging(logLevel, GetCommand(m_cmd_log_file).c_str());
-        }
-        else
-        {
-            apiHandle->InitializeLogging(logLevel, stderr);
+            if (HasCommand("log_file"))
+            {
+                apiHandle->InitializeLogging(logLevel, GetCommand(m_cmd_log_file).c_str());
+            }
+            else
+            {
+                apiHandle->InitializeLogging(logLevel, stderr);
+            }
         }
     }
 
