@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String thingName = cmdUtils.GetCommandRequired("thing_name");
-    String shadowProperty = cmdUtils.GetCommandRequired("shadow_property");
+    String shadowProperty = cmdUtils.GetCommandOrDefault("shadow_property", "color");
     bool isCI = cmdUtils.HasCommand("is_ci");
 
     /* Get a MQTT client connection from the command parser */
