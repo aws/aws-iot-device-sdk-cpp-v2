@@ -281,5 +281,6 @@ namespace Utils
         const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
         const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
         const Aws::Crt::String m_cmd_verbosity = "verbosity";
+        const Aws::Crt::String m_cmd_log_file = "log_file";
     };
 } // namespace Utils

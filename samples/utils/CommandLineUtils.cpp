@@ -205,42 +205,57 @@ namespace Utils
             "<log level>",
             "The logging level to use. Choices are 'Trace', 'Debug', 'Info', 'Warn', 'Error', 'Fatal', and 'None'. "
             "(optional, default='none')");
+        RegisterCommand(
+            m_cmd_log_file,
+            "<str>",
+            "File to write logs to. If not provided, logs will be written to stdout. "
+            "(optional, default='none')");
     }
 
     void CommandLineUtils::StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle)
     {
+        Aws::Crt::LogLevel logLevel = Aws::Crt::LogLevel::None;
         // Process logging command
         if (HasCommand("verbosity"))
         {
             Aws::Crt::String verbosity = GetCommand(m_cmd_verbosity);
             if (verbosity == "Fatal")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Fatal, stderr);
+                logLevel = Aws::Crt::LogLevel::Fatal;
             }
             else if (verbosity == "Error")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
+                logLevel = Aws::Crt::LogLevel::Error;
             }
             else if (verbosity == "Warn")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Warn, stderr);
+                logLevel = Aws::Crt::LogLevel::Warn;
             }
             else if (verbosity == "Info")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Info, stderr);
+                logLevel = Aws::Crt::LogLevel::Info;
             }
             else if (verbosity == "Debug")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+                logLevel = Aws::Crt::LogLevel::Debug;
             }
             else if (verbosity == "Trace")
             {
-                apiHandle->InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+                logLevel = Aws::Crt::LogLevel::Trace;
             }
             else
             {
-                // If none or unknown, then do nothing
+                logLevel = Aws::Crt::LogLevel::None;
             }
+        }
+
+        if (HasCommand("log_file"))
+        {
+            apiHandle->InitializeLogging(logLevel, GetCommand(m_cmd_log_file).c_str());
+        }
+        else
+        {
+            apiHandle->InitializeLogging(logLevel, stderr);
         }
     }
 
