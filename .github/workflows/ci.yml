@@ -153,6 +153,10 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           md ${{ env.CI_FOLDER }}
@@ -293,6 +297,10 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
