@@ -20,7 +20,23 @@ jobs:
 
       - name: Update docs branch
         run: |
-          sudo apt-get install -y doxygen
+          echo "Compiling and installing doxygen 1.8.20 from source"
+          sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
+          git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
+          cd doxygen
+          mkdir build
+          cd build
+          cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+          sudo make -j 4
+          sudo make install
+          cd ../..
+          echo "Finished compiling and installing Doxygen"
+
+          version=$(cat ./VERSION)
+          echo "Updating documentation version to ${version//v}"
+          sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
+          echo "Finished updating documentation version to ${version//v}"
+
           ./make-docs.py
 
       - name: Commit

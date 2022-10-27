@@ -9,11 +9,14 @@
 * [Windows Certificate MQTT Connect](#windows-certificate-mqtt-connect)
 * [Custom Authorizer Connect](#custom-authorizer-connect)
 * [Fleet provisioning](#fleet-provisioning)
+* [Secure Tunnel](#secure-tunnel)
+* [Secure Tunnel Notification](#secure-tunnel-notification)
 * [Shadow](#shadow)
 * [Jobs](#jobs)
 * [Greengrass discovery](#greengrass-discovery)
 * [Greengrass IPC](#greengrass-ipc)
 * [Device Defender](#device-defender)
+* [Cycle Pub-Sub](#cycle-pub-sub)
 
 ## Build Instruction
 
@@ -551,48 +554,40 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "iot:Connect",
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/<b>thingname</b>",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
-      ]
-    },
-    {
-      "Effect": "Allow",
       "Action": "iot:Publish",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/pubtopic",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/job/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iot:Subscribe",
-      "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/dc/subtopic",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/events/jobExecution/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/get",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get"
       ]
     },
     {
       "Effect": "Allow",
       "Action": "iot:Receive",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/dc/subtopic",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/get/*"
       ]
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:DescribeJobExecution",
-        "iot:GetPendingJobExecutions",
-        "iot:StartNextPendingJobExecution",
-        "iot:UpdateJobExecution"
-      ],
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>"
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/get/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/get/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
   ]
 }
@@ -615,7 +610,7 @@ Note that if you get a `Service Error 4 occurred` error, you may have incorrectl
 
 This sample uses the AWS IoT
 [Fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html)
-to provision devices using either a CSR or KeysAndcertificate and subsequently calls RegisterThing.
+to provision devices using either a CSR or Keys-And-Certificate and subsequently calls RegisterThing.
 
 On startup, the script subscribes to topics based on the request type of either CSR or Keys topics,
 publishes the request to corresponding topic and calls RegisterThing.
@@ -648,9 +643,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:Publish"
-      ],
+      "Action": "iot:Publish",
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
@@ -660,8 +653,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     {
       "Effect": "Allow",
       "Action": [
-        "iot:Receive",
-        "iot:Subscribe"
+        "iot:Receive"
       ],
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/accepted",
@@ -670,6 +662,20 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
     },
     {
@@ -716,9 +722,103 @@ aws iot create-provisioning-template \
         --enabled
 ```
 The rest of the instructions assume you have used the following for the template body:
+<details>
+<summary>(see template body)</summary>
 ``` sh
-{\"Parameters\":{\"DeviceLocation\":{\"Type\":\"String\"},\"AWS::IoT::Certificate::Id\":{\"Type\":\"String\"},\"SerialNumber\":{\"Type\":\"String\"}},\"Mappings\":{\"LocationTable\":{\"Seattle\":{\"LocationUrl\":\"https://example.aws\"}}},\"Resources\":{\"thing\":{\"Type\":\"AWS::IoT::Thing\",\"Properties\":{\"ThingName\":{\"Fn::Join\":[\"\",[\"ThingPrefix_\",{\"Ref\":\"SerialNumber\"}]]},\"AttributePayload\":{\"version\":\"v1\",\"serialNumber\":\"serialNumber\"}},\"OverrideSettings\":{\"AttributePayload\":\"MERGE\",\"ThingTypeName\":\"REPLACE\",\"ThingGroups\":\"DO_NOTHING\"}},\"certificate\":{\"Type\":\"AWS::IoT::Certificate\",\"Properties\":{\"CertificateId\":{\"Ref\":\"AWS::IoT::Certificate::Id\"},\"Status\":\"Active\"},\"OverrideSettings\":{\"Status\":\"REPLACE\"}},\"policy\":{\"Type\":\"AWS::IoT::Policy\",\"Properties\":{\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"iot:Connect\",\"iot:Subscribe\",\"iot:Publish\",\"iot:Receive\"],\"Resource\":\"*\"}]}}}},\"DeviceConfiguration\":{\"FallbackUrl\":\"https://www.example.com/test-site\",\"LocationUrl\":{\"Fn::FindInMap\":[\"LocationTable\",{\"Ref\":\"DeviceLocation\"},\"LocationUrl\"]}}}
+{
+  "Parameters": {
+    "DeviceLocation": {
+      "Type": "String"
+    },
+    "AWS::IoT::Certificate::Id": {
+      "Type": "String"
+    },
+    "SerialNumber": {
+      "Type": "String"
+    }
+  },
+  "Mappings": {
+    "LocationTable": {
+      "Seattle": {
+        "LocationUrl": "https://example.aws"
+      }
+    }
+  },
+  "Resources": {
+    "thing": {
+      "Type": "AWS::IoT::Thing",
+      "Properties": {
+        "ThingName": {
+          "Fn::Join": [
+            "",
+            [
+              "ThingPrefix_",
+              {
+                "Ref": "SerialNumber"
+              }
+            ]
+          ]
+        },
+        "AttributePayload": {
+          "version": "v1",
+          "serialNumber": "serialNumber"
+        }
+      },
+      "OverrideSettings": {
+        "AttributePayload": "MERGE",
+        "ThingTypeName": "REPLACE",
+        "ThingGroups": "DO_NOTHING"
+      }
+    },
+    "certificate": {
+      "Type": "AWS::IoT::Certificate",
+      "Properties": {
+        "CertificateId": {
+          "Ref": "AWS::IoT::Certificate::Id"
+        },
+        "Status": "Active"
+      },
+      "OverrideSettings": {
+        "Status": "REPLACE"
+      }
+    },
+    "policy": {
+      "Type": "AWS::IoT::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "iot:Connect",
+                "iot:Subscribe",
+                "iot:Publish",
+                "iot:Receive"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "DeviceConfiguration": {
+    "FallbackUrl": "https://www.example.com/test-site",
+    "LocationUrl": {
+      "Fn::FindInMap": [
+        "LocationTable",
+        {
+          "Ref": "DeviceLocation"
+        },
+        "LocationUrl"
+      ]
+    }
+  }
+}
 ```
+</details>
+
 If you use a different body, you may need to pass in different template parameters.
 
 #### Running the sample and provisioning using a certificate-key set from a provisioning claim
@@ -799,27 +899,40 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
 
 This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens.
 
+Source: `samples/secure_tunneling/secure_tunnel`
+
 Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.com/iot/) (AWS IoT/Manage/Tunnels/Create tunnel) and retrieve the destination and source access tokens. (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial-open-tunnel.html)
 
 Provide the necessary arguments along with the destination access token and start the sample in destination mode (default).
 
+``` sh
+./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --region <region> --access_token_file <path to destination access token>
+```
+
 Provide the necessary arguments along with the source access token and start a second sample in source mode by using the flag --localProxyModeSource.
+
+``` sh
+./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--thing_name <thing name> --region <region> --access_token_file <path to source access token>
+--localProxyModeSource
+```
 
 The two samples will then connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be trasmitted in either direction.
 
 A proxy server may be used by providing the --proxy_host and --proxy_port arguments. If the proxy server requires a user name and password the --proxy_user_name and --proxy_password arguments should be used.
 
-Source: `samples/secure_tunneling/secure_tunnel`
-
 ## Secure Tunnel Notification
 
 This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
 
+Source: `samples/secure_tunneling/tunnel_notification`
+
 This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
 
 On startup, the sample will wait until it receives, and then displays the tunnel notification.
-
-Source: `samples/secure_tunneling/tunnel_notification`
 
 ## Greengrass discovery
 
@@ -882,7 +995,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/*"
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client-*"
     }
   ]
 }
@@ -894,3 +1007,65 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 * `number` and `number-list` types: Supports precision up to 15 digits. Supports both positive and negative values.
 * `string-list` type: Supports letters A through Z (uppercase and lowercase) and the characters `:`, `_`, `-`, `/`, and `.
 * `ip-list` type: Supports only valid IPV4 and IPV6 addresses.
+
+## Cycle Pub-Sub
+
+This sample will create a series of clients, and then randomly perform operations on them (*connect, disconnect, publish, subscribe, etc.*) every few seconds. Status updates on what each client in the sample are doing are continually printed to the console and the sample will run until the time duration set is complete.
+
+This sample is primarily for testing stability over a period of time for testing and CI, but it also shows how to randomly perform operations across multiple clients.
+
+Source: `samples/pub_sub/cycle_pub_sub/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, unsubscribe, publish, and receive. Make sure your policy allows a client ID of `test-client-*` to connect.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/shared_topic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test-*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/topic1"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe",
+        "iot:Unsubscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/shared_topic",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test-*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/topic1"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
+
+To run the Cycle Pub-Sub sample, use the following command:
+
+``` sh
+./cycle-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+```
+

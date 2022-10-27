@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.1)
-project(aws-iot-device-sdk-cpp-v2)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(AwsGetVersion)
+aws_get_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
+message(STATUS "AWS SDK C++ ${FULL_VERSION}")
+
+project(aws-iot-device-sdk-cpp-v2
+    VERSION ${SIMPLE_VERSION})
 
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
-option(BUILD_SAMPLES "Build samples as part of the build" OFF)
+option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
@@ -38,6 +45,15 @@ if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
         set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     endif()
+endif()
+
+# Tell the CRT the version of the SDK for the metrics string
+if (DEFINED FULL_VERSION_METRIC)
+    # Remove the "dev+" part if it exists
+    string(REPLACE "dev+" "" FULL_VERSION_METRIC ${FULL_VERSION})
+    set(AWS_IOT_SDK_VERSION v${FULL_VERSION_METRIC})
+else()
+    set(AWS_IOT_SDK_VERSION v${SIMPLE_VERSION})
 endif()
 
 if (BUILD_DEPS)

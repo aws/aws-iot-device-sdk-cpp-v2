@@ -26,6 +26,7 @@
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
+#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -103,13 +104,16 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
     cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
     cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
+    cmdUtils.RegisterCommand(
+        "is_ci", "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
     cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
     String thingName = cmdUtils.GetCommandRequired("thing_name");
-    String shadowProperty = cmdUtils.GetCommandRequired("shadow_property");
+    String shadowProperty = cmdUtils.GetCommandOrDefault("shadow_property", "color");
+    bool isCI = cmdUtils.HasCommand("is_ci");
 
     /* Get a MQTT client connection from the command parser */
     auto connection = cmdUtils.BuildMQTTConnection();
@@ -143,7 +147,7 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            connectionCompletedPromise.set_value(true);
+            connectionClosedPromise.set_value();
         }
     };
 
@@ -258,7 +262,11 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Finished clearing shadow properties\n");
                 currentShadowValue = "";
             }
-            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+
+            if (isCI == false)
+            {
+                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+            }
         };
 
         auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
@@ -412,29 +420,47 @@ int main(int argc, char *argv[])
         gotInitialShadowPromise.get_future().wait();
 
         // ==================== Shadow change value input loop ====================
-        // This section is to getting user input and changing the shadow value pased on that input.
+        // This section is to getting user input and changing the shadow value passed to that input.
+        // If in CI, then input is automatically passed
 
-        fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
-        while (true)
+        if (isCI == false)
         {
-            String input;
-            std::cin >> input;
+            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+            while (true)
+            {
+                String input;
+                std::cin >> input;
 
-            if (input == "exit" || input == "quit")
-            {
-                fprintf(stdout, "Exiting...");
-                break;
-            }
+                if (input == "exit" || input == "quit")
+                {
+                    fprintf(stdout, "Exiting...");
+                    break;
+                }
 
-            if (input == currentShadowValue)
-            {
-                fprintf(stdout, "Shadow is already set to \"%s\"\n", currentShadowValue.c_str());
-                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+                if (input == currentShadowValue)
+                {
+                    fprintf(stdout, "Shadow is already set to \"%s\"\n", currentShadowValue.c_str());
+                    fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+                }
+                else
+                {
+                    s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+                }
             }
-            else
+        }
+        else
+        {
+            int messagesSent = 0;
+            while (messagesSent < 5)
             {
+                String input = "Shadow_Value_";
+                input.append(std::to_string(messagesSent).c_str());
                 s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+                // Sleep so there is a gap between shadow updates
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                messagesSent += 1;
             }
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
 

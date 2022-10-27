@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     }
 
     /*
-     * We're using Mutual TLS for Mqtt, so we need to load our client certificates
+     * We're using Mutual TLS for MQTT, so we need to load our client certificates
      */
     Io::TlsContextOptions tlsCtxOptions =
         Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
     {
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
-        clientConfig.ProxyOptions = proxyOptions; //
+        clientConfig.ProxyOptions = proxyOptions;
     }
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);

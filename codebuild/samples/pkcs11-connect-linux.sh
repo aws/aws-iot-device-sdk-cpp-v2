@@ -3,7 +3,14 @@
 set -e
 set -o pipefail
 
-ENDPOINT=$(aws secretsmanager get-secret-value --secret-id "unit-test/endpoint" --query "SecretString" | cut -f2 -d":" | sed -e 's/[\\\"\}]//g')
+pushd $CODEBUILD_SRC_DIR/samples/mqtt/pkcs11_connect
+
+mkdir _build
+cd _build
+cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
+make -j
+
+ENDPOINT=$(aws secretsmanager get-secret-value --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | sed -e 's/[\\\"\}]//g')
 
 # from hereon commands are echoed. don't leak secrets
 set -x
@@ -23,20 +30,7 @@ softhsm2-util --init-token --free --label my-token --pin 0000 --so-pin 0000
 openssl pkcs8 -topk8 -in /tmp/privatekey.pem -out /tmp/privatekey.p8.pem -nocrypt
 softhsm2-util --import /tmp/privatekey.p8.pem --token my-token --label my-key --id BEEFCAFE --pin 0000
 
-# build and run sample
-pushd $CODEBUILD_SRC_DIR/samples/mqtt/pkcs11_connect
-
-mkdir _build
-cd _build
-cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
-make -j
-
-./pkcs11-connect \
-    --endpoint $ENDPOINT \
-    --cert /tmp/certificate.pem \
-    --pkcs11_lib /usr/lib/softhsm/libsofthsm2.so \
-    --pin 0000 \
-    --token_label my-token \
-    --key_label my-key
+# run sample
+./pkcs11-connect --endpoint $ENDPOINT --cert /tmp/certificate.pem --pkcs11_lib /usr/lib/softhsm/libsofthsm2.so --pin 0000 --token_label my-token --key_label my-key
 
 popd

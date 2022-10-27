@@ -9,6 +9,7 @@
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 
 #include <fstream>
+#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -107,7 +108,7 @@ int main(int argc, char *argv[])
     /*
      * localProxyMode is set to destination by default unless flag is set to source
      */
-    if (cmdUtils.HasCommand("localProxyModeSource"))
+    if (cmdUtils.HasCommand("local_proxy_mode_source"))
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
@@ -203,7 +204,7 @@ int main(int argc, char *argv[])
                 if (isTest)
                 {
                     expectedMessageCount--;
-                    if (expectedMessageCount == 0)
+                    if (expectedMessageCount <= 0)
                     {
                         exit(0);
                     }
@@ -307,7 +308,7 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        while (1)
+        while (true)
         {
             std::this_thread::sleep_for(3000ms);
 

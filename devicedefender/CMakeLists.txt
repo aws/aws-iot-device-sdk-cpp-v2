@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.1)
-project(IotDeviceDefender-cpp CXX C)
+
+project(IotDeviceDefender-cpp
+        LANGUAGES CXX)
+if (DEFINED SIMPLE_VERSION)
+    message("Device Defender version is ${SIMPLE_VERSION}")
+    set(PROJECT_VERSION ${SIMPLE_VERSION})
+endif()
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -109,6 +115,14 @@ if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
 else()
     set(TARGET_DIR "static")
+endif()
+
+include(CMakePackageConfigHelpers)
+if (DEFINED SIMPLE_VERSION)
+    write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicedefender-cpp-config-version.cmake"
+        COMPATIBILITY SameMajorVersion
+    )
 endif()
 
 install(EXPORT "IotDeviceDefender-cpp-targets"
