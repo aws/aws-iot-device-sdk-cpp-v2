@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     });
 
     builder->withClientAttemptingConnectCallback(
-        [](Mqtt5::Mqtt5Client&) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
+        [](Mqtt5::Mqtt5Client &) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
 
     builder->withClientDisconnectionCallback(
         [&disconnectPromise](
