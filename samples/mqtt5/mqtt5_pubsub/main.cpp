@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("mqtt5_pubsub");
+    cmdUtils.RegisterProgramName("mqtt5-pubsub");
     cmdUtils.AddCommonMQTTCommands();
     cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
     cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
