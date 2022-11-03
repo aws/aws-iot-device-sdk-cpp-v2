@@ -4,8 +4,8 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
-#include <aws/iot/Mqtt5Client.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
+#include <aws/iot/Mqtt5Client.h>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->withClientConnectionSuccessCallback([&connectionPromise](
-                                                     Mqtt5::Mqtt5Client&,
+                                                     Mqtt5::Mqtt5Client &,
                                                      std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>,
                                                      std::shared_ptr<Aws::Crt::Mqtt5::NegotiatedSettings> settings) {
         fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", settings->getClientId().c_str());
@@ -65,26 +65,22 @@ int main(int argc, char *argv[])
     });
 
     builder->withClientConnectionFailureCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>)
-        {
+        [&connectionPromise](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>) {
             fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(error_code));
             connectionPromise.set_value(false);
         });
 
-    builder->withClientStoppedCallback(
-        [&stoppedPromise](Mqtt5::Mqtt5Client &)
-        {
+    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
 
-    builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client&)
-                                                 { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
+    builder->withClientAttemptingConnectCallback(
+        [](Mqtt5::Mqtt5Client&) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
 
     builder->withClientDisconnectionCallback(
         [&disconnectPromise](
-            Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect)
-        {
+            Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect) {
             fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(errorCode));
             disconnectPromise.set_value();
         });
@@ -131,8 +127,9 @@ int main(int argc, char *argv[])
         if (client->Subscribe(
                 subPacket,
                 [&subscribeSuccess](
-                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket>)
-                { subscribeSuccess.set_value(error_code == 0); }))
+                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket>) {
+                    subscribeSuccess.set_value(error_code == 0);
+                }))
         {
             // Waiting for subscription completed.
             if (subscribeSuccess.get_future().get() == true)
@@ -145,17 +142,16 @@ int main(int argc, char *argv[])
                 Aws::Crt::Mqtt5::OnPublishCompletionHandler callback =
                     [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
                        int,
-                       std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result)
-                {
-                    if (!result->wasSuccessful())
-                    {
-                        fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Publish Succeed.");
+                       std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
+                        if (!result->wasSuccessful())
+                        {
+                            fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
+                        }
+                        else
+                        {
+                            fprintf(stdout, "Publish Succeed.");
+                        };
                     };
-                };
 
                 uint32_t publishedCount = 0;
                 while (publishedCount < messageCount)
