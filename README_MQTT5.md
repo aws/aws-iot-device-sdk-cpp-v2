@@ -1,5 +1,5 @@
 # MQTT5
-The following sections provide some basic examples of using the SDK to access the AWS IoT service over MQTT5. For more details please refer to < link to MQTT5 samples >
+The following sections provide some basic examples of using the SDK to access the AWS IoT service over MQTT5. For more details please refer to < MQTT5 sample link > and < API Documentation link >
 
 ## Initialize the Client
 
@@ -64,9 +64,9 @@ Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5Cl
 /* You can setup other client options and callbacks before call builder->Build(). Once the the client get created, you could no longer update the client options or connection options.
 
 // Build Mqtt5Client
-std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
 
-if (client == nullptr)
+if (mqtt5Client == nullptr)
 {
     fprintf(stdout, "Client creation failed.\n");
     return -1;
@@ -108,13 +108,13 @@ builder->withClientStoppedCallback(
 // Build Mqtt5Client
 std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
 
-if (client == nullptr)
+if (mqtt5Client == nullptr)
 {
     fprintf(stdout, "Client creation failed.\n");
     return -1;
 }
 
-if (!client->Start())
+if (!mqtt5Client->Start())
 {
     fprintf("Failed start Mqtt5 client");
     return -1;
@@ -126,7 +126,7 @@ if (connectionPromise.get_future().get() == false)
     fprintf("Connection failed.");
 }
 
-if (!client->Stop())
+if (!mqtt5Client->Stop())
 {
     fprintf(stdout, "Failed to disconnect from the mqtt connection. Exiting..\n");
     return -1;
@@ -139,8 +139,7 @@ disconnectPromise.get_future().wait();
 
 ## Publish and Subscribe
 
-After the Mqtt5Client setup and started, you can publish messages and subscribe
-to topics.
+After the Mqtt5Client get setup and started, you can perform publish, subscribe and unsubscribe oprations.
 
 * To publish a message:
 
@@ -166,7 +165,7 @@ OnPublishCompletionHandler callback = [](std::shared_ptr<Mqtt5Client> client, in
     }
 };
 
-if(!client->Publish(publish, std::move(callback)))
+if(!mqtt5Client->Publish(publish, std::move(callback)))
 {
     fprintf(stdout, "Publish Operation Failed.\n");
     return -1;
@@ -174,7 +173,7 @@ if(!client->Publish(publish, std::move(callback)))
 
 ```
 
-* To subscribe to a topic:
+* To subscribe to topics:
 
 ```
 
@@ -197,34 +196,42 @@ packet->withSubscriptions(subscriptionList);
 
 bool subSuccess = mqtt5Client->Subscribe(
     packet,
-    [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::SubAckPacket> suback)
-    {
+    [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::SubAckPacket> suback){
         for (auto code : suback->getReasonCodes())
         {
-            std::cout << "Get suback with codes: " << code << std::endl;
-            if (code > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_GRANTED_QOS_2)
-            {
-                std::cout << "Subscription Succeed." << std::endl;
-            }
-            else
-            {
-                std::cout << "Subscription Failed." << std::endl;
-            }
+            fprintf(stdout, "Get suback from server with code: %d \n", code );
         }
     });
 
-if (!subSuccess)
-{
-    std::cout << "[ERROR]Subscription Failed." << std::endl;
-    if (mqtt5Client->Stop())
-    {
-        stoppedPromise.get_future().get();
-    }
-    else
-    {
-        std::cout << "[ERROR]Failed to stop the client " << std::endl;
-    }
-    return -1;
+if (!subSuccess){
+    fprintf(stdout, "Failed to perform subscribe operation on client." );
+}
+
+```
+
+* To unsubscribe to topics:
+
+    Similar to subscribe operation, you can unsubscribe from multiple topics.
+
+```
+String topic1 = "test/topic/test1";
+String topic2 = "test/topic/test2";
+Vector<String> topics;
+topics.push_back(topic1);
+topics.push_back(topic2);
+std::shared_ptr<UnsubscribePacket> unsub = std::make_shared<UnsubscribePacket>();
+unsub->withTopicFilters(topics);
+bool unsubSuccess = mqtt5Client->Unsubscribe(
+    packet,
+    [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback){
+        for (auto code : unsuback->getReasonCodes())
+        {
+            fprintf(stdout, "Get unsuback from server with code: %d \n", code );
+        }
+    });
+
+if (!unsubSuccess){
+    fprintf(stdout, "Failed to perform subscribe operation on client." );
 }
 
 ```
