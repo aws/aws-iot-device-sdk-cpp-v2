@@ -1,5 +1,5 @@
 # MQTT5
-The following sections provide some basic examples of using the SDK to access the AWS IoT service over MQTT5. For more details please refer to <MQTT5 samples>
+The following sections provide some basic examples of using the SDK to access the AWS IoT service over MQTT5. For more details please refer to < link to MQTT5 samples >
 
 ## Initialize the Client
 
@@ -228,12 +228,3 @@ if (!subSuccess)
 }
 
 ```
-
-
-*Note*: all operations (publish, subscribe, unsubscribe) will not timeout unless
-you define a timeout when performing the operation. If no timeout is defined, then
-a value of 0 is used, meaning the operation will never timeout and, in rare cases,
-wait forever for the server to respond and block the calling thread indefinitely.
-It is recommended to set a timeout for QoS1 operations if your application expects
-responses within a fixed duration or if there is the possibility the server you are
-communicating with may not respond.
