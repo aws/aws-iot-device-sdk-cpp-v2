@@ -81,20 +81,13 @@ int main(int argc, char *argv[])
     builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client&)
                                                  { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
 
-    builder->withClientDisconnectionCallback([&disconnectPromise](
-                                                 Mqtt5::Mqtt5Client &,
-                                                 int errorCode,
-                                                 std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect) {
-        if (errorCode == 0)
+    builder->withClientDisconnectionCallback(
+        [&disconnectPromise](
+            Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect)
         {
-            fprintf(stdout, "Mqtt5 Client disconnected.\n");
-        }
-        else
-        {
-            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(errorCode));
-        }
-        disconnectPromise.set_value();
-    });
+            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(errorCode));
+            disconnectPromise.set_value();
+        });
 
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
@@ -138,21 +131,31 @@ int main(int argc, char *argv[])
         if (client->Subscribe(
                 subPacket,
                 [&subscribeSuccess](
-                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket>) {
-                    if (error_code == 0)
-                    {
-                        subscribeSuccess.set_value(true);
-                    }
-                    else
-                    {
-                        subscribeSuccess.set_value(false);
-                    }
-                }))
+                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket>)
+                { subscribeSuccess.set_value(error_code == 0); }))
         {
+            // Waiting for subscription completed.
             if (subscribeSuccess.get_future().get() == true)
             {
 
                 fprintf(stdout, "Subscription Success.\n");
+
+                // Setup publish completion callback. The callback will get triggered when the pulbish completes (when
+                // the client received the PubAck from the server).
+                Aws::Crt::Mqtt5::OnPublishCompletionHandler callback =
+                    [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
+                       int,
+                       std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result)
+                {
+                    if (!result->wasSuccessful())
+                    {
+                        fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
+                    }
+                    else
+                    {
+                        fprintf(stdout, "Publish Succeed.");
+                    };
+                };
 
                 uint32_t publishedCount = 0;
                 while (publishedCount < messageCount)
@@ -162,7 +165,7 @@ int main(int argc, char *argv[])
 
                     std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
                         testTopic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
-                    if (client->Publish(publish))
+                    if (client->Publish(publish, std::move(callback)))
                         ++publishedCount;
 
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -173,12 +176,12 @@ int main(int argc, char *argv[])
             }
             else
             {
-                fprintf(stdout, "Subscription Failed.\n");
+                fprintf(stdout, "Subscription failed. Please check the SubAck packet for details.\n");
             }
         }
         else
         {
-            fprintf(stdout, "Subscription Failed.\n");
+            fprintf(stdout, "Subscribe operation failed on client.\n");
         }
 
         if (!client->Stop())
