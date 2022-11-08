@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Failed to disconnect from the mqtt connection. Exiting..\n");
             return -1;
         }
-        disconnectPromise.get_future().wait();
+        stoppedPromise.get_future().wait();
     }
 
     return 0;
