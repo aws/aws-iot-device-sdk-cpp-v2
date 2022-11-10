@@ -24,7 +24,7 @@
         },
         {
             "name": "--template_parameters",
-            "data": "{SerialNumber:$INPUT_UUID}"
+            "data": "{\"SerialNumber\":\"$INPUT_UUID\"}"
         }
     ]
 }
