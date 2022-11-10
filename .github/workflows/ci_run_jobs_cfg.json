@@ -21,6 +21,10 @@
         {
             "name": "--thing_name",
             "data": "CI_Jobs_Thing"
+        },
+        {
+            "name": "--job_id",
+            "data": "CI_Jobs_Thing_Job_1"
         }
     ]
 }
