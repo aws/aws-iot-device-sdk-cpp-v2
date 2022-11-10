@@ -2,6 +2,7 @@
     "language": "CPP",
     "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/pub_sub/basic_pub_sub/RelWithDebInfo/basic-pub-sub.exe",
     "sample_region": "us-east-1",
+    "sample_main_class": "",
     "arguments": [
         {
             "name": "--endpoint",

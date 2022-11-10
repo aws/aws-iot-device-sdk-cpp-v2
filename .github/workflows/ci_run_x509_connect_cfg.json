@@ -2,6 +2,7 @@
     "language": "CPP",
     "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/x509_credentials_provider_connect/x509-credentials-provider-connect",
     "sample_region": "us-east-1",
+    "sample_main_class": "",
     "arguments": [
         {
             "name": "--endpoint",
