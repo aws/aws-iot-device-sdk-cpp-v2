@@ -1,0 +1,15 @@
+{
+    "language": "CPP",
+    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/websocket_connect/websocket-connect",
+    "sample_region": "us-east-1",
+    "arguments": [
+        {
+            "name": "--endpoint",
+            "secret": "ci/endpoint"
+        },
+        {
+            "name": "--signing_region",
+            "data": "us-east-1"
+        }
+    ]
+}
