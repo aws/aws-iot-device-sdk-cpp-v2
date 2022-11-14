@@ -1,8 +1,21 @@
 name: Release
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      release_type:
+        type: choice
+        description: "The type of release to make (Minor, Patch, etc)"
+        required: true
+        options:
+          - PATCH
+          - MINOR
+      release_title:
+        description: "The title of the release"
+        required: true
 
 jobs:
   update-version:
@@ -16,5 +29,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Update Version
-      run: ./update-version.sh ${{ secrets.GITHUB_TOKEN }} ${{ secrets.TAG_PR_TOKEN }}
+    - name: Make new release
+      run: |
+        ./publish-release.sh "${{ github.event.inputs.release_type }}" "${{ github.event.inputs.release_title }}"
