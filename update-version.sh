@@ -73,7 +73,7 @@ else
     git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/aws/aws-iot-device-sdk-cpp-v2.git" --tags
 
     # now recreate the release on the updated tag
-    gh release create ${version} --title "${title_value}" -p -n "${tag_message}"
+    gh release create ${version} --title "${title_value}" -n "${tag_message}"
 fi
 
 popd > /dev/null
