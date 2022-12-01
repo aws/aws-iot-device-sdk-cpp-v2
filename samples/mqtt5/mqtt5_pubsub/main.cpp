@@ -89,7 +89,8 @@ int main(int argc, char *argv[])
 
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
-            Mqtt5::Mqtt5Client &client, const Mqtt5::PublishReceivedEventData &eventData) {
+            Mqtt5::Mqtt5Client &, const Mqtt5::PublishReceivedEventData &eventData)
+        {
             if (eventData.publishPacket == nullptr)
                 return;
 
