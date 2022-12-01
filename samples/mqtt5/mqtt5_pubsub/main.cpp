@@ -70,12 +70,12 @@ int main(int argc, char *argv[])
             fprintf(
                 stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
             connectionPromise.set_value(false);
-         });
+        });
 
     builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
-     });
+    });
 
     builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData &) {
         fprintf(stdout, "Mqtt5 Client attempting connection...\n");
