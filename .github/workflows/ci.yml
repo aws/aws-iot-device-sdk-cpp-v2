@@ -12,6 +12,7 @@ env:
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
   LINUX_BASE_IMAGE: ubuntu-18-x64
+  HEAD_REF: ${{ github.head_ref }}
   RUN: ${{ github.run_id }}-${{ github.run_number }}
   AWS_DEFAULT_REGION: us-east-1
   DA_TOPIC: test/da
@@ -405,7 +406,7 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           echo "Downloading source"
-          git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ github.head_ref || github.ref_name }}
+          git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ env.HEAD_REF || github.ref_name }}
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
