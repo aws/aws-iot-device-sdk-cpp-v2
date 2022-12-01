@@ -7,6 +7,8 @@
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 
+#include <thread>
+
 #include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
