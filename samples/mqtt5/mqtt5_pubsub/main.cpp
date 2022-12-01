@@ -56,35 +56,40 @@ int main(int argc, char *argv[])
     std::promise<bool> subscribeSuccess;
 
     // Setup lifecycle callbacks
-    builder->withClientConnectionSuccessCallback([&connectionPromise](Mqtt5::Mqtt5Client &,const Mqtt5::OnConnectionSuccessEventData& eventData){
-        fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", eventData.negotiatedSettings->getClientId().c_str());
-        connectionPromise.set_value(true);
-    });
-
-    builder->withClientConnectionFailureCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &,const Mqtt5::OnConnectionFailureEventData& eventData){
-            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            connectionPromise.set_value(false);
+    builder->withClientConnectionSuccessCallback(
+        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionSuccessEventData &eventData) {
+            fprintf(
+                stdout,
+                "Mqtt5 Client connection succeed, clientid: %s.\n",
+                eventData.negotiatedSettings->getClientId().c_str());
+            connectionPromise.set_value(true);
         });
 
-    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData&) {
+    builder->withClientConnectionFailureCallback(
+        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionFailureEventData &eventData) {
+            fprintf(
+                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+            connectionPromise.set_value(false);
+         });
+
+    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
+     });
+
+    builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData &) {
+        fprintf(stdout, "Mqtt5 Client attempting connection...\n");
     });
 
-    builder->withClientAttemptingConnectCallback(
-        [](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData&) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
-
     builder->withClientDisconnectionCallback(
-        [&disconnectPromise](
-            Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData& eventData){
+        [&disconnectPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData &eventData) {
             fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
             disconnectPromise.set_value();
         });
 
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
-             Mqtt5::Mqtt5Client & client, const Mqtt5::PublishReceivedEventData & eventData) {
+            Mqtt5::Mqtt5Client &client, const Mqtt5::PublishReceivedEventData &eventData) {
             if (eventData.publishPacket == nullptr)
                 return;
 
