@@ -1158,8 +1158,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(InvalidTokenError *) noexcept;
-            /* This needs to be defined so that `InvalidTokenError` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `InvalidTokenError` can be used as a key in maps. */
             bool operator<(const InvalidTokenError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1283,8 +1282,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateStateResponse *) noexcept;
-            /* This needs to be defined so that `UpdateStateResponse` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `UpdateStateResponse` can be used as a key in maps. */
             bool operator<(const UpdateStateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1307,8 +1305,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateStateRequest *) noexcept;
-            /* This needs to be defined so that `UpdateStateRequest` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `UpdateStateRequest` can be used as a key in maps. */
             bool operator<(const UpdateStateRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1432,8 +1429,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key
-             * in maps. */
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1582,7 +1578,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToConfigurationUpdateResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToConfigurationUpdateResponse` can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToConfigurationUpdateResponse` can be used as a key in maps.
+             */
             bool operator<(const SubscribeToConfigurationUpdateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1778,7 +1775,7 @@ namespace Aws
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportResponse *) noexcept;
             /* This needs to be defined so that `SendConfigurationValidityReportResponse` can be used as a key in maps.
-            */
+             */
             bool operator<(const SendConfigurationValidityReportResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1810,7 +1807,7 @@ namespace Aws
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportRequest *) noexcept;
             /* This needs to be defined so that `SendConfigurationValidityReportRequest` can be used as a key in maps.
-            */
+             */
             bool operator<(const SendConfigurationValidityReportRequest &) const noexcept;
             static const char *MODEL_NAME;
 
