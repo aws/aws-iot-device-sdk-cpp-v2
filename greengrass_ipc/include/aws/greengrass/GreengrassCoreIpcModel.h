@@ -1429,7 +1429,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key
+             * in maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
