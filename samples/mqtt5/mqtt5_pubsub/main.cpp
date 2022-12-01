@@ -110,6 +110,8 @@ int main(int argc, char *argv[])
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
+    delete builder;
+
     if (client == nullptr)
     {
         fprintf(stdout, "Client creation failed.\n");
