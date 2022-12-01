@@ -32,6 +32,7 @@ env:
   CI_DEVICE_ADVISOR: ${{ secrets.AWS_CI_DEVICE_ADVISOR_ROLE }}
   CI_DEVICE_DEFENDER: ${{ secrets.AWS_CI_DEVICE_DEFENDER_ROLE }}
   CI_SECURE_TUNNEL: ${{ secrets.AWS_CI_SECURE_TUNNEL_ROLE }}
+  CI_MQTT5_ROLE: ${{ secrets.AWS_CI_MQTT5_ROLE }}
 
 jobs:
   linux-compat:
@@ -172,14 +173,19 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/RelWithDebInfo/basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: run Windows Certificate Connect sample
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/windows_cert_connect/RelWithDebInfo/windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run MQTT5 PubSub sample
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -217,14 +223,19 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/RelWithDebInfo/basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: run Windows Certificate Connect sample
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/windows_cert_connect/RelWithDebInfo/windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run MQTT5 PubSub sample
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -258,14 +269,19 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/RelWithDebInfo/basic-pub-sub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: run Windows Certificate Connect sample
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/windows_cert_connect/RelWithDebInfo/windows-cert-connect.exe" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key' --sample_run_certutil true
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run MQTT5 PubSub sample
+        run: |
+          cd ${{ env.CI_FOLDER }}
+          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/RelWithDebInfo/mqtt5_pubsub.exe' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -322,6 +338,11 @@ jobs:
       - name: run MQTT3 PubSub sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT5 PubSub sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/mqtt5_pubsub' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
@@ -358,6 +379,11 @@ jobs:
       - name: run MQTT3 PubSub sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/basic_pub_sub/basic-pub-sub" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT5 PubSub sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/mqtt5_pubsub' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
@@ -416,9 +442,6 @@ jobs:
       - name: run Basic Connect sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/basic_connect/basic-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/key'
-      - name: run MQTT5 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/mqtt5_pubsub' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: run Websocket Connect sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/websocket_connect/websocket-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_arguments '--signing_region us-east-1'
@@ -431,6 +454,14 @@ jobs:
           export SOFTHSM2_CONF=/tmp/softhsm2.conf
           echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file "${{ env.CI_SAMPLES_FOLDER }}/mqtt/pkcs11_connect/pkcs11-connect" --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/PubSub/cert' --sample_secret_private_key 'ci/PubSub/keyp8' --sample_run_softhsm 'true' --sample_arguments '--pkcs11_lib /usr/lib/softhsm/libsofthsm2.so --pin 0000 --token_label my-token --key_label my-key'
+      - name: configure AWS credentials (MQTT5)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ env.CI_MQTT5_ROLE }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run MQTT5 PubSub sample
+        run: |
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --language CPP --sample_file '${{ env.CI_SAMPLES_FOLDER }}/mqtt5/mqtt5_pubsub/mqtt5_pubsub' --sample_region ${{ env.AWS_DEFAULT_REGION }} --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
       - name: configure AWS credentials (Custom Authorizer)
         uses: aws-actions/configure-aws-credentials@v1
         with:
