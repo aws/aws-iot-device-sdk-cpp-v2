@@ -251,7 +251,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllProductsResponse *) noexcept;
-        /* This needs to be defined so that `GetAllProductsResponse` can be used as a * key in maps. */
+        /* This needs to be defined so that `GetAllProductsResponse` can be used as a key in maps. */
         bool operator<(const GetAllProductsResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -408,8 +408,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingRequest *) noexcept;
-        /* This needs to be defined so that `EchoStreamingRequest` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `EchoStreamingRequest` can be used as a key in maps. */
         bool operator<(const EchoStreamingRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -457,8 +456,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(CauseServiceErrorResponse *) noexcept;
-        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as
-         * a key in maps. */
+        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as a key in maps. */
         bool operator<(const CauseServiceErrorResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -600,7 +598,7 @@ namespace Awstest
         /**
          * Used to activate a stream for the `CauseServiceErrorOperation`
          * @param request The request used for the `CauseServiceErrorOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the equest is flushed.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
          * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(

@@ -205,8 +205,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PreComponentUpdateEvent *) noexcept;
-            /* This needs to be defined so that `PreComponentUpdateEvent` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PreComponentUpdateEvent` can be used as a key in maps. */
             bool operator<(const PreComponentUpdateEvent &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -588,7 +587,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscriptionResponseMessage *) noexcept;
-            /* This needs to be defined so that `SubscriptionResponseMessage` a can be used as a key in maps. */
+            /* This needs to be defined so that `SubscriptionResponseMessage` can be used as a key in maps. */
             bool operator<(const SubscriptionResponseMessage &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -741,7 +740,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ComponentUpdatePolicyEvents *) noexcept;
-            /* This needs to be defined so that `ComponentUpdatePolicyEvents` a can be used as a key in maps. */
+            /* This needs to be defined so that `ComponentUpdatePolicyEvents` can be used as a key in maps. */
             bool operator<(const ComponentUpdatePolicyEvents &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -842,7 +841,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ConfigurationValidityReport *) noexcept;
-            /* This needs to be defined so that `ConfigurationValidityReport` a can be used as a key in maps. */
+            /* This needs to be defined so that `ConfigurationValidityReport` can be used as a key in maps. */
             bool operator<(const ConfigurationValidityReport &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1184,8 +1183,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ValidateAuthorizationTokenResponse *) noexcept;
-            /* This needs to be defined so that `ValidateAuthorizationTokenResponse` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `ValidateAuthorizationTokenResponse` can be used as a key in maps. */
             bool operator<(const ValidateAuthorizationTokenResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1380,7 +1378,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateConfigurationResponse *) noexcept;
-            /* This needs to be defined so that `UpdateConfigurationResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `UpdateConfigurationResponse` can be used as a key in maps. */
             bool operator<(const UpdateConfigurationResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1407,7 +1405,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(UpdateConfigurationRequest *) noexcept;
-            /* This needs to be defined so that `UpdateConfigurationRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `UpdateConfigurationRequest` can be used as a key in maps. */
             bool operator<(const UpdateConfigurationRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1434,8 +1432,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesResponse *) noexcept;
-            /* This needs to be defined so that
-             * `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesResponse` can be used as a key
+             * in maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1459,8 +1457,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToValidateConfigurationUpdatesRequest *) noexcept;
-            /* This needs to be defined so that
-             * `SubscribeToValidateConfigurationUpdatesRequest` can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToValidateConfigurationUpdatesRequest` can be used as a key in
+             * maps. */
             bool operator<(const SubscribeToValidateConfigurationUpdatesRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1511,8 +1509,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToTopicRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToTopicRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `SubscribeToTopicRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToTopicRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1535,7 +1532,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToIoTCoreResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToIoTCoreResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToIoTCoreResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToIoTCoreResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1635,8 +1632,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToComponentUpdatesResponse *) noexcept;
-            /* This needs to be defined so that `SubscribeToComponentUpdatesResponse` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToComponentUpdatesResponse` can be used as a key in maps. */
             bool operator<(const SubscribeToComponentUpdatesResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1657,8 +1653,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SubscribeToComponentUpdatesRequest *) noexcept;
-            /* This needs to be defined so that `SubscribeToComponentUpdatesRequest` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `SubscribeToComponentUpdatesRequest` can be used as a key in maps. */
             bool operator<(const SubscribeToComponentUpdatesRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1733,8 +1728,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(StopComponentResponse *) noexcept;
-            /* This needs to be defined so that `StopComponentResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `StopComponentResponse` can be used as a key in maps. */
             bool operator<(const StopComponentResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1759,8 +1753,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(StopComponentRequest *) noexcept;
-            /* This needs to be defined so that `StopComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `StopComponentRequest` can be used as a key in maps. */
             bool operator<(const StopComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1784,7 +1777,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportResponse *) noexcept;
-            /* This needs to be defined so that `SendConfigurationValidityReportResponse` can be used as a key in maps. */
+            /* This needs to be defined so that `SendConfigurationValidityReportResponse` can be used as a key in maps.
+            */
             bool operator<(const SendConfigurationValidityReportResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1815,7 +1809,8 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(SendConfigurationValidityReportRequest *) noexcept;
-            /* This needs to be defined so that `SendConfigurationValidityReportRequest` can be used as a key in maps. */
+            /* This needs to be defined so that `SendConfigurationValidityReportRequest` can be used as a key in maps.
+            */
             bool operator<(const SendConfigurationValidityReportRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1884,8 +1879,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ComponentNotFoundError *) noexcept;
-            /* This needs to be defined so that `ComponentNotFoundError` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ComponentNotFoundError` can be used as a key in maps. */
             bool operator<(const ComponentNotFoundError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -1936,8 +1930,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(RestartComponentRequest *) noexcept;
-            /* This needs to be defined so that `RestartComponentRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `RestartComponentRequest` can be used as a key in maps. */
             bool operator<(const RestartComponentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2004,8 +1997,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToTopicResponse *) noexcept;
-            /* This needs to be defined so that `PublishToTopicResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToTopicResponse` can be used as a key in maps. */
             bool operator<(const PublishToTopicResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2030,8 +2022,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToTopicRequest *) noexcept;
-            /* This needs to be defined so that `PublishToTopicRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToTopicRequest` can be used as a key in maps. */
             bool operator<(const PublishToTopicRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2081,8 +2072,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(PublishToIoTCoreRequest *) noexcept;
-            /* This needs to be defined so that `PublishToIoTCoreRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `PublishToIoTCoreRequest` can be used as a key in maps. */
             bool operator<(const PublishToIoTCoreRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2219,7 +2209,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListLocalDeploymentsResponse *) noexcept;
-            /* This needs to be defined so that `ListLocalDeploymentsResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `ListLocalDeploymentsResponse` can be used as a key in maps. */
             bool operator<(const ListLocalDeploymentsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2241,7 +2231,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListLocalDeploymentsRequest *) noexcept;
-            /* This needs to be defined so that `ListLocalDeploymentsRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `ListLocalDeploymentsRequest` can be used as a key in maps. */
             bool operator<(const ListLocalDeploymentsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2267,8 +2257,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListComponentsResponse *) noexcept;
-            /* This needs to be defined so that `ListComponentsResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ListComponentsResponse` can be used as a key in maps. */
             bool operator<(const ListComponentsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2290,8 +2279,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ListComponentsRequest *) noexcept;
-            /* This needs to be defined so that `ListComponentsRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ListComponentsRequest` can be used as a key in maps. */
             bool operator<(const ListComponentsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2314,8 +2302,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetThingShadowResponse *) noexcept;
-            /* This needs to be defined so that `GetThingShadowResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetThingShadowResponse` can be used as a key in maps. */
             bool operator<(const GetThingShadowResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2341,8 +2328,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetThingShadowRequest *) noexcept;
-            /* This needs to be defined so that `GetThingShadowRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetThingShadowRequest` can be used as a key in maps. */
             bool operator<(const GetThingShadowRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2376,8 +2362,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetSecretValueResponse *) noexcept;
-            /* This needs to be defined so that `GetSecretValueResponse` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetSecretValueResponse` can be used as a key in maps. */
             bool operator<(const GetSecretValueResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2408,8 +2393,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetSecretValueRequest *) noexcept;
-            /* This needs to be defined so that `GetSecretValueRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetSecretValueRequest` can be used as a key in maps. */
             bool operator<(const GetSecretValueRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2512,8 +2496,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetConfigurationRequest *) noexcept;
-            /* This needs to be defined so that `GetConfigurationRequest` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `GetConfigurationRequest` can be used as a key in maps. */
             bool operator<(const GetConfigurationRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2541,7 +2524,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetComponentDetailsResponse *) noexcept;
-            /* This needs to be defined so that `GetComponentDetailsResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `GetComponentDetailsResponse` can be used as a key in maps. */
             bool operator<(const GetComponentDetailsResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2565,7 +2548,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(GetComponentDetailsRequest *) noexcept;
-            /* This needs to be defined so that `GetComponentDetailsRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `GetComponentDetailsRequest` can be used as a key in maps. */
             bool operator<(const GetComponentDetailsRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2719,8 +2702,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(ResourceNotFoundError *) noexcept;
-            /* This needs to be defined so that `ResourceNotFoundError` can be used as a
-             * key in maps. */
+            /* This needs to be defined so that `ResourceNotFoundError` can be used as a key in maps. */
             bool operator<(const ResourceNotFoundError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2744,7 +2726,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeferComponentUpdateResponse *) noexcept;
-            /* This needs to be defined so that `DeferComponentUpdateResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `DeferComponentUpdateResponse` can be used as a key in maps. */
             bool operator<(const DeferComponentUpdateResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2771,7 +2753,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(DeferComponentUpdateRequest *) noexcept;
-            /* This needs to be defined so that `DeferComponentUpdateRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `DeferComponentUpdateRequest` can be used as a key in maps. */
             bool operator<(const DeferComponentUpdateRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2797,8 +2779,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(InvalidArtifactsDirectoryPathError *) noexcept;
-            /* This needs to be defined so that `InvalidArtifactsDirectoryPathError` can
-             * be used as a key in maps. */
+            /* This needs to be defined so that `InvalidArtifactsDirectoryPathError` can be used as a key in maps. */
             bool operator<(const InvalidArtifactsDirectoryPathError &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2920,7 +2901,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateLocalDeploymentRequest *) noexcept;
-            /* This needs to be defined so that `CreateLocalDeploymentRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `CreateLocalDeploymentRequest` can be used as a key in maps. */
             bool operator<(const CreateLocalDeploymentRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2967,7 +2948,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateDebugPasswordResponse *) noexcept;
-            /* This needs to be defined so that `CreateDebugPasswordResponse` a can be used as a key in maps. */
+            /* This needs to be defined so that `CreateDebugPasswordResponse` can be used as a key in maps. */
             bool operator<(const CreateDebugPasswordResponse &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -2993,7 +2974,7 @@ namespace Aws
                 Aws::Crt::StringView,
                 Aws::Crt::Allocator *) noexcept;
             static void s_customDeleter(CreateDebugPasswordRequest *) noexcept;
-            /* This needs to be defined so that `CreateDebugPasswordRequest` a can be used as a key in maps. */
+            /* This needs to be defined so that `CreateDebugPasswordRequest` can be used as a key in maps. */
             bool operator<(const CreateDebugPasswordRequest &) const noexcept;
             static const char *MODEL_NAME;
 
@@ -3162,10 +3143,8 @@ namespace Aws
             virtual void OnStreamEvent(IoTCoreMessage *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3184,8 +3163,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `UnauthorizedError`.
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(UnauthorizedError *operationError)
@@ -3210,8 +3188,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -3413,10 +3390,8 @@ namespace Aws
             virtual void OnStreamEvent(ConfigurationUpdateEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3435,8 +3410,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `ResourceNotFoundError`.
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(ResourceNotFoundError *operationError)
@@ -3461,8 +3435,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -3732,10 +3705,8 @@ namespace Aws
             virtual void OnStreamEvent(ValidateConfigurationUpdateEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3769,8 +3740,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -3914,10 +3884,8 @@ namespace Aws
             virtual void OnStreamEvent(SubscriptionResponseMessage *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -3926,8 +3894,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `InvalidArgumentsError`.
+             * A callback that is invoked upon receiving an error of type `InvalidArgumentsError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(InvalidArgumentsError *operationError)
@@ -3947,8 +3914,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `UnauthorizedError`.
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(UnauthorizedError *operationError)
@@ -3973,8 +3939,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
@@ -5276,10 +5241,8 @@ namespace Aws
             virtual void OnStreamEvent(ComponentUpdatePolicyEvents *response) { (void)response; }
 
             /**
-             * A callback that is invoked when an error occurs while parsing a message
-             * from the stream.
-             * @param rpcError The RPC error containing the status and possibly a CRT
-             * error.
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
              */
             virtual bool OnStreamError(RpcError rpcError)
             {
@@ -5298,8 +5261,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error of type
-             * `ResourceNotFoundError`.
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(ResourceNotFoundError *operationError)
@@ -5324,8 +5286,7 @@ namespace Aws
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
             /**
-             * Invoked when a message is received on this continuation but results in an
-             * error.
+             * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
