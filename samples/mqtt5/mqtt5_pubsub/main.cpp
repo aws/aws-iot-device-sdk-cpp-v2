@@ -87,25 +87,24 @@ int main(int argc, char *argv[])
             disconnectPromise.set_value();
         });
 
-    builder->withPublishReceivedCallback(
-        [&receiveMutex, &receivedCount, &receiveSignal](
-            Mqtt5::Mqtt5Client &, const Mqtt5::PublishReceivedEventData &eventData)
+    builder->withPublishReceivedCallback([&receiveMutex, &receivedCount, &receiveSignal](
+                                             Mqtt5::Mqtt5Client &, const Mqtt5::PublishReceivedEventData &eventData) {
+        if (eventData.publishPacket == nullptr)
+            return;
+
+        std::lock_guard<std::mutex> lock(receiveMutex);
+        ++receivedCount;
+        fprintf(stdout, "Publish received on topic %s:", eventData.publishPacket->getTopic().c_str());
+        fwrite(eventData.publishPacket->getPayload().ptr, 1, eventData.publishPacket->getPayload().len, stdout);
+        fprintf(stdout, "\n");
+
+        for (Mqtt5::UserProperty prop : eventData.publishPacket->getUserProperties())
         {
-            if (eventData.publishPacket == nullptr)
-                return;
+            fprintf(stdout, "\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
+        }
+        receiveSignal.notify_all();
+    });
 
-            std::lock_guard<std::mutex> lock(receiveMutex);
-            ++receivedCount;
-            fprintf(stdout, "Publish received on topic %s:", eventData.publishPacket->getTopic().c_str());
-            fwrite(eventData.publishPacket->getPayload().ptr, 1, eventData.publishPacket->getPayload().len, stdout);
-            fprintf(stdout, "\n");
-
-            for (Mqtt5::UserProperty prop : eventData.publishPacket->getUserProperties())
-            {
-                fprintf(stdout, "\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
-            }
-            receiveSignal.notify_all();
-        });
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
