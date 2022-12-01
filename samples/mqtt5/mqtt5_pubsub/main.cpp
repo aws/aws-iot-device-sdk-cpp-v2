@@ -44,9 +44,9 @@ int main(int argc, char *argv[])
         cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
 
     // Setup connection options
-    std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> connectOptions = std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
     // Get the client ID to send with the connection
-    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
+    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + UUID().ToString());
     connectOptions->withClientId(clientId);
     builder->withConnectOptions(connectOptions);
 
@@ -56,48 +56,45 @@ int main(int argc, char *argv[])
     std::promise<bool> subscribeSuccess;
 
     // Setup lifecycle callbacks
-    builder->withClientConnectionSuccessCallback([&connectionPromise](
-                                                     Mqtt5::Mqtt5Client &,
-                                                     std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>,
-                                                     std::shared_ptr<Aws::Crt::Mqtt5::NegotiatedSettings> settings) {
-        fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", settings->getClientId().c_str());
+    builder->withClientConnectionSuccessCallback([&connectionPromise](Mqtt5::Mqtt5Client &,const Mqtt5::OnConnectionSuccessEventData& eventData){
+        fprintf(stdout, "Mqtt5 Client connection succeed, clientid: %s.\n", eventData.negotiatedSettings->getClientId().c_str());
         connectionPromise.set_value(true);
     });
 
     builder->withClientConnectionFailureCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Aws::Crt::Mqtt5::ConnAckPacket>) {
-            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(error_code));
+        [&connectionPromise](Mqtt5::Mqtt5Client &,const Mqtt5::OnConnectionFailureEventData& eventData){
+            fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
             connectionPromise.set_value(false);
         });
 
-    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &) {
+    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData&) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
 
     builder->withClientAttemptingConnectCallback(
-        [](Mqtt5::Mqtt5Client &) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
+        [](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData&) { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
 
     builder->withClientDisconnectionCallback(
         [&disconnectPromise](
-            Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Aws::Crt::Mqtt5::DisconnectPacket> packet_disconnect) {
-            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(errorCode));
+            Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData& eventData){
+            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
             disconnectPromise.set_value();
         });
 
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
-            std::shared_ptr<Mqtt5::Mqtt5Client> /*client*/, std::shared_ptr<Mqtt5::PublishPacket> publish) {
-            if (publish == nullptr)
+             Mqtt5::Mqtt5Client & client, const Mqtt5::PublishReceivedEventData & eventData) {
+            if (eventData.publishPacket == nullptr)
                 return;
 
             std::lock_guard<std::mutex> lock(receiveMutex);
             ++receivedCount;
-            fprintf(stdout, "Publish received on topic %s:", publish->getTopic().c_str());
-            fwrite(publish->getPayload().ptr, 1, publish->getPayload().len, stdout);
+            fprintf(stdout, "Publish received on topic %s:", eventData.publishPacket->getTopic().c_str());
+            fwrite(eventData.publishPacket->getPayload().ptr, 1, eventData.publishPacket->getPayload().len, stdout);
             fprintf(stdout, "\n");
 
-            for (Mqtt5::UserProperty prop : publish->getUserProperties())
+            for (Mqtt5::UserProperty prop : eventData.publishPacket->getUserProperties())
             {
                 fprintf(stdout, "\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
             }
@@ -149,7 +146,7 @@ int main(int argc, char *argv[])
                         }
                         else
                         {
-                            fprintf(stdout, "Publish Succeed.");
+                            fprintf(stdout, "Publish Succeed.\n");
                         };
                     };
 
