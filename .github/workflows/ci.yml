@@ -315,7 +315,7 @@ jobs:
       run: |
         cd ${{ env.CI_FOLDER }}
         echo "Starting to run AppVerifier with cycle pub-sub sample"
-        python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/cycle_pub_sub/RelWithDebInfo/cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
+        python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
 
   osx:
     runs-on: macos-latest
