@@ -121,3 +121,6 @@ Here is an example launch.json file to run the pubsub sample
 * [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass 
 * [Discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) questions are also a great way to ask other questions about this sdk.
 * [Open an issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues) if you find a bug or have a feature request
+* [Breif MQTT CONCEPT](./MQTT_CONCEPT.md)
+* [MQTT5 Introduction](./MQTT5.md)
+
