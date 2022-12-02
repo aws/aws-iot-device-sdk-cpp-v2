@@ -20,8 +20,8 @@ env:
   DA_SHADOW_VALUE_SET: ON
   DA_SHADOW_VALUE_DEFAULT: OFF
   CI_FOLDER: "D:/a/work"
-  CI_UTILS_FOLDER: ".\aws-iot-device-sdk-cpp-v2\utils"
-  CI_SAMPLES_FOLDER: ".\aws-iot-device-sdk-cpp-v2/build\samples"
+  CI_UTILS_FOLDER: "./aws-iot-device-sdk-cpp-v2/utils"
+  CI_SAMPLES_FOLDER: "./aws-iot-device-sdk-cpp-v2/build/samples"
   CI_IOT_CONTAINERS: ${{ secrets.AWS_CI_IOT_CONTAINERS }}
   CI_PUBSUB_ROLE: ${{ secrets.AWS_CI_PUBSUB_ROLE }}
   CI_CYCLEPUBSUB_ROLE: ${{ secrets.AWS_CI_CYCLEPUBSUB_ROLE }}
@@ -62,8 +62,6 @@ jobs:
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
-
-
   raspberry:
     runs-on: ubuntu-20.04 # latest
     strategy:
@@ -86,8 +84,6 @@ jobs:
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
-
-
   linux-compiler-compat:
     runs-on: ubuntu-latest
     strategy:
@@ -117,7 +113,6 @@ jobs:
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
-
   byo-crypto:
     runs-on: ubuntu-latest
     permissions:
@@ -133,7 +128,6 @@ jobs:
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
-
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest
     permissions:
@@ -149,7 +143,6 @@ jobs:
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-
   windows:
     runs-on: windows-latest
     permissions:
@@ -195,7 +188,6 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
           python ./deviceadvisor/script/DATestRun.py
-
   windows-vs14:
     runs-on: windows-2019 # windows-2019 is last env with Visual Studio 2015 (v14.0)
     strategy:
@@ -245,7 +237,6 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
           python ./deviceadvisor/script/DATestRun.py
-
   windows-no-cpu-extensions:
     runs-on: windows-latest
     permissions:
@@ -291,7 +282,6 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
           python ./deviceadvisor/script/DATestRun.py
-
   windows-app-verifier:
     runs-on: windows-2022 # latest
     permissions:
@@ -315,8 +305,7 @@ jobs:
       run: |
         cd ${{ env.CI_FOLDER }}
         echo "Starting to run AppVerifier with cycle pub-sub sample"
-        python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}/pub_sub/cycle_pub_sub/RelWithDebInfo/cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
-
+        python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
   osx:
     runs-on: macos-latest
     permissions:
@@ -355,7 +344,6 @@ jobs:
         run: |
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
-
   # Not strictly needed, but allows us to run Device Advisor and PubSub on Linux without needing to run all samples
   linux-github-actions:
     runs-on: ubuntu-latest
@@ -405,7 +393,6 @@ jobs:
         run: |
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./devicedefender/script/DDTestRun.py
-
   # Runs the samples and ensures that everything is working
   linux-smoke-tests:
     runs-on: ubuntu-latest
@@ -505,7 +492,6 @@ jobs:
       - name: run Secure Tunneling sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "${{ env.CI_SAMPLES_FOLDER }}/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
-
   # check that docs can still build
   check-docs:
     runs-on: ubuntu-20.04 # latest
@@ -515,7 +501,6 @@ jobs:
           submodules: recursive
       - name: Check docs
         run: |
-
           echo "Compiling and installing doxygen 1.8.20 from source"
           sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
           git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
@@ -527,9 +512,7 @@ jobs:
           sudo make install
           cd ../..
           echo "Finished compiling and installing Doxygen"
-
           ./make-docs.py
-
   check-submodules:
     runs-on: ubuntu-latest
     steps:
