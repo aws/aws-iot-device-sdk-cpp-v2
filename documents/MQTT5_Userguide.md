@@ -1,18 +1,17 @@
-# MQTT 5
-
-## Table of Contents
+# Table of Contents
 * [Developer Preview Disclaimer](#developer-preview-disclaimer)
 * [Introduction](#introduction)
 * [What's Different? (relative to the MQTT311 implementation)](#what-s-different---relative-to-the-mqtt311-implementation-)
     + [Major changes](#major-changes)
     + [Minor changes](#minor-changes)
     + [Not Supported](#not-supported)
-* [[Getting Started with MQTT5]](#-getting-started-with-mqtt5-)
+* [Getting Started with MQTT5](#getting-started-with-mqtt5)
     + [How to Create Mqtt5 Client](#how-to-create-mqtt5-client)
-    + [How to Start and Stop](#how-to-start-and-stop)
-        - [**Start**](#--start--)
-        - [**Stop**](#--stop--)
     + [Client lifecycle management](#client-lifecycle-management)
+    + [How to Process Message](#publish-received-handler)
+    + [How to Start and Stop](#how-to-start-and-stop)
+        - [Start](#--start--)
+        - [Stop](#--stop--)
     + [Connecting To AWS IoT Core](#connecting-to-aws-iot-core)
         - [Direct MQTT with X509-based mutual TLS](#direct-mqtt-with-x509-based-mutual-tls)
         - [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
@@ -24,14 +23,14 @@
         - [Publish](#publish)
 * [MQTT5 Best Practices](#mqtt5-best-practices)
 
-## Developer Preview Disclaimer
+# Developer Preview Disclaimer
 
 MQTT5 support is currently in **developer preview**.  We encourage feedback at all times, but feedback during the preview window is especially valuable in shaping the final product.  During the preview period we may make backwards-incompatible changes to the public API, but in general, this is something we will try our best to avoid.
 
 
 The MQTT5 client cannot yet be used with the AWS IoT MQTT services (Shadow, Jobs, Identity).  This is a shortcoming that we hope to address in the near future.
 
-## Introduction
+# Introduction
 
 This user guide is designed to act as a reference and guide for how to use MQTT5 with the CPP SDK, covering what MQTT5 is and some essential knowledge required to effectively use of MQTT5 within the CPP SDK.
 
@@ -42,12 +41,12 @@ The goal of this guide is to provide a basic understanding of MQTT5 and how to l
 If you are completely new to MQTT, it is highly recommended to read through the [concepts](./MQTT_CONCEPT.md) documentation to learn more about what MQTT is and what the terms used throughout this document mean.
 
 
-## What's Different? (relative to the MQTT311 implementation)
+# What's Different? (relative to the MQTT311 implementation)
 
 SDK MQTT5 support comes from a separate client implementation.  In doing so, we took the opportunity to incorporate feedback about the 311 client that we could not apply without making breaking changes.  If you're used to the 311 client's API contract, there are a number of differences.
 
 
-### Major changes
+## Major changes
 
 * The MQTT5 client does not treat initial connection failures differently.  With the 311 implementation, a failure during initial connect would halt reconnects completely.
 
@@ -71,7 +70,7 @@ SDK MQTT5 support comes from a separate client implementation.  In doing so, we 
 
 
 
-### Minor changes
+## Minor changes
 
 * Public API terminology has changed.  You *start* or *stop* the MQTT5 client.  This removes the semantic confusion with connect/disconnect as client-level controls vs. internal recurrent networking events.
 
@@ -80,7 +79,7 @@ SDK MQTT5 support comes from a separate client implementation.  In doing so, we 
 
 
 
-### Not Supported
+## Not Supported
 
 Not all parts of the MQTT5 spec are supported by the implementation.  We currently do not support:
 
@@ -90,41 +89,11 @@ Not all parts of the MQTT5 spec are supported by the implementation.  We current
 
 
 
-## [Getting Started with MQTT5]
+# Getting Started with MQTT5
 
 
-### How to Create Mqtt5 Client
-Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 client](https://awslabs.github.io/aws-crt-java/software/amazon/awssdk/crt/mqtt5/Mqtt5Client.html). Something important to note is that once a MQTT5 client is built and finalized, the client configuration is immutable. Further modifications to the MQTT5 client builder will not change the settings of already created the MQTT5 clients. Before building a MQTT5 client from a MQTT5 client builder, make sure to have everything fully setup.
-
-```
-
-    // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
-
-    // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
-
-    if (mqtt5Client == nullptr)
-    {
-        fprintf(stdout, "Client creation failed.\n");
-        return -1;
-    }
-
-    // Start mqtt5 connection session
-    if (!mqtt5Client->Start())
-    {
-        fprintf("Failed start Mqtt5 client");
-        return -1;
-    }
-
-```
-
-### How to Start and Stop
-
-#### **Start**
-
-Invoking start() on the client will put it into an active state where it recurrently establishes a connection to the configured remote endpoint.  Reconnecting continues until you invoke stop().
-
+## How to Create Mqtt5 Client
+Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 client](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html). Something important to note is that once a MQTT5 client is built and finalized, the client configuration is immutable. Further modifications to the MQTT5 client builder will not change the settings of already created the MQTT5 clients. Before building a MQTT5 client from a MQTT5 client builder, make sure to have everything fully setup.
 
 ```
 
@@ -149,19 +118,9 @@ Invoking start() on the client will put it into an active state where it recurre
 
 ```
 
-#### **Stop**
 
-The Stop() API supports a DISCONNECT packet as an optional parameter.  If supplied, the DISCONNECT packet will be sent to the server prior to closing the socket.  You may listen for the 'Stopped' lifecycle event on the client for the result. Invoking stop() breaks the current connection (if any) and moves the client into an idle state. When waiting for finished with an MQTT5 client,
 
-```
-    if (!client->Stop())
-    {
-        fprintf(stdout, "Failed to stop the mqtt connection session. Exiting..\n");
-    }
-
-```
-
-### Client lifecycle management
+## Client lifecycle management
 The MQTT5 client emits a set of events related to state and network status changes. The lifecycle events callback should be set in Mqtt5ClientBuilder before the client builds.
 
 ```
@@ -273,17 +232,74 @@ A Disconnect event will always include an error code.  If the Disconnect event i
 Emitted once the client has shutdown any associated network connection and entered an idle state where it will no longer attempt to reconnect.  Only emitted after an invocation of stop() on the client.  A stopped client may always be started again.
 
 
+## How to Process Message
+[`withPublishReceivedCallback`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a178bd62d671ea2f273841e2e097744e8) will get involved when a publish is received. The callback should be set before client get build. Please note, once
+```
+    // Create Mqtt5Client Builder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+
+    builder->withPublishReceivedCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::PublishReceivedEventData &eventData) {
+        if (eventData.publishPacket == nullptr)
+            return;
+        fprintf(stdout, "Publish received on topic %s:", eventData.publishPacket->getTopic().c_str());
+        fwrite(eventData.publishPacket->getPayload().ptr, 1, eventData.publishPacket->getPayload().len, stdout);
+        fprintf(stdout, "\n");
+    });
+
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+```
 
 
+## How to Start and Stop
 
-### Connecting To AWS IoT Core
+### **Start**
+
+Invoking start() on the client will put it into an active state where it recurrently establishes a connection to the configured remote endpoint.  Reconnecting continues until you invoke stop().
+
+
+```
+
+    // Create Mqtt5Client Builder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+
+    // Build Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+    // Start mqtt5 connection session
+    if (!mqtt5Client->Start())
+    {
+        fprintf("Failed start Mqtt5 client");
+        return -1;
+    }
+
+```
+
+### **Stop**
+
+The Stop() API supports a DISCONNECT packet as an optional parameter.  If supplied, the DISCONNECT packet will be sent to the server prior to closing the socket.  You may listen for the 'Stopped' lifecycle event on the client for the result. Invoking stop() breaks the current connection (if any) and moves the client into an idle state. When waiting for finished with an MQTT5 client,
+
+```
+    if (!client->Stop())
+    {
+        fprintf(stdout, "Failed to stop the mqtt connection session. Exiting..\n");
+    }
+
+```
+
+## Connecting To AWS IoT Core
 
 We strongly recommend using the Mqtt5ClientBuilder class to configure MQTT5 clients when connecting to AWS IoT Core.  The builder simplifies configuration for all authentication methods supported by AWS IoT Core.
 
 This section shows samples for all of the authentication possibilities.
 
 
-#### Direct MQTT with X509-based mutual TLS
+### Direct MQTT with X509-based mutual TLS
 
 For X509 based mutual TLS, you can create a client where the certificate and private key are configured by path:
 
@@ -312,7 +328,7 @@ For X509 based mutual TLS, you can create a client where the certificate and pri
 
 
 
-#### MQTT over Websockets with Sigv4 authentication
+### MQTT over Websockets with Sigv4 authentication
 
 Sigv4-based authentication requires a credentials provider capable of sourcing valid AWS credentials. Sourced credentials will sign the websocket upgrade request made by the client while connecting. The default credentials provider chain supported by the SDK is capable of resolving credentials in a variety of environments according to a chain of priorities:
 
@@ -357,7 +373,7 @@ If the default credentials provider chain and AWS region are specified, you do n
 ```
 
 
-#### Direct MQTT with Custom Authentication
+### Direct MQTT with Custom Authentication
 
 AWS IoT Core Custom Authentication allows you to use a lambda to gate access to IoT Core resources.  For this authentication method,you must supply an additional configuration structure containing fields relevant to AWS IoT Core Custom Authentication.
 
@@ -427,7 +443,7 @@ In both cases, the builder will construct a final CONNECT packet username field 
 
 
 
-#### HTTP Proxy
+### HTTP Proxy
 
 No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
 
@@ -459,12 +475,12 @@ No matter what your connection transport or authentication method is, you may co
 
 SDK Proxy support also includes support for basic authentication and TLS-to-proxy. SDK proxy support does not include any additional proxy authentication methods (kerberos, NTLM, etc...) nor does it include non-HTTP proxies (SOCKS5, for example).
 
-### Client Operations
+## Client Operations
 
 There are three basic MQTT operations you can perform with the MQTT5 client.
 
 
-#### Subscribe
+### Subscribe
 
 The Subscribe operation takes a description of the SUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns ponding SubAckPacket returned by the broker.
 
@@ -506,7 +522,7 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
 ```
 
 
-#### Unsubscribe
+### Unsubscribe
 
 The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns ponding UnSubAckPacket returned by the broker.
 
@@ -538,7 +554,7 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
 ```
 
 
-#### Publish
+### Publish
 
 The Publish operation takes a description of the PUBLISH packet you wish to send and return false if the operation goes wrong.
 The publish completion callback will return a PublishResult, which is a polymorphic value, as soon as the packet has been written to the socket.
@@ -577,7 +593,7 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
 ```
 
 
-## MQTT5 Best Practices
+# MQTT5 Best Practices
 
 Below are some best practices for the MQTT5 client that are recommended to follow for the best development experience:
 

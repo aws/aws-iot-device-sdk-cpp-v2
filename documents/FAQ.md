@@ -122,5 +122,4 @@ Here is an example launch.json file to run the pubsub sample
 * [Discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) questions are also a great way to ask other questions about this sdk.
 * [Open an issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues) if you find a bug or have a feature request
 * [Breif MQTT CONCEPT](./MQTT_CONCEPT.md)
-* [MQTT5 Introduction](./MQTT5.md)
-
+* [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
