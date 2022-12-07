@@ -55,11 +55,11 @@ git add ../README.md
 # Make the commit
 git commit -m "[v$new_version] $RELEASE_TITLE"
 
-# # push the commit and create a PR
+# push the commit and create a PR
 git push -u "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/aws/aws-iot-device-sdk-cpp-v2.git" ${new_version_branch}
 gh pr create --title "AutoTag PR for v${new_version}" --body "AutoTag PR for v${new_version}" --head ${new_version_branch}
 
-# # Merge the PR
+# Merge the PR
 gh pr merge --admin --squash
 # --==--
 
