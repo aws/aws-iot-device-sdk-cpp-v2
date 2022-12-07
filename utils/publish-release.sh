@@ -47,8 +47,11 @@ new_version_branch=AutoTag-v${new_version}
 git checkout -b ${new_version_branch}
 
 # Update version file
-echo "${new_version}" > VERSION
-git add VERSION
+echo "${new_version}" > ../VERSION
+git add ../VERSION
+# Update the version in the README to show the latest
+sed -i -r "s/.*Latest released version:.*/Latest released version: v${new_version}/" ../README.md
+git add ../README.md
 # Make the commit
 git commit -m "[v$new_version] $RELEASE_TITLE"
 
