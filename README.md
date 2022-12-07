@@ -22,6 +22,7 @@ __Jump To:__
 * [Getting Help](#Getting-Help)
 * [FAQ](./documents/FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
+* [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
 
 
 ## Installation
