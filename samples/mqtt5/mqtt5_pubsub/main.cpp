@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
     uint32_t messageCount = 10;
-    String testTopic = "test/topic1";
+    String testTopic = "test/topic";
 
     std::mutex receiveMutex;
     std::condition_variable receiveSignal;
@@ -44,6 +44,12 @@ int main(int argc, char *argv[])
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
         cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
+
+    if(builder == nullptr)
+    {
+        printf("Failed to setup mqtt5 client builder.");
+        return -1;
+    }
 
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
@@ -132,8 +138,25 @@ int main(int argc, char *argv[])
         if (client->Subscribe(
                 subPacket,
                 [&subscribeSuccess](
-                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket>) {
-                    subscribeSuccess.set_value(error_code == 0);
+                    std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
+                        if(error_code != 0)
+                        {
+                            fprintf(stdout, "MQTT5 Client Subscription failed with error code: (%d)%s\n", error_code, aws_error_debug_str(error_code));
+                            subscribeSuccess.set_value(false);
+                        }
+                        if(suback != nullptr)
+                        {
+                            for(Mqtt5::SubAckReasonCode reasonCode : suback->getReasonCodes())
+                            {
+                                if(reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
+                                {
+                                    fprintf(stdout, "MQTT5 Client Subscription failed with server error code: (%d)%s\n", reasonCode, suback->getReasonString()->c_str());
+                                    subscribeSuccess.set_value(false);
+                                    return;
+                                }
+                            }
+                        }
+                        subscribeSuccess.set_value(true);
                 }))
         {
             // Waiting for subscription completed.
@@ -152,9 +175,15 @@ int main(int argc, char *argv[])
                         {
                             fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
                         }
-                        else
+                        else if(result != nullptr)
                         {
-                            fprintf(stdout, "Publish Succeed.\n");
+                            std::shared_ptr<Mqtt5::PubAckPacket> puback =  std::dynamic_pointer_cast<Mqtt5::PubAckPacket>(result->getAck());
+                            if(puback->getReasonCode() == 0 )
+                            {
+                                fprintf(stdout, "Publish Succeed.\n");
+                            } else {
+                                fprintf(stdout, "PubACK reason code: %d : %s\n", puback->getReasonCode(), puback->getReasonString()->c_str());
+                            }
                         };
                     };
 
