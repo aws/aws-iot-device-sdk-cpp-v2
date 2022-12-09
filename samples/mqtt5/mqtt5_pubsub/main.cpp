@@ -185,7 +185,8 @@ int main(int argc, char *argv[])
         std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
         subPacket->withSubscription(std::move(sub1));
 
-        if (client->Subscribe(subPacket, onSubAck)) {
+        if (client->Subscribe(subPacket, onSubAck))
+        {
             // Waiting for subscription completed.
             if (subscribeSuccess.get_future().get() == true)
             {
