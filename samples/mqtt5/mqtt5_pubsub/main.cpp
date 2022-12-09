@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
         cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
 
-    if(builder == nullptr)
+    if (builder == nullptr)
     {
         printf("Failed to setup mqtt5 client builder.");
         return -1;
@@ -113,8 +113,7 @@ int main(int argc, char *argv[])
      */
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
-            Mqtt5::Mqtt5Client & /*client*/, const Mqtt5::PublishReceivedEventData &eventData)
-        {
+            Mqtt5::Mqtt5Client & /*client*/, const Mqtt5::PublishReceivedEventData &eventData) {
             if (eventData.publishPacket == nullptr)
                 return;
 
@@ -152,43 +151,41 @@ int main(int argc, char *argv[])
 
         auto onSubAck =
             [&subscribeSuccess](
-                std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback)
-        {
-            if (error_code != 0)
-            {
-                fprintf(
-                    stdout,
-                    "MQTT5 Client Subscription failed with error code: (%d)%s\n",
-                    error_code,
-                    aws_error_debug_str(error_code));
-                subscribeSuccess.set_value(false);
-            }
-            if (suback != nullptr)
-            {
-                for (Mqtt5::SubAckReasonCode reasonCode : suback->getReasonCodes())
+                std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
+                if (error_code != 0)
                 {
-                    if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
+                    fprintf(
+                        stdout,
+                        "MQTT5 Client Subscription failed with error code: (%d)%s\n",
+                        error_code,
+                        aws_error_debug_str(error_code));
+                    subscribeSuccess.set_value(false);
+                }
+                if (suback != nullptr)
+                {
+                    for (Mqtt5::SubAckReasonCode reasonCode : suback->getReasonCodes())
                     {
-                        fprintf(
-                            stdout,
-                            "MQTT5 Client Subscription failed with server error code: (%d)%s\n",
-                            reasonCode,
-                            suback->getReasonString()->c_str());
-                        subscribeSuccess.set_value(false);
-                        return;
+                        if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
+                        {
+                            fprintf(
+                                stdout,
+                                "MQTT5 Client Subscription failed with server error code: (%d)%s\n",
+                                reasonCode,
+                                suback->getReasonString()->c_str());
+                            subscribeSuccess.set_value(false);
+                            return;
+                        }
                     }
                 }
-            }
-            subscribeSuccess.set_value(true);
-        };
+                subscribeSuccess.set_value(true);
+            };
 
         Mqtt5::Subscription sub1(topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         sub1.withNoLocal(false);
         std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
         subPacket->withSubscription(std::move(sub1));
 
-        if (client->Subscribe(subPacket, onSubAck))
-        {
+        if (client->Subscribe(subPacket, onSubAck)) {
             // Waiting for subscription completed.
             if (subscribeSuccess.get_future().get() == true)
             {
@@ -198,8 +195,7 @@ int main(int argc, char *argv[])
                 // the client received the PubAck from the server).
                 auto onPublishComplete = [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
                                             int,
-                                            std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result)
-                {
+                                            std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
                     if (!result->wasSuccessful())
                     {
                         fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
@@ -251,9 +247,9 @@ int main(int argc, char *argv[])
                 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
                 unsub->withTopicFilter(topic);
                 if (!client->Unsubscribe(
-                        unsub,
-                        [&](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket>)
-                        { unsubscribeFinishedPromise.set_value(); }))
+                        unsub, [&](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
+                            unsubscribeFinishedPromise.set_value();
+                        }))
                 {
                     fprintf(stdout, "Unsubscription failed.\n");
                     exit(-1);
