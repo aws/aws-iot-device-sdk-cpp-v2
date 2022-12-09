@@ -161,7 +161,7 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
         "iot:Receive"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic1"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic"
       ]
     },
     {
@@ -190,8 +190,9 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 To run the basic MQTT5 PubSub use the following command:
 
 ``` sh
-./mqtt5_pubsub --endpoint <endpoint> --ca_file <path to root CA>
+./mqtt5_pubsub  --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
+--topic <topic name>
 ```
 
 ## Websocket Connect

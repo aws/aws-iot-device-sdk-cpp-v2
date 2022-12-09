@@ -233,7 +233,8 @@ Emitted once the client has shutdown any associated network connection and enter
 
 
 ## How to Process Message
-[`withPublishReceivedCallback`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a178bd62d671ea2f273841e2e097744e8) will get involved when a publish is received. The callback should be set before client get build. Please note, once
+[`withPublishReceivedCallback`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a178bd62d671ea2f273841e2e097744e8) will get involved when a publish is received. The callback should be set before building the client. Please note, once a MQTT5 client is built and finalized, the client configuration is immutable.
+
 ```
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
@@ -601,3 +602,4 @@ Below are some best practices for the MQTT5 client that are recommended to follo
 * Use the minimum QoS you can get away with for the lowest latency and bandwidth costs. For example, if you are sending data consistently multiple times per second and do not have to have a guarantee the server got each and every publish, using QoS 0 may be ideal compared to QoS 1. Of course, this heavily depends on your use case but generally it is recommended to use the lowest QoS possible.
 * If you are getting unexpected disconnects when trying to connect to AWS IoT Core, make sure to check your IoT Core Thing’s policy and permissions to make sure your device is has the permissions it needs to connect!
 * For **Publish**, **Subscribe**, and **Unsubscribe**, you can check the reason codes in the CompletionCallbacks to see if the operation actually succeeded.
+* You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returs, so the thread will be stuck.
