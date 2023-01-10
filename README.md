@@ -91,6 +91,23 @@ cmake --build . --target install --config "Debug"
 * Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
 * `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
+**Linux specific notes**:
+
+If your application uses OpenSSL, configure with `-DUSE_OPENSSL=ON`.
+
+The IoT SDK does not use OpenSSL for TLS.
+On Apple and Windows, the OS's default TLS library is used.
+On Linux, [s2n-tls](https://github.com/aws/s2n-tls) is used.
+But s2n-tls uses libcrypto, the cryptography math library bundled with OpenSSL.
+To simplify the build process, the source code for s2n-tls and libcrypto are
+included as git submodules and built along with the IoT SDK.
+But if your application is also loading the system installation of OpenSSL
+(i.e. your application uses libcurl which uses libssl which uses libcrypto)
+there may be crashes as the application tries to use two different versions of libcrypto at once.
+
+Setting `-DUSE_OPENSSL=ON` will cause the IoT SDK to link against your system's
+existing `libcrypto`, instead of building its own copy.
+
 ## Samples
 
 [Samples README](./samples)
