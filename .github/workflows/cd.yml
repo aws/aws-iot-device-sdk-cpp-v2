@@ -2,7 +2,7 @@ name: CD
 on: 
   pull_request:
     branches: [ main ]
-    types: [closed]
+    types: [ closed ]
 
 jobs:
   ecr_setting:
