@@ -57,9 +57,15 @@ namespace Aws
             return m_connection.Connect(connectionConfig, &lifecycleHandler, m_clientBootstrap);
         }
 
-        void GreengrassCoreIpcClient::Close() noexcept { m_connection.Close(); }
+        void GreengrassCoreIpcClient::Close() noexcept
+        {
+            m_connection.Close();
+        }
 
-        GreengrassCoreIpcClient::~GreengrassCoreIpcClient() noexcept { Close(); }
+        GreengrassCoreIpcClient::~GreengrassCoreIpcClient() noexcept
+        {
+            Close();
+        }
 
         std::shared_ptr<SubscribeToIoTCoreOperation> GreengrassCoreIpcClient::NewSubscribeToIoTCore(
             std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler) noexcept

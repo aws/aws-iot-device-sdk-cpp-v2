@@ -29,7 +29,10 @@ namespace Awstest
 
     const char *Product::MODEL_NAME = "awstest#Product";
 
-    Aws::Crt::String Product::GetModelName() const noexcept { return Product::MODEL_NAME; }
+    Aws::Crt::String Product::GetModelName() const noexcept
+    {
+        return Product::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Product::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -85,7 +88,10 @@ namespace Awstest
 
     const char *Customer::MODEL_NAME = "awstest#Customer";
 
-    Aws::Crt::String Customer::GetModelName() const noexcept { return Customer::MODEL_NAME; }
+    Aws::Crt::String Customer::GetModelName() const noexcept
+    {
+        return Customer::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Customer::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -133,7 +139,10 @@ namespace Awstest
 
     const char *Pair::MODEL_NAME = "awstest#Pair";
 
-    Aws::Crt::String Pair::GetModelName() const noexcept { return Pair::MODEL_NAME; }
+    Aws::Crt::String Pair::GetModelName() const noexcept
+    {
+        return Pair::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Pair::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -336,7 +345,10 @@ namespace Awstest
 
     const char *MessageData::MODEL_NAME = "awstest#MessageData";
 
-    Aws::Crt::String MessageData::GetModelName() const noexcept { return MessageData::MODEL_NAME; }
+    Aws::Crt::String MessageData::GetModelName() const noexcept
+    {
+        return MessageData::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> MessageData::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -412,7 +424,10 @@ namespace Awstest
 
     const char *EchoStreamingMessage::MODEL_NAME = "awstest#EchoStreamingMessage";
 
-    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept { return EchoStreamingMessage::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept
+    {
+        return EchoStreamingMessage::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingMessage::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -510,7 +525,10 @@ namespace Awstest
 
     const char *GetAllProductsRequest::MODEL_NAME = "awstest#GetAllProductsRequest";
 
-    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept { return GetAllProductsRequest::MODEL_NAME; }
+    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept
+    {
+        return GetAllProductsRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllProductsRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -659,7 +677,10 @@ namespace Awstest
 
     const char *EchoMessageResponse::MODEL_NAME = "awstest#EchoMessageResponse";
 
-    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept { return EchoMessageResponse::MODEL_NAME; }
+    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept
+    {
+        return EchoMessageResponse::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageResponse::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -705,7 +726,10 @@ namespace Awstest
 
     const char *EchoMessageRequest::MODEL_NAME = "awstest#EchoMessageRequest";
 
-    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept { return EchoMessageRequest::MODEL_NAME; }
+    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept
+    {
+        return EchoMessageRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -743,7 +767,10 @@ namespace Awstest
 
     const char *EchoStreamingResponse::MODEL_NAME = "awstest#EchoStreamingResponse";
 
-    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept { return EchoStreamingResponse::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept
+    {
+        return EchoStreamingResponse::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingResponse::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -781,7 +808,10 @@ namespace Awstest
 
     const char *EchoStreamingRequest::MODEL_NAME = "awstest#EchoStreamingRequest";
 
-    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept { return EchoStreamingRequest::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept
+    {
+        return EchoStreamingRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -830,7 +860,10 @@ namespace Awstest
 
     const char *ServiceError::MODEL_NAME = "awstest#ServiceError";
 
-    Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
+    Aws::Crt::String ServiceError::GetModelName() const noexcept
+    {
+        return ServiceError::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -978,7 +1011,7 @@ namespace Awstest
 
     std::future<GetAllProductsResult> GetAllProductsOperation::GetResult() noexcept
     {
-        return std::async(std::launch::deferred, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        return std::async(std::launch::async, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
     }
 
     GetAllProductsOperation::GetAllProductsOperation(
@@ -1033,8 +1066,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#CauseServiceErrorResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName() const
-        noexcept
+    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName()
+        const noexcept
     {
         return Aws::Crt::Optional<Aws::Crt::String>();
     }
@@ -1046,8 +1079,7 @@ namespace Awstest
 
     std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult() noexcept
     {
-        return std::async(
-            std::launch::deferred, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        return std::async(std::launch::async, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
     }
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
@@ -1101,15 +1133,15 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingResponse::s_allocateFromPayload(stringView, allocator);
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1138,7 +1170,7 @@ namespace Awstest
     std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult() noexcept
     {
         return std::async(
-            std::launch::deferred, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+            std::launch::async, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
     }
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
@@ -1195,8 +1227,8 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamMessagesOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1211,8 +1243,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#EchoStreamingResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName() const
-        noexcept
+    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName()
+        const noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingMessage");
     }
@@ -1225,7 +1257,7 @@ namespace Awstest
     std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult() noexcept
     {
         return std::async(
-            std::launch::deferred, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+            std::launch::async, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
     }
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
@@ -1292,7 +1324,7 @@ namespace Awstest
 
     std::future<EchoMessageResult> EchoMessageOperation::GetResult() noexcept
     {
-        return std::async(std::launch::deferred, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        return std::async(std::launch::async, [this]() { return EchoMessageResult(GetOperationResult().get()); });
     }
 
     EchoMessageOperation::EchoMessageOperation(
@@ -1359,8 +1391,7 @@ namespace Awstest
 
     std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult() noexcept
     {
-        return std::async(
-            std::launch::deferred, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        return std::async(std::launch::async, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
     }
 
     GetAllCustomersOperation::GetAllCustomersOperation(

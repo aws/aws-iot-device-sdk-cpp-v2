@@ -20,9 +20,15 @@ namespace Awstest
         return m_connection.Connect(connectionConfig, &lifecycleHandler, m_clientBootstrap);
     }
 
-    void EchoTestRpcClient::Close() noexcept { m_connection.Close(); }
+    void EchoTestRpcClient::Close() noexcept
+    {
+        m_connection.Close();
+    }
 
-    EchoTestRpcClient::~EchoTestRpcClient() noexcept { Close(); }
+    EchoTestRpcClient::~EchoTestRpcClient() noexcept
+    {
+        Close();
+    }
 
     std::shared_ptr<GetAllProductsOperation> EchoTestRpcClient::NewGetAllProducts() noexcept
     {

@@ -32,7 +32,10 @@ namespace Aws
 
         const char *MessageContext::MODEL_NAME = "aws.greengrass#MessageContext";
 
-        Aws::Crt::String MessageContext::GetModelName() const noexcept { return MessageContext::MODEL_NAME; }
+        Aws::Crt::String MessageContext::GetModelName() const noexcept
+        {
+            return MessageContext::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> MessageContext::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -199,7 +202,10 @@ namespace Aws
 
         const char *MQTTMessage::MODEL_NAME = "aws.greengrass#MQTTMessage";
 
-        Aws::Crt::String MQTTMessage::GetModelName() const noexcept { return MQTTMessage::MODEL_NAME; }
+        Aws::Crt::String MQTTMessage::GetModelName() const noexcept
+        {
+            return MQTTMessage::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> MQTTMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -455,7 +461,10 @@ namespace Aws
 
         const char *CertificateUpdate::MODEL_NAME = "aws.greengrass#CertificateUpdate";
 
-        Aws::Crt::String CertificateUpdate::GetModelName() const noexcept { return CertificateUpdate::MODEL_NAME; }
+        Aws::Crt::String CertificateUpdate::GetModelName() const noexcept
+        {
+            return CertificateUpdate::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CertificateUpdate::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -571,7 +580,10 @@ namespace Aws
 
         const char *Metric::MODEL_NAME = "aws.greengrass#Metric";
 
-        Aws::Crt::String Metric::GetModelName() const noexcept { return Metric::MODEL_NAME; }
+        Aws::Crt::String Metric::GetModelName() const noexcept
+        {
+            return Metric::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> Metric::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -631,7 +643,10 @@ namespace Aws
 
         const char *BinaryMessage::MODEL_NAME = "aws.greengrass#BinaryMessage";
 
-        Aws::Crt::String BinaryMessage::GetModelName() const noexcept { return BinaryMessage::MODEL_NAME; }
+        Aws::Crt::String BinaryMessage::GetModelName() const noexcept
+        {
+            return BinaryMessage::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> BinaryMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -684,7 +699,10 @@ namespace Aws
 
         const char *JsonMessage::MODEL_NAME = "aws.greengrass#JsonMessage";
 
-        Aws::Crt::String JsonMessage::GetModelName() const noexcept { return JsonMessage::MODEL_NAME; }
+        Aws::Crt::String JsonMessage::GetModelName() const noexcept
+        {
+            return JsonMessage::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> JsonMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -752,7 +770,10 @@ namespace Aws
 
         const char *MQTTCredential::MODEL_NAME = "aws.greengrass#MQTTCredential";
 
-        Aws::Crt::String MQTTCredential::GetModelName() const noexcept { return MQTTCredential::MODEL_NAME; }
+        Aws::Crt::String MQTTCredential::GetModelName() const noexcept
+        {
+            return MQTTCredential::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> MQTTCredential::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -813,7 +834,10 @@ namespace Aws
 
         const char *RunWithInfo::MODEL_NAME = "aws.greengrass#RunWithInfo";
 
-        Aws::Crt::String RunWithInfo::GetModelName() const noexcept { return RunWithInfo::MODEL_NAME; }
+        Aws::Crt::String RunWithInfo::GetModelName() const noexcept
+        {
+            return RunWithInfo::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RunWithInfo::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -894,8 +918,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void ValidateConfigurationUpdateEvents::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateConfigurationUpdateEvents::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_chosenMember == TAG_VALIDATE_CONFIGURATION_UPDATE_EVENT &&
                 m_validateConfigurationUpdateEvent.has_value())
@@ -1076,7 +1100,10 @@ namespace Aws
 
         const char *IoTCoreMessage::MODEL_NAME = "aws.greengrass#IoTCoreMessage";
 
-        Aws::Crt::String IoTCoreMessage::GetModelName() const noexcept { return IoTCoreMessage::MODEL_NAME; }
+        Aws::Crt::String IoTCoreMessage::GetModelName() const noexcept
+        {
+            return IoTCoreMessage::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> IoTCoreMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1348,7 +1375,10 @@ namespace Aws
 
         const char *CertificateOptions::MODEL_NAME = "aws.greengrass#CertificateOptions";
 
-        Aws::Crt::String CertificateOptions::GetModelName() const noexcept { return CertificateOptions::MODEL_NAME; }
+        Aws::Crt::String CertificateOptions::GetModelName() const noexcept
+        {
+            return CertificateOptions::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CertificateOptions::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1520,7 +1550,10 @@ namespace Aws
 
         const char *PublishMessage::MODEL_NAME = "aws.greengrass#PublishMessage";
 
-        Aws::Crt::String PublishMessage::GetModelName() const noexcept { return PublishMessage::MODEL_NAME; }
+        Aws::Crt::String PublishMessage::GetModelName() const noexcept
+        {
+            return PublishMessage::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1593,7 +1626,10 @@ namespace Aws
 
         const char *SecretValue::MODEL_NAME = "aws.greengrass#SecretValue";
 
-        Aws::Crt::String SecretValue::GetModelName() const noexcept { return SecretValue::MODEL_NAME; }
+        Aws::Crt::String SecretValue::GetModelName() const noexcept
+        {
+            return SecretValue::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SecretValue::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1690,7 +1726,10 @@ namespace Aws
 
         const char *LocalDeployment::MODEL_NAME = "aws.greengrass#LocalDeployment";
 
-        Aws::Crt::String LocalDeployment::GetModelName() const noexcept { return LocalDeployment::MODEL_NAME; }
+        Aws::Crt::String LocalDeployment::GetModelName() const noexcept
+        {
+            return LocalDeployment::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> LocalDeployment::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1832,7 +1871,10 @@ namespace Aws
 
         const char *ComponentDetails::MODEL_NAME = "aws.greengrass#ComponentDetails";
 
-        Aws::Crt::String ComponentDetails::GetModelName() const noexcept { return ComponentDetails::MODEL_NAME; }
+        Aws::Crt::String ComponentDetails::GetModelName() const noexcept
+        {
+            return ComponentDetails::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ComponentDetails::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1890,7 +1932,10 @@ namespace Aws
 
         const char *CredentialDocument::MODEL_NAME = "aws.greengrass#CredentialDocument";
 
-        Aws::Crt::String CredentialDocument::GetModelName() const noexcept { return CredentialDocument::MODEL_NAME; }
+        Aws::Crt::String CredentialDocument::GetModelName() const noexcept
+        {
+            return CredentialDocument::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CredentialDocument::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1913,8 +1958,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void VerifyClientDeviceIdentityResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void VerifyClientDeviceIdentityResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isValidClientDevice.has_value())
             {
@@ -1963,8 +2008,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void VerifyClientDeviceIdentityRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void VerifyClientDeviceIdentityRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_credential.has_value())
             {
@@ -2035,7 +2080,10 @@ namespace Aws
 
         const char *InvalidTokenError::MODEL_NAME = "aws.greengrass#InvalidTokenError";
 
-        Aws::Crt::String InvalidTokenError::GetModelName() const noexcept { return InvalidTokenError::MODEL_NAME; }
+        Aws::Crt::String InvalidTokenError::GetModelName() const noexcept
+        {
+            return InvalidTokenError::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<OperationError> InvalidTokenError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -2058,8 +2106,8 @@ namespace Aws
             OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
-        void ValidateAuthorizationTokenResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateAuthorizationTokenResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isValid.has_value())
             {
@@ -2107,8 +2155,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void ValidateAuthorizationTokenRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateAuthorizationTokenRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_token.has_value())
             {
@@ -2295,7 +2343,10 @@ namespace Aws
 
         const char *UpdateStateResponse::MODEL_NAME = "aws.greengrass#UpdateStateResponse";
 
-        Aws::Crt::String UpdateStateResponse::GetModelName() const noexcept { return UpdateStateResponse::MODEL_NAME; }
+        Aws::Crt::String UpdateStateResponse::GetModelName() const noexcept
+        {
+            return UpdateStateResponse::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateStateResponse::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -2369,7 +2420,10 @@ namespace Aws
 
         const char *UpdateStateRequest::MODEL_NAME = "aws.greengrass#UpdateStateRequest";
 
-        Aws::Crt::String UpdateStateRequest::GetModelName() const noexcept { return UpdateStateRequest::MODEL_NAME; }
+        Aws::Crt::String UpdateStateRequest::GetModelName() const noexcept
+        {
+            return UpdateStateRequest::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateStateRequest::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -2460,7 +2514,10 @@ namespace Aws
 
         const char *ConflictError::MODEL_NAME = "aws.greengrass#ConflictError";
 
-        Aws::Crt::String ConflictError::GetModelName() const noexcept { return ConflictError::MODEL_NAME; }
+        Aws::Crt::String ConflictError::GetModelName() const noexcept
+        {
+            return ConflictError::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<OperationError> ConflictError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -2951,8 +3008,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToConfigurationUpdateResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToConfigurationUpdateResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -2996,8 +3053,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToConfigurationUpdateRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToConfigurationUpdateRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_componentName.has_value())
             {
@@ -3070,8 +3127,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToComponentUpdatesResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToComponentUpdatesResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3114,8 +3171,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToComponentUpdatesRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToComponentUpdatesRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3158,8 +3215,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToCertificateUpdatesResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToCertificateUpdatesResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3203,8 +3260,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToCertificateUpdatesRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToCertificateUpdatesRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_certificateOptions.has_value())
             {
@@ -3390,8 +3447,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SendConfigurationValidityReportResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SendConfigurationValidityReportResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3435,8 +3492,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SendConfigurationValidityReportRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SendConfigurationValidityReportRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_configurationValidityReport.has_value())
             {
@@ -5553,8 +5610,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void InvalidArtifactsDirectoryPathError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void InvalidArtifactsDirectoryPathError::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
             {
@@ -5989,8 +6046,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void InvalidClientDeviceAuthTokenError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void InvalidClientDeviceAuthTokenError::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
             {
@@ -6102,7 +6159,10 @@ namespace Aws
 
         const char *ServiceError::MODEL_NAME = "aws.greengrass#ServiceError";
 
-        Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
+        Aws::Crt::String ServiceError::GetModelName() const noexcept
+        {
+            return ServiceError::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -6145,7 +6205,10 @@ namespace Aws
 
         const char *UnauthorizedError::MODEL_NAME = "aws.greengrass#UnauthorizedError";
 
-        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept { return UnauthorizedError::MODEL_NAME; }
+        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept
+        {
+            return UnauthorizedError::MODEL_NAME;
+        }
 
         Aws::Crt::ScopedResource<OperationError> UnauthorizedError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -6168,8 +6231,8 @@ namespace Aws
             OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
-        void AuthorizeClientDeviceActionResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void AuthorizeClientDeviceActionResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isAuthorized.has_value())
             {
@@ -6218,8 +6281,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void AuthorizeClientDeviceActionRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void AuthorizeClientDeviceActionRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_clientDeviceAuthToken.has_value())
             {
@@ -6324,15 +6387,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToIoTCoreResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return IoTCoreMessage::s_allocateFromPayload(stringView, allocator);
         }
@@ -6347,8 +6410,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> SubscribeToIoTCoreOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> SubscribeToIoTCoreOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#IoTCoreMessage");
         }
@@ -6361,7 +6424,7 @@ namespace Aws
         std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
@@ -6399,8 +6462,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6417,8 +6480,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ResumeComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ResumeComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ResumeComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6431,7 +6494,7 @@ namespace Aws
         std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
@@ -6461,15 +6524,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return PublishToIoTCoreResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6486,8 +6549,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToIoTCoreResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PublishToIoTCoreOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PublishToIoTCoreOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6500,7 +6563,7 @@ namespace Aws
         std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
@@ -6562,15 +6625,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToConfigurationUpdateResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ConfigurationUpdateEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -6598,9 +6661,9 @@ namespace Aws
 
         std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SubscribeToConfigurationUpdateResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async,
+                [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
         }
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
@@ -6631,15 +6694,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return DeleteThingShadowResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6656,8 +6719,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeleteThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> DeleteThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> DeleteThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6670,7 +6733,7 @@ namespace Aws
         std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
@@ -6700,15 +6763,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return PutComponentMetricResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6725,8 +6788,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PutComponentMetricResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6739,7 +6802,7 @@ namespace Aws
         std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
@@ -6769,15 +6832,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return DeferComponentUpdateResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6794,8 +6857,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeferComponentUpdateResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> DeferComponentUpdateOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> DeferComponentUpdateOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6808,7 +6871,7 @@ namespace Aws
         std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
@@ -6865,15 +6928,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToValidateConfigurationUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ValidateConfigurationUpdateEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -6883,8 +6946,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesRequest");
         }
 
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperationContext::GetInitialResponseModelName() const
-            noexcept
+        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperationContext::GetInitialResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesResponse");
         }
@@ -6903,9 +6966,9 @@ namespace Aws
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
             GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async,
+                [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
         }
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
@@ -6936,15 +6999,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetConfigurationResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6961,8 +7024,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetConfigurationResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetConfigurationOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetConfigurationOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6975,7 +7038,7 @@ namespace Aws
         std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
@@ -7042,15 +7105,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToTopicResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscriptionResponseMessage::s_allocateFromPayload(stringView, allocator);
         }
@@ -7065,8 +7128,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToTopicResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> SubscribeToTopicOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> SubscribeToTopicOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#SubscriptionResponseMessage");
         }
@@ -7079,7 +7142,7 @@ namespace Aws
         std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
@@ -7110,15 +7173,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetComponentDetailsResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7135,8 +7198,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetComponentDetailsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetComponentDetailsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetComponentDetailsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7149,7 +7212,7 @@ namespace Aws
         std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
@@ -7179,15 +7242,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetClientDeviceAuthTokenOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetClientDeviceAuthTokenResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetClientDeviceAuthTokenOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7218,7 +7281,7 @@ namespace Aws
         std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
@@ -7255,8 +7318,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToTopicOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7273,8 +7336,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToTopicResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PublishToTopicOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PublishToTopicOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7287,7 +7350,7 @@ namespace Aws
         std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
@@ -7355,15 +7418,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToCertificateUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToCertificateUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToCertificateUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CertificateUpdateEvent::s_allocateFromPayload(stringView, allocator);
         }
@@ -7391,9 +7454,9 @@ namespace Aws
 
         std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SubscribeToCertificateUpdatesResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async,
+                [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
         }
 
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
@@ -7424,15 +7487,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> VerifyClientDeviceIdentityOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return VerifyClientDeviceIdentityResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> VerifyClientDeviceIdentityOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7462,9 +7525,8 @@ namespace Aws
 
         std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return VerifyClientDeviceIdentityResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async, [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
@@ -7494,15 +7556,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> AuthorizeClientDeviceActionOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return AuthorizeClientDeviceActionResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> AuthorizeClientDeviceActionOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7532,9 +7594,8 @@ namespace Aws
 
         std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return AuthorizeClientDeviceActionResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async, [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
@@ -7571,8 +7632,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListComponentsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7589,8 +7650,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListComponentsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ListComponentsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ListComponentsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7603,7 +7664,7 @@ namespace Aws
         std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return ListComponentsResult(GetOperationResult().get()); });
         }
 
         ListComponentsOperation::ListComponentsOperation(
@@ -7633,15 +7694,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CreateDebugPasswordResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7658,8 +7719,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#CreateDebugPasswordResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> CreateDebugPasswordOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> CreateDebugPasswordOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7672,7 +7733,7 @@ namespace Aws
         std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
@@ -7709,8 +7770,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7727,8 +7788,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7741,7 +7802,7 @@ namespace Aws
         std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
@@ -7771,15 +7832,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SendConfigurationValidityReportResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7810,9 +7871,9 @@ namespace Aws
         std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
             GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SendConfigurationValidityReportResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async,
+                [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
         }
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
@@ -7842,15 +7903,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return UpdateThingShadowResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7867,8 +7928,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> UpdateThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> UpdateThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7881,7 +7942,7 @@ namespace Aws
         std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
@@ -7911,15 +7972,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return UpdateConfigurationResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7936,8 +7997,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateConfigurationResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> UpdateConfigurationOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> UpdateConfigurationOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7950,7 +8011,7 @@ namespace Aws
         std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
@@ -7980,15 +8041,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ValidateAuthorizationTokenResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8018,9 +8079,8 @@ namespace Aws
 
         std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return ValidateAuthorizationTokenResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async, [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
@@ -8050,15 +8110,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return RestartComponentResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8075,8 +8135,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#RestartComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> RestartComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> RestartComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8089,7 +8149,7 @@ namespace Aws
         std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return RestartComponentResult(GetOperationResult().get()); });
         }
 
         RestartComponentOperation::RestartComponentOperation(
@@ -8119,15 +8179,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetLocalDeploymentStatusResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8158,7 +8218,7 @@ namespace Aws
         std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
@@ -8195,8 +8255,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetSecretValueOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8213,8 +8273,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetSecretValueResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetSecretValueOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetSecretValueOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8227,7 +8287,7 @@ namespace Aws
         std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
@@ -8294,8 +8354,7 @@ namespace Aws
 
         std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            return std::async(std::launch::async, [this]() { return UpdateStateResult(GetOperationResult().get()); });
         }
 
         UpdateStateOperation::UpdateStateOperation(
@@ -8325,15 +8384,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ListNamedShadowsForThingResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8364,7 +8423,7 @@ namespace Aws
         std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
@@ -8426,15 +8485,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToComponentUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ComponentUpdatePolicyEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -8462,9 +8521,8 @@ namespace Aws
 
         std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SubscribeToComponentUpdatesResult(GetOperationResult().get());
-            });
+            return std::async(
+                std::launch::async, [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
@@ -8495,15 +8553,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ListLocalDeploymentsResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8520,8 +8578,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListLocalDeploymentsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ListLocalDeploymentsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ListLocalDeploymentsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8534,7 +8592,7 @@ namespace Aws
         std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
@@ -8589,8 +8647,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#StopComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> StopComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> StopComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8602,8 +8660,7 @@ namespace Aws
 
         std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            return std::async(std::launch::async, [this]() { return StopComponentResult(GetOperationResult().get()); });
         }
 
         StopComponentOperation::StopComponentOperation(
@@ -8640,8 +8697,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8658,8 +8715,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PauseComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PauseComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PauseComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8672,7 +8729,7 @@ namespace Aws
         std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return PauseComponentResult(GetOperationResult().get()); });
         }
 
         PauseComponentOperation::PauseComponentOperation(
@@ -8702,15 +8759,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CreateLocalDeploymentResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8741,7 +8798,7 @@ namespace Aws
         std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+                std::launch::async, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(
