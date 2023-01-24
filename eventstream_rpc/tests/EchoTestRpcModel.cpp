@@ -1161,9 +1161,9 @@ namespace Awstest
         }
         else
         {
-            return std::async(
-                std::launch::deferred,
-                [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+            return std::async(std::launch::deferred, [this]() {
+                return CauseStreamServiceToErrorResult(GetOperationResult().get());
+            });
         }
     }
 

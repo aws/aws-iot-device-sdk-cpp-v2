@@ -6625,15 +6625,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return SubscribeToConfigurationUpdateResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return SubscribeToConfigurationUpdateResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -6963,15 +6963,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -7311,15 +7311,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return GetClientDeviceAuthTokenResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return GetClientDeviceAuthTokenResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -7504,15 +7504,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return SubscribeToCertificateUpdatesResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return SubscribeToCertificateUpdatesResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -7585,15 +7585,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return VerifyClientDeviceIdentityResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return VerifyClientDeviceIdentityResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -7665,15 +7665,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return AuthorizeClientDeviceActionResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return AuthorizeClientDeviceActionResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -7976,15 +7976,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return SendConfigurationValidityReportResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return SendConfigurationValidityReportResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -8210,15 +8210,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return ValidateAuthorizationTokenResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return ValidateAuthorizationTokenResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -8367,15 +8367,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return GetLocalDeploymentStatusResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return GetLocalDeploymentStatusResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -8600,15 +8600,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return ListNamedShadowsForThingResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return ListNamedShadowsForThingResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -8710,15 +8710,15 @@ namespace Aws
         {
             if (async_mode)
             {
-                return std::async(
-                    std::launch::async,
-                    [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::async, [this]() {
+                    return SubscribeToComponentUpdatesResult(GetOperationResult().get());
+                });
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return SubscribeToComponentUpdatesResult(GetOperationResult().get());
+                });
             }
         }
 
@@ -9026,9 +9026,9 @@ namespace Aws
             }
             else
             {
-                return std::async(
-                    std::launch::deferred,
-                    [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+                return std::async(std::launch::deferred, [this]() {
+                    return CreateLocalDeploymentResult(GetOperationResult().get());
+                });
             }
         }
 
