@@ -3358,7 +3358,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToIoTCoreResult> GetResult() noexcept;
+            std::future<SubscribeToIoTCoreResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3423,7 +3423,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<ResumeComponentResult> GetResult() noexcept;
+            std::future<ResumeComponentResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3488,7 +3488,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<PublishToIoTCoreResult> GetResult() noexcept;
+            std::future<PublishToIoTCoreResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3620,7 +3620,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToConfigurationUpdateResult> GetResult() noexcept;
+            std::future<SubscribeToConfigurationUpdateResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3685,7 +3685,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<DeleteThingShadowResult> GetResult() noexcept;
+            std::future<DeleteThingShadowResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3750,7 +3750,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<PutComponentMetricResult> GetResult() noexcept;
+            std::future<PutComponentMetricResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3817,7 +3817,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<DeferComponentUpdateResult> GetResult() noexcept;
+            std::future<DeferComponentUpdateResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -3941,7 +3941,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult() noexcept;
+            std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4006,7 +4006,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetConfigurationResult> GetResult() noexcept;
+            std::future<GetConfigurationResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4145,7 +4145,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToTopicResult> GetResult() noexcept;
+            std::future<SubscribeToTopicResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4210,7 +4210,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetComponentDetailsResult> GetResult() noexcept;
+            std::future<GetComponentDetailsResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4278,7 +4278,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetClientDeviceAuthTokenResult> GetResult() noexcept;
+            std::future<GetClientDeviceAuthTokenResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4343,7 +4343,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<PublishToTopicResult> GetResult() noexcept;
+            std::future<PublishToTopicResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4486,7 +4486,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToCertificateUpdatesResult> GetResult() noexcept;
+            std::future<SubscribeToCertificateUpdatesResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4555,7 +4555,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<VerifyClientDeviceIdentityResult> GetResult() noexcept;
+            std::future<VerifyClientDeviceIdentityResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4624,7 +4624,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<AuthorizeClientDeviceActionResult> GetResult() noexcept;
+            std::future<AuthorizeClientDeviceActionResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4689,7 +4689,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<ListComponentsResult> GetResult() noexcept;
+            std::future<ListComponentsResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4754,7 +4754,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<CreateDebugPasswordResult> GetResult() noexcept;
+            std::future<CreateDebugPasswordResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4819,7 +4819,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetThingShadowResult> GetResult() noexcept;
+            std::future<GetThingShadowResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4889,7 +4889,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SendConfigurationValidityReportResult> GetResult() noexcept;
+            std::future<SendConfigurationValidityReportResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -4954,7 +4954,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<UpdateThingShadowResult> GetResult() noexcept;
+            std::future<UpdateThingShadowResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5019,7 +5019,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<UpdateConfigurationResult> GetResult() noexcept;
+            std::future<UpdateConfigurationResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5088,7 +5088,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<ValidateAuthorizationTokenResult> GetResult() noexcept;
+            std::future<ValidateAuthorizationTokenResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5153,7 +5153,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<RestartComponentResult> GetResult() noexcept;
+            std::future<RestartComponentResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5221,7 +5221,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetLocalDeploymentStatusResult> GetResult() noexcept;
+            std::future<GetLocalDeploymentStatusResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5286,7 +5286,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<GetSecretValueResult> GetResult() noexcept;
+            std::future<GetSecretValueResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5351,7 +5351,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<UpdateStateResult> GetResult() noexcept;
+            std::future<UpdateStateResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5419,7 +5419,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<ListNamedShadowsForThingResult> GetResult() noexcept;
+            std::future<ListNamedShadowsForThingResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5551,7 +5551,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<SubscribeToComponentUpdatesResult> GetResult() noexcept;
+            std::future<SubscribeToComponentUpdatesResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5618,7 +5618,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<ListLocalDeploymentsResult> GetResult() noexcept;
+            std::future<ListLocalDeploymentsResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5683,7 +5683,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<StopComponentResult> GetResult() noexcept;
+            std::future<StopComponentResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5748,7 +5748,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<PauseComponentResult> GetResult() noexcept;
+            std::future<PauseComponentResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;
@@ -5815,7 +5815,7 @@ namespace Aws
             /**
              * Retrieve the result from activating the stream.
              */
-            std::future<CreateLocalDeploymentResult> GetResult() noexcept;
+            std::future<CreateLocalDeploymentResult> GetResult(bool async_mode = false) noexcept;
 
           protected:
             Aws::Crt::String GetModelName() const noexcept override;

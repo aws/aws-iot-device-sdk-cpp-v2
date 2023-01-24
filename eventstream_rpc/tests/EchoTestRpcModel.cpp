@@ -976,9 +976,18 @@ namespace Awstest
         return Aws::Crt::String("awstest#GetAllProducts");
     }
 
-    std::future<GetAllProductsResult> GetAllProductsOperation::GetResult() noexcept
+    std::future<GetAllProductsResult> GetAllProductsOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(std::launch::async, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(
+                std::launch::async, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        }
     }
 
     GetAllProductsOperation::GetAllProductsOperation(
@@ -1044,9 +1053,18 @@ namespace Awstest
         return Aws::Crt::String("awstest#CauseServiceError");
     }
 
-    std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult() noexcept
+    std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(std::launch::async, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(
+                std::launch::async, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        }
     }
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
@@ -1134,10 +1152,19 @@ namespace Awstest
         return Aws::Crt::String("awstest#CauseStreamServiceToError");
     }
 
-    std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult() noexcept
+    std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(
-            std::launch::async, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(
+                std::launch::async, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred,
+                [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+        }
     }
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
@@ -1221,10 +1248,18 @@ namespace Awstest
         return Aws::Crt::String("awstest#EchoStreamMessages");
     }
 
-    std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult() noexcept
+    std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(
-            std::launch::async, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(
+                std::launch::async, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        }
     }
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
@@ -1289,9 +1324,17 @@ namespace Awstest
         return Aws::Crt::String("awstest#EchoMessage");
     }
 
-    std::future<EchoMessageResult> EchoMessageOperation::GetResult() noexcept
+    std::future<EchoMessageResult> EchoMessageOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(std::launch::async, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(std::launch::async, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        }
     }
 
     EchoMessageOperation::EchoMessageOperation(
@@ -1356,9 +1399,18 @@ namespace Awstest
         return Aws::Crt::String("awstest#GetAllCustomers");
     }
 
-    std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult() noexcept
+    std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult(bool async_mode) noexcept
     {
-        return std::async(std::launch::async, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        if (async_mode)
+        {
+            return std::async(
+                std::launch::async, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        }
+        else
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        }
     }
 
     GetAllCustomersOperation::GetAllCustomersOperation(

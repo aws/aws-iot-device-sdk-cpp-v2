@@ -6358,10 +6358,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToIoTCore");
         }
 
-        std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
+        std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
@@ -6428,10 +6436,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ResumeComponent");
         }
 
-        std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
+        std::future<ResumeComponentResult> ResumeComponentOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+            }
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
@@ -6497,10 +6513,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToIoTCore");
         }
 
-        std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
+        std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+            }
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
@@ -6596,11 +6620,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToConfigurationUpdate");
         }
 
-        std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
+        std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() {
-                return SubscribeToConfigurationUpdateResult(GetOperationResult().get());
-            });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
@@ -6667,10 +6701,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeleteThingShadow");
         }
 
-        std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
+        std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+            }
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
@@ -6736,10 +6778,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PutComponentMetric");
         }
 
-        std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
+        std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+            }
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
@@ -6805,10 +6855,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeferComponentUpdate");
         }
 
-        std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
+        std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+            }
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
@@ -6901,11 +6959,20 @@ namespace Aws
         }
 
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
-            GetResult() noexcept
+            GetResult(bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() {
-                return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get());
-            });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
@@ -6972,10 +7039,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetConfiguration");
         }
 
-        std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
+        std::future<GetConfigurationResult> GetConfigurationOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+            }
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
@@ -7076,10 +7151,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToTopic");
         }
 
-        std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
+        std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
@@ -7146,10 +7229,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetComponentDetails");
         }
 
-        std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
+        std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+            }
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
@@ -7215,10 +7306,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetClientDeviceAuthToken");
         }
 
-        std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
+        std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+            }
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
@@ -7284,10 +7386,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToTopic");
         }
 
-        std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
+        std::future<PublishToTopicResult> PublishToTopicOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            }
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
@@ -7389,11 +7499,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToCertificateUpdates");
         }
 
-        std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
+        std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() {
-                return SubscribeToCertificateUpdatesResult(GetOperationResult().get());
-            });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
@@ -7460,10 +7580,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#VerifyClientDeviceIdentity");
         }
 
-        std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
+        std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+            }
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
@@ -7529,10 +7660,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#AuthorizeClientDeviceAction");
         }
 
-        std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
+        std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+            }
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
@@ -7598,10 +7740,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListComponents");
         }
 
-        std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
+        std::future<ListComponentsResult> ListComponentsOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            }
         }
 
         ListComponentsOperation::ListComponentsOperation(
@@ -7667,10 +7817,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#CreateDebugPassword");
         }
 
-        std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
+        std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+            }
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
@@ -7736,10 +7894,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetThingShadow");
         }
 
-        std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
+        std::future<GetThingShadowResult> GetThingShadowOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            }
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
@@ -7805,12 +7971,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SendConfigurationValidityReport");
         }
 
-        std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
-            GetResult() noexcept
+        std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() {
-                return SendConfigurationValidityReportResult(GetOperationResult().get());
-            });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+            }
         }
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
@@ -7876,10 +8051,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateThingShadow");
         }
 
-        std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
+        std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+            }
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
@@ -7945,10 +8128,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateConfiguration");
         }
 
-        std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
+        std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+            }
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
@@ -8014,10 +8205,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ValidateAuthorizationToken");
         }
 
-        std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
+        std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+            }
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
@@ -8083,10 +8285,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#RestartComponent");
         }
 
-        std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
+        std::future<RestartComponentResult> RestartComponentOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+            }
         }
 
         RestartComponentOperation::RestartComponentOperation(
@@ -8152,10 +8362,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetLocalDeploymentStatus");
         }
 
-        std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
+        std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+            }
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
@@ -8221,10 +8442,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetSecretValue");
         }
 
-        std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
+        std::future<GetSecretValueResult> GetSecretValueOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            }
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
@@ -8289,9 +8518,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateState");
         }
 
-        std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
+        std::future<UpdateStateResult> UpdateStateOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            }
         }
 
         UpdateStateOperation::UpdateStateOperation(
@@ -8357,10 +8595,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListNamedShadowsForThing");
         }
 
-        std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
+        std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+            }
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
@@ -8456,10 +8705,21 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToComponentUpdates");
         }
 
-        std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
+        std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult(
+            bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async,
+                    [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+            }
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
@@ -8526,10 +8786,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListLocalDeployments");
         }
 
-        std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
+        std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+            }
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
@@ -8595,9 +8863,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#StopComponent");
         }
 
-        std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
+        std::future<StopComponentResult> StopComponentOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(std::launch::async, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            }
         }
 
         StopComponentOperation::StopComponentOperation(
@@ -8663,10 +8940,18 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PauseComponent");
         }
 
-        std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
+        std::future<PauseComponentResult> PauseComponentOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            }
         }
 
         PauseComponentOperation::PauseComponentOperation(
@@ -8732,10 +9017,19 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#CreateLocalDeployment");
         }
 
-        std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
+        std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult(bool async_mode) noexcept
         {
-            return std::async(
-                std::launch::async, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+            if (async_mode)
+            {
+                return std::async(
+                    std::launch::async, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+            }
+            else
+            {
+                return std::async(
+                    std::launch::deferred,
+                    [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+            }
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(

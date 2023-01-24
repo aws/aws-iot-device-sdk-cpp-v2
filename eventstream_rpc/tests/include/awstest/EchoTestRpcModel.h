@@ -560,7 +560,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<GetAllProductsResult> GetResult() noexcept;
+        std::future<GetAllProductsResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -625,7 +625,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<CauseServiceErrorResult> GetResult() noexcept;
+        std::future<CauseServiceErrorResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -745,7 +745,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
+        std::future<CauseStreamServiceToErrorResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -852,7 +852,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<EchoStreamMessagesResult> GetResult() noexcept;
+        std::future<EchoStreamMessagesResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -917,7 +917,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<EchoMessageResult> GetResult() noexcept;
+        std::future<EchoMessageResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -982,7 +982,7 @@ namespace Awstest
         /**
          * Retrieve the result from activating the stream.
          */
-        std::future<GetAllCustomersResult> GetResult() noexcept;
+        std::future<GetAllCustomersResult> GetResult(bool async_mode = false) noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
