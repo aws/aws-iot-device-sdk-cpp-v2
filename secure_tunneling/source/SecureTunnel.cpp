@@ -10,6 +10,13 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
+        Message::Message(const aws_secure_tunnel_message_view &message, Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+        }
+
+        Message::~Message() { aws_byte_buf_clean_up(&m_payloadStorage); }
+
         SecureTunnelBuilder::SecureTunnelBuilder(
             Crt::Allocator *allocator,                        // Should out live this object
             Aws::Crt::Io::ClientBootstrap &clientBootstrap,   // Should out live this object
@@ -93,6 +100,12 @@ namespace Aws
             return *this;
         }
 
+        SecureTunnelBuilder &SecureTunnelBuilder::WithClientToken(const std::string &clientToken)
+        {
+            m_clientToken = clientToken;
+            return *this;
+        }
+
         std::shared_ptr<SecureTunnel> SecureTunnelBuilder::Build() noexcept
         {
             auto tunnel = std::shared_ptr<SecureTunnel>(new SecureTunnel(
@@ -100,6 +113,7 @@ namespace Aws
                 m_clientBootstrap,
                 m_socketOptions,
                 m_accessToken,
+                m_clientToken,
                 m_localProxyMode,
                 m_endpointHost,
                 m_rootCa,
@@ -129,6 +143,7 @@ namespace Aws
             Aws::Crt::Io::ClientBootstrap *clientBootstrap,
             const Aws::Crt::Io::SocketOptions &socketOptions,
             const std::string &accessToken,
+            const std::string &clientToken,
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost,
 
@@ -169,10 +184,16 @@ namespace Aws
                 config.root_ca = rootCa.c_str();
             }
 
+            if (clientToken.length() > 0)
+            {
+                config.client_token = aws_byte_cursor_from_c_str(clientToken.c_str());
+            }
+
+            config.on_message_received = s_OnMessageReceived;
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_connection_shutdown = s_OnConnectionShutdown;
             config.on_send_data_complete = s_OnSendDataComplete;
-            config.on_data_receive = s_OnDataReceive;
+            // config.on_data_receive = s_OnDataReceive;
             config.on_stream_start = s_OnStreamStart;
             config.on_stream_reset = s_OnStreamReset;
             config.on_session_reset = s_OnSessionReset;
@@ -218,6 +239,7 @@ namespace Aws
                   clientBootstrap,
                   socketOptions,
                   accessToken,
+                  nullptr,
                   localProxyMode,
                   endpointHost,
                   rootCa,
@@ -257,6 +279,7 @@ namespace Aws
                   Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap(),
                   socketOptions,
                   accessToken,
+                  nullptr,
                   localProxyMode,
                   endpointHost,
                   rootCa,
@@ -322,31 +345,52 @@ namespace Aws
 
         bool SecureTunnel::IsValid() { return m_secure_tunnel ? true : false; }
 
-        int SecureTunnel::Connect() { return aws_secure_tunnel_connect(m_secure_tunnel); }
+        // Steve TODO Deprecate
+        int SecureTunnel::Connect() { return aws_secure_tunnel_start(m_secure_tunnel); }
+        int SecureTunnel::Start() { return aws_secure_tunnel_start(m_secure_tunnel); }
 
-        int SecureTunnel::Close() { return aws_secure_tunnel_close(m_secure_tunnel); }
+        // Steve TODO Deprecate
+        int SecureTunnel::Close() { return aws_secure_tunnel_stop(m_secure_tunnel); }
+        int SecureTunnel::Stop() { return aws_secure_tunnel_stop(m_secure_tunnel); }
 
-        int SecureTunnel::SendData(const Crt::ByteCursor &data)
+        int SecureTunnel::SendData(const Crt::ByteCursor &data) { return SendData("", data); }
+        int SecureTunnel::SendData(std::string serviceId, const Crt::ByteCursor &data)
         {
-            return aws_secure_tunnel_send_data(m_secure_tunnel, &data);
+            struct aws_secure_tunnel_message_view messageView;
+            AWS_ZERO_STRUCT(messageView);
+            messageView.service_id = aws_byte_cursor_from_c_str(serviceId.c_str());
+            messageView.payload = data;
+            return aws_secure_tunnel_send_message(m_secure_tunnel, &messageView);
         }
 
-        int SecureTunnel::SendStreamStart() { return aws_secure_tunnel_stream_start(m_secure_tunnel); }
+        // Steve TODO
+        int SecureTunnel::SendStreamStart() { return SendStreamStart(""); }
+        int SecureTunnel::SendStreamStart(std::string serviceId)
+        {
+            struct aws_secure_tunnel_message_view messageView;
+            AWS_ZERO_STRUCT(messageView);
+            messageView.service_id = aws_byte_cursor_from_c_str(serviceId.c_str());
+            return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
+        }
 
-        int SecureTunnel::SendStreamReset() { return aws_secure_tunnel_stream_reset(m_secure_tunnel); }
+        // Steve TODO
+        int SecureTunnel::SendStreamReset() { return aws_secure_tunnel_stream_reset(m_secure_tunnel, NULL); }
 
         aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle() { return m_secure_tunnel; }
 
-        void SecureTunnel::s_OnConnectionComplete(void *user_data)
+        void SecureTunnel::s_OnConnectionComplete(int error_code, void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
-            if (secureTunnel->m_OnConnectionComplete)
+            if (!error_code)
             {
-                secureTunnel->m_OnConnectionComplete();
+                if (secureTunnel->m_OnConnectionComplete)
+                {
+                    secureTunnel->m_OnConnectionComplete();
+                }
             }
         }
 
-        void SecureTunnel::s_OnConnectionShutdown(void *user_data)
+        void SecureTunnel::s_OnConnectionShutdown(int error_code, void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnConnectionShutdown)
@@ -364,16 +408,36 @@ namespace Aws
             }
         }
 
-        void SecureTunnel::s_OnDataReceive(const struct aws_byte_buf *data, void *user_data)
+        void SecureTunnel::s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
+            /* V1 Protocol */
             if (secureTunnel->m_OnDataReceive)
             {
-                secureTunnel->m_OnDataReceive(*data);
+                /*
+                 * Old API expects an aws_byte_buf. Temporarily creating one from an aws_byte_cursor. The data will be
+                 * managed syncronous here with the expectation that the user copies what they need as it is cleared as
+                 * soon as this function completes
+                 */
+                struct aws_byte_buf payload_buf;
+                AWS_ZERO_STRUCT(payload_buf);
+                payload_buf.allocator = NULL;
+                payload_buf.buffer = message->payload.ptr;
+                payload_buf.len = message->payload.len;
+                secureTunnel->m_OnDataReceive(payload_buf);
+                return;
+            }
+
+            if (secureTunnel->m_OnMessageReceived)
+            {
+                secureTunnel->m_OnMessageReceived(message->service_id, message->payload);
             }
         }
 
-        void SecureTunnel::s_OnStreamStart(void *user_data)
+        void SecureTunnel::s_OnStreamStart(
+            const struct aws_secure_tunnel_message_view *message,
+            int error_code,
+            void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnStreamStart)
@@ -382,7 +446,10 @@ namespace Aws
             }
         }
 
-        void SecureTunnel::s_OnStreamReset(void *user_data)
+        void SecureTunnel::s_OnStreamReset(
+            const struct aws_secure_tunnel_message_view *message,
+            int error_code,
+            void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnStreamReset)

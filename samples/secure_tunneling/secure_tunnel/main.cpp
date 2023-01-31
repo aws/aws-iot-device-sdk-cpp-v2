@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     ApiHandle apiHandle;
 
     String accessToken;
+    String clientToken;
     aws_secure_tunneling_local_proxy_mode localProxyMode;
 
     String proxyHost;
@@ -44,6 +45,7 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
     cmdUtils.RegisterCommand(
         "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
+    cmdUtils.RegisterCommand("client_token", "<str>", "Tunneling access token (optional if --client_token_file used).");
     cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
     cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     cmdUtils.RegisterCommand(
@@ -85,6 +87,28 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(stderr, "Failed to open access token file");
+            exit(-1);
+        }
+    }
+
+    if (cmdUtils.HasCommand("client_token"))
+    {
+        clientToken = cmdUtils.GetCommand("client_token");
+    }
+
+    if (cmdUtils.HasCommand("client_token_file"))
+    {
+        clientToken = cmdUtils.GetCommand("client_token_file");
+
+        std::ifstream clientTokenFile(clientToken.c_str());
+        if (clientTokenFile.is_open())
+        {
+            getline(clientTokenFile, clientToken);
+            clientTokenFile.close();
+        }
+        else
+        {
+            fprintf(stderr, "Failed to open client token file");
             exit(-1);
         }
     }
@@ -152,7 +176,7 @@ int main(int argc, char *argv[])
                 connectionCompletedPromise.set_value(true);
                 fprintf(stdout, "Connection Complete in Source Mode\n");
                 fprintf(stdout, "Sending Stream Start request\n");
-                secureTunnel->SendStreamStart();
+                secureTunnel->SendStreamStart("ssh");
                 break;
         }
     };
@@ -200,7 +224,7 @@ int main(int argc, char *argv[])
             case AWS_SECURE_TUNNELING_DESTINATION_MODE:
                 fprintf(stdout, "Data Receive Complete in Destination\n");
                 fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
-                secureTunnel->SendData(ByteCursorFromCString(returnMessage.c_str()));
+                secureTunnel->SendData("ssh", ByteCursorFromCString(returnMessage.c_str()));
                 if (isTest)
                 {
                     expectedMessageCount--;
@@ -290,6 +314,7 @@ int main(int argc, char *argv[])
                 .WithOnStreamStart(OnStreamStart)
                 .WithOnStreamReset(OnStreamReset)
                 .WithOnSessionReset(OnSessionReset)
+                .WithClientToken(clientToken.c_str())
                 .Build();
     }
 
@@ -314,11 +339,10 @@ int main(int argc, char *argv[])
 
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                messageCount++;
                 String toSend = (std::to_string(messageCount) + ": " + message.c_str()).c_str();
-
-                if (!secureTunnel->SendData(ByteCursorFromCString(toSend.c_str())))
+                if (messageCount < 5 && !secureTunnel->SendData("ssh", ByteCursorFromCString(toSend.c_str())))
                 {
+                    messageCount++;
                     fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
                     if (messageCount >= 5)
                     {
