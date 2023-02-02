@@ -1,14 +1,28 @@
 name: Release
 
+env:
+  GITHUB_TOKEN: ${{ secrets.TAG_PR_TOKEN }}
+
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      release_type:
+        type: choice
+        description: "Release type:"
+        required: true
+        options:
+          - bug fix (PATCH)
+          - new feature (MINOR)
+      release_title:
+        description: "The title of the release"
+        required: true
 
 jobs:
   update-version:
     runs-on: ubuntu-20.04 # latest
     permissions:
       contents: write # allow push
+      pull-requests: write # allow making PR
 
     steps:
     - name: Checkout Sources
@@ -16,5 +30,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Update Version
-      run: ./update-version.sh ${{ secrets.GITHUB_TOKEN }} ${{ secrets.TAG_PR_TOKEN }}
+    - name: Make new release
+      env:
+        Title: ${{ github.event.inputs.release_title }}
+      run: |
+        # Escape special characters
+        Title=$(echo ${Title//[\"]\\\"})
+        Title=$(echo ${Title//[\']\\\'})
+        Title=$(echo ${Title//[\$]})
+
+        ./utils/publish-release.sh "${{ github.event.inputs.release_type }}" "$Title"

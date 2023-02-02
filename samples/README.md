@@ -2,6 +2,7 @@
 
 * [Basic Pub-Sub](#basic-pub-sub)
 * [Basic Connect](#basic-connect)
+* [Mqtt5 Pub-Sub](#mqtt5-pub-sub)
 * [Websocket Connect](#websocket-connect)
 * [PKCS#11 Connect](#pkcs11-connect)
 * [Raw Connect](#raw-connect)
@@ -135,6 +136,63 @@ To run the basic connect sample use the following command:
 
 ``` sh
 ./basic-connect --endpoint <endpoint> --ca_file <path to root CA> --cert <path to the certificate> --key <path to the private key>
+```
+
+## Mqtt5 Pub-Sub
+This sample uses the
+[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
+for AWS IoT to send and receive messages through an MQTT5 client.
+On startup, the device connects to the server, subscribes to topic `test/topic1`, and begins publishing messages to that topic. The device should receive those same messages back from the message broker, since it is subscribed to that same topic. Status updates are continually printed to the console.
+
+Source: `samples/mqtt5/mqtt5_pubsub/main.cpp`
+
+Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
+
+<details>
+<summary>(see sample policy)</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/test/topic"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/test/topic1"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
+      ]
+    }
+  ]
+}
+</pre>
+</details>
+
+To run the basic MQTT5 PubSub use the following command:
+
+``` sh
+./mqtt5_pubsub  --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
+--topic <topic name>
 ```
 
 ## Websocket Connect

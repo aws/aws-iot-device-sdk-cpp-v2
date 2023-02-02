@@ -10,7 +10,7 @@ If you are just getting started make sure you [install this sdk](https://github.
 ApiHandle apiHandle;
 apiHandle.InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
 ```
-You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not avaible on the client side sdk.
+You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side sdk.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP
 
@@ -121,3 +121,5 @@ Here is an example launch.json file to run the pubsub sample
 * [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass 
 * [Discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) questions are also a great way to ask other questions about this sdk.
 * [Open an issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues) if you find a bug or have a feature request
+* [Breif MQTT CONCEPT](./MQTT_CONCEPT.md)
+* [MQTT5 User Guide](./MQTT5_Userguide.md)
