@@ -10,12 +10,130 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
+        void setPacketByteBufOptional(
+            Crt::Optional<Crt::ByteCursor> &optional,
+            Crt::ByteBuf &optionalStorage,
+            Crt::Allocator *allocator,
+            const Crt::ByteCursor *value)
+        {
+            aws_byte_buf_clean_up(&optionalStorage);
+            AWS_ZERO_STRUCT(optionalStorage);
+            if (value != nullptr)
+            {
+                aws_byte_buf_init_copy_from_cursor(&optionalStorage, allocator, *value);
+                optional = aws_byte_cursor_from_buf(&optionalStorage);
+            }
+            else
+            {
+                optional.reset();
+            }
+        }
+
+        void setPacketStringOptional(
+            Crt::Optional<Crt::ByteCursor> &optional,
+            Crt::String &optionalStorage,
+            const aws_byte_cursor *value)
+        {
+            if (value != nullptr)
+            {
+                optionalStorage = Crt::String((const char *)value->ptr, value->len);
+                struct aws_byte_cursor optional_cursor;
+                optional_cursor.ptr = (uint8_t *)optionalStorage.c_str();
+                optional_cursor.len = optionalStorage.size();
+                optional = optional_cursor;
+            }
+        }
+
         Message::Message(const aws_secure_tunnel_message_view &message, Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
+            AWS_ZERO_STRUCT(m_payload);
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceId);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            setPacketByteBufOptional(m_payload, m_payloadStorage, m_allocator, message.payload);
+            setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
         }
 
-        Message::~Message() { aws_byte_buf_clean_up(&m_payloadStorage); }
+        /* Default constructor */
+        Message::Message(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_payload);
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceId);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+        }
+
+        Message::Message(Crt::ByteCursor payload, Crt::Allocator *allocator) noexcept : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_payload);
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceId);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
+            m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
+        }
+
+        Message::Message(Crt::ByteCursor serviceId, Crt::ByteCursor payload, Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_payload);
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceId);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
+            m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
+
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_serviceIdStorage, m_allocator, serviceId);
+            m_payload = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+        }
+
+        Message &Message::withPayload(Crt::ByteCursor payload) noexcept
+        {
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
+            m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
+            return *this;
+        }
+
+        Message &Message::withServiceId(Crt::ByteCursor serviceId) noexcept
+        {
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_serviceIdStorage, m_allocator, serviceId);
+            m_payload = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+            return *this;
+        }
+
+        bool Message::initializeRawOptions(aws_secure_tunnel_message_view &raw_options) noexcept
+        {
+            AWS_ZERO_STRUCT(raw_options);
+            if (m_payload.has_value())
+            {
+                raw_options.payload = &m_payload.value();
+            }
+            if (m_serviceId.has_value())
+            {
+                raw_options.service_id = &m_serviceId.value();
+            }
+
+            return true;
+        }
+
+        const Crt::Optional<Crt::ByteCursor> &Message::getPayload() const noexcept { return m_payload; }
+
+        const Crt::Optional<Crt::ByteCursor> &Message::getServiceId() const noexcept { return m_serviceId; }
+
+        Message::~Message()
+        {
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+        }
 
         SecureTunnelBuilder::SecureTunnelBuilder(
             Crt::Allocator *allocator,                        // Should out live this object
@@ -171,7 +289,6 @@ namespace Aws
             aws_secure_tunnel_options config;
             AWS_ZERO_STRUCT(config);
 
-            config.allocator = allocator;
             config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
             config.socket_options = &socketOptions.GetImpl();
 
@@ -210,7 +327,8 @@ namespace Aws
             }
 
             // Create the secure tunnel
-            m_secure_tunnel = aws_secure_tunnel_new(&config);
+            m_secure_tunnel = aws_secure_tunnel_new(allocator, &config);
+            m_allocator = allocator;
         }
 
         /**
@@ -353,15 +471,37 @@ namespace Aws
         int SecureTunnel::Close() { return aws_secure_tunnel_stop(m_secure_tunnel); }
         int SecureTunnel::Stop() { return aws_secure_tunnel_stop(m_secure_tunnel); }
 
-        int SecureTunnel::SendData(const Crt::ByteCursor &data) { return SendData("", data); }
-        int SecureTunnel::SendData(std::string serviceId, const Crt::ByteCursor &data)
+        int SecureTunnel::SendData(const Crt::ByteCursor &data)
         {
-            struct aws_secure_tunnel_message_view messageView;
-            AWS_ZERO_STRUCT(messageView);
-            messageView.service_id = aws_byte_cursor_from_c_str(serviceId.c_str());
-            messageView.payload = data;
-            return aws_secure_tunnel_send_message(m_secure_tunnel, &messageView);
+            // return SendData("", data);
+            std::shared_ptr<Message> message = std::make_shared<Message>(data);
+            return SendMessage(message);
         }
+
+        int SecureTunnel::SendMessage(std::shared_ptr<Message> messageOptions) noexcept
+        {
+            if (messageOptions == nullptr)
+            {
+                return AWS_OP_ERR;
+            }
+
+            aws_secure_tunnel_message_view message;
+            messageOptions->initializeRawOptions(message);
+            return aws_secure_tunnel_send_message(m_secure_tunnel, &message);
+        }
+        // int SecureTunnel::SendData(std::string serviceId, const Crt::ByteCursor &data)
+        // {
+        //     struct aws_secure_tunnel_message_view messageView;
+        //     AWS_ZERO_STRUCT(messageView);
+        //     struct aws_byte_cursor service_id_cur = aws_byte_cursor_from_c_str(serviceId.c_str());
+        //     struct aws_byte_cursor payload_cur = {
+        //         .ptr = data.ptr,
+        //         .len = data.len,
+        //     };
+        //     messageView.service_id = &service_id_cur;
+        //     messageView.payload = &payload_cur;
+        //     return aws_secure_tunnel_send_message(m_secure_tunnel, &messageView);
+        // }
 
         // Steve TODO
         int SecureTunnel::SendStreamStart() { return SendStreamStart(""); }
@@ -369,7 +509,11 @@ namespace Aws
         {
             struct aws_secure_tunnel_message_view messageView;
             AWS_ZERO_STRUCT(messageView);
-            messageView.service_id = aws_byte_cursor_from_c_str(serviceId.c_str());
+            if (serviceId.length() > 0)
+            {
+                struct aws_byte_cursor service_id_cur = aws_byte_cursor_from_c_str(serviceId.c_str());
+                messageView.service_id = &service_id_cur;
+            }
             return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
         }
 
@@ -410,27 +554,42 @@ namespace Aws
 
         void SecureTunnel::s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data)
         {
-            auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
-            /* V1 Protocol */
-            if (secureTunnel->m_OnDataReceive)
+            AWS_LOGF_INFO(AWS_LS_IOTDEVICE_SECURE_TUNNELING, "on message received callback");
+            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            if (secureTunnel != nullptr)
             {
-                /*
-                 * Old API expects an aws_byte_buf. Temporarily creating one from an aws_byte_cursor. The data will be
-                 * managed syncronous here with the expectation that the user copies what they need as it is cleared as
-                 * soon as this function completes
-                 */
-                struct aws_byte_buf payload_buf;
-                AWS_ZERO_STRUCT(payload_buf);
-                payload_buf.allocator = NULL;
-                payload_buf.buffer = message->payload.ptr;
-                payload_buf.len = message->payload.len;
-                secureTunnel->m_OnDataReceive(payload_buf);
-                return;
-            }
+                if (message != NULL)
+                {
+                    if (secureTunnel->m_OnMessageReceived != nullptr)
+                    {
+                        std::shared_ptr<Message> packet =
+                            std::make_shared<Message>(*message, secureTunnel->m_allocator);
+                        MessageReceivedEventData eventData;
+                        eventData.message = packet;
+                        secureTunnel->m_OnMessageReceived(*secureTunnel, eventData);
+                        return;
+                    }
 
-            if (secureTunnel->m_OnMessageReceived)
-            {
-                secureTunnel->m_OnMessageReceived(message->service_id, message->payload);
+                    if (secureTunnel->m_OnDataReceive != nullptr)
+                    {
+                        /*
+                         * Old API (V1) expects an aws_byte_buf. Temporarily creating one from an aws_byte_cursor. The
+                         * data will be managed syncronous here with the expectation that the user copies what they
+                         * need as it is cleared as soon as this function completes
+                         */
+                        struct aws_byte_buf payload_buf;
+                        AWS_ZERO_STRUCT(payload_buf);
+                        payload_buf.allocator = NULL;
+                        payload_buf.buffer = message->payload->ptr;
+                        payload_buf.len = message->payload->len;
+                        secureTunnel->m_OnDataReceive(payload_buf);
+                        return;
+                    }
+                }
+                else
+                {
+                    AWS_LOGF_ERROR(AWS_LS_IOTDEVICE_SECURE_TUNNELING, "Failed to access message view.");
+                }
             }
         }
 
