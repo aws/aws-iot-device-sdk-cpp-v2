@@ -18,7 +18,6 @@ namespace Aws
     {
         /**
          * Data model for Secure Tunnel messages.
-         *
          */
         class AWS_IOTSECURETUNNELING_API Message
         {
@@ -84,7 +83,6 @@ namespace Aws
 
             /**
              * The payload of the secure tunnel message.
-             *
              */
             Crt::Optional<Crt::ByteCursor> m_payload;
 
@@ -104,17 +102,167 @@ namespace Aws
             std::shared_ptr<Message> message;
         };
 
+        /**
+         * Data model for Secure Tunnel connection view.
+         */
+        class AWS_IOTSECURETUNNELING_API ConnectionData
+        {
+          public:
+            ConnectionData(
+                const aws_secure_tunnel_connection_view &raw_options,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Service id 1 of the secure tunnel.
+             *
+             * @return Service id 1 of the secure tunnel.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId1() const noexcept;
+
+            /**
+             * Service id 2 of the secure tunnel.
+             *
+             * @return Service id 2 of the secure tunnel.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId2() const noexcept;
+
+            /**
+             * Service id 3 of the secure tunnel.
+             *
+             * @return Service id 3 of the secure tunnel.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId3() const noexcept;
+
+            virtual ~ConnectionData();
+            /* Do not allow direct copy or move */
+            ConnectionData(const ConnectionData &) = delete;
+            ConnectionData(ConnectionData &&) noexcept = delete;
+            ConnectionData &operator=(const ConnectionData &) = delete;
+            ConnectionData &operator=(ConnectionData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Service id 1 used for multiplexing.
+             *
+             * If left empty, a V1 protocol message is assumed.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId1;
+
+            /**
+             * Service id 2 used for multiplexing.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId2;
+
+            /**
+             * Service id 2 used for multiplexing.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId3;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_serviceId1Storage;
+            Crt::ByteBuf m_serviceId2Storage;
+            Crt::ByteBuf m_serviceId3Storage;
+        };
+
+        /**
+         * The data returned when a connection with secure tunnel service is established.
+         */
+        struct AWS_IOTSECURETUNNELING_API ConnectionEstablishedEventData
+        {
+            ConnectionEstablishedEventData() : connectionData(nullptr) {}
+            std::shared_ptr<ConnectionData> connectionData;
+        };
+
+        /**
+         * Data model for started Secure Tunnel streams.
+         */
+        class AWS_IOTSECURETUNNELING_API StreamStartedData
+        {
+          public:
+            StreamStartedData(
+                const aws_secure_tunnel_message_view &raw_options,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Service id of the started stream.
+             *
+             * @return Service id of the started stream.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
+
+            virtual ~StreamStartedData();
+            /* Do not allow direct copy or move */
+            StreamStartedData(const StreamStartedData &) = delete;
+            StreamStartedData(StreamStartedData &&) noexcept = delete;
+            StreamStartedData &operator=(const StreamStartedData &) = delete;
+            StreamStartedData &operator=(StreamStartedData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Service id of started stream.
+             *
+             * If left empty, a V1 protocolstream is assumed.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_serviceIdStorage;
+        };
+
+        /**
+         * The data returned when a stream is started on the Secure Tunnel.
+         */
+        struct AWS_IOTSECURETUNNELING_API StreamStartedEventData
+        {
+            StreamStartedEventData() : streamStartedData(nullptr) {}
+            std::shared_ptr<StreamStartedData> streamStartedData;
+        };
+
         class SecureTunnel;
 
         // Client callback type definitions
-        using OnConnectionComplete = std::function<void(void)>;
+
+        /**
+         * Type signature of the callback invoked when connection is established with the secure tunnel service and
+         * available service ids are returned.
+         */
+        using OnConnectionEstablished =
+            std::function<void(SecureTunnel &, int errorCode, const ConnectionEstablishedEventData &)>;
+        /**
+         * Type signature of the callback invoked when connection is shutdown.
+         */
         using OnConnectionShutdown = std::function<void(void)>;
+
+        /**
+         * Type signature of the callback invoked when data has been sent through the secure tunnel connection.
+         */
         using OnSendDataComplete = std::function<void(int errorCode)>;
-        using OnDataReceive = std::function<void(const Crt::ByteBuf &data)>;
+
+        /**
+         * Type signature of the callback invoked when a message is received through the secure tunnel connection.
+         */
         using OnMessageReceived = std::function<void(SecureTunnel &, const MessageReceivedEventData &)>;
-        using OnStreamStart = std::function<void()>;
+
+        /**
+         * Type signature of the callback invoked when a stream has been started with a source through the secure tunnel
+         * connection.
+         */
+        using OnStreamStarted = std::function<void(SecureTunnel &, int errorCode, const StreamStartedEventData &)>;
         using OnStreamReset = std::function<void(void)>;
         using OnSessionReset = std::function<void(void)>;
+
+        /* Deprecate */
+        using OnConnectionComplete = std::function<void(void)>;
+        using OnDataReceive = std::function<void(const Crt::ByteBuf &data)>;
+        using OnStreamStart = std::function<void()>;
 
         class AWS_IOTSECURETUNNELING_API SecureTunnelBuilder final
         {
@@ -146,15 +294,18 @@ namespace Aws
             SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
             SecureTunnelBuilder &WithHttpClientConnectionProxyOptions(
                 const Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
-            SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
+            SecureTunnelBuilder &WithOnConnectionEstablished(OnConnectionEstablished onConnectionEstablished);
             SecureTunnelBuilder &WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown);
             SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
-            SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
             SecureTunnelBuilder &WithOnMessageReceived(OnMessageReceived onMessageReceived);
-            SecureTunnelBuilder &WithOnStreamStart(OnStreamStart onStreamStart);
+            SecureTunnelBuilder &WithOnStreamStarted(OnStreamStarted onStreamStarted);
             SecureTunnelBuilder &WithOnStreamReset(OnStreamReset onStreamReset);
             SecureTunnelBuilder &WithOnSessionReset(OnSessionReset onSessionReset);
             SecureTunnelBuilder &WithClientToken(const std::string &clientToken);
+            /* Deprecate */
+            SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
+            SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
+            SecureTunnelBuilder &WithOnStreamStart(OnStreamStart onStreamStart);
 
             /**
              * Will return a shared pointer to a new SecureTunnel that countains a
@@ -185,14 +336,20 @@ namespace Aws
             /**
              * Callbacks
              */
-            OnConnectionComplete m_OnConnectionComplete;
+            OnConnectionEstablished m_OnConnectionEstablished;
             OnConnectionShutdown m_OnConnectionShutdown;
             OnSendDataComplete m_OnSendDataComplete;
-            OnDataReceive m_OnDataReceive;
             OnMessageReceived m_OnMessageReceived;
-            OnStreamStart m_OnStreamStart;
+            OnStreamStarted m_OnStreamStarted;
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
+
+            /* Depricate */
+            OnConnectionComplete m_OnConnectionComplete;
+            /* Depricate */
+            OnDataReceive m_OnDataReceive;
+            /* Depricate */
+            OnStreamStart m_OnStreamStart;
 
             friend class SecureTunnel;
         };
@@ -238,7 +395,7 @@ namespace Aws
             virtual ~SecureTunnel();
             /* Do not allow direct copy or move */
             SecureTunnel(const SecureTunnel &) = delete;
-            SecureTunnel(SecureTunnel &&) noexcept = delete;
+            SecureTunnel(SecureTunnel &&) noexcept;
             SecureTunnel &operator=(const SecureTunnel &) = delete;
             SecureTunnel &operator=(SecureTunnel &&) noexcept;
 
@@ -251,6 +408,7 @@ namespace Aws
             /* SOURCE MODE ONLY */
             int SendStreamStart();
             int SendStreamStart(std::string serviceId);
+            int SendStreamStart(Crt::ByteCursor serviceId);
 
             aws_secure_tunnel *GetUnderlyingHandle();
 
@@ -279,48 +437,54 @@ namespace Aws
                 const std::string &rootCa,
                 Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
+                OnConnectionEstablished onConnectionEstablished,
                 OnConnectionComplete onConnectionComplete,
                 OnConnectionShutdown onConnectionShutdown,
                 OnSendDataComplete onSendDataComplete,
+                OnMessageReceived onMessageReceived,
                 OnDataReceive onDataReceive,
+                OnStreamStarted onStreamStarted,
                 OnStreamStart onStreamStart,
                 OnStreamReset onStreamReset,
                 OnSessionReset onSessionReset);
 
             // aws-c-iot callbacks
             static void s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data);
-            static void s_OnConnectionComplete(int error_code, void *user_data);
-            static void s_OnConnectionShutdown(int error_code, void *user_data);
-            static void s_OnSendDataComplete(int error_code, void *user_data);
-            static void s_OnStreamStart(
-                const struct aws_secure_tunnel_message_view *message,
+            static void s_OnConnectionEstablished(
+                const struct aws_secure_tunnel_connection_view *connection,
                 int error_code,
                 void *user_data);
+            static void s_OnConnectionShutdown(int error_code, void *user_data);
+            static void s_OnSendDataComplete(int error_code, void *user_data);
             static void s_OnStreamReset(
                 const struct aws_secure_tunnel_message_view *message,
                 int error_code,
                 void *user_data);
             static void s_OnSessionReset(void *user_data);
             static void s_OnTerminationComplete(void *user_data);
-
-            // STEVE TODO remove/adapt the callbacks below
-            // static void s_OnDataReceive(const struct aws_byte_buf *data, void *user_data);
+            static void s_OnStreamStarted(
+                const struct aws_secure_tunnel_message_view *message,
+                int error_code,
+                void *user_data);
 
             void OnTerminationComplete();
 
             // Client callbacks
             OnMessageReceived m_OnMessageReceived;
-            OnConnectionComplete m_OnConnectionComplete;
+            OnConnectionEstablished m_OnConnectionEstablished;
             OnConnectionShutdown m_OnConnectionShutdown;
             OnSendDataComplete m_OnSendDataComplete;
-            OnStreamStart m_OnStreamStart;
+            OnStreamStarted m_OnStreamStarted;
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
 
             aws_secure_tunnel *m_secure_tunnel;
             Crt::Allocator *m_allocator;
 
+            /* Deprecate these callbacks */
             OnDataReceive m_OnDataReceive;
+            OnConnectionComplete m_OnConnectionComplete;
+            OnStreamStart m_OnStreamStart;
 
             std::promise<void> m_TerminationComplete;
 
