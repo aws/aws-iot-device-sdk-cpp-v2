@@ -18,9 +18,40 @@ using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
 using namespace std::chrono_literals;
 
+void logMessage(std::shared_ptr<Message> message)
+{
+    if (message->getServiceId().has_value())
+    {
+        if (message->getPayload().has_value())
+        {
+            fprintf(
+                stdout,
+                "Message received on service id:'" PRInSTR "' with payload:'" PRInSTR "'\n",
+                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()),
+                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
+        }
+        else
+        {
+            fprintf(
+                stdout,
+                "Message with service id:'" PRInSTR "' with no payload.\n",
+                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()));
+        }
+    }
+    if (message->getPayload().has_value())
+    {
+        fprintf(
+            stdout,
+            "Message received with payload:'" PRInSTR "'\n",
+            AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
+    }
+};
+
 int main(int argc, char *argv[])
 {
     ApiHandle apiHandle;
+
+    aws_iotdevice_library_init(Aws::Crt::g_allocator);
 
     String accessToken;
     String clientToken;
@@ -32,6 +63,7 @@ int main(int argc, char *argv[])
     String proxyPassword;
 
     std::shared_ptr<SecureTunnel> secureTunnel;
+    std::shared_ptr<ConnectionData> connectionData;
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -47,7 +79,6 @@ int main(int argc, char *argv[])
         "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
     cmdUtils.RegisterCommand("client_token", "<str>", "Tunneling access token (optional if --client_token_file used).");
     cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
-    cmdUtils.RegisterCommand("test", "", "Used to trigger internal testing (optional, ignore unless testing).");
     cmdUtils.RegisterCommand(
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils.RegisterCommand(
@@ -108,7 +139,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            fprintf(stderr, "Failed to open client token file");
+            fprintf(stderr, "Failed to open client token file\n");
             exit(-1);
         }
     }
@@ -141,13 +172,7 @@ int main(int argc, char *argv[])
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
-
-    /*
-     * For internal testing
-     */
-    bool isTest = cmdUtils.HasCommand("test");
-    int expectedMessageCount = 5;
+    String payloadMessage = cmdUtils.GetCommandOrDefault("message", "Hello World");
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
@@ -165,19 +190,59 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionCompletedPromise;
     std::promise<bool> connectionClosedPromise;
 
-    /*********************** Callbacks ***************************/
-    auto OnConnectionComplete = [&]() {
-        switch (localProxyMode)
+    //***********************************************************************************************************************
+    /* CALLBACKS */
+    //***********************************************************************************************************************
+
+    auto OnConnectionEstablished = [&](SecureTunnel &, int errorCode, const ConnectionEstablishedEventData &eventData) {
+        if (!errorCode)
         {
-            case AWS_SECURE_TUNNELING_DESTINATION_MODE:
-                fprintf(stdout, "Connection Complete in Destination Mode\n");
-                break;
-            case AWS_SECURE_TUNNELING_SOURCE_MODE:
-                connectionCompletedPromise.set_value(true);
-                fprintf(stdout, "Connection Complete in Source Mode\n");
-                fprintf(stdout, "Sending Stream Start request\n");
-                secureTunnel->SendStreamStart("ssh");
-                break;
+            fprintf(stdout, "Secure Tunnel connected to Service\n");
+            connectionData = eventData.connectionData;
+            if (connectionData->getServiceId1().has_value())
+            {
+                fprintf(
+                    stdout,
+                    "Secure Tunnel Service ID 1:'" PRInSTR "'\n",
+                    AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
+                if (connectionData->getServiceId2().has_value())
+                {
+                    fprintf(
+                        stdout,
+                        "Secure Tunnel Service ID 2:'" PRInSTR "'\n",
+                        AWS_BYTE_CURSOR_PRI(connectionData->getServiceId2().value()));
+                    if (connectionData->getServiceId3().has_value())
+                    {
+                        fprintf(
+                            stdout,
+                            "Secure Tunnel Service ID 3:'" PRInSTR "'\n",
+                            AWS_BYTE_CURSOR_PRI(connectionData->getServiceId3().value()));
+                    }
+                }
+
+                /* Stream Start can only be called from Source Mode */
+                if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+                {
+                    fprintf(
+                        stdout,
+                        "Sending Stream Start request with service id:'" PRInSTR "'\n",
+                        AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
+                    secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
+                }
+            }
+            else
+            {
+                fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
+
+                /* Stream Start can only be called from Source Mode */
+                if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+                {
+                    fprintf(stdout, "Sending Stream Start request\n");
+                    secureTunnel->SendStreamStart();
+                }
+            }
+
+            connectionCompletedPromise.set_value(true);
         }
     };
 
@@ -213,56 +278,81 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnDataReceive = [&](const struct aws_byte_buf &data) {
-        String receivedData = String((char *)data.buffer, data.len);
-        String returnMessage = "Echo:" + receivedData;
-
-        fprintf(stdout, "Received: \"%s\"\n", receivedData.c_str());
-
-        switch (localProxyMode)
+    auto OnMessageReceived = [&](SecureTunnel &, const MessageReceivedEventData &eventData) {
         {
-            case AWS_SECURE_TUNNELING_DESTINATION_MODE:
-                fprintf(stdout, "Data Receive Complete in Destination\n");
-                fprintf(stdout, "Sending response message:\"%s\"\n", returnMessage.c_str());
-                secureTunnel->SendData("ssh", ByteCursorFromCString(returnMessage.c_str()));
-                if (isTest)
-                {
-                    expectedMessageCount--;
-                    if (expectedMessageCount <= 0)
+            std::shared_ptr<Message> message = eventData.message;
+
+            logMessage(message);
+            std::shared_ptr<Message> echoMessage;
+
+            switch (localProxyMode)
+            {
+                case AWS_SECURE_TUNNELING_DESTINATION_MODE:
+
+                    echoMessage = std::make_shared<Message>(message->getPayload().value());
+
+                    /* Echo message on same service id received message came on */
+                    if (message->getServiceId().has_value())
                     {
-                        exit(0);
+                        echoMessage->withServiceId(message->getServiceId().value());
                     }
-                }
-                break;
-            case AWS_SECURE_TUNNELING_SOURCE_MODE:
-                fprintf(stdout, "Data Receive Complete in Source\n");
-                break;
+
+                    secureTunnel->SendMessage(echoMessage);
+
+                    fprintf(stdout, "Sending Echo Message\n");
+
+                    break;
+                case AWS_SECURE_TUNNELING_SOURCE_MODE:
+
+                    break;
+            }
         }
     };
 
-    /*
-     * This only fires in Destination Mode
-     */
-    auto OnStreamStart = [&]() { fprintf(stdout, "Stream Started in Destination Mode\n"); };
+    auto OnStreamStarted = [&](SecureTunnel &, int errorCode, const StreamStartedEventData &eventData) {
+        if (!errorCode)
+        {
+            std::shared_ptr<StreamStartedData> streamStartedData = eventData.streamStartedData;
+            if (streamStartedData->getServiceId().has_value())
+            {
+                fprintf(
+                    stdout,
+                    "Stream started on service id: '" PRInSTR "'\n",
+                    AWS_BYTE_CURSOR_PRI(streamStartedData->getServiceId().value()));
+            }
+            else
+            {
+                fprintf(stdout, "Stream started using V1 Protocol");
+            }
+        }
+    };
 
     auto OnStreamReset = [&]() { fprintf(stdout, "Stream Reset\n"); };
 
     auto OnSessionReset = [&]() { fprintf(stdout, "Session Reset\n"); };
 
-    /*********************** Proxy Connection Setup ***************************/
-    /*
-     * Setup HttpClientCommectionProxyOptions for connecting through a proxy before the Secure Tunnel
-     */
+    /* Use SecureTunnelBuilder to create a new Secure Tunnel */
+    SecureTunnelBuilder builder =
+        SecureTunnelBuilder(
+            Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
+            .WithRootCa(caFile.c_str())
+            .WithOnConnectionEstablished(OnConnectionEstablished)
+            .WithOnConnectionShutdown(OnConnectionShutdown)
+            .WithOnSendDataComplete(OnSendDataComplete)
+            .WithOnMessageReceived(OnMessageReceived)
+            .WithOnStreamStarted(OnStreamStarted)
+            .WithOnStreamReset(OnStreamReset)
+            .WithOnSessionReset(OnSessionReset)
+            .WithClientToken(clientToken.c_str());
 
+    /* Setup HttpClientCommectionProxyOptions if connecting through a proxy */
     if (proxyHost.length() > 0)
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
         proxyOptions.HostName = proxyHost.c_str();
         proxyOptions.Port = proxyPort;
 
-        /*
-         * Set up Proxy Strategy if a user name and password is provided
-         */
+        /* Set up Proxy Strategy if a user name and password is provided */
         if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
         {
             fprintf(stdout, "Creating proxy strategy\n");
@@ -279,44 +369,12 @@ int main(int argc, char *argv[])
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         }
 
-        /*********************** Secure Tunnel Setup ***************************/
-        /*
-         * Create a new SecureTunnel using the SecureTunnelBuilder
-         */
-        secureTunnel =
-            SecureTunnelBuilder(
-                Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
-                .WithRootCa(caFile.c_str())
-                .WithHttpClientConnectionProxyOptions(proxyOptions)
-                .WithOnConnectionComplete(OnConnectionComplete)
-                .WithOnConnectionShutdown(OnConnectionShutdown)
-                .WithOnSendDataComplete(OnSendDataComplete)
-                .WithOnDataReceive(OnDataReceive)
-                .WithOnStreamStart(OnStreamStart)
-                .WithOnStreamReset(OnStreamReset)
-                .WithOnSessionReset(OnSessionReset)
-                .Build();
+        /* Add proxy options to the builder */
+        builder.WithHttpClientConnectionProxyOptions(proxyOptions);
     }
-    else
-    {
-        /*********************** Secure Tunnel Setup ***************************/
-        /*
-         * Create a new SecureTunnel using the SecureTunnelBuilder
-         */
-        secureTunnel =
-            SecureTunnelBuilder(
-                Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
-                .WithRootCa(caFile.c_str())
-                .WithOnConnectionComplete(OnConnectionComplete)
-                .WithOnConnectionShutdown(OnConnectionShutdown)
-                .WithOnSendDataComplete(OnSendDataComplete)
-                .WithOnDataReceive(OnDataReceive)
-                .WithOnStreamStart(OnStreamStart)
-                .WithOnStreamReset(OnStreamReset)
-                .WithOnSessionReset(OnSessionReset)
-                .WithClientToken(clientToken.c_str())
-                .Build();
-    }
+
+    /* Create Secure Tunnel using the options set with the builder */
+    secureTunnel = builder.Build();
 
     if (!secureTunnel)
     {
@@ -324,43 +382,64 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    if (secureTunnel->Connect() == AWS_OP_ERR)
+    /* Set the Secure Tunnel to desire a connected state */
+    if (secureTunnel->Start())
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
+
     int messageCount = 0;
+    bool keepRunning = true;
 
     if (connectionCompletedPromise.get_future().get())
     {
-        while (true)
-        {
-            std::this_thread::sleep_for(3000ms);
+        std::this_thread::sleep_for(1000ms);
 
+        while (keepRunning)
+        {
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                String toSend = (std::to_string(messageCount) + ": " + message.c_str()).c_str();
-                if (messageCount < 5 && !secureTunnel->SendData("ssh", ByteCursorFromCString(toSend.c_str())))
-                {
-                    messageCount++;
-                    fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
-                    if (messageCount >= 5)
-                    {
-                        fprintf(stdout, "Closing Connection\n");
-                        if (secureTunnel->Close() == AWS_OP_ERR)
-                        {
-                            fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
-                            exit(-1);
-                        }
-                    }
-                }
-                else if (connectionClosedPromise.get_future().get())
-                {
-                    fprintf(stdout, "Sample Complete");
+                messageCount++;
+                String toSend = (std::to_string(messageCount) + ": " + payloadMessage.c_str()).c_str();
 
-                    exit(0);
+                if (messageCount < 5)
+                {
+                    std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
+
+                    if (connectionData->getServiceId1().has_value())
+                    {
+                        message->withServiceId(connectionData->getServiceId1().value());
+                    }
+
+                    secureTunnel->SendMessage(message);
+
+                    fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
+
+                    std::this_thread::sleep_for(5000ms);
+                }
+                else
+                {
+                    keepRunning = false;
                 }
             }
         }
     }
+
+    std::this_thread::sleep_for(3000ms);
+    fprintf(stdout, "Closing Connection\n");
+
+    if (secureTunnel->Close() == AWS_OP_ERR)
+    {
+        fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
+
+    if (connectionClosedPromise.get_future().get())
+    {
+        fprintf(stdout, "Sample Complete\n");
+        exit(0);
+    }
+
+    exit(-1);
 }

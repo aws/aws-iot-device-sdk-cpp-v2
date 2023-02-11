@@ -283,19 +283,19 @@ namespace Aws
             return *this;
         }
 
-        /* Deprecate */
+        /* Deprecated - Use WithOnConnectionEstablished */
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionComplete(OnConnectionComplete onConnectionComplete)
         {
             m_OnConnectionComplete = std::move(onConnectionComplete);
             return *this;
         }
-        /* Deprecate */
+        /* Deprecated - Use WithOnStreamStarted */
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamStart(OnStreamStart onStreamStart)
         {
             m_OnStreamStart = std::move(onStreamStart);
             return *this;
         }
-        /* Deprecate */
+        /* Deprecated - Use WithOnMessageReceived */
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnDataReceive(OnDataReceive onDataReceive)
         {
             m_OnDataReceive = std::move(onDataReceive);
@@ -423,8 +423,7 @@ namespace Aws
         }
 
         /**
-         * Should be deprecated when possible.
-         * SecureTunnelBuilder::Build() should be used to generate new SecureTunnels
+         * Deprecated - Use SecureTunnelBuilder
          */
         SecureTunnel::SecureTunnel(
             Crt::Allocator *allocator,
@@ -467,8 +466,7 @@ namespace Aws
         }
 
         /**
-         * Should be deprecated when possible.
-         * SecureTunnelBuilder::Build() should be used to generate new SecureTunnels
+         * Deprecated - Use SecureTunnelBuilder
          */
         SecureTunnel::SecureTunnel(
             Crt::Allocator *allocator,
@@ -526,9 +524,12 @@ namespace Aws
             m_OnStreamStarted = std::move(other.m_OnStreamStarted);
             m_OnStreamReset = std::move(other.m_OnStreamReset);
             m_OnSessionReset = std::move(other.m_OnSessionReset);
-            /* Deprecate */
+
+            /* Deprecated - Use m_OnConnectionEstablished */
             m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
+            /* Deprecated - Use m_OnMessageReceived */
             m_OnDataReceive = std::move(other.m_OnDataReceive);
+            /* Deprecated - Use m_OnStreamStarted */
             m_OnStreamStart = std::move(other.m_OnStreamStart);
 
             m_TerminationComplete = std::move(other.m_TerminationComplete);
@@ -551,9 +552,12 @@ namespace Aws
                 m_OnStreamStarted = std::move(other.m_OnStreamStarted);
                 m_OnStreamReset = std::move(other.m_OnStreamReset);
                 m_OnSessionReset = std::move(other.m_OnSessionReset);
-                /* Deprecate */
+
+                /* Deprecated - Use m_OnConnectionEstablished */
                 m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
+                /* Deprecated - Use m_OnMessageReceived */
                 m_OnDataReceive = std::move(other.m_OnDataReceive);
+                /* Deprecated - Use m_OnStreamStarted */
                 m_OnStreamStart = std::move(other.m_OnStreamStart);
 
                 m_TerminationComplete = std::move(other.m_TerminationComplete);
@@ -569,13 +573,16 @@ namespace Aws
         bool SecureTunnel::IsValid() { return m_secure_tunnel ? true : false; }
 
         int SecureTunnel::Start() { return aws_secure_tunnel_start(m_secure_tunnel); }
+
         int SecureTunnel::Stop() { return aws_secure_tunnel_stop(m_secure_tunnel); }
 
-        /* Deprecate */
-        int SecureTunnel::Connect() { return aws_secure_tunnel_start(m_secure_tunnel); }
-        /* Deprecate */
-        int SecureTunnel::Close() { return aws_secure_tunnel_stop(m_secure_tunnel); }
-        /* Deprecate */
+        /* Deprecated - Use Start() */
+        int SecureTunnel::Connect() { return Start(); }
+
+        /* Deprecated - Use Stop() */
+        int SecureTunnel::Close() { return Stop(); }
+
+        /* Deprecated - Use SendMessage() */
         int SecureTunnel::SendData(const Crt::ByteCursor &data)
         {
             // return SendData("", data);
@@ -762,7 +769,7 @@ namespace Aws
 
         void SecureTunnel::Shutdown()
         {
-            Close();
+            Stop();
             aws_secure_tunnel_release(m_secure_tunnel);
             m_secure_tunnel = nullptr;
 
