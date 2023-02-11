@@ -256,14 +256,33 @@ namespace Aws
          * connection.
          */
         using OnStreamStarted = std::function<void(SecureTunnel &, int errorCode, const StreamStartedEventData &)>;
+
+        /**
+         * Type signature of the callback invoked when a stream is reset.
+         */
         using OnStreamReset = std::function<void(void)>;
+
+        /**
+         * Type signature of the callback invoked when the secure tunnel receives a Session Reset.
+         */
         using OnSessionReset = std::function<void(void)>;
 
-        /* Deprecate */
+        /**
+         * Deprecated - OnConnectionEstablished
+         */
         using OnConnectionComplete = std::function<void(void)>;
+        /**
+         * Deprecated - Use OnMessageReceived
+         */
         using OnDataReceive = std::function<void(const Crt::ByteBuf &data)>;
+        /**
+         * Deprecated - Use OnStreamStarted
+         */
         using OnStreamStart = std::function<void()>;
 
+        /**
+         * Represents a unique configuration for a secure tunnel
+         */
         class AWS_IOTSECURETUNNELING_API SecureTunnelBuilder final
         {
           public:
@@ -288,23 +307,113 @@ namespace Aws
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost); // Make a copy and save in this object
 
+            /* Optional members */
             /**
-             * Optional members
+             * Sets rootCA to be used for this secure tunnel connection overriding the default trust store.
+             *
+             * @param rootCa string to use as rootCA for secure tunnel connection
+             *
+             * @return this builder object
              */
             SecureTunnelBuilder &WithRootCa(const std::string &rootCa);
+
+            /**
+             * Sets Client Token to a specified value rather than allowing the secure tunnel to auto-generate one.
+             *
+             * @param clientToken string to use as unique client token for secure tunnel connection
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithClientToken(const std::string &clientToken);
+
+            /**
+             * Sets http proxy options.
+             *
+             * @param httpClientConnectionProxyOptions http proxy configuration for connection establishment
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithHttpClientConnectionProxyOptions(
                 const Crt::Http::HttpClientConnectionProxyOptions &httpClientConnectionProxyOptions);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel establishes a connection and receives available
+             * service ids.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnConnectionEstablished(OnConnectionEstablished onConnectionEstablished);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel shuts down connection to the secure tunnel service.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel completes sending data to the secure tunnel service.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel receives a Message through the secure tunnel
+             * service.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnMessageReceived(OnMessageReceived onMessageReceived);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel starts a stream with a source through the secure
+             * tunnel service.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnStreamStarted(OnStreamStarted onStreamStarted);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel receives a stream reset.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnStreamReset(OnStreamReset onStreamReset);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel receives a session reset from the secure tunnel
+             * service.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
             SecureTunnelBuilder &WithOnSessionReset(OnSessionReset onSessionReset);
-            SecureTunnelBuilder &WithClientToken(const std::string &clientToken);
-            /* Deprecate */
+
+            /**
+             * Deprecated - Use WithOnMessageReceived()
+             */
             SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
+            /**
+             * Deprecated - Use WithOnConnectionEstablished()
+             */
             SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
+            /**
+             * Deprecated - Use WithOnStreamStarted
+             */
             SecureTunnelBuilder &WithOnStreamStart(OnStreamStart onStreamStart);
 
             /**
@@ -316,39 +425,111 @@ namespace Aws
             std::shared_ptr<SecureTunnel> Build() noexcept;
 
           private:
-            /**
-             * Required members
-             */
+            /* Required Memebers */
+
             Crt::Allocator *m_allocator;
+
+            /**
+             * Client bootstrap to use.  In almost all cases, this can be left undefined.
+             */
             Crt::Io::ClientBootstrap *m_clientBootstrap;
+
+            /**
+             * Controls socket properties of the underlying connections made by the secure tunnel.  Leave undefined to
+             * use defaults (no TCP keep alive, 10 second socket timeout).
+             */
             Crt::Io::SocketOptions m_socketOptions;
+
+            /**
+             * Token used to establish a WebSocket connection with the secure tunnel service. This token is one time use
+             * and must be rotated to establish a new connection to the secure tunnel unless using a unique client
+             * token.
+             */
             std::string m_accessToken;
+
+            /**
+             * Proxy mode to use.
+             */
             aws_secure_tunneling_local_proxy_mode m_localProxyMode;
+
+            /**
+             * AWS Secure Tunnel endpoint to connect to.
+             */
             std::string m_endpointHost;
 
+            /* Optional members */
             /**
-             * Optional members
+             * Client token is used to reconnect to a secure tunnel after initial connection. If this is not set by the
+             * user, one will be automatically generated and used to maintain a connection as long as the secure tunnel
+             * has the desired state of CONNECTED.
              */
             std::string m_clientToken;
-            std::string m_rootCa;
-            Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> m_httpClientConnectionProxyOptions;
 
             /**
-             * Callbacks
+             * If set, this will be used to override the default trust store.
+             */
+            std::string m_rootCa;
+
+            /**
+             * If set, http proxy configuration will be used for connection establishment
+             */
+            Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> m_httpClientConnectionProxyOptions;
+
+            /* Callbacks */
+            /**
+             * Callback handler trigged when secure tunnel establishes connection with secure tunnel service and
+             * receives available service ids.
              */
             OnConnectionEstablished m_OnConnectionEstablished;
+
+            /**
+             * Callback handler trigged when secure tunnel connection to secure tunnel service is closed.
+             */
             OnConnectionShutdown m_OnConnectionShutdown;
+
+            /**
+             * Callback handler trigged when secure tunnel completes sending data to the secure tunnel service.
+             */
             OnSendDataComplete m_OnSendDataComplete;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a message from the secure tunnel service.
+             *
+             * @param SecureTunnel: The shared secure tunnel
+             * @param MessageReceivedEventData: Data received
+             */
             OnMessageReceived m_OnMessageReceived;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a stream start from a source device.
+             *
+             * @param SecureTunnel: The shared secure tunnel
+             * @param int: error code
+             * @param StreamStartedEventData: Stream Started data
+             */
             OnStreamStarted m_OnStreamStarted;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a stream reset.
+             */
             OnStreamReset m_OnStreamReset;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
+             */
             OnSessionReset m_OnSessionReset;
 
-            /* Depricate */
+            /**
+             * Deprecated - Use m_OnConnectionEstablished
+             */
             OnConnectionComplete m_OnConnectionComplete;
-            /* Depricate */
+            /**
+             * Deprecated - Use m_OnMessageReceived
+             */
             OnDataReceive m_OnDataReceive;
-            /* Depricate */
+            /**
+             * Deprecated - Use m_OnStreamStarted
+             */
             OnStreamStart m_OnStreamStart;
 
             friend class SecureTunnel;
@@ -401,22 +582,82 @@ namespace Aws
 
             bool IsValid();
 
+            /**
+             * Notifies the secure tunnel that you want it to attempt to connect to the configured endpoint.
+             * The secure tunnel will attempt to stay connected and attempt to reconnect if disconnected.
+             *
+             * @return bool: true if operation succeed, otherwise false.
+             */
             int Start();
+
+            /**
+             * Notifies the secure tunnel that you want it to transition to the stopped state, disconnecting any
+             * existing connection and stopping subsequent reconnect attempts.
+             *
+             * @return bool: true if operation succeed, otherwise false
+             */
             int Stop();
+
+            /**
+             * Tells the secure tunnel to attempt to send a Message
+             *
+             * @param messageOptions: Message to send to the secure tunnel service.
+             *
+             * @return true if the message operation succeed otherwise false
+             */
             int SendMessage(std::shared_ptr<Message> messageOptions) noexcept;
 
             /* SOURCE MODE ONLY */
+            /**
+             * Notifies the secure tunnel that you want to start a stream with the Destination device. This will result
+             * in a V1 stream.
+             *
+             * @return bool: true if operation succeed, otherwise false
+             */
             int SendStreamStart();
+
+            /**
+             * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
+             * service id. This will result in a V2 stream.
+             *
+             * @param string: The Service Id to start a stream on.
+             *
+             * @return bool: true if operation succeed, otherwise false
+             */
             int SendStreamStart(std::string serviceId);
+
+            /**
+             * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
+             * service id. This will result in a V2 stream.
+             *
+             * @param ByteCursor: The Service Id to start a stream on.
+             *
+             * @return bool: true if operation succeed, otherwise false
+             */
             int SendStreamStart(Crt::ByteCursor serviceId);
 
             aws_secure_tunnel *GetUnderlyingHandle();
 
-            /* These are to be deprecated */
+            /**
+             * Deprecated - use Start()
+             */
             int Connect();
+
+            /**
+             * Deprecated - Use Stop()
+             */
             int Close();
+
+            /**
+             * Deprecated - Use Stop()
+             */
             void Shutdown();
+
+            /**
+             * Deprecated - Use SendMessage()
+             */
             int SendData(const Crt::ByteCursor &data);
+
             /* Should not be exposed. Under the hood only operation. */
             int SendStreamReset();
 
@@ -448,7 +689,7 @@ namespace Aws
                 OnStreamReset onStreamReset,
                 OnSessionReset onSessionReset);
 
-            // aws-c-iot callbacks
+            /* Static Callbacks */
             static void s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data);
             static void s_OnConnectionEstablished(
                 const struct aws_secure_tunnel_connection_view *connection,
@@ -469,21 +710,57 @@ namespace Aws
 
             void OnTerminationComplete();
 
-            // Client callbacks
+            /**
+             * Callback handler trigged when secure tunnel receives a Message.
+             */
             OnMessageReceived m_OnMessageReceived;
+
+            /**
+             * Callback handler trigged when secure tunnel establishes connection with the secure tunnel service and
+             * receives service ids.
+             */
             OnConnectionEstablished m_OnConnectionEstablished;
+
+            /**
+             * Callback handler trigged when secure tunnel shuts down connection.
+             */
             OnConnectionShutdown m_OnConnectionShutdown;
+
+            /**
+             * Callback handler trigged when secure tunnel completes sending data to the secure tunnel service.
+             */
             OnSendDataComplete m_OnSendDataComplete;
+
+            /**
+             * Callback handler trigged when secure tunnel starts a stream with a source device through the secure
+             * tunnel service.
+             */
             OnStreamStarted m_OnStreamStarted;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a stream reset.
+             */
             OnStreamReset m_OnStreamReset;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
+             */
             OnSessionReset m_OnSessionReset;
 
             aws_secure_tunnel *m_secure_tunnel;
             Crt::Allocator *m_allocator;
 
-            /* Deprecate these callbacks */
+            /**
+             * Deprecated - m_OnMessageReceived
+             */
             OnDataReceive m_OnDataReceive;
+            /**
+             * Deprecated - Use m_OnConnectionEstablished
+             */
             OnConnectionComplete m_OnConnectionComplete;
+            /**
+             * Deprecated - Use m_OnStreamStarted
+             */
             OnStreamStart m_OnStreamStart;
 
             std::promise<void> m_TerminationComplete;
