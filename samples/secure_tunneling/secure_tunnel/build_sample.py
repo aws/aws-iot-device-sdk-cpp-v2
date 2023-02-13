@@ -27,5 +27,6 @@ check_call(['cmake', '-DCMAKE_PREFIX_PATH="/Users/sbstevek/workplace/secure-tunn
            '-DCMAKE_BUILD_TYPE="Debug"', '..'])
 check_call(['cmake', '--build', '.', '--config', 'Debug'])
 
-cmake - DCMAKE_PREFIX_PATH = "/Users/sbstevek/workplace/secure-tunnel-multiplexing/installs" - DCMAKE_BUILD_TYPE = "Debug" ..
-cmake - -build . --config Debug
+
+# "cmake -DCMAKE_PREFIX_PATH="/Users/sbstevek/workplace/secure-tunnel-multiplexing/installs" -DCMAKE_BUILD_TYPE="Debug" .."
+# "cmake --build . --config Debug"

@@ -194,56 +194,53 @@ int main(int argc, char *argv[])
     /* CALLBACKS */
     //***********************************************************************************************************************
 
-    auto OnConnectionEstablished = [&](SecureTunnel &, int errorCode, const ConnectionEstablishedEventData &eventData) {
-        if (!errorCode)
+    auto OnConnectionSuccess = [&](SecureTunnel &, const ConnectionSuccessEventData &eventData) {
+        fprintf(stdout, "Secure Tunnel connected to Service\n");
+        connectionData = eventData.connectionData;
+        if (connectionData->getServiceId1().has_value())
         {
-            fprintf(stdout, "Secure Tunnel connected to Service\n");
-            connectionData = eventData.connectionData;
-            if (connectionData->getServiceId1().has_value())
+            fprintf(
+                stdout,
+                "Secure Tunnel Service ID 1:'" PRInSTR "'\n",
+                AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
+            if (connectionData->getServiceId2().has_value())
             {
                 fprintf(
                     stdout,
-                    "Secure Tunnel Service ID 1:'" PRInSTR "'\n",
-                    AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
-                if (connectionData->getServiceId2().has_value())
+                    "Secure Tunnel Service ID 2:'" PRInSTR "'\n",
+                    AWS_BYTE_CURSOR_PRI(connectionData->getServiceId2().value()));
+                if (connectionData->getServiceId3().has_value())
                 {
                     fprintf(
                         stdout,
-                        "Secure Tunnel Service ID 2:'" PRInSTR "'\n",
-                        AWS_BYTE_CURSOR_PRI(connectionData->getServiceId2().value()));
-                    if (connectionData->getServiceId3().has_value())
-                    {
-                        fprintf(
-                            stdout,
-                            "Secure Tunnel Service ID 3:'" PRInSTR "'\n",
-                            AWS_BYTE_CURSOR_PRI(connectionData->getServiceId3().value()));
-                    }
-                }
-
-                /* Stream Start can only be called from Source Mode */
-                if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
-                {
-                    fprintf(
-                        stdout,
-                        "Sending Stream Start request with service id:'" PRInSTR "'\n",
-                        AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
-                    secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
+                        "Secure Tunnel Service ID 3:'" PRInSTR "'\n",
+                        AWS_BYTE_CURSOR_PRI(connectionData->getServiceId3().value()));
                 }
             }
-            else
+
+            /* Stream Start can only be called from Source Mode */
+            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
-
-                /* Stream Start can only be called from Source Mode */
-                if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
-                {
-                    fprintf(stdout, "Sending Stream Start request\n");
-                    secureTunnel->SendStreamStart();
-                }
+                fprintf(
+                    stdout,
+                    "Sending Stream Start request with service id:'" PRInSTR "'\n",
+                    AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
+                secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
             }
-
-            connectionCompletedPromise.set_value(true);
         }
+        else
+        {
+            fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
+
+            /* Stream Start can only be called from Source Mode */
+            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+            {
+                fprintf(stdout, "Sending Stream Start request\n");
+                secureTunnel->SendStreamStart();
+            }
+        }
+
+        connectionCompletedPromise.set_value(true);
     };
 
     auto OnConnectionShutdown = [&]() {
@@ -336,7 +333,7 @@ int main(int argc, char *argv[])
         SecureTunnelBuilder(
             Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str())
             .WithRootCa(caFile.c_str())
-            .WithOnConnectionEstablished(OnConnectionEstablished)
+            .WithOnConnectionSuccess(OnConnectionSuccess)
             .WithOnConnectionShutdown(OnConnectionShutdown)
             .WithOnSendDataComplete(OnSendDataComplete)
             .WithOnMessageReceived(OnMessageReceived)

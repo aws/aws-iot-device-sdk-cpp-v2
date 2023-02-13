@@ -171,9 +171,9 @@ namespace Aws
         /**
          * The data returned when a connection with secure tunnel service is established.
          */
-        struct AWS_IOTSECURETUNNELING_API ConnectionEstablishedEventData
+        struct AWS_IOTSECURETUNNELING_API ConnectionSuccessEventData
         {
-            ConnectionEstablishedEventData() : connectionData(nullptr) {}
+            ConnectionSuccessEventData() : connectionData(nullptr) {}
             std::shared_ptr<ConnectionData> connectionData;
         };
 
@@ -234,8 +234,14 @@ namespace Aws
          * Type signature of the callback invoked when connection is established with the secure tunnel service and
          * available service ids are returned.
          */
-        using OnConnectionEstablished =
-            std::function<void(SecureTunnel &, int errorCode, const ConnectionEstablishedEventData &)>;
+        using OnConnectionSuccess = std::function<void(SecureTunnel &, const ConnectionSuccessEventData &)>;
+
+        /**
+         * Type signature of the callback invoked when connection is established with the secure tunnel service and
+         * available service ids are returned.
+         */
+        using OnConnectionFailure = std::function<void(SecureTunnel &, int errorCode)>;
+
         /**
          * Type signature of the callback invoked when connection is shutdown.
          */
@@ -268,7 +274,7 @@ namespace Aws
         using OnSessionReset = std::function<void(void)>;
 
         /**
-         * Deprecated - OnConnectionEstablished
+         * Deprecated - OnConnectionSuccess and OnConnectionFailure
          */
         using OnConnectionComplete = std::function<void(void)>;
         /**
@@ -344,7 +350,16 @@ namespace Aws
              *
              * @return this builder object
              */
-            SecureTunnelBuilder &WithOnConnectionEstablished(OnConnectionEstablished onConnectionEstablished);
+            SecureTunnelBuilder &WithOnConnectionSuccess(OnConnectionSuccess onConnectionSuccess);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel fails a connection attempt.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithOnConnectionFailure(OnConnectionFailure onConnectionFailure);
 
             /**
              * Setup callback handler trigged when an Secure Tunnel shuts down connection to the secure tunnel service.
@@ -408,7 +423,7 @@ namespace Aws
              */
             SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
             /**
-             * Deprecated - Use WithOnConnectionEstablished()
+             * Deprecated - Use WithOnConnectionSuccess() and WithOnConnectionFailure()
              */
             SecureTunnelBuilder &WithOnConnectionComplete(OnConnectionComplete onConnectionComplete);
             /**
@@ -480,7 +495,14 @@ namespace Aws
              * Callback handler trigged when secure tunnel establishes connection with secure tunnel service and
              * receives available service ids.
              */
-            OnConnectionEstablished m_OnConnectionEstablished;
+            OnConnectionSuccess m_OnConnectionSuccess;
+
+            /* Callbacks */
+            /**
+             * Callback handler trigged when secure tunnel establishes fails a connection attempt with secure tunnel
+             * service.
+             */
+            OnConnectionFailure m_OnConnectionFailure;
 
             /**
              * Callback handler trigged when secure tunnel connection to secure tunnel service is closed.
@@ -520,7 +542,7 @@ namespace Aws
             OnSessionReset m_OnSessionReset;
 
             /**
-             * Deprecated - Use m_OnConnectionEstablished
+             * Deprecated - Use m_OnConnectionSuccess and m_OnConnectionFailure
              */
             OnConnectionComplete m_OnConnectionComplete;
             /**
@@ -678,7 +700,8 @@ namespace Aws
                 const std::string &rootCa,
                 Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
-                OnConnectionEstablished onConnectionEstablished,
+                OnConnectionSuccess onConnectionSuccess,
+                OnConnectionFailure onConnectionFailure,
                 OnConnectionComplete onConnectionComplete,
                 OnConnectionShutdown onConnectionShutdown,
                 OnSendDataComplete onSendDataComplete,
@@ -691,10 +714,11 @@ namespace Aws
 
             /* Static Callbacks */
             static void s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data);
-            static void s_OnConnectionEstablished(
+            static void s_OnConnectionComplete(
                 const struct aws_secure_tunnel_connection_view *connection,
                 int error_code,
                 void *user_data);
+            static void s_OnConnectionFailure(int error_code, void *user_data);
             static void s_OnConnectionShutdown(int error_code, void *user_data);
             static void s_OnSendDataComplete(int error_code, void *user_data);
             static void s_OnStreamReset(
@@ -719,7 +743,12 @@ namespace Aws
              * Callback handler trigged when secure tunnel establishes connection with the secure tunnel service and
              * receives service ids.
              */
-            OnConnectionEstablished m_OnConnectionEstablished;
+            OnConnectionSuccess m_OnConnectionSuccess;
+
+            /**
+             * Callback handler trigged when secure tunnel fails a connection attempt with the secure tunnel service.
+             */
+            OnConnectionFailure m_OnConnectionFailure;
 
             /**
              * Callback handler trigged when secure tunnel shuts down connection.
@@ -755,7 +784,7 @@ namespace Aws
              */
             OnDataReceive m_OnDataReceive;
             /**
-             * Deprecated - Use m_OnConnectionEstablished
+             * Deprecated - Use m_OnConnectionSuccess and m_OnConnectionFailure
              */
             OnConnectionComplete m_OnConnectionComplete;
             /**

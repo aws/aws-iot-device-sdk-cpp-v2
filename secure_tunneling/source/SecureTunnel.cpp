@@ -234,10 +234,15 @@ namespace Aws
             return *this;
         }
 
-        SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionEstablished(
-            OnConnectionEstablished onConnectionEstablished)
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionSuccess(OnConnectionSuccess onConnectionSuccess)
         {
-            m_OnConnectionEstablished = std::move(onConnectionEstablished);
+            m_OnConnectionSuccess = std::move(onConnectionSuccess);
+            return *this;
+        }
+
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionFailure(OnConnectionFailure onConnectionFailure)
+        {
+            m_OnConnectionFailure = std::move(onConnectionFailure);
             return *this;
         }
 
@@ -283,7 +288,7 @@ namespace Aws
             return *this;
         }
 
-        /* Deprecated - Use WithOnConnectionEstablished */
+        /* Deprecated - Use WithOnConnectionSuccess and WithOnConnectionFailure */
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionComplete(OnConnectionComplete onConnectionComplete)
         {
             m_OnConnectionComplete = std::move(onConnectionComplete);
@@ -314,7 +319,8 @@ namespace Aws
                 m_endpointHost,
                 m_rootCa,
                 m_httpClientConnectionProxyOptions.has_value() ? &m_httpClientConnectionProxyOptions.value() : nullptr,
-                m_OnConnectionEstablished,
+                m_OnConnectionSuccess,
+                m_OnConnectionFailure,
                 m_OnConnectionComplete,
                 m_OnConnectionShutdown,
                 m_OnSendDataComplete,
@@ -353,7 +359,8 @@ namespace Aws
             const std::string &rootCa,
             Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
-            OnConnectionEstablished onConnectionEstablished,
+            OnConnectionSuccess onConnectionSuccess,
+            OnConnectionFailure onConnectionFailure,
             OnConnectionComplete onConnectionComplete,
             OnConnectionShutdown onConnectionShutdown,
             OnSendDataComplete onSendDataComplete,
@@ -365,7 +372,8 @@ namespace Aws
             OnSessionReset onSessionReset)
         {
             // Client callbacks
-            m_OnConnectionEstablished = std::move(onConnectionEstablished);
+            m_OnConnectionSuccess = std::move(onConnectionSuccess);
+            m_OnConnectionFailure = std::move(onConnectionFailure);
             m_OnConnectionComplete = std::move(onConnectionComplete);
             m_OnConnectionShutdown = std::move(onConnectionShutdown);
             m_OnSendDataComplete = std::move(onSendDataComplete);
@@ -399,7 +407,7 @@ namespace Aws
 
             /* callbacks for native secure tunnel */
             config.on_message_received = s_OnMessageReceived;
-            config.on_connection_complete = s_OnConnectionEstablished;
+            config.on_connection_complete = s_OnConnectionComplete;
             config.on_connection_shutdown = s_OnConnectionShutdown;
             config.on_send_data_complete = s_OnSendDataComplete;
             config.on_stream_start = s_OnStreamStarted;
@@ -453,6 +461,7 @@ namespace Aws
                   rootCa,
                   nullptr,
                   nullptr,
+                  nullptr,
                   onConnectionComplete,
                   onConnectionShutdown,
                   onSendDataComplete,
@@ -495,6 +504,7 @@ namespace Aws
                   rootCa,
                   nullptr,
                   nullptr,
+                  nullptr,
                   onConnectionComplete,
                   onConnectionShutdown,
                   onSendDataComplete,
@@ -517,7 +527,8 @@ namespace Aws
 
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
         {
-            m_OnConnectionEstablished = std::move(other.m_OnConnectionEstablished);
+            m_OnConnectionSuccess = std::move(other.m_OnConnectionSuccess);
+            m_OnConnectionFailure = std::move(other.m_OnConnectionFailure);
             m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
             m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
             m_OnMessageReceived = std::move(other.m_OnMessageReceived);
@@ -525,7 +536,7 @@ namespace Aws
             m_OnStreamReset = std::move(other.m_OnStreamReset);
             m_OnSessionReset = std::move(other.m_OnSessionReset);
 
-            /* Deprecated - Use m_OnConnectionEstablished */
+            /* Deprecated - Use m_OnConnectionSuccess and m_OnConnectionFailure */
             m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
             /* Deprecated - Use m_OnMessageReceived */
             m_OnDataReceive = std::move(other.m_OnDataReceive);
@@ -545,7 +556,8 @@ namespace Aws
             {
                 this->~SecureTunnel();
 
-                m_OnConnectionEstablished = std::move(other.m_OnConnectionEstablished);
+                m_OnConnectionSuccess = std::move(other.m_OnConnectionSuccess);
+                m_OnConnectionFailure = std::move(other.m_OnConnectionFailure);
                 m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
                 m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
                 m_OnMessageReceived = std::move(other.m_OnMessageReceived);
@@ -553,7 +565,7 @@ namespace Aws
                 m_OnStreamReset = std::move(other.m_OnStreamReset);
                 m_OnSessionReset = std::move(other.m_OnSessionReset);
 
-                /* Deprecated - Use m_OnConnectionEstablished */
+                /* Deprecated - Use m_OnConnectionSuccess and m_OnConnectionFailure */
                 m_OnConnectionComplete = std::move(other.m_OnConnectionComplete);
                 /* Deprecated - Use m_OnMessageReceived */
                 m_OnDataReceive = std::move(other.m_OnDataReceive);
@@ -625,22 +637,23 @@ namespace Aws
 
         aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle() { return m_secure_tunnel; }
 
-        void SecureTunnel::s_OnConnectionEstablished(
+        void SecureTunnel::s_OnConnectionComplete(
             const struct aws_secure_tunnel_connection_view *connection,
             int error_code,
             void *user_data)
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
+
             if (!error_code)
             {
                 /* Check for full callback */
-                if (secureTunnel->m_OnConnectionEstablished)
+                if (secureTunnel->m_OnConnectionSuccess)
                 {
                     std::shared_ptr<ConnectionData> packet =
                         std::make_shared<ConnectionData>(*connection, secureTunnel->m_allocator);
-                    ConnectionEstablishedEventData eventData;
+                    ConnectionSuccessEventData eventData;
                     eventData.connectionData = packet;
-                    secureTunnel->m_OnConnectionEstablished(*secureTunnel, error_code, eventData);
+                    secureTunnel->m_OnConnectionSuccess(*secureTunnel, eventData);
                     return;
                 }
 
@@ -648,6 +661,13 @@ namespace Aws
                 if (secureTunnel->m_OnConnectionComplete)
                 {
                     secureTunnel->m_OnConnectionComplete();
+                }
+            }
+            else
+            {
+                if (secureTunnel->m_OnConnectionFailure)
+                {
+                    secureTunnel->m_OnConnectionFailure(*secureTunnel, error_code);
                 }
             }
         }
