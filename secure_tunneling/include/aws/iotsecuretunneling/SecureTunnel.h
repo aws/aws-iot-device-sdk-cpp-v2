@@ -319,6 +319,15 @@ namespace Aws
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost); // Make a copy and save in this object
 
+            /**
+             * Constructor arguments are the minimum required to create a secure tunnel
+             */
+            SecureTunnelBuilder(
+                Crt::Allocator *allocator,      // Should out live this object
+                const std::string &accessToken, // Make a copy and save in this object
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                const std::string &endpointHost); // Make a copy and save in this object
+
             /* Optional members */
             /**
              * Sets rootCA to be used for this secure tunnel connection overriding the default trust store.

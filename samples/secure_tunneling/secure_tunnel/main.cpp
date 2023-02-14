@@ -194,8 +194,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    SecureTunnelBuilder builder = SecureTunnelBuilder(
-        Aws::Crt::g_allocator, SocketOptions(), accessToken.c_str(), localProxyMode, endpoint.c_str());
+    SecureTunnelBuilder builder =
+        SecureTunnelBuilder(Aws::Crt::g_allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
     builder.WithRootCa(caFile.c_str());
 

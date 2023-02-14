@@ -221,6 +221,19 @@ namespace Aws
         {
         }
 
+        SecureTunnelBuilder::SecureTunnelBuilder(
+            Crt::Allocator *allocator,      // Should out live this object
+            const std::string &accessToken, // Make a copy and save in this object
+            aws_secure_tunneling_local_proxy_mode localProxyMode,
+            const std::string &endpointHost) // Make a copy and save in this object
+            : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
+              m_socketOptions(Crt::Io::SocketOptions()), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
+              m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(),
+              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnStreamReset(), m_OnSessionReset(),
+              m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart()
+        {
+        }
+
         SecureTunnelBuilder &SecureTunnelBuilder::WithRootCa(const std::string &rootCa)
         {
             m_rootCa = rootCa;
