@@ -234,13 +234,13 @@ namespace Aws
          * Type signature of the callback invoked when connection is established with the secure tunnel service and
          * available service ids are returned.
          */
-        using OnConnectionSuccess = std::function<void(SecureTunnel &, const ConnectionSuccessEventData &)>;
+        using OnConnectionSuccess = std::function<void(SecureTunnel *secureTunnel, const ConnectionSuccessEventData &)>;
 
         /**
          * Type signature of the callback invoked when connection is established with the secure tunnel service and
          * available service ids are returned.
          */
-        using OnConnectionFailure = std::function<void(SecureTunnel &, int errorCode)>;
+        using OnConnectionFailure = std::function<void(SecureTunnel *secureTunnel, int errorCode)>;
 
         /**
          * Type signature of the callback invoked when connection is shutdown.
@@ -255,13 +255,14 @@ namespace Aws
         /**
          * Type signature of the callback invoked when a message is received through the secure tunnel connection.
          */
-        using OnMessageReceived = std::function<void(SecureTunnel &, const MessageReceivedEventData &)>;
+        using OnMessageReceived = std::function<void(SecureTunnel *secureTunnel, const MessageReceivedEventData &)>;
 
         /**
          * Type signature of the callback invoked when a stream has been started with a source through the secure tunnel
          * connection.
          */
-        using OnStreamStarted = std::function<void(SecureTunnel &, int errorCode, const StreamStartedEventData &)>;
+        using OnStreamStarted =
+            std::function<void(SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &)>;
 
         /**
          * Type signature of the callback invoked when a stream is reset.
@@ -272,6 +273,11 @@ namespace Aws
          * Type signature of the callback invoked when the secure tunnel receives a Session Reset.
          */
         using OnSessionReset = std::function<void(void)>;
+
+        /**
+         * Type signature of the callback invoked when the secure tunnel completes transitioning to a stopped state.
+         */
+        using OnStopped = std::function<void(SecureTunnel *secureTunnel)>;
 
         /**
          * Deprecated - OnConnectionSuccess and OnConnectionFailure
@@ -419,6 +425,15 @@ namespace Aws
             SecureTunnelBuilder &WithOnSessionReset(OnSessionReset onSessionReset);
 
             /**
+             * Setup callback handler trigged when an Secure Tunnel completes entering a stopped state
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithOnStopped(OnStopped onStopped);
+
+            /**
              * Deprecated - Use WithOnMessageReceived()
              */
             SecureTunnelBuilder &WithOnDataReceive(OnDataReceive onDataReceive);
@@ -542,6 +557,11 @@ namespace Aws
             OnSessionReset m_OnSessionReset;
 
             /**
+             * Callback handler trigged when secure tunnel completes transition to stopped state.
+             */
+            OnStopped m_OnStopped;
+
+            /**
              * Deprecated - Use m_OnConnectionSuccess and m_OnConnectionFailure
              */
             OnConnectionComplete m_OnConnectionComplete;
@@ -557,7 +577,7 @@ namespace Aws
             friend class SecureTunnel;
         };
 
-        class AWS_IOTSECURETUNNELING_API SecureTunnel final
+        class AWS_IOTSECURETUNNELING_API SecureTunnel final : std::enable_shared_from_this<SecureTunnel>
         {
           public:
             SecureTunnel(
@@ -596,13 +616,21 @@ namespace Aws
                 OnSessionReset onSessionReset);
 
             virtual ~SecureTunnel();
-            /* Do not allow direct copy or move */
             SecureTunnel(const SecureTunnel &) = delete;
-            SecureTunnel(SecureTunnel &&) noexcept;
             SecureTunnel &operator=(const SecureTunnel &) = delete;
+
+            SecureTunnel(SecureTunnel &&) noexcept;
             SecureTunnel &operator=(SecureTunnel &&) noexcept;
 
             bool IsValid();
+
+            /**
+             * Get shared poitner of the SecureTunnel. SecureTunnel is inherited to enable_shared_from_this to help
+             * with memory safety.
+             *
+             * @return shared_ptr for the SecureTunnel
+             */
+            std::shared_ptr<SecureTunnel> getptr() { return shared_from_this(); }
 
             /**
              * Notifies the secure tunnel that you want it to attempt to connect to the configured endpoint.
@@ -710,7 +738,8 @@ namespace Aws
                 OnStreamStarted onStreamStarted,
                 OnStreamStart onStreamStart,
                 OnStreamReset onStreamReset,
-                OnSessionReset onSessionReset);
+                OnSessionReset onSessionReset,
+                OnStopped onStopped);
 
             /* Static Callbacks */
             static void s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data);
@@ -726,6 +755,7 @@ namespace Aws
                 int error_code,
                 void *user_data);
             static void s_OnSessionReset(void *user_data);
+            static void s_OnStopped(void *user_data);
             static void s_OnTerminationComplete(void *user_data);
             static void s_OnStreamStarted(
                 const struct aws_secure_tunnel_message_view *message,
@@ -776,6 +806,11 @@ namespace Aws
              */
             OnSessionReset m_OnSessionReset;
 
+            /**
+             * Callback handler trigged when secure tunnel finishes entering a stopped state.
+             */
+            OnStopped m_OnStopped;
+
             aws_secure_tunnel *m_secure_tunnel;
             Crt::Allocator *m_allocator;
 
@@ -792,7 +827,11 @@ namespace Aws
              */
             OnStreamStart m_OnStreamStart;
 
-            std::promise<void> m_TerminationComplete;
+            std::shared_ptr<SecureTunnel> m_selfRef;
+            // std::promise<void> m_TerminationComplete;
+            // std::condition_variable m_terminationCondition;
+            // std::mutex m_terminationMutex;
+            // bool m_terminationPredicate = false;
 
             friend class SecureTunnelBuilder;
         };
