@@ -1515,10 +1515,7 @@ namespace Aws
             }
         }
 
-        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
-        {
-            m_asyncLaunchMode = mode;
-        }
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept { m_asyncLaunchMode = mode; }
 
         std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
