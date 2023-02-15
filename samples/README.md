@@ -435,6 +435,8 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
 This sample is similar to the [Basic Pub-Sub](#basic-pub-sub), but the connection uses a X.509 certificate
 to source the AWS credentials when connecting.
 
+See the [Authorizing direct calls to AWS services using AWS IoT Core credential provider](https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html) page for instructions on how to setup the IAM roles, the trust policy for the IAM roles, how to setup the IoT Core Role alias, and how to get the credential provider endpoint for your AWS account.
+
 source: `samples/mqtt/x509_credentials_provider_connect/main.cpp`
 
 To run the x509 Credentials Provider Connect sample use the following command:
@@ -443,7 +445,7 @@ To run the x509 Credentials Provider Connect sample use the following command:
 ./x509-credentials-provider-connect --endpoint <endpoint> --ca_file <path to root CA>
 --signing_region <signing region> --x509_ca_file <path to x509 CA>
 --x509_cert <path to x509 cert> --x509_endpoint <x509 endpoint>
--- x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
+--x509_key <path to x509 key> --x509_role_alias <alias> -x509_thing_name <thing name>
 ```
 
 Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
@@ -462,6 +464,11 @@ Your Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
       ]
+    },
+    {
+      "Effect":"Allow",
+      "Action":"iot:AssumeRoleWithCertificate",
+      "Resource":"arn:aws:iot:<b>region</b>:<b>account</b>:rolealias/<b>role-alias</b>"
     }
   ]
 }
