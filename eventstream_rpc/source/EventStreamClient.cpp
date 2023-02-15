@@ -1107,9 +1107,9 @@ namespace Aws
             std::shared_ptr<StreamResponseHandler> streamHandler,
             const OperationModelContext &operationModelContext,
             Crt::Allocator *allocator) noexcept
-            : m_operationModelContext(operationModelContext), m_messageCount(0), m_allocator(allocator),
-              m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0),
-              m_streamClosedCalled(false)
+            : m_operationModelContext(operationModelContext), m_asyncLaunchMode(std::launch::deferred),
+              m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
+              m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0), m_streamClosedCalled(false)
         {
         }
 
@@ -1513,6 +1513,11 @@ namespace Aws
                 }
                 m_closeReady.notify_one();
             }
+        }
+
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
+        {
+            m_asyncLaunchMode = mode;
         }
 
         std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept

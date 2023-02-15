@@ -505,6 +505,7 @@ namespace Aws
 
             std::future<RpcError> Close(OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
             std::future<TaggedResult> GetOperationResult() noexcept;
+            void WithLaunchMode(std::launch mode) noexcept;
 
           protected:
             std::future<RpcError> Activate(
@@ -515,6 +516,7 @@ namespace Aws
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             virtual Crt::String GetModelName() const noexcept = 0;
             const OperationModelContext &m_operationModelContext;
+            std::launch m_asyncLaunchMode;
 
           private:
             EventStreamRpcStatusCode HandleData(const Crt::Optional<Crt::ByteBuf> &payload);
