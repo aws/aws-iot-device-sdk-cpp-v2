@@ -51,10 +51,9 @@ int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
-     * Do the global initialization for the API.
+     * Do the global initialization for the API and aws-c-iot.
      */
     ApiHandle apiHandle;
-
     aws_iotdevice_library_init(Aws::Crt::g_allocator);
 
     String accessToken;
@@ -74,6 +73,7 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
 
+    /* Store to use service id */
     std::shared_ptr<ConnectionData> connectionData;
 
     /*********************** Parse Arguments ***************************/
@@ -99,24 +99,16 @@ int main(int argc, char *argv[])
     cmdUtils.SendArguments(const_argv, const_argv + argc);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
-    /*
-     * Generate secure tunneling endpoint using region
-     */
+    /* Generate secure tunneling endpoint using region */
     String region = cmdUtils.GetCommandRequired("region");
     String endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
-    if (!(cmdUtils.HasCommand("access_token_file") || cmdUtils.HasCommand("access_token")))
-    {
-        cmdUtils.PrintHelp();
-        fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
-        exit(-1);
-    }
-
+    /* An access token is required to connect to the secure tunnel service */
     if (cmdUtils.HasCommand("access_token"))
     {
         accessToken = cmdUtils.GetCommand("access_token");
     }
-    else
+    else if (cmdUtils.HasCommand("access_token_file"))
     {
         accessToken = cmdUtils.GetCommand("access_token_file");
 
@@ -132,7 +124,18 @@ int main(int argc, char *argv[])
             exit(-1);
         }
     }
+    else
+    {
+        cmdUtils.PrintHelp();
+        fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
+        exit(-1);
+    }
 
+    /*
+     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
+     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
+     * is terminated.
+     * */
     if (cmdUtils.HasCommand("client_token"))
     {
         clientToken = cmdUtils.GetCommand("client_token");
@@ -194,12 +197,12 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
     SecureTunnelBuilder builder =
         SecureTunnelBuilder(Aws::Crt::g_allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
     builder.WithRootCa(caFile.c_str());
 
-    /* The client token is optional and will be generated automatically for reconnects. */
     builder.WithClientToken(clientToken.c_str());
 
     /* Add callbacks using the builder */
@@ -293,6 +296,7 @@ int main(int argc, char *argv[])
             if (!errorCode)
             {
                 std::shared_ptr<StreamStartedData> streamStartedData = eventData.streamStartedData;
+
                 if (streamStartedData->getServiceId().has_value())
                 {
                     fprintf(
@@ -351,7 +355,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Set the Secure Tunnel to desire a connected state */
+    /* Set the Secure Tunnel Client to desire a connected state */
     if (secureTunnel->Start())
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
@@ -365,6 +369,10 @@ int main(int argc, char *argv[])
     {
         std::this_thread::sleep_for(1000ms);
 
+        /*
+         * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
+         * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
+         */
         while (keepRunning)
         {
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
@@ -376,6 +384,7 @@ int main(int argc, char *argv[])
                 {
                     std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
 
+                    /* If the secure tunnel has service ids, we will use one for our messages. */
                     if (connectionData->getServiceId1().has_value())
                     {
                         message->withServiceId(connectionData->getServiceId1().value());
@@ -396,8 +405,9 @@ int main(int argc, char *argv[])
     }
 
     std::this_thread::sleep_for(3000ms);
-    fprintf(stdout, "Closing Connection\n");
 
+    fprintf(stdout, "Closing Connection\n");
+    /* Set the Secure Tunnel Client to desire a stopped state */
     if (secureTunnel->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
@@ -409,6 +419,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Secure Tunnel Connection Closed\n");
     }
 
+    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
     if (clientStoppedPromise.get_future().get())
     {
         secureTunnel = nullptr;
