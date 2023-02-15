@@ -47,6 +47,139 @@ void logMessage(std::shared_ptr<Message> message)
     }
 };
 
+void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *argv[])
+{
+    cmdUtils->AddCommonProxyCommands();
+    cmdUtils->RegisterProgramName("secure_tunnel");
+    cmdUtils->RegisterCommand("region", "<str>", "The region of your secure tunnel");
+    cmdUtils->RegisterCommand(
+        "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+    cmdUtils->RegisterCommand(
+        "access_token_file", "<path>", "Path to the tunneling access token file (optional if --access_token used).");
+    cmdUtils->RegisterCommand(
+        "access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
+    cmdUtils->RegisterCommand(
+        "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
+    cmdUtils->RegisterCommand(
+        "client_token", "<str>", "Tunneling access token (optional if --client_token_file used).");
+    cmdUtils->RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
+    cmdUtils->RegisterCommand(
+        "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
+    cmdUtils->RegisterCommand(
+        "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
+    cmdUtils->AddLoggingCommands();
+    const char **const_argv = (const char **)argv;
+    cmdUtils->SendArguments(const_argv, const_argv + argc);
+}
+
+void setupCommandLineValues(
+    Utils::CommandLineUtils *cmdUtils,
+    String *endpoint,
+    String *accessToken,
+    String *clientToken,
+    String *caFile,
+    String *proxyHost,
+    String *proxyUserName,
+    String *proxyPassword,
+    uint16_t &proxyPort,
+    aws_secure_tunneling_local_proxy_mode &localProxyMode,
+    String *payloadMessage)
+{
+    /* Generate secure tunneling endpoint using region */
+    String region = cmdUtils->GetCommandRequired("region");
+    endpoint->assign("data.tunneling.iot." + region + ".amazonaws.com");
+
+    String tempAccessToken;
+    /* An access token is required to connect to the secure tunnel service */
+    if (cmdUtils->HasCommand("access_token"))
+    {
+        tempAccessToken = cmdUtils->GetCommand("access_token");
+    }
+    else if (cmdUtils->HasCommand("access_token_file"))
+    {
+        tempAccessToken = cmdUtils->GetCommand("access_token_file");
+
+        std::ifstream accessTokenFile(tempAccessToken.c_str());
+        if (accessTokenFile.is_open())
+        {
+            getline(accessTokenFile, tempAccessToken);
+            accessTokenFile.close();
+        }
+        else
+        {
+            fprintf(stderr, "Failed to open access token file");
+            exit(-1);
+        }
+    }
+    else
+    {
+        cmdUtils->PrintHelp();
+        fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
+        exit(-1);
+    }
+    accessToken->assign(tempAccessToken);
+
+    String tempClientToken;
+    /*
+     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
+     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
+     * is terminated.
+     * */
+    if (cmdUtils->HasCommand("client_token"))
+    {
+        tempClientToken = cmdUtils->GetCommand("client_token");
+    }
+
+    if (cmdUtils->HasCommand("client_token_file"))
+    {
+        tempClientToken = cmdUtils->GetCommand("client_token_file");
+
+        std::ifstream clientTokenFile(tempClientToken.c_str());
+        if (clientTokenFile.is_open())
+        {
+            getline(clientTokenFile, tempClientToken);
+            clientTokenFile.close();
+        }
+        else
+        {
+            fprintf(stderr, "Failed to open client token file\n");
+            exit(-1);
+        }
+    }
+
+    clientToken->assign(tempClientToken);
+
+    caFile->assign(cmdUtils->GetCommandOrDefault("ca_file", ""));
+
+    if (cmdUtils->HasCommand("proxy_host") || cmdUtils->HasCommand("proxy_port"))
+    {
+        proxyHost->assign(
+            cmdUtils->GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str());
+        int port = atoi(
+            cmdUtils->GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
+        if (port > 0 && port <= UINT16_MAX)
+        {
+            proxyPort = static_cast<uint16_t>(port);
+        }
+        proxyUserName->assign(cmdUtils->GetCommandOrDefault("proxy_user_name", ""));
+        proxyPassword->assign(cmdUtils->GetCommandOrDefault("proxy_password", ""));
+    }
+
+    /*
+     * localProxyMode is set to destination by default unless flag is set to source
+     */
+    if (cmdUtils->HasCommand("local_proxy_mode_source"))
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
+    }
+    else
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
+    }
+
+    payloadMessage->assign(cmdUtils->GetCommandOrDefault("message", "Hello World"));
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
@@ -55,15 +188,6 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
     aws_iotdevice_library_init(Aws::Crt::g_allocator);
-
-    String accessToken;
-    String clientToken;
-    aws_secure_tunneling_local_proxy_mode localProxyMode;
-
-    String proxyHost;
-    uint16_t proxyPort(8080);
-    String proxyUserName;
-    String proxyPassword;
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -76,117 +200,33 @@ int main(int argc, char *argv[])
     /* Store to use service id */
     std::shared_ptr<ConnectionData> connectionData;
 
+    String endpoint;
+    String accessToken;
+    String clientToken;
+    String caFile;
+    String proxyHost;
+    uint16_t proxyPort(8080);
+    String proxyUserName;
+    String proxyPassword;
+    aws_secure_tunneling_local_proxy_mode localProxyMode;
+    String payloadMessage;
+
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.AddCommonProxyCommands();
-    cmdUtils.RegisterProgramName("secure_tunnel");
-    cmdUtils.RegisterCommand("region", "<str>", "The region of your secure tunnel");
-    cmdUtils.RegisterCommand(
-        "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
-    cmdUtils.RegisterCommand(
-        "access_token_file", "<path>", "Path to the tunneling access token file (optional if --access_token used).");
-    cmdUtils.RegisterCommand("access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
-    cmdUtils.RegisterCommand(
-        "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
-    cmdUtils.RegisterCommand("client_token", "<str>", "Tunneling access token (optional if --client_token_file used).");
-    cmdUtils.RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
-    cmdUtils.RegisterCommand(
-        "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
-    cmdUtils.RegisterCommand(
-        "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
+    setupCommandLineUtils(&cmdUtils, argc, argv);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    /* Generate secure tunneling endpoint using region */
-    String region = cmdUtils.GetCommandRequired("region");
-    String endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
-
-    /* An access token is required to connect to the secure tunnel service */
-    if (cmdUtils.HasCommand("access_token"))
-    {
-        accessToken = cmdUtils.GetCommand("access_token");
-    }
-    else if (cmdUtils.HasCommand("access_token_file"))
-    {
-        accessToken = cmdUtils.GetCommand("access_token_file");
-
-        std::ifstream accessTokenFile(accessToken.c_str());
-        if (accessTokenFile.is_open())
-        {
-            getline(accessTokenFile, accessToken);
-            accessTokenFile.close();
-        }
-        else
-        {
-            fprintf(stderr, "Failed to open access token file");
-            exit(-1);
-        }
-    }
-    else
-    {
-        cmdUtils.PrintHelp();
-        fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
-        exit(-1);
-    }
-
-    /*
-     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
-     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
-     * is terminated.
-     * */
-    if (cmdUtils.HasCommand("client_token"))
-    {
-        clientToken = cmdUtils.GetCommand("client_token");
-    }
-
-    if (cmdUtils.HasCommand("client_token_file"))
-    {
-        clientToken = cmdUtils.GetCommand("client_token_file");
-
-        std::ifstream clientTokenFile(clientToken.c_str());
-        if (clientTokenFile.is_open())
-        {
-            getline(clientTokenFile, clientToken);
-            clientTokenFile.close();
-        }
-        else
-        {
-            fprintf(stderr, "Failed to open client token file\n");
-            exit(-1);
-        }
-    }
-
-    if (cmdUtils.HasCommand("proxy_host") || cmdUtils.HasCommand("proxy_port"))
-    {
-        proxyHost =
-            cmdUtils.GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str();
-        int port = atoi(
-            cmdUtils.GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
-        if (port > 0 && port <= UINT16_MAX)
-        {
-            proxyPort = static_cast<uint16_t>(port);
-        }
-        proxyUserName = cmdUtils.GetCommandOrDefault("proxy_user_name", "");
-        proxyPassword = cmdUtils.GetCommandOrDefault("proxy_password", "");
-    }
-
-    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
-
-    /*
-     * localProxyMode is set to destination by default unless flag is set to source
-     */
-    if (cmdUtils.HasCommand("local_proxy_mode_source"))
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
-    }
-    else
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
-    }
-
-    String payloadMessage = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    setupCommandLineValues(
+        &cmdUtils,
+        &endpoint,
+        &accessToken,
+        &clientToken,
+        &caFile,
+        &proxyHost,
+        &proxyUserName,
+        &proxyPassword,
+        proxyPort,
+        localProxyMode,
+        &payloadMessage);
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
@@ -201,7 +241,10 @@ int main(int argc, char *argv[])
     SecureTunnelBuilder builder =
         SecureTunnelBuilder(Aws::Crt::g_allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
-    builder.WithRootCa(caFile.c_str());
+    if (caFile.length() > 0)
+    {
+        builder.WithRootCa(caFile.c_str());
+    }
 
     builder.WithClientToken(clientToken.c_str());
 
