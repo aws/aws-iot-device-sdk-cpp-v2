@@ -5,6 +5,13 @@
  * This file is generated.
  */
 
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+/* This file is generated. */
+
 #include <aws/crt/Api.h>
 #include <aws/greengrass/GreengrassCoreIpcModel.h>
 
@@ -6361,7 +6368,7 @@ namespace Aws
         std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
@@ -6431,7 +6438,7 @@ namespace Aws
         std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
@@ -6500,7 +6507,7 @@ namespace Aws
         std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
@@ -6598,7 +6605,7 @@ namespace Aws
 
         std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
+            return std::async(m_asyncLaunchMode, [this]() {
                 return SubscribeToConfigurationUpdateResult(GetOperationResult().get());
             });
         }
@@ -6670,7 +6677,7 @@ namespace Aws
         std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
@@ -6739,7 +6746,7 @@ namespace Aws
         std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
@@ -6808,7 +6815,7 @@ namespace Aws
         std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
@@ -6903,7 +6910,7 @@ namespace Aws
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
             GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
+            return std::async(m_asyncLaunchMode, [this]() {
                 return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get());
             });
         }
@@ -6975,7 +6982,7 @@ namespace Aws
         std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
@@ -7079,7 +7086,7 @@ namespace Aws
         std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
@@ -7149,7 +7156,7 @@ namespace Aws
         std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
@@ -7218,7 +7225,7 @@ namespace Aws
         std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
@@ -7286,8 +7293,7 @@ namespace Aws
 
         std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
@@ -7391,7 +7397,7 @@ namespace Aws
 
         std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
+            return std::async(m_asyncLaunchMode, [this]() {
                 return SubscribeToCertificateUpdatesResult(GetOperationResult().get());
             });
         }
@@ -7462,9 +7468,8 @@ namespace Aws
 
         std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return VerifyClientDeviceIdentityResult(GetOperationResult().get());
-            });
+            return std::async(
+                m_asyncLaunchMode, [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
@@ -7532,9 +7537,8 @@ namespace Aws
 
         std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return AuthorizeClientDeviceActionResult(GetOperationResult().get());
-            });
+            return std::async(
+                m_asyncLaunchMode, [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
@@ -7602,8 +7606,7 @@ namespace Aws
 
         std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return ListComponentsResult(GetOperationResult().get()); });
         }
 
         ListComponentsOperation::ListComponentsOperation(
@@ -7672,7 +7675,7 @@ namespace Aws
         std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
@@ -7740,8 +7743,7 @@ namespace Aws
 
         std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
@@ -7810,7 +7812,7 @@ namespace Aws
         std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
             GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
+            return std::async(m_asyncLaunchMode, [this]() {
                 return SendConfigurationValidityReportResult(GetOperationResult().get());
             });
         }
@@ -7881,7 +7883,7 @@ namespace Aws
         std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
@@ -7950,7 +7952,7 @@ namespace Aws
         std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
@@ -8018,9 +8020,8 @@ namespace Aws
 
         std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return ValidateAuthorizationTokenResult(GetOperationResult().get());
-            });
+            return std::async(
+                m_asyncLaunchMode, [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
@@ -8089,7 +8090,7 @@ namespace Aws
         std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return RestartComponentResult(GetOperationResult().get()); });
         }
 
         RestartComponentOperation::RestartComponentOperation(
@@ -8158,7 +8159,7 @@ namespace Aws
         std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
@@ -8226,8 +8227,7 @@ namespace Aws
 
         std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
@@ -8294,8 +8294,7 @@ namespace Aws
 
         std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return UpdateStateResult(GetOperationResult().get()); });
         }
 
         UpdateStateOperation::UpdateStateOperation(
@@ -8364,7 +8363,7 @@ namespace Aws
         std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
@@ -8462,9 +8461,8 @@ namespace Aws
 
         std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
         {
-            return std::async(std::launch::deferred, [this]() {
-                return SubscribeToComponentUpdatesResult(GetOperationResult().get());
-            });
+            return std::async(
+                m_asyncLaunchMode, [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
@@ -8534,7 +8532,7 @@ namespace Aws
         std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
@@ -8602,8 +8600,7 @@ namespace Aws
 
         std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return StopComponentResult(GetOperationResult().get()); });
         }
 
         StopComponentOperation::StopComponentOperation(
@@ -8671,8 +8668,7 @@ namespace Aws
 
         std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                std::launch::deferred, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            return std::async(m_asyncLaunchMode, [this]() { return PauseComponentResult(GetOperationResult().get()); });
         }
 
         PauseComponentOperation::PauseComponentOperation(
@@ -8741,7 +8737,7 @@ namespace Aws
         std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
         {
             return std::async(
-                std::launch::deferred, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+                m_asyncLaunchMode, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(

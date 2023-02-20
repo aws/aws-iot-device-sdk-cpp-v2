@@ -1,3 +1,10 @@
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+/* This file is generated. */
+
 #include <aws/crt/Api.h>
 #include <awstest/EchoTestRpcModel.h>
 
@@ -978,7 +985,7 @@ namespace Awstest
 
     std::future<GetAllProductsResult> GetAllProductsOperation::GetResult() noexcept
     {
-        return std::async(std::launch::deferred, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        return std::async(m_asyncLaunchMode, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
     }
 
     GetAllProductsOperation::GetAllProductsOperation(
@@ -1046,8 +1053,7 @@ namespace Awstest
 
     std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult() noexcept
     {
-        return std::async(
-            std::launch::deferred, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        return std::async(m_asyncLaunchMode, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
     }
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
@@ -1138,7 +1144,7 @@ namespace Awstest
     std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult() noexcept
     {
         return std::async(
-            std::launch::deferred, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+            m_asyncLaunchMode, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
     }
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
@@ -1224,8 +1230,7 @@ namespace Awstest
 
     std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult() noexcept
     {
-        return std::async(
-            std::launch::deferred, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        return std::async(m_asyncLaunchMode, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
     }
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
@@ -1292,7 +1297,7 @@ namespace Awstest
 
     std::future<EchoMessageResult> EchoMessageOperation::GetResult() noexcept
     {
-        return std::async(std::launch::deferred, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        return std::async(m_asyncLaunchMode, [this]() { return EchoMessageResult(GetOperationResult().get()); });
     }
 
     EchoMessageOperation::EchoMessageOperation(
@@ -1359,8 +1364,7 @@ namespace Awstest
 
     std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult() noexcept
     {
-        return std::async(
-            std::launch::deferred, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        return std::async(m_asyncLaunchMode, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
     }
 
     GetAllCustomersOperation::GetAllCustomersOperation(

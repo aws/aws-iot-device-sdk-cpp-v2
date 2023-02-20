@@ -5,6 +5,13 @@
  * This file is generated.
  */
 
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+/* This file is generated. */
+
 #include <aws/crt/Types.h>
 #include <aws/crt/io/Bootstrap.h>
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
@@ -16,7 +23,8 @@ namespace Aws
         GreengrassCoreIpcClient::GreengrassCoreIpcClient(
             Aws::Crt::Io::ClientBootstrap &clientBootstrap,
             Aws::Crt::Allocator *allocator) noexcept
-            : m_connection(allocator), m_clientBootstrap(clientBootstrap), m_allocator(allocator)
+            : m_connection(allocator), m_clientBootstrap(clientBootstrap), m_allocator(allocator),
+              m_asyncLaunchMode(std::launch::deferred)
         {
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidTokenError"), InvalidTokenError::s_allocateFromPayload);
@@ -59,6 +67,8 @@ namespace Aws
 
         void GreengrassCoreIpcClient::Close() noexcept { m_connection.Close(); }
 
+        void GreengrassCoreIpcClient::WithLaunchMode(std::launch mode) noexcept { m_asyncLaunchMode = mode; }
+
         GreengrassCoreIpcClient::~GreengrassCoreIpcClient() noexcept { Close(); }
 
         std::shared_ptr<SubscribeToIoTCoreOperation> GreengrassCoreIpcClient::NewSubscribeToIoTCore(
@@ -74,20 +84,24 @@ namespace Aws
 
         std::shared_ptr<ResumeComponentOperation> GreengrassCoreIpcClient::NewResumeComponent() noexcept
         {
-            return Aws::Crt::MakeShared<ResumeComponentOperation>(
+            auto operation = Aws::Crt::MakeShared<ResumeComponentOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_resumeComponentOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<PublishToIoTCoreOperation> GreengrassCoreIpcClient::NewPublishToIoTCore() noexcept
         {
-            return Aws::Crt::MakeShared<PublishToIoTCoreOperation>(
+            auto operation = Aws::Crt::MakeShared<PublishToIoTCoreOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_publishToIoTCoreOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SubscribeToConfigurationUpdateOperation> GreengrassCoreIpcClient::
@@ -104,29 +118,35 @@ namespace Aws
 
         std::shared_ptr<DeleteThingShadowOperation> GreengrassCoreIpcClient::NewDeleteThingShadow() noexcept
         {
-            return Aws::Crt::MakeShared<DeleteThingShadowOperation>(
+            auto operation = Aws::Crt::MakeShared<DeleteThingShadowOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_deleteThingShadowOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<PutComponentMetricOperation> GreengrassCoreIpcClient::NewPutComponentMetric() noexcept
         {
-            return Aws::Crt::MakeShared<PutComponentMetricOperation>(
+            auto operation = Aws::Crt::MakeShared<PutComponentMetricOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_putComponentMetricOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<DeferComponentUpdateOperation> GreengrassCoreIpcClient::NewDeferComponentUpdate() noexcept
         {
-            return Aws::Crt::MakeShared<DeferComponentUpdateOperation>(
+            auto operation = Aws::Crt::MakeShared<DeferComponentUpdateOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_deferComponentUpdateOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SubscribeToValidateConfigurationUpdatesOperation> GreengrassCoreIpcClient::
@@ -143,11 +163,13 @@ namespace Aws
 
         std::shared_ptr<GetConfigurationOperation> GreengrassCoreIpcClient::NewGetConfiguration() noexcept
         {
-            return Aws::Crt::MakeShared<GetConfigurationOperation>(
+            auto operation = Aws::Crt::MakeShared<GetConfigurationOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getConfigurationOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SubscribeToTopicOperation> GreengrassCoreIpcClient::NewSubscribeToTopic(
@@ -163,30 +185,36 @@ namespace Aws
 
         std::shared_ptr<GetComponentDetailsOperation> GreengrassCoreIpcClient::NewGetComponentDetails() noexcept
         {
-            return Aws::Crt::MakeShared<GetComponentDetailsOperation>(
+            auto operation = Aws::Crt::MakeShared<GetComponentDetailsOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getComponentDetailsOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<GetClientDeviceAuthTokenOperation> GreengrassCoreIpcClient::
             NewGetClientDeviceAuthToken() noexcept
         {
-            return Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperation>(
+            auto operation = Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getClientDeviceAuthTokenOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<PublishToTopicOperation> GreengrassCoreIpcClient::NewPublishToTopic() noexcept
         {
-            return Aws::Crt::MakeShared<PublishToTopicOperation>(
+            auto operation = Aws::Crt::MakeShared<PublishToTopicOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_publishToTopicOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SubscribeToCertificateUpdatesOperation> GreengrassCoreIpcClient::
@@ -204,130 +232,158 @@ namespace Aws
         std::shared_ptr<VerifyClientDeviceIdentityOperation> GreengrassCoreIpcClient::
             NewVerifyClientDeviceIdentity() noexcept
         {
-            return Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperation>(
+            auto operation = Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_verifyClientDeviceIdentityOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<AuthorizeClientDeviceActionOperation> GreengrassCoreIpcClient::
             NewAuthorizeClientDeviceAction() noexcept
         {
-            return Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperation>(
+            auto operation = Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_authorizeClientDeviceActionOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<ListComponentsOperation> GreengrassCoreIpcClient::NewListComponents() noexcept
         {
-            return Aws::Crt::MakeShared<ListComponentsOperation>(
+            auto operation = Aws::Crt::MakeShared<ListComponentsOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_listComponentsOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<CreateDebugPasswordOperation> GreengrassCoreIpcClient::NewCreateDebugPassword() noexcept
         {
-            return Aws::Crt::MakeShared<CreateDebugPasswordOperation>(
+            auto operation = Aws::Crt::MakeShared<CreateDebugPasswordOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_createDebugPasswordOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<GetThingShadowOperation> GreengrassCoreIpcClient::NewGetThingShadow() noexcept
         {
-            return Aws::Crt::MakeShared<GetThingShadowOperation>(
+            auto operation = Aws::Crt::MakeShared<GetThingShadowOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getThingShadowOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SendConfigurationValidityReportOperation> GreengrassCoreIpcClient::
             NewSendConfigurationValidityReport() noexcept
         {
-            return Aws::Crt::MakeShared<SendConfigurationValidityReportOperation>(
+            auto operation = Aws::Crt::MakeShared<SendConfigurationValidityReportOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_sendConfigurationValidityReportOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<UpdateThingShadowOperation> GreengrassCoreIpcClient::NewUpdateThingShadow() noexcept
         {
-            return Aws::Crt::MakeShared<UpdateThingShadowOperation>(
+            auto operation = Aws::Crt::MakeShared<UpdateThingShadowOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_updateThingShadowOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<UpdateConfigurationOperation> GreengrassCoreIpcClient::NewUpdateConfiguration() noexcept
         {
-            return Aws::Crt::MakeShared<UpdateConfigurationOperation>(
+            auto operation = Aws::Crt::MakeShared<UpdateConfigurationOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_updateConfigurationOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<ValidateAuthorizationTokenOperation> GreengrassCoreIpcClient::
             NewValidateAuthorizationToken() noexcept
         {
-            return Aws::Crt::MakeShared<ValidateAuthorizationTokenOperation>(
+            auto operation = Aws::Crt::MakeShared<ValidateAuthorizationTokenOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_validateAuthorizationTokenOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<RestartComponentOperation> GreengrassCoreIpcClient::NewRestartComponent() noexcept
         {
-            return Aws::Crt::MakeShared<RestartComponentOperation>(
+            auto operation = Aws::Crt::MakeShared<RestartComponentOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_restartComponentOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<GetLocalDeploymentStatusOperation> GreengrassCoreIpcClient::
             NewGetLocalDeploymentStatus() noexcept
         {
-            return Aws::Crt::MakeShared<GetLocalDeploymentStatusOperation>(
+            auto operation = Aws::Crt::MakeShared<GetLocalDeploymentStatusOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getLocalDeploymentStatusOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<GetSecretValueOperation> GreengrassCoreIpcClient::NewGetSecretValue() noexcept
         {
-            return Aws::Crt::MakeShared<GetSecretValueOperation>(
+            auto operation = Aws::Crt::MakeShared<GetSecretValueOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_getSecretValueOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<UpdateStateOperation> GreengrassCoreIpcClient::NewUpdateState() noexcept
         {
-            return Aws::Crt::MakeShared<UpdateStateOperation>(
+            auto operation = Aws::Crt::MakeShared<UpdateStateOperation>(
                 m_allocator, m_connection, m_greengrassCoreIpcServiceModel.m_updateStateOperationContext, m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<ListNamedShadowsForThingOperation> GreengrassCoreIpcClient::
             NewListNamedShadowsForThing() noexcept
         {
-            return Aws::Crt::MakeShared<ListNamedShadowsForThingOperation>(
+            auto operation = Aws::Crt::MakeShared<ListNamedShadowsForThingOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_listNamedShadowsForThingOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<SubscribeToComponentUpdatesOperation> GreengrassCoreIpcClient::NewSubscribeToComponentUpdates(
@@ -343,38 +399,46 @@ namespace Aws
 
         std::shared_ptr<ListLocalDeploymentsOperation> GreengrassCoreIpcClient::NewListLocalDeployments() noexcept
         {
-            return Aws::Crt::MakeShared<ListLocalDeploymentsOperation>(
+            auto operation = Aws::Crt::MakeShared<ListLocalDeploymentsOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_listLocalDeploymentsOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<StopComponentOperation> GreengrassCoreIpcClient::NewStopComponent() noexcept
         {
-            return Aws::Crt::MakeShared<StopComponentOperation>(
+            auto operation = Aws::Crt::MakeShared<StopComponentOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_stopComponentOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<PauseComponentOperation> GreengrassCoreIpcClient::NewPauseComponent() noexcept
         {
-            return Aws::Crt::MakeShared<PauseComponentOperation>(
+            auto operation = Aws::Crt::MakeShared<PauseComponentOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_pauseComponentOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
         std::shared_ptr<CreateLocalDeploymentOperation> GreengrassCoreIpcClient::NewCreateLocalDeployment() noexcept
         {
-            return Aws::Crt::MakeShared<CreateLocalDeploymentOperation>(
+            auto operation = Aws::Crt::MakeShared<CreateLocalDeploymentOperation>(
                 m_allocator,
                 m_connection,
                 m_greengrassCoreIpcServiceModel.m_createLocalDeploymentOperationContext,
                 m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
         }
 
     } // namespace Greengrass
