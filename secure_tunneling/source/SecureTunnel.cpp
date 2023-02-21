@@ -51,9 +51,7 @@ namespace Aws
         Message::Message(const aws_secure_tunnel_message_view &message, Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_payload);
             AWS_ZERO_STRUCT(m_payloadStorage);
-            AWS_ZERO_STRUCT(m_serviceId);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
 
             setPacketByteBufOptional(m_payload, m_payloadStorage, m_allocator, message.payload);
