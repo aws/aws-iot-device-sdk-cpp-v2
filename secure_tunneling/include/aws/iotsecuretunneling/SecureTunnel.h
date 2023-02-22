@@ -586,7 +586,7 @@ namespace Aws
             friend class SecureTunnel;
         };
 
-        class AWS_IOTSECURETUNNELING_API SecureTunnel final : std::enable_shared_from_this<SecureTunnel>
+        class AWS_IOTSECURETUNNELING_API SecureTunnel final
         {
           public:
             SecureTunnel(
@@ -632,14 +632,6 @@ namespace Aws
             SecureTunnel &operator=(SecureTunnel &&) noexcept;
 
             bool IsValid();
-
-            /**
-             * Get shared poitner of the SecureTunnel. SecureTunnel is inherited to enable_shared_from_this to help
-             * with memory safety.
-             *
-             * @return shared_ptr for the SecureTunnel
-             */
-            std::shared_ptr<SecureTunnel> getptr() { return shared_from_this(); }
 
             /**
              * Notifies the secure tunnel that you want it to attempt to connect to the configured endpoint.

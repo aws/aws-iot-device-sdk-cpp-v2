@@ -702,7 +702,7 @@ namespace Aws
 
         void SecureTunnel::s_OnConnectionShutdown(int error_code, void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnConnectionShutdown)
             {
                 secureTunnel->m_OnConnectionShutdown();
@@ -711,7 +711,7 @@ namespace Aws
 
         void SecureTunnel::s_OnSendDataComplete(int error_code, void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnSendDataComplete)
             {
                 secureTunnel->m_OnSendDataComplete(error_code);
@@ -720,7 +720,7 @@ namespace Aws
 
         void SecureTunnel::s_OnMessageReceived(const struct aws_secure_tunnel_message_view *message, void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel != nullptr)
             {
                 if (message != NULL)
@@ -765,7 +765,7 @@ namespace Aws
             int error_code,
             void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (!error_code)
             {
                 if (secureTunnel->m_OnStreamStarted)
@@ -791,7 +791,7 @@ namespace Aws
             int error_code,
             void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnStreamReset)
             {
                 secureTunnel->m_OnStreamReset();
@@ -800,7 +800,7 @@ namespace Aws
 
         void SecureTunnel::s_OnSessionReset(void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnSessionReset)
             {
                 secureTunnel->m_OnSessionReset();
@@ -809,7 +809,7 @@ namespace Aws
 
         void SecureTunnel::s_OnStopped(void *user_data)
         {
-            SecureTunnel *secureTunnel = reinterpret_cast<SecureTunnel *>(user_data);
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             secureTunnel->m_selfRef = nullptr;
             if (secureTunnel->m_OnStopped)
             {
