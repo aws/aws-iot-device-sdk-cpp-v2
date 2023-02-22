@@ -451,7 +451,7 @@ jobs:
       - name: run MQTT5 PubSub sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
-       - name: configure AWS credentials (Cognito)
+      - name: configure AWS credentials (Cognito)
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ env.CI_COGNITO_ROLE }}
