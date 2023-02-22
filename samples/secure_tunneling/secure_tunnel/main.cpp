@@ -182,12 +182,13 @@ void setupCommandLineValues(
 
 int main(int argc, char *argv[])
 {
+    struct aws_allocator *allocator = aws_mem_tracer_new(aws_default_allocator(), NULL, AWS_MEMTRACE_STACKS, 15);
     /************************ Setup the Lib ****************************/
     /*
      * Do the global initialization for the API and aws-c-iot.
      */
     ApiHandle apiHandle;
-    aws_iotdevice_library_init(Aws::Crt::g_allocator);
+    aws_iotdevice_library_init(allocator);
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -238,8 +239,7 @@ int main(int argc, char *argv[])
     }
 
     /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
-    SecureTunnelBuilder builder =
-        SecureTunnelBuilder(Aws::Crt::g_allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
+    SecureTunnelBuilder builder = SecureTunnelBuilder(allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
     if (caFile.length() > 0)
     {
@@ -276,7 +276,7 @@ int main(int argc, char *argv[])
                     stdout,
                     "Sending Stream Start request with service id:'" PRInSTR "'\n",
                     AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
-                secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
+                // secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
             }
         }
         else
@@ -377,7 +377,7 @@ int main(int argc, char *argv[])
             basicAuthConfig.Username = proxyUserName.c_str();
             basicAuthConfig.Password = proxyPassword.c_str();
             proxyOptions.ProxyStrategy =
-                Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, Aws::Crt::g_allocator);
+                Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
         }
         else
@@ -469,6 +469,29 @@ int main(int argc, char *argv[])
     }
 
     fprintf(stdout, "Secure Tunnel Sample Completed\n");
+    std::this_thread::sleep_for(5000ms);
 
-    exit(0);
+    const size_t leaked_bytes = aws_mem_tracer_bytes(allocator);
+    if (leaked_bytes)
+    {
+        struct aws_logger memory_logger;
+        AWS_ZERO_STRUCT(memory_logger);
+        struct aws_logger_standard_options options = {
+            .level = AWS_LL_TRACE,
+        };
+
+        aws_logger_init_noalloc(&memory_logger, aws_default_allocator(), &options);
+        aws_logger_set(&memory_logger);
+
+        fprintf(stdout, "Writing memory leaks to log.\n");
+        aws_mem_tracer_dump(allocator);
+
+        aws_logger_set(NULL);
+        aws_logger_clean_up(&memory_logger);
+    }
+
+    // apiHandle.~ApiHandle();
+    // aws_iotdevice_library_clean_up();
+
+    return 0;
 }
