@@ -2,6 +2,7 @@
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
  */
+#include <aws/common/byte_buf.h>
 #include <aws/crt/Api.h>
 #include <aws/crt/http/HttpProxyStrategy.h>
 #include <aws/iot/MqttClient.h>
@@ -182,7 +183,7 @@ void setupCommandLineValues(
 
 int main(int argc, char *argv[])
 {
-    struct aws_allocator *allocator = aws_mem_tracer_new(aws_default_allocator(), NULL, AWS_MEMTRACE_STACKS, 15);
+    struct aws_allocator *allocator = aws_default_allocator();
     /************************ Setup the Lib ****************************/
     /*
      * Do the global initialization for the API and aws-c-iot.
@@ -198,8 +199,10 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
 
-    /* Store to use service id */
-    std::shared_ptr<ConnectionData> connectionData;
+    /* service id storage for use in sample */
+    Aws::Crt::ByteBuf m_serviceIdStorage;
+    AWS_ZERO_STRUCT(m_serviceIdStorage);
+    Aws::Crt::Optional<Aws::Crt::ByteCursor> m_serviceId;
 
     String endpoint;
     String accessToken;
@@ -251,20 +254,29 @@ int main(int argc, char *argv[])
     /* Add callbacks using the builder */
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
-        connectionData = eventData.connectionData;
-
-        if (connectionData->getServiceId1().has_value())
+        if (eventData.connectionData->getServiceId1().has_value())
         {
+            /* If secure tunnel is using service ids, store one for future use */
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+            aws_byte_buf_init_copy_from_cursor(
+                &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
+            m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+
             fprintf(
                 stdout,
                 "Secure Tunnel connected with  Service IDs '" PRInSTR "'",
-                AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
-            if (connectionData->getServiceId2().has_value())
+                AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()));
+            if (eventData.connectionData->getServiceId2().has_value())
             {
-                fprintf(stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(connectionData->getServiceId2().value()));
-                if (connectionData->getServiceId3().has_value())
+                fprintf(
+                    stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId2().value()));
+                if (eventData.connectionData->getServiceId3().has_value())
                 {
-                    fprintf(stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(connectionData->getServiceId3().value()));
+                    fprintf(
+                        stdout,
+                        ", '" PRInSTR "'",
+                        AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId3().value()));
                 }
             }
             fprintf(stdout, "\n");
@@ -275,8 +287,8 @@ int main(int argc, char *argv[])
                 fprintf(
                     stdout,
                     "Sending Stream Start request with service id:'" PRInSTR "'\n",
-                    AWS_BYTE_CURSOR_PRI(connectionData->getServiceId1().value()));
-                // secureTunnel->SendStreamStart(connectionData->getServiceId1().value());
+                    AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()));
+                secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value());
             }
         }
         else
@@ -428,9 +440,9 @@ int main(int argc, char *argv[])
                     std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
 
                     /* If the secure tunnel has service ids, we will use one for our messages. */
-                    if (connectionData->getServiceId1().has_value())
+                    if (m_serviceId.has_value())
                     {
-                        message->withServiceId(connectionData->getServiceId1().value());
+                        message->withServiceId(m_serviceId.value());
                     }
 
                     secureTunnel->SendMessage(message);
@@ -469,29 +481,9 @@ int main(int argc, char *argv[])
     }
 
     fprintf(stdout, "Secure Tunnel Sample Completed\n");
-    std::this_thread::sleep_for(5000ms);
 
-    const size_t leaked_bytes = aws_mem_tracer_bytes(allocator);
-    if (leaked_bytes)
-    {
-        struct aws_logger memory_logger;
-        AWS_ZERO_STRUCT(memory_logger);
-        struct aws_logger_standard_options options = {
-            .level = AWS_LL_TRACE,
-        };
-
-        aws_logger_init_noalloc(&memory_logger, aws_default_allocator(), &options);
-        aws_logger_set(&memory_logger);
-
-        fprintf(stdout, "Writing memory leaks to log.\n");
-        aws_mem_tracer_dump(allocator);
-
-        aws_logger_set(NULL);
-        aws_logger_clean_up(&memory_logger);
-    }
-
-    // apiHandle.~ApiHandle();
-    // aws_iotdevice_library_clean_up();
+    /* Clean Up */
+    aws_byte_buf_clean_up(&m_serviceIdStorage);
 
     return 0;
 }
