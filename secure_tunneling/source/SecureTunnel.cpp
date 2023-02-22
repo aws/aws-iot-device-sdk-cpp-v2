@@ -61,17 +61,13 @@ namespace Aws
         /* Default constructor */
         Message::Message(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_payload);
             AWS_ZERO_STRUCT(m_payloadStorage);
-            AWS_ZERO_STRUCT(m_serviceId);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
         }
 
         Message::Message(Crt::ByteCursor payload, Crt::Allocator *allocator) noexcept : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_payload);
             AWS_ZERO_STRUCT(m_payloadStorage);
-            AWS_ZERO_STRUCT(m_serviceId);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
 
             aws_byte_buf_clean_up(&m_payloadStorage);
@@ -82,9 +78,7 @@ namespace Aws
         Message::Message(Crt::ByteCursor serviceId, Crt::ByteCursor payload, Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_payload);
             AWS_ZERO_STRUCT(m_payloadStorage);
-            AWS_ZERO_STRUCT(m_serviceId);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
 
             aws_byte_buf_clean_up(&m_payloadStorage);
@@ -146,9 +140,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_serviceId1);
-            AWS_ZERO_STRUCT(m_serviceId2);
-            AWS_ZERO_STRUCT(m_serviceId3);
             AWS_ZERO_STRUCT(m_serviceId1Storage);
             AWS_ZERO_STRUCT(m_serviceId2Storage);
             AWS_ZERO_STRUCT(m_serviceId3Storage);
