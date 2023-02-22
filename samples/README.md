@@ -28,16 +28,14 @@ Firstly, build and install aws-iot-devices-sdk-cpp-v2 with following instruction
 Change directory into one of the samples. Under the directory of the sample you wish to build, run the following commands:
 
 ``` sh
-mkdir build
-cd build
-cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
-cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" .
+cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
 To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the PubSub sample:
 
 ```sh
-./basic-pub-sub --help
+./build/basic-pub-sub --help
 ```
 
 ### Build all samples
@@ -45,16 +43,14 @@ To view the commands for a given sample, run the compiled program and pass `--he
 Change directory to the `aws-iot-device-sdk-cpp-v2/samples` directory and then run the following commands:
 
 ```sh
-mkdir build
-cd build
-cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
-cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" .
+cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
 This will compile all the samples at once and place the executables under the `build` directory relative to their file path. To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the PubSub sample:
 
 ```sh
-./pub_sub/basic_pub_sub/basic-pub-sub --help
+./build/pub_sub/basic_pub_sub/basic-pub-sub --help
 ```
 
 This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/pubsub/basic_pubsub`.
