@@ -977,7 +977,7 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
 
 ## Secure Tunnel
 
-This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens.
+This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens using the [V2WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V2WebSocketProtocolGuide.md).
 
 Source: `samples/secure_tunneling/secure_tunnel`
 
@@ -986,17 +986,13 @@ Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.co
 Provide the necessary arguments along with the destination access token and start the sample in destination mode (default).
 
 ``` sh
-./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
---cert <path to the certificate> --key <path to the private key>
---thing_name <thing name> --region <region> --access_token_file <path to destination access token>
+./secure_tunnel --region <region> --access_token_file <path to destination access token>
 ```
 
 Provide the necessary arguments along with the source access token and start a second sample in source mode by using the flag --localProxyModeSource.
 
 ``` sh
-./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
---cert <path to the certificate> --key <path to the private key>
---thing_name <thing name> --region <region> --access_token_file <path to source access token>
+./secure_tunnel --region <region> --access_token_file <path to source access token>
 --localProxyModeSource
 ```
 

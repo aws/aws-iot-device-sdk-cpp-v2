@@ -17,29 +17,32 @@ current_folder = pathlib.Path(__file__).resolve()
 def getSecretsAndLaunch(parsed_commands):
     exit_code = 0
 
-    print ("Creating secure tunnel client using Boto3")
+    print("Creating secure tunnel client using Boto3")
     tunnel_client = None
     try:
-        tunnel_client = boto3.client("iotsecuretunneling", region_name=parsed_commands.sample_region)
+        tunnel_client = boto3.client(
+            "iotsecuretunneling", region_name=parsed_commands.sample_region)
     except Exception:
-        print ("Could not create tunnel client!")
+        print("Could not create tunnel client!")
         exit(-1)
 
     tunnel_data = None
     try:
-        tunnel_data = tunnel_client.open_tunnel()
+        tunnel_data = tunnel_client.open_tunnel(
+            destinationConfig={'services': ['ssh', 'http', ]})
     except Exception:
-        print ("Could not open tunnel!")
+        print("Could not open tunnel!")
         exit(-1)
 
-    print ("Launching Secure Tunnel samples...")
+    print("Launching Secure Tunnel samples...")
     exit_code = launch_samples(parsed_commands, tunnel_data)
 
-    print ("Closing tunnel...")
+    print("Closing tunnel...")
     try:
-        tunnel_client.close_tunnel(tunnelId=tunnel_data["tunnelId"], delete=True)
+        tunnel_client.close_tunnel(
+            tunnelId=tunnel_data["tunnelId"], delete=True)
     except Exception:
-        print ("Could not close tunnel!")
+        print("Could not close tunnel!")
         exit(-1)
 
     return exit_code
@@ -49,13 +52,17 @@ def launch_samples(parsed_commands, tunnel_data):
     exit_code = 0
 
     # Right now secure tunneling is only in C++, so we only support launching the sample in the C++ way
-    launch_arguments_destination = ["--test", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["destinationAccessToken"]]
-    launch_arguments_source = ["--local_proxy_mode_source", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["sourceAccessToken"]]
+    launch_arguments_destination = [
+        "--test", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["destinationAccessToken"]]
+    launch_arguments_source = ["--local_proxy_mode_source", "--region",
+                               parsed_commands.sample_region, "--access_token", tunnel_data["sourceAccessToken"]]
 
-    destination_run = subprocess.Popen(args=launch_arguments_destination, executable=parsed_commands.sample_file)
-    print ("About to sleep before running source part of sample...")
-    sleep(10) # Sleep to give the destination some time to run
-    source_run = subprocess.Popen(args=launch_arguments_source, executable=parsed_commands.sample_file)
+    destination_run = subprocess.Popen(
+        args=launch_arguments_destination, executable=parsed_commands.sample_file)
+    print("About to sleep before running source part of sample...")
+    sleep(10)  # Sleep to give the destination some time to run
+    source_run = subprocess.Popen(
+        args=launch_arguments_source, executable=parsed_commands.sample_file)
 
     # Wait for the source to finish
     source_run.wait()
