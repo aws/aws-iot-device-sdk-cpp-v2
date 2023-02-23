@@ -46,7 +46,7 @@ void logMessage(std::shared_ptr<Message> message)
             "Message received with payload:'" PRInSTR "'\n",
             AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
     }
-};
+}
 
 void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *argv[])
 {
