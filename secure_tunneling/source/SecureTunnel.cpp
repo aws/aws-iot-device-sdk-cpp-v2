@@ -692,6 +692,7 @@ namespace Aws
 
         void SecureTunnel::s_OnConnectionShutdown(int error_code, void *user_data)
         {
+            (void)error_code;
             SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnConnectionShutdown)
             {
@@ -781,6 +782,8 @@ namespace Aws
             int error_code,
             void *user_data)
         {
+            (void)message;
+            (void)error_code;
             SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
             if (secureTunnel->m_OnStreamReset)
             {
