@@ -977,7 +977,7 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
 
 ## Secure Tunnel
 
-This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens using the [V2WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V2WebSocketProtocolGuide.md).
+This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens using the [V2WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V2WebSocketProtocolGuide.md). [Secure Tunnel Userguide](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/Secure_Tunnel_Userguide.md)
 
 Source: `samples/secure_tunneling/secure_tunnel`
 
