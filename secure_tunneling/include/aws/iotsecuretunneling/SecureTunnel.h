@@ -324,11 +324,6 @@ namespace Aws
         using OnStreamStopped = std::function<void(SecureTunnel *secureTunnel, const StreamStoppedEventData &)>;
 
         /**
-         * Type signature of the callback invoked when a stream is reset.
-         */
-        using OnStreamReset = std::function<void(void)>;
-
-        /**
          * Type signature of the callback invoked when the secure tunnel receives a Session Reset.
          */
         using OnSessionReset = std::function<void(void)>;
@@ -350,6 +345,11 @@ namespace Aws
          * Deprecated - Use OnStreamStarted
          */
         using OnStreamStart = std::function<void()>;
+
+        /**
+         * Deprecated - Use OnStreamStopped
+         */
+        using OnStreamReset = std::function<void(void)>;
 
         /**
          * Represents a unique configuration for a secure tunnel
@@ -712,7 +712,7 @@ namespace Aws
              * Notifies the secure tunnel that you want it to attempt to connect to the configured endpoint.
              * The secure tunnel will attempt to stay connected and attempt to reconnect if disconnected.
              *
-             * @return bool: true if operation succeed, otherwise false.
+             * @return success/failure in the synchronous logic that kicks off the start process
              */
             int Start();
 
@@ -720,7 +720,7 @@ namespace Aws
              * Notifies the secure tunnel that you want it to transition to the stopped state, disconnecting any
              * existing connection and stopping subsequent reconnect attempts.
              *
-             * @return bool: true if operation succeed, otherwise false
+             * @return success/failure in the synchronous logic that kicks off the stop process
              */
             int Stop();
 
@@ -729,7 +729,7 @@ namespace Aws
              *
              * @param messageOptions: Message to send to the secure tunnel service.
              *
-             * @return true if the message operation succeed otherwise false
+             * @return success/failure in the synchronous logic that kicks off the Send Message operation
              */
             int SendMessage(std::shared_ptr<Message> messageOptions) noexcept;
 
@@ -738,7 +738,7 @@ namespace Aws
              * Notifies the secure tunnel that you want to start a stream with the Destination device. This will result
              * in a V1 stream.
              *
-             * @return bool: true if operation succeed, otherwise false
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
             int SendStreamStart();
 
@@ -748,7 +748,7 @@ namespace Aws
              *
              * @param serviceId: The Service Id to start a stream on.
              *
-             * @return bool: true if operation succeed, otherwise false
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
             int SendStreamStart(std::string serviceId);
 
@@ -758,7 +758,7 @@ namespace Aws
              *
              * @param serviceId: The Service Id to start a stream on.
              *
-             * @return bool: true if operation succeed, otherwise false
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
             int SendStreamStart(Crt::ByteCursor serviceId);
 

@@ -38,6 +38,7 @@ void logMessage(std::shared_ptr<Message> message)
                 "Message with service id:'" PRInSTR "' with no payload.\n",
                 AWS_BYTE_CURSOR_PRI(message->getServiceId().value()));
         }
+        return;
     }
     if (message->getPayload().has_value())
     {
