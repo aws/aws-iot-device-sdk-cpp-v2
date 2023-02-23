@@ -169,7 +169,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
-            AWS_ZERO_STRUCT(m_serviceId);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
 
             setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
