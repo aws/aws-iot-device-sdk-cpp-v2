@@ -420,7 +420,7 @@ namespace Aws
              * Setup callback handler trigged when an Secure Tunnel establishes a connection and receives available
              * service ids.
              *
-             * @param callback
+             * @param onConnectionSuccess
              *
              * @return this builder object
              */
@@ -429,7 +429,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel fails a connection attempt.
              *
-             * @param callback
+             * @param onConnectionFailure
              *
              * @return this builder object
              */
@@ -438,7 +438,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel shuts down connection to the secure tunnel service.
              *
-             * @param callback
+             * @param onConnectionShutdown
              *
              * @return this builder object
              */
@@ -447,7 +447,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel completes sending data to the secure tunnel service.
              *
-             * @param callback
+             * @param onSendDataComplete
              *
              * @return this builder object
              */
@@ -457,7 +457,7 @@ namespace Aws
              * Setup callback handler trigged when an Secure Tunnel receives a Message through the secure tunnel
              * service.
              *
-             * @param callback
+             * @param onMessageReceived
              *
              * @return this builder object
              */
@@ -467,7 +467,7 @@ namespace Aws
              * Setup callback handler trigged when an Secure Tunnel starts a stream with a source through the secure
              * tunnel service.
              *
-             * @param callback
+             * @param onStreamStarted
              *
              * @return this builder object
              */
@@ -476,7 +476,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel stops a stream.
              *
-             * @param callback
+             * @param onStreamStopped
              *
              * @return this builder object
              */
@@ -485,7 +485,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel receives a stream reset.
              *
-             * @param callback
+             * @param onStreamReset
              *
              * @return this builder object
              */
@@ -495,7 +495,7 @@ namespace Aws
              * Setup callback handler trigged when an Secure Tunnel receives a session reset from the secure tunnel
              * service.
              *
-             * @param callback
+             * @param onSessionReset
              *
              * @return this builder object
              */
@@ -504,7 +504,7 @@ namespace Aws
             /**
              * Setup callback handler trigged when an Secure Tunnel completes entering a stopped state
              *
-             * @param callback
+             * @param onStopped
              *
              * @return this builder object
              */
@@ -746,7 +746,7 @@ namespace Aws
              * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
              * service id. This will result in a V2 stream.
              *
-             * @param string: The Service Id to start a stream on.
+             * @param serviceId: The Service Id to start a stream on.
              *
              * @return bool: true if operation succeed, otherwise false
              */
@@ -756,7 +756,7 @@ namespace Aws
              * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
              * service id. This will result in a V2 stream.
              *
-             * @param ByteCursor: The Service Id to start a stream on.
+             * @param serviceId: The Service Id to start a stream on.
              *
              * @return bool: true if operation succeed, otherwise false
              */

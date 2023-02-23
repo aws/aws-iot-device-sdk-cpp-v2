@@ -68,6 +68,7 @@ void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *ar
         "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
     cmdUtils->RegisterCommand(
         "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
+    cmdUtils->RegisterCommand("count", "<int>", "Number of messages to send before completing (optional, default='5')");
     cmdUtils->AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils->SendArguments(const_argv, const_argv + argc);
@@ -83,6 +84,7 @@ void setupCommandLineValues(
     String *proxyUserName,
     String *proxyPassword,
     uint16_t &proxyPort,
+    uint16_t &messageCount,
     aws_secure_tunneling_local_proxy_mode &localProxyMode,
     String *payloadMessage)
 {
@@ -179,6 +181,9 @@ void setupCommandLineValues(
     }
 
     payloadMessage->assign(cmdUtils->GetCommandOrDefault("message", "Hello World"));
+
+    int count = atoi(cmdUtils->GetCommandOrDefault("count", "5").c_str());
+    messageCount = static_cast<uint16_t>(count);
 }
 
 int main(int argc, char *argv[])
@@ -214,6 +219,7 @@ int main(int argc, char *argv[])
     String proxyPassword;
     aws_secure_tunneling_local_proxy_mode localProxyMode;
     String payloadMessage;
+    uint16_t messageCount(5);
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -229,6 +235,7 @@ int main(int argc, char *argv[])
         &proxyUserName,
         &proxyPassword,
         proxyPort,
+        messageCount,
         localProxyMode,
         &payloadMessage);
 
@@ -437,8 +444,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    int messageCount = 0;
     bool keepRunning = true;
+    uint16_t messagesSent = 0;
 
     if (connectionCompletedPromise.get_future().get())
     {
@@ -452,10 +459,10 @@ int main(int argc, char *argv[])
         {
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                messageCount++;
-                String toSend = (std::to_string(messageCount) + ": " + payloadMessage.c_str()).c_str();
+                messagesSent++;
+                String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
 
-                if (messageCount < 5)
+                if (messagesSent <= messageCount)
                 {
                     std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
 
