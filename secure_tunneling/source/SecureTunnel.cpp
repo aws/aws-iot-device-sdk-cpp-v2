@@ -190,8 +190,8 @@ namespace Aws
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(&clientBootstrap), m_socketOptions(socketOptions),
               m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_rootCa(""),
-              m_httpClientConnectionProxyOptions(), m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnStreamReset(),
-              m_OnSessionReset(), m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart()
+              m_httpClientConnectionProxyOptions(), m_OnConnectionShutdown(), m_OnSendDataComplete(),
+              m_OnSessionReset(), m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
         {
         }
 
@@ -204,8 +204,8 @@ namespace Aws
             : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
               m_socketOptions(socketOptions), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
               m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(),
-              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnStreamReset(), m_OnSessionReset(),
-              m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart()
+              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnSessionReset(), m_OnConnectionComplete(),
+              m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
         {
         }
 
@@ -217,8 +217,8 @@ namespace Aws
             : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
               m_socketOptions(Crt::Io::SocketOptions()), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
               m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(),
-              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnStreamReset(), m_OnSessionReset(),
-              m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart()
+              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnSessionReset(), m_OnConnectionComplete(),
+              m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
         {
         }
 
@@ -335,6 +335,7 @@ namespace Aws
                 m_OnDataReceive,
                 m_OnStreamStarted,
                 m_OnStreamStart,
+                m_OnStreamStopped,
                 m_OnStreamReset,
                 m_OnSessionReset,
                 m_OnStopped));
@@ -376,6 +377,7 @@ namespace Aws
             OnDataReceive onDataReceive,
             OnStreamStarted onStreamStarted,
             OnStreamStart onStreamStart,
+            OnStreamStopped onStreamStopped,
             OnStreamReset onStreamReset,
             OnSessionReset onSessionReset,
             OnStopped onStopped)
@@ -421,7 +423,7 @@ namespace Aws
             config.on_connection_shutdown = s_OnConnectionShutdown;
             config.on_send_data_complete = s_OnSendDataComplete;
             config.on_stream_start = s_OnStreamStarted;
-            config.on_stream_reset = s_OnStreamReset;
+            config.on_stream_reset = s_OnStreamStopped;
             config.on_session_reset = s_OnSessionReset;
             config.on_stopped = s_OnStopped;
 
@@ -479,6 +481,7 @@ namespace Aws
                   onDataReceive,
                   nullptr,
                   onStreamStart,
+                  nullptr,
                   onStreamReset,
                   onSessionReset,
                   nullptr)
@@ -523,6 +526,7 @@ namespace Aws
                   onDataReceive,
                   nullptr,
                   onStreamStart,
+                  nullptr,
                   onStreamReset,
                   onSessionReset,
                   nullptr)
@@ -777,7 +781,7 @@ namespace Aws
             }
         }
 
-        void SecureTunnel::s_OnStreamReset(
+        void SecureTunnel::s_OnStreamStopped(
             const struct aws_secure_tunnel_message_view *message,
             int error_code,
             void *user_data)
@@ -785,6 +789,18 @@ namespace Aws
             (void)message;
             (void)error_code;
             SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
+
+            if (secureTunnel->m_OnStreamStopped)
+            {
+                std::shared_ptr<StreamStoppedData> packet =
+                    std::make_shared<StreamStoppedData>(*message, secureTunnel->m_allocator);
+                StreamStoppedEventData eventData;
+                eventData.streamStoppedData = packet;
+                secureTunnel->m_OnStreamStopped(secureTunnel, eventData);
+                return;
+            }
+
+            /* Fall back on deprecated stream reset callback */
             if (secureTunnel->m_OnStreamReset)
             {
                 secureTunnel->m_OnStreamReset();

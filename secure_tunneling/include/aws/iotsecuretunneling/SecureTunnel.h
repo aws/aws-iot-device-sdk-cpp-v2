@@ -226,6 +226,59 @@ namespace Aws
             std::shared_ptr<StreamStartedData> streamStartedData;
         };
 
+        /**
+         * Data model for started Secure Tunnel streams.
+         */
+        class AWS_IOTSECURETUNNELING_API StreamStoppedData
+        {
+          public:
+            StreamStoppedData(
+                const aws_secure_tunnel_message_view &raw_options,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Service id of the stopped stream.
+             *
+             * @return Service id of the stopped stream.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
+
+            /**
+             * Stream id of the stopped stream.
+             */
+
+            virtual ~StreamStoppedData();
+            /* Do not allow direct copy or move */
+            StreamStoppedData(const StreamStoppedData &) = delete;
+            StreamStoppedData(StreamStoppedData &&) noexcept = delete;
+            StreamStoppedData &operator=(const StreamStoppedData &) = delete;
+            StreamStoppedData &operator=(StreamStoppedData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Service id of started stream.
+             *
+             * If left empty, a V1 protocolstream is assumed.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_serviceIdStorage;
+        };
+
+        /**
+         * The data returned when a stream is closed on the Secure Tunnel.
+         */
+        struct AWS_IOTSECURETUNNELING_API StreamStoppedEventData
+        {
+            StreamStoppedEventData() : streamStoppedData(nullptr) {}
+            std::shared_ptr<StreamStoppedData> streamStoppedData;
+        };
+
         class SecureTunnel;
 
         // Client callback type definitions
@@ -263,6 +316,12 @@ namespace Aws
          */
         using OnStreamStarted =
             std::function<void(SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &)>;
+
+        /**
+         * Type signature of the callback invoked when a stream has been closed
+         */
+
+        using OnStreamStopped = std::function<void(SecureTunnel *secureTunnel, const StreamStoppedEventData &)>;
 
         /**
          * Type signature of the callback invoked when a stream is reset.
@@ -557,8 +616,11 @@ namespace Aws
 
             /**
              * Callback handler trigged when secure tunnel receives a stream reset.
+             *
+             * @param SecureTunnel: The shared secure tunnel
+             * @param StreamStoppedEventData: Stream Started data
              */
-            OnStreamReset m_OnStreamReset;
+            OnStreamStopped m_OnStreamStopped;
 
             /**
              * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
@@ -582,6 +644,10 @@ namespace Aws
              * Deprecated - Use m_OnStreamStarted
              */
             OnStreamStart m_OnStreamStart;
+            /**
+             * Deprecated - Use m_OnStreamStopped
+             */
+            OnStreamReset m_OnStreamReset;
 
             friend class SecureTunnel;
         };
@@ -738,6 +804,7 @@ namespace Aws
                 OnDataReceive onDataReceive,
                 OnStreamStarted onStreamStarted,
                 OnStreamStart onStreamStart,
+                OnStreamStopped onStreamStopped,
                 OnStreamReset onStreamReset,
                 OnSessionReset onSessionReset,
                 OnStopped onStopped);
@@ -751,7 +818,7 @@ namespace Aws
             static void s_OnConnectionFailure(int error_code, void *user_data);
             static void s_OnConnectionShutdown(int error_code, void *user_data);
             static void s_OnSendDataComplete(int error_code, void *user_data);
-            static void s_OnStreamReset(
+            static void s_OnStreamStopped(
                 const struct aws_secure_tunnel_message_view *message,
                 int error_code,
                 void *user_data);
@@ -798,9 +865,9 @@ namespace Aws
             OnStreamStarted m_OnStreamStarted;
 
             /**
-             * Callback handler trigged when secure tunnel receives a stream reset.
+             * Callback handler trigged when secure tunnel closes a stream
              */
-            OnStreamReset m_OnStreamReset;
+            OnStreamStopped m_OnStreamStopped;
 
             /**
              * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
@@ -827,6 +894,10 @@ namespace Aws
              * Deprecated - Use m_OnStreamStarted
              */
             OnStreamStart m_OnStreamStart;
+            /**
+             * Deprecated - Use m_OnStreamStopped
+             */
+            OnStreamReset m_OnStreamReset;
 
             std::shared_ptr<SecureTunnel> m_selfRef;
             // std::promise<void> m_TerminationComplete;
