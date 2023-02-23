@@ -307,6 +307,7 @@ int main(int argc, char *argv[])
     });
 
     builder.WithOnConnectionFailure([&](SecureTunnel *secureTunnel, int errorCode) {
+        (void)secureTunnel;
         fprintf(stdout, "Connection attempt failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
     });
 
@@ -348,6 +349,7 @@ int main(int argc, char *argv[])
 
     builder.WithOnStreamStarted(
         [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData) {
+            (void)secureTunnel;
             if (!errorCode)
             {
                 std::shared_ptr<StreamStartedData> streamStartedData = eventData.streamStartedData;
@@ -367,6 +369,7 @@ int main(int argc, char *argv[])
         });
 
     builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
+        (void)secureTunnel;
         std::shared_ptr<StreamStoppedData> streamStoppedData = eventData.streamStoppedData;
 
         if (streamStoppedData->getServiceId().has_value())
@@ -383,6 +386,7 @@ int main(int argc, char *argv[])
     });
 
     builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
+        (void)secureTunnel;
         fprintf(stdout, "Secure Tunnel has entered Stopped State\n");
         clientStoppedPromise.set_value(true);
     });
