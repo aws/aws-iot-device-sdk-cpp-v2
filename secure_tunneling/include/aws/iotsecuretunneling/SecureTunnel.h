@@ -474,6 +474,15 @@ namespace Aws
             SecureTunnelBuilder &WithOnStreamStarted(OnStreamStarted onStreamStarted);
 
             /**
+             * Setup callback handler trigged when an Secure Tunnel stops a stream.
+             *
+             * @param callback
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithOnStreamStopped(OnStreamStopped onStreamStopped);
+
+            /**
              * Setup callback handler trigged when an Secure Tunnel receives a stream reset.
              *
              * @param callback

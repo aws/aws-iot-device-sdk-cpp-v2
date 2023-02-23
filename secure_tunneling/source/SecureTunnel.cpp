@@ -161,7 +161,7 @@ namespace Aws
         }
 
         //***********************************************************************************************************************
-        /*                                              StreamStartData */
+        /*                                              StreamStartedData */
         //***********************************************************************************************************************
 
         StreamStartedData::StreamStartedData(
@@ -177,6 +177,24 @@ namespace Aws
         const Crt::Optional<Crt::ByteCursor> &StreamStartedData::getServiceId() const noexcept { return m_serviceId; }
 
         StreamStartedData::~StreamStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+
+        //***********************************************************************************************************************
+        /*                                              StreamStoppedData */
+        //***********************************************************************************************************************
+
+        StreamStoppedData::StreamStoppedData(
+            const aws_secure_tunnel_message_view &message,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
+        }
+
+        const Crt::Optional<Crt::ByteCursor> &StreamStoppedData::getServiceId() const noexcept { return m_serviceId; }
+
+        StreamStoppedData::~StreamStoppedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
         //***********************************************************************************************************************
         /*                                          SecureTunnelBuilder */
@@ -268,6 +286,12 @@ namespace Aws
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamStarted(OnStreamStarted onStreamStarted)
         {
             m_OnStreamStarted = std::move(onStreamStarted);
+            return *this;
+        }
+
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamStopped(OnStreamStopped onStreamStopped)
+        {
+            m_OnStreamStopped = std::move(onStreamStopped);
             return *this;
         }
 

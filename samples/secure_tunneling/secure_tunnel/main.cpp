@@ -366,6 +366,22 @@ int main(int argc, char *argv[])
             }
         });
 
+    builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
+        std::shared_ptr<StreamStoppedData> streamStoppedData = eventData.streamStoppedData;
+
+        if (streamStoppedData->getServiceId().has_value())
+        {
+            fprintf(
+                stdout,
+                "Stream stopped on service id: '" PRInSTR "'\n",
+                AWS_BYTE_CURSOR_PRI(streamStoppedData->getServiceId().value()));
+        }
+        else
+        {
+            fprintf(stdout, "Stream stopped using V1 Protocol");
+        }
+    });
+
     builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
         fprintf(stdout, "Secure Tunnel has entered Stopped State\n");
         clientStoppedPromise.set_value(true);
