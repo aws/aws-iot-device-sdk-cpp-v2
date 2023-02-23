@@ -909,10 +909,6 @@ namespace Aws
             OnStreamReset m_OnStreamReset;
 
             std::shared_ptr<SecureTunnel> m_selfRef;
-            // std::promise<void> m_TerminationComplete;
-            // std::condition_variable m_terminationCondition;
-            // std::mutex m_terminationMutex;
-            // bool m_terminationPredicate = false;
 
             friend class SecureTunnelBuilder;
         };
