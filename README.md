@@ -23,6 +23,7 @@ __Jump To:__
 * [FAQ](./documents/FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
+* [Secure Tunnel User Guide](./documents/Secure_Tunnel_Userguide.md)
 
 
 ## Installation
