@@ -149,7 +149,7 @@ You can use multiple data streams per Secure Tunnel by using the [Multiplexing](
 ## Opening a Secure Tunnel with Multiplexing
 To use Multiplexing, a Secure Tunnel must be created with one to three "services". A Secure Tunnel can be opened through the AWS IoT console [Secure Tunnel Hub](https://console.aws.amazon.com/iot/home#/tunnelhub) or by using the [OpenTunnel API](https://docs.aws.amazon.com/iot/latest/apireference/API_Operations_AWS_IoT_Secure_Tunneling.html). Both of these methods allow you to add services with whichever names suit your needs.
 ## Services Within the Secure Tunnel Client
-On a successfull connection to a Secure Tunnel, the Secure Tunnel Client will invoke the `OnConnectionSuccess` callback. This callback will return `ConnectionSuccessEventData` that will contain any available Service Ids that can be used for multiplexing. Below is an example of how to set the callback using the Secure Tunnel Builder and check whether a Service Id is available
+On a successfull connection to a Secure Tunnel, the Secure Tunnel Client will invoke the `OnConnectionSuccess` callback. This callback will return `ConnectionSuccessEventData` that will contain any available Service Ids that can be used for multiplexing. Below is an example of how to set the callback using the Secure Tunnel Builder and check whether a Service Id is available.
 ```cpp
 // Create Secure Tunnel Builder
 SecureTunnelBuilder builder = SecureTunnelBuilder(...);
