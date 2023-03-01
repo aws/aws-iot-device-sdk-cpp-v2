@@ -23,6 +23,7 @@ __Jump To:__
 * [FAQ](./documents/FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
+* [Secure Tunnel User Guide](./documents/Secure_Tunnel_Userguide.md)
 
 
 ## Installation
@@ -142,4 +143,4 @@ We need your help in making this SDK great. Please participate in the community 
 
 This library is licensed under the [Apache 2.0 License](./documents/LICENSE).
 
-Latest released version: v1.20.2
+Latest released version: v1.21.0

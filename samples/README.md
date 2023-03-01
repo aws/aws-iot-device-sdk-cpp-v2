@@ -24,28 +24,43 @@
 
 Firstly, build and install aws-iot-devices-sdk-cpp-v2 with following instructions from [Installation](../README.md#Installation).
 
-### Build samples
+### Build individual sample
 
-Change directory into one of the samples. Under the directory of the sample, run the following commands:
+Change directory into one of the samples. Under the directory of the sample you wish to build, run the following commands:
 
 ``` sh
-mkdir build
-cd build
-cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
-cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" .
+cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-To view the commands for a given sample, run the compiled program and pass `--help`.
+To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the PubSub sample:
 
+```sh
+./build/basic-pub-sub --help
 ```
-./basic-pub-sub --help
+
+### Build all samples
+
+Change directory to the `aws-iot-device-sdk-cpp-v2/samples` directory and then run the following commands:
+
+```sh
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" .
+cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-#### Note
+This will compile all the samples at once and place the executables under the `build` directory relative to their file path. To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the PubSub sample:
 
-* `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
+```sh
+./build/pub_sub/basic_pub_sub/basic-pub-sub --help
+```
 
-* `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
+This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/pubsub/basic_pubsub`.
+
+### Sample Build Notes
+
+* `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed at. Since [Installation](../README.md#Installation) takes `sdk-cpp-workspace` as an example, this file uses that example too.
+
+* `-DCMAKE_BUILD_TYPE` and `--config` needs to match the `CMAKE_BUILD_TYPE` when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
 ## Basic Pub-Sub
 
@@ -1013,7 +1028,7 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
 
 ## Secure Tunnel
 
-This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens.
+This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination and a source with each other through the AWS Secure Tunnel endpoint using access tokens using the [V2WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V2WebSocketProtocolGuide.md). [Secure Tunnel Userguide](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/Secure_Tunnel_Userguide.md)
 
 Source: `samples/secure_tunneling/secure_tunnel`
 
@@ -1022,17 +1037,13 @@ Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.co
 Provide the necessary arguments along with the destination access token and start the sample in destination mode (default).
 
 ``` sh
-./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
---cert <path to the certificate> --key <path to the private key>
---thing_name <thing name> --region <region> --access_token_file <path to destination access token>
+./secure_tunnel --region <region> --access_token_file <path to destination access token>
 ```
 
 Provide the necessary arguments along with the source access token and start a second sample in source mode by using the flag --localProxyModeSource.
 
 ``` sh
-./secure_tunnel --endpoint <endpoint> --ca_file <path to root CA>
---cert <path to the certificate> --key <path to the private key>
---thing_name <thing name> --region <region> --access_token_file <path to source access token>
+./secure_tunnel --region <region> --access_token_file <path to source access token>
 --localProxyModeSource
 ```
 
