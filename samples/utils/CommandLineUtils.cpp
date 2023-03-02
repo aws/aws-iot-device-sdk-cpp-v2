@@ -198,6 +198,11 @@ namespace Utils
             "The password to send when connecting through a custom authorizer (optional)");
     }
 
+    void CommandLineUtils::AddCognitoCommands()
+    {
+        RegisterCommand(m_cmd_cognito_identity, "<str>", "The Cognito identity ID to use to connect via Cognito");
+    }
+
     void CommandLineUtils::AddLoggingCommands()
     {
         RegisterCommand(
@@ -403,10 +408,10 @@ namespace Utils
         clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
+
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnection(
         Aws::Iot::MqttClient *client)
     {
-        Aws::Crt::Io::TlsContext x509TlsCtx;
         Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
 
         std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
@@ -443,6 +448,7 @@ namespace Utils
         clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
+
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildDirectMQTTConnection(
         Aws::Iot::MqttClient *client)
     {
@@ -489,6 +495,50 @@ namespace Utils
         clientConfigBuilder.WithCustomAuthorizer(
             auth_username, auth_authorizer_name, auth_authorizer_signature, auth_password);
 
+        return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
+    }
+
+    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> CommandLineUtils::BuildWebsocketMQTTConnectionWithCognito(
+        Aws::Iot::MqttClient *client)
+    {
+        Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
+
+        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+
+        Aws::Crt::Auth::CredentialsProviderCognitoConfig cognitoConfig;
+        cognitoConfig.Endpoint = "cognito-identity." + GetCommandRequired(m_cmd_signing_region) + ".amazonaws.com";
+        cognitoConfig.Identity = GetCommandRequired(m_cmd_cognito_identity);
+        Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
+        cognitoConfig.TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+        provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderCognito(cognitoConfig);
+
+        if (!provider)
+        {
+            fprintf(stderr, "Failure to create credentials provider!\n");
+            exit(-1);
+        }
+
+        Aws::Iot::WebsocketConfig config(GetCommandRequired(m_cmd_signing_region), provider);
+        clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+
+        if (HasCommand(m_cmd_ca_file))
+        {
+            clientConfigBuilder.WithCertificateAuthority(GetCommand(m_cmd_ca_file).c_str());
+        }
+        if (HasCommand(m_cmd_proxy_host))
+        {
+            clientConfigBuilder.WithHttpProxyOptions(GetProxyOptionsForMQTTConnection());
+        }
+        if (HasCommand(m_cmd_port_override))
+        {
+            int tmp_port = atoi(GetCommand(m_cmd_port_override).c_str());
+            if (tmp_port > 0 && tmp_port < UINT16_MAX)
+            {
+                clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(tmp_port));
+            }
+        }
+
+        clientConfigBuilder.WithEndpoint(GetCommandRequired(m_cmd_endpoint));
         return GetClientConnectionForMQTTConnection(client, &clientConfigBuilder);
     }
 

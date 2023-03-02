@@ -161,6 +161,11 @@ namespace Utils
         void AddCommonCustomAuthorizerCommands();
 
         /**
+         * A helper function that adds the cognito_identity command
+         */
+        void AddCognitoCommands();
+
+        /**
          * A helper function that adds the verbosity command for controlling logging in the samples
          */
         void AddLoggingCommands();
@@ -223,6 +228,18 @@ namespace Utils
             Aws::Iot::MqttClient *client);
 
         /**
+         * A helper function that builds and returns a websocket MQTT connection that will connect and
+         * authenticate via Cognito.
+         * @param client The client to use to make the connection
+         *
+         * Will get the required data from the CommandLineUtils from arguments defined in the
+         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
+         * @return The created websocket MQTT connection
+         */
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnectionWithCognito(
+            Aws::Iot::MqttClient *client);
+
+        /**
          * A helper function that builds and returns a MQTT connection automatically based
          * on the commands passed into CommandLineUtils. Will make a direct MQTT connection, PKCS11 MQTT connection,
          * a websocket connection, or a x509 connection via websockets.
@@ -282,5 +299,6 @@ namespace Utils
         const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
         const Aws::Crt::String m_cmd_verbosity = "verbosity";
         const Aws::Crt::String m_cmd_log_file = "log_file";
+        const Aws::Crt::String m_cmd_cognito_identity = "cognito_identity";
     };
 } // namespace Utils

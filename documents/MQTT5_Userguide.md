@@ -16,6 +16,7 @@
         - [Direct MQTT with X509-based mutual TLS](#direct-mqtt-with-x509-based-mutual-tls)
         - [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
         - [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
+        - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
         - [HTTP Proxy](#http-proxy)
     + [Client Operations](#client-operations)
         - [Subscribe](#subscribe)
@@ -26,7 +27,6 @@
 # Developer Preview Disclaimer
 
 MQTT5 support is currently in **developer preview**.  We encourage feedback at all times, but feedback during the preview window is especially valuable in shaping the final product.  During the preview period we may make backwards-incompatible changes to the public API, but in general, this is something we will try our best to avoid.
-
 
 The MQTT5 client cannot yet be used with the AWS IoT MQTT services (Shadow, Jobs, Identity).  This is a shortcoming that we hope to address in the near future.
 
@@ -62,7 +62,7 @@ SDK MQTT5 support comes from a separate client implementation.  In doing so, we 
 
     * Flexible queue control - provides a number of options to control what happens to incomplete operations on a disconnection event
 
-* A new API has been added to query the internal state of the client's operation queue.  This API allows the user to make more informed flow control decisions before submitting operatons to the client.
+* A new API has been added to query the internal state of the client's operation queue.  This API allows the user to make more informed flow control decisions before submitting operations to the client.
 
 * Data can no longer back up on the socket.  At most one frame of data is ever pending-write on the socket.
 
@@ -95,7 +95,7 @@ Not all parts of the MQTT5 spec are supported by the implementation.  We current
 ## How to Create Mqtt5 Client
 Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 client](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html). Something important to note is that once a MQTT5 client is built and finalized, the client configuration is immutable. Further modifications to the MQTT5 client builder will not change the settings of already created the MQTT5 clients. Before building a MQTT5 client from a MQTT5 client builder, make sure to have everything fully setup.
 
-```
+```cpp
 
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
@@ -119,11 +119,10 @@ Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 clien
 ```
 
 
-
 ## Client lifecycle management
 The MQTT5 client emits a set of events related to state and network status changes. The lifecycle events callback should be set in Mqtt5ClientBuilder before the client builds.
 
-```
+```cpp
 
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
@@ -197,7 +196,7 @@ The MQTT5 client emits a set of events related to state and network status chang
     else
     {
         fprintf(stdout, "Failed to stop the mqtt connection session. Exiting..\n");
-        return -1'
+        return -1;
     }
 
 ```
@@ -235,7 +234,7 @@ Emitted once the client has shutdown any associated network connection and enter
 ## How to Process Message
 [`withPublishReceivedCallback`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a178bd62d671ea2f273841e2e097744e8) will get involved when a publish is received. The callback should be set before building the client. Please note, once a MQTT5 client is built and finalized, the client configuration is immutable.
 
-```
+```cpp
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
 
@@ -255,10 +254,10 @@ Emitted once the client has shutdown any associated network connection and enter
 
 ### **Start**
 
-Invoking start() on the client will put it into an active state where it recurrently establishes a connection to the configured remote endpoint.  Reconnecting continues until you invoke stop().
+Invoking `start()` on the client will put it into an active state where it recurrently establishes a connection to the configured remote endpoint.  Reconnecting continues until you invoke stop().
 
 
-```
+```cpp
 
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
@@ -283,9 +282,9 @@ Invoking start() on the client will put it into an active state where it recurre
 
 ### **Stop**
 
-The Stop() API supports a DISCONNECT packet as an optional parameter.  If supplied, the DISCONNECT packet will be sent to the server prior to closing the socket.  You may listen for the 'Stopped' lifecycle event on the client for the result. Invoking stop() breaks the current connection (if any) and moves the client into an idle state. When waiting for finished with an MQTT5 client,
+The `Stop()` API supports a DISCONNECT packet as an optional parameter.  If supplied, the DISCONNECT packet will be sent to the server prior to closing the socket.  You may listen for the 'Stopped' lifecycle event on the client for the result. Invoking `stop()` breaks the current connection (if any) and moves the client into an idle state. When waiting for finished with an MQTT5 client,
 
-```
+```cpp
     if (!client->Stop())
     {
         fprintf(stdout, "Failed to stop the mqtt connection session. Exiting..\n");
@@ -304,10 +303,10 @@ This section shows samples for all of the authentication possibilities.
 
 For X509 based mutual TLS, you can create a client where the certificate and private key are configured by path:
 
-```
+```cpp
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        <clientEndpoint>, <certificateFilePath>, <privateKeyFilePath>);
+        "<clientEndpoint>", "<certificateFilePath>", "<privateKeyFilePath>");
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -341,7 +340,7 @@ Sigv4-based authentication requires a credentials provider capable of sourcing v
 If the default credentials provider chain and AWS region are specified, you do not need to specify any additional configuration, Alternatively, if you're connecting to a special region for which standard pattern matching does not work, or if you need a specific credentials provider, you can specify advanced websocket configuration options.
 
 
-```
+```cpp
     // Create websocket configuration
     Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
     std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
@@ -354,7 +353,7 @@ If the default credentials provider chain and AWS region are specified, you do n
 
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-        <clientEndpoint>, websocketConfig);
+        "<clientEndpoint>", websocketConfig);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -382,16 +381,16 @@ AWS IoT Core Custom Authentication allows you to use a lambda to gate access to 
 
 If your custom authenticator does not use signing, you don't specify anything related to the token signature:
 
-```
+```cpp
     // Setup custom authorization config
     Mqtt5CustomAuthConfig customAuth;
-    customAuth.WithAuthrizaerName(<Name of your custom authorizer>);
-    customAuth.WithUsername(<Value of the username field that should be passed to the authorizer's lambda>);
-    customAuth.WithPassword(<Binary data value of the password field that should be passed to the authorizer's lambda>);
+    customAuth.WithAuthrizaerName("<Name of your custom authorizer>");
+    customAuth.WithUsername("<Value of the username field that should be passed to the authorizer's lambda>");
+    customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
 
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
-        <clientEndpoint>, customAuth);
+        "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -412,17 +411,17 @@ If your custom authenticator does not use signing, you don't specify anything re
 
 If your custom authorizer uses signing, you must specify the three signed token properties as well.  The token signature must be the URI-encoding of the base64 encoding of the digital signature of the token value via the private key associated with the public key that was registered with the custom authorizer.  It is your responsibility to URI-encode the token signature.
 
-```
+```cpp
     // Setup custom authorization config
     Mqtt5CustomAuthConfig customAuth;
-    customAuth.WithAuthrizaerName(<Name of your custom authorizer>);
-    customAuth.WithUsername(<Value of the username field that should be passed to the authorizer's lambda>);
-    customAuth.WithPassword(<Binary data value of the password field that should be passed to the authorizer's lambda>);
-    customAuth.WithTokenSignature(<The signature of the custom authorizer>)
+    customAuth.WithAuthrizaerName("<Name of your custom authorizer>");
+    customAuth.WithUsername("<Value of the username field that should be passed to the authorizer's lambda>");
+    customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
+    customAuth.WithTokenSignature("<The signature of the custom authorizer>")
 
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
-        <clientEndpoint>, customAuth);
+        "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -443,18 +442,66 @@ If your custom authorizer uses signing, you must specify the three signed token 
 In both cases, the builder will construct a final CONNECT packet username field value for you based on the values configured.  Do not add the token-signing fields to the value of the username that you assign within the custom authentication config structure.  Similarly, do not add any custom authentication related values to the username in the CONNECT configuration optionally attached to the client configuration. The builder will do everything for you.
 
 
+### MQTT over Websockets with Cognito
+
+A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID. This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool. A Cognito identity pool can be created from the AWS console.
+
+To create a MQTT5 builder configured for this connection, see the following code:
+
+```cpp
+    // Create websocket configuration
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+
+    Aws::Crt::Auth::CredentialsProviderCognitoConfig cognitoConfig;
+    // See https://docs.aws.amazon.com/general/latest/gr/cognito_identity.html for Cognito endpoints
+    cognitoConfig.Endpoint = "cognito-identity.<region>.amazonaws.com";
+    cognitoConfig.Identity = "<Cognito Identity ID>";
+    Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
+    cognitoConfig.TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderCognito(cognitoConfig);
+
+    if (!provider)
+    {
+        fprintf(stderr, "Failure to create credentials provider!\n");
+        exit(-1);
+    }
+    Aws::Iot::WebsocketConfig websocketConfig(<signing region>, provider);
+
+    // Create a Client using Mqtt5ClientBuilder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
+        "<clientEndpoint>", websocketConfig);
+
+    /* You can setup other client options and lifecycle event callbacks before call builder->Build().
+    ** Once the the client get built, you could no longer update the client options or connection options
+    ** on the created client.
+    */
+
+    // Build Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+
+```
+
+**Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
+
 
 ### HTTP Proxy
 
 No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
 
-```
-
+```cpp
     // Create a Client using Mqtt5ClientBuilder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithXXXXX( ... );
 
     Http::HttpClientConnectionProxyOptions proxyOptions;
-    proxyOptions.HostName = <proxyHost>;
+    proxyOptions.HostName = "<proxyHost>";
     proxyOptions.Port = <proxyPort>;
     builder->withHttpProxyOptions(proxyOptions);
 
@@ -483,10 +530,10 @@ There are three basic MQTT operations you can perform with the MQTT5 client.
 
 ### Subscribe
 
-The Subscribe operation takes a description of the SUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns ponding SubAckPacket returned by the broker.
+The Subscribe operation takes a description of the SUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns the corresponding SubAckPacket returned by the broker.
 
 
-```
+```cpp
 
     // Create multiple subscription data. With the Mqtt5 API, we can subscribe multiple topics at once.
     Subscription data1();
@@ -525,11 +572,11 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
 
 ### Unsubscribe
 
-The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns ponding UnSubAckPacket returned by the broker.
+The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns the corresponding UnSubAckPacket returned by the broker.
 
 
 
-```
+```cpp
 
     String topic1 = "test/topic/test1";
     String topic2 = "test/topic/test2";
@@ -559,11 +606,11 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
 
 The Publish operation takes a description of the PUBLISH packet you wish to send and return false if the operation goes wrong.
 The publish completion callback will return a PublishResult, which is a polymorphic value, as soon as the packet has been written to the socket.
-If the PUBLISH was a QoS 0 publish, then the completion callback returns nullptr for PublishResult.
+If the PUBLISH was a QoS 0 publish, then the completion callback returns `nullptr` for PublishResult.
 If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAckPacket.
 
 
-```
+```cpp
 
     Crt::String testTopic = "my/own/topic";
     Crt::String message_string = "any payload";
@@ -602,4 +649,4 @@ Below are some best practices for the MQTT5 client that are recommended to follo
 * Use the minimum QoS you can get away with for the lowest latency and bandwidth costs. For example, if you are sending data consistently multiple times per second and do not have to have a guarantee the server got each and every publish, using QoS 0 may be ideal compared to QoS 1. Of course, this heavily depends on your use case but generally it is recommended to use the lowest QoS possible.
 * If you are getting unexpected disconnects when trying to connect to AWS IoT Core, make sure to check your IoT Core Thing’s policy and permissions to make sure your device is has the permissions it needs to connect!
 * For **Publish**, **Subscribe**, and **Unsubscribe**, you can check the reason codes in the CompletionCallbacks to see if the operation actually succeeded.
-* You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returs, so the thread will be stuck.
+* You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
