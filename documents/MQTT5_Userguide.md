@@ -572,7 +572,7 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
 
 ### Unsubscribe
 
-The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns corresponding UnSubAckPacket returned by the broker.
+The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish to send and return false if the operation goes wrong. The operation takes in a subscribe completion callback which returns the corresponding UnSubAckPacket returned by the broker.
 
 
 
