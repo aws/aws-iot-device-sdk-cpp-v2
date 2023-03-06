@@ -151,8 +151,7 @@ int main(int argc, char *argv[])
         }
 
         auto onSubAck =
-            [&subscribeSuccess](
-                std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
+            [&subscribeSuccess](Mqtt5::Mqtt5Client &, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
                 if (error_code != 0)
                 {
                     fprintf(
@@ -195,7 +194,7 @@ int main(int argc, char *argv[])
 
                 // Setup publish completion callback. The callback will get triggered when the pulbish completes (when
                 // the client received the PubAck from the server).
-                auto onPublishComplete = [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
+                auto onPublishComplete = [](Aws::Crt::Mqtt5::Mqtt5Client &client,
                                             int,
                                             std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
                     if (!result->wasSuccessful())
@@ -248,10 +247,9 @@ int main(int argc, char *argv[])
                 std::promise<void> unsubscribeFinishedPromise;
                 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
                 unsub->withTopicFilter(topic);
-                if (!client->Unsubscribe(
-                        unsub, [&](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
-                            unsubscribeFinishedPromise.set_value();
-                        }))
+                if (!client->Unsubscribe(unsub, [&](Mqtt5::Mqtt5Client &, int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
+                        unsubscribeFinishedPromise.set_value();
+                    }))
                 {
                     fprintf(stdout, "Unsubscription failed.\n");
                     exit(-1);
@@ -272,10 +270,12 @@ int main(int argc, char *argv[])
         if (!client->Stop())
         {
             fprintf(stdout, "Failed to disconnect from the mqtt connection. Exiting..\n");
+            client->Close();
             return -1;
         }
         stoppedPromise.get_future().wait();
     }
+    client->Close();
 
     return 0;
 }
