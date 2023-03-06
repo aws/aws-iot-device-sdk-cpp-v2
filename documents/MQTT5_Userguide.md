@@ -7,6 +7,7 @@
     + [Not Supported](#not-supported)
 * [Getting Started with MQTT5](#getting-started-with-mqtt5)
     + [How to Create Mqtt5 Client](#how-to-create-mqtt5-client)
+    + [How to Destory Mqtt5 Client](#how-to-destory-mqtt5-client)
     + [Client lifecycle management](#client-lifecycle-management)
     + [How to Process Message](#publish-received-handler)
     + [How to Start and Stop](#how-to-start-and-stop)
@@ -109,13 +110,27 @@ Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 clien
         return -1;
     }
 
-    // Start mqtt5 connection session
-    if (!mqtt5Client->Start())
+```
+
+
+## How to Destory Mqtt5 Client
+When you finish with the mqtt5 client, you MUST call `Close()` to release the client resources. Once `Close()` is invoked, the client will become invalid. You MUST NOT apply any operation afterwards.
+```cpp
+    // Create Mqtt5Client Builder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+
+    // Build Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+
+    if (mqtt5Client == nullptr)
     {
-        fprintf("Failed start Mqtt5 client");
+        fprintf(stdout, "Client creation failed.\n");
         return -1;
     }
 
+    // Mqtt5Client Operations...
+    // Close client
+    client->Close();
 ```
 
 
@@ -176,6 +191,7 @@ The MQTT5 client emits a set of events related to state and network status chang
     if (!mqtt5Client->Start())
     {
         fprintf("Failed start Mqtt5 client");
+        mqtt5Client->Close();
         return -1;
     }
 
@@ -196,6 +212,7 @@ The MQTT5 client emits a set of events related to state and network status chang
     else
     {
         fprintf(stdout, "Failed to stop the mqtt connection session. Exiting..\n");
+        mqtt5Client->Close();
         return -1;
     }
 
@@ -275,6 +292,7 @@ Invoking `start()` on the client will put it into an active state where it recur
     if (!mqtt5Client->Start())
     {
         fprintf("Failed start Mqtt5 client");
+        mqtt5Client->Close();
         return -1;
     }
 
@@ -554,7 +572,7 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
 
     bool subSuccess = mqtt5Client->Subscribe(
         packet,
-        [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::SubAckPacket> suback){
+        [](Mqtt5::Mqtt5Client &, int, std::shared_ptr<Mqtt5::SubAckPacket> suback){
             for (auto code : suback->getReasonCodes())
             {
                 fprintf(stdout, "Get suback from server with code: %d \n", code );
@@ -587,7 +605,7 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
     unsub->withTopicFilters(topics);
     bool unsubSuccess = mqtt5Client->Unsubscribe(
         packet,
-        [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback){
+        [](Mqtt5::Mqtt5Client &, int, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback){
             for (auto code : unsuback->getReasonCodes())
             {
                 fprintf(stdout, "Get unsuback from server with code: %d \n", code );
@@ -635,7 +653,6 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     if(!mqtt5Client->Publish(publish, std::move(callback)))
     {
         fprintf(stdout, "Publish Operation Failed.\n");
-        return -1;
     }
 
 ```
@@ -648,5 +665,6 @@ Below are some best practices for the MQTT5 client that are recommended to follo
 * When creating MQTT5 clients, make sure to use ClientIDs that are unique! If you connect two MQTT5 clients with the same ClientID, they will Disconnect each other! If you do not configure a ClientID, the MQTT5 server will automatically assign one.
 * Use the minimum QoS you can get away with for the lowest latency and bandwidth costs. For example, if you are sending data consistently multiple times per second and do not have to have a guarantee the server got each and every publish, using QoS 0 may be ideal compared to QoS 1. Of course, this heavily depends on your use case but generally it is recommended to use the lowest QoS possible.
 * If you are getting unexpected disconnects when trying to connect to AWS IoT Core, make sure to check your IoT Core Thing’s policy and permissions to make sure your device is has the permissions it needs to connect!
+* Make sure to always call `Close()` when finished a MQTT5 client to avoid native resource leaks and deadlock!
 * For **Publish**, **Subscribe**, and **Unsubscribe**, you can check the reason codes in the CompletionCallbacks to see if the operation actually succeeded.
 * You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
