@@ -117,7 +117,7 @@ namespace MqttOperationQueue {
                 m_operationQueue.erase(m_operationQueue.begin());
 
                 PrintLogMessage((std::string("Starting to perform operation of type ") + OperationTypeToString(operation.type)).c_str());
-                PerformOperation(operation);
+                PerformOperation(&operation);
 
                 if (m_operationQueue.size() <= 0) {
                     if (m_callbackEmpty) {
@@ -136,51 +136,57 @@ namespace MqttOperationQueue {
         // END CRITICAL SECTION
     }
 
-    void MqttOperationQueue::PerformOperation(QueueOperation operation)
+    void MqttOperationQueue::PerformOperation(QueueOperation *operation)
     {
-        if (operation.type == OperationType::PUBLISH) {
+        if (operation == nullptr) {
+            PerformOperationUnknown(operation);
+        } else if (operation->type == OperationType::PUBLISH) {
             PerformOperationPublish(operation);
-        } else if (operation.type == OperationType::SUBSCRIBE) {
+        } else if (operation->type == OperationType::SUBSCRIBE) {
             PerformOperationSubscribe(operation);
-        } else if (operation.type == OperationType::UNSUBSCRIBE) {
+        } else if (operation->type == OperationType::UNSUBSCRIBE) {
             PerformOperationUnsubscribe(operation);
         } else {
             PerformOperationUnknown(operation);
         }
     }
 
-    void MqttOperationQueue::PerformOperationPublish(QueueOperation operation)
+    void MqttOperationQueue::PerformOperationPublish(QueueOperation *operation)
     {
-        m_connection->Publish(operation.topic.c_str(), operation.qos, operation.retain, operation.payload, std::move(operation.onOpComplete));
+        m_connection->Publish(operation->topic.c_str(), operation->qos, operation->retain, operation->payload, std::move(operation->onOpComplete));
         if (m_callbackSent) {
-            m_callbackSent(operation);
+            m_callbackSent(*operation);
         }
     }
 
-    void MqttOperationQueue::PerformOperationSubscribe(QueueOperation operation)
+    void MqttOperationQueue::PerformOperationSubscribe(QueueOperation *operation)
     {
         // TODO: Support the other subscribe callback(s)
-        m_connection->Subscribe(operation.topic.c_str(), operation.qos, std::move(operation.onMessage), std::move(operation.onSubAck));
+        m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onMessage), std::move(operation->onSubAck));
 
         if (m_callbackSent) {
-            m_callbackSent(operation);
+            m_callbackSent(*operation);
         }
     }
 
-    void MqttOperationQueue::PerformOperationUnsubscribe(QueueOperation operation)
+    void MqttOperationQueue::PerformOperationUnsubscribe(QueueOperation *operation)
     {
-        m_connection->Unsubscribe(operation.topic.c_str(), std::move(operation.onOpComplete));
+        m_connection->Unsubscribe(operation->topic.c_str(), std::move(operation->onOpComplete));
         if (m_callbackSent) {
-            m_callbackSent(operation);
+            m_callbackSent(*operation);
         }
     }
 
-    void MqttOperationQueue::PerformOperationUnknown(QueueOperation operation)
+    void MqttOperationQueue::PerformOperationUnknown(QueueOperation *operation)
     {
-        PrintLogMessage("ERROR - got unknown operation to perform!");
-        if (m_callbackSentFailure) {
-            QueueResult result = QueueResult::UNKNOWN_OPERATION;
-            m_callbackSentFailure(operation, result);
+        if (operation == nullptr) {
+            PrintLogMessage("ERROR - got null pointer operation to perform!");
+        } else {
+            PrintLogMessage("ERROR - got unknown operation to perform!");
+            if (m_callbackSentFailure) {
+                QueueResult result = QueueResult::UNKNOWN_OPERATION;
+                m_callbackSentFailure(*operation, result);
+            }
         }
     }
 
@@ -214,19 +220,18 @@ namespace MqttOperationQueue {
     {
         QueueResult result = QueueResult::SUCCESS;
         QueueOperation droppedOperation = QueueOperation();
-        // TODO - should operation be a pointer?
 
         // CRITICAL SECTION
         m_queueLock.lock();
         try {
 
             if (m_queueLimitSize <= 0) {
-                result = AddOperationToQueueInsert(operation);
+                result = AddOperationToQueueInsert(&operation);
             } else {
                 if (m_operationQueue.size() + 1 <= m_queueLimitSize) {
-                    AddOperationToQueueInsert(operation);
+                    AddOperationToQueueInsert(&operation);
                 } else {
-                    result = AddOperationToQueueOverflow(operation, &droppedOperation);
+                    result = AddOperationToQueueOverflow(&operation, &droppedOperation);
                 }
             }
 
@@ -257,20 +262,20 @@ namespace MqttOperationQueue {
         return result;
     }
 
-    QueueResult MqttOperationQueue::AddOperationToQueueInsert(QueueOperation operation)
+    QueueResult MqttOperationQueue::AddOperationToQueueInsert(QueueOperation *operation)
     {
         QueueResult result = QueueResult::SUCCESS;
         if (m_queueInsertBehavior == InsertBehavior::INSERT_BACK) {
-            m_operationQueue.push_back(operation);
+            m_operationQueue.push_back(*operation);
         } else if (m_queueInsertBehavior == InsertBehavior::INSERT_FRONT) {
-            m_operationQueue.insert(m_operationQueue.begin(), operation);
+            m_operationQueue.insert(m_operationQueue.begin(), *operation);
         } else {
             result = QueueResult::UNKNOWN_QUEUE_INSERT_BEHAVIOR;
         }
         return result;
     }
 
-    QueueResult MqttOperationQueue::AddOperationToQueueOverflow(QueueOperation operation, QueueOperation *oldOperation)
+    QueueResult MqttOperationQueue::AddOperationToQueueOverflow(QueueOperation *operation, QueueOperation *oldOperation)
     {
         QueueResult result = QueueResult::SUCCESS;
         if (m_queueLimitBehavior == LimitBehavior::RETURN_ERROR) {
@@ -340,7 +345,7 @@ namespace MqttOperationQueue {
         newOperation.retain = retain;
         newOperation.payload = Aws::Crt::ByteBufNewCopy(m_allocator, payload.buffer, payload.len); // make a copy
         newOperation.onOpComplete = onOpComplete;
-        return AddOperationToQueue(newOperation);
+        return AddOperationToQueue(std::move(newOperation));
     }
 
     QueueResult MqttOperationQueue::Subscribe(
@@ -355,7 +360,7 @@ namespace MqttOperationQueue {
         newOperation.qos = qos;
         newOperation.onMessage = onMessage;
         newOperation.onSubAck = onSubAck;
-        return AddOperationToQueue(newOperation);
+        return AddOperationToQueue(std::move(newOperation));
     }
 
     QueueResult MqttOperationQueue::Unsubscribe(
@@ -366,7 +371,7 @@ namespace MqttOperationQueue {
         newOperation.type = OperationType::UNSUBSCRIBE;
         newOperation.topic = Aws::Crt::String(topicFilter); // makes a copy
         newOperation.onOpComplete = onOpComplete;
-        return AddOperationToQueue(newOperation);
+        return AddOperationToQueue(std::move(newOperation));
     }
 
     QueueResult MqttOperationQueue::AddQueueOperation(QueueOperation operation)
@@ -389,7 +394,7 @@ namespace MqttOperationQueue {
         } else {
             return QueueResult::UNKNOWN_ERROR;
         }
-        return AddOperationToQueue(operation);
+        return AddOperationToQueue(std::move(operation));
     }
 
     uint32_t MqttOperationQueue::GetQueueSize() {

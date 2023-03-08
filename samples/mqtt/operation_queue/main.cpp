@@ -22,7 +22,6 @@ using namespace Aws::Crt;
 
 int main(int argc, char *argv[])
 {
-
     /************************ Setup the Lib ****************************/
     /*
      * Do the global initialization for the API.
@@ -211,11 +210,7 @@ int main(int argc, char *argv[])
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
-                fprintf(stdout, "Publish #%d received on topic %s with message: ", receivedCount, topic.c_str());
-                fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
-                fprintf(stdout, "\n");
             }
-
             receiveSignal.notify_all();
         };
 

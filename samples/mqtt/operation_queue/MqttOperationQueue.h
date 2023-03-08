@@ -150,15 +150,15 @@ namespace MqttOperationQueue {
 
             bool CheckOperationStatistics();
             void RunOperation();
-            void PerformOperation(QueueOperation operation);
-            void PerformOperationPublish(QueueOperation operation);
-            void PerformOperationSubscribe(QueueOperation operation);
-            void PerformOperationUnsubscribe(QueueOperation operation);
-            void PerformOperationUnknown(QueueOperation operation);
+            void PerformOperation(QueueOperation *operation);
+            void PerformOperationPublish(QueueOperation *operation);
+            void PerformOperationSubscribe(QueueOperation *operation);
+            void PerformOperationUnsubscribe(QueueOperation *operation);
+            void PerformOperationUnknown(QueueOperation *operation);
 
             QueueResult AddOperationToQueue(QueueOperation operation);
-            QueueResult AddOperationToQueueInsert(QueueOperation operation);
-            QueueResult AddOperationToQueueOverflow(QueueOperation operation, QueueOperation *oldOperation);
+            QueueResult AddOperationToQueueInsert(QueueOperation *operation);
+            QueueResult AddOperationToQueueOverflow(QueueOperation *operation, QueueOperation *oldOperation);
 
             static void s_QueueLoop(MqttOperationQueue *queue);
 
