@@ -2,7 +2,7 @@
 
 [**Return to main sample list**](../../README.md)
 
-**Note: Untested!** C++ Greengrass documentation has few C++ references and this exactly workflow described in this README has not yet been tested. Actual steps my vary.
+**Note: Currently untested!** C++ Greengrass documentation has few C++ references and this exactly workflow described in this README has not yet been tested.
 
 This sample uses [AWS IoT Greengrass V2](https://docs.aws.amazon.com/greengrass/index.html) to publish messages from the Greengrass device to the AWS IoT MQTT broker.
 
@@ -41,10 +41,10 @@ To run the sample, create a new AWS IoT Greengrass component and deploy it to yo
   - Platform:
       os: all
       Artifacts:
-      - URI: "<S3 Bucket URL>/software.amazon.awssdk.iotdevicesdk/1.0.0/GreengrassIPC-1.0-SNAPSHOT"
+      - URI: "<S3 Bucket URL>/software.amazon.awssdk.iotdevicesdk/1.0.0/GreengrassIPC"
       Lifecycle:
           RequiresPrivilege: true
-          Run: "{artifacts:path}/GreengrassIPC-1.0-SNAPSHOT "
+          Run: "{artifacts:path}/./GreengrassIPC.out "
 ```
 
 Replace the following with your information:
