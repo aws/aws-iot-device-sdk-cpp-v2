@@ -15,8 +15,8 @@
 #include <mutex>
 #include <thread>
 
-#include "MqttOperationQueue.h"
 #include "../../utils/CommandLineUtils.h"
+#include "MqttOperationQueue.h"
 
 using namespace Aws::Crt;
 
@@ -42,12 +42,16 @@ int main(int argc, char *argv[])
     cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
     cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='20')");
     cmdUtils.RegisterCommand("port_override", "<int>", "The port override to use when connecting (optional)");
-    cmdUtils.RegisterCommand("queue_limit", "<int>", "The maximum number of operations for the queue (optional, default='10')");
-    cmdUtils.RegisterCommand("queue_mode", "<int>", "The mode for the queue to use. (optional, default='0')"
-                             "\n\t0 = Overflow removes from queue back and new messages are pushed to queue back"
-                             "\n\t1 = Overflow removes from queue front and new messages are pushed to queue back"
-                             "\n\t2 = Overflow removes from queue front and new messages are pushed to queue front"
-                             "\n\t3 = Overflow removes from queue back and messages are pushed to queue front");
+    cmdUtils.RegisterCommand(
+        "queue_limit", "<int>", "The maximum number of operations for the queue (optional, default='10')");
+    cmdUtils.RegisterCommand(
+        "queue_mode",
+        "<int>",
+        "The mode for the queue to use. (optional, default='0')"
+        "\n\t0 = Overflow removes from queue back and new messages are pushed to queue back"
+        "\n\t1 = Overflow removes from queue front and new messages are pushed to queue back"
+        "\n\t2 = Overflow removes from queue front and new messages are pushed to queue front"
+        "\n\t3 = Overflow removes from queue back and messages are pushed to queue front");
     cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
@@ -65,15 +69,19 @@ int main(int argc, char *argv[])
             messageCount = count;
         }
     }
-    if (cmdUtils.HasCommand("queue_limit")) {
+    if (cmdUtils.HasCommand("queue_limit"))
+    {
         int limit = atoi(cmdUtils.GetCommand("queue_limit").c_str());
-        if (limit > 0) {
+        if (limit > 0)
+        {
             queueLimit = limit;
         }
     }
-    if (cmdUtils.HasCommand("queue_mode")) {
+    if (cmdUtils.HasCommand("queue_mode"))
+    {
         int mode = atoi(cmdUtils.GetCommand("queue_mode").c_str());
-        if (mode > 0) {
+        if (mode > 0)
+        {
             queueMode = mode;
         }
     }
@@ -105,7 +113,8 @@ int main(int argc, char *argv[])
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
-    /* Invoked when a MQTTT connection was connected, becomes disconnected from the server, and reconnects successfully */
+    /* Invoked when a MQTTT connection was connected, becomes disconnected from the server, and reconnects successfully
+     */
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
     /* Invoked when a MQTT connection sent a disconnect message that's been completed. */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
@@ -132,26 +141,32 @@ int main(int argc, char *argv[])
     };
     /* Invoked when the operation queue successfully sends an operation */
     auto onQueueOperationSent = [&](MqttOperationQueue::QueueOperation operation) {
-        if (operation.type == MqttOperationQueue::OperationType::PUBLISH) {
+        if (operation.type == MqttOperationQueue::OperationType::PUBLISH)
+        {
             fprintf(stdout, "Sending publish with payload: [");
             fwrite(operation.payload.buffer, 1, operation.payload.len, stdout);
             fprintf(stdout, "] from the operation queue\n");
-        } else {
+        }
+        else
+        {
             fprintf(stdout, "Sending operation of type value of %i from the operation queue\n", (int)operation.type);
         }
     };
     /* Invoked when the operation queue failed to send an operation */
-    auto onQueueOperationSentFailure = [&](MqttOperationQueue::QueueOperation operation, MqttOperationQueue::QueueResult result)
-    {
+    auto onQueueOperationSentFailure = [&](MqttOperationQueue::QueueOperation operation,
+                                           MqttOperationQueue::QueueResult result) {
         fprintf(stdout, "ERROR: Operation from queue failed with error type value of: %i\n", (int)result);
     };
     /* Invoked when the operation queue drops an operation from the queue when the queue is full */
     auto onQueueOperationDropped = [&](MqttOperationQueue::QueueOperation operation) {
-        if (operation.type == MqttOperationQueue::OperationType::PUBLISH) {
+        if (operation.type == MqttOperationQueue::OperationType::PUBLISH)
+        {
             fprintf(stdout, "Publish with payload: [");
             fwrite(operation.payload.buffer, 1, operation.payload.len, stdout);
             fprintf(stdout, "] dropped from the operation queue\n");
-        } else {
+        }
+        else
+        {
             fprintf(stdout, "Operation of type value of %i dropped from the operation queue\n", (int)operation.type);
         }
     };
@@ -165,18 +180,25 @@ int main(int argc, char *argv[])
     queueBuilder.WithOnOperationSentFailureCallback(std::move(onQueueOperationSentFailure));
     queueBuilder.WithOnOperationDroppedCallback(std::move(onQueueOperationDropped));
     /* The different queue insert/limit mode combos */
-    if (queueMode == 0) {
+    if (queueMode == 0)
+    {
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_BACK)
-                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
-    } else if (queueMode == 1) {
+            .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
+    }
+    else if (queueMode == 1)
+    {
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_BACK)
-                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
-    } else if (queueMode == 2) {
+            .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
+    }
+    else if (queueMode == 2)
+    {
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_FRONT)
-                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
-    } else if (queueMode == 3) {
+            .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
+    }
+    else if (queueMode == 3)
+    {
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_FRONT)
-                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
+            .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
     }
     /* Create the queue from the configuration */
     std::shared_ptr<MqttOperationQueue::MqttOperationQueue> operationQueue = queueBuilder.Build();
@@ -243,12 +265,13 @@ int main(int argc, char *argv[])
         // Wait for the subscribe ACK from the server
         subscribeFinishedPromise.get_future().wait();
 
-        /* Publish messageCount times. If messageCount is larger than the queue, only the queue amount of messages will be published */
+        /* Publish messageCount times. If messageCount is larger than the queue, only the queue amount of messages will
+         * be published */
         onQueueEmptyPromise = std::promise<void>();
         uint32_t publishedCount = 0;
         while (publishedCount < messageCount)
         {
-            String sendPayload = messagePayload + std::to_string(publishedCount+1).c_str();
+            String sendPayload = messagePayload + std::to_string(publishedCount + 1).c_str();
             ByteBuf payload = ByteBufFromArray((const uint8_t *)sendPayload.data(), sendPayload.length());
 
             auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};

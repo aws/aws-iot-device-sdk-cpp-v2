@@ -7,12 +7,13 @@
 #include <aws/crt/StlAllocator.h>
 
 #include <chrono>
-#include <thread>
 #include <string>
+#include <thread>
 
 #include "MqttOperationQueue.h"
 
-namespace MqttOperationQueue {
+namespace MqttOperationQueue
+{
 
     /*****************************************************
      *
@@ -20,8 +21,10 @@ namespace MqttOperationQueue {
      *
      *****************************************************/
 
-    MqttOperationQueue::MqttOperationQueue(MqttOperationQueueBuilder &builder, Aws::Crt::Allocator *allocator) {
-        if (builder.GetConnection() == nullptr) {
+    MqttOperationQueue::MqttOperationQueue(MqttOperationQueueBuilder &builder, Aws::Crt::Allocator *allocator)
+    {
+        if (builder.GetConnection() == nullptr)
+        {
             throw std::invalid_argument("Connection is not defined!");
         }
         m_operationQueue = std::vector<QueueOperation>();
@@ -48,11 +51,13 @@ namespace MqttOperationQueue {
     }
 
     std::shared_ptr<MqttOperationQueue> MqttOperationQueue::NewOperationQueue(
-        MqttOperationQueueBuilder &builder, Aws::Crt::Allocator *allocator) noexcept
+        MqttOperationQueueBuilder &builder,
+        Aws::Crt::Allocator *allocator) noexcept
     {
         /* Copied from MqttClient.cpp:ln754 */
         // As the constructor is private, make share would not work here. We do make_share manually.
-        MqttOperationQueue *toSeat = reinterpret_cast<MqttOperationQueue *>(aws_mem_acquire(allocator, sizeof(MqttOperationQueue)));
+        MqttOperationQueue *toSeat =
+            reinterpret_cast<MqttOperationQueue *>(aws_mem_acquire(allocator, sizeof(MqttOperationQueue)));
 
         if (!toSeat)
         {
@@ -65,21 +70,32 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::PrintLogMessage(Aws::Crt::String message)
     {
-        if (m_enableLogging) {
+        if (m_enableLogging)
+        {
             fprintf(stdout, "[MqttOperationQueue] %s\n", message.c_str());
         }
     }
 
-    std::string MqttOperationQueue::OperationTypeToString(OperationType type) {
-        if (type == OperationType::NONE) {
+    std::string MqttOperationQueue::OperationTypeToString(OperationType type)
+    {
+        if (type == OperationType::NONE)
+        {
             return std::string("None");
-        } else if (type == OperationType::PUBLISH) {
+        }
+        else if (type == OperationType::PUBLISH)
+        {
             return std::string("Publish");
-        } else if (type == OperationType::SUBSCRIBE) {
+        }
+        else if (type == OperationType::SUBSCRIBE)
+        {
             return std::string("Subscribe");
-        } else if (type == OperationType::UNSUBSCRIBE) {
+        }
+        else if (type == OperationType::UNSUBSCRIBE)
+        {
             return std::string("Unsubscribe");
-        } else {
+        }
+        else
+        {
             return std::string("Unknown");
         }
     }
@@ -90,46 +106,65 @@ namespace MqttOperationQueue {
      *
      *****************************************************/
 
-    bool MqttOperationQueue::CheckOperationStatistics() {
+    bool MqttOperationQueue::CheckOperationStatistics()
+    {
         Aws::Crt::Mqtt::MqttConnectionOperationStatistics statistics = m_connection->GetOperationStatistics();
-        if (statistics.incompleteOperationCount >= m_incompleteLimit) {
-            if (m_incompleteLimit > 0) {
-                PrintLogMessage("Skipping running operation due to incomplete operation count being equal or higher than maximum");
+        if (statistics.incompleteOperationCount >= m_incompleteLimit)
+        {
+            if (m_incompleteLimit > 0)
+            {
+                PrintLogMessage(
+                    "Skipping running operation due to incomplete operation count being equal or higher than maximum");
                 return false;
             }
         }
-        if (statistics.unackedOperationCount >= m_inflightLimit) {
-            if (m_inflightLimit > 0) {
-                PrintLogMessage("Skipping running operation due to inflight operation count being equal or higher than maximum");
+        if (statistics.unackedOperationCount >= m_inflightLimit)
+        {
+            if (m_inflightLimit > 0)
+            {
+                PrintLogMessage(
+                    "Skipping running operation due to inflight operation count being equal or higher than maximum");
                 return false;
             }
         }
         return true;
     }
 
-    void MqttOperationQueue::RunOperation() {
+    void MqttOperationQueue::RunOperation()
+    {
         // CRITICAL SECTION
         m_queueLock.lock();
 
-        try {
-            if (m_operationQueue.size() > 0) {
+        try
+        {
+            if (m_operationQueue.size() > 0)
+            {
                 QueueOperation operation = m_operationQueue[0];
                 m_operationQueue.erase(m_operationQueue.begin());
 
-                PrintLogMessage((std::string("Starting to perform operation of type ") + OperationTypeToString(operation.type)).c_str());
+                PrintLogMessage(
+                    (std::string("Starting to perform operation of type ") + OperationTypeToString(operation.type))
+                        .c_str());
                 PerformOperation(&operation);
 
-                if (m_operationQueue.size() <= 0) {
-                    if (m_callbackEmpty) {
+                if (m_operationQueue.size() <= 0)
+                {
+                    if (m_callbackEmpty)
+                    {
                         m_callbackEmpty();
                     }
                 }
             }
-            else {
+            else
+            {
                 PrintLogMessage("No operations to perform");
             }
-        } catch (const std::exception &exception) {
-            PrintLogMessage((std::string("EXCEPTION occurred trying to perform operation! What: ") + std::string(exception.what())).c_str());
+        }
+        catch (const std::exception &exception)
+        {
+            PrintLogMessage(
+                (std::string("EXCEPTION occurred trying to perform operation! What: ") + std::string(exception.what()))
+                    .c_str());
         }
 
         m_queueLock.unlock();
@@ -138,39 +173,68 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::PerformOperation(QueueOperation *operation)
     {
-        if (operation == nullptr) {
+        if (operation == nullptr)
+        {
             PerformOperationUnknown(operation);
-        } else if (operation->type == OperationType::PUBLISH) {
+        }
+        else if (operation->type == OperationType::PUBLISH)
+        {
             PerformOperationPublish(operation);
-        } else if (operation->type == OperationType::SUBSCRIBE) {
+        }
+        else if (operation->type == OperationType::SUBSCRIBE)
+        {
             PerformOperationSubscribe(operation);
-        } else if (operation->type == OperationType::UNSUBSCRIBE) {
+        }
+        else if (operation->type == OperationType::UNSUBSCRIBE)
+        {
             PerformOperationUnsubscribe(operation);
-        } else {
+        }
+        else
+        {
             PerformOperationUnknown(operation);
         }
     }
 
     void MqttOperationQueue::PerformOperationPublish(QueueOperation *operation)
     {
-        m_connection->Publish(operation->topic.c_str(), operation->qos, operation->retain, operation->payload, std::move(operation->onOpComplete));
-        if (m_callbackSent) {
+        m_connection->Publish(
+            operation->topic.c_str(),
+            operation->qos,
+            operation->retain,
+            operation->payload,
+            std::move(operation->onOpComplete));
+        if (m_callbackSent)
+        {
             m_callbackSent(*operation);
         }
     }
 
     void MqttOperationQueue::PerformOperationSubscribe(QueueOperation *operation)
     {
-        if (operation->onMessage != NULL) {
-            m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onMessage), std::move(operation->onSubAck));
-        } else if (operation->onPublish != NULL) {
-            m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onPublish), std::move(operation->onSubAck));
-        } else {
+        if (operation->onMessage != NULL)
+        {
+            m_connection->Subscribe(
+                operation->topic.c_str(),
+                operation->qos,
+                std::move(operation->onMessage),
+                std::move(operation->onSubAck));
+        }
+        else if (operation->onPublish != NULL)
+        {
+            m_connection->Subscribe(
+                operation->topic.c_str(),
+                operation->qos,
+                std::move(operation->onPublish),
+                std::move(operation->onSubAck));
+        }
+        else
+        {
             PerformOperationUnknown(operation);
             return;
         }
 
-        if (m_callbackSent) {
+        if (m_callbackSent)
+        {
             m_callbackSent(*operation);
         }
     }
@@ -178,18 +242,23 @@ namespace MqttOperationQueue {
     void MqttOperationQueue::PerformOperationUnsubscribe(QueueOperation *operation)
     {
         m_connection->Unsubscribe(operation->topic.c_str(), std::move(operation->onOpComplete));
-        if (m_callbackSent) {
+        if (m_callbackSent)
+        {
             m_callbackSent(*operation);
         }
     }
 
     void MqttOperationQueue::PerformOperationUnknown(QueueOperation *operation)
     {
-        if (operation == nullptr) {
+        if (operation == nullptr)
+        {
             PrintLogMessage("ERROR - got null pointer operation to perform!");
-        } else {
+        }
+        else
+        {
             PrintLogMessage("ERROR - got unknown operation to perform!");
-            if (m_callbackSentFailure) {
+            if (m_callbackSentFailure)
+            {
                 QueueResult result = QueueResult::UNKNOWN_OPERATION;
                 m_callbackSentFailure(*operation, result);
             }
@@ -199,7 +268,8 @@ namespace MqttOperationQueue {
     void MqttOperationQueue::ProcessQueue()
     {
         PrintLogMessage("Performing operation loop...");
-        if (CheckOperationStatistics()) {
+        if (CheckOperationStatistics())
+        {
             RunOperation();
         }
     }
@@ -209,7 +279,8 @@ namespace MqttOperationQueue {
         // Get a smart pointer just to ensure it stays alive
         std::shared_ptr<MqttOperationQueue> smartQueue = queue->getptr();
 
-        while (smartQueue->GetIsLooping() == true) {
+        while (smartQueue->GetIsLooping() == true)
+        {
             smartQueue->ProcessQueue();
             // Loop finished, so sleep for a bit
             std::this_thread::sleep_for(std::chrono::milliseconds(smartQueue->GetQueueLoopTime()));
@@ -229,38 +300,54 @@ namespace MqttOperationQueue {
 
         // CRITICAL SECTION
         m_queueLock.lock();
-        try {
+        try
+        {
 
-            if (m_queueLimitSize <= 0) {
+            if (m_queueLimitSize <= 0)
+            {
                 result = AddOperationToQueueInsert(&operation);
-            } else {
-                if (m_operationQueue.size() + 1 <= m_queueLimitSize) {
+            }
+            else
+            {
+                if (m_operationQueue.size() + 1 <= m_queueLimitSize)
+                {
                     AddOperationToQueueInsert(&operation);
-                } else {
+                }
+                else
+                {
                     result = AddOperationToQueueOverflow(&operation, &droppedOperation);
                 }
             }
-
-        } catch (...) {
+        }
+        catch (...)
+        {
             PrintLogMessage("ERROR: Exception ocurred trying to add operation to queue!");
-            if (result == QueueResult::SUCCESS) {
+            if (result == QueueResult::SUCCESS)
+            {
                 result = QueueResult::UNKNOWN_ERROR;
             }
         }
         m_queueLock.unlock();
         // END CRITICAL SECTION
 
-        if (result == QueueResult::SUCCESS) {
-            PrintLogMessage((std::string("Added operation of type ") + OperationTypeToString(operation.type) + std::string(" successfully to queue")).c_str());
-            if (m_operationQueue.size() == m_queueLimitSize && droppedOperation.type == OperationType::NONE) {
-                if (m_callbackFull) {
+        if (result == QueueResult::SUCCESS)
+        {
+            PrintLogMessage((std::string("Added operation of type ") + OperationTypeToString(operation.type) +
+                             std::string(" successfully to queue"))
+                                .c_str());
+            if (m_operationQueue.size() == m_queueLimitSize && droppedOperation.type == OperationType::NONE)
+            {
+                if (m_callbackFull)
+                {
                     m_callbackFull();
                 }
             }
         }
 
-        if (droppedOperation.type != OperationType::NONE) {
-            if (m_callbackDropped) {
+        if (droppedOperation.type != OperationType::NONE)
+        {
+            if (m_callbackDropped)
+            {
                 m_callbackDropped(droppedOperation);
             }
         }
@@ -271,11 +358,16 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddOperationToQueueInsert(QueueOperation *operation)
     {
         QueueResult result = QueueResult::SUCCESS;
-        if (m_queueInsertBehavior == InsertBehavior::INSERT_BACK) {
+        if (m_queueInsertBehavior == InsertBehavior::INSERT_BACK)
+        {
             m_operationQueue.push_back(*operation);
-        } else if (m_queueInsertBehavior == InsertBehavior::INSERT_FRONT) {
+        }
+        else if (m_queueInsertBehavior == InsertBehavior::INSERT_FRONT)
+        {
             m_operationQueue.insert(m_operationQueue.begin(), *operation);
-        } else {
+        }
+        else
+        {
             result = QueueResult::UNKNOWN_QUEUE_INSERT_BEHAVIOR;
         }
         return result;
@@ -284,20 +376,31 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddOperationToQueueOverflow(QueueOperation *operation, QueueOperation *oldOperation)
     {
         QueueResult result = QueueResult::SUCCESS;
-        if (m_queueLimitBehavior == LimitBehavior::RETURN_ERROR) {
+        if (m_queueLimitBehavior == LimitBehavior::RETURN_ERROR)
+        {
             PrintLogMessage("Did not drop any operation, instead returning error...");
             result = QueueResult::ERROR_QUEUE_FULL;
-        } else if (m_queueLimitBehavior == LimitBehavior::DROP_FRONT) {
+        }
+        else if (m_queueLimitBehavior == LimitBehavior::DROP_FRONT)
+        {
             *oldOperation = m_operationQueue[0];
             m_operationQueue.erase(m_operationQueue.begin());
-            PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) + std::string(" from the front...")).c_str());
+            PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) +
+                             std::string(" from the front..."))
+                                .c_str());
             result = AddOperationToQueueInsert(operation);
-        } else if (m_queueLimitBehavior == LimitBehavior::DROP_BACK) {
+        }
+        else if (m_queueLimitBehavior == LimitBehavior::DROP_BACK)
+        {
             *oldOperation = m_operationQueue[m_operationQueue.size() - 1];
             m_operationQueue.erase(m_operationQueue.begin() + m_operationQueue.size() - 1);
-            PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) + std::string(" from the back...")).c_str());
+            PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) +
+                             std::string(" from the back..."))
+                                .c_str());
             result = AddOperationToQueueInsert(operation);
-        } else {
+        }
+        else
+        {
             result = QueueResult::UNKNOWN_QUEUE_LIMIT_BEHAVIOR;
         }
         return result;
@@ -311,7 +414,8 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::Start() noexcept
     {
-        if (m_isStarted == true) {
+        if (m_isStarted == true)
+        {
             PrintLogMessage("Cannot start because already started!");
             return;
         }
@@ -324,7 +428,8 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::Stop() noexcept
     {
-        if (m_isStarted == false) {
+        if (m_isStarted == false)
+        {
             PrintLogMessage("Cannot stop because already stopped!");
             return;
         }
@@ -361,7 +466,8 @@ namespace MqttOperationQueue {
         const Aws::Crt::Mqtt::OnPublishReceivedHandler onPublish,
         const Aws::Crt::Mqtt::OnSubAckHandler onSubAck)
     {
-        if (onMessage == NULL && onPublish == NULL) {
+        if (onMessage == NULL && onPublish == NULL)
+        {
             return QueueResult::ERROR_INVALID_ARGUMENT;
         }
         QueueOperation newOperation = QueueOperation();
@@ -388,27 +494,40 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddQueueOperation(QueueOperation operation)
     {
         /* Basic validation */
-        if (operation.type == OperationType::NONE) {
+        if (operation.type == OperationType::NONE)
+        {
             return QueueResult::ERROR_INVALID_ARGUMENT;
-        } else if (operation.type == OperationType::PUBLISH) {
-            if (operation.topic.length() > 0 || operation.payload.len > 0) {
+        }
+        else if (operation.type == OperationType::PUBLISH)
+        {
+            if (operation.topic.length() > 0 || operation.payload.len > 0)
+            {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
-        } else if (operation.type == OperationType::SUBSCRIBE) {
-            if (operation.topic.length() > 0) {
+        }
+        else if (operation.type == OperationType::SUBSCRIBE)
+        {
+            if (operation.topic.length() > 0)
+            {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
-        } else if (operation.type == OperationType::UNSUBSCRIBE) {
-            if (operation.topic.length() > 0) {
+        }
+        else if (operation.type == OperationType::UNSUBSCRIBE)
+        {
+            if (operation.topic.length() > 0)
+            {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
-        } else {
+        }
+        else
+        {
             return QueueResult::UNKNOWN_ERROR;
         }
         return AddOperationToQueue(std::move(operation));
     }
 
-    uint32_t MqttOperationQueue::GetQueueSize() {
+    uint32_t MqttOperationQueue::GetQueueSize()
+    {
         // CRITICAL SECTION
         m_queueLock.lock();
         uint32_t returnSize = m_operationQueue.size();
@@ -417,19 +536,11 @@ namespace MqttOperationQueue {
         return returnSize;
     }
 
-    uint32_t MqttOperationQueue::GetQueueLimit() {
-        return m_queueLimitSize;
-    }
+    uint32_t MqttOperationQueue::GetQueueLimit() { return m_queueLimitSize; }
 
-    bool MqttOperationQueue::GetIsLooping()
-    {
-        return m_isLooping.load();
-    }
+    bool MqttOperationQueue::GetIsLooping() { return m_isLooping.load(); }
 
-    uint32_t MqttOperationQueue::GetQueueLoopTime()
-    {
-        return m_queueLoopTimeMs.load();
-    }
+    uint32_t MqttOperationQueue::GetQueueLoopTime() { return m_queueLoopTimeMs.load(); }
 
     /*****************************************************
      *
@@ -438,12 +549,13 @@ namespace MqttOperationQueue {
      *****************************************************/
 
     MqttOperationQueueBuilder::MqttOperationQueueBuilder() noexcept
-                : m_queueLimitSize(10), m_queueLimitBehavior(DROP_BACK),
-                m_queueInsertBehavior(INSERT_BACK), m_incompleteLimit(1), m_inflightLimit(1),
-                m_queueLoopTimeMs(1000), m_enableLogging(false)
-                {}
+        : m_queueLimitSize(10), m_queueLimitBehavior(DROP_BACK), m_queueInsertBehavior(INSERT_BACK),
+          m_incompleteLimit(1), m_inflightLimit(1), m_queueLoopTimeMs(1000), m_enableLogging(false)
+    {
+    }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithConnection(std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithConnection(
+        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection) noexcept
     {
         m_connection = connection;
         return *this;
@@ -497,13 +609,15 @@ namespace MqttOperationQueue {
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationSentFailureCallback(OnOperationSentFailure callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationSentFailureCallback(
+        OnOperationSentFailure callback) noexcept
     {
         m_callbackSentFailure = std::move(callback);
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationDroppedCallback(OnOperationDropped callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationDroppedCallback(
+        OnOperationDropped callback) noexcept
     {
         m_callbackDropped = std::move(callback);
         return *this;
@@ -526,68 +640,35 @@ namespace MqttOperationQueue {
         return m_connection;
     }
 
-    uint32_t MqttOperationQueueBuilder::GetQueueLimitSize() noexcept
-    {
-        return m_queueLimitSize;
-    }
+    uint32_t MqttOperationQueueBuilder::GetQueueLimitSize() noexcept { return m_queueLimitSize; }
 
-    LimitBehavior MqttOperationQueueBuilder::GetQueueLimitBehavior()
-    {
-        return m_queueLimitBehavior;
-    }
+    LimitBehavior MqttOperationQueueBuilder::GetQueueLimitBehavior() { return m_queueLimitBehavior; }
 
-    InsertBehavior MqttOperationQueueBuilder::GetQueueInsertBehavior()
-    {
-        return m_queueInsertBehavior;
-    }
+    InsertBehavior MqttOperationQueueBuilder::GetQueueInsertBehavior() { return m_queueInsertBehavior; }
 
-    uint32_t MqttOperationQueueBuilder::GetIncompleteLimit()
-    {
-        return m_incompleteLimit;
-    }
+    uint32_t MqttOperationQueueBuilder::GetIncompleteLimit() { return m_incompleteLimit; }
 
-    uint32_t MqttOperationQueueBuilder::GetInflightLimit()
-    {
-        return m_inflightLimit;
-    }
+    uint32_t MqttOperationQueueBuilder::GetInflightLimit() { return m_inflightLimit; }
 
-    uint32_t MqttOperationQueueBuilder::GetQueueLoopTimeMs()
-    {
-        return m_queueLoopTimeMs;
-    }
+    uint32_t MqttOperationQueueBuilder::GetQueueLoopTimeMs() { return m_queueLoopTimeMs; }
 
-    bool MqttOperationQueueBuilder::GetEnableLogging()
-    {
-        return m_enableLogging;
-    }
+    bool MqttOperationQueueBuilder::GetEnableLogging() { return m_enableLogging; }
 
-    OnOperationSent MqttOperationQueueBuilder::GetOnOperationSentCallback()
-    {
-        return m_callbackSent;
-    }
+    OnOperationSent MqttOperationQueueBuilder::GetOnOperationSentCallback() { return m_callbackSent; }
 
     OnOperationSentFailure MqttOperationQueueBuilder::GetOnOperationSentFailureCallback()
     {
         return m_callbackSentFailure;
     }
 
-    OnOperationDropped MqttOperationQueueBuilder::GetOnOperationDroppedCallback()
-    {
-        return m_callbackDropped;
-    }
+    OnOperationDropped MqttOperationQueueBuilder::GetOnOperationDroppedCallback() { return m_callbackDropped; }
 
-    OnQueueFull MqttOperationQueueBuilder::GetOnQueueFullCallback()
-    {
-        return m_callbackFull;
-    }
+    OnQueueFull MqttOperationQueueBuilder::GetOnQueueFullCallback() { return m_callbackFull; }
 
-    OnQueueEmpty MqttOperationQueueBuilder::GetOnQueueEmptyCallback()
-    {
-        return m_callbackEmpty;
-    }
+    OnQueueEmpty MqttOperationQueueBuilder::GetOnQueueEmptyCallback() { return m_callbackEmpty; }
 
     std::shared_ptr<MqttOperationQueue> MqttOperationQueueBuilder::Build() noexcept
     {
         return MqttOperationQueue::NewOperationQueue(*this, Aws::Crt::ApiAllocator());
     }
-}
+} // namespace MqttOperationQueue
