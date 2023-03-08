@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::QueueInsertBehavior::INSERT_FRONT)
                     .WithQueueLimitBehavior(MqttOperationQueue::QueueLimitBehavior::DROP_BACK);
     }
-    /* Create the queue */
+    /* Create the queue from the configuration */
     std::shared_ptr<MqttOperationQueue::MqttOperationQueue> operationQueue = queueBuilder.Build();
 
     /*
@@ -172,12 +172,10 @@ int main(int argc, char *argv[])
         std::condition_variable receiveSignal;
         uint32_t receivedCount = 0;
 
-        // START THE QUEUE
+        /* Start the operation queue so it can process operations */
         operationQueue->Start();
 
-        /*
-         * This is invoked upon the receipt of a Publish on a subscribed topic.
-         */
+        /* This is invoked upon the receipt of a Publish on a subscribed topic */
         auto onMessage = [&](Mqtt::MqttConnection &,
                              const String &topic,
                              const ByteBuf &byteBuf,
@@ -187,8 +185,7 @@ int main(int argc, char *argv[])
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
-                fprintf(stdout, "Publish #%d received on topic %s\n", receivedCount, topic.c_str());
-                fprintf(stdout, "Message: ");
+                fprintf(stdout, "Publish #%d received on topic %s with message: ", receivedCount, topic.c_str());
                 fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
                 fprintf(stdout, "\n");
             }
@@ -196,9 +193,7 @@ int main(int argc, char *argv[])
             receiveSignal.notify_all();
         };
 
-        /*
-         * Subscribe for incoming publish messages on topic.
-         */
+        /* Subscribe for incoming publish messages on topic.*/
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
             [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
@@ -221,14 +216,13 @@ int main(int argc, char *argv[])
                 }
                 subscribeFinishedPromise.set_value();
             };
-
-        // connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         operationQueue->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
-        // WAIT FOR THE QUEUE TO BE EMPTY
+        /* Wait for the queue to be empty, meaning all operations in the queue were sent */
         onQueueEmptyPromise.get_future().wait();
         // Wait for the subscribe ACK from the server
         subscribeFinishedPromise.get_future().wait();
 
+        /* Publish messageCount times. If messageCount is larger than the queue, only the queue amount of messages will be published */
         onQueueEmptyPromise = std::promise<void>();
         uint32_t publishedCount = 0;
         while (publishedCount < messageCount)
@@ -240,28 +234,25 @@ int main(int argc, char *argv[])
             operationQueue->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
             ++publishedCount;
         }
-
-        // WAIT FOR THE QUEUE TO BE EMPTY
+        /* Wait for the queue to be empty, meaning all operations in the queue were sent */
         onQueueEmptyPromise.get_future().wait();
-        // Wait for all the publishes to be received
+        // Wait for all the publishes sent to have gotten ACKs from the server
         {
             std::unique_lock<std::mutex> receivedLock(receiveMutex);
             receiveSignal.wait(receivedLock, [&] { return receivedCount >= queueLimit; });
         }
 
-        /*
-         * Unsubscribe from the topic.
-         */
+        /* Unsubscribe from the topic. */
         onQueueEmptyPromise = std::promise<void>();
         std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(
+        operationQueue->Unsubscribe(
             topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
-        // WAIT FOR THE QUEUE TO BE EMPTY
+        /* Wait for the queue to be empty, meaning all operations in the queue were sent */
         onQueueEmptyPromise.get_future().wait();
-        // Wait for the unsubscribe ACK from the server
+        /* Wait for the unsubscribe ACK from the server */
         unsubscribeFinishedPromise.get_future().wait();
 
-        // STOP THE QUEUE
+        /* Stop the queue so it no longer can process operations. This is necessary due to the queue using a thread */
         operationQueue->Stop();
 
         /* Disconnect */

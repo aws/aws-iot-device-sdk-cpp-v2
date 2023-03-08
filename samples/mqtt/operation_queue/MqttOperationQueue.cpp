@@ -331,7 +331,7 @@ namespace MqttOperationQueue {
         Aws::Crt::Mqtt::QOS qos,
         bool retain,
         Aws::Crt::ByteBuf &payload,
-        Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
+        const Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
     {
         QueueOperation newOperation = QueueOperation();
         newOperation.type = QueueOperationType::PUBLISH;
@@ -346,8 +346,8 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::Subscribe(
         const char *topicFilter,
         Aws::Crt::Mqtt::QOS qos,
-        Aws::Crt::Mqtt::OnMessageReceivedHandler onMessage,
-        Aws::Crt::Mqtt::OnSubAckHandler onSubAck)
+        const Aws::Crt::Mqtt::OnMessageReceivedHandler onMessage,
+        const Aws::Crt::Mqtt::OnSubAckHandler onSubAck)
     {
         QueueOperation newOperation = QueueOperation();
         newOperation.type = QueueOperationType::SUBSCRIBE;
@@ -360,7 +360,7 @@ namespace MqttOperationQueue {
 
     QueueResult MqttOperationQueue::Unsubscribe(
         const char *topicFilter,
-        Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
+        const Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
     {
         QueueOperation newOperation;
         newOperation.type = QueueOperationType::UNSUBSCRIBE;
@@ -372,23 +372,23 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddQueueOperation(QueueOperation operation)
     {
         /* Basic validation */
-        // if (operation.type == QueueOperationType::NONE) {
-        //     return QueueResult::ERROR_INVALID_ARGUMENT;
-        // } else if (operation.type == QueueOperationType::PUBLISH) {
-        //     if (operation.topic == nullptr || operation.payload == nullptr) {
-        //         return QueueResult::ERROR_INVALID_ARGUMENT;
-        //     }
-        // } else if (operation.type == QueueOperationType::SUBSCRIBE) {
-        //     if (operation.topic == nullptr) {
-        //         return QueueResult::ERROR_INVALID_ARGUMENT;
-        //     }
-        // } else if (operation.type == QueueOperationType::UNSUBSCRIBE) {
-        //     if (operation.topic == nullptr) {
-        //         return QueueResult::ERROR_INVALID_ARGUMENT;
-        //     }
-        // } else {
-        //     return QueueResult::UNKNOWN_ERROR;
-        // }
+        if (operation.type == QueueOperationType::NONE) {
+            return QueueResult::ERROR_INVALID_ARGUMENT;
+        } else if (operation.type == QueueOperationType::PUBLISH) {
+            if (operation.topic.length() > 0 || operation.payload.len > 0) {
+                return QueueResult::ERROR_INVALID_ARGUMENT;
+            }
+        } else if (operation.type == QueueOperationType::SUBSCRIBE) {
+            if (operation.topic.length() > 0) {
+                return QueueResult::ERROR_INVALID_ARGUMENT;
+            }
+        } else if (operation.type == QueueOperationType::UNSUBSCRIBE) {
+            if (operation.topic.length() > 0) {
+                return QueueResult::ERROR_INVALID_ARGUMENT;
+            }
+        } else {
+            return QueueResult::UNKNOWN_ERROR;
+        }
         return AddOperationToQueue(operation);
     }
 

@@ -81,6 +81,7 @@ namespace MqttOperationQueue {
             payload = other.payload;
             onPublish = other.onPublish;
             onSubAck = other.onSubAck;
+            onMessage = other.onMessage;
             onOpComplete = other.onOpComplete;
         }
     };
