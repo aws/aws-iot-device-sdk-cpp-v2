@@ -239,8 +239,8 @@ int main(int argc, char *argv[])
 
         /* This is invoked upon the receipt of a Publish on a subscribed topic */
         auto onMessage = [&](Mqtt::MqttConnection &,
-                             const String &topic,
-                             const ByteBuf &byteBuf,
+                             const String /*topic*/,
+                             const ByteBuf /*byteBuf*/,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
                              bool /*retain*/) {

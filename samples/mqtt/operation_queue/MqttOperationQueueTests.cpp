@@ -38,7 +38,7 @@ void MqttOperationQueueTests::Tester::TestConnectionSetup()
     m_connectionClosedPromise = std::promise<void>();
 
     auto onConnectionCompleted =
-        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode, bool) {
             if (errorCode)
             {
                 m_connectionCompletedPromise.set_value(false);

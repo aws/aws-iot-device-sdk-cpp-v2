@@ -262,9 +262,9 @@ namespace MqttOperationQueue
 
         /**
          * Returns the size of the queue
-         * @return uint32_t The size of the queue
+         * @return size_t The size of the queue
          */
-        uint32_t GetQueueSize();
+        size_t GetQueueSize();
 
         /**
          * Returns the maximum size of the queue

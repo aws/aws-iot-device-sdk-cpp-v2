@@ -529,11 +529,11 @@ namespace MqttOperationQueue
         return AddOperationToQueue(std::move(operation));
     }
 
-    uint32_t MqttOperationQueue::GetQueueSize()
+    size_t MqttOperationQueue::GetQueueSize()
     {
         // CRITICAL SECTION
         m_queueLock.lock();
-        uint32_t returnSize = m_operationQueue.size();
+        size_t returnSize = m_operationQueue.size();
         m_queueLock.unlock();
         // END CRITICAL SECTION
         return returnSize;
