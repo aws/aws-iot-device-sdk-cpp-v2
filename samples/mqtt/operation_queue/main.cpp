@@ -159,11 +159,11 @@ int main(int argc, char *argv[])
     /* Setup the queue */
     MqttOperationQueue::MqttOperationQueueBuilder queueBuilder = MqttOperationQueue::MqttOperationQueueBuilder();
     queueBuilder.WithConnection(connection).WithQueueLimitSize(queueLimit).WithEnableLogging(true);
-    queueBuilder.WithQueueEmptyCallback(std::move(onQueueEmpty));
-    queueBuilder.WithQueueFullCallback(std::move(onQueueFull));
-    queueBuilder.WithOperationSentCallback(std::move(onQueueOperationSent));
-    queueBuilder.WithOperationSentFailureCallback(std::move(onQueueOperationSentFailure));
-    queueBuilder.WithOperationDroppedCallback(std::move(onQueueOperationDropped));
+    queueBuilder.WithOnQueueEmptyCallback(std::move(onQueueEmpty));
+    queueBuilder.WithOnQueueFullCallback(std::move(onQueueFull));
+    queueBuilder.WithOnOperationSentCallback(std::move(onQueueOperationSent));
+    queueBuilder.WithOnOperationSentFailureCallback(std::move(onQueueOperationSentFailure));
+    queueBuilder.WithOnOperationDroppedCallback(std::move(onQueueOperationDropped));
     /* The different queue insert/limit mode combos */
     if (queueMode == 0) {
         queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_BACK)

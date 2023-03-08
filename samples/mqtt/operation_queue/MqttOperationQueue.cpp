@@ -35,11 +35,11 @@ namespace MqttOperationQueue {
         m_inflightLimit = builder.GetInflightLimit();
         m_enableLogging = builder.GetEnableLogging();
 
-        m_callbackSent = builder.GetOperationSentCallback();
-        m_callbackSentFailure = builder.GetOperationSentFailureCallback();
-        m_callbackDropped = builder.GetOperationDroppedCallback();
-        m_callbackEmpty = builder.GetQueueEmptyCallback();
-        m_callbackFull = builder.GetQueueFullCallback();
+        m_callbackSent = builder.GetOnOperationSentCallback();
+        m_callbackSentFailure = builder.GetOnOperationSentFailureCallback();
+        m_callbackDropped = builder.GetOnOperationDroppedCallback();
+        m_callbackEmpty = builder.GetOnQueueEmptyCallback();
+        m_callbackFull = builder.GetOnQueueFullCallback();
 
         m_isStarted = false;
         std::atomic_init(&m_isLooping, false);
@@ -480,31 +480,31 @@ namespace MqttOperationQueue {
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOperationSentCallback(OperationSent callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationSentCallback(OnOperationSent callback) noexcept
     {
         m_callbackSent = std::move(callback);
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOperationSentFailureCallback(OperationSentFailure callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationSentFailureCallback(OnOperationSentFailure callback) noexcept
     {
         m_callbackSentFailure = std::move(callback);
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOperationDroppedCallback(OperationDropped callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnOperationDroppedCallback(OnOperationDropped callback) noexcept
     {
         m_callbackDropped = std::move(callback);
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueFullCallback(QueueFull callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnQueueFullCallback(OnQueueFull callback) noexcept
     {
         m_callbackFull = std::move(callback);
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueEmptyCallback(QueueEmpty callback) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithOnQueueEmptyCallback(OnQueueEmpty callback) noexcept
     {
         m_callbackEmpty = std::move(callback);
         return *this;
@@ -550,27 +550,27 @@ namespace MqttOperationQueue {
         return m_enableLogging;
     }
 
-    OperationSent MqttOperationQueueBuilder::GetOperationSentCallback()
+    OnOperationSent MqttOperationQueueBuilder::GetOnOperationSentCallback()
     {
         return m_callbackSent;
     }
 
-    OperationSentFailure MqttOperationQueueBuilder::GetOperationSentFailureCallback()
+    OnOperationSentFailure MqttOperationQueueBuilder::GetOnOperationSentFailureCallback()
     {
         return m_callbackSentFailure;
     }
 
-    OperationDropped MqttOperationQueueBuilder::GetOperationDroppedCallback()
+    OnOperationDropped MqttOperationQueueBuilder::GetOnOperationDroppedCallback()
     {
         return m_callbackDropped;
     }
 
-    QueueFull MqttOperationQueueBuilder::GetQueueFullCallback()
+    OnQueueFull MqttOperationQueueBuilder::GetOnQueueFullCallback()
     {
         return m_callbackFull;
     }
 
-    QueueEmpty MqttOperationQueueBuilder::GetQueueEmptyCallback()
+    OnQueueEmpty MqttOperationQueueBuilder::GetOnQueueEmptyCallback()
     {
         return m_callbackEmpty;
     }
