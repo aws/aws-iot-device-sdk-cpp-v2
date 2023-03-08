@@ -32,26 +32,26 @@ namespace MqttOperationQueue {
         UNKNOWN_ERROR
     };
 
-    enum QueueOperationType {
+    enum OperationType {
         NONE,
         PUBLISH,
         SUBSCRIBE,
         UNSUBSCRIBE
     };
 
-    enum QueueLimitBehavior {
+    enum LimitBehavior {
         DROP_FRONT,
         DROP_BACK,
         RETURN_ERROR
     };
 
-    enum QueueInsertBehavior {
+    enum InsertBehavior {
         INSERT_FRONT,
         INSERT_BACK
     };
 
     struct QueueOperation {
-        QueueOperationType type;
+        OperationType type;
         Aws::Crt::String topic;
         Aws::Crt::Mqtt::QOS qos;
         bool retain;
@@ -62,7 +62,7 @@ namespace MqttOperationQueue {
         Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete;
 
         QueueOperation() {
-            type = QueueOperationType::NONE;
+            type = OperationType::NONE;
             topic = "";
             qos = AWS_MQTT_QOS_AT_MOST_ONCE;
             retain = false;
@@ -146,7 +146,7 @@ namespace MqttOperationQueue {
 
             void ScheduleRunnableLoop();
             void PrintLogMessage(Aws::Crt::String message);
-            std::string OperationTypeToString(QueueOperationType type);
+            std::string OperationTypeToString(OperationType type);
 
             bool CheckOperationStatistics();
             void RunOperation();
@@ -174,8 +174,8 @@ namespace MqttOperationQueue {
 
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
             uint32_t m_queueLimitSize;
-            QueueLimitBehavior m_queueLimitBehavior;
-            QueueInsertBehavior m_queueInsertBehavior;
+            LimitBehavior m_queueLimitBehavior;
+            InsertBehavior m_queueInsertBehavior;
             uint32_t m_incompleteLimit;
             uint32_t m_inflightLimit;
             bool m_enableLogging;
@@ -195,8 +195,8 @@ namespace MqttOperationQueue {
 
             MqttOperationQueueBuilder &WithConnection(std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection) noexcept;
             MqttOperationQueueBuilder &WithQueueLimitSize(uint32_t size) noexcept;
-            MqttOperationQueueBuilder &WithQueueLimitBehavior(QueueLimitBehavior behavior) noexcept;
-            MqttOperationQueueBuilder &WithQueueInsertBehavior(QueueInsertBehavior behavior) noexcept;
+            MqttOperationQueueBuilder &WithQueueLimitBehavior(LimitBehavior behavior) noexcept;
+            MqttOperationQueueBuilder &WithQueueInsertBehavior(InsertBehavior behavior) noexcept;
             MqttOperationQueueBuilder &WithIncompleteLimit(uint32_t limit) noexcept;
             MqttOperationQueueBuilder &WithInflightLimit(uint32_t limit) noexcept;
             MqttOperationQueueBuilder &WithQueueLoopTimeMs(uint32_t time) noexcept;
@@ -210,8 +210,8 @@ namespace MqttOperationQueue {
 
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetConnection() noexcept;
             uint32_t GetQueueLimitSize() noexcept;
-            QueueLimitBehavior GetQueueLimitBehavior();
-            QueueInsertBehavior GetQueueInsertBehavior();
+            LimitBehavior GetQueueLimitBehavior();
+            InsertBehavior GetQueueInsertBehavior();
             uint32_t GetIncompleteLimit();
             uint32_t GetInflightLimit();
             uint32_t GetQueueLoopTimeMs();
@@ -231,8 +231,8 @@ namespace MqttOperationQueue {
 
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
             uint32_t m_queueLimitSize;
-            QueueLimitBehavior m_queueLimitBehavior;
-            QueueInsertBehavior m_queueInsertBehavior;
+            LimitBehavior m_queueLimitBehavior;
+            InsertBehavior m_queueInsertBehavior;
             uint32_t m_incompleteLimit;
             uint32_t m_inflightLimit;
             uint32_t m_queueLoopTimeMs;

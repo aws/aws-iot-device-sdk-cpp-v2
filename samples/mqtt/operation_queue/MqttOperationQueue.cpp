@@ -70,14 +70,14 @@ namespace MqttOperationQueue {
         }
     }
 
-    std::string MqttOperationQueue::OperationTypeToString(QueueOperationType type) {
-        if (type == QueueOperationType::NONE) {
+    std::string MqttOperationQueue::OperationTypeToString(OperationType type) {
+        if (type == OperationType::NONE) {
             return std::string("None");
-        } else if (type == QueueOperationType::PUBLISH) {
+        } else if (type == OperationType::PUBLISH) {
             return std::string("Publish");
-        } else if (type == QueueOperationType::SUBSCRIBE) {
+        } else if (type == OperationType::SUBSCRIBE) {
             return std::string("Subscribe");
-        } else if (type == QueueOperationType::UNSUBSCRIBE) {
+        } else if (type == OperationType::UNSUBSCRIBE) {
             return std::string("Unsubscribe");
         } else {
             return std::string("Unknown");
@@ -138,11 +138,11 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::PerformOperation(QueueOperation operation)
     {
-        if (operation.type == QueueOperationType::PUBLISH) {
+        if (operation.type == OperationType::PUBLISH) {
             PerformOperationPublish(operation);
-        } else if (operation.type == QueueOperationType::SUBSCRIBE) {
+        } else if (operation.type == OperationType::SUBSCRIBE) {
             PerformOperationSubscribe(operation);
-        } else if (operation.type == QueueOperationType::UNSUBSCRIBE) {
+        } else if (operation.type == OperationType::UNSUBSCRIBE) {
             PerformOperationUnsubscribe(operation);
         } else {
             PerformOperationUnknown(operation);
@@ -241,14 +241,14 @@ namespace MqttOperationQueue {
 
         if (result == QueueResult::SUCCESS) {
             PrintLogMessage((std::string("Added operation of type ") + OperationTypeToString(operation.type) + std::string(" successfully to queue")).c_str());
-            if (m_operationQueue.size() == m_queueLimitSize && droppedOperation.type == QueueOperationType::NONE) {
+            if (m_operationQueue.size() == m_queueLimitSize && droppedOperation.type == OperationType::NONE) {
                 if (m_callbackFull) {
                     m_callbackFull();
                 }
             }
         }
 
-        if (droppedOperation.type != QueueOperationType::NONE) {
+        if (droppedOperation.type != OperationType::NONE) {
             if (m_callbackDropped) {
                 m_callbackDropped(droppedOperation);
             }
@@ -260,9 +260,9 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddOperationToQueueInsert(QueueOperation operation)
     {
         QueueResult result = QueueResult::SUCCESS;
-        if (m_queueInsertBehavior == QueueInsertBehavior::INSERT_BACK) {
+        if (m_queueInsertBehavior == InsertBehavior::INSERT_BACK) {
             m_operationQueue.push_back(operation);
-        } else if (m_queueInsertBehavior == QueueInsertBehavior::INSERT_FRONT) {
+        } else if (m_queueInsertBehavior == InsertBehavior::INSERT_FRONT) {
             m_operationQueue.insert(m_operationQueue.begin(), operation);
         } else {
             result = QueueResult::UNKNOWN_QUEUE_INSERT_BEHAVIOR;
@@ -273,15 +273,15 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddOperationToQueueOverflow(QueueOperation operation, QueueOperation *oldOperation)
     {
         QueueResult result = QueueResult::SUCCESS;
-        if (m_queueLimitBehavior == QueueLimitBehavior::RETURN_ERROR) {
+        if (m_queueLimitBehavior == LimitBehavior::RETURN_ERROR) {
             PrintLogMessage("Did not drop any operation, instead returning error...");
             result = QueueResult::ERROR_QUEUE_FULL;
-        } else if (m_queueLimitBehavior == QueueLimitBehavior::DROP_FRONT) {
+        } else if (m_queueLimitBehavior == LimitBehavior::DROP_FRONT) {
             *oldOperation = m_operationQueue[0];
             m_operationQueue.erase(m_operationQueue.begin());
             PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) + std::string(" from the front...")).c_str());
             result = AddOperationToQueueInsert(operation);
-        } else if (m_queueLimitBehavior == QueueLimitBehavior::DROP_BACK) {
+        } else if (m_queueLimitBehavior == LimitBehavior::DROP_BACK) {
             *oldOperation = m_operationQueue[m_operationQueue.size() - 1];
             m_operationQueue.erase(m_operationQueue.begin() + m_operationQueue.size() - 1);
             PrintLogMessage((std::string("Dropped operation of type ") + OperationTypeToString(oldOperation->type) + std::string(" from the back...")).c_str());
@@ -334,7 +334,7 @@ namespace MqttOperationQueue {
         const Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
     {
         QueueOperation newOperation = QueueOperation();
-        newOperation.type = QueueOperationType::PUBLISH;
+        newOperation.type = OperationType::PUBLISH;
         newOperation.topic = Aws::Crt::String(topic); // makes a copy
         newOperation.qos = qos;
         newOperation.retain = retain;
@@ -350,7 +350,7 @@ namespace MqttOperationQueue {
         const Aws::Crt::Mqtt::OnSubAckHandler onSubAck)
     {
         QueueOperation newOperation = QueueOperation();
-        newOperation.type = QueueOperationType::SUBSCRIBE;
+        newOperation.type = OperationType::SUBSCRIBE;
         newOperation.topic = Aws::Crt::String(topicFilter); // makes a copy
         newOperation.qos = qos;
         newOperation.onMessage = onMessage;
@@ -363,7 +363,7 @@ namespace MqttOperationQueue {
         const Aws::Crt::Mqtt::OnOperationCompleteHandler onOpComplete)
     {
         QueueOperation newOperation;
-        newOperation.type = QueueOperationType::UNSUBSCRIBE;
+        newOperation.type = OperationType::UNSUBSCRIBE;
         newOperation.topic = Aws::Crt::String(topicFilter); // makes a copy
         newOperation.onOpComplete = onOpComplete;
         return AddOperationToQueue(newOperation);
@@ -372,17 +372,17 @@ namespace MqttOperationQueue {
     QueueResult MqttOperationQueue::AddQueueOperation(QueueOperation operation)
     {
         /* Basic validation */
-        if (operation.type == QueueOperationType::NONE) {
+        if (operation.type == OperationType::NONE) {
             return QueueResult::ERROR_INVALID_ARGUMENT;
-        } else if (operation.type == QueueOperationType::PUBLISH) {
+        } else if (operation.type == OperationType::PUBLISH) {
             if (operation.topic.length() > 0 || operation.payload.len > 0) {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
-        } else if (operation.type == QueueOperationType::SUBSCRIBE) {
+        } else if (operation.type == OperationType::SUBSCRIBE) {
             if (operation.topic.length() > 0) {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
-        } else if (operation.type == QueueOperationType::UNSUBSCRIBE) {
+        } else if (operation.type == OperationType::UNSUBSCRIBE) {
             if (operation.topic.length() > 0) {
                 return QueueResult::ERROR_INVALID_ARGUMENT;
             }
@@ -439,13 +439,13 @@ namespace MqttOperationQueue {
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueLimitBehavior(QueueLimitBehavior behavior) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueLimitBehavior(LimitBehavior behavior) noexcept
     {
         m_queueLimitBehavior = behavior;
         return *this;
     }
 
-    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueInsertBehavior(QueueInsertBehavior behavior) noexcept
+    MqttOperationQueueBuilder &MqttOperationQueueBuilder::WithQueueInsertBehavior(InsertBehavior behavior) noexcept
     {
         m_queueInsertBehavior = behavior;
         return *this;
@@ -515,12 +515,12 @@ namespace MqttOperationQueue {
         return m_queueLimitSize;
     }
 
-    QueueLimitBehavior MqttOperationQueueBuilder::GetQueueLimitBehavior()
+    LimitBehavior MqttOperationQueueBuilder::GetQueueLimitBehavior()
     {
         return m_queueLimitBehavior;
     }
 
-    QueueInsertBehavior MqttOperationQueueBuilder::GetQueueInsertBehavior()
+    InsertBehavior MqttOperationQueueBuilder::GetQueueInsertBehavior()
     {
         return m_queueInsertBehavior;
     }

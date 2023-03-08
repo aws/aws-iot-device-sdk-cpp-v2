@@ -89,9 +89,7 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an MQTT connect has completed or failed.
-     */
+    /* Invoked when the MQTT connection was able to successfully connect or failed to connect */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
@@ -104,16 +102,13 @@ int main(int argc, char *argv[])
             connectionCompletedPromise.set_value(true);
         }
     };
-
+    /* Invoked when a MQTT connection becomes disconnected from the server */
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
-
+    /* Invoked when a MQTTT connection was connected, becomes disconnected from the server, and reconnects successfully */
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
-
-    /*
-     * Invoked when a disconnect message has completed.
-     */
+    /* Invoked when a MQTT connection sent a disconnect message that's been completed. */
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
@@ -126,32 +121,63 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
+    /* Invoked when the operation queue had operations in it, but has since become empty */
     std::promise<void> onQueueEmptyPromise;
     auto onQueueEmpty = [&]() {
+        fprintf(stdout, "Operation queue is completely empty\n");
         onQueueEmptyPromise.set_value();
     };
+    /* Invoked when the operation queue is completely full of operations based on the queue limit */
+    auto onQueueFull = [&]() {
+        fprintf(stdout, "Operation queue is full and will start dropping operations should new operations come in\n");
+    };
+    /* Invoked when the operation queue successfully sends an operation */
+    auto onQueueOperationSent = [&](MqttOperationQueue::QueueOperation operation) {
+        if (operation.type == MqttOperationQueue::OperationType::PUBLISH) {
+            fprintf(stdout, "Sending publish with payload: [");
+            fwrite(operation.payload.buffer, 1, operation.payload.len, stdout);
+            fprintf(stdout, "] from the operation queue\n");
+        } else {
+            fprintf(stdout, "Sending operation of type value of %i from the operation queue\n", (int)operation.type);
+        }
+    };
+    /* Invoked when the operation queue failed to send an operation */
+    auto onQueueOperationSentFailure = [&](MqttOperationQueue::QueueOperation operation, MqttOperationQueue::QueueResult result)
+    {
+        fprintf(stdout, "ERROR: Operation from queue failed with error type value of: %i\n", (int)result);
+    };
+    /* Invoked when the operation queue drops an operation from the queue when the queue is full */
+    auto onQueueOperationDropped = [&](MqttOperationQueue::QueueOperation operation) {
+        if (operation.type == MqttOperationQueue::OperationType::PUBLISH) {
+            fprintf(stdout, "Publish with payload: [");
+            fwrite(operation.payload.buffer, 1, operation.payload.len, stdout);
+            fprintf(stdout, "] dropped from the operation queue\n");
+        } else {
+            fprintf(stdout, "Operation of type value of %i dropped from the operation queue\n", (int)operation.type);
+        }
+    };
 
-    /*
-     * Setup the queue
-     */
+    /* Setup the queue */
     MqttOperationQueue::MqttOperationQueueBuilder queueBuilder = MqttOperationQueue::MqttOperationQueueBuilder();
     queueBuilder.WithConnection(connection).WithQueueLimitSize(queueLimit).WithEnableLogging(true);
     queueBuilder.WithQueueEmptyCallback(std::move(onQueueEmpty));
-    /*
-     * The different queue insert/limit mode combos
-     */
+    queueBuilder.WithQueueFullCallback(std::move(onQueueFull));
+    queueBuilder.WithOperationSentCallback(std::move(onQueueOperationSent));
+    queueBuilder.WithOperationSentFailureCallback(std::move(onQueueOperationSentFailure));
+    queueBuilder.WithOperationDroppedCallback(std::move(onQueueOperationDropped));
+    /* The different queue insert/limit mode combos */
     if (queueMode == 0) {
-        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::QueueInsertBehavior::INSERT_BACK)
-                    .WithQueueLimitBehavior(MqttOperationQueue::QueueLimitBehavior::DROP_BACK);
+        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_BACK)
+                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
     } else if (queueMode == 1) {
-        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::QueueInsertBehavior::INSERT_BACK)
-                    .WithQueueLimitBehavior(MqttOperationQueue::QueueLimitBehavior::DROP_FRONT);
+        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_BACK)
+                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
     } else if (queueMode == 2) {
-        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::QueueInsertBehavior::INSERT_FRONT)
-                    .WithQueueLimitBehavior(MqttOperationQueue::QueueLimitBehavior::DROP_FRONT);
+        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_FRONT)
+                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_FRONT);
     } else if (queueMode == 3) {
-        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::QueueInsertBehavior::INSERT_FRONT)
-                    .WithQueueLimitBehavior(MqttOperationQueue::QueueLimitBehavior::DROP_BACK);
+        queueBuilder.WithQueueInsertBehavior(MqttOperationQueue::InsertBehavior::INSERT_FRONT)
+                    .WithQueueLimitBehavior(MqttOperationQueue::LimitBehavior::DROP_BACK);
     }
     /* Create the queue from the configuration */
     std::shared_ptr<MqttOperationQueue::MqttOperationQueue> operationQueue = queueBuilder.Build();
