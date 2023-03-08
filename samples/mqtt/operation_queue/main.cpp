@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
                 }
                 subscribeFinishedPromise.set_value();
             };
-        operationQueue->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
+        operationQueue->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, NULL, onSubAck);
         /* Wait for the queue to be empty, meaning all operations in the queue were sent */
         onQueueEmptyPromise.get_future().wait();
         // Wait for the subscribe ACK from the server

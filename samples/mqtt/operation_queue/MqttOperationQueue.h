@@ -93,6 +93,7 @@ namespace MqttOperationQueue {
             payload = Aws::Crt::ByteBufFromCString("");
             onPublish = NULL;
             onSubAck = NULL;
+            onMessage = NULL;
             onOpComplete = NULL;
         }
 
@@ -202,9 +203,14 @@ namespace MqttOperationQueue {
              * The OnOperationSent callback function will be invoked when the operation is
              * processed and sent by the client.
              *
+             * Note: Subscribe only supports subscribing to a single topic in the operation queue at this time.
+             *
              * @param topicFilter The topic to subscribe to
              * @param qos The QoS of the subscribe
-             * @param onMessage The callback invoked when the topic gets a publish
+             * @param onMessage The callback invoked when the topic gets a publish.
+             *                  Can be NULL if onPublish is be defined. Will be used over onPublish if both are defined.
+             * @param onPublish The callback invoked when the topic gets a publish
+             *                  Can be NULL if onMessage is defined.
              * @param onSubAck The callback invoked when the subscribe gets an ACK
              * @return QueueResult The result of adding the operation to the queue.
              */
@@ -212,6 +218,7 @@ namespace MqttOperationQueue {
                 const char *topicFilter,
                 Aws::Crt::Mqtt::QOS qos,
                 const Aws::Crt::Mqtt::OnMessageReceivedHandler onMessage,
+                const Aws::Crt::Mqtt::OnPublishReceivedHandler onPublish,
                 const Aws::Crt::Mqtt::OnSubAckHandler onSubAck
             );
 

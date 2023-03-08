@@ -161,8 +161,14 @@ namespace MqttOperationQueue {
 
     void MqttOperationQueue::PerformOperationSubscribe(QueueOperation *operation)
     {
-        // TODO: Support the other subscribe callback(s)
-        m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onMessage), std::move(operation->onSubAck));
+        if (operation->onMessage != NULL) {
+            m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onMessage), std::move(operation->onSubAck));
+        } else if (operation->onPublish != NULL) {
+            m_connection->Subscribe(operation->topic.c_str(), operation->qos, std::move(operation->onPublish), std::move(operation->onSubAck));
+        } else {
+            PerformOperationUnknown(operation);
+            return;
+        }
 
         if (m_callbackSent) {
             m_callbackSent(*operation);
@@ -352,13 +358,18 @@ namespace MqttOperationQueue {
         const char *topicFilter,
         Aws::Crt::Mqtt::QOS qos,
         const Aws::Crt::Mqtt::OnMessageReceivedHandler onMessage,
+        const Aws::Crt::Mqtt::OnPublishReceivedHandler onPublish,
         const Aws::Crt::Mqtt::OnSubAckHandler onSubAck)
     {
+        if (onMessage == NULL && onPublish == NULL) {
+            return QueueResult::ERROR_INVALID_ARGUMENT;
+        }
         QueueOperation newOperation = QueueOperation();
         newOperation.type = OperationType::SUBSCRIBE;
         newOperation.topic = Aws::Crt::String(topicFilter); // makes a copy
         newOperation.qos = qos;
         newOperation.onMessage = onMessage;
+        newOperation.onPublish = onPublish;
         newOperation.onSubAck = onSubAck;
         return AddOperationToQueue(std::move(newOperation));
     }
