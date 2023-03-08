@@ -17,6 +17,7 @@
 
 #include "../../utils/CommandLineUtils.h"
 #include "MqttOperationQueue.h"
+#include "MqttOperationQueueTests.h"
 
 using namespace Aws::Crt;
 
@@ -52,6 +53,10 @@ int main(int argc, char *argv[])
         "\n\t1 = Overflow removes from queue front and new messages are pushed to queue back"
         "\n\t2 = Overflow removes from queue front and new messages are pushed to queue front"
         "\n\t3 = Overflow removes from queue back and messages are pushed to queue front");
+    cmdUtils.RegisterCommand(
+        "run_tests",
+        "<int>",
+        "If set to True (1 or greater), then queue tests will be run instead of the sample (optional, default=0)");
     cmdUtils.AddLoggingCommands();
     const char **const_argv = (const char **)argv;
     cmdUtils.SendArguments(const_argv, const_argv + argc);
@@ -83,6 +88,16 @@ int main(int argc, char *argv[])
         if (mode > 0)
         {
             queueMode = mode;
+        }
+    }
+
+    if (cmdUtils.HasCommand("run_tests"))
+    {
+        int runTests = atoi(cmdUtils.GetCommand("run_tests").c_str());
+        if (runTests > 0)
+        {
+            fprintf(stdout, "Running MqttOperationQueue tests... \n");
+            exit(MqttOperationQueueTests::Tester::CreateAndRunTester(&cmdUtils));
         }
     }
 

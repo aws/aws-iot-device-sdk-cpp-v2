@@ -229,6 +229,7 @@ namespace MqttOperationQueue
         }
         else
         {
+            PrintLogMessage("Subscribe does not have either onMessage or onPublish callbacks!");
             PerformOperationUnknown(operation);
             return;
         }
@@ -256,6 +257,7 @@ namespace MqttOperationQueue
         }
         else
         {
+            fprintf(stdout, "\n\n TYPE IS: %i \n\n", operation->type);
             PrintLogMessage("ERROR - got unknown operation to perform!");
             if (m_callbackSentFailure)
             {
@@ -278,6 +280,7 @@ namespace MqttOperationQueue
     {
         // Get a smart pointer just to ensure it stays alive
         std::shared_ptr<MqttOperationQueue> smartQueue = queue->getptr();
+        std::this_thread::sleep_for(std::chrono::milliseconds(smartQueue->GetQueueLoopTime()));
 
         while (smartQueue->GetIsLooping() == true)
         {

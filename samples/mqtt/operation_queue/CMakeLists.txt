@@ -4,6 +4,7 @@ project(operation-queue CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
+       "*.h"
        "../../utils/CommandLineUtils.cpp"
        "../../utils/CommandLineUtils.h"
 )
