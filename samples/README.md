@@ -12,7 +12,6 @@
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
-* [Operation Queue](./mqtt/operation_queue/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
 * [Jobs](./jobs/describe_job_execution/README.md)
 * [Fleet provisioning](./identity/fleet_provisioning/README.md)
