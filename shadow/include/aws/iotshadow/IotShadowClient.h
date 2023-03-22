@@ -11,6 +11,8 @@
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
+#include <aws/crt/mqtt/Mqtt5Client.h>
+#include <aws/crt/mqtt/Mqtt5Listener.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
 namespace Aws
@@ -103,6 +105,7 @@ namespace Aws
         {
           public:
             IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
+            IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
 
             operator bool() const noexcept;
             int GetLastError() const noexcept;
@@ -179,6 +182,12 @@ namespace Aws
             bool SubscribeToShadowDeltaUpdatedEvents(
                 const Aws::Iotshadow::ShadowDeltaUpdatedSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToShadowDeltaUpdatedEventsResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
+            bool SubscribeToShadowDeltaUpdatedEvents(
+                const Aws::Iotshadow::ShadowDeltaUpdatedSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToShadowDeltaUpdatedEventsResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -282,6 +291,12 @@ namespace Aws
                 const OnSubscribeToUpdateShadowAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
+            bool SubscribeToUpdateShadowAccepted(
+                const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToUpdateShadowAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
             /**
              * Subscribes to the rejected topic for the UpdateShadow operation
              *
@@ -304,6 +319,12 @@ namespace Aws
             bool SubscribeToUpdateShadowRejected(
                 const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToUpdateShadowRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
+            bool SubscribeToUpdateShadowRejected(
+                const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToUpdateShadowRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -407,6 +428,12 @@ namespace Aws
                 const OnSubscribeToGetShadowAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
+            bool SubscribeToGetShadowAccepted(
+                const Aws::Iotshadow::GetShadowSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToGetShadowAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
             /**
              * Subscribe to ShadowUpdated events for the (classic) shadow of an AWS IoT thing.
              *
@@ -507,6 +534,12 @@ namespace Aws
                 const OnSubscribeToGetShadowRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
+            bool SubscribeToGetShadowRejected(
+                const Aws::Iotshadow::GetShadowSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToGetShadowRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
             /**
              * Gets the (classic) shadow for an AWS IoT thing.
              *
@@ -528,6 +561,11 @@ namespace Aws
             bool PublishGetShadow(
                 const Aws::Iotshadow::GetShadowRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnPublishComplete &onPubAck);
+
+            bool PublishGetShadow(
+                const Aws::Iotshadow::GetShadowRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnPublishComplete &onPubAck);
 
             /**
@@ -574,6 +612,11 @@ namespace Aws
             bool PublishUpdateShadow(
                 const Aws::Iotshadow::UpdateShadowRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnPublishComplete &onPubAck);
+
+            bool PublishUpdateShadow(
+                const Aws::Iotshadow::UpdateShadowRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnPublishComplete &onPubAck);
 
             /**
@@ -647,6 +690,9 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
+            std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
+            std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_mqtt5Client;
+            std::map<Crt::String, Crt::Mqtt5::OnPublishReceivedHandler> m_subscriptionMap;
         };
 
     } // namespace Iotshadow

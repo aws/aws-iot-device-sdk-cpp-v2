@@ -7,7 +7,9 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/io/HostResolver.h>
 
-#include <aws/iot/MqttClient.h>
+#include <aws/crt/mqtt/Mqtt5Client.h>
+#include <aws/crt/mqtt/Mqtt5Packets.h>
+#include <aws/iot/Mqtt5Client.h>
 
 #include <aws/iotshadow/ErrorResponse.h>
 #include <aws/iotshadow/IotShadowClient.h>
@@ -83,7 +85,8 @@ static void s_changeShadowValue(
         fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
     };
 
-    client.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
+    client.PublishUpdateShadow(
+        updateShadowRequest, Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
 }
 
 int main(int argc, char *argv[])
@@ -116,7 +119,20 @@ int main(int argc, char *argv[])
     bool isCI = cmdUtils.HasCommand("is_ci");
 
     /* Get a MQTT client connection from the command parser */
-    auto connection = cmdUtils.BuildMQTTConnection();
+    // Create a Client using Mqtt5ClientBuilder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+        cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
+
+    if (builder == nullptr)
+    {
+        printf("Failed to setup mqtt5 client builder.");
+        return -1;
+    }
+
+    // Setup connection options
+    std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    connectOptions->withClientId(clientId);
+    builder->withConnectOptions(connectOptions);
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -128,45 +144,63 @@ int main(int argc, char *argv[])
     /*
      * This will execute when a mqtt connect has completed or failed.
      */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(true);
-        }
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt5::Mqtt5Client &, const Aws::Crt::Mqtt5::OnConnectionSuccessEventData &data)
+    {
+        fprintf(stdout, "Connection completed with return code %d\n", data.connAckPacket->getReasonCode());
+        connectionCompletedPromise.set_value(true);
+    };
+
+    /*
+     * This will execute when a mqtt connect has completed or failed.
+     */
+    auto onConnectionFailed =
+        [&](Aws::Crt::Mqtt5::Mqtt5Client &, const Aws::Crt::Mqtt5::OnConnectionFailureEventData &data)
+    {
+        fprintf(stdout, "Connection completed with return code %d\n", data.errorCode);
+        connectionCompletedPromise.set_value(false);
     };
 
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
+    auto onDisconnect = [&](Aws::Crt::Mqtt5::Mqtt5Client &, const Aws::Crt::Mqtt5::OnStoppedEventData &)
+    {
         {
-            fprintf(stdout, "Disconnect completed\n");
+            fprintf(stdout, "Session Stopped completed\n");
             connectionClosedPromise.set_value();
         }
     };
 
-    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
-    connection->OnDisconnect = std::move(onDisconnect);
+    builder->withClientConnectionSuccessCallback(std::move(onConnectionCompleted));
+    builder->withClientConnectionFailureCallback(std::move(onConnectionFailed));
+    builder->withClientStoppedCallback(std::move(onDisconnect));
+
+    // Create Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
+
+    // Clean up the builder
+    delete builder;
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
 
     /*
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), true, 0))
+    if (!mqtt5Client->Start())
     {
-        fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
+        fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(mqtt5Client->LastError()));
         exit(-1);
     }
 
     if (connectionCompletedPromise.get_future().get())
     {
-        Aws::Iotshadow::IotShadowClient shadowClient(connection);
+        Aws::Iotshadow::IotShadowClient shadowClient(mqtt5Client);
 
         // ==================== Shadow Delta Updates ====================
         // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
@@ -286,20 +320,23 @@ int main(int argc, char *argv[])
         shadowDeltaUpdatedRequest.ThingName = thingName;
 
         shadowClient.SubscribeToShadowDeltaUpdatedEvents(
-            shadowDeltaUpdatedRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onDeltaUpdated, onDeltaUpdatedSubAck);
+            shadowDeltaUpdatedRequest,
+            Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
+            onDeltaUpdated,
+            onDeltaUpdatedSubAck);
 
         UpdateShadowSubscriptionRequest updateShadowSubscriptionRequest;
         updateShadowSubscriptionRequest.ThingName = thingName;
 
         shadowClient.SubscribeToUpdateShadowAccepted(
             updateShadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
             onUpdateShadowAccepted,
             onDeltaUpdatedAcceptedSubAck);
 
         shadowClient.SubscribeToUpdateShadowRejected(
             updateShadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
             onUpdateShadowRejected,
             onDeltaUpdatedRejectedSubAck);
 
@@ -397,13 +434,13 @@ int main(int argc, char *argv[])
 
         shadowClient.SubscribeToGetShadowAccepted(
             shadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
             onGetShadowAccepted,
             onGetShadowUpdatedAcceptedSubAck);
 
         shadowClient.SubscribeToGetShadowRejected(
             shadowSubscriptionRequest,
-            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
             onGetShadowRejected,
             onGetShadowUpdatedRejectedSubAck);
 
@@ -414,7 +451,8 @@ int main(int argc, char *argv[])
         shadowGetRequest.ThingName = thingName;
 
         // Get the current shadow document so we start with the correct value
-        shadowClient.PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
+        shadowClient.PublishGetShadow(
+            shadowGetRequest, Aws::Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
 
         onGetShadowRequestCompletedPromise.get_future().wait();
         gotInitialShadowPromise.get_future().wait();
@@ -465,10 +503,12 @@ int main(int argc, char *argv[])
     }
 
     /* Disconnect */
-    if (connection->Disconnect())
+    if (mqtt5Client->Stop())
     {
         connectionClosedPromise.get_future().wait();
     }
+
+    mqtt5Client->Close();
 
     return 0;
 }

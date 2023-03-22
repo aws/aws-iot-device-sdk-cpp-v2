@@ -28,14 +28,34 @@
 #include <aws/iotshadow/UpdateShadowResponse.h>
 #include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
+#include <aws/crt/mqtt/Mqtt5Packets.h>
+
 namespace Aws
 {
     namespace Iotshadow
     {
-
         IotShadowClient::IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection)
             : m_connection(connection)
         {
+        }
+
+        IotShadowClient::IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
+            : m_mqtt5Client(mqtt5Client)
+        {
+            Crt::Mqtt5::Mqtt5ListenerOptions listenerOptions;
+            listenerOptions.withListenerPublishReceivedCallback(
+                [this](Crt::Mqtt5::Mqtt5Client &client, const Crt::Mqtt5::PublishReceivedEventData &data)
+                {
+                    Crt::String topic = data.publishPacket->getTopic();
+                    if (this->m_subscriptionMap.find(topic) != m_subscriptionMap.end())
+                    {
+                        this->m_subscriptionMap[topic](client, data);
+                        return true;
+                    }
+                    return false;
+                });
+            m_mqtt5Listener =
+                Crt::Mqtt5::Mqtt5Listener::NewMqtt5Listener(listenerOptions, mqtt5Client, Aws::Crt::g_allocator);
         }
 
         IotShadowClient::operator bool() const noexcept { return m_connection && *m_connection; }
@@ -200,6 +220,57 @@ namespace Aws
                        qos,
                        std::move(onSubscribePublish),
                        std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotShadowClient::SubscribeToShadowDeltaUpdatedEvents(
+            const Aws::Iotshadow::ShadowDeltaUpdatedSubscriptionRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnSubscribeToShadowDeltaUpdatedEventsResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "shadow"
+                               << "/"
+                               << "update"
+                               << "/"
+                               << "delta";
+
+            auto onSubscribeComplete =
+                [handler, onSubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
+            {
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onPublishReceived =
+                [handler](Crt::Mqtt5::Mqtt5Client &, const Crt::Mqtt5::PublishReceivedEventData &data)
+            {
+                Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotshadow::ShadowDeltaUpdatedEvent response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
+
+            m_subscriptionMap[subscribeTopicSStr.str()] = onPublishReceived;
+
+            Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
+            std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
+                std::make_shared<Crt::Mqtt5::SubscribePacket>(Aws::Crt::g_allocator);
+            subscribe->withSubscription(std::move(subscription));
+
+            return m_mqtt5Client->Subscribe(subscribe, std::move(onSubscribeComplete));
         }
 
         bool IotShadowClient::SubscribeToDeleteShadowAccepted(
@@ -414,6 +485,58 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
+        bool IotShadowClient::SubscribeToUpdateShadowAccepted(
+            const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnSubscribeToUpdateShadowAcceptedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+
+            auto onSubscribeComplete =
+                [handler, onSubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
+            {
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "shadow"
+                               << "/"
+                               << "update"
+                               << "/"
+                               << "accepted";
+
+            auto onPublishReceived =
+                [handler](Crt::Mqtt5::Mqtt5Client &, const Crt::Mqtt5::PublishReceivedEventData &data)
+            {
+                Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotshadow::UpdateShadowResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
+
+            m_subscriptionMap[subscribeTopicSStr.str()] = onPublishReceived;
+
+            Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
+            std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
+                std::make_shared<Crt::Mqtt5::SubscribePacket>(Aws::Crt::g_allocator);
+            subscribe->withSubscription(std::move(subscription));
+
+            return m_mqtt5Client->Subscribe(subscribe, std::move(onSubscribeComplete));
+        }
+
         bool IotShadowClient::SubscribeToUpdateShadowRejected(
             const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -464,6 +587,57 @@ namespace Aws
                        qos,
                        std::move(onSubscribePublish),
                        std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotShadowClient::SubscribeToUpdateShadowRejected(
+            const Aws::Iotshadow::UpdateShadowSubscriptionRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnSubscribeToUpdateShadowRejectedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            auto onSubscribeComplete =
+                [handler, onSubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
+            {
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "shadow"
+                               << "/"
+                               << "update"
+                               << "/"
+                               << "rejected";
+
+            auto onPublishReceived =
+                [handler](Crt::Mqtt5::Mqtt5Client &, const Crt::Mqtt5::PublishReceivedEventData &data)
+            {
+                Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotshadow::ErrorResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
+
+            m_subscriptionMap[subscribeTopicSStr.str()] = onPublishReceived;
+
+            Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
+            std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
+                std::make_shared<Crt::Mqtt5::SubscribePacket>(Aws::Crt::g_allocator);
+            subscribe->withSubscription(std::move(subscription));
+
+            return m_mqtt5Client->Subscribe(subscribe, std::move(onSubscribeComplete));
         }
 
         bool IotShadowClient::SubscribeToDeleteShadowRejected(
@@ -678,6 +852,57 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
+        bool IotShadowClient::SubscribeToGetShadowAccepted(
+            const Aws::Iotshadow::GetShadowSubscriptionRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnSubscribeToGetShadowAcceptedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            auto onSubscribeComplete =
+                [handler, onSubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
+            {
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "shadow"
+                               << "/"
+                               << "get"
+                               << "/"
+                               << "accepted";
+
+            auto onPublishReceived =
+                [handler](Crt::Mqtt5::Mqtt5Client &, const Crt::Mqtt5::PublishReceivedEventData &data)
+            {
+                Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotshadow::GetShadowResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
+
+            m_subscriptionMap[subscribeTopicSStr.str()] = onPublishReceived;
+
+            Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
+            std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
+                std::make_shared<Crt::Mqtt5::SubscribePacket>(Aws::Crt::g_allocator);
+            subscribe->withSubscription(std::move(subscription));
+
+            return m_mqtt5Client->Subscribe(subscribe, std::move(onSubscribeComplete));
+        }
+
         bool IotShadowClient::SubscribeToShadowUpdatedEvents(
             const Aws::Iotshadow::ShadowUpdatedSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -890,6 +1115,57 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
+        bool IotShadowClient::SubscribeToGetShadowRejected(
+            const Aws::Iotshadow::GetShadowSubscriptionRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnSubscribeToGetShadowRejectedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            auto onSubscribeComplete =
+                [handler, onSubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
+            {
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "shadow"
+                               << "/"
+                               << "get"
+                               << "/"
+                               << "rejected";
+
+            auto onPublishReceived =
+                [handler](Crt::Mqtt5::Mqtt5Client &, const Crt::Mqtt5::PublishReceivedEventData &data)
+            {
+                Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotshadow::ErrorResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
+
+            m_subscriptionMap[subscribeTopicSStr.str()] = onPublishReceived;
+
+            Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
+            std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
+                std::make_shared<Crt::Mqtt5::SubscribePacket>(Aws::Crt::g_allocator);
+            subscribe->withSubscription(std::move(subscription));
+
+            return m_mqtt5Client->Subscribe(subscribe, std::move(onSubscribeComplete));
+        }
+
         bool IotShadowClient::PublishGetShadow(
             const Aws::Iotshadow::GetShadowRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -917,6 +1193,45 @@ namespace Aws
 
             return m_connection->Publish(
                        publishTopicSStr.str().c_str(), qos, false, buf, std::move(onPublishComplete)) != 0;
+        }
+
+        bool IotShadowClient::PublishGetShadow(
+            const Aws::Iotshadow::GetShadowRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnPublishComplete &onPubAck)
+        {
+            Aws::Crt::StringStream publishTopicSStr;
+            publishTopicSStr << "$aws"
+                             << "/"
+                             << "things"
+                             << "/" << *request.ThingName << "/"
+                             << "shadow"
+                             << "/"
+                             << "get";
+
+            if (m_mqtt5Client == nullptr || m_mqtt5Listener == nullptr)
+            {
+                // invalid client
+                return false;
+            }
+
+            Aws::Crt::JsonObject jsonObject;
+            request.SerializeToObject(jsonObject);
+            Aws::Crt::String outgoingJson = jsonObject.View().WriteCompact(true);
+            Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
+                Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
+
+            auto onPublishComplete =
+                [buf, onPubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
+            {
+                onPubAck(errorCode);
+                Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
+            };
+
+            std::shared_ptr<Crt::Mqtt5::PublishPacket> publish = std::make_shared<Crt::Mqtt5::PublishPacket>(
+                publishTopicSStr.str(), Crt::ByteCursorFromByteBuf(buf), qos, Aws::Crt::g_allocator);
+
+            return m_mqtt5Client->Publish(publish, std::move(onPublishComplete)) != 0;
         }
 
         bool IotShadowClient::PublishDeleteShadow(
@@ -975,6 +1290,45 @@ namespace Aws
 
             return m_connection->Publish(
                        publishTopicSStr.str().c_str(), qos, false, buf, std::move(onPublishComplete)) != 0;
+        }
+
+        bool IotShadowClient::PublishUpdateShadow(
+            const Aws::Iotshadow::UpdateShadowRequest &request,
+            Aws::Crt::Mqtt5::QOS qos,
+            const OnPublishComplete &onPubAck)
+        {
+            Aws::Crt::StringStream publishTopicSStr;
+            publishTopicSStr << "$aws"
+                             << "/"
+                             << "things"
+                             << "/" << *request.ThingName << "/"
+                             << "shadow"
+                             << "/"
+                             << "update";
+
+            if (m_mqtt5Client == nullptr || m_mqtt5Listener == nullptr)
+            {
+                // invalid client
+                return false;
+            }
+
+            Aws::Crt::JsonObject jsonObject;
+            request.SerializeToObject(jsonObject);
+            Aws::Crt::String outgoingJson = jsonObject.View().WriteCompact(true);
+            Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
+                Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
+
+            auto onPublishComplete =
+                [buf, onPubAck](Crt::Mqtt5::Mqtt5Client &, int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
+            {
+                onPubAck(errorCode);
+                Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
+            };
+
+            std::shared_ptr<Crt::Mqtt5::PublishPacket> publish = std::make_shared<Crt::Mqtt5::PublishPacket>(
+                publishTopicSStr.str(), Crt::ByteCursorFromByteBuf(buf), qos, Aws::Crt::g_allocator);
+
+            return m_mqtt5Client->Publish(publish, std::move(onPublishComplete)) != 0;
         }
 
         bool IotShadowClient::PublishDeleteNamedShadow(
