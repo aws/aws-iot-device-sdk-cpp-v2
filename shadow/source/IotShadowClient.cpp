@@ -34,6 +34,24 @@ namespace Aws
 {
     namespace Iotshadow
     {
+        Crt::Mqtt5::QOS QOS3to5(Crt::Mqtt::QOS qos)
+        {
+            switch (qos)
+            {
+                case AWS_MQTT_QOS_AT_MOST_ONCE:
+                    return Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_MOST_ONCE;
+                case AWS_MQTT_QOS_AT_LEAST_ONCE:
+                    return Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE;
+                case AWS_MQTT_QOS_EXACTLY_ONCE:
+                    return Crt::Mqtt5::QOS::AWS_MQTT5_QOS_EXACTLY_ONCE;
+                default:
+                    break;
+            }
+
+            AWS_LOGF_ERROR(AWS_LS_MQTT5_GENERAL, "Invalid QOS value");
+            return Crt::Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE;
+        }
+
         IotShadowClient::IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection)
             : m_connection(connection)
         {
@@ -176,6 +194,16 @@ namespace Aws
             const OnSubscribeToShadowDeltaUpdatedEventsResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+
+            if (m_mqtt5Client != nullptr && m_mqtt5Listener != nullptr)
+            {
+                return SubscribeToShadowDeltaUpdatedEvents(request, QOS3to5(qos), handler, onSubAck);
+            }
+            if (m_connection == nullptr)
+            {
+                return false;
+            }
+
             (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
