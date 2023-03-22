@@ -688,6 +688,16 @@ namespace Aws
                 Aws::Crt::Mqtt::QOS qos,
                 const OnPublishComplete &onPubAck);
 
+            ~IotShadowClient()
+            {
+                /* `Close()` must get called to clean up the listener. We will
+                 * update the mechanism in the near future... */
+                if (m_mqtt5Listener != nullptr)
+                {
+                    m_mqtt5Listener->Close();
+                }
+            }
+
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
             std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
