@@ -3,10 +3,10 @@
 C++ bindings for the AWS IoT Device API
 
 Developer Guide:[https://docs.aws.amazon.com/iot/latest/developerguide](https://docs.aws.amazon.com/iot/latest/developerguide)
-        
+
 GitHub: [https://github.com/aws/aws-iot-device-sdk-cpp-v2](https://github.com/aws/aws-iot-device-sdk-cpp-v2)
 
-##API Reference
+## API Reference
 
 * [Crt](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt.html)
 * [Discovery](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_discovery.html)
@@ -20,7 +20,7 @@ GitHub: [https://github.com/aws/aws-iot-device-sdk-cpp-v2](https://github.com/aw
 * [Iotsecuretunneling](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotsecuretunneling.html)
 * [Iotshadow](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotshadow.html)
 
-##AWS Crt C++
+## AWS Crt C++
 
 * [Github](https://github.com/awslabs/aws-crt-cpp)
 * [API](https://awslabs.github.io/aws-crt-cpp/index.html)
