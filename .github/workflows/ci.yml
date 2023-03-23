@@ -22,19 +22,19 @@ env:
   CI_FOLDER: "D:/a/work"
   CI_UTILS_FOLDER: "./aws-iot-device-sdk-cpp-v2/utils"
   CI_SAMPLES_CFG_FOLDER: "./aws-iot-device-sdk-cpp-v2/.github/workflows"
-  CI_IOT_CONTAINERS: ${{ secrets.AWS_CI_IOT_CONTAINERS }}
-  CI_PUBSUB_ROLE: ${{ secrets.AWS_CI_PUBSUB_ROLE }}
-  CI_CYCLEPUBSUB_ROLE: ${{ secrets.AWS_CI_CYCLEPUBSUB_ROLE }}
-  CI_CUSTOM_AUTHORIZER_ROLE: ${{ secrets.AWS_CI_CUSTOM_AUTHORIZER_ROLE }}
-  CI_COGNITO_ROLE: ${{ secrets.AWS_CI_COGNITO_ROLE }}
-  CI_SHADOW_ROLE: ${{ secrets.AWS_CI_SHADOW_ROLE }}
-  CI_JOBS_ROLE: ${{ secrets.AWS_CI_JOBS_ROLE }}
-  CI_FLEET_PROVISIONING_ROLE: ${{ secrets.AWS_CI_FLEET_PROVISIONING_ROLE }}
-  CI_DEVICE_ADVISOR: ${{ secrets.AWS_CI_DEVICE_ADVISOR_ROLE }}
-  CI_DEVICE_DEFENDER: ${{ secrets.AWS_CI_DEVICE_DEFENDER_ROLE }}
-  CI_SECURE_TUNNEL: ${{ secrets.AWS_CI_SECURE_TUNNEL_ROLE }}
-  CI_X509_ROLE: ${{ secrets.AWS_CI_X509_ROLE }}
-  CI_MQTT5_ROLE: ${{ secrets.AWS_CI_MQTT5_ROLE }}
+  CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
+  CI_PUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_PubSub_Role
+  CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
+  CI_CUSTOM_AUTHORIZER_ROLE: arn:aws:iam::180635532705:role/CI_CustomAuthorizer_Role
+  CI_COGNITO_ROLE: arn:aws:iam::180635532705:role/CI_Cognito_Role
+  CI_SHADOW_ROLE: arn:aws:iam::180635532705:role/CI_Shadow_Role
+  CI_JOBS_ROLE: arn:aws:iam::180635532705:role/CI_Jobs_Role
+  CI_FLEET_PROVISIONING_ROLE: arn:aws:iam::180635532705:role/service-role/CI_FleetProvisioning_Role
+  CI_DEVICE_ADVISOR: arn:aws:iam::180635532705:role/CI_DeviceAdvisor_Role
+  CI_DEVICE_DEFENDER: arn:aws:iam::180635532705:role/CI_DeviceDefender_Role
+  CI_SECURE_TUNNEL: arn:aws:iam::180635532705:role/CI_SecureTunnel_Role
+  CI_X509_ROLE: arn:aws:iam::180635532705:role/CI_X509_Role
+  CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
 
 jobs:
   linux-compat:

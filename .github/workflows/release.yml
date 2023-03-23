@@ -29,6 +29,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        submodules: recursive
 
     - name: Make new release
       env:
@@ -40,3 +41,43 @@ jobs:
         Title=$(echo ${Title//[\$]})
 
         ./utils/publish-release.sh "${{ github.event.inputs.release_type }}" "$Title"
+
+    - name: Generate documentation
+      run: |
+        echo "Compiling and installing doxygen 1.8.20 from source"
+        sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
+        git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
+        cd doxygen
+        mkdir build
+        cd build
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+        sudo make -j 4
+        sudo make install
+        cd ../..
+        echo "Finished compiling and installing Doxygen"
+
+        version=$(cat ./VERSION)
+        echo "Updating documentation version to ${version//v}"
+        sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
+        echo "Finished updating documentation version to ${version//v}"
+
+        ./make-docs.py
+
+    - name: Commit documentation
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add --force docs/
+        current_version=$(git describe --tags --abbrev=0)
+        git commit --message="Update Docs: ${current_version}"
+
+    - name: Push generated documentation to docs branch
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ github.token }}
+        branch: docs
+        # Force push so that `docs` branch always looks like `main`,
+        # but with 1 additional "update docs" commit.
+        # This seems simpler than trying to cleanly merge `main` into
+        # `docs` each time.
+        force: true
