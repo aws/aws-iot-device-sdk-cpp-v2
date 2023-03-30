@@ -20,7 +20,7 @@
         },
         {
             "name": "--is_ci",
-            "value": "true"
+            "data": "true"
         }
     ]
 }
