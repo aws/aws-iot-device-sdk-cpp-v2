@@ -19,7 +19,6 @@ using namespace Aws::Crt;
  * backwards-incompatible changes to the public API, but in general, this is something we will try our best to avoid.
  */
 
-
 /**
  * For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
  * and to do so we use this class to hold all the data for a particular client used in the sample.
@@ -288,7 +287,6 @@ int main(int argc, char *argv[])
     else
     {
         publisher->PrintMessageAndExit("Could not start", -1);
-        exit(-1);
     }
 
     if (subscriberOne->client->Start())
