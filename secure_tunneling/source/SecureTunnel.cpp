@@ -53,6 +53,7 @@ namespace Aws
         {
             AWS_ZERO_STRUCT(m_payloadStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = message.connection_id;
 
             setPacketByteBufOptional(m_payload, m_payloadStorage, m_allocator, message.payload);
             setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
@@ -63,12 +64,26 @@ namespace Aws
         {
             AWS_ZERO_STRUCT(m_payloadStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = 0;
         }
 
         Message::Message(Crt::ByteCursor payload, Crt::Allocator *allocator) noexcept : m_allocator(allocator)
         {
             AWS_ZERO_STRUCT(m_payloadStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = 0;
+
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
+            m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
+        }
+
+        Message::Message(Crt::ByteCursor payload, u_int32_t connectionId, Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = connectionId;
 
             aws_byte_buf_clean_up(&m_payloadStorage);
             aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
@@ -80,6 +95,27 @@ namespace Aws
         {
             AWS_ZERO_STRUCT(m_payloadStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = 0;
+
+            aws_byte_buf_clean_up(&m_payloadStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
+            m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
+
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            aws_byte_buf_init_copy_from_cursor(&m_serviceIdStorage, m_allocator, serviceId);
+            m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+        }
+
+        Message::Message(
+            Crt::ByteCursor serviceId,
+            u_int32_t connectionId,
+            Crt::ByteCursor payload,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_payloadStorage);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+            m_connectionId = connectionId;
 
             aws_byte_buf_clean_up(&m_payloadStorage);
             aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
@@ -106,6 +142,12 @@ namespace Aws
             return *this;
         }
 
+        Message &Message::withConnectionId(u_int32_t connectionId) noexcept
+        {
+            m_connectionId = connectionId;
+            return *this;
+        }
+
         bool Message::initializeRawOptions(aws_secure_tunnel_message_view &raw_options) noexcept
         {
             AWS_ZERO_STRUCT(raw_options);
@@ -117,6 +159,7 @@ namespace Aws
             {
                 raw_options.service_id = &m_serviceId.value();
             }
+            raw_options.connection_id = m_connectionId;
 
             return true;
         }
@@ -124,6 +167,8 @@ namespace Aws
         const Crt::Optional<Crt::ByteCursor> &Message::getPayload() const noexcept { return m_payload; }
 
         const Crt::Optional<Crt::ByteCursor> &Message::getServiceId() const noexcept { return m_serviceId; }
+
+        const u_int32_t &Message::getConnectionId() const noexcept { return m_connectionId; }
 
         Message::~Message()
         {
@@ -172,9 +217,12 @@ namespace Aws
             AWS_ZERO_STRUCT(m_serviceIdStorage);
 
             setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
+            m_connectionId = message.connection_id;
         }
 
         const Crt::Optional<Crt::ByteCursor> &StreamStartedData::getServiceId() const noexcept { return m_serviceId; }
+
+        const u_int32_t &StreamStartedData::getConnectionId() const noexcept { return m_connectionId; }
 
         StreamStartedData::~StreamStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
@@ -197,6 +245,51 @@ namespace Aws
         StreamStoppedData::~StreamStoppedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
         //***********************************************************************************************************************
+        /*                                              ConnectionStartedData */
+        //***********************************************************************************************************************
+
+        ConnectionStartedData::ConnectionStartedData(
+            const aws_secure_tunnel_message_view &message,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
+            m_connectionId = message.connection_id;
+        }
+
+        const Crt::Optional<Crt::ByteCursor> &ConnectionStartedData::getServiceId() const noexcept
+        {
+            return m_serviceId;
+        }
+
+        const u_int32_t &ConnectionStartedData::getConnectionId() const noexcept { return m_connectionId; }
+
+        ConnectionStartedData::~ConnectionStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+
+        //***********************************************************************************************************************
+        /*                                              ConnectionResetData */
+        //***********************************************************************************************************************
+
+        ConnectionResetData::ConnectionResetData(
+            const aws_secure_tunnel_message_view &message,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+
+            setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
+            m_connectionId = message.connection_id;
+        }
+
+        const Crt::Optional<Crt::ByteCursor> &ConnectionResetData::getServiceId() const noexcept { return m_serviceId; }
+
+        const u_int32_t &ConnectionResetData::getConnectionId() const noexcept { return m_connectionId; }
+
+        ConnectionResetData::~ConnectionResetData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+
+        //***********************************************************************************************************************
         /*                                          SecureTunnelBuilder */
         //***********************************************************************************************************************
         SecureTunnelBuilder::SecureTunnelBuilder(
@@ -207,9 +300,7 @@ namespace Aws
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(&clientBootstrap), m_socketOptions(socketOptions),
-              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_rootCa(""),
-              m_httpClientConnectionProxyOptions(), m_OnConnectionShutdown(), m_OnSendDataComplete(),
-              m_OnSessionReset(), m_OnConnectionComplete(), m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
+              m_accessToken(accessToken), m_localProxyMode(localProxyMode), m_endpointHost(endpointHost), m_rootCa("")
         {
         }
 
@@ -221,9 +312,7 @@ namespace Aws
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
               m_socketOptions(socketOptions), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
-              m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(),
-              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnSessionReset(), m_OnConnectionComplete(),
-              m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
+              m_endpointHost(endpointHost), m_rootCa("")
         {
         }
 
@@ -234,9 +323,7 @@ namespace Aws
             const std::string &endpointHost) // Make a copy and save in this object
             : m_allocator(allocator), m_clientBootstrap(Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap()),
               m_socketOptions(Crt::Io::SocketOptions()), m_accessToken(accessToken), m_localProxyMode(localProxyMode),
-              m_endpointHost(endpointHost), m_rootCa(""), m_httpClientConnectionProxyOptions(),
-              m_OnConnectionShutdown(), m_OnSendDataComplete(), m_OnSessionReset(), m_OnConnectionComplete(),
-              m_OnDataReceive(), m_OnStreamStart(), m_OnStreamReset()
+              m_endpointHost(endpointHost), m_rootCa("")
         {
         }
 
@@ -271,9 +358,9 @@ namespace Aws
             return *this;
         }
 
-        SecureTunnelBuilder &SecureTunnelBuilder::WithOnSendDataComplete(OnSendDataComplete onSendDataComplete)
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnSendMessageComplete(OnSendMessageComplete onSendMessageComplete)
         {
-            m_OnSendDataComplete = std::move(onSendDataComplete);
+            m_OnSendMessageComplete = std::move(onSendMessageComplete);
             return *this;
         }
 
@@ -295,9 +382,15 @@ namespace Aws
             return *this;
         }
 
-        SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamReset(OnStreamReset onStreamReset)
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionStarted(OnConnectionStarted onConnectionStarted)
         {
-            m_OnStreamReset = std::move(onStreamReset);
+            m_OnConnectionStarted = std::move(onConnectionStarted);
+            return *this;
+        }
+
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnConnectionReset(OnConnectionReset onConnectionReset)
+        {
+            m_OnConnectionReset = std::move(onConnectionReset);
             return *this;
         }
 
@@ -331,10 +424,22 @@ namespace Aws
             m_OnStreamStart = std::move(onStreamStart);
             return *this;
         }
+        /* Deprecated - Use WithOnStreamStopped */
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnStreamReset(OnStreamReset onStreamReset)
+        {
+            m_OnStreamReset = std::move(onStreamReset);
+            return *this;
+        }
         /* Deprecated - Use WithOnMessageReceived */
         SecureTunnelBuilder &SecureTunnelBuilder::WithOnDataReceive(OnDataReceive onDataReceive)
         {
             m_OnDataReceive = std::move(onDataReceive);
+            return *this;
+        }
+        /* Deprecated - Use WithOnSendMessageComplete */
+        SecureTunnelBuilder &SecureTunnelBuilder::WithOnSendDataComplete(OnSendDataComplete onSendDataComplete)
+        {
+            m_OnSendDataComplete = std::move(onSendDataComplete);
             return *this;
         }
 
@@ -354,6 +459,7 @@ namespace Aws
                 m_OnConnectionFailure,
                 m_OnConnectionComplete,
                 m_OnConnectionShutdown,
+                m_OnSendMessageComplete,
                 m_OnSendDataComplete,
                 m_OnMessageReceived,
                 m_OnDataReceive,
@@ -396,6 +502,7 @@ namespace Aws
             OnConnectionFailure onConnectionFailure,
             OnConnectionComplete onConnectionComplete,
             OnConnectionShutdown onConnectionShutdown,
+            OnSendMessageComplete onSendMessageComplete,
             OnSendDataComplete onSendDataComplete,
             OnMessageReceived onMessageReceived,
             OnDataReceive onDataReceive,
@@ -411,6 +518,7 @@ namespace Aws
             m_OnConnectionFailure = std::move(onConnectionFailure);
             m_OnConnectionComplete = std::move(onConnectionComplete);
             m_OnConnectionShutdown = std::move(onConnectionShutdown);
+            m_OnSendMessageComplete = std::move(onSendMessageComplete);
             m_OnSendDataComplete = std::move(onSendDataComplete);
             m_OnMessageReceived = std::move(onMessageReceived);
             m_OnDataReceive = std::move(onDataReceive);
@@ -445,9 +553,11 @@ namespace Aws
             config.on_message_received = s_OnMessageReceived;
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_connection_shutdown = s_OnConnectionShutdown;
-            config.on_send_data_complete = s_OnSendDataComplete;
+            config.on_send_message_complete = s_OnSendMessageComplete;
             config.on_stream_start = s_OnStreamStarted;
             config.on_stream_reset = s_OnStreamStopped;
+            config.on_connection_start = s_OnConnectionStarted;
+            config.on_connection_reset = s_OnConnectionReset;
             config.on_session_reset = s_OnSessionReset;
             config.on_stopped = s_OnStopped;
 
@@ -500,6 +610,7 @@ namespace Aws
                   nullptr,
                   onConnectionComplete,
                   onConnectionShutdown,
+                  nullptr,
                   onSendDataComplete,
                   nullptr,
                   onDataReceive,
@@ -545,6 +656,7 @@ namespace Aws
                   nullptr,
                   onConnectionComplete,
                   onConnectionShutdown,
+                  nullptr,
                   onSendDataComplete,
                   nullptr,
                   onDataReceive,
@@ -571,7 +683,7 @@ namespace Aws
             m_OnConnectionSuccess = std::move(other.m_OnConnectionSuccess);
             m_OnConnectionFailure = std::move(other.m_OnConnectionFailure);
             m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
-            m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
+            m_OnSendMessageComplete = std::move(other.m_OnSendMessageComplete);
             m_OnMessageReceived = std::move(other.m_OnMessageReceived);
             m_OnStreamStarted = std::move(other.m_OnStreamStarted);
             m_OnStreamReset = std::move(other.m_OnStreamReset);
@@ -584,6 +696,8 @@ namespace Aws
             m_OnDataReceive = std::move(other.m_OnDataReceive);
             /* Deprecated - Use m_OnStreamStarted */
             m_OnStreamStart = std::move(other.m_OnStreamStart);
+            /* Deprecated - Use m_OnSendMessageComplete */
+            m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
 
             m_secure_tunnel = other.m_secure_tunnel;
 
@@ -599,7 +713,7 @@ namespace Aws
                 m_OnConnectionSuccess = std::move(other.m_OnConnectionSuccess);
                 m_OnConnectionFailure = std::move(other.m_OnConnectionFailure);
                 m_OnConnectionShutdown = std::move(other.m_OnConnectionShutdown);
-                m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
+                m_OnSendMessageComplete = std::move(other.m_OnSendMessageComplete);
                 m_OnMessageReceived = std::move(other.m_OnMessageReceived);
                 m_OnStreamStarted = std::move(other.m_OnStreamStarted);
                 m_OnStreamReset = std::move(other.m_OnStreamReset);
@@ -612,6 +726,8 @@ namespace Aws
                 m_OnDataReceive = std::move(other.m_OnDataReceive);
                 /* Deprecated - Use m_OnStreamStarted */
                 m_OnStreamStart = std::move(other.m_OnStreamStart);
+                /* Deprecated - Use m_OnSendMessageComplete */
+                m_OnSendDataComplete = std::move(other.m_OnSendDataComplete);
 
                 m_secure_tunnel = other.m_secure_tunnel;
 
@@ -679,6 +795,28 @@ namespace Aws
             return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
         }
 
+        int SecureTunnel::SendConnectionStart(u_int32_t connectionId) { return SendConnectionStart("", connectionId); }
+
+        int SecureTunnel::SendConnectionStart(std::string serviceId, u_int32_t connectionId)
+        {
+            struct aws_byte_cursor service_id_cur;
+            AWS_ZERO_STRUCT(service_id_cur);
+            if (serviceId.length() > 0)
+            {
+                service_id_cur = aws_byte_cursor_from_c_str(serviceId.c_str());
+            }
+            return SendConnectionStart(service_id_cur, connectionId);
+        }
+
+        int SecureTunnel::SendConnectionStart(Crt::ByteCursor serviceId, u_int32_t connectionId)
+        {
+            struct aws_secure_tunnel_message_view messageView;
+            AWS_ZERO_STRUCT(messageView);
+            messageView.service_id = &serviceId;
+            messageView.connection_id = connectionId;
+            return aws_secure_tunnel_connection_start(m_secure_tunnel, &messageView);
+        }
+
         int SecureTunnel::SendStreamReset() { return aws_secure_tunnel_stream_reset(m_secure_tunnel, NULL); }
 
         aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle() { return m_secure_tunnel; }
@@ -728,10 +866,18 @@ namespace Aws
             }
         }
 
-        void SecureTunnel::s_OnSendDataComplete(int error_code, void *user_data)
+        void SecureTunnel::s_OnSendMessageComplete(
+            enum aws_secure_tunnel_message_type type,
+            int error_code,
+            void *user_data)
         {
-            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
-            if (secureTunnel->m_OnSendDataComplete)
+            auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
+
+            if (secureTunnel->m_OnSendMessageComplete)
+            {
+                secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, type);
+            }
+            else if (secureTunnel->m_OnSendDataComplete)
             {
                 secureTunnel->m_OnSendDataComplete(error_code);
             }
@@ -828,6 +974,44 @@ namespace Aws
             if (secureTunnel->m_OnStreamReset)
             {
                 secureTunnel->m_OnStreamReset();
+            }
+        }
+
+        void SecureTunnel::s_OnConnectionStarted(
+            const struct aws_secure_tunnel_message_view *message,
+            int error_code,
+            void *user_data)
+        {
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
+            if (!error_code)
+            {
+                if (secureTunnel->m_OnConnectionStarted)
+                {
+                    std::shared_ptr<ConnectionStartedData> packet =
+                        std::make_shared<ConnectionStartedData>(*message, secureTunnel->m_allocator);
+                    ConnectionStartedEventData eventData;
+                    eventData.connectionStartedData = packet;
+                    secureTunnel->m_OnConnectionStarted(secureTunnel, error_code, eventData);
+                    return;
+                }
+            }
+        }
+
+        void SecureTunnel::s_OnConnectionReset(
+            const struct aws_secure_tunnel_message_view *message,
+            int error_code,
+            void *user_data)
+        {
+            SecureTunnel *secureTunnel = static_cast<SecureTunnel *>(user_data);
+
+            if (secureTunnel->m_OnConnectionReset)
+            {
+                std::shared_ptr<ConnectionResetData> packet =
+                    std::make_shared<ConnectionResetData>(*message, secureTunnel->m_allocator);
+                ConnectionResetEventData eventData;
+                eventData.connectionResetData = packet;
+                secureTunnel->m_OnConnectionReset(secureTunnel, error_code, eventData);
+                return;
             }
         }
 

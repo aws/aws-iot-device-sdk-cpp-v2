@@ -27,25 +27,38 @@ void logMessage(std::shared_ptr<Message> message)
         {
             fprintf(
                 stdout,
-                "Message received on service id:'" PRInSTR "' with payload:'" PRInSTR "'\n",
+                "Message received on service id:'" PRInSTR "' connection id: %d with payload:'" PRInSTR "'\n",
                 AWS_BYTE_CURSOR_PRI(message->getServiceId().value()),
+                message->getConnectionId(),
                 AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
         }
         else
         {
             fprintf(
                 stdout,
-                "Message with service id:'" PRInSTR "' with no payload.\n",
-                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()));
+                "Message with service id:'" PRInSTR "' connection id: %d with no payload.\n",
+                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()),
+                message->getConnectionId());
         }
         return;
     }
     if (message->getPayload().has_value())
     {
-        fprintf(
-            stdout,
-            "Message received with payload:'" PRInSTR "'\n",
-            AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
+        if (message->getConnectionId() > 0)
+        {
+            fprintf(
+                stdout,
+                "Message received on connection id: %d with payload:'" PRInSTR "'\n",
+                message->getConnectionId(),
+                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
+        }
+        else
+        {
+            fprintf(
+                stdout,
+                "Message received with payload:'" PRInSTR "'\n",
+                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
+        }
     }
 }
 
@@ -337,10 +350,16 @@ int main(int argc, char *argv[])
 
                     echoMessage = std::make_shared<Message>(message->getPayload().value());
 
-                    /* Echo message on same service id received message came on */
+                    /* Echo message on same service id received message arrived on */
                     if (message->getServiceId().has_value())
                     {
                         echoMessage->withServiceId(message->getServiceId().value());
+                    }
+
+                    /* Echo message on the same connection id received message arrived on */
+                    if (message->getConnectionId() > 0)
+                    {
+                        echoMessage->withConnectionId(message->getConnectionId());
                     }
 
                     secureTunnel->SendMessage(echoMessage);
@@ -392,6 +411,24 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Stream stopped using V1 Protocol");
         }
     });
+
+    builder.WithOnConnectionStarted(
+        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionStartedEventData &eventData) {
+            (void)secureTunnel;
+            if (!errorCode)
+            {
+                std::shared_ptr<ConnectionStartedData> connectionStartedData = eventData.connectionStartedData;
+            }
+        });
+
+    builder.WithOnConnectionReset(
+        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionResetEventData &eventData) {
+            (void)secureTunnel;
+            if (!errorCode)
+            {
+                std::shared_ptr<ConnectionResetData> connectionResetData = eventData.connectionResetData;
+            }
+        });
 
     builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
         (void)secureTunnel;

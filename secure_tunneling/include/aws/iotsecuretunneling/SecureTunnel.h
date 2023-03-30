@@ -28,7 +28,16 @@ namespace Aws
             Message(Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
             Message(Crt::ByteCursor payload, Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
             Message(
+                Crt::ByteCursor payload,
+                u_int32_t connectionId,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+            Message(
                 Crt::ByteCursor serviceId,
+                Crt::ByteCursor payload,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+            Message(
+                Crt::ByteCursor serviceId,
+                u_int32_t connectionId,
                 Crt::ByteCursor payload,
                 Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
 
@@ -39,6 +48,14 @@ namespace Aws
              * @return The Message Object after setting the payload.
              */
             Message &withServiceId(Crt::ByteCursor serviceId) noexcept;
+
+            /**
+             * Sets the connection id for the secure tunnel message.
+             *
+             * @param connectionId The connection id for the secure tunnel message.
+             * @return The Message Object after setting the payload.
+             */
+            Message &withConnectionId(u_int32_t connectionId) noexcept;
 
             /**
              * Sets the payload for the secure tunnel message.
@@ -56,6 +73,13 @@ namespace Aws
              * @return The service id of the secure tunnel message.
              */
             const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
+
+            /**
+             * The connection id of the secure tunnel message.
+             *
+             * @return The connection id of the secure tunnel message.
+             */
+            const u_int32_t &getConnectionId() const noexcept;
 
             /**
              * The payload of the secure tunnel message.
@@ -80,6 +104,13 @@ namespace Aws
              * If left empty, a V1 protocol message is assumed.
              */
             Crt::Optional<Crt::ByteCursor> m_serviceId;
+
+            /**
+             * The connection id used for HTTP simultaneous connections.
+             *
+             * If left empty, a V1 or V2 protocol message is assumed.
+             */
+            u_int32_t m_connectionId;
 
             /**
              * The payload of the secure tunnel message.
@@ -194,6 +225,13 @@ namespace Aws
              */
             const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
 
+            /**
+             * The connection id of the secure tunnel message.
+             *
+             * @return The connection id of the secure tunnel message.
+             */
+            const u_int32_t &getConnectionId() const noexcept;
+
             virtual ~StreamStartedData();
             /* Do not allow direct copy or move */
             StreamStartedData(const StreamStartedData &) = delete;
@@ -211,6 +249,13 @@ namespace Aws
              */
             Crt::Optional<Crt::ByteCursor> m_serviceId;
 
+            /**
+             * The connection id used for HTTP simultaneous connections.
+             *
+             * If left empty, a V1 or V2 protocol message is assumed.
+             */
+            u_int32_t m_connectionId;
+
             ///////////////////////////////////////////////////////////////////////////
             // Underlying data storage for internal use
             ///////////////////////////////////////////////////////////////////////////
@@ -227,7 +272,7 @@ namespace Aws
         };
 
         /**
-         * Data model for started Secure Tunnel streams.
+         * Data model for stopped Secure Tunnel streams.
          */
         class AWS_IOTSECURETUNNELING_API StreamStoppedData
         {
@@ -243,10 +288,6 @@ namespace Aws
              */
             const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
 
-            /**
-             * Stream id of the stopped stream.
-             */
-
             virtual ~StreamStoppedData();
             /* Do not allow direct copy or move */
             StreamStoppedData(const StreamStoppedData &) = delete;
@@ -258,9 +299,9 @@ namespace Aws
             Crt::Allocator *m_allocator;
 
             /**
-             * Service id of started stream.
+             * Service id of stopped stream.
              *
-             * If left empty, a V1 protocolstream is assumed.
+             * If left empty, a V1 protocol stream is assumed.
              */
             Crt::Optional<Crt::ByteCursor> m_serviceId;
 
@@ -277,6 +318,130 @@ namespace Aws
         {
             StreamStoppedEventData() : streamStoppedData(nullptr) {}
             std::shared_ptr<StreamStoppedData> streamStoppedData;
+        };
+
+        /**
+         * Data model for opened Secure Tunnel connection.
+         */
+        class AWS_IOTSECURETUNNELING_API ConnectionStartedData
+        {
+          public:
+            ConnectionStartedData(
+                const aws_secure_tunnel_message_view &raw_options,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Service id the connection is using.
+             *
+             * @return Service id the connection is using.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
+
+            /**
+             * The connection id of the opened connection.
+             *
+             * @return The connection id of the opened connection.
+             */
+            const u_int32_t &getConnectionId() const noexcept;
+
+            virtual ~ConnectionStartedData();
+            /* Do not allow direct copy or move */
+            ConnectionStartedData(const ConnectionStartedData &) = delete;
+            ConnectionStartedData(ConnectionStartedData &&) noexcept = delete;
+            ConnectionStartedData &operator=(const ConnectionStartedData &) = delete;
+            ConnectionStartedData &operator=(ConnectionStartedData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Service id the connection is using.
+             *
+             * If left empty, a V1 protocolstream is assumed.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId;
+
+            /**
+             * The connection id of the opened connection.
+             *
+             */
+            u_int32_t m_connectionId;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_serviceIdStorage;
+        };
+
+        /**
+         * The data returned when a connection is started on the Secure Tunnel.
+         */
+        struct AWS_IOTSECURETUNNELING_API ConnectionStartedEventData
+        {
+            ConnectionStartedEventData() : connectionStartedData(nullptr) {}
+            std::shared_ptr<ConnectionStartedData> connectionStartedData;
+        };
+
+        /**
+         * Data model for reset Secure Tunnel connection.
+         */
+        class AWS_IOTSECURETUNNELING_API ConnectionResetData
+        {
+          public:
+            ConnectionResetData(
+                const aws_secure_tunnel_message_view &raw_options,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Service id used by reset connection.
+             *
+             * @return Service id used by reset connection.
+             */
+            const Crt::Optional<Crt::ByteCursor> &getServiceId() const noexcept;
+
+            /**
+             * Connection id of the reset connection.
+             *
+             * @return Connection id of the reset connection.
+             */
+            const u_int32_t &getConnectionId() const noexcept;
+
+            virtual ~ConnectionResetData();
+            /* Do not allow direct copy or move */
+            ConnectionResetData(const ConnectionResetData &) = delete;
+            ConnectionResetData(ConnectionResetData &&) noexcept = delete;
+            ConnectionResetData &operator=(const ConnectionResetData &) = delete;
+            ConnectionResetData &operator=(ConnectionResetData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Service id used by the reset connection.
+             *
+             * If left empty, a V1 protocol stream is assumed.
+             */
+            Crt::Optional<Crt::ByteCursor> m_serviceId;
+
+            /**
+             * The connection id of the reset connection.
+             *
+             */
+            u_int32_t m_connectionId;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_serviceIdStorage;
+        };
+
+        /**
+         * The data returned when a stream is reset on the Secure Tunnel.
+         */
+        struct AWS_IOTSECURETUNNELING_API ConnectionResetEventData
+        {
+            ConnectionResetEventData() : connectionResetData(nullptr) {}
+            std::shared_ptr<ConnectionResetData> connectionResetData;
         };
 
         class SecureTunnel;
@@ -301,9 +466,10 @@ namespace Aws
         using OnConnectionShutdown = std::function<void(void)>;
 
         /**
-         * Type signature of the callback invoked when data has been sent through the secure tunnel connection.
+         * Type signature of the callback invoked when message has been sent through the secure tunnel connection.
          */
-        using OnSendDataComplete = std::function<void(int errorCode)>;
+        using OnSendMessageComplete =
+            std::function<void(SecureTunnel *secureTunnel, int errorCode, enum aws_secure_tunnel_message_type type)>;
 
         /**
          * Type signature of the callback invoked when a message is received through the secure tunnel connection.
@@ -320,8 +486,20 @@ namespace Aws
         /**
          * Type signature of the callback invoked when a stream has been closed
          */
-
         using OnStreamStopped = std::function<void(SecureTunnel *secureTunnel, const StreamStoppedEventData &)>;
+
+        /**
+         * Type signature of the callback invoked when a connection has been started with a source through the secure
+         * tunnel connection.
+         */
+        using OnConnectionStarted =
+            std::function<void(SecureTunnel *secureTunnel, int errorCode, const ConnectionStartedEventData &)>;
+
+        /**
+         * Type signature of the callback invoked when a connection has been reset
+         */
+        using OnConnectionReset =
+            std::function<void(SecureTunnel *secureTunnel, int errorCode, const ConnectionResetEventData &)>;
 
         /**
          * Type signature of the callback invoked when the secure tunnel receives a Session Reset.
@@ -345,11 +523,14 @@ namespace Aws
          * Deprecated - Use OnStreamStarted
          */
         using OnStreamStart = std::function<void()>;
-
         /**
          * Deprecated - Use OnStreamStopped
          */
         using OnStreamReset = std::function<void(void)>;
+        /**
+         * Deprecated - Use OnSendMessageComplete
+         */
+        using OnSendDataComplete = std::function<void(int errorCode)>;
 
         /**
          * Represents a unique configuration for a secure tunnel
@@ -445,13 +626,14 @@ namespace Aws
             SecureTunnelBuilder &WithOnConnectionShutdown(OnConnectionShutdown onConnectionShutdown);
 
             /**
-             * Setup callback handler trigged when an Secure Tunnel completes sending data to the secure tunnel service.
+             * Setup callback handler trigged when an Secure Tunnel completes sending a message to the secure tunnel
+             * service.
              *
-             * @param onSendDataComplete
+             * @param onSendMessageComplete
              *
              * @return this builder object
              */
-            SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
+            SecureTunnelBuilder &WithOnSendMessageComplete(OnSendMessageComplete onSendMessageComplete);
 
             /**
              * Setup callback handler trigged when an Secure Tunnel receives a Message through the secure tunnel
@@ -481,6 +663,25 @@ namespace Aws
              * @return this builder object
              */
             SecureTunnelBuilder &WithOnStreamStopped(OnStreamStopped onStreamStopped);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel starts a connection with a source through the secure
+             * tunnel service.
+             *
+             * @param onConnectionStarted
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithOnConnectionStarted(OnConnectionStarted onConnectionStarted);
+
+            /**
+             * Setup callback handler trigged when an Secure Tunnel resets a connection.
+             *
+             * @param onConnectionReset
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithOnConnectionReset(OnConnectionReset onConnectionReset);
 
             /**
              * Setup callback handler trigged when an Secure Tunnel receives a stream reset.
@@ -522,6 +723,10 @@ namespace Aws
              * Deprecated - Use WithOnStreamStarted
              */
             SecureTunnelBuilder &WithOnStreamStart(OnStreamStart onStreamStart);
+            /**
+             * Deprecated - Use WithOnSendMessageComplete
+             */
+            SecureTunnelBuilder &WithOnSendDataComplete(OnSendDataComplete onSendDataComplete);
 
             /**
              * Will return a shared pointer to a new SecureTunnel that countains a
@@ -602,9 +807,9 @@ namespace Aws
             OnConnectionShutdown m_OnConnectionShutdown;
 
             /**
-             * Callback handler trigged when secure tunnel completes sending data to the secure tunnel service.
+             * Callback handler trigged when secure tunnel completes sending message to the secure tunnel service.
              */
-            OnSendDataComplete m_OnSendDataComplete;
+            OnSendMessageComplete m_OnSendMessageComplete;
 
             /**
              * Callback handler trigged when secure tunnel receives a message from the secure tunnel service.
@@ -627,9 +832,26 @@ namespace Aws
              * Callback handler trigged when secure tunnel receives a stream reset.
              *
              * @param SecureTunnel: The shared secure tunnel
-             * @param StreamStoppedEventData: Stream Started data
+             * @param StreamStoppedEventData: Stream reset data
              */
             OnStreamStopped m_OnStreamStopped;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a connecction start from a source device.
+             *
+             * @param SecureTunnel: The shared secure tunnel
+             * @param int: error code
+             * @param ConnectionStartedEventData: Connection Started data
+             */
+            OnConnectionStarted m_OnConnectionStarted;
+
+            /**
+             * Callback handler trigged when secure tunnel receives a connection reset.
+             *
+             * @param SecureTunnel: The shared secure tunnel
+             * @param ConnectionResetEventData: Connection reset data
+             */
+            OnConnectionReset m_OnConnectionReset;
 
             /**
              * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
@@ -657,6 +879,10 @@ namespace Aws
              * Deprecated - Use m_OnStreamStopped
              */
             OnStreamReset m_OnStreamReset;
+            /**
+             * Deprecated - Use m_OnSendMessageComplete
+             */
+            OnSendDataComplete m_OnSendDataComplete;
 
             friend class SecureTunnel;
         };
@@ -762,6 +988,37 @@ namespace Aws
              */
             int SendStreamStart(Crt::ByteCursor serviceId);
 
+            /**
+             * Notifies the secure tunnel that you want to start a connection with the Destination device.
+             *
+             * @param connectionId: The connection id to start the connection on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendConnectionStart(u_int32_t connectionId);
+
+            /**
+             * Notifies the secure tunnel that you want to start a connection with the Destination device.
+             *
+             * @param serviceId: The Service Id to start the connection on.
+             *
+             * @param connectionId: The connection id to start the connection on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendConnectionStart(std::string serviceId, u_int32_t connectionId);
+
+            /**
+             * Notifies the secure tunnel that you want to start a connection with the Destination device.
+             *
+             * @param serviceId: The Service Id to start the connection on.
+             *
+             * @param connectionId: The connection id to start the connection on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendConnectionStart(Crt::ByteCursor serviceId, u_int32_t connectionId);
+
             aws_secure_tunnel *GetUnderlyingHandle();
 
             /**
@@ -806,15 +1063,16 @@ namespace Aws
 
                 OnConnectionSuccess onConnectionSuccess,
                 OnConnectionFailure onConnectionFailure,
-                OnConnectionComplete onConnectionComplete,
+                OnConnectionComplete onConnectionComplete, /* Deprecated */
                 OnConnectionShutdown onConnectionShutdown,
-                OnSendDataComplete onSendDataComplete,
+                OnSendMessageComplete onSendMessageComplete,
+                OnSendDataComplete onSendDataComplete, /* Deprecated */
                 OnMessageReceived onMessageReceived,
-                OnDataReceive onDataReceive,
+                OnDataReceive onDataReceive, /* Deprecated */
                 OnStreamStarted onStreamStarted,
-                OnStreamStart onStreamStart,
+                OnStreamStart onStreamStart, /* Deprecated */
                 OnStreamStopped onStreamStopped,
-                OnStreamReset onStreamReset,
+                OnStreamReset onStreamReset, /* Deprecated */
                 OnSessionReset onSessionReset,
                 OnStopped onStopped);
 
@@ -827,6 +1085,10 @@ namespace Aws
             static void s_OnConnectionFailure(int error_code, void *user_data);
             static void s_OnConnectionShutdown(int error_code, void *user_data);
             static void s_OnSendDataComplete(int error_code, void *user_data);
+            static void s_OnSendMessageComplete(
+                enum aws_secure_tunnel_message_type type,
+                int error_code,
+                void *user_data);
             static void s_OnStreamStopped(
                 const struct aws_secure_tunnel_message_view *message,
                 int error_code,
@@ -835,6 +1097,14 @@ namespace Aws
             static void s_OnStopped(void *user_data);
             static void s_OnTerminationComplete(void *user_data);
             static void s_OnStreamStarted(
+                const struct aws_secure_tunnel_message_view *message,
+                int error_code,
+                void *user_data);
+            static void s_OnConnectionStarted(
+                const struct aws_secure_tunnel_message_view *message,
+                int error_code,
+                void *user_data);
+            static void s_OnConnectionReset(
                 const struct aws_secure_tunnel_message_view *message,
                 int error_code,
                 void *user_data);
@@ -863,9 +1133,9 @@ namespace Aws
             OnConnectionShutdown m_OnConnectionShutdown;
 
             /**
-             * Callback handler trigged when secure tunnel completes sending data to the secure tunnel service.
+             * Callback handler trigged when secure tunnel completes sending message to the secure tunnel service.
              */
-            OnSendDataComplete m_OnSendDataComplete;
+            OnSendMessageComplete m_OnSendMessageComplete;
 
             /**
              * Callback handler trigged when secure tunnel starts a stream with a source device through the secure
@@ -877,6 +1147,17 @@ namespace Aws
              * Callback handler trigged when secure tunnel closes a stream
              */
             OnStreamStopped m_OnStreamStopped;
+
+            /**
+             * Callback handler trigged when secure tunnel starts a connection with a source device through the secure
+             * tunnel service.
+             */
+            OnConnectionStarted m_OnConnectionStarted;
+
+            /**
+             * Callback handler trigged when secure tunnel resets a connection
+             */
+            OnConnectionReset m_OnConnectionReset;
 
             /**
              * Callback handler trigged when secure tunnel receives a session reset from the secure tunnel service.
@@ -892,7 +1173,7 @@ namespace Aws
             Crt::Allocator *m_allocator;
 
             /**
-             * Deprecated - m_OnMessageReceived
+             * Deprecated - Use m_OnMessageReceived
              */
             OnDataReceive m_OnDataReceive;
             /**
@@ -907,6 +1188,10 @@ namespace Aws
              * Deprecated - Use m_OnStreamStopped
              */
             OnStreamReset m_OnStreamReset;
+            /**
+             * Deprecated - Use m_OnMessageSendComplete
+             */
+            OnSendDataComplete m_OnSendDataComplete;
 
             std::shared_ptr<SecureTunnel> m_selfRef;
 
