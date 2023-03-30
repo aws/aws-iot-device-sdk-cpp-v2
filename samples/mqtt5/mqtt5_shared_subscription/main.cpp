@@ -13,6 +13,17 @@
 
 using namespace Aws::Crt;
 
+/**
+ * MQTT5 support is currently in <b>developer preview</b>.  We encourage feedback at all times, but feedback during the
+ * preview window is especially valuable in shaping the final product.  During the preview period we may make
+ * backwards-incompatible changes to the public API, but in general, this is something we will try our best to avoid.
+ */
+
+
+/**
+ * For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
+ * and to do so we use this class to hold all the data for a particular client used in the sample.
+ */
 class sample_mqtt5_client
 {
   public:
@@ -26,12 +37,18 @@ class sample_mqtt5_client
     uint32_t expectedMessages;
     bool sharedSubscriptionSupportNotAvailable;
 
+    /**
+     * A helper function to print a message and then exit the sample.
+     */
     void PrintMessageAndExit(String message, int exitCode)
     {
         fprintf(stdout, "[%s]: %s\n", this->name.c_str(), message.c_str());
         exit(exitCode);
     }
 
+    /**
+     * Creates a MQTT5 client using direct MQTT5 via mTLS with the passed input data.
+     */
     static std::shared_ptr<sample_mqtt5_client> create_mqtt5_client(
         String input_endpoint,
         String input_cert,
@@ -154,9 +171,7 @@ class sample_mqtt5_client
         });
 
         result->client = builder->Build();
-        // Clean up the builder
         delete builder;
-
         return result;
     }
 };
@@ -190,7 +205,7 @@ int main(int argc, char *argv[])
     cmdUtils.SendArguments(const_argv, const_argv + argc);
     cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
 
-    /*********************** Parse Arguments ***************************/
+    /*********************** Pull data from arguments ***************************/
 
     String input_endpoint = cmdUtils.GetCommandRequired("endpoint");
     String input_cert = cmdUtils.GetCommandRequired("cert");
@@ -495,6 +510,6 @@ int main(int argc, char *argv[])
     subscriberOne = nullptr;
     subscriberTwo = nullptr;
 
-    fprintf(stdout, "Sample finished!\n");
+    fprintf(stdout, "Complete!\n");
     exit(0);
 }
