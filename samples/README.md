@@ -3,6 +3,7 @@
 * [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
 * [Basic Connect](./mqtt/basic_connect/README.md)
 * [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
+* [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
 * [Raw Connect](./mqtt/raw_connect/README.md)
