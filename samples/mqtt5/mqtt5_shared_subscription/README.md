@@ -6,7 +6,7 @@ This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages over an MQTT5 connection using a shared subscription.
 
-MQTT5 introduces additional features and enhancements that improve the development experience with MQTT. You can read more about MQTT5 in the Javascript V2 SDK by checking out the [MQTT5 user guide](https://github.com/awslabs/aws-crt-nodejs/blob/main/MQTT5-UserGuide.md).
+MQTT5 introduces additional features and enhancements that improve the development experience with MQTT. You can read more about MQTT5 in the Javascript V2 SDK by checking out the [MQTT5 user guide](../../../documents/MQTT5_Userguide.md).
 
 Note: MQTT5 support is currently in **developer preview**. We encourage feedback at all times, but feedback during the preview window is especially valuable in shaping the final product. During the preview period we may make backwards-incompatible changes to the public API, but in general, this is something we will try our best to avoid.
 
