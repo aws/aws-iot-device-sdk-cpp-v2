@@ -21,45 +21,105 @@ using namespace std::chrono_literals;
 
 void logMessage(std::shared_ptr<Message> message)
 {
+
+    fprintf(stdout, "Message received");
     if (message->getServiceId().has_value())
     {
-        if (message->getPayload().has_value())
-        {
-            fprintf(
-                stdout,
-                "Message received on service id:'" PRInSTR "' connection id: %d with payload:'" PRInSTR "'\n",
-                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()),
-                message->getConnectionId(),
-                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
-        }
-        else
-        {
-            fprintf(
-                stdout,
-                "Message with service id:'" PRInSTR "' connection id: %d with no payload.\n",
-                AWS_BYTE_CURSOR_PRI(message->getServiceId().value()),
-                message->getConnectionId());
-        }
-        return;
+        fprintf(stdout, " on service id:'" PRInSTR "'", AWS_BYTE_CURSOR_PRI(message->getServiceId().value()));
     }
+
+    if (message->getConnectionId() > 0)
+    {
+        fprintf(stdout, " with connection id: (%d)", message->getConnectionId());
+    }
+
     if (message->getPayload().has_value())
     {
-        if (message->getConnectionId() > 0)
-        {
-            fprintf(
-                stdout,
-                "Message received on connection id: %d with payload:'" PRInSTR "'\n",
-                message->getConnectionId(),
-                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
-        }
-        else
-        {
-            fprintf(
-                stdout,
-                "Message received with payload:'" PRInSTR "'\n",
-                AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
-        }
+        fprintf(stdout, " with payload: '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(message->getPayload().value()));
     }
+
+    fprintf(stdout, "\n");
+}
+
+void logConnectionData(const ConnectionSuccessEventData &eventData)
+{
+    if (eventData.connectionData->getServiceId1().has_value())
+    {
+        fprintf(
+            stdout,
+            "Secure Tunnel connected with Service IDs '" PRInSTR "'",
+            AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()));
+
+        if (eventData.connectionData->getServiceId2().has_value())
+        {
+            fprintf(stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId2().value()));
+            if (eventData.connectionData->getServiceId3().has_value())
+            {
+                fprintf(
+                    stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId3().value()));
+            }
+        }
+        fprintf(stdout, "\n");
+    }
+    else
+    {
+        fprintf(stdout, "Secure Tunnel connected with no Service IDs available\n");
+    }
+}
+
+void logStreamStartData(const StreamStartedEventData &eventData)
+{
+    fprintf(stdout, "Stream started");
+
+    if (eventData.streamStartedData->getServiceId().has_value())
+    {
+        fprintf(
+            stdout,
+            " on service id: '" PRInSTR,
+            AWS_BYTE_CURSOR_PRI(eventData.streamStartedData->getServiceId().value()));
+    }
+
+    if (eventData.streamStartedData->getConnectionId() > 0)
+    {
+        fprintf(stdout, " with Connection Id: (%d)", eventData.streamStartedData->getConnectionId());
+    }
+
+    fprintf(stdout, "\n");
+}
+
+void logStreamStoppedData(const StreamStoppedEventData &eventData)
+{
+    fprintf(stdout, "Stream");
+
+    if (eventData.streamStoppedData->getServiceId().has_value())
+    {
+        fprintf(
+            stdout,
+            " on service id: '" PRInSTR,
+            AWS_BYTE_CURSOR_PRI(eventData.streamStoppedData->getServiceId().value()));
+    }
+
+    fprintf(stdout, " stopped\n");
+}
+
+void logConnectionStartedData(const ConnectionStartedEventData &eventData)
+{
+    fprintf(stdout, "Connection started");
+
+    if (eventData.connectionStartedData->getServiceId().has_value())
+    {
+        fprintf(
+            stdout,
+            " on service id: '" PRInSTR,
+            AWS_BYTE_CURSOR_PRI(eventData.connectionStartedData->getServiceId().value()));
+    }
+
+    if (eventData.connectionStartedData->getConnectionId() > 0)
+    {
+        fprintf(stdout, " with Connection Id: (%d)", eventData.connectionStartedData->getConnectionId());
+    }
+
+    fprintf(stdout, "\n");
 }
 
 void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *argv[])
@@ -214,8 +274,6 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::promise<bool> connectionCompletedPromise;
-    std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
 
     /* service id storage for use in sample */
@@ -234,6 +292,9 @@ int main(int argc, char *argv[])
     aws_secure_tunneling_local_proxy_mode localProxyMode;
     String payloadMessage;
     uint16_t messageCount(5);
+
+    /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
+    uint32_t connectionId = 1;
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -275,101 +336,65 @@ int main(int argc, char *argv[])
     /* Add callbacks using the builder */
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
-        if (eventData.connectionData->getServiceId1().has_value())
+        logConnectionData(eventData);
+
+        /* Stream Start can only be called from Source Mode */
+        if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
-            /* If secure tunnel is using service ids, store one for future use */
-            aws_byte_buf_clean_up(&m_serviceIdStorage);
-            AWS_ZERO_STRUCT(m_serviceIdStorage);
-            aws_byte_buf_init_copy_from_cursor(
-                &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
-            m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
-
-            fprintf(
-                stdout,
-                "Secure Tunnel connected with  Service IDs '" PRInSTR "'",
-                AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()));
-            if (eventData.connectionData->getServiceId2().has_value())
+            /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
+            if (eventData.connectionData->getServiceId1().has_value())
             {
-                fprintf(
-                    stdout, ", '" PRInSTR "'", AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId2().value()));
-                if (eventData.connectionData->getServiceId3().has_value())
-                {
-                    fprintf(
-                        stdout,
-                        ", '" PRInSTR "'",
-                        AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId3().value()));
-                }
-            }
-            fprintf(stdout, "\n");
+                /* Store the service id for future use */
+                aws_byte_buf_clean_up(&m_serviceIdStorage);
+                AWS_ZERO_STRUCT(m_serviceIdStorage);
+                aws_byte_buf_init_copy_from_cursor(
+                    &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
+                m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
 
-            /* Stream Start can only be called from Source Mode */
-            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
-            {
                 fprintf(
                     stdout,
-                    "Sending Stream Start request with service id:'" PRInSTR "'\n",
-                    AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()));
-                secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value());
-            }
-        }
-        else
-        {
-            fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
+                    "Sending Stream Start request on Service Id:'" PRInSTR "' with Connection Id: (%d)\n",
+                    AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()),
+                    connectionId);
 
-            /* Stream Start can only be called from Source Mode */
-            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+                secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
+            }
+            else
             {
                 fprintf(stdout, "Sending Stream Start request\n");
                 secureTunnel->SendStreamStart();
             }
         }
-
-        connectionCompletedPromise.set_value(true);
     });
 
-    builder.WithOnConnectionFailure([&](SecureTunnel *secureTunnel, int errorCode) {
-        (void)secureTunnel;
-        fprintf(stdout, "Connection attempt failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
-    });
-
-    builder.WithOnConnectionShutdown([&]() {
-        fprintf(stdout, "Connection Shutdown\n");
-        connectionClosedPromise.set_value(true);
-    });
+    builder.WithOnConnectionShutdown([&]() { fprintf(stdout, "Connection Shutdown\n"); });
 
     builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
         {
             std::shared_ptr<Message> message = eventData.message;
 
             logMessage(message);
-            std::shared_ptr<Message> echoMessage;
 
-            switch (localProxyMode)
+            /* Send an echo message back to the Source Device */
+            if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
             {
-                case AWS_SECURE_TUNNELING_DESTINATION_MODE:
+                std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
 
-                    echoMessage = std::make_shared<Message>(message->getPayload().value());
+                /* Echo message on same service id received message arrived on */
+                if (message->getServiceId().has_value())
+                {
+                    echoMessage->withServiceId(message->getServiceId().value());
+                }
 
-                    /* Echo message on same service id received message arrived on */
-                    if (message->getServiceId().has_value())
-                    {
-                        echoMessage->withServiceId(message->getServiceId().value());
-                    }
+                /* Echo message on the same connection id received message arrived on */
+                if (message->getConnectionId() > 0)
+                {
+                    echoMessage->withConnectionId(message->getConnectionId());
+                }
 
-                    /* Echo message on the same connection id received message arrived on */
-                    if (message->getConnectionId() > 0)
-                    {
-                        echoMessage->withConnectionId(message->getConnectionId());
-                    }
+                secureTunnel->SendMessage(echoMessage);
 
-                    secureTunnel->SendMessage(echoMessage);
-
-                    fprintf(stdout, "Sending Echo Message\n");
-
-                    break;
-                case AWS_SECURE_TUNNELING_SOURCE_MODE:
-
-                    break;
+                fprintf(stdout, "Sending Echo Message\n");
             }
         }
     });
@@ -379,56 +404,33 @@ int main(int argc, char *argv[])
             (void)secureTunnel;
             if (!errorCode)
             {
-                std::shared_ptr<StreamStartedData> streamStartedData = eventData.streamStartedData;
-
-                if (streamStartedData->getServiceId().has_value())
-                {
-                    fprintf(
-                        stdout,
-                        "Stream started on service id: '" PRInSTR "'\n",
-                        AWS_BYTE_CURSOR_PRI(streamStartedData->getServiceId().value()));
-                }
-                else
-                {
-                    fprintf(stdout, "Stream started using V1 Protocol");
-                }
+                logStreamStartData(eventData);
+            }
+            else
+            {
+                fprintf(stdout, "Stream Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
             }
         });
 
     builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
         (void)secureTunnel;
-        std::shared_ptr<StreamStoppedData> streamStoppedData = eventData.streamStoppedData;
 
-        if (streamStoppedData->getServiceId().has_value())
+        logStreamStoppedData(eventData);
+    });
+
+    builder.WithOnConnectionStarted([&](SecureTunnel *secureTunnel,
+                                        int errorCode,
+                                        const ConnectionStartedEventData &eventData) {
+        (void)secureTunnel;
+        if (!errorCode)
         {
-            fprintf(
-                stdout,
-                "Stream stopped on service id: '" PRInSTR "'\n",
-                AWS_BYTE_CURSOR_PRI(streamStoppedData->getServiceId().value()));
+            logConnectionStartedData(eventData);
         }
         else
         {
-            fprintf(stdout, "Stream stopped using V1 Protocol");
+            fprintf(stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
         }
     });
-
-    builder.WithOnConnectionStarted(
-        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionStartedEventData &eventData) {
-            (void)secureTunnel;
-            if (!errorCode)
-            {
-                std::shared_ptr<ConnectionStartedData> connectionStartedData = eventData.connectionStartedData;
-            }
-        });
-
-    builder.WithOnConnectionReset(
-        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionResetEventData &eventData) {
-            (void)secureTunnel;
-            if (!errorCode)
-            {
-                std::shared_ptr<ConnectionResetData> connectionResetData = eventData.connectionResetData;
-            }
-        });
 
     builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
         (void)secureTunnel;
@@ -485,34 +487,46 @@ int main(int argc, char *argv[])
     bool keepRunning = true;
     uint16_t messagesSent = 0;
 
-    if (connectionCompletedPromise.get_future().get())
+    /*
+     * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
+     * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
+     */
+    while (keepRunning)
     {
-        std::this_thread::sleep_for(1000ms);
-
-        /*
-         * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
-         * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
-         */
-        while (keepRunning)
+        std::this_thread::sleep_for(2000ms);
+        if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
-            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+            messagesSent++;
+            String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
+
+            if (messagesSent <= messageCount)
             {
-                messagesSent++;
-                String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
 
-                if (messagesSent <= messageCount)
+                std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
+
+                /* If the secure tunnel has service ids, we will use one for our messages. */
+                if (m_serviceId.has_value())
                 {
-                    std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
+                    message->withServiceId(m_serviceId.value());
+                }
 
-                    /* If the secure tunnel has service ids, we will use one for our messages. */
-                    if (m_serviceId.has_value())
-                    {
-                        message->withServiceId(m_serviceId.value());
-                    }
+                message->withConnectionId(connectionId);
 
-                    secureTunnel->SendMessage(message);
+                secureTunnel->SendMessage(message);
 
-                    fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
+                fprintf(stdout, "Sending Message:\"%s\"\n", toSend.c_str());
+            }
+            else
+            {
+                /*
+                 * Start a new Simultaneous HTTP Connection using Connection Id 2 and send/receive messages on new
+                 * established stream on the same service id.
+                 */
+                if (connectionId == 1 && m_serviceId.has_value())
+                {
+                    messagesSent = 0;
+                    connectionId = 2;
+                    secureTunnel->SendConnectionStart(m_serviceId.value(), connectionId);
 
                     std::this_thread::sleep_for(2000ms);
                 }
@@ -532,11 +546,6 @@ int main(int argc, char *argv[])
     {
         fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
-    }
-
-    if (connectionClosedPromise.get_future().get())
-    {
-        fprintf(stdout, "Secure Tunnel Connection Closed\n");
     }
 
     /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */

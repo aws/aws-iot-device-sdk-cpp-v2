@@ -467,6 +467,8 @@ namespace Aws
                 m_OnStreamStart,
                 m_OnStreamStopped,
                 m_OnStreamReset,
+                m_OnConnectionStarted,
+                m_OnConnectionReset,
                 m_OnSessionReset,
                 m_OnStopped));
 
@@ -510,6 +512,8 @@ namespace Aws
             OnStreamStart onStreamStart,
             OnStreamStopped onStreamStopped,
             OnStreamReset onStreamReset,
+            OnConnectionStarted onConnectionStarted,
+            OnConnectionReset onConnectionReset,
             OnSessionReset onSessionReset,
             OnStopped onStopped)
         {
@@ -525,6 +529,8 @@ namespace Aws
             m_OnStreamStarted = std::move(onStreamStarted);
             m_OnStreamStart = std::move(onStreamStart);
             m_OnStreamReset = std::move(onStreamReset);
+            m_OnConnectionStarted = std::move(onConnectionStarted);
+            m_OnConnectionReset = std::move(onConnectionReset);
             m_OnSessionReset = std::move(onSessionReset);
             m_OnStopped = std::move(onStopped);
 
@@ -618,6 +624,8 @@ namespace Aws
                   onStreamStart,
                   nullptr,
                   onStreamReset,
+                  nullptr,
+                  nullptr,
                   onSessionReset,
                   nullptr)
         {
@@ -664,6 +672,8 @@ namespace Aws
                   onStreamStart,
                   nullptr,
                   onStreamReset,
+                  nullptr,
+                  nullptr,
                   onSessionReset,
                   nullptr)
         {
@@ -687,6 +697,8 @@ namespace Aws
             m_OnMessageReceived = std::move(other.m_OnMessageReceived);
             m_OnStreamStarted = std::move(other.m_OnStreamStarted);
             m_OnStreamReset = std::move(other.m_OnStreamReset);
+            m_OnConnectionStarted = std::move(other.m_OnConnectionStarted);
+            m_OnConnectionReset = std::move(other.m_OnConnectionReset);
             m_OnSessionReset = std::move(other.m_OnSessionReset);
             m_OnStopped = std::move(other.m_OnStopped);
 
@@ -717,6 +729,8 @@ namespace Aws
                 m_OnMessageReceived = std::move(other.m_OnMessageReceived);
                 m_OnStreamStarted = std::move(other.m_OnStreamStarted);
                 m_OnStreamReset = std::move(other.m_OnStreamReset);
+                m_OnConnectionStarted = std::move(other.m_OnConnectionStarted);
+                m_OnConnectionReset = std::move(other.m_OnConnectionReset);
                 m_OnSessionReset = std::move(other.m_OnSessionReset);
                 m_OnStopped = std::move(other.m_OnStopped);
 
@@ -777,7 +791,9 @@ namespace Aws
         }
 
         int SecureTunnel::SendStreamStart() { return SendStreamStart(""); }
-        int SecureTunnel::SendStreamStart(std::string serviceId)
+        int SecureTunnel::SendStreamStart(std::string serviceId) { return SendStreamStart(serviceId, 0); }
+        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId) { return SendStreamStart(serviceId, 0); }
+        int SecureTunnel::SendStreamStart(std::string serviceId, u_int32_t connectionId)
         {
             struct aws_byte_cursor service_id_cur;
             AWS_ZERO_STRUCT(service_id_cur);
@@ -785,13 +801,18 @@ namespace Aws
             {
                 service_id_cur = aws_byte_cursor_from_c_str(serviceId.c_str());
             }
-            return SendStreamStart(service_id_cur);
+            return SendStreamStart(service_id_cur, connectionId);
         }
-        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId)
+
+        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId, u_int32_t connectionId)
         {
             struct aws_secure_tunnel_message_view messageView;
             AWS_ZERO_STRUCT(messageView);
-            messageView.service_id = &serviceId;
+            if (serviceId.len > 0)
+            {
+                messageView.service_id = &serviceId;
+            }
+            messageView.connection_id = connectionId;
             return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
         }
 

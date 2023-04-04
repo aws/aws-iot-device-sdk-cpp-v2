@@ -989,6 +989,30 @@ namespace Aws
             int SendStreamStart(Crt::ByteCursor serviceId);
 
             /**
+             * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
+             * service id. This will result in a V2 stream.
+             *
+             * @param serviceId: The Service Id to start a stream on.
+             *
+             * @param connectionId: The Connection Id to start the stream on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendStreamStart(std::string serviceId, u_int32_t connectionId);
+
+            /**
+             * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
+             * service id. This will result in a V2 stream.
+             *
+             * @param serviceId: The Service Id to start a stream on.
+             *
+             * @param connectionId: The Connection Id to start the stream on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendStreamStart(Crt::ByteCursor serviceId, u_int32_t connectionId);
+
+            /**
              * Notifies the secure tunnel that you want to start a connection with the Destination device.
              *
              * @param connectionId: The connection id to start the connection on.
@@ -1073,6 +1097,8 @@ namespace Aws
                 OnStreamStart onStreamStart, /* Deprecated */
                 OnStreamStopped onStreamStopped,
                 OnStreamReset onStreamReset, /* Deprecated */
+                OnConnectionStarted onConnectionStarted,
+                OnConnectionReset onConnectionReset,
                 OnSessionReset onSessionReset,
                 OnStopped onStopped);
 
