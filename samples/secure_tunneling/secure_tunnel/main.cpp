@@ -396,6 +396,7 @@ int main(int argc, char *argv[])
 
     builder.WithOnSendMessageComplete(
         [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
+            (void)secureTunnel;
             if (!errorCode)
             {
                 fprintf(
