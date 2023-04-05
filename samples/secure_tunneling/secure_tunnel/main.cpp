@@ -295,6 +295,8 @@ int main(int argc, char *argv[])
 
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
+    bool keepRunning = true;
+    uint16_t messagesSent = 0;
 
     /*********************** Parse Arguments ***************************/
     Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
@@ -483,9 +485,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
-
-    bool keepRunning = true;
-    uint16_t messagesSent = 0;
 
     /*
      * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
