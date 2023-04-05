@@ -134,6 +134,54 @@ namespace Aws
         };
 
         /**
+         * Data model for messages sent out to the WebSocket
+         */
+        class AWS_IOTSECURETUNNELING_API SendMessageCompleteData
+        {
+          public:
+            SendMessageCompleteData(
+                enum aws_secure_tunnel_message_type type,
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            /**
+             * Message Type of sent message.
+             *
+             * @return Message Type of sent message.
+             */
+            const Crt::ByteCursor &getMessageType() const noexcept;
+
+            virtual ~SendMessageCompleteData();
+            /* Do not allow direct copy or move */
+            SendMessageCompleteData(const SendMessageCompleteData &) = delete;
+            SendMessageCompleteData(SendMessageCompleteData &&) noexcept = delete;
+            SendMessageCompleteData &operator=(const SendMessageCompleteData &) = delete;
+            SendMessageCompleteData &operator=(SendMessageCompleteData &&) noexcept = delete;
+
+          private:
+            Crt::Allocator *m_allocator;
+
+            /**
+             * Message Type of sent message.
+             *
+             */
+            Crt::ByteCursor m_messageType;
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Underlying data storage for internal use
+            ///////////////////////////////////////////////////////////////////////////
+            Crt::ByteBuf m_messageTypeStorage;
+        };
+
+        /**
+         * The data returned when a message is sent on the secure tunnel.
+         */
+        struct AWS_IOTSECURETUNNELING_API SendMessageCompleteEventData
+        {
+            SendMessageCompleteEventData() : sendMessageCompleteData(nullptr) {}
+            std::shared_ptr<SendMessageCompleteData> sendMessageCompleteData;
+        };
+
+        /**
          * Data model for Secure Tunnel connection view.
          */
         class AWS_IOTSECURETUNNELING_API ConnectionData
@@ -469,7 +517,7 @@ namespace Aws
          * Type signature of the callback invoked when message has been sent through the secure tunnel connection.
          */
         using OnSendMessageComplete =
-            std::function<void(SecureTunnel *secureTunnel, int errorCode, enum aws_secure_tunnel_message_type type)>;
+            std::function<void(SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &)>;
 
         /**
          * Type signature of the callback invoked when a message is received through the secure tunnel connection.

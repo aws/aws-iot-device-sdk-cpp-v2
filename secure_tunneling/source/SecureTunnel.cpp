@@ -177,6 +177,27 @@ namespace Aws
         }
 
         //***********************************************************************************************************************
+        /*                                              SendMessageCompleteData */
+        //***********************************************************************************************************************
+
+        SendMessageCompleteData::SendMessageCompleteData(
+            enum aws_secure_tunnel_message_type type,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator)
+        {
+            aws_byte_buf_clean_up(&m_messageTypeStorage);
+            AWS_ZERO_STRUCT(m_messageTypeStorage);
+            struct aws_byte_buf typeBuf = aws_byte_buf_from_c_str(aws_secure_tunnel_message_type_to_c_string(type));
+
+            aws_byte_buf_init_copy(&m_messageTypeStorage, m_allocator, &typeBuf);
+            m_messageType = aws_byte_cursor_from_buf(&m_messageTypeStorage);
+        }
+
+        const Crt::ByteCursor &SendMessageCompleteData::getMessageType() const noexcept { return m_messageType; }
+
+        SendMessageCompleteData::~SendMessageCompleteData() { aws_byte_buf_clean_up(&m_messageTypeStorage); }
+
+        //***********************************************************************************************************************
         /*                                              ConnectionData */
         //***********************************************************************************************************************
 
@@ -896,7 +917,11 @@ namespace Aws
 
             if (secureTunnel->m_OnSendMessageComplete)
             {
-                secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, type);
+                std::shared_ptr<SendMessageCompleteData> packet =
+                    std::make_shared<SendMessageCompleteData>(type, secureTunnel->m_allocator);
+                SendMessageCompleteEventData eventData;
+                eventData.sendMessageCompleteData = packet;
+                secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, eventData);
             }
             else if (secureTunnel->m_OnSendDataComplete)
             {

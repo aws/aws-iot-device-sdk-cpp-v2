@@ -394,18 +394,20 @@ int main(int argc, char *argv[])
         }
     });
 
-    builder.WithOnSendMessageComplete([&](SecureTunnel *secureTunnel,
-                                          int errorCode,
-                                          enum aws_secure_tunnel_message_type type) {
-        if (!errorCode)
-        {
-            fprintf(stdout, "Message of type %s sent successfully\n", aws_secure_tunnel_message_type_to_c_string(type));
-        }
-        else
-        {
-            fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
-        }
-    });
+    builder.WithOnSendMessageComplete(
+        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
+            if (!errorCode)
+            {
+                fprintf(
+                    stdout,
+                    "Message of type '" PRInSTR "' sent successfully\n",
+                    AWS_BYTE_CURSOR_PRI(eventData.sendMessageCompleteData->getMessageType()));
+            }
+            else
+            {
+                fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+            }
+        });
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         logConnectionData(eventData);
