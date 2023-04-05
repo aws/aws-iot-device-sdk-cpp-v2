@@ -333,9 +333,79 @@ int main(int argc, char *argv[])
         builder.WithRootCa(caFile.c_str());
     }
 
+    /* Proxy Options */
+    if (proxyHost.length() > 0)
+    {
+        auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
+        proxyOptions.HostName = proxyHost.c_str();
+        proxyOptions.Port = proxyPort;
+
+        /* Set up Proxy Strategy if a user name and password is provided */
+        if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
+        {
+            fprintf(stdout, "Creating proxy strategy\n");
+            Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
+            basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
+            basicAuthConfig.Username = proxyUserName.c_str();
+            basicAuthConfig.Password = proxyPassword.c_str();
+            proxyOptions.ProxyStrategy =
+                Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
+            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
+        }
+        else
+        {
+            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        }
+
+        /* Add proxy options to the builder */
+        builder.WithHttpClientConnectionProxyOptions(proxyOptions);
+    }
+
     builder.WithClientToken(clientToken.c_str());
 
     /* Add callbacks using the builder */
+    builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
+        {
+            std::shared_ptr<Message> message = eventData.message;
+
+            logMessage(message);
+
+            /* Send an echo message back to the Source Device */
+            if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
+            {
+                std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
+
+                /* Echo message on same service id received message arrived on */
+                if (message->getServiceId().has_value())
+                {
+                    echoMessage->withServiceId(message->getServiceId().value());
+                }
+
+                /* Echo message on the same connection id received message arrived on */
+                if (message->getConnectionId() > 0)
+                {
+                    echoMessage->withConnectionId(message->getConnectionId());
+                }
+
+                secureTunnel->SendMessage(echoMessage);
+
+                fprintf(stdout, "Sending Echo Message\n");
+            }
+        }
+    });
+
+    builder.WithOnSendMessageComplete([&](SecureTunnel *secureTunnel,
+                                          int errorCode,
+                                          enum aws_secure_tunnel_message_type type) {
+        if (!errorCode)
+        {
+            fprintf(stdout, "Message of type %s sent successfully\n", aws_secure_tunnel_message_type_to_c_string(type));
+        }
+        else
+        {
+            fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+        }
+    });
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         logConnectionData(eventData);
@@ -369,38 +439,6 @@ int main(int argc, char *argv[])
         }
     });
 
-    builder.WithOnConnectionShutdown([&]() { fprintf(stdout, "Connection Shutdown\n"); });
-
-    builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
-        {
-            std::shared_ptr<Message> message = eventData.message;
-
-            logMessage(message);
-
-            /* Send an echo message back to the Source Device */
-            if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
-            {
-                std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
-
-                /* Echo message on same service id received message arrived on */
-                if (message->getServiceId().has_value())
-                {
-                    echoMessage->withServiceId(message->getServiceId().value());
-                }
-
-                /* Echo message on the same connection id received message arrived on */
-                if (message->getConnectionId() > 0)
-                {
-                    echoMessage->withConnectionId(message->getConnectionId());
-                }
-
-                secureTunnel->SendMessage(echoMessage);
-
-                fprintf(stdout, "Sending Echo Message\n");
-            }
-        }
-    });
-
     builder.WithOnStreamStarted(
         [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData) {
             (void)secureTunnel;
@@ -413,12 +451,6 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Stream Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
             }
         });
-
-    builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
-        (void)secureTunnel;
-
-        logStreamStoppedData(eventData);
-    });
 
     builder.WithOnConnectionStarted([&](SecureTunnel *secureTunnel,
                                         int errorCode,
@@ -434,41 +466,19 @@ int main(int argc, char *argv[])
         }
     });
 
+    builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
+        (void)secureTunnel;
+
+        logStreamStoppedData(eventData);
+    });
+
+    builder.WithOnConnectionShutdown([&]() { fprintf(stdout, "Connection Shutdown\n"); });
+
     builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
         (void)secureTunnel;
         fprintf(stdout, "Secure Tunnel has entered Stopped State\n");
         clientStoppedPromise.set_value(true);
     });
-
-    //***********************************************************************************************************************
-    /* Proxy Options */
-    //***********************************************************************************************************************
-    if (proxyHost.length() > 0)
-    {
-        auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
-        proxyOptions.HostName = proxyHost.c_str();
-        proxyOptions.Port = proxyPort;
-
-        /* Set up Proxy Strategy if a user name and password is provided */
-        if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
-        {
-            fprintf(stdout, "Creating proxy strategy\n");
-            Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
-            basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
-            basicAuthConfig.Username = proxyUserName.c_str();
-            basicAuthConfig.Password = proxyPassword.c_str();
-            proxyOptions.ProxyStrategy =
-                Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
-            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
-        }
-        else
-        {
-            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-        }
-
-        /* Add proxy options to the builder */
-        builder.WithHttpClientConnectionProxyOptions(proxyOptions);
-    }
 
     /* Create Secure Tunnel using the options set with the builder */
     std::shared_ptr<SecureTunnel> secureTunnel = builder.Build();
