@@ -78,7 +78,7 @@ namespace Aws
             m_payload = aws_byte_cursor_from_buf(&m_payloadStorage);
         }
 
-        Message::Message(Crt::ByteCursor payload, u_int32_t connectionId, Crt::Allocator *allocator) noexcept
+        Message::Message(Crt::ByteCursor payload, uint32_t connectionId, Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
             AWS_ZERO_STRUCT(m_payloadStorage);
@@ -108,7 +108,7 @@ namespace Aws
 
         Message::Message(
             Crt::ByteCursor serviceId,
-            u_int32_t connectionId,
+            uint32_t connectionId,
             Crt::ByteCursor payload,
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
@@ -142,7 +142,7 @@ namespace Aws
             return *this;
         }
 
-        Message &Message::withConnectionId(u_int32_t connectionId) noexcept
+        Message &Message::withConnectionId(uint32_t connectionId) noexcept
         {
             m_connectionId = connectionId;
             return *this;
@@ -168,7 +168,7 @@ namespace Aws
 
         const Crt::Optional<Crt::ByteCursor> &Message::getServiceId() const noexcept { return m_serviceId; }
 
-        const u_int32_t &Message::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &Message::getConnectionId() const noexcept { return m_connectionId; }
 
         Message::~Message()
         {
@@ -243,7 +243,7 @@ namespace Aws
 
         const Crt::Optional<Crt::ByteCursor> &StreamStartedData::getServiceId() const noexcept { return m_serviceId; }
 
-        const u_int32_t &StreamStartedData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &StreamStartedData::getConnectionId() const noexcept { return m_connectionId; }
 
         StreamStartedData::~StreamStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
@@ -285,7 +285,7 @@ namespace Aws
             return m_serviceId;
         }
 
-        const u_int32_t &ConnectionStartedData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &ConnectionStartedData::getConnectionId() const noexcept { return m_connectionId; }
 
         ConnectionStartedData::~ConnectionStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
@@ -306,7 +306,7 @@ namespace Aws
 
         const Crt::Optional<Crt::ByteCursor> &ConnectionResetData::getServiceId() const noexcept { return m_serviceId; }
 
-        const u_int32_t &ConnectionResetData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &ConnectionResetData::getConnectionId() const noexcept { return m_connectionId; }
 
         ConnectionResetData::~ConnectionResetData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
 
@@ -814,7 +814,7 @@ namespace Aws
         int SecureTunnel::SendStreamStart() { return SendStreamStart(""); }
         int SecureTunnel::SendStreamStart(std::string serviceId) { return SendStreamStart(serviceId, 0); }
         int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId) { return SendStreamStart(serviceId, 0); }
-        int SecureTunnel::SendStreamStart(std::string serviceId, u_int32_t connectionId)
+        int SecureTunnel::SendStreamStart(std::string serviceId, uint32_t connectionId)
         {
             struct aws_byte_cursor service_id_cur;
             AWS_ZERO_STRUCT(service_id_cur);
@@ -825,7 +825,7 @@ namespace Aws
             return SendStreamStart(service_id_cur, connectionId);
         }
 
-        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId, u_int32_t connectionId)
+        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId, uint32_t connectionId)
         {
             struct aws_secure_tunnel_message_view messageView;
             AWS_ZERO_STRUCT(messageView);
@@ -837,9 +837,9 @@ namespace Aws
             return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
         }
 
-        int SecureTunnel::SendConnectionStart(u_int32_t connectionId) { return SendConnectionStart("", connectionId); }
+        int SecureTunnel::SendConnectionStart(uint32_t connectionId) { return SendConnectionStart("", connectionId); }
 
-        int SecureTunnel::SendConnectionStart(std::string serviceId, u_int32_t connectionId)
+        int SecureTunnel::SendConnectionStart(std::string serviceId, uint32_t connectionId)
         {
             struct aws_byte_cursor service_id_cur;
             AWS_ZERO_STRUCT(service_id_cur);
@@ -850,7 +850,7 @@ namespace Aws
             return SendConnectionStart(service_id_cur, connectionId);
         }
 
-        int SecureTunnel::SendConnectionStart(Crt::ByteCursor serviceId, u_int32_t connectionId)
+        int SecureTunnel::SendConnectionStart(Crt::ByteCursor serviceId, uint32_t connectionId)
         {
             struct aws_secure_tunnel_message_view messageView;
             AWS_ZERO_STRUCT(messageView);

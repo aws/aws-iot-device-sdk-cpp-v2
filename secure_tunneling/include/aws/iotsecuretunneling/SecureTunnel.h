@@ -29,7 +29,7 @@ namespace Aws
             Message(Crt::ByteCursor payload, Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
             Message(
                 Crt::ByteCursor payload,
-                u_int32_t connectionId,
+                uint32_t connectionId,
                 Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
             Message(
                 Crt::ByteCursor serviceId,
@@ -37,7 +37,7 @@ namespace Aws
                 Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
             Message(
                 Crt::ByteCursor serviceId,
-                u_int32_t connectionId,
+                uint32_t connectionId,
                 Crt::ByteCursor payload,
                 Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
 
@@ -55,7 +55,7 @@ namespace Aws
              * @param connectionId The connection id for the secure tunnel message.
              * @return The Message Object after setting the payload.
              */
-            Message &withConnectionId(u_int32_t connectionId) noexcept;
+            Message &withConnectionId(uint32_t connectionId) noexcept;
 
             /**
              * Sets the payload for the secure tunnel message.
@@ -79,7 +79,7 @@ namespace Aws
              *
              * @return The connection id of the secure tunnel message.
              */
-            const u_int32_t &getConnectionId() const noexcept;
+            const uint32_t &getConnectionId() const noexcept;
 
             /**
              * The payload of the secure tunnel message.
@@ -110,7 +110,7 @@ namespace Aws
              *
              * If left empty, a V1 or V2 protocol message is assumed.
              */
-            u_int32_t m_connectionId;
+            uint32_t m_connectionId;
 
             /**
              * The payload of the secure tunnel message.
@@ -278,7 +278,7 @@ namespace Aws
              *
              * @return The connection id of the secure tunnel message.
              */
-            const u_int32_t &getConnectionId() const noexcept;
+            const uint32_t &getConnectionId() const noexcept;
 
             virtual ~StreamStartedData();
             /* Do not allow direct copy or move */
@@ -302,7 +302,7 @@ namespace Aws
              *
              * If left empty, a V1 or V2 protocol message is assumed.
              */
-            u_int32_t m_connectionId;
+            uint32_t m_connectionId;
 
             ///////////////////////////////////////////////////////////////////////////
             // Underlying data storage for internal use
@@ -390,7 +390,7 @@ namespace Aws
              *
              * @return The connection id of the opened connection.
              */
-            const u_int32_t &getConnectionId() const noexcept;
+            const uint32_t &getConnectionId() const noexcept;
 
             virtual ~ConnectionStartedData();
             /* Do not allow direct copy or move */
@@ -413,7 +413,7 @@ namespace Aws
              * The connection id of the opened connection.
              *
              */
-            u_int32_t m_connectionId;
+            uint32_t m_connectionId;
 
             ///////////////////////////////////////////////////////////////////////////
             // Underlying data storage for internal use
@@ -452,7 +452,7 @@ namespace Aws
              *
              * @return Connection id of the reset connection.
              */
-            const u_int32_t &getConnectionId() const noexcept;
+            const uint32_t &getConnectionId() const noexcept;
 
             virtual ~ConnectionResetData();
             /* Do not allow direct copy or move */
@@ -475,7 +475,7 @@ namespace Aws
              * The connection id of the reset connection.
              *
              */
-            u_int32_t m_connectionId;
+            uint32_t m_connectionId;
 
             ///////////////////////////////////////////////////////////////////////////
             // Underlying data storage for internal use
@@ -1046,7 +1046,7 @@ namespace Aws
              *
              * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
-            int SendStreamStart(std::string serviceId, u_int32_t connectionId);
+            int SendStreamStart(std::string serviceId, uint32_t connectionId);
 
             /**
              * Notifies the secure tunnel that you want to start a stream with the Destination device on a specific
@@ -1058,7 +1058,7 @@ namespace Aws
              *
              * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
-            int SendStreamStart(Crt::ByteCursor serviceId, u_int32_t connectionId);
+            int SendStreamStart(Crt::ByteCursor serviceId, uint32_t connectionId);
 
             /**
              * Notifies the secure tunnel that you want to start a connection with the Destination device.
@@ -1067,18 +1067,7 @@ namespace Aws
              *
              * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
-            int SendConnectionStart(u_int32_t connectionId);
-
-            /**
-             * Notifies the secure tunnel that you want to start a connection with the Destination device.
-             *
-             * @param serviceId: The Service Id to start the connection on.
-             *
-             * @param connectionId: The connection id to start the connection on.
-             *
-             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
-             */
-            int SendConnectionStart(std::string serviceId, u_int32_t connectionId);
+            int SendConnectionStart(uint32_t connectionId);
 
             /**
              * Notifies the secure tunnel that you want to start a connection with the Destination device.
@@ -1089,7 +1078,18 @@ namespace Aws
              *
              * @return success/failure in the synchronous logic that kicks off the Stream Start operation
              */
-            int SendConnectionStart(Crt::ByteCursor serviceId, u_int32_t connectionId);
+            int SendConnectionStart(std::string serviceId, uint32_t connectionId);
+
+            /**
+             * Notifies the secure tunnel that you want to start a connection with the Destination device.
+             *
+             * @param serviceId: The Service Id to start the connection on.
+             *
+             * @param connectionId: The connection id to start the connection on.
+             *
+             * @return success/failure in the synchronous logic that kicks off the Stream Start operation
+             */
+            int SendConnectionStart(Crt::ByteCursor serviceId, uint32_t connectionId);
 
             aws_secure_tunnel *GetUnderlyingHandle();
 
