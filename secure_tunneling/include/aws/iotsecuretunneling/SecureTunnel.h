@@ -880,12 +880,12 @@ namespace Aws
              * Callback handler trigged when secure tunnel receives a stream reset.
              *
              * @param SecureTunnel: The shared secure tunnel
-             * @param StreamStoppedEventData: Stream reset data
+             * @param StreamStoppedEventData: Stream stopped data
              */
             OnStreamStopped m_OnStreamStopped;
 
             /**
-             * Callback handler trigged when secure tunnel receives a connecction start from a source device.
+             * Callback handler trigged when secure tunnel receives a connection start from a source device.
              *
              * @param SecureTunnel: The shared secure tunnel
              * @param int: error code

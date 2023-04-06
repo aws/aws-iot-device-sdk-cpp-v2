@@ -923,8 +923,11 @@ namespace Aws
                 SendMessageCompleteEventData eventData;
                 eventData.sendMessageCompleteData = packet;
                 secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, eventData);
+                return;
             }
-            else if (secureTunnel->m_OnSendDataComplete)
+
+            /* Fall back on deprecated complete callback */
+            if (secureTunnel->m_OnSendDataComplete)
             {
                 secureTunnel->m_OnSendDataComplete(error_code);
             }
