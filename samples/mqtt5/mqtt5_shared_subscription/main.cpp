@@ -427,7 +427,8 @@ int main(int argc, char *argv[])
     uint32_t publishedCount = 0;
     while (publishedCount < input_count)
     {
-        String message = input_message + std::to_string(publishedCount + 1).c_str();
+        // Add \" to 'JSON-ify' the message
+        String message = "\"" + input_message + std::to_string(publishedCount + 1).c_str() + "\"";
         ByteCursor payload = ByteCursorFromString(message);
         std::shared_ptr<Mqtt5::PublishPacket> publish =
             std::make_shared<Mqtt5::PublishPacket>(input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
