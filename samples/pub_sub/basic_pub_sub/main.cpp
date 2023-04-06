@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
 
     String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
+    messagePayload = "\"" + messagePayload + "\""; // Needed to 'JSON-ify' the message
     if (cmdUtils.HasCommand("count"))
     {
         int count = atoi(cmdUtils.GetCommand("count").c_str());

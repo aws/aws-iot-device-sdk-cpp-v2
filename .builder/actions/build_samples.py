@@ -27,6 +27,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/cognito_connect',
             'samples/mqtt5/mqtt5_pubsub',
+            'samples/mqtt5/mqtt5_shared_subscription',
             "samples/pub_sub/basic_pub_sub",
             "samples/pub_sub/cycle_pub_sub",
             'samples/secure_tunneling/secure_tunnel',
