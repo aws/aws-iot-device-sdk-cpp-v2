@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
     String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
 
-    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
+    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world! ");
     if (cmdUtils.HasCommand("count"))
     {
         int count = atoi(cmdUtils.GetCommand("count").c_str());
@@ -224,7 +224,8 @@ int main(int argc, char *argv[])
                 uint32_t publishedCount = 0;
                 while (publishedCount < messageCount)
                 {
-                    String message = messagePayload + std::to_string(publishedCount).c_str();
+                    // Add \" to 'JSON-ify' the message
+                    String message = "\"" + messagePayload + std::to_string(publishedCount + 1).c_str() + "\"";
                     ByteCursor payload = ByteCursorFromString(message);
 
                     std::shared_ptr<Mqtt5::PublishPacket> publish =
