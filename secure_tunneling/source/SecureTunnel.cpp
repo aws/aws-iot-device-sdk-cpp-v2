@@ -190,6 +190,7 @@ namespace Aws
             struct aws_byte_buf typeBuf = aws_byte_buf_from_c_str(aws_secure_tunnel_message_type_to_c_string(type));
 
             aws_byte_buf_init_copy(&m_messageTypeStorage, m_allocator, &typeBuf);
+            aws_byte_buf_clean_up(&typeBuf);
             m_messageType = aws_byte_cursor_from_buf(&m_messageTypeStorage);
         }
 
