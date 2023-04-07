@@ -16,6 +16,7 @@ phases:
       - echo Build started on `date`
       # Building of dependencies happens in setup-linux
       - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
+
       # - aws s3 cp s3://aws-crt-test-stuff/setup_proxy_test_env.sh /tmp/setup_proxy_test_env.sh
       # - sudo chmod a+xr /tmp/setup_proxy_test_env.sh
       # # Setup Mqtt5 test environment
