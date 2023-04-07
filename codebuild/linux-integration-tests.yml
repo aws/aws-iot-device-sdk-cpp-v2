@@ -17,6 +17,9 @@ phases:
       # Building of dependencies happens in setup-linux
       - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
 
+      # Run the integration tests
+      - $CODEBUILD_SRC_DIR/codebuild/integration-tests.sh
+
       # - aws s3 cp s3://aws-crt-test-stuff/setup_proxy_test_env.sh /tmp/setup_proxy_test_env.sh
       # - sudo chmod a+xr /tmp/setup_proxy_test_env.sh
       # # Setup Mqtt5 test environment
