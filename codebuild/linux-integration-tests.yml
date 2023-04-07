@@ -9,6 +9,7 @@ phases:
       - add-apt-repository ppa:ubuntu-toolchain-r/test
       - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
       - apt-get update -y
+      - apt-get install cmake -y -f
 
   build:
     commands:
