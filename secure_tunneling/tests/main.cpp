@@ -3,8 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/common/byte_buf.h>
 #include <aws/crt/Api.h>
+#include <aws/crt/http/HttpProxyStrategy.h>
+#include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
+
+using namespace Aws::Crt;
 
 int main(int argc, char *argv[])
 {

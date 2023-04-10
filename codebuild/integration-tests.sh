@@ -22,8 +22,3 @@ cat /tmp/destination_access_token.pem
 
 echo "Secure Tunnel Test"
 ./secure_tunnel_test
-
-# mkdir _build
-# cd _build
-# cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
-# make -j
