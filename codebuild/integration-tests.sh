@@ -4,6 +4,11 @@ env
 
 pushd $CODEBUILD_SRC_DIR/secure_tunneling/tests
 
+mkdir _build
+cd _build
+cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
+make -j
+
 printf "Currently set env variables\n"
 printenv
 
@@ -15,8 +20,10 @@ cat /tmp/tunnel_info.pem
 cat /tmp/source_access_token.pem
 cat /tmp/destination_access_token.pem
 
+echo "Secure Tunnel Test"
+./secure_tunnel_test
+
 # mkdir _build
 # cd _build
 # cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 # make -j
-
