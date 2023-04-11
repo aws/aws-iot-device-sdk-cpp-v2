@@ -105,25 +105,25 @@ int main(int argc, char *argv[])
         (void)eventData;
 
         /* Stream Start can only be called from Source Mode */
-        if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
-        {
-            /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
-            if (eventData.connectionData->getServiceId1().has_value())
-            {
-                /* Store the service id for future use */
-                aws_byte_buf_clean_up(&m_serviceIdStorage);
-                AWS_ZERO_STRUCT(m_serviceIdStorage);
-                aws_byte_buf_init_copy_from_cursor(
-                    &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
-                m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
-                secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
-            }
-            else
-            {
-                fprintf(stdout, "Sending Stream Start request\n");
-                secureTunnel->SendStreamStart();
-            }
-        }
+        // if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+        // {
+        //     /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
+        //     if (eventData.connectionData->getServiceId1().has_value())
+        //     {
+        //         /* Store the service id for future use */
+        //         aws_byte_buf_clean_up(&m_serviceIdStorage);
+        //         AWS_ZERO_STRUCT(m_serviceIdStorage);
+        //         aws_byte_buf_init_copy_from_cursor(
+        //             &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
+        //         m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+        //         secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
+        //     }
+        //     else
+        //     {
+        //         fprintf(stdout, "Sending Stream Start request\n");
+        //         secureTunnel->SendStreamStart();
+        //     }
+        // }
     });
 
     builder.WithOnStreamStarted(
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     /* Create Secure Tunnel using the options set with the builder */
     std::shared_ptr<SecureTunnel> secureTunnelDestination = builder.Build();
 
-    if (!secureTunnel)
+    if (!secureTunnelDestination)
     {
         fprintf(stderr, "Secure Tunnel Creation failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
     //     secureTunnel = nullptr;
     // }
 
-    secureTunnel = nullptr;
+    secureTunnelDestination = nullptr;
 
     /* Clean Up */
     aws_byte_buf_clean_up(&m_serviceIdStorage);
