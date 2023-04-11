@@ -329,6 +329,20 @@ namespace Utils
         int input_reportTime;
         // Jobs
         Aws::Crt::String input_jobId;
+        // Cycle PubSub
+        int input_clients;
+        int input_tps;
+        int input_seconds;
+        // Secure Tunnel
+        Aws::Crt::String input_accessTokenFile;
+        Aws::Crt::String input_accessToken;
+        Aws::Crt::String input_localProxyModeSource;
+        Aws::Crt::String input_clientTokenFile;
+        Aws::Crt::String input_clientToken;
+        Aws::Crt::String input_proxy_user_name;
+        Aws::Crt::String input_proxy_password;
+        // Shadow
+        Aws::Crt::String input_shadowProperty;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
@@ -344,6 +358,10 @@ namespace Utils
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputPubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle, Aws::Crt::String programName);
     cmdData parseSampleInputSharedSubscription(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputCyclePubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputSecureTunnelNotification(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputShadow(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
 
     /** Constants for commonly used/needed commands */
     static const Aws::Crt::String m_cmd_endpoint = "endpoint";
@@ -387,5 +405,16 @@ namespace Utils
     static const Aws::Crt::String m_cmd_job_id = "job_id";
     static const Aws::Crt::String m_cmd_group_identifier = "group_identifier";
     static const Aws::Crt::String m_cmd_is_ci = "is_ci";
+    static const Aws::Crt::String m_cmd_clients = "clients";
+    static const Aws::Crt::String m_cmd_tps = "tps";
+    static const Aws::Crt::String m_cmd_seconds = "seconds";
+    static const Aws::Crt::String m_cmd_access_token_file = "access_token_file";
+    static const Aws::Crt::String m_cmd_access_token = "access_token";
+    static const Aws::Crt::String m_cmd_local_proxy_mode_source = "local_proxy_mode_source";
+    static const Aws::Crt::String m_cmd_client_token_file = "client_token_file";
+    static const Aws::Crt::String m_cmd_client_token = "client_token";
+    static const Aws::Crt::String m_cmd_proxy_user_name = "proxy_user_name";
+    static const Aws::Crt::String m_cmd_proxy_password = "proxy_password";
+    static const Aws::Crt::String m_cmd_shadow_property = "shadow_property";
 
 } // namespace Utils

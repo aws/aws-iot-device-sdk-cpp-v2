@@ -1218,4 +1218,139 @@ namespace Utils
         return returnData;
     }
 
+    cmdData parseSampleInputCyclePubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("cycle-pub-sub");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_clients, "<int>", "The number of clients/connections to make (optional, default='3'");
+        cmdUtils.RegisterCommand(
+            m_cmd_tps, "<int>", "The number of seconds to wait after performing an operation (optional, default=12)");
+        cmdUtils.RegisterCommand(
+            m_cmd_seconds, "<int>", "The number of seconds to run the sample for (optional, default='300')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clients = atoi(cmdUtils.GetCommandOrDefault(m_cmd_clients, "3").c_str());
+        returnData.input_tps = atoi(cmdUtils.GetCommandOrDefault(m_cmd_tps, "12").c_str());
+        returnData.input_seconds = atoi(cmdUtils.GetCommandOrDefault(m_cmd_seconds, "300").c_str());
+        return returnData;
+    }
+
+    cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("secure-tunnel");
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The region of your secure tunnel");
+        cmdUtils.RegisterCommand(
+            m_cmd_ca_file, "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+        cmdUtils.RegisterCommand(
+            m_cmd_access_token_file, "<path>", "Path to the tunneling access token file (optional if --access_token used).");
+        cmdUtils.RegisterCommand(
+            m_cmd_access_token, "<str>", "Tunneling access token (optional if --access_token_file used).");
+        cmdUtils.RegisterCommand(
+            m_cmd_local_proxy_mode_source, "<str>", "Use to set local proxy mode to source (optional, default='destination').");
+        cmdUtils.RegisterCommand(
+            m_cmd_client_token_file, "<path>", "Path to the tunneling client token (optional if --client_token used).");
+        cmdUtils.RegisterCommand(
+            m_cmd_client_token, "<str>", "Tunneling client token (optional if --client_token_file used).");
+        cmdUtils.RegisterCommand(m_cmd_message, "<str>", "Message to send (optional, default='Hello World!').");
+        cmdUtils.RegisterCommand(
+            m_cmd_proxy_user_name, "<str>", "User name passed if proxy server requires a user name (optional)");
+        cmdUtils.RegisterCommand(
+            m_cmd_proxy_password, "<str>", "Password passed if proxy server requires a password (optional)");
+        cmdUtils.RegisterCommand(m_cmd_count, "<int>", "Number of messages to send before completing (optional, default='5')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_accessTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_access_token_file, "");
+        returnData.input_accessToken = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "");
+        returnData.input_localProxyModeSource = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "destination");
+        returnData.input_clientTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_client_token_file, "");
+        returnData.input_clientToken = cmdUtils.GetCommandOrDefault(m_cmd_client_token, "");
+        returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World!");
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        returnData.input_proxy_user_name = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
+        returnData.input_proxy_password = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
+        returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "5").c_str());
+
+        return returnData;
+    }
+
+    cmdData parseSampleInputSecureTunnelNotification(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+        cmdUtils.RegisterProgramName("tunnel-notification");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        return returnData;
+    }
+
+    cmdData parseSampleInputShadow(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+        cmdUtils.RegisterProgramName("shadow_sync");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
+        cmdUtils.RegisterCommand(m_cmd_shadow_property, "<str>", "The name of the shadow property you want to change.");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_is_ci, "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
+        returnData.input_shadowProperty = cmdUtils.GetCommandRequired(m_cmd_shadow_property);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_isCI = cmdUtils.HasCommand(m_cmd_is_ci);
+        return returnData;
+    }
+
 } // namespace Utils

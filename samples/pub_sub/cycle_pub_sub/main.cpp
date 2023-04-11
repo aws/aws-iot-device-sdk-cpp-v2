@@ -64,9 +64,39 @@ CycleClient *getClientFromConnection(std::vector<CycleClient> *clients, Aws::Crt
  * @param index The index of the CycleClient in the vector containing all the CycleClients
  * @param cmd_utils The CommandLineUtils used in the sample - for creating a MQTT connection
  */
-void createNewClient(CycleClient *empty_client, size_t index, Utils::CommandLineUtils *cmd_utils)
+void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cmdData)
 {
-    empty_client->client = cmd_utils->BuildMQTTConnection();
+    /************************ MQTT Builder Creation ****************************/
+    /* Make the MQTT builder */
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData->input_cert.c_str(), cmdData->input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData->input_endpoint);
+    if (cmdData->input_ca != "")
+    {
+        clientConfigBuilder.WithCertificateAuthority(cmdData->input_ca.c_str());
+    }
+    /* Create the MQTT connection from the builder */
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
+
+    empty_client->client = connection;
     empty_client->client_id = "test-" + Aws::Crt::UUID().ToString() + "-client-";
     empty_client->client_id.append(std::to_string(index).c_str());
 
@@ -516,61 +546,22 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    uint32_t config_clients = 3;
-    uint32_t config_tps = 12;
-    uint64_t config_seconds = 300;
-
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("cycle_pub_sub");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.RegisterCommand("clients", "<int>", "The number of clients/connections to make (optional, default='3'");
-    cmdUtils.RegisterCommand(
-        "tps", "<int>", "The number of seconds to wait after performing an operation (optional, default=12)");
-    cmdUtils.RegisterCommand(
-        "seconds", "<int>", "The number of seconds to run the sample for (optional, default='300')");
-
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    if (cmdUtils.HasCommand("clients"))
-    {
-        int tmp = atoi(cmdUtils.GetCommand("clients").c_str());
-        if (tmp > 0)
-        {
-            config_clients = tmp;
-        }
-    }
-    if (cmdUtils.HasCommand("tps"))
-    {
-        int tmp = atoi(cmdUtils.GetCommand("tps").c_str());
-        if (tmp > 0)
-        {
-            config_tps = tmp;
-        }
-    }
-    if (cmdUtils.HasCommand("seconds"))
-    {
-        int tmp = atoi(cmdUtils.GetCommand("seconds").c_str());
-        if (tmp > 0)
-        {
-            config_seconds = tmp;
-        }
-    }
-
-    fprintf(stdout, "\nCycle pub-sub sample start\n\n");
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputCyclePubSub(argc, argv, &apiHandle);
 
     /******************** Start the client cycle ***********************/
 
+    fprintf(stdout, "\nCycle pub-sub sample start\n\n");
     // Make the clients
-    for (size_t i = 0; i < config_clients; i++)
+    for (size_t i = 0; i < cmdData.input_clients; i++)
     {
         clients_holder.push_back(CycleClient());
-        createNewClient(&clients_holder[i], i, &cmdUtils);
+        createNewClient(&clients_holder[i], i, &cmdData);
         fprintf(stdout, "Created client %zu\n", i);
     }
 
@@ -589,18 +580,18 @@ int main(int argc, char *argv[])
     {
         nowTime = std::chrono::steady_clock::now();
         time_difference = (uint64_t)std::chrono::duration_cast<std::chrono::seconds>(nowTime - startTime).count();
-        if (time_difference >= config_seconds)
+        if (time_difference >= cmdData.input_seconds)
         {
             done = true;
         }
         performRandomOperation(&clients_holder);
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000 * config_tps));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000 * cmdData.input_tps));
     }
 
     /*************************** Clean up ******************************/
 
     // Stop all the clients and clear the vector
-    for (size_t i = 0; i < config_clients; i++)
+    for (size_t i = 0; i < cmdData.input_clients; i++)
     {
         operationStop(&clients_holder.at(i), (int)i);
     }

@@ -31,29 +31,49 @@ using namespace Aws::Iotsecuretunneling;
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
+    /************************ Setup ****************************/
     /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("tunnel_notification");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputSecureTunnelNotification(argc, argv, &apiHandle);
 
-    String thingName = cmdUtils.GetCommandRequired("thing_name");
-
-    /* Get a MQTT client connection from the command parser */
-    auto connection = cmdUtils.BuildMQTTConnection();
+    /************************ MQTT Builder Creation ****************************/
+    /* Make the MQTT builder */
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
+    {
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    /* Create the MQTT connection from the builder */
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
 
     /*
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -95,7 +115,7 @@ int main(int argc, char *argv[])
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -150,7 +170,7 @@ int main(int argc, char *argv[])
     if (connectionCompletedPromise.get_future().get())
     {
         SubscribeToTunnelsNotifyRequest request;
-        request.ThingName = thingName;
+        request.ThingName = cmdData.input_thingName;
 
         IotSecureTunnelingClient client(connection);
         client.SubscribeToTunnelsNotify(

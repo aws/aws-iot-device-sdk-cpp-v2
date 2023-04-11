@@ -76,7 +76,7 @@ void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *ar
 }
 
 void setupCommandLineValues(
-    Utils::CommandLineUtils *cmdUtils,
+    Utils::cmdData *cmdData,
     String *endpoint,
     String *accessToken,
     String *clientToken,
@@ -90,19 +90,18 @@ void setupCommandLineValues(
     String *payloadMessage)
 {
     /* Generate secure tunneling endpoint using region */
-    String region = cmdUtils->GetCommandRequired("region");
+    String region = cmdData->input_signingRegion;
     endpoint->assign("data.tunneling.iot." + region + ".amazonaws.com");
 
     String tempAccessToken;
     /* An access token is required to connect to the secure tunnel service */
-    if (cmdUtils->HasCommand("access_token"))
+    if (cmdData->input_accessToken != "")
     {
-        tempAccessToken = cmdUtils->GetCommand("access_token");
+        tempAccessToken = cmdData->input_accessToken;
     }
-    else if (cmdUtils->HasCommand("access_token_file"))
+    else if (cmdData->input_accessTokenFile != "")
     {
-        tempAccessToken = cmdUtils->GetCommand("access_token_file");
-
+        tempAccessToken = cmdData->input_accessTokenFile;
         std::ifstream accessTokenFile(tempAccessToken.c_str());
         if (accessTokenFile.is_open())
         {
@@ -117,7 +116,6 @@ void setupCommandLineValues(
     }
     else
     {
-        cmdUtils->PrintHelp();
         fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
         exit(-1);
     }
@@ -129,15 +127,13 @@ void setupCommandLineValues(
      * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
      * is terminated.
      * */
-    if (cmdUtils->HasCommand("client_token"))
+    if (cmdData->input_clientToken != "")
     {
-        tempClientToken = cmdUtils->GetCommand("client_token");
+        tempClientToken = cmdData->input_clientToken;
     }
-
-    if (cmdUtils->HasCommand("client_token_file"))
+    else if (cmdData->input_clientTokenFile != "")
     {
-        tempClientToken = cmdUtils->GetCommand("client_token_file");
-
+        tempClientToken = cmdData->input_clientTokenFile;
         std::ifstream clientTokenFile(tempClientToken.c_str());
         if (clientTokenFile.is_open())
         {
@@ -150,29 +146,25 @@ void setupCommandLineValues(
             exit(-1);
         }
     }
-
     clientToken->assign(tempClientToken);
 
-    caFile->assign(cmdUtils->GetCommandOrDefault("ca_file", ""));
-
-    if (cmdUtils->HasCommand("proxy_host") || cmdUtils->HasCommand("proxy_port"))
+    if (cmdData->input_ca != "")
     {
-        proxyHost->assign(
-            cmdUtils->GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str());
-        int port = atoi(
-            cmdUtils->GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
-        if (port > 0 && port <= UINT16_MAX)
-        {
-            proxyPort = static_cast<uint16_t>(port);
-        }
-        proxyUserName->assign(cmdUtils->GetCommandOrDefault("proxy_user_name", ""));
-        proxyPassword->assign(cmdUtils->GetCommandOrDefault("proxy_password", ""));
+        caFile->assign(cmdData->input_ca);
+    }
+
+    if (cmdData->input_proxyHost != "" || cmdData->input_proxyPort != 0)
+    {
+        proxyHost->assign(cmdData->input_proxyHost);
+        proxyPort = cmdData->input_proxyPort;
+        proxyUserName->assign(cmdData->input_proxy_user_name);
+        proxyPassword->assign(cmdData->input_proxy_password);
     }
 
     /*
      * localProxyMode is set to destination by default unless flag is set to source
      */
-    if (cmdUtils->HasCommand("local_proxy_mode_source"))
+    if (cmdData->input_localProxyModeSource != "destination")
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
@@ -181,10 +173,8 @@ void setupCommandLineValues(
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    payloadMessage->assign(cmdUtils->GetCommandOrDefault("message", "Hello World"));
-
-    int count = atoi(cmdUtils->GetCommandOrDefault("count", "5").c_str());
-    messageCount = static_cast<uint16_t>(count);
+    payloadMessage->assign(cmdData->input_message);
+    messageCount = cmdData->input_count;
 }
 
 int main(int argc, char *argv[])
@@ -223,11 +213,10 @@ int main(int argc, char *argv[])
     uint16_t messageCount(5);
 
     /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    setupCommandLineUtils(&cmdUtils, argc, argv);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
     setupCommandLineValues(
-        &cmdUtils,
+        &cmdData,
         &endpoint,
         &accessToken,
         &clientToken,
