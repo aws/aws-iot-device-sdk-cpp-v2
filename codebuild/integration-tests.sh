@@ -16,6 +16,9 @@ tunnel_info=$(aws iotsecuretunneling open-tunnel --destination-config services=s
 source_access_token=$(sed '4!d' /tmp/tunnel_info.pem | cut -d'"' -f4) && echo -e "$source_access_token" > /tmp/source_access_token.pem
 destination_access_token=$(sed '5!d' /tmp/tunnel_info.pem | cut -d'"' -f4) && echo -e "$destination_access_token" > /tmp/destination_access_token.pem
 
+export SECTUN_ENDPOINT=$source_access_token
+
+
 cat /tmp/tunnel_info.pem
 cat /tmp/source_access_token.pem
 cat /tmp/destination_access_token.pem
