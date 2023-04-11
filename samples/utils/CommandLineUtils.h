@@ -325,10 +325,14 @@ namespace Utils
         Aws::Crt::String input_x509Ca;
         // Device Defender
         int input_reportTime;
+        // Jobs
+        Aws::Crt::String input_jobId;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputFleetProvisioning(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputJobs(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
 
     /** Constants for commonly used/needed commands */
     static const Aws::Crt::String m_cmd_endpoint = "endpoint";
@@ -366,5 +370,9 @@ namespace Utils
     static const Aws::Crt::String m_cmd_thing_name = "thing_name";
     static const Aws::Crt::String m_cmd_count = "count";
     static const Aws::Crt::String m_cmd_report_time = "report_time";
+    static const Aws::Crt::String m_cmd_template_name = "template_name";
+    static const Aws::Crt::String m_cmd_template_parameters = "template_parameters";
+    static const Aws::Crt::String m_cmd_template_csr = "csr";
+    static const Aws::Crt::String m_cmd_job_id = "job_id";
 
 } // namespace Utils
