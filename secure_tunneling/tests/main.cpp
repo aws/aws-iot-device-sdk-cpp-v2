@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
             (void)eventData;
             if (!errorCode)
             {
-                fprintf(stdout, "Stream Started on Destination Client.\n")
+                fprintf(stdout, "Stream Started on Destination Client.\n");
             }
             else
             {
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
         (void)eventData;
         if (!errorCode)
         {
-            fprintf(stdout, "Connection Started on Destination Client.\n")
+            fprintf(stdout, "Connection Started on Destination Client.\n");
         }
         else
         {
