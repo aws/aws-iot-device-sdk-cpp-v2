@@ -16,8 +16,16 @@ using namespace Aws::Crt::Io;
 using namespace std::chrono_literals;
 
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_ENDPOINT, "SECTUN_ENDPOINT");
-// AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_TOKEN, "SECTUN_SOURCE_TOKEN");
-// AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_TOKEN, "SECTUN_DESTINATION_TOKEN");
+AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_TOKEN, "SECTUN_SOURCE_TOKEN");
+AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_TOKEN, "SECTUN_DESTINATION_TOKEN");
+
+void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *variable_name, String stringToSet)
+{
+    aws_string *awsStringToSet = NULL;
+    aws_get_environment_value(allocator, variable_name, &awsStringToSet);
+    stringToSet = awsStringToSet == nullptr ? "" : aws_string_c_str(awsStringToSet);
+    aws_string_destroy(awsStringToSet);
+}
 
 int main(int argc, char *argv[])
 {
@@ -42,22 +50,25 @@ int main(int argc, char *argv[])
 
     String endpoint;
     String accessToken;
-    String clientToken;
+    String destinationToken;
+    String sourceToken;
     aws_secure_tunneling_local_proxy_mode localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
 
-    aws_string *aws_string_endpoint = NULL;
+    setEnvVariable(allocator, SECTUN_DESTINATION_TOKEN, destinationToken);
+    setEnvVariable(allocator, SECTUN_SOURCE_TOKEN, sourceToken);
+    setEnvVariable(allocator, SECTUN_ENDPOINT, endpoint);
 
-    aws_get_environment_value(allocator, SECTUN_ENDPOINT, &aws_string_endpoint);
-    endpoint = aws_string_endpoint == nullptr ? "" : aws_string_c_str(aws_string_endpoint);
-    aws_string_destroy(aws_string_endpoint);
+    // aws_string *aws_string_endpoint = NULL;
+
+    // aws_get_environment_value(allocator, SECTUN_ENDPOINT, &aws_string_endpoint);
+    // endpoint = aws_string_endpoint == nullptr ? "" : aws_string_c_str(aws_string_endpoint);
+    // aws_string_destroy(aws_string_endpoint);
 
     fprintf(stdout, "endpoint:%s\n", endpoint.c_str());
-
-    // STEVE DEBUG
-    endpoint = "test endpoint";
-    accessToken = "test token";
+    fprintf(stdout, "source token:%s\n", sourceToken.c_str());
+    fprintf(stdout, "destination token:%s\n", destinationToken.c_str());
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
@@ -69,7 +80,8 @@ int main(int argc, char *argv[])
     }
 
     /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
-    SecureTunnelBuilder builder = SecureTunnelBuilder(allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
+    SecureTunnelBuilder builder =
+        SecureTunnelBuilder(allocator, destinationToken.c_str(), localProxyMode, endpoint.c_str());
 
     // builder.WithClientToken(clientToket.c_str());
 
