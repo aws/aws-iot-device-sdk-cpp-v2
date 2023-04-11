@@ -941,6 +941,7 @@ namespace Utils
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
         returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
         returnData.input_cognitoEndpoint = "cognito-identity." + cmdUtils.GetCommandRequired(m_cmd_signing_region) + ".amazonaws.com";
         returnData.input_cognitoIdentity = cmdUtils.GetCommandRequired(m_cmd_cognito_identity);
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
@@ -950,4 +951,37 @@ namespace Utils
         }
         return returnData;
     }
+
+    cmdData parseSampleInputCustomAuthorizerConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("custom-authorizer-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonCustomAuthorizerCommands();
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RemoveCommand("ca_file");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand(m_cmd_help))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+
+        returnData.input_customAuthUsername = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_username, "");
+        returnData.input_customAuthorizerName = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_authorizer_name, "");
+        returnData.input_customAuthorizerSignature = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_authorizer_signature, "");
+        returnData.input_customAuthPassword = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_password, "");
+
+        return returnData;
+    }
+
 } // namespace Utils
