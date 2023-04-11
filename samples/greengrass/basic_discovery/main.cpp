@@ -21,54 +21,25 @@ using namespace Aws::Discovery;
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
+    /************************ Setup ****************************/
     /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    uint16_t proxyPort = 0;
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic-discovery");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.AddCommonProxyCommands();
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.RemoveCommand("endpoint");
-    cmdUtils.RegisterCommand("region", "<str>", "The region for your Greengrass groups.");
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing");
-    cmdUtils.RegisterCommand(
-        "mode", "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
-    const char **const_argv = (const char **)argv;
-    cmdUtils.UpdateCommandHelp(
-        "message",
-        "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
-    cmdUtils.AddLoggingCommands();
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    String certificatePath = cmdUtils.GetCommandRequired("cert");
-    String thingName = cmdUtils.GetCommandRequired("thing_name");
-    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
-    String keyPath = cmdUtils.GetCommandOrDefault("key", "");
-    String region = cmdUtils.GetCommandRequired("region");
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String mode = cmdUtils.GetCommandOrDefault("mode", "both");
-    String message = cmdUtils.GetCommandOrDefault("message", "");
-    String proxyHost = cmdUtils.GetCommandOrDefault("proxy_host", "");
-    if (cmdUtils.HasCommand("proxy_port"))
-    {
-        String portString = cmdUtils.GetCommand("proxy_port");
-        proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
-    }
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputGreengrassDiscovery(argc, argv, &apiHandle);
 
     /*
      * We're using Mutual TLS for MQTT, so we need to load our client certificates
      */
     Io::TlsContextOptions tlsCtxOptions =
-        Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
+        Io::TlsContextOptions::InitClientWithMtls(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
 
     if (!tlsCtxOptions)
     {
@@ -76,9 +47,9 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    if (!caFile.empty())
+    if (!cmdData.input_ca.empty())
     {
-        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, caFile.c_str());
+        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, cmdData.input_ca.c_str());
     }
 
     Io::TlsContext tlsCtx(tlsCtxOptions, Io::TlsMode::CLIENT);
@@ -112,15 +83,17 @@ int main(int argc, char *argv[])
     DiscoveryClientConfig clientConfig;
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
-    clientConfig.Region = region;
+    clientConfig.Region = cmdData.input_signingRegion;
 
     Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-    if (proxyHost.length() > 0 && proxyPort != 0)
+    if (cmdData.input_proxyHost.length() > 0 && cmdData.input_proxyPort != 0)
     {
-        proxyOptions.HostName = proxyHost;
-        proxyOptions.Port = proxyPort;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = cmdData.input_proxyPort;
         clientConfig.ProxyOptions = proxyOptions;
     }
+
+    /************************ Run the sample ****************************/
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
@@ -130,7 +103,7 @@ int main(int argc, char *argv[])
     std::promise<void> connectionFinishedPromise;
     std::promise<void> shutdownCompletedPromise;
 
-    discoveryClient->Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+    discoveryClient->Discover(cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
         {
             auto groupToUse = std::move(response->GGGroups->at(0));
@@ -146,7 +119,7 @@ int main(int argc, char *argv[])
                 (int)connectivityInfo.Port.value());
 
             connection = mqttClient.NewConnection(
-                Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
+                Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str())
                     .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
                     .WithPortOverride(connectivityInfo.Port.value())
                     .WithEndpoint(connectivityInfo.HostAddress.value())
@@ -172,7 +145,7 @@ int main(int argc, char *argv[])
                         connectivityInfo.HostAddress->c_str(),
                         (int)connectivityInfo.Port.value());
 
-                    if (mode == "both" || mode == "subscribe")
+                    if (cmdData.input_mode == "both" || cmdData.input_mode == "subscribe")
                     {
                         auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
                                              const String &receivedOnTopic,
@@ -207,7 +180,7 @@ int main(int argc, char *argv[])
                             }
                         };
 
-                        conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+                        conn.Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
                     }
                     else
                     {
@@ -240,7 +213,7 @@ int main(int argc, char *argv[])
                 shutdownCompletedPromise.set_value();
             };
 
-            if (!connection->Connect(thingName.c_str(), false))
+            if (!connection->Connect(cmdData.input_thingName.c_str(), false))
             {
                 fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
                 exit(-1);
@@ -256,7 +229,6 @@ int main(int argc, char *argv[])
             exit(-1);
         }
     });
-
     {
         connectionFinishedPromise.get_future().wait();
     }
@@ -265,23 +237,23 @@ int main(int argc, char *argv[])
     while (true)
     {
         String input = "";
-        if (mode == "both" || mode == "publish")
+        if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
         {
-            if (message == "")
+            if (cmdData.input_message == "")
             {
                 fprintf(
                     stdout,
                     "Enter the message you want to publish to topic %s and press enter. Enter 'exit' to exit this "
                     "program.\n",
-                    topic.c_str());
+                    cmdData.input_topic.c_str());
                 std::getline(std::cin, input);
-                message = input;
+                cmdData.input_message = input;
             }
             else if (first_input == false)
             {
                 fprintf(stdout, "Enter a new message or enter 'exit' or 'quit' to exit the program.\n");
                 std::getline(std::cin, input);
-                message = input;
+                cmdData.input_message = input;
             }
             first_input = false;
         }
@@ -297,7 +269,7 @@ int main(int argc, char *argv[])
             break;
         }
 
-        if (mode == "both" || mode == "publish")
+        if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
         {
             ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
             ByteBuf *payloadPtr = &payload;
@@ -314,7 +286,7 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
             };
-            connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
+            connection->Publish(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
         }
     }
 

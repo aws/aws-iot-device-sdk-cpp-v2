@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::CommandLineUtils::cmdData cmdData =
-        Utils::CommandLineUtils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
     /************************ MQTT Builder Creation ****************************/
     /* Make the MQTT builder */
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
         clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
     }
     /* Create the MQTT connection from the builder */
-    auto clientConfig = clientConfigBuilder->Build();
+    auto clientConfig = clientConfigBuilder.Build();
     if (!clientConfig)
     {
         fprintf(
@@ -105,7 +105,8 @@ int main(int argc, char *argv[])
             Aws::Crt::ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
-    auto connection = client->NewConnection(clientConfig);
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
     if (!*connection)
     {
         fprintf(
@@ -172,7 +173,7 @@ int main(int argc, char *argv[])
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -191,9 +192,9 @@ int main(int argc, char *argv[])
             *data = true;
         };
 
-        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, thingName);
-        taskBuilder.WithTaskPeriodSeconds((uint32_t)reportTime)
-            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)reportTime)
+        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, cmdData.input_thingName);
+        taskBuilder.WithTaskPeriodSeconds((uint32_t)cmdData.input_reportTime)
+            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)cmdData.input_reportTime)
             .WithTaskCancelledHandler(onCancelled)
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
@@ -241,15 +242,15 @@ int main(int argc, char *argv[])
         // ======================================================================
 
         int publishedCount = 0;
-        while (publishedCount < count &&
+        while (publishedCount < cmdData.input_count &&
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
             fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
 
-            if (publishedCount != count)
+            if (publishedCount != cmdData.input_count)
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
+                std::this_thread::sleep_for(std::chrono::milliseconds(cmdData.input_reportTime * 1000));
             }
         }
 

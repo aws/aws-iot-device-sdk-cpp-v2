@@ -699,33 +699,33 @@ namespace Utils
         }
     }
 
-    CommandLineUtils::cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("basic-report");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
-        cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing (optional, default='TestThing').");
         cmdUtils.RegisterCommand(
-            "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
-        cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
+            m_cmd_report_time, "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
+        cmdUtils.RegisterCommand(m_cmd_count, "<int>", "The number of reports to send (optional, default='10')");
         cmdUtils.AddLoggingCommands();
         const char **const_argv = (const char **)argv;
         cmdUtils.SendArguments(const_argv, const_argv + argc);
         cmdUtils.StartLoggingBasedOnCommand(api_handle);
 
-        if (cmdUtils.HasCommand("help"))
+        if (cmdUtils.HasCommand(m_cmd_help))
         {
             cmdUtils.PrintHelp();
             exit(-1);
         }
 
-        CommandLineUtils::cmdData returnData = CommandLineUtils::cmdData();
+        cmdData returnData = cmdData();
 
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
-        returnData.input_clientId = cmdUtils.GetCommandOrDefault("client_id", Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
 
         if (cmdUtils.HasCommand(m_cmd_ca_file)) {
             returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
@@ -740,15 +740,64 @@ namespace Utils
             returnData.input_port = atoi(cmdUtils.GetCommandRequired(m_cmd_port_override).c_str());
         }
 
-        returnData.input_thingName = cmdUtils.GetCommandOrDefault("thing_name", "TestThing");
+        returnData.input_thingName = cmdUtils.GetCommandOrDefault(m_cmd_thing_name, "TestThing");
 
-        if (cmdUtils.HasCommand("report_time"))
+        if (cmdUtils.HasCommand(m_cmd_report_time))
         {
-            returnData.input_reportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
+            returnData.input_reportTime = atoi(cmdUtils.GetCommand(m_cmd_report_time).c_str());
         }
-        if (cmdUtils.HasCommand("count"))
+        if (cmdUtils.HasCommand(m_cmd_count))
         {
-            returnData.input_count = atoi(cmdUtils.GetCommand("count").c_str());
+            returnData.input_count = atoi(cmdUtils.GetCommand(m_cmd_count).c_str());
+        }
+
+        return returnData;
+    }
+
+    cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("basic-discovery");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.AddCommonTopicMessageCommands();
+        cmdUtils.RemoveCommand(m_cmd_endpoint);
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The region for your Greengrass groups.");
+        cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
+        cmdUtils.RegisterCommand(
+            m_cmd_mode, "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
+        const char **const_argv = (const char **)argv;
+        cmdUtils.UpdateCommandHelp(
+            m_cmd_message,
+            "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
+        cmdUtils.AddLoggingCommands();
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand("help"))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "");
+        returnData.input_mode = cmdUtils.GetCommandOrDefault(m_cmd_mode, "both");
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         }
 
         return returnData;
