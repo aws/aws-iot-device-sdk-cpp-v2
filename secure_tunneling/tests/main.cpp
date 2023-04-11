@@ -50,6 +50,12 @@ int main(int argc, char *argv[])
     endpoint = aws_string_endpoint == nullptr ? "" : aws_string_c_str(aws_string_endpoint);
     aws_string_destroy(aws_string_endpoint);
 
+    fprintf(stdout, "endpoint:%s\n", endpoint.c_str());
+
+    // STEVE DEBUG
+    endpoint = "test endpoint";
+    accessToken = "test token";
+
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
