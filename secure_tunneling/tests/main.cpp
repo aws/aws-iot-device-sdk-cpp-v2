@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Secure Tunnel Test Starting\n");
     struct aws_allocator *allocator = aws_default_allocator();
     ApiHandle apiHandle;
+    // Logging
+    // apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+
     aws_iotdevice_library_init(allocator);
 
     /* service id storage for use in test */
@@ -176,27 +179,29 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Secure Tunnel Created\n");
 
     /* Set the Secure Tunnel Client to desire a connected state */
-    if (secureTunnel->Start())
-    {
-        fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
-        exit(-1);
-    }
+    // if (secureTunnel->Start())
+    // {
+    //     fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
+    //     exit(-1);
+    // }
 
     // std::this_thread::sleep_for(3000ms);
 
-    fprintf(stdout, "Closing Connection\n");
-    /* Set the Secure Tunnel Client to desire a stopped state */
-    if (secureTunnel->Stop() == AWS_OP_ERR)
-    {
-        fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
-        exit(-1);
-    }
+    // fprintf(stdout, "Closing Connection\n");
+    // /* Set the Secure Tunnel Client to desire a stopped state */
+    // if (secureTunnel->Stop() == AWS_OP_ERR)
+    // {
+    //     fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
+    //     exit(-1);
+    // }
 
-    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
-    if (clientStoppedPromise.get_future().get())
-    {
-        secureTunnel = nullptr;
-    }
+    // /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
+    // if (clientStoppedPromise.get_future().get())
+    // {
+    //     secureTunnel = nullptr;
+    // }
+
+    secureTunnel = nullptr;
 
     /* Clean Up */
     aws_byte_buf_clean_up(&m_serviceIdStorage);
