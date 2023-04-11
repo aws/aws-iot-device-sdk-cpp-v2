@@ -6,7 +6,6 @@
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
-* [Raw Connect](./mqtt/raw_connect/README.md)
 * [x509 Credentials Provider Connect](./mqtt/x509_credentials_provider_connect/README.md)
 * [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
