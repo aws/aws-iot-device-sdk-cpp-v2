@@ -20,8 +20,6 @@
 #include <mutex>
 #include <thread>
 
-#include <aws/crt/Api.h>
-
 #include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
@@ -62,63 +60,58 @@ int s_getCustomMetricIpAddressList(Vector<String> *output)
 int main(int argc, char *argv[])
 {
 
-    /************************ Setup the Lib ****************************/
+    /************************ Setup ****************************/
     /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
 
-    String thingName("TestThing");
-    int reportTime = 60u;
-    int count = 10;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::CommandLineUtils::cmdData cmdData =
+        Utils::CommandLineUtils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic-report");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
-    cmdUtils.RegisterCommand(
-        "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    if (cmdUtils.HasCommand("help"))
+    /************************ MQTT Builder Creation ****************************/
+    /* Make the MQTT builder */
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
     {
-        cmdUtils.PrintHelp();
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    if (cmdData.input_proxyHost != "")
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = cmdData.input_proxyPort;
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    }
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    }
+    /* Create the MQTT connection from the builder */
+    auto clientConfig = clientConfigBuilder->Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
-    thingName = cmdUtils.GetCommandOrDefault("thing_name", thingName);
-
-    if (cmdUtils.HasCommand("report_time"))
+    auto connection = client->NewConnection(clientConfig);
+    if (!*connection)
     {
-        int tmpReportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
-        if (tmpReportTime > 0)
-        {
-            reportTime = tmpReportTime;
-        }
-    }
-    if (cmdUtils.HasCommand("count"))
-    {
-        int tmpCount = atoi(cmdUtils.GetCommand("count").c_str());
-        if (tmpCount > 0)
-        {
-            count = tmpCount;
-        }
-    }
-
-    // Make a MQTT client and create a connection using a certificate and key
-    // Note: The data for the connection is gotten from cmdUtils
-    // (see BuildDirectMQTTConnection for implementation)
-    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnection(&mqttClient);
-
-    if (!connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
@@ -174,6 +167,7 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
+    /************************ Run the sample ****************************/
     /*
      * Actually perform the connect dance.
      */

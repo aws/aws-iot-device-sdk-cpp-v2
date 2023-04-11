@@ -7,6 +7,7 @@
 #include <aws/crt/Types.h>
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/Pkcs11.h>
+#include <aws/crt/UUID.h>
 #include <iostream>
 
 namespace Utils
@@ -696,6 +697,61 @@ namespace Utils
         {
             connectionClosedPromise.get_future().wait();
         }
+    }
+
+    CommandLineUtils::cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("basic-report");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
+        cmdUtils.RegisterCommand(
+            "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
+        cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand("help"))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        CommandLineUtils::cmdData returnData = CommandLineUtils::cmdData();
+
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault("client_id", Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandRequired(m_cmd_port_override).c_str());
+        }
+
+        returnData.input_thingName = cmdUtils.GetCommandOrDefault("thing_name", "TestThing");
+
+        if (cmdUtils.HasCommand("report_time"))
+        {
+            returnData.input_reportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
+        }
+        if (cmdUtils.HasCommand("count"))
+        {
+            returnData.input_count = atoi(cmdUtils.GetCommand("count").c_str());
+        }
+
+        return returnData;
     }
 
 } // namespace Utils

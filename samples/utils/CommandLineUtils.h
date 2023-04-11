@@ -257,6 +257,64 @@ namespace Utils
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
             Aws::Crt::String clientId);
 
+        struct cmdData
+        {
+            // General use
+            Aws::Crt::String input_endpoint;
+            Aws::Crt::String input_cert;
+            Aws::Crt::String input_key;
+            Aws::Crt::String input_ca;
+            Aws::Crt::String input_clientId;
+            int input_port;
+            // Proxy
+            Aws::Crt::String input_proxyHost;
+            int input_proxyPort;
+            // PubSub
+            Aws::Crt::String input_topic;
+            Aws::Crt::String input_message;
+            int input_count;
+            // Websockets
+            Aws::Crt::String input_signingRegion;
+            // Cognito
+            Aws::Crt::String input_cognitoIdentity;
+            // Custom auth
+            Aws::Crt::String input_customAuthUsername;
+            Aws::Crt::String input_customAuthorizerName;
+            Aws::Crt::String input_customAuthorizerSignature;
+            Aws::Crt::String input_customAuthPassword;
+            // Fleet provisioning
+            Aws::Crt::String input_templateName;
+            Aws::Crt::String input_templateParameters;
+            Aws::Crt::String input_csrPath;
+            // Services (Shadow, Jobs, Greengrass, etc)
+            Aws::Crt::String input_thingName;
+            Aws::Crt::String input_mode;
+            // Java Keystore
+            Aws::Crt::String input_keystore;
+            Aws::Crt::String input_keystorePassword;
+            Aws::Crt::String input_keystoreFormat;
+            Aws::Crt::String input_certificateAlias;
+            Aws::Crt::String input_certificatePassword;
+            // Shared Subscription
+            Aws::Crt::String input_groupIdentifier;
+            // PKCS#11
+            Aws::Crt::String input_pkcs11LibPath;
+            Aws::Crt::String input_pkcs11UserPin;
+            Aws::Crt::String input_pkcs11TokenLabel;
+            uint64_t input_pkcs11SlotId;
+            Aws::Crt::String input_pkcs11KeyLabel;
+            // X509
+            Aws::Crt::String input_x509Endpoint;
+            Aws::Crt::String input_x509Role;
+            Aws::Crt::String input_x509ThingName;
+            Aws::Crt::String input_x509Cert;
+            Aws::Crt::String input_x509Key;
+            Aws::Crt::String input_x509Ca;
+            // Device Defender
+            int input_reportTime;
+        };
+        static cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;
@@ -268,37 +326,38 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
             Aws::Iot::MqttClient *client,
             Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
-
-        /** Constants for commonly used/needed commands */
-        const Aws::Crt::String m_cmd_endpoint = "endpoint";
-        const Aws::Crt::String m_cmd_ca_file = "ca_file";
-        const Aws::Crt::String m_cmd_cert_file = "cert";
-        const Aws::Crt::String m_cmd_key_file = "key";
-        const Aws::Crt::String m_cmd_proxy_host = "proxy_host";
-        const Aws::Crt::String m_cmd_proxy_port = "proxy_port";
-        const Aws::Crt::String m_cmd_signing_region = "signing_region";
-        const Aws::Crt::String m_cmd_x509_endpoint = "x509_endpoint";
-        const Aws::Crt::String m_cmd_x509_role = "x509_role_alias";
-        const Aws::Crt::String m_cmd_x509_thing_name = "x509_thing_name";
-        const Aws::Crt::String m_cmd_x509_cert_file = "x509_cert";
-        const Aws::Crt::String m_cmd_x509_key_file = "x509_key";
-        const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
-        const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
-        const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
-        const Aws::Crt::String m_cmd_pkcs11_pin = "pin";
-        const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
-        const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
-        const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
-        const Aws::Crt::String m_cmd_message = "message";
-        const Aws::Crt::String m_cmd_topic = "topic";
-        const Aws::Crt::String m_cmd_port_override = "port_override";
-        const Aws::Crt::String m_cmd_help = "help";
-        const Aws::Crt::String m_cmd_custom_auth_username = "custom_auth_username";
-        const Aws::Crt::String m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
-        const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
-        const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
-        const Aws::Crt::String m_cmd_verbosity = "verbosity";
-        const Aws::Crt::String m_cmd_log_file = "log_file";
-        const Aws::Crt::String m_cmd_cognito_identity = "cognito_identity";
     };
+
+    /** Constants for commonly used/needed commands */
+    static const Aws::Crt::String m_cmd_endpoint = "endpoint";
+    static const Aws::Crt::String m_cmd_ca_file = "ca_file";
+    static const Aws::Crt::String m_cmd_cert_file = "cert";
+    static const Aws::Crt::String m_cmd_key_file = "key";
+    static const Aws::Crt::String m_cmd_proxy_host = "proxy_host";
+    static const Aws::Crt::String m_cmd_proxy_port = "proxy_port";
+    static const Aws::Crt::String m_cmd_signing_region = "signing_region";
+    static const Aws::Crt::String m_cmd_x509_endpoint = "x509_endpoint";
+    static const Aws::Crt::String m_cmd_x509_role = "x509_role_alias";
+    static const Aws::Crt::String m_cmd_x509_thing_name = "x509_thing_name";
+    static const Aws::Crt::String m_cmd_x509_cert_file = "x509_cert";
+    static const Aws::Crt::String m_cmd_x509_key_file = "x509_key";
+    static const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
+    static const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
+    static const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
+    static const Aws::Crt::String m_cmd_pkcs11_pin = "pin";
+    static const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
+    static const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
+    static const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
+    static const Aws::Crt::String m_cmd_message = "message";
+    static const Aws::Crt::String m_cmd_topic = "topic";
+    static const Aws::Crt::String m_cmd_port_override = "port_override";
+    static const Aws::Crt::String m_cmd_help = "help";
+    static const Aws::Crt::String m_cmd_custom_auth_username = "custom_auth_username";
+    static const Aws::Crt::String m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
+    static const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
+    static const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
+    static const Aws::Crt::String m_cmd_verbosity = "verbosity";
+    static const Aws::Crt::String m_cmd_log_file = "log_file";
+    static const Aws::Crt::String m_cmd_cognito_identity = "cognito_identity";
+
 } // namespace Utils
