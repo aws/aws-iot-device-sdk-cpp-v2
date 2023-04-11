@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData =
         Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
-    /*********************** Parse Arguments ***************************/
+    /************************ MQTT Builder Creation ****************************/
     Aws::Iot::MqttClient client;
     auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder::NewDefaultBuilder();
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);

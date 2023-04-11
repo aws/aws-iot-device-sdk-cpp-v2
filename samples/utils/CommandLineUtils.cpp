@@ -984,4 +984,49 @@ namespace Utils
         return returnData;
     }
 
+    cmdData parseSampleInputPKCS11Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("pkcs11-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_pkcs11_lib, "<path>", "Path to PKCS#11 library.");
+        cmdUtils.RegisterCommand(m_cmd_pkcs11_pin, "<str>", "User PIN for logging into PKCS#11 token.");
+        cmdUtils.RegisterCommand(m_cmd_pkcs11_token, "<str>", "Label of the PKCS#11 token to use (optional).");
+        cmdUtils.RegisterCommand(m_cmd_pkcs11_slot, "<int>", "Slot ID containing PKCS#11 token to use (optional).");
+        cmdUtils.RegisterCommand(m_cmd_pkcs11_key, "<str>", "Label of private key on the PKCS#11 token (optional).");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand(m_cmd_help))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_pkcs11LibPath = cmdUtils.GetCommandRequired(m_cmd_pkcs11_lib);
+        returnData.input_pkcs11UserPin = cmdUtils.GetCommandRequired(m_cmd_pkcs11_pin);
+        if (cmdUtils.HasCommand(m_cmd_pkcs11_token))
+        {
+            returnData.input_pkcs11TokenLabel = cmdUtils.GetCommand(m_cmd_pkcs11_token);
+        }
+        if (cmdUtils.HasCommand(m_cmd_pkcs11_slot))
+        {
+            returnData.input_pkcs11SlotId = std::stoull(cmdUtils.GetCommand(m_cmd_pkcs11_slot).c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_pkcs11_key))
+        {
+            returnData.input_pkcs11KeyLabel = cmdUtils.GetCommand(m_cmd_pkcs11_key);
+        }
+        return returnData;
+    }
+
 } // namespace Utils
