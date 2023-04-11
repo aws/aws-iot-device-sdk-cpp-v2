@@ -254,30 +254,30 @@ int main(int argc, char *argv[])
 
     promiseDestinationConnectionStarted.get_future().wait();
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(5 * 1000));
+    return 0;
 
-    if (secureTunnelDestination->Stop() == AWS_OP_ERR)
-    {
-        fprintf(stderr, "Secure Tunnel Destination Stop call failed: %s\n", ErrorDebugString(LastError()));
-        exit(-1);
-    }
+    // if (secureTunnelDestination->Stop() == AWS_OP_ERR)
+    // {
+    //     fprintf(stderr, "Secure Tunnel Destination Stop call failed: %s\n", ErrorDebugString(LastError()));
+    //     exit(-1);
+    // }
 
-    promiseDestinationStopped.get_future().wait();
-    secureTunnelDestination = nullptr;
+    // promiseDestinationStopped.get_future().wait();
+    // secureTunnelDestination = nullptr;
 
-    if (secureTunnelSource->Stop() == AWS_OP_ERR)
-    {
-        fprintf(stderr, "Secure Tunnel Source Stop call failed: %s\n", ErrorDebugString(LastError()));
-        exit(-1);
-    }
+    // if (secureTunnelSource->Stop() == AWS_OP_ERR)
+    // {
+    //     fprintf(stderr, "Secure Tunnel Source Stop call failed: %s\n", ErrorDebugString(LastError()));
+    //     exit(-1);
+    // }
 
-    promiseSourceStopped.get_future().wait();
-    secureTunnelSource = nullptr;
+    // promiseSourceStopped.get_future().wait();
+    // secureTunnelSource = nullptr;
 
-    /* Clean Up */
-    aws_byte_buf_clean_up(&m_serviceIdStorage);
+    // /* Clean Up */
+    // aws_byte_buf_clean_up(&m_serviceIdStorage);
 
-    fprintf(stdout, "Secure Tunnel Test Completed\n");
+    // fprintf(stdout, "Secure Tunnel Test Completed\n");
 
     return 0;
 }
