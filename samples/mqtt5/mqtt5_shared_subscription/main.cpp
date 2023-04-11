@@ -177,90 +177,41 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
-    /*********************** Setup Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("mqtt5_shared_subscription");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.AddCommonProxyCommands();
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
-    cmdUtils.RegisterCommand(
-        "group_identifier",
-        "<str>",
-        "The group identifier to use in the shared subscription (optional, default='cpp-sample')");
-    cmdUtils.RegisterCommand(
-        "is_ci", "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData =
+        Utils::parseSampleInputSharedSubscription(argc, argv, &apiHandle);
 
-    /*********************** Pull data from arguments ***************************/
-
-    String input_endpoint = cmdUtils.GetCommandRequired("endpoint");
-    String input_cert = cmdUtils.GetCommandRequired("cert");
-    String input_key = cmdUtils.GetCommandRequired("key");
-    String input_ca = cmdUtils.GetCommandOrDefault("ca_file", "");
-    String input_clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
-    uint32_t input_count = 10;
-    String input_topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String input_message = cmdUtils.GetCommandOrDefault("message", "Hello World! ");
-    String input_groupIdentifier = cmdUtils.GetCommandOrDefault("group_identifier", "cpp-sample");
-    bool input_isCI = cmdUtils.HasCommand("is_ci");
-
-    if (cmdUtils.HasCommand("count"))
-    {
-        int count = atoi(cmdUtils.GetCommand("count").c_str());
-        if (count > 0)
-        {
-            input_count = count;
-        }
-    }
-
-    // If this is CI, append a UUID to the topic
-    if (input_isCI)
-    {
-        input_topic = input_topic + Aws::Crt::UUID().ToString();
-    }
-
-    // Construct the shared topic
-    String input_sharedTopic = String("$share/") + input_groupIdentifier + String("/") + input_topic;
-
-    // Make sure the message count is even
-    if (input_count % 2 != 0)
-    {
-        fprintf(stdout, "'--count' is an odd number. '--count' must be even or zero for this sample.");
-        exit(-1);
-    }
+    String input_sharedTopic = String("$share/") + cmdData.input_groupIdentifier + String("/") + cmdData.input_topic;
 
     /*********************** Create the MQTT5 clients: one publisher and two subscribers ***************************/
 
     std::shared_ptr<sample_mqtt5_client> publisher = sample_mqtt5_client::create_mqtt5_client(
-        input_endpoint,
-        input_cert,
-        input_key,
-        input_ca,
-        input_clientId + String("1"),
-        input_count / 2,
+        cmdData.input_endpoint,
+        cmdData.input_cert,
+        cmdData.input_key,
+        cmdData.input_ca,
+        cmdData.input_clientId + String("1"),
+        cmdData.input_count / 2,
         String("Publisher"));
     std::shared_ptr<sample_mqtt5_client> subscriberOne = sample_mqtt5_client::create_mqtt5_client(
-        input_endpoint,
-        input_cert,
-        input_key,
-        input_ca,
-        input_clientId + String("2"),
-        input_count / 2,
+        cmdData.input_endpoint,
+        cmdData.input_cert,
+        cmdData.input_key,
+        cmdData.input_ca,
+        cmdData.input_clientId + String("2"),
+        cmdData.input_count / 2,
         String("Subscriber One"));
     std::shared_ptr<sample_mqtt5_client> subscriberTwo = sample_mqtt5_client::create_mqtt5_client(
-        input_endpoint,
-        input_cert,
-        input_key,
-        input_ca,
-        input_clientId + String("3"),
-        input_count / 2,
+        cmdData.input_endpoint,
+        cmdData.input_cert,
+        cmdData.input_key,
+        cmdData.input_ca,
+        cmdData.input_clientId + String("3"),
+        cmdData.input_count / 2,
         String("Subscriber Two"));
 
     if (publisher == nullptr || subscriberOne == nullptr || subscriberTwo == nullptr)
@@ -351,7 +302,7 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (subscriberOne->sharedSubscriptionSupportNotAvailable == true)
         {
-            if (input_isCI == true)
+            if (cmdData.input_isCI == true)
             {
                 // TMP: If this fails subscribing in CI, just exit the sample gracefully
                 subscriberOne->PrintMessageAndExit("Shared Subscriptions not supported", 0);
@@ -376,7 +327,7 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (subscriberTwo->sharedSubscriptionSupportNotAvailable == true)
         {
-            if (input_isCI == true)
+            if (cmdData.input_isCI == true)
             {
                 // TMP: If this fails subscribing in CI, just exit the sample gracefully
                 subscriberTwo->PrintMessageAndExit("Shared Subscriptions not supported", 0);
@@ -425,13 +376,13 @@ int main(int argc, char *argv[])
     };
 
     uint32_t publishedCount = 0;
-    while (publishedCount < input_count)
+    while (publishedCount < cmdData.input_count)
     {
         // Add \" to 'JSON-ify' the message
-        String message = "\"" + input_message + std::to_string(publishedCount + 1).c_str() + "\"";
+        String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
         ByteCursor payload = ByteCursorFromString(message);
         std::shared_ptr<Mqtt5::PublishPacket> publish =
-            std::make_shared<Mqtt5::PublishPacket>(input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+            std::make_shared<Mqtt5::PublishPacket>(cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         if (publisher->client->Publish(publish, onPublishComplete))
         {
             ++publishedCount;

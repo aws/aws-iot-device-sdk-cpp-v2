@@ -888,6 +888,7 @@ namespace Utils
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonProxyCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
         cmdUtils.AddLoggingCommands();
         const char **const_argv = (const char **)argv;
         cmdUtils.SendArguments(const_argv, const_argv + argc);
@@ -913,6 +914,10 @@ namespace Utils
         {
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
         }
 
         return returnData;
@@ -1107,7 +1112,7 @@ namespace Utils
 
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
-        Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+        CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("x509-credentials-provider-connect");
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonX509Commands();
@@ -1137,6 +1142,78 @@ namespace Utils
         {
             returnData.input_x509Ca = cmdUtils.GetCommandRequired(m_cmd_x509_ca_file);
         }
+
+        return returnData;
+    }
+
+    cmdData parseSampleInputPubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle, Aws::Crt::String programName)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName(programName);
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.AddCommonTopicMessageCommands();
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.RegisterCommand(m_cmd_count, "<int>", "The number of messages to send (optional, default='10')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World ");
+        returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "10").c_str());
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
+        }
+
+        return returnData;
+    }
+
+    cmdData parseSampleInputSharedSubscription(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("mqtt5-shared-subscription");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonTopicMessageCommands();
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_count, "<int>", "The number of messages to send (optional, default='10')");
+        cmdUtils.RegisterCommand(
+            m_cmd_group_identifier,
+            "<str>",
+            "The group identifier to use in the shared subscription (optional, default='cpp-sample')");
+        cmdUtils.RegisterCommand(m_cmd_is_ci, "<str>", "If present the sample will run in CI mode.");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World ");
+        returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "10").c_str());
+        returnData.input_groupIdentifier = cmdUtils.GetCommandOrDefault(m_cmd_group_identifier, "cpp-sample");
+        returnData.input_isCI = cmdUtils.HasCommand(m_cmd_is_ci);
 
         return returnData;
     }

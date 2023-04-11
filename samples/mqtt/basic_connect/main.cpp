@@ -43,6 +43,10 @@ int main(int argc, char *argv[])
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
     }
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    }
     /* Create the MQTT connection from the builder */
     auto clientConfig = clientConfigBuilder.Build();
     if (!clientConfig)

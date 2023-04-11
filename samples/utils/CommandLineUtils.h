@@ -279,6 +279,7 @@ namespace Utils
         Aws::Crt::String input_ca;
         Aws::Crt::String input_clientId;
         int input_port;
+        bool input_isCI;
         // Proxy
         Aws::Crt::String input_proxyHost;
         int input_proxyPort;
@@ -341,6 +342,8 @@ namespace Utils
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputPubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle, Aws::Crt::String programName);
+    cmdData parseSampleInputSharedSubscription(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
 
     /** Constants for commonly used/needed commands */
     static const Aws::Crt::String m_cmd_endpoint = "endpoint";
@@ -382,5 +385,7 @@ namespace Utils
     static const Aws::Crt::String m_cmd_template_parameters = "template_parameters";
     static const Aws::Crt::String m_cmd_template_csr = "csr";
     static const Aws::Crt::String m_cmd_job_id = "job_id";
+    static const Aws::Crt::String m_cmd_group_identifier = "group_identifier";
+    static const Aws::Crt::String m_cmd_is_ci = "is_ci";
 
 } // namespace Utils
