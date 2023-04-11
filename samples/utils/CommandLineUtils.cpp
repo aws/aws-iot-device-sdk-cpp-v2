@@ -1014,6 +1014,9 @@ namespace Utils
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_pkcs11LibPath = cmdUtils.GetCommandRequired(m_cmd_pkcs11_lib);
         returnData.input_pkcs11UserPin = cmdUtils.GetCommandRequired(m_cmd_pkcs11_pin);
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
         if (cmdUtils.HasCommand(m_cmd_pkcs11_token))
         {
             returnData.input_pkcs11TokenLabel = cmdUtils.GetCommand(m_cmd_pkcs11_token);
@@ -1026,6 +1029,115 @@ namespace Utils
         {
             returnData.input_pkcs11KeyLabel = cmdUtils.GetCommand(m_cmd_pkcs11_key);
         }
+        return returnData;
+    }
+
+    cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("websocket-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand(m_cmd_help))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
+        }
+        return returnData;
+    }
+
+    cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("windows-cert-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(
+            m_cmd_cert_file,
+            "<str>",
+            "Your client certificate in the Windows certificate store. e.g. "
+            "'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*').");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand(m_cmd_help))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        return returnData;
+    }
+
+    cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
+        cmdUtils.RegisterProgramName("x509-credentials-provider-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonX509Commands();
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "Used for websocket signer");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        cmdData returnData = cmdData();
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+
+        returnData.input_x509Endpoint = cmdUtils.GetCommandRequired(m_cmd_x509_endpoint);
+        returnData.input_x509Role = cmdUtils.GetCommandRequired(m_cmd_x509_role);
+        returnData.input_x509ThingName = cmdUtils.GetCommandRequired(m_cmd_x509_thing_name);
+        returnData.input_x509Cert = cmdUtils.GetCommandRequired(m_cmd_x509_cert_file);
+        returnData.input_x509Key = cmdUtils.GetCommandRequired(m_cmd_x509_key_file);
+        if (cmdUtils.HasCommand(m_cmd_x509_ca_file))
+        {
+            returnData.input_x509Ca = cmdUtils.GetCommandRequired(m_cmd_x509_ca_file);
+        }
+
         return returnData;
     }
 
