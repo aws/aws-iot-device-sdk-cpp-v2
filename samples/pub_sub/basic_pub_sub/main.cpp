@@ -33,10 +33,8 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "basic-pubsub");
+    Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "basic-pubsub");
     String messagePayload = "\"" + cmdData.input_message + "\"";
-
 
     /************************ MQTT Builder Creation ****************************/
     /* Make the MQTT builder */
@@ -196,7 +194,8 @@ int main(int argc, char *argv[])
             ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
             auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
-            connection->Publish(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+            connection->Publish(
+                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
             ++publishedCount;
 
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -211,8 +210,9 @@ int main(int argc, char *argv[])
          * Unsubscribe from the topic.
          */
         std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(
-            cmdData.input_topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
+        connection->Unsubscribe(cmdData.input_topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
+            unsubscribeFinishedPromise.set_value();
+        });
         unsubscribeFinishedPromise.get_future().wait();
 
         /* Disconnect */

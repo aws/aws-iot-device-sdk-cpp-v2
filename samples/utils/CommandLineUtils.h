@@ -175,88 +175,6 @@ namespace Utils
          */
         void StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle);
 
-        /**
-         * A helper function that builds and returns a PKCS11 direct MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
-         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example setup.
-         * @param client The client to use to make the connection.
-         * @return The created direct PKCS11 MQTT connection.
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildPKCS11MQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket x509 MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonX509Commands function. See mqtt/x509_connect for example setup.
-         * @param client The client to use to make the connection.
-         * @return The created websocket x509 MQTT connection.
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketX509MQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from the "signing_region" command.
-         * See mqtt/websocket_connect for example setup.
-         * @param client The client to use to make the connection
-         * @return The created websocket MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a direct MQTT connection using a key and certificate.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonMQTTCommands function, "cert" command, and "key" command. See mqtt/basic_connect for example.
-         * @return The created direct MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a direct MQTT connection that will connect through a
-         * CustomAuthorizer.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
-         * @return The created direct MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnectionWithCustomAuthorizer(
-            Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket MQTT connection that will connect and
-         * authenticate via Cognito.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
-         * @return The created websocket MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnectionWithCognito(
-            Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a MQTT connection automatically based
-         * on the commands passed into CommandLineUtils. Will make a direct MQTT connection, PKCS11 MQTT connection,
-         * a websocket connection, or a x509 connection via websockets.
-         * @return The automatically created connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildMQTTConnection();
-
-        /**
-         * A helper function that uses a MQTT connection to connect, and then disconnect from AWS servers. This is used
-         * in all the connect samples to show how to make a connection.
-         * @param connection The MqttConnection to use when making a connection
-         * @param clientId The client ID to send with the connection
-         */
-        void SampleConnectAndDisconnect(
-            std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
-            Aws::Crt::String clientId);
-
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;
@@ -347,6 +265,7 @@ namespace Utils
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputGreengrassIPC(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputFleetProvisioning(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputJobs(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputBasicConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
@@ -356,7 +275,11 @@ namespace Utils
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
-    cmdData parseSampleInputPubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle, Aws::Crt::String programName);
+    cmdData parseSampleInputPubSub(
+        int argc,
+        char *argv[],
+        Aws::Crt::ApiHandle *api_handle,
+        Aws::Crt::String programName);
     cmdData parseSampleInputSharedSubscription(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputCyclePubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);

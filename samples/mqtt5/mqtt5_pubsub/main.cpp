@@ -32,8 +32,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "mqtt5-pubsub");
+    Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "mqtt5-pubsub");
 
     /********************** Setup the Mqtt5 Client ******************/
 
@@ -213,8 +212,8 @@ int main(int argc, char *argv[])
                     String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
                     ByteCursor payload = ByteCursorFromString(message);
 
-                    std::shared_ptr<Mqtt5::PublishPacket> publish =
-                        std::make_shared<Mqtt5::PublishPacket>(cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+                    std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
+                        cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
                     if (client->Publish(publish, onPublishComplete))
                     {
                         ++publishedCount;

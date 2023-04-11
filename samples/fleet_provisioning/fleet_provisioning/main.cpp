@@ -69,10 +69,10 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
 
-    if (cmdData.input_csrPath != "") {
+    if (cmdData.input_csrPath != "")
+    {
         csrFile = getFileData(cmdData.input_csrPath.c_str()).c_str();
     }
 

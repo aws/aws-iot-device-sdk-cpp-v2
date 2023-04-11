@@ -182,8 +182,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputSharedSubscription(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputSharedSubscription(argc, argv, &apiHandle);
 
     String input_sharedTopic = String("$share/") + cmdData.input_groupIdentifier + String("/") + cmdData.input_topic;
 
@@ -381,8 +380,8 @@ int main(int argc, char *argv[])
         // Add \" to 'JSON-ify' the message
         String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
         ByteCursor payload = ByteCursorFromString(message);
-        std::shared_ptr<Mqtt5::PublishPacket> publish =
-            std::make_shared<Mqtt5::PublishPacket>(cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+        std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
+            cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         if (publisher->client->Publish(publish, onPublishComplete))
         {
             ++publishedCount;

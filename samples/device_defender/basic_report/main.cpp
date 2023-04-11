@@ -71,8 +71,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
     /************************ MQTT Builder Creation ****************************/
     /* Make the MQTT builder */
@@ -192,7 +191,8 @@ int main(int argc, char *argv[])
             *data = true;
         };
 
-        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, cmdData.input_thingName);
+        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(
+            allocator, connection, *eventLoopGroup, cmdData.input_thingName);
         taskBuilder.WithTaskPeriodSeconds((uint32_t)cmdData.input_reportTime)
             .WithNetworkConnectionSamplePeriodSeconds((uint32_t)cmdData.input_reportTime)
             .WithTaskCancelledHandler(onCancelled)

@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
 
     /************************ MQTT Builder Creation ****************************/
     Aws::Iot::MqttClient client;
@@ -136,8 +135,7 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Connecting...\n");
     if (!connection->Connect(cmdData.input_clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
-        fprintf(
-            stderr, "MQTT Connection failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
+        fprintf(stderr, "MQTT Connection failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 

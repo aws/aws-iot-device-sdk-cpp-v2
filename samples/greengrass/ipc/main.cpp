@@ -17,23 +17,18 @@ static std::atomic_bool s_publishReceived(false);
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
+    /************************ Setup ****************************/
     /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("greengrass-ipc");
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputGreengrassIPC(argc, argv, &apiHandle);
 
     /**
      * Create the default ClientBootstrap, which will create the default
@@ -119,13 +114,13 @@ int main(int argc, char *argv[])
     auto subscribeOperation = client.NewSubscribeToIoTCore(streamHandler);
     SubscribeToIoTCoreRequest subscribeRequest;
     subscribeRequest.SetQos(QOS_AT_LEAST_ONCE);
-    subscribeRequest.SetTopicName(topic);
+    subscribeRequest.SetTopicName(cmdData.input_topic);
 
-    fprintf(stdout, "Attempting to subscribe to %s topic\n", topic.c_str());
+    fprintf(stdout, "Attempting to subscribe to %s topic\n", cmdData.input_topic.c_str());
     auto requestStatus = subscribeOperation->Activate(subscribeRequest).get();
     if (!requestStatus)
     {
-        fprintf(stderr, "Failed to send subscription request to %s topic\n", topic.c_str());
+        fprintf(stderr, "Failed to send subscription request to %s topic\n", cmdData.input_topic.c_str());
         exit(-1);
     }
 
@@ -133,7 +128,7 @@ int main(int argc, char *argv[])
     auto subscribeResult = subscribeResultFuture.get();
     if (subscribeResult)
     {
-        fprintf(stdout, "Successfully subscribed to %s topic\n", topic.c_str());
+        fprintf(stdout, "Successfully subscribed to %s topic\n", cmdData.input_topic.c_str());
     }
     else
     {
@@ -161,19 +156,19 @@ int main(int argc, char *argv[])
     /* Publish to the same topic that is currently subscribed to. */
     auto publishOperation = client.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
-    publishRequest.SetTopicName(topic);
-    Vector<uint8_t> payload(message.begin(), message.end());
+    publishRequest.SetTopicName(cmdData.input_topic);
+    Vector<uint8_t> payload(cmdData.input_message.begin(), cmdData.input_message.end());
     publishRequest.SetPayload(payload);
     publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
-    fprintf(stdout, "Attempting to publish to %s topic\n", topic.c_str());
+    fprintf(stdout, "Attempting to publish to %s topic\n", cmdData.input_topic.c_str());
     requestStatus = publishOperation->Activate(publishRequest).get();
     if (!requestStatus)
     {
         fprintf(
             stderr,
             "Failed to publish to %s topic with error %s\n",
-            topic.c_str(),
+            cmdData.input_topic.c_str(),
             requestStatus.StatusToString().c_str());
         exit(-1);
     }
@@ -183,7 +178,7 @@ int main(int argc, char *argv[])
     auto publishResult = publishResultFuture.get();
     if (publishResult)
     {
-        fprintf(stdout, "Successfully published to %s topic\n", topic.c_str());
+        fprintf(stdout, "Successfully published to %s topic\n", cmdData.input_topic.c_str());
         auto *response = publishResult.GetOperationResponse();
         (void)response;
     }

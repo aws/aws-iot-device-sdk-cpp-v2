@@ -32,8 +32,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputGreengrassDiscovery(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputGreengrassDiscovery(argc, argv, &apiHandle);
 
     /*
      * We're using Mutual TLS for MQTT, so we need to load our client certificates
@@ -103,132 +102,135 @@ int main(int argc, char *argv[])
     std::promise<void> connectionFinishedPromise;
     std::promise<void> shutdownCompletedPromise;
 
-    discoveryClient->Discover(cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
-        if (!error && response->GGGroups)
-        {
-            auto groupToUse = std::move(response->GGGroups->at(0));
-
-            auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
-
-            fprintf(
-                stdout,
-                "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
-                groupToUse.GGGroupId->c_str(),
-                groupToUse.Cores->at(0).ThingArn->c_str(),
-                connectivityInfo.HostAddress->c_str(),
-                (int)connectivityInfo.Port.value());
-
-            connection = mqttClient.NewConnection(
-                Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str())
-                    .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
-                    .WithPortOverride(connectivityInfo.Port.value())
-                    .WithEndpoint(connectivityInfo.HostAddress.value())
-                    .Build());
-
-            if (!connection)
+    discoveryClient->Discover(
+        cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+            if (!error && response->GGGroups)
             {
-                fprintf(stderr, "Connection setup failed with error %s", ErrorDebugString(mqttClient.LastError()));
-                exit(-1);
-            }
+                auto groupToUse = std::move(response->GGGroups->at(0));
 
-            connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
-                                                    Mqtt::MqttConnection &conn,
-                                                    int errorCode,
-                                                    Mqtt::ReturnCode /*returnCode*/,
-                                                    bool /*sessionPresent*/) {
-                if (!errorCode)
+                auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
+
+                fprintf(
+                    stdout,
+                    "Connecting to group %s with thing arn %s, using endpoint %s:%d\n",
+                    groupToUse.GGGroupId->c_str(),
+                    groupToUse.Cores->at(0).ThingArn->c_str(),
+                    connectivityInfo.HostAddress->c_str(),
+                    (int)connectivityInfo.Port.value());
+
+                connection = mqttClient.NewConnection(
+                    Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str())
+                        .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
+                        .WithPortOverride(connectivityInfo.Port.value())
+                        .WithEndpoint(connectivityInfo.HostAddress.value())
+                        .Build());
+
+                if (!connection)
                 {
-                    fprintf(
-                        stdout,
-                        "Connected to group %s, using connection to %s:%d\n",
-                        groupToUse.GGGroupId->c_str(),
-                        connectivityInfo.HostAddress->c_str(),
-                        (int)connectivityInfo.Port.value());
+                    fprintf(stderr, "Connection setup failed with error %s", ErrorDebugString(mqttClient.LastError()));
+                    exit(-1);
+                }
 
-                    if (cmdData.input_mode == "both" || cmdData.input_mode == "subscribe")
+                connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
+                                                        Mqtt::MqttConnection &conn,
+                                                        int errorCode,
+                                                        Mqtt::ReturnCode /*returnCode*/,
+                                                        bool /*sessionPresent*/) {
+                    if (!errorCode)
                     {
-                        auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
-                                             const String &receivedOnTopic,
-                                             const ByteBuf &payload,
-                                             bool /*dup*/,
-                                             Mqtt::QOS /*qos*/,
-                                             bool /*retain*/) {
-                            fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
-                            fprintf(stdout, "Message: \n");
-                            fwrite(payload.buffer, 1, payload.len, stdout);
-                            fprintf(stdout, "\n");
-                        };
+                        fprintf(
+                            stdout,
+                            "Connected to group %s, using connection to %s:%d\n",
+                            groupToUse.GGGroupId->c_str(),
+                            connectivityInfo.HostAddress->c_str(),
+                            (int)connectivityInfo.Port.value());
 
-                        auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
-                                            uint16_t /*packetId*/,
-                                            const String &topic,
-                                            Mqtt::QOS /*qos*/,
-                                            int errorCode) {
-                            if (!errorCode)
-                            {
-                                fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
-                                connectionFinishedPromise.set_value();
-                            }
-                            else
-                            {
-                                fprintf(
-                                    stderr,
-                                    "Failed to subscribe to %s with error %s. Exiting\n",
-                                    topic.c_str(),
-                                    aws_error_debug_str(errorCode));
-                                exit(-1);
-                            }
-                        };
+                        if (cmdData.input_mode == "both" || cmdData.input_mode == "subscribe")
+                        {
+                            auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
+                                                 const String &receivedOnTopic,
+                                                 const ByteBuf &payload,
+                                                 bool /*dup*/,
+                                                 Mqtt::QOS /*qos*/,
+                                                 bool /*retain*/) {
+                                fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
+                                fprintf(stdout, "Message: \n");
+                                fwrite(payload.buffer, 1, payload.len, stdout);
+                                fprintf(stdout, "\n");
+                            };
 
-                        conn.Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+                            auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
+                                                uint16_t /*packetId*/,
+                                                const String &topic,
+                                                Mqtt::QOS /*qos*/,
+                                                int errorCode) {
+                                if (!errorCode)
+                                {
+                                    fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
+                                    connectionFinishedPromise.set_value();
+                                }
+                                else
+                                {
+                                    fprintf(
+                                        stderr,
+                                        "Failed to subscribe to %s with error %s. Exiting\n",
+                                        topic.c_str(),
+                                        aws_error_debug_str(errorCode));
+                                    exit(-1);
+                                }
+                            };
+
+                            conn.Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+                        }
+                        else
+                        {
+                            connectionFinishedPromise.set_value();
+                        }
                     }
                     else
                     {
-                        connectionFinishedPromise.set_value();
+                        fprintf(
+                            stderr,
+                            "Error connecting to group %s, using connection to %s:%d\n",
+                            groupToUse.GGGroupId->c_str(),
+                            connectivityInfo.HostAddress->c_str(),
+                            (int)connectivityInfo.Port.value());
+                        fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
+                        exit(-1);
                     }
-                }
-                else
+                };
+
+                connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode) {
+                    fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
+                };
+
+                connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
+                                                     Mqtt::ReturnCode /*connectCode*/,
+                                                     bool /*sessionPresent*/) {
+                    fprintf(stdout, "Connection resumed\n");
+                };
+
+                connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
+                    fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
+                    shutdownCompletedPromise.set_value();
+                };
+
+                if (!connection->Connect(cmdData.input_thingName.c_str(), false))
                 {
-                    fprintf(
-                        stderr,
-                        "Error connecting to group %s, using connection to %s:%d\n",
-                        groupToUse.GGGroupId->c_str(),
-                        connectivityInfo.HostAddress->c_str(),
-                        (int)connectivityInfo.Port.value());
-                    fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
+                    fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
                     exit(-1);
                 }
-            };
-
-            connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode) {
-                fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
-            };
-
-            connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
-                                                 Mqtt::ReturnCode /*connectCode*/,
-                                                 bool /*sessionPresent*/) { fprintf(stdout, "Connection resumed\n"); };
-
-            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
-                fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
-                shutdownCompletedPromise.set_value();
-            };
-
-            if (!connection->Connect(cmdData.input_thingName.c_str(), false))
+            }
+            else
             {
-                fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
+                fprintf(
+                    stderr,
+                    "Discover failed with error: %s, and http response code %d\n",
+                    aws_error_debug_str(error),
+                    httpResponseCode);
                 exit(-1);
             }
-        }
-        else
-        {
-            fprintf(
-                stderr,
-                "Discover failed with error: %s, and http response code %d\n",
-                aws_error_debug_str(error),
-                httpResponseCode);
-            exit(-1);
-        }
-    });
+        });
     {
         connectionFinishedPromise.get_future().wait();
     }
@@ -286,7 +288,8 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
             };
-            connection->Publish(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
+            connection->Publish(
+                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
         }
     }
 

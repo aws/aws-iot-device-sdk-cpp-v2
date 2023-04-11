@@ -213,8 +213,7 @@ int main(int argc, char *argv[])
     uint16_t messageCount(5);
 
     /*********************** Parse Arguments ***************************/
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
     setupCommandLineValues(
         &cmdData,
         &endpoint,

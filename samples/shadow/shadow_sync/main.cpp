@@ -100,9 +100,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputShadow(argc, argv, &apiHandle);
-
+    Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
     /************************ MQTT Builder Creation ****************************/
     /* Make the MQTT builder */
@@ -249,7 +247,8 @@ int main(int argc, char *argv[])
                             stdout,
                             "Delta reports that %s was deleted. Resetting defaults...\n",
                             cmdData.input_shadowProperty.c_str());
-                        s_changeShadowValue(shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, SHADOW_VALUE_DEFAULT);
+                        s_changeShadowValue(
+                            shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, SHADOW_VALUE_DEFAULT);
                     }
                     else
                     {
@@ -259,7 +258,10 @@ int main(int argc, char *argv[])
                             cmdData.input_shadowProperty.c_str(),
                             event->State->View().GetString(cmdData.input_shadowProperty).c_str());
                         s_changeShadowValue(
-                            shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, event->State->View().GetString(cmdData.input_shadowProperty));
+                            shadowClient,
+                            cmdData.input_thingName,
+                            cmdData.input_shadowProperty,
+                            event->State->View().GetString(cmdData.input_shadowProperty));
                     }
 
                     if (event->ClientToken)
@@ -399,7 +401,8 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    fprintf(stdout, "Shadow currently does not contain \"%s\".\n", cmdData.input_shadowProperty.c_str());
+                    fprintf(
+                        stdout, "Shadow currently does not contain \"%s\".\n", cmdData.input_shadowProperty.c_str());
                     currentShadowValue = "";
                 }
                 gotInitialShadowPromise.set_value();

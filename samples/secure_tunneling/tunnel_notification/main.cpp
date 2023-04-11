@@ -42,8 +42,7 @@ int main(int argc, char *argv[])
      * use in this sample. This handles all of the command line parsing, validating, etc.
      * See the Utils/CommandLineUtils for more information.
      */
-    Utils::cmdData cmdData =
-        Utils::parseSampleInputSecureTunnelNotification(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnelNotification(argc, argv, &apiHandle);
 
     /************************ MQTT Builder Creation ****************************/
     /* Make the MQTT builder */
