@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
 
     // fprintf(stdout, "Closing Connection\n");
     // /* Set the Secure Tunnel Client to desire a stopped state */
-    if (secureTunnel->Stop() == AWS_OP_ERR)
+    if (secureTunnelDestination->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
@@ -204,10 +204,8 @@ int main(int argc, char *argv[])
     if (clientStoppedPromise.get_future().get())
     {
         fprintf(stdout, "Destinatino Secure Tunnel Stopped\n");
-        secureTunnel = nullptr;
+        secureTunnelDestination = nullptr;
     }
-
-    secureTunnelDestination = nullptr;
 
     /* Clean Up */
     aws_byte_buf_clean_up(&m_serviceIdStorage);
