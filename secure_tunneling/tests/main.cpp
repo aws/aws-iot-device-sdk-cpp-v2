@@ -9,6 +9,7 @@
 #include <aws/crt/http/HttpProxyStrategy.h>
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
+#include <thread>
 
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
@@ -54,7 +55,6 @@ int main(int argc, char *argv[])
     String accessToken;
     String destinationToken;
     String sourceToken;
-    aws_secure_tunneling_local_proxy_mode localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
 
@@ -72,10 +72,8 @@ int main(int argc, char *argv[])
     }
 
     /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
-    SecureTunnelBuilder builder =
-        SecureTunnelBuilder(allocator, destinationToken.c_str(), localProxyMode, endpoint.c_str());
-
-    // builder.WithClientToken(clientToket.c_str());
+    SecureTunnelBuilder builder = SecureTunnelBuilder(
+        allocator, destinationToken.c_str(), AWS_SECURE_TUNNELING_DESTINATION_MODE, endpoint.c_str());
 
     builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
         {
@@ -172,7 +170,7 @@ int main(int argc, char *argv[])
     });
 
     /* Create Secure Tunnel using the options set with the builder */
-    std::shared_ptr<SecureTunnel> secureTunnel = builder.Build();
+    std::shared_ptr<SecureTunnel> secureTunnelDestination = builder.Build();
 
     if (!secureTunnel)
     {
@@ -180,18 +178,18 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    fprintf(stdout, "Secure Tunnel Created\n");
+    fprintf(stdout, "Destination Secure Tunnel Created\n");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
 
     /* Set the Secure Tunnel Client to desire a connected state */
-    // if (secureTunnel->Start())
-    // {
-    //     fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
-    //     exit(-1);
-    // }
+    if (secureTunnelDestination->Start())
+    {
+        fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
 
-    // std::this_thread::sleep_for(3000ms);
+    std::this_thread::sleep_for(std::chrono::milliseconds(3 * 1000));
 
     // fprintf(stdout, "Closing Connection\n");
     // /* Set the Secure Tunnel Client to desire a stopped state */
