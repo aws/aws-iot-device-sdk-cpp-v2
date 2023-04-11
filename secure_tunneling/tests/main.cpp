@@ -24,8 +24,6 @@ void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *va
 {
     aws_string *awsStringToSet = NULL;
     aws_get_environment_value(allocator, variable_name, &awsStringToSet);
-    // Steve TODO debug
-    // awsStringToSet = aws_string_new_from_c_str(allocator, "test string");
     stringToSet = awsStringToSet == nullptr ? "" : aws_string_c_str(awsStringToSet);
     aws_string_destroy(awsStringToSet);
 }
@@ -36,7 +34,7 @@ int main(int argc, char *argv[])
     struct aws_allocator *allocator = aws_default_allocator();
     ApiHandle apiHandle;
     // Logging
-    // apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     aws_iotdevice_library_init(allocator);
 
@@ -153,13 +151,13 @@ int main(int argc, char *argv[])
             aws_byte_buf_init_copy_from_cursor(
                 &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
             m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
-            secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
+            secureTunnel->SendStreamStart(m_serviceId.value(), connectionId);
             fprintf(stdout, "Stream Start sent from Source Client.\n");
         }
         else
         {
-            fprintf(stdout, "Sending Stream Start request\n");
-            secureTunnel->SendStreamStart();
+            fprintf(stdout, "Secure Tunnel should have service ids set for proper testing\n");
+            exit(-1);
         }
 
         promiseSourceConnected.set_value();
