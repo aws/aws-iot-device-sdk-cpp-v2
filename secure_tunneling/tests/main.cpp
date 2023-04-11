@@ -45,10 +45,12 @@ int main(int argc, char *argv[])
     AWS_ZERO_STRUCT(m_serviceIdStorage);
     Aws::Crt::Optional<Aws::Crt::ByteCursor> m_serviceId;
 
-    std::promise<bool> promiseDestinationConnected;
-    std::promise<bool> promiseSourceConnected;
-    std::promise<bool> promiseDestinationStopped;
-    std::promise<bool> promiseSourceStopped;
+    std::promise<void> promiseDestinationConnected;
+    std::promise<void> promiseSourceConnected;
+    std::promise<void> promiseDestinationStreamStarted;
+    std::promise<void> promiseDestinationConnectionStarted;
+    std::promise<void> promiseDestinationStopped;
+    std::promise<void> promiseSourceStopped;
 
     String endpoint;
     String accessToken;
@@ -56,6 +58,7 @@ int main(int argc, char *argv[])
     String sourceToken;
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
+    uint32_t connectionId2 = 2;
 
     setEnvVariable(allocator, SECTUN_DESTINATION_TOKEN, destinationToken);
     setEnvVariable(allocator, SECTUN_SOURCE_TOKEN, sourceToken);
@@ -131,12 +134,15 @@ int main(int argc, char *argv[])
         [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
             (void)secureTunnel;
             (void)eventData;
-            promiseDestinationConnected.set_value(true);
+            fprintf(stdout, "Destination Client Connection Success\n");
+            promiseDestinationConnected.set_value();
         });
 
     builderSource.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         (void)secureTunnel;
         (void)eventData;
+
+        fprintf(stdout, "Source Client Connection Success\n");
 
         /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
         if (eventData.connectionData->getServiceId1().has_value())
@@ -156,7 +162,7 @@ int main(int argc, char *argv[])
             secureTunnel->SendStreamStart();
         }
 
-        promiseSourceConnected.set_value(true);
+        promiseSourceConnected.set_value();
     });
 
     builderDestination.WithOnStreamStarted(
@@ -165,11 +171,13 @@ int main(int argc, char *argv[])
             (void)eventData;
             if (!errorCode)
             {
-                fprintf(stdout, "Stream Started on Destination Client.\n");
+                fprintf(stdout, "Destination Client Stream Started with Source Client\n");
+                promiseDestinationStreamStarted.set_value();
             }
             else
             {
                 fprintf(stdout, "Stream Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                exit(-1);
             }
         });
 
@@ -181,10 +189,12 @@ int main(int argc, char *argv[])
         if (!errorCode)
         {
             fprintf(stdout, "Connection Started on Destination Client.\n");
+            promiseDestinationConnectionStarted.set_value();
         }
         else
         {
             fprintf(stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+            exit(-1);
         }
     });
 
@@ -195,13 +205,13 @@ int main(int argc, char *argv[])
     builderDestination.WithOnStopped([&](SecureTunnel *secureTunnel) {
         (void)secureTunnel;
         fprintf(stdout, "Destination entered Stopped State\n");
-        promiseDestinationStopped.set_value(true);
+        promiseDestinationStopped.set_value();
     });
 
     builderSource.WithOnStopped([&](SecureTunnel *secureTunnel) {
         (void)secureTunnel;
         fprintf(stdout, "Source has entered Stopped State\n");
-        promiseSourceStopped.set_value(true);
+        promiseSourceStopped.set_value();
     });
 
     /* Create Secure Tunnel using the options set with the builder */
@@ -230,10 +240,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    if (promiseDestinationConnected.get_future().get())
-    {
-        fprintf(stdout, "Destination sucessfully connected\n");
-    }
+    promiseDestinationConnected.get_future().wait();
 
     if (secureTunnelSource->Start())
     {
@@ -241,10 +248,13 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    if (promiseSourceConnected.get_future().get())
-    {
-        fprintf(stdout, "Source sucessfully connected\n");
-    }
+    promiseSourceConnected.get_future().wait();
+
+    promiseDestinationStreamStarted.get_future().wait();
+
+    secureTunnelSource->SendConnectionStart(m_serviceId.value(), connectionId2);
+
+    promiseDestinationConnectionStarted.get_future().wait();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(5 * 1000));
 
@@ -254,12 +264,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
-    if (promiseDestinationStopped.get_future().get())
-    {
-        fprintf(stdout, "Destination Stopped\n");
-        secureTunnelDestination = nullptr;
-    }
+    promiseDestinationStopped.get_future().wait();
+    secureTunnelDestination = nullptr;
 
     if (secureTunnelSource->Stop() == AWS_OP_ERR)
     {
@@ -267,12 +273,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
-    if (promiseSourceStopped.get_future().get())
-    {
-        fprintf(stdout, "Source Stopped\n");
-        secureTunnelSource = nullptr;
-    }
+    promiseSourceStopped.get_future().wait();
+    secureTunnelSource = nullptr;
 
     /* Clean Up */
     aws_byte_buf_clean_up(&m_serviceIdStorage);
