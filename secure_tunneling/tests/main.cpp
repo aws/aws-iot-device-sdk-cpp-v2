@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::this_thread::sleep_for(3000ms);
+    // std::this_thread::sleep_for(3000ms);
 
     fprintf(stdout, "Closing Connection\n");
     /* Set the Secure Tunnel Client to desire a stopped state */
