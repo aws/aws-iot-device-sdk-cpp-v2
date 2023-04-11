@@ -15,7 +15,7 @@
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
 * [Jobs](./jobs/describe_job_execution/README.md)
-* [Fleet provisioning](./identity/fleet_provisioning/README.md)
+* [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)
 * [Device Defender](./device_defender/basic_report/README.md)
