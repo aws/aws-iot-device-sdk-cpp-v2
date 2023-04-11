@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     String destinationToken;
     String sourceToken;
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
-    uint32_t connectionId = 1;
+    // uint32_t connectionId = 1;
 
     setEnvVariable(allocator, SECTUN_DESTINATION_TOKEN, destinationToken);
     setEnvVariable(allocator, SECTUN_SOURCE_TOKEN, sourceToken);
@@ -183,27 +183,29 @@ int main(int argc, char *argv[])
     std::this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
 
     /* Set the Secure Tunnel Client to desire a connected state */
+
     if (secureTunnelDestination->Start())
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(3 * 1000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(5 * 1000));
 
     // fprintf(stdout, "Closing Connection\n");
     // /* Set the Secure Tunnel Client to desire a stopped state */
-    // if (secureTunnel->Stop() == AWS_OP_ERR)
-    // {
-    //     fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
-    //     exit(-1);
-    // }
+    if (secureTunnel->Stop() == AWS_OP_ERR)
+    {
+        fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
 
-    // /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
-    // if (clientStoppedPromise.get_future().get())
-    // {
-    //     secureTunnel = nullptr;
-    // }
+    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
+    if (clientStoppedPromise.get_future().get())
+    {
+        fprintf(stdout, "Destinatino Secure Tunnel Stopped\n");
+        secureTunnel = nullptr;
+    }
 
     secureTunnelDestination = nullptr;
 
