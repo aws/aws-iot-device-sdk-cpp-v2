@@ -62,16 +62,6 @@ int main(int argc, char *argv[])
     setEnvVariable(allocator, SECTUN_SOURCE_TOKEN, sourceToken);
     setEnvVariable(allocator, SECTUN_ENDPOINT, endpoint);
 
-    // aws_string *aws_string_endpoint = NULL;
-
-    // aws_get_environment_value(allocator, SECTUN_ENDPOINT, &aws_string_endpoint);
-    // endpoint = aws_string_endpoint == nullptr ? "" : aws_string_c_str(aws_string_endpoint);
-    // aws_string_destroy(aws_string_endpoint);
-
-    fprintf(stdout, "endpoint:%s\n", endpoint.c_str());
-    fprintf(stdout, "source token:%s\n", sourceToken.c_str());
-    fprintf(stdout, "destination token:%s\n", destinationToken.c_str());
-
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -191,6 +181,8 @@ int main(int argc, char *argv[])
     }
 
     fprintf(stdout, "Secure Tunnel Created\n");
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
 
     /* Set the Secure Tunnel Client to desire a connected state */
     // if (secureTunnel->Start())
