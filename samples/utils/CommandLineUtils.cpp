@@ -881,4 +881,41 @@ namespace Utils
         return returnData;
     }
 
+    cmdData parseSampleInputBasicConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("basic-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+
+        if (cmdUtils.HasCommand(m_cmd_help))
+        {
+            cmdUtils.PrintHelp();
+            exit(-1);
+        }
+
+        cmdData returnData = cmdData();
+
+        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clientId = cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+
+        if (cmdUtils.HasCommand(m_cmd_ca_file)) {
+            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
+        }
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+
+        return returnData;
+    }
+
 } // namespace Utils
