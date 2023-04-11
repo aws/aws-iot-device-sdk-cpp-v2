@@ -19,10 +19,12 @@ AWS_STATIC_STRING_FROM_LITERAL(SECTUN_ENDPOINT, "SECTUN_ENDPOINT");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_TOKEN, "SECTUN_SOURCE_TOKEN");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_TOKEN, "SECTUN_DESTINATION_TOKEN");
 
-void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *variable_name, String stringToSet)
+void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *variable_name, String &stringToSet)
 {
     aws_string *awsStringToSet = NULL;
     aws_get_environment_value(allocator, variable_name, &awsStringToSet);
+    // Steve TODO debug
+    // awsStringToSet = aws_string_new_from_c_str(allocator, "test string");
     stringToSet = awsStringToSet == nullptr ? "" : aws_string_c_str(awsStringToSet);
     aws_string_destroy(awsStringToSet);
 }
