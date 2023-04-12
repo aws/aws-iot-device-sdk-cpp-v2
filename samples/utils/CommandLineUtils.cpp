@@ -892,6 +892,7 @@ namespace Utils
         cmdUtils.AddLoggingCommands();
         const char **const_argv = (const char **)argv;
         cmdUtils.SendArguments(const_argv, const_argv + argc);
+        cmdUtils.StartLoggingBasedOnCommand(api_handle);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
