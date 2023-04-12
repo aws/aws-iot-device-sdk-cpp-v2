@@ -43,7 +43,7 @@ When a WebSocket upgrade request fails to connect, this callback will return an 
 ### OnConnectionShutdown
 When the WebSocket connection shuts down, this callback will be invoked.
 
-### OnSendDataComplete
+## OnSendMessageComplete
 When a message has been completely written to the socket, this callback will be invoked.
 
 ### OnMessageReceived
@@ -54,6 +54,12 @@ When a stream is started by a Source connected to the Destination, the Destinati
 
 ### OnStreamStopped
 When an open stream is closed, this callback will be invoked and return the stopped stream's information.
+
+### OnConnectionStarted
+When a connection start message is received and a new active connection is established, the Destination will invoke this callback and return the connection information.
+
+### OnConnectionReset
+When a connection has ended either in error or closed intentionally by the secure tunnel peer, the client will invoke this callback and return the connection information.
 
 ### OnSessionReset
 When the Secure Tunnel service requests the Secure Tunnel client fully reset, this callback is invoked.
@@ -143,8 +149,9 @@ if(!secureTunnel->Stop()){
     fprintf(stdout, "Failed to stop the Secure Tunnel connection session. Exiting..\n");
 }
 ```
-# Multiplexing
-You can use multiple data streams per Secure Tunnel by using the [Multiplexing](https://docs.aws.amazon.com/iot/latest/developerguide/multiplexing.html) feature.
+# Multiplexing and Simultaneous TCP Connections
+You can use multiple data streams per Secure Tunnel by using the [Multiplexing and Simultaneous TCP Connections](https://docs.aws.amazon.com/iot/latest/developerguide/multiplexing.html) features.
+
 
 ## Opening a Secure Tunnel with Multiplexing
 To use Multiplexing, a Secure Tunnel must be created with one to three "services". A Secure Tunnel can be opened through the AWS IoT console [Secure Tunnel Hub](https://console.aws.amazon.com/iot/home#/tunnelhub) or by using the [OpenTunnel API](https://docs.aws.amazon.com/iot/latest/apireference/API_Operations_AWS_IoT_Secure_Tunneling.html). Both of these methods allow you to add services with whichever names suit your needs.
@@ -191,6 +198,8 @@ builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const Connection
 ```
 ## Using Service Ids
 Service Ids can be added to outbound Messages as shown below in the Send Message example. If the Service Id is both available on the current Secure Tunnel and there is an open stream with a Source device on that Service Id, the message will be sent. If the Service Id does not exist on the current Secure Tunnel or there is no currently active stream available on that Service Id, the Message will not be sent and a Warning will be logged. The `OnStreamStarted` callback is invoked when a stream is started and it returns a `StreamStartedEventData` which can be parsed to determine if a stream was started using a Service Id for Multiplexing. Incoming messages can also be parsed to determine if a Service Id has been set as shown above in the [Setting Secure Tunnel Callbacks](#setting-secure-tunnel-callbacks) code example.
+## Using Connection Ids
+Connection Ids can be added to outbound Messages as shown below in the Send Message example. If there is an active stream currently open using the combination of the Service Id and Connection Id, the message will be sent. If the Connection Id is not set, a Connecion Id of 1 is assumed and applied to outbound Messages. When additional streams are activated, the `OnConnectionStarted` callback is invoked and it returns a `ConnectionStartedEventData` which can be parsed to determine the Connection Id of the newly activated stream. A Connection Id will also be present in the `StreamStartedEventData` that is returned when the `OnStreamStarted` callback is invoked.
 # Secure Tunnel Operations
 
 ## Send Message
@@ -206,6 +215,7 @@ ByteCursor payload = ByteCursorFromString(message_string);
 // Create Message
 std::shared_ptr<Message> message = std::make_shared<Message>();
 message->withServiceId(serviceId);
+message->withConnectionId(1);
 message->withPayload(payload);
 
 // Send Message
