@@ -21,6 +21,7 @@ AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_TOKEN, "SECTUN_SOURCE_TOKEN");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_TOKEN, "SECTUN_DESTINATION_TOKEN");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_CLIENT_TOKEN, "SECTUN_SOURCE_CLIENT_TOKEN");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_CLIENT_TOKEN, "SECTUN_DESTINATION_CLIENT_TOKEN");
+AWS_STATIC_STRING_FROM_LITERAL(SECTUN_PAYLOAD_MESSAGE, "Payload Message");
 
 void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *variable_name, String &stringToSet)
 {
@@ -36,9 +37,8 @@ int main(int argc, char *argv[])
     struct aws_allocator *allocator = aws_default_allocator();
     ApiHandle apiHandle;
 
-    // DEBUG
-    // LOGGING
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+    /* Uncomment to produce logs in codebuild */
+    // apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     aws_iotdevice_library_init(allocator);
 
@@ -51,6 +51,10 @@ int main(int argc, char *argv[])
     std::promise<void> promiseSourceConnected;
     std::promise<void> promiseDestinationStreamStarted;
     std::promise<void> promiseDestinationConnectionStarted;
+
+    std::promise<void> promiseDestinationReceivedMessage;
+    std::promise<void> promiseSourceReceivedMessage;
+
     std::promise<void> promiseDestinationStopped;
     std::promise<void> promiseSourceStopped;
 
@@ -98,6 +102,8 @@ int main(int argc, char *argv[])
             {
                 (void)secureTunnel;
                 (void)eventData;
+                fprintf(stdout, "Destination Client Received Message\n");
+                promiseDestinationReceivedMessage.set_value();
             }
         });
 
@@ -105,6 +111,8 @@ int main(int argc, char *argv[])
         {
             (void)secureTunnel;
             (void)eventData;
+            fprintf(stdout, "Source Client Received Message\n");
+            promiseSourceReceivedMessage.set_value();
         }
     });
 
@@ -123,6 +131,7 @@ int main(int argc, char *argv[])
             else
             {
                 fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                exit(-1);
             }
         });
 
@@ -141,6 +150,7 @@ int main(int argc, char *argv[])
             else
             {
                 fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                exit(-1);
             }
         });
 
@@ -269,6 +279,24 @@ int main(int argc, char *argv[])
     secureTunnelSource->SendConnectionStart(m_serviceId.value(), connectionId2);
 
     promiseDestinationConnectionStarted.get_future().wait();
+
+    std::shared_ptr<Message> message1 =
+        std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
+    message1->withServiceId(m_serviceId.value());
+    message1->withConnectionId(connectionId2);
+    secureTunnelSource->SendMessage(message1);
+    fprintf(stdout, "Source Client Sent Message\n");
+
+    promiseDestinationReceivedMessage.get_future().wait();
+
+    std::shared_ptr<Message> message2 =
+        std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
+    message2->withServiceId(m_serviceId.value());
+    message2->withConnectionId(connectionId);
+    secureTunnelDestination->SendMessage(message2);
+    fprintf(stdout, "Destination Client Sent Message\n");
+
+    promiseSourceReceivedMessage.get_future().wait();
 
     if (secureTunnelDestination->Stop() == AWS_OP_ERR)
     {
