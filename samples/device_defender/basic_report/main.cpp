@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
-            fprintf(stdout, "Publishing Device Defender report %lu...\n", publishedCount);
+            fprintf(stdout, "Publishing Device Defender report %llu...\n", publishedCount);
 
             if (publishedCount != cmdData.input_count)
             {
