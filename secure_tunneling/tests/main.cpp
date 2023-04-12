@@ -132,6 +132,7 @@ int main(int argc, char *argv[])
             else
             {
                 fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                aws_byte_buf_clean_up(&m_serviceIdStorage);
                 exit(-1);
             }
         });
@@ -151,6 +152,7 @@ int main(int argc, char *argv[])
             else
             {
                 fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                aws_byte_buf_clean_up(&m_serviceIdStorage);
                 exit(-1);
             }
         });
@@ -202,6 +204,7 @@ int main(int argc, char *argv[])
             else
             {
                 fprintf(stdout, "Stream Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+                aws_byte_buf_clean_up(&m_serviceIdStorage);
                 exit(-1);
             }
         });
@@ -219,6 +222,7 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
             exit(-1);
         }
     });
@@ -302,6 +306,7 @@ int main(int argc, char *argv[])
     if (secureTunnelDestination->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Destination Stop call failed: %s\n", ErrorDebugString(LastError()));
+        aws_byte_buf_clean_up(&m_serviceIdStorage);
         exit(-1);
     }
 
@@ -311,6 +316,7 @@ int main(int argc, char *argv[])
     if (secureTunnelSource->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Source Stop call failed: %s\n", ErrorDebugString(LastError()));
+        aws_byte_buf_clean_up(&m_serviceIdStorage);
         exit(-1);
     }
 
