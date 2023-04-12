@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        IotJobsClient client(connection);
+        IotJobsClient jobsClient(connection);
 
         DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
         describeJobExecutionSubscriptionRequest.ThingName = cmdData.input_thingName;
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
         };
 
-        client.SubscribeToDescribeJobExecutionAccepted(
+        jobsClient.SubscribeToDescribeJobExecutionAccepted(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
         subAckedPromise.get_future().wait();
 
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        client.SubscribeToDescribeJobExecutionRejected(
+        jobsClient.SubscribeToDescribeJobExecutionRejected(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
         subAckedPromise.get_future().wait();
 
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
             publishDescribeJobExeCompletedPromise.set_value();
         };
 
-        client.PublishDescribeJobExecution(
+        jobsClient.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
         publishDescribeJobExeCompletedPromise.get_future().wait();
     }

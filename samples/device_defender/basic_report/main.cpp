@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
         // ======================================================================
 
         // Wait until the the desire amount of publishes has been complete
-        int publishedCount = 0;
+        uint64_t publishedCount = 0;
         while (publishedCount < cmdData.input_count &&
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {

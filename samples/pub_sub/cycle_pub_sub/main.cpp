@@ -211,7 +211,7 @@ void operationStart(CycleClient *current_client, int index)
     }
 
     fprintf(stdout, "[OP] Waiting a maximum of 1 minute for client %i to report it is connected\n", index);
-    int wait_count = 0;
+    uint64_t wait_count = 0;
     while (current_client->is_connected == false)
     {
         wait_count += 1;
@@ -243,7 +243,7 @@ void operationStop(CycleClient *current_client, int index)
     if (current_client->client->Disconnect())
     {
         fprintf(stdout, "[OP] Waiting a maximum of 1 minute for client %i to report it is disconnected\n", index);
-        int wait_count = 0;
+        uint64_t wait_count = 0;
         while (current_client->is_connected == true)
         {
             wait_count += 1;
