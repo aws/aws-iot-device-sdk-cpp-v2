@@ -13,10 +13,8 @@
 
 using namespace Aws::Crt;
 
-/**
- * For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
- * and to do so we use this class to hold all the data for a particular client used in the sample.
- */
+// For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
+// and to do so we use this class to hold all the data for a particular client used in the sample.
 class sample_mqtt5_client
 {
   public:
@@ -30,18 +28,14 @@ class sample_mqtt5_client
     uint32_t expectedMessages;
     bool sharedSubscriptionSupportNotAvailable;
 
-    /**
-     * A helper function to print a message and then exit the sample.
-     */
+    // A helper function to print a message and then exit the sample.
     void PrintMessageAndExit(String message, int exitCode)
     {
         fprintf(stdout, "[%s]: %s\n", this->name.c_str(), message.c_str());
         exit(exitCode);
     }
 
-    /**
-     * Creates a MQTT5 client using direct MQTT5 via mTLS with the passed input data.
-     */
+    // Creates a MQTT5 client using direct MQTT5 via mTLS with the passed input data.
     static std::shared_ptr<sample_mqtt5_client> create_mqtt5_client(
         String input_endpoint,
         String input_cert,
@@ -171,23 +165,19 @@ class sample_mqtt5_client
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
+    // cmdData is the arguments/input from the command line placed into a single struct for
+    // use in this sample. This handles all of the command line parsing, validating, etc.
+    // See the Utils/CommandLineUtils for more information.
     Utils::cmdData cmdData = Utils::parseSampleInputSharedSubscription(argc, argv, &apiHandle);
 
     String input_sharedTopic = String("$share/") + cmdData.input_groupIdentifier + String("/") + cmdData.input_topic;
 
-    /*********************** Create the MQTT5 clients: one publisher and two subscribers ***************************/
-
+    // Create the MQTT5 clients: one publisher and two subscribers
     std::shared_ptr<sample_mqtt5_client> publisher = sample_mqtt5_client::create_mqtt5_client(
         cmdData.input_endpoint,
         cmdData.input_cert,

@@ -56,19 +56,17 @@ static std::string getFileData(std::string const &fileName)
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+
+    //  Do the global initialization for the API
     ApiHandle apiHandle;
+    // Variables for the sample
     String csrFile;
     String token;
     RegisterThingResponse registerThingResponse;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
+    // cmdData is the arguments/input from the command line placed into a single struct for
+    // use in this sample. This handles all of the command line parsing, validating, etc.
+    // See the Utils/CommandLineUtils for more information.
     Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
 
     if (cmdData.input_csrPath != "")
@@ -76,16 +74,12 @@ int main(int argc, char *argv[])
         csrFile = getFileData(cmdData.input_csrPath.c_str()).c_str();
     }
 
-    /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
-     */
+    // In a real world application you probably don't want to enforce synchronous behavior
+    // but this is a sample console application, so we'll just do that with a condition variable.
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an MQTT connect has completed or failed.
-     */
+    // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
@@ -99,9 +93,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /*
-     * Invoked when a disconnect message has completed.
-     */
+    // Invoked when a disconnect has been completed
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
@@ -109,8 +101,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /************************ MQTT Builder Creation ****************************/
-    /* Make the MQTT builder */
+    // Create the MQTT builder and populate it with data from cmdData.
     auto clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
@@ -118,7 +109,8 @@ int main(int argc, char *argv[])
     {
         clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
     }
-    /* Create the MQTT connection from the builder */
+
+    // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
     if (!clientConfig)
     {
@@ -468,7 +460,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Disconnect */
+    // Disconnect
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();

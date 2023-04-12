@@ -22,21 +22,16 @@ using namespace Aws::Discovery;
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
+    // cmdData is the arguments/input from the command line placed into a single struct for
+    // use in this sample. This handles all of the command line parsing, validating, etc.
+    // See the Utils/CommandLineUtils for more information.
     Utils::cmdData cmdData = Utils::parseSampleInputGreengrassDiscovery(argc, argv, &apiHandle);
 
-    /*
-     * We're using Mutual TLS for MQTT, so we need to load our client certificates
-     */
+    // We're using Mutual TLS for MQTT, so we need to load our client certificates
     Io::TlsContextOptions tlsCtxOptions =
         Io::TlsContextOptions::InitClientWithMtls(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
 
@@ -59,17 +54,12 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
-     * Default Socket options to use. IPV4 will be ignored based on what DNS
-     * tells us.
-     */
+    // Default Socket options to use. IPV4 will be ignored based on what DNS tells us.
     Io::SocketOptions socketOptions;
     socketOptions.SetConnectTimeoutMs(3000);
 
-    /**
-     * Create the default ClientBootstrap, which will create the default
-     * EventLoopGroup (to process IO events) and HostResolver.
-     */
+    // Create the default ClientBootstrap, which will create the default
+    // EventLoopGroup (to process IO events) and HostResolver.
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(

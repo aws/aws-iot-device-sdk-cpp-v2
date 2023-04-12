@@ -88,22 +88,19 @@ static void s_changeShadowValue(
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
+
     String currentShadowValue("");
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
+    // cmdData is the arguments/input from the command line placed into a single struct for
+    // use in this sample. This handles all of the command line parsing, validating, etc.
+    // See the Utils/CommandLineUtils for more information.
     Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
-    /************************ MQTT Builder Creation ****************************/
-    /* Make the MQTT builder */
+    // Create the MQTT builder and populate it with data from cmdData.
     auto clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
@@ -123,7 +120,8 @@ int main(int argc, char *argv[])
     {
         clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
     }
-    /* Create the MQTT connection from the builder */
+
+    // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
     if (!clientConfig)
     {
@@ -144,45 +142,39 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
-     */
+    // In a real world application you probably don't want to enforce synchronous behavior
+    // but this is a sample console application, so we'll just do that with a condition variable.
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when a mqtt connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(true);
-        }
+    // Invoked when a MQTT connect has completed or failed
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+    // Invoked when a disconnect message has completed.
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
     };
 
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
-        {
-            fprintf(stdout, "Disconnect completed\n");
-            connectionClosedPromise.set_value();
-        }
-    };
-
+    // Assign callbacks
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    /*
-     * Actually perform the connect dance.
-     */
+    /************************ Run the sample ****************************/
+
+    // Connect
     fprintf(stdout, "Connecting...\n");
     if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
@@ -495,11 +487,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Disconnect */
+    // Disconnect
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();
     }
-
     return 0;
 }

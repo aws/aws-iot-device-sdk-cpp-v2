@@ -19,10 +19,8 @@
 
 using namespace Aws::Crt;
 
-/**
- * A struct to hold all of the data for each MQTT connection in the
- * sample, like the client ID, whether it is connected, etc.
- */
+// A struct to hold all of the data for each MQTT connection in the
+// sample, like the client ID, whether it is connected, etc.
 struct CycleClient
 {
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> client;
@@ -33,7 +31,7 @@ struct CycleClient
     bool is_subscribed_to_topics = false;
 };
 
-/* A vector to hold all the clients used in the sample */
+// A vector to hold all the clients used in the sample
 std::vector<CycleClient> clients_holder;
 
 /**
@@ -66,8 +64,8 @@ CycleClient *getClientFromConnection(std::vector<CycleClient> *clients, Aws::Crt
  */
 void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cmdData)
 {
-    /************************ MQTT Builder Creation ****************************/
-    /* Make the MQTT builder */
+
+    // Create the MQTT builder and populate it with data from cmdData
     auto clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData->input_cert.c_str(), cmdData->input_key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData->input_endpoint);
@@ -75,7 +73,8 @@ void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cm
     {
         clientConfigBuilder.WithCertificateAuthority(cmdData->input_ca.c_str());
     }
-    /* Create the MQTT connection from the builder */
+
+    // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
     if (!clientConfig)
     {
@@ -146,6 +145,7 @@ void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cm
         fprintf(stdout, "[Lifecycle] Connection resumed\n");
     };
 
+    // Assign callbacks
     empty_client->client->OnConnectionCompleted = std::move(onConnectionCompleted);
     empty_client->client->OnDisconnect = std::move(onDisconnect);
     empty_client->client->OnConnectionInterrupted = std::move(onInterrupted);
@@ -540,17 +540,14 @@ void performRandomOperation(std::vector<CycleClient> *clients)
 int main(int argc, char *argv[])
 {
 
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
+    // cmdData is the arguments/input from the command line placed into a single struct for
+    // use in this sample. This handles all of the command line parsing, validating, etc.
+    // See the Utils/CommandLineUtils for more information.
     Utils::cmdData cmdData = Utils::parseSampleInputCyclePubSub(argc, argv, &apiHandle);
 
     /******************** Start the client cycle ***********************/
@@ -586,8 +583,6 @@ int main(int argc, char *argv[])
         performRandomOperation(&clients_holder);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000 * cmdData.input_tps));
     }
-
-    /*************************** Clean up ******************************/
 
     // Stop all the clients and clear the vector
     for (size_t i = 0; i < cmdData.input_clients; i++)

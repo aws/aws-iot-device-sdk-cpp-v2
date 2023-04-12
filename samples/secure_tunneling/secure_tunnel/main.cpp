@@ -89,12 +89,12 @@ void setupCommandLineValues(
     aws_secure_tunneling_local_proxy_mode &localProxyMode,
     String *payloadMessage)
 {
-    /* Generate secure tunneling endpoint using region */
+    // Generate secure tunneling endpoint using region
     String region = cmdData->input_signingRegion;
     endpoint->assign("data.tunneling.iot." + region + ".amazonaws.com");
 
     String tempAccessToken;
-    /* An access token is required to connect to the secure tunnel service */
+    // An access token is required to connect to the secure tunnel service
     if (cmdData->input_accessToken != "")
     {
         tempAccessToken = cmdData->input_accessToken;
@@ -122,11 +122,9 @@ void setupCommandLineValues(
     accessToken->assign(tempAccessToken);
 
     String tempClientToken;
-    /*
-     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
-     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
-     * is terminated.
-     * */
+    // A client token is optional as one will be automatically generated if it is absent but it is recommended the
+    // customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
+    // is terminated.
     if (cmdData->input_clientToken != "")
     {
         tempClientToken = cmdData->input_clientToken;
@@ -161,9 +159,7 @@ void setupCommandLineValues(
         proxyPassword->assign(cmdData->input_proxy_password);
     }
 
-    /*
-     * localProxyMode is set to destination by default unless flag is set to source
-     */
+    // localProxyMode is set to destination by default unless flag is set to source
     if (cmdData->input_localProxyModeSource != "destination")
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
@@ -181,21 +177,18 @@ int main(int argc, char *argv[])
 {
     struct aws_allocator *allocator = aws_default_allocator();
     /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API and aws-c-iot.
-     */
+
+    // Do the global initialization for the API and aws-c-iot.
     ApiHandle apiHandle;
     aws_iotdevice_library_init(allocator);
 
-    /*
-     * In a real world application you probably don't want to enforce synchronous behavior
-     * but this is a sample console application, so we'll just do that with a condition variable.
-     */
+    // In a real world application you probably don't want to enforce synchronous behavior
+    // but this is a sample console application, so we'll just do that with a condition variable.
     std::promise<bool> connectionCompletedPromise;
     std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
 
-    /* service id storage for use in sample */
+    // service id storage for use in sample
     Aws::Crt::ByteBuf m_serviceIdStorage;
     AWS_ZERO_STRUCT(m_serviceIdStorage);
     Aws::Crt::Optional<Aws::Crt::ByteCursor> m_serviceId;
@@ -237,7 +230,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
+    // Use a SecureTunnelBuilder to set up and build the secure tunnel client
     SecureTunnelBuilder builder = SecureTunnelBuilder(allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
     if (caFile.length() > 0)
@@ -247,7 +240,7 @@ int main(int argc, char *argv[])
 
     builder.WithClientToken(clientToken.c_str());
 
-    /* Add callbacks using the builder */
+    // Add callbacks using the builder
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         if (eventData.connectionData->getServiceId1().has_value())
@@ -387,16 +380,16 @@ int main(int argc, char *argv[])
         clientStoppedPromise.set_value(true);
     });
 
-    //***********************************************************************************************************************
-    /* Proxy Options */
-    //***********************************************************************************************************************
+    // ***********************************************************************************************************************
+    // Proxy Options
+    // ***********************************************************************************************************************
     if (proxyHost.length() > 0)
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
         proxyOptions.HostName = proxyHost.c_str();
         proxyOptions.Port = proxyPort;
 
-        /* Set up Proxy Strategy if a user name and password is provided */
+        // Set up Proxy Strategy if a user name and password is provided
         if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
         {
             fprintf(stdout, "Creating proxy strategy\n");
@@ -413,11 +406,11 @@ int main(int argc, char *argv[])
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         }
 
-        /* Add proxy options to the builder */
+        // Add proxy options to the builder
         builder.WithHttpClientConnectionProxyOptions(proxyOptions);
     }
 
-    /* Create Secure Tunnel using the options set with the builder */
+    // Create Secure Tunnel using the options set with the builder
     std::shared_ptr<SecureTunnel> secureTunnel = builder.Build();
 
     if (!secureTunnel)
@@ -426,7 +419,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Set the Secure Tunnel Client to desire a connected state */
+    // Set the Secure Tunnel Client to desire a connected state
     if (secureTunnel->Start())
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
@@ -440,10 +433,8 @@ int main(int argc, char *argv[])
     {
         std::this_thread::sleep_for(1000ms);
 
-        /*
-         * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
-         * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
-         */
+        // In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
+        // In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
         while (keepRunning)
         {
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
@@ -455,7 +446,7 @@ int main(int argc, char *argv[])
                 {
                     std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
 
-                    /* If the secure tunnel has service ids, we will use one for our messages. */
+                    // If the secure tunnel has service ids, we will use one for our messages.
                     if (m_serviceId.has_value())
                     {
                         message->withServiceId(m_serviceId.value());
@@ -478,7 +469,7 @@ int main(int argc, char *argv[])
     std::this_thread::sleep_for(3000ms);
 
     fprintf(stdout, "Closing Connection\n");
-    /* Set the Secure Tunnel Client to desire a stopped state */
+    // Set the Secure Tunnel Client to desire a stopped state
     if (secureTunnel->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
@@ -490,7 +481,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Secure Tunnel Connection Closed\n");
     }
 
-    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
+    // The Secure Tunnel Client at this point will report they are stopped and can be safely removed.
     if (clientStoppedPromise.get_future().get())
     {
         secureTunnel = nullptr;
@@ -498,7 +489,7 @@ int main(int argc, char *argv[])
 
     fprintf(stdout, "Secure Tunnel Sample Completed\n");
 
-    /* Clean Up */
+    // Clean Up
     aws_byte_buf_clean_up(&m_serviceIdStorage);
 
     return 0;
