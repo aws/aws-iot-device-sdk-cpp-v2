@@ -154,7 +154,7 @@ void setupCommandLineValues(
     if (cmdData->input_proxyHost != "" || cmdData->input_proxyPort != 0)
     {
         proxyHost->assign(cmdData->input_proxyHost);
-        proxyPort = cmdData->input_proxyPort;
+        proxyPort = static_cast<uint16_t>(cmdData->input_proxyPort);
         proxyUserName->assign(cmdData->input_proxy_user_name);
         proxyPassword->assign(cmdData->input_proxy_password);
     }
@@ -170,7 +170,7 @@ void setupCommandLineValues(
     }
 
     payloadMessage->assign(cmdData->input_message);
-    messageCount = cmdData->input_count;
+    messageCount = static_cast<uint16_t>(cmdData->input_count);
 }
 
 int main(int argc, char *argv[])
