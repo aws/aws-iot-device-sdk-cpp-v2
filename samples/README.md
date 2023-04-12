@@ -33,6 +33,15 @@ cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" 
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
+For CMake versions that do not support the `-B` command, go to the directory of the sample you wish to build and run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+```
+
 ### Build all samples
 
 Change directory to the `aws-iot-device-sdk-cpp-v2/samples` directory and then run the following commands:
@@ -49,6 +58,15 @@ This will compile all the samples at once and place the executables under the `b
 ```
 
 This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/pubsub/basic_pubsub`.
+
+For CMake versions that do not support the `-B` command, go to the `aws-iot-device-sdk-cpp-v2/samples` directory and run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+```
 
 ### Sample Build Notes
 
