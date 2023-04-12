@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputWindowsCertificateConnect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
-    Aws::Iot::MqttClient mqttClient;
+    Aws::Iot::MqttClient client;
     Aws::Iot::MqttClientConnectionConfigBuilder builder(cmdData.input_cert.c_str());
     if (!builder)
     {
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     builder.WithEndpoint(cmdData.input_endpoint);
 
     // Create the MQTT connection from the MQTT builder
-    auto clientConfig = clientConfigBuilder.Build();
+    auto clientConfig = builder.Build();
     if (!clientConfig)
     {
         fprintf(

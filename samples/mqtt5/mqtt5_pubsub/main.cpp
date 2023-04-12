@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
                 };
 
                 uint32_t publishedCount = 0;
-                while (publishedCount < cmdData.count)
+                while (publishedCount < cmdData.input_count)
                 {
                     // Add \" to 'JSON-ify' the message
                     String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
@@ -215,7 +215,7 @@ int main(int argc, char *argv[])
 
                 {
                     std::unique_lock<std::mutex> receivedLock(receiveMutex);
-                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.count; });
+                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.input_count; });
                 }
 
                 // Unsubscribe from the topic.
