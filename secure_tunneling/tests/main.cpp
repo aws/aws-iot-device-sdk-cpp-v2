@@ -277,6 +277,7 @@ int main(int argc, char *argv[])
     }
 
     promiseDestinationStopped.get_future().wait();
+    secureTunnelDestination = nullptr;
 
     if (secureTunnelSource->Stop() == AWS_OP_ERR)
     {
@@ -285,8 +286,6 @@ int main(int argc, char *argv[])
     }
 
     promiseSourceStopped.get_future().wait();
-
-    secureTunnelDestination = nullptr;
     secureTunnelSource = nullptr;
 
     /* Clean Up */
