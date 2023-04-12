@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 
     std::promise<void> promiseDestinationConnected;
     std::promise<void> promiseSourceConnected;
+
     std::promise<void> promiseDestinationStreamStarted;
     std::promise<void> promiseDestinationConnectionStarted;
 
