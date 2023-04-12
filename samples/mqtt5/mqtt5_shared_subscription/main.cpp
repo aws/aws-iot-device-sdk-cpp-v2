@@ -24,8 +24,8 @@ class sample_mqtt5_client
     std::promise<void> stoppedPromise;
     std::mutex receiveMutex;
     std::condition_variable receiveSignal;
-    uint32_t receivedMessages;
-    uint32_t expectedMessages;
+    uint64_t receivedMessages;
+    uint64_t expectedMessages;
     bool sharedSubscriptionSupportNotAvailable;
 
     // A helper function to print a message and then exit the sample.
@@ -42,7 +42,7 @@ class sample_mqtt5_client
         String input_key,
         String input_ca,
         String input_clientId,
-        uint32_t input_count,
+        uint64_t input_count,
         String input_clientName)
     {
         std::shared_ptr<sample_mqtt5_client> result = std::make_shared<sample_mqtt5_client>();
