@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = cmdData.input_proxyPort;
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
     }

@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = cmdData.input_proxyPort;
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
     }
@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
-            fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
+            fprintf(stdout, "Publishing Device Defender report %lu...\n", publishedCount);
 
             if (publishedCount != cmdData.input_count)
             {
