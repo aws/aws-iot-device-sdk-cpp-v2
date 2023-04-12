@@ -374,7 +374,7 @@ int main(int argc, char *argv[])
         };
     };
 
-    int publishedCount = 0;
+    uint64_t publishedCount = 0;
     while (publishedCount < cmdData.input_count)
     {
         // Add \" to 'JSON-ify' the message

@@ -194,6 +194,7 @@ namespace Utils
         RegisterCommand(m_cmd_endpoint, "<str>", "The endpoint of the mqtt server not including a port.");
         RegisterCommand(
             m_cmd_ca_file, "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
+        RegisterCommand(m_cmd_is_ci, "<str>", "If present the sample will run in CI mode.");
     }
 
     void CommandLineUtils::AddCommonProxyCommands()
@@ -401,6 +402,25 @@ namespace Utils
         }
     }
 
+    static void s_parseCommonMQTTCommands(CommandLineUtils *cmdUtils, cmdData *cmdData)
+    {
+        cmdData->input_endpoint = cmdUtils->GetCommandRequired(m_cmd_endpoint);
+        if (cmdUtils->HasCommand(m_cmd_ca_file))
+        {
+            cmdData->input_ca = cmdUtils->GetCommand(m_cmd_ca_file);
+        }
+        cmdData->input_isCI = cmdUtils->HasCommand(m_cmd_is_ci);
+    }
+
+    static void s_populateTopic(CommandLineUtils *cmdUtils, cmdData *cmdData)
+    {
+        cmdData->input_topic = cmdUtils->GetCommandOrDefault(m_cmd_topic, "test/topic");
+        if (cmdUtils->HasCommand(m_cmd_is_ci))
+        {
+            cmdData->input_topic += Aws::Crt::String("/") + Aws::Crt::UUID().ToString();
+        }
+    }
+
     cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
         CommandLineUtils cmdUtils = CommandLineUtils();
@@ -419,14 +439,7 @@ namespace Utils
             "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
-        if (cmdUtils.HasCommand("help"))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
-
         cmdData returnData = cmdData();
-
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
@@ -435,7 +448,7 @@ namespace Utils
             returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
         }
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
-        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "");
         returnData.input_mode = cmdUtils.GetCommandOrDefault(m_cmd_mode, "both");
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
@@ -455,7 +468,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World");
         return returnData;
     }
@@ -472,31 +485,18 @@ namespace Utils
         cmdUtils.RegisterCommand(m_cmd_template_csr, "<path>", "Path to CSR in PEM format (optional)");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
-        if (cmdUtils.HasCommand("help"))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
-
         cmdData returnData = cmdData();
-
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-
         returnData.input_templateName = cmdUtils.GetCommandRequired(m_cmd_template_name);
         returnData.input_templateParameters = cmdUtils.GetCommandRequired(m_cmd_template_parameters);
         if (cmdUtils.HasCommand(m_cmd_template_csr))
         {
             returnData.input_csrPath = cmdUtils.GetCommand(m_cmd_template_csr);
         }
-
         return returnData;
     }
 
@@ -512,19 +512,13 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
         returnData.input_jobId = cmdUtils.GetCommandRequired(m_cmd_job_id);
-
         return returnData;
     }
 
@@ -540,16 +534,11 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
         {
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
@@ -559,7 +548,6 @@ namespace Utils
         {
             returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
         }
-
         return returnData;
     }
 
@@ -575,7 +563,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
@@ -600,7 +588,7 @@ namespace Utils
         cmdUtils.RemoveCommand("ca_file");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_customAuthUsername = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_username, "");
@@ -627,16 +615,12 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_pkcs11LibPath = cmdUtils.GetCommandRequired(m_cmd_pkcs11_lib);
         returnData.input_pkcs11UserPin = cmdUtils.GetCommandRequired(m_cmd_pkcs11_pin);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         if (cmdUtils.HasCommand(m_cmd_pkcs11_token))
         {
             returnData.input_pkcs11TokenLabel = cmdUtils.GetCommand(m_cmd_pkcs11_token);
@@ -664,7 +648,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
@@ -695,17 +679,13 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         if (cmdUtils.HasCommand(m_cmd_port_override))
         {
             returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
-        }
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
         }
         return returnData;
     }
@@ -721,7 +701,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
@@ -730,7 +710,6 @@ namespace Utils
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         }
-
         returnData.input_x509Endpoint = cmdUtils.GetCommandRequired(m_cmd_x509_endpoint);
         returnData.input_x509Role = cmdUtils.GetCommandRequired(m_cmd_x509_role);
         returnData.input_x509ThingName = cmdUtils.GetCommandRequired(m_cmd_x509_thing_name);
@@ -762,7 +741,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
         returnData.input_clientId =
@@ -772,7 +751,7 @@ namespace Utils
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         }
-        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World ");
         returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "10").c_str());
         if (cmdUtils.HasCommand(m_cmd_port_override))
@@ -796,20 +775,18 @@ namespace Utils
             m_cmd_group_identifier,
             "<str>",
             "The group identifier to use in the shared subscription (optional, default='cpp-sample')");
-        cmdUtils.RegisterCommand(m_cmd_is_ci, "<str>", "If present the sample will run in CI mode.");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-        returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
+        s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World ");
         returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "10").c_str());
         returnData.input_groupIdentifier = cmdUtils.GetCommandOrDefault(m_cmd_group_identifier, "cpp-sample");
-        returnData.input_isCI = cmdUtils.HasCommand(m_cmd_is_ci);
 
         return returnData;
     }
@@ -829,7 +806,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
         returnData.input_clients = atoi(cmdUtils.GetCommandOrDefault(m_cmd_clients, "3").c_str());
@@ -870,11 +847,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
         returnData.input_accessTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_access_token_file, "");
         returnData.input_accessToken = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "");
@@ -890,7 +863,6 @@ namespace Utils
         returnData.input_proxy_user_name = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
         returnData.input_proxy_password = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
         returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "5").c_str());
-
         return returnData;
     }
 
@@ -905,13 +877,9 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
@@ -925,25 +893,21 @@ namespace Utils
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
-        cmdUtils.RegisterCommand(m_cmd_shadow_property, "<str>", "The name of the shadow property you want to change.");
-        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(
-            m_cmd_is_ci, "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
+            m_cmd_shadow_property,
+            "<str>",
+            "The name of the shadow property you want to change (optional, default='color')");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
-        if (cmdUtils.HasCommand(m_cmd_ca_file))
-        {
-            returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
-        }
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
-        returnData.input_shadowProperty = cmdUtils.GetCommandRequired(m_cmd_shadow_property);
+        returnData.input_shadowProperty = cmdUtils.GetCommandOrDefault(m_cmd_shadow_property, "color");
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-        returnData.input_isCI = cmdUtils.HasCommand(m_cmd_is_ci);
         return returnData;
     }
 
