@@ -19,6 +19,8 @@ using namespace std::chrono_literals;
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_ENDPOINT, "SECTUN_ENDPOINT");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_TOKEN, "SECTUN_SOURCE_TOKEN");
 AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_TOKEN, "SECTUN_DESTINATION_TOKEN");
+AWS_STATIC_STRING_FROM_LITERAL(SECTUN_SOURCE_CLIENT_TOKEN, "SECTUN_SOURCE_CLIENT_TOKEN");
+AWS_STATIC_STRING_FROM_LITERAL(SECTUN_DESTINATION_CLIENT_TOKEN, "SECTUN_DESTINATION_CLIENT_TOKEN");
 
 void setEnvVariable(struct aws_allocator *allocator, const struct aws_string *variable_name, String &stringToSet)
 {
@@ -33,7 +35,9 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Secure Tunnel Test Starting\n");
     struct aws_allocator *allocator = aws_default_allocator();
     ApiHandle apiHandle;
-    // Logging
+
+    // DEBUG
+    // LOGGING
     apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
 
     aws_iotdevice_library_init(allocator);
@@ -51,15 +55,18 @@ int main(int argc, char *argv[])
     std::promise<void> promiseSourceStopped;
 
     String endpoint;
-    String accessToken;
     String destinationToken;
     String sourceToken;
+    String destinationClientToken;
+    String sourceClientToken;
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
     uint32_t connectionId2 = 2;
 
     setEnvVariable(allocator, SECTUN_DESTINATION_TOKEN, destinationToken);
     setEnvVariable(allocator, SECTUN_SOURCE_TOKEN, sourceToken);
+    setEnvVariable(allocator, SECTUN_DESTINATION_CLIENT_TOKEN, destinationClientToken);
+    setEnvVariable(allocator, SECTUN_SOURCE_CLIENT_TOKEN, sourceClientToken);
     setEnvVariable(allocator, SECTUN_ENDPOINT, endpoint);
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
@@ -76,6 +83,15 @@ int main(int argc, char *argv[])
         allocator, destinationToken.c_str(), AWS_SECURE_TUNNELING_DESTINATION_MODE, endpoint.c_str());
     SecureTunnelBuilder builderSource =
         SecureTunnelBuilder(allocator, sourceToken.c_str(), AWS_SECURE_TUNNELING_SOURCE_MODE, endpoint.c_str());
+
+    if (destinationClientToken.length() > 0)
+    {
+        builderDestination.WithClientToken(destinationClientToken.c_str());
+    }
+    if (sourceClientToken.length() > 0)
+    {
+        builderSource.WithClientToken(sourceClientToken.c_str());
+    }
 
     builderDestination.WithOnMessageReceived(
         [&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
@@ -254,30 +270,29 @@ int main(int argc, char *argv[])
 
     promiseDestinationConnectionStarted.get_future().wait();
 
-    return 0;
+    if (secureTunnelDestination->Stop() == AWS_OP_ERR)
+    {
+        fprintf(stderr, "Secure Tunnel Destination Stop call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
 
-    // if (secureTunnelDestination->Stop() == AWS_OP_ERR)
-    // {
-    //     fprintf(stderr, "Secure Tunnel Destination Stop call failed: %s\n", ErrorDebugString(LastError()));
-    //     exit(-1);
-    // }
+    promiseDestinationStopped.get_future().wait();
 
-    // promiseDestinationStopped.get_future().wait();
-    // secureTunnelDestination = nullptr;
+    if (secureTunnelSource->Stop() == AWS_OP_ERR)
+    {
+        fprintf(stderr, "Secure Tunnel Source Stop call failed: %s\n", ErrorDebugString(LastError()));
+        exit(-1);
+    }
 
-    // if (secureTunnelSource->Stop() == AWS_OP_ERR)
-    // {
-    //     fprintf(stderr, "Secure Tunnel Source Stop call failed: %s\n", ErrorDebugString(LastError()));
-    //     exit(-1);
-    // }
+    promiseSourceStopped.get_future().wait();
 
-    // promiseSourceStopped.get_future().wait();
-    // secureTunnelSource = nullptr;
+    secureTunnelDestination = nullptr;
+    secureTunnelSource = nullptr;
 
-    // /* Clean Up */
-    // aws_byte_buf_clean_up(&m_serviceIdStorage);
+    /* Clean Up */
+    aws_byte_buf_clean_up(&m_serviceIdStorage);
 
-    // fprintf(stdout, "Secure Tunnel Test Completed\n");
+    fprintf(stdout, "Secure Tunnel Test Completed\n");
 
     return 0;
 }
