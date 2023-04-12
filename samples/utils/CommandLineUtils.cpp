@@ -224,6 +224,12 @@ namespace Utils
             "Path to the root certificate used in fetching x509 credentials (required for x509)");
     }
 
+    void CommandLineUtils::AddCommonKeyCertCommands()
+    {
+        RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
+        RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+    }
+
     void CommandLineUtils::AddCommonTopicMessageCommands()
     {
         RegisterCommand(
@@ -378,13 +384,29 @@ namespace Utils
         return returnData;
     }
 
+    static void s_addLoggingSendArgumentsStartLogging(
+        int argc,
+        char *argv[],
+        Aws::Crt::ApiHandle *api_handle,
+        CommandLineUtils *cmdUtils)
+    {
+        cmdUtils->AddLoggingCommands();
+        const char **const_argv = (const char **)argv;
+        cmdUtils->SendArguments(const_argv, const_argv + argc);
+        cmdUtils->StartLoggingBasedOnCommand(api_handle);
+        if (cmdUtils->HasCommand(m_cmd_help))
+        {
+            cmdUtils->PrintHelp();
+            exit(-1);
+        }
+    }
+
     cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("basic-discovery");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.AddCommonProxyCommands();
         cmdUtils.AddCommonTopicMessageCommands();
         cmdUtils.RemoveCommand(m_cmd_endpoint);
@@ -392,13 +414,10 @@ namespace Utils
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
         cmdUtils.RegisterCommand(
             m_cmd_mode, "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
-        const char **const_argv = (const char **)argv;
         cmdUtils.UpdateCommandHelp(
             m_cmd_message,
             "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
-        cmdUtils.AddLoggingCommands();
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         if (cmdUtils.HasCommand("help"))
         {
@@ -433,15 +452,8 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("greengrass-ipc");
         cmdUtils.AddCommonTopicMessageCommands();
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-        if (cmdUtils.HasCommand("help"))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
+
         cmdData returnData = cmdData();
         returnData.input_topic = cmdUtils.GetCommandOrDefault(m_cmd_topic, "test/topic");
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World");
@@ -453,16 +465,12 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("fleet-provisioning");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_template_name, "<str>", "The name of your provisioning template");
         cmdUtils.RegisterCommand(m_cmd_template_parameters, "<json>", "Template parameters json");
         cmdUtils.RegisterCommand(m_cmd_template_csr, "<path>", "Path to CSR in PEM format (optional)");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         if (cmdUtils.HasCommand("help"))
         {
@@ -497,21 +505,11 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("describe-job-execution");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
         cmdUtils.RegisterCommand(m_cmd_job_id, "<str>", "The job id you want to describe.");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand("help"))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
 
@@ -536,21 +534,12 @@ namespace Utils
         cmdUtils.RegisterProgramName("basic-connect");
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonProxyCommands();
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
         returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
         returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
@@ -583,16 +572,7 @@ namespace Utils
         cmdUtils.AddCognitoCommands();
         cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -618,15 +598,7 @@ namespace Utils
         cmdUtils.AddCommonCustomAuthorizerCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RemoveCommand("ca_file");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
         returnData.input_clientId =
@@ -652,16 +624,7 @@ namespace Utils
         cmdUtils.RegisterCommand(m_cmd_pkcs11_slot, "<int>", "Slot ID containing PKCS#11 token to use (optional).");
         cmdUtils.RegisterCommand(m_cmd_pkcs11_key, "<str>", "Label of private key on the PKCS#11 token (optional).");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -698,16 +661,7 @@ namespace Utils
         cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -738,16 +692,7 @@ namespace Utils
             "'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*').");
         cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
-
-        if (cmdUtils.HasCommand(m_cmd_help))
-        {
-            cmdUtils.PrintHelp();
-            exit(-1);
-        }
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -773,10 +718,7 @@ namespace Utils
         cmdUtils.AddCommonX509Commands();
         cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "Used for websocket signer");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -811,17 +753,13 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName(programName);
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.AddCommonProxyCommands();
         cmdUtils.AddCommonTopicMessageCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
         cmdUtils.RegisterCommand(m_cmd_count, "<int>", "The number of messages to send (optional, default='10')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -850,8 +788,7 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("mqtt5-shared-subscription");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.AddCommonTopicMessageCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_count, "<int>", "The number of messages to send (optional, default='10')");
@@ -860,10 +797,7 @@ namespace Utils
             "<str>",
             "The group identifier to use in the shared subscription (optional, default='cpp-sample')");
         cmdUtils.RegisterCommand(m_cmd_is_ci, "<str>", "If present the sample will run in CI mode.");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -885,18 +819,14 @@ namespace Utils
         CommandLineUtils cmdUtils = CommandLineUtils();
         cmdUtils.RegisterProgramName("cycle-pub-sub");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(
             m_cmd_clients, "<int>", "The number of clients/connections to make (optional, default='3'");
         cmdUtils.RegisterCommand(
             m_cmd_tps, "<int>", "The number of seconds to wait after performing an operation (optional, default=12)");
         cmdUtils.RegisterCommand(
             m_cmd_seconds, "<int>", "The number of seconds to run the sample for (optional, default='300')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -937,10 +867,7 @@ namespace Utils
             m_cmd_proxy_password, "<str>", "Password passed if proxy server requires a password (optional)");
         cmdUtils.RegisterCommand(
             m_cmd_count, "<int>", "Number of messages to send before completing (optional, default='5')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -972,14 +899,10 @@ namespace Utils
         Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
         cmdUtils.RegisterProgramName("tunnel-notification");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);
@@ -1000,17 +923,13 @@ namespace Utils
         Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
         cmdUtils.RegisterProgramName("shadow_sync");
         cmdUtils.AddCommonMQTTCommands();
-        cmdUtils.RegisterCommand(m_cmd_key_file, "<path>", "Path to your key in PEM format.");
-        cmdUtils.RegisterCommand(m_cmd_cert_file, "<path>", "Path to your client certificate in PEM format.");
+        cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
         cmdUtils.RegisterCommand(m_cmd_shadow_property, "<str>", "The name of the shadow property you want to change.");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(
             m_cmd_is_ci, "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
-        cmdUtils.AddLoggingCommands();
-        const char **const_argv = (const char **)argv;
-        cmdUtils.SendArguments(const_argv, const_argv + argc);
-        cmdUtils.StartLoggingBasedOnCommand(api_handle);
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
         returnData.input_endpoint = cmdUtils.GetCommandRequired(m_cmd_endpoint);

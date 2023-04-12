@@ -150,6 +150,11 @@ namespace Utils
         void AddCommonX509Commands();
 
         /**
+         * A helper function that adds key and cert commands
+         */
+        void AddCommonKeyCertCommands();
+
+        /**
          * A helper function that adds topic and message commands
          */
         void AddCommonTopicMessageCommands();
@@ -196,15 +201,15 @@ namespace Utils
         Aws::Crt::String input_key;
         Aws::Crt::String input_ca;
         Aws::Crt::String input_clientId;
-        int input_port;
+        uint64_t input_port;
         bool input_isCI;
         // Proxy
         Aws::Crt::String input_proxyHost;
-        int input_proxyPort;
+        uint64_t input_proxyPort;
         // PubSub
         Aws::Crt::String input_topic;
         Aws::Crt::String input_message;
-        int input_count;
+        uint64_t input_count;
         // Websockets
         Aws::Crt::String input_signingRegion;
         // Cognito
@@ -244,13 +249,13 @@ namespace Utils
         Aws::Crt::String input_x509Key;
         Aws::Crt::String input_x509Ca;
         // Device Defender
-        int input_reportTime;
+        uint64_t input_reportTime;
         // Jobs
         Aws::Crt::String input_jobId;
         // Cycle PubSub
-        int input_clients;
-        int input_tps;
-        int input_seconds;
+        uint64_t input_clients;
+        uint64_t input_tps;
+        uint64_t input_seconds;
         // Secure Tunnel
         Aws::Crt::String input_accessTokenFile;
         Aws::Crt::String input_accessToken;
