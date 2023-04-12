@@ -12,6 +12,59 @@
 
 namespace Utils
 {
+    /* The command names for the samples */
+    static const char* m_cmd_endpoint = "endpoint";
+    static const char* m_cmd_ca_file = "ca_file";
+    static const char* m_cmd_cert_file = "cert";
+    static const char* m_cmd_key_file = "key";
+    static const char* m_cmd_proxy_host = "proxy_host";
+    static const char* m_cmd_proxy_port = "proxy_port";
+    static const char* m_cmd_signing_region = "signing_region";
+    static const char* m_cmd_x509_endpoint = "x509_endpoint";
+    static const char* m_cmd_x509_role = "x509_role_alias";
+    static const char* m_cmd_x509_thing_name = "x509_thing_name";
+    static const char* m_cmd_x509_cert_file = "x509_cert";
+    static const char* m_cmd_x509_key_file = "x509_key";
+    static const char* m_cmd_x509_ca_file = "x509_ca_file";
+    static const char* m_cmd_pkcs11_lib = "pkcs11_lib";
+    static const char* m_cmd_pkcs11_pin = "pin";
+    static const char* m_cmd_pkcs11_token = "token_label";
+    static const char* m_cmd_pkcs11_slot = "slot_id";
+    static const char* m_cmd_pkcs11_key = "key_label";
+    static const char* m_cmd_message = "message";
+    static const char* m_cmd_topic = "topic";
+    static const char* m_cmd_port_override = "port_override";
+    static const char* m_cmd_help = "help";
+    static const char* m_cmd_custom_auth_username = "custom_auth_username";
+    static const char* m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
+    static const char* m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
+    static const char* m_cmd_custom_auth_password = "custom_auth_password";
+    static const char* m_cmd_verbosity = "verbosity";
+    static const char* m_cmd_log_file = "log_file";
+    static const char* m_cmd_cognito_identity = "cognito_identity";
+    static const char* m_cmd_mode = "mode";
+    static const char* m_cmd_client_id = "client_id";
+    static const char* m_cmd_thing_name = "thing_name";
+    static const char* m_cmd_count = "count";
+    static const char* m_cmd_report_time = "report_time";
+    static const char* m_cmd_template_name = "template_name";
+    static const char* m_cmd_template_parameters = "template_parameters";
+    static const char* m_cmd_template_csr = "csr";
+    static const char* m_cmd_job_id = "job_id";
+    static const char* m_cmd_group_identifier = "group_identifier";
+    static const char* m_cmd_is_ci = "is_ci";
+    static const char* m_cmd_clients = "clients";
+    static const char* m_cmd_tps = "tps";
+    static const char* m_cmd_seconds = "seconds";
+    static const char* m_cmd_access_token_file = "access_token_file";
+    static const char* m_cmd_access_token = "access_token";
+    static const char* m_cmd_local_proxy_mode_source = "local_proxy_mode_source";
+    static const char* m_cmd_client_token_file = "client_token_file";
+    static const char* m_cmd_client_token = "client_token";
+    static const char* m_cmd_proxy_user_name = "proxy_user_name";
+    static const char* m_cmd_proxy_password = "proxy_password";
+    static const char* m_cmd_shadow_property = "shadow_property";
+
     CommandLineUtils::CommandLineUtils()
     {
         // Automatically register the help command
