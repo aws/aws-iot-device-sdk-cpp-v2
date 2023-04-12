@@ -162,8 +162,8 @@ int main(int argc, char *argv[])
         SubscribeToTunnelsNotifyRequest request;
         request.ThingName = cmdData.input_thingName;
 
-        IotSecureTunnelingClient client(connection);
-        client.SubscribeToTunnelsNotify(
+        IotSecureTunnelingClient secureClient(connection);
+        secureClient.SubscribeToTunnelsNotify(
             request, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubscribeToTunnelsNotifyResponse, OnSubscribeComplete);
     }
     while (1)
