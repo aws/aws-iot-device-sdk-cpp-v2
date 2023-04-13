@@ -13,10 +13,7 @@ make -j
 
 ENDPOINT=$(aws secretsmanager get-secret-value --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | sed -e 's/[\\\"\}]//g')
 
-echo "Mqtt Direct test"
+echo "PubSub test"
 ./basic-pub-sub --endpoint $ENDPOINT --key /tmp/privatekey.pem --cert /tmp/certificate.pem
-
-echo "Websocket test"
-./basic-pub-sub --endpoint $ENDPOINT --use_websocket --signing_region us-east-1
 
 popd

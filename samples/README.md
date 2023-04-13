@@ -6,7 +6,6 @@
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
-* [Raw Connect](./mqtt/raw_connect/README.md)
 * [x509 Credentials Provider Connect](./mqtt/x509_credentials_provider_connect/README.md)
 * [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
@@ -15,7 +14,7 @@
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
 * [Jobs](./jobs/describe_job_execution/README.md)
-* [Fleet provisioning](./identity/fleet_provisioning/README.md)
+* [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)
 * [Device Defender](./device_defender/basic_report/README.md)
@@ -34,6 +33,15 @@ cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" 
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
+For CMake versions that do not support the `-B` command, go to the directory of the sample you wish to build and run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+```
+
 ### Build all samples
 
 Change directory to the `aws-iot-device-sdk-cpp-v2/samples` directory and then run the following commands:
@@ -50,6 +58,15 @@ This will compile all the samples at once and place the executables under the `b
 ```
 
 This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/pubsub/basic_pubsub`.
+
+For CMake versions that do not support the `-B` command, go to the `aws-iot-device-sdk-cpp-v2/samples` directory and run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+```
 
 ### Sample Build Notes
 

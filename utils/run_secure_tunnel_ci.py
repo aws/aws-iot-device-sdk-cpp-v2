@@ -53,7 +53,7 @@ def launch_samples(parsed_commands, tunnel_data):
 
     # Right now secure tunneling is only in C++, so we only support launching the sample in the C++ way
     launch_arguments_destination = [
-        "--test", "--region", parsed_commands.sample_region, "--access_token", tunnel_data["destinationAccessToken"]]
+        "--test", "--signing-region", parsed_commands.sample_region, "--access_token", tunnel_data["destinationAccessToken"]]
     launch_arguments_source = ["--local_proxy_mode_source", "--region",
                                parsed_commands.sample_region, "--access_token", tunnel_data["sourceAccessToken"]]
 

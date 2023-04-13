@@ -19,7 +19,7 @@ if (UNIX AND NOT APPLE)
 
     #set warnings
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
-    
+
     find_package(aws-crt-cpp REQUIRED)
     find_package(IotDeviceCommon-cpp REQUIRED)
     find_package(IotDeviceDefender-cpp REQUIRED)

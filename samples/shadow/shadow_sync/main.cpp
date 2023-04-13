@@ -88,77 +88,99 @@ static void s_changeShadowValue(
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+
     String currentShadowValue("");
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("shadow_sync");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
-    cmdUtils.RegisterCommand("shadow_property", "<str>", "The name of the shadow property you want to change.");
-    cmdUtils.RegisterCommand(
-        "is_ci", "<str>", "If present the sample will run in CI mode (will publish to shadow automatically).");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
-    String thingName = cmdUtils.GetCommandRequired("thing_name");
-    String shadowProperty = cmdUtils.GetCommandOrDefault("shadow_property", "color");
-    bool isCI = cmdUtils.HasCommand("is_ci");
+    // Create the MQTT builder and populate it with data from cmdData.
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
+    {
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    if (cmdData.input_proxyHost != "")
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    }
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    }
 
-    /* Get a MQTT client connection from the command parser */
-    auto connection = cmdUtils.BuildMQTTConnection();
+    // Create the MQTT connection from the MQTT builder
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when a mqtt connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(true);
-        }
+    // Invoked when a MQTT connect has completed or failed
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+    // Invoked when a disconnect message has completed.
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
     };
 
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
-        {
-            fprintf(stdout, "Disconnect completed\n");
-            connectionClosedPromise.set_value();
-        }
-    };
-
+    // Assign callbacks
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    /*
-     * Actually perform the connect dance.
-     */
+    /************************ Run the sample ****************************/
+
+    // Connect
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -168,7 +190,7 @@ int main(int argc, char *argv[])
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        // ==================== Shadow Delta Updates ====================
+        /********************** Shadow Delta Updates ********************/
         // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
 
         std::promise<void> subscribeDeltaCompletedPromise;
@@ -212,26 +234,30 @@ int main(int argc, char *argv[])
             if (event)
             {
                 fprintf(stdout, "Received shadow delta event.\n");
-                if (event->State && event->State->View().ValueExists(shadowProperty))
+                if (event->State && event->State->View().ValueExists(cmdData.input_shadowProperty))
                 {
-                    JsonView objectView = event->State->View().GetJsonObject(shadowProperty);
+                    JsonView objectView = event->State->View().GetJsonObject(cmdData.input_shadowProperty);
                     if (objectView.IsNull())
                     {
                         fprintf(
                             stdout,
                             "Delta reports that %s was deleted. Resetting defaults...\n",
-                            shadowProperty.c_str());
-                        s_changeShadowValue(shadowClient, thingName, shadowProperty, SHADOW_VALUE_DEFAULT);
+                            cmdData.input_shadowProperty.c_str());
+                        s_changeShadowValue(
+                            shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, SHADOW_VALUE_DEFAULT);
                     }
                     else
                     {
                         fprintf(
                             stdout,
                             "Delta reports that \"%s\" has a desired value of \"%s\", Changing local value...\n",
-                            shadowProperty.c_str(),
-                            event->State->View().GetString(shadowProperty).c_str());
+                            cmdData.input_shadowProperty.c_str(),
+                            event->State->View().GetString(cmdData.input_shadowProperty).c_str());
                         s_changeShadowValue(
-                            shadowClient, thingName, shadowProperty, event->State->View().GetString(shadowProperty));
+                            shadowClient,
+                            cmdData.input_thingName,
+                            cmdData.input_shadowProperty,
+                            event->State->View().GetString(cmdData.input_shadowProperty));
                     }
 
                     if (event->ClientToken)
@@ -241,7 +267,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    fprintf(stdout, "Delta did not report a change in \"%s\".\n", shadowProperty.c_str());
+                    fprintf(stdout, "Delta did not report a change in \"%s\".\n", cmdData.input_shadowProperty.c_str());
                 }
             }
         };
@@ -255,7 +281,7 @@ int main(int argc, char *argv[])
 
             if (response->State->Reported)
             {
-                currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
+                currentShadowValue = response->State->Reported->View().GetString(cmdData.input_shadowProperty);
             }
             else
             {
@@ -263,9 +289,9 @@ int main(int argc, char *argv[])
                 currentShadowValue = "";
             }
 
-            if (isCI == false)
+            if (cmdData.input_isCI == false)
             {
-                fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+                fprintf(stdout, "Enter Desired state of %s:\n", cmdData.input_shadowProperty.c_str());
             }
         };
 
@@ -283,13 +309,13 @@ int main(int argc, char *argv[])
         };
 
         ShadowDeltaUpdatedSubscriptionRequest shadowDeltaUpdatedRequest;
-        shadowDeltaUpdatedRequest.ThingName = thingName;
+        shadowDeltaUpdatedRequest.ThingName = cmdData.input_thingName;
 
         shadowClient.SubscribeToShadowDeltaUpdatedEvents(
             shadowDeltaUpdatedRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onDeltaUpdated, onDeltaUpdatedSubAck);
 
         UpdateShadowSubscriptionRequest updateShadowSubscriptionRequest;
-        updateShadowSubscriptionRequest.ThingName = thingName;
+        updateShadowSubscriptionRequest.ThingName = cmdData.input_thingName;
 
         shadowClient.SubscribeToUpdateShadowAccepted(
             updateShadowSubscriptionRequest,
@@ -307,7 +333,7 @@ int main(int argc, char *argv[])
         subscribeDeltaAcceptedCompletedPromise.get_future().wait();
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
-        // ==================== Shadow Value Get ====================
+        /********************** Shadow Value Get ********************/
         // This section is to get the initial value of the Shadow document.
 
         std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
@@ -351,27 +377,28 @@ int main(int argc, char *argv[])
             if (response)
             {
                 fprintf(stdout, "Received shadow document.\n");
-                if (response->State && response->State->Reported->View().ValueExists(shadowProperty))
+                if (response->State && response->State->Reported->View().ValueExists(cmdData.input_shadowProperty))
                 {
-                    JsonView objectView = response->State->Reported->View().GetJsonObject(shadowProperty);
+                    JsonView objectView = response->State->Reported->View().GetJsonObject(cmdData.input_shadowProperty);
                     if (objectView.IsNull())
                     {
-                        fprintf(stdout, "Shadow contains \"%s\" but is null.\n", shadowProperty.c_str());
+                        fprintf(stdout, "Shadow contains \"%s\" but is null.\n", cmdData.input_shadowProperty.c_str());
                         currentShadowValue = "";
                     }
                     else
                     {
-                        currentShadowValue = response->State->Reported->View().GetString(shadowProperty);
+                        currentShadowValue = response->State->Reported->View().GetString(cmdData.input_shadowProperty);
                         fprintf(
                             stdout,
                             "Shadow contains \"%s\". Updating local value to \"%s\"...\n",
-                            shadowProperty.c_str(),
+                            cmdData.input_shadowProperty.c_str(),
                             currentShadowValue.c_str());
                     }
                 }
                 else
                 {
-                    fprintf(stdout, "Shadow currently does not contain \"%s\".\n", shadowProperty.c_str());
+                    fprintf(
+                        stdout, "Shadow currently does not contain \"%s\".\n", cmdData.input_shadowProperty.c_str());
                     currentShadowValue = "";
                 }
                 gotInitialShadowPromise.set_value();
@@ -393,7 +420,7 @@ int main(int argc, char *argv[])
         };
 
         GetShadowSubscriptionRequest shadowSubscriptionRequest;
-        shadowSubscriptionRequest.ThingName = thingName;
+        shadowSubscriptionRequest.ThingName = cmdData.input_thingName;
 
         shadowClient.SubscribeToGetShadowAccepted(
             shadowSubscriptionRequest,
@@ -411,7 +438,7 @@ int main(int argc, char *argv[])
         subscribeGetShadowRejectedCompletedPromise.get_future().wait();
 
         GetShadowRequest shadowGetRequest;
-        shadowGetRequest.ThingName = thingName;
+        shadowGetRequest.ThingName = cmdData.input_thingName;
 
         // Get the current shadow document so we start with the correct value
         shadowClient.PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
@@ -419,13 +446,15 @@ int main(int argc, char *argv[])
         onGetShadowRequestCompletedPromise.get_future().wait();
         gotInitialShadowPromise.get_future().wait();
 
-        // ==================== Shadow change value input loop ====================
-        // This section is to getting user input and changing the shadow value passed to that input.
-        // If in CI, then input is automatically passed
+        /********************** Shadow change value input loop ********************/
+        /**
+         * This section is to getting user input and changing the shadow value passed to that input.
+         * If in CI, then input is automatically passed
+         */
 
-        if (isCI == false)
+        if (cmdData.input_isCI == false)
         {
-            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+            fprintf(stdout, "Enter Desired state of %s:\n", cmdData.input_shadowProperty.c_str());
             while (true)
             {
                 String input;
@@ -440,11 +469,11 @@ int main(int argc, char *argv[])
                 if (input == currentShadowValue)
                 {
                     fprintf(stdout, "Shadow is already set to \"%s\"\n", currentShadowValue.c_str());
-                    fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
+                    fprintf(stdout, "Enter Desired state of %s:\n", cmdData.input_shadowProperty.c_str());
                 }
                 else
                 {
-                    s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+                    s_changeShadowValue(shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, input);
                 }
             }
         }
@@ -455,7 +484,7 @@ int main(int argc, char *argv[])
             {
                 String input = "Shadow_Value_";
                 input.append(std::to_string(messagesSent).c_str());
-                s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+                s_changeShadowValue(shadowClient, cmdData.input_thingName, cmdData.input_shadowProperty, input);
                 // Sleep so there is a gap between shadow updates
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 messagesSent += 1;
@@ -464,11 +493,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Disconnect */
+    // Disconnect
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();
     }
-
     return 0;
 }

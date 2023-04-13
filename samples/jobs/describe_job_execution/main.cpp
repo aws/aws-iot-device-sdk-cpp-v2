@@ -28,42 +28,56 @@ using namespace Aws::Iotjobs;
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("describe-job-execution");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing.");
-    cmdUtils.RegisterCommand("job_id", "<str>", "The job id you want to describe.");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputJobs(argc, argv, &apiHandle);
 
-    String thingName = cmdUtils.GetCommandRequired("thing_name");
-    String jobId = cmdUtils.GetCommandRequired("job_id");
+    // Create the MQTT builder and populate it with data from cmdData.
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
+    {
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
 
-    /* Get a MQTT client connection from the command parser */
-    auto connection = cmdUtils.BuildMQTTConnection();
+    // Create the MQTT connection from the MQTT builder
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an mqtt connect has completed or failed.
-     */
+    // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
@@ -77,9 +91,7 @@ int main(int argc, char *argv[])
         }
     };
 
-    /*
-     * Invoked when a disconnect message has completed.
-     */
+    // Invoked when a disconnect has been completed
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
@@ -90,11 +102,10 @@ int main(int argc, char *argv[])
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    /*
-     * Actually perform the connect dance.
-     */
+    /************************ Run the sample ****************************/
+
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -102,17 +113,19 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
-        IotJobsClient client(connection);
+        IotJobsClient jobsClient(connection);
 
         DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
-        describeJobExecutionSubscriptionRequest.ThingName = thingName;
-        describeJobExecutionSubscriptionRequest.JobId = jobId;
+        describeJobExecutionSubscriptionRequest.ThingName = cmdData.input_thingName;
+        describeJobExecutionSubscriptionRequest.JobId = cmdData.input_jobId;
 
-        // This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
-        // to be cautious make sure the subscribe has finished before doing the publish.
+        /**
+         * This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
+         * to be cautious make sure the subscribe has finished before doing the publish.
+         */
         std::promise<void> subAckedPromise;
         auto subAckHandler = [&](int) {
-            /* if error code returns it will be recorded by the other callback */
+            // if error code returns it will be recorded by the other callback
             subAckedPromise.set_value();
         };
         auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
@@ -121,14 +134,13 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error %d occurred\n", ioErr);
                 return;
             }
-
             fprintf(stdout, "Received Job:\n");
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
             fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
         };
 
-        client.SubscribeToDescribeJobExecutionAccepted(
+        jobsClient.SubscribeToDescribeJobExecutionAccepted(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
         subAckedPromise.get_future().wait();
 
@@ -139,7 +151,6 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error %d occurred\n", ioErr);
                 return;
             }
-
             if (rejectedError)
             {
                 fprintf(stderr, "Service Error %d occurred\n", (int)rejectedError->Code.value());
@@ -147,13 +158,13 @@ int main(int argc, char *argv[])
             }
         };
 
-        client.SubscribeToDescribeJobExecutionRejected(
+        jobsClient.SubscribeToDescribeJobExecutionRejected(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
         subAckedPromise.get_future().wait();
 
         DescribeJobExecutionRequest describeJobExecutionRequest;
-        describeJobExecutionRequest.ThingName = thingName;
-        describeJobExecutionRequest.JobId = jobId;
+        describeJobExecutionRequest.ThingName = cmdData.input_thingName;
+        describeJobExecutionRequest.JobId = cmdData.input_jobId;
         describeJobExecutionRequest.IncludeJobDocument = true;
         Aws::Crt::UUID uuid;
         describeJobExecutionRequest.ClientToken = uuid.ToString();
@@ -167,15 +178,15 @@ int main(int argc, char *argv[])
             publishDescribeJobExeCompletedPromise.set_value();
         };
 
-        client.PublishDescribeJobExecution(
+        jobsClient.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
         publishDescribeJobExeCompletedPromise.get_future().wait();
     }
 
-    /* Wait just a little bit to let the console print */
+    // Wait just a little bit to let the console print
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-    /* Disconnect */
+    // Disconnect
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();

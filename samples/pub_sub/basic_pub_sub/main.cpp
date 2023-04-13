@@ -22,95 +22,110 @@ using namespace Aws::Crt;
 int main(int argc, char *argv[])
 {
 
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
-    uint32_t messageCount = 10;
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic_pub_sub");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.AddCommonProxyCommands();
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
-    cmdUtils.RegisterCommand("port_override", "<int>", "The port override to use when connecting (optional)");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "basic-pubsub");
+    String messagePayload = "\"" + cmdData.input_message + "\"";
 
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
-
-    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world!");
-    messagePayload = "\"" + messagePayload + "\""; // Needed to 'JSON-ify' the message
-    if (cmdUtils.HasCommand("count"))
+    // Create the MQTT builder and populate it with data from cmdData.
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
     {
-        int count = atoi(cmdUtils.GetCommand("count").c_str());
-        if (count > 0)
-        {
-            messageCount = count;
-        }
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    if (cmdData.input_proxyHost != "")
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    }
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
     }
 
-    /* Get a MQTT client connection from the command parser */
-    auto connection = cmdUtils.BuildMQTTConnection();
+    // Create the MQTT connection from the MQTT builder
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an MQTT connect has completed or failed.
-     */
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode)
-        {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(false);
-        }
-        else
-        {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(true);
-        }
+    // Invoked when a MQTT connect has completed or failed
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+    // Invoked when a MQTT connection was interrupted/lost
+    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
+        fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
     };
 
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
+    // Invoked when a MQTT connection was interrupted/lost, but then reconnected successfully
+    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) {
+        fprintf(stdout, "Connection resumed\n");
     };
 
-    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
-
-    /*
-     * Invoked when a disconnect message has completed.
-     */
-    auto onDisconnect = [&](Mqtt::MqttConnection &) {
-        {
-            fprintf(stdout, "Disconnect completed\n");
-            connectionClosedPromise.set_value();
-        }
+    // Invoked when a disconnect message has completed.
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
     };
 
+    // Assign callbacks
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    /*
-     * Actually perform the connect dance.
-     */
+    /************************ Run the sample ****************************/
+
+    // Connect
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -122,9 +137,7 @@ int main(int argc, char *argv[])
         std::condition_variable receiveSignal;
         uint32_t receivedCount = 0;
 
-        /*
-         * This is invoked upon the receipt of a Publish on a subscribed topic.
-         */
+        // This is invoked upon the receipt of a Publish on a subscribed topic.
         auto onMessage = [&](Mqtt::MqttConnection &,
                              const String &topic,
                              const ByteBuf &byteBuf,
@@ -143,9 +156,7 @@ int main(int argc, char *argv[])
             receiveSignal.notify_all();
         };
 
-        /*
-         * Subscribe for incoming publish messages on topic.
-         */
+        // Subscribe for incoming publish messages on topic.
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
             [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
@@ -169,16 +180,17 @@ int main(int argc, char *argv[])
                 subscribeFinishedPromise.set_value();
             };
 
-        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
+        connection->Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
 
         uint32_t publishedCount = 0;
-        while (publishedCount < messageCount)
+        while (publishedCount < cmdData.input_count)
         {
             ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
             auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
-            connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+            connection->Publish(
+                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
             ++publishedCount;
 
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -186,18 +198,17 @@ int main(int argc, char *argv[])
 
         {
             std::unique_lock<std::mutex> receivedLock(receiveMutex);
-            receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
+            receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.input_count; });
         }
 
-        /*
-         * Unsubscribe from the topic.
-         */
+        // Unsubscribe from the topic.
         std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(
-            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
+        connection->Unsubscribe(cmdData.input_topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
+            unsubscribeFinishedPromise.set_value();
+        });
         unsubscribeFinishedPromise.get_future().wait();
 
-        /* Disconnect */
+        // Disconnect
         if (connection->Disconnect())
         {
             connectionClosedPromise.get_future().wait();
@@ -207,6 +218,5 @@ int main(int argc, char *argv[])
     {
         exit(-1);
     }
-
     return 0;
 }
