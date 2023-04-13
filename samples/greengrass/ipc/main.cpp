@@ -17,23 +17,17 @@ static std::atomic_bool s_publishReceived(false);
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("greengrass-ipc");
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String message = cmdUtils.GetCommandOrDefault("message", "Hello World");
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputGreengrassIPC(argc, argv, &apiHandle);
 
     /**
      * Create the default ClientBootstrap, which will create the default
@@ -48,7 +42,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
+    /**
      * Inheriting from ConnectionLifecycleHandler allows us to define callbacks that are
      * called upon when connection lifecycle events occur.
      */
@@ -77,7 +71,7 @@ int main(int argc, char *argv[])
             return true;
         }
     };
-    /*
+    /**
      * Note: The lifecycle handler should be declared before the client
      * so that it is destroyed AFTER the client is destroyed.
      */
@@ -91,9 +85,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /*
-     * Upon receiving a message on the topic, print it and set an atomic bool so that the demo can complete.
-     */
+    // Upon receiving a message on the topic, print it and set an atomic bool so that the demo can complete.
     class SubscribeStreamHandler : public SubscribeToIoTCoreStreamHandler
     {
       public:
@@ -119,13 +111,13 @@ int main(int argc, char *argv[])
     auto subscribeOperation = client.NewSubscribeToIoTCore(streamHandler);
     SubscribeToIoTCoreRequest subscribeRequest;
     subscribeRequest.SetQos(QOS_AT_LEAST_ONCE);
-    subscribeRequest.SetTopicName(topic);
+    subscribeRequest.SetTopicName(cmdData.input_topic);
 
-    fprintf(stdout, "Attempting to subscribe to %s topic\n", topic.c_str());
+    fprintf(stdout, "Attempting to subscribe to %s topic\n", cmdData.input_topic.c_str());
     auto requestStatus = subscribeOperation->Activate(subscribeRequest).get();
     if (!requestStatus)
     {
-        fprintf(stderr, "Failed to send subscription request to %s topic\n", topic.c_str());
+        fprintf(stderr, "Failed to send subscription request to %s topic\n", cmdData.input_topic.c_str());
         exit(-1);
     }
 
@@ -133,7 +125,7 @@ int main(int argc, char *argv[])
     auto subscribeResult = subscribeResultFuture.get();
     if (subscribeResult)
     {
-        fprintf(stdout, "Successfully subscribed to %s topic\n", topic.c_str());
+        fprintf(stdout, "Successfully subscribed to %s topic\n", cmdData.input_topic.c_str());
     }
     else
     {
@@ -141,10 +133,11 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = subscribeResult.GetOperationError();
-            /*
+            /**
              * This pointer can be casted to any error type like so:
-             * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
+             * if (error->GetModelName() == UnauthorizedError::MODEL_NAME) {
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+             *  }
              */
             if (error->GetMessage().has_value())
                 fprintf(stderr, "Greengrass Core responded with an error: %s\n", error->GetMessage().value().c_str());
@@ -158,22 +151,22 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Publish to the same topic that is currently subscribed to. */
+    // Publish to the same topic that is currently subscribed to.
     auto publishOperation = client.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
-    publishRequest.SetTopicName(topic);
-    Vector<uint8_t> payload(message.begin(), message.end());
+    publishRequest.SetTopicName(cmdData.input_topic);
+    Vector<uint8_t> payload(cmdData.input_message.begin(), cmdData.input_message.end());
     publishRequest.SetPayload(payload);
     publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
-    fprintf(stdout, "Attempting to publish to %s topic\n", topic.c_str());
+    fprintf(stdout, "Attempting to publish to %s topic\n", cmdData.input_topic.c_str());
     requestStatus = publishOperation->Activate(publishRequest).get();
     if (!requestStatus)
     {
         fprintf(
             stderr,
             "Failed to publish to %s topic with error %s\n",
-            topic.c_str(),
+            cmdData.input_topic.c_str(),
             requestStatus.StatusToString().c_str());
         exit(-1);
     }
@@ -183,7 +176,7 @@ int main(int argc, char *argv[])
     auto publishResult = publishResultFuture.get();
     if (publishResult)
     {
-        fprintf(stdout, "Successfully published to %s topic\n", topic.c_str());
+        fprintf(stdout, "Successfully published to %s topic\n", cmdData.input_topic.c_str());
         auto *response = publishResult.GetOperationResponse();
         (void)response;
     }
@@ -193,10 +186,11 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = publishResult.GetOperationError();
-            /*
+            /**
              * This pointer can be casted to any error type like so:
-             * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
+             * if (error->GetModelName() == UnauthorizedError::MODEL_NAME) {
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+             *  }
              */
             if (error->GetMessage().has_value())
                 fprintf(stderr, "Greengrass Core responded with an error: %s\n", error->GetMessage().value().c_str());
@@ -210,7 +204,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Wait for the publish to be received since this sample subscribes to the same topic it publishes to. */
+    // Wait for the publish to be received since this sample subscribes to the same topic it publishes to.
     while (!s_publishReceived.load())
     {
         continue;

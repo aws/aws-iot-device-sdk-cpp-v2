@@ -76,7 +76,7 @@ void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *ar
 }
 
 void setupCommandLineValues(
-    Utils::CommandLineUtils *cmdUtils,
+    Utils::cmdData *cmdData,
     String *endpoint,
     String *accessToken,
     String *clientToken,
@@ -89,20 +89,19 @@ void setupCommandLineValues(
     aws_secure_tunneling_local_proxy_mode &localProxyMode,
     String *payloadMessage)
 {
-    /* Generate secure tunneling endpoint using region */
-    String region = cmdUtils->GetCommandRequired("region");
+    // Generate secure tunneling endpoint using region
+    String region = cmdData->input_signingRegion;
     endpoint->assign("data.tunneling.iot." + region + ".amazonaws.com");
 
     String tempAccessToken;
-    /* An access token is required to connect to the secure tunnel service */
-    if (cmdUtils->HasCommand("access_token"))
+    // An access token is required to connect to the secure tunnel service
+    if (cmdData->input_accessToken != "")
     {
-        tempAccessToken = cmdUtils->GetCommand("access_token");
+        tempAccessToken = cmdData->input_accessToken;
     }
-    else if (cmdUtils->HasCommand("access_token_file"))
+    else if (cmdData->input_accessTokenFile != "")
     {
-        tempAccessToken = cmdUtils->GetCommand("access_token_file");
-
+        tempAccessToken = cmdData->input_accessTokenFile;
         std::ifstream accessTokenFile(tempAccessToken.c_str());
         if (accessTokenFile.is_open())
         {
@@ -117,27 +116,24 @@ void setupCommandLineValues(
     }
     else
     {
-        cmdUtils->PrintHelp();
         fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
         exit(-1);
     }
     accessToken->assign(tempAccessToken);
 
     String tempClientToken;
-    /*
+    /**
      * A client token is optional as one will be automatically generated if it is absent but it is recommended the
      * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
      * is terminated.
-     * */
-    if (cmdUtils->HasCommand("client_token"))
+     */
+    if (cmdData->input_clientToken != "")
     {
-        tempClientToken = cmdUtils->GetCommand("client_token");
+        tempClientToken = cmdData->input_clientToken;
     }
-
-    if (cmdUtils->HasCommand("client_token_file"))
+    else if (cmdData->input_clientTokenFile != "")
     {
-        tempClientToken = cmdUtils->GetCommand("client_token_file");
-
+        tempClientToken = cmdData->input_clientTokenFile;
         std::ifstream clientTokenFile(tempClientToken.c_str());
         if (clientTokenFile.is_open())
         {
@@ -150,29 +146,23 @@ void setupCommandLineValues(
             exit(-1);
         }
     }
-
     clientToken->assign(tempClientToken);
 
-    caFile->assign(cmdUtils->GetCommandOrDefault("ca_file", ""));
-
-    if (cmdUtils->HasCommand("proxy_host") || cmdUtils->HasCommand("proxy_port"))
+    if (cmdData->input_ca != "")
     {
-        proxyHost->assign(
-            cmdUtils->GetCommandRequired("proxy_host", "--proxy_host must be set to connect through a proxy.").c_str());
-        int port = atoi(
-            cmdUtils->GetCommandRequired("proxy_port", "--proxy_port must be set to connect through a proxy.").c_str());
-        if (port > 0 && port <= UINT16_MAX)
-        {
-            proxyPort = static_cast<uint16_t>(port);
-        }
-        proxyUserName->assign(cmdUtils->GetCommandOrDefault("proxy_user_name", ""));
-        proxyPassword->assign(cmdUtils->GetCommandOrDefault("proxy_password", ""));
+        caFile->assign(cmdData->input_ca);
     }
 
-    /*
-     * localProxyMode is set to destination by default unless flag is set to source
-     */
-    if (cmdUtils->HasCommand("local_proxy_mode_source"))
+    if (cmdData->input_proxyHost != "" || cmdData->input_proxyPort != 0)
+    {
+        proxyHost->assign(cmdData->input_proxyHost);
+        proxyPort = static_cast<uint16_t>(cmdData->input_proxyPort);
+        proxyUserName->assign(cmdData->input_proxy_user_name);
+        proxyPassword->assign(cmdData->input_proxy_password);
+    }
+
+    // localProxyMode is set to destination by default unless flag is set to source
+    if (cmdData->input_localProxyModeSource != "destination")
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
@@ -181,23 +171,20 @@ void setupCommandLineValues(
         localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
     }
 
-    payloadMessage->assign(cmdUtils->GetCommandOrDefault("message", "Hello World"));
-
-    int count = atoi(cmdUtils->GetCommandOrDefault("count", "5").c_str());
-    messageCount = static_cast<uint16_t>(count);
+    payloadMessage->assign(cmdData->input_message);
+    messageCount = static_cast<uint16_t>(cmdData->input_count);
 }
 
 int main(int argc, char *argv[])
 {
     struct aws_allocator *allocator = aws_default_allocator();
     /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API and aws-c-iot.
-     */
+
+    // Do the global initialization for the API and aws-c-iot.
     ApiHandle apiHandle;
     aws_iotdevice_library_init(allocator);
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
@@ -205,7 +192,7 @@ int main(int argc, char *argv[])
     std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
 
-    /* service id storage for use in sample */
+    // service id storage for use in sample
     Aws::Crt::ByteBuf m_serviceIdStorage;
     AWS_ZERO_STRUCT(m_serviceIdStorage);
     Aws::Crt::Optional<Aws::Crt::ByteCursor> m_serviceId;
@@ -223,11 +210,9 @@ int main(int argc, char *argv[])
     uint16_t messageCount(5);
 
     /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    setupCommandLineUtils(&cmdUtils, argc, argv);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
     setupCommandLineValues(
-        &cmdUtils,
+        &cmdData,
         &endpoint,
         &accessToken,
         &clientToken,
@@ -249,7 +234,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Use a SecureTunnelBuilder to set up and build the secure tunnel client */
+    // Use a SecureTunnelBuilder to set up and build the secure tunnel client
     SecureTunnelBuilder builder = SecureTunnelBuilder(allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
 
     if (caFile.length() > 0)
@@ -259,12 +244,12 @@ int main(int argc, char *argv[])
 
     builder.WithClientToken(clientToken.c_str());
 
-    /* Add callbacks using the builder */
+    // Add callbacks using the builder
 
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         if (eventData.connectionData->getServiceId1().has_value())
         {
-            /* If secure tunnel is using service ids, store one for future use */
+            // If secure tunnel is using service ids, store one for future use
             aws_byte_buf_clean_up(&m_serviceIdStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
             aws_byte_buf_init_copy_from_cursor(
@@ -289,7 +274,7 @@ int main(int argc, char *argv[])
             }
             fprintf(stdout, "\n");
 
-            /* Stream Start can only be called from Source Mode */
+            // Stream Start can only be called from Source Mode
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 fprintf(
@@ -303,7 +288,7 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
 
-            /* Stream Start can only be called from Source Mode */
+            // Stream Start can only be called from Source Mode
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 fprintf(stdout, "Sending Stream Start request\n");
@@ -337,7 +322,7 @@ int main(int argc, char *argv[])
 
                     echoMessage = std::make_shared<Message>(message->getPayload().value());
 
-                    /* Echo message on same service id received message came on */
+                    // Echo message on same service id received message came on
                     if (message->getServiceId().has_value())
                     {
                         echoMessage->withServiceId(message->getServiceId().value());
@@ -399,16 +384,16 @@ int main(int argc, char *argv[])
         clientStoppedPromise.set_value(true);
     });
 
-    //***********************************************************************************************************************
-    /* Proxy Options */
-    //***********************************************************************************************************************
+    // ***********************************************************************************************************************
+    // Proxy Options
+    // ***********************************************************************************************************************
     if (proxyHost.length() > 0)
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
         proxyOptions.HostName = proxyHost.c_str();
         proxyOptions.Port = proxyPort;
 
-        /* Set up Proxy Strategy if a user name and password is provided */
+        // Set up Proxy Strategy if a user name and password is provided
         if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
         {
             fprintf(stdout, "Creating proxy strategy\n");
@@ -425,11 +410,11 @@ int main(int argc, char *argv[])
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         }
 
-        /* Add proxy options to the builder */
+        // Add proxy options to the builder
         builder.WithHttpClientConnectionProxyOptions(proxyOptions);
     }
 
-    /* Create Secure Tunnel using the options set with the builder */
+    // Create Secure Tunnel using the options set with the builder
     std::shared_ptr<SecureTunnel> secureTunnel = builder.Build();
 
     if (!secureTunnel)
@@ -438,7 +423,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Set the Secure Tunnel Client to desire a connected state */
+    // Set the Secure Tunnel Client to desire a connected state
     if (secureTunnel->Start())
     {
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
@@ -452,7 +437,7 @@ int main(int argc, char *argv[])
     {
         std::this_thread::sleep_for(1000ms);
 
-        /*
+        /**
          * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
          * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
          */
@@ -467,7 +452,7 @@ int main(int argc, char *argv[])
                 {
                     std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
 
-                    /* If the secure tunnel has service ids, we will use one for our messages. */
+                    // If the secure tunnel has service ids, we will use one for our messages.
                     if (m_serviceId.has_value())
                     {
                         message->withServiceId(m_serviceId.value());
@@ -490,7 +475,7 @@ int main(int argc, char *argv[])
     std::this_thread::sleep_for(3000ms);
 
     fprintf(stdout, "Closing Connection\n");
-    /* Set the Secure Tunnel Client to desire a stopped state */
+    // Set the Secure Tunnel Client to desire a stopped state
     if (secureTunnel->Stop() == AWS_OP_ERR)
     {
         fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
@@ -502,7 +487,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Secure Tunnel Connection Closed\n");
     }
 
-    /* The Secure Tunnel Client at this point will report they are stopped and can be safely removed. */
+    // The Secure Tunnel Client at this point will report they are stopped and can be safely removed.
     if (clientStoppedPromise.get_future().get())
     {
         secureTunnel = nullptr;
@@ -510,7 +495,7 @@ int main(int argc, char *argv[])
 
     fprintf(stdout, "Secure Tunnel Sample Completed\n");
 
-    /* Clean Up */
+    // Clean Up
     aws_byte_buf_clean_up(&m_serviceIdStorage);
 
     return 0;

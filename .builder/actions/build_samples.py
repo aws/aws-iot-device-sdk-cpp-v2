@@ -15,12 +15,11 @@ class BuildSamples(Builder.Action):
         samples = [
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
-            'samples/identity/fleet_provisioning',
+            'samples/fleet_provisioning/fleet_provisioning',
             'samples/jobs/describe_job_execution',
             'samples/mqtt/basic_connect',
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/pkcs11_connect',
-            'samples/mqtt/raw_connect',
             'samples/mqtt/websocket_connect',
             'samples/mqtt/windows_cert_connect',
             'samples/mqtt/x509_credentials_provider_connect',

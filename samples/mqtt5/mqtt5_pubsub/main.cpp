@@ -16,49 +16,26 @@ using namespace Aws::Crt;
 int main(int argc, char *argv[])
 {
 
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
-    ApiHandle apiHandle;
-    uint32_t messageCount = 10;
+    /************************ Setup ****************************/
 
+    // Do the global initialization for the API.
+    ApiHandle apiHandle;
+
+    // Variables needed for the sample
     std::mutex receiveMutex;
     std::condition_variable receiveSignal;
     uint32_t receivedCount = 0;
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("mqtt5-pubsub");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("key", "<path>", "Path to your key in PEM format.");
-    cmdUtils.RegisterCommand("cert", "<path>", "Path to your client certificate in PEM format.");
-    cmdUtils.AddCommonProxyCommands();
-    cmdUtils.AddCommonTopicMessageCommands();
-    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*')");
-    cmdUtils.RegisterCommand("port_override", "<int>", "The port override to use when connecting (optional)");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of messages to send (optional, default='10')");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "mqtt5-pubsub");
 
-    String topic = cmdUtils.GetCommandOrDefault("topic", "test/topic");
-    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
-
-    String messagePayload = cmdUtils.GetCommandOrDefault("message", "Hello world! ");
-    if (cmdUtils.HasCommand("count"))
-    {
-        int count = atoi(cmdUtils.GetCommand("count").c_str());
-        if (count > 0)
-        {
-            messageCount = count;
-        }
-    }
-
-    // Create a Client using Mqtt5ClientBuilder
+    // Create the MQTT5 builder and populate it with data from cmdData.
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        cmdUtils.GetCommand("endpoint"), cmdUtils.GetCommand("cert").c_str(), cmdUtils.GetCommand("key").c_str());
+        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
 
     if (builder == nullptr)
     {
@@ -68,8 +45,12 @@ int main(int argc, char *argv[])
 
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
-    connectOptions->withClientId(clientId);
+    connectOptions->withClientId(cmdData.input_clientId);
     builder->withConnectOptions(connectOptions);
+    if (cmdData.input_port != 0)
+    {
+        builder->withPort(static_cast<uint16_t>(cmdData.input_port));
+    }
 
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
@@ -85,32 +66,26 @@ int main(int argc, char *argv[])
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionPromise.set_value(true);
         });
-
     builder->withClientConnectionFailureCallback(
         [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionFailureEventData &eventData) {
             fprintf(
                 stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
             connectionPromise.set_value(false);
         });
-
     builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
-
     builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData &) {
         fprintf(stdout, "Mqtt5 Client attempting connection...\n");
     });
-
     builder->withClientDisconnectionCallback(
         [&disconnectPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData &eventData) {
             fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
             disconnectPromise.set_value();
         });
 
-    /*
-     * This is invoked upon the receipt of a Publish on a subscribed topic.
-     */
+    // This is invoked upon the receipt of a Publish on a subscribed topic.
     builder->withPublishReceivedCallback(
         [&receiveMutex, &receivedCount, &receiveSignal](
             Mqtt5::Mqtt5Client & /*client*/, const Mqtt5::PublishReceivedEventData &eventData) {
@@ -141,6 +116,8 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Client creation failed.\n");
         return -1;
     }
+
+    /************************ Run the sample ****************************/
 
     // Start mqtt5 connection session
     if (client->Start())
@@ -181,7 +158,7 @@ int main(int argc, char *argv[])
                 subscribeSuccess.set_value(true);
             };
 
-        Mqtt5::Subscription sub1(topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+        Mqtt5::Subscription sub1(cmdData.input_topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         sub1.withNoLocal(false);
         std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
         subPacket->withSubscription(std::move(sub1));
@@ -193,8 +170,10 @@ int main(int argc, char *argv[])
             {
                 fprintf(stdout, "Subscription Success.\n");
 
-                // Setup publish completion callback. The callback will get triggered when the pulbish completes (when
-                // the client received the PubAck from the server).
+                /**
+                 * Setup publish completion callback. The callback will get triggered when the publish completes (when
+                 * the client received the PubAck from the server).
+                 */
                 auto onPublishComplete = [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
                                             int,
                                             std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
@@ -222,14 +201,14 @@ int main(int argc, char *argv[])
                 };
 
                 uint32_t publishedCount = 0;
-                while (publishedCount < messageCount)
+                while (publishedCount < cmdData.input_count)
                 {
                     // Add \" to 'JSON-ify' the message
-                    String message = "\"" + messagePayload + std::to_string(publishedCount + 1).c_str() + "\"";
+                    String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
                     ByteCursor payload = ByteCursorFromString(message);
 
-                    std::shared_ptr<Mqtt5::PublishPacket> publish =
-                        std::make_shared<Mqtt5::PublishPacket>(topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+                    std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
+                        cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
                     if (client->Publish(publish, onPublishComplete))
                     {
                         ++publishedCount;
@@ -240,15 +219,13 @@ int main(int argc, char *argv[])
 
                 {
                     std::unique_lock<std::mutex> receivedLock(receiveMutex);
-                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
+                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.input_count; });
                 }
 
-                /*
-                 * Unsubscribe from the topic.
-                 */
+                // Unsubscribe from the topic.
                 std::promise<void> unsubscribeFinishedPromise;
                 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
-                unsub->withTopicFilter(topic);
+                unsub->withTopicFilter(cmdData.input_topic);
                 if (!client->Unsubscribe(
                         unsub, [&](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
                             unsubscribeFinishedPromise.set_value();
@@ -269,7 +246,7 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Subscribe operation failed on client.\n");
         }
 
-        /* Disconnect */
+        // Disconnect
         if (!client->Stop())
         {
             fprintf(stdout, "Failed to disconnect from the mqtt connection. Exiting..\n");
@@ -277,6 +254,5 @@ int main(int argc, char *argv[])
         }
         stoppedPromise.get_future().wait();
     }
-
     return 0;
 }
