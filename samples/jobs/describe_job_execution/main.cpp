@@ -33,9 +33,11 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API
     ApiHandle apiHandle;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputJobs(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
@@ -68,8 +70,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
@@ -115,8 +119,10 @@ int main(int argc, char *argv[])
         describeJobExecutionSubscriptionRequest.ThingName = cmdData.input_thingName;
         describeJobExecutionSubscriptionRequest.JobId = cmdData.input_jobId;
 
-        // This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
-        // to be cautious make sure the subscribe has finished before doing the publish.
+        /**
+         * This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
+         * to be cautious make sure the subscribe has finished before doing the publish.
+         */
         std::promise<void> subAckedPromise;
         auto subAckHandler = [&](int) {
             // if error code returns it will be recorded by the other callback

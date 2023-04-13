@@ -64,9 +64,11 @@ int main(int argc, char *argv[])
     String token;
     RegisterThingResponse registerThingResponse;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
 
     if (cmdData.input_csrPath != "")
@@ -74,8 +76,10 @@ int main(int argc, char *argv[])
         csrFile = getFileData(cmdData.input_csrPath.c_str()).c_str();
     }
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 

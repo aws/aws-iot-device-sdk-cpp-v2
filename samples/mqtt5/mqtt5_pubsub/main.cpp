@@ -26,9 +26,11 @@ int main(int argc, char *argv[])
     std::condition_variable receiveSignal;
     uint32_t receivedCount = 0;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "mqtt5-pubsub");
 
     // Create the MQTT5 builder and populate it with data from cmdData.
@@ -168,8 +170,10 @@ int main(int argc, char *argv[])
             {
                 fprintf(stdout, "Subscription Success.\n");
 
-                // Setup publish completion callback. The callback will get triggered when the pulbish completes (when
-                // the client received the PubAck from the server).
+                /**
+                 * Setup publish completion callback. The callback will get triggered when the publish completes (when
+                 * the client received the PubAck from the server).
+                 */
                 auto onPublishComplete = [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
                                             int,
                                             std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {

@@ -22,13 +22,17 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputGreengrassIPC(argc, argv, &apiHandle);
 
-    // Create the default ClientBootstrap, which will create the default
-    // EventLoopGroup (to process IO events) and HostResolver.
+    /**
+     * Create the default ClientBootstrap, which will create the default
+     * EventLoopGroup (to process IO events) and HostResolver.
+     */
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
         fprintf(
@@ -38,8 +42,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // Inheriting from ConnectionLifecycleHandler allows us to define callbacks that are
-    // called upon when connection lifecycle events occur.
+    /**
+     * Inheriting from ConnectionLifecycleHandler allows us to define callbacks that are
+     * called upon when connection lifecycle events occur.
+     */
     class SampleLifecycleHandler : public ConnectionLifecycleHandler
     {
       public:
@@ -65,8 +71,10 @@ int main(int argc, char *argv[])
             return true;
         }
     };
-    // Note: The lifecycle handler should be declared before the client
-    // so that it is destroyed AFTER the client is destroyed.
+    /**
+     * Note: The lifecycle handler should be declared before the client
+     * so that it is destroyed AFTER the client is destroyed.
+     */
     SampleLifecycleHandler lifecycleHandler;
     GreengrassCoreIpcClient client(*apiHandle.GetOrCreateStaticDefaultClientBootstrap());
     auto connectionStatus = client.Connect(lifecycleHandler).get();
@@ -125,9 +133,12 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = subscribeResult.GetOperationError();
-            // This pointer can be casted to any error type like so:
-            // if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
-            //    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+            /**
+             * This pointer can be casted to any error type like so:
+             * if (error->GetModelName() == UnauthorizedError::MODEL_NAME) {
+             *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+             *  }
+             */
             if (error->GetMessage().has_value())
                 fprintf(stderr, "Greengrass Core responded with an error: %s\n", error->GetMessage().value().c_str());
         }
@@ -175,9 +186,12 @@ int main(int argc, char *argv[])
         if (errorType == OPERATION_ERROR)
         {
             OperationError *error = publishResult.GetOperationError();
-            // This pointer can be casted to any error type like so:
-            // if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
-            //    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+            /**
+             * This pointer can be casted to any error type like so:
+             * if (error->GetModelName() == UnauthorizedError::MODEL_NAME) {
+             *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
+             *  }
+             */
             if (error->GetMessage().has_value())
                 fprintf(stderr, "Greengrass Core responded with an error: %s\n", error->GetMessage().value().c_str());
         }

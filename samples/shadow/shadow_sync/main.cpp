@@ -95,9 +95,11 @@ int main(int argc, char *argv[])
 
     String currentShadowValue("");
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
@@ -142,8 +144,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
@@ -186,7 +190,7 @@ int main(int argc, char *argv[])
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        // ==================== Shadow Delta Updates ====================
+        /********************** Shadow Delta Updates ********************/
         // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
 
         std::promise<void> subscribeDeltaCompletedPromise;
@@ -329,7 +333,7 @@ int main(int argc, char *argv[])
         subscribeDeltaAcceptedCompletedPromise.get_future().wait();
         subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
-        // ==================== Shadow Value Get ====================
+        /********************** Shadow Value Get ********************/
         // This section is to get the initial value of the Shadow document.
 
         std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
@@ -442,9 +446,11 @@ int main(int argc, char *argv[])
         onGetShadowRequestCompletedPromise.get_future().wait();
         gotInitialShadowPromise.get_future().wait();
 
-        // ==================== Shadow change value input loop ====================
-        // This section is to getting user input and changing the shadow value passed to that input.
-        // If in CI, then input is automatically passed
+        /********************** Shadow change value input loop ********************/
+        /**
+         * This section is to getting user input and changing the shadow value passed to that input.
+         * If in CI, then input is automatically passed
+         */
 
         if (cmdData.input_isCI == false)
         {

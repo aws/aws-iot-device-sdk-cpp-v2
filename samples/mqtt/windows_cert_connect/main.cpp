@@ -18,9 +18,11 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputWindowsCertificateConnect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
@@ -57,8 +59,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 

@@ -122,9 +122,11 @@ void setupCommandLineValues(
     accessToken->assign(tempAccessToken);
 
     String tempClientToken;
-    // A client token is optional as one will be automatically generated if it is absent but it is recommended the
-    // customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
-    // is terminated.
+    /**
+     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
+     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
+     * is terminated.
+     */
     if (cmdData->input_clientToken != "")
     {
         tempClientToken = cmdData->input_clientToken;
@@ -182,8 +184,10 @@ int main(int argc, char *argv[])
     ApiHandle apiHandle;
     aws_iotdevice_library_init(allocator);
 
-    // In a real world application you probably don't want to enforce synchronous behavior
-    // but this is a sample console application, so we'll just do that with a condition variable.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
     std::promise<bool> connectionCompletedPromise;
     std::promise<bool> connectionClosedPromise;
     std::promise<bool> clientStoppedPromise;
@@ -245,7 +249,7 @@ int main(int argc, char *argv[])
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         if (eventData.connectionData->getServiceId1().has_value())
         {
-            /* If secure tunnel is using service ids, store one for future use */
+            // If secure tunnel is using service ids, store one for future use
             aws_byte_buf_clean_up(&m_serviceIdStorage);
             AWS_ZERO_STRUCT(m_serviceIdStorage);
             aws_byte_buf_init_copy_from_cursor(
@@ -270,7 +274,7 @@ int main(int argc, char *argv[])
             }
             fprintf(stdout, "\n");
 
-            /* Stream Start can only be called from Source Mode */
+            // Stream Start can only be called from Source Mode
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 fprintf(
@@ -284,7 +288,7 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "Secure Tunnel is not using Service Ids.\n");
 
-            /* Stream Start can only be called from Source Mode */
+            // Stream Start can only be called from Source Mode
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
                 fprintf(stdout, "Sending Stream Start request\n");
@@ -318,7 +322,7 @@ int main(int argc, char *argv[])
 
                     echoMessage = std::make_shared<Message>(message->getPayload().value());
 
-                    /* Echo message on same service id received message came on */
+                    // Echo message on same service id received message came on
                     if (message->getServiceId().has_value())
                     {
                         echoMessage->withServiceId(message->getServiceId().value());
@@ -433,8 +437,10 @@ int main(int argc, char *argv[])
     {
         std::this_thread::sleep_for(1000ms);
 
-        // In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
-        // In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
+        /**
+         * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
+         * In Source mode the Secure Tunnel Client will send 4 messages and then disconnect and terminate.
+         */
         while (keepRunning)
         {
             if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)

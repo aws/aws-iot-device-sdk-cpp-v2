@@ -19,8 +19,10 @@
 
 using namespace Aws::Crt;
 
-// A struct to hold all of the data for each MQTT connection in the
-// sample, like the client ID, whether it is connected, etc.
+/**
+ * A struct to hold all of the data for each MQTT connection in the
+ * sample, like the client ID, whether it is connected, etc.
+ */
 struct CycleClient
 {
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> client;
@@ -545,9 +547,11 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputCyclePubSub(argc, argv, &apiHandle);
 
     /******************** Start the client cycle ***********************/

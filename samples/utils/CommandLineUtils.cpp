@@ -12,7 +12,7 @@
 
 namespace Utils
 {
-    /* The command names for the samples */
+    // The command names for the samples
     static const char *m_cmd_endpoint = "endpoint";
     static const char *m_cmd_ca_file = "ca_file";
     static const char *m_cmd_cert_file = "cert";

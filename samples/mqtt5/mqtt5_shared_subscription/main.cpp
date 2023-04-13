@@ -13,8 +13,10 @@
 
 using namespace Aws::Crt;
 
-// For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
-// and to do so we use this class to hold all the data for a particular client used in the sample.
+/**
+ * For the purposes of this sample, we need to associate certain variables with a particular MQTT5 client
+ * and to do so we use this class to hold all the data for a particular client used in the sample.
+ */
 class sample_mqtt5_client
 {
   public:
@@ -170,9 +172,11 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    // cmdData is the arguments/input from the command line placed into a single struct for
-    // use in this sample. This handles all of the command line parsing, validating, etc.
-    // See the Utils/CommandLineUtils for more information.
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
     Utils::cmdData cmdData = Utils::parseSampleInputSharedSubscription(argc, argv, &apiHandle);
 
     String input_sharedTopic = String("$share/") + cmdData.input_groupIdentifier + String("/") + cmdData.input_topic;
