@@ -5,7 +5,6 @@
 #include <aws/common/byte_buf.h>
 #include <aws/crt/Api.h>
 #include <aws/crt/http/HttpProxyStrategy.h>
-#include <aws/iot/MqttClient.h>
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 
@@ -122,132 +121,6 @@ void logConnectionStartedData(const ConnectionStartedEventData &eventData)
     fprintf(stdout, "\n");
 }
 
-void setupCommandLineUtils(Utils::CommandLineUtils *cmdUtils, int argc, char *argv[])
-{
-    cmdUtils->AddCommonProxyCommands();
-    cmdUtils->RegisterProgramName("secure_tunnel");
-    cmdUtils->RegisterCommand("region", "<str>", "The region of your secure tunnel");
-    cmdUtils->RegisterCommand(
-        "ca_file", "<path>", "Path to AmazonRootCA1.pem (optional, system trust store used by default).");
-    cmdUtils->RegisterCommand(
-        "access_token_file", "<path>", "Path to the tunneling access token file (optional if --access_token used).");
-    cmdUtils->RegisterCommand(
-        "access_token", "<str>", "Tunneling access token (optional if --access_token_file used).");
-    cmdUtils->RegisterCommand(
-        "local_proxy_mode_source", "<str>", "Use to set local proxy mode to source (optional, default='destination').");
-    cmdUtils->RegisterCommand(
-        "client_token", "<str>", "Tunneling access token (optional if --client_token_file used).");
-    cmdUtils->RegisterCommand("message", "<str>", "Message to send (optional, default='Hello World!').");
-    cmdUtils->RegisterCommand(
-        "proxy_user_name", "<str>", "User name passed if proxy server requires a user name (optional)");
-    cmdUtils->RegisterCommand(
-        "proxy_password", "<str>", "Password passed if proxy server requires a password (optional)");
-    cmdUtils->RegisterCommand("count", "<int>", "Number of messages to send before completing (optional, default='5')");
-    cmdUtils->AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils->SendArguments(const_argv, const_argv + argc);
-}
-
-void setupCommandLineValues(
-    Utils::cmdData *cmdData,
-    String *endpoint,
-    String *accessToken,
-    String *clientToken,
-    String *caFile,
-    String *proxyHost,
-    String *proxyUserName,
-    String *proxyPassword,
-    uint16_t &proxyPort,
-    uint16_t &messageCount,
-    aws_secure_tunneling_local_proxy_mode &localProxyMode,
-    String *payloadMessage)
-{
-    // Generate secure tunneling endpoint using region
-    String region = cmdData->input_signingRegion;
-    endpoint->assign("data.tunneling.iot." + region + ".amazonaws.com");
-
-    String tempAccessToken;
-    // An access token is required to connect to the secure tunnel service
-    if (cmdData->input_accessToken != "")
-    {
-        tempAccessToken = cmdData->input_accessToken;
-    }
-    else if (cmdData->input_accessTokenFile != "")
-    {
-        tempAccessToken = cmdData->input_accessTokenFile;
-        std::ifstream accessTokenFile(tempAccessToken.c_str());
-        if (accessTokenFile.is_open())
-        {
-            getline(accessTokenFile, tempAccessToken);
-            accessTokenFile.close();
-        }
-        else
-        {
-            fprintf(stderr, "Failed to open access token file");
-            exit(-1);
-        }
-    }
-    else
-    {
-        fprintf(stderr, "--access_token_file or --access_token must be set to connect through a secure tunnel");
-        exit(-1);
-    }
-    accessToken->assign(tempAccessToken);
-
-    String tempClientToken;
-    /**
-     * A client token is optional as one will be automatically generated if it is absent but it is recommended the
-     * customer provides their own so they can reuse it with other secure tunnel clients after the secure tunnel client
-     * is terminated.
-     */
-    if (cmdData->input_clientToken != "")
-    {
-        tempClientToken = cmdData->input_clientToken;
-    }
-    else if (cmdData->input_clientTokenFile != "")
-    {
-        tempClientToken = cmdData->input_clientTokenFile;
-        std::ifstream clientTokenFile(tempClientToken.c_str());
-        if (clientTokenFile.is_open())
-        {
-            getline(clientTokenFile, tempClientToken);
-            clientTokenFile.close();
-        }
-        else
-        {
-            fprintf(stderr, "Failed to open client token file\n");
-            exit(-1);
-        }
-    }
-    clientToken->assign(tempClientToken);
-
-    if (cmdData->input_ca != "")
-    {
-        caFile->assign(cmdData->input_ca);
-    }
-
-    if (cmdData->input_proxyHost != "" || cmdData->input_proxyPort != 0)
-    {
-        proxyHost->assign(cmdData->input_proxyHost);
-        proxyPort = static_cast<uint16_t>(cmdData->input_proxyPort);
-        proxyUserName->assign(cmdData->input_proxy_user_name);
-        proxyPassword->assign(cmdData->input_proxy_password);
-    }
-
-    // localProxyMode is set to destination by default unless flag is set to source
-    if (cmdData->input_localProxyModeSource != "destination")
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
-    }
-    else
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
-    }
-
-    payloadMessage->assign(cmdData->input_message);
-    messageCount = static_cast<uint16_t>(cmdData->input_count);
-}
-
 int main(int argc, char *argv[])
 {
     struct aws_allocator *allocator = aws_default_allocator();
@@ -268,17 +141,7 @@ int main(int argc, char *argv[])
     AWS_ZERO_STRUCT(m_serviceIdStorage);
     Aws::Crt::Optional<Aws::Crt::ByteCursor> m_serviceId;
 
-    String endpoint;
-    String accessToken;
-    String clientToken;
-    String caFile;
-    String proxyHost;
-    uint16_t proxyPort(8080);
-    String proxyUserName;
-    String proxyPassword;
     aws_secure_tunneling_local_proxy_mode localProxyMode;
-    String payloadMessage;
-    uint16_t messageCount(5);
 
     /* Connection Id is used for Simultaneous HTTP Connections (Protocl V3) */
     uint32_t connectionId = 1;
@@ -287,19 +150,15 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
-    setupCommandLineValues(
-        &cmdData,
-        &endpoint,
-        &accessToken,
-        &clientToken,
-        &caFile,
-        &proxyHost,
-        &proxyUserName,
-        &proxyPassword,
-        proxyPort,
-        messageCount,
-        localProxyMode,
-        &payloadMessage);
+    // localProxyMode is set to destination by default unless flag is set to source
+    if (cmdData.input_localProxyModeSource != "destination")
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
+    }
+    else
+    {
+        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
+    }
 
     if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
     {
@@ -311,28 +170,29 @@ int main(int argc, char *argv[])
     }
 
     // Use a SecureTunnelBuilder to set up and build the secure tunnel client
-    SecureTunnelBuilder builder = SecureTunnelBuilder(allocator, accessToken.c_str(), localProxyMode, endpoint.c_str());
+    SecureTunnelBuilder builder = SecureTunnelBuilder(
+        allocator, cmdData.input_accessToken.c_str(), localProxyMode, cmdData.input_endpoint.c_str());
 
-    if (caFile.length() > 0)
+    if (cmdData.input_ca != "")
     {
-        builder.WithRootCa(caFile.c_str());
+        builder.WithRootCa(cmdData.input_ca.c_str());
     }
 
     /* Proxy Options */
-    if (proxyHost.length() > 0)
+    if (cmdData.input_proxyHost != "")
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
-        proxyOptions.HostName = proxyHost.c_str();
-        proxyOptions.Port = proxyPort;
+        proxyOptions.HostName = cmdData.input_proxyHost != "";
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
 
         // Set up Proxy Strategy if a user name and password is provided
-        if (proxyUserName.length() > 0 || proxyPassword.length() > 0)
+        if (cmdData.input_proxy_user_name != "" || cmdData.input_proxy_password != "")
         {
             fprintf(stdout, "Creating proxy strategy\n");
             Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
             basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
-            basicAuthConfig.Username = proxyUserName.c_str();
-            basicAuthConfig.Password = proxyPassword.c_str();
+            basicAuthConfig.Username = cmdData.input_proxy_user_name.c_str();
+            basicAuthConfig.Password = cmdData.input_proxy_password.c_str();
             proxyOptions.ProxyStrategy =
                 Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
@@ -346,7 +206,7 @@ int main(int argc, char *argv[])
         builder.WithHttpClientConnectionProxyOptions(proxyOptions);
     }
 
-    builder.WithClientToken(clientToken.c_str());
+    builder.WithClientToken(cmdData.input_clientToken.c_str());
 
     /* Add callbacks using the builder */
     builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
@@ -495,8 +355,10 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(2000ms);
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
+            uint16_t messageCount = static_cast<uint16_t>(cmdData.input_count);
             messagesSent++;
-            String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
+            // String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
+            String toSend = (std::to_string(messagesSent) + ": " + cmdData.input_message.c_str()).c_str();
 
             if (messagesSent <= messageCount)
             {
