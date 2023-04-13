@@ -558,7 +558,7 @@ int main(int argc, char *argv[])
     /* Set the Secure Tunnel Client to desire a stopped state */
     if (secureTunnel->Stop() == AWS_OP_ERR)
     {
-        fprintf(stderr, "Secure Tunnel Close call failed: %s\n", ErrorDebugString(LastError()));
+        fprintf(stderr, "Secure Tunnel Stop call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
 

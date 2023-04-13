@@ -185,7 +185,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator)
         {
-            aws_byte_buf_clean_up(&m_messageTypeStorage);
             AWS_ZERO_STRUCT(m_messageTypeStorage);
             struct aws_byte_buf typeBuf = aws_byte_buf_from_c_str(aws_secure_tunnel_message_type_to_c_string(type));
 

@@ -1,0 +1,25 @@
+version: 0.2
+env:
+  shell: bash
+#this buildspec assumes the ubuntu 14 image
+phases:
+  install:
+    commands:
+      - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+      - add-apt-repository ppa:ubuntu-toolchain-r/test
+      - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
+      - apt-get update -y
+      - apt-get install cmake -y -f
+
+  build:
+    commands:
+      - echo Build started on `date`
+      # Building of dependencies happens in setup-linux
+      - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
+
+      # Run the integration tests
+      - $CODEBUILD_SRC_DIR/codebuild/integration-tests.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
