@@ -45,11 +45,11 @@ int main(int argc, char *argv[])
 
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
-    connectOptions->withClientId(cmdData.input_clientId);
-    builder->withConnectOptions(connectOptions);
+    connectOptions->WithClientId(cmdData.input_clientId);
+    builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
     {
-        builder->withPort(static_cast<uint16_t>(cmdData.input_port));
+        builder->WithPort(static_cast<uint16_t>(cmdData.input_port));
     }
 
     std::promise<bool> connectionPromise;
@@ -58,37 +58,34 @@ int main(int argc, char *argv[])
     std::promise<bool> subscribeSuccess;
 
     // Setup lifecycle callbacks
-    builder->withClientConnectionSuccessCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionSuccessEventData &eventData) {
+    builder->WithClientConnectionSuccessCallback(
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
                 stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionPromise.set_value(true);
         });
-    builder->withClientConnectionFailureCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionFailureEventData &eventData) {
-            fprintf(
-                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            connectionPromise.set_value(false);
-        });
-    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData &) {
+    builder->WithClientConnectionFailureCallback([&connectionPromise](
+                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        connectionPromise.set_value(false);
+    });
+    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
-    builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData &) {
+    builder->WithClientAttemptingConnectCallback([](const Mqtt5::OnAttemptingConnectEventData &) {
         fprintf(stdout, "Mqtt5 Client attempting connection...\n");
     });
-    builder->withClientDisconnectionCallback(
-        [&disconnectPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData &eventData) {
-            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
-            disconnectPromise.set_value();
-        });
+    builder->WithClientDisconnectionCallback([&disconnectPromise](const Mqtt5::OnDisconnectionEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
+        disconnectPromise.set_value();
+    });
 
     // This is invoked upon the receipt of a Publish on a subscribed topic.
-    builder->withPublishReceivedCallback(
-        [&receiveMutex, &receivedCount, &receiveSignal](
-            Mqtt5::Mqtt5Client & /*client*/, const Mqtt5::PublishReceivedEventData &eventData) {
+    builder->WithPublishReceivedCallback(
+        [&receiveMutex, &receivedCount, &receiveSignal](const Mqtt5::PublishReceivedEventData &eventData) {
             if (eventData.publishPacket == nullptr)
                 return;
 
@@ -127,41 +124,39 @@ int main(int argc, char *argv[])
             return -1;
         }
 
-        auto onSubAck =
-            [&subscribeSuccess](
-                std::shared_ptr<Mqtt5::Mqtt5Client>, int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
-                if (error_code != 0)
+        auto onSubAck = [&subscribeSuccess](int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
+            if (error_code != 0)
+            {
+                fprintf(
+                    stdout,
+                    "MQTT5 Client Subscription failed with error code: (%d)%s\n",
+                    error_code,
+                    aws_error_debug_str(error_code));
+                subscribeSuccess.set_value(false);
+            }
+            if (suback != nullptr)
+            {
+                for (Mqtt5::SubAckReasonCode reasonCode : suback->getReasonCodes())
                 {
-                    fprintf(
-                        stdout,
-                        "MQTT5 Client Subscription failed with error code: (%d)%s\n",
-                        error_code,
-                        aws_error_debug_str(error_code));
-                    subscribeSuccess.set_value(false);
-                }
-                if (suback != nullptr)
-                {
-                    for (Mqtt5::SubAckReasonCode reasonCode : suback->getReasonCodes())
+                    if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
                     {
-                        if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
-                        {
-                            fprintf(
-                                stdout,
-                                "MQTT5 Client Subscription failed with server error code: (%d)%s\n",
-                                reasonCode,
-                                suback->getReasonString()->c_str());
-                            subscribeSuccess.set_value(false);
-                            return;
-                        }
+                        fprintf(
+                            stdout,
+                            "MQTT5 Client Subscription failed with server error code: (%d)%s\n",
+                            reasonCode,
+                            suback->getReasonString()->c_str());
+                        subscribeSuccess.set_value(false);
+                        return;
                     }
                 }
-                subscribeSuccess.set_value(true);
-            };
+            }
+            subscribeSuccess.set_value(true);
+        };
 
         Mqtt5::Subscription sub1(cmdData.input_topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
-        sub1.withNoLocal(false);
+        sub1.WithNoLocal(false);
         std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
-        subPacket->withSubscription(std::move(sub1));
+        subPacket->WithSubscription(std::move(sub1));
 
         if (client->Subscribe(subPacket, onSubAck))
         {
@@ -174,9 +169,7 @@ int main(int argc, char *argv[])
                  * Setup publish completion callback. The callback will get triggered when the publish completes (when
                  * the client received the PubAck from the server).
                  */
-                auto onPublishComplete = [](std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client,
-                                            int,
-                                            std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
+                auto onPublishComplete = [](int, std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
                     if (!result->wasSuccessful())
                     {
                         fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
@@ -225,11 +218,10 @@ int main(int argc, char *argv[])
                 // Unsubscribe from the topic.
                 std::promise<void> unsubscribeFinishedPromise;
                 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
-                unsub->withTopicFilter(cmdData.input_topic);
-                if (!client->Unsubscribe(
-                        unsub, [&](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
-                            unsubscribeFinishedPromise.set_value();
-                        }))
+                unsub->WithTopicFilter(cmdData.input_topic);
+                if (!client->Unsubscribe(unsub, [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
+                        unsubscribeFinishedPromise.set_value();
+                    }))
                 {
                     fprintf(stdout, "Unsubscription failed.\n");
                     exit(-1);
