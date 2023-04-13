@@ -13,94 +13,117 @@ using namespace Aws::Crt;
 int main(int argc, char *argv[])
 {
 
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    apiHandle.InitializeLogging(LogLevel::Error, stderr);
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputWindowsCertificateConnect(argc, argv, &apiHandle);
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("windows-cert-connect");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand(
-        "cert",
-        "<str>",
-        "Your client certificate in the Windows certificate store. e.g. "
-        "'CurrentUser\\MY\\6ac133ac58f0a88b83e9c794eba156a98da39b4c'");
-    cmdUtils.RegisterCommand("client_id", "<str>", "Client id to use (optional, default='test-*').");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    String endpoint = cmdUtils.GetCommandRequired("endpoint");
-    String windowsCertStorePath = cmdUtils.GetCommandRequired("cert");
-    String caFile = cmdUtils.GetCommandOrDefault("ca_file", "");
-    String clientId = cmdUtils.GetCommandOrDefault("client_id", String("test-") + Aws::Crt::UUID().ToString());
-
-    /********************** Now Setup an Mqtt Client ******************/
-    if (apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError() != AWS_ERROR_SUCCESS)
-    {
-        fprintf(
-            stderr,
-            "ClientBootstrap failed with error %s\n",
-            ErrorDebugString(apiHandle.GetOrCreateStaticDefaultClientBootstrap()->LastError()));
-        exit(-1);
-    }
-
-    Aws::Iot::MqttClientConnectionConfigBuilder builder(windowsCertStorePath.c_str());
+    // Create the MQTT builder and populate it with data from cmdData.
+    Aws::Iot::MqttClient client;
+    Aws::Iot::MqttClientConnectionConfigBuilder builder(cmdData.input_cert.c_str());
     if (!builder)
     {
         fprintf(stderr, "MqttClientConnectionConfigBuilder failed: %s\n", ErrorDebugString(Aws::Crt::LastError()));
         exit(-1);
     }
-
-    /*
-     * Note that that remainder of this code is identical to how the other connect samples setup their connection.
-     */
-
-    if (!caFile.empty())
+    if (!cmdData.input_ca.empty())
     {
-        builder.WithCertificateAuthority(caFile.c_str());
+        builder.WithCertificateAuthority(cmdData.input_ca.c_str());
     }
+    builder.WithEndpoint(cmdData.input_endpoint);
 
-    builder.WithEndpoint(endpoint);
-
+    // Create the MQTT connection from the MQTT builder
     auto clientConfig = builder.Build();
     if (!clientConfig)
     {
         fprintf(
             stderr,
             "Client Configuration initialization failed with error %s\n",
-            ErrorDebugString(clientConfig.LastError()));
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
-
-    Aws::Iot::MqttClient mqttClient;
-    if (!mqttClient)
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
     {
-        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
-    /*
-     * Now create a connection object. Note: This type is move only
-     * and its underlying memory is managed by the client.
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    auto connection = mqttClient.NewConnection(clientConfig);
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<void> connectionClosedPromise;
 
-    if (!connection)
+    // Invoked when a MQTT connect has completed or failed
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+    // Invoked when a MQTT connection was interrupted/lost
+    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
+        fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
+    };
+
+    // Invoked when a MQTT connection was interrupted/lost, but then reconnected successfully
+    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) {
+        fprintf(stdout, "Connection resumed\n");
+    };
+
+    // Invoked when a disconnect message has completed.
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
+    };
+
+    // Assign callbacks
+    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
+    connection->OnDisconnect = std::move(onDisconnect);
+    connection->OnConnectionInterrupted = std::move(onInterrupted);
+    connection->OnConnectionResumed = std::move(onResumed);
+
+    /************************ Run the sample ****************************/
+
+    // Connect
+    fprintf(stdout, "Connecting...\n");
+    if (!connection->Connect(cmdData.input_clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        fprintf(stderr, "MQTT Connection failed with error %s\n", Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
-    // Connect and then disconnect using the connection we created
-    // (see SampleConnectAndDisconnect for implementation)
-    cmdUtils.SampleConnectAndDisconnect(connection, clientId);
+    // wait for the OnConnectionCompleted callback to fire, which sets connectionCompletedPromise...
+    if (connectionCompletedPromise.get_future().get() == false)
+    {
+        fprintf(stderr, "Connection failed\n");
+        exit(-1);
+    }
 
+    // Disconnect
+    if (connection->Disconnect())
+    {
+        connectionClosedPromise.get_future().wait();
+    }
     return 0;
 }

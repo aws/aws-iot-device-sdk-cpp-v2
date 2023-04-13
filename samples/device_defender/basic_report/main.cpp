@@ -20,8 +20,6 @@
 #include <mutex>
 #include <thread>
 
-#include <aws/crt/Api.h>
-
 #include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
@@ -61,77 +59,68 @@ int s_getCustomMetricIpAddressList(Vector<String> *output)
 
 int main(int argc, char *argv[])
 {
+    /************************ Setup ****************************/
 
-    /************************ Setup the Lib ****************************/
-    /*
-     * Do the global initialization for the API.
-     */
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    String thingName("TestThing");
-    int reportTime = 60u;
-    int count = 10;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData = Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
-    /*********************** Parse Arguments ***************************/
-    Utils::CommandLineUtils cmdUtils = Utils::CommandLineUtils();
-    cmdUtils.RegisterProgramName("basic-report");
-    cmdUtils.AddCommonMQTTCommands();
-    cmdUtils.RegisterCommand("thing_name", "<str>", "The name of your IOT thing (optional, default='TestThing').");
-    cmdUtils.RegisterCommand(
-        "report_time", "<int>", "The frequency to send Device Defender reports in seconds (optional, default='60')");
-    cmdUtils.RegisterCommand("count", "<int>", "The number of reports to send (optional, default='10')");
-    cmdUtils.AddLoggingCommands();
-    const char **const_argv = (const char **)argv;
-    cmdUtils.SendArguments(const_argv, const_argv + argc);
-    cmdUtils.StartLoggingBasedOnCommand(&apiHandle);
-
-    if (cmdUtils.HasCommand("help"))
+    // Create the MQTT builder and populate it with data from cmdData.
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
     {
-        cmdUtils.PrintHelp();
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    if (cmdData.input_proxyHost != "")
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    }
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    }
+
+    // Create the MQTT connection from the MQTT builder
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
+    {
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
-    thingName = cmdUtils.GetCommandOrDefault("thing_name", thingName);
-
-    if (cmdUtils.HasCommand("report_time"))
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
     {
-        int tmpReportTime = atoi(cmdUtils.GetCommand("report_time").c_str());
-        if (tmpReportTime > 0)
-        {
-            reportTime = tmpReportTime;
-        }
-    }
-    if (cmdUtils.HasCommand("count"))
-    {
-        int tmpCount = atoi(cmdUtils.GetCommand("count").c_str());
-        if (tmpCount > 0)
-        {
-            count = tmpCount;
-        }
-    }
-
-    // Make a MQTT client and create a connection using a certificate and key
-    // Note: The data for the connection is gotten from cmdUtils
-    // (see BuildDirectMQTTConnection for implementation)
-    Aws::Iot::MqttClient mqttClient = Aws::Iot::MqttClient();
-    std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection = cmdUtils.BuildDirectMQTTConnection(&mqttClient);
-
-    if (!connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
-    /*
+    /**
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
     std::promise<bool> connectionCompletedPromise;
     std::promise<void> connectionClosedPromise;
 
-    /*
-     * This will execute when an mqtt connect has completed or failed.
-     */
+    // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
@@ -153,15 +142,15 @@ int main(int argc, char *argv[])
         }
     };
 
+    // Invoked when a MQTT connection was interrupted/lost
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
 
+    // Invoked when a MQTT connection was interrupted/lost, but then reconnected successfully
     auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) { fprintf(stdout, "Connection resumed\n"); };
 
-    /*
-     * Invoked when a disconnect message has completed.
-     */
+    // Invoked when a disconnect has been completed
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
@@ -169,21 +158,21 @@ int main(int argc, char *argv[])
         }
     };
 
+    // Assign callbacks
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    /*
-     * Actually perform the connect dance.
-     */
+    /************************ Run the sample ****************************/
+
+    // Connect
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
+    if (!connection->Connect(cmdData.input_clientId.c_str(), false /*cleanSession*/, 1000 /*keepAliveTimeSecs*/))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
     }
-
     if (connectionCompletedPromise.get_future().get())
     {
         // Device defender setup and metric registration
@@ -197,15 +186,15 @@ int main(int argc, char *argv[])
             *data = true;
         };
 
-        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, connection, *eventLoopGroup, thingName);
-        taskBuilder.WithTaskPeriodSeconds((uint32_t)reportTime)
-            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)reportTime)
+        Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(
+            allocator, connection, *eventLoopGroup, cmdData.input_thingName);
+        taskBuilder.WithTaskPeriodSeconds((uint32_t)cmdData.input_reportTime)
+            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)cmdData.input_reportTime)
             .WithTaskCancelledHandler(onCancelled)
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-        // Add the custom metrics
-        // (Inline function example)
+        // Add the custom metrics (Inline function example)
         Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output) {
             *output = 8.4;
             return AWS_OP_SUCCESS;
@@ -246,23 +235,24 @@ int main(int argc, char *argv[])
         }
         // ======================================================================
 
-        int publishedCount = 0;
-        while (publishedCount < count &&
+        // Wait until the the desire amount of publishes has been complete
+        uint64_t publishedCount = 0;
+        while (publishedCount < cmdData.input_count &&
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
-            fprintf(stdout, "Publishing Device Defender report %d...\n", publishedCount);
+            fprintf(stdout, "Publishing next Device Defender report...\n");
 
-            if (publishedCount != count)
+            if (publishedCount != cmdData.input_count)
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(reportTime * 1000));
+                std::this_thread::sleep_for(std::chrono::milliseconds(cmdData.input_reportTime * 1000));
             }
         }
 
         // Stop the task so we stop sending device defender metrics
         task->StopTask();
 
-        /* Disconnect */
+        // Disconnect
         if (connection->Disconnect())
         {
             connectionClosedPromise.get_future().wait();

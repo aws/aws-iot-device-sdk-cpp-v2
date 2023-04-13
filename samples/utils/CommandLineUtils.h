@@ -150,6 +150,11 @@ namespace Utils
         void AddCommonX509Commands();
 
         /**
+         * A helper function that adds key and cert commands
+         */
+        void AddCommonKeyCertCommands();
+
+        /**
          * A helper function that adds topic and message commands
          */
         void AddCommonTopicMessageCommands();
@@ -175,88 +180,6 @@ namespace Utils
          */
         void StartLoggingBasedOnCommand(Aws::Crt::ApiHandle *apiHandle);
 
-        /**
-         * A helper function that builds and returns a PKCS11 direct MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from "pkcs111_lib", "pin", "token_label",
-         * "slot_id", and "key_label" commands. See mqtt/pkcs11_connect for example setup.
-         * @param client The client to use to make the connection.
-         * @return The created direct PKCS11 MQTT connection.
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildPKCS11MQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket x509 MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonX509Commands function. See mqtt/x509_connect for example setup.
-         * @param client The client to use to make the connection.
-         * @return The created websocket x509 MQTT connection.
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketX509MQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket MQTT connection.
-         *
-         * Will get the required data from the CommandLineUtils from the "signing_region" command.
-         * See mqtt/websocket_connect for example setup.
-         * @param client The client to use to make the connection
-         * @return The created websocket MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a direct MQTT connection using a key and certificate.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonMQTTCommands function, "cert" command, and "key" command. See mqtt/basic_connect for example.
-         * @return The created direct MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnection(Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a direct MQTT connection that will connect through a
-         * CustomAuthorizer.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
-         * @return The created direct MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildDirectMQTTConnectionWithCustomAuthorizer(
-            Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a websocket MQTT connection that will connect and
-         * authenticate via Cognito.
-         * @param client The client to use to make the connection
-         *
-         * Will get the required data from the CommandLineUtils from arguments defined in the
-         * AddCommonCustomAuthorizerCommands. See mqtt/custom_authorizer_connect for example.
-         * @return The created websocket MQTT connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildWebsocketMQTTConnectionWithCognito(
-            Aws::Iot::MqttClient *client);
-
-        /**
-         * A helper function that builds and returns a MQTT connection automatically based
-         * on the commands passed into CommandLineUtils. Will make a direct MQTT connection, PKCS11 MQTT connection,
-         * a websocket connection, or a x509 connection via websockets.
-         * @return The automatically created connection
-         */
-        std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> BuildMQTTConnection();
-
-        /**
-         * A helper function that uses a MQTT connection to connect, and then disconnect from AWS servers. This is used
-         * in all the connect samples to show how to make a connection.
-         * @param connection The MqttConnection to use when making a connection
-         * @param clientId The client ID to send with the connection
-         */
-        void SampleConnectAndDisconnect(
-            std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> connection,
-            Aws::Crt::String clientId);
-
       private:
         Aws::Crt::String m_programName = "Application";
         const char **m_beginPosition = nullptr;
@@ -268,37 +191,104 @@ namespace Utils
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
             Aws::Iot::MqttClient *client,
             Aws::Iot::MqttClientConnectionConfigBuilder *clientConfigBuilder);
-
-        /** Constants for commonly used/needed commands */
-        const Aws::Crt::String m_cmd_endpoint = "endpoint";
-        const Aws::Crt::String m_cmd_ca_file = "ca_file";
-        const Aws::Crt::String m_cmd_cert_file = "cert";
-        const Aws::Crt::String m_cmd_key_file = "key";
-        const Aws::Crt::String m_cmd_proxy_host = "proxy_host";
-        const Aws::Crt::String m_cmd_proxy_port = "proxy_port";
-        const Aws::Crt::String m_cmd_signing_region = "signing_region";
-        const Aws::Crt::String m_cmd_x509_endpoint = "x509_endpoint";
-        const Aws::Crt::String m_cmd_x509_role = "x509_role_alias";
-        const Aws::Crt::String m_cmd_x509_thing_name = "x509_thing_name";
-        const Aws::Crt::String m_cmd_x509_cert_file = "x509_cert";
-        const Aws::Crt::String m_cmd_x509_key_file = "x509_key";
-        const Aws::Crt::String m_cmd_x509_ca_file = "x509_ca_file";
-        const Aws::Crt::String m_cmd_pkcs11_lib = "pkcs11_lib";
-        const Aws::Crt::String m_cmd_pkcs11_cert = "cert";
-        const Aws::Crt::String m_cmd_pkcs11_pin = "pin";
-        const Aws::Crt::String m_cmd_pkcs11_token = "token_label";
-        const Aws::Crt::String m_cmd_pkcs11_slot = "slot_id";
-        const Aws::Crt::String m_cmd_pkcs11_key = "key_label";
-        const Aws::Crt::String m_cmd_message = "message";
-        const Aws::Crt::String m_cmd_topic = "topic";
-        const Aws::Crt::String m_cmd_port_override = "port_override";
-        const Aws::Crt::String m_cmd_help = "help";
-        const Aws::Crt::String m_cmd_custom_auth_username = "custom_auth_username";
-        const Aws::Crt::String m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
-        const Aws::Crt::String m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
-        const Aws::Crt::String m_cmd_custom_auth_password = "custom_auth_password";
-        const Aws::Crt::String m_cmd_verbosity = "verbosity";
-        const Aws::Crt::String m_cmd_log_file = "log_file";
-        const Aws::Crt::String m_cmd_cognito_identity = "cognito_identity";
     };
+
+    struct cmdData
+    {
+        // General use
+        Aws::Crt::String input_endpoint;
+        Aws::Crt::String input_cert;
+        Aws::Crt::String input_key;
+        Aws::Crt::String input_ca;
+        Aws::Crt::String input_clientId;
+        uint64_t input_port;
+        bool input_isCI;
+        // Proxy
+        Aws::Crt::String input_proxyHost;
+        uint64_t input_proxyPort;
+        // PubSub
+        Aws::Crt::String input_topic;
+        Aws::Crt::String input_message;
+        uint64_t input_count;
+        // Websockets
+        Aws::Crt::String input_signingRegion;
+        // Cognito
+        Aws::Crt::String input_cognitoIdentity;
+        Aws::Crt::String input_cognitoEndpoint;
+        // Custom auth
+        Aws::Crt::String input_customAuthUsername;
+        Aws::Crt::String input_customAuthorizerName;
+        Aws::Crt::String input_customAuthorizerSignature;
+        Aws::Crt::String input_customAuthPassword;
+        // Fleet provisioning
+        Aws::Crt::String input_templateName;
+        Aws::Crt::String input_templateParameters;
+        Aws::Crt::String input_csrPath;
+        // Services (Shadow, Jobs, Greengrass, etc)
+        Aws::Crt::String input_thingName;
+        Aws::Crt::String input_mode;
+        // Java Keystore
+        Aws::Crt::String input_keystore;
+        Aws::Crt::String input_keystorePassword;
+        Aws::Crt::String input_keystoreFormat;
+        Aws::Crt::String input_certificateAlias;
+        Aws::Crt::String input_certificatePassword;
+        // Shared Subscription
+        Aws::Crt::String input_groupIdentifier;
+        // PKCS#11
+        Aws::Crt::String input_pkcs11LibPath;
+        Aws::Crt::String input_pkcs11UserPin;
+        Aws::Crt::String input_pkcs11TokenLabel;
+        uint64_t input_pkcs11SlotId;
+        Aws::Crt::String input_pkcs11KeyLabel;
+        // X509
+        Aws::Crt::String input_x509Endpoint;
+        Aws::Crt::String input_x509Role;
+        Aws::Crt::String input_x509ThingName;
+        Aws::Crt::String input_x509Cert;
+        Aws::Crt::String input_x509Key;
+        Aws::Crt::String input_x509Ca;
+        // Device Defender
+        uint64_t input_reportTime;
+        // Jobs
+        Aws::Crt::String input_jobId;
+        // Cycle PubSub
+        uint64_t input_clients;
+        uint64_t input_tps;
+        uint64_t input_seconds;
+        // Secure Tunnel
+        Aws::Crt::String input_accessTokenFile;
+        Aws::Crt::String input_accessToken;
+        Aws::Crt::String input_localProxyModeSource;
+        Aws::Crt::String input_clientTokenFile;
+        Aws::Crt::String input_clientToken;
+        Aws::Crt::String input_proxy_user_name;
+        Aws::Crt::String input_proxy_password;
+        // Shadow
+        Aws::Crt::String input_shadowProperty;
+    };
+
+    cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputGreengrassDiscovery(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputGreengrassIPC(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputFleetProvisioning(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputJobs(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputBasicConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputCognitoConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputCustomAuthorizerConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputPKCS11Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputPubSub(
+        int argc,
+        char *argv[],
+        Aws::Crt::ApiHandle *api_handle,
+        Aws::Crt::String programName);
+    cmdData parseSampleInputSharedSubscription(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputCyclePubSub(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputSecureTunnelNotification(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputShadow(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+
 } // namespace Utils
