@@ -146,6 +146,7 @@ int main(int argc, char *argv[])
 
             builder.WithOnConnectionSuccess(
                 [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
+                    (void)eventData;
                     fprintf(stdout, "Secure Tunnel connected to Secure Tunnel Service\n");
                 });
             secureTunnel = builder.Build();
