@@ -126,7 +126,7 @@ namespace Aws
             m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
         }
 
-        Message &Message::withPayload(Crt::ByteCursor payload) noexcept
+        Message &Message::WithPayload(Crt::ByteCursor payload) noexcept
         {
             aws_byte_buf_clean_up(&m_payloadStorage);
             aws_byte_buf_init_copy_from_cursor(&m_payloadStorage, m_allocator, payload);
@@ -134,7 +134,7 @@ namespace Aws
             return *this;
         }
 
-        Message &Message::withServiceId(Crt::ByteCursor serviceId) noexcept
+        Message &Message::WithServiceId(Crt::ByteCursor serviceId) noexcept
         {
             aws_byte_buf_clean_up(&m_serviceIdStorage);
             aws_byte_buf_init_copy_from_cursor(&m_serviceIdStorage, m_allocator, serviceId);
@@ -142,7 +142,7 @@ namespace Aws
             return *this;
         }
 
-        Message &Message::withConnectionId(uint32_t connectionId) noexcept
+        Message &Message::WithConnectionId(uint32_t connectionId) noexcept
         {
             m_connectionId = connectionId;
             return *this;

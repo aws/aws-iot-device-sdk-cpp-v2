@@ -47,7 +47,7 @@ namespace Aws
              * @param serviceId The service id for the secure tunnel message.
              * @return The Message Object after setting the payload.
              */
-            Message &withServiceId(Crt::ByteCursor serviceId) noexcept;
+            Message &WithServiceId(Crt::ByteCursor serviceId) noexcept;
 
             /**
              * Sets the connection id for the secure tunnel message.
@@ -55,7 +55,7 @@ namespace Aws
              * @param connectionId The connection id for the secure tunnel message.
              * @return The Message Object after setting the payload.
              */
-            Message &withConnectionId(uint32_t connectionId) noexcept;
+            Message &WithConnectionId(uint32_t connectionId) noexcept;
 
             /**
              * Sets the payload for the secure tunnel message.
@@ -63,7 +63,7 @@ namespace Aws
              * @param payload The payload for the secure tunnel message.
              * @return The Message Object after setting the payload.
              */
-            Message &withPayload(Crt::ByteCursor payload) noexcept;
+            Message &WithPayload(Crt::ByteCursor payload) noexcept;
 
             bool initializeRawOptions(aws_secure_tunnel_message_view &raw_options) noexcept;
 
