@@ -126,10 +126,10 @@ int main(int argc, char *argv[])
             }
             else
             {
-                for (int i = 0; i < nServices; ++i)
+                for (size_t i = 0; i < nServices; ++i)
                 {
                     std::string service = response->Services->at(i).c_str();
-                    fprintf(stdout, "\tService Id %d=%s\n", (i + 1), service.c_str());
+                    fprintf(stdout, "\tService Id %zu=%s\n", (i + 1), service.c_str());
                 }
             }
 
