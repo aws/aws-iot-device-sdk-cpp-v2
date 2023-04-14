@@ -116,11 +116,13 @@ int main(int argc, char *argv[])
 
             fprintf(
                 stdout,
-                "Recv:\n\tToken:%s\n\tMode:%s\n\tRegion:%s\n\tEndpoint:%s\n",
+                "Recv:\n\tToken:%s\n\tMode:%s\n\tRegion:%s\n",
                 response->ClientAccessToken->c_str(),
                 response->ClientMode->c_str(),
-                response->Region->c_str(),
-                response->Endpoint->c_str());
+                response->Region->c_str());
+
+            Aws::Crt::String region = response->Region->c_str();
+            Aws::Crt::String endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
             size_t nServices = response->Services->size();
             if (nServices <= 0)
@@ -140,7 +142,7 @@ int main(int argc, char *argv[])
                 allocator,
                 response->ClientAccessToken->c_str(),
                 AWS_SECURE_TUNNELING_DESTINATION_MODE,
-                response->Endpoint->c_str());
+                endpoint.c_str());
 
             builder.WithOnConnectionSuccess(
                 [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
