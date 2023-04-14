@@ -287,8 +287,8 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<Message> message1 =
         std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
-    message1->withServiceId(m_serviceId.value());
-    message1->withConnectionId(connectionId2);
+    message1->WithServiceId(m_serviceId.value());
+    message1->WithConnectionId(connectionId2);
     secureTunnelSource->SendMessage(message1);
     fprintf(stdout, "Source Client Sent Message\n");
 
@@ -296,8 +296,8 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<Message> message2 =
         std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
-    message2->withServiceId(m_serviceId.value());
-    message2->withConnectionId(connectionId);
+    message2->WithServiceId(m_serviceId.value());
+    message2->WithConnectionId(connectionId);
     secureTunnelDestination->SendMessage(message2);
     fprintf(stdout, "Destination Client Sent Message\n");
 
