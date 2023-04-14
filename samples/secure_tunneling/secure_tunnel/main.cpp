@@ -223,13 +223,13 @@ int main(int argc, char *argv[])
                 /* Echo message on same service id received message arrived on */
                 if (message->getServiceId().has_value())
                 {
-                    echoMessage->withServiceId(message->getServiceId().value());
+                    echoMessage->WithServiceId(message->getServiceId().value());
                 }
 
                 /* Echo message on the same connection id received message arrived on */
                 if (message->getConnectionId() > 0)
                 {
-                    echoMessage->withConnectionId(message->getConnectionId());
+                    echoMessage->WithConnectionId(message->getConnectionId());
                 }
 
                 secureTunnel->SendMessage(echoMessage);
@@ -368,10 +368,10 @@ int main(int argc, char *argv[])
                 /* If the secure tunnel has service ids, we will use one for our messages. */
                 if (m_serviceId.has_value())
                 {
-                    message->withServiceId(m_serviceId.value());
+                    message->WithServiceId(m_serviceId.value());
                 }
 
-                message->withConnectionId(connectionId);
+                message->WithConnectionId(connectionId);
 
                 secureTunnel->SendMessage(message);
 
