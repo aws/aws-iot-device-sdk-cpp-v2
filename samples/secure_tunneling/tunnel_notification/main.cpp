@@ -9,6 +9,9 @@
 #include <aws/iotsecuretunneling/SecureTunnelingNotifyResponse.h>
 #include <aws/iotsecuretunneling/SubscribeToTunnelsNotifyRequest.h>
 
+#include <chrono>
+#include <thread>
+
 #include "../../utils/CommandLineUtils.h"
 
 using namespace std;
