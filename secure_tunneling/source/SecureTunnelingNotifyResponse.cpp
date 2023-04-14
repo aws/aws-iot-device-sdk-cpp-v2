@@ -30,6 +30,7 @@ namespace Aws
             if (doc.ValueExists("region"))
             {
                 val.Region = doc.GetString("region");
+                val.Endpoint = "data.tunneling.iot." + doc.GetString("region") + ".amazonaws.com";
             }
 
             if (doc.ValueExists("clientMode"))

@@ -36,6 +36,7 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             Aws::Crt::Optional<Aws::Crt::String> Region;
+            Aws::Crt::Optional<Aws::Crt::String> Endpoint;
             Aws::Crt::Optional<Aws::Crt::String> ClientMode;
             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> Services;
             Aws::Crt::Optional<Aws::Crt::String> ClientAccessToken;
