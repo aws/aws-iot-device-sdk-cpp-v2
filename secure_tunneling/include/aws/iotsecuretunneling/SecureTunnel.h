@@ -106,7 +106,7 @@ namespace Aws
             Crt::Optional<Crt::ByteCursor> m_serviceId;
 
             /**
-             * The connection id used for HTTP simultaneous connections.
+             * The connection id used for simultaneous TCP connections.
              *
              * If left empty, a V1 or V2 protocol message is assumed.
              */
@@ -298,7 +298,7 @@ namespace Aws
             Crt::Optional<Crt::ByteCursor> m_serviceId;
 
             /**
-             * The connection id used for HTTP simultaneous connections.
+             * The connection id used for simultaneous TCP connections.
              *
              * If left empty, a V1 or V2 protocol message is assumed.
              */
