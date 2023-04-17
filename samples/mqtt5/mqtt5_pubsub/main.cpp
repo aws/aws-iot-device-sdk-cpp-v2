@@ -37,9 +37,13 @@ int main(int argc, char *argv[])
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
         cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
 
-    if (builder == nullptr)
+    // Check if the builder setup correctly.
+    if (!*builder)
     {
-        printf("Failed to setup mqtt5 client builder.");
+        printf(
+            "Failed to setup mqtt5 client builder with error code %d: %s",
+            builder->LastError(),
+            aws_error_debug_str(builder->LastError()));
         return -1;
     }
 
@@ -111,6 +115,16 @@ int main(int argc, char *argv[])
     if (client == nullptr)
     {
         fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+    if (!*client)
+    {
+        fprintf(
+            stdout,
+            "Failed to Init Mqtt5Client with error code %d: %s",
+            client->LastError(),
+            aws_error_debug_str(client->LastError()));
         return -1;
     }
 
