@@ -76,7 +76,7 @@ SDK MQTT5 support comes from a separate client implementation.  In doing so, we 
 
 * With the 311 implementation, there were two separate objects, a client and a connection.  With MQTT5, there is only the client.
 
-* The user callbacks in the Mqtt5 would no longer provide the client reference as a reference as Mqtt3 API does.
+* The user callbacks in the Mqtt5 do not provide a client reference in the way the Mqtt3 API does.
 Example:
     ```
     // Client reference
