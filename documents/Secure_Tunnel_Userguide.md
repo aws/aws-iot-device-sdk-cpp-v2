@@ -141,6 +141,8 @@ if (!secureTunnel->Start())
     return -1;
 }
 ```
+### Reconnecting
+A Secure Tunnel Client that has been started will attempt to reconnect upon disconnection until `Stop()` is called. The Secure Tunnel Client implements a Full Jitter Backoff Algorithm along with an exponential back off timer. More information on both can be found here: https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
 
 ## Stop
 Invoking `Stop()` on the Secure Tunnel Client breaks the current connection (if any) and moves the client into an idle state.
