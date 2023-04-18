@@ -38,12 +38,12 @@ int main(int argc, char *argv[])
         cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
 
     // Check if the builder setup correctly.
-    if (!*builder)
+    if (builder == nullptr)
     {
         printf(
             "Failed to setup mqtt5 client builder with error code %d: %s",
-            builder->LastError(),
-            aws_error_debug_str(builder->LastError()));
+            LastError(),
+            ErrorDebugString(LastError()));
         return -1;
     }
 
@@ -114,17 +114,9 @@ int main(int argc, char *argv[])
 
     if (client == nullptr)
     {
-        fprintf(stdout, "Client creation failed.\n");
-        return -1;
-    }
-
-    if (!*client)
-    {
-        fprintf(
-            stdout,
-            "Failed to Init Mqtt5Client with error code %d: %s",
-            client->LastError(),
-            aws_error_debug_str(client->LastError()));
+        fprintf(stdout, "Failed to Init Mqtt5Client with error code %d: %s",
+            LastError(),
+            ErrorDebugString(LastError()));
         return -1;
     }
 
