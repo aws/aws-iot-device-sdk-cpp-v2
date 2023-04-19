@@ -640,7 +640,7 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     std::shared_ptr<PublishPacket> publish = std::make_shared<PublishPacket>(testTopic, payload, QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 
     // Setup publish completion callback. The callback will get triggered when the pulbish completes and publish result returned from the server
-    OnPublishCompletionHandler callback = [](std::shared_ptr<Mqtt5Client> client, int, std::shared_ptr<PublishResult> result){
+    OnPublishCompletionHandler callback = [](int, std::shared_ptr<PublishResult> result){
         if(!result->wasSuccessful())
         {
             fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
