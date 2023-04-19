@@ -348,6 +348,13 @@ namespace Aws
         {
         }
 
+        SecureTunnelBuilder &SecureTunnelBuilder::WithTlsConnectionOptions(
+            const Crt::Io::TlsConnectionOptions &tslOptions)
+        {
+            m_tlsConnectionOptions = tslOptions;
+            return *this;
+        }
+
         SecureTunnelBuilder &SecureTunnelBuilder::WithRootCa(const std::string &rootCa)
         {
             m_rootCa = rootCa;
@@ -474,6 +481,7 @@ namespace Aws
                 m_clientToken,
                 m_localProxyMode,
                 m_endpointHost,
+                m_tlsConnectionOptions.has_value() ? &m_tlsConnectionOptions.value() : nullptr,
                 m_rootCa,
                 m_httpClientConnectionProxyOptions.has_value() ? &m_httpClientConnectionProxyOptions.value() : nullptr,
                 m_OnConnectionSuccess,
@@ -518,6 +526,7 @@ namespace Aws
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost,
 
+            Crt::Io::TlsConnectionOptions *tslOptions,
             const std::string &rootCa,
             Aws::Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
@@ -565,6 +574,8 @@ namespace Aws
             config.access_token = aws_byte_cursor_from_c_str(accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(endpointHost.c_str());
+
+            config.tls_options = tslOptions ? tslOptions->GetUnderlyingHandle() : nullptr;
 
             if (rootCa.length() > 0)
             {
@@ -631,6 +642,7 @@ namespace Aws
                   nullptr,
                   localProxyMode,
                   endpointHost,
+                  nullptr,
                   rootCa,
                   nullptr,
                   nullptr,
@@ -679,6 +691,7 @@ namespace Aws
                   nullptr,
                   localProxyMode,
                   endpointHost,
+                  nullptr,
                   rootCa,
                   nullptr,
                   nullptr,

@@ -617,6 +617,16 @@ namespace Aws
                 const std::string &endpointHost); // Make a copy and save in this object
 
             /* Optional members */
+
+            /**
+             * Sets TLS options to be used by secure tunnel connection.
+             *
+             * @param tslOptions TLS options to use for secure tunnel connection
+             *
+             * @return this builder object
+             */
+            SecureTunnelBuilder &WithTlsConnectionOptions(const Crt::Io::TlsConnectionOptions &tslOptions);
+
             /**
              * Sets rootCA to be used for this secure tunnel connection overriding the default trust store.
              *
@@ -824,6 +834,12 @@ namespace Aws
              * has the desired state of CONNECTED.
              */
             std::string m_clientToken;
+
+            /**
+             * If set, TLS context for secure socket connections.
+             * If undefined, then default options will be used.
+             */
+            Crt::Optional<Crt::Io::TlsConnectionOptions> m_tlsConnectionOptions;
 
             /**
              * If set, this will be used to override the default trust store.
@@ -1130,6 +1146,7 @@ namespace Aws
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost,
 
+                Crt::Io::TlsConnectionOptions *tslOptions,
                 const std::string &rootCa,
                 Crt::Http::HttpClientConnectionProxyOptions *httpClientConnectionProxyOptions,
 
