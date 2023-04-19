@@ -11,6 +11,8 @@
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
+#include <aws/crt/mqtt/Mqtt5Client.h>
+#include <aws/crt/mqtt/Mqtt5Listener.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
 namespace Aws
@@ -80,6 +82,7 @@ namespace Aws
         {
           public:
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
+            IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
 
             operator bool() const noexcept;
             int GetLastError() const noexcept;
@@ -109,6 +112,12 @@ namespace Aws
                 const OnSubscribeToUpdateJobExecutionAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
+            bool SubscribeToUpdateJobExecutionAccepted(
+                const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToUpdateJobExecutionAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
             /**
              * Subscribes to the rejected topic for the GetPendingJobsExecutions operation
              *
@@ -131,6 +140,12 @@ namespace Aws
             bool SubscribeToGetPendingJobExecutionsRejected(
                 const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToGetPendingJobExecutionsRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
+            bool SubscribeToGetPendingJobExecutionsRejected(
+                const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToGetPendingJobExecutionsRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -159,6 +174,12 @@ namespace Aws
                 const OnSubscribeToDescribeJobExecutionAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
+            bool SubscribeToDescribeJobExecutionAccepted(
+                const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToDescribeJobExecutionAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
             /**
              * Subscribes to the rejected topic for the DescribeJobExecution operation
              *
@@ -181,6 +202,11 @@ namespace Aws
             bool SubscribeToDescribeJobExecutionRejected(
                 const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToDescribeJobExecutionRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+            bool SubscribeToDescribeJobExecutionRejected(
+                const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToDescribeJobExecutionRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -208,6 +234,11 @@ namespace Aws
                 Aws::Crt::Mqtt::QOS qos,
                 const OnSubscribeToUpdateJobExecutionRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
+            bool SubscribeToUpdateJobExecutionRejected(
+                const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToUpdateJobExecutionRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
 
             /**
              * Subscribes to JobExecutionsChanged notifications for a given IoT thing.
@@ -231,6 +262,11 @@ namespace Aws
             bool SubscribeToJobExecutionsChangedEvents(
                 const Aws::Iotjobs::JobExecutionsChangedSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToJobExecutionsChangedEventsResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+            bool SubscribeToJobExecutionsChangedEvents(
+                const Aws::Iotjobs::JobExecutionsChangedSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToJobExecutionsChangedEventsResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -258,6 +294,11 @@ namespace Aws
                 Aws::Crt::Mqtt::QOS qos,
                 const OnSubscribeToStartNextPendingJobExecutionRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
+            bool SubscribeToStartNextPendingJobExecutionRejected(
+                const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToStartNextPendingJobExecutionRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
 
             /**
              *
@@ -281,6 +322,11 @@ namespace Aws
             bool SubscribeToNextJobExecutionChangedEvents(
                 const Aws::Iotjobs::NextJobExecutionChangedSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToNextJobExecutionChangedEventsResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+            bool SubscribeToNextJobExecutionChangedEvents(
+                const Aws::Iotjobs::NextJobExecutionChangedSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToNextJobExecutionChangedEventsResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -308,6 +354,11 @@ namespace Aws
                 Aws::Crt::Mqtt::QOS qos,
                 const OnSubscribeToGetPendingJobExecutionsAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
+            bool SubscribeToGetPendingJobExecutionsAccepted(
+                const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnSubscribeToGetPendingJobExecutionsAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
 
             /**
              * Subscribes to the accepted topic for the StartNextPendingJobExecution operation
@@ -331,6 +382,11 @@ namespace Aws
             bool SubscribeToStartNextPendingJobExecutionAccepted(
                 const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToStartNextPendingJobExecutionAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+            bool SubscribeToStartNextPendingJobExecutionAccepted(
+                const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnSubscribeToStartNextPendingJobExecutionAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
@@ -357,6 +413,11 @@ namespace Aws
                 Aws::Crt::Mqtt::QOS qos,
                 const OnPublishComplete &onPubAck);
 
+            bool PublishDescribeJobExecution(
+                const Aws::Iotjobs::DescribeJobExecutionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnPublishComplete &onPubAck);
+
             /**
              * Gets the list of all jobs for a thing that are not in a terminal state.
              *
@@ -378,6 +439,10 @@ namespace Aws
             bool PublishGetPendingJobExecutions(
                 const Aws::Iotjobs::GetPendingJobExecutionsRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
+                const OnPublishComplete &onPubAck);
+            bool PublishGetPendingJobExecutions(
+                const Aws::Iotjobs::GetPendingJobExecutionsRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
                 const OnPublishComplete &onPubAck);
 
             /**
@@ -404,6 +469,10 @@ namespace Aws
                 const Aws::Iotjobs::UpdateJobExecutionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
                 const OnPublishComplete &onPubAck);
+            bool PublishUpdateJobExecution(
+                const Aws::Iotjobs::UpdateJobExecutionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnPublishComplete &onPubAck);
 
             /**
              * Gets and starts the next pending job execution for a thing (status IN_PROGRESS or QUEUED).
@@ -427,9 +496,15 @@ namespace Aws
                 const Aws::Iotjobs::StartNextPendingJobExecutionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
                 const OnPublishComplete &onPubAck);
+            bool PublishStartNextPendingJobExecution(
+                const Aws::Iotjobs::StartNextPendingJobExecutionRequest &request,
+                Aws::Crt::Mqtt5::QOS qos,
+                const OnPublishComplete &onPubAck);
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
+            std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
+            std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_mqtt5Client;
         };
 
     } // namespace Iotjobs

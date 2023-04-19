@@ -193,12 +193,8 @@ int main(int argc, char *argv[])
         publishDescribeJobExeCompletedPromise.get_future().wait();
 
 
-        /*
-         * Mqtt3 will block on the service client destroy, therefore, we could always get the result printed before
-         * the client destroyed. However, Mqtt5 client and listener will no longer do that. Therefore we wait for
-         * printing before we exit the scope (The service client will get destroyed out of the scope).
-         */
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    // Wait just a little bit to let the console print
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     }
 
