@@ -41,9 +41,7 @@ int main(int argc, char *argv[])
     if (builder == nullptr)
     {
         printf(
-            "Failed to setup mqtt5 client builder with error code %d: %s",
-            LastError(),
-            ErrorDebugString(LastError()));
+            "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
         return -1;
     }
 
@@ -114,9 +112,8 @@ int main(int argc, char *argv[])
 
     if (client == nullptr)
     {
-        fprintf(stdout, "Failed to Init Mqtt5Client with error code %d: %s",
-            LastError(),
-            ErrorDebugString(LastError()));
+        fprintf(
+            stdout, "Failed to Init Mqtt5Client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
         return -1;
     }
 
