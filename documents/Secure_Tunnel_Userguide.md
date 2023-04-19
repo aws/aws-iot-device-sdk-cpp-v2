@@ -43,7 +43,7 @@ When a WebSocket upgrade request fails to connect, this callback will return an 
 ### OnConnectionShutdown
 When the WebSocket connection shuts down, this callback will be invoked.
 
-## OnSendMessageComplete
+### OnSendMessageComplete
 When a message has been completely written to the socket, this callback will be invoked.
 
 ### OnMessageReceived
@@ -142,10 +142,10 @@ if (!secureTunnel->Start())
 }
 ```
 ### Reconnecting
-A Secure Tunnel Client that has been started will attempt to reconnect upon disconnection until `Stop()` is called. The Secure Tunnel Client implements a Full Jitter Backoff Algorithm along with an exponential back off timer. More information on both can be found here: https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
+A Secure Tunnel Client that has been started will attempt to reconnect upon a failed connection attempt or disconnection until `Stop()` is called. If the secure tunnel closes or the access tokens change, the Secure Tunnel Client will become disconnected and continue to attempt a reconnection until `Stop()` is called. The Secure Tunnel Client implements a Full Jitter Backoff Algorithm along with an exponential back off timer. More information on both can be found here: https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
 
 ## Stop
-Invoking `Stop()` on the Secure Tunnel Client breaks the current connection (if any) and moves the client into an idle state.
+Invoking `Stop()` on the Secure Tunnel Client breaks the current connection (if any) and moves the client into an idle state. A Secure Tunnel Client that has been stopped will no longer attempt to reconnect and is ready to be cleaned up.
 ```cpp
 if(!secureTunnel->Stop()){
     fprintf(stdout, "Failed to stop the Secure Tunnel connection session. Exiting..\n");
