@@ -621,7 +621,8 @@ namespace Aws
             /**
              * Sets TLS options to be used by secure tunnel connection.
              *
-             * @param tslOptions TLS options to use for secure tunnel connection
+             * @param tslOptions TLS options to use for secure tunnel connection. If provided, the rootCA settings in
+             * these options will override any rootCA provided to the builder.
              *
              * @return this builder object
              */
