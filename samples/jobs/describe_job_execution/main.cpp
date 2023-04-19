@@ -67,34 +67,27 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData)
-        {
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
                 stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionPromise.set_value(true);
         });
-    builder->WithClientConnectionFailureCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionFailureEventData &eventData)
-        {
-            fprintf(
-                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            connectionPromise.set_value(false);
-        });
-    builder->WithClientStoppedCallback(
-        [&stoppedPromise](const Mqtt5::OnStoppedEventData &)
-        {
-            fprintf(stdout, "Mqtt5 Client stopped.\n");
-            stoppedPromise.set_value();
-        });
+    builder->WithClientConnectionFailureCallback([&connectionPromise](
+                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        connectionPromise.set_value(false);
+    });
+    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
+        stoppedPromise.set_value();
+    });
 
-    builder->WithClientDisconnectionCallback(
-        [&disconnectPromise](const Mqtt5::OnDisconnectionEventData &eventData)
-        {
-            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
-            disconnectPromise.set_value();
-        });
+    builder->WithClientDisconnectionCallback([&disconnectPromise](const Mqtt5::OnDisconnectionEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
+        disconnectPromise.set_value();
+    });
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
@@ -130,13 +123,11 @@ int main(int argc, char *argv[])
          * to be cautious make sure the subscribe has finished before doing the publish.
          */
         std::promise<void> subAckedPromise;
-        auto subAckHandler = [&](int)
-        {
+        auto subAckHandler = [&](int) {
             // if error code returns it will be recorded by the other callback
             subAckedPromise.set_value();
         };
-        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-        {
+        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -149,12 +140,14 @@ int main(int argc, char *argv[])
         };
 
         jobsClient.SubscribeToDescribeJobExecutionAccepted(
-            describeJobExecutionSubscriptionRequest, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
+            describeJobExecutionSubscriptionRequest,
+            Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
+            subscriptionHandler,
+            subAckHandler);
         subAckedPromise.get_future().wait();
 
         subAckedPromise = std::promise<void>();
-        auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-        {
+        auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -168,7 +161,10 @@ int main(int argc, char *argv[])
         };
 
         jobsClient.SubscribeToDescribeJobExecutionRejected(
-            describeJobExecutionSubscriptionRequest, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+            describeJobExecutionSubscriptionRequest,
+            Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE,
+            failureHandler,
+            subAckHandler);
         subAckedPromise.get_future().wait();
 
         DescribeJobExecutionRequest describeJobExecutionRequest;
@@ -179,8 +175,7 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.ClientToken = uuid.ToString();
         std::promise<void> publishDescribeJobExeCompletedPromise;
 
-        auto publishHandler = [&](int ioErr)
-        {
+        auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -192,14 +187,12 @@ int main(int argc, char *argv[])
             std::move(describeJobExecutionRequest), Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE, publishHandler);
         publishDescribeJobExeCompletedPromise.get_future().wait();
 
-
         /*
          * Mqtt3 will block on the service client destroy, therefore, we could always get the result printed before
          * the client destroyed. However, Mqtt5 client and listener will no longer do that. Therefore we wait for
          * printing before we exit the scope (The service client will get destroyed out of the scope).
          */
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
     }
 
     // Disconnect

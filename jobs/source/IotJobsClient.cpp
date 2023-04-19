@@ -43,10 +43,7 @@ namespace Aws
                 Crt::Mqtt5::Mqtt5Listener::NewMqtt5Listener(listenerOptions, mqtt5Client, Aws::Crt::g_allocator);
         }
 
-        IotJobsClient::operator bool() const noexcept
-        {
-            return (m_connection && *m_connection) || m_mqtt5Listener;
-        }
+        IotJobsClient::operator bool() const noexcept { return (m_connection && *m_connection) || m_mqtt5Listener; }
 
         int IotJobsClient::GetLastError() const noexcept { return aws_last_error(); }
 
@@ -132,8 +129,7 @@ namespace Aws
                                << "/"
                                << "accepted";
 
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -145,8 +141,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -237,8 +232,7 @@ namespace Aws
                 return false;
             }
 
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -250,8 +244,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -350,8 +343,7 @@ namespace Aws
                     AWS_LS_MQTT5_GENERAL, "Mqtt5 Service Client is not setup. Are you looking for Mqtt3 API?");
                 return false;
             }
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -363,8 +355,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -465,8 +456,7 @@ namespace Aws
             }
 
             (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -478,8 +468,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -579,8 +568,7 @@ namespace Aws
                 return false;
             }
             (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -592,8 +580,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -691,8 +678,7 @@ namespace Aws
                 return false;
             }
             (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -704,8 +690,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -803,8 +788,7 @@ namespace Aws
                     AWS_LS_MQTT5_GENERAL, "Mqtt5 Service Client is not setup. Are you looking for Mqtt3 API?");
                 return false;
             }
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -816,8 +800,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -915,8 +898,7 @@ namespace Aws
                 return false;
             }
             (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -928,8 +910,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -1027,8 +1008,7 @@ namespace Aws
                     AWS_LS_MQTT5_GENERAL, "Mqtt5 Service Client is not setup. Are you looking for Mqtt3 API?");
                 return false;
             }
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -1040,8 +1020,7 @@ namespace Aws
                 }
             };
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -1142,8 +1121,7 @@ namespace Aws
                 return false;
             }
 
-            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>)
-            {
+            auto onSubscribeComplete = [handler, onSubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::SubAckPacket>) {
                 if (errorCode)
                 {
                     handler(nullptr, errorCode);
@@ -1166,8 +1144,7 @@ namespace Aws
                                << "/"
                                << "accepted";
 
-            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data)
-            {
+            auto onPublishReceived = [handler](const Crt::Mqtt5::PublishReceivedEventData &data) {
                 Aws::Crt::ByteCursor payload_cursor = data.publishPacket->getPayload();
                 Aws::Crt::String objectStr(reinterpret_cast<char *>(payload_cursor.ptr), payload_cursor.len);
                 Aws::Crt::JsonObject jsonObject(objectStr);
@@ -1246,8 +1223,7 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
-            {
+            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>) {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
@@ -1319,8 +1295,7 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
-            {
+            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>) {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
@@ -1392,8 +1367,7 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
-            {
+            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>) {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
@@ -1465,8 +1439,7 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>)
-            {
+            auto onPublishComplete = [buf, onPubAck](int errorCode, std::shared_ptr<Crt::Mqtt5::PublishResult>) {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
