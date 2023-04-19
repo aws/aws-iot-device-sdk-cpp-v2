@@ -76,6 +76,25 @@ SDK MQTT5 support comes from a separate client implementation.  In doing so, we 
 
 * With the 311 implementation, there were two separate objects, a client and a connection.  With MQTT5, there is only the client.
 
+* The user callbacks in the Mqtt5 do not provide a client reference in the way the Mqtt3 API does.
+Example:
+    ```
+    // Client reference
+    std::shared_ptr<Mqtt5Client> client = nullptr;
+
+    // Create Mqtt5Client Builder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+
+    // Setup lifecycle callbacks
+    builder->WithClientConnectionSuccessCallback(
+        [&client](const Mqtt5::OnConnectionSuccessEventData &eventData) {
+            // Do mqtt5 client operations
+            client->Publish(...);
+        });
+
+    // Build Mqtt5Client
+    client = builder->Build();
+    ```
 
 
 
@@ -133,8 +152,8 @@ The MQTT5 client emits a set of events related to state and network status chang
     std::promise<void> stoppedPromise;
 
     // Setup lifecycle callbacks
-    builder->withClientConnectionSuccessCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionSuccessEventData &eventData) {
+    builder->WithClientConnectionSuccessCallback(
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
                 stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
@@ -142,24 +161,24 @@ The MQTT5 client emits a set of events related to state and network status chang
             connectionPromise.set_value(true);
         });
 
-    builder->withClientConnectionFailureCallback(
-        [&connectionPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnConnectionFailureEventData &eventData) {
+    builder->WithClientConnectionFailureCallback(
+        [&connectionPromise](const Mqtt5::OnConnectionFailureEventData &eventData) {
             fprintf(
                 stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
             connectionPromise.set_value(false);
         });
 
-    builder->withClientStoppedCallback([&stoppedPromise](Mqtt5::Mqtt5Client &, const Mqtt5::OnStoppedEventData &) {
+    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
         fprintf(stdout, "Mqtt5 Client stopped.\n");
         stoppedPromise.set_value();
     });
 
-    builder->withClientAttemptingConnectCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::OnAttemptingConnectEventData &) {
+    builder->WithClientAttemptingConnectCallback([](Mqtt5::OnAttemptingConnectEventData &) {
         fprintf(stdout, "Mqtt5 Client attempting connection...\n");
     });
 
-    builder->withClientDisconnectionCallback(
-        [](Mqtt5::Mqtt5Client &, const Mqtt5::OnDisconnectionEventData &eventData) {
+    builder->WithClientDisconnectionCallback(
+        [](const Mqtt5::OnDisconnectionEventData &eventData) {
             fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
         });
 
@@ -238,7 +257,7 @@ Emitted once the client has shutdown any associated network connection and enter
     // Create Mqtt5Client Builder
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
 
-    builder->withPublishReceivedCallback([](Mqtt5::Mqtt5Client &, const Mqtt5::PublishReceivedEventData &eventData) {
+    builder->WithPublishReceivedCallback([](const Mqtt5::PublishReceivedEventData &eventData) {
         if (eventData.publishPacket == nullptr)
             return;
         fprintf(stdout, "Publish received on topic %s:", eventData.publishPacket->getTopic().c_str());
@@ -503,7 +522,7 @@ No matter what your connection transport or authentication method is, you may co
     Http::HttpClientConnectionProxyOptions proxyOptions;
     proxyOptions.HostName = "<proxyHost>";
     proxyOptions.Port = <proxyPort>;
-    builder->withHttpProxyOptions(proxyOptions);
+    builder->WithHttpProxyOptions(proxyOptions);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -548,9 +567,9 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
     subscriptionList.push_back(data2);
     subscriptionList.push_back(data3);
 
-    // Creaet a SubscribePacket with the subscription list. You can also use packet->withSubscription(subscription) to push_back a single subscription data.
+    // Creaet a SubscribePacket with the subscription list. You can also use packet->WithSubscription(subscription) to push_back a single subscription data.
     std::shared_ptr<Mqtt5::SubscribePacket> packet = std::make_shared<SubscribePacket>();
-    packet->withSubscriptions(subscriptionList);
+    packet->WithSubscriptions(subscriptionList);
 
     bool subSuccess = mqtt5Client->Subscribe(
         packet,
@@ -584,7 +603,7 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
     topics.push_back(topic1);
     topics.push_back(topic2);
     std::shared_ptr<UnsubscribePacket> unsub = std::make_shared<UnsubscribePacket>();
-    unsub->withTopicFilters(topics);
+    unsub->WithTopicFilters(topics);
     bool unsubSuccess = mqtt5Client->Unsubscribe(
         packet,
         [](std::shared_ptr<Mqtt5::Mqtt5Client>, int, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback){
@@ -621,7 +640,7 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     std::shared_ptr<PublishPacket> publish = std::make_shared<PublishPacket>(testTopic, payload, QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 
     // Setup publish completion callback. The callback will get triggered when the pulbish completes and publish result returned from the server
-    OnPublishCompletionHandler callback = [](std::shared_ptr<Mqtt5Client> client, int, std::shared_ptr<PublishResult> result){
+    OnPublishCompletionHandler callback = [](int, std::shared_ptr<PublishResult> result){
         if(!result->wasSuccessful())
         {
             fprintf(stdout, "Publish failed with error_code: %d", result->getErrorCode());
@@ -650,3 +669,4 @@ Below are some best practices for the MQTT5 client that are recommended to follo
 * If you are getting unexpected disconnects when trying to connect to AWS IoT Core, make sure to check your IoT Core Thing’s policy and permissions to make sure your device is has the permissions it needs to connect!
 * For **Publish**, **Subscribe**, and **Unsubscribe**, you can check the reason codes in the CompletionCallbacks to see if the operation actually succeeded.
 * You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
+* You can use `LastError()` and `ErrorDebugString(error_code)` to get the error code and error message.
