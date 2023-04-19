@@ -8,6 +8,7 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/Pkcs11.h>
+#include <fstream>
 #include <iostream>
 
 namespace Utils
@@ -847,13 +848,48 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_endpoint = "data.tunneling.iot." + returnData.input_signingRegion + ".amazonaws.com";
         returnData.input_accessTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_access_token_file, "");
         returnData.input_accessToken = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "");
-        returnData.input_localProxyModeSource = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "destination");
+        if (returnData.input_accessToken == "" && returnData.input_accessTokenFile != "")
+        {
+            Aws::Crt::String tempAccessToken;
+
+            std::ifstream accessTokenFile(returnData.input_accessTokenFile.c_str());
+            if (accessTokenFile.is_open())
+            {
+                getline(accessTokenFile, returnData.input_accessToken);
+                accessTokenFile.close();
+            }
+            else
+            {
+                fprintf(stderr, "Failed to open access token file");
+                exit(-1);
+            }
+        }
+
         returnData.input_clientTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_client_token_file, "");
         returnData.input_clientToken = cmdUtils.GetCommandOrDefault(m_cmd_client_token, "");
+        if (returnData.input_clientToken == "" && returnData.input_clientTokenFile != "")
+        {
+            Aws::Crt::String tempAccessToken;
+
+            std::ifstream clientTokenFile(returnData.input_clientTokenFile.c_str());
+            if (clientTokenFile.is_open())
+            {
+                getline(clientTokenFile, returnData.input_clientToken);
+                clientTokenFile.close();
+            }
+            else
+            {
+                fprintf(stderr, "Failed to open client token file");
+                exit(-1);
+            }
+        }
+
+        returnData.input_localProxyModeSource =
+            cmdUtils.GetCommandOrDefault(m_cmd_local_proxy_mode_source, "destination");
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "Hello World!");
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
         {

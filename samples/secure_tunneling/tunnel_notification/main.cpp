@@ -3,28 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include <aws/crt/Api.h>
-#include <aws/crt/UUID.h>
-#include <aws/crt/io/HostResolver.h>
-
 #include <aws/iot/MqttClient.h>
-
 #include <aws/iotsecuretunneling/IotSecureTunnelingClient.h>
+#include <aws/iotsecuretunneling/SecureTunnel.h>
 #include <aws/iotsecuretunneling/SecureTunnelingNotifyResponse.h>
 #include <aws/iotsecuretunneling/SubscribeToTunnelsNotifyRequest.h>
-#include <iostream>
 
-#include <algorithm>
 #include <chrono>
-#include <condition_variable>
-#include <iostream>
-#include <mutex>
 #include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
 using namespace std;
-using namespace Aws::Iot;
 using namespace Aws::Crt;
 using namespace Aws::Crt::Mqtt;
 using namespace Aws::Iotsecuretunneling;
@@ -33,8 +23,11 @@ int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
+    struct aws_allocator *allocator = aws_default_allocator();
     // Do the global initialization for the API.
     ApiHandle apiHandle;
+    aws_iotdevice_library_init(allocator);
+    std::shared_ptr<SecureTunnel> secureTunnel;
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
@@ -121,32 +114,50 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "Received MQTT Tunnel Notification\n");
 
-            std::string clientAccessToken = response->ClientAccessToken->c_str();
-            std::string clientMode = response->ClientMode->c_str();
-            std::string region = response->Region->c_str();
-
             fprintf(
                 stdout,
-                "Recv: Token:%s, Mode:%s, Region:%s\n",
-                clientAccessToken.c_str(),
-                clientMode.c_str(),
-                region.c_str());
+                "Recv:\n\tToken:%s\n\tMode:%s\n\tRegion:%s\n",
+                response->ClientAccessToken->c_str(),
+                response->ClientMode->c_str(),
+                response->Region->c_str());
+
+            Aws::Crt::String region = response->Region->c_str();
+            Aws::Crt::String endpoint = "data.tunneling.iot." + region + ".amazonaws.com";
 
             size_t nServices = response->Services->size();
             if (nServices <= 0)
             {
-                fprintf(stdout, "No service requested\n");
+                fprintf(stdout, "\tNo Service Ids requested\n");
             }
             else
             {
-                std::string service = response->Services->at(0).c_str();
-                fprintf(stdout, "Requested service=%s\n", service.c_str());
-
-                if (nServices > 1)
+                for (size_t i = 0; i < nServices; ++i)
                 {
-                    fprintf(stdout, "Multiple services not supported yet\n");
+                    std::string service = response->Services->at(i).c_str();
+                    fprintf(stdout, "\tService Id %zu=%s\n", (i + 1), service.c_str());
                 }
             }
+
+            SecureTunnelBuilder builder = SecureTunnelBuilder(
+                allocator,
+                response->ClientAccessToken->c_str(),
+                AWS_SECURE_TUNNELING_DESTINATION_MODE,
+                endpoint.c_str());
+
+            builder.WithOnConnectionSuccess(
+                [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
+                    (void)secureTunnel;
+                    (void)eventData;
+                    fprintf(stdout, "Secure Tunnel connected to Secure Tunnel Service\n");
+                });
+            secureTunnel = builder.Build();
+
+            if (!secureTunnel)
+            {
+                fprintf(stderr, "Secure Tunnel Creation failed: %s\n", ErrorDebugString(LastError()));
+                exit(-1);
+            }
+            secureTunnel->Start();
         }
         else
         {
@@ -170,6 +181,7 @@ int main(int argc, char *argv[])
         secureClient.SubscribeToTunnelsNotify(
             request, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubscribeToTunnelsNotifyResponse, OnSubscribeComplete);
     }
+
     while (1)
     {
         std::this_thread::sleep_for(500ms);
