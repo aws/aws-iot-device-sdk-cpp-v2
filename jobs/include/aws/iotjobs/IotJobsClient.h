@@ -542,7 +542,7 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
-            std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
+            Crt::ScopedResource<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
             std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_mqtt5Client;
             std::shared_ptr<IoTServiceCallbackMap> m_callbacks;
         };
