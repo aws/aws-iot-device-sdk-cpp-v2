@@ -72,6 +72,43 @@ namespace Aws
             std::function<void(Aws::Iotjobs::StartNextJobExecutionResponse *, int ioErr)>;
 
         /**
+         * The class will keep a map of <topic, OnPublishReceivedHandler> to handle the service call.
+         */
+        class IoTServiceCallbackMap : public std::enable_shared_from_this<IoTServiceCallbackMap>
+        {
+          public:
+            static std::shared_ptr<IoTServiceCallbackMap> NewIoTServiceCallbackMap(
+                Crt::Allocator *allocator = Crt::ApiAllocator()) noexcept;
+
+            void insert(Crt::String, Crt::Mqtt5::OnPublishReceivedHandler);
+            void remove(Crt::String);
+
+            /*
+             * Lookup the callback map, and invoke the callback if set
+             *
+             * @return true if callback is invoked, otherwise return false if no callback find with the topic name
+             */
+            bool invoke(Crt::String, const Crt::Mqtt5::PublishReceivedEventData &);
+            /**
+             * Get shared pointer of the IoTServiceCallbackMap. IoTServiceCallbackMap is inherited to
+             * enable_shared_from_this to help with memory safety.
+             *
+             * @return shared_ptr for the IoTServiceCallbackMap
+             */
+            std::shared_ptr<IoTServiceCallbackMap> getptr() { return shared_from_this(); }
+
+            /*
+             * Termination callback trigger on mqtt5 listener terminated. At that point, we are safe to clear the
+             * callbacks.
+             */
+            static void s_terminationCallback(void *user_data) noexcept;
+
+          private:
+            std::map<Crt::String, Crt::Mqtt5::OnPublishReceivedHandler> m_subscriptionMap;
+            std::shared_ptr<IoTServiceCallbackMap> m_selfReference;
+        };
+
+        /**
          * The AWS IoT jobs service can be used to define a set of remote operations that are sent to and executed on
          * one or more devices connected to AWS IoT.
          *
@@ -82,7 +119,9 @@ namespace Aws
         {
           public:
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
-            IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
+            IotJobsClient(
+                const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client,
+                Crt::Allocator *allocator = Crt::ApiAllocator());
 
             operator bool() const noexcept;
             int GetLastError() const noexcept;
@@ -505,6 +544,7 @@ namespace Aws
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
             std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Listener> m_mqtt5Listener;
             std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_mqtt5Client;
+            std::shared_ptr<IoTServiceCallbackMap> m_callbacks;
         };
 
     } // namespace Iotjobs

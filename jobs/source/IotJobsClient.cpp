@@ -23,22 +23,31 @@
 #include <aws/iotjobs/UpdateJobExecutionResponse.h>
 #include <aws/iotjobs/UpdateJobExecutionSubscriptionRequest.h>
 
+#include <aws/crt/mqtt/Mqtt5Listener.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 
 namespace Aws
 {
     namespace Iotjobs
     {
-
-        IotJobsClient::IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection)
-            : m_connection(connection)
-        {
-        }
-
-        IotJobsClient::IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
+        IotJobsClient::IotJobsClient(
+            const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client,
+            Crt::Allocator *allocator)
             : m_mqtt5Client(mqtt5Client)
         {
+            m_callbacks = IoTServiceCallbackMap::NewIoTServiceCallbackMap(allocator);
+
             Crt::Mqtt5::Mqtt5ListenerOptions listenerOptions;
+            auto callback = [this](const Crt::Mqtt5::PublishReceivedEventData &data) {
+                Crt::String topic = data.publishPacket->getTopic();
+                std::shared_ptr<IoTServiceCallbackMap> callbacks =
+                    std::static_pointer_cast<IoTServiceCallbackMap>(this->m_callbacks);
+                return callbacks->invoke(topic, data);
+            };
+            listenerOptions.WithListenerPublishReceivedCallback(std::move(callback));
+            listenerOptions.WithListenerTerminationCallback(
+                std::move(IoTServiceCallbackMap::s_terminationCallback), &(this->m_callbacks));
+
             m_mqtt5Listener =
                 Crt::Mqtt5::Mqtt5Listener::NewMqtt5Listener(listenerOptions, mqtt5Client, Aws::Crt::g_allocator);
         }
@@ -149,7 +158,7 @@ namespace Aws
                 handler(&response, AWS_ERROR_SUCCESS);
             };
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -262,7 +271,7 @@ namespace Aws
                                << "/"
                                << "rejected";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -374,7 +383,7 @@ namespace Aws
                                << "/"
                                << "accepted";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -487,7 +496,7 @@ namespace Aws
                                << "/"
                                << "rejected";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -599,7 +608,7 @@ namespace Aws
                                << "/"
                                << "rejected";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -707,7 +716,7 @@ namespace Aws
                                << "/"
                                << "notify";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -819,7 +828,7 @@ namespace Aws
                                << "/"
                                << "rejected";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -927,7 +936,7 @@ namespace Aws
                                << "/"
                                << "notify-next";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -1039,7 +1048,7 @@ namespace Aws
                                << "/"
                                << "accepted";
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -1152,7 +1161,7 @@ namespace Aws
                 handler(&response, AWS_ERROR_SUCCESS);
             };
 
-            m_mqtt5Listener->Subscribe(subscribeTopicSStr.str(), onPublishReceived);
+            m_callbacks->insert(subscribeTopicSStr.str(), onPublishReceived);
 
             Crt::Mqtt5::Subscription subscription(subscribeTopicSStr.str(), qos, Aws::Crt::g_allocator);
             std::shared_ptr<Crt::Mqtt5::SubscribePacket> subscribe =
@@ -1448,6 +1457,57 @@ namespace Aws
                 publishTopicSStr.str(), Crt::ByteCursorFromByteBuf(buf), qos, Aws::Crt::g_allocator);
 
             return m_mqtt5Client->Publish(publish, std::move(onPublishComplete));
+        }
+
+        std::shared_ptr<IoTServiceCallbackMap> Iotjobs::IoTServiceCallbackMap::NewIoTServiceCallbackMap(
+            Crt::Allocator *allocator) noexcept
+        {
+
+            /* Copied from MqttClient.cpp:ln754 (MqttClient::NewConnection) */
+            // As the constructor is private, make share would not work here. We do make_share manually.
+            IoTServiceCallbackMap *toSeat =
+                reinterpret_cast<IoTServiceCallbackMap *>(aws_mem_acquire(allocator, sizeof(IoTServiceCallbackMap)));
+            if (!toSeat)
+            {
+                return nullptr;
+            }
+
+            toSeat = new (toSeat) IoTServiceCallbackMap();
+
+            std::shared_ptr<IoTServiceCallbackMap> shared_listener = std::shared_ptr<IoTServiceCallbackMap>(
+                toSeat, [allocator](IoTServiceCallbackMap *listener) { Crt::Delete(listener, allocator); });
+            shared_listener->m_selfReference = shared_listener->shared_from_this();
+            return shared_listener;
+        }
+
+        void IoTServiceCallbackMap::insert(Crt::String topic, Crt::Mqtt5::OnPublishReceivedHandler callback)
+        {
+            m_subscriptionMap[topic] = callback;
+        }
+
+        void IoTServiceCallbackMap::remove(Crt::String topic)
+        {
+            if (m_subscriptionMap.find(topic) != m_subscriptionMap.end())
+            {
+                m_subscriptionMap.erase(topic);
+            }
+        }
+
+        bool IoTServiceCallbackMap::invoke(Crt::String topic, const Crt::Mqtt5::PublishReceivedEventData &data)
+        {
+            if (m_subscriptionMap.find(topic) != m_subscriptionMap.end())
+            {
+                m_subscriptionMap[topic](data);
+                return true;
+            }
+            return false;
+        }
+
+        void IoTServiceCallbackMap::s_terminationCallback(void *user_data) noexcept
+        {
+            std::shared_ptr<IoTServiceCallbackMap> map =
+                *reinterpret_cast<std::shared_ptr<IoTServiceCallbackMap> *>(user_data);
+            map->m_selfReference.reset();
         }
 
     } // namespace Iotjobs
