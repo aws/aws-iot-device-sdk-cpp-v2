@@ -227,3 +227,8 @@ message->withPayload(payload);
 // Send Message
 secureTunnel->SendMessage(message);
 ```
+# Secure Tunnel Best Practices
+* You MUST NOT perform blocking operations on any callback, or you will cause a deadlock.
+* If you do not provide a Client Token during creation of the Secure Tunnel, one will be automatically generated for you to use in reconnections. This token is not saved outside of the current Secure Tunnel Client. If the Client is destroyed, the original access tokens must be rotated to connect to the secure tunnel again. Information on rotating tokens can be found here: https://docs.aws.amazon.com/iot/latest/developerguide/iot-secure-tunneling-troubleshooting.html
+* Client tokens MUST be unique. You cannot for example, pair a Client Token with an Access Token on one secure tunnel, and then use the same Client Token with a different Access Token on a separate secure tunnel. The Secure Tunnel Service will not allow reuse of a Client Token.
+* A Secure Tunnel Client that has `Start()` called on it, will continue to attempt to connect the Secure Tunnel Service untill `Stop()` is called even if the Secure Tunnel it is trying to connect to has been closed. You MUST call `Stop()` to cease future connection attempts.
