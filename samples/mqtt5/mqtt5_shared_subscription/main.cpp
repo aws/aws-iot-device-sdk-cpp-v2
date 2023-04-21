@@ -267,10 +267,6 @@ int main(int argc, char *argv[])
     {
         // Wait just a little bit to see if the client was disconnected due to missing Shared Subscription support.
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        if (subscriberOne->sharedSubscriptionSupportNotAvailable == true)
-        {
-            subscriberOne->PrintMessageAndExit("Shared Subscriptions not supported", -1);
-        }
         Mqtt5::SubAckReasonCode result = subscribeSuccess.get_future().get();
         if (result >= Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
         {
@@ -296,10 +292,6 @@ int main(int argc, char *argv[])
     {
         // Wait just a little bit to see if the client was disconnected due to missing Shared Subscription support.
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        if (subscriberTwo->sharedSubscriptionSupportNotAvailable == true)
-        {
-            subscriberTwo->PrintMessageAndExit("Shared Subscriptions not supported", -1);
-        }
         Mqtt5::SubAckReasonCode result = subscribeSuccess.get_future().get();
         if (result >= Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
         {
