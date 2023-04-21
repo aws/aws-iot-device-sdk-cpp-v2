@@ -25,10 +25,6 @@ class sample_mqtt5_client
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
     std::mutex receiveMutex;
-    std::condition_variable receiveSignal;
-    uint64_t receivedMessages;
-    uint64_t expectedMessages;
-    bool sharedSubscriptionSupportNotAvailable;
 
     // A helper function to print a message and then exit the sample.
     void PrintMessageAndExit(String message, int exitCode)
@@ -44,15 +40,10 @@ class sample_mqtt5_client
         String input_key,
         String input_ca,
         String input_clientId,
-        uint64_t input_count,
         String input_clientName)
     {
         std::shared_ptr<sample_mqtt5_client> result = std::make_shared<sample_mqtt5_client>();
-
-        result->receivedMessages = 0;
-        result->expectedMessages = input_count;
         result->name = input_clientName;
-        result->sharedSubscriptionSupportNotAvailable = false;
 
         Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
             input_endpoint, input_cert.c_str(), input_key.c_str());
@@ -123,11 +114,6 @@ class sample_mqtt5_client
             if (eventData.disconnectPacket != nullptr)
             {
                 fprintf(stdout, "\tReason code: %u\n", (uint32_t)eventData.disconnectPacket->getReasonCode());
-                if (eventData.disconnectPacket->getReasonCode() ==
-                    Mqtt5::DisconnectReasonCode::AWS_MQTT5_DRC_SHARED_SUBSCRIPTIONS_NOT_SUPPORTED)
-                {
-                    result->sharedSubscriptionSupportNotAvailable = true;
-                }
             }
         });
 
@@ -146,11 +132,6 @@ class sample_mqtt5_client
                 {
                     fprintf(stdout, "\t\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
                 }
-            }
-            result->receivedMessages += 1;
-            if (result->receivedMessages > result->expectedMessages)
-            {
-                result->receiveSignal.notify_all();
             }
         });
 
@@ -183,7 +164,6 @@ int main(int argc, char *argv[])
         cmdData.input_key,
         cmdData.input_ca,
         cmdData.input_clientId + String("1"),
-        cmdData.input_count / 2,
         String("Publisher"));
     std::shared_ptr<sample_mqtt5_client> subscriberOne = sample_mqtt5_client::create_mqtt5_client(
         cmdData.input_endpoint,
@@ -191,7 +171,6 @@ int main(int argc, char *argv[])
         cmdData.input_key,
         cmdData.input_ca,
         cmdData.input_clientId + String("2"),
-        cmdData.input_count / 2,
         String("Subscriber One"));
     std::shared_ptr<sample_mqtt5_client> subscriberTwo = sample_mqtt5_client::create_mqtt5_client(
         cmdData.input_endpoint,
@@ -199,7 +178,6 @@ int main(int argc, char *argv[])
         cmdData.input_key,
         cmdData.input_ca,
         cmdData.input_clientId + String("3"),
-        cmdData.input_count / 2,
         String("Subscriber Two"));
 
     if (publisher == nullptr || subscriberOne == nullptr || subscriberTwo == nullptr)
@@ -216,6 +194,7 @@ int main(int argc, char *argv[])
         {
             publisher->PrintMessageAndExit("Connection was unsuccessful", -1);
         }
+        fprintf(stdout, "[%s] Connected.\n", publisher->name.c_str());
     }
     else
     {
@@ -228,6 +207,7 @@ int main(int argc, char *argv[])
         {
             subscriberOne->PrintMessageAndExit("Connection was unsuccessful", -1);
         }
+        fprintf(stdout, "[%s] Connected.\n", subscriberOne->name.c_str());
     }
     else
     {
@@ -240,6 +220,7 @@ int main(int argc, char *argv[])
         {
             subscriberTwo->PrintMessageAndExit("Connection was unsuccessful", -1);
         }
+        fprintf(stdout, "[%s] Connected.\n", subscriberTwo->name.c_str());
     }
     else
     {
@@ -288,11 +269,6 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (subscriberOne->sharedSubscriptionSupportNotAvailable == true)
         {
-            if (cmdData.input_isCI == true)
-            {
-                // TMP: If this fails subscribing in CI, just exit the sample gracefully
-                subscriberOne->PrintMessageAndExit("Shared Subscriptions not supported", 0);
-            }
             subscriberOne->PrintMessageAndExit("Shared Subscriptions not supported", -1);
         }
         Mqtt5::SubAckReasonCode result = subscribeSuccess.get_future().get();
@@ -300,6 +276,15 @@ int main(int argc, char *argv[])
         {
             subscriberOne->PrintMessageAndExit("Failed to subscribe", -1);
         }
+
+        fprintf(
+            stdout,
+            "[%s] Subscribed to topic '%s' in shared subscription group '%s'. \n",
+            subscriberOne->name.c_str(),
+            cmdData.input_topic.c_str(),
+            cmdData.input_groupIdentifier.c_str());
+        fprintf(
+            stdout, "[%s] Full subscribed topic is: '%s'.\n", subscriberOne->name.c_str(), input_sharedTopic.c_str());
     }
     else
     {
@@ -313,11 +298,6 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (subscriberTwo->sharedSubscriptionSupportNotAvailable == true)
         {
-            if (cmdData.input_isCI == true)
-            {
-                // TMP: If this fails subscribing in CI, just exit the sample gracefully
-                subscriberTwo->PrintMessageAndExit("Shared Subscriptions not supported", 0);
-            }
             subscriberTwo->PrintMessageAndExit("Shared Subscriptions not supported", -1);
         }
         Mqtt5::SubAckReasonCode result = subscribeSuccess.get_future().get();
@@ -325,6 +305,15 @@ int main(int argc, char *argv[])
         {
             subscriberTwo->PrintMessageAndExit("Failed to subscribe", -1);
         }
+
+        fprintf(
+            stdout,
+            "[%s] Subscribed to topic '%s' in shared subscription group '%s'.\n",
+            subscriberTwo->name.c_str(),
+            cmdData.input_topic.c_str(),
+            cmdData.input_groupIdentifier.c_str());
+        fprintf(
+            stdout, "[%s] Full subscribed topic is: '%s'.\n", subscriberTwo->name.c_str(), input_sharedTopic.c_str());
     }
     else
     {
@@ -372,18 +361,8 @@ int main(int argc, char *argv[])
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
-    /*********************** Make sure all the messages got to the subscribers ***************************/
-
-    std::unique_lock<std::mutex> receivedLockOne(subscriberOne->receiveMutex);
-    subscriberOne->receiveSignal.wait(receivedLockOne, [&, subscriberOne] {
-        return subscriberOne->receivedMessages >= subscriberOne->expectedMessages;
-    });
-    std::unique_lock<std::mutex> receivedLockTwo(subscriberTwo->receiveMutex);
-    subscriberTwo->receiveSignal.wait(receivedLockTwo, [&, subscriberTwo] {
-        return subscriberTwo->receivedMessages >= subscriberTwo->expectedMessages;
-    });
+    // Wait 5 seconds to let the last publish go out before unsubscribing
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
     /*********************** Unsubscribe the subscribers ***************************/
 
@@ -396,6 +375,13 @@ int main(int argc, char *argv[])
         subscriberOne->PrintMessageAndExit("Unsubscribe failed", -1);
     }
     unsubscribeFinishedPromise.get_future().wait();
+    fprintf(
+        stdout,
+        "[%s] Unsubscribed to topic '%s' in shared subscription group '%s'.\n",
+        subscriberOne->name.c_str(),
+        cmdData.input_topic.c_str(),
+        cmdData.input_groupIdentifier.c_str());
+    fprintf(stdout, "[%s] Full unsubscribed topic is: '%s'.\n", subscriberOne->name.c_str(), input_sharedTopic.c_str());
 
     unsubscribeFinishedPromise = std::promise<void>();
     if (!subscriberTwo->client->Unsubscribe(
@@ -404,6 +390,13 @@ int main(int argc, char *argv[])
         subscriberTwo->PrintMessageAndExit("Unsubscribe failed", -1);
     }
     unsubscribeFinishedPromise.get_future().wait();
+    fprintf(
+        stdout,
+        "[%s] Unsubscribed to topic '%s' in shared subscription group '%s'.\n",
+        subscriberTwo->name.c_str(),
+        cmdData.input_topic.c_str(),
+        cmdData.input_groupIdentifier.c_str());
+    fprintf(stdout, "[%s] Full unsubscribed topic is: '%s'.\n", subscriberTwo->name.c_str(), input_sharedTopic.c_str());
 
     /*********************** Disconnect all the MQTT5 clients ***************************/
 
@@ -412,18 +405,21 @@ int main(int argc, char *argv[])
         publisher->PrintMessageAndExit("Failed to disconnect. Exiting...", -1);
     }
     publisher->stoppedPromise.get_future().wait();
+    fprintf(stdout, "[%s] Fully stopped.\n", publisher->name.c_str());
 
     if (!subscriberOne->client->Stop())
     {
         subscriberOne->PrintMessageAndExit("Failed to disconnect. Exiting...", -1);
     }
     subscriberOne->stoppedPromise.get_future().wait();
+    fprintf(stdout, "[%s] Fully stopped.\n", subscriberOne->name.c_str());
 
     if (!subscriberTwo->client->Stop())
     {
         subscriberTwo->PrintMessageAndExit("Failed to disconnect. Exiting...", -1);
     }
     subscriberTwo->stoppedPromise.get_future().wait();
+    fprintf(stdout, "[%s] Fully stopped.\n", subscriberTwo->name.c_str());
 
     /*********************** Free the shared pointers (MQTT5 clients) ***************************/
     publisher->client = nullptr;
