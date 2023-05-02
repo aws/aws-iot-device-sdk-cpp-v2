@@ -65,6 +65,7 @@ namespace Utils
     static const char *m_cmd_proxy_user_name = "proxy_user_name";
     static const char *m_cmd_proxy_password = "proxy_password";
     static const char *m_cmd_shadow_property = "shadow_property";
+    static const char *m_cmd_region = "region";
 
     CommandLineUtils::CommandLineUtils()
     {
@@ -431,7 +432,7 @@ namespace Utils
         cmdUtils.AddCommonProxyCommands();
         cmdUtils.AddCommonTopicMessageCommands();
         cmdUtils.RemoveCommand(m_cmd_endpoint);
-        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The region for your Greengrass groups.");
+        cmdUtils.RegisterCommand(m_cmd_region, "<str>", "The region for your Greengrass groups.");
         cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
         cmdUtils.RegisterCommand(
             m_cmd_mode, "<str>", "Mode options: 'both', 'publish', or 'subscribe' (optional, default='both').");
@@ -448,7 +449,7 @@ namespace Utils
         {
             returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
         }
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_region);
         s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "");
         returnData.input_mode = cmdUtils.GetCommandOrDefault(m_cmd_mode, "both");
