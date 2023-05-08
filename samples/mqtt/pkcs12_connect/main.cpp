@@ -25,10 +25,9 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputPKCS12Connect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
-    struct Aws::Iot::Pkcs12Options options = {
-        .pkcs12_file = cmdData.input_pkcs12File,
-        .pkcs12_password = cmdData.input_pkcs12Password,
-    };
+    struct Aws::Iot::Pkcs12Options options;
+    options.pkcs12_file = cmdData.input_pkcs12File;
+    options.pkcs12_password = cmdData.input_pkcs12Password;
     auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(options);
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
     if (cmdData.input_ca != "")
