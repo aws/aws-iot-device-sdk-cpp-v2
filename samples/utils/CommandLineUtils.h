@@ -124,9 +124,17 @@ namespace Utils
          * @param CommandName The name of the command you want to get the value of
          * @return Aws::Crt::String The value passed into the program at the command name
          */
-        Aws::Crt::String GetCommandRequired(
-            Aws::Crt::String CommandName,
-            Aws::Crt::String OptionalAdditionalMessage = "");
+        Aws::Crt::String GetCommandRequired(Aws::Crt::String CommandName);
+
+        /**
+         * Gets the value of the command passed into the console/terminal if it exists. If it does not exist,
+         * the program will exit with an error message.
+         *
+         * @param CommandName The name of the command you want to get the value of
+         * @param CommandNameAlt The alternate name of the command you want to get the value of
+         * @return Aws::Crt::String The value passed into the program at the command name
+         */
+        Aws::Crt::String GetCommandRequired(Aws::Crt::String CommandName, Aws::Crt::String CommandNameAlt);
 
         /**
          * Prints to the console/terminal all of the commands and their descriptions.
