@@ -251,7 +251,7 @@ def launch_sample():
 
     exit_code = 0
 
-    print("Launching sample...")
+    print("Launching sample...", flush=True)
 
     # Java
     if (config_json['language'] == "Java"):
@@ -277,7 +277,7 @@ def launch_sample():
     # C++
     elif (config_json['language'] == "CPP"):
         sample_return = subprocess.run(
-            args=config_json_arguments_list, executable=config_json['sample_file'])
+            args=config_json_arguments_list, executable=config_json['sample_file'], stderr=sys.stderr, stdout=sys.stdout)
         exit_code = sample_return.returncode
 
     elif (config_json['language'] == "Python"):
