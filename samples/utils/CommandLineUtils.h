@@ -266,6 +266,9 @@ namespace Utils
         Aws::Crt::String input_proxy_password;
         // Shadow
         Aws::Crt::String input_shadowProperty;
+        // PKCS12
+        Aws::Crt::String input_pkcs12File;
+        Aws::Crt::String input_pkcs12Password;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
@@ -290,5 +293,6 @@ namespace Utils
     cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputSecureTunnelNotification(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputShadow(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputPKCS12Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
 
 } // namespace Utils
