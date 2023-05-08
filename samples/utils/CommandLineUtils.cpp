@@ -852,7 +852,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
         returnData.input_endpoint = "data.tunneling.iot." + returnData.input_signingRegion + ".amazonaws.com";
         returnData.input_accessTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_access_token_file, "");
         returnData.input_accessToken = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "");
