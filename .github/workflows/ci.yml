@@ -335,8 +335,8 @@ jobs:
           key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > /tmp/privatekey.pem
           endpoint=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
           pkcs12_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key_pkcs12_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out /tmp/pkcs12-key.p12 -name PubSub_Thing_Alias -password pass:$pkcs12_password
-          ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file /tmp/pkcs12-key.p12 --pkcs12_password $pkcs12_password
+          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-key.p12 -name PubSub_Thing_Alias -password pass:$pkcs12_password
+          ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-key.p12 --pkcs12_password $pkcs12_password
         # python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
