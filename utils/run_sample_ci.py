@@ -276,9 +276,14 @@ def launch_sample():
 
     # C++
     elif (config_json['language'] == "CPP"):
-        sample_return = subprocess.run(
-            args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600)
-        exit_code = sample_return.returncode
+        try:
+            sample_return = subprocess.run(
+                args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600)
+            exit_code = sample_return.returncode
+        except subprocess.TimeoutExpired as timeOut:
+            print (timeOut.stdout, flush=True)
+            print ("\n\n=====================\n\n", flush=True)
+            print (timeOut.stderr, flush=True)
 
     elif (config_json['language'] == "Python"):
         config_json_arguments_list.append("--is_ci")
