@@ -19,6 +19,10 @@
         {
             "name": "verbosity",
             "data": "Trace"
+        },
+        {
+            "name": "log_file",
+            "data": "/tmp/SAMPLE_LOG.txt"
         }
     ]
 }
