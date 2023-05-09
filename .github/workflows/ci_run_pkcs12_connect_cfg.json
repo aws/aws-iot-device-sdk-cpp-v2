@@ -17,11 +17,11 @@
             "secret": "ci/PubSub/key_pkcs12_password"
         },
         {
-            "name": "verbosity",
+            "name": "--verbosity",
             "data": "Trace"
         },
         {
-            "name": "help",
+            "name": "--help",
             "data": "true"
         }
     ]
