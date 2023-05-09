@@ -22,7 +22,7 @@
         },
         {
             "name": "log_file",
-            "data": "/tmp/SAMPLE_LOG.txt"
+            "data": "./SAMPLE_LOG.txt"
         }
     ]
 }

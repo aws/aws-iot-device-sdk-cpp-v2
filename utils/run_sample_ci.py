@@ -282,7 +282,7 @@ def launch_sample():
             exit_code = sample_return.returncode
         except subprocess.TimeoutExpired as timeOut:
             print ("\n=====================\n", flush=True)
-            with open("/tmp/SAMPLE_LOG.txt", "r") as file:
+            with open("./SAMPLE_LOG.txt", "r") as file:
                 print (file.read(), flush=True)
             sys.exit(-1)
 
