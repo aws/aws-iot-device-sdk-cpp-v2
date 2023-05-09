@@ -1,13 +1,6 @@
 /**
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
- *
- * This file is generated.
- */
-
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0.
  */
 
 /* This file is generated. */
@@ -27,20 +20,26 @@ namespace Aws
               m_asyncLaunchMode(std::launch::deferred)
         {
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#InvalidArgumentsError"), InvalidArgumentsError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#ServiceError"), ServiceError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#UnauthorizedError"), UnauthorizedError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidTokenError"), InvalidTokenError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#ConflictError"), ConflictError::s_allocateFromPayload);
+            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
+                Aws::Crt::String("aws.greengrass#ResourceNotFoundError"), ResourceNotFoundError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#FailedUpdateConditionCheckError"),
                 FailedUpdateConditionCheckError::s_allocateFromPayload);
-            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#ConflictError"), ConflictError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#ComponentNotFoundError"),
                 ComponentNotFoundError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidCredentialError"),
                 InvalidCredentialError::s_allocateFromPayload);
-            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#ResourceNotFoundError"), ResourceNotFoundError::s_allocateFromPayload);
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidArtifactsDirectoryPathError"),
                 InvalidArtifactsDirectoryPathError::s_allocateFromPayload);
@@ -50,12 +49,6 @@ namespace Aws
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidClientDeviceAuthTokenError"),
                 InvalidClientDeviceAuthTokenError::s_allocateFromPayload);
-            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#InvalidArgumentsError"), InvalidArgumentsError::s_allocateFromPayload);
-            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#ServiceError"), ServiceError::s_allocateFromPayload);
-            m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
-                Aws::Crt::String("aws.greengrass#UnauthorizedError"), UnauthorizedError::s_allocateFromPayload);
         }
 
         std::future<RpcError> GreengrassCoreIpcClient::Connect(
