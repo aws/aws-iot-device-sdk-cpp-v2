@@ -19,10 +19,6 @@
         {
             "name": "--verbosity",
             "data": "Trace"
-        },
-        {
-            "name": "--help",
-            "data": "true"
         }
     ]
 }
