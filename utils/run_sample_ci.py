@@ -281,9 +281,6 @@ def launch_sample():
                 args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             exit_code = sample_return.returncode
         except subprocess.TimeoutExpired as timeOut:
-            print ("\n=====================\n", flush=True)
-            with open("./SAMPLE_LOG.txt", "r") as file:
-                print (file.read(), flush=True)
             sys.exit(-1)
 
     elif (config_json['language'] == "Python"):

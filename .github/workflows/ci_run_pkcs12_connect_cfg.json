@@ -21,8 +21,8 @@
             "data": "Trace"
         },
         {
-            "name": "log_file",
-            "data": "./SAMPLE_LOG.txt"
+            "name": "help",
+            "data": "true"
         }
     ]
 }
