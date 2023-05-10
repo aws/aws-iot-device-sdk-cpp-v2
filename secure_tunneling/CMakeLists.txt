@@ -99,13 +99,9 @@ if (BUILD_DEPS)
 	if (NOT IS_SUBDIRECTORY_INCLUDE)
 		aws_use_package(aws-crt-cpp)
 	endif()
-
 endif()
 
 aws_use_package(aws-c-iot)
-#if (BUILD_TESTING)
-#    aws_use_package(IotDeviceCommon-cpp)
-#endif()
 
 target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS})
 
