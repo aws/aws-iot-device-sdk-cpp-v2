@@ -416,7 +416,8 @@ namespace Aws
             ResultType GetResultType() const noexcept { return m_responseType; }
 
           private:
-            union AWS_EVENTSTREAMRPC_API OperationResult {
+            union AWS_EVENTSTREAMRPC_API OperationResult
+            {
                 OperationResult(Crt::ScopedResource<AbstractShapeBase> &&response) noexcept
                     : m_response(std::move(response))
                 {
@@ -445,12 +446,12 @@ namespace Aws
         {
             /* An interface shared by all operations for retrieving the response object given the model name. */
           public:
-            virtual ExpectedResponseFactory GetInitialResponseFromModelName(const Crt::String &modelName) const
-                noexcept = 0;
-            virtual ExpectedResponseFactory GetStreamingResponseFromModelName(const Crt::String &modelName) const
-                noexcept = 0;
-            virtual ErrorResponseFactory GetOperationErrorFromModelName(const Crt::String &modelName) const
-                noexcept = 0;
+            virtual ExpectedResponseFactory GetInitialResponseFromModelName(
+                const Crt::String &modelName) const noexcept = 0;
+            virtual ExpectedResponseFactory GetStreamingResponseFromModelName(
+                const Crt::String &modelName) const noexcept = 0;
+            virtual ErrorResponseFactory GetOperationErrorFromModelName(
+                const Crt::String &modelName) const noexcept = 0;
         };
 
         class AWS_EVENTSTREAMRPC_API ServiceModel
