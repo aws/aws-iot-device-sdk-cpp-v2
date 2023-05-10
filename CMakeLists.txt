@@ -86,7 +86,7 @@ if (NOT BYO_CRYPTO)
     # TODO: get these working with BYO_CRYPTO
     add_subdirectory(iotdevicecommon)
     add_subdirectory(devicedefender)
-#    add_subdirectory(secure_tunneling)
+    add_subdirectory(secure_tunneling)
 endif ()
 
 if (BUILD_SAMPLES)
