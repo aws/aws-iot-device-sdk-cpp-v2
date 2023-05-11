@@ -74,6 +74,7 @@ else()
     set(IN_SOURCE_BUILD OFF)
 endif()
 
+aws_use_package(aws-c-iot)
 aws_use_package(aws-crt-cpp)
 
 add_subdirectory(jobs)
