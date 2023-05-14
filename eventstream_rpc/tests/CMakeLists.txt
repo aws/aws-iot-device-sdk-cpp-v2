@@ -28,6 +28,7 @@ elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     endif()
 endif()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
+
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
 endif()
@@ -40,8 +41,6 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
-aws_use_package(aws-crt-cpp)
-aws_use_package(EventstreamRpc-cpp)
 add_test_case(OperateWhileDisconnected)
 # The tests below can be commented out when an EchoRPC Server is running on 127.0.0.1:8033
 #add_test_case(EventStreamConnect)

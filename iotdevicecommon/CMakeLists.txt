@@ -44,6 +44,8 @@ if (WIN32)
     endif ()
 endif()
 
+aws_use_package(aws-c-iot)
+
 add_library(IotDeviceCommon-cpp ${AWS_IOTDEVICECOMMON_CPP_SRC})
 
 set_target_properties(IotDeviceCommon-cpp PROPERTIES LINKER_LANGUAGE CXX)
