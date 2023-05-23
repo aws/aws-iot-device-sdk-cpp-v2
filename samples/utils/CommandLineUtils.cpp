@@ -156,9 +156,7 @@ namespace Utils
         return commandDefault;
     }
 
-    Aws::Crt::String CommandLineUtils::GetCommandRequired(
-        Aws::Crt::String command,
-        Aws::Crt::String optionalAdditionalMessage)
+    Aws::Crt::String CommandLineUtils::GetCommandRequired(Aws::Crt::String command)
     {
         if (HasCommand(command))
         {
@@ -166,11 +164,16 @@ namespace Utils
         }
         PrintHelp();
         fprintf(stderr, "Missing required argument: --%s\n", command.c_str());
-        if (optionalAdditionalMessage != "")
-        {
-            fprintf(stderr, "%s\n", optionalAdditionalMessage.c_str());
-        }
         exit(-1);
+    }
+
+    Aws::Crt::String CommandLineUtils::GetCommandRequired(Aws::Crt::String command, Aws::Crt::String commandAlt)
+    {
+        if (HasCommand(commandAlt))
+        {
+            return GetCommand(commandAlt);
+        }
+        return GetCommandRequired(command);
     }
 
     void CommandLineUtils::PrintHelp()
@@ -451,7 +454,7 @@ namespace Utils
         {
             returnData.input_ca = cmdUtils.GetCommand(m_cmd_ca_file);
         }
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_region, m_cmd_signing_region);
         s_populateTopic(&cmdUtils, &returnData);
         returnData.input_message = cmdUtils.GetCommandOrDefault(m_cmd_message, "");
         returnData.input_mode = cmdUtils.GetCommandOrDefault(m_cmd_mode, "both");
@@ -570,9 +573,9 @@ namespace Utils
         s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
         returnData.input_cognitoEndpoint =
-            "cognito-identity." + cmdUtils.GetCommandRequired(m_cmd_signing_region) + ".amazonaws.com";
+            "cognito-identity." + cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region) + ".amazonaws.com";
         returnData.input_cognitoIdentity = cmdUtils.GetCommandRequired(m_cmd_cognito_identity);
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
         {
@@ -655,7 +658,7 @@ namespace Utils
         s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
         {
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
@@ -708,7 +711,7 @@ namespace Utils
         s_parseCommonMQTTCommands(&cmdUtils, &returnData);
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
         if (cmdUtils.HasCommand(m_cmd_proxy_host))
         {
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
@@ -851,7 +854,7 @@ namespace Utils
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
-        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region);
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
         returnData.input_endpoint = "data.tunneling.iot." + returnData.input_signingRegion + ".amazonaws.com";
         returnData.input_accessTokenFile = cmdUtils.GetCommandOrDefault(m_cmd_access_token_file, "");
         returnData.input_accessToken = cmdUtils.GetCommandOrDefault(m_cmd_access_token, "");

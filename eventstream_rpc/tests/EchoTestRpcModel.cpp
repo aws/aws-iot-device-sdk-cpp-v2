@@ -58,6 +58,54 @@ namespace Awstest
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
 
+    void Pair::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+    {
+        if (m_key.has_value())
+        {
+            payloadObject.WithString("key", m_key.value());
+        }
+        if (m_value.has_value())
+        {
+            payloadObject.WithString("value", m_value.value());
+        }
+    }
+
+    void Pair::s_loadFromJsonView(Pair &pair, const Aws::Crt::JsonView &jsonView) noexcept
+    {
+        if (jsonView.ValueExists("key"))
+        {
+            pair.m_key = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("key"));
+        }
+        if (jsonView.ValueExists("value"))
+        {
+            pair.m_value = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("value"));
+        }
+    }
+
+    const char *Pair::MODEL_NAME = "awstest#Pair";
+
+    Aws::Crt::String Pair::GetModelName() const noexcept { return Pair::MODEL_NAME; }
+
+    Aws::Crt::ScopedResource<AbstractShapeBase> Pair::s_allocateFromPayload(
+        Aws::Crt::StringView stringView,
+        Aws::Crt::Allocator *allocator) noexcept
+    {
+        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+        Aws::Crt::JsonObject jsonObject(payload);
+        Aws::Crt::JsonView jsonView(jsonObject);
+
+        Aws::Crt::ScopedResource<Pair> shape(Aws::Crt::New<Pair>(allocator), Pair::s_customDeleter);
+        shape->m_allocator = allocator;
+        Pair::s_loadFromJsonView(*shape, jsonView);
+        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+    }
+
+    void Pair::s_customDeleter(Pair *shape) noexcept
+    {
+        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+    }
+
     void Customer::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
     {
         if (m_id.has_value())
@@ -110,54 +158,6 @@ namespace Awstest
     }
 
     void Customer::s_customDeleter(Customer *shape) noexcept
-    {
-        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-    }
-
-    void Pair::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-    {
-        if (m_key.has_value())
-        {
-            payloadObject.WithString("key", m_key.value());
-        }
-        if (m_value.has_value())
-        {
-            payloadObject.WithString("value", m_value.value());
-        }
-    }
-
-    void Pair::s_loadFromJsonView(Pair &pair, const Aws::Crt::JsonView &jsonView) noexcept
-    {
-        if (jsonView.ValueExists("key"))
-        {
-            pair.m_key = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("key"));
-        }
-        if (jsonView.ValueExists("value"))
-        {
-            pair.m_value = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("value"));
-        }
-    }
-
-    const char *Pair::MODEL_NAME = "awstest#Pair";
-
-    Aws::Crt::String Pair::GetModelName() const noexcept { return Pair::MODEL_NAME; }
-
-    Aws::Crt::ScopedResource<AbstractShapeBase> Pair::s_allocateFromPayload(
-        Aws::Crt::StringView stringView,
-        Aws::Crt::Allocator *allocator) noexcept
-    {
-        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-        Aws::Crt::JsonObject jsonObject(payload);
-        Aws::Crt::JsonView jsonView(jsonObject);
-
-        Aws::Crt::ScopedResource<Pair> shape(Aws::Crt::New<Pair>(allocator), Pair::s_customDeleter);
-        shape->m_allocator = allocator;
-        Pair::s_loadFromJsonView(*shape, jsonView);
-        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
-        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
-    }
-
-    void Pair::s_customDeleter(Pair *shape) noexcept
     {
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
@@ -442,6 +442,55 @@ namespace Awstest
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
 
+    void ServiceError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+    {
+        if (m_message.has_value())
+        {
+            payloadObject.WithString("message", m_message.value());
+        }
+        if (m_value.has_value())
+        {
+            payloadObject.WithString("value", m_value.value());
+        }
+    }
+
+    void ServiceError::s_loadFromJsonView(ServiceError &serviceError, const Aws::Crt::JsonView &jsonView) noexcept
+    {
+        if (jsonView.ValueExists("message"))
+        {
+            serviceError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+        }
+        if (jsonView.ValueExists("value"))
+        {
+            serviceError.m_value = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("value"));
+        }
+    }
+
+    const char *ServiceError::MODEL_NAME = "awstest#ServiceError";
+
+    Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
+
+    Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
+        Aws::Crt::StringView stringView,
+        Aws::Crt::Allocator *allocator) noexcept
+    {
+        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+        Aws::Crt::JsonObject jsonObject(payload);
+        Aws::Crt::JsonView jsonView(jsonObject);
+
+        Aws::Crt::ScopedResource<ServiceError> shape(
+            Aws::Crt::New<ServiceError>(allocator), ServiceError::s_customDeleter);
+        shape->m_allocator = allocator;
+        ServiceError::s_loadFromJsonView(*shape, jsonView);
+        auto operationResponse = static_cast<OperationError *>(shape.release());
+        return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+    }
+
+    void ServiceError::s_customDeleter(ServiceError *shape) noexcept
+    {
+        OperationError::s_customDeleter(static_cast<OperationError *>(shape));
+    }
+
     void GetAllProductsResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
     {
         if (m_products.has_value())
@@ -643,6 +692,82 @@ namespace Awstest
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
 
+    void EchoStreamingResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+    {
+        (void)payloadObject;
+    }
+
+    void EchoStreamingResponse::s_loadFromJsonView(
+        EchoStreamingResponse &echoStreamingResponse,
+        const Aws::Crt::JsonView &jsonView) noexcept
+    {
+        (void)echoStreamingResponse;
+        (void)jsonView;
+    }
+
+    const char *EchoStreamingResponse::MODEL_NAME = "awstest#EchoStreamingResponse";
+
+    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept { return EchoStreamingResponse::MODEL_NAME; }
+
+    Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingResponse::s_allocateFromPayload(
+        Aws::Crt::StringView stringView,
+        Aws::Crt::Allocator *allocator) noexcept
+    {
+        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+        Aws::Crt::JsonObject jsonObject(payload);
+        Aws::Crt::JsonView jsonView(jsonObject);
+
+        Aws::Crt::ScopedResource<EchoStreamingResponse> shape(
+            Aws::Crt::New<EchoStreamingResponse>(allocator), EchoStreamingResponse::s_customDeleter);
+        shape->m_allocator = allocator;
+        EchoStreamingResponse::s_loadFromJsonView(*shape, jsonView);
+        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+    }
+
+    void EchoStreamingResponse::s_customDeleter(EchoStreamingResponse *shape) noexcept
+    {
+        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+    }
+
+    void EchoStreamingRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+    {
+        (void)payloadObject;
+    }
+
+    void EchoStreamingRequest::s_loadFromJsonView(
+        EchoStreamingRequest &echoStreamingRequest,
+        const Aws::Crt::JsonView &jsonView) noexcept
+    {
+        (void)echoStreamingRequest;
+        (void)jsonView;
+    }
+
+    const char *EchoStreamingRequest::MODEL_NAME = "awstest#EchoStreamingRequest";
+
+    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept { return EchoStreamingRequest::MODEL_NAME; }
+
+    Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingRequest::s_allocateFromPayload(
+        Aws::Crt::StringView stringView,
+        Aws::Crt::Allocator *allocator) noexcept
+    {
+        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+        Aws::Crt::JsonObject jsonObject(payload);
+        Aws::Crt::JsonView jsonView(jsonObject);
+
+        Aws::Crt::ScopedResource<EchoStreamingRequest> shape(
+            Aws::Crt::New<EchoStreamingRequest>(allocator), EchoStreamingRequest::s_customDeleter);
+        shape->m_allocator = allocator;
+        EchoStreamingRequest::s_loadFromJsonView(*shape, jsonView);
+        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+    }
+
+    void EchoStreamingRequest::s_customDeleter(EchoStreamingRequest *shape) noexcept
+    {
+        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+    }
+
     void EchoMessageResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
     {
         if (m_message.has_value())
@@ -733,131 +858,6 @@ namespace Awstest
     void EchoMessageRequest::s_customDeleter(EchoMessageRequest *shape) noexcept
     {
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-    }
-
-    void EchoStreamingResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-    {
-        (void)payloadObject;
-    }
-
-    void EchoStreamingResponse::s_loadFromJsonView(
-        EchoStreamingResponse &echoStreamingResponse,
-        const Aws::Crt::JsonView &jsonView) noexcept
-    {
-        (void)echoStreamingResponse;
-        (void)jsonView;
-    }
-
-    const char *EchoStreamingResponse::MODEL_NAME = "awstest#EchoStreamingResponse";
-
-    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept { return EchoStreamingResponse::MODEL_NAME; }
-
-    Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingResponse::s_allocateFromPayload(
-        Aws::Crt::StringView stringView,
-        Aws::Crt::Allocator *allocator) noexcept
-    {
-        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-        Aws::Crt::JsonObject jsonObject(payload);
-        Aws::Crt::JsonView jsonView(jsonObject);
-
-        Aws::Crt::ScopedResource<EchoStreamingResponse> shape(
-            Aws::Crt::New<EchoStreamingResponse>(allocator), EchoStreamingResponse::s_customDeleter);
-        shape->m_allocator = allocator;
-        EchoStreamingResponse::s_loadFromJsonView(*shape, jsonView);
-        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
-        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
-    }
-
-    void EchoStreamingResponse::s_customDeleter(EchoStreamingResponse *shape) noexcept
-    {
-        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-    }
-
-    void EchoStreamingRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-    {
-        (void)payloadObject;
-    }
-
-    void EchoStreamingRequest::s_loadFromJsonView(
-        EchoStreamingRequest &echoStreamingRequest,
-        const Aws::Crt::JsonView &jsonView) noexcept
-    {
-        (void)echoStreamingRequest;
-        (void)jsonView;
-    }
-
-    const char *EchoStreamingRequest::MODEL_NAME = "awstest#EchoStreamingRequest";
-
-    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept { return EchoStreamingRequest::MODEL_NAME; }
-
-    Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingRequest::s_allocateFromPayload(
-        Aws::Crt::StringView stringView,
-        Aws::Crt::Allocator *allocator) noexcept
-    {
-        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-        Aws::Crt::JsonObject jsonObject(payload);
-        Aws::Crt::JsonView jsonView(jsonObject);
-
-        Aws::Crt::ScopedResource<EchoStreamingRequest> shape(
-            Aws::Crt::New<EchoStreamingRequest>(allocator), EchoStreamingRequest::s_customDeleter);
-        shape->m_allocator = allocator;
-        EchoStreamingRequest::s_loadFromJsonView(*shape, jsonView);
-        auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
-        return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
-    }
-
-    void EchoStreamingRequest::s_customDeleter(EchoStreamingRequest *shape) noexcept
-    {
-        AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-    }
-
-    void ServiceError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-    {
-        if (m_message.has_value())
-        {
-            payloadObject.WithString("message", m_message.value());
-        }
-        if (m_value.has_value())
-        {
-            payloadObject.WithString("value", m_value.value());
-        }
-    }
-
-    void ServiceError::s_loadFromJsonView(ServiceError &serviceError, const Aws::Crt::JsonView &jsonView) noexcept
-    {
-        if (jsonView.ValueExists("message"))
-        {
-            serviceError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-        }
-        if (jsonView.ValueExists("value"))
-        {
-            serviceError.m_value = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("value"));
-        }
-    }
-
-    const char *ServiceError::MODEL_NAME = "awstest#ServiceError";
-
-    Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
-
-    Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
-        Aws::Crt::StringView stringView,
-        Aws::Crt::Allocator *allocator) noexcept
-    {
-        Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-        Aws::Crt::JsonObject jsonObject(payload);
-        Aws::Crt::JsonView jsonView(jsonObject);
-
-        Aws::Crt::ScopedResource<ServiceError> shape(
-            Aws::Crt::New<ServiceError>(allocator), ServiceError::s_customDeleter);
-        shape->m_allocator = allocator;
-        ServiceError::s_loadFromJsonView(*shape, jsonView);
-        auto operationResponse = static_cast<OperationError *>(shape.release());
-        return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-    }
-
-    void ServiceError::s_customDeleter(ServiceError *shape) noexcept
-    {
-        OperationError::s_customDeleter(static_cast<OperationError *>(shape));
     }
 
     void CauseServiceErrorResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
@@ -1040,8 +1040,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#CauseServiceErrorResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName() const
-        noexcept
+    Aws::Crt::Optional<Aws::Crt::String> CauseServiceErrorOperationContext::GetStreamingResponseModelName()
+        const noexcept
     {
         return Aws::Crt::Optional<Aws::Crt::String>();
     }
@@ -1107,15 +1107,15 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingResponse::s_allocateFromPayload(stringView, allocator);
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseStreamServiceToErrorOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1201,8 +1201,8 @@ namespace Awstest
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamMessagesOperationContext::
-        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-        noexcept
+        AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+            const noexcept
     {
         return EchoStreamingMessage::s_allocateFromPayload(stringView, allocator);
     }
@@ -1217,8 +1217,8 @@ namespace Awstest
         return Aws::Crt::String("awstest#EchoStreamingResponse");
     }
 
-    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName() const
-        noexcept
+    Aws::Crt::Optional<Aws::Crt::String> EchoStreamMessagesOperationContext::GetStreamingResponseModelName()
+        const noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingMessage");
     }

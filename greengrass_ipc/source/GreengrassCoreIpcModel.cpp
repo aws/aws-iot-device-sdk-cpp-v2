@@ -1,13 +1,6 @@
 /**
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
- *
- * This file is generated.
- */
-
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0.
  */
 
 /* This file is generated. */
@@ -19,6 +12,55 @@ namespace Aws
 {
     namespace Greengrass
     {
+        void UserProperty::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_key.has_value())
+            {
+                payloadObject.WithString("key", m_key.value());
+            }
+            if (m_value.has_value())
+            {
+                payloadObject.WithString("value", m_value.value());
+            }
+        }
+
+        void UserProperty::s_loadFromJsonView(UserProperty &userProperty, const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("key"))
+            {
+                userProperty.m_key = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("key"));
+            }
+            if (jsonView.ValueExists("value"))
+            {
+                userProperty.m_value = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("value"));
+            }
+        }
+
+        const char *UserProperty::MODEL_NAME = "aws.greengrass#UserProperty";
+
+        Aws::Crt::String UserProperty::GetModelName() const noexcept { return UserProperty::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> UserProperty::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<UserProperty> shape(
+                Aws::Crt::New<UserProperty>(allocator), UserProperty::s_customDeleter);
+            shape->m_allocator = allocator;
+            UserProperty::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void UserProperty::s_customDeleter(UserProperty *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void MessageContext::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_topic.has_value())
@@ -173,6 +215,120 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void BinaryMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                if (m_message.value().size() > 0)
+                {
+                    payloadObject.WithString("message", Aws::Crt::Base64Encode(m_message.value()));
+                }
+            }
+            if (m_context.has_value())
+            {
+                Aws::Crt::JsonObject messageContextValue;
+                m_context.value().SerializeToJsonObject(messageContextValue);
+                payloadObject.WithObject("context", std::move(messageContextValue));
+            }
+        }
+
+        void BinaryMessage::s_loadFromJsonView(
+            BinaryMessage &binaryMessage,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                if (jsonView.GetString("message").size() > 0)
+                {
+                    binaryMessage.m_message = Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>>(
+                        Aws::Crt::Base64Decode(jsonView.GetString("message")));
+                }
+            }
+            if (jsonView.ValueExists("context"))
+            {
+                binaryMessage.m_context = MessageContext();
+                MessageContext::s_loadFromJsonView(binaryMessage.m_context.value(), jsonView.GetJsonObject("context"));
+            }
+        }
+
+        const char *BinaryMessage::MODEL_NAME = "aws.greengrass#BinaryMessage";
+
+        Aws::Crt::String BinaryMessage::GetModelName() const noexcept { return BinaryMessage::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> BinaryMessage::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<BinaryMessage> shape(
+                Aws::Crt::New<BinaryMessage>(allocator), BinaryMessage::s_customDeleter);
+            shape->m_allocator = allocator;
+            BinaryMessage::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void BinaryMessage::s_customDeleter(BinaryMessage *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void JsonMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithObject("message", m_message.value());
+            }
+            if (m_context.has_value())
+            {
+                Aws::Crt::JsonObject messageContextValue;
+                m_context.value().SerializeToJsonObject(messageContextValue);
+                payloadObject.WithObject("context", std::move(messageContextValue));
+            }
+        }
+
+        void JsonMessage::s_loadFromJsonView(JsonMessage &jsonMessage, const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                jsonMessage.m_message =
+                    Aws::Crt::Optional<Aws::Crt::JsonObject>(jsonView.GetJsonObject("message").Materialize());
+            }
+            if (jsonView.ValueExists("context"))
+            {
+                jsonMessage.m_context = MessageContext();
+                MessageContext::s_loadFromJsonView(jsonMessage.m_context.value(), jsonView.GetJsonObject("context"));
+            }
+        }
+
+        const char *JsonMessage::MODEL_NAME = "aws.greengrass#JsonMessage";
+
+        Aws::Crt::String JsonMessage::GetModelName() const noexcept { return JsonMessage::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> JsonMessage::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<JsonMessage> shape(
+                Aws::Crt::New<JsonMessage>(allocator), JsonMessage::s_customDeleter);
+            shape->m_allocator = allocator;
+            JsonMessage::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void JsonMessage::s_customDeleter(JsonMessage *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void MQTTMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_topicName.has_value())
@@ -185,6 +341,46 @@ namespace Aws
                 {
                     payloadObject.WithString("payload", Aws::Crt::Base64Encode(m_payload.value()));
                 }
+            }
+            if (m_retain.has_value())
+            {
+                payloadObject.WithBool("retain", m_retain.value());
+            }
+            if (m_userProperties.has_value())
+            {
+                Aws::Crt::JsonObject listOfUserProperties;
+                Aws::Crt::Vector<Aws::Crt::JsonObject> listOfUserPropertiesJsonArray;
+                for (const auto &listOfUserPropertiesItem : m_userProperties.value())
+                {
+                    Aws::Crt::JsonObject listOfUserPropertiesJsonArrayItem;
+                    listOfUserPropertiesItem.SerializeToJsonObject(listOfUserPropertiesJsonArrayItem);
+                    listOfUserPropertiesJsonArray.emplace_back(std::move(listOfUserPropertiesJsonArrayItem));
+                }
+                listOfUserProperties.AsArray(std::move(listOfUserPropertiesJsonArray));
+                payloadObject.WithObject("userProperties", std::move(listOfUserProperties));
+            }
+            if (m_messageExpiryIntervalSeconds.has_value())
+            {
+                payloadObject.WithInt64("messageExpiryIntervalSeconds", m_messageExpiryIntervalSeconds.value());
+            }
+            if (m_correlationData.has_value())
+            {
+                if (m_correlationData.value().size() > 0)
+                {
+                    payloadObject.WithString("correlationData", Aws::Crt::Base64Encode(m_correlationData.value()));
+                }
+            }
+            if (m_responseTopic.has_value())
+            {
+                payloadObject.WithString("responseTopic", m_responseTopic.value());
+            }
+            if (m_payloadFormat.has_value())
+            {
+                payloadObject.WithString("payloadFormat", m_payloadFormat.value());
+            }
+            if (m_contentType.has_value())
+            {
+                payloadObject.WithString("contentType", m_contentType.value());
             }
         }
 
@@ -202,6 +398,77 @@ namespace Aws
                         Aws::Crt::Base64Decode(jsonView.GetString("payload")));
                 }
             }
+            if (jsonView.ValueExists("retain"))
+            {
+                mQTTMessage.m_retain = Aws::Crt::Optional<bool>(jsonView.GetBool("retain"));
+            }
+            if (jsonView.ValueExists("userProperties"))
+            {
+                mQTTMessage.m_userProperties = Aws::Crt::Vector<UserProperty>();
+                for (const Aws::Crt::JsonView &listOfUserPropertiesJsonView : jsonView.GetArray("userProperties"))
+                {
+                    Aws::Crt::Optional<UserProperty> listOfUserPropertiesItem;
+                    listOfUserPropertiesItem = UserProperty();
+                    UserProperty::s_loadFromJsonView(listOfUserPropertiesItem.value(), listOfUserPropertiesJsonView);
+                    mQTTMessage.m_userProperties.value().push_back(listOfUserPropertiesItem.value());
+                }
+            }
+            if (jsonView.ValueExists("messageExpiryIntervalSeconds"))
+            {
+                mQTTMessage.m_messageExpiryIntervalSeconds =
+                    Aws::Crt::Optional<int64_t>(jsonView.GetInt64("messageExpiryIntervalSeconds"));
+            }
+            if (jsonView.ValueExists("correlationData"))
+            {
+                if (jsonView.GetString("correlationData").size() > 0)
+                {
+                    mQTTMessage.m_correlationData = Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>>(
+                        Aws::Crt::Base64Decode(jsonView.GetString("correlationData")));
+                }
+            }
+            if (jsonView.ValueExists("responseTopic"))
+            {
+                mQTTMessage.m_responseTopic = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("responseTopic"));
+            }
+            if (jsonView.ValueExists("payloadFormat"))
+            {
+                mQTTMessage.m_payloadFormat = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("payloadFormat"));
+            }
+            if (jsonView.ValueExists("contentType"))
+            {
+                mQTTMessage.m_contentType = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("contentType"));
+            }
+        }
+
+        void MQTTMessage::SetPayloadFormat(PayloadFormat payloadFormat) noexcept
+        {
+            switch (payloadFormat)
+            {
+                case PAYLOAD_FORMAT_BYTES:
+                    m_payloadFormat = Aws::Crt::String("0");
+                    break;
+                case PAYLOAD_FORMAT_UTF8:
+                    m_payloadFormat = Aws::Crt::String("1");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<PayloadFormat> MQTTMessage::GetPayloadFormat() noexcept
+        {
+            if (!m_payloadFormat.has_value())
+                return Aws::Crt::Optional<PayloadFormat>();
+            if (m_payloadFormat.value() == Aws::Crt::String("0"))
+            {
+                return Aws::Crt::Optional<PayloadFormat>(PAYLOAD_FORMAT_BYTES);
+            }
+            if (m_payloadFormat.value() == Aws::Crt::String("1"))
+            {
+                return Aws::Crt::Optional<PayloadFormat>(PAYLOAD_FORMAT_UTF8);
+            }
+
+            return Aws::Crt::Optional<PayloadFormat>();
         }
 
         const char *MQTTMessage::MODEL_NAME = "aws.greengrass#MQTTMessage";
@@ -600,47 +867,83 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void BinaryMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        void LocalDeployment::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
-            if (m_message.has_value())
+            if (m_deploymentId.has_value())
             {
-                if (m_message.value().size() > 0)
-                {
-                    payloadObject.WithString("message", Aws::Crt::Base64Encode(m_message.value()));
-                }
+                payloadObject.WithString("deploymentId", m_deploymentId.value());
             }
-            if (m_context.has_value())
+            if (m_status.has_value())
             {
-                Aws::Crt::JsonObject messageContextValue;
-                m_context.value().SerializeToJsonObject(messageContextValue);
-                payloadObject.WithObject("context", std::move(messageContextValue));
+                payloadObject.WithString("status", m_status.value());
             }
         }
 
-        void BinaryMessage::s_loadFromJsonView(
-            BinaryMessage &binaryMessage,
+        void LocalDeployment::s_loadFromJsonView(
+            LocalDeployment &localDeployment,
             const Aws::Crt::JsonView &jsonView) noexcept
         {
-            if (jsonView.ValueExists("message"))
+            if (jsonView.ValueExists("deploymentId"))
             {
-                if (jsonView.GetString("message").size() > 0)
-                {
-                    binaryMessage.m_message = Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>>(
-                        Aws::Crt::Base64Decode(jsonView.GetString("message")));
-                }
+                localDeployment.m_deploymentId =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("deploymentId"));
             }
-            if (jsonView.ValueExists("context"))
+            if (jsonView.ValueExists("status"))
             {
-                binaryMessage.m_context = MessageContext();
-                MessageContext::s_loadFromJsonView(binaryMessage.m_context.value(), jsonView.GetJsonObject("context"));
+                localDeployment.m_status = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("status"));
             }
         }
 
-        const char *BinaryMessage::MODEL_NAME = "aws.greengrass#BinaryMessage";
+        void LocalDeployment::SetStatus(DeploymentStatus status) noexcept
+        {
+            switch (status)
+            {
+                case DEPLOYMENT_STATUS_QUEUED:
+                    m_status = Aws::Crt::String("QUEUED");
+                    break;
+                case DEPLOYMENT_STATUS_IN_PROGRESS:
+                    m_status = Aws::Crt::String("IN_PROGRESS");
+                    break;
+                case DEPLOYMENT_STATUS_SUCCEEDED:
+                    m_status = Aws::Crt::String("SUCCEEDED");
+                    break;
+                case DEPLOYMENT_STATUS_FAILED:
+                    m_status = Aws::Crt::String("FAILED");
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        Aws::Crt::String BinaryMessage::GetModelName() const noexcept { return BinaryMessage::MODEL_NAME; }
+        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() noexcept
+        {
+            if (!m_status.has_value())
+                return Aws::Crt::Optional<DeploymentStatus>();
+            if (m_status.value() == Aws::Crt::String("QUEUED"))
+            {
+                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_QUEUED);
+            }
+            if (m_status.value() == Aws::Crt::String("IN_PROGRESS"))
+            {
+                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_IN_PROGRESS);
+            }
+            if (m_status.value() == Aws::Crt::String("SUCCEEDED"))
+            {
+                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_SUCCEEDED);
+            }
+            if (m_status.value() == Aws::Crt::String("FAILED"))
+            {
+                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_FAILED);
+            }
 
-        Aws::Crt::ScopedResource<AbstractShapeBase> BinaryMessage::s_allocateFromPayload(
+            return Aws::Crt::Optional<DeploymentStatus>();
+        }
+
+        const char *LocalDeployment::MODEL_NAME = "aws.greengrass#LocalDeployment";
+
+        Aws::Crt::String LocalDeployment::GetModelName() const noexcept { return LocalDeployment::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> LocalDeployment::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
             Aws::Crt::Allocator *allocator) noexcept
         {
@@ -648,52 +951,141 @@ namespace Aws
             Aws::Crt::JsonObject jsonObject(payload);
             Aws::Crt::JsonView jsonView(jsonObject);
 
-            Aws::Crt::ScopedResource<BinaryMessage> shape(
-                Aws::Crt::New<BinaryMessage>(allocator), BinaryMessage::s_customDeleter);
+            Aws::Crt::ScopedResource<LocalDeployment> shape(
+                Aws::Crt::New<LocalDeployment>(allocator), LocalDeployment::s_customDeleter);
             shape->m_allocator = allocator;
-            BinaryMessage::s_loadFromJsonView(*shape, jsonView);
+            LocalDeployment::s_loadFromJsonView(*shape, jsonView);
             auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
             return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
         }
 
-        void BinaryMessage::s_customDeleter(BinaryMessage *shape) noexcept
+        void LocalDeployment::s_customDeleter(LocalDeployment *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void JsonMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        void ComponentDetails::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
-            if (m_message.has_value())
+            if (m_componentName.has_value())
             {
-                payloadObject.WithObject("message", m_message.value());
+                payloadObject.WithString("componentName", m_componentName.value());
             }
-            if (m_context.has_value())
+            if (m_version.has_value())
             {
-                Aws::Crt::JsonObject messageContextValue;
-                m_context.value().SerializeToJsonObject(messageContextValue);
-                payloadObject.WithObject("context", std::move(messageContextValue));
+                payloadObject.WithString("version", m_version.value());
+            }
+            if (m_state.has_value())
+            {
+                payloadObject.WithString("state", m_state.value());
+            }
+            if (m_configuration.has_value())
+            {
+                payloadObject.WithObject("configuration", m_configuration.value());
             }
         }
 
-        void JsonMessage::s_loadFromJsonView(JsonMessage &jsonMessage, const Aws::Crt::JsonView &jsonView) noexcept
+        void ComponentDetails::s_loadFromJsonView(
+            ComponentDetails &componentDetails,
+            const Aws::Crt::JsonView &jsonView) noexcept
         {
-            if (jsonView.ValueExists("message"))
+            if (jsonView.ValueExists("componentName"))
             {
-                jsonMessage.m_message =
-                    Aws::Crt::Optional<Aws::Crt::JsonObject>(jsonView.GetJsonObject("message").Materialize());
+                componentDetails.m_componentName =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("componentName"));
             }
-            if (jsonView.ValueExists("context"))
+            if (jsonView.ValueExists("version"))
             {
-                jsonMessage.m_context = MessageContext();
-                MessageContext::s_loadFromJsonView(jsonMessage.m_context.value(), jsonView.GetJsonObject("context"));
+                componentDetails.m_version = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("version"));
+            }
+            if (jsonView.ValueExists("state"))
+            {
+                componentDetails.m_state = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("state"));
+            }
+            if (jsonView.ValueExists("configuration"))
+            {
+                componentDetails.m_configuration =
+                    Aws::Crt::Optional<Aws::Crt::JsonObject>(jsonView.GetJsonObject("configuration").Materialize());
             }
         }
 
-        const char *JsonMessage::MODEL_NAME = "aws.greengrass#JsonMessage";
+        void ComponentDetails::SetState(LifecycleState state) noexcept
+        {
+            switch (state)
+            {
+                case LIFECYCLE_STATE_RUNNING:
+                    m_state = Aws::Crt::String("RUNNING");
+                    break;
+                case LIFECYCLE_STATE_ERRORED:
+                    m_state = Aws::Crt::String("ERRORED");
+                    break;
+                case LIFECYCLE_STATE_NEW:
+                    m_state = Aws::Crt::String("NEW");
+                    break;
+                case LIFECYCLE_STATE_FINISHED:
+                    m_state = Aws::Crt::String("FINISHED");
+                    break;
+                case LIFECYCLE_STATE_INSTALLED:
+                    m_state = Aws::Crt::String("INSTALLED");
+                    break;
+                case LIFECYCLE_STATE_BROKEN:
+                    m_state = Aws::Crt::String("BROKEN");
+                    break;
+                case LIFECYCLE_STATE_STARTING:
+                    m_state = Aws::Crt::String("STARTING");
+                    break;
+                case LIFECYCLE_STATE_STOPPING:
+                    m_state = Aws::Crt::String("STOPPING");
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        Aws::Crt::String JsonMessage::GetModelName() const noexcept { return JsonMessage::MODEL_NAME; }
+        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() noexcept
+        {
+            if (!m_state.has_value())
+                return Aws::Crt::Optional<LifecycleState>();
+            if (m_state.value() == Aws::Crt::String("RUNNING"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_RUNNING);
+            }
+            if (m_state.value() == Aws::Crt::String("ERRORED"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_ERRORED);
+            }
+            if (m_state.value() == Aws::Crt::String("NEW"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_NEW);
+            }
+            if (m_state.value() == Aws::Crt::String("FINISHED"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_FINISHED);
+            }
+            if (m_state.value() == Aws::Crt::String("INSTALLED"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_INSTALLED);
+            }
+            if (m_state.value() == Aws::Crt::String("BROKEN"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_BROKEN);
+            }
+            if (m_state.value() == Aws::Crt::String("STARTING"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_STARTING);
+            }
+            if (m_state.value() == Aws::Crt::String("STOPPING"))
+            {
+                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_STOPPING);
+            }
 
-        Aws::Crt::ScopedResource<AbstractShapeBase> JsonMessage::s_allocateFromPayload(
+            return Aws::Crt::Optional<LifecycleState>();
+        }
+
+        const char *ComponentDetails::MODEL_NAME = "aws.greengrass#ComponentDetails";
+
+        Aws::Crt::String ComponentDetails::GetModelName() const noexcept { return ComponentDetails::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ComponentDetails::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
             Aws::Crt::Allocator *allocator) noexcept
         {
@@ -701,15 +1093,15 @@ namespace Aws
             Aws::Crt::JsonObject jsonObject(payload);
             Aws::Crt::JsonView jsonView(jsonObject);
 
-            Aws::Crt::ScopedResource<JsonMessage> shape(
-                Aws::Crt::New<JsonMessage>(allocator), JsonMessage::s_customDeleter);
+            Aws::Crt::ScopedResource<ComponentDetails> shape(
+                Aws::Crt::New<ComponentDetails>(allocator), ComponentDetails::s_customDeleter);
             shape->m_allocator = allocator;
-            JsonMessage::s_loadFromJsonView(*shape, jsonView);
+            ComponentDetails::s_loadFromJsonView(*shape, jsonView);
             auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
             return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
         }
 
-        void JsonMessage::s_customDeleter(JsonMessage *shape) noexcept
+        void ComponentDetails::s_customDeleter(ComponentDetails *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
@@ -901,8 +1293,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void ValidateConfigurationUpdateEvents::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateConfigurationUpdateEvents::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_chosenMember == TAG_VALIDATE_CONFIGURATION_UPDATE_EVENT &&
                 m_validateConfigurationUpdateEvent.has_value())
@@ -1623,245 +2015,6 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void LocalDeployment::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_deploymentId.has_value())
-            {
-                payloadObject.WithString("deploymentId", m_deploymentId.value());
-            }
-            if (m_status.has_value())
-            {
-                payloadObject.WithString("status", m_status.value());
-            }
-        }
-
-        void LocalDeployment::s_loadFromJsonView(
-            LocalDeployment &localDeployment,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("deploymentId"))
-            {
-                localDeployment.m_deploymentId =
-                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("deploymentId"));
-            }
-            if (jsonView.ValueExists("status"))
-            {
-                localDeployment.m_status = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("status"));
-            }
-        }
-
-        void LocalDeployment::SetStatus(DeploymentStatus status) noexcept
-        {
-            switch (status)
-            {
-                case DEPLOYMENT_STATUS_QUEUED:
-                    m_status = Aws::Crt::String("QUEUED");
-                    break;
-                case DEPLOYMENT_STATUS_IN_PROGRESS:
-                    m_status = Aws::Crt::String("IN_PROGRESS");
-                    break;
-                case DEPLOYMENT_STATUS_SUCCEEDED:
-                    m_status = Aws::Crt::String("SUCCEEDED");
-                    break;
-                case DEPLOYMENT_STATUS_FAILED:
-                    m_status = Aws::Crt::String("FAILED");
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() noexcept
-        {
-            if (!m_status.has_value())
-                return Aws::Crt::Optional<DeploymentStatus>();
-            if (m_status.value() == Aws::Crt::String("QUEUED"))
-            {
-                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_QUEUED);
-            }
-            if (m_status.value() == Aws::Crt::String("IN_PROGRESS"))
-            {
-                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_IN_PROGRESS);
-            }
-            if (m_status.value() == Aws::Crt::String("SUCCEEDED"))
-            {
-                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_SUCCEEDED);
-            }
-            if (m_status.value() == Aws::Crt::String("FAILED"))
-            {
-                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_FAILED);
-            }
-
-            return Aws::Crt::Optional<DeploymentStatus>();
-        }
-
-        const char *LocalDeployment::MODEL_NAME = "aws.greengrass#LocalDeployment";
-
-        Aws::Crt::String LocalDeployment::GetModelName() const noexcept { return LocalDeployment::MODEL_NAME; }
-
-        Aws::Crt::ScopedResource<AbstractShapeBase> LocalDeployment::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<LocalDeployment> shape(
-                Aws::Crt::New<LocalDeployment>(allocator), LocalDeployment::s_customDeleter);
-            shape->m_allocator = allocator;
-            LocalDeployment::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
-            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
-        }
-
-        void LocalDeployment::s_customDeleter(LocalDeployment *shape) noexcept
-        {
-            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-        }
-
-        void ComponentDetails::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_componentName.has_value())
-            {
-                payloadObject.WithString("componentName", m_componentName.value());
-            }
-            if (m_version.has_value())
-            {
-                payloadObject.WithString("version", m_version.value());
-            }
-            if (m_state.has_value())
-            {
-                payloadObject.WithString("state", m_state.value());
-            }
-            if (m_configuration.has_value())
-            {
-                payloadObject.WithObject("configuration", m_configuration.value());
-            }
-        }
-
-        void ComponentDetails::s_loadFromJsonView(
-            ComponentDetails &componentDetails,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("componentName"))
-            {
-                componentDetails.m_componentName =
-                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("componentName"));
-            }
-            if (jsonView.ValueExists("version"))
-            {
-                componentDetails.m_version = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("version"));
-            }
-            if (jsonView.ValueExists("state"))
-            {
-                componentDetails.m_state = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("state"));
-            }
-            if (jsonView.ValueExists("configuration"))
-            {
-                componentDetails.m_configuration =
-                    Aws::Crt::Optional<Aws::Crt::JsonObject>(jsonView.GetJsonObject("configuration").Materialize());
-            }
-        }
-
-        void ComponentDetails::SetState(LifecycleState state) noexcept
-        {
-            switch (state)
-            {
-                case LIFECYCLE_STATE_RUNNING:
-                    m_state = Aws::Crt::String("RUNNING");
-                    break;
-                case LIFECYCLE_STATE_ERRORED:
-                    m_state = Aws::Crt::String("ERRORED");
-                    break;
-                case LIFECYCLE_STATE_NEW:
-                    m_state = Aws::Crt::String("NEW");
-                    break;
-                case LIFECYCLE_STATE_FINISHED:
-                    m_state = Aws::Crt::String("FINISHED");
-                    break;
-                case LIFECYCLE_STATE_INSTALLED:
-                    m_state = Aws::Crt::String("INSTALLED");
-                    break;
-                case LIFECYCLE_STATE_BROKEN:
-                    m_state = Aws::Crt::String("BROKEN");
-                    break;
-                case LIFECYCLE_STATE_STARTING:
-                    m_state = Aws::Crt::String("STARTING");
-                    break;
-                case LIFECYCLE_STATE_STOPPING:
-                    m_state = Aws::Crt::String("STOPPING");
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() noexcept
-        {
-            if (!m_state.has_value())
-                return Aws::Crt::Optional<LifecycleState>();
-            if (m_state.value() == Aws::Crt::String("RUNNING"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_RUNNING);
-            }
-            if (m_state.value() == Aws::Crt::String("ERRORED"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_ERRORED);
-            }
-            if (m_state.value() == Aws::Crt::String("NEW"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_NEW);
-            }
-            if (m_state.value() == Aws::Crt::String("FINISHED"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_FINISHED);
-            }
-            if (m_state.value() == Aws::Crt::String("INSTALLED"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_INSTALLED);
-            }
-            if (m_state.value() == Aws::Crt::String("BROKEN"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_BROKEN);
-            }
-            if (m_state.value() == Aws::Crt::String("STARTING"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_STARTING);
-            }
-            if (m_state.value() == Aws::Crt::String("STOPPING"))
-            {
-                return Aws::Crt::Optional<LifecycleState>(LIFECYCLE_STATE_STOPPING);
-            }
-
-            return Aws::Crt::Optional<LifecycleState>();
-        }
-
-        const char *ComponentDetails::MODEL_NAME = "aws.greengrass#ComponentDetails";
-
-        Aws::Crt::String ComponentDetails::GetModelName() const noexcept { return ComponentDetails::MODEL_NAME; }
-
-        Aws::Crt::ScopedResource<AbstractShapeBase> ComponentDetails::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<ComponentDetails> shape(
-                Aws::Crt::New<ComponentDetails>(allocator), ComponentDetails::s_customDeleter);
-            shape->m_allocator = allocator;
-            ComponentDetails::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
-            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
-        }
-
-        void ComponentDetails::s_customDeleter(ComponentDetails *shape) noexcept
-        {
-            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-        }
-
         void CredentialDocument::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_chosenMember == TAG_MQTT_CREDENTIAL && m_mqttCredential.has_value())
@@ -1920,8 +2073,147 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void VerifyClientDeviceIdentityResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void InvalidArgumentsError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+        }
+
+        void InvalidArgumentsError::s_loadFromJsonView(
+            InvalidArgumentsError &invalidArgumentsError,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                invalidArgumentsError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+        }
+
+        const char *InvalidArgumentsError::MODEL_NAME = "aws.greengrass#InvalidArgumentsError";
+
+        Aws::Crt::String InvalidArgumentsError::GetModelName() const noexcept
+        {
+            return InvalidArgumentsError::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<OperationError> InvalidArgumentsError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<InvalidArgumentsError> shape(
+                Aws::Crt::New<InvalidArgumentsError>(allocator), InvalidArgumentsError::s_customDeleter);
+            shape->m_allocator = allocator;
+            InvalidArgumentsError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void InvalidArgumentsError::s_customDeleter(InvalidArgumentsError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
+        }
+
+        void ServiceError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+            if (m_context.has_value())
+            {
+                payloadObject.WithObject("context", m_context.value());
+            }
+        }
+
+        void ServiceError::s_loadFromJsonView(ServiceError &serviceError, const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                serviceError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+            if (jsonView.ValueExists("context"))
+            {
+                serviceError.m_context =
+                    Aws::Crt::Optional<Aws::Crt::JsonObject>(jsonView.GetJsonObject("context").Materialize());
+            }
+        }
+
+        const char *ServiceError::MODEL_NAME = "aws.greengrass#ServiceError";
+
+        Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ServiceError> shape(
+                Aws::Crt::New<ServiceError>(allocator), ServiceError::s_customDeleter);
+            shape->m_allocator = allocator;
+            ServiceError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void ServiceError::s_customDeleter(ServiceError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
+        }
+
+        void UnauthorizedError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+        }
+
+        void UnauthorizedError::s_loadFromJsonView(
+            UnauthorizedError &unauthorizedError,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                unauthorizedError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+        }
+
+        const char *UnauthorizedError::MODEL_NAME = "aws.greengrass#UnauthorizedError";
+
+        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept { return UnauthorizedError::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<OperationError> UnauthorizedError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<UnauthorizedError> shape(
+                Aws::Crt::New<UnauthorizedError>(allocator), UnauthorizedError::s_customDeleter);
+            shape->m_allocator = allocator;
+            UnauthorizedError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void UnauthorizedError::s_customDeleter(UnauthorizedError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
+        }
+
+        void VerifyClientDeviceIdentityResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isValidClientDevice.has_value())
             {
@@ -1970,8 +2262,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void VerifyClientDeviceIdentityRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void VerifyClientDeviceIdentityRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_credential.has_value())
             {
@@ -2065,8 +2357,8 @@ namespace Aws
             OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
-        void ValidateAuthorizationTokenResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateAuthorizationTokenResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isValid.has_value())
             {
@@ -2114,8 +2406,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void ValidateAuthorizationTokenRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void ValidateAuthorizationTokenRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_token.has_value())
             {
@@ -2161,6 +2453,49 @@ namespace Aws
         void ValidateAuthorizationTokenRequest::s_customDeleter(ValidateAuthorizationTokenRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void ConflictError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+        }
+
+        void ConflictError::s_loadFromJsonView(
+            ConflictError &conflictError,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                conflictError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+        }
+
+        const char *ConflictError::MODEL_NAME = "aws.greengrass#ConflictError";
+
+        Aws::Crt::String ConflictError::GetModelName() const noexcept { return ConflictError::MODEL_NAME; }
+
+        Aws::Crt::ScopedResource<OperationError> ConflictError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ConflictError> shape(
+                Aws::Crt::New<ConflictError>(allocator), ConflictError::s_customDeleter);
+            shape->m_allocator = allocator;
+            ConflictError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void ConflictError::s_customDeleter(ConflictError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
         void UpdateThingShadowResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
@@ -2285,6 +2620,70 @@ namespace Aws
         void UpdateThingShadowRequest::s_customDeleter(UpdateThingShadowRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void ResourceNotFoundError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+            if (m_resourceType.has_value())
+            {
+                payloadObject.WithString("resourceType", m_resourceType.value());
+            }
+            if (m_resourceName.has_value())
+            {
+                payloadObject.WithString("resourceName", m_resourceName.value());
+            }
+        }
+
+        void ResourceNotFoundError::s_loadFromJsonView(
+            ResourceNotFoundError &resourceNotFoundError,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                resourceNotFoundError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+            if (jsonView.ValueExists("resourceType"))
+            {
+                resourceNotFoundError.m_resourceType =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("resourceType"));
+            }
+            if (jsonView.ValueExists("resourceName"))
+            {
+                resourceNotFoundError.m_resourceName =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("resourceName"));
+            }
+        }
+
+        const char *ResourceNotFoundError::MODEL_NAME = "aws.greengrass#ResourceNotFoundError";
+
+        Aws::Crt::String ResourceNotFoundError::GetModelName() const noexcept
+        {
+            return ResourceNotFoundError::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<OperationError> ResourceNotFoundError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ResourceNotFoundError> shape(
+                Aws::Crt::New<ResourceNotFoundError>(allocator), ResourceNotFoundError::s_customDeleter);
+            shape->m_allocator = allocator;
+            ResourceNotFoundError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void ResourceNotFoundError::s_customDeleter(ResourceNotFoundError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
         void UpdateStateResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
@@ -2443,49 +2842,6 @@ namespace Aws
         }
 
         void FailedUpdateConditionCheckError::s_customDeleter(FailedUpdateConditionCheckError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
-        }
-
-        void ConflictError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-        }
-
-        void ConflictError::s_loadFromJsonView(
-            ConflictError &conflictError,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                conflictError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-        }
-
-        const char *ConflictError::MODEL_NAME = "aws.greengrass#ConflictError";
-
-        Aws::Crt::String ConflictError::GetModelName() const noexcept { return ConflictError::MODEL_NAME; }
-
-        Aws::Crt::ScopedResource<OperationError> ConflictError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<ConflictError> shape(
-                Aws::Crt::New<ConflictError>(allocator), ConflictError::s_customDeleter);
-            shape->m_allocator = allocator;
-            ConflictError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void ConflictError::s_customDeleter(ConflictError *shape) noexcept
         {
             OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
@@ -2958,8 +3314,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToConfigurationUpdateResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToConfigurationUpdateResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3003,8 +3359,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToConfigurationUpdateRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToConfigurationUpdateRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_componentName.has_value())
             {
@@ -3077,8 +3433,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToComponentUpdatesResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToComponentUpdatesResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3121,8 +3477,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToComponentUpdatesRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToComponentUpdatesRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3165,8 +3521,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToCertificateUpdatesResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToCertificateUpdatesResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3210,8 +3566,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SubscribeToCertificateUpdatesRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SubscribeToCertificateUpdatesRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_certificateOptions.has_value())
             {
@@ -3262,6 +3618,52 @@ namespace Aws
         void SubscribeToCertificateUpdatesRequest::s_customDeleter(SubscribeToCertificateUpdatesRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void ComponentNotFoundError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+        }
+
+        void ComponentNotFoundError::s_loadFromJsonView(
+            ComponentNotFoundError &componentNotFoundError,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                componentNotFoundError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+        }
+
+        const char *ComponentNotFoundError::MODEL_NAME = "aws.greengrass#ComponentNotFoundError";
+
+        Aws::Crt::String ComponentNotFoundError::GetModelName() const noexcept
+        {
+            return ComponentNotFoundError::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<OperationError> ComponentNotFoundError::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ComponentNotFoundError> shape(
+                Aws::Crt::New<ComponentNotFoundError>(allocator), ComponentNotFoundError::s_customDeleter);
+            shape->m_allocator = allocator;
+            ComponentNotFoundError::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<OperationError *>(shape.release());
+            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
+        }
+
+        void ComponentNotFoundError::s_customDeleter(ComponentNotFoundError *shape) noexcept
+        {
+            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
         void StopComponentResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
@@ -3397,8 +3799,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SendConfigurationValidityReportResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SendConfigurationValidityReportResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
         }
@@ -3442,8 +3844,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void SendConfigurationValidityReportRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void SendConfigurationValidityReportRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_configurationValidityReport.has_value())
             {
@@ -3583,52 +3985,6 @@ namespace Aws
         void ResumeComponentRequest::s_customDeleter(ResumeComponentRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
-        }
-
-        void ComponentNotFoundError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-        }
-
-        void ComponentNotFoundError::s_loadFromJsonView(
-            ComponentNotFoundError &componentNotFoundError,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                componentNotFoundError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-        }
-
-        const char *ComponentNotFoundError::MODEL_NAME = "aws.greengrass#ComponentNotFoundError";
-
-        Aws::Crt::String ComponentNotFoundError::GetModelName() const noexcept
-        {
-            return ComponentNotFoundError::MODEL_NAME;
-        }
-
-        Aws::Crt::ScopedResource<OperationError> ComponentNotFoundError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<ComponentNotFoundError> shape(
-                Aws::Crt::New<ComponentNotFoundError>(allocator), ComponentNotFoundError::s_customDeleter);
-            shape->m_allocator = allocator;
-            ComponentNotFoundError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void ComponentNotFoundError::s_customDeleter(ComponentNotFoundError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
         void RestartComponentResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
@@ -4025,6 +4381,46 @@ namespace Aws
                     payloadObject.WithString("payload", Aws::Crt::Base64Encode(m_payload.value()));
                 }
             }
+            if (m_retain.has_value())
+            {
+                payloadObject.WithBool("retain", m_retain.value());
+            }
+            if (m_userProperties.has_value())
+            {
+                Aws::Crt::JsonObject listOfUserProperties;
+                Aws::Crt::Vector<Aws::Crt::JsonObject> listOfUserPropertiesJsonArray;
+                for (const auto &listOfUserPropertiesItem : m_userProperties.value())
+                {
+                    Aws::Crt::JsonObject listOfUserPropertiesJsonArrayItem;
+                    listOfUserPropertiesItem.SerializeToJsonObject(listOfUserPropertiesJsonArrayItem);
+                    listOfUserPropertiesJsonArray.emplace_back(std::move(listOfUserPropertiesJsonArrayItem));
+                }
+                listOfUserProperties.AsArray(std::move(listOfUserPropertiesJsonArray));
+                payloadObject.WithObject("userProperties", std::move(listOfUserProperties));
+            }
+            if (m_messageExpiryIntervalSeconds.has_value())
+            {
+                payloadObject.WithInt64("messageExpiryIntervalSeconds", m_messageExpiryIntervalSeconds.value());
+            }
+            if (m_correlationData.has_value())
+            {
+                if (m_correlationData.value().size() > 0)
+                {
+                    payloadObject.WithString("correlationData", Aws::Crt::Base64Encode(m_correlationData.value()));
+                }
+            }
+            if (m_responseTopic.has_value())
+            {
+                payloadObject.WithString("responseTopic", m_responseTopic.value());
+            }
+            if (m_payloadFormat.has_value())
+            {
+                payloadObject.WithString("payloadFormat", m_payloadFormat.value());
+            }
+            if (m_contentType.has_value())
+            {
+                payloadObject.WithString("contentType", m_contentType.value());
+            }
         }
 
         void PublishToIoTCoreRequest::s_loadFromJsonView(
@@ -4047,6 +4443,49 @@ namespace Aws
                     publishToIoTCoreRequest.m_payload = Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>>(
                         Aws::Crt::Base64Decode(jsonView.GetString("payload")));
                 }
+            }
+            if (jsonView.ValueExists("retain"))
+            {
+                publishToIoTCoreRequest.m_retain = Aws::Crt::Optional<bool>(jsonView.GetBool("retain"));
+            }
+            if (jsonView.ValueExists("userProperties"))
+            {
+                publishToIoTCoreRequest.m_userProperties = Aws::Crt::Vector<UserProperty>();
+                for (const Aws::Crt::JsonView &listOfUserPropertiesJsonView : jsonView.GetArray("userProperties"))
+                {
+                    Aws::Crt::Optional<UserProperty> listOfUserPropertiesItem;
+                    listOfUserPropertiesItem = UserProperty();
+                    UserProperty::s_loadFromJsonView(listOfUserPropertiesItem.value(), listOfUserPropertiesJsonView);
+                    publishToIoTCoreRequest.m_userProperties.value().push_back(listOfUserPropertiesItem.value());
+                }
+            }
+            if (jsonView.ValueExists("messageExpiryIntervalSeconds"))
+            {
+                publishToIoTCoreRequest.m_messageExpiryIntervalSeconds =
+                    Aws::Crt::Optional<int64_t>(jsonView.GetInt64("messageExpiryIntervalSeconds"));
+            }
+            if (jsonView.ValueExists("correlationData"))
+            {
+                if (jsonView.GetString("correlationData").size() > 0)
+                {
+                    publishToIoTCoreRequest.m_correlationData = Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>>(
+                        Aws::Crt::Base64Decode(jsonView.GetString("correlationData")));
+                }
+            }
+            if (jsonView.ValueExists("responseTopic"))
+            {
+                publishToIoTCoreRequest.m_responseTopic =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("responseTopic"));
+            }
+            if (jsonView.ValueExists("payloadFormat"))
+            {
+                publishToIoTCoreRequest.m_payloadFormat =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("payloadFormat"));
+            }
+            if (jsonView.ValueExists("contentType"))
+            {
+                publishToIoTCoreRequest.m_contentType =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("contentType"));
             }
         }
 
@@ -4079,6 +4518,36 @@ namespace Aws
             }
 
             return Aws::Crt::Optional<QOS>();
+        }
+        void PublishToIoTCoreRequest::SetPayloadFormat(PayloadFormat payloadFormat) noexcept
+        {
+            switch (payloadFormat)
+            {
+                case PAYLOAD_FORMAT_BYTES:
+                    m_payloadFormat = Aws::Crt::String("0");
+                    break;
+                case PAYLOAD_FORMAT_UTF8:
+                    m_payloadFormat = Aws::Crt::String("1");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<PayloadFormat> PublishToIoTCoreRequest::GetPayloadFormat() noexcept
+        {
+            if (!m_payloadFormat.has_value())
+                return Aws::Crt::Optional<PayloadFormat>();
+            if (m_payloadFormat.value() == Aws::Crt::String("0"))
+            {
+                return Aws::Crt::Optional<PayloadFormat>(PAYLOAD_FORMAT_BYTES);
+            }
+            if (m_payloadFormat.value() == Aws::Crt::String("1"))
+            {
+                return Aws::Crt::Optional<PayloadFormat>(PAYLOAD_FORMAT_UTF8);
+            }
+
+            return Aws::Crt::Optional<PayloadFormat>();
         }
 
         const char *PublishToIoTCoreRequest::MODEL_NAME = "aws.greengrass#PublishToIoTCoreRequest";
@@ -5390,70 +5859,6 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void ResourceNotFoundError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-            if (m_resourceType.has_value())
-            {
-                payloadObject.WithString("resourceType", m_resourceType.value());
-            }
-            if (m_resourceName.has_value())
-            {
-                payloadObject.WithString("resourceName", m_resourceName.value());
-            }
-        }
-
-        void ResourceNotFoundError::s_loadFromJsonView(
-            ResourceNotFoundError &resourceNotFoundError,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                resourceNotFoundError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-            if (jsonView.ValueExists("resourceType"))
-            {
-                resourceNotFoundError.m_resourceType =
-                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("resourceType"));
-            }
-            if (jsonView.ValueExists("resourceName"))
-            {
-                resourceNotFoundError.m_resourceName =
-                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("resourceName"));
-            }
-        }
-
-        const char *ResourceNotFoundError::MODEL_NAME = "aws.greengrass#ResourceNotFoundError";
-
-        Aws::Crt::String ResourceNotFoundError::GetModelName() const noexcept
-        {
-            return ResourceNotFoundError::MODEL_NAME;
-        }
-
-        Aws::Crt::ScopedResource<OperationError> ResourceNotFoundError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<ResourceNotFoundError> shape(
-                Aws::Crt::New<ResourceNotFoundError>(allocator), ResourceNotFoundError::s_customDeleter);
-            shape->m_allocator = allocator;
-            ResourceNotFoundError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void ResourceNotFoundError::s_customDeleter(ResourceNotFoundError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
-        }
-
         void DeferComponentUpdateResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             (void)payloadObject;
@@ -5560,8 +5965,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void InvalidArtifactsDirectoryPathError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void InvalidArtifactsDirectoryPathError::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
             {
@@ -5996,8 +6401,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void InvalidClientDeviceAuthTokenError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void InvalidClientDeviceAuthTokenError::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
             {
@@ -6045,138 +6450,8 @@ namespace Aws
             OperationError::s_customDeleter(static_cast<OperationError *>(shape));
         }
 
-        void InvalidArgumentsError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-        }
-
-        void InvalidArgumentsError::s_loadFromJsonView(
-            InvalidArgumentsError &invalidArgumentsError,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                invalidArgumentsError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-        }
-
-        const char *InvalidArgumentsError::MODEL_NAME = "aws.greengrass#InvalidArgumentsError";
-
-        Aws::Crt::String InvalidArgumentsError::GetModelName() const noexcept
-        {
-            return InvalidArgumentsError::MODEL_NAME;
-        }
-
-        Aws::Crt::ScopedResource<OperationError> InvalidArgumentsError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<InvalidArgumentsError> shape(
-                Aws::Crt::New<InvalidArgumentsError>(allocator), InvalidArgumentsError::s_customDeleter);
-            shape->m_allocator = allocator;
-            InvalidArgumentsError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void InvalidArgumentsError::s_customDeleter(InvalidArgumentsError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
-        }
-
-        void ServiceError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-        }
-
-        void ServiceError::s_loadFromJsonView(ServiceError &serviceError, const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                serviceError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-        }
-
-        const char *ServiceError::MODEL_NAME = "aws.greengrass#ServiceError";
-
-        Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
-
-        Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<ServiceError> shape(
-                Aws::Crt::New<ServiceError>(allocator), ServiceError::s_customDeleter);
-            shape->m_allocator = allocator;
-            ServiceError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void ServiceError::s_customDeleter(ServiceError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
-        }
-
-        void UnauthorizedError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
-        {
-            if (m_message.has_value())
-            {
-                payloadObject.WithString("message", m_message.value());
-            }
-        }
-
-        void UnauthorizedError::s_loadFromJsonView(
-            UnauthorizedError &unauthorizedError,
-            const Aws::Crt::JsonView &jsonView) noexcept
-        {
-            if (jsonView.ValueExists("message"))
-            {
-                unauthorizedError.m_message = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
-            }
-        }
-
-        const char *UnauthorizedError::MODEL_NAME = "aws.greengrass#UnauthorizedError";
-
-        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept { return UnauthorizedError::MODEL_NAME; }
-
-        Aws::Crt::ScopedResource<OperationError> UnauthorizedError::s_allocateFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) noexcept
-        {
-            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
-            Aws::Crt::JsonObject jsonObject(payload);
-            Aws::Crt::JsonView jsonView(jsonObject);
-
-            Aws::Crt::ScopedResource<UnauthorizedError> shape(
-                Aws::Crt::New<UnauthorizedError>(allocator), UnauthorizedError::s_customDeleter);
-            shape->m_allocator = allocator;
-            UnauthorizedError::s_loadFromJsonView(*shape, jsonView);
-            auto operationResponse = static_cast<OperationError *>(shape.release());
-            return Aws::Crt::ScopedResource<OperationError>(operationResponse, OperationError::s_customDeleter);
-        }
-
-        void UnauthorizedError::s_customDeleter(UnauthorizedError *shape) noexcept
-        {
-            OperationError::s_customDeleter(static_cast<OperationError *>(shape));
-        }
-
-        void AuthorizeClientDeviceActionResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void AuthorizeClientDeviceActionResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_isAuthorized.has_value())
             {
@@ -6225,8 +6500,8 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
-        void AuthorizeClientDeviceActionRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const
-            noexcept
+        void AuthorizeClientDeviceActionRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_clientDeviceAuthToken.has_value())
             {
@@ -6331,15 +6606,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToIoTCoreResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return IoTCoreMessage::s_allocateFromPayload(stringView, allocator);
         }
@@ -6354,8 +6629,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> SubscribeToIoTCoreOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> SubscribeToIoTCoreOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#IoTCoreMessage");
         }
@@ -6406,8 +6681,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6424,8 +6699,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ResumeComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ResumeComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ResumeComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6468,15 +6743,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return PublishToIoTCoreResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6493,8 +6768,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToIoTCoreResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PublishToIoTCoreOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PublishToIoTCoreOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6569,15 +6844,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToConfigurationUpdateResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ConfigurationUpdateEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -6638,15 +6913,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return DeleteThingShadowResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6663,8 +6938,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeleteThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> DeleteThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> DeleteThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6707,15 +6982,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return PutComponentMetricResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PutComponentMetricOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6732,8 +7007,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PutComponentMetricResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PutComponentMetricOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6776,15 +7051,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return DeferComponentUpdateResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6801,8 +7076,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#DeferComponentUpdateResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> DeferComponentUpdateOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> DeferComponentUpdateOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -6872,15 +7147,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToValidateConfigurationUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ValidateConfigurationUpdateEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -6890,8 +7165,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesRequest");
         }
 
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperationContext::GetInitialResponseModelName() const
-            noexcept
+        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperationContext::GetInitialResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesResponse");
         }
@@ -6943,15 +7218,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetConfigurationResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -6968,8 +7243,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetConfigurationResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetConfigurationOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetConfigurationOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7049,15 +7324,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToTopicResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscriptionResponseMessage::s_allocateFromPayload(stringView, allocator);
         }
@@ -7072,8 +7347,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#SubscribeToTopicResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> SubscribeToTopicOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> SubscribeToTopicOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::String("aws.greengrass#SubscriptionResponseMessage");
         }
@@ -7117,15 +7392,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetComponentDetailsResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7142,8 +7417,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetComponentDetailsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetComponentDetailsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetComponentDetailsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7186,15 +7461,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetClientDeviceAuthTokenOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetClientDeviceAuthTokenResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetClientDeviceAuthTokenOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7262,8 +7537,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToTopicOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7280,8 +7555,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PublishToTopicResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PublishToTopicOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PublishToTopicOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7361,15 +7636,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToCertificateUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToCertificateUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToCertificateUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CertificateUpdateEvent::s_allocateFromPayload(stringView, allocator);
         }
@@ -7430,15 +7705,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> VerifyClientDeviceIdentityOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return VerifyClientDeviceIdentityResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> VerifyClientDeviceIdentityOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7499,15 +7774,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> AuthorizeClientDeviceActionOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return AuthorizeClientDeviceActionResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> AuthorizeClientDeviceActionOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7575,8 +7850,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListComponentsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7593,8 +7868,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListComponentsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ListComponentsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ListComponentsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7636,15 +7911,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CreateDebugPasswordResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7661,8 +7936,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#CreateDebugPasswordResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> CreateDebugPasswordOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> CreateDebugPasswordOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7712,8 +7987,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7730,8 +8005,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7773,15 +8048,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SendConfigurationValidityReportResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7844,15 +8119,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return UpdateThingShadowResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7869,8 +8144,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateThingShadowResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> UpdateThingShadowOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> UpdateThingShadowOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7913,15 +8188,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return UpdateConfigurationResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -7938,8 +8213,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#UpdateConfigurationResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> UpdateConfigurationOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> UpdateConfigurationOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -7982,15 +8257,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ValidateAuthorizationTokenResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8051,15 +8326,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return RestartComponentResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8076,8 +8351,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#RestartComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> RestartComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> RestartComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8120,15 +8395,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return GetLocalDeploymentStatusResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8196,8 +8471,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetSecretValueOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8214,8 +8489,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#GetSecretValueResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> GetSecretValueOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> GetSecretValueOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8324,15 +8599,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ListNamedShadowsForThingResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8425,15 +8700,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return SubscribeToComponentUpdatesResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ComponentUpdatePolicyEvents::s_allocateFromPayload(stringView, allocator);
         }
@@ -8493,15 +8768,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return ListLocalDeploymentsResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8518,8 +8793,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#ListLocalDeploymentsResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> ListLocalDeploymentsOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> ListLocalDeploymentsOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8587,8 +8862,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#StopComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> StopComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> StopComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8637,8 +8912,8 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;
@@ -8655,8 +8930,8 @@ namespace Aws
             return Aws::Crt::String("aws.greengrass#PauseComponentResponse");
         }
 
-        Aws::Crt::Optional<Aws::Crt::String> PauseComponentOperationContext::GetStreamingResponseModelName() const
-            noexcept
+        Aws::Crt::Optional<Aws::Crt::String> PauseComponentOperationContext::GetStreamingResponseModelName()
+            const noexcept
         {
             return Aws::Crt::Optional<Aws::Crt::String>();
         }
@@ -8698,15 +8973,15 @@ namespace Aws
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentOperationContext::
-            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             return CreateLocalDeploymentResponse::s_allocateFromPayload(stringView, allocator);
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentOperationContext::
-            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
-            noexcept
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
         {
             (void)stringView;
             (void)allocator;

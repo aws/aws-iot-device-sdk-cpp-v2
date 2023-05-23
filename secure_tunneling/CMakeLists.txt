@@ -98,15 +98,11 @@ target_include_directories(IotSecureTunneling-cpp PUBLIC
 if (BUILD_DEPS)
 	if (NOT IS_SUBDIRECTORY_INCLUDE)
 		aws_use_package(aws-crt-cpp)
+        aws_use_package(aws-c-iot)
 	endif()
-	aws_use_package(aws-c-iot)
 endif()
 
-if (BUILD_TESTING)
-    aws_use_package(IotDeviceCommon-cpp)
-endif()
-
-target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS})
+target_link_libraries(IotSecureTunneling-cpp IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "include/aws/iotsecuretunneling/" COMPONENT Development)
 

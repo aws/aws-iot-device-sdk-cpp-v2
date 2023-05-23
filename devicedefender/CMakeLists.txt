@@ -99,15 +99,11 @@ target_include_directories(IotDeviceDefender-cpp PUBLIC
 if (BUILD_DEPS)
 	if (NOT IS_SUBDIRECTORY_INCLUDE)
 		aws_use_package(aws-crt-cpp)
-        endif()
-	aws_use_package(aws-c-iot)
+        aws_use_package(aws-c-iot)
+    endif()
 endif()
 
-if (BUILD_TESTING)
-    aws_use_package(IotDeviceCommon-cpp)
-endif()
-
-target_link_libraries(IotDeviceDefender-cpp ${DEP_AWS_LIBS})
+target_link_libraries(IotDeviceDefender-cpp IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTDEVICEDEFENDER_HEADERS} DESTINATION "include/aws/iotdevicedefender/" COMPONENT Development)
 

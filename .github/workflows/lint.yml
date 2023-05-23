@@ -16,7 +16,8 @@ jobs:
       uses: actions/checkout@v1
 
     - name: clang-format lint
-      uses: DoozyX/clang-format-lint-action@v0.3.1
+      uses: DoozyX/clang-format-lint-action@v0.13
       with:
         # List of extensions to check
         extensions: cpp,h
+        clangFormatVersion: 11.1.0
