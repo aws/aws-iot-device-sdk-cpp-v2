@@ -333,7 +333,7 @@ jobs:
         run: |
           cert=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/cert" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$cert" > ./certificate.pem
           key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > ./privatekey.pem
-          pkcs12_password="abcdefg"
+          pkcs12_password="abc"
           openssl pkcs12 -export -in ./certificate.pem -inkey ./privatekey.pem -out ./pkcs12-key.p12 -name PubSub_Thing_Alias -password pass:$pkcs12_password
           ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint a2yvr5l8sc9814-ats.iot.us-east-1.amazonaws.com --pkcs12_file ./pkcs12-key.p12 --pkcs12_password $pkcs12_password
         # python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
