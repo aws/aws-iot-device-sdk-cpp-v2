@@ -4,6 +4,7 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
+#include <aws/crt/io/Pkcs11.h>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
 
     /************************ Setup ****************************/
 
-    // Do the global initialization for the API
+    // Do the global initialization for the API.
     ApiHandle apiHandle;
 
     /**
@@ -25,15 +26,24 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputPKCS12Connect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
+    Aws::Iot::MqttClient client;
     struct Aws::Iot::Pkcs12Options options;
     options.pkcs12_file = cmdData.input_pkcs12File;
     options.pkcs12_password = cmdData.input_pkcs12Password;
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(options);
-    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder(options);
+    if (!clientConfigBuilder)
+    {
+        fprintf(
+            stderr,
+            "MqttClientConnectionConfigBuilder failed: %s\n",
+            Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
+        exit(-1);
+    }
     if (cmdData.input_ca != "")
     {
         clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
     }
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
@@ -45,7 +55,6 @@ int main(int argc, char *argv[])
             Aws::Crt::ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
-    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
     auto connection = client.NewConnection(clientConfig);
     if (!*connection)
     {
