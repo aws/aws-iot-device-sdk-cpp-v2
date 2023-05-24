@@ -10,11 +10,11 @@
         },
         {
             "name": "--pkcs12_file",
-            "data": "./pkcs12-key.p12"
+            "data": "./iot_pkcs12_key.p12"
         },
         {
             "name": "--pkcs12_password",
-            "secret": "ci/PubSub/key_pkcs12_password"
+            "data": "PKCS12_KEY_PASSWORD"
         }
     ]
 }
