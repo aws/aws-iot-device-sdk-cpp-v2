@@ -100,8 +100,46 @@ int main(int argc, char *argv[])
         cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
             if (!error && response->GGGroups)
             {
-                auto groupToUse = std::move(response->GGGroups->at(0));
+                // Print the discovery response information and then exit. Does not use the discovery info.
+                // (unless in CI, in which case just note it was successful and exit)
+                if (cmdData.input_print_discover_resp_only == true)
+                {
+                    // Print the discovery response information and then exit (unless in CI, in which case just note it
+                    // was successful)
+                    if (cmdData.input_isCI)
+                    {
+                        for (int a = 0; a < response->GGGroups->size(); a++)
+                        {
+                            auto tmpGroup = std::move(response->GGGroups->at(a));
+                            fprintf(stdout, "Group ID: %s\n", tmpGroup.GGGroupId->c_str());
+                            for (int b = 0; b < tmpGroup.Cores->size(); b++)
+                            {
+                                fprintf(stdout, "  Thing ARN: %s\n", tmpGroup.Cores->at(b).ThingArn->c_str());
+                                for (int c = 0; c < tmpGroup.Cores->at(b).Connectivity->size(); c++)
+                                {
+                                    fprintf(
+                                        stdout,
+                                        "    Connectivity Host Address: %s\n",
+                                        tmpGroup.Cores->at(b).Connectivity->at(c).HostAddress->c_str());
+                                    fprintf(
+                                        stdout,
+                                        "    Connectivity Host Port: %d\n",
+                                        tmpGroup.Cores->at(b).Connectivity->at(c).Port.value());
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        fprintf(
+                            stdout,
+                            "Received a greengrass discovery result! Not showing result in CI for possible data "
+                            "sensitivity.\n");
+                    }
+                    exit(0);
+                }
 
+                auto groupToUse = std::move(response->GGGroups->at(0));
                 auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
 
                 fprintf(

@@ -274,6 +274,8 @@ namespace Utils
         Aws::Crt::String input_proxy_password;
         // Shadow
         Aws::Crt::String input_shadowProperty;
+        // Greengrass Discovery
+        bool input_print_discover_resp_only;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
