@@ -108,14 +108,14 @@ int main(int argc, char *argv[])
                     // was successful)
                     if (cmdData.input_isCI)
                     {
-                        for (int a = 0; a < response->GGGroups->size(); a++)
+                        for (size_t a = 0; a < response->GGGroups->size(); a++)
                         {
                             auto tmpGroup = std::move(response->GGGroups->at(a));
                             fprintf(stdout, "Group ID: %s\n", tmpGroup.GGGroupId->c_str());
-                            for (int b = 0; b < tmpGroup.Cores->size(); b++)
+                            for (size_t b = 0; b < tmpGroup.Cores->size(); b++)
                             {
                                 fprintf(stdout, "  Thing ARN: %s\n", tmpGroup.Cores->at(b).ThingArn->c_str());
-                                for (int c = 0; c < tmpGroup.Cores->at(b).Connectivity->size(); c++)
+                                for (size_t c = 0; c < tmpGroup.Cores->at(b).Connectivity->size(); c++)
                                 {
                                     fprintf(
                                         stdout,
