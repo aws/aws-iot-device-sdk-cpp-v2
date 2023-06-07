@@ -102,11 +102,11 @@ int main(int argc, char *argv[])
             {
                 // Print the discovery response information and then exit. Does not use the discovery info.
                 // (unless in CI, in which case just note it was successful and exit)
-                if (cmdData.input_print_discover_resp_only == true)
+                if (cmdData.input_PrintDiscoverRespOnly == true)
                 {
                     // Print the discovery response information and then exit (unless in CI, in which case just note it
                     // was successful)
-                    if (cmdData.input_isCI)
+                    if (!cmdData.input_isCI)
                     {
                         for (size_t a = 0; a < response->GGGroups->size(); a++)
                         {

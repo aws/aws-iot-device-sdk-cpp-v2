@@ -468,7 +468,7 @@ namespace Utils
         }
         if (cmdUtils.HasCommand(m_cmd_print_discover_resp_only))
         {
-            returnData.input_print_discover_resp_only = true;
+            returnData.input_PrintDiscoverRespOnly = true;
         }
 
         return returnData;
@@ -909,8 +909,8 @@ namespace Utils
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         }
-        returnData.input_proxy_user_name = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
-        returnData.input_proxy_password = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
+        returnData.input_proxyUserName = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
+        returnData.input_proxyPassword = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
         returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "5").c_str());
         return returnData;
     }
