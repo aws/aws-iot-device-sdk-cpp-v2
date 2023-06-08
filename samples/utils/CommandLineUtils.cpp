@@ -66,6 +66,7 @@ namespace Utils
     static const char *m_cmd_proxy_password = "proxy_password";
     static const char *m_cmd_shadow_property = "shadow_property";
     static const char *m_cmd_region = "region";
+    static const char *m_cmd_print_discover_resp_only = "print_discover_resp_only";
 
     CommandLineUtils::CommandLineUtils()
     {
@@ -442,6 +443,10 @@ namespace Utils
         cmdUtils.UpdateCommandHelp(
             m_cmd_message,
             "The message to send. If no message is provided, you will be prompted to input one (optional, default='')");
+        cmdUtils.RegisterCommand(
+            m_cmd_print_discover_resp_only,
+            "",
+            "If present, the sample will only print the discovery result (optional, default='False')");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
@@ -460,6 +465,10 @@ namespace Utils
         {
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_print_discover_resp_only))
+        {
+            returnData.input_PrintDiscoverRespOnly = true;
         }
 
         return returnData;
@@ -900,8 +909,8 @@ namespace Utils
             returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
             returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
         }
-        returnData.input_proxy_user_name = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
-        returnData.input_proxy_password = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
+        returnData.input_proxyUserName = cmdUtils.GetCommandOrDefault(m_cmd_proxy_user_name, "");
+        returnData.input_proxyPassword = cmdUtils.GetCommandOrDefault(m_cmd_proxy_password, "");
         returnData.input_count = atoi(cmdUtils.GetCommandOrDefault(m_cmd_count, "5").c_str());
         return returnData;
     }
