@@ -639,7 +639,7 @@ namespace Aws
                   clientBootstrap,
                   socketOptions,
                   accessToken,
-                  nullptr,
+                  "",
                   localProxyMode,
                   endpointHost,
                   nullptr,
@@ -688,7 +688,7 @@ namespace Aws
                   Crt::ApiHandle::GetOrCreateStaticDefaultClientBootstrap(),
                   socketOptions,
                   accessToken,
-                  nullptr,
+                  "",
                   localProxyMode,
                   endpointHost,
                   nullptr,
@@ -976,6 +976,7 @@ namespace Aws
                         payload_buf.allocator = NULL;
                         payload_buf.buffer = message->payload->ptr;
                         payload_buf.len = message->payload->len;
+                        payload_buf.capacity = message->payload->len;
                         secureTunnel->m_OnDataReceive(payload_buf);
                         return;
                     }
