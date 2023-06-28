@@ -127,7 +127,9 @@ namespace Awstest
             m_documentMessage = documentMessage;
         }
         Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() noexcept { return m_documentMessage; }
+        /* An enumeration of various tasty fruits. */
         void SetEnumMessage(FruitEnum enumMessage) noexcept;
+        /* An enumeration of various tasty fruits. */
         Aws::Crt::Optional<FruitEnum> GetEnumMessage() noexcept;
         void SetBlobMessage(const Aws::Crt::Vector<uint8_t> &blobMessage) noexcept { m_blobMessage = blobMessage; }
         Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() noexcept { return m_blobMessage; }
@@ -183,11 +185,13 @@ namespace Awstest
         EchoStreamingMessage() noexcept {}
         EchoStreamingMessage &operator=(const EchoStreamingMessage &) noexcept;
         EchoStreamingMessage(const EchoStreamingMessage &objectToCopy) { *this = objectToCopy; }
+        /* Data associated with some notion of a message */
         void SetStreamMessage(const MessageData &streamMessage) noexcept
         {
             m_streamMessage = streamMessage;
             m_chosenMember = TAG_STREAM_MESSAGE;
         }
+        /* Data associated with some notion of a message */
         Aws::Crt::Optional<MessageData> GetStreamMessage() noexcept
         {
             if (m_chosenMember == TAG_STREAM_MESSAGE)
@@ -199,11 +203,13 @@ namespace Awstest
                 return Aws::Crt::Optional<MessageData>();
             }
         }
+        /* Shape representing a pair of values */
         void SetKeyValuePair(const Pair &keyValuePair) noexcept
         {
             m_keyValuePair = keyValuePair;
             m_chosenMember = TAG_KEY_VALUE_PAIR;
         }
+        /* Shape representing a pair of values */
         Aws::Crt::Optional<Pair> GetKeyValuePair() noexcept
         {
             if (m_chosenMember == TAG_KEY_VALUE_PAIR)
@@ -402,7 +408,9 @@ namespace Awstest
       public:
         EchoMessageResponse() noexcept {}
         EchoMessageResponse(const EchoMessageResponse &) = default;
+        /* Data associated with some notion of a message */
         void SetMessage(const MessageData &message) noexcept { m_message = message; }
+        /* Data associated with some notion of a message */
         Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -426,7 +434,9 @@ namespace Awstest
       public:
         EchoMessageRequest() noexcept {}
         EchoMessageRequest(const EchoMessageRequest &) = default;
+        /* Data associated with some notion of a message */
         void SetMessage(const MessageData &message) noexcept { m_message = message; }
+        /* Data associated with some notion of a message */
         Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageRequest &, const Aws::Crt::JsonView &) noexcept;
