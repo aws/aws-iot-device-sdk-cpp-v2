@@ -102,6 +102,8 @@ namespace Aws
 
             std::shared_ptr<UpdateStateOperation> NewUpdateState() noexcept;
 
+            std::shared_ptr<CancelLocalDeploymentOperation> NewCancelLocalDeployment() noexcept;
+
             std::shared_ptr<ListNamedShadowsForThingOperation> NewListNamedShadowsForThing() noexcept;
 
             std::shared_ptr<SubscribeToComponentUpdatesOperation> NewSubscribeToComponentUpdates(

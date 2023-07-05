@@ -104,6 +104,165 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void DeploymentStatusDetails::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_detailedDeploymentStatus.has_value())
+            {
+                payloadObject.WithString("detailedDeploymentStatus", m_detailedDeploymentStatus.value());
+            }
+            if (m_deploymentErrorStack.has_value())
+            {
+                Aws::Crt::JsonObject deploymentErrorStack;
+                Aws::Crt::Vector<Aws::Crt::JsonObject> deploymentErrorStackJsonArray;
+                for (const auto &deploymentErrorStackItem : m_deploymentErrorStack.value())
+                {
+                    Aws::Crt::JsonObject deploymentErrorStackJsonArrayItem;
+                    deploymentErrorStackJsonArrayItem.AsString(deploymentErrorStackItem);
+                    deploymentErrorStackJsonArray.emplace_back(std::move(deploymentErrorStackJsonArrayItem));
+                }
+                deploymentErrorStack.AsArray(std::move(deploymentErrorStackJsonArray));
+                payloadObject.WithObject("deploymentErrorStack", std::move(deploymentErrorStack));
+            }
+            if (m_deploymentErrorTypes.has_value())
+            {
+                Aws::Crt::JsonObject deploymentErrorTypes;
+                Aws::Crt::Vector<Aws::Crt::JsonObject> deploymentErrorTypesJsonArray;
+                for (const auto &deploymentErrorTypesItem : m_deploymentErrorTypes.value())
+                {
+                    Aws::Crt::JsonObject deploymentErrorTypesJsonArrayItem;
+                    deploymentErrorTypesJsonArrayItem.AsString(deploymentErrorTypesItem);
+                    deploymentErrorTypesJsonArray.emplace_back(std::move(deploymentErrorTypesJsonArrayItem));
+                }
+                deploymentErrorTypes.AsArray(std::move(deploymentErrorTypesJsonArray));
+                payloadObject.WithObject("deploymentErrorTypes", std::move(deploymentErrorTypes));
+            }
+            if (m_deploymentFailureCause.has_value())
+            {
+                payloadObject.WithString("deploymentFailureCause", m_deploymentFailureCause.value());
+            }
+        }
+
+        void DeploymentStatusDetails::s_loadFromJsonView(
+            DeploymentStatusDetails &deploymentStatusDetails,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("detailedDeploymentStatus"))
+            {
+                deploymentStatusDetails.m_detailedDeploymentStatus =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("detailedDeploymentStatus"));
+            }
+            if (jsonView.ValueExists("deploymentErrorStack"))
+            {
+                deploymentStatusDetails.m_deploymentErrorStack = Aws::Crt::Vector<Aws::Crt::String>();
+                for (const Aws::Crt::JsonView &deploymentErrorStackJsonView : jsonView.GetArray("deploymentErrorStack"))
+                {
+                    Aws::Crt::Optional<Aws::Crt::String> deploymentErrorStackItem;
+                    deploymentErrorStackItem =
+                        Aws::Crt::Optional<Aws::Crt::String>(deploymentErrorStackJsonView.AsString());
+                    deploymentStatusDetails.m_deploymentErrorStack.value().push_back(deploymentErrorStackItem.value());
+                }
+            }
+            if (jsonView.ValueExists("deploymentErrorTypes"))
+            {
+                deploymentStatusDetails.m_deploymentErrorTypes = Aws::Crt::Vector<Aws::Crt::String>();
+                for (const Aws::Crt::JsonView &deploymentErrorTypesJsonView : jsonView.GetArray("deploymentErrorTypes"))
+                {
+                    Aws::Crt::Optional<Aws::Crt::String> deploymentErrorTypesItem;
+                    deploymentErrorTypesItem =
+                        Aws::Crt::Optional<Aws::Crt::String>(deploymentErrorTypesJsonView.AsString());
+                    deploymentStatusDetails.m_deploymentErrorTypes.value().push_back(deploymentErrorTypesItem.value());
+                }
+            }
+            if (jsonView.ValueExists("deploymentFailureCause"))
+            {
+                deploymentStatusDetails.m_deploymentFailureCause =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("deploymentFailureCause"));
+            }
+        }
+
+        void DeploymentStatusDetails::SetDetailedDeploymentStatus(
+            DetailedDeploymentStatus detailedDeploymentStatus) noexcept
+        {
+            switch (detailedDeploymentStatus)
+            {
+                case DETAILED_DEPLOYMENT_STATUS_SUCCESSFUL:
+                    m_detailedDeploymentStatus = Aws::Crt::String("SUCCESSFUL");
+                    break;
+                case DETAILED_DEPLOYMENT_STATUS_FAILED_NO_STATE_CHANGE:
+                    m_detailedDeploymentStatus = Aws::Crt::String("FAILED_NO_STATE_CHANGE");
+                    break;
+                case DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_NOT_REQUESTED:
+                    m_detailedDeploymentStatus = Aws::Crt::String("FAILED_ROLLBACK_NOT_REQUESTED");
+                    break;
+                case DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_COMPLETE:
+                    m_detailedDeploymentStatus = Aws::Crt::String("FAILED_ROLLBACK_COMPLETE");
+                    break;
+                case DETAILED_DEPLOYMENT_STATUS_REJECTED:
+                    m_detailedDeploymentStatus = Aws::Crt::String("REJECTED");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<DetailedDeploymentStatus> DeploymentStatusDetails::GetDetailedDeploymentStatus() noexcept
+        {
+            if (!m_detailedDeploymentStatus.has_value())
+                return Aws::Crt::Optional<DetailedDeploymentStatus>();
+            if (m_detailedDeploymentStatus.value() == Aws::Crt::String("SUCCESSFUL"))
+            {
+                return Aws::Crt::Optional<DetailedDeploymentStatus>(DETAILED_DEPLOYMENT_STATUS_SUCCESSFUL);
+            }
+            if (m_detailedDeploymentStatus.value() == Aws::Crt::String("FAILED_NO_STATE_CHANGE"))
+            {
+                return Aws::Crt::Optional<DetailedDeploymentStatus>(DETAILED_DEPLOYMENT_STATUS_FAILED_NO_STATE_CHANGE);
+            }
+            if (m_detailedDeploymentStatus.value() == Aws::Crt::String("FAILED_ROLLBACK_NOT_REQUESTED"))
+            {
+                return Aws::Crt::Optional<DetailedDeploymentStatus>(
+                    DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_NOT_REQUESTED);
+            }
+            if (m_detailedDeploymentStatus.value() == Aws::Crt::String("FAILED_ROLLBACK_COMPLETE"))
+            {
+                return Aws::Crt::Optional<DetailedDeploymentStatus>(
+                    DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_COMPLETE);
+            }
+            if (m_detailedDeploymentStatus.value() == Aws::Crt::String("REJECTED"))
+            {
+                return Aws::Crt::Optional<DetailedDeploymentStatus>(DETAILED_DEPLOYMENT_STATUS_REJECTED);
+            }
+
+            return Aws::Crt::Optional<DetailedDeploymentStatus>();
+        }
+
+        const char *DeploymentStatusDetails::MODEL_NAME = "aws.greengrass#DeploymentStatusDetails";
+
+        Aws::Crt::String DeploymentStatusDetails::GetModelName() const noexcept
+        {
+            return DeploymentStatusDetails::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> DeploymentStatusDetails::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<DeploymentStatusDetails> shape(
+                Aws::Crt::New<DeploymentStatusDetails>(allocator), DeploymentStatusDetails::s_customDeleter);
+            shape->m_allocator = allocator;
+            DeploymentStatusDetails::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void DeploymentStatusDetails::s_customDeleter(DeploymentStatusDetails *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void SystemResourceLimits::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_memory.has_value())
@@ -877,6 +1036,16 @@ namespace Aws
             {
                 payloadObject.WithString("status", m_status.value());
             }
+            if (m_createdOn.has_value())
+            {
+                payloadObject.WithString("createdOn", m_createdOn.value());
+            }
+            if (m_deploymentStatusDetails.has_value())
+            {
+                Aws::Crt::JsonObject deploymentStatusDetailsValue;
+                m_deploymentStatusDetails.value().SerializeToJsonObject(deploymentStatusDetailsValue);
+                payloadObject.WithObject("deploymentStatusDetails", std::move(deploymentStatusDetailsValue));
+            }
         }
 
         void LocalDeployment::s_loadFromJsonView(
@@ -891,6 +1060,17 @@ namespace Aws
             if (jsonView.ValueExists("status"))
             {
                 localDeployment.m_status = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("status"));
+            }
+            if (jsonView.ValueExists("createdOn"))
+            {
+                localDeployment.m_createdOn = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("createdOn"));
+            }
+            if (jsonView.ValueExists("deploymentStatusDetails"))
+            {
+                localDeployment.m_deploymentStatusDetails = DeploymentStatusDetails();
+                DeploymentStatusDetails::s_loadFromJsonView(
+                    localDeployment.m_deploymentStatusDetails.value(),
+                    jsonView.GetJsonObject("deploymentStatusDetails"));
             }
         }
 
@@ -909,6 +1089,9 @@ namespace Aws
                     break;
                 case DEPLOYMENT_STATUS_FAILED:
                     m_status = Aws::Crt::String("FAILED");
+                    break;
+                case DEPLOYMENT_STATUS_CANCELED:
+                    m_status = Aws::Crt::String("CANCELED");
                     break;
                 default:
                     break;
@@ -934,6 +1117,10 @@ namespace Aws
             if (m_status.value() == Aws::Crt::String("FAILED"))
             {
                 return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_FAILED);
+            }
+            if (m_status.value() == Aws::Crt::String("CANCELED"))
+            {
+                return Aws::Crt::Optional<DeploymentStatus>(DEPLOYMENT_STATUS_CANCELED);
             }
 
             return Aws::Crt::Optional<DeploymentStatus>();
@@ -6174,6 +6361,10 @@ namespace Aws
             {
                 payloadObject.WithString("artifactsDirectoryPath", m_artifactsDirectoryPath.value());
             }
+            if (m_failureHandlingPolicy.has_value())
+            {
+                payloadObject.WithString("failureHandlingPolicy", m_failureHandlingPolicy.value());
+            }
         }
 
         void CreateLocalDeploymentRequest::s_loadFromJsonView(
@@ -6247,6 +6438,43 @@ namespace Aws
                 createLocalDeploymentRequest.m_artifactsDirectoryPath =
                     Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("artifactsDirectoryPath"));
             }
+            if (jsonView.ValueExists("failureHandlingPolicy"))
+            {
+                createLocalDeploymentRequest.m_failureHandlingPolicy =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("failureHandlingPolicy"));
+            }
+        }
+
+        void CreateLocalDeploymentRequest::SetFailureHandlingPolicy(
+            FailureHandlingPolicy failureHandlingPolicy) noexcept
+        {
+            switch (failureHandlingPolicy)
+            {
+                case FAILURE_HANDLING_POLICY_ROLLBACK:
+                    m_failureHandlingPolicy = Aws::Crt::String("ROLLBACK");
+                    break;
+                case FAILURE_HANDLING_POLICY_DO_NOTHING:
+                    m_failureHandlingPolicy = Aws::Crt::String("DO_NOTHING");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<FailureHandlingPolicy> CreateLocalDeploymentRequest::GetFailureHandlingPolicy() noexcept
+        {
+            if (!m_failureHandlingPolicy.has_value())
+                return Aws::Crt::Optional<FailureHandlingPolicy>();
+            if (m_failureHandlingPolicy.value() == Aws::Crt::String("ROLLBACK"))
+            {
+                return Aws::Crt::Optional<FailureHandlingPolicy>(FAILURE_HANDLING_POLICY_ROLLBACK);
+            }
+            if (m_failureHandlingPolicy.value() == Aws::Crt::String("DO_NOTHING"))
+            {
+                return Aws::Crt::Optional<FailureHandlingPolicy>(FAILURE_HANDLING_POLICY_DO_NOTHING);
+            }
+
+            return Aws::Crt::Optional<FailureHandlingPolicy>();
         }
 
         const char *CreateLocalDeploymentRequest::MODEL_NAME = "aws.greengrass#CreateLocalDeploymentRequest";
@@ -6397,6 +6625,101 @@ namespace Aws
         }
 
         void CreateDebugPasswordRequest::s_customDeleter(CreateDebugPasswordRequest *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void CancelLocalDeploymentResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_message.has_value())
+            {
+                payloadObject.WithString("message", m_message.value());
+            }
+        }
+
+        void CancelLocalDeploymentResponse::s_loadFromJsonView(
+            CancelLocalDeploymentResponse &cancelLocalDeploymentResponse,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("message"))
+            {
+                cancelLocalDeploymentResponse.m_message =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("message"));
+            }
+        }
+
+        const char *CancelLocalDeploymentResponse::MODEL_NAME = "aws.greengrass#CancelLocalDeploymentResponse";
+
+        Aws::Crt::String CancelLocalDeploymentResponse::GetModelName() const noexcept
+        {
+            return CancelLocalDeploymentResponse::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> CancelLocalDeploymentResponse::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<CancelLocalDeploymentResponse> shape(
+                Aws::Crt::New<CancelLocalDeploymentResponse>(allocator),
+                CancelLocalDeploymentResponse::s_customDeleter);
+            shape->m_allocator = allocator;
+            CancelLocalDeploymentResponse::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void CancelLocalDeploymentResponse::s_customDeleter(CancelLocalDeploymentResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void CancelLocalDeploymentRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_deploymentId.has_value())
+            {
+                payloadObject.WithString("deploymentId", m_deploymentId.value());
+            }
+        }
+
+        void CancelLocalDeploymentRequest::s_loadFromJsonView(
+            CancelLocalDeploymentRequest &cancelLocalDeploymentRequest,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("deploymentId"))
+            {
+                cancelLocalDeploymentRequest.m_deploymentId =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("deploymentId"));
+            }
+        }
+
+        const char *CancelLocalDeploymentRequest::MODEL_NAME = "aws.greengrass#CancelLocalDeploymentRequest";
+
+        Aws::Crt::String CancelLocalDeploymentRequest::GetModelName() const noexcept
+        {
+            return CancelLocalDeploymentRequest::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> CancelLocalDeploymentRequest::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<CancelLocalDeploymentRequest> shape(
+                Aws::Crt::New<CancelLocalDeploymentRequest>(allocator), CancelLocalDeploymentRequest::s_customDeleter);
+            shape->m_allocator = allocator;
+            CancelLocalDeploymentRequest::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void CancelLocalDeploymentRequest::s_customDeleter(CancelLocalDeploymentRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
@@ -8592,6 +8915,75 @@ namespace Aws
             return m_operationModelContext.GetOperationName();
         }
 
+        CancelLocalDeploymentOperationContext::CancelLocalDeploymentOperationContext(
+            const GreengrassCoreIpcServiceModel &serviceModel) noexcept
+            : OperationModelContext(serviceModel)
+        {
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> CancelLocalDeploymentOperationContext::
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
+        {
+            return CancelLocalDeploymentResponse::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> CancelLocalDeploymentOperationContext::
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
+        {
+            (void)stringView;
+            (void)allocator;
+            return nullptr;
+        }
+
+        Aws::Crt::String CancelLocalDeploymentOperationContext::GetRequestModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#CancelLocalDeploymentRequest");
+        }
+
+        Aws::Crt::String CancelLocalDeploymentOperationContext::GetInitialResponseModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#CancelLocalDeploymentResponse");
+        }
+
+        Aws::Crt::Optional<Aws::Crt::String> CancelLocalDeploymentOperationContext::GetStreamingResponseModelName()
+            const noexcept
+        {
+            return Aws::Crt::Optional<Aws::Crt::String>();
+        }
+
+        Aws::Crt::String CancelLocalDeploymentOperationContext::GetOperationName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#CancelLocalDeployment");
+        }
+
+        std::future<CancelLocalDeploymentResult> CancelLocalDeploymentOperation::GetResult() noexcept
+        {
+            return std::async(
+                m_asyncLaunchMode, [this]() { return CancelLocalDeploymentResult(GetOperationResult().get()); });
+        }
+
+        CancelLocalDeploymentOperation::CancelLocalDeploymentOperation(
+            ClientConnection &connection,
+            const CancelLocalDeploymentOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, nullptr, operationContext, allocator)
+        {
+        }
+
+        std::future<RpcError> CancelLocalDeploymentOperation::Activate(
+            const CancelLocalDeploymentRequest &request,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        }
+
+        Aws::Crt::String CancelLocalDeploymentOperation::GetModelName() const noexcept
+        {
+            return m_operationModelContext.GetOperationName();
+        }
+
         ListNamedShadowsForThingOperationContext::ListNamedShadowsForThingOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
             : OperationModelContext(serviceModel)
@@ -9050,10 +9442,10 @@ namespace Aws
               m_updateThingShadowOperationContext(*this), m_updateConfigurationOperationContext(*this),
               m_validateAuthorizationTokenOperationContext(*this), m_restartComponentOperationContext(*this),
               m_getLocalDeploymentStatusOperationContext(*this), m_getSecretValueOperationContext(*this),
-              m_updateStateOperationContext(*this), m_listNamedShadowsForThingOperationContext(*this),
-              m_subscribeToComponentUpdatesOperationContext(*this), m_listLocalDeploymentsOperationContext(*this),
-              m_stopComponentOperationContext(*this), m_pauseComponentOperationContext(*this),
-              m_createLocalDeploymentOperationContext(*this)
+              m_updateStateOperationContext(*this), m_cancelLocalDeploymentOperationContext(*this),
+              m_listNamedShadowsForThingOperationContext(*this), m_subscribeToComponentUpdatesOperationContext(*this),
+              m_listLocalDeploymentsOperationContext(*this), m_stopComponentOperationContext(*this),
+              m_pauseComponentOperationContext(*this), m_createLocalDeploymentOperationContext(*this)
         {
         }
 

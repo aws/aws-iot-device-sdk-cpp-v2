@@ -48,6 +48,15 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_value;
         };
 
+        enum DetailedDeploymentStatus
+        {
+            DETAILED_DEPLOYMENT_STATUS_SUCCESSFUL,
+            DETAILED_DEPLOYMENT_STATUS_FAILED_NO_STATE_CHANGE,
+            DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_NOT_REQUESTED,
+            DETAILED_DEPLOYMENT_STATUS_FAILED_ROLLBACK_COMPLETE,
+            DETAILED_DEPLOYMENT_STATUS_REJECTED
+        };
+
         class MessageContext : public AbstractShapeBase
         {
           public:
@@ -88,12 +97,64 @@ namespace Aws
             METRIC_UNIT_TYPE_SECONDS
         };
 
+        class DeploymentStatusDetails : public AbstractShapeBase
+        {
+          public:
+            DeploymentStatusDetails() noexcept {}
+            DeploymentStatusDetails(const DeploymentStatusDetails &) = default;
+            void SetDetailedDeploymentStatus(DetailedDeploymentStatus detailedDeploymentStatus) noexcept;
+            Aws::Crt::Optional<DetailedDeploymentStatus> GetDetailedDeploymentStatus() noexcept;
+            void SetDeploymentErrorStack(const Aws::Crt::Vector<Aws::Crt::String> &deploymentErrorStack) noexcept
+            {
+                m_deploymentErrorStack = deploymentErrorStack;
+            }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorStack() noexcept
+            {
+                return m_deploymentErrorStack;
+            }
+            void SetDeploymentErrorTypes(const Aws::Crt::Vector<Aws::Crt::String> &deploymentErrorTypes) noexcept
+            {
+                m_deploymentErrorTypes = deploymentErrorTypes;
+            }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorTypes() noexcept
+            {
+                return m_deploymentErrorTypes;
+            }
+            void SetDeploymentFailureCause(const Aws::Crt::String &deploymentFailureCause) noexcept
+            {
+                m_deploymentFailureCause = deploymentFailureCause;
+            }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentFailureCause() noexcept
+            {
+                return m_deploymentFailureCause;
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(DeploymentStatusDetails &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(DeploymentStatusDetails *) noexcept;
+            /* This needs to be defined so that `DeploymentStatusDetails` can be used as a key in maps. */
+            bool operator<(const DeploymentStatusDetails &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_detailedDeploymentStatus;
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> m_deploymentErrorStack;
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> m_deploymentErrorTypes;
+            Aws::Crt::Optional<Aws::Crt::String> m_deploymentFailureCause;
+        };
+
         enum DeploymentStatus
         {
             DEPLOYMENT_STATUS_QUEUED,
             DEPLOYMENT_STATUS_IN_PROGRESS,
             DEPLOYMENT_STATUS_SUCCEEDED,
-            DEPLOYMENT_STATUS_FAILED
+            DEPLOYMENT_STATUS_FAILED,
+            DEPLOYMENT_STATUS_CANCELED
         };
 
         enum LifecycleState
@@ -450,6 +511,16 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
             void SetStatus(DeploymentStatus status) noexcept;
             Aws::Crt::Optional<DeploymentStatus> GetStatus() noexcept;
+            void SetCreatedOn(const Aws::Crt::String &createdOn) noexcept { m_createdOn = createdOn; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCreatedOn() noexcept { return m_createdOn; }
+            void SetDeploymentStatusDetails(const DeploymentStatusDetails &deploymentStatusDetails) noexcept
+            {
+                m_deploymentStatusDetails = deploymentStatusDetails;
+            }
+            Aws::Crt::Optional<DeploymentStatusDetails> GetDeploymentStatusDetails() noexcept
+            {
+                return m_deploymentStatusDetails;
+            }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(LocalDeployment &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -466,6 +537,8 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_deploymentId;
             Aws::Crt::Optional<Aws::Crt::String> m_status;
+            Aws::Crt::Optional<Aws::Crt::String> m_createdOn;
+            Aws::Crt::Optional<DeploymentStatusDetails> m_deploymentStatusDetails;
         };
 
         class ComponentDetails : public AbstractShapeBase
@@ -1158,6 +1231,12 @@ namespace Aws
                 TAG_MQTT_CREDENTIAL
             } m_chosenMember;
             Aws::Crt::Optional<MQTTCredential> m_mqttCredential;
+        };
+
+        enum FailureHandlingPolicy
+        {
+            FAILURE_HANDLING_POLICY_ROLLBACK,
+            FAILURE_HANDLING_POLICY_DO_NOTHING
         };
 
         class InvalidArgumentsError : public OperationError
@@ -3067,6 +3146,8 @@ namespace Aws
             {
                 return m_artifactsDirectoryPath;
             }
+            void SetFailureHandlingPolicy(FailureHandlingPolicy failureHandlingPolicy) noexcept;
+            Aws::Crt::Optional<FailureHandlingPolicy> GetFailureHandlingPolicy() noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CreateLocalDeploymentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3088,6 +3169,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, RunWithInfo>> m_componentToRunWithInfo;
             Aws::Crt::Optional<Aws::Crt::String> m_recipeDirectoryPath;
             Aws::Crt::Optional<Aws::Crt::String> m_artifactsDirectoryPath;
+            Aws::Crt::Optional<Aws::Crt::String> m_failureHandlingPolicy;
         };
 
         class CreateDebugPasswordResponse : public AbstractShapeBase
@@ -3154,6 +3236,54 @@ namespace Aws
             Aws::Crt::String GetModelName() const noexcept override;
 
           private:
+        };
+
+        class CancelLocalDeploymentResponse : public AbstractShapeBase
+        {
+          public:
+            CancelLocalDeploymentResponse() noexcept {}
+            CancelLocalDeploymentResponse(const CancelLocalDeploymentResponse &) = default;
+            void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CancelLocalDeploymentResponse &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CancelLocalDeploymentResponse *) noexcept;
+            /* This needs to be defined so that `CancelLocalDeploymentResponse` can be used as a key in maps. */
+            bool operator<(const CancelLocalDeploymentResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_message;
+        };
+
+        class CancelLocalDeploymentRequest : public AbstractShapeBase
+        {
+          public:
+            CancelLocalDeploymentRequest() noexcept {}
+            CancelLocalDeploymentRequest(const CancelLocalDeploymentRequest &) = default;
+            void SetDeploymentId(const Aws::Crt::String &deploymentId) noexcept { m_deploymentId = deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(CancelLocalDeploymentRequest &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(CancelLocalDeploymentRequest *) noexcept;
+            /* This needs to be defined so that `CancelLocalDeploymentRequest` can be used as a key in maps. */
+            bool operator<(const CancelLocalDeploymentRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_deploymentId;
         };
 
         class InvalidClientDeviceAuthTokenError : public OperationError
@@ -5269,6 +5399,71 @@ namespace Aws
             Aws::Crt::String GetModelName() const noexcept override;
         };
 
+        class CancelLocalDeploymentOperationContext : public OperationModelContext
+        {
+          public:
+            CancelLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        class CancelLocalDeploymentResult
+        {
+          public:
+            CancelLocalDeploymentResult() noexcept {}
+            CancelLocalDeploymentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
+            {
+            }
+            CancelLocalDeploymentResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<CancelLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
+            }
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return m_taggedResult == true; }
+            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
+            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+
+          private:
+            TaggedResult m_taggedResult;
+        };
+
+        class CancelLocalDeploymentOperation : public ClientOperation
+        {
+          public:
+            CancelLocalDeploymentOperation(
+                ClientConnection &connection,
+                const CancelLocalDeploymentOperationContext &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `CancelLocalDeploymentOperation`
+             * @param request The request used for the `CancelLocalDeploymentOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const CancelLocalDeploymentRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<CancelLocalDeploymentResult> GetResult() noexcept;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+        };
+
         class ListNamedShadowsForThingOperationContext : public OperationModelContext
         {
           public:
@@ -5755,6 +5950,7 @@ namespace Aws
             GetLocalDeploymentStatusOperationContext m_getLocalDeploymentStatusOperationContext;
             GetSecretValueOperationContext m_getSecretValueOperationContext;
             UpdateStateOperationContext m_updateStateOperationContext;
+            CancelLocalDeploymentOperationContext m_cancelLocalDeploymentOperationContext;
             ListNamedShadowsForThingOperationContext m_listNamedShadowsForThingOperationContext;
             SubscribeToComponentUpdatesOperationContext m_subscribeToComponentUpdatesOperationContext;
             ListLocalDeploymentsOperationContext m_listLocalDeploymentsOperationContext;
