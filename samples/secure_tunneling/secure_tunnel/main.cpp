@@ -186,13 +186,13 @@ int main(int argc, char *argv[])
         proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
 
         // Set up Proxy Strategy if a user name and password is provided
-        if (cmdData.input_proxy_user_name != "" || cmdData.input_proxy_password != "")
+        if (cmdData.input_proxyUserName != "" || cmdData.input_proxyPassword != "")
         {
             fprintf(stdout, "Creating proxy strategy\n");
             Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
             basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
-            basicAuthConfig.Username = cmdData.input_proxy_user_name.c_str();
-            basicAuthConfig.Password = cmdData.input_proxy_password.c_str();
+            basicAuthConfig.Username = cmdData.input_proxyUserName.c_str();
+            basicAuthConfig.Password = cmdData.input_proxyPassword.c_str();
             proxyOptions.ProxyStrategy =
                 Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;

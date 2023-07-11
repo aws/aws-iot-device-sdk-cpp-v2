@@ -270,13 +270,15 @@ namespace Utils
         Aws::Crt::String input_localProxyModeSource;
         Aws::Crt::String input_clientTokenFile;
         Aws::Crt::String input_clientToken;
-        Aws::Crt::String input_proxy_user_name;
-        Aws::Crt::String input_proxy_password;
+        Aws::Crt::String input_proxyUserName;
+        Aws::Crt::String input_proxyPassword;
         // Shadow
         Aws::Crt::String input_shadowProperty;
         // PKCS12
         Aws::Crt::String input_pkcs12File;
         Aws::Crt::String input_pkcs12Password;
+        // Greengrass Discovery
+        bool input_PrintDiscoverRespOnly;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);

@@ -367,6 +367,17 @@ namespace Aws
             return operation;
         }
 
+        std::shared_ptr<CancelLocalDeploymentOperation> GreengrassCoreIpcClient::NewCancelLocalDeployment() noexcept
+        {
+            auto operation = Aws::Crt::MakeShared<CancelLocalDeploymentOperation>(
+                m_allocator,
+                m_connection,
+                m_greengrassCoreIpcServiceModel.m_cancelLocalDeploymentOperationContext,
+                m_allocator);
+            operation->WithLaunchMode(m_asyncLaunchMode);
+            return operation;
+        }
+
         std::shared_ptr<ListNamedShadowsForThingOperation> GreengrassCoreIpcClient::
             NewListNamedShadowsForThing() noexcept
         {
