@@ -313,6 +313,7 @@ jobs:
     runs-on: macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
+      security-events: write # This is required for pkcs12 sample to sign the key
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
@@ -333,7 +334,7 @@ jobs:
       - name: run PKCS12 sample
         run: |
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 /tmp/iot_pkcs12_key.p12
-          sudo python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
         with:
