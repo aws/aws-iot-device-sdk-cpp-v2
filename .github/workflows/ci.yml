@@ -332,7 +332,7 @@ jobs:
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
       - name: run PKCS12 sample
         run: |
-          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 ./iot_pkcs12_key.p12
+          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 /tmp/iot_pkcs12_key.p12
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1

@@ -10,7 +10,7 @@
         },
         {
             "name": "--pkcs12_file",
-            "data": "./iot_pkcs12_key.p12"
+            "data": "/tmp/iot_pkcs12_key.p12"
         },
         {
             "name": "--pkcs12_password",
