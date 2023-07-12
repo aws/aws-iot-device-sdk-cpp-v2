@@ -15,6 +15,10 @@
         {
             "name": "--pkcs12_password",
             "data": "PKCS12_KEY_PASSWORD"
+        },
+        {
+            "name": "--verbosity",
+            "data": "Trace"
         }
     ]
 }
