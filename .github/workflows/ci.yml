@@ -313,7 +313,7 @@ jobs:
     runs-on: macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
-      security-events: read|write # This is required for pkcs12 sample to sign the key
+      security-events: write # This is required for pkcs12 sample to sign the key
     steps:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
