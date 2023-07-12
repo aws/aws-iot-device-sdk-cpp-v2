@@ -335,7 +335,7 @@ jobs:
         run: |
           endpoint=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 ./iot_pkcs12_key.p12
-          ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password PKCS12_KEY_PASSWORD --verbosity Trace
+          sudo ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password PKCS12_KEY_PASSWORD --verbosity Trace
     # python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
