@@ -338,7 +338,7 @@ jobs:
           security create-keychain -p test_password build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p test_password build.keychain
-          security import certificate.p12 -k build.keychain -P PKCS12_KEY_PASSWORD -T /usr/bin/codesign
+          security import iot_pkcs12_key.p12 -k build.keychain -P PKCS12_KEY_PASSWORD -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k test_password build.keychain
           security find-identity -v
           sudo ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password PKCS12_KEY_PASSWORD --verbosity Trace
