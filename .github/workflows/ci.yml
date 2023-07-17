@@ -333,8 +333,12 @@ jobs:
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
       - name: run PKCS12 sample
         run: |
-          endpoint=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 ./iot_pkcs12_key.p12
+# endpoint=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
+# aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 ./iot_pkcs12_key.p12
+          cert=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/cert" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$cert" > /tmp/certificate.pem
+          key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > /tmp/privatekey.pem
+          pkcs12_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key_pkcs12_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
+          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out ./iot_pkcs12_key.p12 -name PubSub_Thing_Alias -password pass:$pkcs12_password
           security create-keychain -p test_password build.keychain
           security set-keychain-settings -lut 21600 build.keychain
           security default-keychain -s build.keychain
@@ -343,8 +347,9 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -k test_password build.keychain
           security list-keychains -d user -s build.keychain 'login.keychain'
           security find-identity -v build.keychain
+          ls ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/
           /usr/bin/codesign --force -s ec192142-a4b1-4ac2-aeab-5b93acd522a9 ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
-          sudo ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password PKCS12_KEY_PASSWORD --verbosity Trace
+          sudo ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password $pkcs12_password --verbosity Trace
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
         with:
