@@ -336,10 +336,12 @@ jobs:
           endpoint=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/endpoint" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/iot_pkcs12_key.p12 ./iot_pkcs12_key.p12
           security create-keychain -p test_password build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p test_password build.keychain
-          security import iot_pkcs12_key.p12 -k build.keychain -P PKCS12_KEY_PASSWORD -T /usr/bin/codesign
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k test_password build.keychain
+          security import iot_pkcs12_key.p12 -k build.keychain -f pkcs12 -P PKCS12_KEY_PASSWORD -T /usr/bin/codesign -T /usr/bin/security -A
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -k test_password build.keychain
+          security list-keychains -d user -s build.keychain 'login.keychain'
           security find-identity -v build.keychain
           /usr/bin/codesign --force -s ec192142-a4b1-4ac2-aeab-5b93acd522a9 ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
           sudo ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect --endpoint $endpoint --pkcs12_file ./iot_pkcs12_key.p12 --pkcs12_password PKCS12_KEY_PASSWORD --verbosity Trace
