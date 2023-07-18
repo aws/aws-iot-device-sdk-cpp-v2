@@ -348,7 +348,7 @@ jobs:
           security set-key-partition-list -S 'apple-tool:,apple:' -k test_password build.keychain
           security list-keychains -d user -s build.keychain 'login.keychain'
           /usr/bin/codesign --force -s $pkcs12_identity ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json.json
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
         with:

@@ -1,0 +1,29 @@
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101905230: Initializing edge-triggered kqueue
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101905230: starting event-loop thread.
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101a047c0: Initializing edge-triggered kqueue
+[INFO] [2023-07-17T23:20:17Z] [000000016ff13000] [event-loop] - id=0x101905230: main loop started
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101a047c0: starting event-loop thread.
+[INFO] [2023-07-17T23:20:17Z] [000000016ff13000] [event-loop] - id=0x101905230: default timeout 100s, and max events to process per tick 100
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101906060: Initializing edge-triggered kqueue
+[INFO] [2023-07-17T23:20:17Z] [000000016ff9f000] [event-loop] - id=0x101a047c0: main loop started
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101906060: starting event-loop thread.
+[INFO] [2023-07-17T23:20:17Z] [000000016ff9f000] [event-loop] - id=0x101a047c0: default timeout 100s, and max events to process per tick 100
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x1019060b0: Initializing edge-triggered kqueue
+[INFO] [2023-07-17T23:20:17Z] [000000017002b000] [event-loop] - id=0x101906060: main loop started
+[INFO] [2023-07-17T23:20:17Z] [000000017002b000] [event-loop] - id=0x101906060: default timeout 100s, and max events to process per tick 100
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x1019060b0: starting event-loop thread.
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101905dd0: Initializing edge-triggered kqueue
+[INFO] [2023-07-17T23:20:17Z] [00000001700b7000] [event-loop] - id=0x1019060b0: main loop started
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [event-loop] - id=0x101905dd0: starting event-loop thread.
+[INFO] [2023-07-17T23:20:17Z] [00000001700b7000] [event-loop] - id=0x1019060b0: default timeout 100s, and max events to process per tick 100
+[INFO] [2023-07-17T23:20:17Z] [0000000170143000] [event-loop] - id=0x101905dd0: main loop started
+[INFO] [2023-07-17T23:20:17Z] [0000000170143000] [event-loop] - id=0x101905dd0: default timeout 100s, and max events to process per tick 100
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [dns] - id=0x101a04eb0: Initializing default host resolver with 1 max host entries.
+[INFO] [2023-07-17T23:20:17Z] [00000001e25d1e00] [channel-bootstrap] - id=0x101a04fa0: Initializing client bootstrap with event-loop group 0x1019051d0
+[DEBUG] [2023-07-17T23:20:17Z] [00000001e25d1e00] [mqtt-client] - client=0x101a05010: Initalizing MQTT client
+[DEBUG] [2023-07-17T23:20:17Z] [00000001e25d1e00] [channel-bootstrap] - id=0x101a04fa0: acquiring bootstrap reference
+[DEBUG] [2023-07-17T23:20:17Z] [00000001e25d1e00] [mqtt-client] - client=0x101a05010: Cleaning up MQTT client
+[DEBUG] [2023-07-17T23:20:17Z] [00000001e25d1e00] [channel-bootstrap] - id=0x101a04fa0: releasing bootstrap reference
+[DEBUG] [2023-07-17T23:20:20Z] [00000001e25d1e00] [tls-handler] - static: certificate and key have been set, setting them up now.
+[ERROR] [2023-07-17T23:20:20Z] [00000001e25d1e00] [pki-utils] - static: error importing ECC private key with OSStatus -25257
+[ERROR] [2023-07-17T23:20:20Z] [00000001e25d1e00] [tls-handler] - static: failed to import certificate and private key with error 1038.
