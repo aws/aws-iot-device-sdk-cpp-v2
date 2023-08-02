@@ -13,7 +13,7 @@ Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.co
 To run the sample with a destination access token in destination mode (default), you can use the following command:
 
 ``` sh
-./secure_tunnel --signing_region <signing_region> --access_token_file <path to destination access token>
+./secure-tunnel --signing_region <signing_region> --access_token_file <path to destination access token>
 ```
 
 The sample will create a Secure Tunnel connection and remain connected in `DESTINATION MODE` and will echo any messages it receives through the Secure Tunnel back to the Source Device.
@@ -23,7 +23,7 @@ The sample will create a Secure Tunnel connection and remain connected in `DESTI
 While the focus of the Secure Tunnel Client for the IoT Device SDK is to connect with Secure Tunnels in `DESTINATION MODE` we also support connecting in `SOURCE MODE`. The token file should be the Source Token in this instance and you must add the `--localProxyModeSource` flag:
 
 ``` sh
-./secure_tunnel --signing_region <signing_region> --access_token_file <path to source access token> --localProxyModeSource
+./secure-tunnel --signing_region <signing_region> --access_token_file <path to source access token> --localProxyModeSource
 ```
 
 Then two samples will then connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be transmitted in either direction.
