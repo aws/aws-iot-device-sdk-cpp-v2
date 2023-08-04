@@ -19,7 +19,7 @@ __Jump To:__
 
 * [Installation](#installation)
 * [Samples](./samples)
-* [Getting Help](#getting-Help)
+* [Getting Help](#getting-help)
 * [FAQ](./documents/FAQ.md)
 * [Giving Feedback and Contributions](#giving-feedback-and-contributions)
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
