@@ -1,5 +1,18 @@
 # Frequently Asked Questions
 
+*__Jump To:__*
+* [Where should I start](#where-should-i-start)
+* [How do I enable logging](#how-do-i-enable-logging)
+* [I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP](#i-keep-getting-aws_error_mqtt_unexpected_hangup)
+* [Dependencies are bad](#dependencies-are-bad)
+* [Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)](#connection-loss)
+* [How to use a Pre-Built aws-crt-cpp (Most useful for development of this package)](#prebuilt-aws-crt-cpp)
+* [I am experiencing deadlocks](#i-am-experiencing-deadlocks)
+* [Mac-Only TLS Behavior](#mac-only-tls-behavior)
+* [How do debug in VSCode?](#how-do-debug-in-vscode)
+* [What certificates do I need?](#what-certificates-do-i-need)
+* [I still have more questions about this sdk?](#i-still-have-more-questions-about-this-sdk)
+
 ### Where should I start?
 
 If you are just getting started make sure you [install this sdk](https://github.com/aws/aws-iot-device-sdk-cpp-v2#installation) and then build and run the [basic PubSub](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples#basic-mqtt-pub-sub)
@@ -48,7 +61,7 @@ If you have already downloaded this repository you can update the submodules wit
 `git submodule update --init --recursive`
 
 
-### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)
+### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs) <a name="connection-loss"></a>
 
 There are 3 mechanisms for detecting connection loss:
 1. The keepAliveTimeSecs and pingTimeoutMs arguments passed to MqttConnection::Connect(). These control how often the SDK sends a PINGREQ, and how long the SDK will wait for a PINGRESP before assuming the connection is lost. YOU SHOULD USE THIS TO RELIABLY DETECT CONNECTION LOSS.
@@ -56,7 +69,7 @@ There are 3 mechanisms for detecting connection loss:
 3. The various TcpKeepAlive controls on the MqttClientConnectionConfigBuilder. These control a similar mechanism at the TCP layer, rather than the MQTT layer, but is implemented in the OS and behavior may vary across platforms
 
 
-### How to use a Pre-Built aws-crt-cpp (Most useful for development of this package)
+### How to use a Pre-Built aws-crt-cpp (Most useful for development of this package) <a name="prebuilt-aws-crt-cpp"></a>
 
 ``` sh
 mkdir aws-iot-device-sdk-cpp-v2-build
@@ -119,7 +132,7 @@ Here is an example launch.json file to run the pubsub sample
         * You should have generated/downloaded private and public keys that will be used to verify that communications are coming from you
         * When using samples you only need the private key and it will look like this: `--key abcde12345-private.pem.key`
 
-### I still have more questions about the this sdk?
+### I still have more questions about this sdk?
 
 * [Here](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) are the AWS IoT Core docs for more details about IoT Core
 * [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass
