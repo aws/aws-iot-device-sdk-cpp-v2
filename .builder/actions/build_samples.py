@@ -20,6 +20,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/basic_connect',
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/pkcs11_connect',
+            'samples/mqtt/pkcs12_connect',
             'samples/mqtt/websocket_connect',
             'samples/mqtt/windows_cert_connect',
             'samples/mqtt/x509_credentials_provider_connect',

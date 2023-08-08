@@ -66,6 +66,8 @@ namespace Utils
     static const char *m_cmd_proxy_password = "proxy_password";
     static const char *m_cmd_shadow_property = "shadow_property";
     static const char *m_cmd_region = "region";
+    static const char *m_cmd_pkcs12_file = "pkcs12_file";
+    static const char *m_cmd_pkcs12_password = "pkcs12_password";
     static const char *m_cmd_print_discover_resp_only = "print_discover_resp_only";
 
     CommandLineUtils::CommandLineUtils()
@@ -957,6 +959,25 @@ namespace Utils
         returnData.input_shadowProperty = cmdUtils.GetCommandOrDefault(m_cmd_shadow_property, "color");
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        return returnData;
+    }
+
+    cmdData parseSampleInputPKCS12Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("pkcs12-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.RegisterCommand(m_cmd_pkcs12_file, "<path>", "Path to the PKCS#12 file.");
+        cmdUtils.RegisterCommand(m_cmd_pkcs12_password, "<str>", "Password for the PKCS#12 file.");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
+
+        cmdData returnData = cmdData();
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
+        returnData.input_clientId =
+            cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_pkcs12File = cmdUtils.GetCommandRequired(m_cmd_pkcs12_file);
+        returnData.input_pkcs12Password = cmdUtils.GetCommandRequired(m_cmd_pkcs12_password);
         return returnData;
     }
 

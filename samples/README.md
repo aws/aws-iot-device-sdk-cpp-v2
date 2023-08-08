@@ -6,6 +6,7 @@
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
+* [PKCS#12 Connect](./mqtt/pkcs12_connect/README.md)
 * [x509 Credentials Provider Connect](./mqtt/x509_credentials_provider_connect/README.md)
 * [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
@@ -67,6 +68,8 @@ cd build
 cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
 cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 ```
+
+Note that building all the samples at once is currently only available in the V2 C++ IoT SDK at this time.
 
 ### Sample Build Notes
 

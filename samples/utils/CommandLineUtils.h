@@ -274,6 +274,9 @@ namespace Utils
         Aws::Crt::String input_proxyPassword;
         // Shadow
         Aws::Crt::String input_shadowProperty;
+        // PKCS12
+        Aws::Crt::String input_pkcs12File;
+        Aws::Crt::String input_pkcs12Password;
         // Greengrass Discovery
         bool input_PrintDiscoverRespOnly;
     };
@@ -300,5 +303,6 @@ namespace Utils
     cmdData parseSampleInputSecureTunnel(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputSecureTunnelNotification(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputShadow(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputPKCS12Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
 
 } // namespace Utils
