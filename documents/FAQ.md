@@ -1,5 +1,18 @@
 # Frequently Asked Questions
 
+*__Jump To:__*
+* [Where should I start](#where-should-i-start)
+* [How do I enable logging](#how-do-i-enable-logging)
+* [I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP](#i-keep-getting-aws_error_mqtt_unexpected_hangup)
+* [Dependencies are bad](#dependencies-are-bad)
+* [Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)](#connection-loss)
+* [How to use a Pre-Built aws-crt-cpp (Most useful for development of this package)](#prebuilt-aws-crt-cpp)
+* [I am experiencing deadlocks](#i-am-experiencing-deadlocks)
+* [Mac-Only TLS Behavior](#mac-only-tls-behavior)
+* [How do debug in VSCode?](#how-do-debug-in-vscode)
+* [What certificates do I need?](#what-certificates-do-i-need)
+* [I still have more questions about this sdk?](#i-still-have-more-questions-about-this-sdk)
+
 ### Where should I start?
 
 If you are just getting started make sure you [install this sdk](https://github.com/aws/aws-iot-device-sdk-cpp-v2#installation) and then build and run the [basic PubSub](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples#basic-mqtt-pub-sub)
@@ -48,7 +61,7 @@ If you have already downloaded this repository you can update the submodules wit
 `git submodule update --init --recursive`
 
 
-### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)
+### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs) <a name="connection-loss"></a>
 
 There are 3 mechanisms for detecting connection loss:
 1. The keepAliveTimeSecs and pingTimeoutMs arguments passed to MqttConnection::Connect(). These control how often the SDK sends a PINGREQ, and how long the SDK will wait for a PINGRESP before assuming the connection is lost. YOU SHOULD USE THIS TO RELIABLY DETECT CONNECTION LOSS.
@@ -56,7 +69,7 @@ There are 3 mechanisms for detecting connection loss:
 3. The various TcpKeepAlive controls on the MqttClientConnectionConfigBuilder. These control a similar mechanism at the TCP layer, rather than the MQTT layer, but is implemented in the OS and behavior may vary across platforms
 
 
-### How to use a Pre-Built aws-crt-cpp (Most useful for development of this package)
+### How to use a Pre-Built aws-crt-cpp (Most useful for development of this package) <a name="prebuilt-aws-crt-cpp"></a>
 
 ``` sh
 mkdir aws-iot-device-sdk-cpp-v2-build
@@ -64,6 +77,10 @@ cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
+
+### I am experiencing deadlocks
+
+You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
 
 ### Mac-Only TLS Behavior
 
@@ -73,7 +90,7 @@ Please note that on Mac, once a private key is used with a certificate, that cer
 static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.
 ```
 
-### How do debug in VSCode? 
+### How do debug in VSCode?
 
 Here is an example launch.json file to run the pubsub sample
  ``` json
@@ -111,14 +128,14 @@ Here is an example launch.json file to run the pubsub sample
     * Device certificate
         * Intermediate device certificate that is used to generate the key below
         * When using samples it can look like this: `--cert abcde12345-certificate.pem.crt`
-    * Key files 
+    * Key files
         * You should have generated/downloaded private and public keys that will be used to verify that communications are coming from you
         * When using samples you only need the private key and it will look like this: `--key abcde12345-private.pem.key`
 
-### I still have more questions about the this sdk?
+### I still have more questions about this sdk?
 
 * [Here](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) are the AWS IoT Core docs for more details about IoT Core
-* [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass 
+* [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass
 * [Discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) questions are also a great way to ask other questions about this sdk.
 * [Open an issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues) if you find a bug or have a feature request
 * [Breif MQTT CONCEPT](./MQTT_CONCEPT.md)

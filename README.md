@@ -17,11 +17,11 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 __Jump To:__
 
-* [Installation](#Installation)
+* [Installation](#installation)
 * [Samples](./samples)
-* [Getting Help](#Getting-Help)
+* [Getting Help](#getting-help)
 * [FAQ](./documents/FAQ.md)
-* [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
+* [Giving Feedback and Contributions](#giving-feedback-and-contributions)
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
 * [Secure Tunnel User Guide](./documents/Secure_Tunnel_Userguide.md)
 
@@ -143,4 +143,4 @@ We need your help in making this SDK great. Please participate in the community 
 
 This library is licensed under the [Apache 2.0 License](./documents/LICENSE).
 
-Latest released version: v1.25.0
+Latest released version: v1.26.0
