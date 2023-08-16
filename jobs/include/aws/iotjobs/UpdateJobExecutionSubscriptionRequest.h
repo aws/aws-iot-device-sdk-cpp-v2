@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotjobs/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,42 +13,37 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    /**
-     * Data needed to subscribe to UpdateJobExecution responses.
-     *
-     */
-    class AWS_IOTJOBS_API UpdateJobExecutionSubscriptionRequest final
+    namespace Iotjobs
     {
-    public:
-        UpdateJobExecutionSubscriptionRequest() = default;
-
-        UpdateJobExecutionSubscriptionRequest(const Crt::JsonView& doc);
-        UpdateJobExecutionSubscriptionRequest& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * Job ID that you want to subscribe to UpdateJobExecution response events for.
+         * Data needed to subscribe to UpdateJobExecution responses.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::String> JobId;
+        class AWS_IOTJOBS_API UpdateJobExecutionSubscriptionRequest final
+        {
+          public:
+            UpdateJobExecutionSubscriptionRequest() = default;
 
+            UpdateJobExecutionSubscriptionRequest(const Crt::JsonView &doc);
+            UpdateJobExecutionSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-        /**
-         * Name of the IoT Thing that you want to subscribe to UpdateJobExecution response events for.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Job ID that you want to subscribe to UpdateJobExecution response events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> JobId;
 
+            /**
+             * Name of the IoT Thing that you want to subscribe to UpdateJobExecution response events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-    private:
-        static void LoadFromObject(UpdateJobExecutionSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(UpdateJobExecutionSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws
