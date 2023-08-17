@@ -63,10 +63,7 @@ namespace Aws
             }
         }
 
-        UpdateJobExecutionResponse::UpdateJobExecutionResponse(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        UpdateJobExecutionResponse::UpdateJobExecutionResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         UpdateJobExecutionResponse &UpdateJobExecutionResponse::operator=(const Crt::JsonView &doc)
         {
