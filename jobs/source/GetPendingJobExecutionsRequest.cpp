@@ -7,42 +7,42 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void GetPendingJobExecutionsRequest::LoadFromObject(GetPendingJobExecutionsRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("clientToken"))
+        void GetPendingJobExecutionsRequest::LoadFromObject(
+            GetPendingJobExecutionsRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
         }
 
-    }
-
-    void GetPendingJobExecutionsRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ClientToken)
+        void GetPendingJobExecutionsRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            object.WithString("clientToken", *ClientToken);
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
         }
 
-    }
+        GetPendingJobExecutionsRequest::GetPendingJobExecutionsRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    GetPendingJobExecutionsRequest::GetPendingJobExecutionsRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        GetPendingJobExecutionsRequest &GetPendingJobExecutionsRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = GetPendingJobExecutionsRequest(doc);
+            return *this;
+        }
 
-    GetPendingJobExecutionsRequest& GetPendingJobExecutionsRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = GetPendingJobExecutionsRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

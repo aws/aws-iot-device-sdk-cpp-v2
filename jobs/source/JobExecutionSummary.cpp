@@ -7,92 +7,90 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void JobExecutionSummary::LoadFromObject(JobExecutionSummary& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("lastUpdatedAt"))
+        void JobExecutionSummary::LoadFromObject(JobExecutionSummary &val, const Aws::Crt::JsonView &doc)
         {
-            val.LastUpdatedAt = doc.GetDouble("lastUpdatedAt");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("lastUpdatedAt"))
+            {
+                val.LastUpdatedAt = doc.GetDouble("lastUpdatedAt");
+            }
+
+            if (doc.ValueExists("executionNumber"))
+            {
+                val.ExecutionNumber = doc.GetInt64("executionNumber");
+            }
+
+            if (doc.ValueExists("startedAt"))
+            {
+                val.StartedAt = doc.GetDouble("startedAt");
+            }
+
+            if (doc.ValueExists("versionNumber"))
+            {
+                val.VersionNumber = doc.GetInteger("versionNumber");
+            }
+
+            if (doc.ValueExists("jobId"))
+            {
+                val.JobId = doc.GetString("jobId");
+            }
+
+            if (doc.ValueExists("queuedAt"))
+            {
+                val.QueuedAt = doc.GetDouble("queuedAt");
+            }
         }
 
-        if (doc.ValueExists("executionNumber"))
+        void JobExecutionSummary::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.ExecutionNumber = doc.GetInt64("executionNumber");
+            (void)object;
+
+            if (LastUpdatedAt)
+            {
+                object.WithDouble("lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
+            }
+
+            if (ExecutionNumber)
+            {
+                object.WithInt64("executionNumber", *ExecutionNumber);
+            }
+
+            if (StartedAt)
+            {
+                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
+            }
+
+            if (VersionNumber)
+            {
+                object.WithInteger("versionNumber", *VersionNumber);
+            }
+
+            if (JobId)
+            {
+                object.WithString("jobId", *JobId);
+            }
+
+            if (QueuedAt)
+            {
+                object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
+            }
         }
 
-        if (doc.ValueExists("startedAt"))
+        JobExecutionSummary::JobExecutionSummary(const Crt::JsonView &doc)
         {
-            val.StartedAt = doc.GetDouble("startedAt");
+            LoadFromObject(*this, doc);
         }
 
-        if (doc.ValueExists("versionNumber"))
+        JobExecutionSummary &JobExecutionSummary::operator=(const Crt::JsonView &doc)
         {
-            val.VersionNumber = doc.GetInteger("versionNumber");
+            *this = JobExecutionSummary(doc);
+            return *this;
         }
 
-        if (doc.ValueExists("jobId"))
-        {
-            val.JobId = doc.GetString("jobId");
-        }
-
-        if (doc.ValueExists("queuedAt"))
-        {
-            val.QueuedAt = doc.GetDouble("queuedAt");
-        }
-
-    }
-
-    void JobExecutionSummary::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (LastUpdatedAt)
-        {
-            object.WithDouble("lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
-        }
-
-        if (ExecutionNumber)
-        {
-            object.WithInt64("executionNumber", *ExecutionNumber);
-        }
-
-        if (StartedAt)
-        {
-            object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
-        }
-
-        if (VersionNumber)
-        {
-            object.WithInteger("versionNumber", *VersionNumber);
-        }
-
-        if (JobId)
-        {
-            object.WithString("jobId", *JobId);
-        }
-
-        if (QueuedAt)
-        {
-            object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
-        }
-
-    }
-
-    JobExecutionSummary::JobExecutionSummary(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    JobExecutionSummary& JobExecutionSummary::operator=(const Crt::JsonView& doc)
-    {
-        *this = JobExecutionSummary(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws
