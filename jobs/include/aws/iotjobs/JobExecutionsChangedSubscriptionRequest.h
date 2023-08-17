@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotjobs/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,31 +14,35 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /**
+     * Data needed to subscribe to JobExecutionsChanged events.
+     *
+     */
+    class AWS_IOTJOBS_API JobExecutionsChangedSubscriptionRequest final
     {
+    public:
+        JobExecutionsChangedSubscriptionRequest() = default;
+
+        JobExecutionsChangedSubscriptionRequest(const Crt::JsonView& doc);
+        JobExecutionsChangedSubscriptionRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to subscribe to JobExecutionsChanged events.
+         * Name of the IoT Thing that you want to subscribe to JobExecutionsChanged events for.
          *
          */
-        class AWS_IOTJOBS_API JobExecutionsChangedSubscriptionRequest final
-        {
-          public:
-            JobExecutionsChangedSubscriptionRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            JobExecutionsChangedSubscriptionRequest(const Crt::JsonView &doc);
-            JobExecutionsChangedSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /**
-             * Name of the IoT Thing that you want to subscribe to JobExecutionsChanged events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+    private:
+        static void LoadFromObject(JobExecutionsChangedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
 
-          private:
-            static void LoadFromObject(JobExecutionsChangedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws

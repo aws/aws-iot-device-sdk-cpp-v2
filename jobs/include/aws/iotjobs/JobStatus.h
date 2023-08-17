@@ -8,58 +8,59 @@
 
 #include <aws/iotjobs/Exports.h>
 
-#include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
+#include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /**
+     * The status of the job execution.
+     *
+     */
+    enum class JobStatus
     {
+        /**
+         */
+        QUEUED,
 
         /**
-         * The status of the job execution.
-         *
          */
-        enum class JobStatus
-        {
-            /**
-             */
-            QUEUED,
+        IN_PROGRESS,
 
-            /**
-             */
-            IN_PROGRESS,
+        /**
+         */
+        TIMED_OUT,
 
-            /**
-             */
-            TIMED_OUT,
+        /**
+         */
+        FAILED,
 
-            /**
-             */
-            FAILED,
+        /**
+         */
+        SUCCEEDED,
 
-            /**
-             */
-            SUCCEEDED,
+        /**
+         */
+        CANCELED,
 
-            /**
-             */
-            CANCELED,
+        /**
+         */
+        REJECTED,
 
-            /**
-             */
-            REJECTED,
+        /**
+         */
+        REMOVED,
 
-            /**
-             */
-            REMOVED,
+    };
 
-        };
+namespace JobStatusMarshaller
+{
+    AWS_IOTJOBS_API const char *ToString(JobStatus val);
+    AWS_IOTJOBS_API JobStatus FromString(const Aws::Crt::String& val);
+}
+}
+}
 
-        namespace JobStatusMarshaller
-        {
-            const char *AWS_IOTJOBS_API ToString(JobStatus val);
-            JobStatus AWS_IOTJOBS_API FromString(const Aws::Crt::String &val);
-        } // namespace JobStatusMarshaller
-    }     // namespace Iotjobs
-} // namespace Aws
