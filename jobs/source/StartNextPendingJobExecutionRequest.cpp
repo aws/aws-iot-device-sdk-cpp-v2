@@ -7,77 +7,76 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void StartNextPendingJobExecutionRequest::LoadFromObject(StartNextPendingJobExecutionRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("stepTimeoutInMinutes"))
+        void StartNextPendingJobExecutionRequest::LoadFromObject(
+            StartNextPendingJobExecutionRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
-        }
+            (void)val;
+            (void)doc;
 
-        if (doc.ValueExists("clientToken"))
-        {
-            val.ClientToken = doc.GetString("clientToken");
-        }
-
-        if (doc.ValueExists("statusDetails"))
-        {
-            auto statusDetailsMap = doc.GetJsonObject("statusDetails");
-            val.StatusDetails = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-            for (auto& statusDetailsMapMember : statusDetailsMap.GetAllObjects())
+            if (doc.ValueExists("stepTimeoutInMinutes"))
             {
-                Aws::Crt::String statusDetailsMapValMember;
-                statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
-                val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
             }
 
-        }
-
-    }
-
-    void StartNextPendingJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (StepTimeoutInMinutes)
-        {
-            object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
-        }
-
-        if (ClientToken)
-        {
-            object.WithString("clientToken", *ClientToken);
-        }
-
-        if (StatusDetails)
-        {
-            Aws::Crt::JsonObject statusDetailsMap;
-            for (auto& statusDetailsMapMember : *StatusDetails)
+            if (doc.ValueExists("clientToken"))
             {
-                Aws::Crt::JsonObject statusDetailsMapValMember;
-                statusDetailsMapValMember.AsString(statusDetailsMapMember.second);
-                statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                val.ClientToken = doc.GetString("clientToken");
             }
-            object.WithObject("statusDetails", std::move(statusDetailsMap));
+
+            if (doc.ValueExists("statusDetails"))
+            {
+                auto statusDetailsMap = doc.GetJsonObject("statusDetails");
+                val.StatusDetails = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+                for (auto &statusDetailsMapMember : statusDetailsMap.GetAllObjects())
+                {
+                    Aws::Crt::String statusDetailsMapValMember;
+                    statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
+                    val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                }
+            }
         }
 
-    }
+        void StartNextPendingJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
 
-    StartNextPendingJobExecutionRequest::StartNextPendingJobExecutionRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+            if (StepTimeoutInMinutes)
+            {
+                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
+            }
 
-    StartNextPendingJobExecutionRequest& StartNextPendingJobExecutionRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = StartNextPendingJobExecutionRequest(doc);
-        return *this;
-    }
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
 
-}
-}
+            if (StatusDetails)
+            {
+                Aws::Crt::JsonObject statusDetailsMap;
+                for (auto &statusDetailsMapMember : *StatusDetails)
+                {
+                    Aws::Crt::JsonObject statusDetailsMapValMember;
+                    statusDetailsMapValMember.AsString(statusDetailsMapMember.second);
+                    statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                }
+                object.WithObject("statusDetails", std::move(statusDetailsMap));
+            }
+        }
+
+        StartNextPendingJobExecutionRequest::StartNextPendingJobExecutionRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
+
+        StartNextPendingJobExecutionRequest &StartNextPendingJobExecutionRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = StartNextPendingJobExecutionRequest(doc);
+            return *this;
+        }
+
+    } // namespace Iotjobs
+} // namespace Aws
