@@ -7,110 +7,108 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void GetPendingJobExecutionsResponse::LoadFromObject(GetPendingJobExecutionsResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("queuedJobs"))
+        void GetPendingJobExecutionsResponse::LoadFromObject(
+            GetPendingJobExecutionsResponse &val,
+            const Aws::Crt::JsonView &doc)
         {
-            auto queuedJobsList = doc.GetArray("queuedJobs");
-            val.QueuedJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
-            val.QueuedJobs->reserve(queuedJobsList.size());
-            for (auto& queuedJobsListMember : queuedJobsList)
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("queuedJobs"))
             {
-                Aws::Iotjobs::JobExecutionSummary queuedJobsListValMember;
-                queuedJobsListValMember = queuedJobsListMember.AsObject();
-                val.QueuedJobs->push_back(std::move(queuedJobsListValMember));
+                auto queuedJobsList = doc.GetArray("queuedJobs");
+                val.QueuedJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
+                val.QueuedJobs->reserve(queuedJobsList.size());
+                for (auto &queuedJobsListMember : queuedJobsList)
+                {
+                    Aws::Iotjobs::JobExecutionSummary queuedJobsListValMember;
+                    queuedJobsListValMember = queuedJobsListMember.AsObject();
+                    val.QueuedJobs->push_back(std::move(queuedJobsListValMember));
+                }
             }
 
-        }
-
-        if (doc.ValueExists("timestamp"))
-        {
-            val.Timestamp = doc.GetDouble("timestamp");
-        }
-
-        if (doc.ValueExists("clientToken"))
-        {
-            val.ClientToken = doc.GetString("clientToken");
-        }
-
-        if (doc.ValueExists("inProgressJobs"))
-        {
-            auto inProgressJobsList = doc.GetArray("inProgressJobs");
-            val.InProgressJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
-            val.InProgressJobs->reserve(inProgressJobsList.size());
-            for (auto& inProgressJobsListMember : inProgressJobsList)
+            if (doc.ValueExists("timestamp"))
             {
-                Aws::Iotjobs::JobExecutionSummary inProgressJobsListValMember;
-                inProgressJobsListValMember = inProgressJobsListMember.AsObject();
-                val.InProgressJobs->push_back(std::move(inProgressJobsListValMember));
+                val.Timestamp = doc.GetDouble("timestamp");
             }
 
-        }
-
-    }
-
-    void GetPendingJobExecutionsResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (QueuedJobs)
-        {
-            Aws::Crt::Vector<Aws::Crt::JsonObject> queuedJobsList;
-            queuedJobsList.reserve(QueuedJobs->size());
-            for (auto& queuedJobsListMember : *QueuedJobs)
+            if (doc.ValueExists("clientToken"))
             {
-                Aws::Crt::JsonObject queuedJobsListValMember;
-                Aws::Crt::JsonObject jsonObject;
-                queuedJobsListMember.SerializeToObject(jsonObject);
-                queuedJobsListValMember.AsObject(std::move(jsonObject));
-                queuedJobsList.push_back(queuedJobsListValMember);
+                val.ClientToken = doc.GetString("clientToken");
             }
-            object.WithArray("queuedJobs", std::move(queuedJobsList));
-        }
 
-        if (Timestamp)
-        {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-        }
-
-        if (ClientToken)
-        {
-            object.WithString("clientToken", *ClientToken);
-        }
-
-        if (InProgressJobs)
-        {
-            Aws::Crt::Vector<Aws::Crt::JsonObject> inProgressJobsList;
-            inProgressJobsList.reserve(InProgressJobs->size());
-            for (auto& inProgressJobsListMember : *InProgressJobs)
+            if (doc.ValueExists("inProgressJobs"))
             {
-                Aws::Crt::JsonObject inProgressJobsListValMember;
-                Aws::Crt::JsonObject jsonObject;
-                inProgressJobsListMember.SerializeToObject(jsonObject);
-                inProgressJobsListValMember.AsObject(std::move(jsonObject));
-                inProgressJobsList.push_back(inProgressJobsListValMember);
+                auto inProgressJobsList = doc.GetArray("inProgressJobs");
+                val.InProgressJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
+                val.InProgressJobs->reserve(inProgressJobsList.size());
+                for (auto &inProgressJobsListMember : inProgressJobsList)
+                {
+                    Aws::Iotjobs::JobExecutionSummary inProgressJobsListValMember;
+                    inProgressJobsListValMember = inProgressJobsListMember.AsObject();
+                    val.InProgressJobs->push_back(std::move(inProgressJobsListValMember));
+                }
             }
-            object.WithArray("inProgressJobs", std::move(inProgressJobsList));
         }
 
-    }
+        void GetPendingJobExecutionsResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
 
-    GetPendingJobExecutionsResponse::GetPendingJobExecutionsResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+            if (QueuedJobs)
+            {
+                Aws::Crt::Vector<Aws::Crt::JsonObject> queuedJobsList;
+                queuedJobsList.reserve(QueuedJobs->size());
+                for (auto &queuedJobsListMember : *QueuedJobs)
+                {
+                    Aws::Crt::JsonObject queuedJobsListValMember;
+                    Aws::Crt::JsonObject jsonObject;
+                    queuedJobsListMember.SerializeToObject(jsonObject);
+                    queuedJobsListValMember.AsObject(std::move(jsonObject));
+                    queuedJobsList.push_back(queuedJobsListValMember);
+                }
+                object.WithArray("queuedJobs", std::move(queuedJobsList));
+            }
 
-    GetPendingJobExecutionsResponse& GetPendingJobExecutionsResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = GetPendingJobExecutionsResponse(doc);
-        return *this;
-    }
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
 
-}
-}
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
+            if (InProgressJobs)
+            {
+                Aws::Crt::Vector<Aws::Crt::JsonObject> inProgressJobsList;
+                inProgressJobsList.reserve(InProgressJobs->size());
+                for (auto &inProgressJobsListMember : *InProgressJobs)
+                {
+                    Aws::Crt::JsonObject inProgressJobsListValMember;
+                    Aws::Crt::JsonObject jsonObject;
+                    inProgressJobsListMember.SerializeToObject(jsonObject);
+                    inProgressJobsListValMember.AsObject(std::move(jsonObject));
+                    inProgressJobsList.push_back(inProgressJobsListValMember);
+                }
+                object.WithArray("inProgressJobs", std::move(inProgressJobsList));
+            }
+        }
+
+        GetPendingJobExecutionsResponse::GetPendingJobExecutionsResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
+
+        GetPendingJobExecutionsResponse &GetPendingJobExecutionsResponse::operator=(const Crt::JsonView &doc)
+        {
+            *this = GetPendingJobExecutionsResponse(doc);
+            return *this;
+        }
+
+    } // namespace Iotjobs
+} // namespace Aws
