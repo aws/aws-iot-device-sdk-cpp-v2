@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotjobs/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,38 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /**
+     * Data needed to make a GetPendingJobExecutions request.
+     *
+     */
+    class AWS_IOTJOBS_API GetPendingJobExecutionsRequest final
     {
+    public:
+        GetPendingJobExecutionsRequest() = default;
+
+        GetPendingJobExecutionsRequest(const Crt::JsonView& doc);
+        GetPendingJobExecutionsRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to make a GetPendingJobExecutions request.
+         * IoT Thing the request is relative to.
          *
          */
-        class AWS_IOTJOBS_API GetPendingJobExecutionsRequest final
-        {
-          public:
-            GetPendingJobExecutionsRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            GetPendingJobExecutionsRequest(const Crt::JsonView &doc);
-            GetPendingJobExecutionsRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /**
+         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /**
-             * IoT Thing the request is relative to.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-          private:
-            static void LoadFromObject(GetPendingJobExecutionsRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+    private:
+        static void LoadFromObject(GetPendingJobExecutionsRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+
