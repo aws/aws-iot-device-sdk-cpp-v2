@@ -16,13 +16,13 @@ namespace Aws
 {
     namespace Greengrass
     {
-        class DefaultConnectionConfig : public ConnectionConfig
+        class AWS_GREENGRASS_API DefaultConnectionConfig : public ConnectionConfig
         {
           public:
             DefaultConnectionConfig() noexcept;
         };
 
-        class GreengrassCoreIpcClient
+        class AWS_GREENGRASS_API GreengrassCoreIpcClient
         {
           public:
             GreengrassCoreIpcClient(
