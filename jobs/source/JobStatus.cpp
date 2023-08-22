@@ -10,10 +10,10 @@
 
 #include <assert.h>
 
-static const size_t IN_PROGRESS_HASH = Aws::Crt::HashString("IN_PROGRESS");
-static const size_t FAILED_HASH = Aws::Crt::HashString("FAILED");
 static const size_t QUEUED_HASH = Aws::Crt::HashString("QUEUED");
+static const size_t IN_PROGRESS_HASH = Aws::Crt::HashString("IN_PROGRESS");
 static const size_t TIMED_OUT_HASH = Aws::Crt::HashString("TIMED_OUT");
+static const size_t FAILED_HASH = Aws::Crt::HashString("FAILED");
 static const size_t SUCCEEDED_HASH = Aws::Crt::HashString("SUCCEEDED");
 static const size_t CANCELED_HASH = Aws::Crt::HashString("CANCELED");
 static const size_t REJECTED_HASH = Aws::Crt::HashString("REJECTED");
@@ -30,14 +30,14 @@ namespace Aws
             {
                 switch (status)
                 {
-                    case JobStatus::IN_PROGRESS:
-                        return "IN_PROGRESS";
-                    case JobStatus::FAILED:
-                        return "FAILED";
                     case JobStatus::QUEUED:
                         return "QUEUED";
+                    case JobStatus::IN_PROGRESS:
+                        return "IN_PROGRESS";
                     case JobStatus::TIMED_OUT:
                         return "TIMED_OUT";
+                    case JobStatus::FAILED:
+                        return "FAILED";
                     case JobStatus::SUCCEEDED:
                         return "SUCCEEDED";
                     case JobStatus::CANCELED:
@@ -56,24 +56,24 @@ namespace Aws
             {
                 size_t hash = Crt::HashString(str.c_str());
 
-                if (hash == IN_PROGRESS_HASH)
-                {
-                    return JobStatus::IN_PROGRESS;
-                }
-
-                if (hash == FAILED_HASH)
-                {
-                    return JobStatus::FAILED;
-                }
-
                 if (hash == QUEUED_HASH)
                 {
                     return JobStatus::QUEUED;
                 }
 
+                if (hash == IN_PROGRESS_HASH)
+                {
+                    return JobStatus::IN_PROGRESS;
+                }
+
                 if (hash == TIMED_OUT_HASH)
                 {
                     return JobStatus::TIMED_OUT;
+                }
+
+                if (hash == FAILED_HASH)
+                {
+                    return JobStatus::FAILED;
                 }
 
                 if (hash == SUCCEEDED_HASH)

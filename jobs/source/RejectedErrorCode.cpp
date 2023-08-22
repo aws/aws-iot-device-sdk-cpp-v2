@@ -11,14 +11,14 @@
 #include <assert.h>
 
 static const size_t INVALID_TOPIC_HASH = Aws::Crt::HashString("InvalidTopic");
+static const size_t INVALID_JSON_HASH = Aws::Crt::HashString("InvalidJson");
+static const size_t INVALID_REQUEST_HASH = Aws::Crt::HashString("InvalidRequest");
 static const size_t INVALID_STATE_TRANSITION_HASH = Aws::Crt::HashString("InvalidStateTransition");
 static const size_t RESOURCE_NOT_FOUND_HASH = Aws::Crt::HashString("ResourceNotFound");
-static const size_t INVALID_REQUEST_HASH = Aws::Crt::HashString("InvalidRequest");
-static const size_t REQUEST_THROTTLED_HASH = Aws::Crt::HashString("RequestThrottled");
-static const size_t INTERNAL_ERROR_HASH = Aws::Crt::HashString("InternalError");
-static const size_t TERMINAL_STATE_REACHED_HASH = Aws::Crt::HashString("TerminalStateReached");
-static const size_t INVALID_JSON_HASH = Aws::Crt::HashString("InvalidJson");
 static const size_t VERSION_MISMATCH_HASH = Aws::Crt::HashString("VersionMismatch");
+static const size_t INTERNAL_ERROR_HASH = Aws::Crt::HashString("InternalError");
+static const size_t REQUEST_THROTTLED_HASH = Aws::Crt::HashString("RequestThrottled");
+static const size_t TERMINAL_STATE_REACHED_HASH = Aws::Crt::HashString("TerminalStateReached");
 
 namespace Aws
 {
@@ -33,22 +33,22 @@ namespace Aws
                 {
                     case RejectedErrorCode::InvalidTopic:
                         return "InvalidTopic";
+                    case RejectedErrorCode::InvalidJson:
+                        return "InvalidJson";
+                    case RejectedErrorCode::InvalidRequest:
+                        return "InvalidRequest";
                     case RejectedErrorCode::InvalidStateTransition:
                         return "InvalidStateTransition";
                     case RejectedErrorCode::ResourceNotFound:
                         return "ResourceNotFound";
-                    case RejectedErrorCode::InvalidRequest:
-                        return "InvalidRequest";
-                    case RejectedErrorCode::RequestThrottled:
-                        return "RequestThrottled";
-                    case RejectedErrorCode::InternalError:
-                        return "InternalError";
-                    case RejectedErrorCode::TerminalStateReached:
-                        return "TerminalStateReached";
-                    case RejectedErrorCode::InvalidJson:
-                        return "InvalidJson";
                     case RejectedErrorCode::VersionMismatch:
                         return "VersionMismatch";
+                    case RejectedErrorCode::InternalError:
+                        return "InternalError";
+                    case RejectedErrorCode::RequestThrottled:
+                        return "RequestThrottled";
+                    case RejectedErrorCode::TerminalStateReached:
+                        return "TerminalStateReached";
                     default:
                         assert(0);
                         return "UNKNOWN_VALUE";
@@ -64,6 +64,16 @@ namespace Aws
                     return RejectedErrorCode::InvalidTopic;
                 }
 
+                if (hash == INVALID_JSON_HASH)
+                {
+                    return RejectedErrorCode::InvalidJson;
+                }
+
+                if (hash == INVALID_REQUEST_HASH)
+                {
+                    return RejectedErrorCode::InvalidRequest;
+                }
+
                 if (hash == INVALID_STATE_TRANSITION_HASH)
                 {
                     return RejectedErrorCode::InvalidStateTransition;
@@ -74,14 +84,9 @@ namespace Aws
                     return RejectedErrorCode::ResourceNotFound;
                 }
 
-                if (hash == INVALID_REQUEST_HASH)
+                if (hash == VERSION_MISMATCH_HASH)
                 {
-                    return RejectedErrorCode::InvalidRequest;
-                }
-
-                if (hash == REQUEST_THROTTLED_HASH)
-                {
-                    return RejectedErrorCode::RequestThrottled;
+                    return RejectedErrorCode::VersionMismatch;
                 }
 
                 if (hash == INTERNAL_ERROR_HASH)
@@ -89,19 +94,14 @@ namespace Aws
                     return RejectedErrorCode::InternalError;
                 }
 
+                if (hash == REQUEST_THROTTLED_HASH)
+                {
+                    return RejectedErrorCode::RequestThrottled;
+                }
+
                 if (hash == TERMINAL_STATE_REACHED_HASH)
                 {
                     return RejectedErrorCode::TerminalStateReached;
-                }
-
-                if (hash == INVALID_JSON_HASH)
-                {
-                    return RejectedErrorCode::InvalidJson;
-                }
-
-                if (hash == VERSION_MISMATCH_HASH)
-                {
-                    return RejectedErrorCode::VersionMismatch;
                 }
 
                 assert(0);
