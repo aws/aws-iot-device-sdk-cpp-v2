@@ -19,8 +19,8 @@ namespace Aws
 {
     namespace Greengrass
     {
-        class AWS_GREENGRASSIPC_API GreengrassCoreIpcClient;
-        class AWS_GREENGRASSIPC_API GreengrassCoreIpcServiceModel;
+        class AWS_GREENGRASS_API GreengrassCoreIpcClient;
+        class AWS_GREENGRASS_API GreengrassCoreIpcServiceModel;
         class UserProperty : public AbstractShapeBase
         {
           public:
@@ -5910,7 +5910,7 @@ namespace Aws
             Aws::Crt::String GetModelName() const noexcept override;
         };
 
-        class AWS_GREENGRASSIPC_API GreengrassCoreIpcServiceModel : public ServiceModel
+        class AWS_GREENGRASS_API GreengrassCoreIpcServiceModel : public ServiceModel
         {
           public:
             GreengrassCoreIpcServiceModel() noexcept;
