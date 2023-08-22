@@ -70,8 +70,9 @@ if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
 endif ()
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(GreengrassIpc-cpp PUBLIC "-DAWS_GREENGRASSIPC_USE_IMPORT_EXPORT")
-    target_compile_definitions(GreengrassIpc-cpp PRIVATE "-DAWS_GREENGRASSIPC_EXPORTS")
+    # The compile definition should match the name in Exports.h
+    target_compile_definitions(GreengrassIpc-cpp PUBLIC "-DAWS_GREENGRASS_USE_IMPORT_EXPORT")
+    target_compile_definitions(GreengrassIpc-cpp PRIVATE "-DAWS_GREENGRASS_EXPORTS")
 
     install(TARGETS GreengrassIpc-cpp
             EXPORT GreengrassIpc-cpp-targets
