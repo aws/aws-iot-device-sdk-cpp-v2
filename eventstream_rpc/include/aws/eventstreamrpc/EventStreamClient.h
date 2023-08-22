@@ -146,7 +146,7 @@ namespace Aws
         /**
          * Configuration structure holding all configurations relating to eventstream RPC connection establishment
          */
-        class ConnectionConfig
+        class AWS_EVENTSTREAMRPC_API ConnectionConfig
         {
           public:
             ConnectionConfig() noexcept : m_clientBootstrap(nullptr), m_connectRequestCallback(nullptr) {}
