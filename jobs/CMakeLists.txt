@@ -1,8 +1,10 @@
+# This file is generated
+
 cmake_minimum_required(VERSION 3.1)
 
 project(IotJobs-cpp LANGUAGES CXX)
 if (DEFINED SIMPLE_VERSION)
-    message("Jobs version is ${SIMPLE_VERSION}")
+    message("IotJobs version is ${SIMPLE_VERSION}")
     set(PROJECT_VERSION ${SIMPLE_VERSION})
 endif()
 
