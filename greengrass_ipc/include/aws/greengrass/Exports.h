@@ -4,17 +4,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#if defined(AWS_GREENGRASS_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)
-#    ifdef AWS_GREENGRASS_USE_IMPORT_EXPORT
-#        ifdef AWS_GREENGRASS_EXPORTS
-#            define AWS_GREENGRASS_API __declspec(dllexport)
+#if defined(AWS_GREENGRASSIPC_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)
+#    ifdef AWS_GREENGRASSIPC_USE_IMPORT_EXPORT
+#        ifdef AWS_GREENGRASSIPC_EXPORTS
+#            define AWS_GREENGRASSIPC_API __declspec(dllexport)
 #        else
-#            define AWS_GREENGRASS_API __declspec(dllimport)
-#        endif /* AWS_GREENGRASS_EXPORTS */
+#            define AWS_GREENGRASSIPC_API __declspec(dllimport)
+#        endif /* AWS_GREENGRASSIPC_EXPORTS */
 #    else
-#        define AWS_GREENGRASS_API
-#    endif /* AWS_GREENGRASS_USE_IMPORT_EXPORT */
+#        define AWS_GREENGRASSIPC_API
+#    endif /* AWS_GREENGRASSIPC_USE_IMPORT_EXPORT */
 
-#else /* defined (AWS_GREENGRASS_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
-#    define AWS_GREENGRASS_API
-#endif /* defined (AWS_GREENGRASS__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
+#else /* defined (AWS_GREENGRASSIPC_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
+#    define AWS_GREENGRASSIPC_API
+#endif /* defined (AWS_GREENGRASSIPC__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
