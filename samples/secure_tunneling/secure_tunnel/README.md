@@ -20,14 +20,15 @@ The sample will create a Secure Tunnel connection and remain connected in `DESTI
 
 ### Source Mode
 
-While the focus of the Secure Tunnel Client for the IoT Device SDK is to connect with Secure Tunnels in `DESTINATION MODE` we also support connecting in `SOURCE MODE`. The token file should be the Source Token in this instance and you must add the `--localProxyModeSource` flag:
+While the focus of the Secure Tunnel Client for the IoT Device SDK is to connect with Secure Tunnels in `DESTINATION MODE` we also support connecting in `SOURCE MODE`. The token file should be the Source Token in this instance and you must add the `--local_proxy_mode_source` flag:
 
 ``` sh
-./secure-tunnel --signing_region <signing_region> --access_token_file <path to source access token> --localProxyModeSource
+./secure-tunnel --signing_region <signing_region> --access_token_file <path to source access token> --local_proxy_mode_source
 ```
 
-Then two samples will then connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be transmitted in either direction.
+Then two samples will connect to each other through the AWS Secure Tunnel endpoint and establish a stream through which data can be transmitted in either direction.
 The sample will create a Secure Tunnel connection in `SOURCE MODE` and will open a stream using an available `Service Id`. It will then send n messages on the opened stream. It will then create a new simultaneous TCP connection on the stream and send an additional n messages on the new TCP connection. It will then exit.
 
 ### Proxy
+
 Note that a proxy server may be used via the `--proxy_host` and `--proxy_port` argument. If the proxy server requires a user name and password to connect,  you can use `--proxy_user_name` and `--proxy_password` to in the sample to pass the required data to the sample.
