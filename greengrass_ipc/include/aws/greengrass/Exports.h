@@ -4,17 +4,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#if defined(AWS_GREENGRASSIPC_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)
-#    ifdef AWS_GREENGRASSIPC_USE_IMPORT_EXPORT
-#        ifdef AWS_GREENGRASSIPC_EXPORTS
-#            define AWS_GREENGRASSIPC_API __declspec(dllexport)
+#if defined(AWS_GREENGRASSCOREIPC_USE_WINDOWS_DLL_SEMANTICS) || defined(WIN32)
+#    ifdef AWS_GREENGRASSCOREIPC_USE_IMPORT_EXPORT
+#        ifdef AWS_GREENGRASSCOREIPC_EXPORTS
+#            define AWS_GREENGRASSCOREIPC_API __declspec(dllexport)
 #        else
-#            define AWS_GREENGRASSIPC_API __declspec(dllimport)
+#            define AWS_GREENGRASSCOREIPC_API __declspec(dllimport)
 #        endif /* AWS_GREENGRASSIPC_EXPORTS */
 #    else
-#        define AWS_GREENGRASSIPC_API
+#        define AWS_GREENGRASSCOREIPC_API
 #    endif /* AWS_GREENGRASSIPC_USE_IMPORT_EXPORT */
 
 #else /* defined (AWS_GREENGRASSIPC_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
-#    define AWS_GREENGRASSIPC_API
+#    define AWS_GREENGRASSCOREIPC_API
 #endif /* defined (AWS_GREENGRASSIPC__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
