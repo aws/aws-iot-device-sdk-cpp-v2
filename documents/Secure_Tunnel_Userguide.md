@@ -94,7 +94,14 @@ When a WebSocket upgrade request fails to connect, this callback will return an 
 When the WebSocket connection shuts down, this callback will be invoked.
 
 ### OnSendMessageComplete
-When a message has been completely written to the socket, this callback will be invoked.
+
+This callback is invoked when either a message has been completely written to the socket or an error occured.
+The callback is invoked for the following operations:
+- SendMessage
+- SendStreamStart
+- SendConnectionStart
+
+See [Send Message](#send-message) for additional details.
 
 ### OnMessageReceived
 When a message is received on an open Secure Tunnel stream, this callback will return the message.
@@ -208,9 +215,18 @@ Service Ids can be added to outbound Messages as shown below in the Send Message
 Connection Ids can be added to outbound Messages as shown below in the Send Message example. If there is an active stream currently open using the combination of the Service Id and Connection Id, the message will be sent. If a Connection Id is not set on an outbound message, a Connecion Id of 1 is assumed and applied to the Message. When additional streams are activated, the `OnConnectionStarted` callback is invoked and returns a `ConnectionStartedEventData` which can be parsed to determine the Connection Id of the newly activated stream. A Connection Id will also be present in the `StreamStartedEventData` that is returned when the `OnStreamStarted` callback is invoked.
 
 # Send Message
-The `SendMessage()` operation takes a description of the Message you wish to send and returns a success/failure in the synchronous logic that kicks off the `SendMessage()` operation. When the message is fully written to the socket, the `OnSendDataComplete` callback will be invoked.
+
+The `SendMessage()` operation takes a description of the Message you wish to send and enques the message for sending it asynchronously to the destination. The call returns a success/failure in the synchronous logic that kicks off the asynchronous operation. However, since the main validation actions are performed asynchronously, the user code should setup the `OnSendMessageComplete` callback for catching errors.
 
 ```cpp
+builder.WithOnSendMessageComplete(
+    [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
+        if (errorCode)
+        {
+            fprintf(stdout, "Send Message failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+        }
+    });
+
 Crt::String serviceId_string = "ssh";
 Crt::String message_string = "any payload";
 
@@ -230,6 +246,7 @@ message->withPayload(payload);
 // Send Message
 secureTunnel->SendMessage(message);
 ```
+
 # Secure Tunnel Best Practices
 * You MUST NOT perform blocking operations on any callback, or you will cause a deadlock.
 * If you do not provide a Client Token during creation of the Secure Tunnel, one will be automatically generated for you to use in reconnections. This token is not saved outside of the current Secure Tunnel Client. If the Client is destroyed, the original access tokens must be rotated to connect to the secure tunnel again. Information on rotating tokens can be found here: https://docs.aws.amazon.com/iot/latest/developerguide/iot-secure-tunneling-troubleshooting.html
