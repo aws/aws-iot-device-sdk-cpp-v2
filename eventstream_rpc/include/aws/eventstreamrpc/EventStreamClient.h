@@ -198,7 +198,7 @@ namespace Aws
             OnMessageFlushCallback m_connectRequestCallback;
         };
 
-        enum EventStreamRpcStatusCode
+        enum AWS_EVENTSTREAMRPC_API EventStreamRpcStatusCode
         {
             EVENT_STREAM_RPC_SUCCESS = 0,
             EVENT_STREAM_RPC_NULL_PARAMETER,
@@ -215,7 +215,7 @@ namespace Aws
             EVENT_STREAM_RPC_CRT_ERROR
         };
 
-        struct RpcError
+        struct AWS_EVENTSTREAMRPC_API RpcError
         {
             EventStreamRpcStatusCode baseStatus;
             int crtError;
@@ -256,7 +256,7 @@ namespace Aws
         };
 
         /* User data passed to callbacks for a new stream. */
-        class ContinuationCallbackData
+        class AWS_EVENTSTREAMRPC_API ContinuationCallbackData
         {
           public:
             ContinuationCallbackData(
