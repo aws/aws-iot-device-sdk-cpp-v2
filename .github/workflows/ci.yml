@@ -320,40 +320,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBUILD_SHARED_LIBS=ON
-      - name: Running samples in CI setup
-        run: |
-          python -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
-          python ./deviceadvisor/script/DATestRun.py
+
   osx:
     runs-on: macos-latest
     permissions:

@@ -49,7 +49,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_value;
         };
 
-        enum DetailedDeploymentStatus
+        /**
+         * enum DetailedDeploymentStatus
+         */
+        enum AWS_GREENGRASSCOREIPC_API DetailedDeploymentStatus
         {
             DETAILED_DEPLOYMENT_STATUS_SUCCESSFUL,
             DETAILED_DEPLOYMENT_STATUS_FAILED_NO_STATE_CHANGE,
@@ -82,13 +85,19 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
         };
 
-        enum PayloadFormat
+        /**
+         * enum PayloadFormat
+         */
+        enum AWS_GREENGRASSCOREIPC_API PayloadFormat
         {
             PAYLOAD_FORMAT_BYTES,
             PAYLOAD_FORMAT_UTF8
         };
 
-        enum MetricUnitType
+        /**
+         * enum MetricUnitType
+         */
+        enum AWS_GREENGRASSCOREIPC_API MetricUnitType
         {
             METRIC_UNIT_TYPE_BYTES,
             METRIC_UNIT_TYPE_BYTES_PER_SECOND,
@@ -150,7 +159,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_deploymentFailureCause;
         };
 
-        enum DeploymentStatus
+        /**
+         * enum DeploymentStatus
+         */
+        enum AWS_GREENGRASSCOREIPC_API DeploymentStatus
         {
             DEPLOYMENT_STATUS_QUEUED,
             DEPLOYMENT_STATUS_IN_PROGRESS,
@@ -159,7 +171,10 @@ namespace Aws
             DEPLOYMENT_STATUS_CANCELED
         };
 
-        enum LifecycleState
+        /**
+         * enum LifecycleState
+         */
+        enum AWS_GREENGRASSCOREIPC_API LifecycleState
         {
             LIFECYCLE_STATE_RUNNING,
             LIFECYCLE_STATE_ERRORED,
@@ -472,12 +487,18 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> m_caCertificates;
         };
 
-        enum CertificateType
+        /**
+         * enum CertificateType
+         */
+        enum AWS_GREENGRASSCOREIPC_API CertificateType
         {
             CERTIFICATE_TYPE_SERVER
         };
 
-        enum ConfigurationValidityStatus
+        /**
+         * enum ConfigurationValidityStatus
+         */
+        enum AWS_GREENGRASSCOREIPC_API ConfigurationValidityStatus
         {
             CONFIGURATION_VALIDITY_STATUS_ACCEPTED,
             CONFIGURATION_VALIDITY_STATUS_REJECTED
@@ -708,7 +729,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_clientDeviceCertificate;
         };
 
-        enum ReportedLifecycleState
+        /**
+         * enum ReportedLifecycleState
+         */
+        enum AWS_GREENGRASSCOREIPC_API ReportedLifecycleState
         {
             REPORTED_LIFECYCLE_STATE_RUNNING,
             REPORTED_LIFECYCLE_STATE_ERRORED
@@ -824,7 +848,10 @@ namespace Aws
             Aws::Crt::Optional<BinaryMessage> m_binaryMessage;
         };
 
-        enum ReceiveMode
+        /**
+         * enum ReceiveMode
+         */
+        enum AWS_GREENGRASSCOREIPC_API ReceiveMode
         {
             RECEIVE_MODE_RECEIVE_ALL_MESSAGES,
             RECEIVE_MODE_RECEIVE_MESSAGES_FROM_OTHERS
@@ -874,7 +901,10 @@ namespace Aws
             Aws::Crt::Optional<MQTTMessage> m_message;
         };
 
-        enum QOS
+        /**
+         * enum QOS
+         */
+        enum AWS_GREENGRASSCOREIPC_API QOS
         {
             QOS_AT_MOST_ONCE,
             QOS_AT_LEAST_ONCE
@@ -1055,7 +1085,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_certificateType;
         };
 
-        enum RequestStatus
+        /**
+         * enum RequestStatus
+         */
+        enum AWS_GREENGRASSCOREIPC_API RequestStatus
         {
             REQUEST_STATUS_SUCCEEDED,
             REQUEST_STATUS_FAILED
@@ -1260,7 +1293,10 @@ namespace Aws
             Aws::Crt::Optional<MQTTCredential> m_mqttCredential;
         };
 
-        enum FailureHandlingPolicy
+        /**
+         * enum FailureHandlingPolicy
+         */
+        enum AWS_GREENGRASSCOREIPC_API FailureHandlingPolicy
         {
             FAILURE_HANDLING_POLICY_ROLLBACK,
             FAILURE_HANDLING_POLICY_DO_NOTHING

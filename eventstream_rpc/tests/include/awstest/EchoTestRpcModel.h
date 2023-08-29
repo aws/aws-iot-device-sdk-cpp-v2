@@ -73,6 +73,9 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::String> m_value;
     };
 
+    /**
+     * enum FruitEnum
+     */
     enum AWS_ECHOTESTRPC_API FruitEnum
     {
         FRUIT_ENUM_APPLE,
