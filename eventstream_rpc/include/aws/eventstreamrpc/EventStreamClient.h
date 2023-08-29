@@ -198,7 +198,7 @@ namespace Aws
             OnMessageFlushCallback m_connectRequestCallback;
         };
 
-        enum AWS_EVENTSTREAMRPC_API EventStreamRpcStatusCode
+        enum EventStreamRpcStatusCode
         {
             EVENT_STREAM_RPC_SUCCESS = 0,
             EVENT_STREAM_RPC_NULL_PARAMETER,
