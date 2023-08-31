@@ -17,8 +17,8 @@ using namespace Aws::Eventstreamrpc;
 
 namespace Awstest
 {
-    class AWS_ECHOTESTRPC_API EchoTestRpcClient;
-    class AWS_ECHOTESTRPC_API EchoTestRpcServiceModel;
+    class EchoTestRpcClient;
+    class EchoTestRpcServiceModel;
     class AWS_ECHOTESTRPC_API Product : public AbstractShapeBase
     {
       public:

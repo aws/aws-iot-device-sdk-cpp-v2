@@ -19,8 +19,8 @@ namespace Aws
 {
     namespace Greengrass
     {
-        class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcClient;
-        class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcServiceModel;
+        class GreengrassCoreIpcClient;
+        class GreengrassCoreIpcServiceModel;
         class AWS_GREENGRASSCOREIPC_API UserProperty : public AbstractShapeBase
         {
           public:
