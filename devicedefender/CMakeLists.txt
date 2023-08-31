@@ -58,9 +58,7 @@ else ()
     target_compile_options(IotDeviceDefender-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(IotDeviceDefender-cpp PRIVATE "-DDEBUG_BUILD")
-endif ()
+target_compile_definitions(IotDeviceDefender-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotDeviceDefender-cpp PUBLIC "-DAWS_IOTDEVICEDEFENDER_USE_IMPORT_EXPORT")

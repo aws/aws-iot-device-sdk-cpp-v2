@@ -64,10 +64,7 @@ if (MSVC)
     target_compile_options(GreengrassIpc-cpp PRIVATE /bigobj)
 endif ()
 
-
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(GreengrassIpc-cpp PRIVATE "-DDEBUG_BUILD")
-endif ()
+target_compile_definitions(GreengrassIpc-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(GreengrassIpc-cpp PUBLIC "-DAWS_GREENGRASSIPC_USE_IMPORT_EXPORT")

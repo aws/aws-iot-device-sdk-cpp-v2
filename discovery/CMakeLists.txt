@@ -57,9 +57,7 @@ else ()
     target_compile_options(Discovery-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(Discovery-cpp PRIVATE "-DDEBUG_BUILD")
-endif ()
+target_compile_definitions(Discovery-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(Discovery-cpp PUBLIC "-DAWS_DISCOVERY_USE_IMPORT_EXPORT")
