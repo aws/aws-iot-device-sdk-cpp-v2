@@ -146,7 +146,7 @@ namespace Aws
         /**
          * Configuration structure holding all configurations relating to eventstream RPC connection establishment
          */
-        class ConnectionConfig
+        class AWS_EVENTSTREAMRPC_API ConnectionConfig
         {
           public:
             ConnectionConfig() noexcept : m_clientBootstrap(nullptr), m_connectRequestCallback(nullptr) {}
@@ -215,7 +215,7 @@ namespace Aws
             EVENT_STREAM_RPC_CRT_ERROR
         };
 
-        struct RpcError
+        struct AWS_EVENTSTREAMRPC_API RpcError
         {
             EventStreamRpcStatusCode baseStatus;
             int crtError;
@@ -256,7 +256,7 @@ namespace Aws
         };
 
         /* User data passed to callbacks for a new stream. */
-        class ContinuationCallbackData
+        class AWS_EVENTSTREAMRPC_API ContinuationCallbackData
         {
           public:
             ContinuationCallbackData(

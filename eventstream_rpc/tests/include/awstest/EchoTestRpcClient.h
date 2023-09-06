@@ -14,13 +14,13 @@ using namespace Aws::Eventstreamrpc;
 
 namespace Awstest
 {
-    class DefaultConnectionConfig : public ConnectionConfig
+    class AWS_ECHOTESTRPC_API DefaultConnectionConfig : public ConnectionConfig
     {
       public:
         DefaultConnectionConfig() noexcept;
     };
 
-    class EchoTestRpcClient
+    class AWS_ECHOTESTRPC_API EchoTestRpcClient
     {
       public:
         EchoTestRpcClient(

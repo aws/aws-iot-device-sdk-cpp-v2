@@ -309,6 +309,18 @@ jobs:
         cd ${{ env.CI_FOLDER }}
         echo "Starting to run AppVerifier with cycle pub-sub sample"
         python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\pub_sub\cycle_pub_sub\RelWithDebInfo\cycle-pub-sub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/CyclePubSub/cert' --sample_secret_private_key 'ci/CyclePubSub/key'
+  windows-shared-lib:
+    runs-on: windows-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          md ${{ env.CI_FOLDER }}
+          cd ${{ env.CI_FOLDER }}
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBUILD_SHARED_LIBS=ON
+
   osx:
     runs-on: macos-latest
     permissions:
