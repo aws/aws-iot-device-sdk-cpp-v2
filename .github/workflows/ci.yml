@@ -39,7 +39,7 @@ env:
 
 jobs:
   osx:
-    runs-on: macos-11
+    runs-on: macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
       security-events: write # This is required for pkcs12 sample to sign the key
