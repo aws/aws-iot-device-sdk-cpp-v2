@@ -321,6 +321,11 @@ namespace Aws
             {
                 std::promise<RpcError> errorPromise;
                 errorPromise.set_value({baseError, 0});
+                if (baseError == EVENT_STREAM_RPC_NULL_PARAMETER)
+                {
+                    const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
+                    m_clientState = DISCONNECTED;
+                }
                 return errorPromise.get_future();
             }
 
@@ -353,6 +358,8 @@ namespace Aws
                     "A CRT error occurred while attempting to establish the connection: %s",
                     Crt::ErrorDebugString(crtError));
                 errorPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, crtError});
+                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
+                m_clientState = DISCONNECTED;
                 return errorPromise.get_future();
             }
             else
