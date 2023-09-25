@@ -59,6 +59,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run PKCS12 sample
         run: |
+          pwd
           echo "aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12"
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
           echo "pkcs12_identity_name"
