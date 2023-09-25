@@ -39,7 +39,7 @@ env:
 
 jobs:
   osx:
-    runs-on: macos-latest
+    runs-on: macos-11
     permissions:
       id-token: write # This is required for requesting the JWT
       security-events: write # This is required for pkcs12 sample to sign the key
@@ -61,6 +61,7 @@ jobs:
         run: |
           pwd
           echo "aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12"
+          echo "Copy PKCS12 identity cert from s3 bucket to local filesystem"
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
           echo "pkcs12_identity_name"
           pkcs12_identity_name=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
