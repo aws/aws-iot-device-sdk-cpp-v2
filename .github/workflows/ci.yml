@@ -85,6 +85,7 @@ jobs:
           security import pkcs12_identity.p12 -A -k build.keychain -f pkcs12 -P $pkcs12_identity_password -T /usr/bin/codesign -T /usr/bin/security
           echo "security set-key-partition-list"
           security set-key-partition-list -S 'apple-tool:,apple:' -k test_password build.keychain
+          security find-identity -p codesigning -v
           echo "/usr/bin/codesign --force"
           /usr/bin/codesign --force -s $pkcs12_identity_name ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
           echo "Running python3 script"
