@@ -26,11 +26,9 @@ namespace Aws
         {
         }
 
-
         IotIdentityClient::IotIdentityClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
         {
             m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
-
         }
 
         IotIdentityClient::operator bool() const noexcept { return m_connection && *m_connection; }

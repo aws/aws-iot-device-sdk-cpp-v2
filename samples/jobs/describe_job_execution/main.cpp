@@ -65,8 +65,6 @@ int main(int argc, char *argv[])
 
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
-    std::promise<void> disconnectPromise;
-    std::promise<bool> subscribeSuccess;
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
@@ -82,21 +80,16 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionPromise.set_value(false);
     });
-    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
-        fprintf(stdout, "Mqtt5 Client stopped.\n");
-        stoppedPromise.set_value();
-    });
-    builder->WithClientAttemptingConnectCallback([](const Mqtt5::OnAttemptingConnectEventData &) {
-        fprintf(stdout, "Mqtt5 Client attempting connection...\n");
-    });
-    builder->WithClientDisconnectionCallback([&disconnectPromise](const Mqtt5::OnDisconnectionEventData &eventData) {
-        fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
-        disconnectPromise.set_value();
-    });
+    builder->WithClientStoppedCallback(
+        [&stoppedPromise](const Mqtt5::OnStoppedEventData &)
+        {
+            fprintf(stdout, "Mqtt5 Client stopped.\n");
+            stoppedPromise.set_value();
+        });
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-
+    delete builder;
     /************************ Run the sample ****************************/
 
     fprintf(stdout, "Connecting...\n");
