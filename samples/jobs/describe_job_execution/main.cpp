@@ -6,8 +6,9 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/io/HostResolver.h>
 
-#include <aws/iot/MqttClient.h>
+#include <aws/crt/mqtt/Mqtt5Client.h>
 #include <aws/iot/Mqtt5Client.h>
+#include <aws/iot/MqttClient.h>
 
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>
