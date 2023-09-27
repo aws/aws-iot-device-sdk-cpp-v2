@@ -6,7 +6,7 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/io/HostResolver.h>
 
-#include <aws/crt/mqtt/Mqtt5Client.h>
+#include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 #include <aws/iot/MqttClient.h>
 
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Connecting...\n");
     if (!client->Start())
     {
-        fprintf(stderr, "MQTT5 Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
+        fprintf(stderr, "MQTT5 Connection failed to start");
         exit(-1);
     }
 
