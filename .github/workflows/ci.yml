@@ -520,6 +520,9 @@ jobs:
       - name: run Jobs sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_cfg.json
+      - name: run Mqtt5 Jobs sample
+        run: |
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v1
         with:
