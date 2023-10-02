@@ -300,6 +300,19 @@ namespace Aws
             m_cancellationUserdata = nullptr;
         }
 
+        ReportTaskBuilder::ReportTaskBuilder(
+            Crt::Allocator *allocator,
+            std::shared_ptr<Crt::Mqtt5::Mqtt5Client> mqtt5Client,
+            Crt::Io::EventLoopGroup &eventLoopGroup,
+            const Crt::String &thingName)
+            : ReportTaskBuilder(
+                  allocator,
+                  Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client),
+                  eventLoopGroup,
+                  thingName)
+        {
+        }
+
         ReportTaskBuilder &ReportTaskBuilder::WithReportFormat(ReportFormat reportFormat) noexcept
         {
             m_reportFormat = reportFormat;

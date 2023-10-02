@@ -7,6 +7,7 @@
 #include <aws/iotdevicedefender/Exports.h>
 
 #include <aws/crt/io/EventLoopGroup.h>
+#include <aws/crt/mqtt/Mqtt5Client.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
 #include <aws/iotdevice/device_defender.h>
@@ -171,6 +172,12 @@ namespace Aws
             ReportTaskBuilder(
                 Crt::Allocator *allocator,
                 std::shared_ptr<Crt::Mqtt::MqttConnection> mqttConnection,
+                Crt::Io::EventLoopGroup &eventLoopGroup,
+                const Crt::String &thingName);
+
+            ReportTaskBuilder(
+                Crt::Allocator *allocator,
+                std::shared_ptr<Crt::Mqtt5::Mqtt5Client> mqtt5Client,
                 Crt::Io::EventLoopGroup &eventLoopGroup,
                 const Crt::String &thingName);
 
