@@ -11,6 +11,7 @@
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
+#include <aws/crt/mqtt/Mqtt5Client.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
 namespace Aws
@@ -80,6 +81,7 @@ namespace Aws
         {
           public:
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
+            IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
 
             operator bool() const noexcept;
             int GetLastError() const noexcept;
