@@ -534,6 +534,12 @@ jobs:
           Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_cfg.json --input_uuid ${Sample_UUID}
           python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
+      - name: run Mqtt5 Fleet Provisioning sample
+        run: |
+          echo "Generating UUID for IoT thing"
+          Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_mqtt5_cfg.json --input_uuid ${Sample_UUID}
+          python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       - name: configure AWS credentials (Secure tunneling)
         uses: aws-actions/configure-aws-credentials@v1
         with:
