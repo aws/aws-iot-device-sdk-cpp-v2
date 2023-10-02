@@ -1,11 +1,21 @@
-/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0.
- *
- * This file is generated
- */
+/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License").
+* You may not use this file except in compliance with the License.
+* A copy of the License is located at
+*
+*  http://aws.amazon.com/apache2.0
+*
+* or in the "license" file accompanying this file. This file is distributed
+* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+* express or implied. See the License for the specific language governing
+* permissions and limitations under the License.
+
+* This file is generated
+*/
 #include <aws/iotsecuretunneling/IotSecureTunnelingClient.h>
 
-#include <aws/iotsecuretunneling/SecureTunnelsNotifyResponse.h>
+#include <aws/iotsecuretunneling/SecureTunnelingNotifyResponse.h>
 #include <aws/iotsecuretunneling/SubscribeToTunnelsNotifyRequest.h>
 
 namespace Aws
@@ -17,12 +27,6 @@ namespace Aws
             const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection)
             : m_connection(connection)
         {
-        }
-
-        IotSecureTunnelingClient::IotSecureTunnelingClient(
-            const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
-        {
-            m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
         }
 
         IotSecureTunnelingClient::operator bool() const noexcept { return m_connection && *m_connection; }
@@ -59,7 +63,7 @@ namespace Aws
                     Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
                     Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
                     Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotsecuretunneling::SecureTunnelsNotifyResponse response(jsonObject);
+                    Aws::Iotsecuretunneling::SecureTunnelingNotifyResponse response(jsonObject);
                     handler(&response, AWS_ERROR_SUCCESS);
                 };
 
