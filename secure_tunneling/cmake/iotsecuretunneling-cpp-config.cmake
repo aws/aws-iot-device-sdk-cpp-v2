@@ -1,3 +1,5 @@
+# This file is generated
+
 include(CMakeFindDependencyMacro)
 
 find_dependency(aws-crt-cpp)
