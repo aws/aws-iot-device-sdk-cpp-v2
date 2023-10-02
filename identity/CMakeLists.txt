@@ -1,10 +1,7 @@
-cmake_minimum_required(VERSION 3.1)
+# This file is generated
 
-project(IotIdentity-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("Identity version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+cmake_minimum_required(VERSION 3.1)
+project(IotIdentity-cpp CXX)
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -57,7 +54,9 @@ else ()
     target_compile_options(IotIdentity-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(IotIdentity-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
+    target_compile_definitions(IotIdentity-cpp PRIVATE "-DDEBUG_BUILD")
+endif ()
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotIdentity-cpp PUBLIC "-DAWS_IOTIDENTITY_USE_IMPORT_EXPORT")
@@ -107,14 +106,6 @@ if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
 else()
     set(TARGET_DIR "static")
-endif()
-
-include(CMakePackageConfigHelpers)
-if (DEFINED SIMPLE_VERSION)
-    write_basic_package_version_file(
-        "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config-version.cmake"
-        COMPATIBILITY SameMajorVersion
-    )
 endif()
 
 install(EXPORT "IotIdentity-cpp-targets"
