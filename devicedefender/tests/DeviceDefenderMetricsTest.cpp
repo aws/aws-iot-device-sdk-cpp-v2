@@ -216,13 +216,14 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
         Aws::Crt::Mqtt5::Mqtt5ClientOptions mqtt5Options(allocator);
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
-        mqtt5Options.WithTlsConnectionOptions(TlsContext.NewConnectionOptions());
+        mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
         std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
             std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
 
-        std::shared_ptr<Mqtt5::Mqtt5Client> mqtt5Client = Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
+            Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -337,13 +338,14 @@ static int s_TestMqtt5DeviceDefenderCustomMetricFail(Aws::Crt::Allocator *alloca
         Aws::Crt::Mqtt5::Mqtt5ClientOptions mqtt5Options(allocator);
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
-        mqtt5Options.WithTlsConnectionOptions(TlsContext.NewConnectionOptions());
+        mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
         std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
             std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
 
-        std::shared_ptr<Mqtt5::Mqtt5Client> mqtt5Client = Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
+            Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;

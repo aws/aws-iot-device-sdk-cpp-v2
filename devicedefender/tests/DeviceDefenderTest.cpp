@@ -180,11 +180,13 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
         Aws::Crt::Mqtt5::Mqtt5ClientOptions mqtt5Options(allocator);
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
-        mqtt5Options.WithTlsConnectionOptions(TlsContext.NewConnectionOptions());
+        mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
         std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
             std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
+        std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
+            Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -264,13 +266,14 @@ static int s_TestMqtt5DeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, v
         Aws::Crt::Mqtt5::Mqtt5ClientOptions mqtt5Options(allocator);
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
-        mqtt5Options.WithTlsConnectionOptions(TlsContext.NewConnectionOptions());
+        mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
         std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
             std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
 
-        std::shared_ptr<Mqtt5::Mqtt5Client> mqtt5Client = Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
+            Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
 
         const Aws::Crt::String thingName("TestThing");
         Aws::Crt::String data("TestData");
