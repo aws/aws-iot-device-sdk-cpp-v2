@@ -181,8 +181,6 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
         mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
-        std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
-            std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
         std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
@@ -267,8 +265,6 @@ static int s_TestMqtt5DeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, v
         mqtt5Options.WithBootstrap(&clientBootstrap);
         mqtt5Options.WithSocketOptions(socketOptions);
         mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
-        std::shared_ptr<Aws::Crt::Mqtt5::ConnectPacket> packetConnect =
-            std::make_shared<Aws::Crt::Mqtt5::ConnectPacket>();
         mqtt5Options.WithHostName("www.example.come");
         mqtt5Options.WithPort(443);
 
