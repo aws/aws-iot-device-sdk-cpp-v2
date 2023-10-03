@@ -16,7 +16,9 @@ class BuildSamples(Builder.Action):
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
             'samples/fleet_provisioning/fleet_provisioning',
+            'samples/fleet_provisioning/mqtt5_fleet_provisioning',
             'samples/jobs/describe_job_execution',
+            'samples/jobs/mqtt5_describe_job_execution',
             'samples/mqtt/basic_connect',
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/pkcs11_connect',
@@ -33,6 +35,7 @@ class BuildSamples(Builder.Action):
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
             'samples/shadow/shadow_sync',
+            'samples/shadow/mqtt5_shadow_sync',
         ]
 
         defender_samples = []
