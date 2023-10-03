@@ -48,7 +48,7 @@ cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 Change directory to the `aws-iot-device-sdk-cpp-v2/samples` directory and then run the following commands:
 
 ```sh
-cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" .
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>"
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
