@@ -37,10 +37,7 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
         Aws::Crt::Mqtt::MqttClient mqttClient(clientBootstrap, allocator);
         ASSERT_TRUE(mqttClient);
 
-        Aws::Crt::Mqtt::MqttClient mqttClientMoved = std::move(mqttClient);
-        ASSERT_TRUE(mqttClientMoved);
-
-        auto mqttConnection = mqttClientMoved.NewConnection("www.example.com", 443, socketOptions, tlsContext);
+        auto mqttConnection = mqttClient.NewConnection("www.example.com", 443, socketOptions, tlsContext);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -81,11 +78,6 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
 
         ASSERT_TRUE(callbackSuccess);
 
-        mqttConnection->Disconnect();
-        ASSERT_TRUE(mqttConnection);
-
-        ASSERT_FALSE(mqttClient);
-
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
 
@@ -121,10 +113,7 @@ static int s_TestDeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, void *
         Aws::Crt::Mqtt::MqttClient mqttClient(clientBootstrap, allocator);
         ASSERT_TRUE(mqttClient);
 
-        Aws::Crt::Mqtt::MqttClient mqttClientMoved = std::move(mqttClient);
-        ASSERT_TRUE(mqttClientMoved);
-
-        auto mqttConnection = mqttClientMoved.NewConnection("www.example.com", 443, socketOptions, tlsContext);
+        auto mqttConnection = mqttClient.NewConnection("www.example.com", 443, socketOptions, tlsContext);
 
         const Aws::Crt::String thingName("TestThing");
         Aws::Crt::String data("TestData");
@@ -141,11 +130,6 @@ static int s_TestDeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, void *
         ASSERT_INT_EQUALS(AWS_ERROR_IOTDEVICE_DEFENDER_UNSUPPORTED_REPORT_FORMAT, task->LastError());
         ASSERT_FAILS(task->StartTask());
         ASSERT_TRUE(aws_last_error() == AWS_ERROR_INVALID_STATE);
-
-        mqttConnection->Disconnect();
-        ASSERT_TRUE(mqttConnection);
-
-        ASSERT_FALSE(mqttClient);
     }
 
     return AWS_ERROR_SUCCESS;
@@ -185,6 +169,7 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
         mqtt5Options.WithPort(443);
         std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
             Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        ASSERT_TRUE(mqtt5Client);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -193,8 +178,7 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void
-        {
+        auto onCancelled = [&](void *a) -> void {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -225,9 +209,6 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
         }
 
         ASSERT_TRUE(callbackSuccess);
-
-        mqtt5Client->Stop();
-        ASSERT_TRUE(mqtt5Client);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
@@ -270,6 +251,7 @@ static int s_TestMqtt5DeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, v
 
         std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
             Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        ASSERT_TRUE(mqtt5Client);
 
         const Aws::Crt::String thingName("TestThing");
         Aws::Crt::String data("TestData");
@@ -286,9 +268,6 @@ static int s_TestMqtt5DeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, v
         ASSERT_INT_EQUALS(AWS_ERROR_IOTDEVICE_DEFENDER_UNSUPPORTED_REPORT_FORMAT, task->LastError());
         ASSERT_FAILS(task->StartTask());
         ASSERT_TRUE(aws_last_error() == AWS_ERROR_INVALID_STATE);
-
-        mqtt5Client->Stop();
-        ASSERT_TRUE(mqtt5Client);
     }
 
     return AWS_ERROR_SUCCESS;

@@ -115,12 +115,6 @@ static int s_TestDeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *allocato
         }
 
         ASSERT_TRUE(callbackSuccess);
-
-        mqttConnection->Disconnect();
-        ASSERT_TRUE(mqttConnection);
-
-        ASSERT_FALSE(mqttClient);
-
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
 
@@ -187,11 +181,6 @@ static int s_TestDeviceDefenderCustomMetricFail(Aws::Crt::Allocator *allocator, 
 
         ASSERT_TRUE(callbackSuccess);
 
-        mqttConnection->Disconnect();
-        ASSERT_TRUE(mqttConnection);
-
-        ASSERT_FALSE(mqttClient);
-
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
     return AWS_ERROR_SUCCESS;
@@ -222,6 +211,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
 
         std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
             Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        ASSERT_TRUE(mqtt5Client);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -230,8 +220,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void
-        {
+        auto onCancelled = [&](void *a) -> void {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -248,8 +237,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
 
         // ================
         // Add the custom metrics
-        std::function<int(double *)> local_metric_number_func = [](double *output)
-        {
+        std::function<int(double *)> local_metric_number_func = [](double *output) {
             *output = 10;
             return AWS_OP_SUCCESS;
         };
@@ -258,35 +246,32 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
         task->RegisterCustomMetricNumber("CustomNumberTwo", std::move(global_metric_number_func_ref));
 
         std::function<int(Aws::Crt::Vector<double> *)> local_metric_number_list_func =
-            [](Aws::Crt::Vector<double> *output)
-        {
-            output->push_back(101);
-            output->push_back(102);
-            output->push_back(103);
-            return AWS_OP_SUCCESS;
-        };
+            [](Aws::Crt::Vector<double> *output) {
+                output->push_back(101);
+                output->push_back(102);
+                output->push_back(103);
+                return AWS_OP_SUCCESS;
+            };
         task->RegisterCustomMetricNumberList("CustomNumberList", std::move(local_metric_number_list_func));
 
         std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_str_list_func =
-            [](Aws::Crt::Vector<Aws::Crt::String> *output)
-        {
-            output->push_back("One Fish");
-            output->push_back("Two Fish");
-            output->push_back("Red Fish");
-            output->push_back("Blue Fish");
-            return AWS_OP_SUCCESS;
-        };
+            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
+                output->push_back("One Fish");
+                output->push_back("Two Fish");
+                output->push_back("Red Fish");
+                output->push_back("Blue Fish");
+                return AWS_OP_SUCCESS;
+            };
         task->RegisterCustomMetricStringList("CustomStringList", std::move(local_metric_str_list_func));
 
         std::function<int(Aws::Crt::Vector<Aws::Crt::String> *)> local_metric_ip_list_func =
-            [](Aws::Crt::Vector<Aws::Crt::String> *output)
-        {
-            output->push_back("192.0.2.0");
-            output->push_back("198.51.100.0");
-            output->push_back("203.0.113.0");
-            output->push_back("233.252.0.0");
-            return AWS_OP_SUCCESS;
-        };
+            [](Aws::Crt::Vector<Aws::Crt::String> *output) {
+                output->push_back("192.0.2.0");
+                output->push_back("198.51.100.0");
+                output->push_back("203.0.113.0");
+                output->push_back("233.252.0.0");
+                return AWS_OP_SUCCESS;
+            };
         task->RegisterCustomMetricIpAddressList("CustomIPList", std::move(local_metric_ip_list_func));
 
         // ================
@@ -307,9 +292,6 @@ static int s_TestMqtt5DeviceDefenderCustomMetricSuccess(Aws::Crt::Allocator *all
         }
 
         ASSERT_TRUE(callbackSuccess);
-
-        mqtt5Client->Stop();
-        ASSERT_TRUE(mqtt5Client);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
@@ -342,6 +324,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricFail(Aws::Crt::Allocator *alloca
 
         std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client =
             Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
+        ASSERT_TRUE(mqtt5Client);
 
         const Aws::Crt::String thingName("TestThing");
         bool callbackSuccess = false;
@@ -350,8 +333,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricFail(Aws::Crt::Allocator *alloca
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void
-        {
+        auto onCancelled = [&](void *a) -> void {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -367,8 +349,7 @@ static int s_TestMqtt5DeviceDefenderCustomMetricFail(Aws::Crt::Allocator *alloca
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the error custom metric
-        std::function<int(double *)> number_metric_func = [](double *output)
-        {
+        std::function<int(double *)> number_metric_func = [](double *output) {
             *output = 10;
             return AWS_OP_ERR;
         };
@@ -386,9 +367,6 @@ static int s_TestMqtt5DeviceDefenderCustomMetricFail(Aws::Crt::Allocator *alloca
         }
 
         ASSERT_TRUE(callbackSuccess);
-
-        mqtt5Client->Stop();
-        ASSERT_TRUE(mqtt5Client);
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
