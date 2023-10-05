@@ -59,7 +59,7 @@ else ()
     target_compile_options(IotIdentity-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(IotIdentity-cpp $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotIdentity-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotIdentity-cpp PUBLIC "-DAWS_IOTIDENTITY_USE_IMPORT_EXPORT")
