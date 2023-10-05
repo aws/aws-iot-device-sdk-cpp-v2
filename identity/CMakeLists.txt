@@ -59,9 +59,7 @@ else ()
     target_compile_options(IotIdentity-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(IotIdentity-cpp PRIVATE "-DDEBUG_BUILD")
-endif ()
+target_compile_definitions(IotIdentity-cpp $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotIdentity-cpp PUBLIC "-DAWS_IOTIDENTITY_USE_IMPORT_EXPORT")
