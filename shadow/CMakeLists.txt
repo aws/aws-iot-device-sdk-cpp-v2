@@ -59,7 +59,7 @@ else ()
     target_compile_options(IotShadow-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(IotShadow-cpp $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotShadow-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotShadow-cpp PUBLIC "-DAWS_IOTSHADOW_USE_IMPORT_EXPORT")
