@@ -59,9 +59,7 @@ else ()
     target_compile_options(IotJobs-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(IotJobs-cpp PRIVATE "-DDEBUG_BUILD")
-endif ()
+target_compile_definitions(IotJobs-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
     target_compile_definitions(IotJobs-cpp PUBLIC "-DAWS_IOTJOBS_USE_IMPORT_EXPORT")

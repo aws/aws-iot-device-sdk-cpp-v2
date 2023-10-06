@@ -38,6 +38,11 @@ namespace Aws
         {
         }
 
+        IotShadowClient::IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
+        {
+            m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
+        }
+
         IotShadowClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
         int IotShadowClient::GetLastError() const noexcept { return aws_last_error(); }
