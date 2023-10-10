@@ -30,9 +30,6 @@ mkdir sdk-workspace
 cd sdk-workspace
 # Clone the repository
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
-# Ensure all submodules are properly updated
-cd aws-iot-device-sdk-cpp-v2
-cd ..
 # Make a build directory for the SDK. Can use any name.
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
