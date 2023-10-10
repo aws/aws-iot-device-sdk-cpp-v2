@@ -32,10 +32,8 @@ cd sdk-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 # Ensure all submodules are properly updated
 cd aws-iot-device-sdk-cpp-v2
-git submodule update --init --recursive
 cd ..
 # Make a build directory for the SDK. Can use any name.
-# If working with multiple SDKs, using a SDK-specific name is helpful.
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 # continue with the build steps below based on OS
@@ -96,7 +94,7 @@ Please make sure to check out our resources too before opening an issue:
 
 * [FAQ](./documents/FAQ.md)
 * [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
-* [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
+* [IoT Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
 * Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 * [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
 * [Dev Blog](https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform)
@@ -104,6 +102,7 @@ Please make sure to check out our resources too before opening an issue:
 [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
 and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 is provided by code that been generated from a model of the service.
+* [Secure Tunnel User Guide](./documents/Secure_Tunnel_Userguide.md)
 * [Contributions Guidelines](./documents/CONTRIBUTING.md)
 
 ## License
