@@ -33,6 +33,11 @@ namespace Aws
         {
         }
 
+        IotJobsClient::IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
+        {
+            m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
+        }
+
         IotJobsClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
         int IotJobsClient::GetLastError() const noexcept { return aws_last_error(); }
