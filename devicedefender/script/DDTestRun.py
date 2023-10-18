@@ -44,9 +44,9 @@ thing_arn = None
 client_made_thing = False
 client_made_policy = False
 use_mqtt5 = False
-if len(sys.argv) > 0 and sys.argv[1] == "mqtt5":
-    use_mqtt5 = True
-    print("Run Device Defender using Mqtt5")
+if len(sys.argv) > 1:
+    use_mqtt5 = (sys.argv[1] == "mqtt5")
+    print("Run Device Defender with Mqtt5 Client")
 
 ##############################################
 # create a test thing
@@ -227,7 +227,7 @@ try:
 
     print("[Device Defender]Info: Running sample (this should take ~60 seconds).")
 
-    if use_mqtt5 is "mqtt5":
+    if use_mqtt5:
         # Run the sample:
         exe_path = "build/samples/device_defender/basic_report/"
         # If running locally, comment out the line above and uncomment the line below:
