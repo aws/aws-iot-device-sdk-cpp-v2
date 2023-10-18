@@ -7,8 +7,8 @@
 #include <aws/crt/auth/Credentials.h>
 #include <aws/crt/io/TlsOptions.h>
 
-#include <aws/iot/Mqtt5Client.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
+#include <aws/iot/Mqtt5Client.h>
 
 #include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
@@ -74,8 +74,8 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
-    auto clientConfigBuilder =
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    auto clientConfigBuilder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
     if (cmdData.input_ca != "")
     {
         clientConfigBuilder->WithCertificateAuthority(cmdData.input_ca.c_str());
@@ -99,13 +99,11 @@ int main(int argc, char *argv[])
     // Setup lifecycle callbacks
     clientConfigBuilder->WithClientConnectionSuccessCallback(
         [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
-            fprintf(
-                stdout,
-                "Mqtt5 Client connection succeed");
+            fprintf(stdout, "Mqtt5 Client connection succeed");
             connectionPromise.set_value(true);
         });
     clientConfigBuilder->WithClientConnectionFailureCallback([&connectionPromise](
-                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
+                                                                 const Mqtt5::OnConnectionFailureEventData &eventData) {
         fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionPromise.set_value(false);
     });
