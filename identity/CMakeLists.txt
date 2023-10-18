@@ -1,8 +1,10 @@
+# This file is generated
+
 cmake_minimum_required(VERSION 3.1)
 
 project(IotIdentity-cpp LANGUAGES CXX)
 if (DEFINED SIMPLE_VERSION)
-    message("Identity version is ${SIMPLE_VERSION}")
+    message("IotIdentity version is ${SIMPLE_VERSION}")
     set(PROJECT_VERSION ${SIMPLE_VERSION})
 endif()
 
