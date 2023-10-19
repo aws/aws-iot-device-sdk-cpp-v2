@@ -64,7 +64,6 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, "dd_output.log");
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
