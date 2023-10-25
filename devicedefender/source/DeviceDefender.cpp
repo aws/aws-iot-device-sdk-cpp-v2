@@ -307,7 +307,7 @@ namespace Aws
             const Crt::String &thingName)
             : ReportTaskBuilder(
                   allocator,
-                  Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client),
+                  Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(std::move(mqtt5Client)),
                   eventLoopGroup,
                   thingName)
         {

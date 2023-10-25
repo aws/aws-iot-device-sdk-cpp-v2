@@ -66,13 +66,13 @@ This sample expects and requires the following custom metrics:
 To run the Device Defender sample, use the following command:
 
 ``` sh
-./basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --ca_file <path to root CA>
+./mqtt5-basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --ca_file <path to root CA>
 ```
 
 You can also pass a Certificate Authority file (CA) if your certificate and key combination requires it:
 
 ``` sh
-./basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --ca_file <path to root CA>
+./mqtt5-basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --ca_file <path to root CA>
 ```
 
 ### Device Defender Data Requirements
