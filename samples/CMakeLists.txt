@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.1)
 project(aws-iot-device-sdk-cpp-v2-samples)
 
 add_subdirectory(device_defender/basic_report)
+add_subdirectory(device_defender/mqtt5_basic_report)
 add_subdirectory(greengrass/ipc)
 add_subdirectory(greengrass/basic_discovery)
 add_subdirectory(fleet_provisioning/fleet_provisioning)

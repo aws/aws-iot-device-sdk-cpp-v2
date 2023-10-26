@@ -19,6 +19,7 @@
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)
 * [Device Defender](./device_defender/basic_report/README.md)
+* [Mqtt5 Device Defender](./device_defender/mqtt5_basic_report/README.md)
 * [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
 
 ## Build Instruction
