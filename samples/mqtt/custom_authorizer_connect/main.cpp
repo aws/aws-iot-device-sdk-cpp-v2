@@ -32,7 +32,9 @@ int main(int argc, char *argv[])
         cmdData.input_customAuthUsername,
         cmdData.input_customAuthorizerName,
         cmdData.input_customAuthorizerSignature,
-        cmdData.input_customAuthPassword);
+        cmdData.input_customAuthPassword,
+        cmdData.input_customAuthTokenKeyName,
+        cmdData.input_customAuthTokenValue);
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();

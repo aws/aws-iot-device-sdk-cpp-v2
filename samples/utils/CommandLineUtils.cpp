@@ -40,6 +40,8 @@ namespace Utils
     static const char *m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
     static const char *m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
     static const char *m_cmd_custom_auth_password = "custom_auth_password";
+    static const char *m_cmd_custom_auth_token_key_name = "custom_auth_token_key_name";
+    static const char *m_cmd_custom_auth_token_value = "custom_auth_token_value";
     static const char *m_cmd_verbosity = "verbosity";
     static const char *m_cmd_log_file = "log_file";
     static const char *m_cmd_cognito_identity = "cognito_identity";
@@ -260,11 +262,19 @@ namespace Utils
         RegisterCommand(
             m_cmd_custom_auth_authorizer_signature,
             "<str>",
-            "The signature to send when connecting through a custom authorizer (optional)");
+            "(Signed authorizers only) a digital signature of the value of the `--custom_auth_token_value` parameter using the private key associated with the authorizer.  The binary signature value must be base64 encoded and then URI encoded; the SDK will not do this for you. (optional)");
         RegisterCommand(
             m_cmd_custom_auth_password,
             "<str>",
             "The password to send when connecting through a custom authorizer (optional)");
+        RegisterCommand(
+            m_cmd_custom_auth_token_key_name,
+            "<str>",
+            "(Signed authorizers only) The query string parameter name that the token value should be bound to in the MQTT Connect packet. (optional)");
+        RegisterCommand(
+            m_cmd_custom_auth_token_value,
+            "<str>",
+            "(Signed authorizers only) An arbitrary value chosen by the user.  The user must also submit a digital signature of this value using the private key associated with the authorizer. (optional)");
     }
 
     void CommandLineUtils::AddCognitoCommands()
@@ -612,6 +622,8 @@ namespace Utils
         returnData.input_customAuthorizerSignature =
             cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_authorizer_signature, "");
         returnData.input_customAuthPassword = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_password, "");
+        returnData.input_customAuthTokenKeyName = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_token_key_name, "");
+        returnData.input_customAuthTokenValue = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_token_value, "");
         return returnData;
     }
 

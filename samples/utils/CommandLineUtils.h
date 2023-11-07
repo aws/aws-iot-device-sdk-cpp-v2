@@ -228,6 +228,8 @@ namespace Utils
         Aws::Crt::String input_customAuthorizerName;
         Aws::Crt::String input_customAuthorizerSignature;
         Aws::Crt::String input_customAuthPassword;
+        Aws::Crt::String input_customAuthTokenKeyName;
+        Aws::Crt::String input_customAuthTokenValue;
         // Fleet provisioning
         Aws::Crt::String input_templateName;
         Aws::Crt::String input_templateParameters;
