@@ -262,7 +262,9 @@ namespace Utils
         RegisterCommand(
             m_cmd_custom_auth_authorizer_signature,
             "<str>",
-            "(Signed authorizers only) a digital signature of the value of the `--custom_auth_token_value` parameter using the private key associated with the authorizer.  The binary signature value must be base64 encoded and then URI encoded; the SDK will not do this for you. (optional)");
+            "(Signed authorizers only) a digital signature of the value of the `--custom_auth_token_value` parameter "
+            "using the private key associated with the authorizer.  The binary signature value must be base64 encoded "
+            "and then URI encoded; the SDK will not do this for you. (optional)");
         RegisterCommand(
             m_cmd_custom_auth_password,
             "<str>",
@@ -270,11 +272,13 @@ namespace Utils
         RegisterCommand(
             m_cmd_custom_auth_token_key_name,
             "<str>",
-            "(Signed authorizers only) The query string parameter name that the token value should be bound to in the MQTT Connect packet. (optional)");
+            "(Signed authorizers only) The query string parameter name that the token value should be bound to in the "
+            "MQTT Connect packet. (optional)");
         RegisterCommand(
             m_cmd_custom_auth_token_value,
             "<str>",
-            "(Signed authorizers only) An arbitrary value chosen by the user.  The user must also submit a digital signature of this value using the private key associated with the authorizer. (optional)");
+            "(Signed authorizers only) An arbitrary value chosen by the user.  The user must also submit a digital "
+            "signature of this value using the private key associated with the authorizer. (optional)");
     }
 
     void CommandLineUtils::AddCognitoCommands()
