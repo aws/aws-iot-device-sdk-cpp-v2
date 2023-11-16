@@ -5,6 +5,13 @@
 * [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
+
+* [Websocket Connect](./mqtt/websocket_connect/README_custom_auth.md)
+* [Websocket Connect](./mqtt/websocket_connect/README_username_password.md)
+* [Websocket Connect](./mqtt/websocket_connect/README_proxy.md)
+* [Websocket Connect](./mqtt/websocket_connect/README_static_credentials.md)
+
+
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
 * [PKCS#12 Connect](./mqtt/pkcs12_connect/README.md)
 * [x509 Credentials Provider Connect](./mqtt/x509_credentials_provider_connect/README.md)
