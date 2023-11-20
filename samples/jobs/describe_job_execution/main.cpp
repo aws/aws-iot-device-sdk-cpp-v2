@@ -304,14 +304,20 @@ int main(int argc, char *argv[])
                     subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscribeHandler, subAckHandler);
                 subAckedPromise.get_future().wait();
 
+                jobsClient.SubscribeToUpdateJobExecutionRejected(
+                    subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+                subAckedPromise.get_future().wait();
+
                 UpdateJobExecutionRequest publishRequest;
                 publishRequest.ThingName = cmdData.input_thingName;
                 publishRequest.JobId = currentJobId;
                 publishRequest.ExecutionNumber = currentExecutionNumber;
                 publishRequest.Status = JobStatus::SUCCEEDED;
                 publishRequest.ExpectedVersion = currentVersionNumber++;
+
                 jobsClient.PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-                publishDescribeJobExeCompletedPromise.get_future().wait();
+
+                //                publishDescribeJobExeCompletedPromise.get_future().wait();
 
                 pendingExecutionPromise.get_future().wait();
             }
