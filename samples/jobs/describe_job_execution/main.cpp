@@ -207,14 +207,14 @@ int main(int argc, char *argv[])
 
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-                    [&](StartNextJobExecutionResponse *response, int ioErr) {
+                        [&](StartNextJobExecutionResponse *response, int ioErr) {
                     fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
                     currentJobId = response->Execution->JobId.value();
                     currentExecutionNumber = response->Execution->ExecutionNumber.value();
                     currentVersionNumber = response->Execution->VersionNumber.value();
 
                     pendingExecutionPromise.set_value();
-                };
+                    };
 
                 StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
                 subscriptionRequest.ThingName = cmdData.input_thingName;
@@ -245,8 +245,8 @@ int main(int argc, char *argv[])
 
             {
                 pendingExecutionPromise = std::promise<void>();
-                auto OnSubscribeToUpdateJobExecutionAcceptedResponse =
-                    [&](UpdateJobExecutionResponse *response, int iotErr) {
+                auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [&](UpdateJobExecutionResponse *response,
+                                                                           int iotErr) {
                     fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
