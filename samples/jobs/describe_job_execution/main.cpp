@@ -207,13 +207,13 @@ int main(int argc, char *argv[])
 
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-                        [&](StartNextJobExecutionResponse *response, int ioErr) {
-                    fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                    currentJobId = response->Execution->JobId.value();
-                    currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                    currentVersionNumber = response->Execution->VersionNumber.value();
+                    [&](StartNextJobExecutionResponse *response, int ioErr) {
+                        fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                        currentJobId = response->Execution->JobId.value();
+                        currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                        currentVersionNumber = response->Execution->VersionNumber.value();
 
-                    pendingExecutionPromise.set_value();
+                        pendingExecutionPromise.set_value();
                     };
 
                 StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
