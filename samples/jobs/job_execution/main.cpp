@@ -270,7 +270,6 @@ int main(int argc, char *argv[])
                 publishDescribeJobExeCompletedPromise = std::promise<void>();
                 jobsClient.PublishStartNextPendingJobExecution(
                     publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-
                 pendingExecutionPromise.get_future().wait();
             }
 
