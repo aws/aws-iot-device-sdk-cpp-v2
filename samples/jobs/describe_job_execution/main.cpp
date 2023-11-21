@@ -88,8 +88,7 @@ int main(int argc, char *argv[])
     std::promise<void> connectionClosedPromise;
 
     // Invoked when a MQTT connect has completed or failed
-    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -103,8 +102,7 @@ int main(int argc, char *argv[])
     };
 
     // Invoked when a disconnect has been completed
-    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
@@ -136,13 +134,11 @@ int main(int argc, char *argv[])
          * to be cautious make sure the subscribe has finished before doing the publish.
          */
         std::promise<void> subAckedPromise;
-        auto subAckHandler = [&](int)
-        {
+        auto subAckHandler = [&](int) {
             // if error code returns it will be recorded by the other callback
             subAckedPromise.set_value();
         };
-        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-        {
+        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -160,8 +156,7 @@ int main(int argc, char *argv[])
 
         subAckedPromise = std::promise<void>();
 
-        auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-        {
+        auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -190,8 +185,7 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.ClientToken = uuid.ToString();
         std::promise<void> publishDescribeJobExeCompletedPromise;
 
-        auto publishHandler = [&](int ioErr)
-        {
+        auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -205,8 +199,6 @@ int main(int argc, char *argv[])
 
         if (cmdData.input_isCI == false)
         {
-            // newww
-
             Aws::Crt::String currentJobId;
             int64_t currentExecutionNumber;
             int32_t currentVersionNumber;
@@ -215,8 +207,7 @@ int main(int argc, char *argv[])
 
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-                    [&](StartNextJobExecutionResponse *response, int ioErr)
-                {
+                    [&](StartNextJobExecutionResponse *response, int ioErr) {
                     fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
                     currentJobId = response->Execution->JobId.value();
                     currentExecutionNumber = response->Execution->ExecutionNumber.value();
@@ -255,8 +246,7 @@ int main(int argc, char *argv[])
             {
                 pendingExecutionPromise = std::promise<void>();
                 auto OnSubscribeToUpdateJobExecutionAcceptedResponse =
-                    [&](UpdateJobExecutionResponse *response, int iotErr)
-                {
+                    [&](UpdateJobExecutionResponse *response, int iotErr) {
                     fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
@@ -298,8 +288,9 @@ int main(int argc, char *argv[])
                 subscriptionRequest.ThingName = cmdData.input_thingName;
                 subscriptionRequest.JobId = currentJobId;
 
-                auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr)
-                { pendingExecutionPromise.set_value(); };
+                auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
+                    pendingExecutionPromise.set_value();
+                };
                 jobsClient.SubscribeToUpdateJobExecutionAccepted(
                     subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscribeHandler, subAckHandler);
                 subAckedPromise.get_future().wait();
