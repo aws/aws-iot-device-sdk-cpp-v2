@@ -187,11 +187,16 @@ int main(int argc, char *argv[])
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
                     [&](StartNextJobExecutionResponse *response, int ioErr) {
-                        fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                        currentJobId = response->Execution->JobId.value();
-                        currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                        currentVersionNumber = response->Execution->VersionNumber.value();
-
+			if (ioErr)
+			{
+			    fprintf(stderr, "Error %d occurred\n", ioErr);
+			}
+                        if (response) {
+                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                            currentJobId = response->Execution->JobId.value();
+                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                            currentVersionNumber = response->Execution->VersionNumber.value();
+                        }
                         pendingExecutionPromise.set_value();
                     };
 
@@ -269,6 +274,10 @@ int main(int argc, char *argv[])
                 subscriptionRequest.JobId = currentJobId;
 
                 auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
+                    (void) response;
+                    if (ioErr) {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                    }
                     fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
