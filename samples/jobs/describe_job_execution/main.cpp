@@ -41,8 +41,6 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API
     ApiHandle apiHandle;
 
-    Aws::Crt::Vector<Aws::Crt::Optional<Aws::Crt::String>> availableJobs;
-
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
      * use in this sample. This handles all of the command line parsing, validating, etc.
