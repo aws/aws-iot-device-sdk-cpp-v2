@@ -621,7 +621,7 @@ namespace Utils
             cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_authorizer_signature, "");
         returnData.input_customAuthPassword = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_password, "");
         returnData.input_customTokenKeyName = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_token_name, "");
-        returnData.input_customTokenValue= cmdUtils.GetCommandOrDefault(m_cmd_custom_token_value, "");
+        returnData.input_customTokenValue = cmdUtils.GetCommandOrDefault(m_cmd_custom_token_value, "");
 
         return returnData;
     }
