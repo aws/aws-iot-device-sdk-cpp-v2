@@ -13,16 +13,16 @@
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>
 #include <aws/iotjobs/DescribeJobExecutionSubscriptionRequest.h>
+#include <aws/iotjobs/GetPendingJobExecutionsResponse.h>
+#include <aws/iotjobs/GetPendingJobExecutionsSubscriptionRequest.h>
 #include <aws/iotjobs/IotJobsClient.h>
+#include <aws/iotjobs/JobExecutionSummary.h>
 #include <aws/iotjobs/RejectedError.h>
 #include <aws/iotjobs/StartNextJobExecutionResponse.h>
 #include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
 #include <aws/iotjobs/StartNextPendingJobExecutionSubscriptionRequest.h>
 #include <aws/iotjobs/UpdateJobExecutionRequest.h>
 #include <aws/iotjobs/UpdateJobExecutionSubscriptionRequest.h>
-#include <aws/iotjobs/GetPendingJobExecutionsResponse.h>
-#include <aws/iotjobs/GetPendingJobExecutionsSubscriptionRequest.h>
-#include <aws/iotjobs/JobExecutionSummary.h>
 
 #include <algorithm>
 #include <chrono>
@@ -175,7 +175,6 @@ int main(int argc, char *argv[])
         jobsClient.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
         publishDescribeJobExeCompletedPromise.get_future().wait();
-
 
         if (cmdData.input_isCI == false)
         {
