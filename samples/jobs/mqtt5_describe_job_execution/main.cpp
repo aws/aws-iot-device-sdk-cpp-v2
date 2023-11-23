@@ -232,7 +232,12 @@ int main(int argc, char *argv[])
             {
                 pendingExecutionPromise = std::promise<void>();
                 auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [&](UpdateJobExecutionResponse *response,
-                                                                           int iotErr) {
+                                                                           int ioErr) {
+                    (void)response;
+                    if (ioErr)
+                    {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                    }
                     fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
