@@ -142,10 +142,13 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error %d occurred\n", ioErr);
                 return;
             }
-            fprintf(stdout, "Received Job:\n");
-            fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
-            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            if (response)
+            {
+                fprintf(stdout, "Received Job:\n");
+                fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
+                fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
+                fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            }
         };
 
         jobsClient.SubscribeToDescribeJobExecutionAccepted(
@@ -206,11 +209,17 @@ int main(int argc, char *argv[])
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
                     [&](StartNextJobExecutionResponse *response, int ioErr) {
-                        fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                        currentJobId = response->Execution->JobId.value();
-                        currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                        currentVersionNumber = response->Execution->VersionNumber.value();
-
+                        if (ioErr)
+                        {
+                            fprintf(stderr, "Error %d occurred\n", ioErr);
+                        }
+                        if (response)
+                        {
+                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                            currentJobId = response->Execution->JobId.value();
+                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                            currentVersionNumber = response->Execution->VersionNumber.value();
+                        }
                         pendingExecutionPromise.set_value();
                     };
 
@@ -245,7 +254,12 @@ int main(int argc, char *argv[])
             {
                 pendingExecutionPromise = std::promise<void>();
                 auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [&](UpdateJobExecutionResponse *response,
-                                                                           int iotErr) {
+                                                                           int ioErr) {
+                    (void)response;
+                    if (ioErr)
+                    {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                    }
                     fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
@@ -288,6 +302,11 @@ int main(int argc, char *argv[])
                 subscriptionRequest.JobId = currentJobId;
 
                 auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
+                    (void)response;
+                    if (ioErr)
+                    {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                    }
                     fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
                 };
