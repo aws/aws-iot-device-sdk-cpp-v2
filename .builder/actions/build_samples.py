@@ -51,7 +51,24 @@ class BuildSamples(Builder.Action):
             'deviceadvisor/tests/shadow_update'
         ]
 
+        servicetests = [
+            'servicetests/tests/JobsExecution/',
+        ]
+
         for sample_path in samples:
+            build_path = os.path.join('build', sample_path)
+            steps.append(['cmake',
+                          f'-B{build_path}',
+                          f'-H{sample_path}',
+                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            # append extra cmake configs
+            steps[-1].extend(cmd_args.cmake_extra)
+            steps.append(['cmake',
+                          '--build', build_path,
+                          '--config', 'RelWithDebInfo'])
+
+        for sample_path in servicetests:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',

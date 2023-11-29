@@ -279,6 +279,8 @@ namespace Utils
         Aws::Crt::String input_pkcs12Password;
         // Greengrass Discovery
         bool input_PrintDiscoverRespOnly;
+        // MQTT protocol version
+        uint64_t input_mqtt_version;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
