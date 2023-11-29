@@ -327,7 +327,6 @@ int main(int argc, char *argv[])
                             fprintf(stdout, "Could not get Job Id exiting\n");
                             exit(-1);
                         }
-
                         pendingExecutionPromise.set_value();
                     };
 

@@ -13,7 +13,6 @@ import boto3
 import run_in_ci
 import ci_iot_thing
 
-
 def main():
     argument_parser = argparse.ArgumentParser(
         description="Run Jobs test in CI")
@@ -55,7 +54,7 @@ def main():
         print(f"ERROR: Failed to create IoT thing: {e}")
         sys.exit(-1)
 
-    thing_job = 'ERROR' 
+    thing_job = 'ERROR'
     i = 0;
     while 'ERROR' in thing_job and i <= 4:
         try:
