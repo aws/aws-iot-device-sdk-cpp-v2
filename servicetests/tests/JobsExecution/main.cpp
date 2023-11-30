@@ -527,6 +527,6 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
     if (getResponse.get_future().wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
     {
         fprintf(stderr, "get available jobs error timedout\n");
-        exit (-1);
+        exit(-1);
     }
 }
