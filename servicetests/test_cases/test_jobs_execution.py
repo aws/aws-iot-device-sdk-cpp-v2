@@ -53,7 +53,22 @@ def main():
     except Exception as e:
         print(f"ERROR: Failed to create IoT thing: {e}")
         sys.exit(-1)
-    time.sleep(5)
+
+    thing_job = 'ERROR' 
+    i = 0;
+    while 'ERROR' in thing_job and  i <= 3:
+        try:
+            job_id = secrets_client.get_secret_value(SecretId="ci/JobsServiceClientTest/job_id")["SecretString"]
+            thing_job = iot_client.describe_job_execution(jobId=job_id,
+                    thingName=thing_name, includeJobDocument=False)
+            print('thing job is {thing_job}');
+            if 'ERROR' in thing_job:
+               i = i + 1;
+            else
+                break;
+        except Exception as e:
+            print(f"ERROR: Could not verify Job execution: {e}")
+
     # Perform Jobs test. If it's successful, the Job execution should be marked as SUCCEEDED for the thing.
     try:
         test_result = run_in_ci.setup_and_launch(parsed_commands.config_file, input_uuid)
