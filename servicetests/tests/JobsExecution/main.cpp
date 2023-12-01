@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
                 ErrorDebugString(LastError()));
             return -1;
         }
-        fprintf(stdout, "Connecting...\n");
+        fprintf(stdout, "Connecting with MQTT5...\n");
         if (!client5->Start())
         {
             fprintf(stderr, "MQTT5 Connection failed to start");
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         connection->OnConnectionCompleted = std::move(onConnectionCompleted);
         connection->OnDisconnect = std::move(onDisconnect);
 
-        fprintf(stdout, "Connecting...\n");
+        fprintf(stdout, "Connecting with MQTT3...\n");
         if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
         {
             fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
@@ -281,6 +281,7 @@ int main(int argc, char *argv[])
                 if (ioErr)
                 {
                     fprintf(stderr, "Error %d occurred\n", ioErr);
+                    exit(1);
                 }
                 publishDescribeJobExeCompletedPromise.set_value();
             };
@@ -301,6 +302,7 @@ int main(int argc, char *argv[])
                         if (ioErr)
                         {
                             fprintf(stderr, "Error %d occurred\n", ioErr);
+                            exit(1);
                         }
                         if (response)
                         {
@@ -308,7 +310,11 @@ int main(int argc, char *argv[])
                             currentJobId = response->Execution->JobId.value();
                             currentExecutionNumber = response->Execution->ExecutionNumber.value();
                             currentVersionNumber = response->Execution->VersionNumber.value();
+                        } else {
+                            fprintf(stdout, "Could not get Job Id exiting\n");
+                            exit(-1);
                         }
+
                         pendingExecutionPromise.set_value();
                     };
 
@@ -348,6 +354,7 @@ int main(int argc, char *argv[])
                     if (ioErr)
                     {
                         fprintf(stderr, "Error %d occurred\n", ioErr);
+                        exit(1);
                     }
                     fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
@@ -395,6 +402,7 @@ int main(int argc, char *argv[])
                     if (ioErr)
                     {
                         fprintf(stderr, "Error %d occurred\n", ioErr);
+                        exit(1);
                     }
                     fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
                     pendingExecutionPromise.set_value();
@@ -461,6 +469,7 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
         }
         if (response)
         {
@@ -472,6 +481,10 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
                     fprintf(stderr, "In Progress jobs %s\n", job.JobId->c_str());
                 }
             }
+            else
+            {
+                fprintf(stderr, "In Progress jobs: empty\n");
+            }
             if (response->QueuedJobs.has_value())
             {
                 for (JobExecutionSummary job : response->QueuedJobs.value())
@@ -479,6 +492,10 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
                     availableJobs.push_back(job.JobId.value());
                     fprintf(stderr, "Queued  jobs %s\n", job.JobId->c_str());
                 }
+            }
+            else
+            {
+                fprintf(stderr, "Queued  jobs: empty\n");
             }
         }
         getResponse.set_value();
@@ -488,6 +505,7 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
         }
         if (rejectedError)
         {
@@ -505,6 +523,7 @@ void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient)
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
         }
         publishDescribeJobExeCompletedPromise.set_value();
     };

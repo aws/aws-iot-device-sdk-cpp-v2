@@ -25,10 +25,6 @@
             "data": "ServiceTest_Jobs_$INPUT_UUID"
         },
         {
-            "name": "--is_ci",
-            "data": "true"
-        },
-        {
             "name": "--job_id",
             "data": "1"
         }

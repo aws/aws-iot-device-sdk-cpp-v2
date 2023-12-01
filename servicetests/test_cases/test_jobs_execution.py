@@ -12,8 +12,6 @@ import boto3
 import run_in_ci
 import ci_iot_thing
 
-import time
-
 
 def main():
     argument_parser = argparse.ArgumentParser(
@@ -55,7 +53,7 @@ def main():
     except Exception as e:
         print(f"ERROR: Failed to create IoT thing: {e}")
         sys.exit(-1)
-    time.sleep(5) # sleep to allow job creation to become available
+    time.sleep(5)
     # Perform Jobs test. If it's successful, the Job execution should be marked as SUCCEEDED for the thing.
     try:
         test_result = run_in_ci.setup_and_launch(parsed_commands.config_file, input_uuid)
