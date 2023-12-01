@@ -71,6 +71,8 @@ namespace Utils
     static const char *m_cmd_proxy_user_name = "proxy_user_name";
     static const char *m_cmd_proxy_password = "proxy_password";
     static const char *m_cmd_shadow_property = "shadow_property";
+    static const char *m_cmd_shadow_name = "shadow_name";
+    static const char *m_cmd_shadow_value = "shadow_value";
     static const char *m_cmd_region = "region";
     static const char *m_cmd_pkcs12_file = "pkcs12_file";
     static const char *m_cmd_pkcs12_password = "pkcs12_password";
@@ -1008,6 +1010,9 @@ namespace Utils
         returnData.input_shadowProperty = cmdUtils.GetCommandOrDefault(m_cmd_shadow_property, "color");
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+
+        returnData.input_shadowName = cmdUtils.GetCommandOrDefault(m_cmd_shadow_name , "");
+        returnData.input_shadowValue = cmdUtils.GetCommandOrDefault(m_cmd_shadow_value , "");
         return returnData;
     }
 

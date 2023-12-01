@@ -280,6 +280,8 @@ namespace Utils
         Aws::Crt::String input_proxyPassword;
         // Shadow
         Aws::Crt::String input_shadowProperty;
+        Aws::Crt::String input_shadowName;
+        Aws::Crt::String input_shadowValue;
         // PKCS12
         Aws::Crt::String input_pkcs12File;
         Aws::Crt::String input_pkcs12Password;
