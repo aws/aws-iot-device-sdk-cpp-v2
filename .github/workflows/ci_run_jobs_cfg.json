@@ -1,6 +1,6 @@
 {
     "language": "CPP",
-    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/jobs/describe_job_execution/describe-job-execution",
+    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/jobs/job_execution/job-execution",
     "sample_region": "us-east-1",
     "sample_main_class": "",
     "arguments": [
