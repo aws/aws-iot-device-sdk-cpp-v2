@@ -64,7 +64,7 @@ def main():
             print('thing job is {thing_job}');
             if 'ERROR' in thing_job:
                i = i + 1;
-            else
+            else:
                 break;
         except Exception as e:
             print(f"ERROR: Could not verify Job execution: {e}")

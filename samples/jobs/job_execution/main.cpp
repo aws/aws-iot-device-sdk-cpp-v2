@@ -35,9 +35,13 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
-void updateJobExecution(enum JobStatus status, String thingName,
-        String currentJobId, IotJobsClient &jobsClient,
-        int32_t &currentVersionNumber, int64_t &currentExecutionNumber);
+void updateJobExecution(
+    enum JobStatus status,
+    String thingName,
+    String currentJobId,
+    IotJobsClient &jobsClient,
+    int32_t &currentVersionNumber,
+    int64_t &currentExecutionNumber);
 
 int main(int argc, char *argv[])
 {
@@ -226,7 +230,9 @@ int main(int argc, char *argv[])
                             currentJobId = response->Execution->JobId.value();
                             currentExecutionNumber = response->Execution->ExecutionNumber.value();
                             currentVersionNumber = response->Execution->VersionNumber.value();
-                        } else {
+                        }
+                        else
+                        {
                             fprintf(stdout, "Could not get Job Id exiting\n");
                             exit(-1);
                         }
@@ -261,13 +267,22 @@ int main(int argc, char *argv[])
                 pendingExecutionPromise.get_future().wait();
             }
 
-            updateJobExecution(JobStatus::IN_PROGRESS, cmdData.input_thingName,
-                currentJobId, jobsClient, currentVersionNumber, currentExecutionNumber);
+            updateJobExecution(
+                JobStatus::IN_PROGRESS,
+                cmdData.input_thingName,
+                currentJobId,
+                jobsClient,
+                currentVersionNumber,
+                currentExecutionNumber);
             // Pretend doing some work
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-            updateJobExecution(JobStatus::SUCCEEDED, cmdData.input_thingName,
-                currentJobId, jobsClient,  currentVersionNumber, currentExecutionNumber);
+            updateJobExecution(JobStatus::SUCCEEDED,
+                cmdData.input_thingName,
+                currentJobId,
+                jobsClient,
+                currentVersionNumber,
+                currentExecutionNumber);
         }
     }
 
@@ -283,9 +298,13 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void updateJobExecution(enum JobStatus status, String thingName,
-        String currentJobId, IotJobsClient &jobsClient, 
-        int32_t &currentVersionNumber, int64_t &currentExecutionNumber)
+void updateJobExecution(
+    enum JobStatus status,
+    String thingName,
+    String currentJobId,
+    IotJobsClient &jobsClient,
+    int32_t &currentVersionNumber,
+    int64_t &currentExecutionNumber)
 {
     std::promise<void> publishDescribeJobExeCompletedPromise;
     std::promise<void> pendingExecutionPromise = std::promise<void>();

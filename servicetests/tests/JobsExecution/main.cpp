@@ -310,7 +310,9 @@ int main(int argc, char *argv[])
                             currentJobId = response->Execution->JobId.value();
                             currentExecutionNumber = response->Execution->ExecutionNumber.value();
                             currentVersionNumber = response->Execution->VersionNumber.value();
-                        } else {
+                        }
+                        else
+                        {
                             fprintf(stdout, "Could not get Job Id exiting\n");
                             exit(-1);
                         }
