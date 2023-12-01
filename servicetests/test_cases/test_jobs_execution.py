@@ -68,7 +68,7 @@ def main():
         except Exception as e:
             print(f"Waiting for a newly created thing to be ready for the Job {e}")
             i = i + 1;
-        time.sleep(1);
+            time.sleep(1);
 
     # Perform Jobs test. If it's successful, the Job execution should be marked as SUCCEEDED for the thing.
     try:
