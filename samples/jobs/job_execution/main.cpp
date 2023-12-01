@@ -36,7 +36,7 @@ using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
 void updateJobExecution(
-    enum JobStatus status,
+    JobStatus status,
     String thingName,
     String currentJobId,
     IotJobsClient &jobsClient,
@@ -300,7 +300,7 @@ int main(int argc, char *argv[])
 }
 
 void updateJobExecution(
-    enum JobStatus status,
+    JobStatus status,
     String thingName,
     String currentJobId,
     IotJobsClient &jobsClient,
