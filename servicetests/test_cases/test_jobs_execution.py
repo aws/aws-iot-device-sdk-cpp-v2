@@ -56,11 +56,10 @@ def main():
 
     thing_job = 'ERROR' 
     i = 0;
-    while 'ERROR' in thing_job and  i <= 3:
+    while 'ERROR' in thing_job and i <= 3:
         try:
             job_id = secrets_client.get_secret_value(SecretId="ci/JobsServiceClientTest/job_id")["SecretString"]
-            thing_job = iot_client.describe_job_execution(jobId=job_id,
-                    thingName=thing_name, includeJobDocument=False)
+            thing_job = iot_client.describe_job_execution(jobId=job_id, thingName=thing_name)
             print('thing job is {thing_job}');
             if 'ERROR' in thing_job:
                i = i + 1;

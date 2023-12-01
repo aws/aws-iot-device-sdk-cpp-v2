@@ -277,7 +277,8 @@ int main(int argc, char *argv[])
             // Pretend doing some work
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-            updateJobExecution(JobStatus::SUCCEEDED,
+            updateJobExecution(
+                JobStatus::SUCCEEDED,
                 cmdData.input_thingName,
                 currentJobId,
                 jobsClient,
