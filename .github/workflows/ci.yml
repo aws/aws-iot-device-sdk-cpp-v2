@@ -503,32 +503,31 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json
-    - name: configure AWS credentials (Shadow)
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: ${{ env.CI_SHADOW_SERVICE_CLIENT_ROLE }}
-        aws-region: ${{ env.AWS_DEFAULT_REGION }}
-    - name: run Shadow service client test for MQTT311
-      working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-      run: |
-        export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
-        python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt3_shadow_cfg.json
-    - name: run Shadow service client test for MQTT5
-      working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-      run: |
-        export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
-        python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_shadow_cfg.json
-    - name: run Named Shadow service client test for MQTT311
-      working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-      run: |
-        export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
-        python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt3_named_shadow_cfg.json
-    - name: run Named Shadow service client test for MQTT5
-      working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-      run: |
-        export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
-        python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
-
+      - name: configure AWS credentials (Shadow)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_SHADOW_SERVICE_CLIENT_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run Shadow service client test for MQTT311
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
+          python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt3_shadow_cfg.json
+      - name: run Shadow service client test for MQTT5
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
+          python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_shadow_cfg.json
+      - name: run Named Shadow service client test for MQTT311
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-js-v2/utils
+          python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt3_named_shadow_cfg.json
+      - name: run Named Shadow service client test for MQTT5
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
