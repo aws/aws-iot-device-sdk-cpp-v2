@@ -15,8 +15,8 @@
 #include <aws/iotshadow/IotShadowClient.h>
 #include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
 #include <aws/iotshadow/ShadowDeltaUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/UpdateShadowRequest.h>
 #include <aws/iotshadow/UpdateNamedShadowRequest.h>
+#include <aws/iotshadow/UpdateShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowResponse.h>
 #include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
