@@ -241,13 +241,16 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
 {
     JsonObject desired;
     JsonObject reported;
+    ShadowState state;
     desired.WithObject(property, value);
     reported.WithObject(property, value);
 
+    state.Desired = desired;
+    state.Reported = reported;
+
     UpdateShadowRequest request;
     request.ThingName = thingName;
-    request.State->Reported = reported;
-    request.State->Desired = desired;
+    request.State = state;
 
     auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
@@ -265,13 +268,16 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
 {
     JsonObject desired;
     JsonObject reported;
+    ShadowState state;
     desired.WithObject(property, value);
     reported.WithObject(property, value);
 
+    state.Desired = desired;
+    state.Reported = reported;
+
     UpdateNamedShadowRequest request;
     request.ThingName = thingName;
-    request.State->Reported = reported;
-    request.State->Desired = desired;
+    request.State = state;
     request.ShadowName = shadowName;
 
     auto publishCompleted = [thingName, value](int ioErr) {
