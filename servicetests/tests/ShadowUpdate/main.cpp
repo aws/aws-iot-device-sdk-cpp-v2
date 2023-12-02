@@ -42,6 +42,7 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
 IotShadowClient *shadowClient = nullptr;
 int main(int argc, char *argv[])
 {
+    printf("Starting shadow update test\n");
     /************************ Setup ****************************/
     ApiHandle apiHandle;
 
@@ -239,6 +240,7 @@ int main(int argc, char *argv[])
 
 void changeShadowValue(Aws::Crt::String thingName, String property, String value)
 {
+    printf("change shadow value ....\n");
     JsonObject desired;
     JsonObject reported;
     ShadowState state;
@@ -266,6 +268,7 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
 
 void changeNamedShadowValue(String thingName, String property, String value, String shadowName)
 {
+    printf("change named shadow value ....\n");
     JsonObject desired;
     JsonObject reported;
     ShadowState state;
