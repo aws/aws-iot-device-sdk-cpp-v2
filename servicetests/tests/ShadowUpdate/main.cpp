@@ -201,18 +201,15 @@ int main(int argc, char *argv[])
     {
         if (cmdData.input_shadowName.empty())
         {
-            changeShadowValue(
-                    cmdData.input_thingName,
-                    cmdData.input_shadowProperty,
-                    cmdData.input_shadowValue);
+            changeShadowValue( cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue);
         }
         else
         {
             changeNamedShadowValue(
-                    cmdData.input_thingName,
-                    cmdData.input_shadowProperty,
-                    cmdData.input_shadowValue,
-                    cmdData.input_shadowName);
+                cmdData.input_thingName,
+                cmdData.input_shadowProperty,
+                cmdData.input_shadowValue,
+                cmdData.input_shadowName);
         }
 
     }
