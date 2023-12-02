@@ -254,16 +254,18 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     request.ThingName = thingName;
     request.State = state;
 
-    auto publishCompleted = [thingName, value](int ioErr) {
+    std::promise<void> shadowCompletedPromise;
+    auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
-            return;
+            exit(-1);
         }
-
         fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
+        shadowCompletedPromise.set_value();
     };
     shadowClient->PublishUpdateShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
+    shadowCompletedPromise.get_future().get();
 }
 
 void changeNamedShadowValue(String thingName, String property, String value, String shadowName)
@@ -283,14 +285,17 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
     request.State = state;
     request.ShadowName = shadowName;
 
-    auto publishCompleted = [thingName, value](int ioErr) {
+    std::promise<void> shadowCompletedPromise;
+    auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
-            return;
+            exit(-1);
         }
 
         fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
+        shadowCompletedPromise.set_value();
     };
     shadowClient->PublishUpdateNamedShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
+    shadowCompletedPromise.get_future().get();
 }
