@@ -1011,8 +1011,8 @@ namespace Utils
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
 
-        returnData.input_shadowName = cmdUtils.GetCommandOrDefault(m_cmd_shadow_name , "");
-        returnData.input_shadowValue = cmdUtils.GetCommandOrDefault(m_cmd_shadow_value , "");
+        returnData.input_shadowName = cmdUtils.GetCommandOrDefault(m_cmd_shadow_name, "");
+        returnData.input_shadowValue = cmdUtils.GetCommandOrDefault(m_cmd_shadow_value, "");
         return returnData;
     }
 
