@@ -237,6 +237,7 @@ int main(int argc, char *argv[])
             connectionClosedPromise.get_future().wait();
         }
     }
+    delete shadowClient;
     fprintf(stderr, "returning\n");
     return 0;
 }

@@ -177,10 +177,8 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
 
 int main(int argc, char *argv[])
 {
-
     fprintf(stdout, "Starting the jobs execution programm\n");
     /************************ Setup ****************************/
-
     // Do the global initialization for the API
     ApiHandle apiHandle;
 
