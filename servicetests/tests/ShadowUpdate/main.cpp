@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
     {
         if (cmdData.input_shadowName.empty())
         {
-            changeShadowValue( cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue);
+            changeShadowValue(cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue);
         }
         else
         {
@@ -211,7 +211,6 @@ int main(int argc, char *argv[])
                 cmdData.input_shadowValue,
                 cmdData.input_shadowName);
         }
-
     }
     /************************ sample ends ****************************/
     /* Closing down */
