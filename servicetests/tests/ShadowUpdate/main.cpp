@@ -223,7 +223,9 @@ int main(int argc, char *argv[])
         // Disconnect
         if (client5->Stop() == true)
         {
+            fprintf(stderr, "waiting on future\n");
             connectionClosedPromise.get_future().wait();
+            fprintf(stderr, "future passed\n");
         }
     }
     else
@@ -235,6 +237,7 @@ int main(int argc, char *argv[])
             connectionClosedPromise.get_future().wait();
         }
     }
+    fprintf(stderr, "returning\n");
     return 0;
 }
 
