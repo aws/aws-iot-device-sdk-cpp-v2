@@ -40,7 +40,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre>
-```
+```CPP
 Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
 // Create the MQTT builder and populate it with data from cmdData.
@@ -81,6 +81,6 @@ Options for custom auth
 
 To run the websocket connect use the following command:
 
-``` sh
+```sh
 ./websocket-connect --endpoint <endpoint> --signing_region <signing region>
 ```
