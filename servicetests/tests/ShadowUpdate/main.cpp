@@ -262,8 +262,12 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     JsonObject desired;
     JsonObject reported;
     ShadowState state;
-    desired.WithObject(property, value);
-    reported.WithObject(property, value);
+
+    JsonObject val;
+    val.AsString(value);
+
+    desired.WithObject(property, val);
+    reported.WithObject(property, val);
 
     state.Desired = desired;
     state.Reported = reported;
@@ -294,8 +298,12 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
     JsonObject desired;
     JsonObject reported;
     ShadowState state;
-    desired.WithObject(property, value);
-    reported.WithObject(property, value);
+
+    JsonObject val;
+    val.AsString(value);
+
+    desired.WithObject(property, val);
+    reported.WithObject(property, val);
 
     state.Desired = desired;
     state.Reported = reported;
