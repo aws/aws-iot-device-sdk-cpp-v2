@@ -257,6 +257,8 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     UpdateShadowRequest request;
     request.ThingName = thingName;
     request.State = state;
+    Aws::Crt::UUID uuid;
+    request.ClientToken = uuid.ToString();
 
     std::promise<void> shadowCompletedPromise;
     auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
@@ -288,6 +290,8 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
     request.ThingName = thingName;
     request.State = state;
     request.ShadowName = shadowName;
+    Aws::Crt::UUID uuid;
+    request.ClientToken = uuid.ToString();
 
     std::promise<void> shadowCompletedPromise;
     auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
