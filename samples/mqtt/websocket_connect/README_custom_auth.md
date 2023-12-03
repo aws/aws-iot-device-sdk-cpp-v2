@@ -8,7 +8,7 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
 
 <details>
 <summary>(see sample policy)</summary>
-<pre>
+```
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -23,8 +23,7 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
     }
   ]
 }
-</pre>
-
+```
 
 
 Replace with the following with the data from your AWS account:
@@ -39,7 +38,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre>
+```
 Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
 // Create the MQTT builder and populate it with data from cmdData.
@@ -63,22 +62,23 @@ clientConfigBuilder.WithCustomAuthorizer(
     (cmdData.input_customAuthPassword),
     (cmdData.input_customTokenKeyName),
     (cmdData.input_customTokenValue));
-<pre>
+```
 </details>
 
 ## How to run
 Options for custom auth
-<pre>
+```
 --custom_auth_username <str>
 --custom_auth_authorizer_name <str>
 --custom_auth_authorizer_signature <str>
 --custom_auth_password <str>
 --custom_auth_token_name <str>
 --custom_auth_token_value <str>
-</pre>
+```
 
 To run the websocket connect use the following command:
 
-<pre>
+```
 ./websocket-connect --endpoint <endpoint> --signing_region <signing region>
-</pre>
+```
+
