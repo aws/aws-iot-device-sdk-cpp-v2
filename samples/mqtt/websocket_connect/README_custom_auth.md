@@ -8,7 +8,7 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
 
 <details>
 <summary>(see sample policy)</summary>
-```
+<pre>
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -23,7 +23,7 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
     }
   ]
 }
-```
+</pre>
 
 
 Replace with the following with the data from your AWS account:
@@ -38,7 +38,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-```
+<pre>
 Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
 // Create the MQTT builder and populate it with data from cmdData.
@@ -46,39 +46,39 @@ Aws::Iot::MqttClient client;
 
 Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 
-std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+std::shared\_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
     Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
 
-Aws::Iot::WebsocketConfig websocketConfig((cmdData.input_signingRegion), provider);
+Aws::Iot::WebsocketConfig websocketConfig((cmdData.input\_signingRegion), provider);
 
 auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
 
-clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
+clientConfigBuilder.WithEndpoint((cmdData.input\_endpoint));
 
 clientConfigBuilder.WithCustomAuthorizer(
-    (cmdData.input_customAuthUsername),
-    (cmdData.input_customAuthorizerName),
-    (cmdData.input_customAuthorizerSignature),
-    (cmdData.input_customAuthPassword),
-    (cmdData.input_customTokenKeyName),
-    (cmdData.input_customTokenValue));
-```
+    (cmdData.input\_customAuthUsername),
+    (cmdData.input\_customAuthorizerName),
+    (cmdData.input\_customAuthorizerSignature),
+    (cmdData.input\_customAuthPassword),
+    (cmdData.input\_customTokenKeyName),
+    (cmdData.input\_customTokenValue));
+<pre>
 </details>
 
 ## How to run
 Options for custom auth
 ```
---custom_auth_username <str>
---custom_auth_authorizer_name <str>
---custom_auth_authorizer_signature <str>
---custom_auth_password <str>
---custom_auth_token_name <str>
---custom_auth_token_value <str>
+--custom\_auth\_username <str>
+--custom\_auth\_authorizer\_name <str>
+--custom\_auth\_authorizer\_signature <str>
+--custom\_auth\_password <str>
+--custom\_auth\_token\_name <str>
+--custom\_auth\_token\_value <str>
 ```
 
 To run the websocket connect use the following command:
 
 ```
-./websocket-connect --endpoint <endpoint> --signing_region <signing region>
+./websocket-connect --endpoint <endpoint> --signing\_region <signing region>
 ```
 
