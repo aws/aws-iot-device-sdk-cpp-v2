@@ -39,29 +39,29 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre language="c++"> <code>
-    Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
+Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
-    // Create the MQTT builder and populate it with data from cmdData.
-    Aws::Iot::MqttClient client;
+// Create the MQTT builder and populate it with data from cmdData.
+Aws::Iot::MqttClient client;
 
-    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
-        Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+    Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
 
-    Aws::Iot::WebsocketConfig websocketConfig((cmdData.input_signingRegion), provider);
+Aws::Iot::WebsocketConfig websocketConfig((cmdData.input_signingRegion), provider);
 
-    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
+auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
 
-    clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
+clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
 
-    clientConfigBuilder.WithCustomAuthorizer(
-        (cmdData.input_customAuthUsername),
-        (cmdData.input_customAuthorizerName),
-        (cmdData.input_customAuthorizerSignature),
-        (cmdData.input_customAuthPassword),
-        (cmdData.input_customTokenKeyName),
-        (cmdData.input_customTokenValue));
+clientConfigBuilder.WithCustomAuthorizer(
+    (cmdData.input_customAuthUsername),
+    (cmdData.input_customAuthorizerName),
+    (cmdData.input_customAuthorizerSignature),
+    (cmdData.input_customAuthPassword),
+    (cmdData.input_customTokenKeyName),
+    (cmdData.input_customTokenValue));
 </code><pre>
 </details>
 
@@ -71,12 +71,12 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 Options for custom auth
 ```
-    --custom_auth_username <str>
-    --custom_auth_authorizer_name <str>
-    --custom_auth_authorizer_signature <str>
-    --custom_auth_password <str>
-    --custom_auth_token_name <str>
-    --custom_auth_token_value <str>
+--custom_auth_username <str>
+--custom_auth_authorizer_name <str>
+--custom_auth_authorizer_signature <str>
+--custom_auth_password <str>
+--custom_auth_token_name <str>
+--custom_auth_token_value <str>
 ```
 
 To run the websocket connect use the following command:
