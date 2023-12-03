@@ -38,7 +38,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre>
+<pre language="c++"> <code>
     Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
@@ -62,7 +62,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
         (cmdData.input\_customAuthPassword),
         (cmdData.input\_customTokenKeyName),
         (cmdData.input\_customTokenValue));
-<pre>
+</code><pre>
 </details>
 
 ---
