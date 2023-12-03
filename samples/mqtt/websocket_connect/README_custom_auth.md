@@ -65,8 +65,6 @@ clientConfigBuilder.WithCustomAuthorizer(
 </code><pre>
 </details>
 
----
-
 ## How to run
 
 Options for custom auth
@@ -82,6 +80,6 @@ Options for custom auth
 To run the websocket connect use the following command:
 
 ```
-./websocket-connect --endpoint <endpoint> --signing\_region <signing region>
+./websocket-connect --endpoint <endpoint> --signing_region <signing region>
 ```
 
