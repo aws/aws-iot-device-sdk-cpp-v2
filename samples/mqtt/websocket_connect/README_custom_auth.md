@@ -39,41 +39,44 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre>
-Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
+    Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
-// Create the MQTT builder and populate it with data from cmdData.
-Aws::Iot::MqttClient client;
+    // Create the MQTT builder and populate it with data from cmdData.
+    Aws::Iot::MqttClient client;
 
-Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 
-std::shared\_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
-    Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    std::shared\_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+        Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
 
-Aws::Iot::WebsocketConfig websocketConfig((cmdData.input\_signingRegion), provider);
+    Aws::Iot::WebsocketConfig websocketConfig((cmdData.input\_signingRegion), provider);
 
-auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
+    auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
 
-clientConfigBuilder.WithEndpoint((cmdData.input\_endpoint));
+    clientConfigBuilder.WithEndpoint((cmdData.input\_endpoint));
 
-clientConfigBuilder.WithCustomAuthorizer(
-    (cmdData.input\_customAuthUsername),
-    (cmdData.input\_customAuthorizerName),
-    (cmdData.input\_customAuthorizerSignature),
-    (cmdData.input\_customAuthPassword),
-    (cmdData.input\_customTokenKeyName),
-    (cmdData.input\_customTokenValue));
+    clientConfigBuilder.WithCustomAuthorizer(
+        (cmdData.input\_customAuthUsername),
+        (cmdData.input\_customAuthorizerName),
+        (cmdData.input\_customAuthorizerSignature),
+        (cmdData.input\_customAuthPassword),
+        (cmdData.input\_customTokenKeyName),
+        (cmdData.input\_customTokenValue));
 <pre>
 </details>
 
+---
+
 ## How to run
+
 Options for custom auth
 ```
---custom\_auth\_username <str>
---custom\_auth\_authorizer\_name <str>
---custom\_auth\_authorizer\_signature <str>
---custom\_auth\_password <str>
---custom\_auth\_token\_name <str>
---custom\_auth\_token\_value <str>
+    --custom\_auth\_username <str>
+    --custom\_auth\_authorizer\_name <str>
+    --custom\_auth\_authorizer\_signature <str>
+    --custom\_auth\_password <str>
+    --custom\_auth\_token\_name <str>
+    --custom\_auth\_token\_value <str>
 ```
 
 To run the websocket connect use the following command:
