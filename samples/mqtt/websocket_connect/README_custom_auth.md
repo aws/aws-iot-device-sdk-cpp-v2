@@ -39,7 +39,6 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre>
 ```CPP
 Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
@@ -65,7 +64,6 @@ clientConfigBuilder.WithCustomAuthorizer(
     (cmdData.input_customTokenKeyName),
     (cmdData.input_customTokenValue));
 ```
-</pre>
 </details>
 
 ## How to run
