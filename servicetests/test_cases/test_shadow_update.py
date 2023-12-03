@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import uuid
+import time
 
 import boto3
 
@@ -75,6 +76,7 @@ def main():
         print(f"ERROR: Failed to execute Jobs test: {e}")
         test_result = -1
 
+    time.sleep(5)
     # Test reported success, verify that shadow was indeed updated.
     if test_result == 0:
         print("Verifying that shadow was updated")
