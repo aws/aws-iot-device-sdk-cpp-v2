@@ -200,6 +200,20 @@ int main(int argc, char *argv[])
     /************************ Run the sample ****************************/
     if (connectionCompletedPromise.get_future().get())
     {
+        std::promise<void> onGetShadowRequestCompletedPromise;
+        auto onGetShadowRequestSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
+            {
+                fprintf(stderr, "Error getting shadow document: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+            onGetShadowRequestCompletedPromise.set_value();
+        };
+        GetShadowRequest shadowGetRequest;
+        shadowGetRequest.ThingName = cmdData.input_thingName;
+        shadowClient->PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
+        onGetShadowRequestCompletedPromise.get_future().wait();
+
         if (cmdData.input_shadowName.empty())
         {
             changeShadowValue(cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue);
@@ -270,7 +284,7 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
         fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
         shadowCompletedPromise.set_value();
     };
-    shadowClient->PublishUpdateShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
+    shadowClient->PublishUpdateShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
 
@@ -304,6 +318,6 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
         fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
         shadowCompletedPromise.set_value();
     };
-    shadowClient->PublishUpdateNamedShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, publishCompleted);
+    shadowClient->PublishUpdateNamedShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
