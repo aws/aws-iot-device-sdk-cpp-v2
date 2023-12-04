@@ -17,7 +17,11 @@
 
 using namespace Aws::Crt;
 
-void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
+void connection_setup(
+    int argc,
+    char *argv[],
+    ApiHandle &apiHandle,
+    Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
     cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
