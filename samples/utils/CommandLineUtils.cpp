@@ -662,6 +662,39 @@ namespace Utils
         }
         return returnData;
     }
+    cmdData parseSampleInputWebsocketStaticCredentialsConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("websocket-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.RegisterCommand(m_cmd_access_key_id, "<str>", "The Access key ID (optional)");
+        cmdUtils.RegisterCommand(m_cmd_secret_access_key, "<str>", "The secret access key (optional)");
+        cmdUtils.RegisterCommand(m_cmd_session_token, "<str>", "The session token (optional)");
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
+
+        cmdData returnData = cmdData();
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
+        returnData.input_clientId =
+            cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
+        }
+        returnData.input_accessKeyId = cmdUtils.GetCommandRequired(m_cmd_access_key_id, "");
+        returnData.input_secretAccessKey = cmdUtils.GetCommandRequired(m_cmd_secret_access_key, "");
+        returnData.input_sessionToken = cmdUtils.GetCommandRequired(m_cmd_session_token, "");
+        return returnData;
+    }
 
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
@@ -691,9 +724,6 @@ namespace Utils
         {
             returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
         }
-        returnData.input_accessKeyId = cmdUtils.GetCommandOrDefault(m_cmd_access_key_id, "");
-        returnData.input_secretAccessKey = cmdUtils.GetCommandOrDefault(m_cmd_secret_access_key, "");
-        returnData.input_sessionToken = cmdUtils.GetCommandOrDefault(m_cmd_session_token, "");
         return returnData;
     }
 
