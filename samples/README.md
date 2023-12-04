@@ -14,7 +14,7 @@
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
-* [Jobs](./jobs/describe_job_execution/README.md)
+* [Jobs](./jobsjob_execution/README.md)
 * [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)

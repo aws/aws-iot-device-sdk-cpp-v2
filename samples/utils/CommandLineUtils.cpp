@@ -536,7 +536,7 @@ namespace Utils
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
-        returnData.input_jobId = cmdUtils.GetCommandRequired(m_cmd_job_id);
+        returnData.input_jobId = atoi(cmdUtils.GetCommandOrDefault(m_cmd_job_id, "1").c_str());
         return returnData;
     }
 

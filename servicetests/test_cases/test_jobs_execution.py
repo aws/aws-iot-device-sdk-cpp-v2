@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import uuid
+import time
 
 import boto3
 
@@ -56,17 +57,19 @@ def main():
 
     thing_job = 'ERROR' 
     i = 0;
-    while 'ERROR' in thing_job and i <= 3:
+    while 'ERROR' in thing_job and i <= 4:
         try:
             job_id = secrets_client.get_secret_value(SecretId="ci/JobsServiceClientTest/job_id")["SecretString"]
             thing_job = iot_client.describe_job_execution(jobId=job_id, thingName=thing_name)
-            print('thing job is {thing_job}');
+            print(f'thing job is {thing_job}');
             if 'ERROR' in thing_job:
                i = i + 1;
             else:
                 break;
         except Exception as e:
-            print(f"ERROR: Could not verify Job execution: {e}")
+            print(f"Waiting for a newly created thing to be ready for the Job ({e})"
+            i = i + 1;
+        time.sleep(1);
 
     # Perform Jobs test. If it's successful, the Job execution should be marked as SUCCEEDED for the thing.
     try:
