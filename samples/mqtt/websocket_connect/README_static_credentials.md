@@ -39,7 +39,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre>
-```
+<pre language="c++"> <code>
 Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
 
 Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
@@ -57,11 +57,12 @@ Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
 Aws::Iot::MqttClient client;
 auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
 clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
-```
+</code>
 </pre>
 </details>
 
 ## How to run
+
 Options for custom auth
 ```
 --access_key_id <str>

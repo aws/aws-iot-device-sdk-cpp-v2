@@ -37,8 +37,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre>
-```
+<pre language="c++"> <code>
 Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
 
 // Create the MQTT builder and populate it with data from cmdData.
@@ -49,14 +48,14 @@ Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
 if (!provider)
 {
-fprintf(stderr, "Failure to create credentials provider!\n");
-exit(-1);
+    fprintf(stderr, "Failure to create credentials provider!\n");
+    exit(-1);
 }
 Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
 clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
 if (cmdData.input_ca != "")
 {
-clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
 }
 if (cmdData.input_proxyHost == "")
 {
@@ -74,11 +73,12 @@ if (cmdData.input_port != 0)
     clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
 }
 clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
-```
+</code>
 </pre>
 </details>
 
 ## How to run
+
 Options for custom auth
 ```
 --proxy_host <str>
