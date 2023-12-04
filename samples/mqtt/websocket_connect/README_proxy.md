@@ -36,43 +36,44 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 </details>
 
 <details>
-<summary> (code snipet to replace similar section)</summary>
+<summary> (code snipet to replace the connection_setup function)</summary>
 <pre language="c++"> <code>
-Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
+void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
+             Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
+{
+    Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
 
-// Create the MQTT builder and populate it with data from cmdData.
-Aws::Iot::MqttClient client;
-Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
-std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
-Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-if (!provider)
-{
-    fprintf(stderr, "Failure to create credentials provider!\n");
-    exit(-1);
-}
-Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
-clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
-if (cmdData.input_ca != "")
-{
-    clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
-}
-if (cmdData.input_proxyHost == "")
-{
-    fprintf(stderr, "proxy address missing!\n");
-    exit(-1);
-}
-Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-proxyOptions.HostName = cmdData.input_proxyHost;
-proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
-proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    if (!provider)
+    {
+        fprintf(stderr, "Failure to create credentials provider!\n");
+        exit(-1);
+    }
+    Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
+    clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+    if (cmdData.input_ca != "")
+    {
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+    }
+    if (cmdData.input_proxyHost == "")
+    {
+        fprintf(stderr, "proxy address missing!\n");
+        exit(-1);
+    }
+    Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+    proxyOptions.HostName = cmdData.input_proxyHost;
+    proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+    proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+    clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
 
-if (cmdData.input_port != 0)
-{
-    clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    if (cmdData.input_port != 0)
+    {
+        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+    }
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
 }
-clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
 </code>
 </pre>
 </details>

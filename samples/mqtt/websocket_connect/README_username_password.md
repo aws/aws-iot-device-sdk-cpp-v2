@@ -38,22 +38,25 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre language="c++"> <code>
-Utils::cmdData cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
+void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
+    Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
+{
+    cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
-// Create the MQTT builder and populate it with data from cmdData.
-Aws::Iot::MqttClient client;
-Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
-    Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-Aws::Iot::WebsocketConfig websocketConfig((cmdData.input_signingRegion), provider);
+    // Create the MQTT builder and populate it with data from cmdData.
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+        Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    Aws::Iot::WebsocketConfig websocketConfig((cmdData.input_signingRegion), provider);
 
-auto clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
-clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
-clientConfigBuilder.WithCustomAuthorizer(
-    (cmdData.input_customAuthUsername),
-    (cmdData.input_customAuthorizerName),
-    (cmdData.input_customAuthorizerSignature),
-    (cmdData.input_customAuthPassword));
+    clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(websocketConfig);
+    clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
+    clientConfigBuilder.WithCustomAuthorizer(
+        (cmdData.input_customAuthUsername),
+        (cmdData.input_customAuthorizerName),
+        (cmdData.input_customAuthorizerSignature),
+        (cmdData.input_customAuthPassword));
+}
 </code>
 </pre>
 </details>
