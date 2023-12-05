@@ -58,7 +58,7 @@ For this sample, using Websockets will attempt to connect using custom auth.
 void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
-    cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
+  cmdData = Utils::parseSampleInputCustomAuthorizerConnect(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
     Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
