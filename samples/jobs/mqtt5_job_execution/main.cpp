@@ -260,13 +260,12 @@ int main(int argc, char *argv[])
                 currentExecutionNumber);
         }
     }
-
     // Wait just a little bit to let the console print
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     // Disconnect
-    if (connection->Disconnect())
+    if (client->Stop())
     {
-        connectionClosedPromise.get_future().wait();
+        stoppedPromise.get_future().wait();
     }
     return 0;
 }
