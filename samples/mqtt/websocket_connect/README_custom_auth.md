@@ -16,10 +16,6 @@ Below is a sample policy that can be used on your IoT Core Thing that will allow
 If you want to use simple or custom auth (or static creds, or basic auth, etc) instead,
 then you will need to replace part of the sample (connection\_setup function) with a code snippet we provided in its corresponding readme.
 
-* [Websocket Connect/simple_auth](./README.md)
-* [Websocket Connect/username and password](./README_username_password.md)
-* [Websocket Connect/static credentials](./README_static_credentials.md)
-
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
