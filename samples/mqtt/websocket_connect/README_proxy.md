@@ -100,7 +100,7 @@ Options for connecting through an HTTP proxy
 To run the websocket connect use the following command:
 
 ``` sh
-./websocket-connect --endpoint <endpoint> --signing_region <signing region>
+./websocket-connect --endpoint <endpoint> --signing_region <signing region> --proxy_host <str> --proxy_port <int>
 ```
 
 

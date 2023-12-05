@@ -86,6 +86,6 @@ Options for static credentials
 To run the websocket connect use the following command:
 
 ``` sh
-./websocket-connect --endpoint <endpoint> --signing_region <signing region>
+./websocket-connect --endpoint <endpoint> --signing_region <signing region> --access_key_id <str> --secret_access_key <str> --session_token <str>
 ```
 

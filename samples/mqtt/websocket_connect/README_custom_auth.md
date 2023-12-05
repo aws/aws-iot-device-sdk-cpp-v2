@@ -89,6 +89,6 @@ Options for custom auth
 To run the websocket connect use the following command:
 
 ```
-./websocket-connect --endpoint <endpoint> --signing_region <signing region>
+./websocket-connect --endpoint <endpoint> --signing_region <signing region> --custom_auth_username <str> --custom_auth_authorizer_name <str> --custom_auth_authorizer_signature <str> --custom_auth_password <str> --custom_auth_token_name <str> --custom_auth_token_value <str>
 ```
 
