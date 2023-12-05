@@ -2,8 +2,6 @@
 
 [**Return to main sample list**](../../README.md)
 
-This sample makes an MQTT connection via Websockets and then disconnects. On startup, the device connects to the server via Websockets and then disconnects right after. This sample is for reference on connecting via Websockets. This sample demonstrates the most straightforward way to connect via Websockets by querying the AWS credentials for the connection from the device's environment variables or local files.
-
 This sample makes an MQTT connection via Websockets and then disconnects.
 On startup, the device connects to the server via Websockets then disconnects right after.
 This sample demonstrates connecting via static credentials.
@@ -13,7 +11,6 @@ then you will need to replace part of the sample (connection\_setup function) wi
 
 * [Websocket Connect/simple_auth](./README.md)
 * [Websocket Connect/username and password](./README_username_password.md)
-* [Websocket Connect/proxy](./README_proxy.md)
 * [Websocket Connect/custom auth](./README_custom_auth.md)
 
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.

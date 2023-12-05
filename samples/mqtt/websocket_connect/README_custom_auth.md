@@ -2,17 +2,22 @@
 
 [**Return to main sample list**](../../README.md)
 
-This sample makes an MQTT connection via Websockets and then disconnects.
-On startup, the device connects to the server via Websockets then disconnects right after.
-This sample demonstrates connecting via custom auth authorizer username, 
-password and tokens
+This sample makes an MQTT connection and connects through a Custom Authorizer.
+On startup, the device connects to the server and then disconnects.
+This sample is for reference on connecting using a Custom Authorizer.
+Using a Custom Authorizer allows you to perform your own authorization using an AWS Lambda function.
+See Custom Authorizer for more information.
+You will need to setup your Custom Authorizer so that the lambda function returns a policy document.
+See this page on the documentation for more details and example return result.
+You can customize this lambda function as needed for your application to provide your own security measures based on the needs of your application.
+Your IoT Core Thing's Policy must provide privileges for this sample to connect.
+Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 If you want to use simple or custom auth (or static creds, or basic auth, etc) instead,
 then you will need to replace part of the sample (connection\_setup function) with a code snippet we provided in its corresponding readme.
 
 * [Websocket Connect/simple_auth](./README.md)
 * [Websocket Connect/username and password](./README_username_password.md)
-* [Websocket Connect/proxy](./README_proxy.md)
 * [Websocket Connect/static credentials](./README_static_credentials.md)
 
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.

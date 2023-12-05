@@ -12,7 +12,6 @@ then you will need to replace part of the sample (connection\_setup function) wi
 
 * [Websocket Connect/custom auth](./README_custom_auth.md)
 * [Websocket Connect/username and password](./README_username_password.md)
-* [Websocket Connect/proxy](./README_proxy.md)
 * [Websocket Connect/static credentials](./README_static_credentials.md)
 
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
@@ -48,7 +47,13 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 ## How to run
 
-To run the websocket connect use the following command:
+To use a proxy server which is optional pass the following arguments
+
+Optional parameters:
+```
+--proxy_host <str>
+--proxy_port <int>
+```
 
 ``` sh
 ./websocket-connect --endpoint <endpoint> --signing_region <signing region>
