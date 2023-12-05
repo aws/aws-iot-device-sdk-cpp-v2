@@ -8,7 +8,6 @@ import sys
 import run_in_ci
 import ci_iot_thing
 
-
 def main():
     argument_parser = argparse.ArgumentParser(
         description="Run Fleet Provisioning test in CI")
