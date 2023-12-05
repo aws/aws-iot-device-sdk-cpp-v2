@@ -71,7 +71,7 @@ void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdDa
         (cmdData.input_customTokenKeyName),
         (cmdData.input_customTokenValue));
 }
-</code><pre>
+</code></pre>
 </details>
 
 ## How to run
