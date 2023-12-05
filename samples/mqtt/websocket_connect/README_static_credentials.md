@@ -51,7 +51,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
-    cmdData = Utils::parseSampleInputWebsocketStaticCredentialsConnect(argc, argv, &apiHandle);
+  cmdData = Utils::parseSampleInputWebsocketStaticCredentialsConnect(argc, argv, &apiHandle);
 
     Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 
