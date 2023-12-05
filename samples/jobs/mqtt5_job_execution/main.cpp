@@ -257,13 +257,11 @@ int main(int argc, char *argv[])
 
     // Wait just a little bit to let the console print
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
     // Disconnect
     if (connection->Disconnect())
     {
         connectionClosedPromise.get_future().wait();
     }
-
     return 0;
 }
 
@@ -342,17 +340,4 @@ void updateJobExecution(
     jobsClient.PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
 
     pendingExecutionPromise.get_future().wait();
-}
-    }
-
-    // Wait just a little bit to let the console print
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-    // Disconnect
-    if (client->Stop())
-    {
-        stoppedPromise.get_future().wait();
-    }
-
-    return 0;
 }
