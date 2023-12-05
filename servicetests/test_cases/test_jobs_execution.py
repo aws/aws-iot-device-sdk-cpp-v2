@@ -67,7 +67,7 @@ def main():
             else:
                 break;
         except Exception as e:
-            print(f"Waiting for a newly created thing to be ready for the Job ({e})"
+            print(f"Waiting for a newly created thing to be ready for the Job {e})"
             i = i + 1;
         time.sleep(1);
 

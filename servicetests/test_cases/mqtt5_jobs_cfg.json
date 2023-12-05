@@ -1,6 +1,6 @@
 {
     "language": "CPP",
-    "runnable_file": "../build/servicetests/tests/JobsExecution/describe-job-execution",
+    "runnable_file": "../build/servicetests/tests/JobsExecution/job-execution",
     "runnable_region": "us-east-1",
     "runnable_main_class": "",
     "arguments": [
