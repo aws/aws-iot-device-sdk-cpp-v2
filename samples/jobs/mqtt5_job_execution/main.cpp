@@ -5,23 +5,26 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
 #include <aws/crt/io/HostResolver.h>
-
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 #include <aws/iot/MqttClient.h>
-
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>
 #include <aws/iotjobs/DescribeJobExecutionSubscriptionRequest.h>
+#include <aws/iotjobs/GetPendingJobExecutionsResponse.h>
+#include <aws/iotjobs/GetPendingJobExecutionsSubscriptionRequest.h>
 #include <aws/iotjobs/IotJobsClient.h>
+#include <aws/iotjobs/JobExecutionSummary.h>
 #include <aws/iotjobs/RejectedError.h>
+#include <aws/iotjobs/StartNextJobExecutionResponse.h>
+#include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
+#include <aws/iotjobs/StartNextPendingJobExecutionSubscriptionRequest.h>
+#include <aws/iotjobs/UpdateJobExecutionRequest.h>
+#include <aws/iotjobs/UpdateJobExecutionSubscriptionRequest.h>
 
 #include <algorithm>
 #include <chrono>
-#include <condition_variable>
-#include <iostream>
 #include <mutex>
-#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
