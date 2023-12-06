@@ -38,7 +38,10 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
-void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient, std::vector<Aws::Crt::String> &availableJobs);
+void getAvailableJobs(
+    Aws::Crt::String thingName,
+    IotJobsClient &jobsClient,
+    std::vector<Aws::Crt::String> &availableJobs);
 
 std::shared_ptr<IotJobsClient> build_mqtt3_client(
     Utils::cmdData &cmdData,
@@ -110,6 +113,7 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     }
     return std::make_shared<IotJobsClient>(connection);
 }
+
 std::shared_ptr<IotJobsClient> build_mqtt5_client(
     Utils::cmdData &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
@@ -170,7 +174,6 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     }
     return std::make_shared<IotJobsClient>(client5);
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -464,7 +467,10 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void getAvailableJobs(Aws::Crt::String thingName, IotJobsClient &jobsClient, std::vector<Aws::Crt::String> &availableJobs)
+void getAvailableJobs(
+    Aws::Crt::String thingName,
+    IotJobsClient &jobsClient,
+    std::vector<Aws::Crt::String> &availableJobs)
 {
     std::promise<void> getResponse;
     std::promise<void> publishDescribeJobExeCompletedPromise;
