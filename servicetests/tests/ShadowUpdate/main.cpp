@@ -154,7 +154,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
             connectionCompletedPromise.set_value(true);
         });
     builder->WithClientConnectionFailureCallback([&connectionCompletedPromise](
-                                                    const Mqtt5::OnConnectionFailureEventData &eventData) {
+                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
         fprintf( stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionCompletedPromise.set_value(false);
     });
