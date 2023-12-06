@@ -154,7 +154,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
             connectionCompletedPromise.set_value(true);
         });
     builder->WithClientConnectionFailureCallback([&connectionCompletedPromise](
-                                                        const Mqtt5::OnConnectionFailureEventData &eventData) {
+                                                    const Mqtt5::OnConnectionFailureEventData &eventData) {
         fprintf( stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionCompletedPromise.set_value(false);
     });
@@ -223,10 +223,7 @@ int main(int argc, char *argv[])
         if (cmdData.input_shadowName.empty())
         {
             changeShadowValue(
-                cmdData.input_thingName,
-                cmdData.input_shadowProperty,
-                cmdData.input_shadowValue,
-                shadowClient);
+                cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
         }
         else
         {
