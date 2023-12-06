@@ -36,8 +36,6 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotshadow;
 
-void getShadowDocument(Utils::cmdData &cmdData, std::shared_ptr<IotShadowClient> shadowClient);
-
 void changeNamedShadowValue(
     String thingName,
     String property,
@@ -120,12 +118,15 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
     }
     return std::make_shared<IotShadowClient>(connection);
 }
-std::shared_ptr<IotShadowClient> build_mqtt5_client(Utils::cmdData &cmdData, std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
+std::shared_ptr<IotShadowClient> build_mqtt5_client(
+    Utils::cmdData &cmdData,
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
     std::promise<bool> &connectionCompletedPromise,
     std::promise<void> &connectionClosedPromise)
 {
-    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -154,8 +155,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(Utils::cmdData &cmdData, std
         });
     builder->WithClientConnectionFailureCallback([&connectionCompletedPromise](
                                                         const Mqtt5::OnConnectionFailureEventData &eventData) {
-        fprintf(
-            stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        fprintf( stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionCompletedPromise.set_value(false);
     });
     builder->WithClientStoppedCallback([&connectionClosedPromise](const Mqtt5::OnStoppedEventData &) {
@@ -167,10 +167,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(Utils::cmdData &cmdData, std
     if (client5 == nullptr)
     {
         fprintf(
-            stdout,
-            "Failed to Init Mqtt5Client with error code %d: %s.\n",
-            LastError(),
-            ErrorDebugString(LastError()));
+            stdout, "Failed to Init Mqtt5Client with error code %d: %s.\n", LastError(), ErrorDebugString(LastError()));
         exit(-1);
     }
 
@@ -208,7 +205,7 @@ int main(int argc, char *argv[])
 
     if (cmdData.input_mqtt_version == 5UL)
     {
-        shadowClient = build_mqtt5_client(cmdData, client5,  connectionCompletedPromise, connectionClosedPromise);
+        shadowClient = build_mqtt5_client(cmdData, client5, connectionCompletedPromise, connectionClosedPromise);
     }
     else if (cmdData.input_mqtt_version == 3UL)
     {
@@ -223,8 +220,6 @@ int main(int argc, char *argv[])
     /************************ Run the sample ****************************/
     if (connectionCompletedPromise.get_future().get())
     {
-        //getShadowDocument(cmdData, shadowClient);
-
         if (cmdData.input_shadowName.empty())
         {
             changeShadowValue(
@@ -268,7 +263,11 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void changeShadowValue(Aws::Crt::String thingName, String property, String value, std::shared_ptr<IotShadowClient> shadowClient)
+void changeShadowValue(
+    Aws::Crt::String thingName,
+    String property,
+    String value,
+    std::shared_ptr<IotShadowClient> shadowClient)
 {
     printf("change shadow value ....\n");
     JsonObject desired;
@@ -278,11 +277,8 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     JsonObject val;
     val.AsString(value);
 
-    //desired.WithObject(property, val);
-    //reported.WithObject(property, val);
-
-    desired.WithString(property, value);
-    reported.WithString(property, value);
+    desired.WithObject(property, val);
+    reported.WithObject(property, val);
 
     state.Desired = desired;
     state.Reported = reported;
@@ -297,7 +293,11 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(stderr, "Failed to update %s unnamed shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
+            fprintf(
+                stderr,
+                "Failed to update %s unnamed shadow state: error %s\n",
+                thingName.c_str(),
+                ErrorDebugString(ioErr));
             exit(-1);
         }
         fprintf(stdout, "Publish reached the broker shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
@@ -307,7 +307,12 @@ void changeShadowValue(Aws::Crt::String thingName, String property, String value
     shadowCompletedPromise.get_future().get();
 }
 
-void changeNamedShadowValue(String thingName, String property, String value, String shadowName, std::shared_ptr<IotShadowClient> shadowClient)
+void changeNamedShadowValue(
+    String thingName,
+    String property,
+    String value,
+    String shadowName,
+    std::shared_ptr<IotShadowClient> shadowClient)
 {
     printf("change named shadow value ....\n");
     JsonObject desired;
@@ -334,7 +339,11 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
     auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(stderr, "Failed to update %s named shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
+            fprintf(
+                stderr,
+                "Failed to update %s named shadow state: error %s\n",
+                thingName.c_str(),
+                ErrorDebugString(ioErr));
             exit(-1);
         }
 
@@ -343,116 +352,4 @@ void changeNamedShadowValue(String thingName, String property, String value, Str
     };
     shadowClient->PublishUpdateNamedShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
-}
-void getShadowDocument(Utils::cmdData &cmdData, std::shared_ptr<IotShadowClient> shadowClient)
-{
-    std::promise<void> subscribeGetShadowAcceptedCompletedPromise;
-    std::promise<void> subscribeGetShadowRejectedCompletedPromise;
-    std::promise<void> onGetShadowRequestCompletedPromise;
-    std::promise<void> gotInitialShadowPromise;
-    String currentShadowValue("");
-    auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error getting shadow value from document: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        if (response)
-        {
-            fprintf(stdout, "Received shadow document.\n");
-            if (response->State && response->State->Reported->View().ValueExists(cmdData.input_shadowProperty))
-            {
-                JsonView objectView = response->State->Reported->View().GetJsonObject(cmdData.input_shadowProperty);
-                if (objectView.IsNull())
-                {
-                    fprintf(stdout, "Shadow contains \"%s\" but is null.\n", cmdData.input_shadowProperty.c_str());
-                    currentShadowValue = "";
-                }
-                else
-                {
-                    currentShadowValue = response->State->Reported->View().GetString(cmdData.input_shadowProperty);
-                    fprintf(
-                        stdout,
-                        "Shadow contains \"%s\". Updating local value to \"%s\"...\n",
-                        cmdData.input_shadowProperty.c_str(),
-                        currentShadowValue.c_str());
-                }
-            }
-            else
-            {
-                fprintf(
-                    stdout, "Shadow currently does not contain \"%s\".\n", cmdData.input_shadowProperty.c_str());
-                currentShadowValue = "";
-            }
-            gotInitialShadowPromise.set_value();
-        }
-    };
-
-    auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        fprintf(
-            stdout,
-            "Getting shadow document failed with message %s and code %d.\n",
-            error->Message->c_str(),
-            *error->Code);
-        gotInitialShadowPromise.set_value();
-    };
-
-    auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to get shadow document accepted: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        subscribeGetShadowAcceptedCompletedPromise.set_value();
-    };
-
-    auto onGetShadowRequestSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error getting shadow document: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        onGetShadowRequestCompletedPromise.set_value();
-    };
-
-    auto onGetShadowUpdatedRejectedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to get shadow document rejected: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        subscribeGetShadowRejectedCompletedPromise.set_value();
-    };
-
-    GetShadowSubscriptionRequest shadowSubscriptionRequest;
-    shadowSubscriptionRequest.ThingName = cmdData.input_thingName;
-
-    shadowClient->SubscribeToGetShadowAccepted(
-        shadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onGetShadowAccepted,
-        onGetShadowUpdatedAcceptedSubAck);
-
-    shadowClient->SubscribeToGetShadowRejected(
-        shadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onGetShadowRejected,
-        onGetShadowUpdatedRejectedSubAck);
-
-    subscribeGetShadowAcceptedCompletedPromise.get_future().wait();
-    subscribeGetShadowRejectedCompletedPromise.get_future().wait();
-
-    GetShadowRequest shadowGetRequest;
-    shadowGetRequest.ThingName = cmdData.input_thingName;
-
-    // Get the current shadow document so we start with the correct value
-    shadowClient->PublishGetShadow(shadowGetRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onGetShadowRequestSubAck);
-
-    onGetShadowRequestCompletedPromise.get_future().wait();
-    gotInitialShadowPromise.get_future().wait();
 }
