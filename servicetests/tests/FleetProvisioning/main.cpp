@@ -219,7 +219,7 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
         (void)response;
         if (ioErr)
         {
-            fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
+            fprintf(stderr, "Error: handler callback error %d\n", ioErr);
             exit(-1);
         }
         gotResponse.set_value();
@@ -273,13 +273,14 @@ void createKeysAndCertificateWorkflow(
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: onSubackPromise timeout\n");
         exit(-1);
     }
 
     auto rejectedHandler = [&](Aws::Iotidentity::ErrorResponse *response, int ioErr) {
         if (ioErr)
         {
-            fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
+            fprintf(stderr, "Error: rejectedHandler callback error %d\n", ioErr);
             exit(-1);
         }
         if (response)
@@ -294,6 +295,7 @@ void createKeysAndCertificateWorkflow(
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: onSubAckPromise timeout\n");
         exit(-1);
     }
 
@@ -306,16 +308,19 @@ void createKeysAndCertificateWorkflow(
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: onSubAckPromise timeout\n");
         exit(-1);
     }
     status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: gotResponse timeout\n");
         exit(-1);
     }
     // Verify the response is good
     if (createKeysAndCertificateResponse == nullptr)
     {
+        fprintf(stderr, "Error: createKeysAndCertificateResponse is null\n");
         exit(-1);
     }
     gotResponse = std::promise<void>();
@@ -343,11 +348,13 @@ void createKeysAndCertificateWorkflow(
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: onSubAckPromise timeout\n");
         exit(-1);
     }
     status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
+        fprintf(stderr, "Error: gotResponse timeout\n");
         exit(-1);
     }
 }
@@ -435,6 +442,7 @@ void createCertificateFromCsrWorkflow(
     gotResponse.get_future().wait_for(span);
     if (createCertificateFromCsrResponse == nullptr)
     {
+        fprintf(stderr, "Error: createCertificateFromCsrResponse is null\n");
         exit(-1);
     }
     gotResponse = std::promise<void>();
