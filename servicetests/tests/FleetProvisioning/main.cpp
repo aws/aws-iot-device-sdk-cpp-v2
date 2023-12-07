@@ -211,26 +211,20 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
     RegisterThingSubscriptionRequest registerThingSubscriptionRequest;
     registerThingSubscriptionRequest.TemplateName = input_templateName;
 
-    iotIdentityClient->SubscribeToRegisterThingAccepted(
-        registerThingSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onRegisterThingAccepted,
-        onSuback);
+    iotIdentityClient->SubscribeToRegisterThingAccepted(registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onSuback);
     onSubAckPromise.get_future().wait_for(span);
 
-    auto handler = [&](ErrorResponse *response, int ioErr) {
-        gotResponse.set_value();
-    };
+    auto handler = [&](ErrorResponse *response, int ioErr) { gotResponse.set_value(); };
     onSubAckPromise = std::promise<void>();
     iotIdentityClient->SubscribeToRegisterThingRejected(
-        registerThingSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        handler,
-        onSuback);
+        registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, onSuback);
     onSubAckPromise.get_future().wait_for(span);
 }
 
-void createKeysAndCertificateWorkflow(String &input_templateName, String &input_templateParameters, std::shared_ptr<IotIdentityClient> iotIdentityClient)
+void createKeysAndCertificateWorkflow(
+    String &input_templateName,
+    String &input_templateParameters,
+    std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
     std::promise<void> onSubAckPromise;
     std::future_status status;
@@ -265,10 +259,7 @@ void createKeysAndCertificateWorkflow(String &input_templateName, String &input_
     CreateKeysAndCertificateSubscriptionRequest createKeysAndCertificateSubscriptionRequest;
 
     iotIdentityClient->SubscribeToCreateKeysAndCertificateAccepted(
-        createKeysAndCertificateSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        acceptedHandler,
-        onSubAck);
+        createKeysAndCertificateSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, acceptedHandler, onSubAck);
 
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
@@ -289,10 +280,7 @@ void createKeysAndCertificateWorkflow(String &input_templateName, String &input_
     };
     onSubAckPromise = std::promise<void>();
     iotIdentityClient->SubscribeToCreateKeysAndCertificateRejected(
-        createKeysAndCertificateSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        rejectedHandler,
-        onSubAck);
+        createKeysAndCertificateSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, rejectedHandler, onSubAck);
 
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
@@ -305,15 +293,13 @@ void createKeysAndCertificateWorkflow(String &input_templateName, String &input_
     onSubAckPromise = std::promise<void>();
     CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
     iotIdentityClient->PublishCreateKeysAndCertificate(
-        createKeysAndCertificateRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onSubAck);
+        createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubAck);
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
         exit(-1);
     }
-    status = gotResponse.get_future().wait_for(span);  // 5 seconds
+    status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
         exit(-1);
@@ -326,7 +312,8 @@ void createKeysAndCertificateWorkflow(String &input_templateName, String &input_
     gotResponse = std::promise<void>();
 
     RegisterThingRequest registerThingRequest;
-    registerThingRequest.CertificateOwnershipToken = createKeysAndCertificateResponse->CertificateOwnershipToken.value();
+    registerThingRequest.CertificateOwnershipToken =
+        createKeysAndCertificateResponse->CertificateOwnershipToken.value();
     registerThingRequest.TemplateName = input_templateName;
 
     if (!input_templateParameters.empty())
@@ -344,22 +331,24 @@ void createKeysAndCertificateWorkflow(String &input_templateName, String &input_
     }
     onSubAckPromise = std::promise<void>();
     iotIdentityClient->PublishRegisterThing(
-        registerThingRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onSubAck);
+        registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubAck);
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
         exit(-1);
     }
-    status = gotResponse.get_future().wait_for(span);  // 5 seconds
+    status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
         exit(-1);
     }
 }
 
-void createCertificateFromCsrWorkflow(String input_templateName, String input_templateParameters, String input_csrPath, std::shared_ptr<IotIdentityClient> iotIdentityClient)
+void createCertificateFromCsrWorkflow(
+    String input_templateName,
+    String input_templateParameters,
+    String input_csrPath,
+    std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
     std::promise<void> onSubAckPromise;
     std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
@@ -367,18 +356,19 @@ void createCertificateFromCsrWorkflow(String input_templateName, String input_te
 
     gotResponse = std::promise<void>();
 
-    auto onCreateCertificateFromCsrResponseAccepted = [&createCertificateFromCsrResponse](CreateCertificateFromCsrResponse *response, int ioErr) {
-        if (ioErr)
-        {
-            fprintf(stderr, "Error: onCreateCertificateFromCsrResponseAccepted callback error %d\n", ioErr);
-            exit(-1);
-        }
-        if (response != nullptr)
-        {
-            if (createCertificateFromCsrResponse == nullptr) {
-                createCertificateFromCsrResponse = response;
+    auto onCreateCertificateFromCsrResponseAccepted =
+        [&createCertificateFromCsrResponse](CreateCertificateFromCsrResponse *response, int ioErr) {
+            if (ioErr)
+            {
+                fprintf(stderr, "Error: onCreateCertificateFromCsrResponseAccepted callback error %d\n", ioErr);
+                exit(-1);
             }
-        }
+            if (response != nullptr)
+            {
+                if (createCertificateFromCsrResponse == nullptr) {
+                    createCertificateFromCsrResponse = response;
+                }
+            }
         gotResponse.set_value();
     };
 
@@ -391,7 +381,7 @@ void createCertificateFromCsrWorkflow(String input_templateName, String input_te
         onSubAckPromise.set_value();
     };
 
-    auto  onRejectedCsr = [&](ErrorResponse *response, int ioErr) {
+    auto onRejectedCsr = [&](ErrorResponse *response, int ioErr) {
         (void)response;
         if (ioErr)
         {
@@ -411,10 +401,7 @@ void createCertificateFromCsrWorkflow(String input_templateName, String input_te
 
     onSubAckPromise = std::promise<void>();
     iotIdentityClient->SubscribeToCreateCertificateFromCsrRejected(
-        createCertificateFromCsrSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onRejectedCsr,
-        onSubAck);
+        createCertificateFromCsrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRejectedCsr, onSubAck);
     onSubAckPromise.get_future().wait_for(span);
 
     // Subscribes to the register thing accepted and rejected topics
@@ -432,14 +419,13 @@ void createCertificateFromCsrWorkflow(String input_templateName, String input_te
     CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
     createCertificateFromCsrRequest.CertificateSigningRequest = csrContents.c_str();
     iotIdentityClient->PublishCreateCertificateFromCsr(
-	createCertificateFromCsrRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-	onPubAck);
+	createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
 
     gotResponse = std::promise<void>();
     onPubAckPromise.get_future().wait_for(span);
     gotResponse.get_future().wait_for(span);
-    if (createCertificateFromCsrResponse == nullptr) {
+    if (createCertificateFromCsrResponse == nullptr)
+    {
         exit(-1);
     }
     gotResponse = std::promise<void>();
@@ -464,14 +450,12 @@ void createCertificateFromCsrWorkflow(String input_templateName, String input_te
 
     onPubAckPromise = std::promise<void>();
     iotIdentityClient->PublishRegisterThing(
-        registerThingRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onPubAck);
+        registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
     onPubAckPromise.get_future().wait_for(span);
     gotResponse.get_future().wait_for(span);
 }
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
     // Do the global initialization for the API
     ApiHandle apiHandle;
@@ -499,7 +483,8 @@ int main(int argc, char * argv[])
     }
     else if (cmdData.input_mqtt_version == 3UL)
     {
-        iotIdentityClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);
+        iotIdentityClient =
+            build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);
     }
     else
     {
@@ -508,10 +493,15 @@ int main(int argc, char * argv[])
     }
     if (connectionCompletedPromise.get_future().get())
     {
-        if (cmdData.input_csrPath.empty()) {
-            createKeysAndCertificateWorkflow(cmdData.input_templateName, cmdData.input_templateParameters, iotIdentityClient);
-        } else {
-            createCertificateFromCsrWorkflow(cmdData.input_templateName, cmdData.input_templateParameters, cmdData.input_csrPath, iotIdentityClient);
+        if (cmdData.input_csrPath.empty())
+        {
+            createKeysAndCertificateWorkflow(
+                cmdData.input_templateName, cmdData.input_templateParameters, iotIdentityClient);
+        }
+        else
+        {
+            createCertificateFromCsrWorkflow(
+                cmdData.input_templateName, cmdData.input_templateParameters, cmdData.input_csrPath, iotIdentityClient);
         }
     }
     // Wait just a little bit to let the console print
