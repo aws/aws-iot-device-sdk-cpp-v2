@@ -1,6 +1,6 @@
 {
     "language": "CPP",
-    "runnable_file": "../build/servicetests/tests/fleet_provisioning",
+    "runnable_file": "../build/servicetests/tests/FleetProvisioning/fleet_provisioning",
     "runnable_region": "us-east-1",
     "runnable_main_class": "",
     "arguments": [
