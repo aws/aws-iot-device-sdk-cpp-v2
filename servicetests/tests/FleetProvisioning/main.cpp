@@ -211,7 +211,8 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
     RegisterThingSubscriptionRequest registerThingSubscriptionRequest;
     registerThingSubscriptionRequest.TemplateName = input_templateName;
 
-    iotIdentityClient->SubscribeToRegisterThingAccepted(registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onSuback);
+    iotIdentityClient->SubscribeToRegisterThingAccepted(
+        registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onSuback);
     onSubAckPromise.get_future().wait_for(span);
 
     auto handler = [&](ErrorResponse *response, int ioErr) { gotResponse.set_value(); };
@@ -330,8 +331,7 @@ void createKeysAndCertificateWorkflow(
         registerThingRequest.Parameters = params;
     }
     onSubAckPromise = std::promise<void>();
-    iotIdentityClient->PublishRegisterThing(
-        registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubAck);
+    iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubAck);
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
@@ -365,7 +365,8 @@ void createCertificateFromCsrWorkflow(
             }
             if (response != nullptr)
             {
-                if (createCertificateFromCsrResponse == nullptr) {
+                if (createCertificateFromCsrResponse == nullptr)
+                {
                     createCertificateFromCsrResponse = response;
                 }
             }
@@ -419,7 +420,7 @@ void createCertificateFromCsrWorkflow(
     CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
     createCertificateFromCsrRequest.CertificateSigningRequest = csrContents.c_str();
     iotIdentityClient->PublishCreateCertificateFromCsr(
-	createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
+        createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
 
     gotResponse = std::promise<void>();
     onPubAckPromise.get_future().wait_for(span);
@@ -449,8 +450,7 @@ void createCertificateFromCsrWorkflow(
     }
 
     onPubAckPromise = std::promise<void>();
-    iotIdentityClient->PublishRegisterThing(
-        registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
+    iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
     onPubAckPromise.get_future().wait_for(span);
     gotResponse.get_future().wait_for(span);
 }
