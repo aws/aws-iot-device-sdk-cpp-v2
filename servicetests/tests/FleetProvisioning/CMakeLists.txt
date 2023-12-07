@@ -21,8 +21,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_package(IotJobs-cpp REQUIRED)
+find_package(IotIdentity-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotJobs-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotIdentity-cpp)
