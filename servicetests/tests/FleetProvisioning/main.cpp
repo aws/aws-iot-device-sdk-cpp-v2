@@ -215,7 +215,14 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
         registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onSuback);
     onSubAckPromise.get_future().wait_for(span);
 
-    auto handler = [&](ErrorResponse *response, int ioErr) { gotResponse.set_value(); };
+    auto handler = [&](ErrorResponse *response, int ioErr) {
+        if (ioErr)
+        {
+            fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
+            exit(-1);
+        }
+        gotResponse.set_value();
+    };
     onSubAckPromise = std::promise<void>();
     iotIdentityClient->SubscribeToRegisterThingRejected(
         registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, onSuback);
