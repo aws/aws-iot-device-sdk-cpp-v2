@@ -370,8 +370,8 @@ void createCertificateFromCsrWorkflow(
                     createCertificateFromCsrResponse = response;
                 }
             }
-        gotResponse.set_value();
-    };
+            gotResponse.set_value();
+        };
 
     auto onSubAck = [&](int ioErr) {
         if (ioErr)
