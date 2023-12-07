@@ -216,6 +216,7 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
     onSubAckPromise.get_future().wait_for(span);
 
     auto handler = [&](ErrorResponse *response, int ioErr) {
+        (void)response;
         if (ioErr)
         {
             fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
