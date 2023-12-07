@@ -53,6 +53,7 @@ class BuildSamples(Builder.Action):
 
         servicetests = [
             'servicetests/tests/JobsExecution/',
+            'servicetests/tests/FleetProvisioning/',
         ]
 
         for sample_path in samples:
