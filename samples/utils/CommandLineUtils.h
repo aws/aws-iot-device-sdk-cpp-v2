@@ -220,6 +220,10 @@ namespace Utils
         uint64_t input_count;
         // Websockets
         Aws::Crt::String input_signingRegion;
+
+        Aws::Crt::String input_accessKeyId;
+        Aws::Crt::String input_secretAccessKey;
+        Aws::Crt::String input_sessionToken;
         // Cognito
         Aws::Crt::String input_cognitoIdentity;
         Aws::Crt::String input_cognitoEndpoint;
@@ -228,6 +232,8 @@ namespace Utils
         Aws::Crt::String input_customAuthorizerName;
         Aws::Crt::String input_customAuthorizerSignature;
         Aws::Crt::String input_customAuthPassword;
+        Aws::Crt::String input_customTokenKeyName;
+        Aws::Crt::String input_customTokenValue;
         // Fleet provisioning
         Aws::Crt::String input_templateName;
         Aws::Crt::String input_templateParameters;
@@ -290,6 +296,7 @@ namespace Utils
     cmdData parseSampleInputCognitoConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputCustomAuthorizerConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputPKCS11Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputWebsocketStaticCredentialsConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);

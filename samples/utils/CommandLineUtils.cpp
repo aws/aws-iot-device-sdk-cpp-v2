@@ -21,6 +21,9 @@ namespace Utils
     static const char *m_cmd_proxy_host = "proxy_host";
     static const char *m_cmd_proxy_port = "proxy_port";
     static const char *m_cmd_signing_region = "signing_region";
+    static const char *m_cmd_access_key_id = "access_key_id";
+    static const char *m_cmd_secret_access_key = "secret_access_key";
+    static const char *m_cmd_session_token = "session_token";
     static const char *m_cmd_x509_endpoint = "x509_endpoint";
     static const char *m_cmd_x509_role = "x509_role_alias";
     static const char *m_cmd_x509_thing_name = "x509_thing_name";
@@ -40,6 +43,8 @@ namespace Utils
     static const char *m_cmd_custom_auth_authorizer_name = "custom_auth_authorizer_name";
     static const char *m_cmd_custom_auth_authorizer_signature = "custom_auth_authorizer_signature";
     static const char *m_cmd_custom_auth_password = "custom_auth_password";
+    static const char *m_cmd_custom_auth_token_name = "custom_auth_token_name";
+    static const char *m_cmd_custom_token_value = "custom_auth_token_value";
     static const char *m_cmd_verbosity = "verbosity";
     static const char *m_cmd_log_file = "log_file";
     static const char *m_cmd_cognito_identity = "cognito_identity";
@@ -601,6 +606,9 @@ namespace Utils
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonCustomAuthorizerCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_custom_auth_password, "<str>", "Password (optional)");
+        cmdUtils.RegisterCommand(m_cmd_custom_auth_token_name, "<str>", "Token name (optional)");
+        cmdUtils.RegisterCommand(m_cmd_custom_token_value, "<str>", "Token value (optional)");
         cmdUtils.RemoveCommand("ca_file");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
         cmdData returnData = cmdData();
@@ -612,6 +620,9 @@ namespace Utils
         returnData.input_customAuthorizerSignature =
             cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_authorizer_signature, "");
         returnData.input_customAuthPassword = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_password, "");
+        returnData.input_customTokenKeyName = cmdUtils.GetCommandOrDefault(m_cmd_custom_auth_token_name, "");
+        returnData.input_customTokenValue = cmdUtils.GetCommandOrDefault(m_cmd_custom_token_value, "");
+
         return returnData;
     }
 
@@ -651,6 +662,39 @@ namespace Utils
         }
         return returnData;
     }
+    cmdData parseSampleInputWebsocketStaticCredentialsConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("websocket-connect");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonProxyCommands();
+        cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.RegisterCommand(m_cmd_access_key_id, "<str>", "The Access key ID (optional)");
+        cmdUtils.RegisterCommand(m_cmd_secret_access_key, "<str>", "The secret access key (optional)");
+        cmdUtils.RegisterCommand(m_cmd_session_token, "<str>", "The session token (optional)");
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
+
+        cmdData returnData = cmdData();
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
+        returnData.input_clientId =
+            cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_signingRegion = cmdUtils.GetCommandRequired(m_cmd_signing_region, m_cmd_region);
+        if (cmdUtils.HasCommand(m_cmd_proxy_host))
+        {
+            returnData.input_proxyHost = cmdUtils.GetCommandRequired(m_cmd_proxy_host);
+            returnData.input_proxyPort = atoi(cmdUtils.GetCommandOrDefault(m_cmd_proxy_port, "8080").c_str());
+        }
+        if (cmdUtils.HasCommand(m_cmd_port_override))
+        {
+            returnData.input_port = atoi(cmdUtils.GetCommandOrDefault(m_cmd_port_override, "0").c_str());
+        }
+        returnData.input_accessKeyId = cmdUtils.GetCommandRequired(m_cmd_access_key_id, "");
+        returnData.input_secretAccessKey = cmdUtils.GetCommandRequired(m_cmd_secret_access_key, "");
+        returnData.input_sessionToken = cmdUtils.GetCommandRequired(m_cmd_session_token, "");
+        return returnData;
+    }
 
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
@@ -661,6 +705,9 @@ namespace Utils
         cmdUtils.RegisterCommand(m_cmd_signing_region, "<str>", "The signing region used for the websocket signer");
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
         cmdUtils.RegisterCommand(m_cmd_port_override, "<int>", "The port override to use when connecting (optional)");
+        cmdUtils.RegisterCommand(m_cmd_access_key_id, "<str>", "The Access key ID (optional)");
+        cmdUtils.RegisterCommand(m_cmd_secret_access_key, "<str>", "The secret access key (optional)");
+        cmdUtils.RegisterCommand(m_cmd_session_token, "<str>", "The session token (optional)");
         s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
 
         cmdData returnData = cmdData();
