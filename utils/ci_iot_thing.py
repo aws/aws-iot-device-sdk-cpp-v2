@@ -67,7 +67,7 @@ def delete_iot_thing(thing_name, region):
             iot_client.update_certificate(certificateId=certificate_id, newStatus='INACTIVE')
             iot_client.delete_certificate(certificateId=certificate_id, forceDelete=True)
     except Exception:
-        print("ERROR: Could not delete certificate for IoT thing {thing_name}, probably thing does not exist",
+        print(f"ERROR: Could not delete certificate for IoT thing {thing_name}, probably thing does not exist",
               file=sys.stderr)
         raise
 
