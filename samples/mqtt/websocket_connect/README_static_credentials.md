@@ -13,7 +13,7 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
 
 <details>
 <summary>(see sample policy)</summary>
-<pre>
+<pre language=json>
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -43,8 +43,8 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre>
-<code language="cpp">
+<pre language=cpp>
+<code >
 void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
