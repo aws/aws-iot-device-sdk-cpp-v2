@@ -43,7 +43,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<code language=cpp>
+<code language="cpp">
 void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
