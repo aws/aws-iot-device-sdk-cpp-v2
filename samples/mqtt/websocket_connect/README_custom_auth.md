@@ -50,7 +50,7 @@ For this sample, using Websockets will attempt to connect using custom auth.
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre language="c++">
+<pre language="cpp">
 <code>
 void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
