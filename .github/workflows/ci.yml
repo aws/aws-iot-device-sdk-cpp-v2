@@ -476,12 +476,12 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json
+
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_FLEET_PROVISIONING_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-
       - name: run Fleet Provisioning service client test for MQTT311
         working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
         run: |
