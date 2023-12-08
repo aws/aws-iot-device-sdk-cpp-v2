@@ -2,15 +2,15 @@
 
 [**Return to main sample list**](../../README.md)
 
-This sample makes an MQTT connection and connects through a Custom Authorizer.
+This sample makes an MQTT connection and connects through a [Custom Authorizer](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html).
 On startup, the device connects to the server and then disconnects.
 This sample is for reference on connecting using a Custom Authorizer.
 Using a Custom Authorizer allows you to perform your own authorization using an AWS Lambda function.
-See Custom Authorizer for more information.
+See [Custom Authorizer](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html) for more information.
 You will need to setup your Custom Authorizer so that the lambda function returns a policy document.
-See this page on the documentation for more details and example return result.
+See [this page on the documentation](https://docs.aws.amazon.com/iot/latest/developerguide/config-custom-auth.html) for more details and example return result.
 You can customize this lambda function as needed for your application to provide your own security measures based on the needs of your application.
-Your IoT Core Thing's Policy must provide privileges for this sample to connect.
+Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect.
 Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 If you want to use simple or custom auth (or static creds, or basic auth, etc) instead,
