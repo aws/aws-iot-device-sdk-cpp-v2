@@ -198,8 +198,9 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
         }
         if (response)
         {
+            fprintf(stdout, "Register thing: %s\n", response->ThingName.value().c_str());
         }
-        gotResponse.set_value();
+        //gotResponse.set_value();
     };
     auto onSuback = [&](int ioErr) {
         if (ioErr)
@@ -226,7 +227,7 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
     if (status == std::future_status::timeout)
     {
         fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
+    //    exit(-1);
     }
     gotResponse = std::promise<void>();
 
@@ -311,7 +312,7 @@ void createKeysAndCertificateWorkflow(
     status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
-        fprintf(stderr, "Error: 1- gotResponse timeout %s\n", __FUNCTION__);
+        fprintf(stderr, "Error: - gotResponse timeout %s\n", __FUNCTION__);
         exit(-1);
     }
     gotResponse = std::promise<void>();
