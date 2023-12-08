@@ -347,8 +347,6 @@ void createKeysAndCertificateWorkflow(
     }
     gotResponse = std::promise<void>();
 
-    SubscribeToRegisterThing(input_templateName, iotIdentityClient);
-
     CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
     iotIdentityClient->PublishCreateKeysAndCertificate(
         createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onSubAck);
@@ -367,6 +365,9 @@ void createKeysAndCertificateWorkflow(
     }
     // reset gotResponse future
     gotResponse = std::promise<void>();
+
+    SubscribeToRegisterThing(input_templateName, iotIdentityClient);
+
 
     RegisterThingRequest registerThingRequest;
     registerThingRequest.CertificateOwnershipToken =
