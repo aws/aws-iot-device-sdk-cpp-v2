@@ -461,22 +461,6 @@ jobs:
           sudo apt-get install softhsm -y
           softhsm2-util --version
 
-      - name: configure AWS credentials (Jobs)
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ env.CI_JOBS_SERVICE_CLIENT_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run mqtt3 Jobs serviceTests
-        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-        run: |
-          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
-          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt3_jobs_cfg.json
-      - name: run mqtt5 Jobs serviceTests
-        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
-        run: |
-          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
-          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json
-
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -502,6 +486,22 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_fleet_provisioning.py --config-file test_cases/mqtt5_fleet_provisioning_with_csr_cfg.json --thing-name-prefix Fleet_Thing_
+
+      - name: configure AWS credentials (Jobs)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_JOBS_SERVICE_CLIENT_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run mqtt3 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt3_jobs_cfg.json
+      - name: run mqtt5 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json
 
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
