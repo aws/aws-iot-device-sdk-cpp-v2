@@ -43,28 +43,30 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 
 <details>
 <summary> (code snipet to replace similar section)</summary>
-<pre language="c++"> <code>
+<pre language="c++">
+<code>
 void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
   cmdData = Utils::parseSampleInputWebsocketStaticCredentialsConnect(argc, argv, &apiHandle);
 
-    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+  Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
 
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
-    Aws::Crt::Auth::CredentialsProviderStaticConfig providerConfig;
+  std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+  Aws::Crt::Auth::CredentialsProviderStaticConfig providerConfig;
 
-    providerConfig.AccessKeyId = aws_byte_cursor_from_c_str((cmdData.input_accessKeyId.c_str()));
-    providerConfig.SecretAccessKey = aws_byte_cursor_from_c_str((cmdData.input_secretAccessKey.c_str()));
-    providerConfig.SessionToken = aws_byte_cursor_from_c_str((cmdData.input_sessionToken.c_str()));
+  providerConfig.AccessKeyId = aws_byte_cursor_from_c_str((cmdData.input_accessKeyId.c_str()));
+  providerConfig.SecretAccessKey = aws_byte_cursor_from_c_str((cmdData.input_secretAccessKey.c_str()));
+  providerConfig.SessionToken = aws_byte_cursor_from_c_str((cmdData.input_sessionToken.c_str()));
 
-    provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderStatic(providerConfig);
-    Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
+  provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderStatic(providerConfig);
+  Aws::Iot::WebsocketConfig config(cmdData.input_signingRegion, provider);
 
-    clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
-    clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
+  clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+  clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
 }
-</code> </pre>
+</code>
+</pre>
 </details>
 
 ## How to run
