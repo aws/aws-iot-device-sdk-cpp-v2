@@ -44,8 +44,7 @@ For this sample, using Websockets will attempt to fetch the AWS credentials to a
 <details>
 <summary> (code snipet to replace similar section)</summary>
 <pre>
-```cpp
-void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
+void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdData &cmdData,
     Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
     cmdData = Utils::parseSampleInputWebsocketStaticCredentialsConnect(argc, argv, &apiHandle);
@@ -60,7 +59,6 @@ void connection_setup(int argc, char *argv[], ApiHandle &apiHandle, Utils::cmdDa
     clientConfigBuilder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
     clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
 }
-```
 </pre>
 </details>
 
