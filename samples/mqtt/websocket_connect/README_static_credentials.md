@@ -61,13 +61,13 @@ void connection_setup(int argc, char \*argv[], ApiHandle &apiHandle, Utils::cmdD
     clientConfigBuilder.WithEndpoint((cmdData.input_endpoint));
 }
 </code>
-</pre>
 ```cpp
 int main(int argc)
 {
     return 0;
 }
 ```
+</pre>
 </details>
 
 ## How to run
