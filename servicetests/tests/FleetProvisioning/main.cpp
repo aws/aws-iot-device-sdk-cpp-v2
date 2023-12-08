@@ -312,7 +312,6 @@ void createKeysAndCertificateWorkflow(
     }
     onSubAckPromise = std::promise<void>();
 
-    /*
     status = gotResponse.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
     {
@@ -320,7 +319,6 @@ void createKeysAndCertificateWorkflow(
         exit(-1);
     }
     gotResponse = std::promise<void>();
-    */
 
     auto rejectedHandler = [&](Aws::Iotidentity::ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_ERR)
