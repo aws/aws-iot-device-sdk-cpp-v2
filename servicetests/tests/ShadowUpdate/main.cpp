@@ -422,8 +422,6 @@ void changeShadowValue(
     String value,
     std::shared_ptr<IotShadowClient> shadowClient)
 {
-    std::promise<void> shadowCompletedPromise;
-
     /* publish updates */
     JsonObject desired;
     JsonObject reported;
@@ -444,7 +442,8 @@ void changeShadowValue(
     Aws::Crt::UUID uuid;
     request.ClientToken = uuid.ToString();
 
-    auto publishCompleted = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
+    std::promise<void> shadowCompletedPromise;
+    auto publishCompleted = [thingName, value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(
@@ -460,8 +459,6 @@ void changeShadowValue(
     shadowClient->PublishUpdateShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
 
     shadowCompletedPromise.get_future().get();
-
-    return;
 }
 
 void changeNamedShadowValue(
