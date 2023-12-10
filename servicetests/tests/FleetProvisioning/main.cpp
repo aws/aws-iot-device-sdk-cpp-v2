@@ -444,12 +444,12 @@ void createKeysAndCertificateWorkflow(
     onSubAckPromise = std::promise<void>();
 */
     SubscribeToRegisterThing(input_templateName, iotIdentityClient);
-    //sleep(1);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     // Verify the response is good
     if (createKeysAndCertificateResponse == nullptr)
     {
-        fprintf(stderr, "Error: createKeysAndCertificateResponse is null\n");
+        fprintf(stderr, "Error: 1 createKeysAndCertificateResponse is null\n");
         exit(-1);
     }
     // reset gotResponse future
@@ -487,6 +487,8 @@ void createKeysAndCertificateWorkflow(
         registerPublishCompletedPromise.set_value();
     };
     iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    //sleep(1);
     /*
     status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
     if (status == std::future_status::timeout)
