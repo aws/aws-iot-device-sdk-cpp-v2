@@ -435,9 +435,9 @@ void changeShadowValue(
 {
     std::promise<void> gotResponse;
     std::promise<void> shadowCompletedPromise;
-    //            String thingName = cmdData.input_thingName;
-     //           String property = cmdData.input_shadowProperty;
-      //          String value = cmdData.input_shadowValue;
+    //          String thingName = cmdData.input_thingName;
+    //          String property = cmdData.input_shadowProperty;
+    //          String value = cmdData.input_shadowValue;
     auto publishCompleted2 = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
@@ -461,6 +461,7 @@ void changeShadowValue(
         }
         if (event)
         {
+            /*
             String value1 = event->Previous->State->Reported->View().GetString(property);
             String value2 = event->Previous->State->Desired->View().GetString(property);
             String value3 = event->Current->State->Reported->View().GetString(property);
@@ -471,6 +472,7 @@ void changeShadowValue(
 
             fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
             fprintf(stdout, "current  desired  Value 4 %s\n", value4.c_str());
+            */
         }
         gotResponse.set_value();
     };
