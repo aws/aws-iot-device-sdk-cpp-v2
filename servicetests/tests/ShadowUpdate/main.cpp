@@ -244,7 +244,11 @@ int main(int argc, char *argv[])
         {
             std::promise<void> gotResponse;
             subscribeShadowUpdatedValue(
-                cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient, gotResponse);
+                cmdData.input_thingName,
+                cmdData.input_shadowProperty,
+                cmdData.input_shadowValue,
+                shadowClient,
+                gotResponse);
 
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
@@ -252,6 +256,7 @@ int main(int argc, char *argv[])
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
             {
+                fprintf(stderr, "Shadow update document timedout\n");
                 exit(-1);
             }
         }
@@ -259,7 +264,12 @@ int main(int argc, char *argv[])
         {
             std::promise<void> gotResponse;
             subscribeNamedShadowUpdatedValue(
-                cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, cmdData.input_shadowName, shadowClient, gotResponse);
+                cmdData.input_thingName,
+                cmdData.input_shadowProperty,
+                cmdData.input_shadowValue,
+                cmdData.input_shadowName,
+                shadowClient,
+                gotResponse);
 
             changeNamedShadowValue(
                 cmdData.input_thingName,
@@ -271,10 +281,10 @@ int main(int argc, char *argv[])
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
             {
+                fprintf(stderr, "Shadow update document timedout\n");
                 exit(-1);
             }
         }
-        //checkShadowValue(cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
     }
     /************************ sample ends ****************************/
     /* Closing down */
@@ -282,7 +292,7 @@ int main(int argc, char *argv[])
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     if (cmdData.input_mqtt_version == 5UL)
-    {
+    {   // mqtt5
         // Disconnect
         if (client5->Stop() == true)
         {
@@ -290,8 +300,7 @@ int main(int argc, char *argv[])
         }
     }
     else
-    { // mqtt3
-
+    {    // mqtt3
         // Disconnect
         if (connection->Disconnect() == true)
         {
@@ -323,8 +332,6 @@ void subscribeShadowUpdatedValue(
         shadowCompletedPromise.set_value();
     };
 
-/* subscribe to event updates */
-
     /* verify updated shadow */
     auto handler = [&gotResponse, &property] (ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
@@ -347,6 +354,7 @@ void subscribeShadowUpdatedValue(
         gotResponse.set_value();
     };
 
+    /* subscribe to event updates */
     ShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
     shadowClient->SubscribeToShadowUpdatedEvents(requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
@@ -376,10 +384,8 @@ void subscribeNamedShadowUpdatedValue(
         shadowCompletedPromise.set_value();
     };
 
-/* subscribe to event updates */
-
     /* verify updated shadow */
-    auto handler = [&gotResponse, &property] (ShadowUpdatedEvent *event, int ioErr) {
+    auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
             exit(-1);
@@ -400,6 +406,7 @@ void subscribeNamedShadowUpdatedValue(
         gotResponse.set_value();
     };
 
+    /* subscribe to event updates */
     NamedShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
     requestUpdate.ShadowName = shadowName;
@@ -414,7 +421,7 @@ void changeShadowValue(
     std::shared_ptr<IotShadowClient> shadowClient)
 {
 
-/* =============== delta updates =============== */
+    /* =============== delta updates =============== */
 
     /********************** Shadow Delta Updates ********************/
     // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
