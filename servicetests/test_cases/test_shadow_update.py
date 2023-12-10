@@ -64,7 +64,8 @@ def main():
             region=parsed_commands.region,
             policy_name=policy_name,
             certificate_path=certificate_path,
-            key_path=key_path)
+            key_path=key_path,
+            policy_name2=logging_policy)
     except Exception as e:
         print(f"ERROR: Failed to create IoT thing: {e}")
         sys.exit(-1)

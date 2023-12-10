@@ -6,7 +6,7 @@ import sys
 import boto3
 
 
-def create_iot_thing(thing_name, region, policy_name, certificate_path, key_path, thing_group=None):
+def create_iot_thing(thing_name, region, policy_name, certificate_path, key_path, thing_group=None, policy_name2=None):
     """ Create IoT thing along with policy and credentials. """
 
     iot_client = boto3.client('iot', region_name=region)
@@ -35,6 +35,9 @@ def create_iot_thing(thing_name, region, policy_name, certificate_path, key_path
 
         print("Attaching policy to certificate", file=sys.stderr)
         iot_client.attach_policy(policyName=policy_name, target=certificate_arn)
+
+        if policy_name2:
+            iot_client.attach_policy(policyName=policy_name2, target=certificate_arn)
 
         print("Attaching certificate to thing", file=sys.stderr)
         iot_client.attach_thing_principal(thingName=thing_name, principal=certificate_arn)
