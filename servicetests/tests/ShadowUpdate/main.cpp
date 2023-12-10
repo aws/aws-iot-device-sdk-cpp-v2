@@ -244,6 +244,7 @@ int main(int argc, char *argv[])
         if (cmdData.input_shadowName.empty())
         {
             std::promise<void> gotResponse;
+            /*
             subscribeShadowUpdatedValue(
                 cmdData.input_thingName,
                 cmdData.input_shadowProperty,
@@ -251,6 +252,54 @@ int main(int argc, char *argv[])
                 shadowClient,
                 gotResponse);
             fprintf(stdout, "subscribed to update document topics\n");
+            */
+    std::promise<void> shadowCompletedPromise;
+                String thingName = cmdData.input_thingName;
+                String property = cmdData.input_shadowProperty;
+                String value = cmdData.input_shadowValue;
+    auto publishCompleted = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(
+                stderr,
+                "Failed to update %s unnamed shadow state: error %s\n",
+                thingName.c_str(),
+                ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        fprintf(stdout, "Publish reached the broker shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
+        shadowCompletedPromise.set_value();
+    };
+
+    /* verify updated shadow */
+    auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
+        if (ioErr == AWS_OP_ERR)
+        {
+            fprintf(stderr, "handler lambda error\n");
+            exit(-1);
+        }
+        if (event)
+        {
+            String value1 = event->Previous->State->Reported->View().GetString(property);
+            String value2 = event->Previous->State->Desired->View().GetString(property);
+            String value3 = event->Current->State->Reported->View().GetString(property);
+            String value4 = event->Current->State->Desired->View().GetString(property);
+
+            fprintf(stdout, "previous reported Value 1 %s\n", value1.c_str());
+            fprintf(stdout, "previous desired  Value 2 %s\n", value2.c_str());
+
+            fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
+            fprintf(stdout, "current  desired  Value 4 %s\n", value4.c_str());
+        }
+        gotResponse.set_value();
+    };
+
+    /* subscribe to event updates */
+    ShadowUpdatedSubscriptionRequest requestUpdate;
+    requestUpdate.ThingName = thingName;
+    shadowClient->SubscribeToShadowUpdatedEvents(
+        requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, (handler), (publishCompleted));
+    shadowCompletedPromise.get_future().get();
 
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
