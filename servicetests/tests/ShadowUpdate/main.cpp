@@ -13,6 +13,7 @@
 
 #include <aws/iotshadow/ErrorResponse.h>
 #include <aws/iotshadow/IotShadowClient.h>
+#include <aws/iotshadow/NamedShadowUpdatedSubscriptionRequest.h>
 #include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
 #include <aws/iotshadow/ShadowDeltaUpdatedSubscriptionRequest.h>
 #include <aws/iotshadow/ShadowUpdatedEvent.h>
@@ -45,6 +46,15 @@ void changeNamedShadowValue(
     String value,
     String shadowName,
     std::shared_ptr<IotShadowClient> shadowClient);
+
+void subscribeNamedShadowUpdatedValue(
+    Aws::Crt::String thingName,
+    String property,
+    String value,
+    String shadowName,
+    std::shared_ptr<IotShadowClient> shadowClient,
+    std::promise<void> &gotResponse);
+
 void changeShadowValue(
     Aws::Crt::String thingName,
     String property,
@@ -235,8 +245,10 @@ int main(int argc, char *argv[])
             std::promise<void> gotResponse;
             subscribeShadowUpdatedValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient, gotResponse);
+
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
+
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
             {
@@ -245,12 +257,22 @@ int main(int argc, char *argv[])
         }
         else
         {
+            std::promise<void> gotResponse;
+            subscribeNamedShadowUpdatedValue(
+                cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, cmdData.input_shadowName, shadowClient, gotResponse);
+
             changeNamedShadowValue(
                 cmdData.input_thingName,
                 cmdData.input_shadowProperty,
                 cmdData.input_shadowValue,
                 cmdData.input_shadowName,
                 shadowClient);
+
+            std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
+            if (status == std::future_status::timeout)
+            {
+                exit(-1);
+            }
         }
         //checkShadowValue(cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
     }
@@ -328,6 +350,60 @@ void subscribeShadowUpdatedValue(
     ShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
     shadowClient->SubscribeToShadowUpdatedEvents(requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
+    shadowCompletedPromise.get_future().get();
+}
+
+void subscribeNamedShadowUpdatedValue(
+    Aws::Crt::String thingName,
+    String property,
+    String value,
+    String shadowName,
+    std::shared_ptr<IotShadowClient> shadowClient,
+    std::promise<void> &gotResponse)
+{
+    std::promise<void> shadowCompletedPromise;
+    auto publishCompleted = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(
+                stderr,
+                "Failed to update %s unnamed shadow state: error %s\n",
+                thingName.c_str(),
+                ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        fprintf(stdout, "Publish reached the broker shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
+        shadowCompletedPromise.set_value();
+    };
+
+/* subscribe to event updates */
+
+    /* verify updated shadow */
+    auto handler = [&gotResponse, &property] (ShadowUpdatedEvent *event, int ioErr) {
+        if (ioErr == AWS_OP_ERR)
+        {
+            exit(-1);
+        }
+        if (event)
+        {
+            String value = event->Previous->State->Reported->View().GetString(property);
+            String value2 = event->Previous->State->Desired->View().GetString(property);
+            String value3 = event->Current->State->Reported->View().GetString(property);
+            String value4 = event->Current->State->Desired->View().GetString(property);
+
+            fprintf(stdout, "previous reported Value 1 %s\n", value.c_str());
+            fprintf(stdout, "previous desired  Value 2 %s\n", value2.c_str());
+
+            fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
+            fprintf(stdout, "current  desired  Value 4 %s\n", value4.c_str());
+        }
+        gotResponse.set_value();
+    };
+
+    NamedShadowUpdatedSubscriptionRequest requestUpdate;
+    requestUpdate.ThingName = thingName;
+    requestUpdate.ShadowName = shadowName;
+    shadowClient->SubscribeToNamedShadowUpdatedEvents(requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
 
