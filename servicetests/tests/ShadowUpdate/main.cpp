@@ -242,7 +242,6 @@ int main(int argc, char *argv[])
     {
         if (cmdData.input_shadowName.empty())
         {
-            /*
             std::promise<void> gotResponse;
             subscribeShadowUpdatedValue(
                 cmdData.input_thingName,
@@ -250,19 +249,16 @@ int main(int argc, char *argv[])
                 cmdData.input_shadowValue,
                 shadowClient,
                 gotResponse);
-                */
 
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
 
-            /*
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
             {
                 fprintf(stderr, "Shadow update document timedout\n");
                 exit(-1);
             }
-            */
         }
         else
         {
@@ -296,7 +292,7 @@ int main(int argc, char *argv[])
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     if (cmdData.input_mqtt_version == 5UL)
-    {   // mqtt5
+    { // mqtt5
         // Disconnect
         if (client5->Stop() == true)
         {
@@ -304,7 +300,7 @@ int main(int argc, char *argv[])
         }
     }
     else
-    {    // mqtt3
+    { // mqtt3
         // Disconnect
         if (connection->Disconnect() == true)
         {
@@ -337,7 +333,7 @@ void subscribeShadowUpdatedValue(
     };
 
     /* verify updated shadow */
-    auto handler = [&gotResponse, &property] (ShadowUpdatedEvent *event, int ioErr) {
+    auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
             fprintf(stderr, "handler lambda error\n");
@@ -345,12 +341,12 @@ void subscribeShadowUpdatedValue(
         }
         if (event)
         {
-            String value = event->Previous->State->Reported->View().GetString(property);
+            String value1 = event->Previous->State->Reported->View().GetString(property);
             String value2 = event->Previous->State->Desired->View().GetString(property);
             String value3 = event->Current->State->Reported->View().GetString(property);
             String value4 = event->Current->State->Desired->View().GetString(property);
 
-            fprintf(stdout, "previous reported Value 1 %s\n", value.c_str());
+            fprintf(stdout, "previous reported Value 1 %s\n", value1.c_str());
             fprintf(stdout, "previous desired  Value 2 %s\n", value2.c_str());
 
             fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
@@ -362,7 +358,8 @@ void subscribeShadowUpdatedValue(
     /* subscribe to event updates */
     ShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
-    shadowClient->SubscribeToShadowUpdatedEvents(requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
+    shadowClient->SubscribeToShadowUpdatedEvents(
+        requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(handler), std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
 
@@ -416,7 +413,8 @@ void subscribeNamedShadowUpdatedValue(
     NamedShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
     requestUpdate.ShadowName = shadowName;
-    shadowClient->SubscribeToNamedShadowUpdatedEvents(requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
+    shadowClient->SubscribeToNamedShadowUpdatedEvents(
+        requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
 
