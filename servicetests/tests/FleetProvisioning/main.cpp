@@ -188,7 +188,6 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
 {
     std::promise<void> onSubAckPromise;
     std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
-    //std::future_status status;
     std::promise<void> registerRejectedCompletedPromise;
     std::promise<void> registerAcceptedCompletedPromise;
 
@@ -202,18 +201,8 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
         {
             fprintf(stdout, "Register thing: %s\n", response->ThingName.value().c_str());
         }
-        //gotResponse.set_value();
     };
-    /*
-    auto onSuback = [&](int ioErr) {
-        if (ioErr)
-        {
-            fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
-            exit(-1);
-        }
-        onSubAckPromise.set_value();
-    };
-    */
+
     RegisterThingSubscriptionRequest registerThingSubscriptionRequest;
     registerThingSubscriptionRequest.TemplateName = input_templateName;
 
@@ -226,17 +215,9 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
 
         registerAcceptedCompletedPromise.set_value();
     };
+
     iotIdentityClient->SubscribeToRegisterThingAccepted(
         registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onRegisterAcceptedSubAck);
-    /*
-    status = onSubAckPromise.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-    */
 
     auto rejectedHandler = [&](ErrorResponse *error, int ioErr) {
         if (ioErr)
@@ -264,25 +245,7 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
     };
     iotIdentityClient->SubscribeToRegisterThingRejected(
         registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, rejectedHandler, onRegisterRejectedSubAck);
-    /*
-    status = onSubAckPromise.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-    */
 
-    /*
-    status = gotResponse.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: gotResponse timeout %s\n", __FUNCTION__);
-     //   exit(-1);
-    }
-    gotResponse = std::promise<void>();
-    */
     registerAcceptedCompletedPromise.get_future().wait();
     registerRejectedCompletedPromise.get_future().wait();
 }
@@ -293,7 +256,6 @@ void createKeysAndCertificateWorkflow(
     std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
     std::promise<void> onSubAckPromise;
-    //std::future_status status;
     std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
 
     std::promise<void> keysPublishCompletedPromise;
@@ -305,17 +267,6 @@ void createKeysAndCertificateWorkflow(
 
     CreateKeysAndCertificateResponse *createKeysAndCertificateResponse = nullptr;
     String token;
-
-    /*
-     * auto onSubAck = [&](int ioErr) {
-        if (ioErr)
-        {
-            fprintf(stderr, "Error: onSuback callback error %d\n", ioErr);
-            exit(-1);
-        }
-        onSubAckPromise.set_value();
-    };
-    */
 
     auto acceptedHandler = [&createKeysAndCertificateResponse, &token](CreateKeysAndCertificateResponse *response, int ioErr) {
         fprintf(stderr, "acceptedhandler is called\n");
@@ -350,26 +301,6 @@ void createKeysAndCertificateWorkflow(
     iotIdentityClient->SubscribeToCreateKeysAndCertificateAccepted(
         createKeysAndCertificateSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, acceptedHandler, onKeysAcceptedSubAck);
 
-    /*
-    status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubackPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-    */
-
-    /*
-    status = gotResponse.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: - gotResponse timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    gotResponse = std::promise<void>();
-    */
-
     auto rejectedHandler = [&](Aws::Iotidentity::ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
@@ -400,25 +331,6 @@ void createKeysAndCertificateWorkflow(
     iotIdentityClient->SubscribeToCreateKeysAndCertificateRejected(
         createKeysAndCertificateSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, rejectedHandler, onKeysRejectedSubAck);
 
-    /*
-    status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-    */
-
-   // status = gotResponse.get_future().wait_for(span); // 5 seconds
-    //gotResponse.get_future().wait(); // 5 seconds
-    /*
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: gotResponse timeout\n");
-        exit(-1);
-    }
-    */
     auto onKeysPublishSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
@@ -429,20 +341,10 @@ void createKeysAndCertificateWorkflow(
         keysPublishCompletedPromise.set_value();
     };
 
-    //gotResponse = std::promise<void>();
-
     CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
     iotIdentityClient->PublishCreateKeysAndCertificate(
         createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysPublishSubAck);
-    /*
-    status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-*/
+
     SubscribeToRegisterThing(input_templateName, iotIdentityClient);
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
@@ -488,24 +390,6 @@ void createKeysAndCertificateWorkflow(
     };
     iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    //sleep(1);
-    /*
-    status = onSubAckPromise.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onSubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onSubAckPromise = std::promise<void>();
-
-    status = gotResponse.get_future().wait_for(span); // 5 seconds
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: gotResponse timeout\n");
-        exit(-1);
-    }
-    gotResponse = std::promise<void>();
-    */
 
     keysPublishCompletedPromise.get_future().wait();
     keysAcceptedCompletedPromise.get_future().wait();
@@ -519,16 +403,20 @@ void createCertificateFromCsrWorkflow(
     String input_csrPath,
     std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
-    std::promise<void> onSubAckPromise;
-    std::promise<void> onPubAckPromise;
+    std::promise<void> keysPublishCompletedPromise;
+    std::promise<void> keysAcceptedCompletedPromise;
+    std::promise<void> keysRejectedCompletedPromise;
+
+    std::promise<void> registerPublishCompletedPromise;
+    std::promise<void> registerAcceptedCompletedPromise;
     std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
     CreateCertificateFromCsrResponse *createCertificateFromCsrResponse = nullptr;
-    std::future_status status;
+    String token;
 
     gotResponse = std::promise<void>();
 
     auto onCreateCertificateFromCsrResponseAccepted =
-        [&createCertificateFromCsrResponse](CreateCertificateFromCsrResponse *response, int ioErr) {
+        [&createCertificateFromCsrResponse, &token](CreateCertificateFromCsrResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error: onCreateCertificateFromCsrResponseAccepted callback error %d\n", ioErr);
@@ -539,6 +427,7 @@ void createCertificateFromCsrWorkflow(
                 if (createCertificateFromCsrResponse == nullptr)
                 {
                     createCertificateFromCsrResponse = response;
+                    token = *response->CertificateOwnershipToken;
                 }
             }
             gotResponse.set_value();
@@ -550,8 +439,16 @@ void createCertificateFromCsrWorkflow(
             fprintf(stderr, "Error: onSubAck callback error %d\n", ioErr);
             exit(-1);
         }
-        onSubAckPromise.set_value();
+        keysAcceptedCompletedPromise.set_value();
     };
+
+
+    CreateCertificateFromCsrSubscriptionRequest createCertificateFromCsrSubscriptionRequest;
+    iotIdentityClient->SubscribeToCreateCertificateFromCsrAccepted(
+        createCertificateFromCsrSubscriptionRequest,
+        AWS_MQTT_QOS_AT_LEAST_ONCE,
+        onCreateCertificateFromCsrResponseAccepted,
+        onSubAck);
 
     auto onRejectedCsr = [&](ErrorResponse *response, int ioErr) {
         (void)response;
@@ -560,62 +457,56 @@ void createCertificateFromCsrWorkflow(
             fprintf(stderr, "Error: onSubAck callback error %d\n", ioErr);
             exit(-1);
         }
-        gotResponse.set_value();
+        exit(1);
     };
 
-    CreateCertificateFromCsrSubscriptionRequest createCertificateFromCsrSubscriptionRequest;
-    iotIdentityClient->SubscribeToCreateCertificateFromCsrAccepted(
-        createCertificateFromCsrSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onCreateCertificateFromCsrResponseAccepted,
-        onSubAck);
-    onSubAckPromise.get_future().wait_for(span);
-    onSubAckPromise = std::promise<void>();
-
-    iotIdentityClient->SubscribeToCreateCertificateFromCsrRejected(
-        createCertificateFromCsrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRejectedCsr, onSubAck);
-    onSubAckPromise.get_future().wait_for(span);
-    onSubAckPromise = std::promise<void>();
-
-    // Subscribes to the register thing accepted and rejected topics
-    SubscribeToRegisterThing(input_templateName, iotIdentityClient);
-    auto onPubAck = [&](int ioErr) {
-        if (ioErr)
+    auto onKeysRejectedSubAck = [&](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(stderr, "Error: onPubAck callback error %d\n", ioErr);
+            fprintf(
+                stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
-        onPubAckPromise.set_value();
+        keysRejectedCompletedPromise.set_value();
     };
+
+    iotIdentityClient->SubscribeToCreateCertificateFromCsrRejected(
+        createCertificateFromCsrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRejectedCsr, onKeysRejectedSubAck);
+
+
+    auto onKeysPublishSubAck = [&](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+
+        keysPublishCompletedPromise.set_value();
+    };
+
     std::string csrContents = getFileData(input_csrPath.c_str());
     CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
     createCertificateFromCsrRequest.CertificateSigningRequest = csrContents.c_str();
-    iotIdentityClient->PublishCreateCertificateFromCsr(
-        createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
 
-    status = onPubAckPromise.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onPubAckPromise timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onPubAckPromise = std::promise<void>();
-    // expected from the above SubscribeToRegisterThing function
-    status = gotResponse.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: gotResponse timeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    gotResponse = std::promise<void>();
+    iotIdentityClient->PublishCreateCertificateFromCsr(
+        createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysPublishSubAck);
+
+    // Subscribes to the register thing accepted and rejected topics
+    SubscribeToRegisterThing(input_templateName, iotIdentityClient);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    // Verify the response is good
     if (createCertificateFromCsrResponse == nullptr)
     {
-        fprintf(stderr, "Error: createCertificateFromCsrResponse is null\n");
+        fprintf(stderr, "Error: 1 createCertificateFromCsrResponse is null\n");
         exit(-1);
     }
+    // reset gotResponse future
+    gotResponse = std::promise<void>();
+
     RegisterThingRequest registerThingRequest;
-    registerThingRequest.CertificateOwnershipToken =
-        createCertificateFromCsrResponse->CertificateOwnershipToken.value();
+    registerThingRequest.CertificateOwnershipToken = token;
+        //createCertificateFromCsrResponse->CertificateOwnershipToken.value();
     registerThingRequest.TemplateName = input_templateName;
 
     if (!input_templateParameters.empty())
@@ -632,23 +523,23 @@ void createCertificateFromCsrWorkflow(
         registerThingRequest.Parameters = params;
     }
 
-    onPubAckPromise = std::promise<void>();
-    iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onPubAck);
-    status = onPubAckPromise.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: onPubAckPromisetimeout %s\n", __FUNCTION__);
-        exit(-1);
-    }
-    onPubAckPromise = std::promise<void>();
-    /*
-    status = gotResponse.get_future().wait_for(span);
-    if (status == std::future_status::timeout)
-    {
-        fprintf(stderr, "Error: gotResponse timeout\n");
-        exit(-1);
-    }
-    */
+    auto onRegisterPublishSubAck = [&](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error publishing to RegisterThing: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+
+        registerPublishCompletedPromise.set_value();
+    };
+    iotIdentityClient->PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    keysPublishCompletedPromise.get_future().wait();
+    keysAcceptedCompletedPromise.get_future().wait();
+    keysRejectedCompletedPromise.get_future().wait();
+    registerPublishCompletedPromise.get_future().wait();
 }
 
 int main(int argc, char *argv[])
