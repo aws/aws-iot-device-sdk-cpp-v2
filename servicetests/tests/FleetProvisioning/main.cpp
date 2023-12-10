@@ -37,7 +37,6 @@
 #include <thread>
 
 #include "../../../samples/utils/CommandLineUtils.h"
-#define WAIT_FOR_RESPONSE_MS 5000
 
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
@@ -187,7 +186,6 @@ std::shared_ptr<IotIdentityClient> build_mqtt5_client(
 void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
     std::promise<void> onSubAckPromise;
-    std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
     std::promise<void> registerRejectedCompletedPromise;
     std::promise<void> registerAcceptedCompletedPromise;
 
@@ -212,12 +210,14 @@ void SubscribeToRegisterThing(String input_templateName, std::shared_ptr<IotIden
             fprintf(stderr, "Error subscribing to RegisterThing accepted: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
-
         registerAcceptedCompletedPromise.set_value();
     };
 
     iotIdentityClient->SubscribeToRegisterThingAccepted(
-        registerThingSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterThingAccepted, onRegisterAcceptedSubAck);
+        registerThingSubscriptionRequest,
+        AWS_MQTT_QOS_AT_LEAST_ONCE,
+        onRegisterThingAccepted,
+        onRegisterAcceptedSubAck);
 
     auto rejectedHandler = [&](ErrorResponse *error, int ioErr) {
         if (ioErr)
@@ -256,7 +256,6 @@ void createKeysAndCertificateWorkflow(
     std::shared_ptr<IotIdentityClient> iotIdentityClient)
 {
     std::promise<void> onSubAckPromise;
-    std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
 
     std::promise<void> keysPublishCompletedPromise;
     std::promise<void> keysAcceptedCompletedPromise;
@@ -268,7 +267,8 @@ void createKeysAndCertificateWorkflow(
     CreateKeysAndCertificateResponse *createKeysAndCertificateResponse = nullptr;
     String token;
 
-    auto acceptedHandler = [&createKeysAndCertificateResponse, &token](CreateKeysAndCertificateResponse *response, int ioErr) {
+    auto acceptedHandler = [&createKeysAndCertificateResponse,
+                            &token](CreateKeysAndCertificateResponse *response, int ioErr) {
         fprintf(stderr, "acceptedhandler is called\n");
         if (ioErr)
         {
@@ -289,8 +289,7 @@ void createKeysAndCertificateWorkflow(
     auto onKeysAcceptedSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(
-                stderr, "Error subscribing to CreateKeysAndCertificate accepted: %s\n", ErrorDebugString(ioErr));
+            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate accepted: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
 
@@ -322,8 +321,7 @@ void createKeysAndCertificateWorkflow(
     auto onKeysRejectedSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(
-                stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
+            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
         keysRejectedCompletedPromise.set_value();
@@ -357,11 +355,8 @@ void createKeysAndCertificateWorkflow(
     // reset gotResponse future
     gotResponse = std::promise<void>();
 
-
-
     RegisterThingRequest registerThingRequest;
     registerThingRequest.TemplateName = input_templateName;
-
 
     if (!input_templateParameters.empty())
     {
@@ -376,7 +371,6 @@ void createKeysAndCertificateWorkflow(
         }
         registerThingRequest.Parameters = params;
     }
-    //createKeysAndCertificateResponse->CertificateOwnershipToken.value();
     registerThingRequest.CertificateOwnershipToken = token;
 
     auto onRegisterPublishSubAck = [&](int ioErr) {
@@ -409,29 +403,28 @@ void createCertificateFromCsrWorkflow(
 
     std::promise<void> registerPublishCompletedPromise;
     std::promise<void> registerAcceptedCompletedPromise;
-    std::chrono::milliseconds span(WAIT_FOR_RESPONSE_MS);
     CreateCertificateFromCsrResponse *createCertificateFromCsrResponse = nullptr;
     String token;
 
     gotResponse = std::promise<void>();
 
-    auto onCreateCertificateFromCsrResponseAccepted =
-        [&createCertificateFromCsrResponse, &token](CreateCertificateFromCsrResponse *response, int ioErr) {
-            if (ioErr)
+    auto onCreateCertificateFromCsrResponseAccepted = [&createCertificateFromCsrResponse,
+                                                       &token](CreateCertificateFromCsrResponse *response, int ioErr) {
+        if (ioErr)
+        {
+            fprintf(stderr, "Error: onCreateCertificateFromCsrResponseAccepted callback error %d\n", ioErr);
+            exit(-1);
+        }
+        if (response != nullptr)
+        {
+            if (createCertificateFromCsrResponse == nullptr)
             {
-                fprintf(stderr, "Error: onCreateCertificateFromCsrResponseAccepted callback error %d\n", ioErr);
-                exit(-1);
+                createCertificateFromCsrResponse = response;
+                token = *response->CertificateOwnershipToken;
             }
-            if (response != nullptr)
-            {
-                if (createCertificateFromCsrResponse == nullptr)
-                {
-                    createCertificateFromCsrResponse = response;
-                    token = *response->CertificateOwnershipToken;
-                }
-            }
-            gotResponse.set_value();
-        };
+        }
+        gotResponse.set_value();
+    };
 
     auto onSubAck = [&](int ioErr) {
         if (ioErr)
@@ -463,8 +456,7 @@ void createCertificateFromCsrWorkflow(
     auto onKeysRejectedSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
-            fprintf(
-                stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
+            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
         keysRejectedCompletedPromise.set_value();
@@ -473,14 +465,12 @@ void createCertificateFromCsrWorkflow(
     iotIdentityClient->SubscribeToCreateCertificateFromCsrRejected(
         createCertificateFromCsrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRejectedCsr, onKeysRejectedSubAck);
 
-
     auto onKeysPublishSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
             exit(-1);
         }
-
         keysPublishCompletedPromise.set_value();
     };
 
@@ -506,7 +496,6 @@ void createCertificateFromCsrWorkflow(
 
     RegisterThingRequest registerThingRequest;
     registerThingRequest.CertificateOwnershipToken = token;
-        //createCertificateFromCsrResponse->CertificateOwnershipToken.value();
     registerThingRequest.TemplateName = input_templateName;
 
     if (!input_templateParameters.empty())
