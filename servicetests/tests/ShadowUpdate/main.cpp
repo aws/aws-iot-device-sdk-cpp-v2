@@ -457,7 +457,6 @@ void changeShadowValue(
         shadowCompletedPromise.set_value();
     };
     shadowClient->PublishUpdateShadow(request, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
-
     shadowCompletedPromise.get_future().get();
 }
 
