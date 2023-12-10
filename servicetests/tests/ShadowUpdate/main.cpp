@@ -184,6 +184,10 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
         connectionClosedPromise.set_value();
     });
 
+    builder->WithClientDisconnectionCallback([](const Mqtt5::OnDisconnectionEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
+    });
+
     client5 = builder->Build();
     if (client5 == nullptr)
     {
