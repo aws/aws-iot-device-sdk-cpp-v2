@@ -242,6 +242,7 @@ int main(int argc, char *argv[])
     {
         if (cmdData.input_shadowName.empty())
         {
+            /*
             std::promise<void> gotResponse;
             subscribeShadowUpdatedValue(
                 cmdData.input_thingName,
@@ -249,16 +250,19 @@ int main(int argc, char *argv[])
                 cmdData.input_shadowValue,
                 shadowClient,
                 gotResponse);
+                */
 
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
 
+            /*
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
             {
                 fprintf(stderr, "Shadow update document timedout\n");
                 exit(-1);
             }
+            */
         }
         else
         {
