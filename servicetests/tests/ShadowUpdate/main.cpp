@@ -347,6 +347,10 @@ void subscribeShadowUpdatedValue(
         }
         if (event)
         {
+            JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
+            String value1 = view.AsString();
+            fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
+
             /*
             String value1 = event->Previous->State->Reported->View().GetString(property);
             String value2 = event->Previous->State->Desired->View().GetString(property);
@@ -403,6 +407,9 @@ void subscribeNamedShadowUpdatedValue(
         }
         if (event)
         {
+            JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
+            String value1 = view.AsString();
+            fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
             /*
             String value = event->Previous->State->Reported->View().GetString(property);
             String value2 = event->Previous->State->Desired->View().GetString(property);
