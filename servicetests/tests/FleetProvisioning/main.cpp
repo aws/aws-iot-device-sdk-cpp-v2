@@ -435,7 +435,6 @@ void createCertificateFromCsrWorkflow(
         keysAcceptedCompletedPromise.set_value();
     };
 
-
     CreateCertificateFromCsrSubscriptionRequest createCertificateFromCsrSubscriptionRequest;
     iotIdentityClient->SubscribeToCreateCertificateFromCsrAccepted(
         createCertificateFromCsrSubscriptionRequest,
