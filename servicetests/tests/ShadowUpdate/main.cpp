@@ -347,56 +347,6 @@ void subscribeShadowUpdatedValue(
         }
         if (event)
         {
-            if (event->Previous->State && event->Previous->State->Reported->View().ValueExists(property))
-            {
-                JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
-                if (!view.IsNull())
-                {
-                    String value1 = view.AsString();
-                    fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
-                }
-            }
-            if (event->Previous->State && event->Previous->State->Desired->View().ValueExists(property))
-            {
-                JsonView view = event->Previous->State->Desired->View().GetJsonObject(property);
-                if (!view.IsNull())
-                {
-                    String value1 = view.AsString();
-                    fprintf(stderr, "previous desired Value 1 %s\n", value1.c_str());
-                }
-            }
-            if (event->Current->State && event->Current->State->Reported->View().ValueExists(property))
-            {
-                JsonView view = event->Current->State->Reported->View().GetJsonObject(property);
-                if (!view.IsNull())
-                {
-                    String value1 = view.AsString();
-                    fprintf(stderr, "Current reported Value 1 %s\n", value1.c_str());
-                }
-            }
-            if (event->Current->State && event->Current->State->Desired->View().ValueExists(property))
-            {
-                JsonView view = event->Current->State->Desired->View().GetJsonObject(property);
-                if (!view.IsNull())
-                {
-                    String value1 = view.AsString();
-                    fprintf(stderr, "Current desired Value 1 %s\n", value1.c_str());
-                }
-            }
-
-
-            /*
-            String value1 = event->Previous->State->Reported->View().GetString(property);
-            String value2 = event->Previous->State->Desired->View().GetString(property);
-            String value3 = event->Current->State->Reported->View().GetString(property);
-            String value4 = event->Current->State->Desired->View().GetString(property);
-
-            fprintf(stdout, "previous reported Value 1 %s\n", value1.c_str());
-            fprintf(stdout, "previous desired  Value 2 %s\n", value2.c_str());
-
-            fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
-            fprintf(stdout, "current  desired  Value 4 %s\n", value4.c_str());
-            */
             gotResponse.set_value();
         }
     };
@@ -441,21 +391,6 @@ void subscribeNamedShadowUpdatedValue(
         }
         if (event)
         {
-            JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
-            String value1 = view.AsString();
-            fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
-            /*
-            String value = event->Previous->State->Reported->View().GetString(property);
-            String value2 = event->Previous->State->Desired->View().GetString(property);
-            String value3 = event->Current->State->Reported->View().GetString(property);
-            String value4 = event->Current->State->Desired->View().GetString(property);
-
-            fprintf(stdout, "previous reported Value 1 %s\n", value.c_str());
-            fprintf(stdout, "previous desired  Value 2 %s\n", value2.c_str());
-
-            fprintf(stdout, "current  reported Value 3 %s\n", value3.c_str());
-            fprintf(stdout, "current  desired  Value 4 %s\n", value4.c_str());
-            */
             gotResponse.set_value();
         }
     };
