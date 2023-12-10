@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
     ApiHandle apiHandle;
-    fprintf(stderr, "starting error\n");
+    fprintf(stderr, "starting Shadow update\n");
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
@@ -462,6 +462,7 @@ void changeShadowValue(
         }
         if (event)
         {
+            fprintf(stderr, "update handler executing\n");
             /*
             String value1 = event->Previous->State->Reported->View().GetString(property);
             String value2 = event->Previous->State->Desired->View().GetString(property);
