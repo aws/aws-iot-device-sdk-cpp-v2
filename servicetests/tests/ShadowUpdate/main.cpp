@@ -336,6 +336,7 @@ void subscribeShadowUpdatedValue(
     auto handler = [&gotResponse, &property] (ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
+            fprintf(stderr, "handler lambda error\n");
             exit(-1);
         }
         if (event)
@@ -388,6 +389,7 @@ void subscribeNamedShadowUpdatedValue(
     auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
+            fprintf(stderr, "handler lambda error\n");
             exit(-1);
         }
         if (event)
