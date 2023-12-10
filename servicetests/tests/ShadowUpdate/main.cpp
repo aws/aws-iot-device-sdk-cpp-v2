@@ -138,6 +138,7 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
     }
     return std::make_shared<IotShadowClient>(connection);
 }
+
 std::shared_ptr<IotShadowClient> build_mqtt5_client(
     Utils::cmdData &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
@@ -249,6 +250,7 @@ int main(int argc, char *argv[])
                 cmdData.input_shadowValue,
                 shadowClient,
                 gotResponse);
+            fprintf(stdout, "subscribed to update document topics\n");
 
             changeShadowValue(
                 cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
@@ -359,7 +361,7 @@ void subscribeShadowUpdatedValue(
     ShadowUpdatedSubscriptionRequest requestUpdate;
     requestUpdate.ThingName = thingName;
     shadowClient->SubscribeToShadowUpdatedEvents(
-        requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(handler), std::move(publishCompleted));
+        requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, (handler), (publishCompleted));
     shadowCompletedPromise.get_future().get();
 }
 
