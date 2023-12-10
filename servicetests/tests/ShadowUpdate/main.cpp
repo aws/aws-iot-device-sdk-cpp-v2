@@ -323,6 +323,7 @@ void subscribeShadowUpdatedValue(
     std::shared_ptr<IotShadowClient> shadowClient,
     std::promise<void> &gotResponse)
 {
+    (void)property;
     std::promise<void> shadowCompletedPromise;
     auto publishCompleted = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
@@ -339,7 +340,7 @@ void subscribeShadowUpdatedValue(
     };
 
     /* verify updated shadow */
-    auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
+    auto handler = [&gotResponse](ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
             fprintf(stderr, "handler lambda error\n");
@@ -367,6 +368,7 @@ void subscribeNamedShadowUpdatedValue(
     std::shared_ptr<IotShadowClient> shadowClient,
     std::promise<void> &gotResponse)
 {
+    (void)property;
     std::promise<void> shadowCompletedPromise;
     auto publishCompleted = [&thingName, &value, &shadowCompletedPromise](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
@@ -383,7 +385,7 @@ void subscribeNamedShadowUpdatedValue(
     };
 
     /* verify updated shadow */
-    auto handler = [&gotResponse, &property](ShadowUpdatedEvent *event, int ioErr) {
+    auto handler = [&gotResponse](ShadowUpdatedEvent *event, int ioErr) {
         if (ioErr == AWS_OP_ERR)
         {
             fprintf(stderr, "handler lambda error\n");
