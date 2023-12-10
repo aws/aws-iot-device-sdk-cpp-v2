@@ -208,6 +208,7 @@ int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
     ApiHandle apiHandle;
+    fprintf(stderr, "starting error\n");
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
