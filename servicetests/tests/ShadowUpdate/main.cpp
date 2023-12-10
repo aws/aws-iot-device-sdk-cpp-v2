@@ -347,9 +347,43 @@ void subscribeShadowUpdatedValue(
         }
         if (event)
         {
-            JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
-            String value1 = view.AsString();
-            fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
+            if (event->Previous->State && event->Previous->State->Reported->View().ValueExists(property))
+            {
+                JsonView view = event->Previous->State->Reported->View().GetJsonObject(property);
+                if (!view.IsNull())
+                {
+                    String value1 = view.AsString();
+                    fprintf(stderr, "previous reported Value 1 %s\n", value1.c_str());
+                }
+            }
+            if (event->Previous->State && event->Previous->State->Desired->View().ValueExists(property))
+            {
+                JsonView view = event->Previous->State->Desired->View().GetJsonObject(property);
+                if (!view.IsNull())
+                {
+                    String value1 = view.AsString();
+                    fprintf(stderr, "previous desired Value 1 %s\n", value1.c_str());
+                }
+            }
+            if (event->Current->State && event->Current->State->Reported->View().ValueExists(property))
+            {
+                JsonView view = event->Current->State->Reported->View().GetJsonObject(property);
+                if (!view.IsNull())
+                {
+                    String value1 = view.AsString();
+                    fprintf(stderr, "Current reported Value 1 %s\n", value1.c_str());
+                }
+            }
+            if (event->Current->State && event->Current->State->Desired->View().ValueExists(property))
+            {
+                JsonView view = event->Current->State->Desired->View().GetJsonObject(property);
+                if (!view.IsNull())
+                {
+                    String value1 = view.AsString();
+                    fprintf(stderr, "Current desired Value 1 %s\n", value1.c_str());
+                }
+            }
+
 
             /*
             String value1 = event->Previous->State->Reported->View().GetString(property);
