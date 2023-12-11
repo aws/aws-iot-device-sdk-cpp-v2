@@ -151,7 +151,7 @@ namespace Aws
           public:
             ConnectionConfig() noexcept : m_clientBootstrap(nullptr), m_connectRequestCallback(nullptr) {}
             Crt::Optional<Crt::String> GetHostName() const noexcept { return m_hostName; }
-            Crt::Optional<uint16_t> GetPort() const noexcept { return m_port; }
+            Crt::Optional<uint32_t> GetPort() const noexcept { return m_port; }
             Crt::Optional<Crt::Io::SocketOptions> GetSocketOptions() const noexcept { return m_socketOptions; }
             Crt::Optional<MessageAmendment> GetConnectAmendment() const noexcept { return m_connectAmendment; }
             Crt::Optional<Crt::Io::TlsConnectionOptions> GetTlsConnectionOptions() const noexcept
@@ -166,7 +166,7 @@ namespace Aws
             }
 
             void SetHostName(Crt::String hostName) noexcept { m_hostName = hostName; }
-            void SetPort(uint16_t port) noexcept { m_port = port; }
+            void SetPort(uint32_t port) noexcept { m_port = port; }
             void SetSocketOptions(const Crt::Io::SocketOptions &socketOptions) noexcept
             {
                 m_socketOptions = socketOptions;
@@ -190,7 +190,7 @@ namespace Aws
 
           protected:
             Crt::Optional<Crt::String> m_hostName;
-            Crt::Optional<uint16_t> m_port;
+            Crt::Optional<uint32_t> m_port;
             Crt::Optional<Crt::Io::SocketOptions> m_socketOptions;
             Crt::Optional<Crt::Io::TlsConnectionOptions> m_tlsConnectionOptions;
             Crt::Io::ClientBootstrap *m_clientBootstrap;

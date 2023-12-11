@@ -44,13 +44,13 @@ void connection_setup(
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
     }
     if (cmdData.input_port != 0)
     {
-        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+        clientConfigBuilder.WithPortOverride(static_cast<uint32_t>(cmdData.input_port));
     }
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
 }
