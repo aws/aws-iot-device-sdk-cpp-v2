@@ -10,13 +10,11 @@
         },
         {
             "name": "--cert",
-            "secret": "ci/mqtt5/us/mqtt5_thing/cert",
-            "filename": "tmp_certificate.pem"
+            "data": "tests/SharedSubscription/certificate.pem.crt"
         },
         {
             "name": "--key",
-            "secret": "ci/mqtt5/us/mqtt5_thing/key",
-            "filename": "tmp_key.pem"
+            "data": "tests/SharedSubscription/private.pem.key"
         }
     ]
 }
