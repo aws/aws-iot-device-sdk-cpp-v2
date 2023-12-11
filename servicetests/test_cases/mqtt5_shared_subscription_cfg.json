@@ -1,8 +1,8 @@
 {
     "language": "CPP",
     "runnable_file": "../build/servicetests/tests/SharedSubscription/mqtt5_shared_subscription",
-    "sample_region": "us-east-1",
-    "sample_main_class": "",
+    "runnable_region": "us-east-1",
+    "runnable_main_class": "",
     "arguments": [
         {
             "name": "--endpoint",
