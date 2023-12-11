@@ -21,12 +21,12 @@ def main():
     argument_parser.add_argument(
         "--input-uuid", required=False, help="UUID for thing name. UUID will be generated if this option is omit")
     parsed_commands = argument_parser.parse_args()
-    input_uuid = parsed_commands.input_uuid if parsed_commands.input_uuid else str(uuid.uuid4())
+    # input_uuid = parsed_commands.input_uuid if parsed_commands.input_uuid else str(uuid.uuid4())
 
     # Perform fleet provisioning. If it's successful, a newly created thing should appear.
 
     try:
-        test_result = run_in_ci.setup_and_launch(parsed_commands.config_file, input_uuid)
+        test_result = run_in_ci.setup_and_launch(parsed_commands.config_file)
     except Exception as e:
         print(f"ERROR: Failed to execute Shared Subscription test: {e}")
         test_result = -1
