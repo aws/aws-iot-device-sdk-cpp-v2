@@ -226,10 +226,17 @@ int main(int argc, char *argv[])
                         }
                         if (response)
                         {
-                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                            currentJobId = response->Execution->JobId.value();
-                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                            currentVersionNumber = response->Execution->VersionNumber.value();
+                            if (response->Execution.has_value())
+                            {
+                                fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                                currentJobId = response->Execution->JobId.value();
+                                currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                                currentVersionNumber = response->Execution->VersionNumber.value();
+                            }
+                            else
+                            {
+                                exit(-1);
+                            }
                         }
                         else
                         {
