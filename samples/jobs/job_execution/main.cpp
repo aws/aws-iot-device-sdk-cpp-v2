@@ -349,7 +349,7 @@ void updateJobExecution(
             fprintf(stderr, "Error %d occurred\n", ioErr);
             exit(-1);
         }
-        fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
+        fprintf(stdout, "Marked job %s %s\n", currentJobId.c_str(), JobStatusMarshaller::ToString(status));
         pendingExecutionPromise.set_value();
     };
 
