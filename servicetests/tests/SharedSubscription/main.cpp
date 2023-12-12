@@ -25,6 +25,7 @@ class sample_mqtt5_client
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
     std::mutex receiveMutex;
+    bool packetReceived = false;
 
     // A helper function to print a message and then exit the sample.
     void PrintMessageAndExit(String message, int exitCode)
@@ -132,6 +133,7 @@ class sample_mqtt5_client
                 {
                     fprintf(stdout, "\t\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
                 }
+                result->packetReceived = true;
             }
         });
 
@@ -390,6 +392,15 @@ int main(int argc, char *argv[])
         cmdData.input_groupIdentifier.c_str());
     fprintf(stdout, "[%s] Full unsubscribed topic is: '%s'.\n", subscriberTwo->name.c_str(), input_sharedTopic.c_str());
 
+    /*********************** check packet receiption ***************************/
+    if (subscriberOne->packetReceived == false)
+    {
+        subscriberOne->PrintMessageAndExit("Failed to receive packets. Exiting...", -1);
+    }
+    if (subscriberTwo->packetReceived == false)
+    {
+        subscriberTwo->PrintMessageAndExit("Failed to receive packets. Exiting...", -1);
+    }
     /*********************** Disconnect all the MQTT5 clients ***************************/
 
     if (!publisher->client->Stop())
