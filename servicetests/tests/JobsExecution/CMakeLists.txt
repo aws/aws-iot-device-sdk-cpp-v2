@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.1)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
-project(describe-job-execution CXX)
+project(job-execution CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
-       "../../utils/CommandLineUtils.cpp"
-       "../../utils/CommandLineUtils.h"
+       "../../../samples/utils/CommandLineUtils.cpp"
+       "../../../samples/utils/CommandLineUtils.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

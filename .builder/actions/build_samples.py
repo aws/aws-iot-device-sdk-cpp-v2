@@ -17,8 +17,8 @@ class BuildSamples(Builder.Action):
             'samples/greengrass/ipc',
             'samples/fleet_provisioning/fleet_provisioning',
             'samples/fleet_provisioning/mqtt5_fleet_provisioning',
-            'samples/jobs/describe_job_execution',
-            'samples/jobs/mqtt5_describe_job_execution',
+            'samples/jobs/job_execution',
+            'samples/jobs/mqtt5_job_execution',
             'samples/mqtt/basic_connect',
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/pkcs11_connect',
@@ -51,7 +51,24 @@ class BuildSamples(Builder.Action):
             'deviceadvisor/tests/shadow_update'
         ]
 
+        servicetests = [
+            'servicetests/tests/JobsExecution/',
+        ]
+
         for sample_path in samples:
+            build_path = os.path.join('build', sample_path)
+            steps.append(['cmake',
+                          f'-B{build_path}',
+                          f'-H{sample_path}',
+                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
+                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            # append extra cmake configs
+            steps[-1].extend(cmd_args.cmake_extra)
+            steps.append(['cmake',
+                          '--build', build_path,
+                          '--config', 'RelWithDebInfo'])
+
+        for sample_path in servicetests:
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',

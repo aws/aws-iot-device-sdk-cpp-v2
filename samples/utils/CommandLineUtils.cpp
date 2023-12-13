@@ -14,6 +14,7 @@
 namespace Utils
 {
     // The command names for the samples
+    static const char *m_cmd_mqtt_version = "mqtt_version";
     static const char *m_cmd_endpoint = "endpoint";
     static const char *m_cmd_ca_file = "ca_file";
     static const char *m_cmd_cert_file = "cert";
@@ -423,6 +424,7 @@ namespace Utils
             cmdData->input_ca = cmdUtils->GetCommand(m_cmd_ca_file);
         }
         cmdData->input_isCI = cmdUtils->HasCommand(m_cmd_is_ci);
+        cmdData->input_mqtt_version = atoi(cmdUtils->GetCommandOrDefault(m_cmd_mqtt_version, "3").c_str());
     }
 
     static void s_populateTopic(CommandLineUtils *cmdUtils, cmdData *cmdData)
@@ -539,7 +541,7 @@ namespace Utils
         returnData.input_clientId =
             cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
         returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
-        returnData.input_jobId = cmdUtils.GetCommandRequired(m_cmd_job_id);
+        returnData.input_jobId = cmdUtils.GetCommandOrDefault(m_cmd_job_id, "1");
         return returnData;
     }
 

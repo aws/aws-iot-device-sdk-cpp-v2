@@ -22,6 +22,7 @@ env:
   CI_FOLDER: "D:/a/work"
   CI_UTILS_FOLDER: "./aws-iot-device-sdk-cpp-v2/utils"
   CI_SAMPLES_CFG_FOLDER: "./aws-iot-device-sdk-cpp-v2/.github/workflows"
+  CI_SERVICE_TESTS_CFG_FOLDER: "./test_cases"
   CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
   CI_PUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_PubSub_Role
   CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
@@ -36,6 +37,7 @@ env:
   CI_X509_ROLE: arn:aws:iam::180635532705:role/CI_X509_Role
   CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
   CI_GREENGRASS_ROLE: arn:aws:iam::180635532705:role/CI_Greengrass_Role
+  CI_JOBS_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_JobsServiceClient_Role
 
 jobs:
   linux-compat:
@@ -458,6 +460,23 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install softhsm -y
           softhsm2-util --version
+
+      - name: configure AWS credentials (Jobs)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_JOBS_SERVICE_CLIENT_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run mqtt3 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt3_jobs_cfg.json
+      - name: run mqtt5 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json
+
       - name: configure AWS credentials (Connect and PubSub)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -489,6 +508,17 @@ jobs:
       - name: run MQTT5 Shared Subscription sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
+      - name: configure AWS credentials (Jobs)
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.CI_JOBS_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run Jobs sample
+        run: |
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_cfg.json
+      - name: run Mqtt5 Jobs sample
+        run: |
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
       - name: configure AWS credentials (Cognito)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -516,17 +546,6 @@ jobs:
       - name: run Mqtt5 Shadow sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_mqtt5_cfg.json
-      - name: configure AWS credentials (Jobs)
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ env.CI_JOBS_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_cfg.json
-      - name: run Mqtt5 Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v1
         with:
