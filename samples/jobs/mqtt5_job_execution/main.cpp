@@ -200,10 +200,17 @@ int main(int argc, char *argv[])
                         }
                         if (response)
                         {
-                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                            currentJobId = response->Execution->JobId.value();
-                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                            currentVersionNumber = response->Execution->VersionNumber.value();
+                            if (response->Execution.has_value())
+                            {
+                                fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                                currentJobId = response->Execution->JobId.value();
+                                currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                                currentVersionNumber = response->Execution->VersionNumber.value();
+                            }
+                            else
+                            {
+                                exit(-1);
+                            }
                         }
                         else
                         {
@@ -313,7 +320,7 @@ void updateJobExecution(
             fprintf(stderr, "Error %d occurred\n", ioErr);
             exit(-1);
         }
-        fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
+        fprintf(stdout, "Marked job %s %s\n", currentJobId.c_str(), JobStatusMarshaller::ToString(status));
         pendingExecutionPromise.set_value();
     };
 
