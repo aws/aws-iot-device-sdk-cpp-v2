@@ -177,8 +177,10 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
 
 int main(int argc, char *argv[])
 {
+
     fprintf(stdout, "Starting the jobs execution programm\n");
     /************************ Setup ****************************/
+
     // Do the global initialization for the API
     ApiHandle apiHandle;
 
@@ -325,11 +327,7 @@ int main(int argc, char *argv[])
                             fprintf(stdout, "Could not get Job Id exiting\n");
                             exit(-1);
                         }
-                        else
-                        {
-                            fprintf(stdout, "Could not get Job Id exiting\n");
-                            exit(-1);
-                        }
+
                         pendingExecutionPromise.set_value();
                     };
 
