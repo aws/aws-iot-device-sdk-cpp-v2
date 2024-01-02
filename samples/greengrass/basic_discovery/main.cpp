@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
     if (cmdData.input_proxyHost.length() > 0 && cmdData.input_proxyPort != 0)
     {
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
         clientConfig.ProxyOptions = proxyOptions;
     }
 

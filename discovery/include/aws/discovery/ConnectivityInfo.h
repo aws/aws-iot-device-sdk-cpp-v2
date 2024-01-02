@@ -25,7 +25,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ID;
             Aws::Crt::Optional<Aws::Crt::String> HostAddress;
             Aws::Crt::Optional<Aws::Crt::String> Metadata;
-            Aws::Crt::Optional<uint16_t> Port;
+            Aws::Crt::Optional<uint32_t> Port;
 
           private:
             static void LoadFromObject(ConnectivityInfo &obj, const Crt::JsonView &doc);

@@ -138,7 +138,7 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
     {
-        builder->WithPort(static_cast<uint16_t>(cmdData.input_port));
+        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
     }
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
