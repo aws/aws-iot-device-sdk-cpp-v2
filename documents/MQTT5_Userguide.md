@@ -421,7 +421,7 @@ If your custom authenticator does not use signing, you don't specify anything re
 ```
 
 
-If your custom authorizer uses signing, you must specify the three signed token properties as well.  The token signature must be the URI-encoding of the base64 encoding of the digital signature of the token value via the private key associated with the public key that was registered with the custom authorizer.  It is your responsibility to URI-encode the token signature.
+If your custom authorizer uses signing, you must specify the three signed token properties as well. It is your responsibility to URI-encode the Username, AuthorizerName, and TokenKeyName parameters.
 
 ```cpp
     // Setup custom authorization config
