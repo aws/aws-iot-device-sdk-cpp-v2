@@ -63,13 +63,13 @@ cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" 
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-This will compile all the samples at once and place the executables under the `build` directory relative to their file path. To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the PubSub sample:
+This will compile all the samples at once and place the executables under the `build` directory relative to their file path. To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the MQTT5 PubSub sample:
 
 ```sh
-./build/pub_sub/basic_pub_sub/basic-pub-sub --help
+./build/mqtt5/mqtt5_pubsub/mqtt5_pubsub --help
 ```
 
-This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/pubsub/basic_pubsub`.
+This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the MQTT5 PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/mqtt5/mqtt5_pubsub`.
 
 For CMake versions that do not support the `-B` command, go to the `aws-iot-device-sdk-cpp-v2/samples` directory and run the following commands:
 
@@ -93,7 +93,7 @@ Note that building all the samples at once is currently only available in the V2
 All samples will show their options by passing in `--help`. For example:
 
 ```sh
-./build/basic-pub-sub --help
+./build/mqtt5/mqtt5_pubsub/mqtt5_pubsub --help
 ```
 
 Which will result in output showing all of the options that can be passed in at the command line, along with descriptions of what each does and whether or not they are optional or not.
