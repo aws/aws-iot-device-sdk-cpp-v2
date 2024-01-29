@@ -74,7 +74,37 @@ You can also pass a Certificate Authority file (CA) if your certificate and key 
 * [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
 * [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
 * [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
-  + [Connecting using an HTTP Proxy](#connecting-using-an-http-proxy)
+
+## Connecting using an HTTP Proxy
+
+No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
+
+```cpp
+    // Create a Client using Mqtt5ClientBuilder
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithXXXXX( ... );
+
+    Http::HttpClientConnectionProxyOptions proxyOptions;
+    proxyOptions.HostName = "<proxyHost>";
+    proxyOptions.Port = <proxyPort>;
+    builder->WithHttpProxyOptions(proxyOptions);
+
+    /* You can setup other client options and lifecycle event callbacks before call builder->Build().
+    ** Once the the client get built, you could no longer update the client options or connection options
+    ** on the created client.
+    */
+
+    // Build Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+```
+
+SDK Proxy support also includes support for basic authentication and TLS-to-proxy. SDK proxy support does not include any additional proxy authentication methods (kerberos, NTLM, etc...) nor does it include non-HTTP proxies (SOCKS5, for example).
 
 ### Direct MQTT with X509-based mutual TLS
 
@@ -267,35 +297,3 @@ To create a MQTT5 builder configured for this connection, see the following code
 ```
 
 **Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
-
-
-### Connecting using an HTTP Proxy
-
-No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
-
-```cpp
-    // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithXXXXX( ... );
-
-    Http::HttpClientConnectionProxyOptions proxyOptions;
-    proxyOptions.HostName = "<proxyHost>";
-    proxyOptions.Port = <proxyPort>;
-    builder->WithHttpProxyOptions(proxyOptions);
-
-    /* You can setup other client options and lifecycle event callbacks before call builder->Build().
-    ** Once the the client get built, you could no longer update the client options or connection options
-    ** on the created client.
-    */
-
-    // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
-
-    if (mqtt5Client == nullptr)
-    {
-        fprintf(stdout, "Client creation failed.\n");
-        return -1;
-    }
-
-```
-
-SDK Proxy support also includes support for basic authentication and TLS-to-proxy. SDK proxy support does not include any additional proxy authentication methods (kerberos, NTLM, etc...) nor does it include non-HTTP proxies (SOCKS5, for example).
