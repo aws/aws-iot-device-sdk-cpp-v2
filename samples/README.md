@@ -1,9 +1,13 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
-* [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
-* [Basic Connect](./mqtt/basic_connect/README.md)
+## MQTT5 Samples
 * [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
+* [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
+* [Mqtt5 Device Defender](./device_defender/mqtt5_basic_report/README.md)
+## MQTT311 Samples
+* [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
+* [Basic Connect](./mqtt/basic_connect/README.md)
 * [Websocket Connect](./mqtt/websocket_connect/README.md)
 * [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
 * [PKCS#12 Connect](./mqtt/pkcs12_connect/README.md)
@@ -15,12 +19,10 @@
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
 * [Jobs](./jobs/job_execution/README.md)
-* [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
 * [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)
 * [Device Defender](./device_defender/basic_report/README.md)
-* [Mqtt5 Device Defender](./device_defender/mqtt5_basic_report/README.md)
 * [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
 
 ## Build Instruction
