@@ -70,6 +70,11 @@ You can also pass a Certificate Authority file (CA) if your certificate and key 
 ./mqtt5_pubsub  --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --topic <topic name> --ca_file <path to root CA>
 ```
 ## Alternate Authentication Methods supported by AWS IoT Core
+* [Direct MQTT with X509-based mutual TLS](#direct-mqtt-with-x509-based-mutual-tls)
+* [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
+* [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
+* [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
+
 ### Direct MQTT with X509-based mutual TLS
 
 For X509 based mutual TLS, you can create a client where the certificate and private key are configured by path:
