@@ -1,6 +1,7 @@
 # Sample apps for the AWS IoT Device SDK for C++ v2
 
 ## MQTT5 Samples
+#### MQTT5 is the recommended MQTT Client. It has many benefits over MQTT311 outlined in the [MQTT5 User Guide](../documents/MQTT5_Userguide.md)
 * [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
