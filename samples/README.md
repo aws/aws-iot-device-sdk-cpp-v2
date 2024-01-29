@@ -16,15 +16,16 @@
 * [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
-* [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
-* [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Shadow](./shadow/shadow_sync/README.md)
 * [Jobs](./jobs/job_execution/README.md)
 * [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
+## Other Samples
+* [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
+* [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
+* [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
 * [Greengrass discovery](./greengrass/basic_discovery/README.md)
 * [Greengrass IPC](./greengrass/ipc/README.md)
 * [Device Defender](./device_defender/basic_report/README.md)
-* [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
 
 ## Build Instruction
 
