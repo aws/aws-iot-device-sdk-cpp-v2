@@ -16,7 +16,7 @@
         - [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
         - [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
         - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
-        - [HTTP Proxy](#http-proxy)
+    + [Connecting using an HTTP Proxy](#connecting-using-an-http-proxy)
     + [Client Operations](#client-operations)
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
@@ -504,7 +504,7 @@ To create a MQTT5 builder configured for this connection, see the following code
 **Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
 
 
-### HTTP Proxy
+## Connecting using an HTTP Proxy
 
 No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
 
