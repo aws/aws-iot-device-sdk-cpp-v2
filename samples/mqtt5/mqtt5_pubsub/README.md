@@ -91,9 +91,9 @@ For X509 based mutual TLS, you can create a client where the certificate and pri
     */
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
 
-    if (client == nullptr)
+    if (mqtt5Client == nullptr)
     {
         fprintf(stdout, "Client creation failed.\n");
         return -1;
@@ -114,7 +114,7 @@ Sigv4-based authentication requires a credentials provider capable of sourcing v
 
 
 
-If the default credentials provider chain and AWS region are specified, you do not need to specify any additional configuration, Alternatively, if you're connecting to a special region for which standard pattern matching does not work, or if you need a specific credentials provider, you can specify advanced websocket configuration options.
+If the default credentials provider chain and AWS region are specified, you do not need to specify any additional configuration. Alternatively, if you're connecting to a special region for which standard pattern matching does not work, or if you need a specific credentials provider, you can specify advanced websocket configuration options.
 
 
 ```cpp
@@ -161,7 +161,7 @@ If your custom authenticator does not use signing, you don't specify anything re
 ```cpp
     // Setup custom authorization config
     Mqtt5CustomAuthConfig customAuth;
-    customAuth.WithAuthrizaerName("<Name of your custom authorizer>");
+    customAuth.WithAuthorizerName("<Name of your custom authorizer>");
     customAuth.WithUsername("<Value of the username field that should be passed to the authorizer's lambda>");
     customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
 
