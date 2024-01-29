@@ -74,6 +74,7 @@ You can also pass a Certificate Authority file (CA) if your certificate and key 
 * [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
 * [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
 * [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
+* [HTTP Proxy](#http-proxy)
 
 ### Direct MQTT with X509-based mutual TLS
 
