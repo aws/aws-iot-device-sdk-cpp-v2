@@ -3,6 +3,11 @@
 ## MQTT5 Samples
 #### MQTT5 is the recommended MQTT Client. It has many benefits over MQTT311 outlined in the [MQTT5 User Guide](../documents/MQTT5_Userguide.md)
 * [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
+    + [Direct MQTT with X509-based mutual TLS](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-x509-based-mutual-tls)
+    + [MQTT over Websockets with Sigv4 authentication](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-sigv4-authentication)
+    + [Direct MQTT with Custom Authentication](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-custom-authentication)
+    + [MQTT over Websockets with Cognito](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-cognito)
+    + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
 ## MQTT311 Samples
