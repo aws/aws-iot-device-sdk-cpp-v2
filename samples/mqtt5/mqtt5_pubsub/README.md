@@ -70,6 +70,10 @@ You can also pass a Certificate Authority file (CA) if your certificate and key 
 ./mqtt5_pubsub  --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --topic <topic name> --ca_file <path to root CA>
 ```
 ## Alternate Connection Configuration Methods supported by AWS IoT Core
+Alternate connection configuration methods can be set using the Mqtt5ClientBuilder class. We strongly recommend using the Mqtt5ClientBuilder class to configure MQTT5 clients when connecting to AWS IoT Core. The builder simplifies configuration for all authentication methods supported by AWS IoT Core.
+
+This section shows samples for all of the authentication possibilities.
+
 ### Authentication Methods
 * [Direct MQTT with X509-based mutual TLS](#direct-mqtt-with-x509-based-mutual-tls)
 * [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
