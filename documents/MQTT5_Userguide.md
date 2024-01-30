@@ -16,7 +16,7 @@
         - [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
         - [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
         - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
-        - [HTTP Proxy](#http-proxy)
+    + [Adding an HTTP Proxy](#adding-an-http-proxy)
     + [Client Operations](#client-operations)
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
@@ -349,7 +349,7 @@ Sigv4-based authentication requires a credentials provider capable of sourcing v
 
 
 
-If the default credentials provider chain and AWS region are specified, you do not need to specify any additional configuration, Alternatively, if you're connecting to a special region for which standard pattern matching does not work, or if you need a specific credentials provider, you can specify advanced websocket configuration options.
+If the default credentials provider chain and AWS region are specified, you do not need to specify any additional configuration. Alternatively, if you're connecting to a special region for which standard pattern matching does not work, or if you need a specific credentials provider, you can specify advanced websocket configuration options.
 
 
 ```cpp
@@ -396,7 +396,7 @@ If your custom authenticator does not use signing, you don't specify anything re
 ```cpp
     // Setup custom authorization config
     Mqtt5CustomAuthConfig customAuth;
-    customAuth.WithAuthrizaerName("<Name of your custom authorizer>");
+    customAuth.WithAuthorizerName("<Name of your custom authorizer>");
     customAuth.WithUsername("<Value of the username field that should be passed to the authorizer's lambda>");
     customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
 
@@ -421,7 +421,7 @@ If your custom authenticator does not use signing, you don't specify anything re
 ```
 
 
-If your custom authorizer uses signing, you must specify the three signed token properties as well.  The token signature must be the URI-encoding of the base64 encoding of the digital signature of the token value via the private key associated with the public key that was registered with the custom authorizer.  It is your responsibility to URI-encode the token signature.
+If your custom authorizer uses signing, you must specify the three signed token properties as well. It is your responsibility to URI-encode the Username, AuthorizerName, and TokenKeyName parameters.
 
 ```cpp
     // Setup custom authorization config
@@ -504,7 +504,7 @@ To create a MQTT5 builder configured for this connection, see the following code
 **Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
 
 
-### HTTP Proxy
+## Adding an HTTP Proxy
 
 No matter what your connection transport or authentication method is, you may connect through an HTTP proxy by applying proxy configuration to the builder:
 
