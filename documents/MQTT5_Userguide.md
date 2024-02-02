@@ -16,12 +16,15 @@
         - [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
         - [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
         - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
-    + [Adding an HTTP Proxy](#adding-an-http-proxy)
-    + [Client Operations](#client-operations)
-        - [Subscribe](#subscribe)
-        - [Unsubscribe](#unsubscribe)
-        - [Publish](#publish)
-* [MQTT5 Best Practices](#mqtt5-best-practices)
+        - [Direct MQTT with Windows Certificate Store Method](#direct-mqtt-with-windows-certificate-store-method)
+        - [Direct MQTT with PKCS11 Method](#direct-mqtt-with-pkcs11-method)
+        - [direct mqtt with pkcs12 method](#direct-mqtt-with-pkcs12-method)
+    + [adding an http proxy](#adding-an-http-proxy)
+    + [client operations](#client-operations)
+        - [subscribe](#subscribe)
+        - [unsubscribe](#unsubscribe)
+        - [publish](#publish)
+* [mqtt5 best practices](#mqtt5-best-practices)
 
 # Introduction
 
@@ -507,8 +510,10 @@ A MQTT5 direct connection can be made with mutual TLS with the certificate and p
 store, rather than simply being files on disk. To create a MQTT5 builder configured for this connection, see the following code:
 
 ```cpp
+    String windowsCertPath = "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6";
+
     Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWindowsCertStorePath(
-            "<clientEndpoint>", "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6");
+            "<clientEndpoint>", windowsCertPath);
 
     // Build Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
