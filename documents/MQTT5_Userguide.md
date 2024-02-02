@@ -498,11 +498,92 @@ To create a MQTT5 builder configured for this connection, see the following code
         return -1;
     }
 
-
 ```
-
 **Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
 
+### Direct MQTT with Windows Certificate Store Method
+
+A MQTT5 direct connection can be made with mutual TLS with the certificate and private key in the Windows certificate
+store, rather than simply being files on disk. To create a MQTT5 builder configured for this connection, see the following code:
+
+```cpp
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWindowsCertStorePath(
+            "<clientEndpoint>", "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6");
+
+    // Build Mqtt5Client
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
+
+    /* You can setup other client options and lifecycle event callbacks before call builder->Build().
+    ** Once the the client get built, you could no longer update the client options or connection options
+    ** on the created client.
+    */
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+```
+Note: Windows Certificate Store connection support is only available on Windows devices.
+
+### Direct MQTT with PKCS11 Method
+
+A MQTT5 direct connection can be made using a PKCS11 device rather than using a PEM encoded private key,
+the private key for mutual TLS is stored on a PKCS#11 compatible smart card or Hardware Security Module (HSM).
+ To create a MQTT5 builder configured for this connection, see the following code:
+```cpp
+    std::shared_ptr<Aws::Crt::Io::Pkcs11Lib> pkcs11Lib = Aws::Crt::Io::Pkcs11Lib::Create(
+        "<pkcs11_lib_filename>", Aws::Crt::Io::Pkcs11Lib::InitializeFinalizeBehavior::Strict);
+    if (!pkcs11Lib)
+    {
+        fprintf(stderr, "Pkcs11Lib failed: %s\n", Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
+        ASSERT_TRUE(false);
+    }
+    Aws::Crt::Io::TlsContextPkcs11Options pkcs11Options(pkcs11Lib);
+    pkcs11Options.SetCertificateFilePath("<pkcs11_cert>");
+    pkcs11Options.SetUserPin("<pkcs11_userPin>");
+    pkcs11Options.SetTokenLabel("<pkcs11_tokenLabel>");
+    pkcs11Options.SetPrivateKeyObjectLabel("<pkcs11_privateKeyLabel>");
+
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs11(
+			"<endpoint>", pkcs11Options);
+
+    builder->WithPort(8883);
+    builder->WithCertificateAuthority("<pkcs11_ca>");
+
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+```
+Note: Currently, TLS integration with PKCS#11 is only available on Unix devices.
+
+### Direct MQTT with PKCS12 Method
+A MQTT5 direct connection can be made using a PKCS12 file rather than using a PEM encoded private key.
+To create a MQTT5 builder configured for this connection, see the following code:
+```cpp
+    Aws::Iot::Pkcs12Options testPkcs12Options;
+    testPkcs12Options.pkcs12_file = "<pkcs12_key>";
+    testPkcs12Options.pkcs12_password = "<pkcs12_password>";
+
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs12(
+        "<endpoint>", testPkcs12Options);
+
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
+
+    if (mqtt5Client == nullptr)
+    {
+        fprintf(stdout, "Client creation failed.\n");
+        return -1;
+    }
+
+```
+Note: Currently, TLS integration with PKCS#12 is only available on MacOS devices.
 
 ## Adding an HTTP Proxy
 
