@@ -109,7 +109,7 @@ builder->WithConnectOptions(connectOptions);
 builder->WithPort(clientPort);
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 ```
-<details>
+</details>
 
 Refer to the [Connection Types and Features](https://quip-amazon.com/bbcuA13anxJa#temp:C:YWR0b9b69e08b72487dbe620342f) section for other connection types supported by V2 SDK.
 
@@ -364,6 +364,7 @@ auto onSubAck = [&](int error_code,
 bool rc = client->Subscribe(subPacket, onSubAck);
 
 ```
+</details>
 
 
 
@@ -577,7 +578,7 @@ Mqtt5Client client = builder->Build();
 
 V1 and V2 SDK uses a custom logger allowing to control the logging process simultaneously for all layers of the SDK.
 
-</details>
+<details>
 <summary>Example of enabling logging in V1<summary>
 To enable logging on V1 follow the next example:
 
@@ -635,7 +636,7 @@ After subscribing to all the required topics, the service client can start inter
 
 AWS IoT Core [documentation for Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html) service provides detailed descriptions for the topics used to interact with the service.
 
-</details>
+<details>
 <summary>Example of creating a Device Shadow service client in V1</summary>
 ```cpp
 #include "shadow/Shadow.hpp"
