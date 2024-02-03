@@ -73,13 +73,7 @@ util::String rootCaPath = "<root certificate path>";
 util::String certificateFile = "<certificate file>";  // X.509 based certificate file
 util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
 
- std::shared_ptr<network::OpenSSLConnection> p_network_connection =
-    std::make_shared<network::OpenSSLConnection>(
-        clientEndpoint,
-        clientPort,
-        rootCaPath,
-        certificateFile,
-        privateKeyFile);
+std::shared_ptr<network::OpenSSLConnection> p_network_connection = std::make_shared<network::OpenSSLConnection>( clientEndpoint, clientPort, rootCaPath, certificateFile, privateKeyFile);
 ResponseCode rc = p_network_connection->Initialize();
 
 ```
