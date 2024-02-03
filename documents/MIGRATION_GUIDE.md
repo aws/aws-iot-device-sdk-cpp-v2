@@ -97,10 +97,8 @@ util::String privateKeyFile = "<private key file>";   // PEM encoded private key
 uint32_t clientPort = <port number>
 String client_id = "unique client id";
 
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-    Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(clientEndpoint, certificateFie, privateKeyFile));
-std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
-        std::make_shared<Mqtt5::ConnectPacket>();
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(clientEndpoint, certificateFile, privateKeyFile));
+std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
 util::String clientId = "client_id";
 connectOptions->WithClientId(clientId);
 builder->WithConnectOptions(connectOptions);
