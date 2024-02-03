@@ -69,7 +69,7 @@ Once an MQTT5 client is built and finalized, the resulting MQTT5 client cannot h
 
  util::String clientEndpoint = "<prefix>-ats.iot.<region>.amazonaws.com";
 uint16_t clientPort = <port number>
- util::String clientId = "<unique client id>";
+ util::String clientId = "<client id>";
  util::String rootCaPath = "<root certificate path>";
  util::String certificateFile = "<certificate file>";  // X.509 based certificate file
  util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
@@ -103,7 +103,7 @@ std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
         privateKeyFile));
 std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         std::make_shared<Mqtt5::ConnectPacket>();
-util::String clientId = "<unique client id>";
+util::String clientId = "<client id>";
 connectOptions->WithClientId(clientId);
 builder->WithConnectOptions(connectOptions);
 builder->WithPort(clientPort);
