@@ -96,7 +96,7 @@ util::String certificateFile = "<certificate file>";  // X.509 based certificate
 util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
 uint32_t clientPort = <port number>
 
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder>builder(
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
     Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
         clientEndpoint,
         certificateFie,
@@ -500,7 +500,7 @@ V2 provides a way to configure which kind of packets will be placed into the off
 
 ```cpp
 AwsIotMqtt5ClientBuilder builder;
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder>builder(
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
     Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(/* ... */));
 builder.WithOfflineQueueBehavior(
         Mqtt5::ClientOperationQueueBehaviorType::
