@@ -111,7 +111,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 ```
 </details>
 
-Refer to the [Connection Types and Features](https://quip-amazon.com/bbcuA13anxJa#temp:C:YWR0b9b69e08b72487dbe620342f) section for other connection types supported by V2 SDK.
+Refer to the [Connection Types and Features](#connection-types-and-features) section for other connection types supported by V2 SDK.
 
 ### Connection Types and Features
 
@@ -139,14 +139,17 @@ ${\Large\color{orange}&#10004\*\*}$ - Though V1 does not allow to specify HTTP p
 
 Both V1 and V2 SDKs provide lifecycle events for the MQTT clients.
 
-V1 SDK provides 3 lifecycle events: “ClientCoreState::ApplicationResubscribeCallbackPt”, “ClientCoreState::ApplicationDisconnectCallbackPtr”, and “ClientCoreState::ApplicationReconnectCallbackPtr”. You can supply a custom callback function via the function `Create`. It is recommended to use lifecycle events callbacks to help determine the state of the MQTT client during operation.
+V1 SDK provides 3 lifecycle events: “ClientCoreState::ApplicationResubscribeCallbackPt”, “ClientCoreState::ApplicationDisconnectCallbackPtr”, and “ClientCoreState::ApplicationReconnectCallbackPtr”.
+You can supply a custom callback function via the function `Create`. It is recommended to use lifecycle events callbacks to help determine the state of the MQTT client during operation.
 
 V2 SDK add 3 new lifecycle events and removes one(Resubscribe Callback), providing 5 lifecycle events in total: “WithClientConnectionSuccessCallback”, “WithClientConnectionFailureCallback”, “WithClientDisconnectionCallback”, “WithClientStoppedCallback”, and “WithClientAttemptingConnectCallback”.
 Refer to the [MQTT5 user guide](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#client-lifecycle-management) for the details.
 
 <details>
 <summary>Example of setting lifecycle events in V1</summary>
+
 ```cpp
+
 std::shared_ptr<MqttClient> p_iot_client_;
 ResponseCode DisconnectCallback(
         util::String client_id,
@@ -870,7 +873,7 @@ V1 and V2 SDK offer support of AWS IoT Core services implementing a service clie
 
 V1 IotJobs APIs are defined [here](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html), with its corresponding code [samples](https://github.com/aws/aws-iot-device-sdk-cpp/tree/master/samples/Jobs)
 
-The Jobs service client provides API similar to API provided by [Client for Device Shadow Service](https://quip-amazon.com/bbcuA13anxJa#temp:C:YWR759cb689cfb8488da0d1d539f). First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that. After subscribing to all the required topics, the service client can start interacting with the server, for example update the status or request for data. These actions are also performed via client API calls.
+The Jobs service client provides API similar to API provided by [Client for Device Shadow Service](#client-for-device-shadow-service). First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that. After subscribing to all the required topics, the service client can start interacting with the server, for example update the status or request for data. These actions are also performed via client API calls.
 
 AWS IoT Core documentation for [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/jobs-mqtt-api.html) service provides detailed descriptions for the topics used to interact with the service.
 
@@ -1098,7 +1101,7 @@ jobsClient.PublishUpdateJobExecution(
 
 Another IoT service that V2 SDK provides access to is [Fleet Provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) (also known as Identity Service). By using AWS IoT fleet provisioning, AWS IoT can generate and securely deliver device certificates and private keys to your devices when they connect to AWS IoT for the first time.
 
-The Fleet Provisioning service client provides API similar to API provided by [Client for Device Shadow Service](https://quip-amazon.com/bbcuA13anxJa#temp:C:YWR759cb689cfb8488da0d1d539f). First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that. After subscribing to all the required topics, the service client can start interacting with the server, for example update the status or request for data. These actions are also performed via client API calls.
+The Fleet Provisioning service client provides API similar to API provided by [Client for Device Shadow Service](#client for-device-shadow-service). First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that. After subscribing to all the required topics, the service client can start interacting with the server, for example update the status or request for data. These actions are also performed via client API calls.
 
 AWS IoT Core documentation for [Fleet Provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html) service provides detailed descriptions for the topics used to interact with the service.
 
