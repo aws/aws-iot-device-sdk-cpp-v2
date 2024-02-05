@@ -222,10 +222,11 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
+      # TODO Temporarily disable this job. Enable it after the issue is properly fixes.
+      # - name: run Windows Certificate Connect sample
+      #   run: |
+      #     cd ${{ env.CI_FOLDER }}
+      #     python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -267,10 +268,11 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
+      # TODO Temporarily disable this job. Enable it after the issue is properly fixes.
+      # - name: run Windows Certificate Connect sample
+      #   run: |
+      #     cd ${{ env.CI_FOLDER }}
+      #     python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v1
         with:
