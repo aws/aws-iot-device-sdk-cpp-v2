@@ -37,7 +37,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 * The v2 SDK client is truly async. Operations take callback functions/lambdas, that is called-back when the operation is registered with the server.
   Blocking calls can be emulated by setting an `std::promise<>` in the callback by calling `promise.set_value() `and then waiting for the returned `std::future<>` object to be resolved by calling `promise.get_future().wait()`
 * The v2 SDK provides implementation for MQTT5 protocol, the next step in evolution of the MQTT protocol.
-* Public APIs terminology has changed. You `Start()` or `Stop()` the MQTT5 client rather than `Connect` or `Disconnect` as in the V1 SDK.
+* Public APIs terminology has changed. You `Start()` or `Stop()` the MQTT5 client rather than `Connect` or `Disconnect` as in the v1 SDK.
 This removes the semantic confusion with the client-level controls and internal recurrent networking events related to
 connection and disconnection.
 * The v2 SDK Supports AWS_ IoT services such as for fleet provisioning.
@@ -331,7 +331,7 @@ The [Subscribe](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_cr
 a description of the `SubscribePacket` you wish to send and sends back a callback that resolves with success or failure with the corresponding [SubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_sub_ack_packet.html) returned by the broker;
 You should always check the reason codes of a `SubAckPacket` completion to determine if the subscribe operation actually succeeded.
 
-In V2 SDK, if the MQTT5 client is going to subscribe and receive packets from the MQTT broker,
+In the v2 SDK, if the MQTT5 client is going to subscribe and receive packets from the MQTT broker,
 it is important to also setup the `builder.WithPublishReceivedCallback` callback.
 This callback is invoked whenever the client receives a message from the server on a topic the client is subscribed to.
 With this callback, you can process messages made to subscribed topics.
@@ -463,7 +463,7 @@ bool rc = client->Unsubscribe(unsub, unsubAck);
 
 In the v1 SDK, the `disconnect` method in the `AWSIotMqttClient` class disconnects the client. Once disconnected, the client can connect again by calling `connect`.
 
-In V2 SDK, an MQTT5 client can stop a session by calling the [Stop](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#abc503d1a67c4e1c232f8f722b3c59ca0)
+In the v2 SDK, an MQTT5 client can stop a session by calling the [Stop](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#abc503d1a67c4e1c232f8f722b3c59ca0)
 method. You can provide an optional [DisconnectPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_disconnect_packet.html)
 parameter. A closed client can be started again by calling [Start](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#a9035534fc7cc8b48097518409e9c5a6b).
 
@@ -488,9 +488,9 @@ client->Stop();
 
 ### Reconnects
 
-the v1 SDK attempts to reconnect automatically until connection succeeds or `client.Disconnect()` is called
+The v1 SDK attempts to reconnect automatically until connection succeeds or `client.Disconnect()` is called
 
-V2 attempts to reconnect automatically until connection succeeds or `client.stop()` is called, either the initial `client→Start()` succeeds or fails.
+The v2 SDK attempts to reconnect automatically until connection succeeds or `client.stop()` is called, either the initial `client→Start()` succeeds or fails.
 The reconnection parameters, such as min/max delays and [jitter modes](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#ab88e42f90f56a82b1af57320ffadbafd),
 are configurable through [Aws::Crt::Mqtt5::ReconnectOptions](https://aws.github.io/aws-iot-device-sdk-cpp-v2/struct_aws_1_1_crt_1_1_mqtt5_1_1_reconnect_options.html).
 
@@ -615,8 +615,6 @@ The v1 and the v2 SDK uses a custom logger, allowing to control the logging proc
 
 #### Example of enabling logging in the v1 SDK
 
-To enable logging on V1 follow the next example:
-
 ```cpp
 #include "util/logging/Logging.hpp"
 #include "util/logging/LogMacros.hpp"
@@ -728,7 +726,7 @@ shadowClient.AddShadowSubscription(request_mapping);
 
 #### Example of creating a Device Shadow service client in the v2 SDK
 
-A thing name in V2 SDK shadow client is specified for the operations with shadow documents.
+A thing name in the v2 SDK shadow client is specified for the operations with shadow documents.
 
 ```cpp
 #include <aws/iotshadow/ErrorResponse.h>
@@ -828,7 +826,7 @@ shadowClient.PublishGetShadow(
 
 ```
 
-#### Example of updating a shadow document in the V1 SDK
+#### Example of updating a shadow document in the v1 SDK
 
 ```cpp
 // Non-blocking API.
@@ -839,7 +837,7 @@ util::JsonParser::InitializeFromJsonString(
 my_shadow.UpdateDeviceShadow(doc);
 rc = my_shadow.PerformUpdateAsync();
 
-/* for a blocking model look at the Example of getting a shadow document in V1 */
+/* for a blocking model look at the Example of getting a shadow document in the v1 SDK */
 
 ```
 
@@ -1123,7 +1121,7 @@ jobsClient.PublishUpdateJobExecution(
 
 ```
 
-For more information, see  API documentation for the V2 SDK [AWS IOT Jobs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html).\
+For more information, see  API documentation for the v2 SDK [AWS IOT Jobs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html).\
 For code examples, see the v2 SDK [Jobs Samples](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/b065b818f955aef6181b2c89815425ea6c5b4194/samples/jobs).
 
 
@@ -1215,7 +1213,7 @@ method in PublishPacketBuilder class.
 
 **Shared Subscriptions**\
 Shared Subscriptions allow multiple clients to share a subscription to a topic and only one client will receive messages published to that topic using a random distribution.
-For more information, see a [shared subscription sample](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_shared_subscription/README.md) in the V2 SDK.
+For more information, see a [shared subscription sample](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_shared_subscription/README.md) in the v2 SDK.
 [!NOTE]
 AWS Iot Core supports Shared Subscriptions for both MQTT3 and MQTT5. For more information, see
 [Shared Subscriptions](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html#mqtt5-shared-subscription) from the AWS IoT Core developer guide
