@@ -1213,7 +1213,7 @@ method in PublishPacketBuilder class.
 **Shared Subscriptions**\
 Shared Subscriptions allow multiple clients to share a subscription to a topic and only one client will receive messages published to that topic using a random distribution.
 For more information, see a [shared subscription sample](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_shared_subscription/README.md) in the v2 SDK.
-[!NOTE]
-AWS Iot Core supports Shared Subscriptions for both MQTT3 and MQTT5. For more information, see
-[Shared Subscriptions](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html#mqtt5-shared-subscription) from the AWS IoT Core developer guide
+>[!NOTE]
+>AWS Iot Core supports Shared Subscriptions for both MQTT3 and MQTT5. For more information, see
+>[Shared Subscriptions](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html#mqtt5-shared-subscription) from the AWS IoT Core developer guide
 
