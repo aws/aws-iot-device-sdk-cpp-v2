@@ -10,7 +10,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 > more help and guidance
 
 * [What's new in AWS IoT Device SDK for C++ v2](#whats-new-in-aws-iot-device-sdk-for-c++-v2)
-* [How to get started with the v2 sdk for C++](#how-to-get-started-with-the-v2-sdk-for-c++)
+* [How to get started with the v2 SDK for C++](#how-to-get-started-with-the-v2-sdk-for-c++)
     * [Mqtt protocol](#mqtt-protocol)
     * [client builder](#client-builder)
     * [Connection types and features](#connection-types-and-features)
@@ -43,10 +43,10 @@ connection and disconnection.
 * The v2 SDK Supports AWS_ IoT services such as for fleet provisioning.
 
 Public APIs for almost all actions and operations has changed significantly.
-For more information about the new features and specific code examples, refer to the [how to get started with the v2 sdk for c++](#how-to-get-started-with-the-v2-sdk-for-c++) sections of this guide.
+For more information about the new features and specific code examples, refer to the [How to get started with the v2 SDK for C++](#how-to-get-started-with-the-v2-sdk-for-c++) sections of this guide.
 
 
-## How To Get Started with the the v2 SDK for C++
+## How To get started with the v2 SDK for C++
 
 There are differences between the v1 SDK and the v2 SDK. This section describes the changes you need to apply to your
 project with the v1 SDK to start using the v1 SDK.
