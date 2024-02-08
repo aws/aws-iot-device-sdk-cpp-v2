@@ -6,10 +6,10 @@ an offline operation queue control. This guide describes the major features that
 and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot SDK for C++.
 
 > [!NOTE]
-> If you can\'t find the information you need in this guide, visit the [How to Get Help](#how-to-get-help) section for
+> If you can't find the information you need in this guide, visit the [How to Get Help](#how-to-get-help) section for
 > more help and guidance
 
-* [What\'s new in AWS IoT Device SDK for C++ v2](#what\'s-new-in-aws-iot-device-sdk-for-c++-v2)
+* [What's new in AWS IoT Device SDK for C++ v2](#what's-new-in-aws-iot-device-sdk-for-c++-v2)
 * [How to get started with the v2 sdk for C++](#how-to-get-started-with-the-v2-sdk-for-c++)
     * [Mqtt protocol](#mqtt-protocol)
     * [client builder](#client-builder)
@@ -32,7 +32,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
     * [Mqtt5 features](#mqtt5-features)
 
 
-## What\'s new in AWS IoT Device SDK for C++ v2
+## What's new in AWS IoT Device SDK for C++ v2
 
 * The v2 SDK client is truly async. Operations take callback functions/lambdas, that is called-back when the operation is registered with the server.
   Blocking calls can be emulated by setting an `std::promise<>` in the callback by calling `promise.set_value() `and then waiting for the returned `std::future<>` object to be resolved by calling `promise.get_future().wait()`
@@ -522,7 +522,7 @@ Mqtt5Client client = builder->Build();
 
 The v1 SDK doesn’t set a limit on the number on in-flight messages.
 
-The v2 SDK similarly doesn\'t set a limit on the number of in-flight messages. Additionally, the v2 SDK provides
+The v2 SDK similarly doesn't set a limit on the number of in-flight messages. Additionally, the v2 SDK provides
 a way to configure which kind of packets will be placed into the offline queue when the client is in the disconnected state.
 The following code snippet demonstrates how to enable storing all packets except QOS0 publish packets in the offline queue on disconnect:
 
@@ -898,7 +898,7 @@ For code examples, see the v2 SDK [Device Shadow](https://github.com/aws/aws-iot
 The v1 and v2 SDKs offer support of AWS IoT Core services implementing a service client for the [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 service which helps with defining a set of remote operations that can be sent to and run on one or more devices connected to AWS IoT.
 
-The v1 SDK\'s IotJobs APIs are defined [here](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html), with its corresponding code [samples](https://github.com/aws/aws-iot-device-sdk-cpp/tree/master/samples/Jobs)
+The v1 SDK's IotJobs APIs are defined [here](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html), with its corresponding code [samples](https://github.com/aws/aws-iot-device-sdk-cpp/tree/master/samples/Jobs)
 
 The Jobs service client provides API similar to API provided by [Client for Device Shadow Service](#client-for-device-shadow-service).
 First, you subscribe to special topics to get data and feedback from a service.
