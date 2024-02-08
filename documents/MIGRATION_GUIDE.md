@@ -85,7 +85,13 @@ util::String rootCaPath = "<root certificate path>";
 util::String certificateFile = "<certificate file>";  // X.509 based certificate file
 util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
 
-std::shared_ptr<network::OpenSSLConnection> p_network_connection = std::make_shared<network::OpenSSLConnection>( clientEndpoint, clientPort, rootCaPath, certificateFile, privateKeyFile);
+std::shared_ptr<network::OpenSSLConnection> p_network_connection =
+        std::make_shared<network::OpenSSLConnection>(
+                clientEndpoint,
+                clientPort,
+                rootCaPath,
+                certificateFile,
+                privateKeyFile);
 ResponseCode rc = p_network_connection->Initialize();
 
 ```
@@ -102,7 +108,11 @@ util::String privateKeyFile = "<private key file>";   // PEM encoded private key
 uint32_t clientPort = <port number>
 String client_id = "unique client id";
 
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(clientEndpoint, certificateFile, privateKeyFile));
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
+            Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+                    clientEndpoint,
+                    certificateFile,
+                    privateKeyFile));
 std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
 util::String clientId = "client_id";
 connectOptions->WithClientId(clientId);
@@ -729,17 +739,6 @@ shadowClient.AddShadowSubscription(request_mapping);
 A thing name in the v2 SDK shadow client is specified for the operations with shadow documents.
 
 ```cpp
-#include <aws/iotshadow/ErrorResponse.h>
-#include <aws/iotshadow/GetShadowRequest.h>
-#include <aws/iotshadow/GetShadowResponse.h>
-#include <aws/iotshadow/GetShadowSubscriptionRequest.h>
-#include <aws/iotshadow/IotShadowClient.h>
-#include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
-#include <aws/iotshadow/ShadowDeltaUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/UpdateShadowRequest.h>
-#include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
-
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 client->Start();
 Aws::Iotshadow::IotShadowClient shadowClient(client);
