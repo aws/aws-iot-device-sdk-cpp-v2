@@ -9,7 +9,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 > If you can't find the information you need in this guide, visit the [How to Get Help](#how-to-get-help) section for
 > more help and guidance
 
-* [What's new in AWS IoT Device SDK for C++ v2](#what's-new-in-aws-iot-device-sdk-for-c++-v2)
+* [What's new in AWS IoT Device SDK for C++ v2](#whats-new-in-aws-iot-device-sdk-for-c++-v2)
 * [How to get started with the v2 sdk for C++](#how-to-get-started-with-the-v2-sdk-for-c++)
     * [Mqtt protocol](#mqtt-protocol)
     * [client builder](#client-builder)
@@ -568,7 +568,7 @@ std::cout<<"Client operations queue statistics\n"
 
 ```
 
-For more information, see [withOfflineQueueBehavior documentation](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a1eb626870603eab906714e2b86d79816) for more details.
+For more information, see [withOfflineQueueBehavior documentation](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a1eb626870603eab906714e2b86d79816) for more details.\
 For the list of the supported offline queue behaviors and their desriptions, see [ClientOfflineQueueBehavior documentation](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a1eb626870603eab906714e2b86d79816) to find the list of the supported offline queue behaviors and their description.
 
 
