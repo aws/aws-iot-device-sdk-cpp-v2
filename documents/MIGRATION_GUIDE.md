@@ -34,12 +34,14 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 
 ## What's new in AWS IoT Device SDK for C++ v2
 
-* The v2 SDK client is truly async. Operations take callback functions/lambdas, that is called-back when the operation is registered with the server.
-  Blocking calls can be emulated by setting an `std::promise<>` in the callback by calling `promise.set_value() `and then waiting for the returned `std::future<>` object to be resolved by calling `promise.get_future().wait()`
+* The v2 SDK client is truly async. Operations take callback functions/lambdas, that is called-back when the operation
+  is registered with the server. Blocking calls can be emulated by setting an `std::promise<>` in the callback
+  by calling `promise.set_value() `and then waiting for the returned `std::future<>` object to be resolved by calling
+  `promise.get_future().wait()`
 * The v2 SDK provides implementation for MQTT5 protocol, the next step in evolution of the MQTT protocol.
 * Public APIs terminology has changed. You `Start()` or `Stop()` the MQTT5 client rather than `Connect` or `Disconnect` as in the v1 SDK.
-This removes the semantic confusion with the client-level controls and internal recurrent networking events related to
-connection and disconnection.
+  This removes the semantic confusion with the client-level controls and internal recurrent networking events related to
+  connection and disconnection.
 * The v2 SDK Supports AWS_ IoT services such as for fleet provisioning.
 
 Public APIs for almost all actions and operations has changed significantly.
@@ -57,7 +59,8 @@ For more information about MQTT5, visit [MQTT5 User Guide](https://github.com/aw
 
 The v1 SDK uses an MQTT version 3.1.1 client under the hood.
 
-The v2 SDK provides MQTT version 3.1.1 and MQTT version 5.0 client implementations. This guide focuses on the MQTT5 because this version is significant improvement over MQTT3.
+The v2 SDK provides MQTT version 3.1.1 and MQTT version 5.0 client implementations.
+This guide focuses on the MQTT5 because this version is significant improvement over MQTT3.
 For more information see the [MQTT5 features]($mqtt5-features) section.
 
 
@@ -67,9 +70,11 @@ To access the AWS IoT service, you must initialize an MQTT client.
 
 In the v1 SDK, the [awsiotsdk::MqttClient](http://aws-iot-device-sdk-cpp-docs.s3-website-us-east-1.amazonaws.com/latest/classawsiotsdk_1_1_mqtt_client.html) class represents an MQTT client.
 You instantiate the client directly passing all the required parameters to the class constructor.
-It’s possible to change client settings after its creation using `set*` methods, e.g. `SetAutoReconnectEnabled` or `SetMaxReconnectBackoffTimeout`.
+It's possible to change client settings after its creation using `set*` methods,
+like `SetAutoReconnectEnabled` or `SetMaxReconnectBackoffTimeout`.
 
-In the v2 SDK, the [Aws::Iot::MqttClient](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt_client.html) class represents an MQTT client, specifically MQTT5 protocol.
+In the v2 SDK, the [Aws::Iot::MqttClient](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt_client.html)
+class represents an MQTT client, specifically for MQTT5 protocol.
 The v2 SDK provides an [Aws::Iot::Mqtt5ClientBuilder](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html)
 designed to easily create common configuration types such as direct MQTT or WebSocket connections.
 After an MQTT5 client is built and finalized, the setting of the resulting MQTT5 client cannot be modified.
@@ -122,16 +127,20 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
 ```
 
-For more information, refer to the [Connection Types and Features](#connection-types-and-features) section for other connection types supported by the v2 SDK.
+For more information, refer to the [Connection Types and Features](#connection-types-and-features)
+section for other connection types supported by the v2 SDK.
 
 ### Connection Types and Features
 
-The v1 SDK supports two types of connections to connect to the AWS IoT service: MQTT with X.509 certificate and MQTT over Secure WebSocket with SigV4 authentication.
+The v1 SDK supports two types of connections to connect to the AWS IoT service: MQTT with X.509 certificate and MQTT
+over Secure WebSocket with SigV4 authentication.
 
-The v2 SDK adds a collection of connection types and cryptography formats (e.g. [PKCS #11](https://en.wikipedia.org/wiki/PKCS_11) and
+The v2 SDK adds a collection of connection types and cryptography formats
+(e.g. [PKCS #11](https://en.wikipedia.org/wiki/PKCS_11) and
 [Custom Authorizer](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html)),
 credential providers (e.g. [Amazon Cognito](https://aws.amazon.com/cognito/) and
-[Windows Certificate Store](https://learn.microsoft.com/en-us/windows-hardware/drivers/install/certificate-stores)), and other connection-related features.
+[Windows Certificate Store](https://learn.microsoft.com/en-us/windows-hardware/drivers/install/certificate-stores)),
+and other connection-related features.
 
 For more information, refer to the [Connecting To AWS IoT Core](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#connecting-to-aws-iot-core)
 section of the MQTT5 user guide for detailed information and code snippets on each connection type and connection feature.
@@ -148,21 +157,25 @@ section of the MQTT5 user guide for detailed information and code snippets on ea
 | HTTP Proxy                                               | $${\Large\color{orange}&#10004\*\*}$$   | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#adding-an-http-proxy) |
 
 ${\Large\color{orange}&#10004\*}$ - To get this connection type work in the v1 SDK, you need to implement the [Custom Authentication workflow](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authorizer.html).\
-${\Large\color{orange}&#10004\*\*}$ - The  v1 SDK does not allow to specify HTTP proxy, but sustemwide proxy
+${\Large\color{orange}&#10004\*\*}$ - The  v1 SDK does not allow to specify HTTP proxy, but systemwide proxy
 
 
 ### Lifecycle Events
 
 Both v1 and v2 SDKs provide lifecycle events for the MQTT clients.
 
-The v1 SDK provides 3 lifecycle events: *ClientCoreState::ApplicationResubscribeCallbackPt*, *ClientCoreState::ApplicationDisconnectCallbackPtr*, and *ClientCoreState::ApplicationReconnectCallbackPtr*.
+The v1 SDK provides 3 lifecycle events: *ClientCoreState::ApplicationResubscribeCallbackPt*,
+*ClientCoreState::ApplicationDisconnectCallbackPtr*, and *ClientCoreState::ApplicationReconnectCallbackPtr*.
 You can supply a custom callback function via the function `Create`.
 It is recommended to use lifecycle events callbacks to help determine the state of the MQTT client during operation.
 
-The v2 SDK add 3 new lifecycle events and removes one(Resubscribe Callback), providing 5 lifecycle events in total: *WithClientConnectionSuccessCallback*,
-*WithClientConnectionFailureCallback*, *WithClientDisconnectionCallback*, *WithClientStoppedCallback*, and *WithClientAttemptingConnectCallback*.
+The v2 SDK add 3 new lifecycle events and removes one(Resubscribe Callback),
+providing 5 lifecycle events in total: *WithClientConnectionSuccessCallback*,
+*WithClientConnectionFailureCallback*, *WithClientDisconnectionCallback*, *WithClientStoppedCallback*,
+and *WithClientAttemptingConnectCallback*.
 
-For more information, refer to the [MQTT5 user guide](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#client-lifecycle-management).
+For more information,
+refer to the [MQTT5 user guide](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#client-lifecycle-management).
 
 #### Example of setting lifecycle events in the v1 SDK
 
@@ -252,21 +265,28 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
 ### Publish
 
-The v1 SDK provides two API calls for publishing: blocking and non-blocking. For the non-blocking version, the result of the publish operation is reported via a set of callbacks.
+The v1 SDK provides two API calls for publishing: blocking and non-blocking. For the non-blocking version,
+the result of the publish operation is reported via a set of callbacks.
 If you try to publish to a topic that is not allowed by a policy, AWS IoT Core service will close the connection.
 
-The v2 SDK provides only asynchronous non-blocking API. A [PublishPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_packet.html)
+The v2 SDK provides only asynchronous non-blocking API.
+A [PublishPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_packet.html)
 object containing a description of the PUBLISH packet.
-The [publish](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#a5f1214d3a574d91e1db7c97f8636de96) operation
-takes a `PublishPacket` instance  and a [Aws::Crt::Mqtt5::OnPublishCompletionHandler](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a6c8e5bc5d3a6eb7f4767f3c1ecd8524c)
-that contains a returned [`PublishResult`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_result.html) in its parameter that will
-contain different data depending on the `QoS` used in the publish.
+The [publish](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#a5f1214d3a574d91e1db7c97f8636de96)
+operation takes a `PublishPacket` instance  and a
+[Aws::Crt::Mqtt5::OnPublishCompletionHandler](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a6c8e5bc5d3a6eb7f4767f3c1ecd8524c)
+that contains a returned [`PublishResult`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_result.html)
+in its parameter that will contain different data depending on the `QoS` used in the publish.
 
-* For QoS 0 (AT\_MOST\_ONCE): Calling `getValue` will return `null` and the promise will be complete as soon as the packet has been written to the socket.
-* For QoS 1 (AT\_LEAST\_ONCE): Calling `getValue` will return a [PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html) and the promise will be complete as soon as the PUBACK is received from the broker.
+* For QoS 0 (AT\_MOST\_ONCE): Calling `getValue` will return `null`
+  and the promise will be complete as soon as the packet has been written to the socket.
+* For QoS 1 (AT\_LEAST\_ONCE): Calling `getValue` will return a
+  [PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html)
+  and the promise will be complete as soon as the PUBACK is received from the broker.
 
-If the operation fails for any reason before these respective completion events, the promise is rejected with a descriptive error.
-You should always check the reason code of a [PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html)
+If the operation fails for any reason before these respective completion events,
+the promise is rejected with a descriptive error. You should always check the reason code of a
+[PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html)
 completion to determine if a QoS 1 publish operation actually succeeded.
 
 #### Example of publishing in the v1 SDK
@@ -530,7 +550,7 @@ Mqtt5Client client = builder->Build();
 
 ### Offline Operations Queue
 
-The v1 SDK doesn’t set a limit on the number on in-flight messages.
+The v1 SDK doesn't set a limit on the number on in-flight messages.
 
 The v2 SDK similarly doesn't set a limit on the number of in-flight messages. Additionally, the v2 SDK provides
 a way to configure which kind of packets will be placed into the offline queue when the client is in the disconnected state.
@@ -552,7 +572,7 @@ Mqtt5Client client = builder->Build();
 [!Note]
 AWS IoT Core [limits the number of allowed operations per second](https://docs.aws.amazon.com/general/latest/gr/iot-core.html#message-broker-limits).
 The [`getOperationStatistics`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
-method returns the current state of an `Mqtt5Client` object’s queue of operations, which may help with tracking the number of in-flight messages.
+method returns the current state of an `Mqtt5Client` object's queue of operations, which may help with tracking the number of in-flight messages.
 
 #### Example of getting operation statistics in the v2 SDK
 
@@ -578,10 +598,10 @@ In the v1 SDK, all operations (*publish*, *subscribe*, *unsubscribe*) will not t
 If no timeout is defined, there is a possibility that an operation will wait forever for the server to respond and block the calling thread indefinitely.
 
 In the v2 SDK, operations timeout is set for the MQTT5 client with the builder method [withAckTimeoutSeconds](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a2769eb658b3809c5bd3d28724b936a67).
-The default value is no timeout. As in the v1 SDK, failing to set a timeout can cause an operation to stuck forever, but it won’t block the client.
+The default value is no timeout. As in the v1 SDK, failing to set a timeout can cause an operation to stuck forever, but it won't block the client.
 
 The [`getOperationStatistics`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
-method returns the current state of an `Mqtt5Client` object’s queue of operations, which may help with tracking operations.
+method returns the current state of an `Mqtt5Client` object's queue of operations, which may help with tracking operations.
 
 #### Example of timeouts in the v1 SDK
 
@@ -895,7 +915,8 @@ For code examples, see the v2 SDK [Device Shadow](https://github.com/aws/aws-iot
 The v1 and v2 SDKs offer support of AWS IoT Core services implementing a service client for the [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 service which helps with defining a set of remote operations that can be sent to and run on one or more devices connected to AWS IoT.
 
-The v1 SDK's IotJobs APIs are defined [here](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html), with its corresponding code [samples](https://github.com/aws/aws-iot-device-sdk-cpp/tree/master/samples/Jobs)
+For more information, see [Iot Jobs APIs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html),
+For code examples, see [Jobs samples](https://github.com/aws/aws-iot-device-sdk-cpp/tree/master/samples/Jobs)
 
 The Jobs service client provides API similar to API provided by [Client for Device Shadow Service](#client-for-device-shadow-service).
 First, you subscribe to special topics to get data and feedback from a service.
@@ -1147,7 +1168,7 @@ For code examples, see the v2 SDK [Fleet Provisioning](https://github.com/aws/aw
 
 ### Example
 
-It’s always helpful to look at a working example to see how new functionality works, to be able to tweak different options,
+It's always helpful to look at a working example to see how new functionality works, to be able to tweak different options,
 to compare with existing code. For that reason, we implemented a [Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt5/mqtt5_pubsub)
 ([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_pubsub/main.cpp))
 in the v2 SDK similar to a sample provided by the v1 SDK (see a corresponding
