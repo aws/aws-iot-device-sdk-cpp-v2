@@ -19,12 +19,12 @@
         - [Direct MQTT with Windows Certificate Store Method](#direct-mqtt-with-windows-certificate-store-method)
         - [Direct MQTT with PKCS11 Method](#direct-mqtt-with-pkcs11-method)
         - [Direct MQTT with pkcs12 method](#direct-mqtt-with-pkcs12-method)
-    + [Adding an http proxy](#adding-an-http-proxy)
-    + [Client operations](#client-operations)
+    + [Adding an HTTP proxy](#adding-an-http-proxy)
+    + [Client Operations](#client-operations)
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
-* [Mqtt5 best practices](#mqtt5-best-practices)
+* [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
 
