@@ -79,9 +79,10 @@ This section shows samples for all of the authentication possibilities.
 * [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
 * [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
 * [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
-* [MQTT over Websockets with Sigv4 authentication](#mqtt-over-websockets-with-sigv4-authentication)
-* [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
-* [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
+* [Direct MQTT with Windows Certificate Store Method](#direct-mqtt-with-windows-certificate-store-method)
+* [Direct MQTT with PKCS11 Method](#direct-mqtt-with-pkcs11-method)
+* [Direct MQTT with PKCS12 Method](#direct-mqtt-with-pkcs12-method)
+
 ### HTTP Proxy
 * [Adding an HTTP Proxy](#adding-an-http-proxy)
 
@@ -230,15 +231,20 @@ In both cases, the builder will construct a final CONNECT packet username field 
 
 ### MQTT over Websockets with Cognito
 
-A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID. This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool. A Cognito identity pool can be created from the AWS console.
+A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the
+device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID.
+This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool.
+A Cognito identity pool can be created from the AWS console.
+
+**Note** Please note, the difference between, authenticated vs. unauthenticated identities: Authenticated identities
+belong to users who are authenticated by any supported identity provider. Unauthenticated identities typically belong to
+guest users.
+For more information, see [Cognitor Identity Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html).
 
 To create a MQTT5 builder configured for this connection, see the following code:
 
 ```cpp
     // Create websocket configuration
-    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-
     Aws::Crt::Auth::CredentialsProviderCognitoConfig cognitoConfig;
     // See https://docs.aws.amazon.com/general/latest/gr/cognito_identity.html for Cognito endpoints
     cognitoConfig.Endpoint = "cognito-identity.<region>.amazonaws.com";
@@ -277,53 +283,6 @@ To create a MQTT5 builder configured for this connection, see the following code
 
 **Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
 
-
-### MQTT over Websockets with Cognito
-
-A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID. This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool. A Cognito identity pool can be created from the AWS console.
-
-To create a MQTT5 builder configured for this connection, see the following code:
-
-```cpp
-    // Create websocket configuration
-    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-
-    Aws::Crt::Auth::CredentialsProviderCognitoConfig cognitoConfig;
-    // See https://docs.aws.amazon.com/general/latest/gr/cognito_identity.html for Cognito endpoints
-    cognitoConfig.Endpoint = "cognito-identity.<region>.amazonaws.com";
-    cognitoConfig.Identity = "<Cognito Identity ID>";
-    Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
-    cognitoConfig.TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderCognito(cognitoConfig);
-
-    if (!provider)
-    {
-        fprintf(stderr, "Failure to create credentials provider!\n");
-        exit(-1);
-    }
-    Aws::Iot::WebsocketConfig websocketConfig(<signing region>, provider);
-
-    // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-        "<clientEndpoint>", websocketConfig);
-
-    /* You can setup other client options and lifecycle event callbacks before call builder->Build().
-    ** Once the the client get built, you could no longer update the client options or connection options
-    ** on the created client.
-    */
-
-    // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
-
-    if (mqtt5Client == nullptr)
-    {
-        fprintf(stdout, "Client creation failed.\n");
-        return -1;
-    }
-
-```
-**Note**: A Cognito identity ID is different from a Cognito identity pool ID and trying to connect with a Cognito identity pool ID will not work. If you are unable to connect, make sure you are passing a Cognito identity ID rather than a Cognito identity pool ID.
 
 ### Direct MQTT with Windows Certificate Store Method
 
@@ -351,6 +310,7 @@ store, rather than simply being files on disk. To create a MQTT5 builder configu
     }
 
 ```
+Note: This is the primary way to use HSM/TPMs on Windows.
 Note: Windows Certificate Store connection support is only available on Windows devices.
 
 ### Direct MQTT with PKCS11 Method

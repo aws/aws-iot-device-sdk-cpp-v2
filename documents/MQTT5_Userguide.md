@@ -18,13 +18,13 @@
         - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
         - [Direct MQTT with Windows Certificate Store Method](#direct-mqtt-with-windows-certificate-store-method)
         - [Direct MQTT with PKCS11 Method](#direct-mqtt-with-pkcs11-method)
-        - [direct mqtt with pkcs12 method](#direct-mqtt-with-pkcs12-method)
-    + [adding an http proxy](#adding-an-http-proxy)
-    + [client operations](#client-operations)
-        - [subscribe](#subscribe)
-        - [unsubscribe](#unsubscribe)
-        - [publish](#publish)
-* [mqtt5 best practices](#mqtt5-best-practices)
+        - [Direct MQTT with pkcs12 method](#direct-mqtt-with-pkcs12-method)
+    + [Adding an http proxy](#adding-an-http-proxy)
+    + [Client operations](#client-operations)
+        - [Subscribe](#subscribe)
+        - [Unsubscribe](#unsubscribe)
+        - [Publish](#publish)
+* [Mqtt5 best practices](#mqtt5-best-practices)
 
 # Introduction
 
@@ -459,7 +459,16 @@ In both cases, the builder will construct a final CONNECT packet username field 
 
 ### MQTT over Websockets with Cognito
 
-A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID. This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool. A Cognito identity pool can be created from the AWS console.
+A MQTT5 websocket connection can be made using Cognito to authenticate rather than the AWS credentials located on the
+device or via key and certificate. Instead, Cognito can authenticate the connection using a valid Cognito identity ID.
+This requires a valid Cognito identity ID, which can be retrieved from a Cognito identity pool.
+A Cognito identity pool can be created from the AWS console.
+
+**Note** Please note, the difference between, authenticated vs. unauthenticated identities: Authenticated identities
+belong to users who are authenticated by any supported identity provider. Unauthenticated identities typically belong to
+guest users.
+For more information, see [Cognitor Identity Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html).
+
 
 To create a MQTT5 builder configured for this connection, see the following code:
 
@@ -509,6 +518,7 @@ To create a MQTT5 builder configured for this connection, see the following code
 A MQTT5 direct connection can be made with mutual TLS with the certificate and private key in the Windows certificate
 store, rather than simply being files on disk. To create a MQTT5 builder configured for this connection, see the following code:
 
+
 ```cpp
     String windowsCertPath = "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6";
 
@@ -530,6 +540,7 @@ store, rather than simply being files on disk. To create a MQTT5 builder configu
     }
 
 ```
+Note: This is the primary way to use HSM/TPMs on Windows.
 Note: Windows Certificate Store connection support is only available on Windows devices.
 
 ### Direct MQTT with PKCS11 Method
