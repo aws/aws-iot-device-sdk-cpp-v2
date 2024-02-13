@@ -6,6 +6,8 @@ import argparse
 
 class BuildSamples(Builder.Action):
     def run(self, env):
+        # parse extra cmake configs
+        cmd_args = env.args
 
         steps = []
         samples = [
@@ -61,7 +63,7 @@ class BuildSamples(Builder.Action):
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
-            steps[-1].extend(env.args.cmake_extra)
+            steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
@@ -74,7 +76,7 @@ class BuildSamples(Builder.Action):
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
-            steps[-1].extend(env.args.cmake_extra)
+            steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
@@ -87,7 +89,7 @@ class BuildSamples(Builder.Action):
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
-            steps[-1].extend(env.args.cmake_extra)
+            steps[-1].extend(cmd_args.cmake_extra)
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
