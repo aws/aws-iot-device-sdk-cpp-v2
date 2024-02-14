@@ -7,9 +7,7 @@ import argparse
 class BuildSamples(Builder.Action):
     def run(self, env):
         # parse extra cmake configs
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--cmake-extra', action='append', default=[])
-        cmd_args = parser.parse_known_args(env.args.args)[0]
+        cmd_args = env.args
 
         steps = []
         samples = [
