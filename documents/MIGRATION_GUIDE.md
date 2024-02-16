@@ -1180,13 +1180,20 @@ jobsClient.PublishGetPendingJobExecutions(
 // Gets and starts the next pending job execution for a thing
 
 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-        [&](StartNextJobExecutionResponse *response, int ioErr) { };
+        [&](StartNextJobExecutionResponse *response, int ioErr)
+    {
+        /* callback received on successfull reception of data or ioErr is set */
+    };
 
-auto subAckHandler = [&](int) { };
+auto subAckHandler = [&](int ioErr)
+    {
+        /* callback received when the server accepts the request */
+    };
 
-auto failureHandler = [&](RejectedError *rejectedError, int ioErr) { };
-
-auto publishHandler = [&](int ioErr) { };
+auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
+    {
+        /* callback received on error */
+    };
 
 StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
 subscriptionRequest.ThingName = "<thing name>";
@@ -1210,7 +1217,7 @@ publishRequest.StepTimeoutInMinutes = 15L;
 jobsClient.PublishStartNextPendingJobExecution(
         publishRequest,
         AWS_MQTT_QOS_AT_LEAST_ONCE,
-        publishHandler);
+        subAckHandler);
 
 ```
 
@@ -1233,9 +1240,17 @@ rc = jobsClient.SendJobsDescribe(
 ```cpp
 
 auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-{ };
-auto subAckHandler = [&](int)
-{ };
+    {
+        /* callback received on successfull operation */
+    };
+auto subAckHandler = [&](int ioErr)
+    {
+        /* callback received when the server accepts the request */
+    };
+auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
+    {
+        /* callback received on error */
+    };
 
 // Get information about the job
 DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
@@ -1247,8 +1262,6 @@ jobsClient.SubscribeToDescribeJobExecutionAccepted(
         AWS_MQTT_QOS_AT_LEAST_ONCE,
         subscriptionHandler,
         subAckHandler);
-
-auto failureHandler = [&](RejectedError *rejectedError, int ioErr) { };
 
 jobsClient.SubscribeToDescribeJobExecutionRejected(
         describeJobExecutionSubscriptionRequest,
@@ -1263,12 +1276,10 @@ describeJobExecutionRequest.IncludeJobDocument = true;
 Aws::Crt::UUID uuid;
 describeJobExecutionRequest.ClientToken = uuid.ToString();
 
-auto publishHandler = [&](int ioErr) {  };
-
 jobsClient.PublishDescribeJobExecution(
         describeJobExecutionRequest,
         QTT_QOS_AT_LEAST_ONCE,
-        publishHandler);
+        subAckHandler);
 
 ```
 
@@ -1294,20 +1305,15 @@ rc = jobsClient->SendJobsUpdate(jobId, Jobs::JOB_EXECUTION_FAILED, statusDetails
 // Send an update about the status of the job
 auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
     {
-        /*  failure callback */
+        /* callback received on error */
     };
-
 auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr)
     {
-
+        /* callback received on success */
     };
-
 auto subAckHandler = [&](int)
     {
-    };
-
-auto publishHandler = [&](int ioErr)
-    {
+        /* callback received when the server accepts the request */
     };
 
 jobsClient.SubscribeToUpdateJobExecutionAccepted(
@@ -1326,7 +1332,7 @@ publishRequest.ExpectedVersion = 0
 jobsClient.PublishUpdateJobExecution(
         publishRequest,
         AWS_MQTT_QOS_AT_LEAST_ONCE,
-        publishHandler);
+        subAckHandler);
 
 ```
 
