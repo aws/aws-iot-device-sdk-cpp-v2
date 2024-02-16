@@ -57,7 +57,6 @@ The v2 SDK provides MQTT version 3.1.1 and MQTT version 5.0 client implementatio
 This guide focuses on the MQTT5 because this version is significant improvement over MQTT3.
 For more information see the [MQTT5 features]($mqtt5-features) section.
 
-
 ### Client Builder
 
 To access the AWS IoT service, you must initialize an MQTT client.
@@ -167,16 +166,16 @@ and other connection-related features.
 For more information, refer to the [Connecting To AWS IoT Core](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#connecting-to-aws-iot-core)
 section of the MQTT5 user guide for detailed information and code snippets on each connection type and connection feature.
 
-| Connection type/feature                                  | v1 SDK                                  | v2 SDK                           | User guide |
-|----------------------------------------------------------|-----------------------------------------|----------------------------------|:----------:|
-| MQTT over Secure WebSocket with AWS SigV4 authentication | $${\Large\color{green}&#10004}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-sigv4-authentication) |
-| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008}$$          | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
-| MQTT with X.509 certificate based mutual authentication  | $${\Large\color{red}&#10008}$$          | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-x509-based-mutual-tls) |
-| MQTT with PKCS12 Method                                  | $${\Large\color{orange}&#10004\*}$$     | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs12-method) |
-| MQTT with Custom Authorizer Method                       | $${\Large\color{orange}&#10004\*}$$     | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-custom-authentication) |
-| MQTT with Windows Certificate Store Method               | $${\Large\color{orange}&#10004\*}$$     | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-windows-certificate-store-method) |
-| MQTT with PKCS11 Method                                  | $${\Large\color{red}&#10008}$$          | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs11-method) |
-| HTTP Proxy                                               | $${\Large\color{orange}&#10004\*\*}$$   | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#adding-an-http-proxy) |
+| Connection type/feature                                  | v1 SDK                                | v2 SDK                           | User guide |
+|----------------------------------------------------------|---------------------------------------|----------------------------------|:----------:|
+| MQTT over Secure WebSocket with AWS SigV4 authentication | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-sigv4-authentication) |
+| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
+| MQTT with X.509 certificate based mutual authentication  | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-x509-based-mutual-tls) |
+| MQTT with PKCS12 Method                                  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs12-method) |
+| MQTT with Custom Authorizer Method                       | $${\Large\color{orange}&#10004\*}$$   | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-custom-authentication) |
+| MQTT with Windows Certificate Store Method               | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-windows-certificate-store-method) |
+| MQTT with PKCS11 Method                                  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs11-method) |
+| HTTP Proxy                                               | $${\Large\color{orange}&#10004\*\*}$$ | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#adding-an-http-proxy) |
 
 ${\Large\color{orange}&#10004\*}$ - To get this connection type work in the v1 SDK, you need to implement the
 [Custom Authentication workflow](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authorizer.html).\
