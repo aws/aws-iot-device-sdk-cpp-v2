@@ -12,7 +12,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 * [What's new in AWS IoT Device SDK for C++ v2](#whats-new-in-aws-iot-device-sdk-for-c-v2)
 * [How to get started with the SDK for C++ v2](#how-to-get-started-with-the-sdk-for-c-v2)
     * [Mqtt protocol](#mqtt-protocol)
-    * [client builder](#client-builder)
+    * [Client builder](#client-builder)
     * [Client Start](#client-start)
     * [Connection types and features](#connection-types-and-features)
     * [Lifecycle events](#lifecycle-events)
