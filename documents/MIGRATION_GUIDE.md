@@ -298,7 +298,7 @@ If you try to publish to a topic that is not allowed by a policy, AWS IoT Core s
 
 The v2 SDK provides only asynchronous non-blocking API.
 Begin by creeating a [PublishPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_packet.html)
-object containing a description of the PUBLISH packet.
+object that contains a description of the PUBLISH packet.
 The [publish](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#a5f1214d3a574d91e1db7c97f8636de96)
 operation takes a `PublishPacket` instance  and a
 [Aws::Crt::Mqtt5::OnPublishCompletionHandler](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a6c8e5bc5d3a6eb7f4767f3c1ecd8524c)
@@ -311,13 +311,13 @@ in its parameter that will contain different data depending on the `QoS` used in
 > closed but instead receive a PUBACK with a reason code.
 
 * For QoS 0 (AT\_MOST\_ONCE): Calling `getValue` will return `null`
-  and the promise will be complete as soon as the packet has been written to the socket.
+  and the callback will happen as soon as the packet has been written to the socket.
 * For QoS 1 (AT\_LEAST\_ONCE): Calling `getValue` will return a
   [PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html)
-  and the promise will be complete as soon as the PUBACK is received from the broker.
+  and the callback will happen as soon as the PUBACK is received from the broker.
 
 If the operation fails for any reason before these respective completion events,
-the promise is rejected with a descriptive error. You should always check the reason code of a
+the failure callback is called with a descriptive error. You should always check the reason code of a
 [PubAckPacket](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_pub_ack_packet.html)
 completion to determine if a QoS 1 publish operation actually succeeded.
 
@@ -575,8 +575,7 @@ client->Stop();
 
 The v1 SDK attempts to reconnect automatically until connection succeeds or `client.Disconnect()` is called
 
-The v2 SDK attempts to reconnect automatically until connection succeeds or `client.Stop()` is called,
-either the initial `client.Start()` succeeds or fails.
+The v2 SDK attempts to reconnect automatically until connection succeeds or `client.Stop()` is called
 The reconnection parameters, such as min/max delays and [jitter modes](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#ab88e42f90f56a82b1af57320ffadbafd),
 are configurable through [Aws::Crt::Mqtt5::ReconnectOptions](https://aws.github.io/aws-iot-device-sdk-cpp-v2/struct_aws_1_1_crt_1_1_mqtt5_1_1_reconnect_options.html).
 
@@ -758,7 +757,7 @@ In the v2 SDK, logging is shutdown automatically with ApiHandle destruction when
 The v1 SDK is built with [AWS IoT device shadow support](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html),
 which provides access to thing shadows (sometimes referred to as device shadows).
 
-The v2 SDK also supports device shadow service, but with completely different API.
+The v2 SDK also supports device shadow service, but with completely different APIs.
 First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that.
 For example, `SubscribeToGetShadowAccepted` subscribes to a topic to which AWS IoT Core will publish a shadow document.
 The server will notify you if it cannot send you a requested document and via the `SubscribeToGetShadowRejected`.\
@@ -773,11 +772,11 @@ service provides detailed descriptions for the topics used to interact with the 
 #### Example of creating a Device Shadow service client in the v1 SDK
 
 ```cpp
-#include "shadow/Shadow.hpp"
 // Blocking and non-blocking API.
 String thingName = "<thing name>";
 std::chrono::milliseconds mqtt_command_timeout = 200;
 ResponseCode rc = client->Connect(/* ... */);
+
 // 1st way
 Shadow shadowClient(
         client,
@@ -879,7 +878,7 @@ shadowSubscriptionRequest.ThingName = "<thing name>";
 
 auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr) {
         /* shadow document received. */
-        /* The `response` object contains the shadow document. */
+        /* The response object contains the shadow document. */
     };
 auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) { };
 auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
@@ -1341,6 +1340,7 @@ For detailed descriptions for the topics used to interact with the Jobs service,
 
 For more information about the service clients, see API documentation for the v2 SDK
 [Jobs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html).
+
 For code examples, see [Jobs](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/jobs/mqtt5_job_execution) samples.
 
 ### Client for AWS IoT fleet provisioning
