@@ -143,12 +143,14 @@ the semantinc confusion between client-level controls and internal recurrent net
 ```cpp
 std::shared_ptr<MqttClient>client = std::shared_ptr<MqttClient>(MqttClient::Create(p_network_connection, ...);
 client.Connect();
+
 ```
 
 #### Example of connecting to a server in the v2 SDK
 ```cpp
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 client.Start();
+
 ```
 
 ### Connection Types and Features
@@ -180,7 +182,6 @@ section of the MQTT5 user guide for detailed information and code snippets on ea
 ${\Large\color{orange}&#10004\*}$ - To get this connection type work in the v1 SDK, you need to implement the
 [Custom Authentication workflow](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authorizer.html).\
 ${\Large\color{orange}&#10004\*\*}$ - The  v1 SDK does not allow to specify HTTP proxy, but systemwide proxy
-
 
 ### Lifecycle Events
 
