@@ -1175,6 +1175,7 @@ jobsClient.PublishGetPendingJobExecutions(
 ```
 
 #### Example of execution of the next pending job in the v2 SDK
+
 ```cpp
 // Gets and starts the next pending job execution for a thing
 
