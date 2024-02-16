@@ -302,7 +302,7 @@ object containing a description of the PUBLISH packet.
 The [publish](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#a5f1214d3a574d91e1db7c97f8636de96)
 operation takes a `PublishPacket` instance  and a
 [Aws::Crt::Mqtt5::OnPublishCompletionHandler](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_crt_1_1_mqtt5.html#a6c8e5bc5d3a6eb7f4767f3c1ecd8524c)
-that contains a returned [`PublishResult`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_result.html)
+that contains a returned [PublishResult](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_publish_result.html)
 in its parameter that will contain different data depending on the `QoS` used in the publish.
 
 > [!NOTE]
@@ -631,7 +631,7 @@ Mqtt5Client client = builder->Build();
 
 > [!Note]
 > AWS IoT Core [limits the number of allowed operations per second](https://docs.aws.amazon.com/general/latest/gr/iot-core.html#message-broker-limits).
-The [`getOperationStatistics`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
+The [getOperationStatistics](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
 method returns the current state of an `Mqtt5Client` object's queue of operations,
 which may help with tracking the number of in-flight messages.
 
@@ -664,7 +664,7 @@ In the v2 SDK, operations timeout is set for the MQTT5 client with the builder m
 The default value is no timeout. As in the v1 SDK, failing to set a timeout can cause an operation to stuck forever,
 but it won't block the client.
 
-The [`getOperationStatistics`](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
+The [getOperationStatistics](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
 method returns the current state of an `Mqtt5Client` object's queue of operations,
 which may help with tracking operations.
 
