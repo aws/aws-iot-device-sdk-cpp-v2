@@ -58,7 +58,7 @@ jobs:
       id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -79,7 +79,7 @@ jobs:
       id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -110,7 +110,7 @@ jobs:
       id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -125,7 +125,7 @@ jobs:
       id-token: write # This is required for requesting the JWT
     steps:
     - name: configure AWS credentials (containers)
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
         aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -140,7 +140,7 @@ jobs:
       id-token: write # This is required for requesting the JWT
     steps:
     - name: configure AWS credentials (containers)
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
         aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -164,7 +164,7 @@ jobs:
         run: |
           python -m pip install boto3
       - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -177,7 +177,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -186,7 +186,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
       - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -213,7 +213,7 @@ jobs:
         run: |
           python -m pip install boto3
       - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -226,7 +226,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -235,7 +235,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
       - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -258,7 +258,7 @@ jobs:
         run: |
           python -m pip install boto3
       - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -271,7 +271,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -280,7 +280,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
       - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -303,7 +303,7 @@ jobs:
       run: |
         python -m pip install boto3
     - name: configure AWS credentials (CyclePubSub)
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: ${{ env.CI_CYCLEPUBSUB_ROLE }}
         aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -339,7 +339,7 @@ jobs:
         run: |
           python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -364,7 +364,7 @@ jobs:
 #          /usr/bin/codesign --force -s $pkcs12_identity_name ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
 #          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -372,7 +372,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
       - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -396,7 +396,7 @@ jobs:
         run: |
           python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -404,7 +404,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -412,7 +412,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
       - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -421,7 +421,7 @@ jobs:
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
       - name: configure AWS credentials (Device Defender)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_DEVICE_DEFENDER }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -529,7 +529,7 @@ jobs:
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
       - name: configure AWS credentials (Connect and PubSub)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -549,7 +549,7 @@ jobs:
           echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs11_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -560,7 +560,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
       - name: configure AWS credentials (Jobs)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_JOBS_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -571,7 +571,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
       - name: configure AWS credentials (Cognito)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_COGNITO_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -579,7 +579,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_cognito_connect_cfg.json
       - name: configure AWS credentials (Custom Authorizer)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_CUSTOM_AUTHORIZER_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -587,7 +587,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_custom_authorizer_connect_cfg.json
       - name: configure AWS credentials (Shadow)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_SHADOW_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -598,7 +598,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_mqtt5_cfg.json
       - name: configure AWS credentials (Fleet provisioning)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_FLEET_PROVISIONING_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -615,7 +615,7 @@ jobs:
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_mqtt5_cfg.json --input_uuid ${Sample_UUID}
           python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       - name: configure AWS credentials (Secure tunneling)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_SECURE_TUNNEL }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -624,7 +624,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
       - name: configure AWS credentials (X509)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_X509_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
@@ -632,7 +632,7 @@ jobs:
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
       - name: configure AWS credentials (Greengrass)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_GREENGRASS_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
