@@ -13,19 +13,19 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
 * [How to get started with the SDK for C++ v2](#how-to-get-started-with-the-sdk-for-c-v2)
     * [Mqtt protocol](#mqtt-protocol)
     * [Client builder](#client-builder)
-    * [Client Start](#client-start)
+    * [Client start](#client-start)
     * [Connection types and features](#connection-types-and-features)
     * [Lifecycle events](#lifecycle-events)
     * [Publish](#publish)
     * [Subscribe](#subscribe)
     * [Unsubscribe](#unsubscribe)
-    * [Client Stop](#client-stop)
+    * [Client stop](#client-stop)
     * [Reconnects](#reconnects)
     * [Offline operations queue](#offline-operations-queue)
     * [Operation timeouts](#operation-timeouts)
     * [Logging](#logging)
     * [Client for AWS IOT Device Shadow](#client-for-aws-iot-device-shadow)
-    * [Client for AWS_IOT Jobs](#client-for-aws-iot-jobs)
+    * [Client for AWS IOT Jobs](#client-for-aws-iot-jobs)
     * [Client for AWS IOT fleet provisioning](#client-for-aws-iot-fleet-provisioning)
     * [Example](#example)
 * [How to get help](#how-to-get-help)
@@ -40,7 +40,7 @@ and provides guidance on how to migrate your code to v2 from v1 of the AWS Iot S
   by calling `promise.set_value() `and then waiting for the returned `std::future<>` object to be resolved by calling
   `promise.get_future().wait()`
 * The v2 SDK provides implementation for MQTT5 protocol, the next step in evolution of the MQTT protocol.
-* The v2 SDK Supports AWS_ IoT services such as for fleet provisioning.
+* The v2 SDK supports the fleet provisioning AWS IoT service.
 
 ## How To get started with the SDK for C++ v2
 
@@ -55,7 +55,7 @@ The v1 SDK uses an MQTT version 3.1.1 client under the hood.
 
 The v2 SDK provides MQTT version 3.1.1 and MQTT version 5.0 client implementations.
 This guide focuses on the MQTT5 because this version is significant improvement over MQTT3.
-For more information see the [MQTT5 features]($mqtt5-features) section.
+For more information see the [MQTT5 features](#mqtt5-features) section.
 
 ### Client Builder
 
@@ -133,8 +133,8 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 For more information, refer to the [Connection Types and Features](#connection-types-and-features)
 section for other connection types supported by the v2 SDK.
 
-### Client Start
-To connect to the server in the v1 SDK, you call the `connect` method on an `MQTTClient` instance.
+### Client start
+To connect to the server in the v1 SDK, you call the `connect` method on an `MqttClient` instance.
 
 The v2 SDK changed API terminology. You `Start` the MQTT5 client rather than `Connect` as in the v1 SDK. This removes
 the semantinc confusion between client-level controls and internal recurrent networking events related to connection.
@@ -171,8 +171,8 @@ section of the MQTT5 user guide for detailed information and code snippets on ea
 | Connection type/feature                                  | v1 SDK                                | v2 SDK                           | User guide |
 |----------------------------------------------------------|---------------------------------------|----------------------------------|:----------:|
 | MQTT over Secure WebSocket with AWS SigV4 authentication | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-sigv4-authentication) |
-| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
 | MQTT with X.509 certificate based mutual authentication  | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-x509-based-mutual-tls) |
+| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
 | MQTT with PKCS12 Method                                  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs12-method) |
 | MQTT with Custom Authorizer Method                       | $${\Large\color{orange}&#10004\*}$$   | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-custom-authentication) |
 | MQTT with Windows Certificate Store Method               | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-windows-certificate-store-method) |
@@ -181,7 +181,8 @@ section of the MQTT5 user guide for detailed information and code snippets on ea
 
 ${\Large\color{orange}&#10004\*}$ - To get this connection type work in the v1 SDK, you need to implement the
 [Custom Authentication workflow](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authorizer.html).\
-${\Large\color{orange}&#10004\*\*}$ - The  v1 SDK does not allow to specify HTTP proxy, but systemwide proxy
+${\Large\color{orange}&#10004\*\*}$ - The v1 SDK does not allow specifying HTTP proxy, but it is possible to configure
+systemwide proxy.
 
 ### Lifecycle Events
 
@@ -192,10 +193,9 @@ The v1 SDK provides three lifecycle events: *ClientCoreState::ApplicationResubsc
 You can supply a custom callback function via the function `Create`.
 It is recommended to use lifecycle events callbacks to help determine the state of the MQTT client during operation.
 
-The v2 SDK add 3 new lifecycle events and removes one(Resubscribe Callback),
-providing 5 lifecycle events in total: *WithClientConnectionSuccessCallback*,
-*WithClientConnectionFailureCallback*, *WithClientDisconnectionCallback*, *WithClientStoppedCallback*,
-and *WithClientAttemptingConnectCallback*.
+The v2 SDK provides a different set of the lifecycle events: providing 5 lifecycle events in total:
+*WithClientConnectionSuccessCallback*, *WithClientConnectionFailureCallback*, *WithClientDisconnectionCallback*,
+*WithClientStoppedCallback*, and *WithClientAttemptingConnectCallback*.
 It is also recommended to use lifecycle events callbacks on the v2 SDK.
 
 For more information,
@@ -543,7 +543,7 @@ bool rc = client->Unsubscribe(unsub, unsubAck);
 
 ```
 
-### Client Stop
+### Client stop
 
 In the v1 SDK, the `Disconnect` method in the `AWSIotMqttClient` class disconnects the client.
 Once disconnected, the client can connect again by calling `Connect`.
