@@ -654,13 +654,10 @@ For the list of the supported offline queue behaviors and their desriptions, see
 
 ### Operation Timeouts
 
-In the v1 SDK, all operations (*publish*, *subscribe*, *unsubscribe*) will not timeout unless
-you define a timeout for them.
-If no timeout is defined, there is a possibility that an operation will wait forever for the server to respond and
-block the calling thread indefinitely.
+In the v1 SDK, timeout is specified for each *publish*, *subscribe*, and *unsubscribe* operation you want to perform.
 
 In the v2 SDK, operations timeout is set for the MQTT5 client with the builder method [withAckTimeoutSeconds](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a2769eb658b3809c5bd3d28724b936a67).
-The default value is no timeout. As in the v1 SDK, failing to set a timeout can cause an operation to stuck forever,
+The default value is no timeout. Failing to set a timeout can cause an operation to stuck forever,
 but it won't block the client.
 
 The [getOperationStatistics](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_crt_1_1_mqtt5_1_1_mqtt5_client.html#aa9bf915cfbcfc80b4dc47bbda3529f72)
