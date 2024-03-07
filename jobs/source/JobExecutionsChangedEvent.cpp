@@ -73,10 +73,7 @@ namespace Aws
             }
         }
 
-        JobExecutionsChangedEvent::JobExecutionsChangedEvent(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        JobExecutionsChangedEvent::JobExecutionsChangedEvent(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         JobExecutionsChangedEvent &JobExecutionsChangedEvent::operator=(const Crt::JsonView &doc)
         {

@@ -31,10 +31,7 @@ namespace Aws
             }
         }
 
-        GetShadowRequest::GetShadowRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        GetShadowRequest::GetShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         GetShadowRequest &GetShadowRequest::operator=(const Crt::JsonView &doc)
         {

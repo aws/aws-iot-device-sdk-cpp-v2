@@ -25,15 +25,9 @@ namespace Aws
             m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
         }
 
-        IotSecureTunnelingClient::operator bool() const noexcept
-        {
-            return m_connection && *m_connection;
-        }
+        IotSecureTunnelingClient::operator bool() const noexcept { return m_connection && *m_connection; }
 
-        int IotSecureTunnelingClient::GetLastError() const noexcept
-        {
-            return aws_last_error();
-        }
+        int IotSecureTunnelingClient::GetLastError() const noexcept { return aws_last_error(); }
 
         bool IotSecureTunnelingClient::SubscribeToTunnelsNotify(
             const Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest &request,
@@ -47,8 +41,7 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode)
-            {
+                                           int errorCode) {
                 (void)topic;
                 if (errorCode)
                 {
@@ -62,13 +55,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
-            {
-                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                Aws::Crt::JsonObject jsonObject(objectStr);
-                Aws::Iotsecuretunneling::SecureTunnelsNotifyResponse response(jsonObject);
-                handler(&response, AWS_ERROR_SUCCESS);
-            };
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotsecuretunneling::SecureTunnelsNotifyResponse response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"

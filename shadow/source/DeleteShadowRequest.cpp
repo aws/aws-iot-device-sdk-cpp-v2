@@ -31,10 +31,7 @@ namespace Aws
             }
         }
 
-        DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         DeleteShadowRequest &DeleteShadowRequest::operator=(const Crt::JsonView &doc)
         {

@@ -99,8 +99,7 @@ int main(int argc, char *argv[])
     }
 
     builderDestination.WithOnMessageReceived(
-        [&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData)
-        {
+        [&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
             {
                 (void)secureTunnel;
                 (void)eventData;
@@ -109,20 +108,17 @@ int main(int argc, char *argv[])
             }
         });
 
-    builderSource.WithOnMessageReceived(
-        [&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData)
+    builderSource.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
         {
-            {
-                (void)secureTunnel;
-                (void)eventData;
-                fprintf(stdout, "Source Client Received Message\n");
-                promiseSourceReceivedMessage.set_value();
-            }
-        });
+            (void)secureTunnel;
+            (void)eventData;
+            fprintf(stdout, "Source Client Received Message\n");
+            promiseSourceReceivedMessage.set_value();
+        }
+    });
 
     builderDestination.WithOnSendMessageComplete(
-        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData)
-        {
+        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
             (void)secureTunnel;
             (void)eventData;
 
@@ -142,8 +138,7 @@ int main(int argc, char *argv[])
         });
 
     builderSource.WithOnSendMessageComplete(
-        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData)
-        {
+        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
             (void)secureTunnel;
             (void)eventData;
 
@@ -163,46 +158,42 @@ int main(int argc, char *argv[])
         });
 
     builderDestination.WithOnConnectionSuccess(
-        [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData)
-        {
+        [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
             (void)secureTunnel;
             (void)eventData;
             fprintf(stdout, "Destination Client Connection Success\n");
             promiseDestinationConnected.set_value();
         });
 
-    builderSource.WithOnConnectionSuccess(
-        [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData)
+    builderSource.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
+        (void)secureTunnel;
+        (void)eventData;
+
+        fprintf(stdout, "Source Client Connection Success\n");
+
+        /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
+        if (eventData.connectionData->getServiceId1().has_value())
         {
-            (void)secureTunnel;
-            (void)eventData;
+            /* Store the service id for future use */
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            AWS_ZERO_STRUCT(m_serviceIdStorage);
+            aws_byte_buf_init_copy_from_cursor(
+                &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
+            m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+            secureTunnel->SendStreamStart(m_serviceId.value(), connectionId);
+            fprintf(stdout, "Stream Start sent from Source Client.\n");
+        }
+        else
+        {
+            fprintf(stdout, "Secure Tunnel should have service ids set for proper testing\n");
+            exit(-1);
+        }
 
-            fprintf(stdout, "Source Client Connection Success\n");
-
-            /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
-            if (eventData.connectionData->getServiceId1().has_value())
-            {
-                /* Store the service id for future use */
-                aws_byte_buf_clean_up(&m_serviceIdStorage);
-                AWS_ZERO_STRUCT(m_serviceIdStorage);
-                aws_byte_buf_init_copy_from_cursor(
-                    &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
-                m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
-                secureTunnel->SendStreamStart(m_serviceId.value(), connectionId);
-                fprintf(stdout, "Stream Start sent from Source Client.\n");
-            }
-            else
-            {
-                fprintf(stdout, "Secure Tunnel should have service ids set for proper testing\n");
-                exit(-1);
-            }
-
-            promiseSourceConnected.set_value();
-        });
+        promiseSourceConnected.set_value();
+    });
 
     builderDestination.WithOnStreamStarted(
-        [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData)
-        {
+        [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData) {
             (void)secureTunnel;
             (void)eventData;
             if (!errorCode)
@@ -218,44 +209,39 @@ int main(int argc, char *argv[])
             }
         });
 
-    builderDestination.WithOnConnectionStarted(
-        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionStartedEventData &eventData)
+    builderDestination.WithOnConnectionStarted([&](SecureTunnel *secureTunnel,
+                                                   int errorCode,
+                                                   const ConnectionStartedEventData &eventData) {
+        (void)secureTunnel;
+        (void)eventData;
+        if (!errorCode)
         {
-            (void)secureTunnel;
-            (void)eventData;
-            if (!errorCode)
-            {
-                fprintf(stdout, "Connection Started on Destination Client.\n");
-                promiseDestinationConnectionStarted.set_value();
-            }
-            else
-            {
-                fprintf(
-                    stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
-                aws_byte_buf_clean_up(&m_serviceIdStorage);
-                exit(-1);
-            }
-        });
+            fprintf(stdout, "Connection Started on Destination Client.\n");
+            promiseDestinationConnectionStarted.set_value();
+        }
+        else
+        {
+            fprintf(stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+            exit(-1);
+        }
+    });
 
     builderDestination.WithOnConnectionShutdown([&]() { fprintf(stdout, "Destination Connection Shutdown\n"); });
 
     builderSource.WithOnConnectionShutdown([&]() { fprintf(stdout, "Source Connection Shutdown\n"); });
 
-    builderDestination.WithOnStopped(
-        [&](SecureTunnel *secureTunnel)
-        {
-            (void)secureTunnel;
-            fprintf(stdout, "Destination entered Stopped State\n");
-            promiseDestinationStopped.set_value();
-        });
+    builderDestination.WithOnStopped([&](SecureTunnel *secureTunnel) {
+        (void)secureTunnel;
+        fprintf(stdout, "Destination entered Stopped State\n");
+        promiseDestinationStopped.set_value();
+    });
 
-    builderSource.WithOnStopped(
-        [&](SecureTunnel *secureTunnel)
-        {
-            (void)secureTunnel;
-            fprintf(stdout, "Source has entered Stopped State\n");
-            promiseSourceStopped.set_value();
-        });
+    builderSource.WithOnStopped([&](SecureTunnel *secureTunnel) {
+        (void)secureTunnel;
+        fprintf(stdout, "Source has entered Stopped State\n");
+        promiseSourceStopped.set_value();
+    });
 
     /* Create Secure Tunnel using the options set with the builder */
     std::shared_ptr<SecureTunnel> secureTunnelDestination = builderDestination.Build();

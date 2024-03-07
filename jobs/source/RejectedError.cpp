@@ -73,10 +73,7 @@ namespace Aws
             }
         }
 
-        RejectedError::RejectedError(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        RejectedError::RejectedError(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         RejectedError &RejectedError::operator=(const Crt::JsonView &doc)
         {

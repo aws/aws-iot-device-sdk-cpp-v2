@@ -41,10 +41,7 @@ namespace Aws
             }
         }
 
-        ShadowState::ShadowState(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        ShadowState::ShadowState(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         ShadowState &ShadowState::operator=(const Crt::JsonView &doc)
         {

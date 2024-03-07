@@ -18,10 +18,7 @@ namespace Aws
             (void)doc;
         }
 
-        void RegisterThingSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
-        {
-            (void)object;
-        }
+        void RegisterThingSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
 
         RegisterThingSubscriptionRequest::RegisterThingSubscriptionRequest(const Crt::JsonView &doc)
         {

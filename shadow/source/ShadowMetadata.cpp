@@ -41,10 +41,7 @@ namespace Aws
             }
         }
 
-        ShadowMetadata::ShadowMetadata(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        ShadowMetadata::ShadowMetadata(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         ShadowMetadata &ShadowMetadata::operator=(const Crt::JsonView &doc)
         {

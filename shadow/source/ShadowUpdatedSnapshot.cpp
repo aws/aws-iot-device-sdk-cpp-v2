@@ -55,10 +55,7 @@ namespace Aws
             }
         }
 
-        ShadowUpdatedSnapshot::ShadowUpdatedSnapshot(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        ShadowUpdatedSnapshot::ShadowUpdatedSnapshot(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         ShadowUpdatedSnapshot &ShadowUpdatedSnapshot::operator=(const Crt::JsonView &doc)
         {

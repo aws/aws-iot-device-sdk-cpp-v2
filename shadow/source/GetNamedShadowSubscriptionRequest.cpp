@@ -18,10 +18,7 @@ namespace Aws
             (void)doc;
         }
 
-        void GetNamedShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
-        {
-            (void)object;
-        }
+        void GetNamedShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
 
         GetNamedShadowSubscriptionRequest::GetNamedShadowSubscriptionRequest(const Crt::JsonView &doc)
         {

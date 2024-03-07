@@ -71,10 +71,7 @@ namespace Aws
             }
         }
 
-        ShadowDeltaUpdatedEvent::ShadowDeltaUpdatedEvent(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        ShadowDeltaUpdatedEvent::ShadowDeltaUpdatedEvent(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         ShadowDeltaUpdatedEvent &ShadowDeltaUpdatedEvent::operator=(const Crt::JsonView &doc)
         {

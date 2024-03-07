@@ -81,10 +81,7 @@ namespace Aws
             }
         }
 
-        JobExecutionSummary::JobExecutionSummary(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+        JobExecutionSummary::JobExecutionSummary(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
         JobExecutionSummary &JobExecutionSummary::operator=(const Crt::JsonView &doc)
         {
