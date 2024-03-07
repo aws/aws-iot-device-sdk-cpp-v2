@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotjobs/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,31 +14,35 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    /**
+     * Data needed to subscribe to GetPendingJobExecutions responses.
+     *
+     */
+    class AWS_IOTJOBS_API GetPendingJobExecutionsSubscriptionRequest final
     {
+    public:
+        GetPendingJobExecutionsSubscriptionRequest() = default;
+
+        GetPendingJobExecutionsSubscriptionRequest(const Crt::JsonView& doc);
+        GetPendingJobExecutionsSubscriptionRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to subscribe to GetPendingJobExecutions responses.
+         * Name of the IoT Thing that you want to subscribe to GetPendingJobExecutions response events for.
          *
          */
-        class AWS_IOTJOBS_API GetPendingJobExecutionsSubscriptionRequest final
-        {
-          public:
-            GetPendingJobExecutionsSubscriptionRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            GetPendingJobExecutionsSubscriptionRequest(const Crt::JsonView &doc);
-            GetPendingJobExecutionsSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            /**
-             * Name of the IoT Thing that you want to subscribe to GetPendingJobExecutions response events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+    private:
+        static void LoadFromObject(GetPendingJobExecutionsSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
 
-          private:
-            static void LoadFromObject(GetPendingJobExecutionsSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws

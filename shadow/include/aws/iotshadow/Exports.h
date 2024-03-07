@@ -17,5 +17,5 @@
 #    endif /* AWS_IOTSHADOW_USE_IMPORT_EXPORT */
 
 #else /* defined (AWS_IOTSHADOW_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
-#    define AWS_IOTSHADOW_API
+#        define AWS_IOTSHADOW_API
 #endif /* defined (AWS_IOTSHADOW__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */

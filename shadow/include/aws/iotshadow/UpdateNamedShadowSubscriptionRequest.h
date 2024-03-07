@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,37 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /**
+     * Data needed to subscribe to UpdateNamedShadow responses.
+     *
+     */
+    class AWS_IOTSHADOW_API UpdateNamedShadowSubscriptionRequest final
     {
+    public:
+        UpdateNamedShadowSubscriptionRequest() = default;
+
+        UpdateNamedShadowSubscriptionRequest(const Crt::JsonView& doc);
+        UpdateNamedShadowSubscriptionRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to subscribe to UpdateNamedShadow responses.
+         * Name of the AWS IoT thing to listen to UpdateNamedShadow responses for.
          *
          */
-        class AWS_IOTSHADOW_API UpdateNamedShadowSubscriptionRequest final
-        {
-          public:
-            UpdateNamedShadowSubscriptionRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            UpdateNamedShadowSubscriptionRequest(const Crt::JsonView &doc);
-            UpdateNamedShadowSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /**
+         * Name of the shadow to listen to UpdateNamedShadow responses for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-            /**
-             * Name of the AWS IoT thing to listen to UpdateNamedShadow responses for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /**
-             * Name of the shadow to listen to UpdateNamedShadow responses for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-          private:
-            static void LoadFromObject(UpdateNamedShadowSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(UpdateNamedShadowSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

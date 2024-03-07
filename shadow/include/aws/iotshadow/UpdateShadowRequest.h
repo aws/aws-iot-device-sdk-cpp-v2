@@ -15,51 +15,56 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /**
+     * Data needed to make an UpdateShadow request.
+     *
+     */
+    class AWS_IOTSHADOW_API UpdateShadowRequest final
     {
+    public:
+        UpdateShadowRequest() = default;
+
+        UpdateShadowRequest(const Crt::JsonView& doc);
+        UpdateShadowRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to make an UpdateShadow request.
+         * Aws IoT thing to update the (classic) shadow of.
          *
          */
-        class AWS_IOTSHADOW_API UpdateShadowRequest final
-        {
-          public:
-            UpdateShadowRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            UpdateShadowRequest(const Crt::JsonView &doc);
-            UpdateShadowRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /**
+         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /**
-             * Requested changes to the shadow state.  Updates affect only the fields specified.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
 
-            /**
-             * Aws IoT thing to update the (classic) shadow of.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        /**
+         * Requested changes to the shadow state.  Updates affect only the fields specified.
+         *
+         */
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
 
-            /**
-             * (Optional) The Device Shadow service processes the update only if the specified version matches the
-             * latest version.
-             *
-             */
-            Aws::Crt::Optional<int32_t> Version;
 
-            /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+        /**
+         * (Optional) The Device Shadow service processes the update only if the specified version matches the latest version.
+         *
+         */
+        Aws::Crt::Optional<int32_t> Version;
 
-          private:
-            static void LoadFromObject(UpdateShadowRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+
+
+    private:
+        static void LoadFromObject(UpdateShadowRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

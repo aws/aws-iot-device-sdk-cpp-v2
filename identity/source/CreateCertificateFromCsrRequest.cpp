@@ -7,42 +7,42 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    void CreateCertificateFromCsrRequest::LoadFromObject(CreateCertificateFromCsrRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void CreateCertificateFromCsrRequest::LoadFromObject(
-            CreateCertificateFromCsrRequest &val,
-            const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("certificateSigningRequest"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("certificateSigningRequest"))
-            {
-                val.CertificateSigningRequest = doc.GetString("certificateSigningRequest");
-            }
+            val.CertificateSigningRequest = doc.GetString("certificateSigningRequest");
         }
 
-        void CreateCertificateFromCsrRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
-        {
-            (void)object;
+    }
 
-            if (CertificateSigningRequest)
-            {
-                object.WithString("certificateSigningRequest", *CertificateSigningRequest);
-            }
+    void CreateCertificateFromCsrRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (CertificateSigningRequest)
+        {
+            object.WithString("certificateSigningRequest", *CertificateSigningRequest);
         }
 
-        CreateCertificateFromCsrRequest::CreateCertificateFromCsrRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+    }
 
-        CreateCertificateFromCsrRequest &CreateCertificateFromCsrRequest::operator=(const Crt::JsonView &doc)
-        {
-            *this = CreateCertificateFromCsrRequest(doc);
-            return *this;
-        }
+    CreateCertificateFromCsrRequest::CreateCertificateFromCsrRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
 
-    } // namespace Iotidentity
-} // namespace Aws
+    CreateCertificateFromCsrRequest& CreateCertificateFromCsrRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = CreateCertificateFromCsrRequest(doc);
+        return *this;
+    }
+
+}
+}

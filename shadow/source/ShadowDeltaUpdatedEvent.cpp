@@ -7,77 +7,84 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void ShadowDeltaUpdatedEvent::LoadFromObject(ShadowDeltaUpdatedEvent& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void ShadowDeltaUpdatedEvent::LoadFromObject(ShadowDeltaUpdatedEvent &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("state"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
-            if (doc.ValueExists("metadata"))
-            {
-                val.Metadata = doc.GetJsonObjectCopy("metadata");
-            }
-
-            if (doc.ValueExists("state"))
-            {
-                val.State = doc.GetJsonObjectCopy("state");
-            }
+            val.State = doc.GetJsonObjectCopy("state");
         }
 
-        void ShadowDeltaUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("metadata"))
         {
-            (void)object;
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
-            if (Metadata)
-            {
-                object.WithObject("metadata", *Metadata);
-            }
-
-            if (State)
-            {
-                object.WithObject("state", *State);
-            }
+            val.Metadata = doc.GetJsonObjectCopy("metadata");
         }
 
-        ShadowDeltaUpdatedEvent::ShadowDeltaUpdatedEvent(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        ShadowDeltaUpdatedEvent &ShadowDeltaUpdatedEvent::operator=(const Crt::JsonView &doc)
+        if (doc.ValueExists("timestamp"))
         {
-            *this = ShadowDeltaUpdatedEvent(doc);
-            return *this;
+            val.Timestamp = doc.GetDouble("timestamp");
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+        if (doc.ValueExists("version"))
+        {
+            val.Version = doc.GetInteger("version");
+        }
+
+        if (doc.ValueExists("clientToken"))
+        {
+            val.ClientToken = doc.GetString("clientToken");
+        }
+
+    }
+
+    void ShadowDeltaUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (State)
+        {
+            object.WithObject("state", *State);
+
+        }
+
+        if (Metadata)
+        {
+            object.WithObject("metadata", *Metadata);
+
+        }
+
+        if (Timestamp)
+        {
+            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+        }
+
+        if (Version)
+        {
+            object.WithInteger("version", *Version);
+        }
+
+        if (ClientToken)
+        {
+            object.WithString("clientToken", *ClientToken);
+        }
+
+    }
+
+    ShadowDeltaUpdatedEvent::ShadowDeltaUpdatedEvent(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    ShadowDeltaUpdatedEvent& ShadowDeltaUpdatedEvent::operator=(const Crt::JsonView& doc)
+    {
+        *this = ShadowDeltaUpdatedEvent(doc);
+        return *this;
+    }
+
+}
+}

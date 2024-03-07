@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,37 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /**
+     * Data needed to subscribe to a device's NamedShadowDelta events.
+     *
+     */
+    class AWS_IOTSHADOW_API NamedShadowDeltaUpdatedSubscriptionRequest final
     {
+    public:
+        NamedShadowDeltaUpdatedSubscriptionRequest() = default;
+
+        NamedShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView& doc);
+        NamedShadowDeltaUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to subscribe to a device's NamedShadowDelta events.
+         * Name of the AWS IoT thing to get NamedShadowDelta events for.
          *
          */
-        class AWS_IOTSHADOW_API NamedShadowDeltaUpdatedSubscriptionRequest final
-        {
-          public:
-            NamedShadowDeltaUpdatedSubscriptionRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            NamedShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc);
-            NamedShadowDeltaUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /**
+         * Name of the shadow to get ShadowDelta events for.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-            /**
-             * Name of the AWS IoT thing to get NamedShadowDelta events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /**
-             * Name of the shadow to get ShadowDelta events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-          private:
-            static void LoadFromObject(NamedShadowDeltaUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(NamedShadowDeltaUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

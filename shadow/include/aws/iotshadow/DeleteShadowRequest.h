@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -13,38 +14,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    /**
+     * Data needed to make a DeleteShadow request.
+     *
+     */
+    class AWS_IOTSHADOW_API DeleteShadowRequest final
     {
+    public:
+        DeleteShadowRequest() = default;
+
+        DeleteShadowRequest(const Crt::JsonView& doc);
+        DeleteShadowRequest& operator=(const Crt::JsonView& doc);
+
+        void SerializeToObject(Crt::JsonObject& doc) const;
+
 
         /**
-         * Data needed to make a DeleteShadow request.
+         * AWS IoT thing to delete the (classic) shadow of.
          *
          */
-        class AWS_IOTSHADOW_API DeleteShadowRequest final
-        {
-          public:
-            DeleteShadowRequest() = default;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            DeleteShadowRequest(const Crt::JsonView &doc);
-            DeleteShadowRequest &operator=(const Crt::JsonView &doc);
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
+        /**
+         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
+         *
+         */
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-            /**
-             * AWS IoT thing to delete the (classic) shadow of.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-            /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-          private:
-            static void LoadFromObject(DeleteShadowRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(DeleteShadowRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

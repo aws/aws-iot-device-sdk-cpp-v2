@@ -7,64 +7,64 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    void StartNextJobExecutionResponse::LoadFromObject(StartNextJobExecutionResponse& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void StartNextJobExecutionResponse::LoadFromObject(
-            StartNextJobExecutionResponse &val,
-            const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("clientToken"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
-            if (doc.ValueExists("execution"))
-            {
-                val.Execution = doc.GetJsonObject("execution");
-            }
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-        void StartNextJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("execution"))
         {
-            (void)object;
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
-            if (Execution)
-            {
-                Aws::Crt::JsonObject jsonObject;
-                Execution->SerializeToObject(jsonObject);
-                object.WithObject("execution", std::move(jsonObject));
-            }
+            val.Execution = doc.GetJsonObject("execution");
         }
 
-        StartNextJobExecutionResponse::StartNextJobExecutionResponse(const Crt::JsonView &doc)
+        if (doc.ValueExists("timestamp"))
         {
-            LoadFromObject(*this, doc);
+            val.Timestamp = doc.GetDouble("timestamp");
         }
 
-        StartNextJobExecutionResponse &StartNextJobExecutionResponse::operator=(const Crt::JsonView &doc)
+    }
+
+    void StartNextJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (ClientToken)
         {
-            *this = StartNextJobExecutionResponse(doc);
-            return *this;
+            object.WithString("clientToken", *ClientToken);
         }
 
-    } // namespace Iotjobs
-} // namespace Aws
+        if (Execution)
+        {
+            Aws::Crt::JsonObject jsonObject;
+            Execution->SerializeToObject(jsonObject);
+            object.WithObject("execution", std::move(jsonObject));
+        }
+
+        if (Timestamp)
+        {
+            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+        }
+
+    }
+
+    StartNextJobExecutionResponse::StartNextJobExecutionResponse(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    StartNextJobExecutionResponse& StartNextJobExecutionResponse::operator=(const Crt::JsonView& doc)
+    {
+        *this = StartNextJobExecutionResponse(doc);
+        return *this;
+    }
+
+}
+}

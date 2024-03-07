@@ -7,67 +7,72 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void ErrorResponse::LoadFromObject(ErrorResponse& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void ErrorResponse::LoadFromObject(ErrorResponse &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("clientToken"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
-            if (doc.ValueExists("message"))
-            {
-                val.Message = doc.GetString("message");
-            }
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
-            if (doc.ValueExists("code"))
-            {
-                val.Code = doc.GetInteger("code");
-            }
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-        void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("code"))
         {
-            (void)object;
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
-            if (Message)
-            {
-                object.WithString("message", *Message);
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
-            if (Code)
-            {
-                object.WithInteger("code", *Code);
-            }
+            val.Code = doc.GetInteger("code");
         }
 
-        ErrorResponse::ErrorResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        ErrorResponse &ErrorResponse::operator=(const Crt::JsonView &doc)
+        if (doc.ValueExists("message"))
         {
-            *this = ErrorResponse(doc);
-            return *this;
+            val.Message = doc.GetString("message");
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+        if (doc.ValueExists("timestamp"))
+        {
+            val.Timestamp = doc.GetDouble("timestamp");
+        }
+
+    }
+
+    void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (ClientToken)
+        {
+            object.WithString("clientToken", *ClientToken);
+        }
+
+        if (Code)
+        {
+            object.WithInteger("code", *Code);
+        }
+
+        if (Message)
+        {
+            object.WithString("message", *Message);
+        }
+
+        if (Timestamp)
+        {
+            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+        }
+
+    }
+
+    ErrorResponse::ErrorResponse(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    ErrorResponse& ErrorResponse::operator=(const Crt::JsonView& doc)
+    {
+        *this = ErrorResponse(doc);
+        return *this;
+    }
+
+}
+}

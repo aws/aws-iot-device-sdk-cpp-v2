@@ -7,47 +7,54 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void ShadowMetadata::LoadFromObject(ShadowMetadata& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void ShadowMetadata::LoadFromObject(ShadowMetadata &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("desired"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("desired"))
-            {
-                val.Desired = doc.GetJsonObjectCopy("desired");
-            }
-
-            if (doc.ValueExists("reported"))
-            {
-                val.Reported = doc.GetJsonObjectCopy("reported");
-            }
+            val.Desired = doc.GetJsonObjectCopy("desired");
         }
 
-        void ShadowMetadata::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("reported"))
         {
-            (void)object;
-
-            if (Desired)
-            {
-                object.WithObject("desired", *Desired);
-            }
-
-            if (Reported)
-            {
-                object.WithObject("reported", *Reported);
-            }
+            val.Reported = doc.GetJsonObjectCopy("reported");
         }
 
-        ShadowMetadata::ShadowMetadata(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+    }
 
-        ShadowMetadata &ShadowMetadata::operator=(const Crt::JsonView &doc)
+    void ShadowMetadata::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (Desired)
         {
-            *this = ShadowMetadata(doc);
-            return *this;
+            object.WithObject("desired", *Desired);
+
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+        if (Reported)
+        {
+            object.WithObject("reported", *Reported);
+
+        }
+
+    }
+
+    ShadowMetadata::ShadowMetadata(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    ShadowMetadata& ShadowMetadata::operator=(const Crt::JsonView& doc)
+    {
+        *this = ShadowMetadata(doc);
+        return *this;
+    }
+
+}
+}
