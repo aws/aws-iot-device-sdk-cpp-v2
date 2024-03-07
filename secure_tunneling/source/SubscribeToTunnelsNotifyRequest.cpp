@@ -7,32 +7,32 @@
 
 namespace Aws
 {
-namespace Iotsecuretunneling
-{
-
-    void SubscribeToTunnelsNotifyRequest::LoadFromObject(SubscribeToTunnelsNotifyRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotsecuretunneling
     {
-        (void)val;
-        (void)doc;
 
-    }
+        void SubscribeToTunnelsNotifyRequest::LoadFromObject(
+            SubscribeToTunnelsNotifyRequest &val,
+            const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-    void SubscribeToTunnelsNotifyRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
+        void SubscribeToTunnelsNotifyRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
-    }
+        SubscribeToTunnelsNotifyRequest::SubscribeToTunnelsNotifyRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    SubscribeToTunnelsNotifyRequest::SubscribeToTunnelsNotifyRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        SubscribeToTunnelsNotifyRequest &SubscribeToTunnelsNotifyRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = SubscribeToTunnelsNotifyRequest(doc);
+            return *this;
+        }
 
-    SubscribeToTunnelsNotifyRequest& SubscribeToTunnelsNotifyRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = SubscribeToTunnelsNotifyRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotsecuretunneling
+} // namespace Aws

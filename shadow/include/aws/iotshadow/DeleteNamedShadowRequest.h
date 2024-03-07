@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,49 +13,44 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    /**
-     * Data needed to make a DeleteNamedShadow request.
-     *
-     */
-    class AWS_IOTSHADOW_API DeleteNamedShadowRequest final
+    namespace Iotshadow
     {
-    public:
-        DeleteNamedShadowRequest() = default;
-
-        DeleteNamedShadowRequest(const Crt::JsonView& doc);
-        DeleteNamedShadowRequest& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * AWS IoT thing to delete a named shadow from.
+         * Data needed to make a DeleteNamedShadow request.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        class AWS_IOTSHADOW_API DeleteNamedShadowRequest final
+        {
+          public:
+            DeleteNamedShadowRequest() = default;
 
+            DeleteNamedShadowRequest(const Crt::JsonView &doc);
+            DeleteNamedShadowRequest &operator=(const Crt::JsonView &doc);
 
-        /**
-         * Name of the shadow to delete.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * AWS IoT thing to delete a named shadow from.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-        /**
-         * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it is reflected in the response.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            /**
+             * Name of the shadow to delete.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
+            /**
+             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
+             * is reflected in the response.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-
-    private:
-        static void LoadFromObject(DeleteNamedShadowRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(DeleteNamedShadowRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

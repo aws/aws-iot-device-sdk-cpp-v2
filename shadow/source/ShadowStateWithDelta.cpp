@@ -7,65 +7,60 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowStateWithDelta::LoadFromObject(ShadowStateWithDelta& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("desired"))
+        void ShadowStateWithDelta::LoadFromObject(ShadowStateWithDelta &val, const Aws::Crt::JsonView &doc)
         {
-            val.Desired = doc.GetJsonObjectCopy("desired");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("desired"))
+            {
+                val.Desired = doc.GetJsonObjectCopy("desired");
+            }
+
+            if (doc.ValueExists("reported"))
+            {
+                val.Reported = doc.GetJsonObjectCopy("reported");
+            }
+
+            if (doc.ValueExists("delta"))
+            {
+                val.Delta = doc.GetJsonObjectCopy("delta");
+            }
         }
 
-        if (doc.ValueExists("reported"))
+        void ShadowStateWithDelta::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Reported = doc.GetJsonObjectCopy("reported");
+            (void)object;
+
+            if (Desired)
+            {
+                object.WithObject("desired", *Desired);
+            }
+
+            if (Reported)
+            {
+                object.WithObject("reported", *Reported);
+            }
+
+            if (Delta)
+            {
+                object.WithObject("delta", *Delta);
+            }
         }
 
-        if (doc.ValueExists("delta"))
+        ShadowStateWithDelta::ShadowStateWithDelta(const Crt::JsonView &doc)
         {
-            val.Delta = doc.GetJsonObjectCopy("delta");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void ShadowStateWithDelta::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Desired)
+        ShadowStateWithDelta &ShadowStateWithDelta::operator=(const Crt::JsonView &doc)
         {
-            object.WithObject("desired", *Desired);
-
+            *this = ShadowStateWithDelta(doc);
+            return *this;
         }
 
-        if (Reported)
-        {
-            object.WithObject("reported", *Reported);
-
-        }
-
-        if (Delta)
-        {
-            object.WithObject("delta", *Delta);
-
-        }
-
-    }
-
-    ShadowStateWithDelta::ShadowStateWithDelta(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    ShadowStateWithDelta& ShadowStateWithDelta::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowStateWithDelta(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

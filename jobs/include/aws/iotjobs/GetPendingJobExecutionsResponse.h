@@ -16,56 +16,49 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    /**
-     * Response payload to a GetPendingJobExecutions request.
-     *
-     */
-    class AWS_IOTJOBS_API GetPendingJobExecutionsResponse final
+    namespace Iotjobs
     {
-    public:
-        GetPendingJobExecutionsResponse() = default;
-
-        GetPendingJobExecutionsResponse(const Crt::JsonView& doc);
-        GetPendingJobExecutionsResponse& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * A list of JobExecutionSummary objects with status IN_PROGRESS.
+         * Response payload to a GetPendingJobExecutions request.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
+        class AWS_IOTJOBS_API GetPendingJobExecutionsResponse final
+        {
+          public:
+            GetPendingJobExecutionsResponse() = default;
 
+            GetPendingJobExecutionsResponse(const Crt::JsonView &doc);
+            GetPendingJobExecutionsResponse &operator=(const Crt::JsonView &doc);
 
-        /**
-         * A list of JobExecutionSummary objects with status QUEUED.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * A list of JobExecutionSummary objects with status IN_PROGRESS.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
 
-        /**
-         * The time when the message was sent.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            /**
+             * A list of JobExecutionSummary objects with status QUEUED.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
 
+            /**
+             * The time when the message was sent.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-        /**
-         * A client token used to correlate requests and responses.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            /**
+             * A client token used to correlate requests and responses.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-
-
-    private:
-        static void LoadFromObject(GetPendingJobExecutionsResponse& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(GetPendingJobExecutionsResponse &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws

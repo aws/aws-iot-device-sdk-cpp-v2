@@ -7,32 +7,33 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void NextJobExecutionChangedSubscriptionRequest::LoadFromObject(NextJobExecutionChangedSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-    }
+        void NextJobExecutionChangedSubscriptionRequest::LoadFromObject(
+            NextJobExecutionChangedSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-    void NextJobExecutionChangedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
+        void NextJobExecutionChangedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
-    }
+        NextJobExecutionChangedSubscriptionRequest::NextJobExecutionChangedSubscriptionRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    NextJobExecutionChangedSubscriptionRequest::NextJobExecutionChangedSubscriptionRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        NextJobExecutionChangedSubscriptionRequest &NextJobExecutionChangedSubscriptionRequest::operator=(
+            const Crt::JsonView &doc)
+        {
+            *this = NextJobExecutionChangedSubscriptionRequest(doc);
+            return *this;
+        }
 
-    NextJobExecutionChangedSubscriptionRequest& NextJobExecutionChangedSubscriptionRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = NextJobExecutionChangedSubscriptionRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

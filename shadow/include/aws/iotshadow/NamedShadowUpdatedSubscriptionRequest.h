@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,42 +13,37 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    /**
-     * Data needed to subscribe to a device's NamedShadowUpdated events.
-     *
-     */
-    class AWS_IOTSHADOW_API NamedShadowUpdatedSubscriptionRequest final
+    namespace Iotshadow
     {
-    public:
-        NamedShadowUpdatedSubscriptionRequest() = default;
-
-        NamedShadowUpdatedSubscriptionRequest(const Crt::JsonView& doc);
-        NamedShadowUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * Name of the AWS IoT thing to get NamedShadowUpdated events for.
+         * Data needed to subscribe to a device's NamedShadowUpdated events.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        class AWS_IOTSHADOW_API NamedShadowUpdatedSubscriptionRequest final
+        {
+          public:
+            NamedShadowUpdatedSubscriptionRequest() = default;
 
+            NamedShadowUpdatedSubscriptionRequest(const Crt::JsonView &doc);
+            NamedShadowUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
-        /**
-         * Name of the shadow to get NamedShadowUpdated events for.
-         *
-         */
-        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
+            /**
+             * Name of the AWS IoT thing to get NamedShadowUpdated events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
+            /**
+             * Name of the shadow to get NamedShadowUpdated events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
-    private:
-        static void LoadFromObject(NamedShadowUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(NamedShadowUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

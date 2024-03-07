@@ -7,62 +7,60 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("clientToken"))
+        void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse &val, const Aws::Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
-        if (doc.ValueExists("timestamp"))
+        void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Timestamp = doc.GetDouble("timestamp");
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
+            }
         }
 
-        if (doc.ValueExists("version"))
+        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc)
         {
-            val.Version = doc.GetInteger("version");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ClientToken)
+        DeleteShadowResponse &DeleteShadowResponse::operator=(const Crt::JsonView &doc)
         {
-            object.WithString("clientToken", *ClientToken);
+            *this = DeleteShadowResponse(doc);
+            return *this;
         }
 
-        if (Timestamp)
-        {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-        }
-
-        if (Version)
-        {
-            object.WithInteger("version", *Version);
-        }
-
-    }
-
-    DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    DeleteShadowResponse& DeleteShadowResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = DeleteShadowResponse(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

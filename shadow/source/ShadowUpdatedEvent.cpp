@@ -7,66 +7,64 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowUpdatedEvent::LoadFromObject(ShadowUpdatedEvent& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("previous"))
+        void ShadowUpdatedEvent::LoadFromObject(ShadowUpdatedEvent &val, const Aws::Crt::JsonView &doc)
         {
-            val.Previous = doc.GetJsonObject("previous");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("previous"))
+            {
+                val.Previous = doc.GetJsonObject("previous");
+            }
+
+            if (doc.ValueExists("current"))
+            {
+                val.Current = doc.GetJsonObject("current");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
         }
 
-        if (doc.ValueExists("current"))
+        void ShadowUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Current = doc.GetJsonObject("current");
+            (void)object;
+
+            if (Previous)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                Previous->SerializeToObject(jsonObject);
+                object.WithObject("previous", std::move(jsonObject));
+            }
+
+            if (Current)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                Current->SerializeToObject(jsonObject);
+                object.WithObject("current", std::move(jsonObject));
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
         }
 
-        if (doc.ValueExists("timestamp"))
+        ShadowUpdatedEvent::ShadowUpdatedEvent(const Crt::JsonView &doc)
         {
-            val.Timestamp = doc.GetDouble("timestamp");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void ShadowUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Previous)
+        ShadowUpdatedEvent &ShadowUpdatedEvent::operator=(const Crt::JsonView &doc)
         {
-            Aws::Crt::JsonObject jsonObject;
-            Previous->SerializeToObject(jsonObject);
-            object.WithObject("previous", std::move(jsonObject));
+            *this = ShadowUpdatedEvent(doc);
+            return *this;
         }
 
-        if (Current)
-        {
-            Aws::Crt::JsonObject jsonObject;
-            Current->SerializeToObject(jsonObject);
-            object.WithObject("current", std::move(jsonObject));
-        }
-
-        if (Timestamp)
-        {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-        }
-
-    }
-
-    ShadowUpdatedEvent::ShadowUpdatedEvent(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    ShadowUpdatedEvent& ShadowUpdatedEvent::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowUpdatedEvent(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

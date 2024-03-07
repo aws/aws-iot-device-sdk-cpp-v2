@@ -7,66 +7,64 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void ShadowUpdatedSnapshot::LoadFromObject(ShadowUpdatedSnapshot& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("state"))
+        void ShadowUpdatedSnapshot::LoadFromObject(ShadowUpdatedSnapshot &val, const Aws::Crt::JsonView &doc)
         {
-            val.State = doc.GetJsonObject("state");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("state"))
+            {
+                val.State = doc.GetJsonObject("state");
+            }
+
+            if (doc.ValueExists("metadata"))
+            {
+                val.Metadata = doc.GetJsonObject("metadata");
+            }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
-        if (doc.ValueExists("metadata"))
+        void ShadowUpdatedSnapshot::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Metadata = doc.GetJsonObject("metadata");
+            (void)object;
+
+            if (State)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                State->SerializeToObject(jsonObject);
+                object.WithObject("state", std::move(jsonObject));
+            }
+
+            if (Metadata)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                Metadata->SerializeToObject(jsonObject);
+                object.WithObject("metadata", std::move(jsonObject));
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
+            }
         }
 
-        if (doc.ValueExists("version"))
+        ShadowUpdatedSnapshot::ShadowUpdatedSnapshot(const Crt::JsonView &doc)
         {
-            val.Version = doc.GetInteger("version");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void ShadowUpdatedSnapshot::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (State)
+        ShadowUpdatedSnapshot &ShadowUpdatedSnapshot::operator=(const Crt::JsonView &doc)
         {
-            Aws::Crt::JsonObject jsonObject;
-            State->SerializeToObject(jsonObject);
-            object.WithObject("state", std::move(jsonObject));
+            *this = ShadowUpdatedSnapshot(doc);
+            return *this;
         }
 
-        if (Metadata)
-        {
-            Aws::Crt::JsonObject jsonObject;
-            Metadata->SerializeToObject(jsonObject);
-            object.WithObject("metadata", std::move(jsonObject));
-        }
-
-        if (Version)
-        {
-            object.WithInteger("version", *Version);
-        }
-
-    }
-
-    ShadowUpdatedSnapshot::ShadowUpdatedSnapshot(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    ShadowUpdatedSnapshot& ShadowUpdatedSnapshot::operator=(const Crt::JsonView& doc)
-    {
-        *this = ShadowUpdatedSnapshot(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

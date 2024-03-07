@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,35 +13,31 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    /**
-     * Data needed to subscribe to a device's ShadowDelta events.
-     *
-     */
-    class AWS_IOTSHADOW_API ShadowDeltaUpdatedSubscriptionRequest final
+    namespace Iotshadow
     {
-    public:
-        ShadowDeltaUpdatedSubscriptionRequest() = default;
-
-        ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView& doc);
-        ShadowDeltaUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * Name of the AWS IoT thing to get ShadowDelta events for.
+         * Data needed to subscribe to a device's ShadowDelta events.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        class AWS_IOTSHADOW_API ShadowDeltaUpdatedSubscriptionRequest final
+        {
+          public:
+            ShadowDeltaUpdatedSubscriptionRequest() = default;
 
+            ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc);
+            ShadowDeltaUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-    private:
-        static void LoadFromObject(ShadowDeltaUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
+            /**
+             * Name of the AWS IoT thing to get ShadowDelta events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
+          private:
+            static void LoadFromObject(ShadowDeltaUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

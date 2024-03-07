@@ -7,75 +7,72 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void UpdateJobExecutionResponse::LoadFromObject(UpdateJobExecutionResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("clientToken"))
+        void UpdateJobExecutionResponse::LoadFromObject(UpdateJobExecutionResponse &val, const Aws::Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("executionState"))
+            {
+                val.ExecutionState = doc.GetJsonObject("executionState");
+            }
+
+            if (doc.ValueExists("jobDocument"))
+            {
+                val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
         }
 
-        if (doc.ValueExists("executionState"))
+        void UpdateJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.ExecutionState = doc.GetJsonObject("executionState");
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
+            if (ExecutionState)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                ExecutionState->SerializeToObject(jsonObject);
+                object.WithObject("executionState", std::move(jsonObject));
+            }
+
+            if (JobDocument)
+            {
+                object.WithObject("jobDocument", *JobDocument);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
         }
 
-        if (doc.ValueExists("jobDocument"))
+        UpdateJobExecutionResponse::UpdateJobExecutionResponse(const Crt::JsonView &doc)
         {
-            val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
+            LoadFromObject(*this, doc);
         }
 
-        if (doc.ValueExists("timestamp"))
+        UpdateJobExecutionResponse &UpdateJobExecutionResponse::operator=(const Crt::JsonView &doc)
         {
-            val.Timestamp = doc.GetDouble("timestamp");
+            *this = UpdateJobExecutionResponse(doc);
+            return *this;
         }
 
-    }
-
-    void UpdateJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ClientToken)
-        {
-            object.WithString("clientToken", *ClientToken);
-        }
-
-        if (ExecutionState)
-        {
-            Aws::Crt::JsonObject jsonObject;
-            ExecutionState->SerializeToObject(jsonObject);
-            object.WithObject("executionState", std::move(jsonObject));
-        }
-
-        if (JobDocument)
-        {
-            object.WithObject("jobDocument", *JobDocument);
-
-        }
-
-        if (Timestamp)
-        {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-        }
-
-    }
-
-    UpdateJobExecutionResponse::UpdateJobExecutionResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    UpdateJobExecutionResponse& UpdateJobExecutionResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = UpdateJobExecutionResponse(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

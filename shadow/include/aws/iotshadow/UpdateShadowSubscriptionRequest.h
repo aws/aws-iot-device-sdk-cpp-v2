@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotshadow/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,35 +13,31 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    /**
-     * Data needed to subscribe to UpdateShadow responses.
-     *
-     */
-    class AWS_IOTSHADOW_API UpdateShadowSubscriptionRequest final
+    namespace Iotshadow
     {
-    public:
-        UpdateShadowSubscriptionRequest() = default;
-
-        UpdateShadowSubscriptionRequest(const Crt::JsonView& doc);
-        UpdateShadowSubscriptionRequest& operator=(const Crt::JsonView& doc);
-
-        void SerializeToObject(Crt::JsonObject& doc) const;
-
 
         /**
-         * Name of the AWS IoT thing to listen to UpdateShadow responses for.
+         * Data needed to subscribe to UpdateShadow responses.
          *
          */
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        class AWS_IOTSHADOW_API UpdateShadowSubscriptionRequest final
+        {
+          public:
+            UpdateShadowSubscriptionRequest() = default;
 
+            UpdateShadowSubscriptionRequest(const Crt::JsonView &doc);
+            UpdateShadowSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-    private:
-        static void LoadFromObject(UpdateShadowSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
+            /**
+             * Name of the AWS IoT thing to listen to UpdateShadow responses for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
+          private:
+            static void LoadFromObject(UpdateShadowSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

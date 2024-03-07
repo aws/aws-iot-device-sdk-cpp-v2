@@ -7,42 +7,40 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void GetNamedShadowRequest::LoadFromObject(GetNamedShadowRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("clientToken"))
+        void GetNamedShadowRequest::LoadFromObject(GetNamedShadowRequest &val, const Aws::Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
         }
 
-    }
-
-    void GetNamedShadowRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ClientToken)
+        void GetNamedShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            object.WithString("clientToken", *ClientToken);
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
         }
 
-    }
+        GetNamedShadowRequest::GetNamedShadowRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
-    GetNamedShadowRequest::GetNamedShadowRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        GetNamedShadowRequest &GetNamedShadowRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = GetNamedShadowRequest(doc);
+            return *this;
+        }
 
-    GetNamedShadowRequest& GetNamedShadowRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = GetNamedShadowRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws

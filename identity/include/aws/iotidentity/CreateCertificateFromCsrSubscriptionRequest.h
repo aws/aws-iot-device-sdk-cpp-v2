@@ -6,7 +6,6 @@
  * This file is generated
  */
 
-
 #include <aws/iotidentity/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -14,28 +13,25 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    /**
-     * Data needed to subscribe to the responses of the CreateCertificateFromCsr operation.
-     *
-     */
-    class AWS_IOTIDENTITY_API CreateCertificateFromCsrSubscriptionRequest final
+    namespace Iotidentity
     {
-    public:
-        CreateCertificateFromCsrSubscriptionRequest() = default;
 
-        CreateCertificateFromCsrSubscriptionRequest(const Crt::JsonView& doc);
-        CreateCertificateFromCsrSubscriptionRequest& operator=(const Crt::JsonView& doc);
+        /**
+         * Data needed to subscribe to the responses of the CreateCertificateFromCsr operation.
+         *
+         */
+        class AWS_IOTIDENTITY_API CreateCertificateFromCsrSubscriptionRequest final
+        {
+          public:
+            CreateCertificateFromCsrSubscriptionRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            CreateCertificateFromCsrSubscriptionRequest(const Crt::JsonView &doc);
+            CreateCertificateFromCsrSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-
-    private:
-        static void LoadFromObject(CreateCertificateFromCsrSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(CreateCertificateFromCsrSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotidentity
+} // namespace Aws

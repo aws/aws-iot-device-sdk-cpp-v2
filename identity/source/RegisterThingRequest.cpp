@@ -7,67 +7,64 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    void RegisterThingRequest::LoadFromObject(RegisterThingRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotidentity
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("certificateOwnershipToken"))
+        void RegisterThingRequest::LoadFromObject(RegisterThingRequest &val, const Aws::Crt::JsonView &doc)
         {
-            val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
-        }
+            (void)val;
+            (void)doc;
 
-        if (doc.ValueExists("parameters"))
-        {
-            auto parametersMap = doc.GetJsonObject("parameters");
-            val.Parameters = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-            for (auto& parametersMapMember : parametersMap.GetAllObjects())
+            if (doc.ValueExists("certificateOwnershipToken"))
             {
-                Aws::Crt::String parametersMapValMember;
-                parametersMapValMember = parametersMapMember.second.AsString();
-                val.Parameters->emplace(parametersMapMember.first, std::move(parametersMapValMember));
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
             }
 
-        }
-
-    }
-
-    void RegisterThingRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (CertificateOwnershipToken)
-        {
-            object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
-        }
-
-        if (Parameters)
-        {
-            Aws::Crt::JsonObject parametersMap;
-            for (auto& parametersMapMember : *Parameters)
+            if (doc.ValueExists("parameters"))
             {
-                Aws::Crt::JsonObject parametersMapValMember;
-                parametersMapValMember.AsString(parametersMapMember.second);
-                parametersMap.WithObject(parametersMapMember.first, std::move(parametersMapValMember));
+                auto parametersMap = doc.GetJsonObject("parameters");
+                val.Parameters = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+                for (auto &parametersMapMember : parametersMap.GetAllObjects())
+                {
+                    Aws::Crt::String parametersMapValMember;
+                    parametersMapValMember = parametersMapMember.second.AsString();
+                    val.Parameters->emplace(parametersMapMember.first, std::move(parametersMapValMember));
+                }
             }
-            object.WithObject("parameters", std::move(parametersMap));
         }
 
-    }
+        void RegisterThingRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
 
-    RegisterThingRequest::RegisterThingRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
+            }
 
-    RegisterThingRequest& RegisterThingRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = RegisterThingRequest(doc);
-        return *this;
-    }
+            if (Parameters)
+            {
+                Aws::Crt::JsonObject parametersMap;
+                for (auto &parametersMapMember : *Parameters)
+                {
+                    Aws::Crt::JsonObject parametersMapValMember;
+                    parametersMapValMember.AsString(parametersMapMember.second);
+                    parametersMap.WithObject(parametersMapMember.first, std::move(parametersMapValMember));
+                }
+                object.WithObject("parameters", std::move(parametersMap));
+            }
+        }
 
-}
-}
+        RegisterThingRequest::RegisterThingRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
+
+        RegisterThingRequest &RegisterThingRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = RegisterThingRequest(doc);
+            return *this;
+        }
+
+    } // namespace Iotidentity
+} // namespace Aws
