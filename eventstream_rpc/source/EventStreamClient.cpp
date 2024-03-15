@@ -205,21 +205,21 @@ namespace Aws
         ClientConnection::~ClientConnection() noexcept
         {
             m_stateMutex.lock();
-            if (m_connectionWillSetup)
+            auto connectionWillSetup = m_connectionWillSetup;
+            m_stateMutex.unlock();
+            if (connectionWillSetup)
             {
-                m_stateMutex.unlock();
                 m_connectionSetupPromise.get_future().wait();
             }
+
             m_stateMutex.lock();
-            if (m_clientState != DISCONNECTED)
+            auto clientState = m_clientState;
+            m_stateMutex.unlock();
+            if (clientState != DISCONNECTED)
             {
                 Close();
-                m_stateMutex.unlock();
                 m_closedPromise.get_future().wait();
             }
-            /* Cover the case in which the if statements are not hit. */
-            m_stateMutex.unlock();
-            m_stateMutex.unlock();
 
             m_underlyingConnection = nullptr;
         }
