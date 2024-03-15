@@ -117,7 +117,7 @@ namespace Aws
         {
           public:
             MessageAmendment(const MessageAmendment &lhs);
-            MessageAmendment(MessageAmendment &&rhs);
+            MessageAmendment(MessageAmendment &&rhs) noexcept;
             MessageAmendment &operator=(const MessageAmendment &lhs);
             ~MessageAmendment() noexcept;
             explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
@@ -292,7 +292,7 @@ namespace Aws
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
             virtual void OnContinuationClosed() = 0;
-            virtual ~ClientContinuationHandler() noexcept;
+            virtual ~ClientContinuationHandler() noexcept = default;
 
           private:
             friend class ClientContinuation;
@@ -307,6 +307,13 @@ namespace Aws
                 ClientContinuationHandler &continuationHandler,
                 Crt::Allocator *allocator) noexcept;
             ~ClientContinuation() noexcept;
+
+            ClientContinuation(const ClientContinuation &other) = default;
+            ClientContinuation(ClientContinuation &&other) noexcept = default;
+
+            ClientContinuation &operator=(const ClientContinuation &other) = delete;
+            ClientContinuation &operator=(ClientContinuation &&other) noexcept = delete;
+
             std::future<RpcError> Activate(
                 const Crt::String &operation,
                 const Crt::List<EventStreamHeader> &headers,
@@ -354,7 +361,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API OperationError : public AbstractShapeBase
         {
           public:
-            explicit OperationError() noexcept;
+            explicit OperationError() noexcept = default;
             static void s_customDeleter(OperationError *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
             virtual Crt::Optional<Crt::String> GetMessage() noexcept = 0;

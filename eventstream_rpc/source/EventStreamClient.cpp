@@ -79,6 +79,11 @@ namespace Aws
 
         MessageAmendment &MessageAmendment::operator=(const MessageAmendment &lhs)
         {
+            if (this == &lhs)
+            {
+                return *this;
+            }
+
             m_headers = lhs.m_headers;
             if (lhs.m_payload.has_value())
             {
@@ -90,8 +95,8 @@ namespace Aws
             return *this;
         }
 
-        MessageAmendment::MessageAmendment(MessageAmendment &&rhs)
-            : m_headers(std::move(rhs.m_headers)), m_payload(rhs.m_payload), m_allocator(rhs.m_allocator)
+        MessageAmendment::MessageAmendment(MessageAmendment &&rhs) noexcept
+            : m_headers(std::move(rhs.m_headers)), m_payload(std::move(rhs.m_payload)), m_allocator(rhs.m_allocator)
         {
             rhs.m_allocator = nullptr;
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
@@ -149,6 +154,15 @@ namespace Aws
             }
         };
 
+        // FIXME This assignment operator is completely broken.
+        //   1. rhs' internal state can be changed during copying members one by one, which can lead to this being
+        //   inconsistent/corrupted.
+        //   2. if rhs is in the CONNECTED state, then a pointer to it is passed to the underlying libraries and is used
+        //   in callbacks.
+        //   3. If this is connected, what will happen to its state?
+        //
+        //   Option 1 (preferable): This operator should be marked as deleted. It'll be a BREAKING CHANGE.
+        //   Option 2: As an ugly alternative, throw runtime error if `Connect` method was called on rhs or this.
         ClientConnection &ClientConnection::operator=(ClientConnection &&rhs) noexcept
         {
             m_allocator = std::move(rhs.m_allocator);
@@ -174,6 +188,7 @@ namespace Aws
             return *this;
         }
 
+        // FIXME Mark as deleted. See comment to the assignment operator.
         ClientConnection::ClientConnection(ClientConnection &&rhs) noexcept : m_lifecycleHandler(rhs.m_lifecycleHandler)
         {
             *this = std::move(rhs);
@@ -182,6 +197,7 @@ namespace Aws
         ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept
             : m_allocator(allocator), m_underlyingConnection(nullptr), m_clientState(DISCONNECTED),
               m_lifecycleHandler(nullptr), m_connectMessageAmender(nullptr), m_connectionWillSetup(false),
+              m_onConnectCalled(false), m_closeReason{EVENT_STREAM_RPC_UNINITIALIZED, 0},
               m_onConnectRequestCallback(nullptr)
         {
         }
@@ -793,8 +809,7 @@ namespace Aws
 
                     for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
-                        pingHeaders.emplace_back(
-                            EventStreamHeader(messageArgs->headers[i], thisConnection->m_allocator));
+                        pingHeaders.emplace_back(messageArgs->headers[i], thisConnection->m_allocator);
                     }
 
                     if (messageArgs->payload)
@@ -886,8 +901,6 @@ namespace Aws
             }
         }
 
-        ClientContinuationHandler::~ClientContinuationHandler() noexcept {}
-
         void ClientContinuation::s_onContinuationMessage(
             struct aws_event_stream_rpc_client_continuation_token *continuationToken,
             const struct aws_event_stream_rpc_message_args *messageArgs,
@@ -901,6 +914,8 @@ namespace Aws
             Crt::List<EventStreamHeader> continuationMessageHeaders;
             for (size_t i = 0; i < messageArgs->headers_count; ++i)
             {
+                // FIXME Considering that below we check if thisContinuation is alive, this line looks super suspicious.
+                //   Keep allocator in callbackData?
                 continuationMessageHeaders.emplace_back(
                     EventStreamHeader(messageArgs->headers[i], thisContinuation->m_allocator));
             }
@@ -1101,8 +1116,6 @@ namespace Aws
         {
         }
 
-        OperationError::OperationError() noexcept {}
-
         void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
 
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
@@ -1115,7 +1128,7 @@ namespace Aws
             const OperationModelContext &operationModelContext,
             Crt::Allocator *allocator) noexcept
             : m_operationModelContext(operationModelContext), m_asyncLaunchMode(std::launch::deferred),
-              m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
+              m_messageCount(0), m_allocator(allocator), m_streamHandler(std::move(streamHandler)),
               m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0), m_streamClosedCalled(false)
         {
         }
@@ -1354,7 +1367,7 @@ namespace Aws
             return true;
         }
 
-        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> response) {}
+        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> /* response */) {}
 
         void StreamResponseHandler::OnStreamClosed() {}
 
@@ -1485,10 +1498,9 @@ namespace Aws
             }
 
             Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
             headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator);
+            headers.emplace_back(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator);
             Crt::JsonObject payloadObject;
             shape->SerializeToJsonObject(payloadObject);
             Crt::String payloadString = payloadObject.View().WriteCompact();
