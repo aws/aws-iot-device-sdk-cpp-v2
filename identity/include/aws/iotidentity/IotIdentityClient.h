@@ -36,6 +36,12 @@ namespace Aws
         using OnSubscribeToCreateCertificateFromCsrAcceptedResponse =
             std::function<void(Aws::Iotidentity::CreateCertificateFromCsrResponse *, int ioErr)>;
 
+        using OnSubscribeToCreateCertificateFromCsrRejectedResponse =
+            std::function<void(Aws::Iotidentity::ErrorResponse *, int ioErr)>;
+
+        using OnSubscribeToCreateKeysAndCertificateAcceptedResponse =
+            std::function<void(Aws::Iotidentity::CreateKeysAndCertificateResponse *, int ioErr)>;
+
         using OnSubscribeToCreateKeysAndCertificateRejectedResponse =
             std::function<void(Aws::Iotidentity::ErrorResponse *, int ioErr)>;
 
@@ -43,12 +49,6 @@ namespace Aws
             std::function<void(Aws::Iotidentity::RegisterThingResponse *, int ioErr)>;
 
         using OnSubscribeToRegisterThingRejectedResponse =
-            std::function<void(Aws::Iotidentity::ErrorResponse *, int ioErr)>;
-
-        using OnSubscribeToCreateKeysAndCertificateAcceptedResponse =
-            std::function<void(Aws::Iotidentity::CreateKeysAndCertificateResponse *, int ioErr)>;
-
-        using OnSubscribeToCreateCertificateFromCsrRejectedResponse =
             std::function<void(Aws::Iotidentity::ErrorResponse *, int ioErr)>;
 
         /**
@@ -89,6 +89,56 @@ namespace Aws
                 const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
                 const OnSubscribeToCreateCertificateFromCsrAcceptedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
+            /**
+             * Subscribes to the rejected topic of the CreateCertificateFromCsr operation.
+             *
+             * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#fleet-provision-api
+             *
+             * Subscribe to CreateCertificateFromCsrRejected messages
+             *
+             * Once subscribed, `handler` is invoked each time a message matching
+             * the `topic` is received. It is possible for such messages to arrive before
+             * the SUBACK is received.
+             *
+             * @param request Subscription request configuration
+             * @param qos Maximum requested QoS that server may use when sending messages to the client.
+             *            The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             *
+             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             */
+            bool SubscribeToCreateCertificateFromCsrRejected(
+                const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
+                Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToCreateCertificateFromCsrRejectedResponse &handler,
+                const OnSubscribeComplete &onSubAck);
+
+            /**
+             * Subscribes to the accepted topic of the CreateKeysAndCertificate operation.
+             *
+             * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#fleet-provision-api
+             *
+             * Subscribe to CreateKeysAndCertificateAccepted messages
+             *
+             * Once subscribed, `handler` is invoked each time a message matching
+             * the `topic` is received. It is possible for such messages to arrive before
+             * the SUBACK is received.
+             *
+             * @param request Subscription request configuration
+             * @param qos Maximum requested QoS that server may use when sending messages to the client.
+             *            The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             *
+             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             */
+            bool SubscribeToCreateKeysAndCertificateAccepted(
+                const Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest &request,
+                Aws::Crt::Mqtt::QOS qos,
+                const OnSubscribeToCreateKeysAndCertificateAcceptedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
             /**
@@ -164,56 +214,6 @@ namespace Aws
                 const Aws::Iotidentity::RegisterThingSubscriptionRequest &request,
                 Aws::Crt::Mqtt::QOS qos,
                 const OnSubscribeToRegisterThingRejectedResponse &handler,
-                const OnSubscribeComplete &onSubAck);
-
-            /**
-             * Subscribes to the accepted topic of the CreateKeysAndCertificate operation.
-             *
-             * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#fleet-provision-api
-             *
-             * Subscribe to CreateKeysAndCertificateAccepted messages
-             *
-             * Once subscribed, `handler` is invoked each time a message matching
-             * the `topic` is received. It is possible for such messages to arrive before
-             * the SUBACK is received.
-             *
-             * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
-             *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
-             */
-            bool SubscribeToCreateKeysAndCertificateAccepted(
-                const Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest &request,
-                Aws::Crt::Mqtt::QOS qos,
-                const OnSubscribeToCreateKeysAndCertificateAcceptedResponse &handler,
-                const OnSubscribeComplete &onSubAck);
-
-            /**
-             * Subscribes to the rejected topic of the CreateCertificateFromCsr operation.
-             *
-             * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#fleet-provision-api
-             *
-             * Subscribe to CreateCertificateFromCsrRejected messages
-             *
-             * Once subscribed, `handler` is invoked each time a message matching
-             * the `topic` is received. It is possible for such messages to arrive before
-             * the SUBACK is received.
-             *
-             * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
-             *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
-             */
-            bool SubscribeToCreateCertificateFromCsrRejected(
-                const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
-                Aws::Crt::Mqtt::QOS qos,
-                const OnSubscribeToCreateCertificateFromCsrRejectedResponse &handler,
                 const OnSubscribeComplete &onSubAck);
 
             /**

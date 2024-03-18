@@ -33,6 +33,12 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
+             * Aws IoT thing to update a named shadow of.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+
+            /**
              * Name of the shadow to update.
              *
              */
@@ -44,12 +50,6 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-
-            /**
-             * Aws IoT thing to update a named shadow of.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
             /**
              * Requested changes to shadow state.  Updates affect only the fields specified.

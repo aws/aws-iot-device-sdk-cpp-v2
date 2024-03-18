@@ -33,22 +33,16 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The time when the job execution was last updated.
+             * The unique identifier you assigned to this job when it was created.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
+            Aws::Crt::Optional<Aws::Crt::String> JobId;
 
             /**
              * A number that identifies a job execution on a device.
              *
              */
             Aws::Crt::Optional<int64_t> ExecutionNumber;
-
-            /**
-             * The time when the job execution started.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
 
             /**
              * The version of the job execution. Job execution versions are incremented each time the AWS IoT Jobs
@@ -58,16 +52,22 @@ namespace Aws
             Aws::Crt::Optional<int32_t> VersionNumber;
 
             /**
-             * The unique identifier you assigned to this job when it was created.
+             * The time when the job execution was last updated.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::String> JobId;
+            Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
 
             /**
              * The time when the job execution was enqueued.
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> QueuedAt;
+
+            /**
+             * The time when the job execution started.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
 
           private:
             static void LoadFromObject(JobExecutionSummary &obj, const Crt::JsonView &doc);

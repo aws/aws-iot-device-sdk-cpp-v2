@@ -33,6 +33,13 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
+             * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED,
+             * TIMED_OUT, REJECTED, or REMOVED.
+             *
+             */
+            Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
+
+            /**
              * A collection of name-value pairs that describe the status of the job execution.
              *
              */
@@ -44,13 +51,6 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<int32_t> VersionNumber;
-
-            /**
-             * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED,
-             * TIMED_OUT, REJECTED, or REMOVED.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
 
           private:
             static void LoadFromObject(JobExecutionState &obj, const Crt::JsonView &doc);

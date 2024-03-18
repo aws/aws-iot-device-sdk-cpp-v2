@@ -41,10 +41,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
             /**
-             * The time when the message was sent.
+             * Contains data about the state of a job execution.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
 
             /**
              * A UTF-8 encoded JSON document that contains information that your devices need to perform the job.
@@ -53,10 +53,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::JsonObject> JobDocument;
 
             /**
-             * Contains data about the state of a job execution.
+             * The time when the message was sent.
              *
              */
-            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
           private:
             static void LoadFromObject(UpdateJobExecutionResponse &obj, const Crt::JsonView &doc);

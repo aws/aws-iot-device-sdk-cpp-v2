@@ -22,11 +22,6 @@ namespace Aws
                 val.CertificateId = doc.GetString("certificateId");
             }
 
-            if (doc.ValueExists("certificateOwnershipToken"))
-            {
-                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
-            }
-
             if (doc.ValueExists("certificatePem"))
             {
                 val.CertificatePem = doc.GetString("certificatePem");
@@ -35,6 +30,11 @@ namespace Aws
             if (doc.ValueExists("privateKey"))
             {
                 val.PrivateKey = doc.GetString("privateKey");
+            }
+
+            if (doc.ValueExists("certificateOwnershipToken"))
+            {
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
             }
         }
 
@@ -47,11 +47,6 @@ namespace Aws
                 object.WithString("certificateId", *CertificateId);
             }
 
-            if (CertificateOwnershipToken)
-            {
-                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
-            }
-
             if (CertificatePem)
             {
                 object.WithString("certificatePem", *CertificatePem);
@@ -60,6 +55,11 @@ namespace Aws
             if (PrivateKey)
             {
                 object.WithString("privateKey", *PrivateKey);
+            }
+
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
             }
         }
 

@@ -17,14 +17,14 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("stepTimeoutInMinutes"))
-            {
-                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("stepTimeoutInMinutes"))
+            {
+                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
             }
 
             if (doc.ValueExists("statusDetails"))
@@ -44,14 +44,14 @@ namespace Aws
         {
             (void)object;
 
-            if (StepTimeoutInMinutes)
-            {
-                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
-            }
-
             if (ClientToken)
             {
                 object.WithString("clientToken", *ClientToken);
+            }
+
+            if (StepTimeoutInMinutes)
+            {
+                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
             }
 
             if (StatusDetails)

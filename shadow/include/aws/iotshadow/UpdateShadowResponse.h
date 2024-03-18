@@ -35,12 +35,6 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Updated device shadow state.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
-
-            /**
              * An opaque token used to correlate requests and responses.  Present only if a client token was used in the
              * request.
              *
@@ -48,11 +42,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
             /**
-             * The current version of the document for the device's shadow shared in AWS IoT. It is increased by one
-             * over the previous version of the document.
+             * Updated device shadow state.
              *
              */
-            Aws::Crt::Optional<int32_t> Version;
+            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
 
             /**
              * Contains the timestamps for each attribute in the desired and reported sections so that you can determine
@@ -66,6 +59,13 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+
+            /**
+             * The current version of the document for the device's shadow shared in AWS IoT. It is increased by one
+             * over the previous version of the document.
+             *
+             */
+            Aws::Crt::Optional<int32_t> Version;
 
           private:
             static void LoadFromObject(UpdateShadowResponse &obj, const Crt::JsonView &doc);

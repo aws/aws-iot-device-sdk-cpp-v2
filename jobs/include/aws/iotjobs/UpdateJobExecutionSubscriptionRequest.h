@@ -31,16 +31,16 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Job ID that you want to subscribe to UpdateJobExecution response events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> JobId;
-
-            /**
              * Name of the IoT Thing that you want to subscribe to UpdateJobExecution response events for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
+
+            /**
+             * Job ID that you want to subscribe to UpdateJobExecution response events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> JobId;
 
           private:
             static void LoadFromObject(UpdateJobExecutionSubscriptionRequest &obj, const Crt::JsonView &doc);

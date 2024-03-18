@@ -15,11 +15,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
@@ -39,16 +34,16 @@ namespace Aws
             {
                 val.Timestamp = doc.GetDouble("timestamp");
             }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
         void GetShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
 
             if (ClientToken)
             {
@@ -72,6 +67,11 @@ namespace Aws
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
             }
         }
 

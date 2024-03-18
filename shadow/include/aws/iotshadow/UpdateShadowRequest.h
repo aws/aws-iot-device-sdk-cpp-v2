@@ -33,23 +33,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Requested changes to the shadow state.  Updates affect only the fields specified.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
-
-            /**
              * Aws IoT thing to update the (classic) shadow of.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
-
-            /**
-             * (Optional) The Device Shadow service processes the update only if the specified version matches the
-             * latest version.
-             *
-             */
-            Aws::Crt::Optional<int32_t> Version;
 
             /**
              * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
@@ -57,6 +44,19 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+            /**
+             * Requested changes to the shadow state.  Updates affect only the fields specified.
+             *
+             */
+            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
+
+            /**
+             * (Optional) The Device Shadow service processes the update only if the specified version matches the
+             * latest version.
+             *
+             */
+            Aws::Crt::Optional<int32_t> Version;
 
           private:
             static void LoadFromObject(UpdateShadowRequest &obj, const Crt::JsonView &doc);

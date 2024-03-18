@@ -15,6 +15,11 @@ namespace Aws
             (void)val;
             (void)doc;
 
+            if (doc.ValueExists("certificateOwnershipToken"))
+            {
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
+            }
+
             if (doc.ValueExists("parameters"))
             {
                 auto parametersMap = doc.GetJsonObject("parameters");
@@ -26,16 +31,16 @@ namespace Aws
                     val.Parameters->emplace(parametersMapMember.first, std::move(parametersMapValMember));
                 }
             }
-
-            if (doc.ValueExists("certificateOwnershipToken"))
-            {
-                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
-            }
         }
 
         void RegisterThingRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
+            }
 
             if (Parameters)
             {
@@ -47,11 +52,6 @@ namespace Aws
                     parametersMap.WithObject(parametersMapMember.first, std::move(parametersMapValMember));
                 }
                 object.WithObject("parameters", std::move(parametersMap));
-            }
-
-            if (CertificateOwnershipToken)
-            {
-                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
             }
         }
 
