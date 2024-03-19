@@ -401,7 +401,11 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             return s_sendProtocolMessage(
-                connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0,
+                connection,
+                headers,
+                payload,
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING,
+                0,
                 std::move(onMessageFlushCallback));
         }
 
@@ -592,7 +596,8 @@ namespace Aws
 
         EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
         {
-            if (this == &lhs) {
+            if (this == &lhs)
+            {
                 return *this;
             }
             m_allocator = lhs.m_allocator;
@@ -1248,8 +1253,10 @@ namespace Aws
             const Crt::List<EventStreamHeader> &headers,
             const Crt::String &name) noexcept
         {
-            for (const auto &header : headers) {
-                if (header.GetHeaderName() == name) {
+            for (const auto &header : headers)
+            {
+                if (header.GetHeaderName() == name)
+                {
                     return &header;
                 }
             }
