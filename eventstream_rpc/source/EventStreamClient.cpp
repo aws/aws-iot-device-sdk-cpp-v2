@@ -1248,11 +1248,9 @@ namespace Aws
             const Crt::List<EventStreamHeader> &headers,
             const Crt::String &name) noexcept
         {
-            for (auto it = headers.begin(); it != headers.end(); ++it)
-            {
-                if (name == it->GetHeaderName())
-                {
-                    return &(*it);
+            for (const auto &header : headers) {
+                if (header.GetHeaderName() == name) {
+                    return &header;
                 }
             }
             return nullptr;
