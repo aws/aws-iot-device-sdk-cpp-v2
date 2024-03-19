@@ -155,11 +155,11 @@ namespace Aws
         };
 
         // FIXME This assignment operator is completely broken.
-        //   1. rhs' internal state can be changed during copying members one by one, which can lead to this being
+        //   1. rhs' internal state can be changed while members are copying one by one, which can lead to this being
         //   inconsistent/corrupted.
-        //   2. if rhs is in the CONNECTED state, then a pointer to it is passed to the underlying libraries and is used
-        //   in callbacks.
-        //   3. If this is connected, what will happen to its state?
+        //   2. if rhs is in the CONNECTED state, then a pointer to it has already been passed to the underlying
+        //   libraries and is used in callbacks.
+        //   3. If this is connected, what will happen to its underlying connection, state, callbacks, etc.?
         //
         //   Option 1 (preferable): This operator should be marked as deleted. It'll be a BREAKING CHANGE.
         //   Option 2: As an ugly alternative, throw runtime error if `Connect` method was called on rhs or this.
@@ -285,7 +285,7 @@ namespace Aws
             Crt::Io::ClientBootstrap &clientBootstrap) noexcept
         {
             EventStreamRpcStatusCode baseError = EVENT_STREAM_RPC_SUCCESS;
-            struct aws_event_stream_rpc_client_connection_options connOptions;
+            aws_event_stream_rpc_client_connection_options connOptions{};
 
             {
                 const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
@@ -392,7 +392,7 @@ namespace Aws
             const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return s_sendPing(this, headers, payload, onMessageFlushCallback);
+            return s_sendPing(this, headers, payload, std::move(onMessageFlushCallback));
         }
 
         std::future<RpcError> ClientConnection::SendPingResponse(
@@ -400,7 +400,7 @@ namespace Aws
             const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return s_sendPingResponse(this, headers, payload, onMessageFlushCallback);
+            return s_sendPingResponse(this, headers, payload, std::move(onMessageFlushCallback));
         }
 
         std::future<RpcError> ClientConnection::s_sendPing(
@@ -410,7 +410,8 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             return s_sendProtocolMessage(
-                connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0, onMessageFlushCallback);
+                connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0,
+                std::move(onMessageFlushCallback));
         }
 
         std::future<RpcError> ClientConnection::s_sendPingResponse(
@@ -425,7 +426,7 @@ namespace Aws
                 payload,
                 AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING_RESPONSE,
                 0,
-                onMessageFlushCallback);
+                std::move(onMessageFlushCallback));
         }
 
         std::future<RpcError> ClientConnection::SendProtocolMessage(
@@ -435,7 +436,8 @@ namespace Aws
             uint32_t messageFlags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return s_sendProtocolMessage(this, headers, payload, messageType, messageFlags, onMessageFlushCallback);
+            return s_sendProtocolMessage(
+                this, headers, payload, messageType, messageFlags, std::move(onMessageFlushCallback));
         }
 
         void ClientConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
@@ -474,7 +476,7 @@ namespace Aws
         {
             std::promise<RpcError> onFlushPromise;
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-            struct aws_array_list headersArray;
+            aws_array_list headersArray{};
 
             /* The caller should never pass a NULL connection. */
             AWS_PRECONDITION(connection != nullptr);
@@ -600,6 +602,9 @@ namespace Aws
 
         EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
         {
+            if (this == &lhs) {
+                return *this;
+            }
             m_allocator = lhs.m_allocator;
             m_valueByteBuf = Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
             m_underlyingHandle = lhs.m_underlyingHandle;
@@ -862,7 +867,7 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator), m_continuationHandler(continuationHandler), m_continuationToken(nullptr)
         {
-            struct aws_event_stream_rpc_client_stream_continuation_options options;
+            aws_event_stream_rpc_client_stream_continuation_options options{};
             options.on_continuation = ClientContinuation::s_onContinuationMessage;
             options.on_continuation_closed = ClientContinuation::s_onContinuationClosed;
 
@@ -963,7 +968,7 @@ namespace Aws
             uint32_t messageFlags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            struct aws_array_list headersArray;
+            aws_array_list headersArray{};
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
             std::promise<RpcError> onFlushPromise;
 
@@ -994,7 +999,7 @@ namespace Aws
             if (!errorCode)
             {
                 struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
+                msg_args.headers = (aws_event_stream_header_value_pair *)headersArray.data;
                 msg_args.headers_count = headers.size();
                 msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
                 msg_args.message_type = messageType;
@@ -1037,7 +1042,7 @@ namespace Aws
             uint32_t messageFlags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            struct aws_array_list headersArray;
+            aws_array_list headersArray{};
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
             std::promise<RpcError> onFlushPromise;
 
@@ -1052,7 +1057,7 @@ namespace Aws
 
             if (!errorCode)
             {
-                struct aws_event_stream_rpc_message_args msg_args;
+                aws_event_stream_rpc_message_args msg_args{};
                 msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
                 msg_args.headers_count = headers.size();
                 msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
@@ -1062,7 +1067,7 @@ namespace Aws
                 /* This heap allocation is necessary so that the flush callback can still be invoked when this function
                  * returns. */
                 callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
+                callbackContainer->onMessageFlushCallback = std::move(onMessageFlushCallback);
                 callbackContainer->onFlushPromise = std::move(onFlushPromise);
 
                 if (m_continuationToken)
@@ -1119,8 +1124,6 @@ namespace Aws
         void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
 
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
-
-        AbstractShapeBase::~AbstractShapeBase() noexcept {}
 
         ClientOperation::ClientOperation(
             ClientConnection &connection,
@@ -1378,8 +1381,6 @@ namespace Aws
             uint32_t messageFlags)
         {
             EventStreamRpcStatusCode errorCode = EVENT_STREAM_RPC_SUCCESS;
-            const EventStreamHeader *modelHeader = nullptr;
-            const EventStreamHeader *contentHeader = nullptr;
             Crt::String modelName;
 
             if (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM)
@@ -1390,7 +1391,7 @@ namespace Aws
 
             m_messageCount += 1;
 
-            modelHeader = GetHeaderByName(headers, Crt::String(SERVICE_MODEL_TYPE_HEADER));
+            const EventStreamHeader *modelHeader = GetHeaderByName(headers, Crt::String(SERVICE_MODEL_TYPE_HEADER));
             if (modelHeader == nullptr)
             {
                 /* Missing required service model type header. */
@@ -1429,7 +1430,7 @@ namespace Aws
             if (!errorCode)
             {
                 Crt::String contentType;
-                contentHeader = GetHeaderByName(headers, Crt::String(CONTENT_TYPE_HEADER));
+                const EventStreamHeader *contentHeader = GetHeaderByName(headers, Crt::String(CONTENT_TYPE_HEADER));
                 if (contentHeader == nullptr)
                 {
                     /* Missing required content type header. */
@@ -1469,7 +1470,7 @@ namespace Aws
                 {
                     const std::lock_guard<std::mutex> lock(m_continuationMutex);
                     m_resultReceived = true;
-                    RpcError promiseValue = {(EventStreamRpcStatusCode)errorCode, 0};
+                    RpcError promiseValue = {errorCode, 0};
                     m_initialResponsePromise.set_value(TaggedResult(promiseValue));
                 }
                 else
@@ -1510,7 +1511,7 @@ namespace Aws
                 Crt::ByteBufFromCString(payloadString.c_str()),
                 AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
                 0,
-                onMessageFlushCallback);
+                std::move(onMessageFlushCallback));
         }
 
         void ClientOperation::OnContinuationClosed()
@@ -1559,9 +1560,8 @@ namespace Aws
 
                 /* This heap allocation is necessary so that the flush callback can still be invoked when this function
                  * returns. */
-                OnMessageFlushCallbackContainer *callbackContainer =
-                    Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
+                auto *callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
+                callbackContainer->onMessageFlushCallback = std::move(onMessageFlushCallback);
                 callbackContainer->onFlushPromise = std::move(onTerminatePromise);
 
                 if (m_clientContinuation.m_continuationToken)
