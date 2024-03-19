@@ -167,9 +167,7 @@ namespace Aws
         {
             m_allocator = std::move(rhs.m_allocator);
             m_underlyingConnection = rhs.m_underlyingConnection;
-            rhs.m_stateMutex.lock();
-            m_clientState = rhs.m_clientState;
-            rhs.m_stateMutex.unlock();
+            m_clientState = rhs.m_clientState.load();
             m_lifecycleHandler = rhs.m_lifecycleHandler;
             m_connectMessageAmender = rhs.m_connectMessageAmender;
             m_connectAckedPromise = std::move(rhs.m_connectAckedPromise);
@@ -204,18 +202,12 @@ namespace Aws
 
         ClientConnection::~ClientConnection() noexcept
         {
-            m_stateMutex.lock();
-            auto connectionWillSetup = m_connectionWillSetup;
-            m_stateMutex.unlock();
-            if (connectionWillSetup)
+            if (m_connectionWillSetup)
             {
                 m_connectionSetupPromise.get_future().wait();
             }
 
-            m_stateMutex.lock();
-            auto clientState = m_clientState;
-            m_stateMutex.unlock();
-            if (clientState != DISCONNECTED)
+            if (m_clientState != DISCONNECTED)
             {
                 Close();
                 m_closedPromise.get_future().wait();
@@ -288,7 +280,6 @@ namespace Aws
             aws_event_stream_rpc_client_connection_options connOptions{};
 
             {
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
                 if (m_clientState == DISCONNECTED)
                 {
                     m_clientState = CONNECTING_SOCKET;
@@ -296,7 +287,10 @@ namespace Aws
                     m_connectionSetupPromise = {};
                     m_connectAckedPromise = {};
                     m_closedPromise = {};
-                    m_closeReason = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
+                    {
+                        const std::lock_guard<std::mutex> lock(m_closeReasonMutex);
+                        m_closeReason = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
+                    }
                     m_connectionConfig = connectionConfig;
                     m_lifecycleHandler = connectionLifecycleHandler;
                 }
@@ -339,7 +333,6 @@ namespace Aws
                 errorPromise.set_value({baseError, 0});
                 if (baseError == EVENT_STREAM_RPC_NULL_PARAMETER)
                 {
-                    const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
                     m_clientState = DISCONNECTED;
                 }
                 return errorPromise.get_future();
@@ -374,13 +367,11 @@ namespace Aws
                     "A CRT error occurred while attempting to establish the connection: %s",
                     Crt::ErrorDebugString(crtError));
                 errorPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, crtError});
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
                 m_clientState = DISCONNECTED;
                 return errorPromise.get_future();
             }
             else
             {
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
                 m_connectionWillSetup = true;
             }
 
@@ -533,8 +524,6 @@ namespace Aws
 
         void ClientConnection::Close() noexcept
         {
-            const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-
             if (IsOpen())
             {
                 aws_event_stream_rpc_client_connection_close(this->m_underlyingConnection, AWS_OP_SUCCESS);
@@ -549,6 +538,7 @@ namespace Aws
                 m_clientState = DISCONNECTING;
             }
 
+            const std::lock_guard<std::mutex> lock(m_closeReasonMutex);
             if (m_closeReason.baseStatus == EVENT_STREAM_RPC_UNINITIALIZED)
             {
                 m_closeReason = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
@@ -658,8 +648,6 @@ namespace Aws
             /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
             auto *thisConnection = static_cast<ClientConnection *>(userData);
 
-            const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
-
             if (errorCode)
             {
                 thisConnection->m_clientState = DISCONNECTED;
@@ -676,7 +664,10 @@ namespace Aws
             else if (thisConnection->m_clientState == DISCONNECTING || thisConnection->m_clientState == DISCONNECTED)
             {
                 thisConnection->m_underlyingConnection = connection;
-                thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                {
+                    const std::lock_guard<std::mutex> lock(thisConnection->m_closeReasonMutex);
+                    thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                }
                 thisConnection->Close();
             }
             else
@@ -727,19 +718,21 @@ namespace Aws
             /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
             auto *thisConnection = static_cast<ClientConnection *>(userData);
 
-            const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
-
-            if (thisConnection->m_closeReason.baseStatus == EVENT_STREAM_RPC_UNINITIALIZED && errorCode)
             {
-                thisConnection->m_closeReason = {EVENT_STREAM_RPC_CRT_ERROR, errorCode};
-            }
+                const std::lock_guard<std::mutex> lock(thisConnection->m_closeReasonMutex);
 
-            thisConnection->m_underlyingConnection = nullptr;
+                if (thisConnection->m_closeReason.baseStatus == EVENT_STREAM_RPC_UNINITIALIZED && errorCode)
+                {
+                    thisConnection->m_closeReason = {EVENT_STREAM_RPC_CRT_ERROR, errorCode};
+                }
 
-            if (thisConnection->m_closeReason.baseStatus != EVENT_STREAM_RPC_UNINITIALIZED &&
-                !thisConnection->m_onConnectCalled)
-            {
-                thisConnection->m_connectAckedPromise.set_value(thisConnection->m_closeReason);
+                thisConnection->m_underlyingConnection = nullptr;
+
+                if (thisConnection->m_closeReason.baseStatus != EVENT_STREAM_RPC_UNINITIALIZED &&
+                    !thisConnection->m_onConnectCalled)
+                {
+                    thisConnection->m_connectAckedPromise.set_value(thisConnection->m_closeReason);
+                }
             }
 
             thisConnection->m_clientState = DISCONNECTED;
@@ -786,7 +779,6 @@ namespace Aws
             switch (messageArgs->message_type)
             {
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT_ACK:
-                    thisConnection->m_stateMutex.lock();
                     if (thisConnection->m_clientState == WAITING_FOR_CONNECT_ACK)
                     {
                         if (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED)
@@ -798,7 +790,10 @@ namespace Aws
                         }
                         else
                         {
-                            thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, 0};
+                            {
+                                const std::lock_guard<std::mutex> lock(thisConnection->m_closeReasonMutex);
+                                thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, 0};
+                            }
                             thisConnection->Close();
                         }
                     }
@@ -806,7 +801,6 @@ namespace Aws
                     {
                         /* Unexpected CONNECT_ACK received. */
                     }
-                    thisConnection->m_stateMutex.unlock();
 
                     break;
 

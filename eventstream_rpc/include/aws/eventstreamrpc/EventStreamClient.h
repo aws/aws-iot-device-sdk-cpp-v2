@@ -634,14 +634,14 @@ namespace Aws
                 DISCONNECTING,
             };
             /* This recursive mutex protects m_clientState & m_connectionWillSetup */
-            std::recursive_mutex m_stateMutex;
+            std::mutex m_closeReasonMutex;
             Crt::Allocator *m_allocator;
             struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
-            ClientState m_clientState;
+            std::atomic<ClientState> m_clientState;
             ConnectionLifecycleHandler *m_lifecycleHandler;
             ConnectMessageAmender m_connectMessageAmender;
             std::promise<void> m_connectionSetupPromise;
-            bool m_connectionWillSetup;
+            std::atomic<bool> m_connectionWillSetup;
             std::promise<RpcError> m_connectAckedPromise;
             std::promise<RpcError> m_closedPromise;
             bool m_onConnectCalled;
