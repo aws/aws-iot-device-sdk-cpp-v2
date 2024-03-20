@@ -71,36 +71,15 @@ namespace Aws
             EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
-            EventStreamHeader(const Crt::String &name, bool value);
-            EventStreamHeader(const Crt::String &name, int8_t value);
-            EventStreamHeader(const Crt::String &name, int16_t value);
-            EventStreamHeader(const Crt::String &name, int32_t value);
-            EventStreamHeader(const Crt::String &name, int64_t value);
-            EventStreamHeader(const Crt::String &name, Crt::DateTime &value);
             EventStreamHeader(
                 const Crt::String &name,
                 const Crt::String &value,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            EventStreamHeader(const Crt::String &name, Crt::ByteBuf &value);
-            EventStreamHeader(const Crt::String &name, Crt::UUID value);
 
-            HeaderValueType GetHeaderValueType();
             Crt::String GetHeaderName() const noexcept;
-            void SetHeaderName(const Crt::String &);
-
-            bool GetValueAsBoolean(bool &);
-            bool GetValueAsByte(int8_t &);
-            bool GetValueAsShort(int16_t &);
-            bool GetValueAsInt(int32_t &);
-            bool GetValueAsLong(int64_t &);
-            bool GetValueAsTimestamp(Crt::DateTime &);
             bool GetValueAsString(Crt::String &) const noexcept;
-            bool GetValueAsBytes(Crt::ByteBuf &);
-            bool GetValueAsUUID(Crt::UUID &);
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
-
-            bool operator==(const EventStreamHeader &other) const noexcept;
 
           private:
             Crt::Allocator *m_allocator;
@@ -323,7 +302,6 @@ namespace Aws
                 uint32_t messageFlags,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             bool IsClosed() noexcept;
-            void Release() noexcept;
             std::future<RpcError> SendMessage(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
