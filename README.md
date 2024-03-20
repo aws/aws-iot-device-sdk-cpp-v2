@@ -26,7 +26,7 @@ __Jump To:__
 - alpine-3.16-armv6
 - alpine-3.16-armv7
 - alpine-3.16-arm64
-- raspberry pi
+- raspberry pi bullseye
 - ARM64 /aarch64
 - ArmV8
 - ArmV7
