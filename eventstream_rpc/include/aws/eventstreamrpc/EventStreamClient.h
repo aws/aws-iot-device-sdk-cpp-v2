@@ -488,7 +488,7 @@ namespace Aws
                 std::shared_ptr<StreamResponseHandler> streamHandler,
                 const OperationModelContext &operationModelContext,
                 Crt::Allocator *allocator) noexcept;
-            ~ClientOperation() noexcept;
+            virtual ~ClientOperation() noexcept;
 
             ClientOperation(const ClientOperation &clientOperation) noexcept = delete;
             ClientOperation(ClientOperation &&clientOperation) noexcept = delete;

@@ -8,8 +8,8 @@
 #include <aws/crt/Config.h>
 #include <aws/crt/auth/Credentials.h>
 
-#include <stdint.h>
-#include <string.h>
+#include <cstdint>
+#include <cstring>
 
 #include <algorithm>
 
@@ -481,8 +481,8 @@ namespace Aws
 
             if (!errorCode)
             {
-                struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
+                aws_event_stream_rpc_message_args msg_args{};
+                msg_args.headers = static_cast<aws_event_stream_header_value_pair *>(headersArray.data);
                 msg_args.headers_count = headers.size();
                 msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
                 msg_args.message_type = messageType;
@@ -492,7 +492,7 @@ namespace Aws
                  * returns. */
                 callbackContainer =
                     Crt::New<OnMessageFlushCallbackContainer>(connection->m_allocator, connection->m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
+                callbackContainer->onMessageFlushCallback = std::move(onMessageFlushCallback);
                 callbackContainer->onFlushPromise = std::move(onFlushPromise);
 
                 errorCode = aws_event_stream_rpc_client_connection_send_protocol_message(
@@ -510,6 +510,7 @@ namespace Aws
 
             if (errorCode)
             {
+                // FIXME Null pointer dereference if s_fillNativeHeadersArray fails.
                 onFlushPromise = std::move(callbackContainer->onFlushPromise);
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
@@ -1026,6 +1027,7 @@ namespace Aws
 
             if (errorCode)
             {
+                // FIXME Null pointer dereference when s_fillNativeHeadersArray fails.
                 onFlushPromise = std::move(callbackContainer->onFlushPromise);
                 onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 Crt::Delete(callbackContainer, m_allocator);
@@ -1087,6 +1089,7 @@ namespace Aws
 
             if (errorCode)
             {
+                // FIXME Null pointer dereference when s_fillNativeHeadersArray fails.
                 onFlushPromise = std::move(callbackContainer->onFlushPromise);
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
@@ -1562,52 +1565,37 @@ namespace Aws
                 errorPromise.set_value({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0});
                 return errorPromise.get_future();
             }
-            else
+
+            aws_event_stream_rpc_message_args msg_args{};
+            msg_args.message_type = AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE;
+            msg_args.message_flags = AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
+
+            /* This heap allocation is necessary so that the flush callback can still be invoked when this function
+             * returns. */
+            auto *callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
+            callbackContainer->onMessageFlushCallback = std::move(onMessageFlushCallback);
+
+            int errorCode = aws_event_stream_rpc_client_continuation_send_message(
+                m_clientContinuation.m_continuationToken,
+                &msg_args,
+                ClientConnection::s_protocolMessageCallback,
+                callbackContainer);
+
+            if (errorCode)
             {
+                AWS_LOGF_ERROR(
+                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                    "A CRT error occurred while closing the stream: %s",
+                    Crt::ErrorDebugString(errorCode));
+                Crt::Delete(callbackContainer, m_allocator);
+
                 std::promise<RpcError> onTerminatePromise;
-
-                int errorCode = AWS_OP_ERR;
-                struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = nullptr;
-                msg_args.headers_count = 0;
-                msg_args.payload = nullptr;
-                msg_args.message_type = AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE;
-                msg_args.message_flags = AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
-
-                /* This heap allocation is necessary so that the flush callback can still be invoked when this function
-                 * returns. */
-                auto *callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = std::move(onMessageFlushCallback);
-                callbackContainer->onFlushPromise = std::move(onTerminatePromise);
-
-                if (m_clientContinuation.m_continuationToken)
-                {
-                    errorCode = aws_event_stream_rpc_client_continuation_send_message(
-                        m_clientContinuation.m_continuationToken,
-                        &msg_args,
-                        ClientConnection::s_protocolMessageCallback,
-                        reinterpret_cast<void *>(callbackContainer));
-                }
-
-                if (errorCode)
-                {
-                    onTerminatePromise = std::move(callbackContainer->onFlushPromise);
-                    std::promise<RpcError> errorPromise;
-                    AWS_LOGF_ERROR(
-                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                        "A CRT error occurred while closing the stream: %s",
-                        Crt::ErrorDebugString(errorCode));
-                    onTerminatePromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                    Crt::Delete(callbackContainer, m_allocator);
-                }
-                else
-                {
-                    m_expectedCloses.fetch_add(1);
-                    return callbackContainer->onFlushPromise.get_future();
-                }
-
+                onTerminatePromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 return onTerminatePromise.get_future();
             }
+
+            m_expectedCloses.fetch_add(1);
+            return callbackContainer->onFlushPromise.get_future();
         }
 
         void OperationError::s_customDeleter(OperationError *shape) noexcept
