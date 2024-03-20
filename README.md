@@ -4,6 +4,7 @@ This document provides information about the AWS IoT device SDK for C++ V2. This
 
 __Jump To:__
 
+* [supported Architectures](#supported-architectures)
 * [Installation](#installation)
 * [Samples](./samples)
 * [Getting Help](#getting-help)
@@ -12,12 +13,9 @@ __Jump To:__
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
 * [Migration Guide from the AWS IoT SDK for C++ v1](./documents/MIGRATION_GUIDE.md)
 
+## Supported Architectures
 
-## Installation
-
-### Supported Architectures
-
-#### Linux
+### Linux
 - manylinux2014-x64
 - manylinux2014-x86
 - al2-x64
@@ -32,17 +30,15 @@ __Jump To:__
 - ArmV7
 - x86\_64
 - x86
-#### Windows
+### Windows
 - Win32
 - x64
 - ARM64
-#### Mac
+### Mac
 - Apple Silicone (M1 and higher)
 - Apple Intel Chips (x86\_64)
-#### IOS
-- ARM64
-#### Android
-- ArmV7
+
+## Installation
 
 ### Minimum Requirements
 * C++ 11 or higher
