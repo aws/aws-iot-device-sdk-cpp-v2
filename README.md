@@ -15,18 +15,25 @@ __Jump To:__
 
 ## Installation
 
-### Supported Architechtures
+### Supported Architectures
 
 #### Linux
-- ARM64
+- ARM64 /aarch64
+- ArmV8
+- ArmV7
 - x86\_64
+- x86
 #### Windows
 - Win32
 - x64
 - ARM64
 #### Mac
 - Apple Silicone (M1 and higher)
-- Apple Intel Chips
+- Apple Intel Chips (x86\_64)
+#### IOS
+- ArmV8
+#### Android
+- ArmV7
 
 ### Minimum Requirements
 * C++ 11 or higher
