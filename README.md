@@ -40,7 +40,7 @@ __Jump To:__
 - Apple Silicone (M1 and higher)
 - Apple Intel Chips (x86\_64)
 #### IOS
-- ArmV8
+- ARM64
 #### Android
 - ArmV7
 
