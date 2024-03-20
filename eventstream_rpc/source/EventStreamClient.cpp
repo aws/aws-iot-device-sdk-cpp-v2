@@ -1491,8 +1491,25 @@ namespace Aws
         {
             /* Promises must be reset in case the client would like to send a subsequent request with the same
              * `ClientOperation`. */
+            // TODO Is std::promise::operator=() thread-safe?
+            // TODO Is it possible to "reset" m_initialResponsePromise while user code waits for it to set value?
             m_initialResponsePromise = {};
             {
+                // FIXME Possible race condition with ClientOperation::HandleData and/or other functions.
+                //     t2: Calls ClientOperation::HandleData
+                //     t2: Acquires m_continuationMutex
+                //     t1: "Resets" m_initialResponsePromise
+                //     t1: Locks here
+                //     t2: m_initialResponsePromise.set_value()
+                //     t2: m_resultReceived = true
+                //     t2: completes ClientOperation::HandleData
+                //     t1: m_resultReceived = false
+                //     t2: Calls ClientOperation::OnContinuationClosed
+                //     t2: Acquires m_continuationMutex
+                //     t2: !m_resultReceived is true
+                //     t2: m_initialResponsePromise.set_value() is called the second time
+                //   Not sure if this exact scenario is possible, but considering that this scheme is used in other
+                //   methods, it'll be safer to fix this construction.
                 const std::lock_guard<std::mutex> lock(m_continuationMutex);
                 m_resultReceived = false;
             }
