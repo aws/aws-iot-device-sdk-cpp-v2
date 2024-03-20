@@ -15,6 +15,19 @@ __Jump To:__
 
 ## Installation
 
+### Supported Architechtures
+
+#### Linux
+- ARM64
+- x86\_64
+#### Windows
+- Win32
+- x64
+- ARM64
+#### Mac
+- Apple Silicone (M1 and higher)
+- Apple Intel Chips
+
 ### Minimum Requirements
 * C++ 11 or higher
     * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
