@@ -18,6 +18,15 @@ __Jump To:__
 ### Supported Architectures
 
 #### Linux
+- manylinux2014-x64
+- manylinux2014-x86
+- al2-x64
+- alpine-3.16-x64
+- alpine-3.16-x86
+- alpine-3.16-armv6
+- alpine-3.16-armv7
+- alpine-3.16-arm64
+- raspberry pi
 - ARM64 /aarch64
 - ArmV8
 - ArmV7
