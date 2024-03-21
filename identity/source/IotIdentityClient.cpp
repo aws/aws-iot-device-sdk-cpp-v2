@@ -87,6 +87,110 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
+        bool IotIdentityClient::SubscribeToCreateCertificateFromCsrRejected(
+            const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToCreateCertificateFromCsrRejectedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotidentity::ErrorResponse response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "certificates"
+                               << "/"
+                               << "create-from-csr"
+                               << "/"
+                               << "json"
+                               << "/"
+                               << "rejected";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotIdentityClient::SubscribeToCreateKeysAndCertificateAccepted(
+            const Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToCreateKeysAndCertificateAcceptedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotidentity::CreateKeysAndCertificateResponse response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "certificates"
+                               << "/"
+                               << "create"
+                               << "/"
+                               << "json"
+                               << "/"
+                               << "accepted";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
         bool IotIdentityClient::SubscribeToCreateKeysAndCertificateRejected(
             const Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -231,110 +335,6 @@ namespace Aws
                                << "provisioning-templates"
                                << "/" << *request.TemplateName << "/"
                                << "provision"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "rejected";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
-        bool IotIdentityClient::SubscribeToCreateKeysAndCertificateAccepted(
-            const Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToCreateKeysAndCertificateAcceptedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::CreateKeysAndCertificateResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "accepted";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
-        bool IotIdentityClient::SubscribeToCreateCertificateFromCsrRejected(
-            const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToCreateCertificateFromCsrRejectedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::ErrorResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create-from-csr"
                                << "/"
                                << "json"
                                << "/"

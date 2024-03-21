@@ -42,110 +42,6 @@ namespace Aws
 
         int IotJobsClient::GetLastError() const noexcept { return aws_last_error(); }
 
-        bool IotJobsClient::SubscribeToUpdateJobExecutionAccepted(
-            const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToUpdateJobExecutionAcceptedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotjobs::UpdateJobExecutionResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "jobs"
-                               << "/" << *request.JobId << "/"
-                               << "update"
-                               << "/"
-                               << "accepted";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
-        bool IotJobsClient::SubscribeToGetPendingJobExecutionsRejected(
-            const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToGetPendingJobExecutionsRejectedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotjobs::RejectedError response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "jobs"
-                               << "/"
-                               << "get"
-                               << "/"
-                               << "rejected";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
         bool IotJobsClient::SubscribeToDescribeJobExecutionAccepted(
             const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -250,10 +146,62 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
-        bool IotJobsClient::SubscribeToUpdateJobExecutionRejected(
-            const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
+        bool IotJobsClient::SubscribeToGetPendingJobExecutionsAccepted(
+            const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToUpdateJobExecutionRejectedResponse &handler,
+            const OnSubscribeToGetPendingJobExecutionsAcceptedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotjobs::GetPendingJobExecutionsResponse response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "jobs"
+                               << "/"
+                               << "get"
+                               << "/"
+                               << "accepted";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotJobsClient::SubscribeToGetPendingJobExecutionsRejected(
+            const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToGetPendingJobExecutionsRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
             (void)request;
@@ -290,8 +238,8 @@ namespace Aws
                                << "things"
                                << "/" << *request.ThingName << "/"
                                << "jobs"
-                               << "/" << *request.JobId << "/"
-                               << "update"
+                               << "/"
+                               << "get"
                                << "/"
                                << "rejected";
 
@@ -352,58 +300,6 @@ namespace Aws
                        std::move(onSubscribeComplete)) != 0;
         }
 
-        bool IotJobsClient::SubscribeToStartNextPendingJobExecutionRejected(
-            const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToStartNextPendingJobExecutionRejectedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotjobs::RejectedError response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "jobs"
-                               << "/"
-                               << "start-next"
-                               << "/"
-                               << "rejected";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
         bool IotJobsClient::SubscribeToNextJobExecutionChangedEvents(
             const Aws::Iotjobs::NextJobExecutionChangedSubscriptionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
@@ -446,58 +342,6 @@ namespace Aws
                                << "jobs"
                                << "/"
                                << "notify-next";
-
-            return m_connection->Subscribe(
-                       subscribeTopicSStr.str().c_str(),
-                       qos,
-                       std::move(onSubscribePublish),
-                       std::move(onSubscribeComplete)) != 0;
-        }
-
-        bool IotJobsClient::SubscribeToGetPendingJobExecutionsAccepted(
-            const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
-            Aws::Crt::Mqtt::QOS qos,
-            const OnSubscribeToGetPendingJobExecutionsAcceptedResponse &handler,
-            const OnSubscribeComplete &onSubAck)
-        {
-            (void)request;
-            auto onSubscribeComplete = [handler, onSubAck](
-                                           Aws::Crt::Mqtt::MqttConnection &,
-                                           uint16_t,
-                                           const Aws::Crt::String &topic,
-                                           Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
-                (void)topic;
-                if (errorCode)
-                {
-                    handler(nullptr, errorCode);
-                }
-
-                if (onSubAck)
-                {
-                    onSubAck(errorCode);
-                }
-            };
-
-            auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotjobs::GetPendingJobExecutionsResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
-
-            Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "jobs"
-                               << "/"
-                               << "get"
-                               << "/"
-                               << "accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -550,6 +394,162 @@ namespace Aws
                                << "start-next"
                                << "/"
                                << "accepted";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotJobsClient::SubscribeToStartNextPendingJobExecutionRejected(
+            const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToStartNextPendingJobExecutionRejectedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotjobs::RejectedError response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "jobs"
+                               << "/"
+                               << "start-next"
+                               << "/"
+                               << "rejected";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotJobsClient::SubscribeToUpdateJobExecutionAccepted(
+            const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToUpdateJobExecutionAcceptedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotjobs::UpdateJobExecutionResponse response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "jobs"
+                               << "/" << *request.JobId << "/"
+                               << "update"
+                               << "/"
+                               << "accepted";
+
+            return m_connection->Subscribe(
+                       subscribeTopicSStr.str().c_str(),
+                       qos,
+                       std::move(onSubscribePublish),
+                       std::move(onSubscribeComplete)) != 0;
+        }
+
+        bool IotJobsClient::SubscribeToUpdateJobExecutionRejected(
+            const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
+            Aws::Crt::Mqtt::QOS qos,
+            const OnSubscribeToUpdateJobExecutionRejectedResponse &handler,
+            const OnSubscribeComplete &onSubAck)
+        {
+            (void)request;
+            auto onSubscribeComplete = [handler, onSubAck](
+                                           Aws::Crt::Mqtt::MqttConnection &,
+                                           uint16_t,
+                                           const Aws::Crt::String &topic,
+                                           Aws::Crt::Mqtt::QOS,
+                                           int errorCode) {
+                (void)topic;
+                if (errorCode)
+                {
+                    handler(nullptr, errorCode);
+                }
+
+                if (onSubAck)
+                {
+                    onSubAck(errorCode);
+                }
+            };
+
+            auto onSubscribePublish =
+                [handler](
+                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    Aws::Iotjobs::RejectedError response(jsonObject);
+                    handler(&response, AWS_ERROR_SUCCESS);
+                };
+
+            Aws::Crt::StringStream subscribeTopicSStr;
+            subscribeTopicSStr << "$aws"
+                               << "/"
+                               << "things"
+                               << "/" << *request.ThingName << "/"
+                               << "jobs"
+                               << "/" << *request.JobId << "/"
+                               << "update"
+                               << "/"
+                               << "rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -616,8 +616,8 @@ namespace Aws
                        publishTopicSStr.str().c_str(), qos, false, buf, std::move(onPublishComplete)) != 0;
         }
 
-        bool IotJobsClient::PublishUpdateJobExecution(
-            const Aws::Iotjobs::UpdateJobExecutionRequest &request,
+        bool IotJobsClient::PublishStartNextPendingJobExecution(
+            const Aws::Iotjobs::StartNextPendingJobExecutionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
             const OnPublishComplete &onPubAck)
         {
@@ -627,8 +627,8 @@ namespace Aws
                              << "things"
                              << "/" << *request.ThingName << "/"
                              << "jobs"
-                             << "/" << *request.JobId << "/"
-                             << "update";
+                             << "/"
+                             << "start-next";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -645,8 +645,8 @@ namespace Aws
                        publishTopicSStr.str().c_str(), qos, false, buf, std::move(onPublishComplete)) != 0;
         }
 
-        bool IotJobsClient::PublishStartNextPendingJobExecution(
-            const Aws::Iotjobs::StartNextPendingJobExecutionRequest &request,
+        bool IotJobsClient::PublishUpdateJobExecution(
+            const Aws::Iotjobs::UpdateJobExecutionRequest &request,
             Aws::Crt::Mqtt::QOS qos,
             const OnPublishComplete &onPubAck)
         {
@@ -656,8 +656,8 @@ namespace Aws
                              << "things"
                              << "/" << *request.ThingName << "/"
                              << "jobs"
-                             << "/"
-                             << "start-next";
+                             << "/" << *request.JobId << "/"
+                             << "update";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);

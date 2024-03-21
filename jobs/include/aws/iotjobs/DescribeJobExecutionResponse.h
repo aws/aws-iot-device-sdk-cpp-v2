@@ -34,16 +34,16 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Contains data about a job execution.
-             *
-             */
-            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
-
-            /**
              * A client token used to correlate requests and responses.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+            /**
+             * Contains data about a job execution.
+             *
+             */
+            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
 
             /**
              * The time when the message was sent.

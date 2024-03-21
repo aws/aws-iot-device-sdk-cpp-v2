@@ -15,16 +15,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
-            if (doc.ValueExists("message"))
-            {
-                val.Message = doc.GetString("message");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
@@ -34,21 +24,21 @@ namespace Aws
             {
                 val.Code = doc.GetInteger("code");
             }
+
+            if (doc.ValueExists("message"))
+            {
+                val.Message = doc.GetString("message");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
         }
 
         void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
-            if (Message)
-            {
-                object.WithString("message", *Message);
-            }
 
             if (ClientToken)
             {
@@ -58,6 +48,16 @@ namespace Aws
             if (Code)
             {
                 object.WithInteger("code", *Code);
+            }
+
+            if (Message)
+            {
+                object.WithString("message", *Message);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
         }
 

@@ -20,14 +20,14 @@ namespace Aws
                 val.StatusCode = doc.GetInteger("statusCode");
             }
 
-            if (doc.ValueExists("errorMessage"))
-            {
-                val.ErrorMessage = doc.GetString("errorMessage");
-            }
-
             if (doc.ValueExists("errorCode"))
             {
                 val.ErrorCode = doc.GetString("errorCode");
+            }
+
+            if (doc.ValueExists("errorMessage"))
+            {
+                val.ErrorMessage = doc.GetString("errorMessage");
             }
         }
 
@@ -40,14 +40,14 @@ namespace Aws
                 object.WithInteger("statusCode", *StatusCode);
             }
 
-            if (ErrorMessage)
-            {
-                object.WithString("errorMessage", *ErrorMessage);
-            }
-
             if (ErrorCode)
             {
                 object.WithString("errorCode", *ErrorCode);
+            }
+
+            if (ErrorMessage)
+            {
+                object.WithString("errorMessage", *ErrorMessage);
             }
         }
 
