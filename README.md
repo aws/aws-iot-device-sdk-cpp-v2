@@ -4,7 +4,7 @@ This document provides information about the AWS IoT device SDK for C++ V2. This
 
 __Jump To:__
 
-* [supported Architectures](#supported-architectures)
+* [Supported Architectures](#supported-architectures)
 * [Installation](#installation)
 * [Samples](./samples)
 * [Getting Help](#getting-help)
