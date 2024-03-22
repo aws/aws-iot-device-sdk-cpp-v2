@@ -40,16 +40,16 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
             /**
-             * The time when the message was sent to the device.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-
-            /**
              * Contains data about a job execution.
              *
              */
             Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
+
+            /**
+             * The time when the message was sent to the device.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
           private:
             static void LoadFromObject(StartNextJobExecutionResponse &obj, const Crt::JsonView &doc);

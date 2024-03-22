@@ -220,6 +220,10 @@ namespace Utils
         uint64_t input_count;
         // Websockets
         Aws::Crt::String input_signingRegion;
+
+        Aws::Crt::String input_accessKeyId;
+        Aws::Crt::String input_secretAccessKey;
+        Aws::Crt::String input_sessionToken;
         // Cognito
         Aws::Crt::String input_cognitoIdentity;
         Aws::Crt::String input_cognitoEndpoint;
@@ -276,11 +280,15 @@ namespace Utils
         Aws::Crt::String input_proxyPassword;
         // Shadow
         Aws::Crt::String input_shadowProperty;
+        Aws::Crt::String input_shadowName;
+        Aws::Crt::String input_shadowValue;
         // PKCS12
         Aws::Crt::String input_pkcs12File;
         Aws::Crt::String input_pkcs12Password;
         // Greengrass Discovery
         bool input_PrintDiscoverRespOnly;
+        // MQTT protocol version
+        uint64_t input_mqtt_version;
     };
 
     cmdData parseSampleInputDeviceDefender(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
@@ -292,6 +300,7 @@ namespace Utils
     cmdData parseSampleInputCognitoConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputCustomAuthorizerConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputPKCS11Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
+    cmdData parseSampleInputWebsocketStaticCredentialsConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWebsocketConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputWindowsCertificateConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);
     cmdData parseSampleInputX509Connect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle);

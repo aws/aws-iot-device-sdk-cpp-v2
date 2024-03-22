@@ -17,14 +17,14 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("execution"))
-            {
-                val.Execution = doc.GetJsonObject("execution");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("execution"))
+            {
+                val.Execution = doc.GetJsonObject("execution");
             }
 
             if (doc.ValueExists("timestamp"))
@@ -37,16 +37,16 @@ namespace Aws
         {
             (void)object;
 
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
             if (Execution)
             {
                 Aws::Crt::JsonObject jsonObject;
                 Execution->SerializeToObject(jsonObject);
                 object.WithObject("execution", std::move(jsonObject));
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
             }
 
             if (Timestamp)

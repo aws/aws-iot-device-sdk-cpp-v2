@@ -31,23 +31,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Optional. A number that identifies a job execution on a device. If not specified, the latest job
-             * execution is returned.
-             *
-             */
-            Aws::Crt::Optional<int64_t> ExecutionNumber;
-
-            /**
              * The name of the thing associated with the device.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
-
-            /**
-             * Optional. Unless set to false, the response contains the job document. The default is true.
-             *
-             */
-            Aws::Crt::Optional<bool> IncludeJobDocument;
 
             /**
              * The unique identifier assigned to this job when it was created. Or use $next to return the next pending
@@ -63,6 +50,19 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+
+            /**
+             * Optional. A number that identifies a job execution on a device. If not specified, the latest job
+             * execution is returned.
+             *
+             */
+            Aws::Crt::Optional<int64_t> ExecutionNumber;
+
+            /**
+             * Optional. Unless set to false, the response contains the job document. The default is true.
+             *
+             */
+            Aws::Crt::Optional<bool> IncludeJobDocument;
 
           private:
             static void LoadFromObject(DescribeJobExecutionRequest &obj, const Crt::JsonView &doc);

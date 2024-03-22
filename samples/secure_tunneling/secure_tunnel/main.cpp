@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
         proxyOptions.HostName = cmdData.input_proxyHost != "";
-        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
 
         // Set up Proxy Strategy if a user name and password is provided
         if (cmdData.input_proxyUserName != "" || cmdData.input_proxyPassword != "")

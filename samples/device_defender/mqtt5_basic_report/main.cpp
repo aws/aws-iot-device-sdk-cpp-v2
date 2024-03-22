@@ -83,13 +83,13 @@ int main(int argc, char *argv[])
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder->WithHttpProxyOptions(proxyOptions);
     }
     if (cmdData.input_port != 0)
     {
-        clientConfigBuilder->WithPort(static_cast<uint16_t>(cmdData.input_port));
+        clientConfigBuilder->WithPort(static_cast<uint32_t>(cmdData.input_port));
     }
 
     std::promise<bool> connectionPromise;

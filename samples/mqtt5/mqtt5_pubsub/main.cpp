@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
     {
-        builder->WithPort(static_cast<uint16_t>(cmdData.input_port));
+        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
     }
 
     std::promise<bool> connectionPromise;

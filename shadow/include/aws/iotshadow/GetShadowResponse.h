@@ -35,13 +35,6 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The current version of the document for the device's shadow shared in AWS IoT. It is increased by one
-             * over the previous version of the document.
-             *
-             */
-            Aws::Crt::Optional<int32_t> Version;
-
-            /**
              * An opaque token used to correlate requests and responses.
              *
              */
@@ -64,6 +57,13 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+
+            /**
+             * The current version of the document for the device's shadow shared in AWS IoT. It is increased by one
+             * over the previous version of the document.
+             *
+             */
+            Aws::Crt::Optional<int32_t> Version;
 
           private:
             static void LoadFromObject(GetShadowResponse &obj, const Crt::JsonView &doc);

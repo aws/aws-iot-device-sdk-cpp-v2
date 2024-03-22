@@ -17,23 +17,15 @@
 
 using namespace Aws::Crt;
 
-int main(int argc, char *argv[])
+void connection_setup(
+    int argc,
+    char *argv[],
+    ApiHandle &apiHandle,
+    Utils::cmdData &cmdData,
+    Aws::Iot::MqttClientConnectionConfigBuilder &clientConfigBuilder)
 {
-    /************************ Setup ****************************/
+    cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
 
-    // Do the global initialization for the API.
-    ApiHandle apiHandle;
-
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputWebsocketConnect(argc, argv, &apiHandle);
-
-    // Create the MQTT builder and populate it with data from cmdData.
-    Aws::Iot::MqttClient client;
-    Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
     std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
     Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
     provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
@@ -52,15 +44,34 @@ int main(int argc, char *argv[])
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint16_t>(cmdData.input_proxyPort);
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
     }
     if (cmdData.input_port != 0)
     {
-        clientConfigBuilder.WithPortOverride(static_cast<uint16_t>(cmdData.input_port));
+        clientConfigBuilder.WithPortOverride(static_cast<uint32_t>(cmdData.input_port));
     }
     clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+}
+
+int main(int argc, char *argv[])
+{
+    /************************ Setup ****************************/
+
+    // Do the global initialization for the API.
+    ApiHandle apiHandle;
+    /**
+     * cmdData is the arguments/input from the command line placed into a single struct for
+     * use in this sample. This handles all of the command line parsing, validating, etc.
+     * See the Utils/CommandLineUtils for more information.
+     */
+    Utils::cmdData cmdData;
+    Aws::Iot::MqttClient client;
+    // Create the MQTT builder and populate it with data from cmdData.
+    Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
+
+    connection_setup(argc, argv, apiHandle, cmdData, clientConfigBuilder);
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();

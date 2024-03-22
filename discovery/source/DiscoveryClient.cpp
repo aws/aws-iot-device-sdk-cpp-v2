@@ -41,7 +41,7 @@ namespace Aws
             }
 
             Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.TlsContext->NewConnectionOptions();
-            uint16_t port = 443;
+            uint32_t port = 443;
 
             if (Crt::Io::TlsContextOptions::IsAlpnSupported())
             {

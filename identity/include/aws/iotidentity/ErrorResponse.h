@@ -37,16 +37,16 @@ namespace Aws
             Aws::Crt::Optional<int32_t> StatusCode;
 
             /**
-             * Response error message
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
-
-            /**
              * Response error code
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
+
+            /**
+             * Response error message
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
 
           private:
             static void LoadFromObject(ErrorResponse &obj, const Crt::JsonView &doc);

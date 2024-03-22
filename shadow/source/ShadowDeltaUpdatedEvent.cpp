@@ -15,19 +15,9 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("clientToken"))
+            if (doc.ValueExists("state"))
             {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
+                val.State = doc.GetJsonObjectCopy("state");
             }
 
             if (doc.ValueExists("metadata"))
@@ -35,9 +25,19 @@ namespace Aws
                 val.Metadata = doc.GetJsonObjectCopy("metadata");
             }
 
-            if (doc.ValueExists("state"))
+            if (doc.ValueExists("timestamp"))
             {
-                val.State = doc.GetJsonObjectCopy("state");
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
             }
         }
 
@@ -45,19 +45,9 @@ namespace Aws
         {
             (void)object;
 
-            if (ClientToken)
+            if (State)
             {
-                object.WithString("clientToken", *ClientToken);
-            }
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+                object.WithObject("state", *State);
             }
 
             if (Metadata)
@@ -65,9 +55,19 @@ namespace Aws
                 object.WithObject("metadata", *Metadata);
             }
 
-            if (State)
+            if (Timestamp)
             {
-                object.WithObject("state", *State);
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
             }
         }
 

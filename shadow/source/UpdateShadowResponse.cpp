@@ -15,19 +15,14 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("state"))
-            {
-                val.State = doc.GetJsonObject("state");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
             }
 
-            if (doc.ValueExists("version"))
+            if (doc.ValueExists("state"))
             {
-                val.Version = doc.GetInteger("version");
+                val.State = doc.GetJsonObject("state");
             }
 
             if (doc.ValueExists("metadata"))
@@ -39,27 +34,27 @@ namespace Aws
             {
                 val.Timestamp = doc.GetDouble("timestamp");
             }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
         void UpdateShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
 
-            if (State)
-            {
-                Aws::Crt::JsonObject jsonObject;
-                State->SerializeToObject(jsonObject);
-                object.WithObject("state", std::move(jsonObject));
-            }
-
             if (ClientToken)
             {
                 object.WithString("clientToken", *ClientToken);
             }
 
-            if (Version)
+            if (State)
             {
-                object.WithInteger("version", *Version);
+                Aws::Crt::JsonObject jsonObject;
+                State->SerializeToObject(jsonObject);
+                object.WithObject("state", std::move(jsonObject));
             }
 
             if (Metadata)
@@ -72,6 +67,11 @@ namespace Aws
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
             }
         }
 

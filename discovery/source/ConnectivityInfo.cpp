@@ -22,7 +22,7 @@ namespace Aws
 
             if (doc.KeyExists("PortNumber"))
             {
-                obj.Port = static_cast<uint16_t>(doc.GetInteger("PortNumber"));
+                obj.Port = static_cast<uint32_t>(doc.GetInteger("PortNumber"));
             }
 
             if (doc.KeyExists("Metadata"))
