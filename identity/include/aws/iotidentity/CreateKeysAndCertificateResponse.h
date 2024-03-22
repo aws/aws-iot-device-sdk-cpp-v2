@@ -37,12 +37,6 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> CertificateId;
 
             /**
-             * The token to prove ownership of the certificate during provisioning.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
-
-            /**
              * The certificate data, in PEM format.
              *
              */
@@ -53,6 +47,12 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> PrivateKey;
+
+            /**
+             * The token to prove ownership of the certificate during provisioning.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
 
           private:
             static void LoadFromObject(CreateKeysAndCertificateResponse &obj, const Crt::JsonView &doc);

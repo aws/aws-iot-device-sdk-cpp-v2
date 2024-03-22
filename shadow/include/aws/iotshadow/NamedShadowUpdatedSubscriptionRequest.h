@@ -31,16 +31,16 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Name of the shadow to get NamedShadowUpdated events for.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
-
-            /**
              * Name of the AWS IoT thing to get NamedShadowUpdated events for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
+
+            /**
+             * Name of the shadow to get NamedShadowUpdated events for.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
           private:
             static void LoadFromObject(NamedShadowUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);

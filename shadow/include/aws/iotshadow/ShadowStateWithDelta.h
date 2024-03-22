@@ -34,10 +34,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The delta between the reported and desired states.
+             * The desired shadow state (from external services and devices).
              *
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Delta;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
 
             /**
              * The (last) reported shadow state from the device.
@@ -46,10 +46,10 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
 
             /**
-             * The desired shadow state (from external services and devices).
+             * The delta between the reported and desired states.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Delta;
 
           private:
             static void LoadFromObject(ShadowStateWithDelta &obj, const Crt::JsonView &doc);

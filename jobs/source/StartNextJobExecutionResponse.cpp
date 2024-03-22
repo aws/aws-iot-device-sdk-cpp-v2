@@ -22,14 +22,14 @@ namespace Aws
                 val.ClientToken = doc.GetString("clientToken");
             }
 
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
             if (doc.ValueExists("execution"))
             {
                 val.Execution = doc.GetJsonObject("execution");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
             }
         }
 
@@ -42,16 +42,16 @@ namespace Aws
                 object.WithString("clientToken", *ClientToken);
             }
 
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
             if (Execution)
             {
                 Aws::Crt::JsonObject jsonObject;
                 Execution->SerializeToObject(jsonObject);
                 object.WithObject("execution", std::move(jsonObject));
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
         }
 

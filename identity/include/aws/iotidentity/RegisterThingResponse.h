@@ -31,16 +31,16 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The name of the IoT thing created during provisioning.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
-
-            /**
              * The device configuration defined in the template.
              *
              */
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> DeviceConfiguration;
+
+            /**
+             * The name of the IoT thing created during provisioning.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
           private:
             static void LoadFromObject(RegisterThingResponse &obj, const Crt::JsonView &doc);

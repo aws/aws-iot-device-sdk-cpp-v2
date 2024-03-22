@@ -34,6 +34,12 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
+             * A list of JobExecutionSummary objects with status IN_PROGRESS.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
+
+            /**
              * A list of JobExecutionSummary objects with status QUEUED.
              *
              */
@@ -50,12 +56,6 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-
-            /**
-             * A list of JobExecutionSummary objects with status IN_PROGRESS.
-             *
-             */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
 
           private:
             static void LoadFromObject(GetPendingJobExecutionsResponse &obj, const Crt::JsonView &doc);

@@ -22,14 +22,14 @@ namespace Aws
                 val.CertificateId = doc.GetString("certificateId");
             }
 
-            if (doc.ValueExists("certificateOwnershipToken"))
-            {
-                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
-            }
-
             if (doc.ValueExists("certificatePem"))
             {
                 val.CertificatePem = doc.GetString("certificatePem");
+            }
+
+            if (doc.ValueExists("certificateOwnershipToken"))
+            {
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
             }
         }
 
@@ -42,14 +42,14 @@ namespace Aws
                 object.WithString("certificateId", *CertificateId);
             }
 
-            if (CertificateOwnershipToken)
-            {
-                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
-            }
-
             if (CertificatePem)
             {
                 object.WithString("certificatePem", *CertificatePem);
+            }
+
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
             }
         }
 
