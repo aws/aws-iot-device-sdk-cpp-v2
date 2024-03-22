@@ -26,7 +26,6 @@ __Jump To:__
 - alpine-3.16-arm64
 - raspberry pi bullseye
 - ARM64 /aarch64
-- ArmV8
 - ArmV7
 - x86\_64
 - x86
