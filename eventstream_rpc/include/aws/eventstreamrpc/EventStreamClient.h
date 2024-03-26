@@ -47,7 +47,7 @@ namespace Aws
 
         /**
          * A callback prototype that is called upon flushing a message over the wire.
-         * @param errorCode A non-zero value if an error occured while attempting to flush the message.
+         * @param errorCode A non-zero value if an error occurred while attempting to flush the message.
          */
         using OnMessageFlushCallback = std::function<void(int errorCode)>;
 
@@ -71,36 +71,15 @@ namespace Aws
             EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
-            EventStreamHeader(const Crt::String &name, bool value);
-            EventStreamHeader(const Crt::String &name, int8_t value);
-            EventStreamHeader(const Crt::String &name, int16_t value);
-            EventStreamHeader(const Crt::String &name, int32_t value);
-            EventStreamHeader(const Crt::String &name, int64_t value);
-            EventStreamHeader(const Crt::String &name, Crt::DateTime &value);
             EventStreamHeader(
                 const Crt::String &name,
                 const Crt::String &value,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            EventStreamHeader(const Crt::String &name, Crt::ByteBuf &value);
-            EventStreamHeader(const Crt::String &name, Crt::UUID value);
 
-            HeaderValueType GetHeaderValueType();
             Crt::String GetHeaderName() const noexcept;
-            void SetHeaderName(const Crt::String &);
-
-            bool GetValueAsBoolean(bool &);
-            bool GetValueAsByte(int8_t &);
-            bool GetValueAsShort(int16_t &);
-            bool GetValueAsInt(int32_t &);
-            bool GetValueAsLong(int64_t &);
-            bool GetValueAsTimestamp(Crt::DateTime &);
             bool GetValueAsString(Crt::String &) const noexcept;
-            bool GetValueAsBytes(Crt::ByteBuf &);
-            bool GetValueAsUUID(Crt::UUID &);
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
-
-            bool operator==(const EventStreamHeader &other) const noexcept;
 
           private:
             Crt::Allocator *m_allocator;
@@ -117,7 +96,7 @@ namespace Aws
         {
           public:
             MessageAmendment(const MessageAmendment &lhs);
-            MessageAmendment(MessageAmendment &&rhs);
+            MessageAmendment(MessageAmendment &&rhs) noexcept;
             MessageAmendment &operator=(const MessageAmendment &lhs);
             ~MessageAmendment() noexcept;
             explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
@@ -162,10 +141,10 @@ namespace Aws
             OnMessageFlushCallback GetConnectRequestCallback() const noexcept { return m_connectRequestCallback; }
             ConnectMessageAmender GetConnectMessageAmender() const noexcept
             {
-                return [&](void) -> const MessageAmendment & { return m_connectAmendment; };
+                return [&]() -> const MessageAmendment & { return m_connectAmendment; };
             }
 
-            void SetHostName(Crt::String hostName) noexcept { m_hostName = hostName; }
+            void SetHostName(Crt::String hostName) noexcept { m_hostName = std::move(hostName); }
             void SetPort(uint32_t port) noexcept { m_port = port; }
             void SetSocketOptions(const Crt::Io::SocketOptions &socketOptions) noexcept
             {
@@ -185,7 +164,7 @@ namespace Aws
             }
             void SetConnectRequestCallback(OnMessageFlushCallback connectRequestCallback) noexcept
             {
-                m_connectRequestCallback = connectRequestCallback;
+                m_connectRequestCallback = std::move(connectRequestCallback);
             }
 
           protected:
@@ -226,6 +205,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
         {
           public:
+            virtual ~ConnectionLifecycleHandler() noexcept = default;
             /**
              * This callback is only invoked upon receiving a CONNECT_ACK with the
              * CONNECTION_ACCEPTED flag set by the server. Therefore, once this callback
@@ -292,7 +272,7 @@ namespace Aws
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
             virtual void OnContinuationClosed() = 0;
-            virtual ~ClientContinuationHandler() noexcept;
+            virtual ~ClientContinuationHandler() noexcept = default;
 
           private:
             friend class ClientContinuation;
@@ -307,6 +287,13 @@ namespace Aws
                 ClientContinuationHandler &continuationHandler,
                 Crt::Allocator *allocator) noexcept;
             ~ClientContinuation() noexcept;
+
+            ClientContinuation(const ClientContinuation &other) = default;
+            ClientContinuation(ClientContinuation &&other) noexcept = default;
+
+            ClientContinuation &operator=(const ClientContinuation &other) = delete;
+            ClientContinuation &operator=(ClientContinuation &&other) noexcept = delete;
+
             std::future<RpcError> Activate(
                 const Crt::String &operation,
                 const Crt::List<EventStreamHeader> &headers,
@@ -315,7 +302,6 @@ namespace Aws
                 uint32_t messageFlags,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             bool IsClosed() noexcept;
-            void Release() noexcept;
             std::future<RpcError> SendMessage(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
@@ -342,7 +328,7 @@ namespace Aws
         {
           public:
             AbstractShapeBase() noexcept;
-            virtual ~AbstractShapeBase() noexcept;
+            virtual ~AbstractShapeBase() noexcept = default;
             static void s_customDeleter(AbstractShapeBase *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const = 0;
             virtual Crt::String GetModelName() const noexcept = 0;
@@ -354,9 +340,9 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API OperationError : public AbstractShapeBase
         {
           public:
-            explicit OperationError() noexcept;
+            explicit OperationError() noexcept = default;
             static void s_customDeleter(OperationError *shape) noexcept;
-            virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
+            void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
             virtual Crt::Optional<Crt::String> GetMessage() noexcept = 0;
         };
 
@@ -368,6 +354,8 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API StreamResponseHandler
         {
           public:
+            virtual ~StreamResponseHandler() noexcept = default;
+
             /**
              * Invoked when stream is closed, so no more messages will be received.
              */
@@ -424,7 +412,7 @@ namespace Aws
                 }
                 OperationResult(Crt::ScopedResource<OperationError> &&error) noexcept : m_error(std::move(error)) {}
                 OperationResult() noexcept : m_response(nullptr) {}
-                ~OperationResult() noexcept {};
+                ~OperationResult() noexcept {}
                 Crt::ScopedResource<AbstractShapeBase> m_response;
                 Crt::ScopedResource<OperationError> m_error;
             };
@@ -446,6 +434,7 @@ namespace Aws
         {
             /* An interface shared by all operations for retrieving the response object given the model name. */
           public:
+            virtual ~ResponseRetriever() noexcept = default;
             virtual ExpectedResponseFactory GetInitialResponseFromModelName(
                 const Crt::String &modelName) const noexcept = 0;
             virtual ExpectedResponseFactory GetStreamingResponseFromModelName(
@@ -457,6 +446,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ServiceModel
         {
           public:
+            virtual ~ServiceModel() noexcept = default;
             virtual Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
                 const Crt::String &errorModelName,
                 Crt::StringView stringView,
@@ -467,6 +457,7 @@ namespace Aws
         {
           public:
             OperationModelContext(const ServiceModel &serviceModel) noexcept;
+            virtual ~OperationModelContext() noexcept = default;
             virtual Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Crt::StringView stringView,
                 Crt::Allocator *allocator) const noexcept = 0;
@@ -497,7 +488,7 @@ namespace Aws
                 std::shared_ptr<StreamResponseHandler> streamHandler,
                 const OperationModelContext &operationModelContext,
                 Crt::Allocator *allocator) noexcept;
-            ~ClientOperation() noexcept;
+            virtual ~ClientOperation() noexcept;
 
             ClientOperation(const ClientOperation &clientOperation) noexcept = delete;
             ClientOperation(ClientOperation &&clientOperation) noexcept = delete;
@@ -511,9 +502,6 @@ namespace Aws
           protected:
             std::future<RpcError> Activate(
                 const AbstractShapeBase *shape,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            std::future<RpcError> SendStreamEvent(
-                AbstractShapeBase *shape,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             virtual Crt::String GetModelName() const noexcept = 0;
             const OperationModelContext &m_operationModelContext;
@@ -624,14 +612,14 @@ namespace Aws
                 DISCONNECTING,
             };
             /* This recursive mutex protects m_clientState & m_connectionWillSetup */
-            std::recursive_mutex m_stateMutex;
+            std::mutex m_closeReasonMutex;
             Crt::Allocator *m_allocator;
             struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
-            ClientState m_clientState;
+            std::atomic<ClientState> m_clientState;
             ConnectionLifecycleHandler *m_lifecycleHandler;
             ConnectMessageAmender m_connectMessageAmender;
             std::promise<void> m_connectionSetupPromise;
-            bool m_connectionWillSetup;
+            std::atomic<bool> m_connectionWillSetup;
             std::promise<RpcError> m_connectAckedPromise;
             std::promise<RpcError> m_closedPromise;
             bool m_onConnectCalled;
