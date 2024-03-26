@@ -898,6 +898,9 @@ namespace Aws
             }
             if (m_callbackData != nullptr)
             {
+                // FIXME Setting `m_callbackData->continuationDestroyed` indicates that another actor is supposed
+                //  to check this flag (see `ClientContinuation::s_onContinuationMessage`). However, we delete
+                //  `m_callbackData` right after setting the flag, so it doesn't work as intended.
                 {
                     const std::lock_guard<std::mutex> lock(m_callbackData->callbackMutex);
                     m_callbackData->continuationDestroyed = true;
@@ -913,6 +916,10 @@ namespace Aws
         {
             (void)continuationToken;
             /* The `userData` pointer is used to pass a `ContinuationCallbackData` object. */
+            // FIXME Can `callbackData` be destroyed at this point? See `ClientContinuation::~ClientContinuation`.
+            //   Probably `callbackData` is guaranteed to be alive after this PR:
+            //   https://github.com/aws/aws-iot-device-sdk-cpp-v2/pull/437. But then we need to get rid of the
+            //   `continuationDestroyed` flag.
             auto *callbackData = static_cast<ContinuationCallbackData *>(userData);
             auto *thisContinuation = callbackData->clientContinuation;
 
