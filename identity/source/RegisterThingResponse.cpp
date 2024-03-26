@@ -15,11 +15,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("thingName"))
-            {
-                val.ThingName = doc.GetString("thingName");
-            }
-
             if (doc.ValueExists("deviceConfiguration"))
             {
                 auto deviceConfigurationMap = doc.GetJsonObject("deviceConfiguration");
@@ -32,16 +27,16 @@ namespace Aws
                         deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
                 }
             }
+
+            if (doc.ValueExists("thingName"))
+            {
+                val.ThingName = doc.GetString("thingName");
+            }
         }
 
         void RegisterThingResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (ThingName)
-            {
-                object.WithString("thingName", *ThingName);
-            }
 
             if (DeviceConfiguration)
             {
@@ -54,6 +49,11 @@ namespace Aws
                         deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
                 }
                 object.WithObject("deviceConfiguration", std::move(deviceConfigurationMap));
+            }
+
+            if (ThingName)
+            {
+                object.WithString("thingName", *ThingName);
             }
         }
 

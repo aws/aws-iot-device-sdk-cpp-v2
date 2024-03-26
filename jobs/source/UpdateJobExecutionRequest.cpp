@@ -15,9 +15,14 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("executionNumber"))
+            if (doc.ValueExists("status"))
             {
-                val.ExecutionNumber = doc.GetInt64("executionNumber");
+                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
             }
 
             if (doc.ValueExists("statusDetails"))
@@ -32,14 +37,19 @@ namespace Aws
                 }
             }
 
-            if (doc.ValueExists("includeJobExecutionState"))
-            {
-                val.IncludeJobExecutionState = doc.GetBool("includeJobExecutionState");
-            }
-
             if (doc.ValueExists("expectedVersion"))
             {
                 val.ExpectedVersion = doc.GetInteger("expectedVersion");
+            }
+
+            if (doc.ValueExists("executionNumber"))
+            {
+                val.ExecutionNumber = doc.GetInt64("executionNumber");
+            }
+
+            if (doc.ValueExists("includeJobExecutionState"))
+            {
+                val.IncludeJobExecutionState = doc.GetBool("includeJobExecutionState");
             }
 
             if (doc.ValueExists("includeJobDocument"))
@@ -47,19 +57,9 @@ namespace Aws
                 val.IncludeJobDocument = doc.GetBool("includeJobDocument");
             }
 
-            if (doc.ValueExists("status"))
-            {
-                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
-            }
-
             if (doc.ValueExists("stepTimeoutInMinutes"))
             {
                 val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
-            }
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
             }
         }
 
@@ -67,9 +67,14 @@ namespace Aws
         {
             (void)object;
 
-            if (ExecutionNumber)
+            if (Status)
             {
-                object.WithInt64("executionNumber", *ExecutionNumber);
+                object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
             }
 
             if (StatusDetails)
@@ -84,14 +89,19 @@ namespace Aws
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
             }
 
-            if (IncludeJobExecutionState)
-            {
-                object.WithBool("includeJobExecutionState", *IncludeJobExecutionState);
-            }
-
             if (ExpectedVersion)
             {
                 object.WithInteger("expectedVersion", *ExpectedVersion);
+            }
+
+            if (ExecutionNumber)
+            {
+                object.WithInt64("executionNumber", *ExecutionNumber);
+            }
+
+            if (IncludeJobExecutionState)
+            {
+                object.WithBool("includeJobExecutionState", *IncludeJobExecutionState);
             }
 
             if (IncludeJobDocument)
@@ -99,19 +109,9 @@ namespace Aws
                 object.WithBool("includeJobDocument", *IncludeJobDocument);
             }
 
-            if (Status)
-            {
-                object.WithString("status", JobStatusMarshaller::ToString(*Status));
-            }
-
             if (StepTimeoutInMinutes)
             {
                 object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
             }
         }
 

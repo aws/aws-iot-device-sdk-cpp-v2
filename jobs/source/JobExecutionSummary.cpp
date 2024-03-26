@@ -15,9 +15,9 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("lastUpdatedAt"))
+            if (doc.ValueExists("jobId"))
             {
-                val.LastUpdatedAt = doc.GetDouble("lastUpdatedAt");
+                val.JobId = doc.GetString("jobId");
             }
 
             if (doc.ValueExists("executionNumber"))
@@ -25,24 +25,24 @@ namespace Aws
                 val.ExecutionNumber = doc.GetInt64("executionNumber");
             }
 
-            if (doc.ValueExists("startedAt"))
-            {
-                val.StartedAt = doc.GetDouble("startedAt");
-            }
-
             if (doc.ValueExists("versionNumber"))
             {
                 val.VersionNumber = doc.GetInteger("versionNumber");
             }
 
-            if (doc.ValueExists("jobId"))
+            if (doc.ValueExists("lastUpdatedAt"))
             {
-                val.JobId = doc.GetString("jobId");
+                val.LastUpdatedAt = doc.GetDouble("lastUpdatedAt");
             }
 
             if (doc.ValueExists("queuedAt"))
             {
                 val.QueuedAt = doc.GetDouble("queuedAt");
+            }
+
+            if (doc.ValueExists("startedAt"))
+            {
+                val.StartedAt = doc.GetDouble("startedAt");
             }
         }
 
@@ -50,9 +50,9 @@ namespace Aws
         {
             (void)object;
 
-            if (LastUpdatedAt)
+            if (JobId)
             {
-                object.WithDouble("lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
+                object.WithString("jobId", *JobId);
             }
 
             if (ExecutionNumber)
@@ -60,24 +60,24 @@ namespace Aws
                 object.WithInt64("executionNumber", *ExecutionNumber);
             }
 
-            if (StartedAt)
-            {
-                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
-            }
-
             if (VersionNumber)
             {
                 object.WithInteger("versionNumber", *VersionNumber);
             }
 
-            if (JobId)
+            if (LastUpdatedAt)
             {
-                object.WithString("jobId", *JobId);
+                object.WithDouble("lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
             }
 
             if (QueuedAt)
             {
                 object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
+            }
+
+            if (StartedAt)
+            {
+                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
             }
         }
 

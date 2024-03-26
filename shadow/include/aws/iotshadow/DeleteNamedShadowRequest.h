@@ -31,11 +31,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
+             * AWS IoT thing to delete a named shadow from.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
             /**
              * Name of the shadow to delete.
@@ -44,10 +43,11 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ShadowName;
 
             /**
-             * AWS IoT thing to delete a named shadow from.
+             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
+             * is reflected in the response.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
           private:
             static void LoadFromObject(DeleteNamedShadowRequest &obj, const Crt::JsonView &doc);

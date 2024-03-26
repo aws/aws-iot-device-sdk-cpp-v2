@@ -20,9 +20,9 @@ namespace Aws
                 val.ClientToken = doc.GetString("clientToken");
             }
 
-            if (doc.ValueExists("timestamp"))
+            if (doc.ValueExists("executionState"))
             {
-                val.Timestamp = doc.GetDouble("timestamp");
+                val.ExecutionState = doc.GetJsonObject("executionState");
             }
 
             if (doc.ValueExists("jobDocument"))
@@ -30,9 +30,9 @@ namespace Aws
                 val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
             }
 
-            if (doc.ValueExists("executionState"))
+            if (doc.ValueExists("timestamp"))
             {
-                val.ExecutionState = doc.GetJsonObject("executionState");
+                val.Timestamp = doc.GetDouble("timestamp");
             }
         }
 
@@ -45,9 +45,11 @@ namespace Aws
                 object.WithString("clientToken", *ClientToken);
             }
 
-            if (Timestamp)
+            if (ExecutionState)
             {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+                Aws::Crt::JsonObject jsonObject;
+                ExecutionState->SerializeToObject(jsonObject);
+                object.WithObject("executionState", std::move(jsonObject));
             }
 
             if (JobDocument)
@@ -55,11 +57,9 @@ namespace Aws
                 object.WithObject("jobDocument", *JobDocument);
             }
 
-            if (ExecutionState)
+            if (Timestamp)
             {
-                Aws::Crt::JsonObject jsonObject;
-                ExecutionState->SerializeToObject(jsonObject);
-                object.WithObject("executionState", std::move(jsonObject));
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
         }
 

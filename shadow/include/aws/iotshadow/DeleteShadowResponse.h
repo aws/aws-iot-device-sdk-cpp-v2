@@ -33,12 +33,6 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The current version of the document for the device's shadow.
-             *
-             */
-            Aws::Crt::Optional<int32_t> Version;
-
-            /**
              * A client token used to correlate requests and responses.
              *
              */
@@ -49,6 +43,12 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+
+            /**
+             * The current version of the document for the device's shadow.
+             *
+             */
+            Aws::Crt::Optional<int32_t> Version;
 
           private:
             static void LoadFromObject(DeleteShadowResponse &obj, const Crt::JsonView &doc);

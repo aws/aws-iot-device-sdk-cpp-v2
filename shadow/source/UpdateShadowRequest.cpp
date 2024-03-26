@@ -15,6 +15,11 @@ namespace Aws
             (void)val;
             (void)doc;
 
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
             if (doc.ValueExists("state"))
             {
                 val.State = doc.GetJsonObject("state");
@@ -24,16 +29,16 @@ namespace Aws
             {
                 val.Version = doc.GetInteger("version");
             }
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
         }
 
         void UpdateShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
 
             if (State)
             {
@@ -45,11 +50,6 @@ namespace Aws
             if (Version)
             {
                 object.WithInteger("version", *Version);
-            }
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
             }
         }
 

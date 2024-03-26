@@ -15,9 +15,9 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("delta"))
+            if (doc.ValueExists("desired"))
             {
-                val.Delta = doc.GetJsonObjectCopy("delta");
+                val.Desired = doc.GetJsonObjectCopy("desired");
             }
 
             if (doc.ValueExists("reported"))
@@ -25,9 +25,9 @@ namespace Aws
                 val.Reported = doc.GetJsonObjectCopy("reported");
             }
 
-            if (doc.ValueExists("desired"))
+            if (doc.ValueExists("delta"))
             {
-                val.Desired = doc.GetJsonObjectCopy("desired");
+                val.Delta = doc.GetJsonObjectCopy("delta");
             }
         }
 
@@ -35,9 +35,9 @@ namespace Aws
         {
             (void)object;
 
-            if (Delta)
+            if (Desired)
             {
-                object.WithObject("delta", *Delta);
+                object.WithObject("desired", *Desired);
             }
 
             if (Reported)
@@ -45,9 +45,9 @@ namespace Aws
                 object.WithObject("reported", *Reported);
             }
 
-            if (Desired)
+            if (Delta)
             {
-                object.WithObject("desired", *Desired);
+                object.WithObject("delta", *Delta);
             }
         }
 
