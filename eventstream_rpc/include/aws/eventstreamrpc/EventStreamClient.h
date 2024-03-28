@@ -667,7 +667,7 @@ namespace Aws
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             /**
-             * Returns the canonical model name associated with this context across any client language.
+             * Returns the canonical model name associated with this operation across any client language.
              * Namespace included.
              * @return The model name.
              */
