@@ -690,6 +690,11 @@ jobs:
       matrix:
         sanitizers: ["thread", "address,undefined"]
     steps:
+      - name: configure AWS credentials (containers)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
