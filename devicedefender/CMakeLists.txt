@@ -103,7 +103,7 @@ endif()
 
 aws_add_sanitizers(${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} IotDeviceCommon-cpp)
+target_link_libraries(${PROJECT_NAME} PUBLIC IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTDEVICEDEFENDER_HEADERS} DESTINATION "include/aws/iotdevicedefender/" COMPONENT Development)
 

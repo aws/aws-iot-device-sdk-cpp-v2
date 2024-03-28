@@ -103,7 +103,7 @@ if (BUILD_DEPS)
 endif()
 
 aws_add_sanitizers(${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} ${DEP_AWS_LIBS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTDEVICECOMMON_HEADERS} DESTINATION "include/aws/iotdevicecommon/" COMPONENT Development)
 
