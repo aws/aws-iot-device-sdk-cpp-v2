@@ -74,6 +74,8 @@ else()
     set(IN_SOURCE_BUILD OFF)
 endif()
 
+include(AwsSanitizers)
+
 aws_use_package(aws-crt-cpp)
 
 add_subdirectory(jobs)
