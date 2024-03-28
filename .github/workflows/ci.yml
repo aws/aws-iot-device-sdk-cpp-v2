@@ -689,6 +689,8 @@ jobs:
     strategy:
       matrix:
         sanitizers: ["thread", "address,undefined"]
+    permissions:
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: configure AWS credentials (containers)
         uses: aws-actions/configure-aws-credentials@v2
