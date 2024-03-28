@@ -116,7 +116,7 @@ endif()
 include(CMakePackageConfigHelpers)
 if (DEFINED SIMPLE_VERSION)
     write_basic_package_version_file(
-        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config-version.cmake"
         COMPATIBILITY SameMajorVersion
     )
 endif()
@@ -126,10 +126,10 @@ install(EXPORT "${PROJECT_NAME}-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/${PROJECT_NAME}-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake"
+configure_file("cmake/iotdevicecommon-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
         COMPONENT Development)
