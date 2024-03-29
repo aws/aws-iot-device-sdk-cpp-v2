@@ -147,6 +147,9 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
     Aws::Crt::Io::TlsContext tlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT, allocator);
     ASSERT_TRUE(tlsContext);
 
+    int *leaked = new int;
+    (void)leaked;
+
     Aws::Crt::Io::SocketOptions socketOptions;
     socketOptions.SetConnectTimeoutMs(3000);
 
