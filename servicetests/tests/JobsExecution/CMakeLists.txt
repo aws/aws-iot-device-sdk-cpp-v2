@@ -35,10 +35,10 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
-include(AwsSanitizers)
-
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
+include(AwsSanitizers)
+enable_language(C)
 aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotJobs-cpp)
