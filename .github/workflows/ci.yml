@@ -697,8 +697,22 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=clang-12 --cmake-extra=-DENABLE_SANITIZERS=ON --cmake-extra=-DSANITIZERS="${{ matrix.sanitizers }}"
+      - name: configure AWS credentials (Jobs)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_JOBS_SERVICE_CLIENT_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: run mqtt3 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt3_jobs_cfg.json
+      - name: run mqtt5 Jobs serviceTests
+        working-directory: ./aws-iot-device-sdk-cpp-v2/servicetests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
+          python3 ./test_cases/test_jobs_execution.py --config-file ${{ env.CI_SERVICE_TESTS_CFG_FOLDER }}/mqtt5_jobs_cfg.json

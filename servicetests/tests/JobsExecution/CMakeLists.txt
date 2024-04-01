@@ -25,4 +25,6 @@ find_package(IotJobs-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
+aws_add_sanitizers(${PROJECT_NAME})
+
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotJobs-cpp)
