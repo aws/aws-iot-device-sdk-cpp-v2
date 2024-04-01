@@ -23,6 +23,20 @@ endif ()
 find_package(aws-crt-cpp REQUIRED)
 find_package(IotJobs-cpp REQUIRED)
 
+if (UNIX AND NOT APPLE)
+    include(GNUInstallDirs)
+elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
+    set(CMAKE_INSTALL_LIBDIR "lib")
+
+    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
+        set(FIND_LIBRARY_USE_LIB64_PATHS true)
+    endif()
+endif()
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
+
+include(AwsSanitizers)
+
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 aws_add_sanitizers(${PROJECT_NAME})
