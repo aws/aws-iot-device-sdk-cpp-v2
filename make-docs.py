@@ -12,3 +12,7 @@ if os.path.exists('docs'):
 # build
 if os.system('doxygen docsrc/doxygen.config') != 0:
     exit(1)
+
+# disable jekyll on gh-pages, because jekyll ignores html files
+# started with underscore, and doxygen does generate such filenames
+open('docs/.nojekyll', 'w').close()
