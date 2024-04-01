@@ -44,27 +44,27 @@ if (WIN32)
     endif ()
 endif()
 
-add_library(IotSecureTunneling-cpp ${AWS_IOTSECURETUNNELING_CPP_SRC})
+add_library(${PROJECT_NAME} ${AWS_IOTSECURETUNNELING_CPP_SRC})
 
-set_target_properties(IotSecureTunneling-cpp PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
 #set warnings
 if (MSVC)
-    target_compile_options(IotSecureTunneling-cpp PRIVATE /W4 /WX)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
 else ()
-    target_compile_options(IotSecureTunneling-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(IotSecureTunneling-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(IotSecureTunneling-cpp PUBLIC "-DAWS_IOTSECURETUNNELING_USE_IMPORT_EXPORT")
-    target_compile_definitions(IotSecureTunneling-cpp PRIVATE "-DAWS_IOTSECURETUNNELING_EXPORTS")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC "-DAWS_IOTSECURETUNNELING_USE_IMPORT_EXPORT")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE "-DAWS_IOTSECURETUNNELING_EXPORTS")
 
-    install(TARGETS IotSecureTunneling-cpp
-            EXPORT IotSecureTunneling-cpp-targets
+    install(TARGETS ${PROJECT_NAME}
+            EXPORT ${PROJECT_NAME}-targets
             ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
@@ -76,20 +76,20 @@ if (BUILD_SHARED_LIBS)
             DESTINATION ${RUNTIME_DIRECTORY}
             COMPONENT Runtime)
 
-    install(TARGETS IotSecureTunneling-cpp
-            EXPORT IotSecureTunneling-cpp-targets
+    install(TARGETS ${PROJECT_NAME}
+            EXPORT ${PROJECT_NAME}-targets
             LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_ONLY
             COMPONENT Development)
 else()
-    install(TARGETS IotSecureTunneling-cpp
-            EXPORT IotSecureTunneling-cpp-targets
+    install(TARGETS ${PROJECT_NAME}
+            EXPORT ${PROJECT_NAME}-targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
-target_include_directories(IotSecureTunneling-cpp PUBLIC
+target_include_directories(${PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
@@ -100,7 +100,9 @@ if (BUILD_DEPS)
 	endif()
 endif()
 
-target_link_libraries(IotSecureTunneling-cpp IotDeviceCommon-cpp)
+aws_add_sanitizers(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} PUBLIC IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "include/aws/iotsecuretunneling/" COMPONENT Development)
 
@@ -118,8 +120,8 @@ if (DEFINED SIMPLE_VERSION)
     )
 endif()
 
-install(EXPORT "IotSecureTunneling-cpp-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/${TARGET_DIR}"
+install(EXPORT "${PROJECT_NAME}-targets"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -128,6 +130,5 @@ configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
         COMPONENT Development)
-

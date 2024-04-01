@@ -91,6 +91,7 @@ else()
             COMPONENT Development)
 endif()
 
+aws_add_sanitizer(${PROJECT_NAME})
 target_include_directories(IotIdentity-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
