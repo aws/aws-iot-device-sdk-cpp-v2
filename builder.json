@@ -44,7 +44,7 @@
         "clang": {
           "cmake_args": [
             "-DENABLE_SANITIZERS=ON",
-            "-DSANTIZERS=address,undefines"
+            "-DSANTIZERS=address,undefined"
           ]
         }
       }
