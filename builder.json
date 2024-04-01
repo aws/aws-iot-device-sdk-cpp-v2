@@ -30,24 +30,16 @@
         ]
     },
     "tsan": {
-      "compilers": {
-        "clang": {
-          "cmake_args": [
-            "-DENABLE_SANITIZERS=ON",
-            "-DSANTIZERS=thread"
-          ]
-        }
-      }
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANITIZERS=thread"
+      ]
     },
     "asan": {
-      "compilers": {
-        "clang": {
-          "cmake_args": [
-            "-DENABLE_SANITIZERS=ON",
-            "-DSANTIZERS=address,undefined"
-          ]
-        }
-      }
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANTIIZERS=address,undefined"
+      ]
     }
   }
 }
