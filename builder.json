@@ -28,6 +28,26 @@
         "!build_steps": [
           "build"
         ]
+    },
+    "tsan": {
+      "compilers": {
+        "clang": {
+          "cmake_args": [
+            "-DENABLE_SANITIZERS=ON",
+            "-DSANTIZERS=thread"
+          ]
+        }
+      }
+    },
+    "asan": {
+      "compilers": {
+        "clang": {
+          "cmake_args": [
+            "-DENABLE_SANITIZERS=ON",
+            "-DSANTIZERS=address,undefines"
+          ]
+        }
+      }
     }
   }
 }
