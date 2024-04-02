@@ -100,7 +100,7 @@ if (BUILD_DEPS)
 endif()
 
 aws_add_sanitizers(${PROJECT_NAME})
-target_link_libraries(Discovery-cpp ${DEP_AWS_LIBS})
+target_link_libraries(Discovery-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_DISCOVERY_HEADERS} DESTINATION "include/aws/discovery/" COMPONENT Development)
 
