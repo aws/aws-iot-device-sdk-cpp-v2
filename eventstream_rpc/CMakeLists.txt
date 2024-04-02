@@ -97,7 +97,7 @@ if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
 
-aws_add_sanitizer(${PROJECT_NAME})
+aws_add_sanitizers(${PROJECT_NAME})
 target_link_libraries(EventstreamRpc-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_EVENTSTREAMRPC_HEADERS} DESTINATION "include/aws/eventstreamrpc/" COMPONENT Development)

@@ -47,7 +47,7 @@ add_test_case(OperateWhileDisconnected)
 #add_test_case(EchoOperation)
 #add_test_case(StressTestClient)
 generate_cpp_test_driver(${TEST_BINARY_NAME})
-aws_add_sanitizer(${TEST_BINARY_NAME})
+aws_add_sanitizers(${TEST_BINARY_NAME})
 target_include_directories(${TEST_BINARY_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
