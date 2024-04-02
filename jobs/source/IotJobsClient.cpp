@@ -31,9 +31,6 @@ namespace Aws
         IotJobsClient::IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection)
             : m_connection(connection)
         {
-            // TODO Remove.
-            int *leak = new int;
-            (void)leak;
         }
 
         IotJobsClient::IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client)
