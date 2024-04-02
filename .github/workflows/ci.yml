@@ -705,6 +705,8 @@ jobs:
         run: |
           python3 -m pip install boto3
           sudo apt-get update -y
+          sudo apt-get install softhsm -y
+          softhsm2-util --version
       - name: configure AWS credentials (Fleet provisioning)
         if: always()
         uses: aws-actions/configure-aws-credentials@v2
