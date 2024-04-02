@@ -45,7 +45,7 @@ if (WIN32)
 endif()
 
 add_library(GreengrassIpc-cpp ${AWS_GREENGRASSIPC_CPP_SRC})
-target_link_libraries(GreengrassIpc-cpp EventstreamRpc-cpp)
+target_link_libraries(GreengrassIpc-cpp PUBLIC EventstreamRpc-cpp)
 
 set_target_properties(GreengrassIpc-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
