@@ -886,8 +886,6 @@ namespace Aws
             }
         }
 
-        ClientContinuationHandler::~ClientContinuationHandler() noexcept {}
-
         void ClientContinuation::s_onContinuationMessage(
             struct aws_event_stream_rpc_client_continuation_token *continuationToken,
             const struct aws_event_stream_rpc_message_args *messageArgs,
@@ -1101,13 +1099,9 @@ namespace Aws
         {
         }
 
-        OperationError::OperationError() noexcept {}
-
         void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
 
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
-
-        AbstractShapeBase::~AbstractShapeBase() noexcept {}
 
         ClientOperation::ClientOperation(
             ClientConnection &connection,
