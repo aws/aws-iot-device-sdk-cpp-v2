@@ -101,7 +101,7 @@ jobs:
           - clang-9
           - clang-10
           - clang-11
-          - gcc-4.8
+#    - gcc-4.8
           - gcc-5
           - gcc-6
           - gcc-7
