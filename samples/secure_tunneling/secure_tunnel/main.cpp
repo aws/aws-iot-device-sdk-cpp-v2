@@ -352,7 +352,6 @@ int main(int argc, char *argv[])
      */
     while (keepRunning)
     {
-        //std::this_thread::sleep_for(2000ms);
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
@@ -390,7 +389,6 @@ int main(int argc, char *argv[])
                     connectionId = 2;
                     secureTunnel->SendConnectionStart(m_serviceId.value(), connectionId);
 
-                    //std::this_thread::sleep_for(2000ms);
                     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                 }
                 else
@@ -401,7 +399,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    //std::this_thread::sleep_for(3000ms);
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     fprintf(stdout, "Closing Connection\n");
