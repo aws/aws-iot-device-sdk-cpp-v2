@@ -16,7 +16,6 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
-//using namespace std::chrono_literals;
 
 void logMessage(std::shared_ptr<Message> message)
 {
