@@ -19,14 +19,27 @@ namespace Awstest
 {
     class EchoTestRpcClient;
     class EchoTestRpcServiceModel;
+    /** A simple product definition */
     class AWS_ECHOTESTRPC_API Product : public AbstractShapeBase
     {
       public:
         Product() noexcept {}
         Product(const Product &) = default;
+        /**
+         * The product's name
+         */
         void SetName(const Aws::Crt::String &name) noexcept { m_name = name; }
+        /**
+         * The product's name
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetName() noexcept { return m_name; }
+        /**
+         * How much the product costs
+         */
         void SetPrice(const float &price) noexcept { m_price = price; }
+        /**
+         * How much the product costs
+         */
         Aws::Crt::Optional<float> GetPrice() noexcept { return m_price; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Product &, const Aws::Crt::JsonView &) noexcept;
@@ -46,14 +59,27 @@ namespace Awstest
         Aws::Crt::Optional<float> m_price;
     };
 
+    /** Shape representing a pair of values */
     class AWS_ECHOTESTRPC_API Pair : public AbstractShapeBase
     {
       public:
         Pair() noexcept {}
         Pair(const Pair &) = default;
+        /**
+         * Pair.key as a string
+         */
         void SetKey(const Aws::Crt::String &key) noexcept { m_key = key; }
+        /**
+         * Pair.key as a string
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetKey() noexcept { return m_key; }
+        /**
+         * Pair.value also a string!
+         */
         void SetValue(const Aws::Crt::String &value) noexcept { m_value = value; }
+        /**
+         * Pair.value also a string!
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Pair &, const Aws::Crt::JsonView &) noexcept;
@@ -81,16 +107,35 @@ namespace Awstest
         FRUIT_ENUM_PINEAPPLE
     };
 
+    /** A simple customer definition */
     class AWS_ECHOTESTRPC_API Customer : public AbstractShapeBase
     {
       public:
         Customer() noexcept {}
         Customer(const Customer &) = default;
+        /**
+         * Opaque customer identifier
+         */
         void SetId(const int64_t &id) noexcept { m_id = id; }
+        /**
+         * Opaque customer identifier
+         */
         Aws::Crt::Optional<int64_t> GetId() noexcept { return m_id; }
+        /**
+         * First name of the customer
+         */
         void SetFirstName(const Aws::Crt::String &firstName) noexcept { m_firstName = firstName; }
+        /**
+         * First name of the customer
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetFirstName() noexcept { return m_firstName; }
+        /**
+         * Last name of the customer
+         */
         void SetLastName(const Aws::Crt::String &lastName) noexcept { m_lastName = lastName; }
+        /**
+         * Last name of the customer
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetLastName() noexcept { return m_lastName; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Customer &, const Aws::Crt::JsonView &) noexcept;
@@ -98,8 +143,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(Customer *) noexcept;
-        /* This needs to be defined so that `Customer` can be used as a key in maps.
-         */
+        /* This needs to be defined so that `Customer` can be used as a key in maps. */
         bool operator<(const Customer &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -112,45 +156,98 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::String> m_lastName;
     };
 
+    /** Data associated with some notion of a message */
     class AWS_ECHOTESTRPC_API MessageData : public AbstractShapeBase
     {
       public:
         MessageData() noexcept {}
         MessageData(const MessageData &) = default;
+        /**
+         * Some string data
+         */
         void SetStringMessage(const Aws::Crt::String &stringMessage) noexcept { m_stringMessage = stringMessage; }
+        /**
+         * Some string data
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetStringMessage() noexcept { return m_stringMessage; }
+        /**
+         * Some boolean data
+         */
         void SetBooleanMessage(const bool &booleanMessage) noexcept { m_booleanMessage = booleanMessage; }
+        /**
+         * Some boolean data
+         */
         Aws::Crt::Optional<bool> GetBooleanMessage() noexcept { return m_booleanMessage; }
+        /**
+         * Some timestamp data
+         */
         void SetTimeMessage(const Aws::Crt::DateTime &timeMessage) noexcept { m_timeMessage = timeMessage; }
+        /**
+         * Some timestamp data
+         */
         Aws::Crt::Optional<Aws::Crt::DateTime> GetTimeMessage() noexcept { return m_timeMessage; }
+        /**
+         * Some document data
+         */
         void SetDocumentMessage(const Aws::Crt::JsonObject &documentMessage) noexcept
         {
             m_documentMessage = documentMessage;
         }
+        /**
+         * Some document data
+         */
         Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() noexcept { return m_documentMessage; }
-        /* An enumeration of various tasty fruits. */
+        /**
+         * Some FruitEnum data
+         */
         void SetEnumMessage(FruitEnum enumMessage) noexcept;
-        /* An enumeration of various tasty fruits. */
+        /**
+         * Some FruitEnum data
+         */
         Aws::Crt::Optional<FruitEnum> GetEnumMessage() noexcept;
+        /**
+         * Some blob data
+         */
         void SetBlobMessage(const Aws::Crt::Vector<uint8_t> &blobMessage) noexcept { m_blobMessage = blobMessage; }
+        /**
+         * Some blob data
+         */
         Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() noexcept { return m_blobMessage; }
+        /**
+         * Some list of strings data
+         */
         void SetStringListMessage(const Aws::Crt::Vector<Aws::Crt::String> &stringListMessage) noexcept
         {
             m_stringListMessage = stringListMessage;
         }
+        /**
+         * Some list of strings data
+         */
         Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetStringListMessage() noexcept
         {
             return m_stringListMessage;
         }
+        /**
+         * A list of key-value pairs
+         */
         void SetKeyValuePairList(const Aws::Crt::Vector<Pair> &keyValuePairList) noexcept
         {
             m_keyValuePairList = keyValuePairList;
         }
+        /**
+         * A list of key-value pairs
+         */
         Aws::Crt::Optional<Aws::Crt::Vector<Pair>> GetKeyValuePairList() noexcept { return m_keyValuePairList; }
+        /**
+         * A map from strings to Product shapes
+         */
         void SetStringToValue(const Aws::Crt::Map<Aws::Crt::String, Product> &stringToValue) noexcept
         {
             m_stringToValue = stringToValue;
         }
+        /**
+         * A map from strings to Product shapes
+         */
         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetStringToValue() noexcept
         {
             return m_stringToValue;
@@ -161,8 +258,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(MessageData *) noexcept;
-        /* This needs to be defined so that `MessageData` can be used as a key in
-         * maps. */
+        /* This needs to be defined so that `MessageData` can be used as a key in maps. */
         bool operator<(const MessageData &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -181,19 +277,24 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> m_stringToValue;
     };
 
+    /** A union of values related to a streaming message.  Only one field may bet set. */
     class AWS_ECHOTESTRPC_API EchoStreamingMessage : public AbstractShapeBase
     {
       public:
         EchoStreamingMessage() noexcept {}
         EchoStreamingMessage &operator=(const EchoStreamingMessage &) noexcept;
         EchoStreamingMessage(const EchoStreamingMessage &objectToCopy) { *this = objectToCopy; }
-        /* Data associated with some notion of a message */
+        /**
+         * A message data record
+         */
         void SetStreamMessage(const MessageData &streamMessage) noexcept
         {
             m_streamMessage = streamMessage;
             m_chosenMember = TAG_STREAM_MESSAGE;
         }
-        /* Data associated with some notion of a message */
+        /**
+         * A message data record
+         */
         Aws::Crt::Optional<MessageData> GetStreamMessage() noexcept
         {
             if (m_chosenMember == TAG_STREAM_MESSAGE)
@@ -205,13 +306,17 @@ namespace Awstest
                 return Aws::Crt::Optional<MessageData>();
             }
         }
-        /* Shape representing a pair of values */
+        /**
+         * A key value pair
+         */
         void SetKeyValuePair(const Pair &keyValuePair) noexcept
         {
             m_keyValuePair = keyValuePair;
             m_chosenMember = TAG_KEY_VALUE_PAIR;
         }
-        /* Shape representing a pair of values */
+        /**
+         * A key value pair
+         */
         Aws::Crt::Optional<Pair> GetKeyValuePair() noexcept
         {
             if (m_chosenMember == TAG_KEY_VALUE_PAIR)
@@ -229,8 +334,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingMessage *) noexcept;
-        /* This needs to be defined so that `EchoStreamingMessage` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `EchoStreamingMessage` can be used as a key in maps. */
         bool operator<(const EchoStreamingMessage &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -247,14 +351,27 @@ namespace Awstest
         Aws::Crt::Optional<Pair> m_keyValuePair;
     };
 
+    /** A sample error shape */
     class AWS_ECHOTESTRPC_API ServiceError : public OperationError
     {
       public:
         ServiceError() noexcept {}
         ServiceError(const ServiceError &) = default;
+        /**
+         * An error message
+         */
         void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
+        /**
+         * An error message
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+        /**
+         * Some auxiliary value
+         */
         void SetValue(const Aws::Crt::String &value) noexcept { m_value = value; }
+        /**
+         * Some auxiliary value
+         */
         Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
@@ -262,8 +379,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(ServiceError *) noexcept;
-        /* This needs to be defined so that `ServiceError` can be used as a key in
-         * maps. */
+        /* This needs to be defined so that `ServiceError` can be used as a key in maps. */
         bool operator<(const ServiceError &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -275,12 +391,19 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::String> m_value;
     };
 
+    /** All data associated with the result of a GetAllProducts operation */
     class AWS_ECHOTESTRPC_API GetAllProductsResponse : public AbstractShapeBase
     {
       public:
         GetAllProductsResponse() noexcept {}
         GetAllProductsResponse(const GetAllProductsResponse &) = default;
+        /**
+         * A map from strings to products
+         */
         void SetProducts(const Aws::Crt::Map<Aws::Crt::String, Product> &products) noexcept { m_products = products; }
+        /**
+         * A map from strings to products
+         */
         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetProducts() noexcept { return m_products; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllProductsResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -288,8 +411,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllProductsResponse *) noexcept;
-        /* This needs to be defined so that `GetAllProductsResponse` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `GetAllProductsResponse` can be used as a key in maps. */
         bool operator<(const GetAllProductsResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -300,6 +422,7 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> m_products;
     };
 
+    /** Data needed to perform a GetAllProducts operation */
     class AWS_ECHOTESTRPC_API GetAllProductsRequest : public AbstractShapeBase
     {
       public:
@@ -311,8 +434,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllProductsRequest *) noexcept;
-        /* This needs to be defined so that `GetAllProductsRequest` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `GetAllProductsRequest` can be used as a key in maps. */
         bool operator<(const GetAllProductsRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -322,12 +444,19 @@ namespace Awstest
       private:
     };
 
+    /** All data associated with the result of a GetAllCustomers operation */
     class AWS_ECHOTESTRPC_API GetAllCustomersResponse : public AbstractShapeBase
     {
       public:
         GetAllCustomersResponse() noexcept {}
         GetAllCustomersResponse(const GetAllCustomersResponse &) = default;
+        /**
+         * A list of all known customers
+         */
         void SetCustomers(const Aws::Crt::Vector<Customer> &customers) noexcept { m_customers = customers; }
+        /**
+         * A list of all known customers
+         */
         Aws::Crt::Optional<Aws::Crt::Vector<Customer>> GetCustomers() noexcept { return m_customers; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllCustomersResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -335,8 +464,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllCustomersResponse *) noexcept;
-        /* This needs to be defined so that `GetAllCustomersResponse` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `GetAllCustomersResponse` can be used as a key in maps. */
         bool operator<(const GetAllCustomersResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -347,6 +475,7 @@ namespace Awstest
         Aws::Crt::Optional<Aws::Crt::Vector<Customer>> m_customers;
     };
 
+    /** Data needed to perform a GetAllCustomers operation */
     class AWS_ECHOTESTRPC_API GetAllCustomersRequest : public AbstractShapeBase
     {
       public:
@@ -358,8 +487,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllCustomersRequest *) noexcept;
-        /* This needs to be defined so that `GetAllCustomersRequest` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `GetAllCustomersRequest` can be used as a key in maps. */
         bool operator<(const GetAllCustomersRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -369,6 +497,7 @@ namespace Awstest
       private:
     };
 
+    /** Data associated with the response to starting an EchoStreaming streaming operation */
     class AWS_ECHOTESTRPC_API EchoStreamingResponse : public AbstractShapeBase
     {
       public:
@@ -380,8 +509,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingResponse *) noexcept;
-        /* This needs to be defined so that `EchoStreamingResponse` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `EchoStreamingResponse` can be used as a key in maps. */
         bool operator<(const EchoStreamingResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -391,6 +519,7 @@ namespace Awstest
       private:
     };
 
+    /** Data needed to start an EchoStreaming streaming operation */
     class AWS_ECHOTESTRPC_API EchoStreamingRequest : public AbstractShapeBase
     {
       public:
@@ -402,8 +531,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingRequest *) noexcept;
-        /* This needs to be defined so that `EchoStreamingRequest` can be used as a
-         * key in maps. */
+        /* This needs to be defined so that `EchoStreamingRequest` can be used as a key in maps. */
         bool operator<(const EchoStreamingRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -413,14 +541,19 @@ namespace Awstest
       private:
     };
 
+    /** All data associated with the result of an EchoMessage operation */
     class AWS_ECHOTESTRPC_API EchoMessageResponse : public AbstractShapeBase
     {
       public:
         EchoMessageResponse() noexcept {}
         EchoMessageResponse(const EchoMessageResponse &) = default;
-        /* Data associated with some notion of a message */
+        /**
+         * Some message data
+         */
         void SetMessage(const MessageData &message) noexcept { m_message = message; }
-        /* Data associated with some notion of a message */
+        /**
+         * Some message data
+         */
         Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -428,8 +561,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoMessageResponse *) noexcept;
-        /* This needs to be defined so that `EchoMessageResponse` can be used as a key
-         * in maps. */
+        /* This needs to be defined so that `EchoMessageResponse` can be used as a key in maps. */
         bool operator<(const EchoMessageResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -440,14 +572,19 @@ namespace Awstest
         Aws::Crt::Optional<MessageData> m_message;
     };
 
+    /** Data needed to perform an EchoMessage operation */
     class AWS_ECHOTESTRPC_API EchoMessageRequest : public AbstractShapeBase
     {
       public:
         EchoMessageRequest() noexcept {}
         EchoMessageRequest(const EchoMessageRequest &) = default;
-        /* Data associated with some notion of a message */
+        /**
+         * Some message data
+         */
         void SetMessage(const MessageData &message) noexcept { m_message = message; }
-        /* Data associated with some notion of a message */
+        /**
+         * Some message data
+         */
         Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -455,8 +592,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoMessageRequest *) noexcept;
-        /* This needs to be defined so that `EchoMessageRequest` can be used as a key
-         * in maps. */
+        /* This needs to be defined so that `EchoMessageRequest` can be used as a key in maps. */
         bool operator<(const EchoMessageRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -467,6 +603,7 @@ namespace Awstest
         Aws::Crt::Optional<MessageData> m_message;
     };
 
+    /** All data associated with the result of an EchoMessage operation */
     class AWS_ECHOTESTRPC_API CauseServiceErrorResponse : public AbstractShapeBase
     {
       public:
@@ -478,8 +615,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(CauseServiceErrorResponse *) noexcept;
-        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as
-         * a key in maps. */
+        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as a key in maps. */
         bool operator<(const CauseServiceErrorResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -489,6 +625,7 @@ namespace Awstest
       private:
     };
 
+    /** Data needed to perform a CauseServiceError operation */
     class AWS_ECHOTESTRPC_API CauseServiceErrorRequest : public AbstractShapeBase
     {
       public:
@@ -500,8 +637,7 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(CauseServiceErrorRequest *) noexcept;
-        /* This needs to be defined so that `CauseServiceErrorRequest` can be used as
-         * a key in maps. */
+        /* This needs to be defined so that `CauseServiceErrorRequest` can be used as a key in maps. */
         bool operator<(const CauseServiceErrorRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -559,10 +695,8 @@ namespace Awstest
         /**
          * Used to activate a stream for the `GetAllProductsOperation`
          * @param request The request used for the `GetAllProductsOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const GetAllProductsRequest &request,
@@ -624,10 +758,8 @@ namespace Awstest
         /**
          * Used to activate a stream for the `CauseServiceErrorOperation`
          * @param request The request used for the `CauseServiceErrorOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const CauseServiceErrorRequest &request,
@@ -647,10 +779,8 @@ namespace Awstest
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
 
         /**
-         * A callback that is invoked when an error occurs while parsing a message
-         * from the stream.
-         * @param rpcError The RPC error containing the status and possibly a CRT
-         * error.
+         * A callback that is invoked when an error occurs while parsing a message from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT error.
          */
         virtual bool OnStreamError(RpcError rpcError)
         {
@@ -669,8 +799,7 @@ namespace Awstest
         }
 
         /**
-         * A callback that is invoked upon receiving ANY error response from the
-         * server.
+         * A callback that is invoked upon receiving ANY error response from the server.
          * @param operationError The error message being received.
          */
         virtual bool OnStreamError(OperationError *operationError)
@@ -685,8 +814,7 @@ namespace Awstest
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
         /**
-         * Invoked when a message is received on this continuation but results in an
-         * error.
+         * Invoked when a message is received on this continuation but results in an error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
@@ -742,12 +870,9 @@ namespace Awstest
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
         /**
          * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
-         * @param request The request used for the
-         * `CauseStreamServiceToErrorOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param request The request used for the `CauseStreamServiceToErrorOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
@@ -767,10 +892,8 @@ namespace Awstest
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
 
         /**
-         * A callback that is invoked when an error occurs while parsing a message
-         * from the stream.
-         * @param rpcError The RPC error containing the status and possibly a CRT
-         * error.
+         * A callback that is invoked when an error occurs while parsing a message from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT error.
          */
         virtual bool OnStreamError(RpcError rpcError)
         {
@@ -779,8 +902,7 @@ namespace Awstest
         }
 
         /**
-         * A callback that is invoked upon receiving ANY error response from the
-         * server.
+         * A callback that is invoked upon receiving ANY error response from the server.
          * @param operationError The error message being received.
          */
         virtual bool OnStreamError(OperationError *operationError)
@@ -795,8 +917,7 @@ namespace Awstest
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
         /**
-         * Invoked when a message is received on this continuation but results in an
-         * error.
+         * Invoked when a message is received on this continuation but results in an error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
@@ -851,10 +972,8 @@ namespace Awstest
         /**
          * Used to activate a stream for the `EchoStreamMessagesOperation`
          * @param request The request used for the `EchoStreamMessagesOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
@@ -916,10 +1035,8 @@ namespace Awstest
         /**
          * Used to activate a stream for the `EchoMessageOperation`
          * @param request The request used for the `EchoMessageOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const EchoMessageRequest &request,
@@ -981,10 +1098,8 @@ namespace Awstest
         /**
          * Used to activate a stream for the `GetAllCustomersOperation`
          * @param request The request used for the `GetAllCustomersOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the
-         * request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was
-         * activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
          */
         std::future<RpcError> Activate(
             const GetAllCustomersRequest &request,

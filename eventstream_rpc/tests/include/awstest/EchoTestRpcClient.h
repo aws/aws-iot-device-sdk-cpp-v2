@@ -40,18 +40,36 @@ namespace Awstest
         void Close() noexcept;
         void WithLaunchMode(std::launch mode) noexcept;
 
+        /**
+         * Fetches all products, indexed by SKU
+         */
         std::shared_ptr<GetAllProductsOperation> NewGetAllProducts() noexcept;
 
+        /**
+         * Throws a ServiceError instead of returning a response.
+         */
         std::shared_ptr<CauseServiceErrorOperation> NewCauseServiceError() noexcept;
 
+        /**
+         * Responds to initial request normally then throws a ServiceError on stream response
+         */
         std::shared_ptr<CauseStreamServiceToErrorOperation> NewCauseStreamServiceToError(
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler) noexcept;
 
+        /**
+         * Initial request and response are empty, but echos streaming messages sent by client
+         */
         std::shared_ptr<EchoStreamMessagesOperation> NewEchoStreamMessages(
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler) noexcept;
 
+        /**
+         * Returns the same data sent in the request to the response
+         */
         std::shared_ptr<EchoMessageOperation> NewEchoMessage() noexcept;
 
+        /**
+         * Fetches all customers
+         */
         std::shared_ptr<GetAllCustomersOperation> NewGetAllCustomers() noexcept;
 
         ~EchoTestRpcClient() noexcept;
