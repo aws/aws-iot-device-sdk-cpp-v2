@@ -16,7 +16,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
 using namespace Aws::Crt::Io;
-using namespace std::chrono_literals;
+//using namespace std::chrono_literals;
 
 void logMessage(std::shared_ptr<Message> message)
 {
@@ -352,7 +352,8 @@ int main(int argc, char *argv[])
      */
     while (keepRunning)
     {
-        std::this_thread::sleep_for(2000ms);
+        //std::this_thread::sleep_for(2000ms);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
             uint16_t messageCount = static_cast<uint16_t>(cmdData.input_count);
@@ -389,7 +390,8 @@ int main(int argc, char *argv[])
                     connectionId = 2;
                     secureTunnel->SendConnectionStart(m_serviceId.value(), connectionId);
 
-                    std::this_thread::sleep_for(2000ms);
+                    //std::this_thread::sleep_for(2000ms);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                 }
                 else
                 {
@@ -399,7 +401,8 @@ int main(int argc, char *argv[])
         }
     }
 
-    std::this_thread::sleep_for(3000ms);
+    //std::this_thread::sleep_for(3000ms);
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     fprintf(stdout, "Closing Connection\n");
     // Set the Secure Tunnel Client to desire a stopped state
