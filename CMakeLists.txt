@@ -11,6 +11,7 @@ project(aws-iot-device-sdk-cpp-v2
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
+option(USE_EXTERNAL_DEPS_SOURCES "Use dependencies provided by add_subdirectory command" OFF)
 option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
@@ -71,7 +72,11 @@ if (BUILD_DEPS)
     set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
     include(AwsFindPackage)
-    set(IN_SOURCE_BUILD OFF)
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        set(IN_SOURCE_BUILD ON)
+    else()
+        set(IN_SOURCE_BUILD OFF)
+    endif()
 endif()
 
 aws_use_package(aws-crt-cpp)
