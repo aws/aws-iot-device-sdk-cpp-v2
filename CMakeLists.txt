@@ -58,6 +58,10 @@ else()
 endif()
 
 if (BUILD_DEPS)
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option should be used with BUILD_DEPS set to OFF")
+    endif()
+
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-crt-cpp/crt/aws-c-common/cmake")
 
     include(AwsFindPackage)
@@ -71,12 +75,27 @@ if (BUILD_DEPS)
     endif ()
     set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
-    include(AwsFindPackage)
     if (USE_EXTERNAL_DEPS_SOURCES)
+        function(validate_deps_sources dep_name)
+            if (NOT ${dep_name}_SOURCE_DIR)
+                message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option is set, but ${dep_name} project is not configured."
+                    " ${dep_name} must be added using add_subdirectory command (or one of the higher-level commands that"
+                    " uses add_subdirectory, like FetchContent)")
+            endif()
+        endfunction()
+
+        validate_deps_sources(aws-crt-cpp)
+        validate_deps_sources(aws-c-iot)
+        validate_deps_sources(aws-c-common)
+
+        list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR)}/cmake")
+
         set(IN_SOURCE_BUILD ON)
     else()
         set(IN_SOURCE_BUILD OFF)
     endif()
+
+    include(AwsFindPackage)
 endif()
 
 aws_use_package(aws-crt-cpp)
