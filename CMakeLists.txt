@@ -88,7 +88,7 @@ else()
         validate_deps_sources(aws-c-iot)
         validate_deps_sources(aws-c-common)
 
-        list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR)}/cmake")
+        list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
 
         set(IN_SOURCE_BUILD ON)
     else()
