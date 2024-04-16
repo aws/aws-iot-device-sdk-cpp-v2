@@ -71,32 +71,14 @@ namespace Aws
             EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
-            EventStreamHeader(const Crt::String &name, bool value);
-            EventStreamHeader(const Crt::String &name, int8_t value);
-            EventStreamHeader(const Crt::String &name, int16_t value);
-            EventStreamHeader(const Crt::String &name, int32_t value);
-            EventStreamHeader(const Crt::String &name, int64_t value);
-            EventStreamHeader(const Crt::String &name, Crt::DateTime &value);
             EventStreamHeader(
                 const Crt::String &name,
                 const Crt::String &value,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            EventStreamHeader(const Crt::String &name, Crt::ByteBuf &value);
-            EventStreamHeader(const Crt::String &name, Crt::UUID value);
 
-            HeaderValueType GetHeaderValueType();
             Crt::String GetHeaderName() const noexcept;
-            void SetHeaderName(const Crt::String &);
 
-            bool GetValueAsBoolean(bool &);
-            bool GetValueAsByte(int8_t &);
-            bool GetValueAsShort(int16_t &);
-            bool GetValueAsInt(int32_t &);
-            bool GetValueAsLong(int64_t &);
-            bool GetValueAsTimestamp(Crt::DateTime &);
             bool GetValueAsString(Crt::String &) const noexcept;
-            bool GetValueAsBytes(Crt::ByteBuf &);
-            bool GetValueAsUUID(Crt::UUID &);
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
 
@@ -229,6 +211,8 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
         {
           public:
+            virtual ~ConnectionLifecycleHandler() noexcept = default;
+
             /**
              * This callback is only invoked upon receiving a CONNECT_ACK with the
              * CONNECTION_ACCEPTED flag set by the server. Therefore, once this callback
@@ -300,7 +284,7 @@ namespace Aws
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
             virtual void OnContinuationClosed() = 0;
-            virtual ~ClientContinuationHandler() noexcept;
+            virtual ~ClientContinuationHandler() noexcept = default;
 
           private:
             friend class ClientContinuation;
@@ -352,7 +336,6 @@ namespace Aws
              * @return True if the continuation has been closed, false otherwise.
              */
             bool IsClosed() noexcept;
-            void Release() noexcept;
 
             /**
              * Send message on the continuation.
@@ -394,7 +377,7 @@ namespace Aws
         {
           public:
             AbstractShapeBase() noexcept;
-            virtual ~AbstractShapeBase() noexcept;
+            virtual ~AbstractShapeBase() noexcept = default;
             static void s_customDeleter(AbstractShapeBase *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const = 0;
             virtual Crt::String GetModelName() const noexcept = 0;
@@ -409,7 +392,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API OperationError : public AbstractShapeBase
         {
           public:
-            explicit OperationError() noexcept;
+            explicit OperationError() noexcept = default;
             static void s_customDeleter(OperationError *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
             virtual Crt::Optional<Crt::String> GetMessage() noexcept = 0;
@@ -423,6 +406,8 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API StreamResponseHandler
         {
           public:
+            virtual ~StreamResponseHandler() noexcept = default;
+
             /**
              * Invoked when stream is closed, so no more messages will be received.
              */
@@ -523,6 +508,7 @@ namespace Aws
         {
             /* An interface shared by all operations for retrieving the response object given the model name. */
           public:
+            virtual ~ResponseRetriever() noexcept = default;
             virtual ExpectedResponseFactory GetInitialResponseFromModelName(
                 const Crt::String &modelName) const noexcept = 0;
             virtual ExpectedResponseFactory GetStreamingResponseFromModelName(
@@ -534,6 +520,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ServiceModel
         {
           public:
+            virtual ~ServiceModel() noexcept = default;
             virtual Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
                 const Crt::String &errorModelName,
                 Crt::StringView stringView,
@@ -547,6 +534,8 @@ namespace Aws
         {
           public:
             OperationModelContext(const ServiceModel &serviceModel) noexcept;
+
+            virtual ~OperationModelContext() noexcept = default;
 
             /**
              * Parse the given string into an initial response object.
@@ -661,9 +650,6 @@ namespace Aws
              */
             std::future<RpcError> Activate(
                 const AbstractShapeBase *shape,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            std::future<RpcError> SendStreamEvent(
-                AbstractShapeBase *shape,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             /**
