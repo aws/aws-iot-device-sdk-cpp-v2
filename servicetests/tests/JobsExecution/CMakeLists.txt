@@ -4,6 +4,7 @@ project(job-execution CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
+       "*.h"
        "../../../samples/utils/CommandLineUtils.cpp"
        "../../../samples/utils/CommandLineUtils.h"
 )
