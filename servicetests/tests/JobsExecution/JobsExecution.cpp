@@ -25,7 +25,8 @@ using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
 JobsExecution::JobsExecution(std::shared_ptr<Aws::Iotjobs::IotJobsClient> jobsClient, Aws::Crt::String thingName)
-    : m_jobsClient(std::move(jobsClient)), m_thingName(std::move(thingName)), m_currentExecutionNumber(), m_currentVersionNumber()
+    : m_jobsClient(std::move(jobsClient)), m_thingName(std::move(thingName)), m_currentExecutionNumber(),
+      m_currentVersionNumber()
 {
 }
 
@@ -127,7 +128,8 @@ Aws::Crt::Vector<Aws::Crt::String> JobsExecution::getAvailableJobs()
     return m_availableJobs;
 }
 
-void JobsExecution::describeJob(const String &jobId) {
+void JobsExecution::describeJob(const String &jobId)
+{
     DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
     describeJobExecutionSubscriptionRequest.ThingName = m_thingName;
     describeJobExecutionSubscriptionRequest.JobId = jobId;
@@ -204,7 +206,8 @@ void JobsExecution::describeJob(const String &jobId) {
     publishDescribeJobExeCompletedPromise.get_future().wait();
 }
 
-void JobsExecution::startNextPendingJob() {
+void JobsExecution::startNextPendingJob()
+{
     std::promise<void> subAckedPromise;
     auto subAckHandler = [&subAckedPromise](int) {
         // if error code returns it will be recorded by the other callback
@@ -230,30 +233,30 @@ void JobsExecution::startNextPendingJob() {
 
     Aws::Crt::String jobId;
 
-    auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse = [this](StartNextJobExecutionResponse *response,
-                                                                         int ioErr) {
-        if (ioErr)
-        {
-            fprintf(stderr, "Error %d occurred\n", ioErr);
-            exit(1);
-        }
-        if (response && response->Execution.has_value())
-        {
-            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-            // Make tsan happy.
-            std::lock_guard<std::mutex> lock(m_jobsMutex);
-            m_currentJobId = response->Execution->JobId.value();
-            m_currentExecutionNumber = response->Execution->ExecutionNumber.value();
-            m_currentVersionNumber = response->Execution->VersionNumber.value();
-        }
-        else
-        {
-            fprintf(stdout, "Could not get Job Id, exiting\n");
-            exit(-1);
-        }
+    auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
+        [this](StartNextJobExecutionResponse *response, int ioErr) {
+            if (ioErr)
+            {
+                fprintf(stderr, "Error %d occurred\n", ioErr);
+                exit(1);
+            }
+            if (response && response->Execution.has_value())
+            {
+                fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                // Make tsan happy.
+                std::lock_guard<std::mutex> lock(m_jobsMutex);
+                m_currentJobId = response->Execution->JobId.value();
+                m_currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                m_currentVersionNumber = response->Execution->VersionNumber.value();
+            }
+            else
+            {
+                fprintf(stdout, "Could not get Job Id, exiting\n");
+                exit(-1);
+            }
 
-        m_pendingExecutionPromise.set_value();
-    };
+            m_pendingExecutionPromise.set_value();
+        };
 
     StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
     subscriptionRequest.ThingName = m_thingName;
@@ -329,7 +332,8 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
     };
 
     m_pendingExecutionPromise = std::promise<void>();
-    auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [this, jobId](UpdateJobExecutionResponse *response, int ioErr) {
+    auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [this,
+                                                            jobId](UpdateJobExecutionResponse *response, int ioErr) {
         (void)response;
         if (ioErr)
         {
