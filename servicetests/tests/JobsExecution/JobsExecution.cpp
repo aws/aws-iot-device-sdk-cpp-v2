@@ -151,10 +151,10 @@ void JobsExecution::describeJob(const String &jobId)
         }
         if (response)
         {
-            fprintf(stdout, "Received Job:\n");
-            fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
-            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            fprintf(stderr, "Received Job:\n");
+            fprintf(stderr, "Job Id: %s\n", response->Execution->JobId->c_str());
+            fprintf(stderr, "ClientToken: %s\n", response->ClientToken->c_str());
+            fprintf(stderr, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
         }
     };
 
@@ -242,7 +242,7 @@ void JobsExecution::startNextPendingJob()
             }
             if (response && response->Execution.has_value())
             {
-                fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                fprintf(stderr, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
                 // Make tsan happy.
                 std::lock_guard<std::mutex> lock(m_jobsMutex);
                 m_currentJobId = response->Execution->JobId.value();
@@ -251,7 +251,7 @@ void JobsExecution::startNextPendingJob()
             }
             else
             {
-                fprintf(stdout, "Could not get Job Id, exiting\n");
+                fprintf(stderr, "Could not get Job Id, exiting\n");
                 exit(-1);
             }
 
@@ -340,7 +340,7 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
             fprintf(stderr, "Error %d occurred\n", ioErr);
             exit(1);
         }
-        fprintf(stdout, "Marked Job %s %s\n", jobId.c_str(), JobStatusMarshaller::ToString(jobStatus));
+        fprintf(stderr, "Marked Job %s %s\n", jobId.c_str(), JobStatusMarshaller::ToString(jobStatus));
         m_pendingExecutionPromise.set_value();
     };
     UpdateJobExecutionSubscriptionRequest subscriptionRequest;
@@ -369,7 +369,7 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
             exit(1);
         }
         else {
-            fprintf(stdout, "Publish handler done\n");
+            fprintf(stderr, "Publish handler done\n");
         }
         publishPromise.set_value();
     };

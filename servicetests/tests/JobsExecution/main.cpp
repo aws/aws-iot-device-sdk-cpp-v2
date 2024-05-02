@@ -76,12 +76,12 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
-            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
+            fprintf(stderr, "Connection failed with error %s\n", ErrorDebugString(errorCode));
             connectionCompletedPromise.set_value(false);
         }
         else
         {
-            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+            fprintf(stderr, "Connection completed with return code %d\n", returnCode);
             connectionCompletedPromise.set_value(true);
         }
     };
@@ -89,7 +89,7 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     // Invoked when a disconnect has been completed
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
-            fprintf(stdout, "Disconnect completed\n");
+            fprintf(stderr, "Disconnect completed\n");
             connectionClosedPromise.set_value();
         }
     };
@@ -135,18 +135,18 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     builder->WithClientConnectionSuccessCallback(
         [&connectionCompletedPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
-                stdout,
+                stderr,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionCompletedPromise.set_value(true);
         });
     builder->WithClientConnectionFailureCallback([&connectionCompletedPromise](
                                                      const Mqtt5::OnConnectionFailureEventData &eventData) {
-        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        fprintf(stderr, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionCompletedPromise.set_value(false);
     });
     builder->WithClientStoppedCallback([&connectionClosedPromise](const Mqtt5::OnStoppedEventData &) {
-        fprintf(stdout, "Mqtt5 Client stopped.\n");
+        fprintf(stderr, "Mqtt5 Client stopped.\n");
         connectionClosedPromise.set_value();
     });
 
@@ -154,7 +154,7 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     if (client5 == nullptr)
     {
         fprintf(
-            stdout, "Failed to Init Mqtt5Client with error code %d: %s.\n", LastError(), ErrorDebugString(LastError()));
+            stderr, "Failed to Init Mqtt5Client with error code %d: %s.\n", LastError(), ErrorDebugString(LastError()));
         exit(-1);
     }
 
@@ -168,7 +168,7 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
 
 int main(int argc, char *argv[])
 {
-    fprintf(stdout, "Starting the jobs execution program\n");
+    fprintf(stderr, "Starting the jobs execution program\n");
     /************************ Setup ****************************/
 
     // Do the global initialization for the API
