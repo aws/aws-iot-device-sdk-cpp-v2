@@ -333,14 +333,14 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
 
     m_pendingExecutionPromise = std::promise<void>();
     auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [this,
-                                                            jobId](UpdateJobExecutionResponse *response, int ioErr) {
+                                                            jobId, jobStatus](UpdateJobExecutionResponse *response, int ioErr) {
         (void)response;
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
             exit(1);
         }
-        fprintf(stdout, "Marked Job %s IN_PROGRESS", jobId.c_str());
+        fprintf(stdout, "Marked Job %s %s\n", jobId.c_str(), JobStatusMarshaller::ToString(jobStatus));
         m_pendingExecutionPromise.set_value();
     };
     UpdateJobExecutionSubscriptionRequest subscriptionRequest;
@@ -360,15 +360,18 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
         subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
     subAckedPromise.get_future().wait();
 
-    std::promise<void> publishDescribeJobExeCompletedPromise;
+    std::promise<void> publishPromise;
 
-    auto publishHandler = [&publishDescribeJobExeCompletedPromise](int ioErr) {
+    auto publishHandler = [&publishPromise](int ioErr) {
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
             exit(1);
         }
-        publishDescribeJobExeCompletedPromise.set_value();
+        else {
+            fprintf(stdout, "Publish handler done\n");
+        }
+        publishPromise.set_value();
     };
 
     UpdateJobExecutionRequest publishRequest;
@@ -379,6 +382,6 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
     publishRequest.ExpectedVersion = currentVersionNumber++;
     m_jobsClient->PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
 
-    publishDescribeJobExeCompletedPromise.get_future().wait();
+    publishPromise.get_future().wait();
     m_pendingExecutionPromise.get_future().wait();
 }
