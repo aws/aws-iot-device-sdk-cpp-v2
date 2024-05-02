@@ -243,8 +243,6 @@ void JobsExecution::startNextPendingJob()
             if (response && response->Execution.has_value())
             {
                 fprintf(stderr, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                // Make tsan happy.
-                std::lock_guard<std::mutex> lock(m_jobsMutex);
                 m_currentJobId = response->Execution->JobId.value();
                 m_currentExecutionNumber = response->Execution->ExecutionNumber.value();
                 m_currentVersionNumber = response->Execution->VersionNumber.value();
@@ -301,8 +299,6 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
     int32_t currentVersionNumber;
 
     {
-        // Make tsan happy.
-        std::lock_guard<std::mutex> lock(m_jobsMutex);
         jobId = m_currentJobId;
         currentExecutionNumber = m_currentExecutionNumber;
         currentVersionNumber = m_currentVersionNumber;
