@@ -379,5 +379,6 @@ void JobsExecution::updateCurrentJobStatus(Aws::Iotjobs::JobStatus jobStatus)
     publishRequest.ExpectedVersion = currentVersionNumber++;
     m_jobsClient->PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
 
+    publishDescribeJobExeCompletedPromise.get_future().wait();
     m_pendingExecutionPromise.get_future().wait();
 }
