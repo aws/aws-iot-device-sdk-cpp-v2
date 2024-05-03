@@ -4,6 +4,7 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
+#include <aws/crt/io/HostResolver.h>
 
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
@@ -25,14 +26,22 @@
 #include <aws/iotjobs/UpdateJobExecutionSubscriptionRequest.h>
 
 #include <algorithm>
+#include <chrono>
 #include <condition_variable>
+#include <iostream>
+#include <mutex>
 #include <thread>
+#include <vector>
 
 #include "../../../samples/utils/CommandLineUtils.h"
-#include "JobsExecution.h"
 
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
+
+void getAvailableJobs(
+    Aws::Crt::String thingName,
+    IotJobsClient &jobsClient,
+    std::vector<Aws::Crt::String> &availableJobs);
 
 std::shared_ptr<IotJobsClient> build_mqtt3_client(
     Utils::cmdData &cmdData,
@@ -76,12 +85,12 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
-            fprintf(stderr, "Connection failed with error %s\n", ErrorDebugString(errorCode));
+            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
             connectionCompletedPromise.set_value(false);
         }
         else
         {
-            fprintf(stderr, "Connection completed with return code %d\n", returnCode);
+            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
             connectionCompletedPromise.set_value(true);
         }
     };
@@ -89,7 +98,7 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     // Invoked when a disconnect has been completed
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
-            fprintf(stderr, "Disconnect completed\n");
+            fprintf(stdout, "Disconnect completed\n");
             connectionClosedPromise.set_value();
         }
     };
@@ -135,18 +144,18 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     builder->WithClientConnectionSuccessCallback(
         [&connectionCompletedPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
-                stderr,
+                stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionCompletedPromise.set_value(true);
         });
     builder->WithClientConnectionFailureCallback([&connectionCompletedPromise](
                                                      const Mqtt5::OnConnectionFailureEventData &eventData) {
-        fprintf(stderr, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
         connectionCompletedPromise.set_value(false);
     });
     builder->WithClientStoppedCallback([&connectionClosedPromise](const Mqtt5::OnStoppedEventData &) {
-        fprintf(stderr, "Mqtt5 Client stopped.\n");
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
         connectionClosedPromise.set_value();
     });
 
@@ -154,7 +163,7 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     if (client5 == nullptr)
     {
         fprintf(
-            stderr, "Failed to Init Mqtt5Client with error code %d: %s.\n", LastError(), ErrorDebugString(LastError()));
+            stdout, "Failed to Init Mqtt5Client with error code %d: %s.\n", LastError(), ErrorDebugString(LastError()));
         exit(-1);
     }
 
@@ -168,7 +177,8 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
 
 int main(int argc, char *argv[])
 {
-    fprintf(stderr, "Starting the jobs execution program\n");
+
+    fprintf(stdout, "Starting the jobs execution programm\n");
     /************************ Setup ****************************/
 
     // Do the global initialization for the API
@@ -207,17 +217,231 @@ int main(int argc, char *argv[])
     /************************ Run the sample ****************************/
     if (connectionCompletedPromise.get_future().get())
     {
-        JobsExecution jobsExecution(jobsClient, cmdData.input_thingName);
-        auto availableJobs = jobsExecution.getAvailableJobs();
-        for (const auto &jobId : availableJobs)
+        std::vector<Aws::Crt::String> availableJobs;
+        getAvailableJobs(cmdData.input_thingName, *jobsClient, availableJobs);
+        for (auto jobid : availableJobs)
         {
-            jobsExecution.describeJob(jobId);
-        }
+            DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
+            describeJobExecutionSubscriptionRequest.ThingName = cmdData.input_thingName;
+            describeJobExecutionSubscriptionRequest.JobId = jobid;
 
-        for (size_t idx = 0; idx < availableJobs.size(); ++idx)
-        {
-            jobsExecution.startNextPendingJob();
-            jobsExecution.updateCurrentJobStatus(Aws::Iotjobs::JobStatus::SUCCEEDED);
+            /**
+             * This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
+             * to be cautious make sure the subscribe has finished before doing the publish.
+             */
+            std::promise<void> subAckedPromise;
+            auto subAckHandler = [&](int) {
+                // if error code returns it will be recorded by the other callback
+                subAckedPromise.set_value();
+            };
+            auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
+                if (ioErr)
+                {
+                    fprintf(stderr, "Error %d occurred\n", ioErr);
+                    return;
+                }
+                if (response)
+                {
+                    fprintf(stdout, "Received Job:\n");
+                    fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
+                    fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
+                    fprintf(
+                        stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+                }
+            };
+
+            jobsClient->SubscribeToDescribeJobExecutionAccepted(
+                describeJobExecutionSubscriptionRequest,
+                AWS_MQTT_QOS_AT_LEAST_ONCE,
+                subscriptionHandler,
+                subAckHandler);
+            subAckedPromise.get_future().wait();
+
+            subAckedPromise = std::promise<void>();
+
+            auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
+                if (ioErr)
+                {
+                    fprintf(stderr, "Error %d occurred\n", ioErr);
+                    return;
+                }
+                if (rejectedError)
+                {
+                    fprintf(
+                        stderr,
+                        "Service Error %d occurred. Message %s\n",
+                        (int)rejectedError->Code.value(),
+                        rejectedError->Message->c_str());
+                    return;
+                }
+            };
+
+            jobsClient->SubscribeToDescribeJobExecutionRejected(
+                describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+            subAckedPromise.get_future().wait();
+
+            DescribeJobExecutionRequest describeJobExecutionRequest;
+            describeJobExecutionRequest.ThingName = cmdData.input_thingName;
+            describeJobExecutionRequest.JobId = jobid;
+            describeJobExecutionRequest.IncludeJobDocument = true;
+            Aws::Crt::UUID uuid;
+            describeJobExecutionRequest.ClientToken = uuid.ToString();
+            std::promise<void> publishDescribeJobExeCompletedPromise;
+
+            auto publishHandler = [&](int ioErr) {
+                if (ioErr)
+                {
+                    fprintf(stderr, "Error %d occurred\n", ioErr);
+                    exit(1);
+                }
+                publishDescribeJobExeCompletedPromise.set_value();
+            };
+
+            jobsClient->PublishDescribeJobExecution(
+                std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
+            publishDescribeJobExeCompletedPromise.get_future().wait();
+
+            Aws::Crt::String currentJobId;
+            int64_t currentExecutionNumber;
+            int32_t currentVersionNumber;
+
+            std::promise<void> pendingExecutionPromise;
+
+            {
+                auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
+                    [&](StartNextJobExecutionResponse *response, int ioErr) {
+                        if (ioErr)
+                        {
+                            fprintf(stderr, "Error %d occurred\n", ioErr);
+                            exit(1);
+                        }
+                        if (response)
+                        {
+                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                            currentJobId = response->Execution->JobId.value();
+                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                            currentVersionNumber = response->Execution->VersionNumber.value();
+                        }
+                        else
+                        {
+                            fprintf(stdout, "Could not get Job Id exiting\n");
+                            exit(-1);
+                        }
+
+                        pendingExecutionPromise.set_value();
+                    };
+
+                StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
+                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToStartNextPendingJobExecutionAccepted(
+                    subscriptionRequest,
+                    AWS_MQTT_QOS_AT_LEAST_ONCE,
+                    OnSubscribeToStartNextPendingJobExecutionAcceptedResponse,
+                    subAckHandler);
+
+                subAckedPromise.get_future().wait();
+
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToStartNextPendingJobExecutionRejected(
+                    subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+
+                subAckedPromise.get_future().wait();
+
+                StartNextPendingJobExecutionRequest publishRequest;
+                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.StepTimeoutInMinutes = 15L;
+
+                publishDescribeJobExeCompletedPromise = std::promise<void>();
+                jobsClient->PublishStartNextPendingJobExecution(
+                    publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
+
+                pendingExecutionPromise.get_future().wait();
+            }
+
+            {
+                pendingExecutionPromise = std::promise<void>();
+                auto OnSubscribeToUpdateJobExecutionAcceptedResponse = [&](UpdateJobExecutionResponse *response,
+                                                                           int ioErr) {
+                    (void)response;
+                    if (ioErr)
+                    {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                        exit(1);
+                    }
+                    fprintf(stdout, "Marked Job %s IN_PROGRESS", currentJobId.c_str());
+                    pendingExecutionPromise.set_value();
+                };
+                UpdateJobExecutionSubscriptionRequest subscriptionRequest;
+                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subscriptionRequest.JobId = currentJobId;
+
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToUpdateJobExecutionAccepted(
+                    subscriptionRequest,
+                    AWS_MQTT_QOS_AT_LEAST_ONCE,
+                    OnSubscribeToUpdateJobExecutionAcceptedResponse,
+                    subAckHandler);
+                subAckedPromise.get_future().wait();
+
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToUpdateJobExecutionRejected(
+                    subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+                subAckedPromise.get_future().wait();
+
+                publishDescribeJobExeCompletedPromise = std::promise<void>();
+                UpdateJobExecutionRequest publishRequest;
+                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.JobId = currentJobId;
+                publishRequest.ExecutionNumber = currentExecutionNumber;
+                publishRequest.Status = JobStatus::IN_PROGRESS;
+                publishRequest.ExpectedVersion = currentVersionNumber++;
+                jobsClient->PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
+
+                pendingExecutionPromise.get_future().wait();
+            }
+
+            // Pretend doing some work
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+            {
+                pendingExecutionPromise = std::promise<void>();
+                UpdateJobExecutionSubscriptionRequest subscriptionRequest;
+                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subscriptionRequest.JobId = currentJobId;
+
+                auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
+                    (void)response;
+                    if (ioErr)
+                    {
+                        fprintf(stderr, "Error %d occurred\n", ioErr);
+                        exit(1);
+                    }
+                    fprintf(stdout, "Marked job %s currentJobId SUCCEEDED", currentJobId.c_str());
+                    pendingExecutionPromise.set_value();
+                };
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToUpdateJobExecutionAccepted(
+                    subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscribeHandler, subAckHandler);
+                subAckedPromise.get_future().wait();
+
+                subAckedPromise = std::promise<void>();
+                jobsClient->SubscribeToUpdateJobExecutionRejected(
+                    subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+                subAckedPromise.get_future().wait();
+
+                UpdateJobExecutionRequest publishRequest;
+                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.JobId = currentJobId;
+                publishRequest.ExecutionNumber = currentExecutionNumber;
+                publishRequest.Status = JobStatus::SUCCEEDED;
+                publishRequest.ExpectedVersion = currentVersionNumber++;
+
+                publishDescribeJobExeCompletedPromise = std::promise<void>();
+                jobsClient->PublishUpdateJobExecution(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
+
+                pendingExecutionPromise.get_future().wait();
+            }
         }
     }
     // Wait just a little bit to let the console print
@@ -241,4 +465,101 @@ int main(int argc, char *argv[])
         }
     }
     return 0;
+}
+
+void getAvailableJobs(
+    Aws::Crt::String thingName,
+    IotJobsClient &jobsClient,
+    std::vector<Aws::Crt::String> &availableJobs)
+{
+    std::promise<void> getResponse;
+    std::promise<void> publishDescribeJobExeCompletedPromise;
+
+    GetPendingJobExecutionsSubscriptionRequest subscriptionRequest;
+    subscriptionRequest.ThingName = thingName;
+
+    auto handler = [&](Aws::Iotjobs::GetPendingJobExecutionsResponse *response, int ioErr) {
+        fprintf(stderr, "running the jobs handler\n");
+        if (ioErr)
+        {
+            fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
+        }
+        if (response)
+        {
+            if (response->InProgressJobs.has_value())
+            {
+                for (JobExecutionSummary job : response->InProgressJobs.value())
+                {
+                    availableJobs.push_back(job.JobId.value());
+                    fprintf(stderr, "In Progress jobs %s\n", job.JobId->c_str());
+                }
+            }
+            else
+            {
+                fprintf(stderr, "In Progress jobs: empty\n");
+            }
+            if (response->QueuedJobs.has_value())
+            {
+                for (JobExecutionSummary job : response->QueuedJobs.value())
+                {
+                    availableJobs.push_back(job.JobId.value());
+                    fprintf(stderr, "Queued  jobs %s\n", job.JobId->c_str());
+                }
+            }
+            else
+            {
+                fprintf(stderr, "Queued  jobs: empty\n");
+            }
+        }
+        getResponse.set_value();
+    };
+
+    auto err_handler = [&](Aws::Iotjobs::RejectedError *rejectedError, int ioErr) {
+        if (ioErr)
+        {
+            fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
+        }
+        if (rejectedError)
+        {
+            fprintf(
+                stderr,
+                "Service Error %d occurred. Message %s\n",
+                (int)rejectedError->Code.value(),
+                rejectedError->Message->c_str());
+        }
+        fprintf(stderr, "Error handler\n");
+        exit(-1);
+    };
+
+    auto publishHandler = [&](int ioErr) {
+        if (ioErr)
+        {
+            fprintf(stderr, "Error %d occurred\n", ioErr);
+            exit(1);
+        }
+        publishDescribeJobExeCompletedPromise.set_value();
+    };
+
+    jobsClient.SubscribeToGetPendingJobExecutionsAccepted(
+        subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, publishHandler);
+    publishDescribeJobExeCompletedPromise.get_future().wait();
+
+    publishDescribeJobExeCompletedPromise = std::promise<void>();
+    jobsClient.SubscribeToGetPendingJobExecutionsRejected(
+        subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, err_handler, publishHandler);
+    publishDescribeJobExeCompletedPromise.get_future().wait();
+
+    publishDescribeJobExeCompletedPromise = std::promise<void>();
+    GetPendingJobExecutionsRequest publishRequest;
+    publishRequest.ThingName = thingName;
+    jobsClient.PublishGetPendingJobExecutions(publishRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
+    publishDescribeJobExeCompletedPromise.get_future().wait();
+
+    if (getResponse.get_future().wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
+    {
+        fprintf(stderr, "get available jobs error timedout\n");
+        exit(-1);
+    }
 }
