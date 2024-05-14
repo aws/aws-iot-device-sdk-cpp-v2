@@ -1,0 +1,17 @@
+---
+RecipeFormatVersion: "2020-01-25"
+ComponentName: software.amazon.awssdk.sdk-gg-ipc
+ComponentVersion: "1.0.0"
+ComponentDescription: "This is test for the Greengrass IPC sample"
+ComponentPublisher: "iot-device-sdk"
+ComponentConfiguration:
+  DefaultConfiguration:
+    Message: "World"
+Manifests:
+  - Platform:
+      os: all
+    Artifacts:
+      - URI: "file:main.py"
+    Lifecycle:
+      Run: |
+        python3 -u {artifacts:path}/main.py {configuration:/Message}
