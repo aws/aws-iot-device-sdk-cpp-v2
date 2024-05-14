@@ -7,4 +7,4 @@ Feature: Testing features of Greengrassv2 IPC sample
             | software.amazon.awssdk.sdk-gg-ipc | file:recipe.yaml |
         And I deploy the Greengrass deployment configuration
         Then the Greengrass deployment is COMPLETED on the device after 180 seconds
-        And the software.amazon.awssdk.sdk-gg-ipc log on the device contains the line "Hello World" within 20 seconds
+        And the software.amazon.awssdk.sdk-gg-ipc log on the device contains the line "Received payload: hello" within 5 seconds

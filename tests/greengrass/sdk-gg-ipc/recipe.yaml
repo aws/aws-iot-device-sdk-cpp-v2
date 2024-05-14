@@ -6,12 +6,24 @@ ComponentDescription: "This is test for the Greengrass IPC sample"
 ComponentPublisher: "iot-device-sdk"
 ComponentConfiguration:
   DefaultConfiguration:
+    accessControl:
+      aws.greengrass.ipc.mqttproxy:
+        software.amazon.awssdk.sdk-gg-ipc:mqttproxy:1:
+          policyDescription: "Allows access to publish to all AWS IoT Core topics. For demonstration only - use best practices in a real application"
+          operations:
+            - aws.greengrass#PublishToIoTCore
+            - aws.greengrass#SubscribeToIoTCore
+          resources:
+            - "*"
     Message: "World"
 Manifests:
   - Platform:
       os: all
     Artifacts:
-      - URI: "file:main.py"
+      - URI: "file:greengrass-ipc"
+        Permission:
+          Read: ALL
+          Execute: ALL
     Lifecycle:
       Run: |
-        python3 -u {artifacts:path}/main.py {configuration:/Message}
+        {artifacts:path}/greengrass-ipc --topic test/mytopic --message hello
