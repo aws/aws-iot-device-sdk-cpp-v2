@@ -5,7 +5,7 @@
       "version": "NEXT_PATCH",
       "build": {
         "build_system": "custom",
-        "custom_build_command": ["cp", "../../../../build/samples/greengrass/ipc/greengrass-ipc", "."]
+        "custom_build_command": ["cp", "../../../../../build/samples/greengrass/ipc/greengrass-ipc", "."]
       },
       "publish": {
         "bucket": "<PLACEHOLDER_BUCKET>",
