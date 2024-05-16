@@ -685,7 +685,7 @@ jobs:
       - name: Running Greengrass IPC sample
         working-directory: ./samples/greengrass/ipc
         run: |
-          tree ../../../
+          tree ../../../../
           gdk component build
           gdk test-e2e build
           gdk test-e2e run
