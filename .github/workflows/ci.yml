@@ -652,13 +652,6 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
-      - name: Setup C++
-        run: |
-          sudo apt-get -qq update -y
-          sudo apt-get -qq install -y build-essential
-          sudo apt install cmake
-          gcc --version
-          cmake --version
       - name: Checkout Sources
         uses: actions/checkout@v2
       - name: Setup Java
@@ -667,6 +660,13 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.version }}
           cache: maven
+      - name: Setup C++
+        run: |
+          sudo apt-get -qq update -y
+          sudo apt-get -qq install -y build-essential
+          sudo apt install cmake
+          gcc --version
+          cmake --version
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           echo "Downloading source"
