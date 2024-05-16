@@ -669,7 +669,7 @@ jobs:
         run: |
           python3 -m pip install -U git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.2
       - name: Running Greengrass IPC sample
-        working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/ipc
+        working-directory: ./samples/greengrass/ipc
         run: |
           gdk component build
           gdk test-e2e build
