@@ -652,14 +652,6 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
-      - name: Checkout Sources
-        uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: temurin
-          java-version: ${{ matrix.version }}
-          cache: maven
       - name: Setup C++
         run: |
           sudo apt-get -qq update -y
