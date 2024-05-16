@@ -9,12 +9,12 @@ ComponentConfiguration:
     accessControl:
       aws.greengrass.ipc.mqttproxy:
         software.amazon.awssdk.sdk-gg-ipc:mqttproxy:1:
-          policyDescription: "Allows access to publish to all AWS IoT Core topics. For demonstration only - use best practices in a real application"
+          policyDescription: "Allows access to publish and subscribe to a Greengrass IPC test topic"
           operations:
             - aws.greengrass#PublishToIoTCore
             - aws.greengrass#SubscribeToIoTCore
           resources:
-            - "*"
+            - "test/gg-ipc-topic"
     Message: "World"
 Manifests:
   - Platform:
@@ -26,4 +26,4 @@ Manifests:
           Execute: ALL
     Lifecycle:
       Run: |
-        {artifacts:path}/greengrass-ipc --topic test/mytopic --message hello
+        {artifacts:path}/greengrass-ipc --topic test/gg-ipc-topic --message hello --is_ci
