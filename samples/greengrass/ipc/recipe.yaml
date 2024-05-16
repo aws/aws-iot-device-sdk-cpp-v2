@@ -14,7 +14,7 @@ ComponentConfiguration:
             - aws.greengrass#PublishToIoTCore
             - aws.greengrass#SubscribeToIoTCore
           resources:
-            - "test/gg-ipc-topic"
+            - "test/gg-ipc-topic*"
     Message: "World"
 Manifests:
   - Platform:
