@@ -659,6 +659,12 @@ jobs:
           sudo apt install cmake
           gcc --version
           cmake --version
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.version }}
+          cache: maven
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           echo "Downloading source"
@@ -666,22 +672,17 @@ jobs:
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
-      - name: Checkout Sources
-        uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: temurin
-          java-version: ${{ matrix.version }}
-          cache: maven
+      - name: Install Greengrass Development Kit
+        run: |
+          python3 -m pip install -U git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.2
       - name: configure AWS credentials (Greengrass)
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_GREENGRASS_INSTALLER_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Install Greengrass Development Kit
+      - name: Test path
         run: |
-          python3 -m pip install -U git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.2
+         ./aws-iot-device-sdk-cpp-v2/build/samples/greengrass/ipc/greengrass-ipc
       - name: Running Greengrass IPC sample
         working-directory: ./samples/greengrass/ipc
         run: |
