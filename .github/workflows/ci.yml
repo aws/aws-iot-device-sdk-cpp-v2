@@ -681,6 +681,9 @@ jobs:
           gdk test-e2e build
           gdk test-e2e run
       - name: Show logs
+        working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/basic_discovery
+        if: always()
+        run: |
           echo "Logs"
           echo "======== greengrass.log"
           cat testResults/gg*/greengrass.log
