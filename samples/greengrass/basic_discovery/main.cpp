@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
 
     discoveryClient->Discover(
         cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+            fprintf(stdout, "Discovery completed with error code %d; http code %d\n", error, httpResponseCode);
             if (!error && response->GGGroups)
             {
                 // Print the discovery response information and then exit. Does not use the discovery info.
