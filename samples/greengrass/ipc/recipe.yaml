@@ -26,4 +26,5 @@ Manifests:
           Execute: ALL
     Lifecycle:
       Run: |
+        echo "GG core:" {iot:thingName}
         {artifacts:path}/greengrass-ipc --topic test/gg-ipc-topic --message hello --is_ci
