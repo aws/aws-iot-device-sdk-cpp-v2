@@ -27,8 +27,9 @@ Manifests:
       - URI: "file:run_in_ci.py"
       - URI: "file:ci_run_discovery_cfg.json"
     Lifecycle:
-      Run: |
+      Startup: |
         echo "GG core:" {iot:thingName}
         aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
+      Run: |
         python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_discovery_cfg.json
