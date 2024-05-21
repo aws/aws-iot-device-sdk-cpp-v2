@@ -680,9 +680,12 @@ jobs:
           gdk component build
           gdk test-e2e build
           gdk test-e2e run
-          echo "Test logs"
-          echo "========"
-          cat testResults/gg*/software.amazon.awssdk.sdk-gg-ipc.log
+      - name: Show logs
+          echo "Logs"
+          echo "======== greengrass.log"
+          cat testResults/gg*/greengrass.log
+          echo "======== software.amazon.awssdk.sdk-gg-discovery.log"
+          cat testResults/gg*/software.amazon.awssdk.sdk-gg-discovery.log
           echo "========"
       - name: Running Greengrass IPC sample
         working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/ipc
@@ -690,8 +693,8 @@ jobs:
           gdk component build
           gdk test-e2e build
           gdk test-e2e run
-          echo "Test logs"
-          echo "========"
+          echo "Logs"
+          echo "======== software.amazon.awssdk.sdk-gg-ipc.log"
           cat testResults/gg*/software.amazon.awssdk.sdk-gg-ipc.log
           echo "========"
 
