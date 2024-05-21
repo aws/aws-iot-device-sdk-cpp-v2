@@ -674,12 +674,12 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_GREENGRASS_INSTALLER_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Install Greengrass core
-        run: |
-          curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-nucleus-latest.zip > greengrass-nucleus-latest.zip
-          unzip greengrass-nucleus-latest.zip -d GreengrassInstaller && rm greengrass-nucleus-latest.zip
-          java -jar ./GreengrassInstaller/lib/Greengrass.jar --version
-          sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE -jar ./GreengrassInstaller/lib/Greengrass.jar --aws-region us-east-1 --thing-name CI_GreengrassCore --thing-group-name CI_GreengrassCoreGroup --thing-policy-name GreengrassV2IoTThingPolicy --tes-role-name GreengrassV2TokenExchangeRole --tes-role-alias-name GreengrassCoreTokenExchangeRoleAlias --component-default-user ggc_user:ggc_group --provision true --setup-system-service true --deploy-dev-tools true
+      # - name: Install Greengrass core
+      #   run: |
+      #     curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-nucleus-latest.zip > greengrass-nucleus-latest.zip
+      #     unzip greengrass-nucleus-latest.zip -d GreengrassInstaller && rm greengrass-nucleus-latest.zip
+      #     java -jar ./GreengrassInstaller/lib/Greengrass.jar --version
+      #     sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE -jar ./GreengrassInstaller/lib/Greengrass.jar --aws-region us-east-1 --thing-name CI_GreengrassCore --thing-group-name CI_GreengrassCoreGroup --thing-policy-name GreengrassV2IoTThingPolicy --tes-role-name GreengrassV2TokenExchangeRole --tes-role-alias-name GreengrassCoreTokenExchangeRoleAlias --component-default-user ggc_user:ggc_group --provision true --setup-system-service true --deploy-dev-tools true
       - name: Running Greengrass IPC sample
         working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/ipc
         run: |
