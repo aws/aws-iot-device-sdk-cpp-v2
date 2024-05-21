@@ -1,4 +1,4 @@
-Feature: Testing features of Greengrassv2 IPC sample
+Feature: Testing features of Greengrassv2 basic discovery sample
 
     @testgg
     Scenario: As a developer, I can create a component and deploy it on my device
@@ -9,7 +9,7 @@ Feature: Testing features of Greengrassv2 IPC sample
             | aws.greengrass.clientdevices.mqtt.Moquette | LATEST           |
             | aws.greengrass.clientdevices.mqtt.Bridge   | LATEST           |
             | aws.greengrass.clientdevices.IPDetector    | LATEST           |
-            | software.amazon.awssdk.sdk-gg-ipc          | file:recipe.yaml |
+            | software.amazon.awssdk.sdk-gg-discovery    | file:recipe.yaml |
         When I update my Greengrass deployment configuration, setting the component aws.greengrass.clientdevices.Auth configuration to:
         """
         {
@@ -67,4 +67,4 @@ Feature: Testing features of Greengrassv2 IPC sample
         """
         And I deploy the Greengrass deployment configuration
         Then the Greengrass deployment is COMPLETED on the device after 120 seconds
-        And the software.amazon.awssdk.sdk-gg-ipc log on the device contains the line "Received payload: hello" within 20 seconds
+        And the software.amazon.awssdk.sdk-gg-discovery log on the device contains the line "Discovery completed with error code" within 20 seconds

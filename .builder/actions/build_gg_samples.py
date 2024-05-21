@@ -12,6 +12,7 @@ class BuildGGSamples(Builder.Action):
         steps = []
         samples = [
             'samples/greengrass/ipc',
+            'samples/greengrass/basic_discovery',
         ]
 
         for sample_path in samples:

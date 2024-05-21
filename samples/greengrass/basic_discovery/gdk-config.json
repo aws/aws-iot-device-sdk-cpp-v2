@@ -1,6 +1,6 @@
 {
   "component": {
-    "software.amazon.awssdk.sdk-gg-ipc": {
+    "software.amazon.awssdk.sdk-gg-discovery": {
       "author": "iot-device-sdk",
       "version": "NEXT_PATCH",
       "build": {
