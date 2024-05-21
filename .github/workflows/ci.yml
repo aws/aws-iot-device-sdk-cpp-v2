@@ -686,6 +686,10 @@ jobs:
           gdk component build
           gdk test-e2e build
           gdk test-e2e run
+          echo "Test logs"
+          echo "========"
+          cat testResults/gg*/software.amazon.awssdk.sdk-gg-ipc.log
+          echo "========"
 
   # # check that docs can still build
   # check-docs:
