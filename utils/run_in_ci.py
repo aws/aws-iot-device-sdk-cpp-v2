@@ -242,7 +242,7 @@ def cleanup_runnable():
             return -1
 
 
-def launch_runnable():
+def launch_runnable(runnable_dir):
     global config_json
     global config_json_arguments_list
 
@@ -254,6 +254,7 @@ def launch_runnable():
 
     print("Launching runnable...")
 
+    runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
     # Java
     if (config_json['language'] == "Java"):
 
@@ -266,7 +267,7 @@ def launch_runnable():
 
         arguments = ["mvn", "compile", "exec:java"]
         arguments.append("-pl")
-        arguments.append(config_json['runnable_file'])
+        arguments.append(runnable_file)
         arguments.append("-Dexec.mainClass=" + config_json['runnable_main_class'])
         arguments.append("-Daws.crt.ci=True")
 
@@ -279,7 +280,7 @@ def launch_runnable():
     # C++
     elif (config_json['language'] == "CPP"):
         runnable_return = subprocess.run(
-            args=config_json_arguments_list, executable=config_json['runnable_file'])
+            args=config_json_arguments_list, executable=runnable_file)
         exit_code = runnable_return.returncode
 
     elif (config_json['language'] == "Python"):
@@ -287,11 +288,11 @@ def launch_runnable():
         config_json_arguments_list.append("True")
 
         runnable_return = subprocess.run(
-            args=[sys.executable, config_json['runnable_file']] + config_json_arguments_list)
+            args=[sys.executable, runnable_file] + config_json_arguments_list)
         exit_code = runnable_return.returncode
 
     elif (config_json['language'] == "Javascript"):
-        os.chdir(config_json['runnable_file'])
+        os.chdir(runnable_file)
 
         config_json_arguments_list.append("--is_ci")
         config_json_arguments_list.append("true")
@@ -328,14 +329,14 @@ def launch_runnable():
     return exit_code
 
 
-def setup_and_launch(file, input_uuid=None):
+def setup_and_launch(file, input_uuid=None, runnable_dir=''):
     setup_result = setup_runnable(file, input_uuid)
     if setup_result != 0:
         print("Setting up runnable failed")
         return setup_result
 
     print("About to launch runnable...")
-    return launch_runnable()
+    return launch_runnable(runnable_dir)
 
 
 def main():
@@ -344,13 +345,16 @@ def main():
     argument_parser.add_argument("--file", required=True, help="Configuration file to pull CI data from")
     argument_parser.add_argument("--input_uuid", required=False,
                                  help="UUID data to replace '$INPUT_UUID' with. Only works in Data field")
+    argument_parser.add_argument("--runnable_dir", required=False, default='',
+                                 help="Directory where runnable_file is located")
     parsed_commands = argument_parser.parse_args()
 
     file = parsed_commands.file
     input_uuid = parsed_commands.input_uuid
+    runnable_dir = parsed_commands.runnable_dir
 
     print(f"Starting to launch runnable: config {file}; input UUID: {input_uuid}")
-    test_result = setup_and_launch(file, input_uuid)
+    test_result = setup_and_launch(file, input_uuid, runnable_dir)
     sys.exit(test_result)
 
 

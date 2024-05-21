@@ -27,4 +27,4 @@ Manifests:
     Lifecycle:
       Run: |
         echo "GG core:" {iot:thingName}
-        {artifacts:path}/greengrass-ipc --topic test/gg-ipc-topic --message hello --is_ci
+        python3 ../../../utils/run_in_ci.py --runnable_dir {artifacts:path} --file ci_run_ipc_cfg.json
