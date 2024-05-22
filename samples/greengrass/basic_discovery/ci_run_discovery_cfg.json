@@ -27,10 +27,6 @@
             "data": "hello"
         },
         {
-            "name": "--print_discover_resp_only",
-            "data": "true"
-        },
-        {
             "name": "--is_ci",
             "data": "true"
         }
