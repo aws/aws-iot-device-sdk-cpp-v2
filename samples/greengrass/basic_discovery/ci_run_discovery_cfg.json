@@ -27,8 +27,8 @@
             "data": "hello"
         },
         {
-            "name": "--print_discover_resp_only",
-            "data": "true"
+            "name": "--topic",
+            "data": "clients/CI_PubSub_Thing/hello/world"
         },
         {
             "name": "--is_ci",
