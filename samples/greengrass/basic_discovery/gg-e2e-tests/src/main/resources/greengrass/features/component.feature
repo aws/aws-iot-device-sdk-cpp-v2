@@ -5,11 +5,11 @@ Feature: Testing features of Greengrassv2 basic discovery sample
         Given my device is registered as a Thing
         And my device is running Greengrass
         When I create a Greengrass deployment with components
-            | aws.greengrass.clientdevices.Auth          | LATEST           |
-            | aws.greengrass.clientdevices.mqtt.Moquette | LATEST           |
-            | aws.greengrass.clientdevices.mqtt.Bridge   | LATEST           |
-            | aws.greengrass.clientdevices.IPDetector    | LATEST           |
-            | software.amazon.awssdk.sdk-gg-discovery    | file:recipe.yaml |
+            | aws.greengrass.clientdevices.Auth              | LATEST           |
+            | aws.greengrass.clientdevices.mqtt.Moquette     | LATEST           |
+            | aws.greengrass.clientdevices.mqtt.Bridge       | LATEST           |
+            | aws.greengrass.clientdevices.IPDetector        | LATEST           |
+            | software.amazon.awssdk.sdk-gg-test-subscriber  | file:recipe.yaml |
         When I update my Greengrass deployment configuration, setting the component aws.greengrass.clientdevices.Auth configuration to:
         """
         {
@@ -44,10 +44,15 @@ Feature: Testing features of Greengrassv2 basic discovery sample
         {
             "MERGE": {
                 "mqttTopicMapping": {
-                    "ClientDeviceHelloWorld": {
+                    "HelloWorldCoreMapping": {
                         "topic": "clients/+/hello/world",
                         "source": "LocalMqtt",
                         "target": "IotCore"
+                    },
+                    "HelloWorldPubsubMapping": {
+                        "topic": "clients/+/hello/world",
+                        "source": "LocalMqtt",
+                        "target": "Pubsub"
                     },
                     "ClientDeviceEvents": {
                         "topic": "clients/+/detections",
@@ -67,4 +72,5 @@ Feature: Testing features of Greengrassv2 basic discovery sample
         """
         And I deploy the Greengrass deployment configuration
         Then the Greengrass deployment is COMPLETED on the device after 120 seconds
-        And the software.amazon.awssdk.sdk-gg-discovery log on the device contains the line "Discovery completed with error code" within 80 seconds
+        And the software.amazon.awssdk.sdk-gg-test-subscriber log on the device contains the line "Successfully subscribed to topic" within 80 seconds
+        And the software.amazon.awssdk.sdk-gg-test-subscriber log on the device contains the line "Received new message" within 100 seconds
