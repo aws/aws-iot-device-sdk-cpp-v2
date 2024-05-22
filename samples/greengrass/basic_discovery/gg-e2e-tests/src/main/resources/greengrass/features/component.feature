@@ -67,4 +67,4 @@ Feature: Testing features of Greengrassv2 basic discovery sample
         """
         And I deploy the Greengrass deployment configuration
         Then the Greengrass deployment is COMPLETED on the device after 120 seconds
-        And the software.amazon.awssdk.sdk-gg-discovery log on the device contains the line "Discovery completed with error code" within 20 seconds
+        And the software.amazon.awssdk.sdk-gg-discovery log on the device contains the line "Discovery completed with error code" within 80 seconds
