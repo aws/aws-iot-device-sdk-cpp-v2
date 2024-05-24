@@ -183,6 +183,8 @@ int main(int argc, char *argv[])
 
     /************************ Run the sample ****************************/
 
+    fprintf(stdout, "Starting discovery\n");
+
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
     Aws::Iot::MqttClient mqttClient;
