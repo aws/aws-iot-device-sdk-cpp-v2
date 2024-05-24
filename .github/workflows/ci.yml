@@ -687,8 +687,8 @@ jobs:
           echo "Logs"
           echo "======== greengrass.log"
           cat testResults/gg*/greengrass.log
-          echo "======== software.amazon.awssdk.sdk-gg-discovery.log"
-          cat testResults/gg*/software.amazon.awssdk.sdk-gg-discovery.log
+          echo "======== software.amazon.awssdk.sdk-gg-test-discovery.log"
+          cat testResults/gg*/software.amazon.awssdk.sdk-gg-test-discovery.log
           echo "========"
       - name: Running Greengrass IPC sample
         working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/ipc
