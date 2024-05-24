@@ -20,6 +20,7 @@ Manifests:
     Artifacts:
       - URI: "file:hello_world_subscriber.py"
       - URI: "file:run_in_ci.py"
+      - URI: "file:ci_run_discovery_cfg.json"
       - URI: "file:basic-discovery"
         Permission:
           Read: ALL
