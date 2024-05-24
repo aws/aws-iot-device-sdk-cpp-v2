@@ -75,8 +75,9 @@ std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                 {
                     fprintf(
                         stderr,
-                        "Error connecting to group %s, using connection to %s:%d\n",
+                        "Error connecting to group %s (thing %s) using connection to %s:%d\n",
                         groupToUse.GGGroupId->c_str(),
+                        groupToUse.Cores->at(0).ThingArn->c_str(),
                         connectivityInfo.HostAddress->c_str(),
                         (int)connectivityInfo.Port.value());
                     fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
