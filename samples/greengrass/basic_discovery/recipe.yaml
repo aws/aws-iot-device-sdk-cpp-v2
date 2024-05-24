@@ -28,7 +28,7 @@ Manifests:
     Lifecycle:
       Install: |
         echo "GG core:" {iot:thingName}
-        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
+        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
       Run: |
         echo "starting subscriber"
@@ -39,7 +39,7 @@ Manifests:
         python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_discovery_cfg.json
       Shutdown: |
         echo "Shutdown step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
       Recover: |
         echo "Recover step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing

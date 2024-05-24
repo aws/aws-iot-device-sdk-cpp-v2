@@ -6,17 +6,17 @@
     "arguments": [
         {
             "name": "--cert",
-            "secret": "ci/PubSub/cert",
+            "secret": "ci/Greengrass/cert",
             "filename": "tmp_certificate.pem"
         },
         {
             "name": "--key",
-            "secret": "ci/PubSub/key",
+            "secret": "ci/Greengrass/key",
             "filename": "tmp_key.pem"
         },
         {
             "name": "--thing_name",
-            "data": "CI_PubSub_Thing"
+            "data": "CI_GreenGrass_Thing"
         },
         {
             "name": "--region",
@@ -28,7 +28,7 @@
         },
         {
             "name": "--topic",
-            "data": "clients/CI_PubSub_Thing/hello/world"
+            "data": "clients/CI_GreenGrass_Thing/hello/world"
         },
         {
             "name": "--mode",
