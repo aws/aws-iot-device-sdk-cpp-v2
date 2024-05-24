@@ -1,6 +1,6 @@
 ---
 RecipeFormatVersion: "2020-01-25"
-ComponentName: software.amazon.awssdk.sdk-gg-test-subscriber
+ComponentName: software.amazon.awssdk.sdk-gg-test-discovery
 ComponentVersion: "1.0.0"
 ComponentDescription: "This is test for the Greengrass basic discovery sample"
 ComponentPublisher: "iot-device-sdk"
@@ -8,7 +8,7 @@ ComponentConfiguration:
   DefaultConfiguration:
     accessControl:
       aws.greengrass.ipc.pubsub:
-        software.amazon.awssdk.sdk-gg-test-subscriber:pubsub:1:
+        software.amazon.awssdk.sdk-gg-test-discovery:pubsub:1:
           policyDescription: "Allows access to subscribe to a Greengrass IPC test topic"
           operations:
             - aws.greengrass#SubscribeToTopic
@@ -19,16 +19,25 @@ Manifests:
       os: all
     Artifacts:
       - URI: "file:hello_world_subscriber.py"
+      - URI: "file:basic-discovery"
+        Permission:
+          Read: ALL
+          Execute: ALL
     Lifecycle:
       Install: |
         echo "GG core:" {iot:thingName}
-        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=laptop_test_0001
+        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
       Run: |
-        python3 -u {artifacts:path}/hello_world_subscriber.py
+        echo "starting subscriber"
+        python3 -u {artifacts:path}/hello_world_subscriber.py &
+        echo "continuing ..."
+        sleep 10
+        echo "starting discovery"
+        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_discovery_cfg.json
       Shutdown: |
         echo "Shutdown step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=laptop_test_0001
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing
       Recover: |
         echo "Recover step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=laptop_test_0001
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_PubSub_Thing

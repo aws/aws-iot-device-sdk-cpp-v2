@@ -8,8 +8,8 @@
         "custom_build_command": ["bash", "copy_files.sh"]
       },
       "publish": {
-        "bucket": "<PLACEHOLDER_BUCKET>",
-        "region": "<PLACEHOLDER_REGION>"
+        "bucket": "iot-sdk-ci-bucket-us-east-1",
+        "region": "us-east-1"
       }
     }
   },

@@ -31,6 +31,10 @@
             "data": "clients/CI_PubSub_Thing/hello/world"
         },
         {
+            "name": "--mode",
+            "data": "publish"
+        },
+        {
             "name": "--is_ci",
             "data": "true"
         }

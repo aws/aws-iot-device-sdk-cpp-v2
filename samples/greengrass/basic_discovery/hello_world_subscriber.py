@@ -39,3 +39,5 @@ except Exception:
     print('Exception occurred when using IPC.', file=sys.stderr)
     traceback.print_exc()
     exit(1)
+
+print("Subscriber done")
