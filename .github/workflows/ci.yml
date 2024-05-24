@@ -668,13 +668,14 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
       - name: Install Greengrass Development Kit
         run: |
+          python3 -m pip install awsiotsdk
           python3 -m pip install -U git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.2
-      - name: configure AWS credentials (Greengrass)
+      - name: Configure AWS credentials (Greengrass)
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ env.CI_GREENGRASS_INSTALLER_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Running Greengrass basic discovery sample
+      - name: Build and run Greengrass basic discovery sample
         working-directory: ./aws-iot-device-sdk-cpp-v2/samples/greengrass/basic_discovery
         run: |
           gdk component build
