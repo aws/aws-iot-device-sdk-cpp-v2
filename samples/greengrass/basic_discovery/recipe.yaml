@@ -12,6 +12,15 @@ ComponentConfiguration:
           policyDescription: "Allows access to subscribe to a Greengrass IPC test topic"
           operations:
             - aws.greengrass#SubscribeToTopic
+            - aws.greengrass#PublishToTopic
+          resources:
+            - "*"
+      aws.greengrass.ipc.mqttproxy:
+        software.amazon.awssdk.sdk-gg-test-discovery:mqttproxy:1:
+          policyDescription: "Allows access to publish and subscribe to a Greengrass IPC test topic"
+          operations:
+            - aws.greengrass#PublishToIoTCore
+            - aws.greengrass#SubscribeToIoTCore
           resources:
             - "*"
 Manifests:
