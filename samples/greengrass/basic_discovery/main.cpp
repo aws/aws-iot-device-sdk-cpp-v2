@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
     // TODO Wait for subscription success.
 
     int cnt = 0;
-    while (++cnt < 10)
+    while (++cnt < 3)
     {
         String input;
         if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
@@ -350,8 +350,9 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
             };
+            fprintf(stdout, "Publishing to topic %s\n", cmdData.input_topic.c_str());
             connection->Publish(
-                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
+                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
         }
 
         std::this_thread::sleep_for(std::chrono::seconds(1));

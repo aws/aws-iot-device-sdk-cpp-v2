@@ -31,12 +31,13 @@ Manifests:
         aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
       Run: |
+        UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
         echo "starting subscriber"
-        python3 -u {artifacts:path}/hello_world_subscriber.py &
+        python3 -u {artifacts:path}/hello_world_subscriber.py --input_uuid ${UUID} &
         echo "continuing ..."
         sleep 10
         echo "starting discovery"
-        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_discovery_cfg.json
+        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_discovery_cfg.local.json
       Shutdown: |
         echo "Shutdown step"
         aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
