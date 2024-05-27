@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
     // TODO Wait for subscription success.
 
     int cnt = 0;
-    while (++cnt < 20)
+    while (++cnt < 10)
     {
         String input;
         if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")

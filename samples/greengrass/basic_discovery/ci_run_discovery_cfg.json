@@ -6,17 +6,17 @@
     "arguments": [
         {
             "name": "--cert",
-            "secret": "ci/Greengrass/cert",
+            "secret": "ci/Greengrass_Discovery/cert",
             "filename": "tmp_certificate.pem"
         },
         {
             "name": "--key",
-            "secret": "ci/Greengrass/key",
+            "secret": "ci/Greengrass_Discovery/key",
             "filename": "tmp_key.pem"
         },
         {
             "name": "--thing_name",
-            "data": "CI_GreenGrass_Thing"
+            "data": "CI_Greengrass_Discovery_Thing"
         },
         {
             "name": "--region",
@@ -28,7 +28,7 @@
         },
         {
             "name": "--topic",
-            "data": "clients/CI_GreenGrass_Thing/hello/world"
+            "data": "clients/CI_Greengrass_Discovery_Thing/hello/world"
         },
         {
             "name": "--mode",
