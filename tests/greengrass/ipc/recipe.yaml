@@ -25,8 +25,8 @@ Manifests:
           Read: ALL
           Execute: ALL
       - URI: "file:run_in_ci.py"
-      - URI: "file:ci_run_ipc_cfg.json"
+      - URI: "file:ci_run_greengrass_ipc_cfg.json"
     Lifecycle:
       Run: |
         echo "GG core:" {iot:thingName}
-        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_ipc_cfg.json
+        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --file {artifacts:path}/ci_run_greengrass_ipc_cfg.json
