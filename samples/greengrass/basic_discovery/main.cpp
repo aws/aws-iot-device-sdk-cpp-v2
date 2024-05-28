@@ -298,7 +298,6 @@ int main(int argc, char *argv[])
 
         connection->Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
     }
-    // TODO Wait for subscription success.
 
     int cnt = 0;
     while (++cnt < 3)
