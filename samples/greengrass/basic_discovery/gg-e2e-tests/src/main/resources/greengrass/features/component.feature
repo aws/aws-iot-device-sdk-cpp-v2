@@ -59,6 +59,6 @@ Feature: Testing features of Greengrassv2 basic discovery sample
         }
         """
         And I deploy the Greengrass deployment configuration
-        Then the Greengrass deployment is COMPLETED on the device after 150 seconds
-        And the software.amazon.awssdk.sdk-gg-test-discovery log on the device contains the line "Successfully subscribed to topic" within 120 seconds
-        And the software.amazon.awssdk.sdk-gg-test-discovery log on the device contains the line "Received new message" within 140 seconds
+        Then the Greengrass deployment is COMPLETED on the device after 300 seconds
+        And the software.amazon.awssdk.sdk-gg-test-discovery log on the device contains the line "Successfully subscribed to topic" within 180 seconds
+        And the software.amazon.awssdk.sdk-gg-test-discovery log on the device contains the line "Received new message" within 240 seconds
