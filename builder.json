@@ -21,7 +21,7 @@
   "_comment": "See .builder/actions/build_samples.py for definition of 'build-samples'",
   "build_steps": [
     "build",
-    "build-gg-samples"
+    "build-samples"
   ],
   "variants" : {
     "skip_sample": {
