@@ -21,7 +21,7 @@ Manifests:
     Artifacts:
       - URI: "file:hello_world_subscriber.py"
       - URI: "file:run_in_ci.py"
-      - URI: "file:ci_run_discovery_cfg.json"
+      - URI: "file:ci_run_greengrass_discovery_cfg.json"
       - URI: "file:basic-discovery"
         Permission:
           Read: ALL
@@ -33,15 +33,14 @@ Manifests:
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
       Run: |
         UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-        echo "starting subscriber"
+        echo "Starting subscriber"
         python3 -u {artifacts:path}/hello_world_subscriber.py --input_uuid ${UUID} &
-        echo "continuing ..."
         sleep 10
-        echo "starting discovery"
-        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_discovery_cfg.json
+        echo "Starting discovery"
+        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_greengrass_discovery_cfg.json
       Shutdown: |
-        echo "Shutdown step"
+        echo "Shutdown: disassociating CI_Greengrass_Discovery_Thing"
         aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
       Recover: |
-        echo "Recover step"
+        echo "Recover: disassociating CI_Greengrass_Discovery_Thing"
         aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
