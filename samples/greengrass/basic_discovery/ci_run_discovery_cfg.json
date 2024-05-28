@@ -6,12 +6,12 @@
     "arguments": [
         {
             "name": "--cert",
-            "secret": "ci/Greengrass_Discovery/cert",
+            "secret": "ci/GreengrassDiscovery/cert",
             "filename": "tmp_certificate.pem"
         },
         {
             "name": "--key",
-            "secret": "ci/Greengrass_Discovery/key",
+            "secret": "ci/GreengrassDiscovery/key",
             "filename": "tmp_key.pem"
         },
         {
@@ -28,15 +28,11 @@
         },
         {
             "name": "--topic",
-            "data": "clients/CI_Greengrass_Discovery_Thing/hello/world"
+            "data": "clients/CI_Greengrass_Discovery_Thing/hello/world/$INPUT_UUID"
         },
         {
             "name": "--mode",
             "data": "publish"
-        },
-        {
-            "name": "--is_ci",
-            "data": "true"
         }
     ]
 }

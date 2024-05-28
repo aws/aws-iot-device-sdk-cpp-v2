@@ -15,14 +15,6 @@ ComponentConfiguration:
             - aws.greengrass#PublishToTopic
           resources:
             - "*"
-      aws.greengrass.ipc.mqttproxy:
-        software.amazon.awssdk.sdk-gg-test-discovery:mqttproxy:1:
-          policyDescription: "Allows access to publish and subscribe to a Greengrass IPC test topic"
-          operations:
-            - aws.greengrass#PublishToIoTCore
-            - aws.greengrass#SubscribeToIoTCore
-          resources:
-            - "*"
 Manifests:
   - Platform:
       os: all
@@ -37,7 +29,7 @@ Manifests:
     Lifecycle:
       Install: |
         echo "GG core:" {iot:thingName}
-        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
+        aws greengrassv2 batch-associate-client-device-with-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
         aws greengrassv2 list-client-devices-associated-with-core-device --core-device-thing-name {iot:thingName}
       Run: |
         UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
@@ -46,10 +38,10 @@ Manifests:
         echo "continuing ..."
         sleep 10
         echo "starting discovery"
-        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_discovery_cfg.local.json
+        python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_discovery_cfg.json
       Shutdown: |
         echo "Shutdown step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
       Recover: |
         echo "Recover step"
-        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_GreenGrass_Thing
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
