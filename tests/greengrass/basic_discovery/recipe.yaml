@@ -38,6 +38,8 @@ Manifests:
         sleep 10
         echo "Starting discovery"
         python3 {artifacts:path}/run_in_ci.py --runnable_dir {artifacts:path} --input_uuid ${UUID} --file {artifacts:path}/ci_run_greengrass_discovery_cfg.json
+        aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
+        echo "Run: disassociated CI_Greengrass_Discovery_Thing"
       Shutdown: |
         echo "Shutdown: disassociating CI_Greengrass_Discovery_Thing"
         aws greengrassv2 batch-disassociate-client-device-from-core-device --core-device-thing-name {iot:thingName} --entries thingName=CI_Greengrass_Discovery_Thing
