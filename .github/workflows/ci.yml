@@ -325,7 +325,12 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBUILD_SHARED_LIBS=ON
 
   osx:
-    runs-on: macos-13
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner:
+          - macos-13
+          - macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
       security-events: write # This is required for pkcs12 sample to sign the key
