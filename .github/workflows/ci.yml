@@ -378,6 +378,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT5 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v2
@@ -386,6 +387,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run DeviceAdvisor
         run: |
+          source .venv/bin/activate
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
   # Not strictly needed, but allows us to run Device Advisor and PubSub on Linux without needing to run all samples
