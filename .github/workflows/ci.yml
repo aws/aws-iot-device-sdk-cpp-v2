@@ -326,7 +326,12 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBUILD_SHARED_LIBS=ON
 
   osx:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner:
+          - macos-13
+          - macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
       security-events: write # This is required for pkcs12 sample to sign the key
@@ -338,6 +343,8 @@ jobs:
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
       - name: Running samples in CI setup
         run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
           python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v2
@@ -346,6 +353,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT3 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
 #      - name: run PKCS12 sample
 #        run: |
@@ -371,6 +379,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT5 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v2
@@ -379,6 +388,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run DeviceAdvisor
         run: |
+          source .venv/bin/activate
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
   # Not strictly needed, but allows us to run Device Advisor and PubSub on Linux without needing to run all samples
