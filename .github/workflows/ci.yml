@@ -632,14 +632,6 @@ jobs:
       - name: run X509 sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
-      - name: configure AWS credentials (Greengrass)
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ env.CI_GREENGRASS_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Greengrass Discovery sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_greengrass_discovery_cfg.json
 
   # Runs the Greengrass samples
   linux-greengrass-tests:
@@ -683,6 +675,7 @@ jobs:
           gdk test-e2e run
       - name: Show logs
         working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/basic_discovery
+        # Print logs unconditionally to provide more details on Greengrass run even if the test failed.
         if: always()
         run: |
           echo "Logs"
@@ -691,7 +684,7 @@ jobs:
           echo "======== software.amazon.awssdk.sdk-gg-test-discovery.log"
           cat testResults/gg*/software.amazon.awssdk.sdk-gg-test-discovery.log
           echo "========"
-      - name: Running Greengrass IPC sample
+      - name: Build and run Greengrass IPC sample
         working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/ipc
         run: |
           gdk component build
