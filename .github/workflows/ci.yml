@@ -342,7 +342,9 @@ jobs:
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
       - name: Running samples in CI setup
         run: |
-          python3 -m pip install boto3 --break-system-packages
+          python3 -m venv .venv
+          source .venv/bin/activate
+          python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v2
         with:
