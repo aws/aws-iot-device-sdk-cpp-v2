@@ -352,6 +352,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT3 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
 #      - name: run PKCS12 sample
 #        run: |
