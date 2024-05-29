@@ -44,6 +44,7 @@ jobs:
   linux-compat:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         image:
           - manylinux2014-x64
@@ -93,6 +94,7 @@ jobs:
   linux-compiler-compat:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         compiler:
           - clang-3
