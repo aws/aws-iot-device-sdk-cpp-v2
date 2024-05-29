@@ -14,7 +14,7 @@ ComponentConfiguration:
             - aws.greengrass#SubscribeToTopic
             - aws.greengrass#PublishToTopic
           resources:
-            - "*"
+            - "clients/*/hello/world/*"
 Manifests:
   - Platform:
       os: all
