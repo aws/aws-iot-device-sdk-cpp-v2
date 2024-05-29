@@ -17,20 +17,29 @@ Feature: Testing features of Greengrassv2 basic discovery sample
                 "deviceGroups": {
                     "formatVersion": "2021-03-05",
                     "definitions": {
-                        "MyPermissiveDeviceGroup": {
-                            "selectionRule": "thingName: *",
-                            "policyName": "MyPermissivePolicy"
+                        "MyDeviceGroup": {
+                            "selectionRule": "thingName: CI_Greengrass_Discovery_Thing",
+                            "policyName": "MyRestrictivePolicy"
                         }
                     },
                     "policies": {
-                        "MyPermissivePolicy": {
-                            "AllowAll": {
-                                "statementDescription": "Allow client devices to perform all actions.",
+                        "MyRestrictivePolicy": {
+                            "AllowConnect": {
+                                "statementDescription": "Allow client devices to connect.",
                                 "operations": [
-                                    "*"
+                                    "mqtt:connect"
                                 ],
                                 "resources": [
                                     "*"
+                                ]
+                            },
+                            "AllowPublish": {
+                                "statementDescription": "Allow client devices to publish on topic.",
+                                "operations": [
+                                    "mqtt:publish"
+                                ],
+                                "resources": [
+                                    "*clients/*/hello/world/*"
                                 ]
                             }
                         }
