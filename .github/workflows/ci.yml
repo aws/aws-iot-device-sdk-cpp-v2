@@ -646,11 +646,6 @@ jobs:
   # Runs the Greengrass samples
   linux-greengrass-tests:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version:
-          - 17
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
