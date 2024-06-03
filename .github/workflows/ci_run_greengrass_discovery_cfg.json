@@ -23,10 +23,6 @@
             "data": "us-east-1"
         },
         {
-            "name": "--message",
-            "data": "hello"
-        },
-        {
             "name": "--topic",
             "data": "clients/CI_Greengrass_Discovery_Thing/hello/world/$INPUT_UUID"
         },
@@ -34,5 +30,6 @@
             "name": "--mode",
             "data": "publish"
         }
-    ]
+    ],
+    "stdin_file": "messages.txt"
 }

@@ -147,7 +147,18 @@ def make_windows_pfx_file(certificate_file_path, private_key_path, pfx_file_path
 
         # Import the PFX into the Windows Certificate Store
         # (Passing '$mypwd' is required even though it is empty and our certificate has no password. It fails CI otherwise)
-        import_pfx_arguments = ["powershell.exe", "Import-PfxCertificate", "-FilePath", pfx_file_path, "-CertStoreLocation", "Cert:\\" + pfx_certificate_store_location, "-Password", "$mypwd"]
+        import_pfx_arguments = [
+            "powershell.exe",
+            # Powershell 7.3 introduced an issue where launching powershell from cmd would not set PSModulePath correctly.
+            # As a workaround, we set `PSModulePath` to empty so powershell would automatically reset the PSModulePath to default.
+            # More details: https://github.com/PowerShell/PowerShell/issues/18530
+            "$env:PSModulePath = '';",
+            "Import-PfxCertificate",
+            "-FilePath", pfx_file_path,
+            "-CertStoreLocation",
+            "Cert:\\" + pfx_certificate_store_location,
+            "-Password",
+            "$mypwd"]
         import_pfx_run = subprocess.run(args=import_pfx_arguments, shell=True, stdout=subprocess.PIPE)
         if (import_pfx_run.returncode != 0):
             print ("ERROR: Could not import PFX certificate into Windows store!")
@@ -250,14 +261,19 @@ def launch_runnable(runnable_dir):
         print("No configuration JSON file data found!")
         return -1
 
+    # Prepare data for runnable's STDIN
+    subprocess_stdin = None
+    if "stdin_file" in config_json:
+        stdin_file = os.path.join(runnable_dir, config_json['stdin_file'])
+        with open(stdin_file, "rb") as file:
+            subprocess_stdin = file.read()
+
     exit_code = 0
 
     print("Launching runnable...")
 
-    runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
     # Java
     if (config_json['language'] == "Java"):
-
         # Flatten arguments down into a single string
         arguments_as_string = ""
         for i in range(0, len(config_json_arguments_list)):
@@ -267,20 +283,40 @@ def launch_runnable(runnable_dir):
 
         arguments = ["mvn", "compile", "exec:java"]
         arguments.append("-pl")
-        arguments.append(runnable_file)
+        arguments.append(config_json['runnable_file'])
         arguments.append("-Dexec.mainClass=" + config_json['runnable_main_class'])
         arguments.append("-Daws.crt.ci=True")
 
         # We have to do this as a string, unfortunately, due to how -Dexec.args= works...
         argument_string = subprocess.list2cmdline(arguments) + " -Dexec.args=\"" + arguments_as_string + "\""
         print(f"Running cmd: {argument_string}")
-        runnable_return = subprocess.run(argument_string, shell=True)
+        runnable_return = subprocess.run(argument_string, input=subprocess_stdin, shell=True)
+        exit_code = runnable_return.returncode
+
+    elif (config_json['language'] == "Java JAR"):
+        # Flatten arguments down into a single string
+        arguments_as_string = ""
+        for i in range(0, len(config_json_arguments_list)):
+            arguments_as_string += str(config_json_arguments_list[i])
+            if (i+1 < len(config_json_arguments_list)):
+                arguments_as_string += " "
+
+        runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+
+        arguments = ["java"]
+        arguments.append("-Daws.crt.ci=True")
+        arguments.append("-jar")
+        arguments.append(runnable_file)
+
+        argument_string = subprocess.list2cmdline(arguments) + " " + arguments_as_string
+        print(f"Running cmd: {argument_string}")
+        runnable_return = subprocess.run(argument_string, input=subprocess_stdin, shell=True)
         exit_code = runnable_return.returncode
 
     # C++
     elif (config_json['language'] == "CPP"):
-        runnable_return = subprocess.run(
-            args=config_json_arguments_list, executable=runnable_file)
+        runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+        runnable_return = subprocess.run(args=config_json_arguments_list, input=subprocess_stdin, executable=runnable_file)
         exit_code = runnable_return.returncode
 
     elif (config_json['language'] == "Python"):
@@ -288,11 +324,11 @@ def launch_runnable(runnable_dir):
         config_json_arguments_list.append("True")
 
         runnable_return = subprocess.run(
-            args=[sys.executable, runnable_file] + config_json_arguments_list)
+            args=[sys.executable, config_json['runnable_file']] + config_json_arguments_list, input=subprocess_stdin)
         exit_code = runnable_return.returncode
 
     elif (config_json['language'] == "Javascript"):
-        os.chdir(runnable_file)
+        os.chdir(config_json['runnable_file'])
 
         config_json_arguments_list.append("--is_ci")
         config_json_arguments_list.append("true")
@@ -318,7 +354,7 @@ def launch_runnable(runnable_dir):
                     args=arguments + config_json_arguments_list, shell=True)
             else:
                 runnable_return_two = subprocess.run(
-                    args=arguments + config_json_arguments_list)
+                    args=arguments + config_json_arguments_list, input=subprocess_stdin)
 
             if (runnable_return_two != None):
                 exit_code = runnable_return_two.returncode

@@ -299,8 +299,8 @@ int main(int argc, char *argv[])
         connection->Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
     }
 
-    int cnt = 0;
-    while (++cnt < 3)
+    bool first_input = true;
+    while (true)
     {
         String input;
         if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
@@ -315,10 +315,13 @@ int main(int argc, char *argv[])
                 std::getline(std::cin, input);
                 cmdData.input_message = input;
             }
-            else
+            else if (!first_input)
             {
-                input = cmdData.input_message;
+                fprintf(stdout, "Enter a new message or enter 'exit' or 'quit' to exit the program.\n");
+                std::getline(std::cin, input);
+                cmdData.input_message = input;
             }
+            first_input = false;
         }
         else
         {
@@ -349,12 +352,9 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
             };
-            fprintf(stdout, "Publishing to topic %s\n", cmdData.input_topic.c_str());
             connection->Publish(
                 cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
         }
-
-        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
     connection->Disconnect();

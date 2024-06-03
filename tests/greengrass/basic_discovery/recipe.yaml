@@ -22,6 +22,7 @@ Manifests:
       - URI: "file:hello_world_subscriber.py"
       - URI: "file:run_in_ci.py"
       - URI: "file:ci_run_greengrass_discovery_cfg.json"
+      - URI: "file:messages.txt"
       - URI: "file:basic-discovery"
         Permission:
           Read: ALL
