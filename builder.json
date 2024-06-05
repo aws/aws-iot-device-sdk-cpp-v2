@@ -28,6 +28,12 @@
         "!build_steps": [
           "build"
         ]
+    },
+    "build_gg_samples_only": {
+        "!build_steps": [
+          "build",
+          "build-gg-samples"
+        ]
     }
   }
 }
