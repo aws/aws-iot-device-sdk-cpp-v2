@@ -33,7 +33,8 @@ def setup_json_arguments_list(file, input_uuid=None):
 
     for argument in config_json['arguments']:
         # Add the name of the argument
-        config_json_arguments_list.append(argument['name'])
+        if( 'name' in argument):
+            config_json_arguments_list.append(argument['name'])
 
         # Based on the data present, we need to process and add the data differently
         try:
@@ -227,7 +228,8 @@ def cleanup_runnable():
     global config_json_arguments_list
 
     for argument in config_json['arguments']:
-        config_json_arguments_list.append(argument['name'])
+        if( 'name' in argument):
+            config_json_arguments_list.append(argument['name'])
 
         # Based on the data present, we need to process and add the data differently
         try:
@@ -270,96 +272,103 @@ def launch_runnable(runnable_dir):
 
     exit_code = 0
 
+    runnable_timeout = None
+    if ('timeout' in config_json):
+        runnable_timeout = config_json['timeout']
+
     print("Launching runnable...")
 
-    # Java
-    if (config_json['language'] == "Java"):
-        # Flatten arguments down into a single string
-        arguments_as_string = ""
-        for i in range(0, len(config_json_arguments_list)):
-            arguments_as_string += str(config_json_arguments_list[i])
-            if (i+1 < len(config_json_arguments_list)):
-                arguments_as_string += " "
+    try:
+        # Java
+        if (config_json['language'] == "Java"):
+            # Flatten arguments down into a single string
+            arguments_as_string = ""
+            for i in range(0, len(config_json_arguments_list)):
+                arguments_as_string += str(config_json_arguments_list[i])
+                if (i+1 < len(config_json_arguments_list)):
+                    arguments_as_string += " "
 
-        arguments = ["mvn", "compile", "exec:java"]
-        arguments.append("-pl")
-        arguments.append(config_json['runnable_file'])
-        arguments.append("-Dexec.mainClass=" + config_json['runnable_main_class'])
-        arguments.append("-Daws.crt.ci=True")
+            arguments = ["mvn", "compile", "exec:java"]
+            arguments.append("-pl")
+            arguments.append(config_json['runnable_file'])
+            arguments.append("-Dexec.mainClass=" + config_json['runnable_main_class'])
+            arguments.append("-Daws.crt.ci=True")
 
-        # We have to do this as a string, unfortunately, due to how -Dexec.args= works...
-        argument_string = subprocess.list2cmdline(arguments) + " -Dexec.args=\"" + arguments_as_string + "\""
-        print(f"Running cmd: {argument_string}")
-        runnable_return = subprocess.run(argument_string, input=subprocess_stdin, shell=True)
-        exit_code = runnable_return.returncode
+            # We have to do this as a string, unfortunately, due to how -Dexec.args= works...
+            argument_string = subprocess.list2cmdline(arguments) + " -Dexec.args=\"" + arguments_as_string + "\""
+            print(f"Running cmd: {argument_string}")
+            runnable_return = subprocess.run(argument_string, input=subprocess_stdin, timeout=runnable_timeout, shell=True)
+            exit_code = runnable_return.returncode
 
-    elif (config_json['language'] == "Java JAR"):
-        # Flatten arguments down into a single string
-        arguments_as_string = ""
-        for i in range(0, len(config_json_arguments_list)):
-            arguments_as_string += str(config_json_arguments_list[i])
-            if (i+1 < len(config_json_arguments_list)):
-                arguments_as_string += " "
+        elif (config_json['language'] == "Java JAR"):
+            # Flatten arguments down into a single string
+            arguments_as_string = ""
+            for i in range(0, len(config_json_arguments_list)):
+                arguments_as_string += str(config_json_arguments_list[i])
+                if (i+1 < len(config_json_arguments_list)):
+                    arguments_as_string += " "
 
-        runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+            runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
 
-        arguments = ["java"]
-        arguments.append("-Daws.crt.ci=True")
-        arguments.append("-jar")
-        arguments.append(runnable_file)
+            arguments = ["java"]
+            arguments.append("-Daws.crt.ci=True")
+            arguments.append("-jar")
+            arguments.append(runnable_file)
 
-        argument_string = subprocess.list2cmdline(arguments) + " " + arguments_as_string
-        print(f"Running cmd: {argument_string}")
-        runnable_return = subprocess.run(argument_string, input=subprocess_stdin, shell=True)
-        exit_code = runnable_return.returncode
+            argument_string = subprocess.list2cmdline(arguments) + " " + arguments_as_string
+            print(f"Running cmd: {argument_string}")
+            runnable_return = subprocess.run(argument_string, input=subprocess_stdin, timeout=runnable_timeout, shell=True)
+            exit_code = runnable_return.returncode
 
-    # C++
-    elif (config_json['language'] == "CPP"):
-        runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
-        runnable_return = subprocess.run(args=config_json_arguments_list, input=subprocess_stdin, executable=runnable_file)
-        exit_code = runnable_return.returncode
+        # C++
+        elif (config_json['language'] == "CPP"):
+            runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+            runnable_return = subprocess.run(args=config_json_arguments_list, input=subprocess_stdin, timeout=runnable_timeout, executable=runnable_file)
+            exit_code = runnable_return.returncode
 
-    elif (config_json['language'] == "Python"):
-        config_json_arguments_list.append("--is_ci")
-        config_json_arguments_list.append("True")
+        elif (config_json['language'] == "Python"):
+            runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+            runnable_return = subprocess.run(
+                args=[sys.executable, runnable_file] + config_json_arguments_list, input=subprocess_stdin, timeout=runnable_timeout)
+            exit_code = runnable_return.returncode
 
-        runnable_return = subprocess.run(
-            args=[sys.executable, config_json['runnable_file']] + config_json_arguments_list, input=subprocess_stdin)
-        exit_code = runnable_return.returncode
+        elif (config_json['language'] == "Javascript"):
+            os.chdir(config_json['runnable_file'])
 
-    elif (config_json['language'] == "Javascript"):
-        os.chdir(config_json['runnable_file'])
+            config_json_arguments_list.append("--is_ci")
+            config_json_arguments_list.append("true")
 
-        config_json_arguments_list.append("--is_ci")
-        config_json_arguments_list.append("true")
+            runnable_return_one = None
+            if not 'skip_install' in config_json:
+                if sys.platform == "win32" or sys.platform == "cygwin":
+                    runnable_return_one = subprocess.run(args=["npm", "install"], shell=True, timeout=runnable_timeout)
+                else:
+                    runnable_return_one = subprocess.run(args=["npm", "install"], timeout=runnable_timeout)
 
-        runnable_return_one = None
-        if sys.platform == "win32" or sys.platform == "cygwin":
-            runnable_return_one = subprocess.run(args=["npm", "install"], shell=True)
-        else:
-            runnable_return_one = subprocess.run(args=["npm", "install"])
-
-        if (runnable_return_one == None or runnable_return_one.returncode != 0):
-            exit_code = runnable_return_one.returncode
-        else:
-            runnable_return_two = None
-            arguments = []
-            if 'node_cmd' in config_json:
-                arguments = config_json['node_cmd'].split(" ")
+            if not 'skip_install' in config_json and (runnable_return_one == None or runnable_return_one.returncode != 0):
+                exit_code = runnable_return_one.returncode
             else:
-                arguments = ["node", "dist/index.js"]
+                runnable_return_two = None
+                arguments = []
+                if 'node_cmd' in config_json:
+                    arguments = config_json['node_cmd'].split(" ")
+                else:
+                    arguments = ["node", "dist/index.js"]
 
-            if sys.platform == "win32" or sys.platform == "cygwin":
-                runnable_return_two = subprocess.run(
-                    args=arguments + config_json_arguments_list, shell=True)
-            else:
-                runnable_return_two = subprocess.run(
-                    args=arguments + config_json_arguments_list, input=subprocess_stdin)
+                if sys.platform == "win32" or sys.platform == "cygwin":
+                    runnable_return_two = subprocess.run(
+                        args=arguments + config_json_arguments_list, shell=True, check=True, timeout=runnable_timeout)
+                else:
+                    runnable_return_two = subprocess.run(
+                        args=arguments + config_json_arguments_list, input=subprocess_stdin, timeout=runnable_timeout)
 
-            if (runnable_return_two != None):
-                exit_code = runnable_return_two.returncode
-            else:
-                exit_code = 1
+                if (runnable_return_two != None):
+                    exit_code = runnable_return_two.returncode
+                else:
+                    exit_code = 1
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        exit_code = 1
 
     cleanup_runnable()
     return exit_code
