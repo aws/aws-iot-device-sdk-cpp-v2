@@ -194,7 +194,6 @@ namespace Utils
         const char **m_endPosition = nullptr;
         Aws::Crt::Map<Aws::Crt::String, CommandLineOption> m_registeredCommands;
 
-        Aws::Iot::MqttClient m_internal_client;
         Aws::Crt::Http::HttpClientConnectionProxyOptions GetProxyOptionsForMQTTConnection();
         std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> GetClientConnectionForMQTTConnection(
             Aws::Iot::MqttClient *client,
