@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
 
     //  Do the global initialization for the API
     ApiHandle apiHandle;
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, "fleet_provisioning_file.log");
     // Variables for the sample
     String csrFile;
     String token;
@@ -263,6 +264,21 @@ int main(int argc, char *argv[])
                 fprintf(
                     stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
                 token = *response->CertificateOwnershipToken;
+                AWS_LOGF_WARN(
+                    AWS_LS_MQTT_CLIENT,
+                    "TODO: Check if the created certificate is correct: \n %s \n -- End of created certificate -- ",
+                    response->CertificatePem->c_str());
+
+                AWS_LOGF_WARN(
+                    AWS_LS_MQTT_CLIENT,
+                    "TODO: Check if the created key value is correct: \n %s \n -- End of created key file -- ",
+                    response->PrivateKey->c_str());
+
+                AWS_LOGF_WARN(
+                    AWS_LS_MQTT_CLIENT,
+                    "TODO: Check if the created ownership token is correct: \n %s \n -- End of created token value -- ",
+                    response->CertificateOwnershipToken->c_str());
+
             }
             else
             {
@@ -392,6 +408,12 @@ int main(int argc, char *argv[])
 
             registerThingRequest.Parameters = params;
             registerThingRequest.CertificateOwnershipToken = token;
+
+                AWS_LOGF_WARN(
+                    AWS_LS_MQTT_CLIENT,
+                    "TODO: Log CertificateOwnershipToken before send registerThingRequest: \n %s \n -- End of created certificate -- ",
+                    registerThingRequest.CertificateOwnershipToken->c_str());
+
 
             identityClient.PublishRegisterThing(
                 registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
