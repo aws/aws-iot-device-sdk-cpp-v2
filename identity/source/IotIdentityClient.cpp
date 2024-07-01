@@ -167,9 +167,20 @@ namespace Aws
             auto onSubscribePublish =
                 [handler](
                     Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
+                    AWS_LOGF_DEBUG(
+                        AWS_LS_MQTT_CLIENT,
+                        "TODO: Check the received raw payload onSubscribeCreateKeysAndCertificate: %s",
+                        payload.buffer);
                     Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
                     Aws::Crt::JsonObject jsonObject(objectStr);
                     Aws::Iotidentity::CreateKeysAndCertificateResponse response(jsonObject);
+                    AWS_LOGF_DEBUG(
+                        AWS_LS_MQTT_CLIENT,
+                        "TODO: Check the contributed response: \n CertificateOwnershipToken : %s \n Certificates : %s "
+                        "\n Key: %s \n",
+                        response.CertificateOwnershipToken->c_str(),
+                        response.CertificatePem->c_str(),
+                        response.PrivateKey->c_str());
                     handler(&response, AWS_ERROR_SUCCESS);
                 };
 
