@@ -1,10 +1,17 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0.
+
 import Builder
 import os
 import sys
-import argparse
 
 
 class BuildSamples(Builder.Action):
+    """
+    Defines a custom build step for samples and tests.
+    It's used via builder.json config file in the project root directory.
+    """
+
     def run(self, env):
         # parse extra cmake configs
         cmd_args = env.args
