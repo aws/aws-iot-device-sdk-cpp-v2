@@ -38,7 +38,7 @@
     "asan": {
       "cmake_args": [
         "-DENABLE_SANITIZERS=ON",
-        "-DSANTIIZERS=address,undefined"
+        "-DSANITIZERS=address,undefined"
       ]
     },
     "build_gg_samples_only": {
