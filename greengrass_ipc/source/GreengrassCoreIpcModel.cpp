@@ -5420,6 +5420,10 @@ namespace Aws
             {
                 payloadObject.WithString("versionStage", m_versionStage.value());
             }
+            if (m_refresh.has_value())
+            {
+                payloadObject.WithBool("refresh", m_refresh.value());
+            }
         }
 
         void GetSecretValueRequest::s_loadFromJsonView(
@@ -5439,6 +5443,10 @@ namespace Aws
             {
                 getSecretValueRequest.m_versionStage =
                     Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("versionStage"));
+            }
+            if (jsonView.ValueExists("refresh"))
+            {
+                getSecretValueRequest.m_refresh = Aws::Crt::Optional<bool>(jsonView.GetBool("refresh"));
             }
         }
 
