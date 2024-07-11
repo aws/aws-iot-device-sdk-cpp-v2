@@ -43,7 +43,7 @@ struct CreateCertificateContext
     std::promise<void> acceptedSubAckPromise;
     std::promise<void> rejectedSubAckPromise;
     std::promise<void> tokenReceivedPromise;
-    std::string token;
+    String token;
 };
 
 /**
