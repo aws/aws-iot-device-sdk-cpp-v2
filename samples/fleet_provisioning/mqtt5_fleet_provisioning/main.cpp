@@ -182,6 +182,7 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "CreateCertificateFromCsrResponse certificateId: %s.\n", response->CertificateId->c_str());
             token = *response->CertificateOwnershipToken;
+            csrAcceptedCompletedPromise.set_value();
         }
         else
         {
@@ -242,6 +243,7 @@ int main(int argc, char *argv[])
         {
             fprintf(stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
             token = *response->CertificateOwnershipToken;
+            keysAcceptedCompletedPromise.set_value();
         }
         else
         {
@@ -291,6 +293,7 @@ int main(int argc, char *argv[])
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "RegisterThingResponse ThingName: %s.\n", response->ThingName->c_str());
+            registerAcceptedCompletedPromise.set_value();
         }
         else
         {
