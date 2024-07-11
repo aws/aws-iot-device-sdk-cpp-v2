@@ -4,8 +4,6 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/JsonObject.h>
-#include <aws/crt/UUID.h>
-#include <aws/crt/io/HostResolver.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 #include <aws/iot/MqttClient.h>
@@ -37,6 +35,201 @@ static std::string getFileData(std::string const &fileName)
     return str;
 }
 
+/**
+ * Auxiliary structure for holding data used when creating a certificate.
+ */
+struct CreateCertificateContext
+{
+    std::promise<void> pubAckPromise;
+    std::promise<void> acceptedSubAckPromise;
+    std::promise<void> rejectedSubAckPromise;
+    std::promise<void> tokenReceivedPromise;
+    String token;
+};
+
+/**
+ * Keys-and-Certificate workflow.
+ *
+ * @note Subscriptions created here will be active even after the function completes. So, all variables accessed in the
+ * callbacks must be alive for the whole duration of the identityClient's lifetime. An instance of
+ * CreateCertificateContext is used to store variables used by the callbacks.
+ */
+void useKeysAndCertificate(IotIdentityClient &identityClient, CreateCertificateContext &ctx)
+{
+    auto onKeysPublishPubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.pubAckPromise.set_value();
+    };
+
+    auto onKeysAcceptedSubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate accepted: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.acceptedSubAckPromise.set_value();
+    };
+
+    auto onKeysRejectedSubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.rejectedSubAckPromise.set_value();
+    };
+
+    auto onKeysAccepted = [&ctx](CreateKeysAndCertificateResponse *response, int ioErr) {
+        if (ioErr == AWS_OP_SUCCESS)
+        {
+            fprintf(stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
+            ctx.token = *response->CertificateOwnershipToken;
+            ctx.tokenReceivedPromise.set_value();
+        }
+        else
+        {
+            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+    };
+
+    auto onKeysRejected = [&](ErrorResponse *error, int ioErr) {
+        if (ioErr == AWS_OP_SUCCESS)
+        {
+            fprintf(
+                stdout,
+                "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
+                *error->StatusCode,
+                error->ErrorMessage->c_str(),
+                error->ErrorCode->c_str());
+            exit(-1);
+        }
+        else
+        {
+            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+    };
+
+    fprintf(stdout, "Subscribing to CreateKeysAndCertificate Accepted and Rejected topics\n");
+    CreateKeysAndCertificateSubscriptionRequest keySubscriptionRequest;
+    identityClient.SubscribeToCreateKeysAndCertificateAccepted(
+        keySubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysAccepted, onKeysAcceptedSubAck);
+    identityClient.SubscribeToCreateKeysAndCertificateRejected(
+        keySubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysRejected, onKeysRejectedSubAck);
+
+    // Wait for the subscriptions to the accept and reject keys-and-certificate topics to be established.
+    ctx.acceptedSubAckPromise.get_future().wait();
+    ctx.rejectedSubAckPromise.get_future().wait();
+
+    // Now, when we subscribed to the keys and certificate topics, we can make a request for a certificate.
+    fprintf(stdout, "Publishing to CreateKeysAndCertificate topic\n");
+    CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
+    identityClient.PublishCreateKeysAndCertificate(
+        createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysPublishPubAck);
+    ctx.pubAckPromise.get_future().wait();
+
+    // Wait for a certificate token.
+    ctx.tokenReceivedPromise.get_future().wait();
+}
+
+/**
+ * Certificate-from-CSR workflow.
+ *
+ * @note Subscriptions created here will be active even after the function completes. So, all variables accessed in the
+ * callbacks must be alive for the whole duration of the identityClient's lifetime. An instance of
+ * CreateCertificateContext is used to store variables used by the callbacks.
+ */
+void useCsr(IotIdentityClient &identityClient, CreateCertificateContext &ctx, const String &csrFile)
+{
+    auto onCsrPublishPubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error publishing to CreateCertificateFromCsr: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.pubAckPromise.set_value();
+    };
+
+    auto onCsrAcceptedSubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error subscribing to CreateCertificateFromCsr accepted: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.acceptedSubAckPromise.set_value();
+    };
+
+    auto onCsrRejectedSubAck = [&ctx](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "Error subscribing to CreateCertificateFromCsr rejected: %s\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+        ctx.rejectedSubAckPromise.set_value();
+    };
+
+    auto onCsrAccepted = [&ctx](CreateCertificateFromCsrResponse *response, int ioErr) {
+        if (ioErr == AWS_OP_SUCCESS)
+        {
+            fprintf(stdout, "CreateCertificateFromCsrResponse certificateId: %s.\n", response->CertificateId->c_str());
+            ctx.token = *response->CertificateOwnershipToken;
+            ctx.tokenReceivedPromise.set_value();
+        }
+        else
+        {
+            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+    };
+
+    auto onCsrRejected = [&](ErrorResponse *error, int ioErr) {
+        if (ioErr == AWS_OP_SUCCESS)
+        {
+            fprintf(
+                stdout,
+                "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
+                *error->StatusCode,
+                error->ErrorMessage->c_str(),
+                error->ErrorCode->c_str());
+            exit(-1);
+        }
+        else
+        {
+            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+            exit(-1);
+        }
+    };
+
+    // CreateCertificateFromCsr workflow
+    fprintf(stdout, "Subscribing to CreateCertificateFromCsr Accepted and Rejected topics\n");
+    CreateCertificateFromCsrSubscriptionRequest csrSubscriptionRequest;
+    identityClient.SubscribeToCreateCertificateFromCsrAccepted(
+        csrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrAccepted, onCsrAcceptedSubAck);
+
+    identityClient.SubscribeToCreateCertificateFromCsrRejected(
+        csrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrRejected, onCsrRejectedSubAck);
+
+    // Wait for the subscriptions to the accept and reject certificates topics to be established.
+    ctx.acceptedSubAckPromise.get_future().wait();
+    ctx.rejectedSubAckPromise.get_future().wait();
+
+    // Now, when we subscribed to the certificates topics, we can make a request for a certificate.
+    fprintf(stdout, "Publishing to CreateCertificateFromCsr topic\n");
+    CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
+    createCertificateFromCsrRequest.CertificateSigningRequest = csrFile;
+    identityClient.PublishCreateCertificateFromCsr(
+        createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrPublishPubAck);
+    ctx.pubAckPromise.get_future().wait();
+
+    // Wait for a certificate token.
+    ctx.tokenReceivedPromise.get_future().wait();
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
@@ -45,7 +238,6 @@ int main(int argc, char *argv[])
     ApiHandle apiHandle;
     // Variables for the sample
     String csrFile;
-    String token;
     RegisterThingResponse registerThingResponse;
 
     /**
@@ -130,145 +322,10 @@ int main(int argc, char *argv[])
     }
     IotIdentityClient identityClient(client);
 
-    /*
-     * Use promises to enforce synchronous behavior, so it's easier to follow the workflow.
-     */
-    std::promise<void> csrPublishPubAckCompletedPromise;
-    std::promise<void> csrAcceptedSubAckCompletedPromise;
-    std::promise<void> csrRejectedSubAckCompletedPromise;
-    std::promise<void> csrAcceptedCompletedPromise;
-
-    std::promise<void> keysPublishPubAckCompletedPromise;
-    std::promise<void> keysAcceptedSubAckCompletedPromise;
-    std::promise<void> keysRejectedSubAckCompletedPromise;
-    std::promise<void> keysAcceptedCompletedPromise;
-
     std::promise<void> registerPublishPubAckCompletedPromise;
     std::promise<void> registerAcceptedSubAckCompletedPromise;
     std::promise<void> registerRejectedSubAckCompletedPromise;
     std::promise<void> registerAcceptedCompletedPromise;
-
-    auto onCsrPublishPubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error publishing to CreateCertificateFromCsr: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-
-        csrPublishPubAckCompletedPromise.set_value();
-    };
-
-    auto onCsrAcceptedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to CreateCertificateFromCsr accepted: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-
-        csrAcceptedSubAckCompletedPromise.set_value();
-    };
-
-    auto onCsrRejectedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to CreateCertificateFromCsr rejected: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        csrRejectedSubAckCompletedPromise.set_value();
-    };
-
-    auto onCsrAccepted = [&](CreateCertificateFromCsrResponse *response, int ioErr) {
-        if (ioErr == AWS_OP_SUCCESS)
-        {
-            fprintf(stdout, "CreateCertificateFromCsrResponse certificateId: %s.\n", response->CertificateId->c_str());
-            token = *response->CertificateOwnershipToken;
-            csrAcceptedCompletedPromise.set_value();
-        }
-        else
-        {
-            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-    };
-
-    auto onCsrRejected = [&](ErrorResponse *error, int ioErr) {
-        if (ioErr == AWS_OP_SUCCESS)
-        {
-            fprintf(
-                stdout,
-                "CreateCertificateFromCsr failed with statusCode %d, errorMessage %s and errorCode %s.",
-                *error->StatusCode,
-                error->ErrorMessage->c_str(),
-                error->ErrorCode->c_str());
-            exit(-1);
-        }
-        else
-        {
-            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-    };
-
-    auto onKeysPublishPubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-
-        keysPublishPubAckCompletedPromise.set_value();
-    };
-
-    auto onKeysAcceptedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate accepted: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-
-        keysAcceptedSubAckCompletedPromise.set_value();
-    };
-
-    auto onKeysRejectedSubAck = [&](int ioErr) {
-        if (ioErr != AWS_OP_SUCCESS)
-        {
-            fprintf(stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-        keysRejectedSubAckCompletedPromise.set_value();
-    };
-
-    auto onKeysAccepted = [&](CreateKeysAndCertificateResponse *response, int ioErr) {
-        if (ioErr == AWS_OP_SUCCESS)
-        {
-            fprintf(stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
-            token = *response->CertificateOwnershipToken;
-            keysAcceptedCompletedPromise.set_value();
-        }
-        else
-        {
-            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-    };
-
-    auto onKeysRejected = [&](ErrorResponse *error, int ioErr) {
-        if (ioErr == AWS_OP_SUCCESS)
-        {
-            fprintf(
-                stdout,
-                "CreateKeysAndCertificate failed with statusCode %d, errorMessage %s and errorCode %s.",
-                *error->StatusCode,
-                error->ErrorMessage->c_str(),
-                error->ErrorCode->c_str());
-            exit(-1);
-        }
-        else
-        {
-            fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
-            exit(-1);
-        }
-    };
 
     auto onRegisterAcceptedSubAck = [&](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
@@ -329,131 +386,56 @@ int main(int argc, char *argv[])
         registerPublishPubAckCompletedPromise.set_value();
     };
 
+    // Create certificate.
+    CreateCertificateContext certificateContext;
     if (csrFile.empty())
     {
-        // CreateKeysAndCertificate workflow
-        fprintf(stdout, "Subscribing to CreateKeysAndCertificate Accepted and Rejected topics\n");
-        CreateKeysAndCertificateSubscriptionRequest keySubscriptionRequest;
-        identityClient.SubscribeToCreateKeysAndCertificateAccepted(
-            keySubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysAccepted, onKeysAcceptedSubAck);
-        identityClient.SubscribeToCreateKeysAndCertificateRejected(
-            keySubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysRejected, onKeysRejectedSubAck);
-
-        // Wait for the subscriptions to the accept and reject key/certificates topics to be established.
-        keysAcceptedSubAckCompletedPromise.get_future().wait();
-        keysRejectedSubAckCompletedPromise.get_future().wait();
-
-        // Now, when we subscribed to the keys and certificates topics, we can make a request for a certificate.
-        fprintf(stdout, "Publishing to CreateKeysAndCertificate topic\n");
-        CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
-        identityClient.PublishCreateKeysAndCertificate(
-            createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysPublishPubAck);
-        keysPublishPubAckCompletedPromise.get_future().wait();
-
-        // Wait for a certificate token.
-        keysAcceptedCompletedPromise.get_future().wait();
-
-        fprintf(stdout, "Subscribing to RegisterThing Accepted and Rejected topics\n");
-        RegisterThingSubscriptionRequest registerSubscriptionRequest;
-        registerSubscriptionRequest.TemplateName = cmdData.input_templateName;
-
-        identityClient.SubscribeToRegisterThingAccepted(
-            registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterAccepted, onRegisterAcceptedSubAck);
-
-        identityClient.SubscribeToRegisterThingRejected(
-            registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterRejected, onRegisterRejectedSubAck);
-
-        // Wait for the subscriptions to the accept and reject RegisterThing topics to be established.
-        registerAcceptedSubAckCompletedPromise.get_future().wait();
-        registerRejectedSubAckCompletedPromise.get_future().wait();
-
-        fprintf(stdout, "Publishing to RegisterThing topic\n");
-        RegisterThingRequest registerThingRequest;
-        registerThingRequest.TemplateName = cmdData.input_templateName;
-
-        const Aws::Crt::String jsonValue = cmdData.input_templateParameters;
-        Aws::Crt::JsonObject value(jsonValue);
-        Map<String, JsonView> pm = value.View().GetAllObjects();
-        Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-
-        for (const auto &x : pm)
-        {
-            params.emplace(x.first, x.second.AsString());
-        }
-
-        registerThingRequest.Parameters = params;
-        registerThingRequest.CertificateOwnershipToken = token;
-
-        identityClient.PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishPubAck);
-        registerPublishPubAckCompletedPromise.get_future().wait();
-
-        // Wait for registering a thing to succeed.
-        registerAcceptedCompletedPromise.get_future().wait();
+        useKeysAndCertificate(identityClient, certificateContext);
     }
     else
     {
-        // CreateCertificateFromCsr workflow
-        fprintf(stdout, "Subscribing to CreateCertificateFromCsr Accepted and Rejected topics\n");
-        CreateCertificateFromCsrSubscriptionRequest csrSubscriptionRequest;
-        identityClient.SubscribeToCreateCertificateFromCsrAccepted(
-            csrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrAccepted, onCsrAcceptedSubAck);
-
-        identityClient.SubscribeToCreateCertificateFromCsrRejected(
-            csrSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrRejected, onCsrRejectedSubAck);
-
-        // Wait for the subscriptions to the accept and reject certificates topics to be established.
-        csrAcceptedSubAckCompletedPromise.get_future().wait();
-        csrRejectedSubAckCompletedPromise.get_future().wait();
-
-        // Now, when we subscribed to the certificates topics, we can make a request for a certificate.
-        fprintf(stdout, "Publishing to CreateCertificateFromCsr topic\n");
-        CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
-        createCertificateFromCsrRequest.CertificateSigningRequest = csrFile;
-        identityClient.PublishCreateCertificateFromCsr(
-            createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrPublishPubAck);
-        csrPublishPubAckCompletedPromise.get_future().wait();
-
-        // Wait for a certificate token.
-        csrAcceptedCompletedPromise.get_future().wait();
-
-        fprintf(stdout, "Subscribing to RegisterThing Accepted and Rejected topics\n");
-        RegisterThingSubscriptionRequest registerSubscriptionRequest;
-        registerSubscriptionRequest.TemplateName = cmdData.input_templateName;
-
-        identityClient.SubscribeToRegisterThingAccepted(
-            registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterAccepted, onRegisterAcceptedSubAck);
-
-        identityClient.SubscribeToRegisterThingRejected(
-            registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterRejected, onRegisterRejectedSubAck);
-
-        // Wait for the subscriptions to the accept and reject RegisterThing topics to be established.
-        registerAcceptedSubAckCompletedPromise.get_future().wait();
-        registerRejectedSubAckCompletedPromise.get_future().wait();
-
-        fprintf(stdout, "Publishing to RegisterThing topic\n");
-        RegisterThingRequest registerThingRequest;
-        registerThingRequest.TemplateName = cmdData.input_templateName;
-
-        const Aws::Crt::String jsonValue = cmdData.input_templateParameters;
-        Aws::Crt::JsonObject value(jsonValue);
-        Map<String, JsonView> pm = value.View().GetAllObjects();
-        Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-
-        for (const auto &x : pm)
-        {
-            params.emplace(x.first, x.second.AsString());
-        }
-
-        registerThingRequest.Parameters = params;
-        registerThingRequest.CertificateOwnershipToken = token;
-
-        identityClient.PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishPubAck);
-
-        registerPublishPubAckCompletedPromise.get_future().wait();
-
-        // Wait for registering a thing to succeed.
-        registerAcceptedCompletedPromise.get_future().wait();
+        useCsr(identityClient, certificateContext, csrFile);
     }
+
+    // After certificate is obtained, it's time to register a thing.
+    fprintf(stdout, "Subscribing to RegisterThing Accepted and Rejected topics\n");
+    RegisterThingSubscriptionRequest registerSubscriptionRequest;
+    registerSubscriptionRequest.TemplateName = cmdData.input_templateName;
+
+    identityClient.SubscribeToRegisterThingAccepted(
+        registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterAccepted, onRegisterAcceptedSubAck);
+
+    identityClient.SubscribeToRegisterThingRejected(
+        registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterRejected, onRegisterRejectedSubAck);
+
+    // Wait for the subscriptions to the accept and reject RegisterThing topics to be established.
+    registerAcceptedSubAckCompletedPromise.get_future().wait();
+    registerRejectedSubAckCompletedPromise.get_future().wait();
+
+    fprintf(stdout, "Publishing to RegisterThing topic\n");
+    RegisterThingRequest registerThingRequest;
+    registerThingRequest.TemplateName = cmdData.input_templateName;
+
+    const Aws::Crt::String jsonValue = cmdData.input_templateParameters;
+    Aws::Crt::JsonObject value(jsonValue);
+    Map<String, JsonView> pm = value.View().GetAllObjects();
+    Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+
+    for (const auto &x : pm)
+    {
+        params.emplace(x.first, x.second.AsString());
+    }
+
+    registerThingRequest.Parameters = params;
+    // NOTE: In a real application creating multiple certificates you'll probably need to protect token var with
+    // a critical section. This sample makes only one request for a certificate, so no data race is possible.
+    registerThingRequest.CertificateOwnershipToken = certificateContext.token;
+
+    identityClient.PublishRegisterThing(registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishPubAck);
+    registerPublishPubAckCompletedPromise.get_future().wait();
+
+    // Wait for registering a thing to succeed.
+    registerAcceptedCompletedPromise.get_future().wait();
 
     // Disconnect
     if (client->Stop())

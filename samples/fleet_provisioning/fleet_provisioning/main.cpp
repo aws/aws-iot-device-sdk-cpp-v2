@@ -47,7 +47,7 @@ struct CreateCertificateContext
 };
 
 /**
- * Keys-And-Certificate workflow.
+ * Keys-and-Certificate workflow.
  *
  * @note Subscriptions created here will be active even after the function completes. So, all variables accessed in the
  * callbacks must be alive for the whole duration of the identityClient's lifetime. An instance of
@@ -137,7 +137,7 @@ void useKeysAndCertificate(IotIdentityClient &identityClient, CreateCertificateC
 }
 
 /**
- * Certificate-From-CSR workflow.
+ * Certificate-from-CSR workflow.
  *
  * @note Subscriptions created here will be active even after the function completes. So, all variables accessed in the
  * callbacks must be alive for the whole duration of the identityClient's lifetime. An instance of
@@ -329,10 +329,6 @@ int main(int argc, char *argv[])
 
     IotIdentityClient identityClient(connection);
 
-    /*
-     * Use promises to enforce synchronous behavior, so it's easier to follow the workflow.
-     */
-
     std::promise<void> registerPublishPubAckCompletedPromise;
     std::promise<void> registerAcceptedSubAckCompletedPromise;
     std::promise<void> registerRejectedSubAckCompletedPromise;
@@ -397,8 +393,8 @@ int main(int argc, char *argv[])
         registerPublishPubAckCompletedPromise.set_value();
     };
 
+    // Create certificate.
     CreateCertificateContext certificateContext;
-
     if (csrFile.empty())
     {
         useKeysAndCertificate(identityClient, certificateContext);
