@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
 
     if (cmdData.input_csrPath != "")
     {
-        csrFile = getFileData(cmdData.input_csrPath.c_str());
+        csrFile = getFileData(cmdData.input_csrPath.c_str()).c_str();
     }
 
     /**
