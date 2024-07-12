@@ -6,8 +6,8 @@
 /**
  * A sample application demonstrating usage of AWS IoT Fleet provisioning.
  *
- * In a real world application you probably don't want to enforce synchronous behavior. But this is a sample console
- * application, so all actions, like creating a certificate or registering a thing, are performed in synchronous manner.
+ * It's easier to follow a synchronous workflow, when events happen one after another. For that reason, this sample
+ * performs all actions, like connecting to a server or registering a thing, in synchronous manner.
  */
 
 #include <aws/crt/Api.h>
@@ -34,12 +34,12 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
 
-static std::string getFileData(std::string const &fileName)
+static String getFileData(const String &fileName)
 {
-    std::ifstream ifs(fileName);
+    std::ifstream ifs(fileName.c_str());
     std::string str;
     getline(ifs, str, (char)ifs.eof());
-    return str;
+    return str.c_str();
 }
 
 /**
@@ -437,8 +437,6 @@ int main(int argc, char *argv[])
 
     //  Do the global initialization for the API
     ApiHandle apiHandle;
-    // Variables for the sample
-    String csrFile;
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
@@ -446,11 +444,6 @@ int main(int argc, char *argv[])
      * See the Utils/CommandLineUtils for more information.
      */
     Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
-
-    if (cmdData.input_csrPath != "")
-    {
-        csrFile = getFileData(cmdData.input_csrPath.c_str()).c_str();
-    }
 
     ConnectionContext connectionContext;
     auto connection = createConnection(cmdData, connectionContext);
@@ -474,13 +467,14 @@ int main(int argc, char *argv[])
 
     // Create certificate.
     CreateCertificateContext certificateContext;
-    if (csrFile.empty())
+    if (cmdData.input_csrPath != "")
     {
-        createKeysAndCertificate(identityClient, certificateContext);
+        auto csrFile = getFileData(cmdData.input_csrPath);
+        createCertificateFromCsr(identityClient, certificateContext, csrFile);
     }
     else
     {
-        createCertificateFromCsr(identityClient, certificateContext, csrFile);
+        createKeysAndCertificate(identityClient, certificateContext);
     }
 
     // After certificate is obtained, it's time to register a thing.
