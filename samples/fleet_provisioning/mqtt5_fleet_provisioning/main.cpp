@@ -182,7 +182,7 @@ void createKeysAndCertificate(IotIdentityClient &identityClient, CreateCertifica
         }
     };
 
-    auto onKeysRejected = [&](ErrorResponse *error, int ioErr) {
+    auto onKeysRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -268,7 +268,7 @@ void createCertificateFromCsr(IotIdentityClient &identityClient, CreateCertifica
         }
     };
 
-    auto onCsrRejected = [&](ErrorResponse *error, int ioErr) {
+    auto onCsrRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -317,7 +317,7 @@ void registerThing(
     const Utils::cmdData &cmdData,
     const String &token)
 {
-    auto onRegisterAcceptedSubAck = [&](int ioErr) {
+    auto onRegisterAcceptedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to RegisterThing accepted: %s\n", ErrorDebugString(ioErr));
@@ -326,7 +326,7 @@ void registerThing(
         ctx.acceptedSubAckPromise.set_value();
     };
 
-    auto onRegisterRejectedSubAck = [&](int ioErr) {
+    auto onRegisterRejectedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to RegisterThing rejected: %s\n", ErrorDebugString(ioErr));
@@ -335,7 +335,7 @@ void registerThing(
         ctx.rejectedSubAckPromise.set_value();
     };
 
-    auto onRegisterAccepted = [&](RegisterThingResponse *response, int ioErr) {
+    auto onRegisterAccepted = [&ctx](RegisterThingResponse *response, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "RegisterThingResponse ThingName: %s.\n", response->ThingName->c_str());
@@ -348,7 +348,7 @@ void registerThing(
         }
     };
 
-    auto onRegisterRejected = [&](ErrorResponse *error, int ioErr) {
+    auto onRegisterRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -365,7 +365,7 @@ void registerThing(
         }
     };
 
-    auto onRegisterPublishPubAck = [&](int ioErr) {
+    auto onRegisterPublishPubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error publishing to RegisterThing: %s\n", ErrorDebugString(ioErr));
