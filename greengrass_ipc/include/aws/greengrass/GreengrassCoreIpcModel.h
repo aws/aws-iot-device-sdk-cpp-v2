@@ -3458,6 +3458,14 @@ namespace Aws
              * operation defaults to the version with the AWSCURRENT label.
              */
             Aws::Crt::Optional<Aws::Crt::String> GetVersionStage() noexcept { return m_versionStage; }
+            /**
+             * (Optional) Whether to fetch the latest secret from cloud when the request is handled. Defaults to false.
+             */
+            void SetRefresh(const bool &refresh) noexcept { m_refresh = refresh; }
+            /**
+             * (Optional) Whether to fetch the latest secret from cloud when the request is handled. Defaults to false.
+             */
+            Aws::Crt::Optional<bool> GetRefresh() noexcept { return m_refresh; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetSecretValueRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3475,6 +3483,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_secretId;
             Aws::Crt::Optional<Aws::Crt::String> m_versionId;
             Aws::Crt::Optional<Aws::Crt::String> m_versionStage;
+            Aws::Crt::Optional<bool> m_refresh;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusResponse : public AbstractShapeBase
