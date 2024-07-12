@@ -62,8 +62,7 @@ struct CreateCertificateContext
     std::promise<void> pubAckPromise;
     std::promise<void> acceptedSubAckPromise;
     std::promise<void> rejectedSubAckPromise;
-    std::promise<void> tokenReceivedPromise;
-    String token;
+    std::promise<String> tokenPromise;
 };
 
 /**
@@ -174,8 +173,7 @@ void createKeysAndCertificate(IotIdentityClient &identityClient, CreateCertifica
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
-            ctx.token = *response->CertificateOwnershipToken;
-            ctx.tokenReceivedPromise.set_value();
+            ctx.tokenPromise.set_value(*response->CertificateOwnershipToken);
         }
         else
         {
@@ -219,9 +217,6 @@ void createKeysAndCertificate(IotIdentityClient &identityClient, CreateCertifica
     identityClient.PublishCreateKeysAndCertificate(
         createKeysAndCertificateRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onKeysPublishPubAck);
     ctx.pubAckPromise.get_future().wait();
-
-    // Wait for a certificate token.
-    ctx.tokenReceivedPromise.get_future().wait();
 }
 
 /**
@@ -264,8 +259,7 @@ void createCertificateFromCsr(IotIdentityClient &identityClient, CreateCertifica
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "CreateCertificateFromCsrResponse certificateId: %s.\n", response->CertificateId->c_str());
-            ctx.token = *response->CertificateOwnershipToken;
-            ctx.tokenReceivedPromise.set_value();
+            ctx.tokenPromise.set_value(*response->CertificateOwnershipToken);
         }
         else
         {
@@ -312,9 +306,6 @@ void createCertificateFromCsr(IotIdentityClient &identityClient, CreateCertifica
     identityClient.PublishCreateCertificateFromCsr(
         createCertificateFromCsrRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onCsrPublishPubAck);
     ctx.pubAckPromise.get_future().wait();
-
-    // Wait for a certificate token.
-    ctx.tokenReceivedPromise.get_future().wait();
 }
 
 /**
@@ -469,9 +460,12 @@ int main(int argc, char *argv[])
         createKeysAndCertificate(identityClient, certificateContext);
     }
 
+    // Wait for a certificate token to be obtained.
+    auto token = certificateContext.tokenPromise.get_future().get();
+
     // After certificate is obtained, it's time to register a thing.
     RegisterThingContext registerThingContext;
-    registerThing(identityClient, registerThingContext, cmdData, certificateContext.token);
+    registerThing(identityClient, registerThingContext, cmdData, token);
 
     // Disconnect
     if (client->Stop())
