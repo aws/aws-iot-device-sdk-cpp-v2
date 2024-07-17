@@ -37,6 +37,7 @@ env:
   CI_X509_ROLE: arn:aws:iam::180635532705:role/CI_X509_Role
   CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
   CI_GREENGRASS_ROLE: arn:aws:iam::180635532705:role/CI_Greengrass_Role
+  CI_GREENGRASS_INSTALLER_ROLE: arn:aws:iam::180635532705:role/CI_GreengrassInstaller_Role
   CI_JOBS_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_JobsServiceClient_Role
   CI_SHADOW_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_ShadowServiceClient_Role
 
@@ -94,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version:
+        compiler:
           - clang-3
           - clang-6
           - clang-8
@@ -325,7 +326,12 @@ jobs:
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBUILD_SHARED_LIBS=ON
 
   osx:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner:
+          - macos-13
+          - macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
       security-events: write # This is required for pkcs12 sample to sign the key
@@ -337,6 +343,8 @@ jobs:
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
       - name: Running samples in CI setup
         run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
           python3 -m pip install boto3
       - name: configure AWS credentials (PubSub)
         uses: aws-actions/configure-aws-credentials@v2
@@ -345,6 +353,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT3 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
      - name: run PKCS12 sample
        run: |
@@ -370,6 +379,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run MQTT5 PubSub sample
         run: |
+          source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
       - name: configure AWS credentials (Device Advisor)
         uses: aws-actions/configure-aws-credentials@v2
@@ -378,6 +388,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: run DeviceAdvisor
         run: |
+          source .venv/bin/activate
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./deviceadvisor/script/DATestRun.py
   # Not strictly needed, but allows us to run Device Advisor and PubSub on Linux without needing to run all samples
@@ -631,14 +642,66 @@ jobs:
       - name: run X509 sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
-      - name: configure AWS credentials (Greengrass)
+
+  # Runs the Greengrass samples
+  linux-greengrass-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    steps:
+      - name: Setup C++
+        run: |
+          sudo apt-get -qq update -y
+          sudo apt-get -qq install -y build-essential
+          sudo apt install cmake
+          gcc --version
+          cmake --version
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          echo "Downloading source"
+          git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ env.HEAD_REF || github.ref_name }}
+          echo "Running builder"
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --variant build_gg_samples_only
+      - name: Install Greengrass Development Kit
+        run: |
+          python3 -m pip install awsiotsdk
+          python3 -m pip install -U git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.2
+      - name: Configure AWS credentials (Greengrass)
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: ${{ env.CI_GREENGRASS_ROLE }}
+          role-to-assume: ${{ env.CI_GREENGRASS_INSTALLER_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Greengrass Discovery sample
+      - name: Build and run Greengrass basic discovery sample
+        working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/basic_discovery
         run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_greengrass_discovery_cfg.json
+          gdk component build
+          gdk test-e2e build
+          gdk test-e2e run
+      - name: Show logs
+        working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/basic_discovery
+        # Print logs unconditionally to provide more details on Greengrass run even if the test failed.
+        if: always()
+        run: |
+          echo "=== greengrass.log"
+          cat testResults/gg*/greengrass.log
+          echo "=== software.amazon.awssdk.sdk-gg-test-discovery.log"
+          cat testResults/gg*/software.amazon.awssdk.sdk-gg-test-discovery.log
+      - name: Build and run Greengrass IPC sample
+        working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/ipc
+        run: |
+          gdk component build
+          gdk test-e2e build
+          gdk test-e2e run
+      - name: Show logs
+        working-directory: ./aws-iot-device-sdk-cpp-v2/tests/greengrass/ipc
+        # Print logs unconditionally to provide more details on Greengrass run even if the test failed.
+        if: always()
+        run: |
+          echo "=== greengrass.log"
+          cat testResults/gg*/greengrass.log
+          echo "=== software.amazon.awssdk.sdk-gg-ipc.log"
+          cat testResults/gg*/software.amazon.awssdk.sdk-gg-ipc.log
 
   # check that docs can still build
   check-docs:

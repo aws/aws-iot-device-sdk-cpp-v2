@@ -11,6 +11,7 @@ project(aws-iot-device-sdk-cpp-v2
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
+option(USE_EXTERNAL_DEPS_SOURCES "Use dependencies provided by add_subdirectory command" OFF)
 option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
@@ -57,6 +58,10 @@ else()
 endif()
 
 if (BUILD_DEPS)
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option should be used with BUILD_DEPS set to OFF")
+    endif()
+
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-crt-cpp/crt/aws-c-common/cmake")
 
     include(AwsFindPackage)
@@ -70,8 +75,27 @@ if (BUILD_DEPS)
     endif ()
     set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        function(validate_deps_sources dep_name)
+            if (NOT ${dep_name}_SOURCE_DIR)
+                message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option is set, but ${dep_name} project is not configured."
+                    " ${dep_name} must be added using add_subdirectory command (or one of the higher-level commands that"
+                    " uses add_subdirectory, like FetchContent)")
+            endif()
+        endfunction()
+
+        validate_deps_sources(aws-crt-cpp)
+        validate_deps_sources(aws-c-iot)
+        validate_deps_sources(aws-c-common)
+
+        list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
+
+        set(IN_SOURCE_BUILD ON)
+    else()
+        set(IN_SOURCE_BUILD OFF)
+    endif()
+
     include(AwsFindPackage)
-    set(IN_SOURCE_BUILD OFF)
 endif()
 
 aws_use_package(aws-crt-cpp)
