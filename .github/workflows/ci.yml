@@ -357,6 +357,7 @@ jobs:
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
       - name: run PKCS12 sample
         run: |
+          source .venv/bin/activate
           aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
           pkcs12_identity_name=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
           pkcs12_identity_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
