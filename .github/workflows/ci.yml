@@ -355,23 +355,24 @@ jobs:
         run: |
           source .venv/bin/activate
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
-#      - name: run PKCS12 sample
-#        run: |
-#          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
-#          pkcs12_identity_name=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-#          pkcs12_identity_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-#          cert=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/cert" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$cert" > /tmp/certificate.pem
-#          key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > /tmp/privatekey.pem
-#          iot_pkcs12_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key_pkcs12_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-#          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out ./iot_pkcs12_key.p12 -name PubSub_Thing_Alias -password pass:$iot_pkcs12_password
-#          security create-keychain -p test_password build.keychain
-#          security set-keychain-settings -lut 21600 build.keychain
-#          security default-keychain -s build.keychain
-#          security unlock-keychain -p test_password build.keychain
-#          security import pkcs12_identity.p12 -A -k build.keychain -f pkcs12 -P $pkcs12_identity_password -T /usr/bin/codesign -T /usr/bin/security
-#          security set-key-partition-list -S 'apple-tool:,apple:' -k test_password build.keychain
-#          /usr/bin/codesign --force -s $pkcs12_identity_name ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
-#          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
+      - name: run PKCS12 sample
+        run: |
+          source .venv/bin/activate
+          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
+          pkcs12_identity_name=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
+          pkcs12_identity_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
+          cert=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/cert" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$cert" > /tmp/certificate.pem
+          key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > /tmp/privatekey.pem
+          iot_pkcs12_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key_pkcs12_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
+          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out ./iot_pkcs12_key.p12 -name PubSub_Thing_Alias -password pass:$iot_pkcs12_password
+          security create-keychain -p test_password build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p test_password build.keychain
+          security import pkcs12_identity.p12 -A -k build.keychain -f pkcs12 -P $pkcs12_identity_password -T /usr/bin/codesign -T /usr/bin/security
+          security set-key-partition-list -S 'apple-tool:,apple:' -k test_password build.keychain
+          /usr/bin/codesign --force -s $pkcs12_identity_name ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
+          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v2
         with:
