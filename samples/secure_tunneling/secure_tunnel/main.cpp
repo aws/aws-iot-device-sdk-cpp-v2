@@ -256,12 +256,15 @@ int main(int argc, char *argv[])
             }
         });
 
+    std::promise<void> connectionPromise;
+
     builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
         logConnectionData(eventData);
 
         /* Stream Start can only be called from Source Mode */
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
+            connectionPromise.set_value();
             /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
             if (eventData.connectionData->getServiceId1().has_value())
             {
@@ -344,6 +347,8 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
+
+    connectionPromise.get_future().wait_for(std::chrono::seconds(5));
 
     /*
      * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
