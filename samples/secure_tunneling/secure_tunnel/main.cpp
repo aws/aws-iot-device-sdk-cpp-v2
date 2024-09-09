@@ -264,7 +264,6 @@ int main(int argc, char *argv[])
         /* Stream Start can only be called from Source Mode */
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
-            connectionPromise.set_value();
             /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
             if (eventData.connectionData->getServiceId1().has_value())
             {
@@ -288,6 +287,7 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Sending Stream Start request\n");
                 secureTunnel->SendStreamStart();
             }
+            connectionPromise.set_value();
         }
     });
 
