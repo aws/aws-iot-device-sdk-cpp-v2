@@ -98,6 +98,8 @@ else()
     include(AwsFindPackage)
 endif()
 
+include(AwsSanitizers)
+
 aws_use_package(aws-crt-cpp)
 
 add_subdirectory(jobs)

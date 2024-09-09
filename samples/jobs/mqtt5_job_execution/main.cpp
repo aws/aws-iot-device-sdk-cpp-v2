@@ -209,6 +209,7 @@ int main(int argc, char *argv[])
                             }
                             else
                             {
+                                fprintf(stderr, "No pending jobs, exiting\n");
                                 exit(-1);
                             }
                         }
