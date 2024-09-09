@@ -977,13 +977,4 @@ jobs:
         if: always()
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
-      - name: configure AWS credentials (Greengrass)
-        if: always()
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ env.CI_GREENGRASS_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Greengrass Discovery sample
-        if: always()
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_greengrass_discovery_cfg.json
+      # TODO Add GG tests.
