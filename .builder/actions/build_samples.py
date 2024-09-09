@@ -71,7 +71,8 @@ class BuildSamples(Builder.Action):
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
-            steps[-1].extend(env.config['cmake_args'])
+            if sys.platform == "linux" or sys.platform == "linux2":
+                steps[-1].extend(env.config['cmake_args'])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
@@ -85,7 +86,8 @@ class BuildSamples(Builder.Action):
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
-            steps[-1].extend(env.config['cmake_args'])
+            if sys.platform == "linux" or sys.platform == "linux2":
+                steps[-1].extend(env.config['cmake_args'])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
@@ -99,7 +101,8 @@ class BuildSamples(Builder.Action):
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
-            steps[-1].extend(env.config['cmake_args'])
+            if sys.platform == "linux" or sys.platform == "linux2":
+                steps[-1].extend(env.config['cmake_args'])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
@@ -111,7 +114,8 @@ class BuildSamples(Builder.Action):
                           f'-H{sample_path}',
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            steps[-1].extend(env.config['cmake_args'])
+            if sys.platform == "linux" or sys.platform == "linux2":
+                steps[-1].extend(env.config['cmake_args'])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
