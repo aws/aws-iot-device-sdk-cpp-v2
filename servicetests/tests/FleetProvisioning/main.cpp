@@ -105,36 +105,28 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     }
 
     // Setup lifecycle callbacks
-    builder->WithClientConnectionSuccessCallback(
-        [&ctx](const Mqtt5::OnConnectionSuccessEventData &eventData)
-        {
-            fprintf(
-                stdout,
-                "Mqtt5 Client connection succeed, clientid: %s.\n",
-                eventData.negotiatedSettings->getClientId().c_str());
-            ctx.connectionPromise.set_value(true);
-        });
-    builder->WithClientConnectionFailureCallback(
-        [&ctx](const Mqtt5::OnConnectionFailureEventData &eventData)
-        {
-            fprintf(
-                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            ctx.connectionPromise.set_value(false);
-        });
-    builder->WithClientStoppedCallback(
-        [&ctx](const Mqtt5::OnStoppedEventData &)
-        {
-            fprintf(stdout, "Mqtt5 Client stopped.\n");
-            ctx.stoppedPromise.set_value();
-        });
-    builder->WithClientAttemptingConnectCallback([](const Mqtt5::OnAttemptingConnectEventData &)
-                                                 { fprintf(stdout, "Mqtt5 Client attempting connection...\n"); });
-    builder->WithClientDisconnectionCallback(
-        [&ctx](const Mqtt5::OnDisconnectionEventData &eventData)
-        {
-            fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
-            ctx.disconnectPromise.set_value();
-        });
+    builder->WithClientConnectionSuccessCallback([&ctx](const Mqtt5::OnConnectionSuccessEventData &eventData) {
+        fprintf(
+            stdout,
+            "Mqtt5 Client connection succeed, clientid: %s.\n",
+            eventData.negotiatedSettings->getClientId().c_str());
+        ctx.connectionPromise.set_value(true);
+    });
+    builder->WithClientConnectionFailureCallback([&ctx](const Mqtt5::OnConnectionFailureEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        ctx.connectionPromise.set_value(false);
+    });
+    builder->WithClientStoppedCallback([&ctx](const Mqtt5::OnStoppedEventData &) {
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
+        ctx.stoppedPromise.set_value();
+    });
+    builder->WithClientAttemptingConnectCallback([](const Mqtt5::OnAttemptingConnectEventData &) {
+        fprintf(stdout, "Mqtt5 Client attempting connection...\n");
+    });
+    builder->WithClientDisconnectionCallback([&ctx](const Mqtt5::OnDisconnectionEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client disconnection with reason: %s.\n", aws_error_debug_str(eventData.errorCode));
+        ctx.disconnectPromise.set_value();
+    });
 
     // Create Mqtt5Client
     auto client = builder->Build();
@@ -166,8 +158,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
      */
 
     // Invoked when a MQTT connect has completed or failed
-    auto onConnectionCompleted = [&ctx](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool)
-    {
+    auto onConnectionCompleted = [&ctx](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
@@ -181,8 +172,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
     };
 
     // Invoked when a disconnect has been completed
-    auto onDisconnect = [&ctx](Mqtt::MqttConnection & /*conn*/)
-    {
+    auto onDisconnect = [&ctx](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
             ctx.connectionClosedPromise.set_value();
@@ -246,8 +236,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
  */
 void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identityClient, CreateCertificateContext &ctx)
 {
-    auto onKeysPublishPubAck = [&ctx](int ioErr)
-    {
+    auto onKeysPublishPubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error publishing to CreateKeysAndCertificate: %s\n", ErrorDebugString(ioErr));
@@ -256,8 +245,7 @@ void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identity
         ctx.pubAckPromise.set_value();
     };
 
-    auto onKeysAcceptedSubAck = [&ctx](int ioErr)
-    {
+    auto onKeysAcceptedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to CreateKeysAndCertificate accepted: %s\n", ErrorDebugString(ioErr));
@@ -266,8 +254,7 @@ void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identity
         ctx.acceptedSubAckPromise.set_value();
     };
 
-    auto onKeysRejectedSubAck = [&ctx](int ioErr)
-    {
+    auto onKeysRejectedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
@@ -276,8 +263,7 @@ void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identity
         ctx.rejectedSubAckPromise.set_value();
     };
 
-    auto onKeysAccepted = [&ctx](CreateKeysAndCertificateResponse *response, int ioErr)
-    {
+    auto onKeysAccepted = [&ctx](CreateKeysAndCertificateResponse *response, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "CreateKeysAndCertificateResponse certificateId: %s.\n", response->CertificateId->c_str());
@@ -290,8 +276,7 @@ void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identity
         }
     };
 
-    auto onKeysRejected = [](ErrorResponse *error, int ioErr)
-    {
+    auto onKeysRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -340,8 +325,7 @@ void createCertificateFromCsr(
     CreateCertificateContext &ctx,
     const String &csrFile)
 {
-    auto onCsrPublishPubAck = [&ctx](int ioErr)
-    {
+    auto onCsrPublishPubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error publishing to CreateCertificateFromCsr: %s\n", ErrorDebugString(ioErr));
@@ -350,8 +334,7 @@ void createCertificateFromCsr(
         ctx.pubAckPromise.set_value();
     };
 
-    auto onCsrAcceptedSubAck = [&ctx](int ioErr)
-    {
+    auto onCsrAcceptedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to CreateCertificateFromCsr accepted: %s\n", ErrorDebugString(ioErr));
@@ -360,8 +343,7 @@ void createCertificateFromCsr(
         ctx.acceptedSubAckPromise.set_value();
     };
 
-    auto onCsrRejectedSubAck = [&ctx](int ioErr)
-    {
+    auto onCsrRejectedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to CreateCertificateFromCsr rejected: %s\n", ErrorDebugString(ioErr));
@@ -370,8 +352,7 @@ void createCertificateFromCsr(
         ctx.rejectedSubAckPromise.set_value();
     };
 
-    auto onCsrAccepted = [&ctx](CreateCertificateFromCsrResponse *response, int ioErr)
-    {
+    auto onCsrAccepted = [&ctx](CreateCertificateFromCsrResponse *response, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "CreateCertificateFromCsrResponse certificateId: %s.\n", response->CertificateId->c_str());
@@ -384,8 +365,7 @@ void createCertificateFromCsr(
         }
     };
 
-    auto onCsrRejected = [](ErrorResponse *error, int ioErr)
-    {
+    auto onCsrRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -434,8 +414,7 @@ void registerThing(
     const Utils::cmdData &cmdData,
     const String &token)
 {
-    auto onRegisterAcceptedSubAck = [&ctx](int ioErr)
-    {
+    auto onRegisterAcceptedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to RegisterThing accepted: %s\n", ErrorDebugString(ioErr));
@@ -444,8 +423,7 @@ void registerThing(
         ctx.acceptedSubAckPromise.set_value();
     };
 
-    auto onRegisterRejectedSubAck = [&ctx](int ioErr)
-    {
+    auto onRegisterRejectedSubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error subscribing to RegisterThing rejected: %s\n", ErrorDebugString(ioErr));
@@ -454,8 +432,7 @@ void registerThing(
         ctx.rejectedSubAckPromise.set_value();
     };
 
-    auto onRegisterAccepted = [&ctx](RegisterThingResponse *response, int ioErr)
-    {
+    auto onRegisterAccepted = [&ctx](RegisterThingResponse *response, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(stdout, "RegisterThingResponse ThingName: %s.\n", response->ThingName->c_str());
@@ -468,8 +445,7 @@ void registerThing(
         }
     };
 
-    auto onRegisterRejected = [](ErrorResponse *error, int ioErr)
-    {
+    auto onRegisterRejected = [](ErrorResponse *error, int ioErr) {
         if (ioErr == AWS_OP_SUCCESS)
         {
             fprintf(
@@ -486,8 +462,7 @@ void registerThing(
         }
     };
 
-    auto onRegisterPublishPubAck = [&ctx](int ioErr)
-    {
+    auto onRegisterPublishPubAck = [&ctx](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Error publishing to RegisterThing: %s\n", ErrorDebugString(ioErr));
