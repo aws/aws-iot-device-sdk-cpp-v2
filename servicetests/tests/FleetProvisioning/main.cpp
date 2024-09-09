@@ -92,7 +92,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     {
         printf(
             "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
-        exit(-1);
+        return nullptr;
     }
 
     // Setup connection options
@@ -144,7 +144,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     if (!client->Start())
     {
         fprintf(stderr, "MQTT5 Connection failed to start");
-        exit(-1);
+        return nullptr;
     }
 
     if (!ctx.connectionPromise.get_future().get())
@@ -206,7 +206,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
             stderr,
             "Client Configuration initialization failed with error %s\n",
             Aws::Crt::ErrorDebugString(clientConfig.LastError()));
-        exit(-1);
+        return nullptr;
     }
     Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
     auto connection = client.NewConnection(clientConfig);
@@ -216,7 +216,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
             stderr,
             "MQTT Connection Creation failed with error %s\n",
             Aws::Crt::ErrorDebugString(connection->LastError()));
-        exit(-1);
+        return nullptr;
     }
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -226,12 +226,12 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
     if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
-        exit(-1);
+        return nullptr;
     }
 
     if (!ctx.connectionCompletedPromise.get_future().get())
     {
-        exit(-1);
+        return nullptr;
     }
 
     return connection;
@@ -560,13 +560,13 @@ int main(int argc, char *argv[])
 
     if (cmdData.input_mqtt_version == 5UL)
     {
-        auto client = createMqtt5Client(cmdData, mqtt5ClientContext);
-        if (!client)
+        mqtt5Client = createMqtt5Client(cmdData, mqtt5ClientContext);
+        if (!mqtt5Client)
         {
             fprintf(stderr, "MQTT5 Connection failed to start");
             return -1;
         }
-        identityClient = std::make_shared<IotIdentityClient>(client);
+        identityClient = std::make_shared<IotIdentityClient>(mqtt5Client);
     }
     else if (cmdData.input_mqtt_version == 3UL)
     {
@@ -581,7 +581,7 @@ int main(int argc, char *argv[])
     else
     {
         fprintf(stderr, "MQTT Version not supported\n");
-        exit(-1);
+        return -1;
     }
 
     /************************ Run the sample ****************************/
