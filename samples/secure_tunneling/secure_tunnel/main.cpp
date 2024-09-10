@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
+    std::promise<void> clientConnectedPromise;
     std::promise<bool> clientStoppedPromise;
 
     // service id storage for use in sample
@@ -285,6 +286,7 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "Sending Stream Start request\n");
                 secureTunnel->SendStreamStart();
             }
+            clientConnectedPromise.set_value();
         }
     });
 
@@ -344,6 +346,8 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Secure Tunnel Connect call failed: %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
+
+    clientConnectedPromise.get_future().wait_for(std::chrono::seconds(5));
 
     /*
      * In Destination mode the Secure Tunnel Client will remain open and echo messages that come in.
