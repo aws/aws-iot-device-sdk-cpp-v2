@@ -46,6 +46,9 @@ std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                     .WithPortOverride(connectivityInfo.Port.value())
                     .WithEndpoint(connectivityInfo.HostAddress.value())
                     .WithTcpConnectTimeout(3000)
+                    .WithTcpKeepAliveInterval(2)
+                    .WithTcpKeepAliveTimeout(2)
+                    .WithTcpKeepAlive()
                     .Build());
 
             if (!connection)
