@@ -88,7 +88,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
         [](Aws::Iot::Mqtt5ClientBuilder *ptr) { delete ptr; });
 
     // Check if the builder setup correctly.
-    if (!builder)
+    if (builder == nullptr)
     {
         printf(
             "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
