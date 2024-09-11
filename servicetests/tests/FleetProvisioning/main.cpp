@@ -84,11 +84,14 @@ struct RegisterThingContext
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmdData &cmdData, Mqtt5ClientContext &ctx)
 {
     // Create the MQTT5 builder and populate it with data from cmdData.
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    // Create the MQTT5 builder and populate it with data from cmdData.
+    auto builder = Aws::Crt::ScopedResource<Aws::Iot::Mqtt5ClientBuilder>(
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()),
+        [](Aws::Iot::Mqtt5ClientBuilder *ptr) { delete ptr; });
 
     // Check if the builder setup correctly.
-    if (builder == nullptr)
+    if (!builder)
     {
         printf(
             "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
@@ -130,7 +133,6 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
 
     // Create Mqtt5Client
     auto client = builder->Build();
-    delete builder;
 
     fprintf(stdout, "Connecting...\n");
     if (!client->Start())
