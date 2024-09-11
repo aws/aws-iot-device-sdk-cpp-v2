@@ -45,10 +45,9 @@ class sample_mqtt5_client
         std::shared_ptr<sample_mqtt5_client> result = std::make_shared<sample_mqtt5_client>();
         result->name = input_clientName;
 
-        auto builder = Aws::Crt::ScopedResource<Aws::Iot::Mqtt5ClientBuilder>(
+        auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
             Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-                input_endpoint, input_cert.c_str(), input_key.c_str()),
-            [](Aws::Iot::Mqtt5ClientBuilder *ptr) { delete ptr; });
+                input_endpoint, input_cert.c_str(), input_key.c_str()));
         if (builder == nullptr)
         {
             return nullptr;

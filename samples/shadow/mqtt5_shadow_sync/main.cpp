@@ -104,10 +104,9 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
     // Create the MQTT5 builder and populate it with data from cmdData.
-    auto builder = Aws::Crt::ScopedResource<Aws::Iot::Mqtt5ClientBuilder>(
+    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()),
-        [](Aws::Iot::Mqtt5ClientBuilder *ptr) { delete ptr; });
+            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
