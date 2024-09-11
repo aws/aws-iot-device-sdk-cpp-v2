@@ -426,7 +426,7 @@ int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
-    //  Do the global initialization for the API
+    // Do the global initialization for the API
     ApiHandle apiHandle;
 
     /**
