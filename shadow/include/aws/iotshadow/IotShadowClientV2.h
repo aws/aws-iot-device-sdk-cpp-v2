@@ -10,8 +10,6 @@
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
-
-
 #include <aws/iot/MqttRequestResponseClient.h>
 
 namespace Aws
@@ -49,10 +47,10 @@ namespace Aws
             ServiceErrorV2<E> &operator =(const ServiceErrorV2<E> &rhs) = default;
             ServiceErrorV2<E> &operator =(ServiceErrorV2<E> &&rhs) = default;
 
-            int getErrorCode() const { return m_errorCode; }
+            int GetErrorCode() const { return m_errorCode; }
 
-            bool hasModeledError() const { return m_modeledError.has_value(); }
-            const E &getModeledError() const { return m_modeledError.value(); }
+            bool HasModeledError() const { return m_modeledError.has_value(); }
+            const E &GetModeledError() const { return m_modeledError.value(); }
 
           private:
 
@@ -83,24 +81,23 @@ namespace Aws
 
             virtual ~IClientV2() = default;
 
-            static std::shared_ptr<IClientV2> newFrom5(const Aws::Crt::Mqtt5::Mqtt5Client &protocolClient,
-                                       const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
-                                       Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
-
-            static std::shared_ptr<IClientV2> newFrom311(const Aws::Crt::Mqtt::MqttConnection &protocolClient,
-                                         const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
-                                         Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
-
             virtual bool DeleteNamedShadow(const Aws::Iotshadow::DeleteNamedShadowRequest &request, const std::function<void(DeleteShadowResult &&)> &handler) = 0;
 
             virtual bool GetNamedShadow(const Aws::Iotshadow::GetNamedShadowRequest &request, const std::function<void(GetShadowResult &&)> &handler) = 0;
 
             virtual bool UpdateNamedShadow(const Aws::Iotshadow::UpdateNamedShadowRequest &request, const std::function<void(UpdateShadowResult &&)> &handler) = 0;
 
-            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> createNamedShadowDeltaUpdatedStream(const Aws::Iotshadow::NamedShadowDeltaUpdatedSubscriptionRequest &request, const Aws::Iot::RequestResponse::StreamingOperationOptions &options, const std::function<void(ShadowDeltaUpdatedEvent &&)> &handler) = 0;
+            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowDeltaUpdatedStream(const Aws::Iotshadow::NamedShadowDeltaUpdatedSubscriptionRequest &request, const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) = 0;
 
-            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> createNamedShadowUpdatedStream(const Aws::Iotshadow::NamedShadowUpdatedSubscriptionRequest &request, const Aws::Iot::RequestResponse::StreamingOperationOptions &options, const std::function<void(ShadowUpdatedEvent &&)> &handler) = 0;
-
+            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowUpdatedStream(const Aws::Iotshadow::NamedShadowUpdatedSubscriptionRequest &request, const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) = 0;
         };
+
+        AWS_IOTSHADOW_API std::shared_ptr<IClientV2> NewClientFrom5(const Aws::Crt::Mqtt5::Mqtt5Client &protocolClient,
+                                                   const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
+                                                   Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
+
+        AWS_IOTSHADOW_API std::shared_ptr<IClientV2> NewClientFrom311(const Aws::Crt::Mqtt::MqttConnection &protocolClient,
+                                                     const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
+                                                     Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
     }
 }
