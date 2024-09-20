@@ -24,7 +24,7 @@ jobs:
           path: new-ref
           fetch-depth: 0
       - name: Get Diff
-        run: git --git-dir ./new-ref/.git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}| xargs > fileList.txt
+        run: git --git-dir ./new-ref/.git diff --name-only --diff-filter=ACMRT ${{ github.event.repository.default_branch.sha }} ${{ github.sha }}| xargs > fileList.txt
       - name: Checkout scancode
         uses: actions/checkout@v2
         with:
