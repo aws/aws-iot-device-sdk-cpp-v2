@@ -1,7 +1,8 @@
 name: License Scan
-
-on: [pull_request]
-
+on:
+  push:
+    branches-ignore:
+      - 'main'
 jobs:
   build:
 
