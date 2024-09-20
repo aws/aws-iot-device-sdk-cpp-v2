@@ -12,11 +12,12 @@ jobs:
         python-version: [3.9]
 
     steps:
+      # As the license check no longer run on PR, it would always compare to the main branch.
       - name: Checkout main
         uses: actions/checkout@v2
         with:
           path: sdkmain
-          ref: ${{ github.base_ref }}
+          ref: ${{ github.event.repository.default_branch }}
       - name: Checkout this ref
         uses: actions/checkout@v2
         with:
