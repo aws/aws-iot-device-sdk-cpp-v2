@@ -79,6 +79,7 @@ namespace Aws
         class UpdateNamedShadowRequest;
         class UpdateShadowRequest;
         class UpdateShadowResponse;
+        class V2ServiceError;
 
         using DeleteNamedShadowResultHandler = std::function<void(
             Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
@@ -211,7 +212,7 @@ namespace Aws
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowDeltaUpdatedStream(
                 const NamedShadowDeltaUpdatedSubscriptionRequest &request,
-                const const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) = 0;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) = 0;
 
             /**
              * Create a stream for ShadowUpdated events for a named shadow of an AWS IoT thing.
@@ -228,7 +229,7 @@ namespace Aws
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowUpdatedStream(
                 const NamedShadowUpdatedSubscriptionRequest &request,
-                const const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) = 0;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) = 0;
 
             /**
              * Create a stream for ShadowDelta events for the (classic) shadow of an AWS IoT thing.
@@ -245,7 +246,7 @@ namespace Aws
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowDeltaUpdatedStream(
                 const ShadowDeltaUpdatedSubscriptionRequest &request,
-                const const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) = 0;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) = 0;
 
             /**
              * Create a stream for ShadowUpdated events for the (classic) shadow of an AWS IoT thing.
@@ -262,7 +263,7 @@ namespace Aws
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowUpdatedStream(
                 const ShadowUpdatedSubscriptionRequest &request,
-                const const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) = 0;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) = 0;
         };
 
         /**

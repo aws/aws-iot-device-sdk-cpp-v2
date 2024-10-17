@@ -3,30 +3,27 @@
  *
  * This file is generated
  */
-#include <aws/iotshadow/IotShadowClientV2.h>
+#include <aws/iotjobs/IotJobsClientV2.h>
 
 #include <aws/crt/UUID.h>
 
-#include <aws/iotshadow/DeleteNamedShadowRequest.h>
-#include <aws/iotshadow/DeleteShadowRequest.h>
-#include <aws/iotshadow/DeleteShadowResponse.h>
-#include <aws/iotshadow/GetNamedShadowRequest.h>
-#include <aws/iotshadow/GetShadowRequest.h>
-#include <aws/iotshadow/GetShadowResponse.h>
-#include <aws/iotshadow/NamedShadowDeltaUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/NamedShadowUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
-#include <aws/iotshadow/ShadowDeltaUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/ShadowUpdatedEvent.h>
-#include <aws/iotshadow/ShadowUpdatedSubscriptionRequest.h>
-#include <aws/iotshadow/UpdateNamedShadowRequest.h>
-#include <aws/iotshadow/UpdateShadowRequest.h>
-#include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/V2ServiceError.h>
+#include <aws/iotjobs/DescribeJobExecutionRequest.h>
+#include <aws/iotjobs/DescribeJobExecutionResponse.h>
+#include <aws/iotjobs/GetPendingJobExecutionsRequest.h>
+#include <aws/iotjobs/GetPendingJobExecutionsResponse.h>
+#include <aws/iotjobs/JobExecutionsChangedEvent.h>
+#include <aws/iotjobs/JobExecutionsChangedSubscriptionRequest.h>
+#include <aws/iotjobs/NextJobExecutionChangedEvent.h>
+#include <aws/iotjobs/NextJobExecutionChangedSubscriptionRequest.h>
+#include <aws/iotjobs/StartNextJobExecutionResponse.h>
+#include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
+#include <aws/iotjobs/UpdateJobExecutionRequest.h>
+#include <aws/iotjobs/UpdateJobExecutionResponse.h>
+#include <aws/iotjobs/V2ServiceError.h>
 
 namespace Aws
 {
-    namespace Iotshadow
+    namespace Iotjobs
     {
 
         class ClientV2 : public IClientV2
@@ -37,38 +34,31 @@ namespace Aws
                 std::shared_ptr<Aws::Iot::RequestResponse::IMqttRequestResponseClient> bindingClient);
             virtual ~ClientV2() = default;
 
-            bool DeleteNamedShadow(
-                const DeleteNamedShadowRequest &request,
-                const DeleteNamedShadowResultHandler &handler) override;
+            bool DescribeJobExecution(
+                const DescribeJobExecutionRequest &request,
+                const DescribeJobExecutionResultHandler &handler) override;
 
-            bool DeleteShadow(const DeleteShadowRequest &request, const DeleteShadowResultHandler &handler) override;
+            bool GetPendingJobExecutions(
+                const GetPendingJobExecutionsRequest &request,
+                const GetPendingJobExecutionsResultHandler &handler) override;
 
-            bool GetNamedShadow(const GetNamedShadowRequest &request, const GetNamedShadowResultHandler &handler)
+            bool StartNextPendingJobExecution(
+                const StartNextPendingJobExecutionRequest &request,
+                const StartNextPendingJobExecutionResultHandler &handler) override;
+
+            bool UpdateJobExecution(
+                const UpdateJobExecutionRequest &request,
+                const UpdateJobExecutionResultHandler &handler) override;
+
+            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateJobExecutionsChangedStream(
+                const JobExecutionsChangedSubscriptionRequest &request,
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<JobExecutionsChangedEvent> &options)
                 override;
 
-            bool GetShadow(const GetShadowRequest &request, const GetShadowResultHandler &handler) override;
-
-            bool UpdateNamedShadow(
-                const UpdateNamedShadowRequest &request,
-                const UpdateNamedShadowResultHandler &handler) override;
-
-            bool UpdateShadow(const UpdateShadowRequest &request, const UpdateShadowResultHandler &handler) override;
-
-            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowDeltaUpdatedStream(
-                const NamedShadowDeltaUpdatedSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) override;
-
-            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowUpdatedStream(
-                const NamedShadowUpdatedSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) override;
-
-            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowDeltaUpdatedStream(
-                const ShadowDeltaUpdatedSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options) override;
-
-            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowUpdatedStream(
-                const ShadowUpdatedSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options) override;
+            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNextJobExecutionChangedStream(
+                const NextJobExecutionChangedSubscriptionRequest &request,
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<NextJobExecutionChangedEvent> &options)
+                override;
 
           private:
             Aws::Crt::Allocator *m_allocator;
@@ -101,14 +91,14 @@ namespace Aws
             handler(std::move(finalResult));
         }
 
-        static void s_DeleteNamedShadowResponseHandler(
+        static void s_DescribeJobExecutionResponseHandler(
             Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const DeleteNamedShadowResultHandler &handler,
+            const DescribeJobExecutionResultHandler &handler,
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
             using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>>;
+            using R = Aws::Iot::RequestResponse::Result<DescribeJobExecutionResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
             {
@@ -130,8 +120,8 @@ namespace Aws
             auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
             if (responseTopic == successPathTopic)
             {
-                DeleteShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>> finalResult(
+                DescribeJobExecutionResponse modeledResponse(jsonObject);
+                Aws::Iot::RequestResponse::Result<DescribeJobExecutionResponse, ServiceErrorV2<E>> finalResult(
                     std::move(modeledResponse));
                 handler(std::move(finalResult));
             }
@@ -146,18 +136,16 @@ namespace Aws
             }
         }
 
-        bool ClientV2::DeleteNamedShadow(
-            const DeleteNamedShadowRequest &request,
-            const DeleteNamedShadowResultHandler &handler)
+        bool ClientV2::DescribeJobExecution(
+            const DescribeJobExecutionRequest &request,
+            const DescribeJobExecutionResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                               << "/delete";
+            publishTopicStream << "$aws/things/" << *request.ThingName << "/jobs/" << *request.JobId << "/get";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                                     << "/delete/+";
+            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/jobs/" << *request.JobId << "/get/+";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             struct aws_byte_cursor subscriptionTopicFilters[1] = {
@@ -201,7 +189,7 @@ namespace Aws
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
                                      Aws::Iot::RequestResponse::UnmodeledResult &&result)
             {
-                s_DeleteNamedShadowResponseHandler(
+                s_DescribeJobExecutionResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
 
@@ -210,14 +198,14 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
-        static void s_DeleteShadowResponseHandler(
+        static void s_GetPendingJobExecutionsResponseHandler(
             Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const DeleteShadowResultHandler &handler,
+            const GetPendingJobExecutionsResultHandler &handler,
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
             using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>>;
+            using R = Aws::Iot::RequestResponse::Result<GetPendingJobExecutionsResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
             {
@@ -239,8 +227,8 @@ namespace Aws
             auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
             if (responseTopic == successPathTopic)
             {
-                DeleteShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>> finalResult(
+                GetPendingJobExecutionsResponse modeledResponse(jsonObject);
+                Aws::Iot::RequestResponse::Result<GetPendingJobExecutionsResponse, ServiceErrorV2<E>> finalResult(
                     std::move(modeledResponse));
                 handler(std::move(finalResult));
             }
@@ -255,14 +243,16 @@ namespace Aws
             }
         }
 
-        bool ClientV2::DeleteShadow(const DeleteShadowRequest &request, const DeleteShadowResultHandler &handler)
+        bool ClientV2::GetPendingJobExecutions(
+            const GetPendingJobExecutionsRequest &request,
+            const GetPendingJobExecutionsResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/delete";
+            publishTopicStream << "$aws/things/" << *request.ThingName << "/jobs/get";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/delete/+";
+            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/jobs/get/+";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             struct aws_byte_cursor subscriptionTopicFilters[1] = {
@@ -306,7 +296,7 @@ namespace Aws
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
                                      Aws::Iot::RequestResponse::UnmodeledResult &&result)
             {
-                s_DeleteShadowResponseHandler(
+                s_GetPendingJobExecutionsResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
 
@@ -315,14 +305,14 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
-        static void s_GetNamedShadowResponseHandler(
+        static void s_StartNextPendingJobExecutionResponseHandler(
             Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const GetNamedShadowResultHandler &handler,
+            const StartNextPendingJobExecutionResultHandler &handler,
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
             using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>>;
+            using R = Aws::Iot::RequestResponse::Result<StartNextJobExecutionResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
             {
@@ -344,8 +334,8 @@ namespace Aws
             auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
             if (responseTopic == successPathTopic)
             {
-                GetShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>> finalResult(
+                StartNextJobExecutionResponse modeledResponse(jsonObject);
+                Aws::Iot::RequestResponse::Result<StartNextJobExecutionResponse, ServiceErrorV2<E>> finalResult(
                     std::move(modeledResponse));
                 handler(std::move(finalResult));
             }
@@ -360,16 +350,16 @@ namespace Aws
             }
         }
 
-        bool ClientV2::GetNamedShadow(const GetNamedShadowRequest &request, const GetNamedShadowResultHandler &handler)
+        bool ClientV2::StartNextPendingJobExecution(
+            const StartNextPendingJobExecutionRequest &request,
+            const StartNextPendingJobExecutionResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                               << "/get";
+            publishTopicStream << "$aws/things/" << *request.ThingName << "/jobs/start-next";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                                     << "/get/+";
+            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/jobs/start-next/+";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             struct aws_byte_cursor subscriptionTopicFilters[1] = {
@@ -413,7 +403,7 @@ namespace Aws
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
                                      Aws::Iot::RequestResponse::UnmodeledResult &&result)
             {
-                s_GetNamedShadowResponseHandler(
+                s_StartNextPendingJobExecutionResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
 
@@ -422,14 +412,14 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
-        static void s_GetShadowResponseHandler(
+        static void s_UpdateJobExecutionResponseHandler(
             Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const GetShadowResultHandler &handler,
+            const UpdateJobExecutionResultHandler &handler,
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
             using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>>;
+            using R = Aws::Iot::RequestResponse::Result<UpdateJobExecutionResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
             {
@@ -451,8 +441,8 @@ namespace Aws
             auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
             if (responseTopic == successPathTopic)
             {
-                GetShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>> finalResult(
+                UpdateJobExecutionResponse modeledResponse(jsonObject);
+                Aws::Iot::RequestResponse::Result<UpdateJobExecutionResponse, ServiceErrorV2<E>> finalResult(
                     std::move(modeledResponse));
                 handler(std::move(finalResult));
             }
@@ -467,14 +457,17 @@ namespace Aws
             }
         }
 
-        bool ClientV2::GetShadow(const GetShadowRequest &request, const GetShadowResultHandler &handler)
+        bool ClientV2::UpdateJobExecution(
+            const UpdateJobExecutionRequest &request,
+            const UpdateJobExecutionResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/get";
+            publishTopicStream << "$aws/things/" << *request.ThingName << "/jobs/" << *request.JobId << "/update";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/get/+";
+            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/jobs/" << *request.JobId
+                                     << "/update/+";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             struct aws_byte_cursor subscriptionTopicFilters[1] = {
@@ -518,232 +511,7 @@ namespace Aws
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
                                      Aws::Iot::RequestResponse::UnmodeledResult &&result)
             {
-                s_GetShadowResponseHandler(
-                    std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
-            };
-
-            int submitResult = m_bindingClient->SubmitRequest(options, std::move(resultHandler));
-
-            return submitResult == AWS_OP_SUCCESS;
-        }
-
-        static void s_UpdateNamedShadowResponseHandler(
-            Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const UpdateNamedShadowResultHandler &handler,
-            const Aws::Crt::String &successPathTopic,
-            const Aws::Crt::String &failurePathTopic)
-        {
-            using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>>;
-
-            if (!result.IsSuccess())
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, result.GetError());
-                return;
-            }
-
-            auto response = result.GetResponse();
-            const auto &payload = response.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, AWS_ERROR_MQTT_REQUEST_RESPONSE_PAYLOAD_PARSE_ERROR);
-                return;
-            }
-
-            const auto &topic = response.GetTopic();
-            auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
-            if (responseTopic == successPathTopic)
-            {
-                UpdateShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>> finalResult(
-                    std::move(modeledResponse));
-                handler(std::move(finalResult));
-            }
-            else if (responseTopic == failurePathTopic)
-            {
-                V2ServiceError modeledError(jsonObject);
-                s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
-            }
-            else
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, AWS_ERROR_MQTT_REQUEST_RESPONSE_INVALID_RESPONSE_PATH);
-            }
-        }
-
-        bool ClientV2::UpdateNamedShadow(
-            const UpdateNamedShadowRequest &request,
-            const UpdateNamedShadowResultHandler &handler)
-        {
-            Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                               << "/update";
-            Aws::Crt::String publishTopic = publishTopicStream.str();
-
-            Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                                     << "/update/accepted";
-            Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
-
-            Aws::Crt::StringStream subscriptionTopicStream1;
-            subscriptionTopicStream1 << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                                     << "/update/rejected";
-            Aws::Crt::String subscriptionTopic1 = subscriptionTopicStream1.str();
-
-            struct aws_byte_cursor subscriptionTopicFilters[2] = {
-                Aws::Crt::ByteCursorFromString(subscriptionTopic0),
-                Aws::Crt::ByteCursorFromString(subscriptionTopic1),
-            };
-
-            Aws::Crt::StringStream responsePathTopicAcceptedStream;
-            responsePathTopicAcceptedStream << publishTopic << "/accepted";
-            Aws::Crt::String responsePathTopicAccepted = responsePathTopicAcceptedStream.str();
-
-            Aws::Crt::StringStream responsePathTopicRejectedStream;
-            responsePathTopicRejectedStream << publishTopic << "/rejected";
-            Aws::Crt::String responsePathTopicRejected = responsePathTopicRejectedStream.str();
-
-            struct aws_mqtt_request_operation_response_path responsePaths[2];
-            responsePaths[0].topic = Aws::Crt::ByteCursorFromString(responsePathTopicAccepted);
-            responsePaths[1].topic = Aws::Crt::ByteCursorFromString(responsePathTopicRejected);
-            responsePaths[0].correlation_token_json_path = Aws::Crt::ByteCursorFromCString("clientToken");
-            responsePaths[1].correlation_token_json_path = Aws::Crt::ByteCursorFromCString("clientToken");
-
-            Aws::Crt::JsonObject jsonObject;
-            request.SerializeToObject(jsonObject);
-
-            auto uuid = Aws::Crt::UUID().ToString();
-            jsonObject.WithString("clientToken", uuid);
-
-            Aws::Crt::String outgoingJson = jsonObject.View().WriteCompact(true);
-
-            struct aws_mqtt_request_operation_options options;
-            AWS_ZERO_STRUCT(options);
-            options.subscription_topic_filters = subscriptionTopicFilters;
-            options.subscription_topic_filter_count = 2;
-            options.response_paths = responsePaths;
-            options.response_path_count = 2;
-            options.publish_topic = Aws::Crt::ByteCursorFromString(publishTopic);
-            options.serialized_request =
-                Aws::Crt::ByteCursorFromArray((uint8_t *)outgoingJson.data(), outgoingJson.length());
-
-            options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
-
-            auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
-                s_UpdateNamedShadowResponseHandler(
-                    std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
-            };
-
-            int submitResult = m_bindingClient->SubmitRequest(options, std::move(resultHandler));
-
-            return submitResult == AWS_OP_SUCCESS;
-        }
-
-        static void s_UpdateShadowResponseHandler(
-            Aws::Iot::RequestResponse::UnmodeledResult &&result,
-            const UpdateShadowResultHandler &handler,
-            const Aws::Crt::String &successPathTopic,
-            const Aws::Crt::String &failurePathTopic)
-        {
-            using E = V2ServiceError;
-            using R = Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>>;
-
-            if (!result.IsSuccess())
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, result.GetError());
-                return;
-            }
-
-            auto response = result.GetResponse();
-            const auto &payload = response.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, AWS_ERROR_MQTT_REQUEST_RESPONSE_PAYLOAD_PARSE_ERROR);
-                return;
-            }
-
-            const auto &topic = response.GetTopic();
-            auto responseTopic = Aws::Crt::String((const char *)topic.ptr, topic.len);
-            if (responseTopic == successPathTopic)
-            {
-                UpdateShadowResponse modeledResponse(jsonObject);
-                Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>> finalResult(
-                    std::move(modeledResponse));
-                handler(std::move(finalResult));
-            }
-            else if (responseTopic == failurePathTopic)
-            {
-                V2ServiceError modeledError(jsonObject);
-                s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
-            }
-            else
-            {
-                s_applyUnmodeledErrorToHandler<R, E>(handler, AWS_ERROR_MQTT_REQUEST_RESPONSE_INVALID_RESPONSE_PATH);
-            }
-        }
-
-        bool ClientV2::UpdateShadow(const UpdateShadowRequest &request, const UpdateShadowResultHandler &handler)
-        {
-            Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/things/" << *request.ThingName << "/shadow/update";
-            Aws::Crt::String publishTopic = publishTopicStream.str();
-
-            Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/things/" << *request.ThingName << "/shadow/update/accepted";
-            Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
-
-            Aws::Crt::StringStream subscriptionTopicStream1;
-            subscriptionTopicStream1 << "$aws/things/" << *request.ThingName << "/shadow/update/rejected";
-            Aws::Crt::String subscriptionTopic1 = subscriptionTopicStream1.str();
-
-            struct aws_byte_cursor subscriptionTopicFilters[2] = {
-                Aws::Crt::ByteCursorFromString(subscriptionTopic0),
-                Aws::Crt::ByteCursorFromString(subscriptionTopic1),
-            };
-
-            Aws::Crt::StringStream responsePathTopicAcceptedStream;
-            responsePathTopicAcceptedStream << publishTopic << "/accepted";
-            Aws::Crt::String responsePathTopicAccepted = responsePathTopicAcceptedStream.str();
-
-            Aws::Crt::StringStream responsePathTopicRejectedStream;
-            responsePathTopicRejectedStream << publishTopic << "/rejected";
-            Aws::Crt::String responsePathTopicRejected = responsePathTopicRejectedStream.str();
-
-            struct aws_mqtt_request_operation_response_path responsePaths[2];
-            responsePaths[0].topic = Aws::Crt::ByteCursorFromString(responsePathTopicAccepted);
-            responsePaths[1].topic = Aws::Crt::ByteCursorFromString(responsePathTopicRejected);
-            responsePaths[0].correlation_token_json_path = Aws::Crt::ByteCursorFromCString("clientToken");
-            responsePaths[1].correlation_token_json_path = Aws::Crt::ByteCursorFromCString("clientToken");
-
-            Aws::Crt::JsonObject jsonObject;
-            request.SerializeToObject(jsonObject);
-
-            auto uuid = Aws::Crt::UUID().ToString();
-            jsonObject.WithString("clientToken", uuid);
-
-            Aws::Crt::String outgoingJson = jsonObject.View().WriteCompact(true);
-
-            struct aws_mqtt_request_operation_options options;
-            AWS_ZERO_STRUCT(options);
-            options.subscription_topic_filters = subscriptionTopicFilters;
-            options.subscription_topic_filter_count = 2;
-            options.response_paths = responsePaths;
-            options.response_path_count = 2;
-            options.publish_topic = Aws::Crt::ByteCursorFromString(publishTopic);
-            options.serialized_request =
-                Aws::Crt::ByteCursorFromArray((uint8_t *)outgoingJson.data(), outgoingJson.length());
-
-            options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
-
-            auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
-                s_UpdateShadowResponseHandler(
+                s_UpdateJobExecutionResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
 
@@ -802,52 +570,28 @@ namespace Aws
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_stream;
         };
 
-        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateNamedShadowDeltaUpdatedStream(
-            const NamedShadowDeltaUpdatedSubscriptionRequest &request,
-            const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options)
+        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateJobExecutionsChangedStream(
+            const JobExecutionsChangedSubscriptionRequest &request,
+            const Aws::Iot::RequestResponse::StreamingOperationOptions<JobExecutionsChangedEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                        << "/update/delta";
+            topicStream << "$aws/things/" << *request.ThingName << "/jobs/notify";
             Aws::Crt::String topic = topicStream.str();
 
-            return ServiceStreamingOperation<ShadowDeltaUpdatedEvent>::Create(
+            return ServiceStreamingOperation<JobExecutionsChangedEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
         }
 
-        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateNamedShadowUpdatedStream(
-            const NamedShadowUpdatedSubscriptionRequest &request,
-            const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options)
+        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateNextJobExecutionChangedStream(
+            const NextJobExecutionChangedSubscriptionRequest &request,
+            const Aws::Iot::RequestResponse::StreamingOperationOptions<NextJobExecutionChangedEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
-                        << "/update/documents";
+            topicStream << "$aws/things/" << *request.ThingName << "/jobs/notify-next";
             Aws::Crt::String topic = topicStream.str();
 
-            return ServiceStreamingOperation<ShadowUpdatedEvent>::Create(m_allocator, m_bindingClient, topic, options);
-        }
-
-        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateShadowDeltaUpdatedStream(
-            const ShadowDeltaUpdatedSubscriptionRequest &request,
-            const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowDeltaUpdatedEvent> &options)
-        {
-            Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/things/" << *request.ThingName << "/shadow/update/delta";
-            Aws::Crt::String topic = topicStream.str();
-
-            return ServiceStreamingOperation<ShadowDeltaUpdatedEvent>::Create(
+            return ServiceStreamingOperation<NextJobExecutionChangedEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
-        }
-
-        std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::CreateShadowUpdatedStream(
-            const ShadowUpdatedSubscriptionRequest &request,
-            const Aws::Iot::RequestResponse::StreamingOperationOptions<ShadowUpdatedEvent> &options)
-        {
-            Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/things/" << *request.ThingName << "/shadow/update/documents";
-            Aws::Crt::String topic = topicStream.str();
-
-            return ServiceStreamingOperation<ShadowUpdatedEvent>::Create(m_allocator, m_bindingClient, topic, options);
         }
 
         std::shared_ptr<IClientV2> NewClientFrom5(
@@ -882,5 +626,5 @@ namespace Aws
             return Aws::Crt::MakeShared<ClientV2>(allocator, allocator, bindingClient);
         }
 
-    } // namespace Iotshadow
+    } // namespace Iotjobs
 } // namespace Aws

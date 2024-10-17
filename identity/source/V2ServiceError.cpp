@@ -3,14 +3,14 @@
  *
  * This file is generated
  */
-#include <aws/iotidentity/ErrorResponse.h>
+#include <aws/iotidentity/V2ServiceError.h>
 
 namespace Aws
 {
     namespace Iotidentity
     {
 
-        void ErrorResponse::LoadFromObject(ErrorResponse &val, const Aws::Crt::JsonView &doc)
+        void V2ServiceError::LoadFromObject(V2ServiceError &val, const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
@@ -31,7 +31,7 @@ namespace Aws
             }
         }
 
-        void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void V2ServiceError::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
 
@@ -51,14 +51,14 @@ namespace Aws
             }
         }
 
-        ErrorResponse::ErrorResponse(const Crt::JsonView &doc)
+        V2ServiceError::V2ServiceError(const Crt::JsonView &doc)
         {
             LoadFromObject(*this, doc);
         }
 
-        ErrorResponse &ErrorResponse::operator=(const Crt::JsonView &doc)
+        V2ServiceError &V2ServiceError::operator=(const Crt::JsonView &doc)
         {
-            *this = ErrorResponse(doc);
+            *this = V2ServiceError(doc);
             return *this;
         }
 
