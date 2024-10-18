@@ -81,18 +81,23 @@ namespace Aws
         class UpdateShadowResponse;
         class V2ServiceError;
 
-        using DeleteNamedShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
-        using DeleteShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
-        using GetNamedShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
-        using GetShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
-        using UpdateNamedShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
-        using UpdateShadowResultHandler = std::function<void(
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>> &&)>;
+        using DeleteNamedShadowResult =
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using DeleteNamedShadowResultHandler = std::function<void(DeleteNamedShadowResult &&)>;
+        using DeleteShadowResult =
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using DeleteShadowResultHandler = std::function<void(DeleteShadowResult &&)>;
+        using GetNamedShadowResult =
+            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using GetNamedShadowResultHandler = std::function<void(GetNamedShadowResult &&)>;
+        using GetShadowResult = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using GetShadowResultHandler = std::function<void(GetShadowResult &&)>;
+        using UpdateNamedShadowResult =
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using UpdateNamedShadowResultHandler = std::function<void(UpdateNamedShadowResult &&)>;
+        using UpdateShadowResult =
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using UpdateShadowResultHandler = std::function<void(UpdateShadowResult &&)>;
 
         /**
          * The AWS IoT Device Shadow service adds shadows to AWS IoT thing objects. Shadows are a simple data store for
