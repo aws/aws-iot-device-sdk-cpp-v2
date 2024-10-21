@@ -81,12 +81,15 @@ namespace Aws
         using DescribeJobExecutionResult =
             Aws::Iot::RequestResponse::Result<DescribeJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
         using DescribeJobExecutionResultHandler = std::function<void(DescribeJobExecutionResult &&)>;
+
         using GetPendingJobExecutionsResult =
             Aws::Iot::RequestResponse::Result<GetPendingJobExecutionsResponse, ServiceErrorV2<V2ServiceError>>;
         using GetPendingJobExecutionsResultHandler = std::function<void(GetPendingJobExecutionsResult &&)>;
+
         using StartNextPendingJobExecutionResult =
             Aws::Iot::RequestResponse::Result<StartNextJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
         using StartNextPendingJobExecutionResultHandler = std::function<void(StartNextPendingJobExecutionResult &&)>;
+
         using UpdateJobExecutionResult =
             Aws::Iot::RequestResponse::Result<UpdateJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
         using UpdateJobExecutionResultHandler = std::function<void(UpdateJobExecutionResult &&)>;

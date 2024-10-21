@@ -75,9 +75,11 @@ namespace Aws
         using CreateCertificateFromCsrResult =
             Aws::Iot::RequestResponse::Result<CreateCertificateFromCsrResponse, ServiceErrorV2<V2ServiceError>>;
         using CreateCertificateFromCsrResultHandler = std::function<void(CreateCertificateFromCsrResult &&)>;
+
         using CreateKeysAndCertificateResult =
             Aws::Iot::RequestResponse::Result<CreateKeysAndCertificateResponse, ServiceErrorV2<V2ServiceError>>;
         using CreateKeysAndCertificateResultHandler = std::function<void(CreateKeysAndCertificateResult &&)>;
+
         using RegisterThingResult =
             Aws::Iot::RequestResponse::Result<RegisterThingResponse, ServiceErrorV2<V2ServiceError>>;
         using RegisterThingResultHandler = std::function<void(RegisterThingResult &&)>;

@@ -146,6 +146,8 @@ namespace Aws
             struct aws_mqtt_request_operation_response_path responsePaths[2];
             responsePaths[0].topic = Aws::Crt::ByteCursorFromString(responsePathTopicAccepted);
             responsePaths[1].topic = Aws::Crt::ByteCursorFromString(responsePathTopicRejected);
+            AWS_ZERO_STRUCT(responsePaths[0].correlation_token_json_path);
+            AWS_ZERO_STRUCT(responsePaths[1].correlation_token_json_path);
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -251,6 +253,8 @@ namespace Aws
             struct aws_mqtt_request_operation_response_path responsePaths[2];
             responsePaths[0].topic = Aws::Crt::ByteCursorFromString(responsePathTopicAccepted);
             responsePaths[1].topic = Aws::Crt::ByteCursorFromString(responsePathTopicRejected);
+            AWS_ZERO_STRUCT(responsePaths[0].correlation_token_json_path);
+            AWS_ZERO_STRUCT(responsePaths[1].correlation_token_json_path);
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -356,6 +360,8 @@ namespace Aws
             struct aws_mqtt_request_operation_response_path responsePaths[2];
             responsePaths[0].topic = Aws::Crt::ByteCursorFromString(responsePathTopicAccepted);
             responsePaths[1].topic = Aws::Crt::ByteCursorFromString(responsePathTopicRejected);
+            AWS_ZERO_STRUCT(responsePaths[0].correlation_token_json_path);
+            AWS_ZERO_STRUCT(responsePaths[1].correlation_token_json_path);
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
