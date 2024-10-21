@@ -131,3 +131,9 @@ configure_file("cmake/iotjobs-cpp-config.cmake"
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotJobs-cpp/cmake/"
         COMPONENT Development)
+
+if(NOT CMAKE_CROSSCOMPILING)
+    if (BUILD_TESTING)
+        add_subdirectory(tests)
+    endif()
+endif()
