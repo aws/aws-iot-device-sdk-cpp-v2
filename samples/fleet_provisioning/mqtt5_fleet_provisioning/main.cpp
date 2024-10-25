@@ -79,11 +79,12 @@ struct RegisterThingContext
 /**
  * Create MQTT5 client.
  */
-std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(Mqtt5ClientContext &ctx, const Utils::cmdData &cmdData)
+std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmdData &cmdData, Mqtt5ClientContext &ctx)
 {
     // Create the MQTT5 builder and populate it with data from cmdData.
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -128,7 +129,6 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(Mqtt5ClientConte
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-    delete builder;
 
     return client;
 }
@@ -418,7 +418,7 @@ int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
-    //  Do the global initialization for the API
+    // Do the global initialization for the API
     ApiHandle apiHandle;
 
     /**
@@ -429,7 +429,7 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
 
     Mqtt5ClientContext mqtt5ClientContext;
-    auto client = createMqtt5Client(mqtt5ClientContext, cmdData);
+    auto client = createMqtt5Client(cmdData, mqtt5ClientContext);
 
     /************************ Run the sample ****************************/
 
