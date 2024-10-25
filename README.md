@@ -43,7 +43,7 @@ __Jump To:__
 ### Minimum Requirements
 * C++ 11 or higher
     * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
-* CMake 3.1+
+* CMake 3.9+
 
 [Step-by-step instructions](./documents/PREREQUISITES.md)
 
