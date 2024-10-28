@@ -20,6 +20,11 @@ elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     endif()
 endif()
 
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotidentity/Config.h")
+configure_file(include/aws/iotidentity/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
 if (NOT CMAKE_CXX_STANDARD)
@@ -28,6 +33,7 @@ endif()
 
 file(GLOB AWS_IOTIDENTITY_HEADERS
         "include/aws/iotidentity/*.h"
+        ${GENERATED_CONFIG_HEADER}
 )
 
 file(GLOB AWS_IOTIDENTITY_SRC
