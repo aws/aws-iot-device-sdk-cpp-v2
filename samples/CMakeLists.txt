@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
 project(aws-iot-device-sdk-cpp-v2-samples)
 
