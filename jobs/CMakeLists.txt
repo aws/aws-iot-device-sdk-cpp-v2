@@ -1,12 +1,8 @@
 # This file is generated
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
-project(IotJobs-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("IotJobs version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(IotJobs-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -20,6 +16,11 @@ elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     endif()
 endif()
 
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotjobs/Config.h")
+configure_file(include/aws/iotjobs/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
 if (NOT CMAKE_CXX_STANDARD)
@@ -28,6 +29,7 @@ endif()
 
 file(GLOB AWS_IOTJOBS_HEADERS
         "include/aws/iotjobs/*.h"
+        ${GENERATED_CONFIG_HEADER}
 )
 
 file(GLOB AWS_IOTJOBS_SRC

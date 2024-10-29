@@ -1,10 +1,6 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
-project(Discovery-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("Discovery version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(Discovery-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -18,6 +14,11 @@ elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     endif()
 endif()
 
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/discovery/Config.h")
+configure_file(include/aws/discovery/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
 if (NOT CMAKE_CXX_STANDARD)
@@ -26,6 +27,7 @@ endif()
 
 file(GLOB AWS_DISCOVERY_HEADERS
         "include/aws/discovery/*.h"
+        ${GENERATED_CONFIG_HEADER}
 )
 
 file(GLOB AWS_DISCOVERY_SRC
