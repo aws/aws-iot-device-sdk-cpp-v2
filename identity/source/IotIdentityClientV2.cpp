@@ -379,7 +379,8 @@ namespace Aws
                 Aws::Crt::ByteCursorFromArray((uint8_t *)outgoingJson.data(), outgoingJson.length());
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
+            {
                 s_RegisterThingResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
