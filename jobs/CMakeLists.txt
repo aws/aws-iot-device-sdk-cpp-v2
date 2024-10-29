@@ -2,11 +2,7 @@
 
 cmake_minimum_required(VERSION 3.9)
 
-project(IotJobs-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("IotJobs version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(IotJobs-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
 set(RUNTIME_DIRECTORY bin)
 

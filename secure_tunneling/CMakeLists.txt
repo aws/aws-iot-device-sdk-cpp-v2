@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-project(IotSecureTunneling-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("Secure Tunneling version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(IotSecureTunneling-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
 set(RUNTIME_DIRECTORY bin)
 

@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-project(GreengrassIpc-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("GreengrassIpc version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(GreengrassIpc-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
 set(RUNTIME_DIRECTORY bin)
 
