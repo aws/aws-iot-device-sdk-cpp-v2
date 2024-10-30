@@ -75,53 +75,11 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 To run the Shadow sample use the following command:
 
 ``` sh
-./mqtt5-shadow-sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --shadow_property <shadow property name>
+./shadow-sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --shadow_property <shadow property name>
 ```
 
 You can also pass a Certificate Authority file (CA) if your certificate and key combination requires it:
 
 ``` sh
-./mqtt5-shadow-sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --shadow_property <shadow property name> --ca_file <path to root CA>
+./shadow-sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --shadow_property <shadow property name> --ca_file <path to root CA>
 ```
-
-
-## Service Client Notes
-### Difference between MQTT5 and MQTT311 IotShadowClient
-The IotShadowClient with Mqtt5 client is identical to Mqtt3 one. We wrapped the Mqtt5Client into MqttClientConnection so that we could keep the same interface for IotShadowClient.
-The only difference is that you would need setup up a Mqtt5 Client for the IotShadowClient. For how to setup a Mqtt5 Client, please refer to [MQTT5 UserGuide](../../../documents/MQTT5_Userguide.md) and [MQTT5 PubSub Sample](../../mqtt5/mqtt5_pubsub/)
-
-<table>
-<tr>
-<th>Create a IotShadowClient with Mqtt5</th>
-<th>Create a IotShadowClient with Mqtt311</th>
-</tr>
-<tr>
-<td>
-
-```Cpp
-  // Build Mqtt5Client
-  std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-
-  // Create shadow client with mqtt5 client
-  Aws::Iotshadow::IotShadowClient shadowClient(client);
-```
-
-</td>
-<td>
-
-```Cpp
-  // Create mqtt311 connection
-  Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
-  auto connection = client.NewConnection(clientConfig);
-
-  // Create shadow client with mqtt311 connection
-  Aws::Iotshadow::IotShadowClient shadowClient(connection);
-
-```
-
-</td>
-</tr>
-</table>
-
-### Mqtt::QOS v.s. Mqtt5::QOS
-As the service client interface is unchanged for Mqtt3 Connection and Mqtt5 Client,the IotShadowClient will use Mqtt::QOS instead of Mqtt5::QOS even with a Mqtt5 Client.

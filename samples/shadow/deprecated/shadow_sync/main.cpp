@@ -6,8 +6,7 @@
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/UUID.h>
 #include <aws/crt/io/HostResolver.h>
-#include <aws/crt/mqtt/Mqtt5Packets.h>
-#include <aws/iot/Mqtt5Client.h>
+
 #include <aws/iot/MqttClient.h>
 
 #include <aws/iotshadow/ErrorResponse.h>
@@ -29,7 +28,7 @@
 #include <mutex>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
+#include "../../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
 using namespace Aws::Iotshadow;
@@ -103,63 +102,93 @@ int main(int argc, char *argv[])
      */
     Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
-    // Create the MQTT5 builder and populate it with data from cmdData.
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
-    // Check if the builder setup correctly.
-    if (builder == nullptr)
+    // Create the MQTT builder and populate it with data from cmdData.
+    auto clientConfigBuilder =
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
+    if (cmdData.input_ca != "")
     {
-        printf(
-            "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
-        return -1;
+        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
     }
-
-    // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
-    connectOptions->WithClientId(cmdData.input_clientId);
-    builder->WithConnectOptions(connectOptions);
+    if (cmdData.input_proxyHost != "")
+    {
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        proxyOptions.HostName = cmdData.input_proxyHost;
+        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        clientConfigBuilder.WithHttpProxyOptions(proxyOptions);
+    }
     if (cmdData.input_port != 0)
     {
-        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
+        clientConfigBuilder.WithPortOverride(static_cast<uint32_t>(cmdData.input_port));
     }
 
-    std::promise<bool> connectionPromise;
-    std::promise<void> stoppedPromise;
-
-    // Setup lifecycle callbacks
-    builder->WithClientConnectionSuccessCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
-            fprintf(
-                stdout,
-                "Mqtt5 Client connection succeed, clientid: %s.\n",
-                eventData.negotiatedSettings->getClientId().c_str());
-            connectionPromise.set_value(true);
-        });
-    builder->WithClientConnectionFailureCallback([&connectionPromise](
-                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
-        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-        connectionPromise.set_value(false);
-    });
-    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
-        fprintf(stdout, "Mqtt5 Client stopped.\n");
-        stoppedPromise.set_value();
-    });
-
-    // Create Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-    /************************ Run the sample ****************************/
-
-    fprintf(stdout, "Connecting...\n");
-    if (!client->Start())
+    // Create the MQTT connection from the MQTT builder
+    auto clientConfig = clientConfigBuilder.Build();
+    if (!clientConfig)
     {
-        fprintf(stderr, "MQTT5 Connection failed to start");
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            Aws::Crt::ErrorDebugString(clientConfig.LastError()));
+        exit(-1);
+    }
+    Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
+    auto connection = client.NewConnection(clientConfig);
+    if (!*connection)
+    {
+        fprintf(
+            stderr,
+            "MQTT Connection Creation failed with error %s\n",
+            Aws::Crt::ErrorDebugString(connection->LastError()));
         exit(-1);
     }
 
-    if (connectionPromise.get_future().get())
+    /**
+     * In a real world application you probably don't want to enforce synchronous behavior
+     * but this is a sample console application, so we'll just do that with a condition variable.
+     */
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<void> connectionClosedPromise;
+
+    // Invoked when a MQTT connect has completed or failed
+    auto onConnectionCompleted =
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
+            if (errorCode)
+            {
+                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+                connectionCompletedPromise.set_value(false);
+            }
+            else
+            {
+                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+                connectionCompletedPromise.set_value(true);
+            }
+        };
+
+    // Invoked when a disconnect message has completed.
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+        fprintf(stdout, "Disconnect completed\n");
+        connectionClosedPromise.set_value();
+    };
+
+    // Assign callbacks
+    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
+    connection->OnDisconnect = std::move(onDisconnect);
+
+    /************************ Run the sample ****************************/
+
+    // Connect
+    fprintf(stdout, "Connecting...\n");
+    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
     {
-        Aws::Iotshadow::IotShadowClient shadowClient(client);
+        fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
+        exit(-1);
+    }
+
+    if (connectionCompletedPromise.get_future().get())
+    {
+        Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
         /********************** Shadow Delta Updates ********************/
         // This section is for when a Shadow document updates/changes, whether it is on the server side or client side.
@@ -465,9 +494,9 @@ int main(int argc, char *argv[])
     }
 
     // Disconnect
-    if (client->Stop())
+    if (connection->Disconnect())
     {
-        stoppedPromise.get_future().wait();
+        connectionClosedPromise.get_future().wait();
     }
     return 0;
 }
