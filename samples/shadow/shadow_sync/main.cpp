@@ -4,6 +4,7 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
+#include <aws/crt/UUID.h>
 #include <aws/iot/Mqtt5Client.h>
 
 #include <aws/iotshadow/IotShadowClientV2.h>
@@ -22,7 +23,6 @@
 #include <algorithm>
 #include <condition_variable>
 #include <iostream>
-#include <thread>
 
 #include "../../utils/CommandLineUtils.h"
 
@@ -111,10 +111,10 @@ static String s_nibbleNextToken(String &input) {
 static void s_printHelp() {
     fprintf(stdout, "\nShadow sandbox:\n\n");
     fprintf(stdout, "  quit -- quits the program\n");
-    fprintf(stdout, "  get <thing-name> <shadow-name> -- gets the state of a named shadow belonging to the specified thing\n");
-    fprintf(stdout, "  delete <thing-name> <shadow-name> -- deletes a named shadow belonging to the specified thing\n");
-    fprintf(stdout, "  update-desired <thing-name> <shadow-name> <desired-state-JSON> -- updates the desired state of a named shadow belonging to the specified thing\n");
-    fprintf(stdout, "  update-reported <thing-name> <shadow-name> <reported-state-JSON> -- updates the reported state a named shadow belonging to the specified thing\n\n");
+    fprintf(stdout, "  get -- gets the current value of the IoT thing's shadow\n");
+    fprintf(stdout, "  delete -- deletes the IoT thing's shadow\n");
+    fprintf(stdout, "  update-desired <desired-state-as-JSON> -- updates the desired state of the IoT thing's shadow.  If the shadow does not exist, it will be created.\n");
+    fprintf(stdout, "  update-reported <reported-state-as-JSON> -- updates the reported state of the IoT thing's shadow.  If the shadow does not exist, it will be created.\n\n");
 }
 
 static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName) {
@@ -255,7 +255,7 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
         Aws::Crt::JsonObject jsonObject;
         event.SerializeToObject(jsonObject);
         Aws::Crt::String json = jsonObject.View().WriteCompact(true);
-        fprintf(stdout, "Received shadow updated event:  %s\n", json.c_str());
+        fprintf(stdout, "Received ShadowUpdated event:  %s\n", json.c_str());
     });
 
     auto stream = context.m_shadowClient->CreateShadowUpdatedStream(request, options);
@@ -282,7 +282,7 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
         Aws::Crt::JsonObject jsonObject;
         event.SerializeToObject(jsonObject);
         Aws::Crt::String json = jsonObject.View().WriteCompact(true);
-        fprintf(stdout, "Received shadow delta updated event:  %s\n", json.c_str());
+        fprintf(stdout, "Received ShadowDeltaUpdated event:  %s\n", json.c_str());
     });
 
     auto stream = context.m_shadowClient->CreateShadowDeltaUpdatedStream(request, options);
@@ -309,6 +309,9 @@ static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &con
     } else if (command == "update-reported") {
         s_handleUpdateReportedShadow(remaining, context);
     } else {
+        if (command != "help") {
+            fprintf(stdout, "Command not recognized: %s\n", command.c_str());
+        }
         s_printHelp();
     }
 
@@ -338,6 +341,12 @@ int main(int argc, char *argv[])
             "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
         return -1;
     }
+
+    auto clientId = "test-" + UUID().ToString();
+    auto connectPacket = MakeShared<Mqtt5::ConnectPacket>(DefaultAllocatorImplementation());
+    connectPacket->WithClientId(clientId);
+
+    builder->WithConnectOptions(connectPacket);
 
     SimpleWaiter<bool> connectedWaiter;
 
