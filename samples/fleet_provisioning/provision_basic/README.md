@@ -2,11 +2,9 @@
 
 [**Return to main sample list**](../../README.md)
 
-This sample uses the AWS IoT [Fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using either a CSR or Keys-And-Certificate and subsequently calls RegisterThing. This allows you to create new AWS IoT Core things using a Fleet Provisioning Template.
+This sample uses the AWS IoT [Fleet provisioning service](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using the CreateKeysAndCertificate and RegisterThing APIs. This allows you to create new AWS IoT Core thing resources using a Fleet Provisioning Template.
 
-On startup, the script subscribes to topics based on the request type of either CSR or Keys topics, publishes the request to corresponding topic and calls RegisterThing.
-
-Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
+You must have a provisioning certificate and key pair whose associated [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish, and receive on MQTT topics used by the provisning APIs that the sample invokes. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -19,7 +17,6 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
       "Action": "iot:Publish",
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json"
       ]
     },
@@ -31,8 +28,6 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
@@ -45,8 +40,6 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
@@ -69,35 +62,19 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 </details>
 
-## How to run
+## Fleet Provisioning Detailed Instructions
 
-There are many different ways to run the Fleet Provisioning sample because of how many different ways there are to setup a Fleet Provisioning template in AWS IoT Core. **The easiest and most common way is to run the sample with the following**:
+### Aws Resource Setup
 
-``` sh
-./mqtt5-fleet-provisioning --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --template_name <template name> --template_parameters <template parameters json>
-```
+Fleet provisioning requires some additional AWS resources be set up first. These steps assume you have the [AWS CLI](https://aws.amazon.com/cli/) installed and have your AWS credentials for the AWS CLI setup and with sufficient permissions to perform all of the operations in this guide. For instructions on how to setup AWS CLI, see the following: [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).  The default region used by the CLI must match the region you intend to use; alternatively, you can specify `--region <region>` as a parameter to all CLI commands.
 
-You can also pass a Certificate Authority file (CA) if your certificate and key combination requires it:
-
-``` sh
-./mqtt5-fleet-provisioning --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --template_name <template name> --template_parameters <template parameters json> --ca_file <path to root CA>
-```
-
-However, this is just one way using the `CreateKeysAndCertificate` workflow. Below are a detailed list of instructions with the different ways to connect. While the detailed instructions do not show it, you can pass `--ca_file` no matter which way you connect via Fleet Provisioning.
-
-### Fleet Provisioning Detailed Instructions
-
-#### Aws Resource Setup
-
-Fleet provisioning requires some additional AWS resources be set up first. These steps assume you have the [AWS CLI](https://aws.amazon.com/cli/) installed and have your AWS credentials for the AWS CLI setup and with sufficient permissions to perform all of the operations in this guide. For instructions on how to setup AWS CLI, see the following: [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
-
-You will also need Python version 3 installed to be able to run the `parse_cert_set_result.py` file, which is a helper script to make running this sample easier. You can find Python3 installers for your platform on the [Python website](https://www.python.org/).
+If you do not have a provisioning cert and key pair, you will also need Python version 3 installed to be able to run the `parse_cert_set_result.py` file, which is a script used in the process of creating a provisioning certificate and key pair. You can find Python3 installers for your platform on the [Python website](https://www.python.org/).
 
 These steps are based on the provisioning setup steps
 that can be found at [Embedded C SDK Setup](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/provisioning/provisioning_tests.html#provisioning_system_tests_setup).
 
 
-First, create the IAM role that will be needed by the fleet provisioning template. Replace `<RoleName>` with a name of the role you want to create.
+First, create the IAM role that will be needed by the fleet provisioning template. Replace `<RoleName>` with the name of the role you want to create.
 
 ``` sh
 aws iam create-role \
@@ -239,9 +216,9 @@ And here is the same JSON document, but as a single line for easier copy-pasting
 
 You can use this JSON document as the `<TemplateJSON>` in the AWS CLI command. This sample will assume you have used the template JSON above, so you may need to adjust if you are using a different template JSON. Thankfully, all of these steps need to only be done and, now that they are complete, you will need not perform them again.
 
-#### Creating a certificate-key set from a provisioning claim
+### Creating a provisioning certificate and key pair from a provisioning claim
 
-To run the provisioning sample, you'll need a certificate and key set with sufficient permissions. Provisioning certificates are normally created ahead of time and placed on your device, but for this sample, we will just create them on the fly. This is primarily done for example purposes.
+To run the provisioning sample, you'll need a provisioning certificate and key set with sufficient permissions (see the policy at the top). Provisioning certificates are normally created ahead of time and placed on your device, but for this sample, we will just create them on the fly. This is primarily done for example purposes.
 
 You can also use any certificate set you've already created if it has sufficient IoT permissions. If you wish to do this, you can skip the step that calls `create-provisioning-claim` below and move right to the next step: [Running the sample using a certificate-key set](#running-the-sample-using-a-certificate-key-set)
 
@@ -249,13 +226,13 @@ We've included a script in the utils folder that creates certificate and key fil
 `create-provisioning-claim`. These dynamically sourced certificates are **only valid for five minutes**. When running the command,
 you'll need to substitute the name of the template you previously created. If on Windows, replace the paths with something appropriate.
 
-**Note**: The following assumes you are running this command from the `aws-iot-device-sdk-java-v2` folder, which is the main GitHub folder. If you are running this from another folder (like the `samples/Identity` folder), then you will need to adjust the filepaths accordingly.
+**Note**: The following assumes you are running this command from the `aws-iot-device-sdk-cpp-v2` folder (SDK root) . If you are running this from another folder then you will need to adjust the filepaths accordingly.
 
 ```sh
 aws iot create-provisioning-claim \
     --template-name <TemplateName> \
     | python3 ./utils/parse_cert_set_result.py \
-    --path ./tmp \
+    --path /tmp \
     --filename provision
 ```
 * Replace `<TemplateName>` with the name of the Fleet Provisioning template you created earlier.
@@ -263,86 +240,35 @@ aws iot create-provisioning-claim \
 This will create a certificate and key in the `tmp` folder with file names starting with `provision`. You can now use these temporary keys
 to perform the actual provisioning in the section below.
 
-#### Running the sample using a certificate-key set
+### Build and run the sample
 
-To run the sample with your certificate and private key, use the following command:
+Before building and running the sample, you must first build and install the SDK:
 
 ``` sh
-./mqtt5-fleet-provisioning --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --template_name <template name> --template_parameters '{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}'"
+cd <sdk-root-directory>
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=<sdk_install_path> ..
+make && make install
+```
+
+Now build the sample:
+
+``` sh
+cd samples/fleet_provisioning/provision_basic
+mkdir _build
+cd _build
+cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
+make
+```
+
+To run the sample:
+
+``` sh
+./fleet-provisioning-basic --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}'
 ```
 
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
-With that, the sample should run and work as expected! You should then find your have a new AWS IoT Core thing!
+On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateAndKeys API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
 
-### Run the sample using the certificate signing request workflow
-
-To run the sample with this workflow, you'll need to create a certificate signing request in addition to the other steps above (creating the role, setting its policy, setting the template JSON, etc).
-
-First create a certificate-key pair:
-``` sh
-openssl genrsa -out /tmp/deviceCert.key 2048
-```
-
-Next create a certificate signing request from it:
-``` sh
-openssl req -new -key /tmp/deviceCert.key -out /tmp/deviceCert.csr
-```
-
-As in the previous workflow, you can [create a temporary certificate set from a provisioning claim](#creating-a-certificate-key-set-from-a-provisioning-claim). Again, this can be skipped if you have a policy and certificate with the proper permissions.
-
-```sh
-aws iot create-provisioning-claim \
-    --template-name <TemplateName> \
-    | python3 ./utils/parse_cert_set_result.py \
-    --path ./tmp \
-    --filename provision
-```
-* Replace `<TemplateName>` with the name of the Fleet Provisioning template you created earlier.
-
-Finally, you can also pass the certificate signing request while invoking the Fleet Provisioning sample.
-
-``` sh
-./mqtt5-fleet-provisioning --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --template_name <template name> --template_parameters '{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}'" --csr <path to csr file>
-```
-
-## Service Client Notes
-### Difference between MQTT5 and MQTT311 IotIdentityClient
-The IotIdentityClient with Mqtt5 client is identical to Mqtt3 one. We wrapped the Mqtt5Client into MqttClientConnection so that we could keep the same interface for IotIdentityClient.
-The only difference is that you would need setup up a Mqtt5 Client for the IotIdentityClient. For how to setup a Mqtt5 Client, please refer to [MQTT5 UserGuide](../../../documents/MQTT5_Userguide.md) and [MQTT5 PubSub Sample](../../mqtt5/mqtt5_pubsub/)
-
-<table>
-<tr>
-<th>Create a IotIdentityClient with Mqtt5</th>
-<th>Create a IotIdentityClient with Mqtt311</th>
-</tr>
-<tr>
-<td>
-
-```Cpp
-  // Build Mqtt5Client
-  std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-
-  // Create jobs client with mqtt5 client
-  IotIdentityClient identityClient(client);
-```
-
-</td>
-<td>
-
-```Cpp
-  // Create mqtt311 connection
-  Aws::Iot::MqttClient client = Aws::Iot::MqttClient();
-  auto connection = client.NewConnection(clientConfig);
-
-  // Create jobs client with mqtt311 connection
-  IotIdentityClient identityClient(connection);
-
-```
-
-</td>
-</tr>
-</table>
-
-### Mqtt::QOS v.s. Mqtt5::QOS
-As the service client interface is unchanged for Mqtt3 Connection and Mqtt5 Client,the IotIdentityClient will use Mqtt::QOS instead of Mqtt5::QOS even with a Mqtt5 Client.
