@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
-project(shadow_sync CXX)
+project(jobs-sandbox CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
@@ -21,7 +21,7 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_package(IotShadow-cpp REQUIRED)
+find_package(IotJobs-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
@@ -29,4 +29,4 @@ include(AwsSanitizers)
 enable_language(C)
 aws_add_sanitizers(${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotJobs-cpp)

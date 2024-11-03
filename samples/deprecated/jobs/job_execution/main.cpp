@@ -30,7 +30,7 @@
 #include <mutex>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
+#include "../../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
