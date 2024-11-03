@@ -22,7 +22,7 @@
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
 * [Jobs](./jobs/job_execution/README.md)
 ## Other Samples
-* [Shadow](./shadow/shadow_sync/README.md)
+* [Shadow](./shadow/shadow-sandbox/README.md)
 * [Basic Fleet Provisioning](./fleet_provisioning/provision_basic/README.md)
 * [CSR Fleet Provisioning](./fleet_provisioning/provision_csr/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)

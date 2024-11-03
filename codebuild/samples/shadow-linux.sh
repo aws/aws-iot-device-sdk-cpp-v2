@@ -36,7 +36,7 @@ popd
 
 # v2 MQTT5 shadow sample - smaple is interactive so build but don't run
 
-pushd $CODEBUILD_SRC_DIR/samples/shadow/shadow_sync
+pushd $CODEBUILD_SRC_DIR/samples/shadow/shadow-sandbox
 
 mkdir _build
 cd _build

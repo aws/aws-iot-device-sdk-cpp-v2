@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
-project(shadow_sync CXX)
+project(mqtt5-job-execution CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
-       "../../utils/CommandLineUtils.cpp"
-       "../../utils/CommandLineUtils.h"
+       "../../../utils/CommandLineUtils.cpp"
+       "../../../utils/CommandLineUtils.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
@@ -21,8 +21,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_package(IotShadow-cpp REQUIRED)
+find_package(IotJobs-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotJobs-cpp)
