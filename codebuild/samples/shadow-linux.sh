@@ -5,7 +5,7 @@ set -e
 env
 
 # v1 MQTT311 shadow sample
-pushd $CODEBUILD_SRC_DIR/samples/shadow/deprecated/shadow_sync
+pushd $CODEBUILD_SRC_DIR/samples/deprecated/shadow/shadow_sync
 
 mkdir _build
 cd _build
@@ -20,7 +20,7 @@ echo "Shadow-Sync test"
 popd
 
 # v1 MQTT5 shadow sample
-pushd $CODEBUILD_SRC_DIR/samples/shadow/deprecated/mqtt5_shadow_sync
+pushd $CODEBUILD_SRC_DIR/samples/deprecated/shadow/mqtt5_shadow_sync
 
 mkdir _build
 cd _build
@@ -31,7 +31,6 @@ ENDPOINT=$(aws secretsmanager get-secret-value --secret-id "ci/endpoint" --query
 
 echo "Shadow-Sync test"
 ./mqtt5-shadow-sync --endpoint $ENDPOINT --key /tmp/privatekey.pem --cert /tmp/certificate.pem --thing_name CI_CodeBuild_Thing --is_ci true
-
 
 popd
 

@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.9...3.31)
+cmake_minimum_required(VERSION 3.9)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
-project(fleet-provisioning CXX)
+project(fleet-provisioning-basic CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
@@ -24,9 +24,5 @@ find_package(aws-crt-cpp REQUIRED)
 find_package(IotIdentity-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-
-include(AwsSanitizers)
-enable_language(C)
-aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotIdentity-cpp)

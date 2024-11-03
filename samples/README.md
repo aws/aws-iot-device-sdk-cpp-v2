@@ -10,7 +10,6 @@
     + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 * [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
-* [Shadow](./shadow/shadow_sync/README.md)
 * [Mqtt5 Fleet Provisioning](./fleet_provisioning/mqtt5_fleet_provisioning/README.md)
 ## MQTT311 Samples
 * [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
@@ -23,8 +22,10 @@
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
 * [Jobs](./jobs/job_execution/README.md)
-* [Fleet provisioning](./fleet_provisioning/fleet_provisioning/README.md)
 ## Other Samples
+* [Shadow](./shadow/shadow_sync/README.md)
+* [Basic Fleet Provisioning](./fleet_provisioning/basic/README.md)
+* [CSR Fleet Provisioning](./fleet_provisioning/csr/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
