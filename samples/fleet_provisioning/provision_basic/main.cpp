@@ -9,8 +9,8 @@
 
 #include <aws/crt/Api.h>
 #include <aws/crt/JsonObject.h>
-#include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/crt/UUID.h>
+#include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 
 #include <aws/iotidentity/CreateKeysAndCertificateRequest.h>
@@ -27,9 +27,15 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
 
-static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName) {
-    fprintf(stdout, "%s failed with error code: %s\n", operationName.c_str(), aws_error_debug_str(serviceError.GetErrorCode()));
-    if (serviceError.HasModeledError()) {
+static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName)
+{
+    fprintf(
+        stdout,
+        "%s failed with error code: %s\n",
+        operationName.c_str(),
+        aws_error_debug_str(serviceError.GetErrorCode()));
+    if (serviceError.HasModeledError())
+    {
         const auto &modeledError = serviceError.GetModeledError();
 
         JsonObject jsonObject;
@@ -41,9 +47,7 @@ static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError,
 
 int main(int argc, char *argv[])
 {
-
     ApiHandle apiHandle;
-    apiHandle.InitializeLogging(LogLevel::Trace, "/tmp/log.txt");
 
     /**
      * cmdData is the arguments/input from the command line placed into a single struct for
@@ -73,18 +77,24 @@ int main(int argc, char *argv[])
     std::promise<bool> connectedWaiter;
 
     // Setup lifecycle callbacks
-    builder->WithClientConnectionSuccessCallback([&connectedWaiter](const Mqtt5::OnConnectionSuccessEventData &){
-        fprintf(stdout, "Mqtt5 Client connection succeeded!\n");
-        connectedWaiter.set_value(true);
-    });
-    builder->WithClientConnectionFailureCallback([](const Mqtt5::OnConnectionFailureEventData &event){
-        fprintf(stdout, "Mqtt5 client connection attempt failed with error: %s.\n", aws_error_debug_str(event.errorCode));
-    });
+    builder->WithClientConnectionSuccessCallback(
+        [&connectedWaiter](const Mqtt5::OnConnectionSuccessEventData &)
+        {
+            fprintf(stdout, "Mqtt5 Client connection succeeded!\n");
+            connectedWaiter.set_value(true);
+        });
+    builder->WithClientConnectionFailureCallback(
+        [](const Mqtt5::OnConnectionFailureEventData &event) {
+            fprintf(
+                stdout,
+                "Mqtt5 client connection attempt failed with error: %s.\n",
+                aws_error_debug_str(event.errorCode));
+        });
 
     auto protocolClient = builder->Build();
-    if (!protocolClient) {
-        printf(
-            "Failed to create mqtt5 client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
+    if (!protocolClient)
+    {
+        printf("Failed to create mqtt5 client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
         return -1;
     }
 
@@ -94,9 +104,9 @@ int main(int argc, char *argv[])
     requestResponseOptions.WithOperationTimeoutInSeconds(30);
 
     auto identityClient = Aws::Iotidentity::NewClientFrom5(*protocolClient, requestResponseOptions);
-    if (!identityClient) {
-        printf(
-            "Failed to create identity client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
+    if (!identityClient)
+    {
+        printf("Failed to create identity client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
         return -1;
     }
 
@@ -105,15 +115,20 @@ int main(int argc, char *argv[])
 
     connectedWaiter.get_future().wait();
 
+    /*
+     * Step 1: Invoke the CreateKeysAndCertificate API to get a key pair signed by AmazonRootCA1
+     */
     CreateKeysAndCertificateRequest createKeysRequest;
 
     std::promise<CreateKeysAndCertificateResult> createKeysResultPromise;
-    identityClient->CreateKeysAndCertificate(createKeysRequest, [&createKeysResultPromise](CreateKeysAndCertificateResult &&result){
-        createKeysResultPromise.set_value(std::move(result));
-    });
+    identityClient->CreateKeysAndCertificate(
+        createKeysRequest,
+        [&createKeysResultPromise](CreateKeysAndCertificateResult &&result)
+        { createKeysResultPromise.set_value(std::move(result)); });
 
     const auto &createKeysResult = createKeysResultPromise.get_future().get();
-    if (!createKeysResult.IsSuccess()) {
+    if (!createKeysResult.IsSuccess())
+    {
         s_onServiceError(createKeysResult.GetError(), "create-keys-and-certificate");
         return -1;
     }
@@ -124,10 +139,15 @@ int main(int argc, char *argv[])
     createKeysResponse.SerializeToObject(createKeysJsonObject);
     fprintf(stdout, "create-keys-and-certificate result: %s\n", createKeysJsonObject.View().WriteCompact(true).c_str());
 
+    /*
+     * Step 2: Invoke the RegisterThing API using the results of the CreateKeysAndCertificate call.  Until RegisterThing
+     * is successfully called, the certificate-and-key pair from Step 1 are useless.
+     */
     RegisterThingRequest registerThingRequest;
     registerThingRequest.TemplateName = cmdData.input_templateName;
     registerThingRequest.CertificateOwnershipToken = createKeysResponse.CertificateOwnershipToken;
-    if (cmdData.input_templateParameters.length() > 0) {
+    if (cmdData.input_templateParameters.length() > 0)
+    {
         Map<String, String> finalTemplateParameters;
 
         JsonObject templateParamsAsJson(cmdData.input_templateParameters);
@@ -141,18 +161,25 @@ int main(int argc, char *argv[])
     }
 
     std::promise<RegisterThingResult> registerThingResultPromise;
-    identityClient->RegisterThing(registerThingRequest, [&registerThingResultPromise](RegisterThingResult &&result) {
-        registerThingResultPromise.set_value(std::move(result));
-    });
+    identityClient->RegisterThing(
+        registerThingRequest,
+        [&registerThingResultPromise](RegisterThingResult &&result)
+        { registerThingResultPromise.set_value(std::move(result)); });
 
     const auto &registerThingResult = registerThingResultPromise.get_future().get();
-    if (!registerThingResult.IsSuccess()) {
+    if (!registerThingResult.IsSuccess())
+    {
         s_onServiceError(registerThingResult.GetError(), "register-thing");
         return -1;
     }
 
     const auto &registerThingResponse = registerThingResult.GetResponse();
 
+    /*
+     * The call to RegisterThing was successful.  The certificate-and-key pair inside createKeysResponse is now valid
+     * and can be used to connect and interact with AWS IoT Core with a permission policy scope determined by the
+     * provisioning template referenced in the RegisterThing API call.
+     */
     JsonObject registerThingJsonObject;
     registerThingResponse.SerializeToObject(registerThingJsonObject);
     fprintf(stdout, "register-thing result: %s\n", registerThingJsonObject.View().WriteCompact(true).c_str());
