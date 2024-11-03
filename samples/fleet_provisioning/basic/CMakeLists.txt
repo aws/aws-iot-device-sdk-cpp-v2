@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
-project(mqtt5-fleet-provisioning CXX)
+project(fleet-provisioning-basic CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"

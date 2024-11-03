@@ -29,46 +29,6 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotshadow;
 
-template<typename T>
-class SimpleWaiter {
-    public:
-
-        SimpleWaiter() = default;
-
-        bool hasValue() {
-            std::lock_guard<std::mutex> lock(m_lock);
-
-            return m_value.has_value();
-        }
-
-        const T &getValue() {
-            std::lock_guard<std::mutex> lock(m_lock);
-
-            return m_value.value();
-        }
-
-        void waitForValue() {
-            std::unique_lock<std::mutex> lock(m_lock);
-            m_signal.wait(lock, [this](){ return m_value.has_value(); });
-        }
-
-        void setValue(T &&value) {
-            {
-                std::lock_guard<std::mutex> lock(m_lock);
-                m_value = std::move(value);
-            }
-
-            m_signal.notify_all();
-        }
-
-    private:
-
-        std::mutex m_lock;
-        std::condition_variable m_signal;
-
-        Optional<T> m_value;
-};
-
 struct ApplicationContext {
 
     std::shared_ptr<Mqtt5::Mqtt5Client> m_protocolClient;
@@ -147,13 +107,13 @@ static void s_handleGetShadow(const ApplicationContext &context) {
     GetShadowRequest request;
     request.ThingName = context.m_thingName;
 
-    SimpleWaiter<bool> getWaiter;
+    std::promise<bool> getWaiter;
     context.m_shadowClient->GetShadow(request, [&getWaiter](GetShadowResult &&result){
         s_onGetShadowResult(std::move(result));
-        getWaiter.setValue(true);
+        getWaiter.set_value(true);
     });
 
-    getWaiter.waitForValue();
+    getWaiter.get_future().wait();
 }
 
 static void s_onDeleteShadowResult(DeleteShadowResult &&result) {
@@ -173,13 +133,13 @@ static void s_handleDeleteShadow(const ApplicationContext &context) {
     DeleteShadowRequest request;
     request.ThingName = context.m_thingName;
 
-    SimpleWaiter<bool> deleteWaiter;
+    std::promise<bool> deleteWaiter;
     context.m_shadowClient->DeleteShadow(request, [&deleteWaiter](DeleteShadowResult &&result){
         s_onDeleteShadowResult(std::move(result));
-        deleteWaiter.setValue(true);
+        deleteWaiter.set_value(true);
     });
 
-    deleteWaiter.waitForValue();
+    deleteWaiter.get_future().wait();
 }
 
 static void s_onUpdateShadowResult(UpdateShadowResult &&result, String operationName) {
@@ -208,13 +168,13 @@ static void s_handleUpdateDesiredShadow(const String &params, const ApplicationC
     request.State = ShadowState();
     request.State.value().Desired = stateAsJson;
 
-    SimpleWaiter<bool> updateWaiter;
+    std::promise<bool> updateWaiter;
     context.m_shadowClient->UpdateShadow(request, [&updateWaiter](UpdateShadowResult &&result){
         s_onUpdateShadowResult(std::move(result), "update-desired");
-        updateWaiter.setValue(true);
+        updateWaiter.set_value(true);
     });
 
-    updateWaiter.waitForValue();
+    updateWaiter.get_future().wait();
 }
 
 static void s_handleUpdateReportedShadow(const String &params, const ApplicationContext &context) {
@@ -230,17 +190,17 @@ static void s_handleUpdateReportedShadow(const String &params, const Application
     request.State = ShadowState();
     request.State.value().Reported = stateAsJson;
 
-    SimpleWaiter<bool> updateWaiter;
+    std::promise<bool> updateWaiter;
     context.m_shadowClient->UpdateShadow(request, [&updateWaiter](UpdateShadowResult &&result){
         s_onUpdateShadowResult(std::move(result), "update-reported");
-        updateWaiter.setValue(true);
+        updateWaiter.set_value(true);
     });
 
-    updateWaiter.waitForValue();
+    updateWaiter.get_future().wait();
 }
 
 static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createShadowUpdatedStream(const ApplicationContext &context) {
-    SimpleWaiter<bool> subscribedWaiter;
+    std::promise<bool> subscribedWaiter;
 
     ShadowUpdatedSubscriptionRequest request;
     request.ThingName = context.m_thingName;
@@ -248,7 +208,7 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
     Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotshadow::ShadowUpdatedEvent> options;
     options.WithSubscriptionStatusEventHandler([&subscribedWaiter](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event) {
         if (event.GetType() == Aws::Iot::RequestResponse::SubscriptionStatusEventType::SubscriptionEstablished) {
-            subscribedWaiter.setValue(true);
+            subscribedWaiter.set_value(true);
         }
     });
     options.WithStreamHandler([](Aws::Iotshadow::ShadowUpdatedEvent &&event) {
@@ -261,13 +221,13 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
     auto stream = context.m_shadowClient->CreateShadowUpdatedStream(request, options);
     stream->Open();
 
-    subscribedWaiter.waitForValue();
+    subscribedWaiter.get_future().wait();
 
     return stream;
 }
 
 static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createShadowDeltaUpdatedStream(const ApplicationContext &context) {
-    SimpleWaiter<bool> subscribedWaiter;
+    std::promise<bool> subscribedWaiter;
 
     ShadowDeltaUpdatedSubscriptionRequest request;
     request.ThingName = context.m_thingName;
@@ -275,7 +235,7 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
     Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotshadow::ShadowDeltaUpdatedEvent> options;
     options.WithSubscriptionStatusEventHandler([&subscribedWaiter](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event) {
         if (event.GetType() == Aws::Iot::RequestResponse::SubscriptionStatusEventType::SubscriptionEstablished) {
-            subscribedWaiter.setValue(true);
+            subscribedWaiter.set_value(true);
         }
     });
     options.WithStreamHandler([](Aws::Iotshadow::ShadowDeltaUpdatedEvent &&event) {
@@ -288,7 +248,7 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createS
     auto stream = context.m_shadowClient->CreateShadowDeltaUpdatedStream(request, options);
     stream->Open();
 
-    subscribedWaiter.waitForValue();
+    subscribedWaiter.get_future().wait();
 
     return stream;
 }
@@ -348,12 +308,12 @@ int main(int argc, char *argv[])
 
     builder->WithConnectOptions(connectPacket);
 
-    SimpleWaiter<bool> connectedWaiter;
+    std::promise<bool> connectedWaiter;
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback([&connectedWaiter](const Mqtt5::OnConnectionSuccessEventData &){
         fprintf(stdout, "Mqtt5 Client connection succeeded!\n");
-        connectedWaiter.setValue(true);
+        connectedWaiter.set_value(true);
     });
     builder->WithClientConnectionFailureCallback(s_onConnectionFailure);
 
@@ -383,7 +343,7 @@ int main(int argc, char *argv[])
     fprintf(stdout, "Starting protocol client!\n");
     context.m_protocolClient->Start();
 
-    connectedWaiter.waitForValue();
+    connectedWaiter.get_future().wait();
 
     context.m_shadowUpdatedStream = s_createShadowUpdatedStream(context);
     context.m_shadowDeltaUpdatedStream = s_createShadowDeltaUpdatedStream(context);
