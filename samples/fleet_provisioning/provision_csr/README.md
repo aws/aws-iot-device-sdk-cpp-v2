@@ -283,4 +283,4 @@ To run the sample:
 
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
-On success, you will find you have a new AWS IoT Core thing.  
+On success, you will find you have a new AWS IoT Core thing.  The provisioned certificate is contained in the response to the CreateCertificateFromCsr.  The associated is contained in the file created while creating the certificate signing request.
