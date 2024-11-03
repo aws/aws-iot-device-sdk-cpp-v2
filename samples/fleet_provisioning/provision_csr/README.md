@@ -283,6 +283,4 @@ To run the sample:
 
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
-On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateFromCsr API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
-
-
+On success, you will find you have a new AWS IoT Core thing.  
