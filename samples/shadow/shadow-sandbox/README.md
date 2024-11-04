@@ -91,7 +91,7 @@ make && make install
 Now build the sample:
 
 ``` sh
-cd samples/shadow/shadow_sync
+cd samples/shadow/shadow-sandbox
 mkdir _build
 cd _build
 cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
@@ -101,7 +101,7 @@ make
 To run the sample:
 
 ``` sh
-./shadow_sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
+./shadow-sandbox --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 
 The sample also listens to a pair of event streams related to the classic (unnamed) shadow state of your thing, so in addition to responses, you will occasionally see output from these streaming operations as they receive events from the shadow service.

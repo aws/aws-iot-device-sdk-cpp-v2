@@ -9,7 +9,6 @@
     + [MQTT over Websockets with Cognito](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-cognito)
     + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
 * [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
-* [Mqtt5 Jobs](./jobs/mqtt5_job_execution/README.md)
 ## MQTT311 Samples
 * [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
 * [Basic Connect](./mqtt/basic_connect/README.md)
@@ -20,9 +19,9 @@
 * [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
-* [Jobs](./jobs/job_execution/README.md)
 ## Other Samples
-* [Shadow](./shadow/shadow-sandbox/README.md)
+* [Jobs Sandobox](./jobs/job-sandbox/README.md)
+* [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
 * [Basic Fleet Provisioning](./fleet_provisioning/provision_basic/README.md)
 * [CSR Fleet Provisioning](./fleet_provisioning/provision_csr/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)

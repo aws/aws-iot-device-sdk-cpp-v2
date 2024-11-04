@@ -1,23 +1,34 @@
-# Shadow
+# Jobs Sandbox
 
 [**Return to main sample list**](../../README.md)
 
-This is an interactive sample that supports a set of commands that allow you to interact with "classic" (unnamed) shadows of the AWS IoT [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html) Service.
+This is an interactive sample that supports a set of commands that allow you to interact with the AWS IoT [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) Service.   The sample walkthrough assumes the [AWS CLI](https://aws.amazon.com/cli/) has been installed and configured in order to invoke control plane operations that are not possible with the device SDK.
+In a real use case, control plane commands would be issued by applications under control of the customer, while the data plane operations would be issue by software running on the
+IoT device itself.
+
+Using the Jobs service and this sample requires an understanding of two closely-related but different service terms:
+* **Job** - metadata describing a task that the user would like one or more devices to run
+* **Job Execution** - metadata describing the state of a single device's attempt to execute a job
+
+In particular, you could have many IoT devices (things) that belong to a thing group.  You could create a **Job** that targets the thing group.  Each device/thing would
+manage its own individual **Job Execution** that corresponded to its attempt to fulfill the overall job request.  In the sections that follow, notice that all of the data-plane (SDK)
+commands use `job-execution` while all of the control plane operations (via the AWS CLI) use `job`.
 
 ### Commands
-Once connected, the sample supports the following shadow-related commands:
 
-* `get` - gets the current full state of the classic (unnamed) shadow.  This includes both a "desired" state component and a "reported" state component.
-* `delete` - deletes the classic (unnamed) shadow completely
-* `update-desired <desired-state-json-document>` - applies an update to the classic shadow's desired state component.  Properties in the JSON document set to non-null will be set to new values.  Properties in the JSON document set to null will be removed.
-* `update-reported <reported-state-json-document>` - applies an update to the classic shadow's reported state component.  Properties in the JSON document set to non-null will be set to new values.  Properties in the JSON document set to null will be removed.
+Once connected, the sample supports the following commands:
 
-Two additional commands are supported:
+* `get-pending-job-executions` - gets the state of all incomplete job executions for this thing/device.
+* `start-next-pending-job-execution` - if one or more pending job executions exist for this thing/device, attempts to transition the next one from QUEUED to IN_PROGRESS.  Returns information about the newly-in-progress job execution, if it exists.
+* `describe-job-execution <jobId>` - gets the current state of this thing's execution of a particular job.
+* `update-job-execution <jobId> <SUCCEEDED | IN_PROGRESS | FAILED | CANCELED>` - updates the status field of this thing's execution of a particular job.  SUCCEEDED, FAILED, and CANCELED are all terminal states.
+
+Miscellaneous
 * `help` - prints the set of supported commands
 * `quit` - quits the sample application
 
 ### Prerequisites
-Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
+Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish, and receive as necessary to perform all of the data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
 <summary>Sample Policy</summary>
@@ -27,35 +38,36 @@ Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerg
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:Publish"
-      ],
+      "Action": "iot:Publish",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/get",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/delete",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/update"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/get",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get"
       ]
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:Receive"
-      ],
+      "Action": "iot:Receive",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/get/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/delete/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/shadow/update/*"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/notify-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/start-next/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/update/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/get/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/things/<b>thingname</b>/jobs/*/get/*"
       ]
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "iot:Subscribe"
-      ],
+      "Action": "iot:Subscribe",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/shadow/get/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/shadow/delete/*",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/shadow/update/*"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/notify-next",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/start-next/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/update/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/get/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/things/<b>thingname</b>/jobs/*/get/*"
       ]
     },
     {
@@ -76,7 +88,44 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 </details>
 
-## Walkthrough
+Additionally, the AWS CLI triggered control plane operations in the walkthrough require that AWS credentials with appropriate permissions be sourcable.  At a minimum, the following permissions must be granted:
+<details>
+<summary>Sample Policy</summary>
+<pre>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "iot:CreateJob",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:job/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:thing/<b>thingname</b>"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:DeleteJob",
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:job/*",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:thing/<b>thingname</b>"
+      ]
+    }
+  ]
+}
+</pre>
+
+Replace with the following with the data from your AWS account:
+* `<region>`: The AWS IoT Core region where you created your AWS IoT Core thing you wish to use with this sample. For example `us-east-1`.
+* `<account>`: Your AWS IoT Core account ID. This is the set of numbers in the top right next to your AWS account name when using the AWS IoT Core website.
+* `<thingname>`: The name of your AWS IoT Core thing you want the device connection to be associated with
+
+Notice that you must provide `iot:CreateJob` permission to all things targeted by your jobs as well as the job itself.  In this example, we use a wildcard for the
+job permission so that you can name the jobs whatever you would like.
+
+</details>
+
+## Building and Running the Sample
 
 Before building and running the sample, you must first build and install the SDK:
 
@@ -91,7 +140,7 @@ make && make install
 Now build the sample:
 
 ``` sh
-cd samples/shadow/shadow_sync
+cd samples/jobs/jobs-sandbox
 mkdir _build
 cd _build
 cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
@@ -101,208 +150,190 @@ make
 To run the sample:
 
 ``` sh
-./shadow_sync --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
+./jobs-sandbox --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 
-The sample also listens to a pair of event streams related to the classic (unnamed) shadow state of your thing, so in addition to responses, you will occasionally see output from these streaming operations as they receive events from the shadow service.
+The sample also listens to a pair of event streams related the configured thing's job processing, so in addition to responses, you will occasionally see output from these streaming operations as they receive events from the jobs service.
 
 Once successfully connected, you can issue commands.
 
-### Initialization
+## Walkthrough
 
-Start off by getting the shadow state:
+The jobs sample walkthrough involves a sequence of steps, some of which are commands issued to the running sample, and some of which are AWS CLI control plane commands for
+creating and deleting jobs.  For the walkthrough to work, the CLI commands must use the same region that the sample is connected to.
 
-```
-get
-```
+This walkthrough assumes a freshly-created IoT thing that has no pre-existing jobs targeting it.
 
-If your thing does have shadow state, you will get its current value, which this sample has no control over.  Let's assume it was initialized
-like what is described below:
-
-```
-get result: {"clientToken":"<Some UUID>","state":{"reported":{"Color":"green"}},"metadata":{"reported":{"Color":{"timestamp":1730481958}}},"timestamp":1730482166,"version":1}
-```
-
-If your thing does not have any shadow state yet, you'll get a ResourceNotFound error:
+### Job Creation
+First, we check if there are any incomplete job executions for this thing.  Assuming the thing is freshly-created, we expect there to be nothing:
 
 ```
-get failed with error code: libaws-c-mqtt: AWS_ERROR_MQTT_REQUEST_RESPONSE_MODELED_SERVICE_ERROR, Request-response operation failed with a modeled service error.
-modeled error: {"clientToken":"<Some UUID>","code":404,"message":"No shadow exists with name: '<Thing Name>'"}
+get-pending-job-executions
 ```
-
-To create a shadow, you can issue an update call that will initialize the shadow to a starting state:
-
+yields output like
 ```
-update-reported {"Color":"green"}
+get-pending-job-executions result: {"inProgressJobs":[],"queuedJobs":[],"timestamp":1730746099,"clientToken":"6c5828e4-9a6b-4b07-10d7-9193819b9c88"}
 ```
+from which we can see that the device has no pending job executions and no in-progress job executions.
 
-which will yield output similar to:
+Next, we'll create a couple of jobs that target the device.  These are control plane operations that use the AWS CLI and are not sample commands.  Keep the sample running in the background to see job notifications arrive by the sample's streaming operations.
 
-```
-update-reported result: {"clientToken":"58de9848-e4db-e2ac-9622-d4c1197a5a14","state":{"reported":{"Color":"green"}},"metadata":{"reported":{"Color":{"timestamp":1730481958}}},"timestamp":1730481958,"version":1}
-
-Received ShadowUpdated event:  {"current":{"state":{"reported":{"Color":"green"}},"metadata":{"reported":{"Color":{"timestamp":1730481958}}},"version":1},"timestamp":1730481958}
-```
-
-Notice that in addition to receiving a response to the update request, you also receive a `ShadowUpdated` event containing what changed about
-the shadow plus additional metadata (version, update timestamps, etc...).  Every time a shadow is updated, this
-event is triggered.  If you wish to listen and react to this event, use the `CreateShadowUpdatedStream` API in the shadow client to create a
-streaming operation that converts the raw MQTT publish messages into modeled data that the streaming operation invokes a user-supplied callback with.
-
-Issue one more update to get the shadow's reported and desired states in sync:
+First, you'll need the full ARN of the IoT Thing in use:
 
 ```
-update-desired {"Color":"green"}
+aws iot describe-thing --thing-name <Thing Name>
 ```
 
-yielding output similar to:
+With that in hand, create a new job targeting your IoT thing using the AWS CLI:
 
 ```
-update-desired result: {"clientToken":"7f53091e-16a7-74d9-201b-b2d45a4d1ae7","state":{"desired":{"Color":"green"}},"metadata":{"desired":{"Color":{"timestamp":1730482304}}},"timestamp":1730482304,"version":2}
-
-<ShadowUpdated event omitted>
+aws iot create-job --job-id TestJob --targets "<Thing ARN>" --document "{\"Todo\":\"Reboot\"}"
 ```
 
-### Changing Properties
-A device shadow contains two independent states: reported and desired.  "Reported" represents the device's last-known local state, while
-"desired" represents the state that control application(s) would like the device to change to.  In general, each application (whether on the device or running
-remotely as a control process) will only update one of these two state components.
-
-Let's walk through the multi-step process to coordinate a change-of-state on the device.  First, a control application needs to update the shadow's desired
-state with the change it would like applied:
+On success, the CLI command should give output like:
 
 ```
-update-desired {"Color":"red"}
+{
+    "jobArn": "<Job ARN prefix>/TestJob",
+    "jobId": "TestJob"
+}
 ```
 
-For our sample, this yields output similar to:
+Meanwhile, your running jobs sample should receive notifications and output something similar to:
 
 ```
-update-desired result: {"clientToken":"35624091-7be2-3ab3-c193-bac8f4c4e9c8","state":{"desired":{"Color":"red"}},"metadata":{"desired":{"Color":{"timestamp":1730482794}}},"timestamp":1730482794,"version":3}
+Received JobExecutionsChanged event:  {"jobs":{"QUEUED":[{"jobId":"TestJob","executionNumber":1,"versionNumber":1,"lastUpdatedAt":1730747114,"queuedAt":1730747114}]},"timestamp":1730747115}
 
-Received ShadowUpdated event:  {"previous":{"state":{"desired":{"Color":"green"},"reported":{"Color":"green"}},"metadata":{"desired":{"Color":{"timestamp":1730482304}},"reported":{"Color":{"timestamp":1730481958}}},"version":2},"current":{"state":{"desired":{"Color":"red"},"reported":{"Color":"green"}},"metadata":{"desired":{"Color":{"timestamp":1730482794}},"reported":{"Color":{"timestamp":1730481958}}},"version":3},"timestamp":1730482794}
-
-Received ShadowDeltaUpdated event:  {"state":{"Color":"red"},"metadata":{"Color":{"timestamp":1730482794}},"timestamp":1730482794,"version":3,"clientToken":"35624091-7be2-3ab3-c193-bac8f4c4e9c8"}
+Received NextJobExecutionChanged event:  {"execution":{"jobId":"TestJob","jobDocument":{"Todo":"Reboot"},"status":"QUEUED","queuedAt":1730747114,"lastUpdatedAt":1730747114,"versionNumber":1,"executionNumber":1},"timestamp":1730747115}
 ```
 
-The key thing to notice here is that in addition to the update response (which only the control application would see) and the ShadowUpdated event,
-there is a new event, ShadowDeltaUpdated, which indicates properties on the shadow that are out-of-sync between desired and reported.  All out-of-sync
-properties will be included in this event, including properties that became out-of-sync due to a previous update.
+Creating the job via the AWS CLI triggered two (MQTT-based) events: a JobExecutionsChanged event and a
+NextJobExecutionChanged event.  When the sample is run, it creates and opens two streaming operations that listen for these two different events, by using the
+`CreateJobExecutionsChangedStream` and `CreateNextJobExecutionChangedStream` APIs in the Jobs service client.
 
-Like the ShadowUpdated event, ShadowDeltaUpdated events can be listened to by creating and configuring a streaming operation, this time by using
-the `CreateShadowDeltaUpdatedStream` API.  Using the ShadowDeltaUpdated events (rather than ShadowUpdated) lets a device focus on just what has
-changed without having to do complex JSON diffs between the desired and reported states of the shadow.
+A JobExecutionsChanged event is emitted every time either the queued or in-progress job execution sets change for the device.  A NextJobExecutionChanged event is emitted
+only when the next job to be executed changes.  So if you create N jobs targeting a device, you'll get N JobExecutionsChanged events, but only (up to) one
+NextJobExecutionChanged event (unless the device starts completing jobs, triggering additional NextJobExecutionChanged events).
 
-Assuming that the change expressed in the desired state is reasonable, the device should apply it internally and then let the service know it
-has done so by updating the reported state of the shadow:
-
-```
-update-reported {"Color":"red"}
-```
-
-yielding
+Let's create a second job as well:
 
 ```
-update-reported result: {"clientToken":"5741d710-fe6b-7f4f-ece1-7767498a38c8","state":{"reported":{"Color":"red"}},"metadata":{"reported":{"Color":{"timestamp":1730482948}}},"timestamp":1730482948,"version":4}
-
-Received ShadowUpdated event:  {"previous":{"state":{"desired":{"Color":"red"},"reported":{"Color":"green"}},"metadata":{"desired":{"Color":{"timestamp":1730482794}},"reported":{"Color":{"timestamp":1730481958}}},"version":3},"current":{"state":{"desired":{"Color":"red"},"reported":{"Color":"red"}},"metadata":{"desired":{"Color":{"timestamp":1730482794}},"reported":{"Color":{"timestamp":1730482948}}},"version":4},"timestamp":1730482948}
+aws iot create-job --job-id QuestionableJob --targets "<Thing ARN>" --document "{\"Todo\":\"Delete Root User\"}"
 ```
 
-Notice that no ShadowDeltaUpdated event is generated because the reported and desired states are now back in sync.
-
-### Multiple Properties
-Not all shadow properties represent device configuration.  To illustrate several more aspects of the Shadow service, let's add a second property to our shadow document,
-starting out in sync (output omitted):
+whose output might look like
 
 ```
-update-reported {"Status":"Great"}
+{
+    "jobArn": "<Job ARN prefix>/QuestionableJob",
+    "jobId": "QuestionableJob"
+}
 ```
-
-```
-update-desired {"Status":"Great"}
-```
-
-Notice that shadow updates work by deltas rather than by complete state changes.  Updating the "Status" property to a value had no effect on the shadow's
-"Color" property:
+and the sample should output a single JobExecutionsChanged event that now shows the two jobs in the QUEUED state:
 
 ```
-get
+Received JobExecutionsChanged event:  {"jobs":{"QUEUED":[{"jobId":"TestJob","executionNumber":1,"versionNumber":1,"lastUpdatedAt":1730747114,"queuedAt":1730747114},{"jobId":"QuestionableJob","executionNumber":1,"versionNumber":1,"lastUpdatedAt":1730747777,"queuedAt":1730747777}]},"timestamp":1730747778}
 ```
 
-yields
+Notice how this time, there is no NextJobExecutionChanged event because the second job is behind the first, and therefore the next job execution hasn't changed.  As we will
+see below, a NextJobExecutionChanged event referencing the second job will be emitted when the first job (in progress) is completed.
+
+### Job Execution
+Our device now has two jobs queued that it needs to (pretend to) execute.  Let's see how to do that, and what happens when we do.
+
+The easiest way to start a job execution is via the `startNextPendingJobExecution` API.  This API takes the job execution at the head of the QUEUED list and moves it
+into the IN_PROGRESS state, returning its job document in the process.
 
 ```
-get result: {"clientToken":"2b689730-8144-c20f-07dd-60bdf4e3f2b7","state":{"desired":{"Color":"red","Status":"Great"},"reported":{"Color":"red","Status":"Great"}},"metadata":{"desired":{"Color":{"timestamp":1730482794},"Status":{"timestamp":1730483069}},"reported":{"Color":{"timestamp":1730482948},"Status":{"timestamp":1730483062}}},"timestamp":1730483086,"version":6}
+start-next-pending-job-execution
 ```
 
-Suppose something goes wrong with the device and its status is no longer "Great"
+should yield output similar to:
 
 ```
-update-reported {"Status":"Awful"}
+start-next-pending-job-execution result: {"clientToken":"686ccb4e-bb55-4032-68c9-5f810556d151","execution":{"jobId":"TestJob","jobDocument":{"Todo":"Reboot"},"status":"IN_PROGRESS","queuedAt":1730747114,"startedAt":1730748422,"lastUpdatedAt":1730748422,"versionNumber":2,"executionNumber":1},"timestamp":1730748422}
 ```
+Note that the response includes the job's JSON document (`{"Todo":"Reboot"}`), which is what describes what the job actually entails.  The contents of the job document and its interpretation and
+execution are the responsibility of the developer.  Notice also that no events were emitted from the action of moving a job from the QUEUED state to the IN_PROGRESS state.
 
-which yields something similar to:
-
-```
-update-reported result: {"clientToken":"af54adca-85c9-c4c9-52b0-7349337f57d5","state":{"reported":{"Status":"Awful"}},"metadata":{"reported":{"Status":{"timestamp":1730483858}}},"timestamp":1730483858,"version":7}
-
-Received ShadowUpdated event:  {"previous":{"state":{"desired":{"Color":"red","Status":"Great"},"reported":{"Color":"red","Status":"Great"}},"metadata":{"desired":{"Color":{"timestamp":1730482794},"Status":{"timestamp":1730483069}},"reported":{"Color":{"timestamp":1730482948},"Status":{"timestamp":1730483062}}},"version":6},"current":{"state":{"desired":{"Color":"red","Status":"Great"},"reported":{"Color":"red","Status":"Awful"}},"metadata":{"desired":{"Color":{"timestamp":1730482794},"Status":{"timestamp":1730483069}},"reported":{"Color":{"timestamp":1730482948},"Status":{"timestamp":1730483858}}},"version":7},"timestamp":1730483858}
-
-Received ShadowDeltaUpdated event:  {"state":{"Status":"Great"},"metadata":{"Status":{"timestamp":1730483069}},"timestamp":1730483858,"version":7,"clientToken":"af54adca-85c9-c4c9-52b0-7349337f57d5"}
-```
-
-Similar to how updates are delta-based, notice how the ShadowDeltaUpdated event only includes the "Status" property, leaving the "Color" property out because it
-is still in sync between desired and reported.
-
-### Removing properties
-Properties can be removed from a shadow by setting them to null.  Removing a property completely would require its removal from both the
-reported and desired states of the shadow (output omitted):
+If we run `getPendingJobExecutions` again, we see that Job1 is now in progress, while Job2 remains in the queued state:
 
 ```
-update-reported {"Status":null}
+get-pending-job-executions
+```
+```
+get-pending-job-executions result: {"inProgressJobs":[{"jobId":"TestJob","executionNumber":1,"versionNumber":2,"lastUpdatedAt":1730748422,"queuedAt":1730747114,"startedAt":1730748422}],"queuedJobs":[{"jobId":"QuestionableJob","executionNumber":1,"versionNumber":1,"lastUpdatedAt":1730747777,"queuedAt":1730747777}],"timestamp":1730748515,"clientToken":"14e7a359-41d3-e5f1-0b37-353434eeee0f"}
 ```
 
-```
-update-desired {"Status":null}
-```
-
-If you now get the shadow state:
+A real device application would perform the job execution steps as needed.  Let's assume that has been done.  We need to tell the service the job has
+completed:
 
 ```
-get
+update-job-execution TestJob SUCCEEDED
 ```
-
-its output yields something like
-
+will trigger output similar to
 ```
-get result: {"clientToken":"2dccc7b8-47ad-80c5-299f-3de5d9b553fa","state":{"desired":{"Color":"red"},"reported":{"Color":"red"}},"metadata":{"desired":{"Color":{"timestamp":1730482794}},"reported":{"Color":{"timestamp":1730482948}}},"timestamp":1730483940,"version":9}
+update-job-execution result: {"clientToken":"47444947-7691-6c94-470f-878795f3462f","timestamp":1730748769}
+
+Received JobExecutionsChanged event:  {"jobs":{"QUEUED":[{"jobId":"QuestionableJob","executionNumber":1,"versionNumber":1,"lastUpdatedAt":1730747777,"queuedAt":1730747777}]},"timestamp":1730748770}
+
+Received NextJobExecutionChanged event:  {"execution":{"jobId":"QuestionableJob","jobDocument":{"Todo":"Delete Root User"},"status":"QUEUED","queuedAt":1730747777,"lastUpdatedAt":1730747777,"versionNumber":1,"executionNumber":1},"timestamp":1730748770}
 ```
+Notice we get a response as well as two events, since both
+1. The set of incomplete job executions set has changed.
+1. The next job to be executed has changed.
 
-The Status property has been fully removed from the shadow state.
-
-### Removing a shadow
-To remove a shadow, you must invoke the DeleteShadow API (setting the reported and desired
-states to null will only clear the states, but not delete the shadow resource itself).
-
-```
-delete
-```
-
-yields something like
+As expected, we can move QuestionableJob's execution into IN_PROGRESS by invoking `startNextPendingJobExecution` again:
 
 ```
-delete result: {"clientToken":"495844bb-65c9-58a6-bd16-099fa3021512","timestamp":1730483990,"version":9}
+start-next-pending-job-execution
+```
+while should yield something like
+```
+start-next-pending-job-execution result: {"clientToken":"8eabdcf4-13dd-cbcd-fa45-fdab5c1921ed","execution":{"jobId":"QuestionableJob","jobDocument":{"Todo":"Delete Root User"},"status":"IN_PROGRESS","queuedAt":1730747777,"startedAt":1730748903,"lastUpdatedAt":1730748903,"versionNumber":2,"executionNumber":1},"timestamp":1730748903}
 ```
 
-Subsequent attempts to get the shadow return an error:
+Let's pretend that the job execution failed.  An update variant can notify the Jobs service of this fact:
 
 ```
-get
+update-job-execution QuestionableJob FAILED
+```
+triggering
+```
+update-job-execution result: {"clientToken":"fd2cc005-4cd9-5f20-453e-1e69f87368cd","timestamp":1730748962}
+
+Received JobExecutionsChanged event:  {"jobs":{},"timestamp":1730748963}
+
+Received NextJobExecutionChanged event:  {"timestamp":1730748963}
+```
+At this point, no incomplete job executions remain.
+
+### Job Cleanup
+When all executions for a given job have reached a terminal state (SUCCEEDED, FAILED, CANCELED), you can delete the job itself.  This is a control plane operation
+that requires an HTTP-based SDK or the AWS CLI to perform:
+
+```
+aws iot delete-job --job-id TestJob
+aws iot delete-job --job-id QuestionableJob
 ```
 
-results in something similar to
+Deleting a job fails if an incomplete (non success/failure) job execution exists for the job.
 
-```
-get failed with error code: libaws-c-mqtt: AWS_ERROR_MQTT_REQUEST_RESPONSE_MODELED_SERVICE_ERROR, Request-response operation failed with a modeled service error.
-modeled error: {"clientToken":"0228fa77-2bbf-bf91-9915-128668692dbb","code":404,"message":"No shadow exists with name: '<Thing Name>'"}
-```
+### Misc. Topics
+#### What happens if I call `StartNextPendingJobExecution` and there are no jobs to execute?
+The request will not fail, but the `execution` field of the response will be empty, indicating that there is nothing to do.
+
+#### What happens if I call `StartNextPendingJobExecution` twice in a row (or while another job is in the IN_PROGRESS state)?
+The service will return the execution information for the IN_PROGRESS job again.
+
+#### What if I want my device to handle multiple job executions at once?
+Since `startNextPendingJobExecution` does not help here, the device application can manually update a job execution from the QUEUED state to the IN_PROGRESS
+state in the same manner that it completes a job execution: use `getPendingJobExecutions` to get the list of queued executions and use
+`updateJobExecution` to move one or more job executions into the IN_PROGRESS state.
+
+#### What is the proper generic architecture for a job-processing application running on a device?
+A device's persistent job executor should:
+1. On startup, create and open streaming operations for both the JobExecutionsChanged and NextJobExecutionChanged events
+2. On startup, get and cache the set of incomplete job executions using `GetPendingJobExecutions`
+3. Keep the cached job execution set up to date by reacting appropriately to JobExecutionsChanged and NextJobExecutionChanged events
+4. While there are incomplete job executions, start and execute them one-at-a-time; otherwise wait for a new entry in the incomplete (queued) job executions set.

@@ -12,6 +12,10 @@
 #include <aws/iotjobs/GetPendingJobExecutionsRequest.h>
 #include <aws/iotjobs/GetPendingJobExecutionsResponse.h>
 #include <aws/iotjobs/IotJobsClientV2.h>
+#include <aws/iotjobs/JobExecutionsChangedEvent.h>
+#include <aws/iotjobs/JobExecutionsChangedSubscriptionRequest.h>
+#include <aws/iotjobs/NextJobExecutionChangedEvent.h>
+#include <aws/iotjobs/NextJobExecutionChangedSubscriptionRequest.h>
 #include <aws/iotjobs/StartNextJobExecutionResponse.h>
 #include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
 #include <aws/iotjobs/UpdateJobExecutionRequest.h>
@@ -35,6 +39,9 @@ struct ApplicationContext
     std::shared_ptr<IClientV2> m_jobsClient;
 
     String m_thingName;
+
+    std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_jobExecutionsChangedStream;
+    std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_nextJobExecutionChangedStream;
 };
 
 static void s_onConnectionFailure(const Mqtt5::OnConnectionFailureEventData &eventData)
@@ -296,6 +303,74 @@ static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &con
     return false;
 }
 
+static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createJobExecutionsChangedStream(
+    const ApplicationContext &context)
+{
+    std::promise<bool> subscribedWaiter;
+
+    JobExecutionsChangedSubscriptionRequest request;
+    request.ThingName = context.m_thingName;
+
+    Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotjobs::JobExecutionsChangedEvent> options;
+    options.WithSubscriptionStatusEventHandler(
+        [&subscribedWaiter](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
+        {
+            if (event.GetType() == Aws::Iot::RequestResponse::SubscriptionStatusEventType::SubscriptionEstablished)
+            {
+                subscribedWaiter.set_value(true);
+            }
+        });
+    options.WithStreamHandler(
+        [](Aws::Iotjobs::JobExecutionsChangedEvent &&event)
+        {
+            JsonObject jsonObject;
+            event.SerializeToObject(jsonObject);
+            Aws::Crt::String json = jsonObject.View().WriteCompact(true);
+            fprintf(stdout, "Received JobExecutionsChanged event:  %s\n", json.c_str());
+        });
+
+    auto stream = context.m_jobsClient->CreateJobExecutionsChangedStream(request, options);
+    stream->Open();
+
+    subscribedWaiter.get_future().wait();
+
+    return stream;
+}
+
+static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createNextJobExecutionChangedStream(
+    const ApplicationContext &context)
+{
+    std::promise<bool> subscribedWaiter;
+
+    NextJobExecutionChangedSubscriptionRequest request;
+    request.ThingName = context.m_thingName;
+
+    Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotjobs::NextJobExecutionChangedEvent> options;
+    options.WithSubscriptionStatusEventHandler(
+        [&subscribedWaiter](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
+        {
+            if (event.GetType() == Aws::Iot::RequestResponse::SubscriptionStatusEventType::SubscriptionEstablished)
+            {
+                subscribedWaiter.set_value(true);
+            }
+        });
+    options.WithStreamHandler(
+        [](Aws::Iotjobs::NextJobExecutionChangedEvent &&event)
+        {
+            JsonObject jsonObject;
+            event.SerializeToObject(jsonObject);
+            Aws::Crt::String json = jsonObject.View().WriteCompact(true);
+            fprintf(stdout, "Received NextJobExecutionChanged event:  %s\n", json.c_str());
+        });
+
+    auto stream = context.m_jobsClient->CreateNextJobExecutionChangedStream(request, options);
+    stream->Open();
+
+    subscribedWaiter.get_future().wait();
+
+    return stream;
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
@@ -364,6 +439,9 @@ int main(int argc, char *argv[])
     context.m_protocolClient->Start();
 
     connectedWaiter.get_future().wait();
+
+    context.m_jobExecutionsChangedStream = s_createJobExecutionsChangedStream(context);
+    context.m_nextJobExecutionChangedStream = s_createNextJobExecutionChangedStream(context);
 
     while (true)
     {
