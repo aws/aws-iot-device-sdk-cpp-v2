@@ -28,7 +28,10 @@ namespace Aws
             (void)doc;
         }
 
-        void SubscribeToTunnelsNotifyRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+        void SubscribeToTunnelsNotifyRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         SubscribeToTunnelsNotifyRequest::SubscribeToTunnelsNotifyRequest(const Crt::JsonView &doc)
         {

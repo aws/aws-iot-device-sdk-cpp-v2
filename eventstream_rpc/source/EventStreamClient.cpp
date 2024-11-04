@@ -97,9 +97,15 @@ namespace Aws
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        const Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept { return m_headers; }
+        const Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept
+        {
+            return m_headers;
+        }
 
-        const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept { return m_payload; }
+        const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept
+        {
+            return m_payload;
+        }
 
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept
         {
@@ -225,7 +231,10 @@ namespace Aws
 
         void ConnectionLifecycleHandler::OnConnectCallback() {}
 
-        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error) { (void)error; }
+        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error)
+        {
+            (void)error;
+        }
 
         Crt::String RpcError::StatusToString()
         {
@@ -695,7 +704,10 @@ namespace Aws
             thisConnection->m_connectionSetupPromise.set_value();
         }
 
-        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept { m_headers.emplace_back(header); }
+        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept
+        {
+            m_headers.emplace_back(header);
+        }
 
         void ClientConnection::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
@@ -1099,7 +1111,10 @@ namespace Aws
         {
         }
 
-        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
+        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
+        {
+            (void)payloadObject;
+        }
 
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
 
@@ -1187,7 +1202,10 @@ namespace Aws
             rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
         }
 
-        TaggedResult::operator bool() const noexcept { return m_responseType == OPERATION_RESPONSE; }
+        TaggedResult::operator bool() const noexcept
+        {
+            return m_responseType == OPERATION_RESPONSE;
+        }
 
         AbstractShapeBase *TaggedResult::GetOperationResponse() const noexcept
         {
@@ -1516,7 +1534,10 @@ namespace Aws
             }
         }
 
-        void ClientOperation::WithLaunchMode(std::launch mode) noexcept { m_asyncLaunchMode = mode; }
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
+        {
+            m_asyncLaunchMode = mode;
+        }
 
         std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
