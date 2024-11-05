@@ -31,7 +31,10 @@ namespace Aws
             }
         }
 
-        ConnectivityInfo::ConnectivityInfo(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        ConnectivityInfo::ConnectivityInfo(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         ConnectivityInfo &ConnectivityInfo::operator=(const Crt::JsonView &doc)
         {

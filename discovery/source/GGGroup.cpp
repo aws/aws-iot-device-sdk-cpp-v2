@@ -38,7 +38,10 @@ namespace Aws
             }
         }
 
-        GGGroup::GGGroup(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        GGGroup::GGGroup(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         GGGroup &GGGroup::operator=(const Crt::JsonView &doc)
         {
