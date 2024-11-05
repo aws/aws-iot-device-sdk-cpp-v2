@@ -101,33 +101,33 @@ void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cm
     empty_client->client_id = "test-" + Aws::Crt::UUID().ToString() + "-client-";
     empty_client->client_id.append(std::to_string(index).c_str());
 
-    auto onConnectionCompleted =
-        [&](Mqtt::MqttConnection &connection, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-            if (errorCode)
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection &connection, int errorCode, Mqtt::ReturnCode returnCode, bool)
+    {
+        if (errorCode)
+        {
+            fprintf(stdout, "[Lifecycle] Connection failed with error %s\n", ErrorDebugString(errorCode));
+            exit(-1);
+        }
+        else
+        {
+            fprintf(stdout, "[Lifecycle] Connection completed with return code %d\n", returnCode);
+
+            CycleClient *current_client = getClientFromConnection(&clients_holder, &connection);
+            if (current_client != nullptr)
             {
-                fprintf(stdout, "[Lifecycle] Connection failed with error %s\n", ErrorDebugString(errorCode));
-                exit(-1);
+                current_client->is_connected = true;
             }
             else
             {
-                fprintf(stdout, "[Lifecycle] Connection completed with return code %d\n", returnCode);
-
-                CycleClient *current_client = getClientFromConnection(&clients_holder, &connection);
-                if (current_client != nullptr)
-                {
-                    current_client->is_connected = true;
-                }
-                else
-                {
-                    fprintf(stdout, "[Lifecycle] Connection could not find client in vector! Quitting sample");
-                    exit(-1);
-                }
+                fprintf(stdout, "[Lifecycle] Connection could not find client in vector! Quitting sample");
+                exit(-1);
             }
-        };
-    auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "[Lifecycle] Connection interrupted with error %s\n", ErrorDebugString(error));
+        }
     };
-    auto onDisconnect = [&](Mqtt::MqttConnection &connection) {
+    auto onInterrupted = [&](Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "[Lifecycle] Connection interrupted with error %s\n", ErrorDebugString(error)); };
+    auto onDisconnect = [&](Mqtt::MqttConnection &connection)
+    {
         {
             fprintf(stdout, "[Lifecycle] Disconnect completed\n");
 
@@ -143,9 +143,8 @@ void createNewClient(CycleClient *empty_client, size_t index, Utils::cmdData *cm
             }
         }
     };
-    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool) {
-        fprintf(stdout, "[Lifecycle] Connection resumed\n");
-    };
+    auto onResumed = [&](Mqtt::MqttConnection &, Mqtt::ReturnCode, bool)
+    { fprintf(stdout, "[Lifecycle] Connection resumed\n"); };
 
     // Assign callbacks
     empty_client->client->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -285,7 +284,8 @@ void operationSubscribe(CycleClient *current_client, int index)
     }
     fprintf(stdout, "[OP] About to subscribe client %i\n", index);
 
-    auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool, Mqtt::QOS, bool) {
+    auto onMessage = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf, bool, Mqtt::QOS, bool)
+    {
         {
             fprintf(stdout, "[Lifecycle] Publish received on topic %s\n", topic.c_str());
             fprintf(stdout, "[Lifecycle] Message: ");
@@ -295,7 +295,8 @@ void operationSubscribe(CycleClient *current_client, int index)
     };
 
     std::promise<void> subscribeFinishedPromise;
-    auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
+    auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
+    {
         if (errorCode)
         {
             fprintf(stderr, "[Lifecycle] Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
@@ -352,9 +353,9 @@ void operationUnsubscribe(CycleClient *current_client, int index)
     fprintf(stdout, "[OP] About to unsubscribe client %i\n", index);
 
     std::promise<void> unsubscribeFinishedPromise;
-    current_client->client->Unsubscribe(current_client->client_id.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
-        unsubscribeFinishedPromise.set_value();
-    });
+    current_client->client->Unsubscribe(
+        current_client->client_id.c_str(),
+        [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
     unsubscribeFinishedPromise.get_future().wait();
 
     unsubscribeFinishedPromise = std::promise<void>();

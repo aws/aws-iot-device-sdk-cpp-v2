@@ -75,31 +75,31 @@ int main(int argc, char *argv[])
 
     // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted =
-        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
-            if (errorCode)
-            {
-                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-                connectionCompletedPromise.set_value(true);
-            }
-        };
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool)
+    {
+        if (errorCode)
+        {
+            fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+            connectionCompletedPromise.set_value(false);
+        }
+        else
+        {
+            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+            connectionCompletedPromise.set_value(true);
+        }
+    };
 
     // Invoked when a MQTT connection was interrupted/lost
-    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
-    };
+    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error)); };
 
     // Invoked when a MQTT connection was interrupted/lost, but then reconnected successfully
-    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) {
-        fprintf(stdout, "Connection resumed\n");
-    };
+    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool)
+    { fprintf(stdout, "Connection resumed\n"); };
 
     // Invoked when a disconnect message has completed.
-    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &)
+    {
         fprintf(stdout, "Disconnect completed\n");
         connectionClosedPromise.set_value();
     };

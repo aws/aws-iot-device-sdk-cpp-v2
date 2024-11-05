@@ -60,7 +60,8 @@ std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                                                     Mqtt::MqttConnection & /*connection*/,
                                                     int errorCode,
                                                     Mqtt::ReturnCode /*returnCode*/,
-                                                    bool /*sessionPresent*/) {
+                                                    bool /*sessionPresent*/)
+            {
                 if (!errorCode)
                 {
                     fprintf(
@@ -85,15 +86,15 @@ std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                 }
             };
 
-            connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode) {
-                fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
-            };
+            connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode)
+            { fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode)); };
 
-            connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
-                                                 Mqtt::ReturnCode /*connectCode*/,
-                                                 bool /*sessionPresent*/) { fprintf(stdout, "Connection resumed\n"); };
+            connection->OnConnectionResumed =
+                [](Mqtt::MqttConnection & /*connection*/, Mqtt::ReturnCode /*connectCode*/, bool /*sessionPresent*/)
+            { fprintf(stdout, "Connection resumed\n"); };
 
-            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
+            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/)
+            {
                 fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
                 shutdownCompletedPromise.set_value();
             };
@@ -195,7 +196,9 @@ int main(int argc, char *argv[])
     std::promise<void> shutdownCompletedPromise;
 
     discoveryClient->Discover(
-        cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+        cmdData.input_thingName,
+        [&](DiscoverResponse *response, int error, int httpResponseCode)
+        {
             fprintf(stdout, "Discovery completed with error code %d; http code %d\n", error, httpResponseCode);
             if (!error && response->GGGroups)
             {
@@ -269,7 +272,8 @@ int main(int argc, char *argv[])
                              const ByteBuf &payload,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
+                             bool /*retain*/)
+        {
             fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
             fprintf(stdout, "Message: \n");
             fwrite(payload.buffer, 1, payload.len, stdout);
@@ -280,7 +284,8 @@ int main(int argc, char *argv[])
                             uint16_t /*packetId*/,
                             const String &topic,
                             Mqtt::QOS /*qos*/,
-                            int errorCode) {
+                            int errorCode)
+        {
             if (!errorCode)
             {
                 fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
@@ -340,7 +345,8 @@ int main(int argc, char *argv[])
             ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
             ByteBuf *payloadPtr = &payload;
 
-            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
+            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode)
+            {
                 aws_byte_buf_clean_up(payloadPtr);
 
                 if (packetId)

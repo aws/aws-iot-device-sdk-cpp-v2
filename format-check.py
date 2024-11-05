@@ -20,19 +20,34 @@ os.chdir(Path(__file__).parent)
 
 # create file containing list of all files to format
 filepaths_file = NamedTemporaryFile(delete=False)
+
+# SDK libraries
 subs = ['devicedefender', 'discovery', 'eventstream_rpc', 'greengrass_ipc', 'identity', 'iotdevicecommon', 'jobs', 'secure_tunneling', 'shadow']
 for subdir in subs:
     for dirpath, dirnames, filenames in os.walk(subdir):
         for filename in filenames:
             # our regexes expect filepath to use forward slash
             filepath = Path(dirpath, filename).as_posix()
-            print(f"Checking {filepath}")
             if not INCLUDE_REGEX.match(filepath):
                 continue
             if EXCLUDE_REGEX.match(filepath):
                 continue
 
             filepaths_file.write(f"{filepath}\n".encode())
+
+# SDK samples
+SAMPLE_INCLUDE_REGEX = re.compile(r'^.*\.(cpp|h)$')
+for dirpath, dirnames, filenames in os.walk("samples"):
+    for filename in filenames:
+        # our regexes expect filepath to use forward slash
+        filepath = Path(dirpath, filename).as_posix()
+        if not SAMPLE_INCLUDE_REGEX.match(filepath):
+            continue
+        if EXCLUDE_REGEX.match(filepath):
+            continue
+
+        filepaths_file.write(f"{filepath}\n".encode())
+
 filepaths_file.close()
 
 # use pipx to run clang-format from PyPI

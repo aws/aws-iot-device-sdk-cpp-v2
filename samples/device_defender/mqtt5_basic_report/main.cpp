@@ -108,19 +108,24 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     clientConfigBuilder->WithClientConnectionSuccessCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData)
+        {
             fprintf(stdout, "Mqtt5 Client connection succeed");
             connectionPromise.set_value(true);
         });
-    clientConfigBuilder->WithClientConnectionFailureCallback([&connectionPromise](
-                                                                 const Mqtt5::OnConnectionFailureEventData &eventData) {
-        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-        connectionPromise.set_value(false);
-    });
-    clientConfigBuilder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
-        fprintf(stdout, "Mqtt5 Client stopped.\n");
-        stoppedPromise.set_value();
-    });
+    clientConfigBuilder->WithClientConnectionFailureCallback(
+        [&connectionPromise](const Mqtt5::OnConnectionFailureEventData &eventData)
+        {
+            fprintf(
+                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+            connectionPromise.set_value(false);
+        });
+    clientConfigBuilder->WithClientStoppedCallback(
+        [&stoppedPromise](const Mqtt5::OnStoppedEventData &)
+        {
+            fprintf(stdout, "Mqtt5 Client stopped.\n");
+            stoppedPromise.set_value();
+        });
 
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
@@ -154,7 +159,8 @@ int main(int argc, char *argv[])
         Aws::Crt::Io::EventLoopGroup *eventLoopGroup = Aws::Crt::ApiHandle::GetOrCreateStaticDefaultEventLoopGroup();
 
         bool callbackSuccess = false;
-        auto onCancelled = [&](void *a) -> void {
+        auto onCancelled = [&](void *a) -> void
+        {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
         };
@@ -168,7 +174,8 @@ int main(int argc, char *argv[])
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
         // Add the custom metrics (Inline function example)
-        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output) {
+        Aws::Iotdevicedefenderv1::CustomMetricNumberFunction s_localGetCustomMetricNumber = [](double *output)
+        {
             *output = 8.4;
             return AWS_OP_SUCCESS;
         };
