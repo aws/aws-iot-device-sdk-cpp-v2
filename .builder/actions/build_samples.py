@@ -19,12 +19,17 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
+            'samples/deprecated/fleet_provisioning/fleet_provisioning',
+            'samples/deprecated/fleet_provisioning/mqtt5_fleet_provisioning',
+            'samples/deprecated/jobs/job_execution',
+            'samples/deprecated/jobs/mqtt5_job_execution',
+            'samples/deprecated/shadow/shadow_sync',
+            'samples/deprecated/shadow/mqtt5_shadow_sync',
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
-            'samples/fleet_provisioning/fleet_provisioning',
-            'samples/fleet_provisioning/mqtt5_fleet_provisioning',
-            'samples/jobs/job_execution',
-            'samples/jobs/mqtt5_job_execution',
+            'samples/fleet_provisioning/provision_basic',
+            'samples/fleet_provisioning/provision_csr',
+            'samples/jobs/jobs-sandbox',
             'samples/mqtt/basic_connect',
             'samples/mqtt/custom_authorizer_connect',
             'samples/mqtt/pkcs11_connect',
@@ -40,8 +45,7 @@ class BuildSamples(Builder.Action):
             "samples/pub_sub/cycle_pub_sub",
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
-            'samples/shadow/shadow_sync',
-            'samples/shadow/mqtt5_shadow_sync',
+            'samples/shadow/shadow-sandbox',
         ]
 
         defender_samples = []
