@@ -17,7 +17,7 @@
 #include <aws/iotidentity/IotIdentityClientV2.h>
 #include <aws/iotidentity/RegisterThingRequest.h>
 #include <aws/iotidentity/RegisterThingResponse.h>
-#include <aws/iotidentity/V2ServiceError.h>
+#include <aws/iotidentity/V2ErrorResponse.h>
 #include <aws/testing/aws_test_harness.h>
 
 #include <fstream>

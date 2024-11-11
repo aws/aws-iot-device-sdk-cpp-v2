@@ -79,29 +79,29 @@ namespace Aws
         class UpdateNamedShadowRequest;
         class UpdateShadowRequest;
         class UpdateShadowResponse;
-        class V2ServiceError;
+        class V2ErrorResponse;
 
         using DeleteNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using DeleteNamedShadowResultHandler = std::function<void(DeleteNamedShadowResult &&)>;
 
         using DeleteShadowResult =
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using DeleteShadowResultHandler = std::function<void(DeleteShadowResult &&)>;
 
         using GetNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using GetNamedShadowResultHandler = std::function<void(GetNamedShadowResult &&)>;
 
-        using GetShadowResult = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using GetShadowResult = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using GetShadowResultHandler = std::function<void(GetShadowResult &&)>;
 
         using UpdateNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateNamedShadowResultHandler = std::function<void(UpdateNamedShadowResult &&)>;
 
         using UpdateShadowResult =
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateShadowResultHandler = std::function<void(UpdateShadowResult &&)>;
 
         /**

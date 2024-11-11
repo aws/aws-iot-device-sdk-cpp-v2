@@ -13,7 +13,7 @@
 #include <aws/iotidentity/CreateKeysAndCertificateResponse.h>
 #include <aws/iotidentity/RegisterThingRequest.h>
 #include <aws/iotidentity/RegisterThingResponse.h>
-#include <aws/iotidentity/V2ServiceError.h>
+#include <aws/iotidentity/V2ErrorResponse.h>
 
 namespace Aws
 {
@@ -75,7 +75,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<CreateCertificateFromCsrResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -105,7 +105,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -182,7 +182,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<CreateKeysAndCertificateResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -212,7 +212,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -289,7 +289,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<RegisterThingResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -319,7 +319,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
