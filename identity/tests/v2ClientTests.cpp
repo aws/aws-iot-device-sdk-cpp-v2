@@ -141,7 +141,7 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
 
         connection->OnConnectionSuccess =
             [&connected, &lock, &signal](
-                Aws::Crt::Mqtt::MqttConnection &connection, Aws::Crt::Mqtt::OnConnectionSuccessData *callbackData)
+                Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionSuccessData *)
         {
             {
                 std::lock_guard<std::mutex> guard(lock);
