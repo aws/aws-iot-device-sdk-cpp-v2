@@ -10,7 +10,6 @@ class SdkCiPrep(Builder.Action):
         else:
             print(f"No Local credentials")
 
-
         actions = [
             Builder.SetupCrossCICrtEnvironment()
         ]
