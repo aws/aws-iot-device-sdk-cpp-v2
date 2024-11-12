@@ -55,6 +55,7 @@
   "targets" : {
     "macos" : {
       "!test_steps": [
+        "sdk-ci-prep",
         "test"
       ]
     }
