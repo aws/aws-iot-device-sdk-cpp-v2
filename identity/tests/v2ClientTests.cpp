@@ -299,6 +299,7 @@ static int s_doProvisionCertKeyTest(
     ResultWaiter<Aws::Iotidentity::RegisterThingResult> registerResult;
     Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params;
     params.emplace(Aws::Crt::String("SerialNumber"), Aws::Crt::UUID().ToString());
+    params.emplace(Aws::Crt::String("DeviceLocation"), Aws::Crt::String("Seattle"));
 
     Aws::Iotidentity::RegisterThingRequest registerRequest;
     registerRequest.CertificateOwnershipToken = response.CertificateOwnershipToken.value();
