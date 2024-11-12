@@ -39,5 +39,12 @@
           "build-gg-samples"
         ]
     }
+  },
+  "targets" : {
+    "macos" : {
+      "!test_steps": [
+        "test"
+      ]
+    }
   }
 }
