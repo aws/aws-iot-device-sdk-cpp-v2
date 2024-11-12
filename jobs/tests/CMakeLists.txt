@@ -8,10 +8,8 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
-if(NOT BYO_CRYPTO)
-    add_net_test_case(JobsV2ClientCreateDestroy5)
-    add_net_test_case(JobsV2ClientCreateDestroy311)
-endif()
+add_net_test_case(JobsV2ClientCreateDestroy5)
+add_net_test_case(JobsV2ClientCreateDestroy311)
 
 generate_cpp_test_driver(${TEST_BINARY_NAME})
 
