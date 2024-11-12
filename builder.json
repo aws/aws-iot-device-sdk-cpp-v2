@@ -20,9 +20,12 @@
   },
   "_comment": "See .builder/actions/build_samples.py for definition of 'build-samples'",
   "build_steps": [
-    "sdk-ci-prep",
     "build",
     "build-samples"
+  ],
+  "test_steps": [
+    "sdk-ci-prep",
+    "test"
   ],
   "variants" : {
     "skip_sample": {
