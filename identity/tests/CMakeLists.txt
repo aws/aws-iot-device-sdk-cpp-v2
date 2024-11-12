@@ -8,14 +8,12 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
-if(NOT BYO_CRYPTO)
-    add_net_test_case(IdentityV2ClientCreateDestroy5)
-    add_net_test_case(IdentityV2ClientCreateDestroy311)
-    add_net_test_case(IdentityV2ClientProvisionWithCertAndKey5)
-    add_net_test_case(IdentityV2ClientProvisionWithCertAndKey311)
-    add_net_test_case(IdentityV2ClientProvisionWithCSR5)
-    add_net_test_case(IdentityV2ClientProvisionWithCSR311)
-endif()
+add_net_test_case(IdentityV2ClientCreateDestroy5)
+add_net_test_case(IdentityV2ClientCreateDestroy311)
+add_net_test_case(IdentityV2ClientProvisionWithCertAndKey5)
+add_net_test_case(IdentityV2ClientProvisionWithCertAndKey311)
+add_net_test_case(IdentityV2ClientProvisionWithCSR5)
+add_net_test_case(IdentityV2ClientProvisionWithCSR311)
 
 generate_cpp_test_driver(${TEST_BINARY_NAME})
 
