@@ -495,6 +495,11 @@ jobs:
           sudo apt install cmake
           gcc --version
           cmake --version
+      - name: configure AWS credentials (containers)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           echo "Downloading source"
