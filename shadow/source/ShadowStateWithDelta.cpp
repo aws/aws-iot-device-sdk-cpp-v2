@@ -51,7 +51,10 @@ namespace Aws
             }
         }
 
-        ShadowStateWithDelta::ShadowStateWithDelta(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        ShadowStateWithDelta::ShadowStateWithDelta(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         ShadowStateWithDelta &ShadowStateWithDelta::operator=(const Crt::JsonView &doc)
         {
