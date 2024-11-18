@@ -17,7 +17,7 @@
 #include <aws/iotidentity/IotIdentityClientV2.h>
 #include <aws/iotidentity/RegisterThingRequest.h>
 #include <aws/iotidentity/RegisterThingResponse.h>
-#include <aws/iotidentity/V2ServiceError.h>
+#include <aws/iotidentity/V2ErrorResponse.h>
 #include <aws/testing/aws_test_harness.h>
 
 #include <fstream>
@@ -298,6 +298,7 @@ static int s_doProvisionCertKeyTest(
     ResultWaiter<Aws::Iotidentity::RegisterThingResult> registerResult;
     Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params;
     params.emplace(Aws::Crt::String("SerialNumber"), Aws::Crt::UUID().ToString());
+    params.emplace(Aws::Crt::String("DeviceLocation"), Aws::Crt::String("Seattle"));
 
     Aws::Iotidentity::RegisterThingRequest registerRequest;
     registerRequest.CertificateOwnershipToken = response.CertificateOwnershipToken.value();
@@ -394,6 +395,7 @@ static int s_doProvisionCsrTest(
     ResultWaiter<Aws::Iotidentity::RegisterThingResult> registerResult;
     Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params;
     params.emplace(Aws::Crt::String("SerialNumber"), Aws::Crt::UUID().ToString());
+    params.emplace(Aws::Crt::String("DeviceLocation"), Aws::Crt::String("Seattle"));
 
     Aws::Iotidentity::RegisterThingRequest registerRequest;
     registerRequest.CertificateOwnershipToken = response.CertificateOwnershipToken.value();

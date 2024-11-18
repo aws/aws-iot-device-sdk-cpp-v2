@@ -22,7 +22,7 @@
 #include <aws/iotshadow/UpdateNamedShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/V2ServiceError.h>
+#include <aws/iotshadow/V2ErrorResponse.h>
 
 namespace Aws
 {
@@ -107,7 +107,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -137,7 +137,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -216,7 +216,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -246,7 +246,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -320,7 +320,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -350,7 +350,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -426,7 +426,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -456,7 +456,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -530,7 +530,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -560,7 +560,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
@@ -645,7 +645,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -675,7 +675,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else
