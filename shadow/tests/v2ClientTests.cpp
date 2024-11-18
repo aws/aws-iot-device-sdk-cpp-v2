@@ -23,7 +23,7 @@
 #include <aws/iotshadow/ShadowUpdatedEvent.h>
 #include <aws/iotshadow/UpdateNamedShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/V2ServiceError.h>
+#include <aws/iotshadow/V2ErrorResponse.h>
 
 #include <utility>
 

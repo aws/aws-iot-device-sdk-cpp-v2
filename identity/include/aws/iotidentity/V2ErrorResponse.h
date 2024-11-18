@@ -20,13 +20,13 @@ namespace Aws
          * Response document containing details about a failed request.
          *
          */
-        class AWS_IOTIDENTITY_API V2ServiceError final
+        class AWS_IOTIDENTITY_API V2ErrorResponse final
         {
           public:
-            V2ServiceError() = default;
+            V2ErrorResponse() = default;
 
-            V2ServiceError(const Crt::JsonView &doc);
-            V2ServiceError &operator=(const Crt::JsonView &doc);
+            V2ErrorResponse(const Crt::JsonView &doc);
+            V2ErrorResponse &operator=(const Crt::JsonView &doc);
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
@@ -49,7 +49,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
 
           private:
-            static void LoadFromObject(V2ServiceError &obj, const Crt::JsonView &doc);
+            static void LoadFromObject(V2ErrorResponse &obj, const Crt::JsonView &doc);
         };
     } // namespace Iotidentity
 } // namespace Aws
