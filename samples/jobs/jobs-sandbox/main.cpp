@@ -20,7 +20,7 @@
 #include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
 #include <aws/iotjobs/UpdateJobExecutionRequest.h>
 #include <aws/iotjobs/UpdateJobExecutionResponse.h>
-#include <aws/iotjobs/V2ServiceError.h>
+#include <aws/iotjobs/V2ErrorResponse.h>
 
 #include <algorithm>
 #include <condition_variable>
@@ -80,7 +80,7 @@ static String s_nibbleNextToken(String &input)
     return token;
 }
 
-static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName)
+static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError, String operationName)
 {
     fprintf(
         stdout,

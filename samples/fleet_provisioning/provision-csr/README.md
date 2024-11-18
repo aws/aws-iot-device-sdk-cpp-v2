@@ -1,8 +1,8 @@
-# Fleet provisioning
+# Fleet provisioning via CSR
 
 [**Return to main sample list**](../../README.md)
 
-This sample uses the AWS IoT [Fleet provisioning service](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using the CreateKeysAndCertificate and RegisterThing APIs. This allows you to create new AWS IoT Core thing resources using a Fleet Provisioning Template.
+This sample uses the AWS IoT [Fleet provisioning service](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using the CreateCertificateFromCsr and RegisterThing APIs. This allows you to create new AWS IoT Core thing resources using a Fleet Provisioning Template.  The primary difference between this sample and the basic provisioning sample is that, by using the CreateCertificateFromCsr API, your provisioned certificates can be rooted to the certificate authority of your choice (as opposed to AmazonRootCA1) via the properties of the certificate signing request used.
 
 You must have a provisioning certificate and key pair whose associated [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish, and receive on MQTT topics used by the provisning APIs that the sample invokes. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
@@ -16,7 +16,7 @@ You must have a provisioning certificate and key pair whose associated [Policy](
       "Effect": "Allow",
       "Action": "iot:Publish",
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json"
       ]
     },
@@ -26,8 +26,8 @@ You must have a provisioning certificate and key pair whose associated [Policy](
         "iot:Receive"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
@@ -38,8 +38,8 @@ You must have a provisioning certificate and key pair whose associated [Policy](
         "iot:Subscribe"
       ],
       "Resource": [
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/certificates/create-from-csr/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topicfilter/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
@@ -70,8 +70,7 @@ Fleet provisioning requires some additional AWS resources be set up first. These
 
 If you do not have a provisioning cert and key pair, you will also need Python version 3 installed to be able to run the `parse_cert_set_result.py` file, which is a script used in the process of creating a provisioning certificate and key pair. You can find Python3 installers for your platform on the [Python website](https://www.python.org/).
 
-These steps are based on the provisioning setup steps
-that can be found at [Embedded C SDK Setup](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/provisioning/provisioning_tests.html#provisioning_system_tests_setup).
+These steps are based on the provisioning setup steps that can be found at [Embedded C SDK Setup](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/provisioning/provisioning_tests.html#provisioning_system_tests_setup).
 
 
 First, create the IAM role that will be needed by the fleet provisioning template. Replace `<RoleName>` with the name of the role you want to create.
@@ -216,7 +215,7 @@ And here is the same JSON document, but as a single line for easier copy-pasting
 
 You can use this JSON document as the `<TemplateJSON>` in the AWS CLI command. This sample will assume you have used the template JSON above, so you may need to adjust if you are using a different template JSON. Thankfully, all of these steps need to only be done and, now that they are complete, you will need not perform them again.
 
-### Creating a provisioning certificate and key pair from a provisioning claim
+#### Creating a certificate-key set from a provisioning claim
 
 To run the provisioning sample, you'll need a provisioning certificate and key set with sufficient permissions (see the policy at the top). Provisioning certificates are normally created ahead of time and placed on your device, but for this sample, we will just create them on the fly. This is primarily done for example purposes.
 
@@ -240,6 +239,20 @@ aws iot create-provisioning-claim \
 This will create a certificate and key in the `tmp` folder with file names starting with `provision`. You can now use these temporary keys
 to perform the actual provisioning in the section below.
 
+### Create a certificate signing request
+
+You'll need to create a certificate signing request in addition to the other steps above (creating the role, setting its policy, setting the template JSON, etc).
+
+First create a certificate-key pair:
+``` sh
+openssl genrsa -out /tmp/deviceCert.key 2048
+```
+
+Next create a certificate signing request from it:
+``` sh
+openssl req -new -key /tmp/deviceCert.key -out /tmp/deviceCert.csr
+```
+
 ### Build and run the sample
 
 Before building and running the sample, you must first build and install the SDK:
@@ -255,7 +268,7 @@ make && make install
 Now build the sample:
 
 ``` sh
-cd samples/fleet_provisioning/provision_basic
+cd samples/fleet_provisioning/provision-csr
 mkdir _build
 cd _build
 cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
@@ -265,10 +278,9 @@ make
 To run the sample:
 
 ``` sh
-./fleet-provisioning-basic --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}'
+./fleet-provisioning-csr --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}' --csr <path to csr file>
 ```
 
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
-On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateAndKeys API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
-
+On success, you will find you have a new AWS IoT Core thing.  The provisioned certificate is contained in the response to the CreateCertificateFromCsr.  The associated is contained in the file created while creating the certificate signing request.

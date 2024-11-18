@@ -13,12 +13,12 @@
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 
-#include <aws/iotidentity/CreateKeysAndCertificateRequest.h>
-#include <aws/iotidentity/CreateKeysAndCertificateResponse.h>
+#include <aws/iotidentity/CreateCertificateFromCsrRequest.h>
+#include <aws/iotidentity/CreateCertificateFromCsrResponse.h>
 #include <aws/iotidentity/IotIdentityClientV2.h>
 #include <aws/iotidentity/RegisterThingRequest.h>
 #include <aws/iotidentity/RegisterThingResponse.h>
-#include <aws/iotidentity/V2ServiceError.h>
+#include <aws/iotidentity/V2ErrorResponse.h>
 
 #include <fstream>
 
@@ -27,7 +27,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
 
-static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName)
+static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError, String operationName)
 {
     fprintf(
         stdout,
@@ -116,28 +116,39 @@ int main(int argc, char *argv[])
     connectedWaiter.get_future().wait();
 
     /*
+     * Read the CSR file
+     */
+    String csr_data;
+    std::ifstream csr_file(cmdData.input_csrPath.c_str());
+    getline(csr_file, csr_data, (char)csr_file.eof());
+
+    /*
      * Step 1: Invoke the CreateKeysAndCertificate API to get a key pair signed by AmazonRootCA1
      */
-    CreateKeysAndCertificateRequest createKeysRequest;
+    CreateCertificateFromCsrRequest createFromCsrRequest;
+    createFromCsrRequest.CertificateSigningRequest = csr_data;
 
-    std::promise<CreateKeysAndCertificateResult> createKeysResultPromise;
-    identityClient->CreateKeysAndCertificate(
-        createKeysRequest,
-        [&createKeysResultPromise](CreateKeysAndCertificateResult &&result)
-        { createKeysResultPromise.set_value(std::move(result)); });
+    std::promise<CreateCertificateFromCsrResult> createFromCsrResultPromise;
+    identityClient->CreateCertificateFromCsr(
+        createFromCsrRequest,
+        [&createFromCsrResultPromise](CreateCertificateFromCsrResult &&result)
+        { createFromCsrResultPromise.set_value(std::move(result)); });
 
-    const auto &createKeysResult = createKeysResultPromise.get_future().get();
-    if (!createKeysResult.IsSuccess())
+    const auto &createFromCsrResult = createFromCsrResultPromise.get_future().get();
+    if (!createFromCsrResult.IsSuccess())
     {
-        s_onServiceError(createKeysResult.GetError(), "create-keys-and-certificate");
+        s_onServiceError(createFromCsrResult.GetError(), "create-certificate-from-csr");
         return -1;
     }
 
-    const auto &createKeysResponse = createKeysResult.GetResponse();
+    const auto &creatCertificateFromCsrResponse = createFromCsrResult.GetResponse();
 
-    JsonObject createKeysJsonObject;
-    createKeysResponse.SerializeToObject(createKeysJsonObject);
-    fprintf(stdout, "create-keys-and-certificate result: %s\n", createKeysJsonObject.View().WriteCompact(true).c_str());
+    JsonObject createCertificateFromCsrJsonObject;
+    creatCertificateFromCsrResponse.SerializeToObject(createCertificateFromCsrJsonObject);
+    fprintf(
+        stdout,
+        "create-certificate-from-csr result: %s\n",
+        createCertificateFromCsrJsonObject.View().WriteCompact(true).c_str());
 
     /*
      * Step 2: Invoke the RegisterThing API using the results of the CreateKeysAndCertificate call.  Until RegisterThing
@@ -145,7 +156,7 @@ int main(int argc, char *argv[])
      */
     RegisterThingRequest registerThingRequest;
     registerThingRequest.TemplateName = cmdData.input_templateName;
-    registerThingRequest.CertificateOwnershipToken = createKeysResponse.CertificateOwnershipToken;
+    registerThingRequest.CertificateOwnershipToken = creatCertificateFromCsrResponse.CertificateOwnershipToken;
     if (cmdData.input_templateParameters.length() > 0)
     {
         Map<String, String> finalTemplateParameters;

@@ -18,7 +18,7 @@
 #include <aws/iotshadow/ShadowUpdatedEvent.h>
 #include <aws/iotshadow/UpdateShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/V2ServiceError.h>
+#include <aws/iotshadow/V2ErrorResponse.h>
 
 #include <algorithm>
 #include <condition_variable>
@@ -77,7 +77,7 @@ static void s_printHelp() {
     fprintf(stdout, "  update-reported <reported-state-as-JSON> -- updates the reported state of the IoT thing's shadow.  If the shadow does not exist, it will be created.\n\n");
 }
 
-static void s_onServiceError(const ServiceErrorV2<V2ServiceError> &serviceError, String operationName) {
+static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError, String operationName) {
     fprintf(stdout, "%s failed with error code: %s\n", operationName.c_str(), aws_error_debug_str(serviceError.GetErrorCode()));
     if (serviceError.HasModeledError()) {
         const auto &modeledError = serviceError.GetModeledError();
