@@ -26,6 +26,7 @@ find_package(IotJobs-cpp REQUIRED)
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 if (UNIX AND NOT APPLE)
+    include(GNUInstallDirs)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
     include(AwsSanitizers)
     enable_language(C)
