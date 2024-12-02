@@ -48,27 +48,27 @@ if (WIN32)
     endif ()
 endif()
 
-add_library(${PROJECT_NAME} ${AWS_IOTJOBS_CPP_SRC})
+add_library(IotJobs-cpp ${AWS_IOTJOBS_CPP_SRC})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(IotJobs-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
 #set warnings
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(IotJobs-cpp PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(IotJobs-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotJobs-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC "-DAWS_IOTJOBS_USE_IMPORT_EXPORT")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE "-DAWS_IOTJOBS_EXPORTS")
+    target_compile_definitions(IotJobs-cpp PUBLIC "-DAWS_IOTJOBS_USE_IMPORT_EXPORT")
+    target_compile_definitions(IotJobs-cpp PRIVATE "-DAWS_IOTJOBS_EXPORTS")
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotJobs-cpp
+            EXPORT IotJobs-cpp-targets
             ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
@@ -80,20 +80,20 @@ if (BUILD_SHARED_LIBS)
             DESTINATION ${RUNTIME_DIRECTORY}
             COMPONENT Runtime)
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotJobs-cpp
+            EXPORT IotJobs-cpp-targets
             LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_ONLY
             COMPONENT Development)
 else()
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotJobs-cpp
+            EXPORT IotJobs-cpp-targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(IotJobs-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
@@ -103,9 +103,9 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
+aws_add_sanitizers(IotJobs-cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_AWS_LIBS})
+target_link_libraries(IotJobs-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "include/aws/iotjobs/" COMPONENT Development)
 
@@ -123,8 +123,8 @@ if (DEFINED SIMPLE_VERSION)
     )
 endif()
 
-install(EXPORT "${PROJECT_NAME}-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
+install(EXPORT "IotJobs-cpp-targets"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotJobs-cpp/cmake/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -133,5 +133,5 @@ configure_file("cmake/iotjobs-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotJobs-cpp/cmake/"
         COMPONENT Development)

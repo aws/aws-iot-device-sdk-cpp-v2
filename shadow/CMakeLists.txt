@@ -48,27 +48,27 @@ if (WIN32)
     endif ()
 endif()
 
-add_library(${PROJECT_NAME} ${AWS_IOTSHADOW_CPP_SRC})
+add_library(IotShadow-cpp ${AWS_IOTSHADOW_CPP_SRC})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(IotShadow-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
 #set warnings
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(IotShadow-cpp PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(IotShadow-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotShadow-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC "-DAWS_IOTSHADOW_USE_IMPORT_EXPORT")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE "-DAWS_IOTSHADOW_EXPORTS")
+    target_compile_definitions(IotShadow-cpp PUBLIC "-DAWS_IOTSHADOW_USE_IMPORT_EXPORT")
+    target_compile_definitions(IotShadow-cpp PRIVATE "-DAWS_IOTSHADOW_EXPORTS")
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotShadow-cpp
+            EXPORT IotShadow-cpp-targets
             ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
@@ -80,20 +80,20 @@ if (BUILD_SHARED_LIBS)
             DESTINATION ${RUNTIME_DIRECTORY}
             COMPONENT Runtime)
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotShadow-cpp
+            EXPORT IotShadow-cpp-targets
             LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_ONLY
             COMPONENT Development)
 else()
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotShadow-cpp
+            EXPORT IotShadow-cpp-targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(IotShadow-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
@@ -103,9 +103,9 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
+aws_add_sanitizers(IotShadow-cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_AWS_LIBS})
+target_link_libraries(IotShadow-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTSHADOW_HEADERS} DESTINATION "include/aws/iotshadow/" COMPONENT Development)
 
@@ -123,8 +123,8 @@ if (DEFINED SIMPLE_VERSION)
     )
 endif()
 
-install(EXPORT "${PROJECT_NAME}-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
+install(EXPORT "IotShadow-cpp-targets"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotShadow-cpp/cmake/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -133,5 +133,5 @@ configure_file("cmake/iotshadow-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotshadow-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotShadow-cpp/cmake/"
         COMPONENT Development)

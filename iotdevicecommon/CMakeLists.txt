@@ -48,27 +48,27 @@ endif()
 
 aws_use_package(aws-c-iot)
 
-add_library(${PROJECT_NAME} ${AWS_IOTDEVICECOMMON_CPP_SRC})
+add_library(IotDeviceCommon-cpp ${AWS_IOTDEVICECOMMON_CPP_SRC})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(IotDeviceCommon-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
 #set warnings
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(IotDeviceCommon-cpp PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(IotDeviceCommon-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotDeviceCommon-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC "-DAWS_IOTDEVICECOMMON_USE_IMPORT_EXPORT")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE "-DAWS_IOTDEVICECOMMON_EXPORTS")
+    target_compile_definitions(IotDeviceCommon-cpp PUBLIC "-DAWS_IOTDEVICECOMMON_USE_IMPORT_EXPORT")
+    target_compile_definitions(IotDeviceCommon-cpp PRIVATE "-DAWS_IOTDEVICECOMMON_EXPORTS")
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceCommon-cpp
+            EXPORT IotDeviceCommon-cpp-targets
             ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
@@ -80,20 +80,20 @@ if (BUILD_SHARED_LIBS)
             DESTINATION ${RUNTIME_DIRECTORY}
             COMPONENT Runtime)
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceCommon-cpp
+            EXPORT IotDeviceCommon-cpp-targets
             LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_ONLY
             COMPONENT Development)
 else()
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceCommon-cpp
+            EXPORT IotDeviceCommon-cpp-targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(IotDeviceCommon-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
@@ -104,8 +104,9 @@ if (BUILD_DEPS)
 	aws_use_package(aws-c-iot)
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotDeviceCommon-cpp)
+
+target_link_libraries(IotDeviceCommon-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTDEVICECOMMON_HEADERS} DESTINATION "include/aws/iotdevicecommon/" COMPONENT Development)
 
@@ -123,8 +124,8 @@ if (DEFINED SIMPLE_VERSION)
     )
 endif()
 
-install(EXPORT "${PROJECT_NAME}-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
+install(EXPORT "IotDeviceCommon-cpp-targets"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -133,5 +134,5 @@ configure_file("cmake/iotdevicecommon-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/"
         COMPONENT Development)

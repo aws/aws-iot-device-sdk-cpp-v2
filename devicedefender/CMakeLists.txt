@@ -46,27 +46,27 @@ if (WIN32)
     endif ()
 endif()
 
-add_library(${PROJECT_NAME} ${AWS_IOTDEVICEDEFENDER_CPP_SRC})
+add_library(IotDeviceDefender-cpp ${AWS_IOTDEVICEDEFENDER_CPP_SRC})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(IotDeviceDefender-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
 #set warnings
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(IotDeviceDefender-cpp PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(IotDeviceDefender-cpp PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
+target_compile_definitions(IotDeviceDefender-cpp PRIVATE $<$<CONFIG:Debug>:DEBUG_BUILD>)
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC "-DAWS_IOTDEVICEDEFENDER_USE_IMPORT_EXPORT")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE "-DAWS_IOTDEVICEDEFENDER_EXPORTS")
+    target_compile_definitions(IotDeviceDefender-cpp PUBLIC "-DAWS_IOTDEVICEDEFENDER_USE_IMPORT_EXPORT")
+    target_compile_definitions(IotDeviceDefender-cpp PRIVATE "-DAWS_IOTDEVICEDEFENDER_EXPORTS")
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceDefender-cpp
+            EXPORT IotDeviceDefender-cpp-targets
             ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
@@ -78,20 +78,20 @@ if (BUILD_SHARED_LIBS)
             DESTINATION ${RUNTIME_DIRECTORY}
             COMPONENT Runtime)
 
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceDefender-cpp
+            EXPORT IotDeviceDefender-cpp-targets
             LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_ONLY
             COMPONENT Development)
 else()
-    install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}-targets
+    install(TARGETS IotDeviceDefender-cpp
+            EXPORT IotDeviceDefender-cpp-targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development)
 endif()
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(IotDeviceDefender-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
@@ -102,9 +102,9 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
+aws_add_sanitizers(IotDeviceDefender-cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC IotDeviceCommon-cpp)
+target_link_libraries(IotDeviceDefender-cpp PUBLIC IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTDEVICEDEFENDER_HEADERS} DESTINATION "include/aws/iotdevicedefender/" COMPONENT Development)
 
@@ -122,8 +122,8 @@ if (DEFINED SIMPLE_VERSION)
     )
 endif()
 
-install(EXPORT "${PROJECT_NAME}-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
+install(EXPORT "IotDeviceDefender-cpp-targets"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceDefender-cpp/cmake/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -132,7 +132,7 @@ configure_file("cmake/iotdevicedefender-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicedefender-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceDefender-cpp/cmake/"
         COMPONENT Development)
 
 if (BUILD_TESTING)
