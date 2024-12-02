@@ -105,7 +105,7 @@ endif()
 
 aws_add_sanitizers(IotShadow-cpp)
 
-target_link_libraries(IotShadow-cpp ${DEP_AWS_LIBS})
+target_link_libraries(IotShadow-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTSHADOW_HEADERS} DESTINATION "include/aws/iotshadow/" COMPONENT Development)
 
