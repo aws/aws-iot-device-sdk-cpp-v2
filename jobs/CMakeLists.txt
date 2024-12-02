@@ -1,6 +1,6 @@
 # This file is generated
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
 project(IotJobs-cpp LANGUAGES CXX)
 if (DEFINED SIMPLE_VERSION)

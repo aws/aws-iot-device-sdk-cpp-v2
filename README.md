@@ -7,6 +7,7 @@ __Jump To:__
 * [Supported Architectures](#supported-architectures)
 * [Installation](#installation)
 * [Samples](./samples)
+* [Mac-Only TLS Behavior](#mac-only-tls-behavior)
 * [Getting Help](#getting-help)
 * [FAQ](./documents/FAQ.md)
 * [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
@@ -42,7 +43,7 @@ __Jump To:__
 ### Minimum Requirements
 * C++ 11 or higher
     * Clang 3.9+ or GCC 4.8+ or MSVC 2015+
-* CMake 3.1+
+* CMake 3.9+
 
 [Step-by-step instructions](./documents/PREREQUISITES.md)
 
@@ -107,6 +108,14 @@ existing `libcrypto`, instead of building its own copy.
 ## Samples
 
 [Samples README](./samples)
+
+### Mac-Only TLS Behavior
+
+Please note that on Mac, once a private key is used with a certificate, that certificate-key pair is imported into the Mac Keychain.  All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically.  Beginning in v1.7.3, when a stored private key from the Keychain is used, the following will be logged at the "info" log level:
+
+```
+static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.
+```
 
 ## Getting Help
 
