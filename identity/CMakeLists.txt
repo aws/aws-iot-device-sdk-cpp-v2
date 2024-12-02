@@ -103,7 +103,7 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
+aws_add_sanitizers(IotIdentity-cpp)
 target_link_libraries(IotIdentity-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTIDENTITY_HEADERS} DESTINATION "include/aws/iotidentity/" COMPONENT Development)

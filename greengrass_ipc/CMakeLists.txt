@@ -107,7 +107,7 @@ if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
+aws_add_sanitizers(GreengrassIpc-cpp)
 target_link_libraries(GreengrassIpc-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_GREENGRASSIPC_HEADERS} DESTINATION "include/aws/greengrass/" COMPONENT Development)
