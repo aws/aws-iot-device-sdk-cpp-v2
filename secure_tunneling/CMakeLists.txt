@@ -1,25 +1,11 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.9...3.31)
 
 project(IotSecureTunneling-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
-
-set(RUNTIME_DIRECTORY bin)
-
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-
-    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-        set(FIND_LIBRARY_USE_LIB64_PATHS true)
-    endif()
-endif()
 
 set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
 set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotsecuretunneling/Config.h")
 configure_file(include/aws/iotsecuretunneling/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
@@ -75,7 +61,7 @@ if (BUILD_SHARED_LIBS)
             NAMELINK_SKIP
             COMPONENT Runtime
             RUNTIME
-            DESTINATION ${RUNTIME_DIRECTORY}
+            DESTINATION ${CMAKE_INSTALL_BINDIR}
             COMPONENT Runtime)
 
     install(TARGETS IotSecureTunneling-cpp
@@ -104,7 +90,7 @@ endif()
 
 target_link_libraries(IotSecureTunneling-cpp IotDeviceCommon-cpp)
 
-install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "include/aws/iotsecuretunneling/" COMPONENT Development)
+install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotsecuretunneling/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
@@ -121,7 +107,7 @@ if (DEFINED SIMPLE_VERSION)
 endif()
 
 install(EXPORT "IotSecureTunneling-cpp-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/${TARGET_DIR}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotSecureTunneling-cpp/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -130,6 +116,6 @@ configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotSecureTunneling-cpp/"
         COMPONENT Development)
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(shadow_update CXX)
 
@@ -23,6 +23,6 @@ endif ()
 find_package(aws-crt-cpp REQUIRED)
 find_package(IotShadow-cpp REQUIRED)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
