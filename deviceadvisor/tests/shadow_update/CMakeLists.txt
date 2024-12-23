@@ -23,6 +23,4 @@ endif ()
 find_package(aws-crt-cpp REQUIRED)
 find_package(IotShadow-cpp REQUIRED)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
-
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
