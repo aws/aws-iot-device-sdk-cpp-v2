@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
                 {
                     if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
                     {
-                        fprintf(stdout, "MQTT5 Client Subscription failed with server error code %d\n", reasonCode);
+                        fprintf(stdout, "MQTT5 Client Subscription failed with server error code: %d\n", reasonCode);
                         if (suback->getReasonString().has_value())
                         {
                             fprintf(stdout, "\tError reason string: %s\n", suback->getReasonString()->c_str());
