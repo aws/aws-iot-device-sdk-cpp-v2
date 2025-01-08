@@ -141,11 +141,11 @@ int main(int argc, char *argv[])
                 {
                     if (reasonCode > Mqtt5::SubAckReasonCode::AWS_MQTT5_SARC_UNSPECIFIED_ERROR)
                     {
-                        fprintf(
-                            stdout,
-                            "MQTT5 Client Subscription failed with server error code: (%d)%s\n",
-                            reasonCode,
-                            suback->getReasonString()->c_str());
+                        fprintf(stdout, "MQTT5 Client Subscription failed with server error code %d\n", reasonCode);
+                        if (suback->getReasonString().has_value())
+                        {
+                            fprintf(stdout, "\tError reason string: %s\n", suback->getReasonString()->c_str());
+                        }
                         subscribeSuccess.set_value(false);
                         return;
                     }
@@ -185,13 +185,13 @@ int main(int argc, char *argv[])
                         }
                         else
                         {
-                            fprintf(
-                                stdout,
-                                "PubACK reason code: %d : %s\n",
-                                puback->getReasonCode(),
-                                puback->getReasonString()->c_str());
+                            fprintf(stdout, "PubACK reason code: %d\n", puback->getReasonCode());
+                            if (puback->getReasonString().has_value())
+                            {
+                                fprintf(stdout, "\nError reason string: %s\n", puback->getReasonString()->c_str());
+                            }
                         }
-                    };
+                    }
                 };
 
                 uint32_t publishedCount = 0;
