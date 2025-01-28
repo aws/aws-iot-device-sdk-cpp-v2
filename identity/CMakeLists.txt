@@ -133,3 +133,9 @@ configure_file("cmake/iotidentity-cpp-config.cmake"
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotIdentity-cpp/cmake/"
         COMPONENT Development)
+
+if(NOT CMAKE_CROSSCOMPILING)
+    if (BUILD_TESTING AND NOT BYO_CRYPTO)
+        add_subdirectory(tests)
+    endif()
+endif()
