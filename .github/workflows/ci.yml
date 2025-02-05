@@ -43,7 +43,7 @@ env:
 
 jobs:
   linux-compat:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         image:
@@ -447,7 +447,7 @@ jobs:
           python3 ./devicedefender/script/DDTestRun.py mqtt5
   # Runs the samples and ensures that everything is working
   linux-smoke-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
     permissions:
