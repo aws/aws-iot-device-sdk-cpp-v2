@@ -149,11 +149,8 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             }
         };
 
-        connection->OnConnectionFailure =
-            [](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionFailureData *)
-            {
-                printf("Derp\n");
-            };
+        connection->OnConnectionFailure = [](Aws::Crt::Mqtt::MqttConnection &,
+                                             Aws::Crt::Mqtt::OnConnectionFailureData *) { printf("Derp\n"); };
 
         auto clientId = "test-" + Aws::Crt::UUID().ToString();
         connection->Connect(clientId.c_str(), true, 30, 15000, 5000);
