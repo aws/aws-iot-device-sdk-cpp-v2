@@ -149,8 +149,14 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             signal.notify_all();
         };
 
-        auto uuid = Aws::Crt::UUID().ToString();
-        connection->Connect(uuid.c_str(), true, 30, 15000, 5000);
+        connection->OnConnectionFailure =
+            [](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionFailureData *)
+            {
+                printf("Derp\n");
+            };
+
+        auto clientId = "test-" + Aws::Crt::UUID().ToString();
+        connection->Connect(clientId.c_str(), true, 30, 15000, 5000);
 
         std::unique_lock<std::mutex> waitLock(lock);
         signal.wait(waitLock, [&connected]() { return connected; });
