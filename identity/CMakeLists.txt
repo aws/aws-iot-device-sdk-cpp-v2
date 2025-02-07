@@ -122,7 +122,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         COMPONENT Development)
 
 if(NOT CMAKE_CROSSCOMPILING)
-    if (BUILD_TESTING AND NOT BYO_CRYPTO)
+    if (BUILD_TESTING)
         add_subdirectory(tests)
     endif()
 endif()
