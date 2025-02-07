@@ -741,7 +741,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
+                                     Iot::RequestResponse::UnmodeledResult &&result)
             {
                 s_UpdateShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
