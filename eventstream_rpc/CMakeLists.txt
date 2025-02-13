@@ -85,8 +85,8 @@ if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
 
-
-target_link_libraries(EventstreamRpc-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(EventstreamRpc-cpp)
+target_link_libraries(EventstreamRpc-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_EVENTSTREAMRPC_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/eventstreamrpc/" COMPONENT Development)
 

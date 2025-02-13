@@ -290,7 +290,11 @@ def launch_sample():
     elif (config_json['language'] == "CPP"):
         try:
             sample_return = subprocess.run(
-                args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+                args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600, capture_output=True, text=True)
+            print("stdout:")
+            print(sample_return.stdout)
+            print("stderr:")
+            print(sample_return.stderr)
             exit_code = sample_return.returncode
         except subprocess.TimeoutExpired as timeOut:
             sys.exit(-1)

@@ -90,7 +90,9 @@ if (BUILD_DEPS)
 	aws_use_package(aws-c-iot)
 endif()
 
-target_link_libraries(IotDeviceCommon-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotDeviceCommon-cpp)
+
+target_link_libraries(IotDeviceCommon-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTDEVICECOMMON_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotdevicecommon/" COMPONENT Development)
 

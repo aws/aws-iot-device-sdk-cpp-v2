@@ -33,7 +33,7 @@ if (WIN32)
 endif()
 
 add_library(GreengrassIpc-cpp ${AWS_GREENGRASSIPC_CPP_SRC})
-target_link_libraries(GreengrassIpc-cpp EventstreamRpc-cpp)
+target_link_libraries(GreengrassIpc-cpp PUBLIC EventstreamRpc-cpp)
 
 set_target_properties(GreengrassIpc-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -93,8 +93,8 @@ if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
 
-
-target_link_libraries(GreengrassIpc-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(GreengrassIpc-cpp)
+target_link_libraries(GreengrassIpc-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_GREENGRASSIPC_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/greengrass/" COMPONENT Development)
 
