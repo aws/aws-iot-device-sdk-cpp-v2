@@ -18,22 +18,11 @@ if (WIN32)
     endif ()
 endif()
 
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-
-    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-        set(FIND_LIBRARY_USE_LIB64_PATHS true)
-    endif()
-endif()
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
-
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
 endif()
 
-install(FILES ${AWS_ECHOTESTRPC_HEADERS} DESTINATION "include/awstest/" COMPONENT Development)
+install(FILES ${AWS_ECHOTESTRPC_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/awstest/" COMPONENT Development)
 
 file(GLOB TEST_SRC "*.cpp")
 file(GLOB TEST_HDRS "*.h")
