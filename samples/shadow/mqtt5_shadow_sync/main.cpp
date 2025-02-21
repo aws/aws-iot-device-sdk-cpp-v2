@@ -350,7 +350,8 @@ int main(int argc, char *argv[])
             {
                 // If another client requested shadow for the same thing at the same time, this callback might be
                 // triggered more than once. Ignore everything after first data arrived.
-                if (isInitialShadowReceived) {
+                if (isInitialShadowReceived)
+                {
                     fprintf(stderr, "Initial shadow is already set, ignore\n");
                     return;
                 }
@@ -393,7 +394,8 @@ int main(int argc, char *argv[])
             }
             // If another client requested shadow for the same thing at the same time, this callback might be
             // triggered more than once. Ignore everything after first data arrived.
-            if (isInitialShadowReceived) {
+            if (isInitialShadowReceived)
+            {
                 fprintf(stderr, "Initial shadow is already set, ignore\n");
                 return;
             }
