@@ -340,6 +340,7 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeGetShadowRejectedCompletedPromise;
         std::promise<void> onGetShadowRequestCompletedPromise;
         std::promise<void> gotInitialShadowPromise;
+        bool isInitialShadowReceived = false;
 
         auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
@@ -376,6 +377,14 @@ int main(int argc, char *argv[])
             }
             if (response)
             {
+                // If another client requested shadow for the same thing at the same time, this callback might be
+                // triggered more than once. Ignore everything after first data arrived.
+                if (isInitialShadowReceived) {
+                    fprintf(stderr, "Initial shadow is already set, ignore\n");
+                    return;
+                }
+                isInitialShadowReceived = true;
+
                 fprintf(stdout, "Received shadow document.\n");
                 if (response->State && response->State->Reported->View().ValueExists(cmdData.input_shadowProperty))
                 {
@@ -411,6 +420,14 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            // If another client requested shadow for the same thing at the same time, this callback might be
+            // triggered more than once. Ignore everything after first data arrived.
+            if (isInitialShadowReceived) {
+                fprintf(stderr, "Initial shadow is already set, ignore\n");
+                return;
+            }
+            isInitialShadowReceived = true;
+
             fprintf(
                 stdout,
                 "Getting shadow document failed with message %s and code %d.\n",
