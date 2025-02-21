@@ -22,12 +22,8 @@ endif ()
 
 find_package(aws-crt-cpp REQUIRED)
 
-if (ENABLE_SANITIZERS AND UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-    list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
-    include(AwsSanitizers)
-    enable_language(C)
-    aws_add_sanitizers(${PROJECT_NAME})
-endif()
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)
