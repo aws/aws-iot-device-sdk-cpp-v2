@@ -25,4 +25,8 @@ find_package(IotIdentity-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
+
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotIdentity-cpp)
