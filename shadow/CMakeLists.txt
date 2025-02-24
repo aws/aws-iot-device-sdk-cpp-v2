@@ -89,7 +89,7 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(IotShadow-cpp)
+aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(IotShadow-cpp PUBLIC ${DEP_AWS_LIBS})
 

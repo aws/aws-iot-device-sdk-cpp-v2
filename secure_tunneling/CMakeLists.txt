@@ -88,7 +88,7 @@ if (BUILD_DEPS)
 	endif()
 endif()
 
-aws_add_sanitizers(IotSecureTunneling-cpp)
+aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(IotSecureTunneling-cpp PUBLIC IotDeviceCommon-cpp)
 
