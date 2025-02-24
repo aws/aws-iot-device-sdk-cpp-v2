@@ -32,4 +32,8 @@ endif()
 
 find_package(aws-crt-cpp REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} AWS::aws-crt-cpp)
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)
