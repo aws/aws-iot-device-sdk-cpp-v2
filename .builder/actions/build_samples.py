@@ -1,10 +1,18 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0.
+
 import Builder
+import itertools
 import os
 import sys
-import argparse
 
 
 class BuildSamples(Builder.Action):
+    """
+    Defines a custom build step for samples and tests.
+    It's used via builder.json config file in the project root directory.
+    """
+
     def run(self, env):
         # parse extra cmake configs
         cmd_args = env.args
@@ -55,7 +63,7 @@ class BuildSamples(Builder.Action):
             'servicetests/tests/ShadowUpdate/',
         ]
 
-        for sample_path in samples:
+        for sample_path in itertools.chain(samples, servicetests, da_samples, defender_samples):
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',
@@ -64,43 +72,9 @@ class BuildSamples(Builder.Action):
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
             # append extra cmake configs
             steps[-1].extend(cmd_args.cmake_extra)
-            steps.append(['cmake',
-                          '--build', build_path,
-                          '--config', 'RelWithDebInfo'])
-
-        for sample_path in servicetests:
-            build_path = os.path.join('build', sample_path)
-            steps.append(['cmake',
-                          f'-B{build_path}',
-                          f'-H{sample_path}',
-                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            # append extra cmake configs
-            steps[-1].extend(cmd_args.cmake_extra)
-            steps.append(['cmake',
-                          '--build', build_path,
-                          '--config', 'RelWithDebInfo'])
-
-        for sample_path in da_samples:
-            build_path = os.path.join('build', sample_path)
-            steps.append(['cmake',
-                          f'-B{build_path}',
-                          f'-H{sample_path}',
-                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            # append extra cmake configs
-            steps[-1].extend(cmd_args.cmake_extra)
-            steps.append(['cmake',
-                          '--build', build_path,
-                          '--config', 'RelWithDebInfo'])
-
-        for sample_path in defender_samples:
-            build_path = os.path.join('build', sample_path)
-            steps.append(['cmake',
-                          f'-B{build_path}',
-                          f'-H{sample_path}',
-                          f'-DCMAKE_PREFIX_PATH={env.install_dir}',
-                          '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
+            # Currently, cmake_args sets only Linux-specific options.
+            if sys.platform == "linux" or sys.platform == "linux2":
+                steps[-1].extend(env.config['cmake_args'])
             steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])

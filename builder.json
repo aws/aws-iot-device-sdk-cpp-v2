@@ -28,6 +28,24 @@
         "!build_steps": [
           "build"
         ]
+    },
+    "tsan": {
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANITIZERS=thread"
+      ]
+    },
+    "asan": {
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANITIZERS=address,undefined"
+      ]
+    },
+    "build_gg_samples_only": {
+        "!build_steps": [
+          "build",
+          "build-gg-samples"
+        ]
     }
   }
 }

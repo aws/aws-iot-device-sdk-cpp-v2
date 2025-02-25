@@ -1,24 +1,11 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9...3.31)
 
-project(IotDeviceCommon-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("IoT Device Common version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(IotDeviceCommon-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
-set(RUNTIME_DIRECTORY bin)
-
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-
-    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-        set(FIND_LIBRARY_USE_LIB64_PATHS true)
-    endif()
-endif()
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotdevicecommon/Config.h")
+configure_file(include/aws/iotdevicecommon/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
@@ -26,6 +13,7 @@ endif()
 
 file(GLOB AWS_IOTDEVICECOMMON_HEADERS
         "include/aws/iotdevicecommon/*.h"
+        ${GENERATED_CONFIG_HEADER}
         )
 
 file(GLOB AWS_IOTDEVICECOMMON_SRC
@@ -75,7 +63,7 @@ if (BUILD_SHARED_LIBS)
             NAMELINK_SKIP
             COMPONENT Runtime
             RUNTIME
-            DESTINATION ${RUNTIME_DIRECTORY}
+            DESTINATION ${CMAKE_INSTALL_BINDIR}
             COMPONENT Runtime)
 
     install(TARGETS IotDeviceCommon-cpp
@@ -102,9 +90,11 @@ if (BUILD_DEPS)
 	aws_use_package(aws-c-iot)
 endif()
 
-target_link_libraries(IotDeviceCommon-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotDeviceCommon-cpp)
 
-install(FILES ${AWS_IOTDEVICECOMMON_HEADERS} DESTINATION "include/aws/iotdevicecommon/" COMPONENT Development)
+target_link_libraries(IotDeviceCommon-cpp PUBLIC ${DEP_AWS_LIBS})
+
+install(FILES ${AWS_IOTDEVICECOMMON_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotdevicecommon/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
@@ -121,7 +111,7 @@ if (DEFINED SIMPLE_VERSION)
 endif()
 
 install(EXPORT "IotDeviceCommon-cpp-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/${TARGET_DIR}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotDeviceCommon-cpp/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -130,5 +120,5 @@ configure_file("cmake/iotdevicecommon-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotDeviceCommon-cpp/"
         COMPONENT Development)

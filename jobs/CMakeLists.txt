@@ -1,26 +1,13 @@
 # This file is generated
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9...3.31)
 
-project(IotJobs-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("IotJobs version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(IotJobs-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
-set(RUNTIME_DIRECTORY bin)
-
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-
-    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-        set(FIND_LIBRARY_USE_LIB64_PATHS true)
-    endif()
-endif()
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotjobs/Config.h")
+configure_file(include/aws/iotjobs/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
@@ -28,6 +15,7 @@ endif()
 
 file(GLOB AWS_IOTJOBS_HEADERS
         "include/aws/iotjobs/*.h"
+        ${GENERATED_CONFIG_HEADER}
 )
 
 file(GLOB AWS_IOTJOBS_SRC
@@ -75,7 +63,7 @@ if (BUILD_SHARED_LIBS)
             NAMELINK_SKIP
             COMPONENT Runtime
             RUNTIME
-            DESTINATION ${RUNTIME_DIRECTORY}
+            DESTINATION ${CMAKE_INSTALL_BINDIR}
             COMPONENT Runtime)
 
     install(TARGETS IotJobs-cpp
@@ -101,9 +89,11 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-target_link_libraries(IotJobs-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotJobs-cpp)
 
-install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "include/aws/iotjobs/" COMPONENT Development)
+target_link_libraries(IotJobs-cpp PUBLIC ${DEP_AWS_LIBS})
+
+install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotjobs/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
@@ -120,7 +110,7 @@ if (DEFINED SIMPLE_VERSION)
 endif()
 
 install(EXPORT "IotJobs-cpp-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotJobs-cpp/cmake/${TARGET_DIR}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotJobs-cpp/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -129,5 +119,5 @@ configure_file("cmake/iotjobs-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotJobs-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotJobs-cpp/"
         COMPONENT Development)

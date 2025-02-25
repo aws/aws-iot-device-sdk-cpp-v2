@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
      */
     Utils::cmdData cmdData = Utils::parseSampleInputGreengrassIPC(argc, argv, &apiHandle);
 
+    fprintf(stdout, "Running Greengrass IPC sample\n");
+
     /**
      * Create the default ClientBootstrap, which will create the default
      * EventLoopGroup (to process IO events) and HostResolver.

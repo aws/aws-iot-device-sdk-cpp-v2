@@ -104,9 +104,9 @@ int main(int argc, char *argv[])
     Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
 
     // Create the MQTT5 builder and populate it with data from cmdData.
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str());
-
+    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
@@ -148,7 +148,6 @@ int main(int argc, char *argv[])
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
-    delete builder;
     /************************ Run the sample ****************************/
 
     fprintf(stdout, "Connecting...\n");
@@ -312,6 +311,7 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeGetShadowRejectedCompletedPromise;
         std::promise<void> onGetShadowRequestCompletedPromise;
         std::promise<void> gotInitialShadowPromise;
+        bool isInitialShadowReceived = false;
 
         auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
@@ -348,6 +348,15 @@ int main(int argc, char *argv[])
             }
             if (response)
             {
+                // If another client requested shadow for the same thing at the same time, this callback might be
+                // triggered more than once. Ignore everything after first data arrived.
+                if (isInitialShadowReceived)
+                {
+                    fprintf(stderr, "Initial shadow is already set, ignore\n");
+                    return;
+                }
+                isInitialShadowReceived = true;
+
                 fprintf(stdout, "Received shadow document.\n");
                 if (response->State && response->State->Reported->View().ValueExists(cmdData.input_shadowProperty))
                 {
@@ -383,6 +392,15 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            // If another client requested shadow for the same thing at the same time, this callback might be
+            // triggered more than once. Ignore everything after first data arrived.
+            if (isInitialShadowReceived)
+            {
+                fprintf(stderr, "Initial shadow is already set, ignore\n");
+                return;
+            }
+            isInitialShadowReceived = true;
+
             fprintf(
                 stdout,
                 "Getting shadow document failed with message %s and code %d.\n",

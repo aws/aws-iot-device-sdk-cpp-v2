@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(secure-tunnel CXX)
 
@@ -26,4 +26,8 @@ find_package(IotSecureTunneling-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} AWS::aws-crt-cpp AWS::IotDeviceCommon-cpp AWS::IotSecureTunneling-cpp)
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotDeviceCommon-cpp AWS::IotSecureTunneling-cpp)

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9...3.31)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(AwsGetVersion)
@@ -11,35 +11,14 @@ project(aws-iot-device-sdk-cpp-v2
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
+option(USE_EXTERNAL_DEPS_SOURCES "Use dependencies provided by add_subdirectory command" OFF)
 option(BUILD_SAMPLES "(DEPRECATED) Build samples as part of the build" OFF)
-
-if (DEFINED CMAKE_PREFIX_PATH)
-    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
-endif()
-
-if (DEFINED CMAKE_INSTALL_PREFIX)
-    file(TO_CMAKE_PATH "${CMAKE_INSTALL_PREFIX}" CMAKE_INSTALL_PREFIX)
-endif()
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
 endif()
 
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-endif()
-
-if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-    set(FIND_LIBRARY_USE_LIB64_PATHS true)
-endif()
-
-# This is required in order to append /lib/cmake to each element in CMAKE_PREFIX_PATH
-set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
-string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
-# Append that generated list to the module search path
-list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
+include(GNUInstallDirs)
 
 if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
@@ -57,6 +36,10 @@ else()
 endif()
 
 if (BUILD_DEPS)
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option should be used with BUILD_DEPS set to OFF")
+    endif()
+
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-crt-cpp/crt/aws-c-common/cmake")
 
     include(AwsFindPackage)
@@ -70,9 +53,33 @@ if (BUILD_DEPS)
     endif ()
     set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
+    if (USE_EXTERNAL_DEPS_SOURCES)
+        function(validate_deps_sources dep_name)
+            if (NOT ${dep_name}_SOURCE_DIR)
+                message(FATAL_ERROR "USE_EXTERNAL_DEPS_SOURCES option is set, but ${dep_name} project is not configured."
+                    " ${dep_name} must be added using add_subdirectory command (or one of the higher-level commands that"
+                    " uses add_subdirectory, like FetchContent)")
+            endif()
+        endfunction()
+
+        validate_deps_sources(aws-crt-cpp)
+        validate_deps_sources(aws-c-iot)
+        validate_deps_sources(aws-c-common)
+
+        list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
+
+        set(IN_SOURCE_BUILD ON)
+    else()
+        # this is required so we can use aws-c-common's CMake modules
+        find_package(aws-c-common REQUIRED)
+
+        set(IN_SOURCE_BUILD OFF)
+    endif()
+
     include(AwsFindPackage)
-    set(IN_SOURCE_BUILD OFF)
 endif()
+
+include(AwsSanitizers)
 
 aws_use_package(aws-crt-cpp)
 
