@@ -87,7 +87,8 @@ if (BUILD_DEPS)
 	endif()
 endif()
 
-target_link_libraries(Discovery-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(Discovery-cpp)
+target_link_libraries(Discovery-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_DISCOVERY_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/discovery/" COMPONENT Development)
 

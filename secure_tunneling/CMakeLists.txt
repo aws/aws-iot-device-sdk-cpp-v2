@@ -88,7 +88,9 @@ if (BUILD_DEPS)
 	endif()
 endif()
 
-target_link_libraries(IotSecureTunneling-cpp IotDeviceCommon-cpp)
+aws_add_sanitizers(${PROJECT_NAME})
+
+target_link_libraries(IotSecureTunneling-cpp PUBLIC IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotsecuretunneling/" COMPONENT Development)
 
@@ -118,4 +120,3 @@ configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotSecureTunneling-cpp/"
         COMPONENT Development)
-

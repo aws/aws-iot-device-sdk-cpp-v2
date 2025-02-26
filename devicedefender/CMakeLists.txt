@@ -88,7 +88,9 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-target_link_libraries(IotDeviceDefender-cpp IotDeviceCommon-cpp)
+aws_add_sanitizers(IotDeviceDefender-cpp)
+
+target_link_libraries(IotDeviceDefender-cpp PUBLIC IotDeviceCommon-cpp)
 
 install(FILES ${AWS_IOTDEVICEDEFENDER_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotdevicedefender/" COMPONENT Development)
 

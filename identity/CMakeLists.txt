@@ -89,7 +89,8 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-target_link_libraries(IotIdentity-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotIdentity-cpp)
+target_link_libraries(IotIdentity-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTIDENTITY_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotidentity/" COMPONENT Development)
 
