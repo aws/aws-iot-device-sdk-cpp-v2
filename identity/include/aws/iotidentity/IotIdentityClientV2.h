@@ -108,7 +108,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool CreateCertificateFromCsr(
                 const CreateCertificateFromCsrRequest &request,
@@ -127,7 +127,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool CreateKeysAndCertificate(
                 const CreateKeysAndCertificateRequest &request,
@@ -143,7 +143,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool RegisterThing(
                 const RegisterThingRequest &request,
