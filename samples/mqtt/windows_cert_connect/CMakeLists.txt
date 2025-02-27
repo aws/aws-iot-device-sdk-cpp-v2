@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(windows-cert-connect CXX)
 
@@ -21,5 +21,9 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
+
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)
