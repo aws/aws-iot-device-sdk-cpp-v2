@@ -57,7 +57,10 @@ namespace Aws
             }
         }
 
-        RegisterThingResponse::RegisterThingResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        RegisterThingResponse::RegisterThingResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         RegisterThingResponse &RegisterThingResponse::operator=(const Crt::JsonView &doc)
         {
