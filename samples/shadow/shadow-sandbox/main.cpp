@@ -94,9 +94,15 @@ static void s_printHelp()
         "shadow does not exist, it will be created.\n\n");
 }
 
-static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError, String operationName) {
-    fprintf(stdout, "%s failed with error code: %s\n", operationName.c_str(), aws_error_debug_str(serviceError.GetErrorCode()));
-    if (serviceError.HasModeledError()) {
+static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError, String operationName)
+{
+    fprintf(
+        stdout,
+        "%s failed with error code: %s\n",
+        operationName.c_str(),
+        aws_error_debug_str(serviceError.GetErrorCode()));
+    if (serviceError.HasModeledError())
+    {
         const auto &modeledError = serviceError.GetModeledError();
 
         JsonObject jsonObject;
