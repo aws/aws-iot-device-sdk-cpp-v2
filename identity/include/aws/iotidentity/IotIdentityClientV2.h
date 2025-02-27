@@ -37,7 +37,7 @@ namespace Aws
         template <typename E> class ServiceErrorV2
         {
           public:
-            ServiceErrorV2() = delete;
+            ServiceErrorV2() = default;
             ServiceErrorV2(const ServiceErrorV2<E> &rhs) = default;
             ServiceErrorV2(ServiceErrorV2<E> &&rhs) = default;
 
