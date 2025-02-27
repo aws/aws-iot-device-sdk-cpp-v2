@@ -58,15 +58,15 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
         mqtt5Options.WithHostName(Aws::Crt::String(aws_string_c_str(host)));
         mqtt5Options.WithPort(8883);
         mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
-        
+
         mqtt5Options.WithClientConnectionSuccessCallback(
             [&lock, &signal, &connected](const Aws::Crt::Mqtt5::OnConnectionSuccessEventData &)
             {
                 {
                     std::lock_guard<std::mutex> guard(lock);
                     connected = true;
+                    signal.notify_all();
                 }
-                signal.notify_all();
             });
 
         client = Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
@@ -126,14 +126,13 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
         connection = client.NewConnection(aws_string_c_str(host), 8883, socketOptions, tlsContext, false);
 
         connection->OnConnectionSuccess =
-            [&connected, &lock, &signal](
-                Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionSuccessData *)
+            [&connected, &lock, &signal](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionSuccessData *)
         {
             {
                 std::lock_guard<std::mutex> guard(lock);
                 connected = true;
+                signal.notify_all();
             }
-            signal.notify_all();
         };
 
         auto uuid = Aws::Crt::UUID().ToString();
@@ -168,9 +167,8 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
+            m_signal.notify_all();
         }
-
-        m_signal.notify_all();
     }
 
     const R &GetResult()

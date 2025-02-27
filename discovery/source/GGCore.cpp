@@ -29,7 +29,10 @@ namespace Aws
             }
         }
 
-        GGCore::GGCore(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        GGCore::GGCore(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         GGCore &GGCore::operator=(const Crt::JsonView &doc)
         {
