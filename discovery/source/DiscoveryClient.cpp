@@ -161,10 +161,9 @@ namespace Aws
 
                     Crt::Http::HttpRequestOptions requestOptions;
                     requestOptions.request = request.get();
-                    requestOptions.onIncomingHeaders = [](Crt::Http::HttpStream &,
-                                                          aws_http_header_block,
-                                                          const Crt::Http::HttpHeader *,
-                                                          std::size_t) {};
+                    requestOptions.onIncomingHeaders =
+                        [](Crt::Http::HttpStream &, aws_http_header_block, const Crt::Http::HttpHeader *, std::size_t) {
+                        };
                     requestOptions.onIncomingHeadersBlockDone =
                         [callbackContext](Crt::Http::HttpStream &stream, aws_http_header_block)
                     { callbackContext->responseCode = stream.GetResponseStatusCode(); };
