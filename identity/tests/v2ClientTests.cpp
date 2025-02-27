@@ -79,8 +79,8 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
                 {
                     std::lock_guard<std::mutex> guard(lock);
                     connected = true;
+                    signal.notify_all();
                 }
-                signal.notify_all();
             });
 
         client = Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
@@ -145,8 +145,8 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             {
                 std::lock_guard<std::mutex> guard(lock);
                 connected = true;
+                signal.notify_all();
             }
-            signal.notify_all();
         };
 
         connection->OnConnectionFailure = [](Aws::Crt::Mqtt::MqttConnection &,
