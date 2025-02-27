@@ -86,31 +86,31 @@ int main(int argc, char *argv[])
 
     // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted =
-        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
-            if (errorCode)
-            {
-                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-                connectionCompletedPromise.set_value(true);
-            }
-        };
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool)
+    {
+        if (errorCode)
+        {
+            fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+            connectionCompletedPromise.set_value(false);
+        }
+        else
+        {
+            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+            connectionCompletedPromise.set_value(true);
+        }
+    };
 
     // Invoked when a MQTT connection was interrupted/lost
-    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error) {
-        fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error));
-    };
+    auto onInterrupted = [&](Aws::Crt::Mqtt::MqttConnection &, int error)
+    { fprintf(stdout, "Connection interrupted with error %s\n", Aws::Crt::ErrorDebugString(error)); };
 
     // Invoked when a MQTT connection was interrupted/lost, but then reconnected successfully
-    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool) {
-        fprintf(stdout, "Connection resumed\n");
-    };
+    auto onResumed = [&](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::ReturnCode, bool)
+    { fprintf(stdout, "Connection resumed\n"); };
 
     // Invoked when a disconnect message has completed.
-    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &)
+    {
         fprintf(stdout, "Disconnect completed\n");
         connectionClosedPromise.set_value();
     };
@@ -143,7 +143,8 @@ int main(int argc, char *argv[])
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
-                             bool /*retain*/) {
+                             bool /*retain*/)
+        {
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -159,26 +160,27 @@ int main(int argc, char *argv[])
         // Subscribe for incoming publish messages on topic.
         std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
-            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-                if (errorCode)
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode)
+        {
+            if (errorCode)
+            {
+                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                exit(-1);
+            }
+            else
+            {
+                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
                 {
-                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                    fprintf(stderr, "Subscribe rejected by the broker.");
                     exit(-1);
                 }
                 else
                 {
-                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
-                    {
-                        fprintf(stderr, "Subscribe rejected by the broker.");
-                        exit(-1);
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
-                    }
+                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
                 }
-                subscribeFinishedPromise.set_value();
-            };
+            }
+            subscribeFinishedPromise.set_value();
+        };
 
         connection->Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
@@ -203,9 +205,9 @@ int main(int argc, char *argv[])
 
         // Unsubscribe from the topic.
         std::promise<void> unsubscribeFinishedPromise;
-        connection->Unsubscribe(cmdData.input_topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
-            unsubscribeFinishedPromise.set_value();
-        });
+        connection->Unsubscribe(
+            cmdData.input_topic.c_str(),
+            [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
         unsubscribeFinishedPromise.get_future().wait();
 
         // Disconnect
