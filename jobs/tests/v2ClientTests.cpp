@@ -65,8 +65,8 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
                 {
                     std::lock_guard<std::mutex> guard(lock);
                     connected = true;
+                    signal.notify_all();
                 }
-                signal.notify_all();
             });
 
         client = Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
@@ -131,8 +131,8 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             {
                 std::lock_guard<std::mutex> guard(lock);
                 connected = true;
+                signal.notify_all();
             }
-            signal.notify_all();
         };
 
         auto uuid = Aws::Crt::UUID().ToString();
@@ -167,9 +167,8 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
+            m_signal.notify_all();
         }
-
-        m_signal.notify_all();
     }
 
     const R &GetResult()
@@ -189,7 +188,7 @@ template <typename R> class ResultWaiter
     Aws::Crt::Optional<R> m_result;
 };
 
-static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createIdentityClient5(
+static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient5(
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> protocolClient,
     Aws::Crt::Allocator *allocator)
 {
@@ -207,7 +206,7 @@ static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createIdentityClient5(
     return Aws::Iotjobs::NewClientFrom5(*protocolClient, serviceClientOptions, allocator);
 }
 
-static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createShadowClient311(
+static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient311(
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> protocolClient,
     Aws::Crt::Allocator *allocator)
 {
@@ -231,7 +230,7 @@ static int s_JobsV2ClientCreateDestroy5(Aws::Crt::Allocator *allocator, void *)
         Aws::Crt::ApiHandle handle;
 
         auto protocolClient = s_createProtocolClient5(allocator);
-        auto shadowClient = s_createIdentityClient5(protocolClient, allocator);
+        auto shadowClient = s_createJobsClient5(protocolClient, allocator);
         if (!shadowClient)
         {
             return AWS_OP_SKIP;
@@ -248,7 +247,7 @@ static int s_JobsV2ClientCreateDestroy311(Aws::Crt::Allocator *allocator, void *
         Aws::Crt::ApiHandle handle;
 
         auto protocolClient = s_createProtocolClient311(allocator);
-        auto shadowClient = s_createShadowClient311(protocolClient, allocator);
+        auto shadowClient = s_createJobsClient311(protocolClient, allocator);
         if (!shadowClient)
         {
             return AWS_OP_SKIP;

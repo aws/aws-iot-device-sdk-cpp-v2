@@ -74,8 +74,7 @@ static void s_changeShadowValue(
     updateShadowRequest.ThingName = thingName;
     updateShadowRequest.State = state;
 
-    auto publishCompleted = [thingName, value](int ioErr)
-    {
+    auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
         {
             fprintf(stderr, "Failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
@@ -130,27 +129,22 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData)
-        {
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
                 stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionPromise.set_value(true);
         });
-    builder->WithClientConnectionFailureCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionFailureEventData &eventData)
-        {
-            fprintf(
-                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            connectionPromise.set_value(false);
-        });
-    builder->WithClientStoppedCallback(
-        [&stoppedPromise](const Mqtt5::OnStoppedEventData &)
-        {
-            fprintf(stdout, "Mqtt5 Client stopped.\n");
-            stoppedPromise.set_value();
-        });
+    builder->WithClientConnectionFailureCallback([&connectionPromise](
+                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        connectionPromise.set_value(false);
+    });
+    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
+        stoppedPromise.set_value();
+    });
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
@@ -174,8 +168,7 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeDeltaAcceptedCompletedPromise;
         std::promise<void> subscribeDeltaRejectedCompletedPromise;
 
-        auto onDeltaUpdatedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
@@ -184,8 +177,7 @@ int main(int argc, char *argv[])
             subscribeDeltaCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
@@ -194,8 +186,7 @@ int main(int argc, char *argv[])
             subscribeDeltaAcceptedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr)
-        {
+        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
@@ -204,8 +195,7 @@ int main(int argc, char *argv[])
             subscribeDeltaRejectedCompletedPromise.set_value();
         };
 
-        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr)
-        {
+        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
             if (ioErr)
             {
                 fprintf(stdout, "Error processing shadow delta: %s\n", ErrorDebugString(ioErr));
@@ -253,8 +243,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr)
-        {
+        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
@@ -277,8 +266,7 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
@@ -323,9 +311,9 @@ int main(int argc, char *argv[])
         std::promise<void> subscribeGetShadowRejectedCompletedPromise;
         std::promise<void> onGetShadowRequestCompletedPromise;
         std::promise<void> gotInitialShadowPromise;
+        bool isInitialShadowReceived = false;
 
-        auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr)
-        {
+        auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to get shadow document accepted: %s\n", ErrorDebugString(ioErr));
@@ -334,8 +322,7 @@ int main(int argc, char *argv[])
             subscribeGetShadowAcceptedCompletedPromise.set_value();
         };
 
-        auto onGetShadowUpdatedRejectedSubAck = [&](int ioErr)
-        {
+        auto onGetShadowUpdatedRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to get shadow document rejected: %s\n", ErrorDebugString(ioErr));
@@ -344,8 +331,7 @@ int main(int argc, char *argv[])
             subscribeGetShadowRejectedCompletedPromise.set_value();
         };
 
-        auto onGetShadowRequestSubAck = [&](int ioErr)
-        {
+        auto onGetShadowRequestSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error getting shadow document: %s\n", ErrorDebugString(ioErr));
@@ -354,8 +340,7 @@ int main(int argc, char *argv[])
             onGetShadowRequestCompletedPromise.set_value();
         };
 
-        auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr)
-        {
+        auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error getting shadow value from document: %s.\n", ErrorDebugString(ioErr));
@@ -363,6 +348,15 @@ int main(int argc, char *argv[])
             }
             if (response)
             {
+                // If another client requested shadow for the same thing at the same time, this callback might be
+                // triggered more than once. Ignore everything after first data arrived.
+                if (isInitialShadowReceived)
+                {
+                    fprintf(stderr, "Initial shadow is already set, ignore\n");
+                    return;
+                }
+                isInitialShadowReceived = true;
+
                 fprintf(stdout, "Received shadow document.\n");
                 if (response->State && response->State->Reported->View().ValueExists(cmdData.input_shadowProperty))
                 {
@@ -392,13 +386,21 @@ int main(int argc, char *argv[])
             }
         };
 
-        auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr)
-        {
+        auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error on getting shadow document: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
+            // If another client requested shadow for the same thing at the same time, this callback might be
+            // triggered more than once. Ignore everything after first data arrived.
+            if (isInitialShadowReceived)
+            {
+                fprintf(stderr, "Initial shadow is already set, ignore\n");
+                return;
+            }
+            isInitialShadowReceived = true;
+
             fprintf(
                 stdout,
                 "Getting shadow document failed with message %s and code %d.\n",

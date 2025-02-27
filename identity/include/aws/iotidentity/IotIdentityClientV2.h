@@ -70,18 +70,18 @@ namespace Aws
         class CreateKeysAndCertificateResponse;
         class RegisterThingRequest;
         class RegisterThingResponse;
-        class V2ServiceError;
+        class V2ErrorResponse;
 
         using CreateCertificateFromCsrResult =
-            Aws::Iot::RequestResponse::Result<CreateCertificateFromCsrResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<CreateCertificateFromCsrResponse, ServiceErrorV2<V2ErrorResponse>>;
         using CreateCertificateFromCsrResultHandler = std::function<void(CreateCertificateFromCsrResult &&)>;
 
         using CreateKeysAndCertificateResult =
-            Aws::Iot::RequestResponse::Result<CreateKeysAndCertificateResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<CreateKeysAndCertificateResponse, ServiceErrorV2<V2ErrorResponse>>;
         using CreateKeysAndCertificateResultHandler = std::function<void(CreateKeysAndCertificateResult &&)>;
 
         using RegisterThingResult =
-            Aws::Iot::RequestResponse::Result<RegisterThingResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<RegisterThingResponse, ServiceErrorV2<V2ErrorResponse>>;
         using RegisterThingResultHandler = std::function<void(RegisterThingResult &&)>;
 
         /**
@@ -108,7 +108,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool CreateCertificateFromCsr(
                 const CreateCertificateFromCsrRequest &request,
@@ -127,7 +127,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool CreateKeysAndCertificate(
                 const CreateKeysAndCertificateRequest &request,
@@ -143,7 +143,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool RegisterThing(
                 const RegisterThingRequest &request,

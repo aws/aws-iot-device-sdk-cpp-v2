@@ -23,7 +23,7 @@
 #include <aws/iotshadow/ShadowUpdatedEvent.h>
 #include <aws/iotshadow/UpdateNamedShadowRequest.h>
 #include <aws/iotshadow/UpdateShadowResponse.h>
-#include <aws/iotshadow/V2ServiceError.h>
+#include <aws/iotshadow/V2ErrorResponse.h>
 
 #include <utility>
 
@@ -76,8 +76,8 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
                 {
                     std::lock_guard<std::mutex> guard(lock);
                     connected = true;
+                    signal.notify_all();
                 }
-                signal.notify_all();
             });
 
         client = Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
@@ -142,8 +142,8 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             {
                 std::lock_guard<std::mutex> guard(lock);
                 connected = true;
+                signal.notify_all();
             }
-            signal.notify_all();
         };
 
         auto uuid = Aws::Crt::UUID().ToString();
@@ -178,9 +178,8 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
+            m_signal.notify_all();
         }
-
-        m_signal.notify_all();
     }
 
     const R &GetResult()

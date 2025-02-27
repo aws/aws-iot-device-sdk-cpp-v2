@@ -76,22 +76,22 @@ namespace Aws
         class StartNextPendingJobExecutionRequest;
         class UpdateJobExecutionRequest;
         class UpdateJobExecutionResponse;
-        class V2ServiceError;
+        class V2ErrorResponse;
 
         using DescribeJobExecutionResult =
-            Aws::Iot::RequestResponse::Result<DescribeJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<DescribeJobExecutionResponse, ServiceErrorV2<V2ErrorResponse>>;
         using DescribeJobExecutionResultHandler = std::function<void(DescribeJobExecutionResult &&)>;
 
         using GetPendingJobExecutionsResult =
-            Aws::Iot::RequestResponse::Result<GetPendingJobExecutionsResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<GetPendingJobExecutionsResponse, ServiceErrorV2<V2ErrorResponse>>;
         using GetPendingJobExecutionsResultHandler = std::function<void(GetPendingJobExecutionsResult &&)>;
 
         using StartNextPendingJobExecutionResult =
-            Aws::Iot::RequestResponse::Result<StartNextJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<StartNextJobExecutionResponse, ServiceErrorV2<V2ErrorResponse>>;
         using StartNextPendingJobExecutionResultHandler = std::function<void(StartNextPendingJobExecutionResult &&)>;
 
         using UpdateJobExecutionResult =
-            Aws::Iot::RequestResponse::Result<UpdateJobExecutionResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateJobExecutionResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateJobExecutionResultHandler = std::function<void(UpdateJobExecutionResult &&)>;
 
         /**
@@ -116,7 +116,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool DescribeJobExecution(
                 const DescribeJobExecutionRequest &request,
@@ -132,7 +132,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool GetPendingJobExecutions(
                 const GetPendingJobExecutionsRequest &request,
@@ -148,7 +148,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool StartNextPendingJobExecution(
                 const StartNextPendingJobExecutionRequest &request,
@@ -166,7 +166,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool UpdateJobExecution(
                 const UpdateJobExecutionRequest &request,
@@ -182,7 +182,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateJobExecutionsChangedStream(
@@ -199,7 +199,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNextJobExecutionChangedStream(

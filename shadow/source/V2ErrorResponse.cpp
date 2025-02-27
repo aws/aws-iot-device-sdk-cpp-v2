@@ -3,14 +3,14 @@
  *
  * This file is generated
  */
-#include <aws/iotjobs/V2ServiceError.h>
+#include <aws/iotshadow/V2ErrorResponse.h>
 
 namespace Aws
 {
-    namespace Iotjobs
+    namespace Iotshadow
     {
 
-        void V2ServiceError::LoadFromObject(V2ServiceError &val, const Aws::Crt::JsonView &doc)
+        void V2ErrorResponse::LoadFromObject(V2ErrorResponse &val, const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
@@ -22,7 +22,7 @@ namespace Aws
 
             if (doc.ValueExists("code"))
             {
-                val.Code = RejectedErrorCodeMarshaller::FromString(doc.GetString("code"));
+                val.Code = doc.GetInteger("code");
             }
 
             if (doc.ValueExists("message"))
@@ -34,14 +34,9 @@ namespace Aws
             {
                 val.Timestamp = doc.GetDouble("timestamp");
             }
-
-            if (doc.ValueExists("executionState"))
-            {
-                val.ExecutionState = doc.GetJsonObject("executionState");
-            }
         }
 
-        void V2ServiceError::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void V2ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
 
@@ -52,7 +47,7 @@ namespace Aws
 
             if (Code)
             {
-                object.WithString("code", RejectedErrorCodeMarshaller::ToString(*Code));
+                object.WithInteger("code", *Code);
             }
 
             if (Message)
@@ -64,25 +59,18 @@ namespace Aws
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
-
-            if (ExecutionState)
-            {
-                Aws::Crt::JsonObject jsonObject;
-                ExecutionState->SerializeToObject(jsonObject);
-                object.WithObject("executionState", std::move(jsonObject));
-            }
         }
 
-        V2ServiceError::V2ServiceError(const Crt::JsonView &doc)
+        V2ErrorResponse::V2ErrorResponse(const Crt::JsonView &doc)
         {
             LoadFromObject(*this, doc);
         }
 
-        V2ServiceError &V2ServiceError::operator=(const Crt::JsonView &doc)
+        V2ErrorResponse &V2ErrorResponse::operator=(const Crt::JsonView &doc)
         {
-            *this = V2ServiceError(doc);
+            *this = V2ErrorResponse(doc);
             return *this;
         }
 
-    } // namespace Iotjobs
+    } // namespace Iotshadow
 } // namespace Aws

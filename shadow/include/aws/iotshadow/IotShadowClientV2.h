@@ -79,29 +79,29 @@ namespace Aws
         class UpdateNamedShadowRequest;
         class UpdateShadowRequest;
         class UpdateShadowResponse;
-        class V2ServiceError;
+        class V2ErrorResponse;
 
         using DeleteNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using DeleteNamedShadowResultHandler = std::function<void(DeleteNamedShadowResult &&)>;
 
         using DeleteShadowResult =
-            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<DeleteShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using DeleteShadowResultHandler = std::function<void(DeleteShadowResult &&)>;
 
         using GetNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using GetNamedShadowResultHandler = std::function<void(GetNamedShadowResult &&)>;
 
-        using GetShadowResult = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ServiceError>>;
+        using GetShadowResult = Aws::Iot::RequestResponse::Result<GetShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using GetShadowResultHandler = std::function<void(GetShadowResult &&)>;
 
         using UpdateNamedShadowResult =
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateNamedShadowResultHandler = std::function<void(UpdateNamedShadowResult &&)>;
 
         using UpdateShadowResult =
-            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateShadowResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateShadowResultHandler = std::function<void(UpdateShadowResult &&)>;
 
         /**
@@ -127,7 +127,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool DeleteNamedShadow(
                 const DeleteNamedShadowRequest &request,
@@ -143,7 +143,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool DeleteShadow(const DeleteShadowRequest &request, const DeleteShadowResultHandler &handler) = 0;
 
@@ -157,7 +157,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool GetNamedShadow(
                 const GetNamedShadowRequest &request,
@@ -173,7 +173,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool GetShadow(const GetShadowRequest &request, const GetShadowResultHandler &handler) = 0;
 
@@ -187,7 +187,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool UpdateNamedShadow(
                 const UpdateNamedShadowRequest &request,
@@ -203,7 +203,7 @@ namespace Aws
              * @param request operation to perform
              * @param handler function object to invoke upon operation completion
              *
-             * @returns success/failure
+             * @return success/failure
              */
             virtual bool UpdateShadow(const UpdateShadowRequest &request, const UpdateShadowResultHandler &handler) = 0;
 
@@ -217,7 +217,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowDeltaUpdatedStream(
@@ -234,7 +234,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowUpdatedStream(
@@ -251,7 +251,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowDeltaUpdatedStream(
@@ -268,7 +268,7 @@ namespace Aws
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
-             * @returns a streaming operation which will emit a modeled event every time a message is received on the
+             * @return a streaming operation which will emit a modeled event every time a message is received on the
              *    associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowUpdatedStream(

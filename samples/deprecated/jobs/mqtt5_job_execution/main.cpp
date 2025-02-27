@@ -83,27 +83,22 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData)
-        {
+        [&connectionPromise](const Mqtt5::OnConnectionSuccessEventData &eventData) {
             fprintf(
                 stdout,
                 "Mqtt5 Client connection succeed, clientid: %s.\n",
                 eventData.negotiatedSettings->getClientId().c_str());
             connectionPromise.set_value(true);
         });
-    builder->WithClientConnectionFailureCallback(
-        [&connectionPromise](const Mqtt5::OnConnectionFailureEventData &eventData)
-        {
-            fprintf(
-                stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
-            connectionPromise.set_value(false);
-        });
-    builder->WithClientStoppedCallback(
-        [&stoppedPromise](const Mqtt5::OnStoppedEventData &)
-        {
-            fprintf(stdout, "Mqtt5 Client stopped.\n");
-            stoppedPromise.set_value();
-        });
+    builder->WithClientConnectionFailureCallback([&connectionPromise](
+                                                     const Mqtt5::OnConnectionFailureEventData &eventData) {
+        fprintf(stdout, "Mqtt5 Client connection failed with error: %s.\n", aws_error_debug_str(eventData.errorCode));
+        connectionPromise.set_value(false);
+    });
+    builder->WithClientStoppedCallback([&stoppedPromise](const Mqtt5::OnStoppedEventData &) {
+        fprintf(stdout, "Mqtt5 Client stopped.\n");
+        stoppedPromise.set_value();
+    });
 
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
@@ -129,13 +124,11 @@ int main(int argc, char *argv[])
          * to be cautious make sure the subscribe has finished before doing the publish.
          */
         std::promise<void> subAckedPromise;
-        auto subAckHandler = [&](int)
-        {
+        auto subAckHandler = [&](int) {
             // if error code returns it will be recorded by the other callback
             subAckedPromise.set_value();
         };
-        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-        {
+        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -152,8 +145,7 @@ int main(int argc, char *argv[])
         subAckedPromise.get_future().wait();
 
         subAckedPromise = std::promise<void>();
-        auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-        {
+        auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -178,8 +170,7 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.ClientToken = uuid.ToString();
         std::promise<void> publishDescribeJobExeCompletedPromise;
 
-        auto publishHandler = [&](int ioErr)
-        {
+        auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -201,34 +192,34 @@ int main(int argc, char *argv[])
 
             {
                 auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-                    [&](StartNextJobExecutionResponse *response, int ioErr)
-                {
-                    if (ioErr)
-                    {
-                        fprintf(stderr, "Error %d occurred\n", ioErr);
-                        exit(-1);
-                    }
-                    if (response)
-                    {
-                        if (response->Execution.has_value())
+                    [&](StartNextJobExecutionResponse *response, int ioErr) {
+                        if (ioErr)
                         {
-                            fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
-                            currentJobId = response->Execution->JobId.value();
-                            currentExecutionNumber = response->Execution->ExecutionNumber.value();
-                            currentVersionNumber = response->Execution->VersionNumber.value();
+                            fprintf(stderr, "Error %d occurred\n", ioErr);
+                            exit(-1);
+                        }
+                        if (response)
+                        {
+                            if (response->Execution.has_value())
+                            {
+                                fprintf(stdout, "Start Job %s\n", response->Execution.value().JobId.value().c_str());
+                                currentJobId = response->Execution->JobId.value();
+                                currentExecutionNumber = response->Execution->ExecutionNumber.value();
+                                currentVersionNumber = response->Execution->VersionNumber.value();
+                            }
+                            else
+                            {
+                                fprintf(stderr, "No pending jobs, exiting\n");
+                                exit(-1);
+                            }
                         }
                         else
                         {
+                            fprintf(stdout, "Could not get Job Id exiting\n");
                             exit(-1);
                         }
-                    }
-                    else
-                    {
-                        fprintf(stdout, "Could not get Job Id exiting\n");
-                        exit(-1);
-                    }
-                    pendingExecutionPromise.set_value();
-                };
+                        pendingExecutionPromise.set_value();
+                    };
 
                 StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
                 subscriptionRequest.ThingName = cmdData.input_thingName;
@@ -303,13 +294,11 @@ void updateJobExecution(
     subscriptionRequest.ThingName = thingName;
     subscriptionRequest.JobId = currentJobId;
 
-    auto subAckHandler = [&](int)
-    {
+    auto subAckHandler = [&](int) {
         // if error code returns it will be recorded by the other callback
         subAckedPromise.set_value();
     };
-    auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-    {
+    auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);
@@ -325,8 +314,7 @@ void updateJobExecution(
             return;
         }
     };
-    auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr)
-    {
+    auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
         (void)response;
         if (ioErr)
         {
@@ -337,8 +325,7 @@ void updateJobExecution(
         pendingExecutionPromise.set_value();
     };
 
-    auto publishHandler = [&](int ioErr)
-    {
+    auto publishHandler = [&](int ioErr) {
         if (ioErr)
         {
             fprintf(stderr, "Error %d occurred\n", ioErr);

@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(mqtt5-shadow-sync CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
-       "../../../utils/CommandLineUtils.cpp"
-       "../../../utils/CommandLineUtils.h"
+       "../../utils/CommandLineUtils.cpp"
+       "../../utils/CommandLineUtils.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
@@ -24,5 +24,9 @@ find_package(aws-crt-cpp REQUIRED)
 find_package(IotShadow-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
