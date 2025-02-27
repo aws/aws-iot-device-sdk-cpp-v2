@@ -184,9 +184,9 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
-        }
 
-        m_signal.notify_all();
+            m_signal.notify_all();
+        }
     }
 
     const R &GetResult()
