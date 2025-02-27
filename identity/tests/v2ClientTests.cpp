@@ -79,8 +79,8 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
                 {
                     std::lock_guard<std::mutex> guard(lock);
                     connected = true;
+                    signal.notify_all();
                 }
-                signal.notify_all();
             });
 
         client = Aws::Crt::Mqtt5::Mqtt5Client::NewMqtt5Client(mqtt5Options, allocator);
@@ -145,12 +145,15 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
             {
                 std::lock_guard<std::mutex> guard(lock);
                 connected = true;
+                signal.notify_all();
             }
-            signal.notify_all();
         };
 
-        auto uuid = Aws::Crt::UUID().ToString();
-        connection->Connect(uuid.c_str(), true, 30, 15000, 5000);
+        connection->OnConnectionFailure = [](Aws::Crt::Mqtt::MqttConnection &,
+                                             Aws::Crt::Mqtt::OnConnectionFailureData *) { printf("Derp\n"); };
+
+        auto clientId = "test-" + Aws::Crt::UUID().ToString();
+        connection->Connect(clientId.c_str(), true, 30, 15000, 5000);
 
         std::unique_lock<std::mutex> waitLock(lock);
         signal.wait(waitLock, [&connected]() { return connected; });
@@ -181,9 +184,9 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
-        }
 
-        m_signal.notify_all();
+            m_signal.notify_all();
+        }
     }
 
     const R &GetResult()
