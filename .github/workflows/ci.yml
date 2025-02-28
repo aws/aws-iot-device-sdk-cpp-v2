@@ -62,7 +62,7 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Install qemu/docker
-        run: run: docker run --privileged --rm tonistiigi/binfmt --install all
+        run: docker run --privileged --rm tonistiigi/binfmt --install all
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
