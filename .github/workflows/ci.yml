@@ -62,13 +62,13 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Install qemu/docker
-        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        run: docker run --privileged --rm tonistiigi/binfmt --install all
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
   raspberry:
-    runs-on: ubuntu-20.04 # latest
+    runs-on: ubuntu-24.04 # latest
     strategy:
       fail-fast: false
       matrix:
@@ -84,7 +84,7 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       # set arm arch
       - name: Install qemu/docker
-        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        run: docker run --privileged --rm tonistiigi/binfmt --install linux/arm/v7
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
@@ -644,7 +644,7 @@ jobs:
 
   # check that docs can still build
   check-docs:
-    runs-on: ubuntu-20.04 # latest
+    runs-on: ubuntu-22.04 # latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -677,7 +677,7 @@ jobs:
         uses: awslabs/aws-crt-builder/.github/actions/check-submodules@main
 
   check-codegen-edits:
-    runs-on: ubuntu-20.04 # latest
+    runs-on: ubuntu-22.04 # latest
     steps:
       - uses: actions/checkout@v2
         with:
