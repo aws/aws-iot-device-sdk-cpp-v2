@@ -58,7 +58,7 @@ static std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> s_createProtocolClient5(Aws
         mqtt5Options.WithHostName(Aws::Crt::String(aws_string_c_str(host)));
         mqtt5Options.WithPort(8883);
         mqtt5Options.WithTlsConnectionOptions(tlsContext.NewConnectionOptions());
-        
+
         mqtt5Options.WithClientConnectionSuccessCallback(
             [&lock, &signal, &connected](const Aws::Crt::Mqtt5::OnConnectionSuccessEventData &)
             {
