@@ -9,15 +9,12 @@ on:
 jobs:
   clang-format:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # latest
 
     steps:
-    - name: Checkout Sources
-      uses: actions/checkout@v1
+      - name: Checkout Sources
+        uses: actions/checkout@v4
 
-    - name: clang-format lint
-      uses: DoozyX/clang-format-lint-action@v0.13
-      with:
-        # List of extensions to check
-        extensions: cpp,h
-        clangFormatVersion: 11.1.0
+      - name: clang-format lint
+        run: |
+          ./format-check.py
