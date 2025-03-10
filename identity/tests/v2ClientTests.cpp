@@ -140,8 +140,7 @@ static std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> s_createProtocolClient311
         connection = client.NewConnection(aws_string_c_str(host), 8883, socketOptions, tlsContext, false);
 
         connection->OnConnectionSuccess =
-            [&connected, &lock, &signal](
-                Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionSuccessData *)
+            [&connected, &lock, &signal](Aws::Crt::Mqtt::MqttConnection &, Aws::Crt::Mqtt::OnConnectionSuccessData *)
         {
             {
                 std::lock_guard<std::mutex> guard(lock);
