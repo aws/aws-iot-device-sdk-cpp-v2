@@ -612,6 +612,7 @@ namespace Aws
             m_OnDataReceive = std::move(onDataReceive);
             m_OnStreamStarted = std::move(onStreamStarted);
             m_OnStreamStart = std::move(onStreamStart);
+            m_OnStreamStopped = std::move(onStreamStopped);
             m_OnStreamReset = std::move(onStreamReset);
             m_OnConnectionStarted = std::move(onConnectionStarted);
             m_OnConnectionReset = std::move(onConnectionReset);

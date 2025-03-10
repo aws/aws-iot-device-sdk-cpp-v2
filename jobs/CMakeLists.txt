@@ -90,7 +90,6 @@ if (BUILD_DEPS)
 endif()
 
 aws_add_sanitizers(IotJobs-cpp)
-
 target_link_libraries(IotJobs-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotjobs/" COMPONENT Development)
