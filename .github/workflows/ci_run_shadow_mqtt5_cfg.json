@@ -1,6 +1,6 @@
 {
     "language": "CPP",
-    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/shadow/mqtt5_shadow_sync/mqtt5-shadow-sync",
+    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/deprecated/shadow/mqtt5_shadow_sync/mqtt5-shadow-sync",
     "sample_region": "us-east-1",
     "sample_main_class": "",
     "arguments": [
