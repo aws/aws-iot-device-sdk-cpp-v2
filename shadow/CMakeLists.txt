@@ -89,8 +89,7 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-aws_add_sanitizers(${PROJECT_NAME})
-
+aws_add_sanitizers(IotShadow-cpp)
 target_link_libraries(IotShadow-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTSHADOW_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotshadow/" COMPONENT Development)
