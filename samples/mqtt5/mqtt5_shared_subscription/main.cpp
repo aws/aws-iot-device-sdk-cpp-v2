@@ -61,80 +61,95 @@ class sample_mqtt5_client
         connectOptions->WithClientId(input_clientId);
         builder->WithConnectOptions(connectOptions);
 
-        builder->WithClientConnectionSuccessCallback([result](const Mqtt5::OnConnectionSuccessEventData &eventData) {
-            fprintf(
-                stdout,
-                "[%s]: Connection succeed, clientid: %s.\n",
-                result->name.c_str(),
-                eventData.negotiatedSettings->getClientId().c_str());
-
-            try
-            {
-                result->connectionPromise.set_value(true);
-            }
-            catch (...)
+        builder->WithClientConnectionSuccessCallback(
+            [result](const Mqtt5::OnConnectionSuccessEventData &eventData)
             {
                 fprintf(
                     stdout,
-                    "[%s]: Exception ocurred trying to set connection promise (likely already set)\n",
-                    result->name.c_str());
-            }
-        });
+                    "[%s]: Connection succeed, clientid: %s.\n",
+                    result->name.c_str(),
+                    eventData.negotiatedSettings->getClientId().c_str());
 
-        builder->WithClientConnectionFailureCallback([result](const Mqtt5::OnConnectionFailureEventData &eventData) {
-            fprintf(
-                stdout,
-                "[%s]: Connection failed with error: %s.\n",
-                result->name.c_str(),
-                aws_error_debug_str(eventData.errorCode));
-
-            try
-            {
-                result->connectionPromise.set_value(false);
-            }
-            catch (...)
-            {
-                fprintf(
-                    stdout,
-                    "[%s]: Exception ocurred trying to set connection promise (likely already set)\n",
-                    result->name.c_str());
-            }
-        });
-
-        builder->WithClientStoppedCallback([result](const Mqtt5::OnStoppedEventData &) {
-            fprintf(stdout, "[%s]: Stopped.\n", result->name.c_str());
-            result->stoppedPromise.set_value();
-        });
-
-        builder->WithClientDisconnectionCallback([result](const Mqtt5::OnDisconnectionEventData &eventData) {
-            fprintf(
-                stdout,
-                "[%s]: Disconnection with reason: %s.\n",
-                result->name.c_str(),
-                aws_error_debug_str(eventData.errorCode));
-            if (eventData.disconnectPacket != nullptr)
-            {
-                fprintf(stdout, "\tReason code: %u\n", (uint32_t)eventData.disconnectPacket->getReasonCode());
-            }
-        });
-
-        builder->WithPublishReceivedCallback([result](const Mqtt5::PublishReceivedEventData &eventData) {
-            fprintf(stdout, "[%s]: Received a publish\n", result->name.c_str());
-
-            std::lock_guard<std::mutex> lock(result->receiveMutex);
-            if (eventData.publishPacket != nullptr)
-            {
-                fprintf(stdout, "\tPublish received on topic: %s\n", eventData.publishPacket->getTopic().c_str());
-                fprintf(stdout, "\tMessage: ");
-                fwrite(eventData.publishPacket->getPayload().ptr, 1, eventData.publishPacket->getPayload().len, stdout);
-                fprintf(stdout, "\n");
-
-                for (Mqtt5::UserProperty prop : eventData.publishPacket->getUserProperties())
+                try
                 {
-                    fprintf(stdout, "\t\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
+                    result->connectionPromise.set_value(true);
                 }
-            }
-        });
+                catch (...)
+                {
+                    fprintf(
+                        stdout,
+                        "[%s]: Exception ocurred trying to set connection promise (likely already set)\n",
+                        result->name.c_str());
+                }
+            });
+
+        builder->WithClientConnectionFailureCallback(
+            [result](const Mqtt5::OnConnectionFailureEventData &eventData)
+            {
+                fprintf(
+                    stdout,
+                    "[%s]: Connection failed with error: %s.\n",
+                    result->name.c_str(),
+                    aws_error_debug_str(eventData.errorCode));
+
+                try
+                {
+                    result->connectionPromise.set_value(false);
+                }
+                catch (...)
+                {
+                    fprintf(
+                        stdout,
+                        "[%s]: Exception ocurred trying to set connection promise (likely already set)\n",
+                        result->name.c_str());
+                }
+            });
+
+        builder->WithClientStoppedCallback(
+            [result](const Mqtt5::OnStoppedEventData &)
+            {
+                fprintf(stdout, "[%s]: Stopped.\n", result->name.c_str());
+                result->stoppedPromise.set_value();
+            });
+
+        builder->WithClientDisconnectionCallback(
+            [result](const Mqtt5::OnDisconnectionEventData &eventData)
+            {
+                fprintf(
+                    stdout,
+                    "[%s]: Disconnection with reason: %s.\n",
+                    result->name.c_str(),
+                    aws_error_debug_str(eventData.errorCode));
+                if (eventData.disconnectPacket != nullptr)
+                {
+                    fprintf(stdout, "\tReason code: %u\n", (uint32_t)eventData.disconnectPacket->getReasonCode());
+                }
+            });
+
+        builder->WithPublishReceivedCallback(
+            [result](const Mqtt5::PublishReceivedEventData &eventData)
+            {
+                fprintf(stdout, "[%s]: Received a publish\n", result->name.c_str());
+
+                std::lock_guard<std::mutex> lock(result->receiveMutex);
+                if (eventData.publishPacket != nullptr)
+                {
+                    fprintf(stdout, "\tPublish received on topic: %s\n", eventData.publishPacket->getTopic().c_str());
+                    fprintf(stdout, "\tMessage: ");
+                    fwrite(
+                        eventData.publishPacket->getPayload().ptr,
+                        1,
+                        eventData.publishPacket->getPayload().len,
+                        stdout);
+                    fprintf(stdout, "\n");
+
+                    for (Mqtt5::UserProperty prop : eventData.publishPacket->getUserProperties())
+                    {
+                        fprintf(
+                            stdout, "\t\twith UserProperty:(%s,%s)\n", prop.getName().c_str(), prop.getValue().c_str());
+                    }
+                }
+            });
 
         result->client = builder->Build();
         return result;
@@ -230,7 +245,8 @@ int main(int argc, char *argv[])
     /*********************** Subscribe the two subscriber MQTT5 clients ***************************/
 
     std::promise<Mqtt5::SubAckReasonCode> subscribeSuccess;
-    auto onSubAck = [&subscribeSuccess](int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback) {
+    auto onSubAck = [&subscribeSuccess](int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback)
+    {
         if (error_code != 0)
         {
             fprintf(
@@ -314,7 +330,8 @@ int main(int argc, char *argv[])
 
     /*********************** Publish ***************************/
 
-    auto onPublishComplete = [publisher](int, std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result) {
+    auto onPublishComplete = [publisher](int, std::shared_ptr<Aws::Crt::Mqtt5::PublishResult> result)
+    {
         if (!result->wasSuccessful())
         {
             fprintf(stdout, "[%s] Publish failed with error_code: %d", publisher->name.c_str(), result->getErrorCode());
