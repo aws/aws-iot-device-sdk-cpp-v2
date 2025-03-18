@@ -22,7 +22,10 @@ namespace Aws
             }
         }
 
-        DiscoverResponse::DiscoverResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        DiscoverResponse::DiscoverResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         DiscoverResponse &DiscoverResponse::operator=(const Crt::JsonView &doc)
         {

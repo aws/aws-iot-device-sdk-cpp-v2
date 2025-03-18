@@ -304,8 +304,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_DeleteShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -411,8 +410,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_GetNamedShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -516,8 +514,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_GetShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -741,8 +738,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_UpdateShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
