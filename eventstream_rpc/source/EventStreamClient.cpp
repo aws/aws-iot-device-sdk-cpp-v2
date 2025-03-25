@@ -139,10 +139,7 @@ namespace Aws
             }
         }
 
-        void MessageAmendment::SetPayload(Crt::Optional<Crt::ByteBuf> &&payload)
-        {
-            m_payload = std::move(payload);
-        }
+        void MessageAmendment::SetPayload(Crt::Optional<Crt::ByteBuf> &&payload) { m_payload = std::move(payload); }
 
         MessageAmendment::~MessageAmendment() noexcept
         {
