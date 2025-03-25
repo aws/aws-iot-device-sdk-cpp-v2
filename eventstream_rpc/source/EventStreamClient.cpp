@@ -104,7 +104,7 @@ namespace Aws
             if (this != &rhs)
             {
                 m_headers = std::move(rhs.m_headers);
-                m_payload = rhs.m_payload;
+                m_payload = std::move(rhs.m_payload);
                 m_allocator = rhs.m_allocator;
 
                 rhs.m_allocator = nullptr;
