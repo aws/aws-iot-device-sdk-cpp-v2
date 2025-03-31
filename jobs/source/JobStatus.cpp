@@ -100,5 +100,5 @@ namespace Aws
                 return static_cast<JobStatus>(-1);
             }
         } // namespace JobStatusMarshaller
-    }     // namespace Iotjobs
+    } // namespace Iotjobs
 } // namespace Aws
