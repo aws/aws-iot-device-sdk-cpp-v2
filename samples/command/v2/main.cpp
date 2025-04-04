@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
     Utils::cmdData cmdData = Utils::parseSampleInputBasicConnect(argc, argv, &apiHandle);
 
@@ -106,8 +107,10 @@ int main(int argc, char *argv[])
     context.m_commandClient = Aws::Iotcommand::NewClientFrom5(*context.m_protocolClient, requestResponseOptions);
     context.m_nextStreamId = 1;
 
+    context.m_protocolClient->Start();
+
     Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
-    request.DeviceType = "thing";
+    request.DeviceType = "things";
     request.DeviceId = "laptop_test_0001";
 
     Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
@@ -117,9 +120,10 @@ int main(int argc, char *argv[])
     options.WithSubscriptionStatusEventHandler([streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
                                                { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
 
-    context.m_commandClient->CreateCommandExecutionsStream(request, options);
+    auto operation = context.m_commandClient->CreateCommandExecutionsStream(request, options);
+    operation->Open();
 
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::this_thread::sleep_for(std::chrono::seconds(20));
 
     return 0;
 }
