@@ -406,17 +406,13 @@ namespace Aws
             {
 
                 std::function<void(Aws::Iot::RequestResponse::IncomingPublishEvent &&)> unmodeledHandler =
-                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&event)
+                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&publishEvent)
                 {
-                    const auto &payload = event.GetPayload();
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    if (!jsonObject.WasParseSuccessful())
+                    T modeledEvent;
+                    if (!s_initModeledEvent(publishEvent, modeledEvent))
                     {
                         return;
                     }
-
-                    T modeledEvent(jsonObject);
                     options.GetStreamHandler()(std::move(modeledEvent));
                 };
 
