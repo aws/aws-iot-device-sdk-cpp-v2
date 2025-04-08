@@ -169,6 +169,42 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
+        static struct aws_byte_cursor s_getSegmentFromTopic(const Aws::Crt::ByteCursor &topic, int segment)
+        {
+            struct aws_byte_cursor topicSegment;
+            AWS_ZERO_STRUCT(topicSegment);
+            int segmentPosition = 0;
+            while (aws_byte_cursor_next_split(&topic, '/', &topicSegment))
+            {
+                if (segmentPosition == segment)
+                {
+                    return topicSegment;
+                }
+                ++segmentPosition;
+            }
+            return {};
+        }
+
+        static bool s_initModeledEvent(
+            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
+            CommandExecutionsEvent &modeledEvent)
+        {
+            auto segmentExecutionId = s_getSegmentFromTopic(publishEvent.GetTopic(), 5);
+            modeledEvent.SetExecutionId(segmentExecutionId);
+            modeledEvent.SetPayload(publishEvent.GetPayload());
+            auto contentType = publishEvent.GetContentType();
+            if (contentType)
+            {
+                modeledEvent.SetContentType(*contentType);
+            }
+            auto messageExpiryIntervalSeconds = publishEvent.GetMessageExpiryIntervalSeconds();
+            if (messageExpiryIntervalSeconds)
+            {
+                modeledEvent.SetTimeout(*messageExpiryIntervalSeconds);
+            }
+            return true;
+        }
+
         template <typename T> class ServiceStreamingOperation : public Aws::Iot::RequestResponse::IStreamingOperation
         {
           public:
@@ -185,17 +221,13 @@ namespace Aws
             {
 
                 std::function<void(Aws::Iot::RequestResponse::IncomingPublishEvent &&)> unmodeledHandler =
-                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&event)
+                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&publishEvent)
                 {
-                    const auto &payload = event.GetPayload();
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    if (!jsonObject.WasParseSuccessful())
+                    T modeledEvent;
+                    if (!s_initModeledEvent(publishEvent, modeledEvent))
                     {
                         return;
                     }
-
-                    T modeledEvent(jsonObject);
                     options.GetStreamHandler()(std::move(modeledEvent));
                 };
 
@@ -216,41 +248,6 @@ namespace Aws
             void Open() override { m_stream->Open(); }
 
           private:
-            void UpdateCommandExecutionsEvent(
-                CommandExecutionsEvent &request,
-                const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent)
-            {
-                auto segmentExecutionId = GetSegmentFromTopic(publishEvent.GetTopic(), 5);
-                request.SetExecutionId(segmentExecutionId);
-                request.SetPayload(publishEvent.GetPayload());
-                auto contentType = publishEvent.GetContentType();
-                if (contentType)
-                {
-                    request.SetContentType(*contentType);
-                }
-                auto messageExpiryIntervalSeconds = publishEvent.GetMessageExpiryIntervalSeconds();
-                if (messageExpiryIntervalSeconds)
-                {
-                    request.SetTimeout(*messageExpiryIntervalSeconds);
-                }
-            }
-
-            struct aws_byte_cursor GetSegmentFromTopic(const Aws::Crt::ByteCursor &topic, int segment)
-            {
-                struct aws_byte_cursor topicSegment;
-                AWS_ZERO_STRUCT(topicSegment);
-                int segmentPosition = 0;
-                while (aws_byte_cursor_next_split(&topic, '/', &topicSegment))
-                {
-                    if (segmentPosition == segment)
-                    {
-                        return topicSegment;
-                    }
-                    ++segmentPosition;
-                }
-                return {};
-            }
-
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_stream;
         };
 
