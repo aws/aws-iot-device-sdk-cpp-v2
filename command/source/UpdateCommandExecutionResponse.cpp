@@ -17,9 +17,9 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("timestamp"))
+            if (doc.ValueExists("executionId"))
             {
-                val.Timestamp = doc.GetDouble("timestamp");
+                val.ExecutionId = doc.GetString("executionId");
             }
         }
 
@@ -27,9 +27,9 @@ namespace Aws
         {
             (void)object;
 
-            if (Timestamp)
+            if (ExecutionId)
             {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+                object.WithString("executionId", *ExecutionId);
             }
         }
 

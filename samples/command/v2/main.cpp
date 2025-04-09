@@ -9,9 +9,10 @@
 #include <aws/iotcommand/CommandExecutionsEvent.h>
 #include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommand/IotCommandClientV2.h>
+#include <aws/iotcommand/RejectedErrorCode.h>
 #include <aws/iotcommand/UpdateCommandExecutionRequest.h>
 #include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ServiceError.h>
+#include <aws/iotcommand/V2ErrorResponse.h>
 
 #include <algorithm>
 #include <cinttypes>
@@ -149,18 +150,53 @@ int main(int argc, char *argv[])
         request.DeviceType = "things";
         request.DeviceId = "laptop_test_0001";
         request.ExecutionId = executionId;
-        request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
+        request.Status = Aws::Iotcommand::CommandStatus::REJECTED;
         context.m_commandClient->UpdateCommandExecution(
             request,
             [&updatePromise](Aws::Iotcommand::UpdateCommandExecutionResult &&result)
             {
                 if (result.IsSuccess())
                 {
-                    fprintf(stdout, "========= Success\n");
+                    fprintf(
+                        stdout,
+                        "========= Successfully updated execution for ID %s\n",
+                        result.GetResponse().ExecutionId->c_str());
                 }
                 else
                 {
-                    fprintf(stdout, "========= Error: code %d\n", result.GetError().GetErrorCode());
+                    // ==== LoadFromObject: '{"error":"ResourceNotFound","errorMessage":"The command execution kokoko
+                    // was not found.","executionId":"kokoko"}'
+                    // ==== LoadFromObject: '{"error":"InvalidStateTransition","errorMessage":"Command execution status
+                    // cannot be updated to CREATED.","executionId":"12fa1636-f9a9-442f-a367-e311db5d4e73"}'
+                    fprintf(stdout, "========= Error: internal code: %d\n", result.GetError().GetErrorCode());
+                    if (result.GetError().HasModeledError())
+                    {
+                        if (result.GetError().GetModeledError().ErrorMessage)
+                        {
+                            fprintf(
+                                stdout,
+                                "========= Error: message %s\n",
+                                result.GetError().GetModeledError().ErrorMessage->c_str());
+                        }
+                        if (result.GetError().GetModeledError().Error)
+                        {
+                            fprintf(
+                                stdout,
+                                "========= Error: code: %d\n",
+                                static_cast<int>(*result.GetError().GetModeledError().Error));
+                            fprintf(
+                                stdout,
+                                "========= Error: code str: %s\n",
+                                RejectedErrorCodeMarshaller::ToString(*result.GetError().GetModeledError().Error));
+                        }
+                        if (result.GetError().GetModeledError().ExecutionId)
+                        {
+                            fprintf(
+                                stdout,
+                                "========= Error: execution ID: %s\n",
+                                result.GetError().GetModeledError().ExecutionId->c_str());
+                        }
+                    }
                 }
                 updatePromise.set_value();
             });
