@@ -14,6 +14,9 @@ namespace Aws
             UpdateCommandExecutionResponse &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
+
             if (doc.ValueExists("timestamp"))
             {
                 val.Timestamp = doc.GetDouble("timestamp");
@@ -22,6 +25,8 @@ namespace Aws
 
         void UpdateCommandExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
+
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());

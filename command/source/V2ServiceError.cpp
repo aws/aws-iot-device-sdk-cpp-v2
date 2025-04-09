@@ -12,6 +12,9 @@ namespace Aws
 
         void V2ServiceError::LoadFromObject(V2ServiceError &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
+
             if (doc.ValueExists("code"))
             {
                 val.Code = RejectedErrorCodeMarshaller::FromString(doc.GetString("code"));
@@ -30,6 +33,8 @@ namespace Aws
 
         void V2ServiceError::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
+
             if (Code)
             {
                 object.WithString("code", RejectedErrorCodeMarshaller::ToString(*Code));

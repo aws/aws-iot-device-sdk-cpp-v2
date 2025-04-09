@@ -10,9 +10,16 @@ namespace Aws
     namespace Iotcommand
     {
 
-        void CommandExecutionsEvent::LoadFromObject(CommandExecutionsEvent &val, const Aws::Crt::JsonView &doc) {}
+        void CommandExecutionsEvent::LoadFromObject(CommandExecutionsEvent &val, const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-        void CommandExecutionsEvent::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void CommandExecutionsEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         CommandExecutionsEvent::CommandExecutionsEvent(const Crt::JsonView &doc)
         {

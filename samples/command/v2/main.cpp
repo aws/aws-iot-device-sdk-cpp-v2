@@ -9,6 +9,9 @@
 #include <aws/iotcommand/CommandExecutionsEvent.h>
 #include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommand/IotCommandClientV2.h>
+#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
+#include <aws/iotcommand/V2ServiceError.h>
 
 #include <algorithm>
 #include <cinttypes>
@@ -70,6 +73,8 @@ static void s_onSubscriptionStatusEvent(uint64_t id, Aws::Iot::RequestResponse::
         Aws::Crt::ErrorDebugString(event.GetErrorCode()));
 }
 
+void updateExecution(const Aws::Crt::String &executionId) {}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
@@ -109,21 +114,61 @@ int main(int argc, char *argv[])
 
     context.m_protocolClient->Start();
 
-    Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
-    request.DeviceType = "things";
-    request.DeviceId = "laptop_test_0001";
+    Aws::Crt::String executionId;
 
-    Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
-    options.WithStreamHandler([](CommandExecutionsEvent &&event)
-                              { fprintf(stdout, "Got new event %s\n", event.ExecutionId->c_str()); });
-    uint32_t streamId = 8;
-    options.WithSubscriptionStatusEventHandler([streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
-                                               { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
+    {
+        std::promise<void> executionIdPromise;
+        Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
+        request.DeviceType = "things";
+        request.DeviceId = "laptop_test_0001";
 
-    auto operation = context.m_commandClient->CreateCommandExecutionsStream(request, options);
-    operation->Open();
+        Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
+        options.WithStreamHandler(
+            [&executionIdPromise, &executionId](CommandExecutionsEvent &&event)
+            {
+                fprintf(stdout, "==== Got new event %s\n", event.ExecutionId->c_str());
+                executionId = *event.ExecutionId;
+                executionIdPromise.set_value();
+            });
+        uint32_t streamId = 8;
+        options.WithSubscriptionStatusEventHandler(
+            [streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
+            { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
 
-    std::this_thread::sleep_for(std::chrono::seconds(20));
+        auto operation = context.m_commandClient->CreateCommandExecutionsStream(request, options);
+        operation->Open();
+
+        fprintf(stdout, "==== waiting for a command\n");
+        executionIdPromise.get_future().wait();
+        fprintf(stdout, "==== received new command\n");
+    }
+
+    {
+        std::promise<void> updatePromise;
+        Aws::Iotcommand::UpdateCommandExecutionRequest request;
+        request.DeviceType = "things";
+        request.DeviceId = "laptop_test_0001";
+        request.ExecutionId = executionId;
+        request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
+        context.m_commandClient->UpdateCommandExecution(
+            request,
+            [&updatePromise](Aws::Iotcommand::UpdateCommandExecutionResult &&result)
+            {
+                if (result.IsSuccess())
+                {
+                    fprintf(stdout, "========= Success\n");
+                }
+                else
+                {
+                    fprintf(stdout, "========= Error: code %d\n", result.GetError().GetErrorCode());
+                }
+                updatePromise.set_value();
+            });
+
+        fprintf(stdout, "==== waiting for update\n");
+        updatePromise.get_future().wait();
+        fprintf(stdout, "==== updated\n");
+    }
 
     return 0;
 }

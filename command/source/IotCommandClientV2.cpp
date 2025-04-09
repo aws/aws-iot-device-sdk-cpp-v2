@@ -121,19 +121,27 @@ namespace Aws
 
             Aws::Crt::StringStream subscriptionTopicStream0;
             subscriptionTopicStream0 << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                                     << "/executions/" << *request.ExecutionId << "/response/+/json";
+                                     << "/executions/" << *request.ExecutionId << "/response/accepted/json";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
-            struct aws_byte_cursor subscriptionTopicFilters[1] = {
+            Aws::Crt::StringStream subscriptionTopicStream1;
+            subscriptionTopicStream1 << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
+                                     << "/executions/" << *request.ExecutionId << "/response/rejected/json";
+            Aws::Crt::String subscriptionTopic1 = subscriptionTopicStream1.str();
+
+            struct aws_byte_cursor subscriptionTopicFilters[2] = {
                 Aws::Crt::ByteCursorFromString(subscriptionTopic0),
+                Aws::Crt::ByteCursorFromString(subscriptionTopic1),
             };
 
             Aws::Crt::StringStream responsePathTopicAcceptedStream;
-            responsePathTopicAcceptedStream << publishTopic << "/accepted";
+            responsePathTopicAcceptedStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
+                                            << "/executions/" << *request.ExecutionId << "/response/accepted/json";
             Aws::Crt::String responsePathTopicAccepted = responsePathTopicAcceptedStream.str();
 
             Aws::Crt::StringStream responsePathTopicRejectedStream;
-            responsePathTopicRejectedStream << publishTopic << "/rejected";
+            responsePathTopicRejectedStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
+                                            << "/executions/" << *request.ExecutionId << "/response/rejected/json";
             Aws::Crt::String responsePathTopicRejected = responsePathTopicRejectedStream.str();
 
             struct aws_mqtt_request_operation_response_path responsePaths[2];
@@ -150,7 +158,7 @@ namespace Aws
             struct aws_mqtt_request_operation_options options;
             AWS_ZERO_STRUCT(options);
             options.subscription_topic_filters = subscriptionTopicFilters;
-            options.subscription_topic_filter_count = 1;
+            options.subscription_topic_filter_count = 2;
             options.response_paths = responsePaths;
             options.response_path_count = 2;
             options.publish_topic = Aws::Crt::ByteCursorFromString(publishTopic);
@@ -259,6 +267,7 @@ namespace Aws
             topicStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
                         << "/executions/+/request/json";
             Aws::Crt::String topic = topicStream.str();
+
             return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
         }

@@ -14,9 +14,14 @@ namespace Aws
             CommandExecutionsSubscriptionRequest &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
         }
 
-        void CommandExecutionsSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void CommandExecutionsSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         CommandExecutionsSubscriptionRequest::CommandExecutionsSubscriptionRequest(const Crt::JsonView &doc)
         {
