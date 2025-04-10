@@ -38,8 +38,9 @@ namespace Aws
             InvalidRequest,
 
             /**
-             * An update attempted to change the job execution to a state that is invalid because of the job execution's
-             * current state. In this case, the body of the error message also contains the executionState field.
+             * An update attempted to change the command execution to a state that is invalid because of the command
+             * execution's current state. In this case, the body of the error message also contains the executionState
+             * field.
              */
             InvalidStateTransition,
 
@@ -49,8 +50,9 @@ namespace Aws
             ResourceNotFound,
 
             /**
-             * The expected version specified in the request does not match the version of the job execution in the AWS
-             * IoT Commands service. In this case, the body of the error message also contains the executionState field.
+             * The expected version specified in the request does not match the version of the command execution in the
+             * AWS IoT Commands service. In this case, the body of the error message also contains the executionState
+             * field.
              */
             VersionMismatch,
 
@@ -65,7 +67,7 @@ namespace Aws
             RequestThrottled,
 
             /**
-             * Occurs when a command to describe a job is performed on a job that is in a terminal state.
+             * Occurs when a command to describe a command is performed on a command that is in a terminal state.
              */
             TerminalStateReached,
 

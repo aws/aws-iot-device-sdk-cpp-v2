@@ -17,7 +17,7 @@ namespace Aws
     {
 
         /**
-         * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
+         * Sent whenever a command execution is added for a thing or a client.
          *
          */
         class AWS_IOTCOMMAND_API CommandExecutionsEvent final

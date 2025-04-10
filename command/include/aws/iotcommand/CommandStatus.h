@@ -17,7 +17,7 @@ namespace Aws
     {
 
         /**
-         * The status of the job execution.
+         * The status of the command execution.
          *
          */
         enum class CommandStatus

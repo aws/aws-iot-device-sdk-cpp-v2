@@ -21,6 +21,11 @@ namespace Aws
             {
                 val.Status = CommandStatusMarshaller::FromString(doc.GetString("status"));
             }
+
+            if (doc.ValueExists("statusReason"))
+            {
+                val.StatusReason = doc.GetJsonObject("statusReason");
+            }
         }
 
         void UpdateCommandExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
@@ -30,6 +35,13 @@ namespace Aws
             if (Status)
             {
                 object.WithString("status", CommandStatusMarshaller::ToString(*Status));
+            }
+
+            if (StatusReason)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                StatusReason->SerializeToObject(jsonObject);
+                object.WithObject("statusReason", std::move(jsonObject));
             }
         }
 
