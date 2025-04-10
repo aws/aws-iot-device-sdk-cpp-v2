@@ -6,7 +6,9 @@
  * This file is generated
  */
 
+#include <aws/iotcommand/CommandDeviceType.h>
 #include <aws/iotcommand/CommandStatus.h>
+#include <aws/iotcommand/StatusReason.h>
 
 #include <aws/iotcommand/Exports.h>
 
@@ -33,10 +35,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             *
+             * The type of a target device.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::String> DeviceType;
+            Aws::Crt::Optional<Aws::Iotcommand::CommandDeviceType> DeviceType;
 
             /**
              * The name of the thing associated with the device.
@@ -45,7 +47,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> DeviceId;
 
             /**
-             * Execution ID
+             * ID of the command execution that needs to be updated.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ExecutionId;
@@ -55,6 +57,12 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Iotcommand::CommandStatus> Status;
+
+            /**
+             * A reason for the updated status.
+             *
+             */
+            Aws::Crt::Optional<Aws::Iotcommand::StatusReason> StatusReason;
 
           private:
             static void LoadFromObject(UpdateCommandExecutionRequest &obj, const Crt::JsonView &doc);

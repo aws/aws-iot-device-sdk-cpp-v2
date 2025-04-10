@@ -98,9 +98,6 @@ namespace Aws
              * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
              *
              *
-             * AWS documentation:
-             * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-jobexecutionschanged
-             *
              * @param request modeled streaming operation subscription configuration
              * @param options
              *
