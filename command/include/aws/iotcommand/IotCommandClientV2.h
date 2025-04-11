@@ -98,15 +98,46 @@ namespace Aws
              * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
              *
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
-            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateCommandExecutionsStream(
-                const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
+                CreateCommandExecutionsCborPayloadStream(
+                    const CommandExecutionsSubscriptionRequest &request,
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+
+            /**
+             * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
+             *
+             *
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
+             *
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
+             */
+            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
+                CreateCommandExecutionsGenericPayloadStream(
+                    const CommandExecutionsSubscriptionRequest &request,
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+
+            /**
+             * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
+             *
+             *
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
+             *
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
+             */
+            virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
+                CreateCommandExecutionsJsonPayloadStream(
+                    const CommandExecutionsSubscriptionRequest &request,
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
         };
 
         /**

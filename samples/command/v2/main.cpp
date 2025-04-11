@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
             [streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
             { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
 
-        auto operation = context.m_commandClient->CreateCommandExecutionsStream(request, options);
+        auto operation = context.m_commandClient->CreateCommandExecutionsJsonPayloadStream(request, options);
         operation->Open();
 
         fprintf(stdout, "==== waiting for a command\n");
