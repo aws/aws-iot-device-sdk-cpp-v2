@@ -8,37 +8,78 @@
 #include <aws/iotcommand/CommandDeviceType.h>
 #include <aws/iotcommand/IotCommandClientV2.h>
 
+#include <atomic>
+#include <condition_variable>
 #include <memory>
+#include <mutex>
+
+#include "command_executor.h"
 
 namespace Aws
 {
     namespace IotcommandSample
     {
 
+        /**
+         * Sample wrapper around client for the IoT command service.
+         */
         class CommandStreamHandler
         {
           public:
-            explicit CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> commandClient);
+            explicit CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> &&commandClient);
 
-            bool openJsonStream(Aws::Iotcommand::CommandDeviceType deviceType, const Aws::Crt::String &deviceId);
+            CommandStreamHandler(CommandStreamHandler &&) noexcept = default;
+            CommandStreamHandler &operator=(CommandStreamHandler &&) noexcept = default;
+
+            /**
+             * TODO Explain why no copy.
+             */
+            CommandStreamHandler(const CommandStreamHandler &) = delete;
+            CommandStreamHandler &operator=(const CommandStreamHandler &) = delete;
+
+            /**
+             *
+             * @param deviceType
+             * @param deviceId
+             * @param payloadFormat
+             * @return
+             */
+            bool openStream(
+                Aws::Iotcommand::CommandDeviceType deviceType,
+                const Aws::Crt::String &deviceId,
+                const Aws::Crt::String &payloadFormat);
 
             void listOpenedStreams();
 
             bool closeStream(uint64_t streamId);
 
           private:
-            struct StreamingOperationWrapper
+            struct StreamingOperation
             {
-                Aws::Iotcommand::CommandDeviceType deviceType;
                 /**
-                 * Depending on device type value, this field is either a thing name or a client ID.
+                 * A streaming operation instance. While this object is alive, the corresponding matching command
+                 * executions will be delivered to it.
+                 */
+                std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> stream;
+
+                /**
+                 * Determine if the device should subscribe for commands addressed to an IoT Thing or MQTT client.
+                 */
+                Aws::Iotcommand::CommandDeviceType deviceType;
+
+                /**
+                 * Depending on device type value, this field is either an IoT Thing name or a client ID.
                  */
                 Aws::Crt::String deviceId;
-                Aws::Crt::String payloadType;
-                std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> stream;
-            };
 
-            void commandExecutionHandler(const Aws::Crt::String &executionId);
+                /**
+                 * IoT Command uses a designated MQTT topics for JSON and CBOR. For every other payload format or for
+                 * the cases when payload format is unknown, a generic topic is used.
+                 * TODO Describe this in the service itself.
+                 * TODO Provide example?
+                 */
+                Aws::Crt::String payloadType;
+            };
 
             void registerStream(
                 uint64_t id,
@@ -57,11 +98,14 @@ namespace Aws
             std::shared_ptr<Aws::Iotcommand::IClientV2> m_commandClient;
 
             /**
+             * TODO
+             */
+            std::shared_ptr<CommandExecutor> m_commandExecutor;
+
+            /**
              * Opened streaming operations.
              */
-            std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
-
-            uint64_t m_nextStreamId = 1;
+            std::unordered_map<uint64_t, StreamingOperation> m_streams;
         };
 
     } // namespace IotcommandSample

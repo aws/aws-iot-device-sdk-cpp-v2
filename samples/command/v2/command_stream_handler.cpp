@@ -6,7 +6,7 @@
 #include "command_stream_handler.h"
 
 #include <aws/crt/Api.h>
-#include <aws/iotcommand/CommandExecutionsEvent.h>
+#include <aws/iotcommand/CommandExecutionEvent.h>
 #include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommand/RejectedErrorCode.h>
 #include <aws/iotcommand/UpdateCommandExecutionRequest.h>
@@ -22,41 +22,69 @@ namespace Aws
     namespace IotcommandSample
     {
 
-        CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> commandClient)
+        CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> &&commandClient)
             : m_commandClient(std::move(commandClient))
         {
+            m_commandExecutor = std::make_shared<CommandExecutor>(m_commandClient);
         }
 
-        bool CommandStreamHandler::openJsonStream(
+        bool CommandStreamHandler::openStream(
             Aws::Iotcommand::CommandDeviceType deviceType,
-            const Aws::Crt::String &deviceId)
+            const Aws::Crt::String &deviceId,
+            const Aws::Crt::String &payloadFormat)
         {
+            static uint64_t nextStreamId = 1;
+
             Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
             request.DeviceType = deviceType;
             request.DeviceId = deviceId;
 
-            Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
+            Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionEvent> options;
             options.WithStreamHandler(
-                [](Aws::Iotcommand::CommandExecutionsEvent &&event)
+                [this, deviceType, deviceId, payloadFormat](Aws::Iotcommand::CommandExecutionEvent &&event)
                 {
-                    fprintf(stdout, "Received new command:\n  execution ID: '%s'\n", event.ExecutionId->c_str());
+                    fprintf(
+                        stdout,
+                        "Received new command for '%s' payload format:\n  execution ID: '%s'\n",
+                        payloadFormat.c_str(),
+                        event.ExecutionId->c_str());
                     if (event.ContentType)
                     {
                         fprintf(stdout, "  payload format: '%s'\n", event.ContentType->c_str());
                     }
-                    if (event.Timeout) {
+                    if (event.Timeout)
+                    {
                         fprintf(stdout, "  execution timeout: %d\n", *event.Timeout);
                     }
-                    if (event.Payload) {
+                    if (event.Payload)
+                    {
                         fprintf(stdout, "  payload size: %lu\n", event.Payload->size());
                     }
+
+                    CommandExecutionContext commandExecution{
+                        std::move(deviceType), std::move(deviceId), std::move(event)};
+                    m_commandExecutor->executeCommand(std::move(commandExecution));
                 });
-            auto streamId = m_nextStreamId++;
+
+            auto streamId = nextStreamId++;
             options.WithSubscriptionStatusEventHandler(
                 [streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
                 { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
 
-            auto operation = m_commandClient->CreateCommandExecutionsJsonPayloadStream(request, options);
+            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> operation;
+            if (payloadFormat == "json")
+            {
+                operation = m_commandClient->CreateCommandExecutionsJsonPayloadStream(request, options);
+            }
+            else if (payloadFormat == "cbor")
+            {
+                operation = m_commandClient->CreateCommandExecutionsCborPayloadStream(request, options);
+            }
+            else
+            {
+                operation = m_commandClient->CreateCommandExecutionsGenericPayloadStream(request, options);
+            }
+
             registerStream(streamId, std::move(operation), deviceType, deviceId);
 
             return true;
@@ -68,7 +96,7 @@ namespace Aws
             for (const auto &iter : m_streams)
             {
                 uint64_t streamId = iter.first;
-                const StreamingOperationWrapper &wrapper = iter.second;
+                const StreamingOperation &wrapper = iter.second;
                 fprintf(
                     stdout,
                     "  %" PRIu64 ": device type '%s', device ID '%s', payload type '%s'\n",
@@ -86,81 +114,13 @@ namespace Aws
             return true;
         }
 
-        void CommandStreamHandler::commandExecutionHandler(const Aws::Crt::String &executionId)
-        {
-            std::promise<void> updatePromise;
-            Aws::Iotcommand::UpdateCommandExecutionRequest request;
-            request.DeviceType = Aws::Iotcommand::CommandDeviceType::THING;
-            request.DeviceId = "laptop_test_0001";
-            request.ExecutionId = executionId;
-            request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
-            Aws::Iotcommand::StatusReason statusReason;
-            statusReason.ReasonCode = "I-CAN-FAIL-TOO";
-            statusReason.ReasonDescription = "But I want to succeed...";
-            request.StatusReason = statusReason;
-            m_commandClient->UpdateCommandExecution(
-                request,
-                [&updatePromise](Aws::Iotcommand::UpdateCommandExecutionResult &&result)
-                {
-                    if (result.IsSuccess())
-                    {
-                        fprintf(
-                            stdout,
-                            "========= Successfully updated execution for ID %s\n",
-                            result.GetResponse().ExecutionId->c_str());
-                    }
-                    else
-                    {
-                        // ==== LoadFromObject: '{"error":"ResourceNotFound","errorMessage":"The command execution
-                        // kokoko was not found.","executionId":"kokoko"}'
-                        // ==== LoadFromObject: '{"error":"InvalidStateTransition","errorMessage":"Command execution
-                        // status cannot be updated to CREATED.","executionId":"12fa1636-f9a9-442f-a367-e311db5d4e73"}'
-                        fprintf(stdout, "========= Error: internal code: %d\n", result.GetError().GetErrorCode());
-                        if (result.GetError().HasModeledError())
-                        {
-                            if (result.GetError().GetModeledError().ErrorMessage)
-                            {
-                                fprintf(
-                                    stdout,
-                                    "========= Error: message %s\n",
-                                    result.GetError().GetModeledError().ErrorMessage->c_str());
-                            }
-                            if (result.GetError().GetModeledError().Error)
-                            {
-                                fprintf(
-                                    stdout,
-                                    "========= Error: code: %d\n",
-                                    static_cast<int>(*result.GetError().GetModeledError().Error));
-                                fprintf(
-                                    stdout,
-                                    "========= Error: code str: %s\n",
-                                    Aws::Iotcommand::RejectedErrorCodeMarshaller::ToString(
-                                        *result.GetError().GetModeledError().Error));
-                            }
-                            if (result.GetError().GetModeledError().ExecutionId)
-                            {
-                                fprintf(
-                                    stdout,
-                                    "========= Error: execution ID: %s\n",
-                                    result.GetError().GetModeledError().ExecutionId->c_str());
-                            }
-                        }
-                    }
-                    updatePromise.set_value();
-                });
-
-            fprintf(stdout, "==== waiting for update\n");
-            updatePromise.get_future().wait();
-            fprintf(stdout, "==== updated\n");
-        }
-
         void CommandStreamHandler::registerStream(
             uint64_t id,
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> &&operation,
             Aws::Iotcommand::CommandDeviceType deviceType,
             Aws::Crt::String deviceId)
         {
-            StreamingOperationWrapper wrapper;
+            StreamingOperation wrapper;
             wrapper.stream = std::move(operation);
 
             wrapper.deviceType = deviceType;

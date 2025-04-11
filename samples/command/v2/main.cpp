@@ -79,10 +79,11 @@ static void s_printHelp()
     fprintf(stdout, "  stop -- stops the protocol client\n\n");
     fprintf(
         stdout,
-        "  open-iot-thing-stream <payload-type> <thing-name> -- opens a streaming operation for a given IoT thing\n");
+        "  open-iot-thing-stream <thing-name> [<payload-type>] -- opens a streaming operation for a given IoT thing\n");
     fprintf(
         stdout,
-        "  open-mqtt-client-stream <payload-type> <client-id> -- opens a streaming operation for a given client ID\n");
+        "  open-mqtt-client-stream <client-id> [<payload-type>] -- opens a streaming operation for a given client "
+        "ID\n");
     fprintf(stdout, "  list-streams -- lists all open streaming operations\n");
     fprintf(stdout, "  close-stream <stream-id> -- closes a streaming operation\n");
 }
@@ -93,25 +94,17 @@ static void s_handleOpenStream(
     ApplicationContext &context)
 {
     Aws::Crt::String remaining = params;
-    Aws::Crt::String payloadContentType = s_nibbleNextToken(remaining);
     Aws::Crt::String deviceId = s_nibbleNextToken(remaining);
+    Aws::Crt::String payloadFormat = s_nibbleNextToken(remaining);
 
-    if (payloadContentType.empty() || deviceId.empty())
+    if (deviceId.empty() || payloadFormat.empty())
     {
-        fprintf(stdout, "Invalid arguments to oopen-iot-thing-stream command!\n\n");
+        fprintf(stdout, "Invalid arguments to open-iot-thing-stream command!\n\n");
         s_printHelp();
         return;
     }
 
-    if (payloadContentType == "json")
-    {
-        context.commandStreamHandler.openJsonStream(deviceType, deviceId);
-    }
-    else
-    {
-        fprintf(stdout, "Invalid arguments to oopen-iot-thing-stream command!\n\n");
-        s_printHelp();
-    }
+    context.commandStreamHandler.openStream(deviceType, deviceId, payloadFormat);
 }
 
 static void s_handleListStreams(ApplicationContext &context)
@@ -124,7 +117,8 @@ static void s_handleCloseStream(const Aws::Crt::String &params, ApplicationConte
     Aws::Crt::String remaining = params;
     Aws::Crt::String streamId = s_nibbleNextToken(remaining);
 
-    if (streamId.length() == 0) {
+    if (streamId.length() == 0)
+    {
         fprintf(stdout, "Invalid arguments to close-stream command!\n\n");
         s_printHelp();
         return;
@@ -184,7 +178,7 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-//    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+    //    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
     Utils::cmdData cmdData = Utils::parseSampleInputBasicConnect(argc, argv, &apiHandle);
 
