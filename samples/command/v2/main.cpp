@@ -124,7 +124,8 @@ static void s_handleCloseStream(const Aws::Crt::String &params, ApplicationConte
     Aws::Crt::String remaining = params;
     Aws::Crt::String streamId = s_nibbleNextToken(remaining);
 
-    if (streamId.length() == 0) {
+    if (streamId.length() == 0)
+    {
         fprintf(stdout, "Invalid arguments to close-stream command!\n\n");
         s_printHelp();
         return;
@@ -184,7 +185,7 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-//    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+    //    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
     Utils::cmdData cmdData = Utils::parseSampleInputBasicConnect(argc, argv, &apiHandle);
 
