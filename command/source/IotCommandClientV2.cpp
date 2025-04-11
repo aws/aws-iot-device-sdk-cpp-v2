@@ -306,7 +306,7 @@ namespace Aws
         {
             Aws::Crt::StringStream topicStream;
             topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
-                        << *request.DeviceId << "/executions/+/request";
+                        << *request.DeviceId << "/executions/+/request/json";
             Aws::Crt::String topic = topicStream.str();
 
             return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
