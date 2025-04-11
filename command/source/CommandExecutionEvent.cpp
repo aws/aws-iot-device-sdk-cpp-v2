@@ -3,52 +3,52 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/CommandExecutionsEvent.h>
+#include <aws/iotcommand/CommandExecutionEvent.h>
 
 namespace Aws
 {
     namespace Iotcommand
     {
 
-        void CommandExecutionsEvent::LoadFromObject(CommandExecutionsEvent &val, const Aws::Crt::JsonView &doc)
+        void CommandExecutionEvent::LoadFromObject(CommandExecutionEvent &val, const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
         }
 
-        void CommandExecutionsEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void CommandExecutionEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
         }
 
-        CommandExecutionsEvent::CommandExecutionsEvent(const Crt::JsonView &doc)
+        CommandExecutionEvent::CommandExecutionEvent(const Crt::JsonView &doc)
         {
             LoadFromObject(*this, doc);
         }
 
-        CommandExecutionsEvent &CommandExecutionsEvent::operator=(const Crt::JsonView &doc)
+        CommandExecutionEvent &CommandExecutionEvent::operator=(const Crt::JsonView &doc)
         {
-            *this = CommandExecutionsEvent(doc);
+            *this = CommandExecutionEvent(doc);
             return *this;
         }
 
-        void CommandExecutionsEvent::SetExecutionId(Aws::Crt::ByteCursor value)
+        void CommandExecutionEvent::SetExecutionId(Aws::Crt::ByteCursor value)
         {
             ExecutionId = Aws::Crt::String((const char *)value.ptr, value.len);
         }
 
-        void CommandExecutionsEvent::SetPayload(Aws::Crt::ByteCursor payload)
+        void CommandExecutionEvent::SetPayload(Aws::Crt::ByteCursor payload)
         {
             Payload = Aws::Crt::Vector<uint8_t>(payload.ptr, payload.ptr + payload.len);
         }
 
-        void CommandExecutionsEvent::SetContentType(Aws::Crt::ByteCursor contentType)
+        void CommandExecutionEvent::SetContentType(Aws::Crt::ByteCursor contentType)
         {
             ContentType = Aws::Crt::String((const char *)contentType.ptr, contentType.len);
             ;
         }
 
-        void CommandExecutionsEvent::SetTimeout(int32_t messageExpiryInterval)
+        void CommandExecutionEvent::SetTimeout(int32_t messageExpiryInterval)
         {
             Timeout = messageExpiryInterval;
         }

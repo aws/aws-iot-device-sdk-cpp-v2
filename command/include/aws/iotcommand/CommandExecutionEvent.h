@@ -20,13 +20,13 @@ namespace Aws
          * Sent whenever a command execution is added for a thing or a client.
          *
          */
-        class AWS_IOTCOMMAND_API CommandExecutionsEvent final
+        class AWS_IOTCOMMAND_API CommandExecutionEvent final
         {
           public:
-            CommandExecutionsEvent() = default;
+            CommandExecutionEvent() = default;
 
-            CommandExecutionsEvent(const Crt::JsonView &doc);
-            CommandExecutionsEvent &operator=(const Crt::JsonView &doc);
+            CommandExecutionEvent(const Crt::JsonView &doc);
+            CommandExecutionEvent &operator=(const Crt::JsonView &doc);
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
@@ -55,7 +55,7 @@ namespace Aws
             void SetTimeout(int32_t messageExpiryInterval);
 
           private:
-            static void LoadFromObject(CommandExecutionsEvent &obj, const Crt::JsonView &doc);
+            static void LoadFromObject(CommandExecutionEvent &obj, const Crt::JsonView &doc);
         };
     } // namespace Iotcommand
 } // namespace Aws

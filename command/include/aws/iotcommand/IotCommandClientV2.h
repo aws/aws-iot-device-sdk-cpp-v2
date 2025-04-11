@@ -64,7 +64,7 @@ namespace Aws
             Aws::Crt::Optional<E> m_modeledError;
         };
 
-        class CommandExecutionsEvent;
+        class CommandExecutionEvent;
         class CommandExecutionsSubscriptionRequest;
         class UpdateCommandExecutionRequest;
         class UpdateCommandExecutionResponse;
@@ -107,7 +107,7 @@ namespace Aws
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
                 CreateCommandExecutionsCborPayloadStream(
                     const CommandExecutionsSubscriptionRequest &request,
-                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) = 0;
 
             /**
              * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
@@ -122,7 +122,7 @@ namespace Aws
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
                 CreateCommandExecutionsGenericPayloadStream(
                     const CommandExecutionsSubscriptionRequest &request,
-                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) = 0;
 
             /**
              * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
@@ -137,7 +137,7 @@ namespace Aws
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation>
                 CreateCommandExecutionsJsonPayloadStream(
                     const CommandExecutionsSubscriptionRequest &request,
-                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) = 0;
+                    const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) = 0;
         };
 
         /**

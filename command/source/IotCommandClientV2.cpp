@@ -7,7 +7,7 @@
 
 #include <aws/crt/UUID.h>
 
-#include <aws/iotcommand/CommandExecutionsEvent.h>
+#include <aws/iotcommand/CommandExecutionEvent.h>
 #include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommand/UpdateCommandExecutionRequest.h>
 #include <aws/iotcommand/UpdateCommandExecutionResponse.h>
@@ -32,15 +32,15 @@ namespace Aws
 
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateCommandExecutionsCborPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) override;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) override;
 
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateCommandExecutionsGenericPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) override;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) override;
 
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateCommandExecutionsJsonPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options) override;
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) override;
 
           private:
             Aws::Crt::Allocator *m_allocator;
@@ -207,7 +207,7 @@ namespace Aws
 
         static bool s_initModeledEvent(
             const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
-            CommandExecutionsEvent &modeledEvent)
+            CommandExecutionEvent &modeledEvent)
         {
             auto segmentExecutionId = s_getSegmentFromTopic(publishEvent.GetTopic(), 5);
             modeledEvent.SetExecutionId(segmentExecutionId);
@@ -274,42 +274,42 @@ namespace Aws
         std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::
             CreateCommandExecutionsCborPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options)
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
             topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request/cbor";
             Aws::Crt::String topic = topicStream.str();
 
-            return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
+            return ServiceStreamingOperation<CommandExecutionEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
         }
 
         std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::
             CreateCommandExecutionsGenericPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options)
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
             topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request";
             Aws::Crt::String topic = topicStream.str();
 
-            return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
+            return ServiceStreamingOperation<CommandExecutionEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
         }
 
         std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> ClientV2::
             CreateCommandExecutionsJsonPayloadStream(
                 const CommandExecutionsSubscriptionRequest &request,
-                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options)
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
             topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request/json";
             Aws::Crt::String topic = topicStream.str();
 
-            return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
+            return ServiceStreamingOperation<CommandExecutionEvent>::Create(
                 m_allocator, m_bindingClient, topic, options);
         }
 
