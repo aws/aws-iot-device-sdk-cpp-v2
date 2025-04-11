@@ -24,7 +24,8 @@
     "build-samples"
   ],
   "test_steps": [
-    "sdk-ci-test"
+    "sdk-ci-test-setup",
+    "test"
   ],
   "variants" : {
     "skip_sample": {

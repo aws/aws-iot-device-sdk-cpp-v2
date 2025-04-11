@@ -1,6 +1,6 @@
 import Builder
 
-class SdkCiTest(Builder.Action):
+class SdkCiTestSetup(Builder.Action):
 
     def run(self, env):
 
@@ -10,12 +10,11 @@ class SdkCiTest(Builder.Action):
         try:
             java_sdk_dir = Builder.SetupEventStreamEchoServer().run(env)
             Builder.SetupCrossCICrtEnvironment().run(env)
-            env.shell.exec(["make", "test"], check=True)
         except:
-            print(f'Failure while running tests')
+            print(f'Failure while setting up tests')
             actions.append("exit 1")
         finally:
             if java_sdk_dir:
                 env.shell.rm(java_sdk_dir)
 
-        return Builder.Script(actions, name='sdk-ci-test')
+        return Builder.Script(actions, name='sdk-ci-test-setup')
