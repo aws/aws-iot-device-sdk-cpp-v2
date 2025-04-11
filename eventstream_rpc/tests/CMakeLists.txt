@@ -32,9 +32,9 @@ set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
 add_test_case(OperateWhileDisconnected)
 # The tests below can be commented out when an EchoRPC Server is running on 127.0.0.1:8033
-#add_test_case(EventStreamConnect)
-#add_test_case(EchoOperation)
-#add_test_case(StressTestClient)
+add_test_case(EventStreamConnect)
+add_test_case(EchoOperation)
+add_test_case(StressTestClient)
 generate_cpp_test_driver(${TEST_BINARY_NAME})
 aws_add_sanitizers(${TEST_BINARY_NAME})
 target_include_directories(${TEST_BINARY_NAME} PUBLIC

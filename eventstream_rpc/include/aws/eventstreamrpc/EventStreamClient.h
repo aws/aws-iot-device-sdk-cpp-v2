@@ -717,8 +717,8 @@ namespace Aws
             std::mutex m_continuationMutex;
             bool m_resultReceived;
             std::promise<TaggedResult> m_initialResponsePromise;
-            std::atomic_int m_expectedCloses;
-            std::atomic_bool m_streamClosedCalled;
+            bool m_expectingClose;
+            bool m_streamClosedCalled;
             std::condition_variable m_closeReady;
         };
 

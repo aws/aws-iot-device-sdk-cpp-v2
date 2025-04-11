@@ -23,6 +23,9 @@
     "build",
     "build-samples"
   ],
+  "test_steps": [
+    "sdk-ci-test"
+  ],
   "variants" : {
     "skip_sample": {
         "!build_steps": [
