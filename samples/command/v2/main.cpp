@@ -6,13 +6,7 @@
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 
-#include <aws/iotcommand/CommandExecutionsEvent.h>
-#include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
-#include <aws/iotcommand/IotCommandClientV2.h>
-#include <aws/iotcommand/RejectedErrorCode.h>
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
-#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ErrorResponse.h>
+#include "command_stream_handler.h"
 
 #include <algorithm>
 #include <cinttypes>
@@ -25,27 +19,10 @@
 using namespace Aws::Crt;
 using namespace Aws::Iotcommand;
 
-struct StreamingOperationWrapper
-{
-    Aws::Crt::String m_thingName;
-
-    Aws::Crt::String m_commandName;
-
-    Aws::Crt::String m_type;
-
-    std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_stream;
-};
-
 struct ApplicationContext
 {
-
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_protocolClient;
-
-    std::shared_ptr<Aws::Iotcommand::IClientV2> m_commandClient;
-
-    uint64_t m_nextStreamId;
-
-    std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
+    Aws::IotcommandSample::CommandStreamHandler commandStreamHandler;
 };
 
 static void s_onConnectionSuccess(const Mqtt5::OnConnectionSuccessEventData &eventData)
@@ -64,17 +41,142 @@ static void s_onStopped(const Mqtt5::OnStoppedEventData &event)
     fprintf(stdout, "Protocol client stopped.\n");
 }
 
-static void s_onSubscriptionStatusEvent(uint64_t id, Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
+static Aws::Crt::String s_nibbleNextToken(Aws::Crt::String &input)
 {
-    fprintf(
-        stdout,
-        "Stream %" PRIu64 ": subscription status event with type %d and error %s\n",
-        id,
-        event.GetErrorCode(),
-        Aws::Crt::ErrorDebugString(event.GetErrorCode()));
+    Aws::Crt::String token;
+    Aws::Crt::String remaining;
+    auto delimPosition = input.find(' ');
+    if (delimPosition != Aws::Crt::String::npos)
+    {
+        token = input.substr(0, delimPosition);
+
+        auto untrimmedRemaining = input.substr(delimPosition, Aws::Crt::String::npos);
+        auto firstNonSpacePosition = untrimmedRemaining.find_first_not_of(' ');
+        if (firstNonSpacePosition != Aws::Crt::String::npos)
+        {
+            remaining = untrimmedRemaining.substr(firstNonSpacePosition, Aws::Crt::String::npos);
+        }
+        else
+        {
+            remaining = "";
+        }
+    }
+    else
+    {
+        token = input;
+        remaining = "";
+    }
+
+    input = remaining;
+    return token;
 }
 
-void updateExecution(const Aws::Crt::String &executionId) {}
+static void s_printHelp()
+{
+    fprintf(stdout, "\nIoT Command sandbox:\n\n");
+    fprintf(stdout, "  quit -- quits the program\n");
+    fprintf(stdout, "  start -- starts the protocol client\n");
+    fprintf(stdout, "  stop -- stops the protocol client\n\n");
+    fprintf(
+        stdout,
+        "  open-iot-thing-stream <payload-type> <thing-name> -- opens a streaming operation for a given IoT thing\n");
+    fprintf(
+        stdout,
+        "  open-mqtt-client-stream <payload-type> <client-id> -- opens a streaming operation for a given client ID\n");
+    fprintf(stdout, "  list-streams -- lists all open streaming operations\n");
+    fprintf(stdout, "  close-stream <stream-id> -- closes a streaming operation\n");
+}
+
+static void s_handleOpenStream(
+    Aws::Iotcommand::CommandDeviceType deviceType,
+    const Aws::Crt::String &params,
+    ApplicationContext &context)
+{
+    Aws::Crt::String remaining = params;
+    Aws::Crt::String payloadContentType = s_nibbleNextToken(remaining);
+    Aws::Crt::String deviceId = s_nibbleNextToken(remaining);
+
+    if (payloadContentType.empty() || deviceId.empty())
+    {
+        fprintf(stdout, "Invalid arguments to oopen-iot-thing-stream command!\n\n");
+        s_printHelp();
+        return;
+    }
+
+    if (payloadContentType == "json")
+    {
+        context.commandStreamHandler.openJsonStream(deviceType, deviceId);
+    }
+    else
+    {
+        fprintf(stdout, "Invalid arguments to oopen-iot-thing-stream command!\n\n");
+        s_printHelp();
+    }
+}
+
+static void s_handleListStreams(ApplicationContext &context)
+{
+    context.commandStreamHandler.listOpenedStreams();
+}
+
+static void s_handleCloseStream(const Aws::Crt::String &params, ApplicationContext &context)
+{
+    Aws::Crt::String remaining = params;
+    Aws::Crt::String streamId = s_nibbleNextToken(remaining);
+
+    if (streamId.length() == 0) {
+        fprintf(stdout, "Invalid arguments to close-stream command!\n\n");
+        s_printHelp();
+        return;
+    }
+
+    uint64_t id = std::stoull(streamId.c_str());
+    context.commandStreamHandler.closeStream(id);
+}
+
+static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &context)
+{
+    Aws::Crt::String remaining = input;
+    Aws::Crt::String command = s_nibbleNextToken(remaining);
+
+    if (command == "quit")
+    {
+        fprintf(stdout, "Quitting!\n");
+        return true;
+    }
+    else if (command == "start")
+    {
+        fprintf(stdout, "Starting protocol client!\n");
+        context.m_protocolClient->Start();
+    }
+    else if (command == "stop")
+    {
+        fprintf(stdout, "Stopping protocol client!\n");
+        context.m_protocolClient->Stop();
+    }
+    else if (command == "open-iot-thing-stream")
+    {
+        s_handleOpenStream(Aws::Iotcommand::CommandDeviceType::THING, remaining, context);
+    }
+    else if (command == "open-mqtt-client-stream")
+    {
+        s_handleOpenStream(Aws::Iotcommand::CommandDeviceType::CLIENT, remaining, context);
+    }
+    else if (command == "list-streams")
+    {
+        s_handleListStreams(context);
+    }
+    else if (command == "close-stream")
+    {
+        s_handleCloseStream(remaining, context);
+    }
+    else
+    {
+        s_printHelp();
+    }
+
+    return false;
+}
 
 int main(int argc, char *argv[])
 {
@@ -82,7 +184,7 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
+//    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
     Utils::cmdData cmdData = Utils::parseSampleInputBasicConnect(argc, argv, &apiHandle);
 
@@ -108,106 +210,24 @@ int main(int argc, char *argv[])
     requestResponseOptions.WithMaxStreamingSubscriptions(10);
     requestResponseOptions.WithOperationTimeoutInSeconds(30);
 
-    ApplicationContext context;
-    context.m_protocolClient = builder->Build();
-    context.m_commandClient = Aws::Iotcommand::NewClientFrom5(*context.m_protocolClient, requestResponseOptions);
-    context.m_nextStreamId = 1;
+    auto protocolClient = builder->Build();
+    auto commandClient = Aws::Iotcommand::NewClientFrom5(*protocolClient, requestResponseOptions);
+    auto commandStreamHandler = Aws::IotcommandSample::CommandStreamHandler(std::move(commandClient));
 
-    context.m_protocolClient->Start();
+    ApplicationContext context{std::move(protocolClient), std::move(commandStreamHandler)};
 
-    Aws::Crt::String executionId;
-
+    while (true)
     {
-        std::promise<void> executionIdPromise;
-        Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
-        request.DeviceType = Aws::Iotcommand::CommandDeviceType::THING;
-        request.DeviceId = "laptop_test_0001";
+        fprintf(stdout, "\nEnter command:\n");
 
-        Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
-        options.WithStreamHandler(
-            [&executionIdPromise, &executionId](CommandExecutionsEvent &&event)
-            {
-                fprintf(stdout, "==== Got new event %s\n", event.ExecutionId->c_str());
-                executionId = *event.ExecutionId;
-                executionIdPromise.set_value();
-            });
-        uint32_t streamId = 8;
-        options.WithSubscriptionStatusEventHandler(
-            [streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
-            { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
+        String input;
+        std::getline(std::cin, input);
 
-        auto operation = context.m_commandClient->CreateCommandExecutionsJsonPayloadStream(request, options);
-        operation->Open();
-
-        fprintf(stdout, "==== waiting for a command\n");
-        executionIdPromise.get_future().wait();
-        fprintf(stdout, "==== received new command\n");
-    }
-
-    {
-        std::promise<void> updatePromise;
-        Aws::Iotcommand::UpdateCommandExecutionRequest request;
-        request.DeviceType = Aws::Iotcommand::CommandDeviceType::THING;
-        request.DeviceId = "laptop_test_0001";
-        request.ExecutionId = executionId;
-        request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
-        Aws::Iotcommand::StatusReason statusReason;
-        statusReason.ReasonCode = "I-CAN-FAIL-TOO";
-        statusReason.ReasonDescription = "But I want to succeed...";
-        request.StatusReason = statusReason;
-        context.m_commandClient->UpdateCommandExecution(
-            request,
-            [&updatePromise](Aws::Iotcommand::UpdateCommandExecutionResult &&result)
-            {
-                if (result.IsSuccess())
-                {
-                    fprintf(
-                        stdout,
-                        "========= Successfully updated execution for ID %s\n",
-                        result.GetResponse().ExecutionId->c_str());
-                }
-                else
-                {
-                    // ==== LoadFromObject: '{"error":"ResourceNotFound","errorMessage":"The command execution kokoko
-                    // was not found.","executionId":"kokoko"}'
-                    // ==== LoadFromObject: '{"error":"InvalidStateTransition","errorMessage":"Command execution status
-                    // cannot be updated to CREATED.","executionId":"12fa1636-f9a9-442f-a367-e311db5d4e73"}'
-                    fprintf(stdout, "========= Error: internal code: %d\n", result.GetError().GetErrorCode());
-                    if (result.GetError().HasModeledError())
-                    {
-                        if (result.GetError().GetModeledError().ErrorMessage)
-                        {
-                            fprintf(
-                                stdout,
-                                "========= Error: message %s\n",
-                                result.GetError().GetModeledError().ErrorMessage->c_str());
-                        }
-                        if (result.GetError().GetModeledError().Error)
-                        {
-                            fprintf(
-                                stdout,
-                                "========= Error: code: %d\n",
-                                static_cast<int>(*result.GetError().GetModeledError().Error));
-                            fprintf(
-                                stdout,
-                                "========= Error: code str: %s\n",
-                                RejectedErrorCodeMarshaller::ToString(*result.GetError().GetModeledError().Error));
-                        }
-                        if (result.GetError().GetModeledError().ExecutionId)
-                        {
-                            fprintf(
-                                stdout,
-                                "========= Error: execution ID: %s\n",
-                                result.GetError().GetModeledError().ExecutionId->c_str());
-                        }
-                    }
-                }
-                updatePromise.set_value();
-            });
-
-        fprintf(stdout, "==== waiting for update\n");
-        updatePromise.get_future().wait();
-        fprintf(stdout, "==== updated\n");
+        if (s_handleInput(input, context))
+        {
+            fprintf(stdout, "Exiting...");
+            break;
+        }
     }
 
     return 0;
