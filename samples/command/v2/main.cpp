@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
     {
         std::promise<void> executionIdPromise;
         Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
-        request.DeviceType = "things";
+        request.DeviceType = Aws::Iotcommand::CommandDeviceType::THING;
         request.DeviceId = "laptop_test_0001";
 
         Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionsEvent> options;
@@ -147,10 +147,14 @@ int main(int argc, char *argv[])
     {
         std::promise<void> updatePromise;
         Aws::Iotcommand::UpdateCommandExecutionRequest request;
-        request.DeviceType = "things";
+        request.DeviceType = Aws::Iotcommand::CommandDeviceType::THING;
         request.DeviceId = "laptop_test_0001";
         request.ExecutionId = executionId;
-        request.Status = Aws::Iotcommand::CommandStatus::REJECTED;
+        request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
+        Aws::Iotcommand::StatusReason statusReason;
+        statusReason.ReasonCode = "I-CAN-FAIL-TOO";
+        statusReason.ReasonDescription = "But I want to succeed...";
+        request.StatusReason = statusReason;
         context.m_commandClient->UpdateCommandExecution(
             request,
             [&updatePromise](Aws::Iotcommand::UpdateCommandExecutionResult &&result)

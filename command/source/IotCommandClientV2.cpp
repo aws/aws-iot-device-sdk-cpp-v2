@@ -115,18 +115,20 @@ namespace Aws
             const UpdateCommandExecutionResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId << "/executions/"
-                               << *request.ExecutionId << "/response/json";
+            publishTopicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                               << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/json";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                                     << "/executions/" << *request.ExecutionId << "/response/accepted/json";
+            subscriptionTopicStream0 << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType)
+                                     << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+                                     << "/response/accepted/json";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             Aws::Crt::StringStream subscriptionTopicStream1;
-            subscriptionTopicStream1 << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                                     << "/executions/" << *request.ExecutionId << "/response/rejected/json";
+            subscriptionTopicStream1 << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType)
+                                     << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+                                     << "/response/rejected/json";
             Aws::Crt::String subscriptionTopic1 = subscriptionTopicStream1.str();
 
             struct aws_byte_cursor subscriptionTopicFilters[2] = {
@@ -135,13 +137,15 @@ namespace Aws
             };
 
             Aws::Crt::StringStream responsePathTopicAcceptedStream;
-            responsePathTopicAcceptedStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                                            << "/executions/" << *request.ExecutionId << "/response/accepted/json";
+            responsePathTopicAcceptedStream
+                << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/accepted/json";
             Aws::Crt::String responsePathTopicAccepted = responsePathTopicAcceptedStream.str();
 
             Aws::Crt::StringStream responsePathTopicRejectedStream;
-            responsePathTopicRejectedStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                                            << "/executions/" << *request.ExecutionId << "/response/rejected/json";
+            responsePathTopicRejectedStream
+                << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/rejected/json";
             Aws::Crt::String responsePathTopicRejected = responsePathTopicRejectedStream.str();
 
             struct aws_mqtt_request_operation_response_path responsePaths[2];
@@ -264,8 +268,8 @@ namespace Aws
             const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionsEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/commands/" << *request.DeviceType << "/" << *request.DeviceId
-                        << "/executions/+/request/json";
+            topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                        << *request.DeviceId << "/executions/+/request/json";
             Aws::Crt::String topic = topicStream.str();
 
             return ServiceStreamingOperation<CommandExecutionsEvent>::Create(
