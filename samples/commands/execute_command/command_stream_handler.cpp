@@ -85,7 +85,7 @@ namespace Aws
                 operation = m_commandClient->CreateCommandExecutionsGenericPayloadStream(request, options);
             }
 
-            registerStream(streamId, std::move(operation), deviceType, deviceId);
+            registerStream(streamId, std::move(operation), deviceType, deviceId, payloadFormat);
 
             return true;
         }
@@ -96,7 +96,7 @@ namespace Aws
             for (const auto &iter : m_streams)
             {
                 uint64_t streamId = iter.first;
-                const StreamingOperation &wrapper = iter.second;
+                const StreamingOperationWrapper &wrapper = iter.second;
                 fprintf(
                     stdout,
                     "  %" PRIu64 ": device type '%s', device ID '%s', payload type '%s'\n",
@@ -118,13 +118,15 @@ namespace Aws
             uint64_t id,
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> &&operation,
             Aws::Iotcommands::DeviceType deviceType,
-            Aws::Crt::String deviceId)
+            const Aws::Crt::String &deviceId,
+            const Aws::Crt::String &payloadFormat)
         {
-            StreamingOperation wrapper;
+            StreamingOperationWrapper wrapper;
             wrapper.stream = std::move(operation);
 
             wrapper.deviceType = deviceType;
-            wrapper.deviceId = std::move(deviceId);
+            wrapper.deviceId = deviceId;
+            wrapper.payloadType = payloadFormat;
 
             m_streams[id] = std::move(wrapper);
 

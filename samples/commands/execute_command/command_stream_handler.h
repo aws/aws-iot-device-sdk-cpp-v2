@@ -54,7 +54,7 @@ namespace Aws
             bool closeStream(uint64_t streamId);
 
           private:
-            struct StreamingOperation
+            struct StreamingOperationWrapper
             {
                 /**
                  * A streaming operation instance. While this object is alive, the corresponding matching command
@@ -74,7 +74,7 @@ namespace Aws
 
                 /**
                  * IoT Command uses a designated MQTT topics for JSON and CBOR. For every other payload format or for
-                 * the cases when payload format is unknown, a generic topic is used.
+                 * the cases when payload format is not specified, a generic topic is used.
                  * TODO Describe this in the service itself.
                  * TODO Provide example?
                  */
@@ -85,7 +85,8 @@ namespace Aws
                 uint64_t id,
                 std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> &&operation,
                 Aws::Iotcommands::DeviceType deviceType,
-                Aws::Crt::String deviceId);
+                const Aws::Crt::String &deviceId,
+                const Aws::Crt::String &payloadFormat);
 
             static void s_onSubscriptionStatusEvent(
                 uint64_t streamId,
@@ -105,7 +106,7 @@ namespace Aws
             /**
              * Opened streaming operations.
              */
-            std::unordered_map<uint64_t, StreamingOperation> m_streams;
+            std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
         };
 
     } // namespace IotcommandSample
