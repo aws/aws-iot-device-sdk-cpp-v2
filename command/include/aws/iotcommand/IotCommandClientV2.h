@@ -68,10 +68,10 @@ namespace Aws
         class CommandExecutionsSubscriptionRequest;
         class UpdateCommandExecutionRequest;
         class UpdateCommandExecutionResponse;
-        class V2ServiceError;
+        class V2ErrorResponse;
 
         using UpdateCommandExecutionResult =
-            Aws::Iot::RequestResponse::Result<UpdateCommandExecutionResponse, ServiceErrorV2<V2ServiceError>>;
+            Aws::Iot::RequestResponse::Result<UpdateCommandExecutionResponse, ServiceErrorV2<V2ErrorResponse>>;
         using UpdateCommandExecutionResultHandler = std::function<void(UpdateCommandExecutionResult &&)>;
 
         /**

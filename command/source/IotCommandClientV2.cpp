@@ -11,7 +11,7 @@
 #include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommand/UpdateCommandExecutionRequest.h>
 #include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ServiceError.h>
+#include <aws/iotcommand/V2ErrorResponse.h>
 
 namespace Aws
 {
@@ -71,7 +71,7 @@ namespace Aws
             const Aws::Crt::String &successPathTopic,
             const Aws::Crt::String &failurePathTopic)
         {
-            using E = V2ServiceError;
+            using E = V2ErrorResponse;
             using R = Aws::Iot::RequestResponse::Result<UpdateCommandExecutionResponse, ServiceErrorV2<E>>;
 
             if (!result.IsSuccess())
@@ -101,7 +101,7 @@ namespace Aws
             }
             else if (responseTopic == failurePathTopic)
             {
-                V2ServiceError modeledError(jsonObject);
+                V2ErrorResponse modeledError(jsonObject);
                 s_applyModeledErrorToHandler<R, E>(handler, std::move(modeledError));
             }
             else

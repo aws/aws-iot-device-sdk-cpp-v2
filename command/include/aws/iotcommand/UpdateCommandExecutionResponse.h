@@ -6,8 +6,6 @@
  * This file is generated
  */
 
-#include <aws/crt/DateTime.h>
-
 #include <aws/iotcommand/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -33,10 +31,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The time when the message was sent.
+             * Execution ID for which response was sent
              *
              */
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            Aws::Crt::Optional<Aws::Crt::String> ExecutionId;
 
           private:
             static void LoadFromObject(UpdateCommandExecutionResponse &obj, const Crt::JsonView &doc);
