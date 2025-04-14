@@ -14,6 +14,7 @@
 #    undef GetMessage
 #endif
 
+#include <aws/common/environment.h>
 #include <iostream>
 #include <queue>
 #include <sstream>
@@ -24,13 +25,44 @@ using namespace Awstest;
 
 struct EventStreamClientTestContext
 {
+    EventStreamClientTestContext();
+    ~EventStreamClientTestContext();
+
     std::unique_ptr<ApiHandle> apiHandle;
     std::unique_ptr<Io::EventLoopGroup> elGroup;
     std::unique_ptr<Io::HostResolver> resolver;
     std::unique_ptr<Io::ClientBootstrap> clientBootstrap;
+
+    Aws::Crt::String echoServerHostName;
+    uint16_t echoServerPort;
+
+    struct aws_string *echoServerHostNameValue;
+    struct aws_string *echoServerPortValue;
 };
 
+EventStreamClientTestContext::EventStreamClientTestContext() :
+    echoServerPort(0),
+    echoServerHostNameValue(nullptr),
+    echoServerPortValue(nullptr)
+{
+}
+
+EventStreamClientTestContext::~EventStreamClientTestContext()
+{
+    aws_string_destroy(echoServerHostNameValue);
+    aws_string_destroy(echoServerPortValue);
+}
+
 static EventStreamClientTestContext s_testContext;
+
+static bool s_isEchoserverSetup(const EventStreamClientTestContext &context)
+{
+    return !context.echoServerHostName.empty() && context.echoServerPort > 0;
+}
+
+AWS_STATIC_STRING_FROM_LITERAL(s_env_name_echo_server_host, "AWS_TEST_EVENT_STREAM_ECHO_SERVER_HOST");
+AWS_STATIC_STRING_FROM_LITERAL(s_env_name_echo_server_port, "AWS_TEST_EVENT_STREAM_ECHO_SERVER_PORT");
+
 
 static int s_testSetup(struct aws_allocator *allocator, void *ctx)
 {
@@ -42,6 +74,19 @@ static int s_testSetup(struct aws_allocator *allocator, void *ctx)
         std::unique_ptr<Io::HostResolver>(new Io::DefaultHostResolver(*testContext->elGroup, 8, 30, allocator));
     testContext->clientBootstrap = std::unique_ptr<Io::ClientBootstrap>(
         new Io::ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
+
+    testContext->echoServerPort = 0;
+    testContext->echoServerHostName = "";
+
+    if (!aws_get_environment_value(allocator, s_env_name_echo_server_host, &testContext->echoServerHostNameValue) && testContext->echoServerHostNameValue != nullptr)
+    {
+        testContext->echoServerHostName = aws_string_c_str(testContext->echoServerHostNameValue);
+    }
+
+    if (!aws_get_environment_value(allocator, s_env_name_echo_server_port, &testContext->echoServerPortValue) && testContext->echoServerPortValue != nullptr)
+    {
+        testContext->echoServerPort = static_cast<uint16_t>(atoi(aws_string_c_str(testContext->echoServerPortValue)));
+    }
 
     return AWS_ERROR_SUCCESS;
 }
@@ -110,15 +155,21 @@ static void s_onMessageFlush(int errorCode)
 AWS_TEST_CASE_FIXTURE(EventStreamConnect, s_testSetup, s_TestEventStreamConnect, s_testTeardown, &s_testContext);
 static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 {
-    auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    auto *testContext = static_cast<const EventStreamClientTestContext *>(ctx);
 
     {
+        if (!s_isEchoserverSetup(*testContext))
+        {
+            printf("Environment Variables are not set for the test, skip the test");
+            return AWS_OP_SKIP;
+        }
+
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> const MessageAmendment & { return connectionAmendment; };
 
         ConnectionConfig accessDeniedConfig;
-        accessDeniedConfig.SetHostName(Aws::Crt::String("127.0.0.1"));
-        accessDeniedConfig.SetPort(8033U);
+        accessDeniedConfig.SetHostName(testContext->echoServerHostName);
+        accessDeniedConfig.SetPort(testContext->echoServerPort);
 
         /* Happy path case. */
         {
@@ -173,6 +224,12 @@ static int s_TestOperationWhileDisconnected(struct aws_allocator *allocator, voi
 
     /* Don't connect at all and try running operations as normal. */
     {
+        if (!s_isEchoserverSetup(*testContext))
+        {
+            printf("Environment Variables are not set for the test, skip the test");
+            return AWS_OP_SKIP;
+        }
+
         ConnectionLifecycleHandler lifecycleHandler;
         Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
         auto echoMessage = client.NewEchoMessage();
@@ -204,6 +261,12 @@ AWS_TEST_CASE_FIXTURE(EchoOperation, s_testSetup, s_TestEchoOperation, s_testTea
 static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
 {
     auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    if (!s_isEchoserverSetup(*testContext))
+    {
+        printf("Environment Variables are not set for the test, skip the test");
+        return AWS_OP_SKIP;
+    }
+
     ConnectionLifecycleHandler lifecycleHandler;
     Aws::Crt::String expectedMessage("Async I0 FTW");
     EchoMessageRequest echoMessageRequest;
@@ -495,6 +558,12 @@ AWS_TEST_CASE_FIXTURE(StressTestClient, s_testSetup, s_TestStressClient, s_testT
 static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
 {
     auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    if (!s_isEchoserverSetup(*testContext))
+    {
+        printf("Environment Variables are not set for the test, skip the test");
+        return AWS_OP_SKIP;
+    }
+
     ThreadPool threadPool;
     ConnectionLifecycleHandler lifecycleHandler;
     Aws::Crt::String expectedMessage("Async I0 FTW");
