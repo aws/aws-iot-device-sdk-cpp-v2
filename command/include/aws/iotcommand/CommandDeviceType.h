@@ -24,11 +24,11 @@ namespace Aws
         {
             /**
              */
-            things,
+            THING,
 
             /**
              */
-            clients,
+            CLIENT,
 
         };
 

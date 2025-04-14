@@ -24,9 +24,9 @@ namespace Aws
             {
                 switch (status)
                 {
-                    case CommandDeviceType::things:
+                    case CommandDeviceType::THING:
                         return "things";
-                    case CommandDeviceType::clients:
+                    case CommandDeviceType::CLIENT:
                         return "clients";
                     default:
                         assert(0);
@@ -40,12 +40,12 @@ namespace Aws
 
                 if (hash == THING_HASH)
                 {
-                    return CommandDeviceType::things;
+                    return CommandDeviceType::THING;
                 }
 
                 if (hash == CLIENT_HASH)
                 {
-                    return CommandDeviceType::clients;
+                    return CommandDeviceType::CLIENT;
                 }
 
                 assert(0);

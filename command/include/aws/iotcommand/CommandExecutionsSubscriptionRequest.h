@@ -6,6 +6,8 @@
  * This file is generated
  */
 
+#include <aws/iotcommand/CommandDeviceType.h>
+
 #include <aws/iotcommand/Exports.h>
 
 #include <aws/crt/JsonObject.h>
@@ -31,10 +33,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             *
+             * The type of a target device.
              *
              */
-            Aws::Crt::Optional<Aws::Crt::String> DeviceType;
+            Aws::Crt::Optional<Aws::Iotcommand::CommandDeviceType> DeviceType;
 
             /**
              *
