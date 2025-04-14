@@ -14,6 +14,9 @@ namespace Aws
             UpdateCommandExecutionRequest &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
+
             if (doc.ValueExists("status"))
             {
                 val.Status = CommandStatusMarshaller::FromString(doc.GetString("status"));
@@ -22,6 +25,8 @@ namespace Aws
 
         void UpdateCommandExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
+
             if (Status)
             {
                 object.WithString("status", CommandStatusMarshaller::ToString(*Status));
