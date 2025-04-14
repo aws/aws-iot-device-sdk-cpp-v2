@@ -6,12 +6,12 @@
 #include "command_stream_handler.h"
 
 #include <aws/crt/Api.h>
-#include <aws/iotcommand/CommandExecutionEvent.h>
-#include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
-#include <aws/iotcommand/RejectedErrorCode.h>
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
-#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ErrorResponse.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionsSubscriptionRequest.h>
+#include <aws/iotcommands/RejectedErrorCode.h>
+#include <aws/iotcommands/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommands/UpdateCommandExecutionResponse.h>
+#include <aws/iotcommands/V2ErrorResponse.h>
 
 #include <cinttypes>
 #include <cstdio>
@@ -22,26 +22,26 @@ namespace Aws
     namespace IotcommandSample
     {
 
-        CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> &&commandClient)
+        CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommands::IClientV2> &&commandClient)
             : m_commandClient(std::move(commandClient))
         {
             m_commandExecutor = std::make_shared<CommandExecutor>(m_commandClient);
         }
 
         bool CommandStreamHandler::openStream(
-            Aws::Iotcommand::CommandDeviceType deviceType,
+            Aws::Iotcommands::DeviceType deviceType,
             const Aws::Crt::String &deviceId,
             const Aws::Crt::String &payloadFormat)
         {
             static uint64_t nextStreamId = 1;
 
-            Aws::Iotcommand::CommandExecutionsSubscriptionRequest request;
+            Aws::Iotcommands::CommandExecutionsSubscriptionRequest request;
             request.DeviceType = deviceType;
             request.DeviceId = deviceId;
 
-            Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommand::CommandExecutionEvent> options;
+            Aws::Iot::RequestResponse::StreamingOperationOptions<Aws::Iotcommands::CommandExecutionEvent> options;
             options.WithStreamHandler(
-                [this, deviceType, deviceId, payloadFormat](Aws::Iotcommand::CommandExecutionEvent &&event)
+                [this, deviceType, deviceId, payloadFormat](Aws::Iotcommands::CommandExecutionEvent &&event)
                 {
                     fprintf(
                         stdout,
@@ -63,7 +63,7 @@ namespace Aws
 
                     CommandExecutionContext commandExecution{
                         std::move(deviceType), std::move(deviceId), std::move(event)};
-                    m_commandExecutor->executeCommand(std::move(commandExecution));
+                    m_commandExecutor->enqueueCommandForExecution(std::move(commandExecution));
                 });
 
             auto streamId = nextStreamId++;
@@ -101,7 +101,7 @@ namespace Aws
                     stdout,
                     "  %" PRIu64 ": device type '%s', device ID '%s', payload type '%s'\n",
                     streamId,
-                    Aws::Iotcommand::CommandDeviceTypeMarshaller::ToString(wrapper.deviceType),
+                    Aws::Iotcommands::DeviceTypeMarshaller::ToString(wrapper.deviceType),
                     wrapper.deviceId.c_str(),
                     wrapper.payloadType.c_str());
             }
@@ -117,7 +117,7 @@ namespace Aws
         void CommandStreamHandler::registerStream(
             uint64_t id,
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> &&operation,
-            Aws::Iotcommand::CommandDeviceType deviceType,
+            Aws::Iotcommands::DeviceType deviceType,
             Aws::Crt::String deviceId)
         {
             StreamingOperation wrapper;

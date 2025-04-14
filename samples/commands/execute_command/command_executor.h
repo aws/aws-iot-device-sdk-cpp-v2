@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include <aws/iotcommand/CommandExecutionEvent.h>
-#include <aws/iotcommand/IotCommandClientV2.h>
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/IotCommandsClientV2.h>
+#include <aws/iotcommands/UpdateCommandExecutionRequest.h>
 
 #include <deque>
 #include <random>
@@ -34,7 +34,7 @@ namespace Aws
              *
              * @param commandClient Instance of the client for the IoT command service.
              */
-            explicit CommandExecutor(std::shared_ptr<Aws::Iotcommand::IClientV2> commandClient);
+            explicit CommandExecutor(std::shared_ptr<Aws::Iotcommands::IClientV2> commandClient);
 
             ~CommandExecutor();
 
@@ -45,21 +45,21 @@ namespace Aws
             void enqueueCommandForExecution(CommandExecutionContext &&commandExecution);
 
           private:
-            std::pair<Aws::Iotcommand::CommandStatus, Aws::Crt::Optional<Aws::Iotcommand::StatusReason>>
+            std::pair<Aws::Iotcommands::CommandExecutionStatus, Aws::Crt::Optional<Aws::Iotcommands::StatusReason>>
                 validateCommand(const CommandExecutionContext &commandExecution);
 
-            std::pair<Aws::Iotcommand::CommandStatus, Aws::Crt::Optional<Aws::Iotcommand::StatusReason>> processCommand(
-                const CommandExecutionContext &commandExecution);
+            std::pair<Aws::Iotcommands::CommandExecutionStatus, Aws::Crt::Optional<Aws::Iotcommands::StatusReason>>
+                processCommand(const CommandExecutionContext &commandExecution);
 
             void commandStatusUpdaterThread();
 
-            void updateCommandExecutionStatus(const Aws::Iotcommand::UpdateCommandExecutionRequest &request);
+            void updateCommandExecutionStatus(const Aws::Iotcommands::UpdateCommandExecutionRequest &request);
 
             /**
              * Service client for IoT command.
              * All interactions with IoT command are performed via this object.
              */
-            std::shared_ptr<Aws::Iotcommand::IClientV2> m_commandClient;
+            std::shared_ptr<Aws::Iotcommands::IClientV2> m_commandClient;
 
             std::thread m_commandStatusUpdater;
             std::atomic_bool m_isRunning;

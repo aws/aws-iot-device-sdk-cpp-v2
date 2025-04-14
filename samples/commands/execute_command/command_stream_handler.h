@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include <aws/iotcommand/CommandDeviceType.h>
-#include <aws/iotcommand/IotCommandClientV2.h>
+#include <aws/iotcommands/DeviceType.h>
+#include <aws/iotcommands/IotCommandsClientV2.h>
 
 #include <atomic>
 #include <condition_variable>
@@ -26,7 +26,7 @@ namespace Aws
         class CommandStreamHandler
         {
           public:
-            explicit CommandStreamHandler(std::shared_ptr<Aws::Iotcommand::IClientV2> &&commandClient);
+            explicit CommandStreamHandler(std::shared_ptr<Aws::Iotcommands::IClientV2> &&commandClient);
 
             CommandStreamHandler(CommandStreamHandler &&) noexcept = default;
             CommandStreamHandler &operator=(CommandStreamHandler &&) noexcept = default;
@@ -45,7 +45,7 @@ namespace Aws
              * @return
              */
             bool openStream(
-                Aws::Iotcommand::CommandDeviceType deviceType,
+                Aws::Iotcommands::DeviceType deviceType,
                 const Aws::Crt::String &deviceId,
                 const Aws::Crt::String &payloadFormat);
 
@@ -65,7 +65,7 @@ namespace Aws
                 /**
                  * Determine if the device should subscribe for commands addressed to an IoT Thing or MQTT client.
                  */
-                Aws::Iotcommand::CommandDeviceType deviceType;
+                Aws::Iotcommands::DeviceType deviceType;
 
                 /**
                  * Depending on device type value, this field is either an IoT Thing name or a client ID.
@@ -84,7 +84,7 @@ namespace Aws
             void registerStream(
                 uint64_t id,
                 std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> &&operation,
-                Aws::Iotcommand::CommandDeviceType deviceType,
+                Aws::Iotcommands::DeviceType deviceType,
                 Aws::Crt::String deviceId);
 
             static void s_onSubscriptionStatusEvent(
@@ -95,7 +95,7 @@ namespace Aws
              * Service client for IoT command.
              * All interactions with IoT command are performed via this object.
              */
-            std::shared_ptr<Aws::Iotcommand::IClientV2> m_commandClient;
+            std::shared_ptr<Aws::Iotcommands::IClientV2> m_commandClient;
 
             /**
              * TODO

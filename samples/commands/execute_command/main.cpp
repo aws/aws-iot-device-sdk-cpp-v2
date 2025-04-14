@@ -17,7 +17,6 @@
 #include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
-using namespace Aws::Iotcommand;
 
 struct ApplicationContext
 {
@@ -89,7 +88,7 @@ static void s_printHelp()
 }
 
 static void s_handleOpenStream(
-    Aws::Iotcommand::CommandDeviceType deviceType,
+    Aws::Iotcommands::DeviceType deviceType,
     const Aws::Crt::String &params,
     ApplicationContext &context)
 {
@@ -150,11 +149,11 @@ static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &con
     }
     else if (command == "open-iot-thing-stream")
     {
-        s_handleOpenStream(Aws::Iotcommand::CommandDeviceType::THING, remaining, context);
+        s_handleOpenStream(Aws::Iotcommands::DeviceType::THING, remaining, context);
     }
     else if (command == "open-mqtt-client-stream")
     {
-        s_handleOpenStream(Aws::Iotcommand::CommandDeviceType::CLIENT, remaining, context);
+        s_handleOpenStream(Aws::Iotcommands::DeviceType::CLIENT, remaining, context);
     }
     else if (command == "list-streams")
     {
@@ -205,7 +204,7 @@ int main(int argc, char *argv[])
     requestResponseOptions.WithOperationTimeoutInSeconds(30);
 
     auto protocolClient = builder->Build();
-    auto commandClient = Aws::Iotcommand::NewClientFrom5(*protocolClient, requestResponseOptions);
+    auto commandClient = Aws::Iotcommands::NewClientFrom5(*protocolClient, requestResponseOptions);
     auto commandStreamHandler = Aws::IotcommandSample::CommandStreamHandler(std::move(commandClient));
 
     ApplicationContext context{std::move(protocolClient), std::move(commandStreamHandler)};

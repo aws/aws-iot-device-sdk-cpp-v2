@@ -5,12 +5,12 @@
 
 #include "command_executor.h"
 
-#include <aws/iotcommand/CommandExecutionEvent.h>
-#include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
-#include <aws/iotcommand/RejectedErrorCode.h>
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
-#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ErrorResponse.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionsSubscriptionRequest.h>
+#include <aws/iotcommands/RejectedErrorCode.h>
+#include <aws/iotcommands/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommands/UpdateCommandExecutionResponse.h>
+#include <aws/iotcommands/V2ErrorResponse.h>
 
 #include <random>
 
@@ -18,7 +18,7 @@ namespace Aws
 {
     namespace IotcommandSample
     {
-        CommandExecutor::CommandExecutor(std::shared_ptr<Aws::Iotcommand::IClientV2> commandClient)
+        CommandExecutor::CommandExecutor(std::shared_ptr<Aws::Iotcommands::IClientV2> commandClient)
             : m_commandClient(std::move(commandClient)),
               m_commandStatusUpdater(&CommandExecutor::commandStatusUpdaterThread, this), m_isRunning(true),
               m_gen(m_rd())
@@ -44,8 +44,8 @@ namespace Aws
             m_commandSignal.notify_one();
         }
 
-        std::pair<Aws::Iotcommand::CommandStatus, Aws::Crt::Optional<Aws::Iotcommand::StatusReason>> CommandExecutor::
-            validateCommand(const CommandExecutionContext &commandExecution)
+        std::pair<Aws::Iotcommands::CommandExecutionStatus, Aws::Crt::Optional<Aws::Iotcommands::StatusReason>>
+            CommandExecutor::validateCommand(const CommandExecutionContext &commandExecution)
         {
             (void)commandExecution;
 
@@ -53,7 +53,7 @@ namespace Aws
             bool isSuccess = (successDistrib(m_gen) > 0);
             if (!isSuccess)
             {
-                Aws::Iotcommand::StatusReason statusReason;
+                Aws::Iotcommands::StatusReason statusReason;
                 statusReason.ReasonCode = "VALIDATION_FAILED";
                 statusReason.ReasonDescription = "A longer explanation: it's pure random";
                 fprintf(
@@ -62,14 +62,14 @@ namespace Aws
                     commandExecution.event.ExecutionId->c_str(),
                     statusReason.ReasonCode->c_str(),
                     statusReason.ReasonDescription->c_str());
-                return {Aws::Iotcommand::CommandStatus::REJECTED, std::move(statusReason)};
+                return {Aws::Iotcommands::CommandExecutionStatus::REJECTED, std::move(statusReason)};
             }
 
-            return {Aws::Iotcommand::CommandStatus::SUCCEEDED, {}};
+            return {Aws::Iotcommands::CommandExecutionStatus::SUCCEEDED, {}};
         }
 
-        std::pair<Aws::Iotcommand::CommandStatus, Aws::Crt::Optional<Aws::Iotcommand::StatusReason>> CommandExecutor::
-            processCommand(const CommandExecutionContext &commandExecution)
+        std::pair<Aws::Iotcommands::CommandExecutionStatus, Aws::Crt::Optional<Aws::Iotcommands::StatusReason>>
+            CommandExecutor::processCommand(const CommandExecutionContext &commandExecution)
         {
             (void)commandExecution;
 
@@ -77,7 +77,7 @@ namespace Aws
             bool isSuccess = (successDistrib(m_gen) > 0);
             if (!isSuccess)
             {
-                Aws::Iotcommand::StatusReason statusReason;
+                Aws::Iotcommands::StatusReason statusReason;
                 statusReason.ReasonCode = "EXECUTION_FAILED";
                 statusReason.ReasonDescription = "A longer explanation: it's still pure random";
                 fprintf(
@@ -86,7 +86,7 @@ namespace Aws
                     commandExecution.event.ExecutionId->c_str(),
                     statusReason.ReasonCode->c_str(),
                     statusReason.ReasonDescription->c_str());
-                return {Aws::Iotcommand::CommandStatus::FAILED, std::move(statusReason)};
+                return {Aws::Iotcommands::CommandExecutionStatus::FAILED, std::move(statusReason)};
             }
 
             // Some random work that takes 1 to max_seconds_to_sleep seconds.
@@ -100,7 +100,7 @@ namespace Aws
                 seconds_to_sleep);
             std::this_thread::sleep_for(std::chrono::seconds(seconds_to_sleep));
 
-            return {Aws::Iotcommand::CommandStatus::SUCCEEDED, {}};
+            return {Aws::Iotcommands::CommandExecutionStatus::SUCCEEDED, {}};
         }
 
         void CommandExecutor::commandStatusUpdaterThread()
@@ -109,7 +109,8 @@ namespace Aws
             {
                 {
                     std::unique_lock<std::mutex> lock(m_updateMutex);
-                    m_commandSignal.wait(lock, [this]() { return !m_isRunning.load() || !m_commandExecutions.empty(); });
+                    m_commandSignal.wait(
+                        lock, [this]() { return !m_isRunning.load() || !m_commandExecutions.empty(); });
                 }
 
                 if (m_commandExecutions.empty())
@@ -124,16 +125,16 @@ namespace Aws
                     m_commandExecutions.pop_front();
                 }
 
-                Aws::Iotcommand::UpdateCommandExecutionRequest request;
+                Aws::Iotcommands::UpdateCommandExecutionRequest request;
 
-                request.Status = Aws::Iotcommand::CommandStatus::SUCCEEDED;
+                request.Status = Aws::Iotcommands::CommandExecutionStatus::SUCCEEDED;
                 request.DeviceType = commandExecution.deviceType;
                 request.DeviceId = commandExecution.deviceId;
                 request.ExecutionId = commandExecution.event.ExecutionId;
 
                 fprintf(stdout, "[%s] Validating command\n", commandExecution.event.ExecutionId->c_str());
                 std::tie(request.Status, request.StatusReason) = validateCommand(commandExecution);
-                if (*request.Status == Aws::Iotcommand::CommandStatus::SUCCEEDED)
+                if (*request.Status == Aws::Iotcommands::CommandExecutionStatus::SUCCEEDED)
                 {
                     fprintf(stdout, "[%s] Executing command\n", commandExecution.event.ExecutionId->c_str());
                     std::tie(request.Status, request.StatusReason) = processCommand(commandExecution);
@@ -145,11 +146,11 @@ namespace Aws
         }
 
         void CommandExecutor::updateCommandExecutionStatus(
-            const Aws::Iotcommand::UpdateCommandExecutionRequest &request)
+            const Aws::Iotcommands::UpdateCommandExecutionRequest &request)
         {
             m_commandClient->UpdateCommandExecution(
                 request,
-                [](Aws::Iotcommand::UpdateCommandExecutionResult &&result)
+                [](Aws::Iotcommands::UpdateCommandExecutionResult &&result)
                 {
                     if (result.IsSuccess())
                     {
@@ -183,7 +184,7 @@ namespace Aws
                                     "[%s] Failed to update execution status: error code %d (%s)\n",
                                     result.GetResponse().ExecutionId->c_str(),
                                     static_cast<int>(*result.GetError().GetModeledError().Error),
-                                    Aws::Iotcommand::RejectedErrorCodeMarshaller::ToString(
+                                    Aws::Iotcommands::RejectedErrorCodeMarshaller::ToString(
                                         *result.GetError().GetModeledError().Error));
                             }
 

@@ -6,8 +6,8 @@
 #pragma once
 
 #include <aws/crt/Types.h>
-#include <aws/iotcommand/CommandDeviceType.h>
-#include <aws/iotcommand/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/DeviceType.h>
 
 namespace Aws
 {
@@ -19,9 +19,9 @@ namespace Aws
          */
         struct CommandExecutionContext
         {
-            Aws::Iotcommand::CommandDeviceType deviceType;
+            Aws::Iotcommands::DeviceType deviceType;
             Aws::Crt::String deviceId;
-            Aws::Iotcommand::CommandExecutionEvent event;
+            Aws::Iotcommands::CommandExecutionEvent event;
         };
 
     } // namespace IotcommandSample
