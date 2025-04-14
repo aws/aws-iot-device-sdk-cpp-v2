@@ -6,25 +6,25 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/CommandDeviceType.h>
-#include <aws/iotcommand/CommandStatus.h>
-#include <aws/iotcommand/StatusReason.h>
+#include <aws/iotcommands/CommandExecutionStatus.h>
+#include <aws/iotcommands/DeviceType.h>
+#include <aws/iotcommands/StatusReason.h>
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Data needed to make an UpdateCommandExecution request.
          *
          */
-        class AWS_IOTCOMMAND_API UpdateCommandExecutionRequest final
+        class AWS_IOTCOMMANDS_API UpdateCommandExecutionRequest final
         {
           public:
             UpdateCommandExecutionRequest() = default;
@@ -38,7 +38,7 @@ namespace Aws
              * The type of a target device.
              *
              */
-            Aws::Crt::Optional<Aws::Iotcommand::CommandDeviceType> DeviceType;
+            Aws::Crt::Optional<Aws::Iotcommands::DeviceType> DeviceType;
 
             /**
              * The name of the thing associated with the device.
@@ -56,16 +56,16 @@ namespace Aws
              *
              *
              */
-            Aws::Crt::Optional<Aws::Iotcommand::CommandStatus> Status;
+            Aws::Crt::Optional<Aws::Iotcommands::CommandExecutionStatus> Status;
 
             /**
              * A reason for the updated status.
              *
              */
-            Aws::Crt::Optional<Aws::Iotcommand::StatusReason> StatusReason;
+            Aws::Crt::Optional<Aws::Iotcommands::StatusReason> StatusReason;
 
           private:
             static void LoadFromObject(UpdateCommandExecutionRequest &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

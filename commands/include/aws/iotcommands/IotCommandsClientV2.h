@@ -6,7 +6,7 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
@@ -31,7 +31,7 @@ namespace Aws
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         template <typename E> class ServiceErrorV2
@@ -76,7 +76,7 @@ namespace Aws
 
         /**
          */
-        class AWS_IOTCOMMAND_API IClientV2
+        class AWS_IOTCOMMANDS_API IClientV2
         {
           public:
             virtual ~IClientV2() = default;
@@ -149,7 +149,7 @@ namespace Aws
          *
          * @return a new service client
          */
-        AWS_IOTCOMMAND_API std::shared_ptr<IClientV2> NewClientFrom5(
+        AWS_IOTCOMMANDS_API std::shared_ptr<IClientV2> NewClientFrom5(
             const Aws::Crt::Mqtt5::Mqtt5Client &protocolClient,
             const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
             Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
@@ -163,10 +163,10 @@ namespace Aws
          *
          * @return a new service client
          */
-        AWS_IOTCOMMAND_API std::shared_ptr<IClientV2> NewClientFrom311(
+        AWS_IOTCOMMANDS_API std::shared_ptr<IClientV2> NewClientFrom311(
             const Aws::Crt::Mqtt::MqttConnection &protocolClient,
             const Aws::Iot::RequestResponse::RequestResponseClientOptions &options,
             Aws::Crt::Allocator *allocator = Aws::Crt::ApiAllocator());
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

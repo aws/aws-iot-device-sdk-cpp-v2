@@ -6,21 +6,21 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Valid device types for command executions.
          *
          */
-        enum class CommandDeviceType
+        enum class DeviceType
         {
             /**
              */
@@ -32,10 +32,10 @@ namespace Aws
 
         };
 
-        namespace CommandDeviceTypeMarshaller
+        namespace DeviceTypeMarshaller
         {
-            AWS_IOTCOMMAND_API const char *ToString(CommandDeviceType val);
-            AWS_IOTCOMMAND_API CommandDeviceType FromString(const Aws::Crt::String &val);
-        } // namespace CommandDeviceTypeMarshaller
-    } // namespace Iotcommand
+            AWS_IOTCOMMANDS_API const char *ToString(DeviceType val);
+            AWS_IOTCOMMANDS_API DeviceType FromString(const Aws::Crt::String &val);
+        } // namespace DeviceTypeMarshaller
+    } // namespace Iotcommands
 } // namespace Aws

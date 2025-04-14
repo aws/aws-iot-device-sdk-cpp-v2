@@ -3,7 +3,7 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/CommandDeviceType.h>
+#include <aws/iotcommands/DeviceType.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/StringUtils.h>
@@ -15,18 +15,18 @@ static const size_t CLIENT_HASH = Aws::Crt::HashString("clients");
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
-        namespace CommandDeviceTypeMarshaller
+        namespace DeviceTypeMarshaller
         {
-            const char *ToString(CommandDeviceType status)
+            const char *ToString(DeviceType status)
             {
                 switch (status)
                 {
-                    case CommandDeviceType::THING:
+                    case DeviceType::THING:
                         return "things";
-                    case CommandDeviceType::CLIENT:
+                    case DeviceType::CLIENT:
                         return "clients";
                     default:
                         assert(0);
@@ -34,23 +34,23 @@ namespace Aws
                 }
             }
 
-            CommandDeviceType FromString(const Crt::String &str)
+            DeviceType FromString(const Crt::String &str)
             {
                 size_t hash = Crt::HashString(str.c_str());
 
                 if (hash == THING_HASH)
                 {
-                    return CommandDeviceType::THING;
+                    return DeviceType::THING;
                 }
 
                 if (hash == CLIENT_HASH)
                 {
-                    return CommandDeviceType::CLIENT;
+                    return DeviceType::CLIENT;
                 }
 
                 assert(0);
-                return static_cast<CommandDeviceType>(-1);
+                return static_cast<DeviceType>(-1);
             }
-        } // namespace CommandDeviceTypeMarshaller
-    } // namespace Iotcommand
+        } // namespace DeviceTypeMarshaller
+    } // namespace Iotcommands
 } // namespace Aws

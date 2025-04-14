@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/StatusReason.h>
+#include <aws/iotcommands/StatusReason.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void StatusReason::LoadFromObject(StatusReason &val, const Aws::Crt::JsonView &doc)
@@ -52,5 +52,5 @@ namespace Aws
             return *this;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

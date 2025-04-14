@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
+#include <aws/iotcommands/CommandExecutionsSubscriptionRequest.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void CommandExecutionsSubscriptionRequest::LoadFromObject(
@@ -34,5 +34,5 @@ namespace Aws
             return *this;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

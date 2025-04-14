@@ -6,21 +6,21 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Response payload to an UpdateCommandExecution request.
          *
          */
-        class AWS_IOTCOMMAND_API UpdateCommandExecutionResponse final
+        class AWS_IOTCOMMANDS_API UpdateCommandExecutionResponse final
         {
           public:
             UpdateCommandExecutionResponse() = default;
@@ -39,5 +39,5 @@ namespace Aws
           private:
             static void LoadFromObject(UpdateCommandExecutionResponse &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

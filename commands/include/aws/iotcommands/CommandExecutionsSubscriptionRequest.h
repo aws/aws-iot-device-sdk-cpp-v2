@@ -6,23 +6,23 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/CommandDeviceType.h>
+#include <aws/iotcommands/DeviceType.h>
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Data needed to subscribe to CommandExecutions events.
          *
          */
-        class AWS_IOTCOMMAND_API CommandExecutionsSubscriptionRequest final
+        class AWS_IOTCOMMANDS_API CommandExecutionsSubscriptionRequest final
         {
           public:
             CommandExecutionsSubscriptionRequest() = default;
@@ -36,7 +36,7 @@ namespace Aws
              * The type of a target device.
              *
              */
-            Aws::Crt::Optional<Aws::Iotcommand::CommandDeviceType> DeviceType;
+            Aws::Crt::Optional<Aws::Iotcommands::DeviceType> DeviceType;
 
             /**
              *
@@ -47,5 +47,5 @@ namespace Aws
           private:
             static void LoadFromObject(CommandExecutionsSubscriptionRequest &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/V2ErrorResponse.h>
+#include <aws/iotcommands/V2ErrorResponse.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void V2ErrorResponse::LoadFromObject(V2ErrorResponse &val, const Aws::Crt::JsonView &doc)
@@ -62,5 +62,5 @@ namespace Aws
             return *this;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

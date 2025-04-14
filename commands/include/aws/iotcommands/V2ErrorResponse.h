@@ -6,23 +6,23 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/RejectedErrorCode.h>
+#include <aws/iotcommands/RejectedErrorCode.h>
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Response document containing details about a failed request.
          *
          */
-        class AWS_IOTCOMMAND_API V2ErrorResponse final
+        class AWS_IOTCOMMANDS_API V2ErrorResponse final
         {
           public:
             V2ErrorResponse() = default;
@@ -36,7 +36,7 @@ namespace Aws
              * Indicates the type of error.
              *
              */
-            Aws::Crt::Optional<Aws::Iotcommand::RejectedErrorCode> Error;
+            Aws::Crt::Optional<Aws::Iotcommands::RejectedErrorCode> Error;
 
             /**
              * A text message that provides additional information.
@@ -53,5 +53,5 @@ namespace Aws
           private:
             static void LoadFromObject(V2ErrorResponse &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

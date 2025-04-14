@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommands/UpdateCommandExecutionRequest.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void UpdateCommandExecutionRequest::LoadFromObject(
@@ -19,7 +19,7 @@ namespace Aws
 
             if (doc.ValueExists("status"))
             {
-                val.Status = CommandStatusMarshaller::FromString(doc.GetString("status"));
+                val.Status = CommandExecutionStatusMarshaller::FromString(doc.GetString("status"));
             }
 
             if (doc.ValueExists("statusReason"))
@@ -34,7 +34,7 @@ namespace Aws
 
             if (Status)
             {
-                object.WithString("status", CommandStatusMarshaller::ToString(*Status));
+                object.WithString("status", CommandExecutionStatusMarshaller::ToString(*Status));
             }
 
             if (StatusReason)
@@ -56,5 +56,5 @@ namespace Aws
             return *this;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

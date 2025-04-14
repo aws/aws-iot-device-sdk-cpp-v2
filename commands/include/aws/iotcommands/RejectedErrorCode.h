@@ -6,18 +6,18 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
-         * A value indicating the kind of error encountered while processing an AWS IoT Command request
+         * A value indicating the kind of error encountered while processing an AWS IoT Commands request
          *
          */
         enum class RejectedErrorCode
@@ -75,8 +75,8 @@ namespace Aws
 
         namespace RejectedErrorCodeMarshaller
         {
-            AWS_IOTCOMMAND_API const char *ToString(RejectedErrorCode val);
-            AWS_IOTCOMMAND_API RejectedErrorCode FromString(const Aws::Crt::String &val);
+            AWS_IOTCOMMANDS_API const char *ToString(RejectedErrorCode val);
+            AWS_IOTCOMMANDS_API RejectedErrorCode FromString(const Aws::Crt::String &val);
         } // namespace RejectedErrorCodeMarshaller
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

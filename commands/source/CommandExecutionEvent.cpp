@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void CommandExecutionEvent::LoadFromObject(CommandExecutionEvent &val, const Aws::Crt::JsonView &doc)
@@ -53,5 +53,5 @@ namespace Aws
             Timeout = messageExpiryInterval;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

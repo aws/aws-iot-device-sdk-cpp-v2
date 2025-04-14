@@ -3,7 +3,7 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/CommandStatus.h>
+#include <aws/iotcommands/CommandExecutionStatus.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/StringUtils.h>
@@ -18,24 +18,24 @@ static const size_t TIMED_OUT_HASH = Aws::Crt::HashString("TIMED_OUT");
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
-        namespace CommandStatusMarshaller
+        namespace CommandExecutionStatusMarshaller
         {
-            const char *ToString(CommandStatus status)
+            const char *ToString(CommandExecutionStatus status)
             {
                 switch (status)
                 {
-                    case CommandStatus::IN_PROGRESS:
+                    case CommandExecutionStatus::IN_PROGRESS:
                         return "IN_PROGRESS";
-                    case CommandStatus::SUCCEEDED:
+                    case CommandExecutionStatus::SUCCEEDED:
                         return "SUCCEEDED";
-                    case CommandStatus::FAILED:
+                    case CommandExecutionStatus::FAILED:
                         return "FAILED";
-                    case CommandStatus::REJECTED:
+                    case CommandExecutionStatus::REJECTED:
                         return "REJECTED";
-                    case CommandStatus::TIMED_OUT:
+                    case CommandExecutionStatus::TIMED_OUT:
                         return "TIMED_OUT";
                     default:
                         assert(0);
@@ -43,38 +43,38 @@ namespace Aws
                 }
             }
 
-            CommandStatus FromString(const Crt::String &str)
+            CommandExecutionStatus FromString(const Crt::String &str)
             {
                 size_t hash = Crt::HashString(str.c_str());
 
                 if (hash == IN_PROGRESS_HASH)
                 {
-                    return CommandStatus::IN_PROGRESS;
+                    return CommandExecutionStatus::IN_PROGRESS;
                 }
 
                 if (hash == SUCCEEDED_HASH)
                 {
-                    return CommandStatus::SUCCEEDED;
+                    return CommandExecutionStatus::SUCCEEDED;
                 }
 
                 if (hash == FAILED_HASH)
                 {
-                    return CommandStatus::FAILED;
+                    return CommandExecutionStatus::FAILED;
                 }
 
                 if (hash == REJECTED_HASH)
                 {
-                    return CommandStatus::REJECTED;
+                    return CommandExecutionStatus::REJECTED;
                 }
 
                 if (hash == TIMED_OUT_HASH)
                 {
-                    return CommandStatus::TIMED_OUT;
+                    return CommandExecutionStatus::TIMED_OUT;
                 }
 
                 assert(0);
-                return static_cast<CommandStatus>(-1);
+                return static_cast<CommandExecutionStatus>(-1);
             }
-        } // namespace CommandStatusMarshaller
-    } // namespace Iotcommand
+        } // namespace CommandExecutionStatusMarshaller
+    } // namespace Iotcommands
 } // namespace Aws

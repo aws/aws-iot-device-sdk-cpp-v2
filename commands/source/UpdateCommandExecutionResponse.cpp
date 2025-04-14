@@ -3,11 +3,11 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
+#include <aws/iotcommands/UpdateCommandExecutionResponse.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         void UpdateCommandExecutionResponse::LoadFromObject(
@@ -44,5 +44,5 @@ namespace Aws
             return *this;
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

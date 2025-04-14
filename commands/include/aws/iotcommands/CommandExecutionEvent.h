@@ -6,21 +6,21 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Sent whenever a command execution is added for a thing or a client.
          *
          */
-        class AWS_IOTCOMMAND_API CommandExecutionEvent final
+        class AWS_IOTCOMMANDS_API CommandExecutionEvent final
         {
           public:
             CommandExecutionEvent() = default;
@@ -57,5 +57,5 @@ namespace Aws
           private:
             static void LoadFromObject(CommandExecutionEvent &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

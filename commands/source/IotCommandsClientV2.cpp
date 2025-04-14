@@ -3,19 +3,19 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/IotCommandClientV2.h>
+#include <aws/iotcommands/IotCommandsClientV2.h>
 
 #include <aws/crt/UUID.h>
 
-#include <aws/iotcommand/CommandExecutionEvent.h>
-#include <aws/iotcommand/CommandExecutionsSubscriptionRequest.h>
-#include <aws/iotcommand/UpdateCommandExecutionRequest.h>
-#include <aws/iotcommand/UpdateCommandExecutionResponse.h>
-#include <aws/iotcommand/V2ErrorResponse.h>
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionsSubscriptionRequest.h>
+#include <aws/iotcommands/UpdateCommandExecutionRequest.h>
+#include <aws/iotcommands/UpdateCommandExecutionResponse.h>
+#include <aws/iotcommands/V2ErrorResponse.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         class ClientV2 : public IClientV2
@@ -123,19 +123,19 @@ namespace Aws
             const UpdateCommandExecutionResultHandler &handler)
         {
             Aws::Crt::StringStream publishTopicStream;
-            publishTopicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+            publishTopicStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                                << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/json";
             Aws::Crt::String publishTopic = publishTopicStream.str();
 
             Aws::Crt::StringStream subscriptionTopicStream0;
-            subscriptionTopicStream0 << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType)
-                                     << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+            subscriptionTopicStream0 << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                                     << *request.DeviceId << "/executions/" << *request.ExecutionId
                                      << "/response/accepted/json";
             Aws::Crt::String subscriptionTopic0 = subscriptionTopicStream0.str();
 
             Aws::Crt::StringStream subscriptionTopicStream1;
-            subscriptionTopicStream1 << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType)
-                                     << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+            subscriptionTopicStream1 << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+                                     << *request.DeviceId << "/executions/" << *request.ExecutionId
                                      << "/response/rejected/json";
             Aws::Crt::String subscriptionTopic1 = subscriptionTopicStream1.str();
 
@@ -145,15 +145,15 @@ namespace Aws
             };
 
             Aws::Crt::StringStream responsePathTopicAcceptedStream;
-            responsePathTopicAcceptedStream
-                << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
-                << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/accepted/json";
+            responsePathTopicAcceptedStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType)
+                                            << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+                                            << "/response/accepted/json";
             Aws::Crt::String responsePathTopicAccepted = responsePathTopicAcceptedStream.str();
 
             Aws::Crt::StringStream responsePathTopicRejectedStream;
-            responsePathTopicRejectedStream
-                << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
-                << *request.DeviceId << "/executions/" << *request.ExecutionId << "/response/rejected/json";
+            responsePathTopicRejectedStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType)
+                                            << "/" << *request.DeviceId << "/executions/" << *request.ExecutionId
+                                            << "/response/rejected/json";
             Aws::Crt::String responsePathTopicRejected = responsePathTopicRejectedStream.str();
 
             struct aws_mqtt_request_operation_response_path responsePaths[2];
@@ -277,7 +277,7 @@ namespace Aws
                 const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+            topicStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request/cbor";
             Aws::Crt::String topic = topicStream.str();
 
@@ -291,7 +291,7 @@ namespace Aws
                 const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+            topicStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request";
             Aws::Crt::String topic = topicStream.str();
 
@@ -305,7 +305,7 @@ namespace Aws
                 const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options)
         {
             Aws::Crt::StringStream topicStream;
-            topicStream << "$aws/commands/" << CommandDeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
+            topicStream << "$aws/commands/" << DeviceTypeMarshaller::ToString(*request.DeviceType) << "/"
                         << *request.DeviceId << "/executions/+/request/json";
             Aws::Crt::String topic = topicStream.str();
 
@@ -345,5 +345,5 @@ namespace Aws
             return Aws::Crt::MakeShared<ClientV2>(allocator, allocator, bindingClient);
         }
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

@@ -6,21 +6,21 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * Additional information on provided update.
          *
          */
-        class AWS_IOTCOMMAND_API StatusReason final
+        class AWS_IOTCOMMANDS_API StatusReason final
         {
           public:
             StatusReason() = default;
@@ -45,5 +45,5 @@ namespace Aws
           private:
             static void LoadFromObject(StatusReason &obj, const Crt::JsonView &doc);
         };
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws

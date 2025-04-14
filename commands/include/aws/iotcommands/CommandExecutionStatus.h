@@ -6,21 +6,21 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         /**
          * The status of the command execution.
          *
          */
-        enum class CommandStatus
+        enum class CommandExecutionStatus
         {
             /**
              */
@@ -44,10 +44,10 @@ namespace Aws
 
         };
 
-        namespace CommandStatusMarshaller
+        namespace CommandExecutionStatusMarshaller
         {
-            AWS_IOTCOMMAND_API const char *ToString(CommandStatus val);
-            AWS_IOTCOMMAND_API CommandStatus FromString(const Aws::Crt::String &val);
-        } // namespace CommandStatusMarshaller
-    } // namespace Iotcommand
+            AWS_IOTCOMMANDS_API const char *ToString(CommandExecutionStatus val);
+            AWS_IOTCOMMANDS_API CommandExecutionStatus FromString(const Aws::Crt::String &val);
+        } // namespace CommandExecutionStatusMarshaller
+    } // namespace Iotcommands
 } // namespace Aws

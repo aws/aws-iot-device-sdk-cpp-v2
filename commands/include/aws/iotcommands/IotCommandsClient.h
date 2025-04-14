@@ -6,7 +6,7 @@
  * This file is generated
  */
 
-#include <aws/iotcommand/Exports.h>
+#include <aws/iotcommands/Exports.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
@@ -16,7 +16,7 @@
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         class CommandExecutionsSubscriptionRequest;
@@ -27,11 +27,11 @@ namespace Aws
 
         /**
          */
-        class AWS_IOTCOMMAND_API IotCommandClient final
+        class AWS_IOTCOMMANDS_API IotCommandsClient final
         {
           public:
-            IotCommandClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
-            IotCommandClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
+            IotCommandsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
+            IotCommandsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
 
             operator bool() const noexcept;
             int GetLastError() const noexcept;
@@ -40,6 +40,6 @@ namespace Aws
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
         };
 
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 
 } // namespace Aws

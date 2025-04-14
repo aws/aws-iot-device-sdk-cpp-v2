@@ -3,7 +3,7 @@
  *
  * This file is generated
  */
-#include <aws/iotcommand/RejectedErrorCode.h>
+#include <aws/iotcommands/RejectedErrorCode.h>
 
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/StringUtils.h>
@@ -22,7 +22,7 @@ static const size_t TERMINAL_STATE_REACHED_HASH = Aws::Crt::HashString("Terminal
 
 namespace Aws
 {
-    namespace Iotcommand
+    namespace Iotcommands
     {
 
         namespace RejectedErrorCodeMarshaller
@@ -108,5 +108,5 @@ namespace Aws
                 return static_cast<RejectedErrorCode>(-1);
             }
         } // namespace RejectedErrorCodeMarshaller
-    } // namespace Iotcommand
+    } // namespace Iotcommands
 } // namespace Aws
