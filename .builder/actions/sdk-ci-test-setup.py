@@ -13,8 +13,8 @@ class SdkCiTestSetup(Builder.Action):
         except:
             print(f'Failure while setting up tests')
             actions.append("exit 1")
-        finally:
-            if java_sdk_dir:
-                env.shell.rm(java_sdk_dir)
+        #finally:
+        #    if java_sdk_dir:
+        #        env.shell.rm(java_sdk_dir)
 
         return Builder.Script(actions, name='sdk-ci-test-setup')
