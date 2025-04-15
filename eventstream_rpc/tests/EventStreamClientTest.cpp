@@ -26,7 +26,6 @@ using namespace Awstest;
 struct EventStreamClientTestContext
 {
     EventStreamClientTestContext();
-    ~EventStreamClientTestContext();
 
     std::unique_ptr<ApiHandle> apiHandle;
     std::unique_ptr<Io::EventLoopGroup> elGroup;
@@ -45,12 +44,6 @@ EventStreamClientTestContext::EventStreamClientTestContext() :
     echoServerHostNameValue(nullptr),
     echoServerPortValue(nullptr)
 {
-}
-
-EventStreamClientTestContext::~EventStreamClientTestContext()
-{
-    aws_string_destroy(echoServerHostNameValue);
-    aws_string_destroy(echoServerPortValue);
 }
 
 static EventStreamClientTestContext s_testContext;
@@ -100,6 +93,12 @@ static int s_testTeardown(struct aws_allocator *allocator, int setup_result, voi
     testContext->clientBootstrap.reset();
     /* The ApiHandle must be deallocated last or a deadlock occurs. */
     testContext->apiHandle.reset();
+
+    aws_string_destroy(testContext->echoServerHostNameValue);
+    testContext->echoServerHostNameValue = nullptr;
+
+    aws_string_destroy(testContext->echoServerPortValue);
+    testContext->echoServerPortValue = nullptr;
 
     return AWS_ERROR_SUCCESS;
 }
