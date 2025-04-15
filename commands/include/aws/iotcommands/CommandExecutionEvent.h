@@ -31,18 +31,28 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
+             * Opaque data containing instructions sent from the IoT commands service.
+             *
              */
             Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> Payload;
 
             /**
+             * Unique ID for the specific execution of a command. A command can have multiple executions, each with a
+             * unique ID.
+             *
              */
             Aws::Crt::Optional<Aws::Crt::String> ExecutionId;
 
             /**
+             * Data format of the payload. It is supposed to be a MIME type (IANA media type), but can be an arbitrary
+             * string.
+             *
              */
             Aws::Crt::Optional<Aws::Crt::String> ContentType;
 
             /**
+             * Number of seconds before the IoT commands service decides that this command execution is timed out.
+             *
              */
             Aws::Crt::Optional<int32_t> Timeout;
 

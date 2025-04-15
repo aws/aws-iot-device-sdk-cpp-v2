@@ -35,13 +35,14 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The type of a target device.
+             * The type of a target device. Determine if the device should subscribe for commands addressed to an IoT
+             * Thing or MQTT client.
              *
              */
             Aws::Crt::Optional<Aws::Iotcommands::DeviceType> DeviceType;
 
             /**
-             * The name of the thing associated with the device.
+             * Depending on device type value, this field is either an IoT Thing name or a client ID.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> DeviceId;
@@ -53,13 +54,14 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ExecutionId;
 
             /**
-             *
+             * The status of the command execution.
              *
              */
             Aws::Crt::Optional<Aws::Iotcommands::CommandExecutionStatus> Status;
 
             /**
-             * A reason for the updated status.
+             * A reason for the updated status. Can provide additional information on failures. Should be used when
+             * status is one of the following: FAILED, REJECTED, TIMED_OUT.
              *
              */
             Aws::Crt::Optional<Aws::Iotcommands::StatusReason> StatusReason;

@@ -31,7 +31,7 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Execution ID for which response was sent
+             * Execution ID for which a response was sent
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ExecutionId;

@@ -75,6 +75,11 @@ namespace Aws
         using UpdateCommandExecutionResultHandler = std::function<void(UpdateCommandExecutionResult &&)>;
 
         /**
+         * The AWS IoT commands service is used to send an instruction from the cloud to a device that is connected to
+         * AWS IoT.
+         *
+         * https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html
+         *
          */
         class AWS_IOTCOMMANDS_API IClientV2
         {
@@ -82,7 +87,7 @@ namespace Aws
             virtual ~IClientV2() = default;
 
             /**
-             *
+             * Update the status of a command execution.
              *
              *
              * @param request operation to perform
@@ -95,7 +100,7 @@ namespace Aws
                 const UpdateCommandExecutionResultHandler &handler) = 0;
 
             /**
-             * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
+             * Creates a stream of CommandExecution notifications for a given IoT thing.
              *
              *
              * @param request Modeled streaming operation subscription configuration.
@@ -110,7 +115,7 @@ namespace Aws
                     const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) = 0;
 
             /**
-             * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
+             * Creates a stream of CommandExecution notifications for a given IoT thing.
              *
              *
              * @param request Modeled streaming operation subscription configuration.
@@ -125,7 +130,7 @@ namespace Aws
                     const Aws::Iot::RequestResponse::StreamingOperationOptions<CommandExecutionEvent> &options) = 0;
 
             /**
-             * Creates a stream of CommandExecutionsChanged notifications for a given IoT thing.
+             * Creates a stream of CommandExecution notifications for a given IoT thing.
              *
              *
              * @param request Modeled streaming operation subscription configuration.

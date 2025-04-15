@@ -45,7 +45,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
 
             /**
-             * Execution ID for which error is related.
+             * Execution ID for which error is set.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ExecutionId;

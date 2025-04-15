@@ -17,16 +17,18 @@ namespace Aws
     {
 
         /**
-         * Valid device types for command executions.
+         * Possible device types for command executions.
          *
          */
         enum class DeviceType
         {
             /**
+             * A target for the commands is an IoT Thing.
              */
             THING,
 
             /**
+             * A target for the commands is an MQTT client ID.
              */
             CLIENT,
 

@@ -19,7 +19,7 @@ namespace Aws
     {
 
         /**
-         * Data needed to subscribe to CommandExecutions events.
+         * Data needed to subscribe to CommandExecution events.
          *
          */
         class AWS_IOTCOMMANDS_API CommandExecutionsSubscriptionRequest final
@@ -33,13 +33,14 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * The type of a target device.
+             * The type of a target device. Determine if the device should subscribe for commands addressed to an IoT
+             * Thing or MQTT client.
              *
              */
             Aws::Crt::Optional<Aws::Iotcommands::DeviceType> DeviceType;
 
             /**
-             *
+             * Depending on device type value, this field is either an IoT Thing name or a client ID.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> DeviceId;
