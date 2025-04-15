@@ -8,7 +8,7 @@ from tempfile import NamedTemporaryFile
 
 CLANG_FORMAT_VERSION = '18.1.6'
 
-INCLUDE_REGEX = re.compile(r'^(include|source|tests)/.*\.(cpp|h)$')
+INCLUDE_REGEX = re.compile(r'.*(include|source|tests)/.*\.(cpp|h)$')
 EXCLUDE_REGEX = re.compile(r'^$')
 
 arg_parser = argparse.ArgumentParser(description="Check with clang-format")
@@ -18,19 +18,24 @@ args = arg_parser.parse_args()
 
 os.chdir(Path(__file__).parent)
 
-# create file containing list of all files to format
-filepaths_file = NamedTemporaryFile(delete=False)
-for dirpath, dirnames, filenames in os.walk('.'):
-    for filename in filenames:
-        # our regexes expect filepath to use forward slash
-        filepath = Path(dirpath, filename).as_posix()
-        if not INCLUDE_REGEX.match(filepath):
-            continue
-        if EXCLUDE_REGEX.match(filepath):
-            continue
+check_dirs = ['deviceadvisor', 'devicedefender', 'discovery', 'eventstream_rpc', 'greengrass_ipc', 'identity', 'iotdevicecommon', 'jobs', 'shadow', 'samples', 'secure_tunneling']
 
-        filepaths_file.write(f"{filepath}\n".encode())
-filepaths_file.close()
+for check_dir in check_dirs:
+    # create file containing list of all files to format
+    filepaths_file = NamedTemporaryFile(delete=False)
+    for dirpath, dirnames, filenames in os.walk(check_dir):
+        for filename in filenames:
+
+            # our regexes expect filepath to use forward slash
+            filepath = Path(dirpath, filename).as_posix()
+
+            if not INCLUDE_REGEX.match(filepath):
+                continue
+            if EXCLUDE_REGEX.match(filepath):
+                continue
+
+            filepaths_file.write(f"{filepath}\n".encode())
+    filepaths_file.close()
 
 # use pipx to run clang-format from PyPI
 # this is a simple way to run the same clang-format version regardless of OS
