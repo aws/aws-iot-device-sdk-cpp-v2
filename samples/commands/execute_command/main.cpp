@@ -21,11 +21,12 @@ using namespace Aws::Crt;
 struct ApplicationContext
 {
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_protocolClient;
-    Aws::IotcommandSample::CommandStreamHandler commandStreamHandler;
+    Aws::IotcommandsSample::CommandStreamHandler commandStreamHandler;
 };
 
 static void s_onConnectionSuccess(const Mqtt5::OnConnectionSuccessEventData &eventData)
 {
+    (void)eventData;
     fprintf(stdout, "Mqtt5 Client connection succeeded!\n");
 }
 
@@ -37,6 +38,7 @@ static void s_onConnectionFailure(const Mqtt5::OnConnectionFailureEventData &eve
 
 static void s_onStopped(const Mqtt5::OnStoppedEventData &event)
 {
+    (void)event;
     fprintf(stdout, "Protocol client stopped.\n");
 }
 
@@ -177,7 +179,6 @@ int main(int argc, char *argv[])
 
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-    //    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
     Utils::cmdData cmdData = Utils::parseSampleInputBasicConnect(argc, argv, &apiHandle);
 
@@ -205,7 +206,7 @@ int main(int argc, char *argv[])
 
     auto protocolClient = builder->Build();
     auto commandClient = Aws::Iotcommands::NewClientFrom5(*protocolClient, requestResponseOptions);
-    auto commandStreamHandler = Aws::IotcommandSample::CommandStreamHandler(std::move(commandClient));
+    auto commandStreamHandler = Aws::IotcommandsSample::CommandStreamHandler(std::move(commandClient));
 
     ApplicationContext context{std::move(protocolClient), std::move(commandStreamHandler)};
 

@@ -16,7 +16,7 @@
 
 namespace Aws
 {
-    namespace IotcommandSample
+    namespace IotcommandsSample
     {
         CommandExecutor::CommandExecutor(std::shared_ptr<Aws::Iotcommands::IClientV2> commandClient)
             : m_commandClient(std::move(commandClient)),
@@ -201,5 +201,5 @@ namespace Aws
                 });
         }
 
-    } // namespace IotcommandSample
+    } // namespace IotcommandsSample
 } // namespace Aws

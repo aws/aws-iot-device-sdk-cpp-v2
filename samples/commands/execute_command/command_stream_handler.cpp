@@ -19,7 +19,7 @@
 
 namespace Aws
 {
-    namespace IotcommandSample
+    namespace IotcommandsSample
     {
 
         CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommands::IClientV2> &&commandClient)
@@ -145,5 +145,5 @@ namespace Aws
                 Aws::Crt::ErrorDebugString(event.GetErrorCode()));
         }
 
-    } // namespace IotcommandSample
+    } // namespace IotcommandsSample
 } // namespace Aws

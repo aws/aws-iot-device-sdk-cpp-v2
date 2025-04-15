@@ -17,7 +17,7 @@
 
 namespace Aws
 {
-    namespace IotcommandSample
+    namespace IotcommandsSample
     {
 
         /**
@@ -109,5 +109,5 @@ namespace Aws
             std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
         };
 
-    } // namespace IotcommandSample
+    } // namespace IotcommandsSample
 } // namespace Aws

@@ -17,7 +17,7 @@
 
 namespace Aws
 {
-    namespace IotcommandSample
+    namespace IotcommandsSample
     {
 
         /**
@@ -70,5 +70,5 @@ namespace Aws
             std::mt19937 m_gen;
         };
 
-    } // namespace IotcommandSample
+    } // namespace IotcommandsSample
 } // namespace Aws

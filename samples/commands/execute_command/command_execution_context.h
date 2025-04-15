@@ -11,7 +11,7 @@
 
 namespace Aws
 {
-    namespace IotcommandSample
+    namespace IotcommandsSample
     {
 
         /**
@@ -24,5 +24,5 @@ namespace Aws
             Aws::Iotcommands::CommandExecutionEvent event;
         };
 
-    } // namespace IotcommandSample
+    } // namespace IotcommandsSample
 } // namespace Aws
