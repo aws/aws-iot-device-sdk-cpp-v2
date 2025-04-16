@@ -520,6 +520,38 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
+        static bool s_initModeledEvent(
+            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
+            JobExecutionsChangedEvent &modeledEvent)
+        {
+            const auto &payload = publishEvent.GetPayload();
+            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+            Aws::Crt::JsonObject jsonObject(objectStr);
+            if (!jsonObject.WasParseSuccessful())
+            {
+                return false;
+            }
+
+            modeledEvent = JobExecutionsChangedEvent(jsonObject);
+            return true;
+        }
+
+        static bool s_initModeledEvent(
+            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
+            NextJobExecutionChangedEvent &modeledEvent)
+        {
+            const auto &payload = publishEvent.GetPayload();
+            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+            Aws::Crt::JsonObject jsonObject(objectStr);
+            if (!jsonObject.WasParseSuccessful())
+            {
+                return false;
+            }
+
+            modeledEvent = NextJobExecutionChangedEvent(jsonObject);
+            return true;
+        }
+
         template <typename T> class ServiceStreamingOperation : public Aws::Iot::RequestResponse::IStreamingOperation
         {
           public:
@@ -536,17 +568,13 @@ namespace Aws
             {
 
                 std::function<void(Aws::Iot::RequestResponse::IncomingPublishEvent &&)> unmodeledHandler =
-                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&event)
+                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&publishEvent)
                 {
-                    const auto &payload = event.GetPayload();
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    if (!jsonObject.WasParseSuccessful())
+                    T modeledEvent;
+                    if (!s_initModeledEvent(publishEvent, modeledEvent))
                     {
                         return;
                     }
-
-                    T modeledEvent(jsonObject);
                     options.GetStreamHandler()(std::move(modeledEvent));
                 };
 
