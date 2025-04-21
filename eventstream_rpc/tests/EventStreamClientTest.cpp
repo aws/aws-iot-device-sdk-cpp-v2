@@ -32,7 +32,6 @@ struct EventStreamClientTestContext
     std::unique_ptr<Io::HostResolver> resolver;
     std::unique_ptr<Io::ClientBootstrap> clientBootstrap;
 
-    Aws::Crt::String echoServerHostName;
     uint16_t echoServerPort;
 
     struct aws_string *echoServerHostNameValue;
@@ -50,7 +49,7 @@ static EventStreamClientTestContext s_testContext;
 
 static bool s_isEchoserverSetup(const EventStreamClientTestContext &context)
 {
-    return !context.echoServerHostName.empty() && context.echoServerPort > 0;
+    return context.echoServerHostNameValue != nullptr && context.echoServerHostNameValue->len > 0 && context.echoServerPort > 0;
 }
 
 AWS_STATIC_STRING_FROM_LITERAL(s_env_name_echo_server_host, "AWS_TEST_EVENT_STREAM_ECHO_SERVER_HOST");
@@ -69,12 +68,8 @@ static int s_testSetup(struct aws_allocator *allocator, void *ctx)
         new Io::ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
 
     testContext->echoServerPort = 0;
-    testContext->echoServerHostName = "";
 
-    if (!aws_get_environment_value(allocator, s_env_name_echo_server_host, &testContext->echoServerHostNameValue) && testContext->echoServerHostNameValue != nullptr)
-    {
-        testContext->echoServerHostName = aws_string_c_str(testContext->echoServerHostNameValue);
-    }
+    aws_get_environment_value(allocator, s_env_name_echo_server_host, &testContext->echoServerHostNameValue);
 
     if (!aws_get_environment_value(allocator, s_env_name_echo_server_port, &testContext->echoServerPortValue) && testContext->echoServerPortValue != nullptr)
     {
@@ -166,8 +161,9 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> const MessageAmendment & { return connectionAmendment; };
 
+        Aws::Crt::String hostname(aws_string_c_str(testContext->echoServerHostNameValue));
         ConnectionConfig accessDeniedConfig;
-        accessDeniedConfig.SetHostName(testContext->echoServerHostName);
+        accessDeniedConfig.SetHostName(hostname);
         accessDeniedConfig.SetPort(testContext->echoServerPort);
 
         /* Happy path case. */
