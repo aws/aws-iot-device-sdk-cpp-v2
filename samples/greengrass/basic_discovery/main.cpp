@@ -22,13 +22,13 @@ using namespace Aws::Discovery;
 
 std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     Aws::Iot::MqttClient &mqttClient,
-    DiscoverResponse *response,
+    const DiscoverResponse &discoverResponse,
     Utils::cmdData &cmdData,
     std::promise<void> &shutdownCompletedPromise)
 {
     std::shared_ptr<Mqtt::MqttConnection> connection;
 
-    for (const auto &groupToUse : *response->GGGroups)
+    for (const auto &groupToUse : *discoverResponse.GGGroups)
     {
         for (const auto &connectivityInfo : *groupToUse.Cores->at(0).Connectivity)
         {
@@ -191,9 +191,12 @@ int main(int argc, char *argv[])
     Aws::Iot::MqttClient mqttClient;
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
-    std::promise<void> connectionFinishedPromise;
+    DiscoverResponse discoverResponse;
+
+    std::promise<void> discoveryPromise;
     std::promise<void> shutdownCompletedPromise;
 
+    // Gather a list of discoverable Greengrass cores.
     discoveryClient->Discover(
         cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
             fprintf(stdout, "Discovery completed with error code %d; http code %d\n", error, httpResponseCode);
@@ -207,23 +210,19 @@ int main(int argc, char *argv[])
                     // was successful)
                     if (!cmdData.input_isCI)
                     {
-                        for (size_t a = 0; a < response->GGGroups->size(); a++)
+                        for (const auto &ggGroup : *response->GGGroups)
                         {
-                            auto tmpGroup = std::move(response->GGGroups->at(a));
-                            fprintf(stdout, "Group ID: %s\n", tmpGroup.GGGroupId->c_str());
-                            for (size_t b = 0; b < tmpGroup.Cores->size(); b++)
+                            fprintf(stdout, "Group ID: %s\n", ggGroup.GGGroupId->c_str());
+                            for (const auto &ggCore : *ggGroup.Cores)
                             {
-                                fprintf(stdout, "  Thing ARN: %s\n", tmpGroup.Cores->at(b).ThingArn->c_str());
-                                for (size_t c = 0; c < tmpGroup.Cores->at(b).Connectivity->size(); c++)
+                                fprintf(stdout, "  Thing ARN: %s\n", ggCore.ThingArn->c_str());
+                                for (const auto &connectivity : *ggCore.Connectivity)
                                 {
                                     fprintf(
                                         stdout,
                                         "    Connectivity Host Address: %s\n",
-                                        tmpGroup.Cores->at(b).Connectivity->at(c).HostAddress->c_str());
-                                    fprintf(
-                                        stdout,
-                                        "    Connectivity Host Port: %d\n",
-                                        tmpGroup.Cores->at(b).Connectivity->at(c).Port.value());
+                                        connectivity.HostAddress->c_str());
+                                    fprintf(stdout, "    Connectivity Host Port: %u\n", connectivity.Port.value());
                                 }
                             }
                         }
@@ -237,17 +236,8 @@ int main(int argc, char *argv[])
                     }
                     exit(0);
                 }
-
-                connection = getMqttConnection(mqttClient, response, cmdData, shutdownCompletedPromise);
-                if (connection)
-                {
-                    connectionFinishedPromise.set_value();
-                }
-                else
-                {
-                    fprintf(stderr, "All connection attempts failed\n");
-                    exit(-1);
-                }
+                discoverResponse = *response;
+                discoveryPromise.set_value();
             }
             else
             {
@@ -260,8 +250,17 @@ int main(int argc, char *argv[])
             }
         });
 
-    connectionFinishedPromise.get_future().wait();
+    discoveryPromise.get_future().wait();
 
+    // Try to establish a connection with one of the discovered Greengrass cores.
+    connection = getMqttConnection(mqttClient, discoverResponse, cmdData, shutdownCompletedPromise);
+    if (!connection)
+    {
+        fprintf(stderr, "All connection attempts failed\n");
+        exit(-1);
+    }
+
+    // Now, with the established connection to a Greengrass core, we can perform MQTT-related actions.
     if (cmdData.input_mode == "both" || cmdData.input_mode == "subscribe")
     {
         auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
