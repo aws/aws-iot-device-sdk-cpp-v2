@@ -22,13 +22,13 @@ using namespace Aws::Discovery;
 
 static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     Aws::Iot::MqttClient &mqttClient,
-    const DiscoverResponse &discoverResponse,
+    const Aws::Crt::Vector<GGGroup> &ggGroups,
     Utils::cmdData &cmdData,
     std::promise<void> &shutdownCompletedPromise)
 {
     std::shared_ptr<Mqtt::MqttConnection> connection;
 
-    for (const auto &groupToUse : *discoverResponse.GGGroups)
+    for (const auto &groupToUse : ggGroups)
     {
         for (const auto &connectivityInfo : *groupToUse.Cores->at(0).Connectivity)
         {
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
     }
 
     // Try to establish a connection with one of the discovered Greengrass cores.
-    connection = getMqttConnection(mqttClient, discoverResponse, cmdData, shutdownCompletedPromise);
+    connection = getMqttConnection(mqttClient, *discoverResponse.GGGroups, cmdData, shutdownCompletedPromise);
     if (!connection)
     {
         fprintf(stderr, "All connection attempts failed\n");
