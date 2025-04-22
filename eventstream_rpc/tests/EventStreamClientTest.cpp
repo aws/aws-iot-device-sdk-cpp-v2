@@ -166,8 +166,7 @@ static int s_TestEventStreamConnectFailureNoAuthHeader(struct aws_allocator *all
         auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
-        // TOFIX: this isn't reliably true on Windows over TCP due to RSTs blocking final data reads
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, clientStatus);
+        ASSERT_TRUE(clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
     }
 
     return AWS_OP_SUCCESS;
@@ -200,8 +199,7 @@ static int s_TestEventStreamConnectFailureBadAuthHeader(struct aws_allocator *al
         auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
-        // TOFIX: this isn't reliably true on Windows over TCP due to RSTs blocking final data reads
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, clientStatus);
+        ASSERT_TRUE(clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
     }
 
     return AWS_OP_SUCCESS;
