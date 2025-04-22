@@ -239,7 +239,8 @@ int main(int argc, char *argv[])
 
     // Wait for the discovery process to return actual discovery results, or error if something went wrong.
     auto isDiscoverySucceeded = discoveryStatusPromise.get_future().get();
-    if (!isDiscoverySucceeded) {
+    if (!isDiscoverySucceeded)
+    {
         return 1;
     }
 
