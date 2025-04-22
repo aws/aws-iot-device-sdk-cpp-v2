@@ -20,7 +20,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
 
-std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
+static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     Aws::Iot::MqttClient &mqttClient,
     const DiscoverResponse &discoverResponse,
     Utils::cmdData &cmdData,
@@ -115,6 +115,23 @@ std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     return nullptr;
 }
 
+static void printGreengrassResponse(const Aws::Crt::Vector<GGGroup> &ggGroups)
+{
+    for (const auto &ggGroup : ggGroups)
+    {
+        fprintf(stdout, "Group ID: %s\n", ggGroup.GGGroupId->c_str());
+        for (const auto &ggCore : *ggGroup.Cores)
+        {
+            fprintf(stdout, "  Thing ARN: %s\n", ggCore.ThingArn->c_str());
+            for (const auto &connectivity : *ggCore.Connectivity)
+            {
+                fprintf(stdout, "    Connectivity Host Address: %s\n", connectivity.HostAddress->c_str());
+                fprintf(stdout, "    Connectivity Host Port: %u\n", connectivity.Port.value());
+            }
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
@@ -193,51 +210,21 @@ int main(int argc, char *argv[])
 
     DiscoverResponse discoverResponse;
 
-    std::promise<void> discoveryPromise;
+    std::promise<bool> discoveryStatusPromise;
     std::promise<void> shutdownCompletedPromise;
 
-    // Gather a list of discoverable Greengrass cores.
+    // Initiate gathering a list of discoverable Greengrass cores.
+    // NOTE: This is an asynchronous operation, so it completes before the results are actually ready. You need to use
+    // synchronization techniques to obtain its results. For simplicity, we use promise/future in this sample.
     discoveryClient->Discover(
-        cmdData.input_thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+        cmdData.input_thingName,
+        [&discoverResponse, &discoveryStatusPromise](DiscoverResponse *response, int error, int httpResponseCode) {
             fprintf(stdout, "Discovery completed with error code %d; http code %d\n", error, httpResponseCode);
-            if (!error && response->GGGroups)
+
+            if (!error && response->GGGroups.has_value())
             {
-                // Print the discovery response information and then exit. Does not use the discovery info.
-                // (unless in CI, in which case just note it was successful and exit)
-                if (cmdData.input_PrintDiscoverRespOnly)
-                {
-                    // Print the discovery response information and then exit (unless in CI, in which case just note it
-                    // was successful)
-                    if (!cmdData.input_isCI)
-                    {
-                        for (const auto &ggGroup : *response->GGGroups)
-                        {
-                            fprintf(stdout, "Group ID: %s\n", ggGroup.GGGroupId->c_str());
-                            for (const auto &ggCore : *ggGroup.Cores)
-                            {
-                                fprintf(stdout, "  Thing ARN: %s\n", ggCore.ThingArn->c_str());
-                                for (const auto &connectivity : *ggCore.Connectivity)
-                                {
-                                    fprintf(
-                                        stdout,
-                                        "    Connectivity Host Address: %s\n",
-                                        connectivity.HostAddress->c_str());
-                                    fprintf(stdout, "    Connectivity Host Port: %u\n", connectivity.Port.value());
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        fprintf(
-                            stdout,
-                            "Received a greengrass discovery result! Not showing result in CI for possible data "
-                            "sensitivity.\n");
-                    }
-                    exit(0);
-                }
                 discoverResponse = *response;
-                discoveryPromise.set_value();
+                discoveryStatusPromise.set_value(true);
             }
             else
             {
@@ -246,11 +233,33 @@ int main(int argc, char *argv[])
                     "Discover failed with error: %s, and http response code %d\n",
                     aws_error_debug_str(error),
                     httpResponseCode);
-                exit(-1);
+                discoveryStatusPromise.set_value(false);
             }
         });
 
-    discoveryPromise.get_future().wait();
+    // Wait for the discovery process to return actual discovery results, or error if something went wrong.
+    auto isDiscoverySucceeded = discoveryStatusPromise.get_future().get();
+    if (!isDiscoverySucceeded) {
+        return 1;
+    }
+
+    // Print the discovery response information and then exit. Does not use the discovery info.
+    if (cmdData.input_PrintDiscoverRespOnly)
+    {
+        // Print the discovery response information and then exit (unless in CI, in which case just note it
+        // was successful).
+        if (!cmdData.input_isCI)
+        {
+            printGreengrassResponse(*discoverResponse.GGGroups);
+        }
+        else
+        {
+            fprintf(
+                stdout,
+                "Received a greengrass discovery result! Not showing result in CI for possible data sensitivity.\n");
+        }
+        return 0;
+    }
 
     // Try to establish a connection with one of the discovered Greengrass cores.
     connection = getMqttConnection(mqttClient, discoverResponse, cmdData, shutdownCompletedPromise);
