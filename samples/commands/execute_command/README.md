@@ -135,7 +135,11 @@ cmake --build build/
 To run the sample:
 
 ``` sh
-./build/execute-command --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name> --client_id <client id>
+./build/execute-command \
+    --endpoint <endpoint> \
+    --cert <path to the certificate> \
+    --key <path to the private key> \
+    --thing_name <thing name> --client_id <client id>
 ```
 
 The sample will automatically connect to IoT Core and then will subscribe to streams of Command Executions related to
@@ -221,7 +225,7 @@ On success, the CLI command should give output like:
 
 ```
 {
-    "executionId": "12345678-1234-1234-1234-123456789012"
+    "executionId": "12345678-1234-5678-9abc-123456789abc"
 }
 ```
 
@@ -229,13 +233,13 @@ Meanwhile, your running jobs sample should receive notifications and output some
 
 ```
 Received new command for 'json' payload format:
-  execution ID: '12345678-1234-1234-1234-123456789012'
+  execution ID: '12345678-1234-5678-9abc-123456789abc'
   payload format: 'application/json'
   execution timeout: 9
   payload size: 26
-[12345678-1234-1234-1234-123456789012] Validating command
-[12345678-1234-1234-1234-123456789012] Executing command
-[12345678-1234-1234-1234-123456789012] Processing command... it'll take 7 seconds
-[12345678-1234-1234-1234-123456789012] Updating command execution
-[12345678-1234-1234-1234-123456789012] Successfully updated execution status
+[12345678-1234-5678-9abc-123456789abc] Validating command
+[12345678-1234-5678-9abc-123456789abc] Executing command
+[12345678-1234-5678-9abc-123456789abc] Processing command... it'll take 7 seconds
+[12345678-1234-5678-9abc-123456789abc] Updating command execution
+[12345678-1234-5678-9abc-123456789abc] Successfully updated execution status
 ```
