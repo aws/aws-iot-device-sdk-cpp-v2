@@ -246,8 +246,6 @@ int main(int argc, char *argv[])
     // Print the discovery response information and then exit. Does not use the discovery info.
     if (cmdData.input_PrintDiscoverRespOnly)
     {
-        // Print the discovery response information and then exit (unless in CI, in which case just note it
-        // was successful).
         if (!cmdData.input_isCI)
         {
             printGreengrassResponse(*discoverResponse.GGGroups);
