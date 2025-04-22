@@ -15,10 +15,6 @@
 #endif
 
 #include <aws/common/environment.h>
-#include <iostream>
-#include <queue>
-#include <sstream>
-#include <unistd.h>
 
 using namespace Aws::Crt;
 using namespace Aws::Eventstreamrpc;
@@ -239,81 +235,6 @@ static int s_TestEchoClientConnectSuccess(struct aws_allocator *allocator, void 
 AWS_TEST_CASE(EchoClientConnectSuccess, s_TestEchoClientConnectSuccess);
 
 #ifdef NEVER
-
-static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
-{
-    ApiHandle apiHandle(allocator);
-    EventStreamClientTestContext testContext;
-    s_testSetup(allocator, testContext);
-
-    if (!testContext.hasTestEnvironment())
-    {
-        printf("Environment Variables are not set for the test, skipping...");
-        return AWS_OP_SKIP;
-    }
-
-    /* Happy path case. */
-    {
-        ConnectionLifecycleHandler lifecycleHandler;
-        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
-        auto connectedStatus = client.Connect(lifecycleHandler);
-        EventStreamRpcStatusCode clientStatus = connectedStatus.get().baseStatus;
-
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, clientStatus);
-        client.Close();
-    }
-
-    /* Empty amendment headers. */
-    {
-        ConnectionConfig accessDeniedConfig;
-        accessDeniedConfig.SetHostName(testContext.echoServerHost);
-        accessDeniedConfig.SetPort(testContext.echoServerPort);
-
-        TestLifecycleHandler lifecycleHandler;
-        ClientConnection connection(allocator);
-        auto future = connection.Connect(accessDeniedConfig, &lifecycleHandler, *testContext.clientBootstrap);
-        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
-
-        // TOFIX: this isn't reliably true on Windows over TCP due to RSTs blocking final data reads
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, clientStatus);
-    }
-
-    /* Rejected client-name header. */
-    {
-        ConnectionConfig accessDeniedConfig;
-        accessDeniedConfig.SetHostName(testContext.echoServerHost);
-        accessDeniedConfig.SetPort(testContext.echoServerPort);
-
-        MessageAmendment connectionAmendment;
-        connectionAmendment.AddHeader(EventStreamHeader(
-        Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
-
-        accessDeniedConfig.SetConnectAmendment(connectionAmendment);
-
-        TestLifecycleHandler lifecycleHandler;
-        ClientConnection connection(allocator);
-
-        auto future = connection.Connect(accessDeniedConfig, &lifecycleHandler, *testContext.clientBootstrap);
-        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
-
-        // TOFIX: this isn't reliably true on Windows over TCP due to RSTs blocking final data reads
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, clientStatus);
-    }
-
-    /* Connect without taking its future then immediately close. */
-    {
-        ConnectionLifecycleHandler lifecycleHandler;
-        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
-        auto connectedStatus = client.Connect(lifecycleHandler);
-        client.Close();
-        client.Close();
-        ASSERT_FALSE(client.IsConnected());
-    }
-
-    return AWS_OP_SUCCESS;
-}
-
-AWS_TEST_CASE(EventStreamConnect, s_TestEventStreamConnect);
 
 
 AWS_TEST_CASE_FIXTURE(
