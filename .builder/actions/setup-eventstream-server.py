@@ -49,7 +49,7 @@ class SetupEventstreamServer(Builder.Action):
                 If the CRT does not support the platform, we fail with 
                 'java.io.IOException: Unable to open library in jar for AWS CRT'
                 """
-                prone_output = ""
+                probe_output = ""
                 probe = subprocess.Popen(
                     echo_server_probe_command,
                     stdout=subprocess.STDOUT,
@@ -68,7 +68,7 @@ class SetupEventstreamServer(Builder.Action):
                         # We're reading in binary mode, so no automatic newline translation
                         if sys.platform == 'win32':
                             line = line.replace('\r\n', '\n')
-                        prone_output += line
+                        probe_output += line
                         line = probe.stderr.readline()
                     probe.wait()
 
@@ -113,8 +113,9 @@ class SetupEventstreamServer(Builder.Action):
             finally:
                 env.shell.popd()
 
-        except:
+        except Exception as ex:
             print('Failed to set up event stream server.  Eventstream CI tests will not be run.')
+            print(ex)
 
         return java_sdk_dir
 
