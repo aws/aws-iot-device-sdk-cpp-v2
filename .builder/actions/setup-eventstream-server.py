@@ -34,21 +34,46 @@ class SetupEventstreamServer(Builder.Action):
 
                 echo_server_probe_command = [
                     "java",
-                    "-Daws.crt.log.level=Trace",
-                    "-Daws.crt.log.destination=File",
-                    "-Daws.crt.log.filename=/tmp/crt.txt",
                     "-classpath",
                     f"{test_class_path}{directory_separator}{target_class_path}{directory_separator}{classpath}",
                     "software.amazon.awssdk.eventstreamrpc.echotest.EchoTestServiceRunner"]
 
                 """
                 Try to run the echo server in the foreground without required arguments.  This always fails, but
-                the exception text can tell us whether or not the Java CRT is available on the platform (we have SDK CI
+                the output can tell us whether or not the Java CRT is available on the platform (we have SDK CI
                 that runs on platforms that the Java CRT does not support).
+                
+                If the CRT supports the platform, we fail with an out-of-index exception (referencing non-existent
+                command line arguments)
+                
+                If the CRT does not support the platform, we fail with 
+                'java.io.IOException: Unable to open library in jar for AWS CRT'
                 """
-                probe_output = env.shell.exec(echo_server_probe_command)
-                print("Probe result:\n\n")
-                print(probe_output)
+                prone_output = ""
+                probe = subprocess.Popen(
+                    echo_server_probe_command,
+                    stdout=subprocess.STDOUT,
+                    stderr=subprocess.PIPE,
+                    shell=True,
+                    bufsize=0)  # do not buffer output
+                with probe:
+
+                    # Convert all output to strings, which makes it much easier to both print
+                    # and process, since all known uses of parsing output want strings anyway
+                    line = probe.stderr.readline()
+                    while (line):
+                        # ignore weird characters coming back from the shell (colors, etc)
+                        if not isinstance(line, str):
+                            line = line.decode('ascii', 'ignore')
+                        # We're reading in binary mode, so no automatic newline translation
+                        if sys.platform == 'win32':
+                            line = line.replace('\r\n', '\n')
+                        prone_output += line
+                        line = probe.stderr.readline()
+                    probe.wait()
+
+                if "java.io.IOException" in probe_output:
+                    raise Exception("Java CRT not supported by this platform")
 
                 echo_server_command = [
                     "java",
