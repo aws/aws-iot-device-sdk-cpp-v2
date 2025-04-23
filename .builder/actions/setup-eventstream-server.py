@@ -52,7 +52,6 @@ class SetupEventstreamServer(Builder.Action):
                 probe_output = ""
                 probe = subprocess.Popen(
                     echo_server_probe_command,
-                    stdout=subprocess.STDOUT,
                     stderr=subprocess.PIPE,
                     shell=True,
                     bufsize=0)  # do not buffer output
