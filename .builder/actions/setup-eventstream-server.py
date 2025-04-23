@@ -21,9 +21,9 @@ class SetupEventstreamServer(Builder.Action):
 
             try:
                 # The EchoTest server is in test-only code
-                env.shell.exec(["mvn", "test-compile"], check=True)
+                env.shell.exec(["mvn", "-q", "test-compile"], check=True)
 
-                env.shell.exec(["mvn", "dependency:build-classpath", "-Dmdep.outputFile=classpath.txt"], check=True)
+                env.shell.exec(["mvn", "-q", "dependency:build-classpath", "-Dmdep.outputFile=classpath.txt"], check=True)
 
                 with open('classpath.txt', 'r') as file:
                     classpath = file.read()
@@ -31,6 +31,24 @@ class SetupEventstreamServer(Builder.Action):
                 test_class_path = os.path.join(sdk_dir, "target", "test-classes")
                 target_class_path = os.path.join(sdk_dir, "target", "classes")
                 directory_separator = os.pathsep
+
+                echo_server_probe_command = [
+                    "java",
+                    "-Daws.crt.log.level=Trace",
+                    "-Daws.crt.log.destination=File",
+                    "-Daws.crt.log.filename=/tmp/crt.txt",
+                    "-classpath",
+                    f"{test_class_path}{directory_separator}{target_class_path}{directory_separator}{classpath}",
+                    "software.amazon.awssdk.eventstreamrpc.echotest.EchoTestServiceRunner"]
+
+                """
+                Try to run the echo server in the foreground without required arguments.  This always fails, but
+                the exception text can tell us whether or not the Java CRT is available on the platform (we have SDK CI
+                that runs on platforms that the Java CRT does not support).
+                """
+                probe_output = env.shell.exec(echo_server_probe_command)
+                print("Probe result:\n\n")
+                print(probe_output)
 
                 echo_server_command = [
                     "java",
