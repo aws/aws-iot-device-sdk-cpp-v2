@@ -72,7 +72,11 @@ class SetupEventstreamServer(Builder.Action):
                         line = probe.stderr.readline()
                     probe.wait()
 
+                print("Probe stderr:\n\n")
+                print(probe_output)
+
                 if "java.io.IOException" in probe_output:
+                    print("Skipping eventstream server unsupported platform")
                     raise Exception("Java CRT not supported by this platform")
 
                 echo_server_command = [
