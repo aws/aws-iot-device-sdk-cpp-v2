@@ -221,21 +221,27 @@ namespace Aws
         ClientConnection::~ClientConnection() noexcept
         {
             m_stateMutex.lock();
-            if (m_connectionWillSetup)
+            bool waitForSetup = m_connectionWillSetup;
+            m_stateMutex.unlock();
+
+            if (waitForSetup)
             {
-                m_stateMutex.unlock();
                 m_connectionSetupPromise.get_future().wait();
             }
+
+            bool waitForClosed = false;
             m_stateMutex.lock();
             if (m_clientState != DISCONNECTED)
             {
                 Close();
-                m_stateMutex.unlock();
+                waitForClosed = true;
+            }
+            m_stateMutex.unlock();
+
+            if (waitForClosed)
+            {
                 m_closedPromise.get_future().wait();
             }
-            /* Cover the case in which the if statements are not hit. */
-            m_stateMutex.unlock();
-            m_stateMutex.unlock();
 
             m_underlyingConnection = nullptr;
         }
