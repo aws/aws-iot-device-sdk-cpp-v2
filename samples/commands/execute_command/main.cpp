@@ -17,12 +17,12 @@
 
 #include "../../utils/CommandLineUtils.h"
 
-using namespace Aws::Crt;
-
 struct ApplicationContext
 {
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_protocolClient;
     Aws::IotcommandsSample::CommandStreamHandler commandStreamHandler;
+    Aws::Crt::String thingName;
+    Aws::Crt::String clientId;
 };
 
 static Aws::Crt::String s_nibbleNextToken(Aws::Crt::String &input)
@@ -58,9 +58,75 @@ static Aws::Crt::String s_nibbleNextToken(Aws::Crt::String &input)
 static void s_printHelp()
 {
     fprintf(stdout, "\nIoT Commands sample:\n\n");
-    fprintf(stdout, "  list-streams                lists all open streaming operations\n");
-    fprintf(stdout, "  close-stream <stream-id>    closes a streaming operation\n");
-    fprintf(stdout, "  quit                        quits the program\n");
+    fprintf(stdout, "  open-thing-stream <payload-format>\n");
+    fprintf(stdout, "                   subscribe to a stream of command executions with a specified payload format\n");
+    fprintf(stdout, "                   targeting the IoT Thing set on the application startup\n");
+    fprintf(stdout, "  open-client-stream <payload-format>\n");
+    fprintf(stdout, "                   subscribe to a stream of command executions with a specified payload format\n");
+    fprintf(stdout, "                   targeting the MQTT client ID set on the application startup\n");
+    fprintf(stdout, "  update-command-execution <execution-id> <status> [<reason-code>] [<reason-description>]\n");
+    fprintf(stdout, "                   update status for specified command execution ID;\n");
+    fprintf(stdout, "                   <status> can be one of the following:\n");
+    fprintf(stdout, "                       IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT\n");
+    fprintf(stdout, "                   <reason-code> and <reason-description> may be optionally provided for\n");
+    fprintf(stdout, "                       the REJECTED, FAILED, or TIMED_OUT statuses\n");
+    fprintf(stdout, "  list-streams     list all open streaming operations\n");
+    fprintf(stdout, "  close-stream <stream-id>\n");
+    fprintf(stdout, "                   close a specified stream;\n");
+    fprintf(stdout, "                   <stream-id> is internal ID that can be found with 'list-streams'\n");
+    fprintf(stdout, "  quit             quit the sample application\n");
+}
+
+static void s_handleOpenStream(
+    Aws::Iotcommands::DeviceType deviceType,
+    const Aws::Crt::String &params,
+    ApplicationContext &context)
+{
+    Aws::Crt::String remaining = params;
+    Aws::Crt::String payloadFormat = s_nibbleNextToken(remaining);
+
+    if (payloadFormat.empty())
+    {
+        fprintf(stdout, "Invalid arguments to open-*-stream command!\n\n");
+        s_printHelp();
+        return;
+    }
+
+    switch (deviceType)
+    {
+        case Aws::Iotcommands::DeviceType::THING:
+            context.commandStreamHandler.subscribeToCommandExecutionsStream(
+                deviceType, context.thingName, payloadFormat);
+            break;
+        case Aws::Iotcommands::DeviceType::CLIENT:
+            context.commandStreamHandler.subscribeToCommandExecutionsStream(
+                deviceType, context.clientId, payloadFormat);
+            break;
+    }
+}
+
+static void s_handleUpdateCommandExecution(const Aws::Crt::String &params, ApplicationContext &context)
+{
+    Aws::Crt::String paramCopy = params;
+    Aws::Crt::String commandExecutionId = s_nibbleNextToken(paramCopy);
+    Aws::Crt::String statusStr = s_nibbleNextToken(paramCopy);
+
+    if (commandExecutionId.empty() || statusStr.empty())
+    {
+        fprintf(stdout, "Invalid arguments to update-command-execution command!\n\n");
+        s_printHelp();
+        return;
+    }
+
+    // NOTE: For debug builds, invalid values will cause abort here.
+    Aws::Iotcommands::CommandExecutionStatus status =
+        Aws::Iotcommands::CommandExecutionStatusMarshaller::FromString(statusStr);
+
+    Aws::Crt::String reasonCode = s_nibbleNextToken(paramCopy);
+    Aws::Crt::String reasonDescription = paramCopy;
+
+    context.commandStreamHandler.updateCommandExecutionStatus(
+        commandExecutionId, status, reasonCode, reasonDescription);
 }
 
 static void s_handleListStreams(ApplicationContext &context)
@@ -94,6 +160,18 @@ static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &con
         fprintf(stdout, "Quitting!\n");
         return true;
     }
+    else if (command == "open-thing-stream")
+    {
+        s_handleOpenStream(Aws::Iotcommands::DeviceType::THING, remaining, context);
+    }
+    else if (command == "open-client-stream")
+    {
+        s_handleOpenStream(Aws::Iotcommands::DeviceType::CLIENT, remaining, context);
+    }
+    else if (command == "update-command-execution")
+    {
+        s_handleUpdateCommandExecution(remaining, context);
+    }
     else if (command == "list-streams")
     {
         s_handleListStreams(context);
@@ -115,7 +193,7 @@ int main(int argc, char *argv[])
     /************************ Setup ****************************/
 
     // Do the global initialization for the API.
-    ApiHandle apiHandle;
+    Aws::Crt::ApiHandle apiHandle;
 
     Utils::cmdData cmdData = Utils::parseSampleInputCommands(argc, argv, &apiHandle);
 
@@ -127,11 +205,14 @@ int main(int argc, char *argv[])
     if (builder == nullptr)
     {
         printf(
-            "Failed to setup mqtt5 client builder with error code %d: %s", LastError(), ErrorDebugString(LastError()));
+            "Failed to setup mqtt5 client builder with error code %d: %s",
+            Aws::Crt::LastError(),
+            Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
         return -1;
     }
 
-    auto connectPacket = MakeShared<Mqtt5::ConnectPacket>(DefaultAllocatorImplementation());
+    auto connectPacket =
+        Aws::Crt::MakeShared<Aws::Crt::Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectPacket->WithClientId(cmdData.input_clientId);
 
     builder->WithConnectOptions(connectPacket);
@@ -140,13 +221,13 @@ int main(int argc, char *argv[])
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
-        [&connectedWaiter](const Mqtt5::OnConnectionSuccessEventData &)
+        [&connectedWaiter](const Aws::Crt::Mqtt5::OnConnectionSuccessEventData &)
         {
             fprintf(stdout, "Mqtt5 Client connection succeeded!\n");
             connectedWaiter.set_value(true);
         });
     builder->WithClientConnectionFailureCallback(
-        [&connectedWaiter](const Mqtt5::OnConnectionFailureEventData &eventData)
+        [&connectedWaiter](const Aws::Crt::Mqtt5::OnConnectionFailureEventData &eventData)
         {
             fprintf(
                 stdout,
@@ -158,7 +239,10 @@ int main(int argc, char *argv[])
     auto protocolClient = builder->Build();
     if (!protocolClient)
     {
-        printf("Failed to create mqtt5 client with error code %d: %s", LastError(), ErrorDebugString(LastError()));
+        printf(
+            "Failed to create mqtt5 client with error code %d: %s",
+            Aws::Crt::LastError(),
+            Aws::Crt::ErrorDebugString(Aws::Crt::LastError()));
         return -1;
     }
 
@@ -172,29 +256,24 @@ int main(int argc, char *argv[])
 
     protocolClient->Start();
     auto isConnected = connectedWaiter.get_future().get();
+    connectedWaiter = {};
+
     if (!isConnected)
     {
         return -1;
     }
 
-    ApplicationContext context{std::move(protocolClient), std::move(commandStreamHandler)};
-
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::THING, cmdData.input_thingName, "json");
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::THING, cmdData.input_thingName, "cbor");
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::THING, cmdData.input_thingName, "generic");
-
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::CLIENT, cmdData.input_clientId, "json");
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::CLIENT, cmdData.input_clientId, "cbor");
-    context.commandStreamHandler.openStream(Aws::Iotcommands::DeviceType::CLIENT, cmdData.input_clientId, "generic");
+    ApplicationContext context{
+        std::move(protocolClient), std::move(commandStreamHandler), cmdData.input_thingName, cmdData.input_clientId};
 
     while (true)
     {
-        fprintf(stdout, "\nEnter command:\n");
+        fprintf(stdout, "\nEnter command:\n> ");
 
-        String input;
+        Aws::Crt::String input;
         std::getline(std::cin, input);
 
-        if (s_handleInput(input, context))
+        if (s_handleInput(input, context) || !std::cin)
         {
             fprintf(stdout, "Exiting...");
             break;

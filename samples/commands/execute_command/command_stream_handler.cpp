@@ -25,10 +25,9 @@ namespace Aws
         CommandStreamHandler::CommandStreamHandler(std::shared_ptr<Aws::Iotcommands::IClientV2> &&commandClient)
             : m_commandClient(std::move(commandClient))
         {
-            m_commandExecutor = std::make_shared<CommandExecutor>(m_commandClient);
         }
 
-        bool CommandStreamHandler::openStream(
+        bool CommandStreamHandler::subscribeToCommandExecutionsStream(
             Aws::Iotcommands::DeviceType deviceType,
             const Aws::Crt::String &deviceId,
             const Aws::Crt::String &payloadFormat)
@@ -61,9 +60,9 @@ namespace Aws
                         fprintf(stdout, "  payload size: %lu\n", event.Payload->size());
                     }
 
-                    CommandExecutionContext commandExecution{
-                        std::move(deviceType), std::move(deviceId), std::move(event)};
-                    m_commandExecutor->enqueueCommandForExecution(std::move(commandExecution));
+                    CommandExecutionContext commandExecution{deviceType, deviceId, std::move(event)};
+                    m_activeCommandExecutions.insert(
+                        {*commandExecution.event.ExecutionId, std::move(commandExecution)});
                 });
 
             auto streamId = nextStreamId++;
@@ -86,6 +85,92 @@ namespace Aws
             }
 
             registerStream(streamId, std::move(operation), deviceType, deviceId, payloadFormat);
+
+            return true;
+        }
+
+        bool CommandStreamHandler::updateCommandExecutionStatus(
+            const Crt::String &executionId,
+            Aws::Iotcommands::CommandExecutionStatus status,
+            const Aws::Crt::String &reasonCode,
+            const Aws::Crt::String &reasonDescription)
+        {
+            auto iter = m_activeCommandExecutions.find(executionId);
+            if (iter == m_activeCommandExecutions.end())
+            {
+                fprintf(
+                    stdout,
+                    "Failed to update command execution status: unknown command execution ID '%s'\n",
+                    executionId.c_str());
+                return false;
+            }
+
+            const auto &commandExecutionContext = iter->second;
+
+            Aws::Iotcommands::UpdateCommandExecutionRequest request;
+            request.Status = status;
+            request.DeviceType = commandExecutionContext.deviceType;
+            request.DeviceId = commandExecutionContext.deviceId;
+            request.ExecutionId = commandExecutionContext.event.ExecutionId;
+
+            if (!reasonCode.empty())
+            {
+                request.StatusReason = Aws::Iotcommands::StatusReason();
+                request.StatusReason->ReasonCode = reasonCode;
+                request.StatusReason->ReasonDescription = reasonDescription;
+            }
+
+            fprintf(stdout, "Updating command execution '%s'\n", commandExecutionContext.event.ExecutionId->c_str());
+
+            std::promise<void> updateWaiter;
+            m_commandClient->UpdateCommandExecution(
+                request,
+                [executionId, &updateWaiter](Aws::Iotcommands::UpdateCommandExecutionResult &&result)
+                {
+                    if (result.IsSuccess())
+                    {
+                        fprintf(
+                            stdout,
+                            "Successfully updated execution status for '%s'\n",
+                            result.GetResponse().ExecutionId->c_str());
+                    }
+                    else
+                    {
+                        fprintf(
+                            stdout,
+                            "Failed to update execution status: response code %d\n",
+                            result.GetError().GetErrorCode());
+
+                        if (result.GetError().HasModeledError())
+                        {
+                            if (result.GetError().GetModeledError().ExecutionId)
+                            {
+                                fprintf(
+                                    stdout,
+                                    "Failed to update execution status: execution ID %s\n",
+                                    result.GetError().GetModeledError().ExecutionId->c_str());
+                            }
+                            if (result.GetError().GetModeledError().ErrorMessage)
+                            {
+                                fprintf(
+                                    stdout,
+                                    "Failed to update execution status: error message %s\n",
+                                    result.GetError().GetModeledError().ErrorMessage->c_str());
+                            }
+                            if (result.GetError().GetModeledError().Error)
+                            {
+                                fprintf(
+                                    stdout,
+                                    "Failed to update execution status: error code %d (%s)\n",
+                                    static_cast<int>(*result.GetError().GetModeledError().Error),
+                                    Aws::Iotcommands::RejectedErrorCodeMarshaller::ToString(
+                                        *result.GetError().GetModeledError().Error));
+                            }
+                        }
+                    }
+                    updateWaiter.set_value();
+                });
+            updateWaiter.get_future().wait();
 
             return true;
         }

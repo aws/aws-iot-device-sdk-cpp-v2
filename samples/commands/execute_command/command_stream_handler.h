@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionStatus.h>
 #include <aws/iotcommands/DeviceType.h>
 #include <aws/iotcommands/IotCommandsClientV2.h>
 
@@ -11,8 +13,6 @@
 #include <condition_variable>
 #include <memory>
 #include <mutex>
-
-#include "command_executor.h"
 
 namespace Aws
 {
@@ -43,16 +43,29 @@ namespace Aws
              * @param payloadFormat
              * @return
              */
-            bool openStream(
+            bool subscribeToCommandExecutionsStream(
                 Aws::Iotcommands::DeviceType deviceType,
                 const Aws::Crt::String &deviceId,
                 const Aws::Crt::String &payloadFormat);
+
+            bool updateCommandExecutionStatus(
+                const Aws::Crt::String &executionId,
+                Aws::Iotcommands::CommandExecutionStatus status,
+                const Aws::Crt::String &reasonCode,
+                const Aws::Crt::String &reasonDescription);
 
             void listOpenedStreams();
 
             bool closeStream(uint64_t streamId);
 
           private:
+            struct CommandExecutionContext
+            {
+                Aws::Iotcommands::DeviceType deviceType;
+                Aws::Crt::String deviceId;
+                Aws::Iotcommands::CommandExecutionEvent event;
+            };
+
             struct StreamingOperationWrapper
             {
                 /**
@@ -98,14 +111,19 @@ namespace Aws
             std::shared_ptr<Aws::Iotcommands::IClientV2> m_commandClient;
 
             /**
-             * TODO
-             */
-            std::shared_ptr<CommandExecutor> m_commandExecutor;
-
-            /**
              * Opened streaming operations.
              */
             std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
+
+            /**
+             * Active command executions that were received on one of the open streams.
+             * On updating a command execution to one of the terminal states, it will be removed from here.
+             *
+             * @see
+             * https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command-concepts.html#iot-command-execution-status
+             * for more information on IoT command statuses.
+             */
+            std::unordered_map<Aws::Crt::String, CommandExecutionContext> m_activeCommandExecutions;
         };
 
     } // namespace IotcommandsSample
