@@ -3,6 +3,7 @@ import Builder
 import os
 import subprocess
 import sys
+import time
 
 class SetupEventstreamServer(Builder.Action):
 
@@ -24,8 +25,9 @@ class SetupEventstreamServer(Builder.Action):
                 # The EchoTest server is in test-only code
                 env.shell.exec(["mvn", "-q", "test-compile"], check=True)
 
-                env.shell.exec(["mvn", "-q", "dependency:build-classpath", "-Dmdep.outputFile=classpath.txt"], check=True)
+                env.shell.exec(["mvn", "dependency:build-classpath", "-Dmdep.outputFile=classpath.txt"], check=True)
 
+                time.sleep(1)
                 with open('classpath.txt', 'r') as file:
                     classpath = file.read()
 
@@ -38,6 +40,9 @@ class SetupEventstreamServer(Builder.Action):
                     "-classpath",
                     f"{test_class_path}{directory_separator}{target_class_path}{directory_separator}{classpath}",
                     "software.amazon.awssdk.eventstreamrpc.echotest.EchoTestServiceRunner"]
+
+                probe_command_flat = " ".join(echo_server_probe_command)
+                print(f'Echo probe command: {probe_command_flat}')
 
                 """
                 Try to run the echo server in the foreground without required arguments.  This always fails, but
