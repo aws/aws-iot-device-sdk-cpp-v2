@@ -2,6 +2,7 @@ import atexit
 import Builder
 import os
 import subprocess
+import sys
 
 class SetupEventstreamServer(Builder.Action):
 
